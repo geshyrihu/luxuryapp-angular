@@ -2,7 +2,9 @@ export const EndpointsResident = {
   Properties: {
     create: "properties",
     delete: (id: string) => `properties/${id}`,
+    importByCustomer: (customerId: string) => `properties/import/${customerId}`,
     getById: (id: string) => `properties/${id}`,
+    listByCustomer: (customerId: string) => `properties/list/${customerId}`,
     update: (id: string) => `properties/${id}`,
     downloadTemplate: (customerId: string) => `properties/download-template/${customerId}`,
   },
@@ -12,6 +14,13 @@ export const EndpointsResident = {
   Owner: {
     delete: (id: string) => `owner/${id}`,
     getById: (id: string) => `owner/${id}`,
+    listByCustomer: (customerId: string) => `owner/list/${customerId}`,
+  },
+  PropertyOccupants: {
+    create: "property-occupant",
+    delete: (id: string) => `property-occupant/${id}`,
+    listByProperty: (propertyId: string) => `property-occupant/list/${propertyId}`,
+    update: (id: string) => `property-occupant/${id}`,
   },
   RefactorResident: {
     propertyOccupantById: (id: any) => `property-occupant/${id}`,

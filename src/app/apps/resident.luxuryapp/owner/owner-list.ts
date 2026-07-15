@@ -85,7 +85,7 @@ export class OwnerList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorResident.ownerListById(
+    const urlApi = Endpoints.Owner.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS

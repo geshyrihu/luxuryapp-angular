@@ -99,7 +99,7 @@ export default class CreditNoteModalComponent implements OnInit {
   async loadProperties() {
     const res = await this.apiResponseS.onGetSelectItem<
       { label: string; value: string }[]
-    >(Endpoints.RefactorResident.propertyListById(this.customerId));
+    >(Endpoints.Properties.listByCustomer(this.customerId));
     if (res) this.propertiesOptions.set(res);
   }
 

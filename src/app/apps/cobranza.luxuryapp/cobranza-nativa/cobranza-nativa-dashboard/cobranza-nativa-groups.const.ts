@@ -49,7 +49,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             method: "GET",
             path: pathOf(
-              Endpoints.RefactorResident.propertyListById(
+              Endpoints.Properties.listByCustomer(
                 customerIdPlaceholder,
               ),
             ),

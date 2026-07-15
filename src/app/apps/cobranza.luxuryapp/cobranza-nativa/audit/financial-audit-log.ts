@@ -68,7 +68,7 @@ export default class FinancialAuditLog {
 
   async loadProperties(customerId: string) {
     const res = await this.apiResponseS.onGetSelectItem<any[]>(
-      Endpoints.RefactorResident.propertyListById(customerId),
+      Endpoints.Properties.listByCustomer(customerId),
     );
     if (res)
       this.properties.set([{ label: "Todo el condominio", value: "" }, ...res]);

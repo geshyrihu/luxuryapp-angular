@@ -88,7 +88,7 @@ export class PropiedadesList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorResident.propertyListById(
+    const urlApi = Endpoints.Properties.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
@@ -165,7 +165,7 @@ export class PropiedadesList {
       if (result.isConfirmed) {
         const formData = new FormData();
         formData.append("file", file, file.name);
-        const url = Endpoints.RefactorResident.propertyImportById(
+        const url = Endpoints.Properties.importByCustomer(
           this.customerIdS.customerId(),
         );
         this.apiResponseS.onPostFile(url, formData).then((result) => {

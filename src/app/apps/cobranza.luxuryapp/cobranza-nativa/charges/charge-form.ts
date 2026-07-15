@@ -169,7 +169,7 @@ export class ChargeForm implements OnInit {
 
   async loadProperties() {
     const res = await this.apiResponseS.onGetSelectItem<any[]>(
-      Endpoints.RefactorResident.propertyListById(this.customerId),
+      Endpoints.Properties.listByCustomer(this.customerId),
     );
     if (res) this.propertiesOptions.set(res);
   }

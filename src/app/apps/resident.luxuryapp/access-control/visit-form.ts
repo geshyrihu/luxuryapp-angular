@@ -109,7 +109,7 @@ export class VisitForm implements OnInit {
   ];
 
   private onLoadProperties(): void {
-    const url = Endpoints.RefactorResident.propertyListById(
+    const url = Endpoints.Properties.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS.onGetList<Property[]>(url).then((result) => {
