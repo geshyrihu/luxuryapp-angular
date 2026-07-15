@@ -161,13 +161,10 @@ export class CronogramaAnualMantenimiento {
   // --- Lígica de Carga y Filtro de Datos ---
   onLoadData(): void {
     const customerId: string = this.customerIdS.customerId();
-    let endpoint =
-      Endpoints.RefactorOperations.maintenanceCalendarsCronogramaAnualById(
-        customerId,
-      );
-    if (this.filtroId !== "") {
-      endpoint += `/${this.filtroId}`;
-    }
+    const endpoint = Endpoints.MaintenanceCalendars.scheduleAnnualByCustomer(
+      customerId,
+      this.filtroId,
+    );
 
     this.loading.set(true);
     this.apiResponseS
@@ -244,7 +241,7 @@ export class CronogramaAnualMantenimiento {
   exportExcel(): void {
     this.apiResponseS
       .onGetItem(
-        Endpoints.RefactorOperations.maintenanceCalendarsExportCalendarById(
+        Endpoints.MaintenanceCalendars.exportCalendarByCustomer(
           this.customerIdS.customerId(),
         ),
       )

@@ -116,7 +116,7 @@ export class ListadoAnualMantenimiento {
   }
 
   onLoadData() {
-    const url = Endpoints.RefactorOperations.maintenanceCalendarsListByIdById(
+    const url = Endpoints.MaintenanceCalendars.listAnnualByCustomerAndMonth(
       this.customerIdS.customerId(),
       this.monthControl.value,
     );
@@ -138,7 +138,7 @@ export class ListadoAnualMantenimiento {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.maintenancecalendarsById(id))
+      .onDelete(Endpoints.MaintenanceCalendars.deleteLegacy(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

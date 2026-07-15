@@ -70,7 +70,7 @@ export class Cumpleanos implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorOperations.birthdayByIdById(
+        Endpoints.Birthday.listByCustomerAndMonth(
           this.customerIdS.customerId(),
           this.selectedMonth(),
         ),

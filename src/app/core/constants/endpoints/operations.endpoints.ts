@@ -124,6 +124,10 @@ export const EndpointsOperations = {
     testProfile: "ai-assistant/test-profile",
     generateImage: "ai-assistant/generate-image",
   },
+  Birthday: {
+    listByCustomerAndMonth: (customerId: string, month: number) =>
+      `birthday/${customerId}/${month}`,
+  },
   Announcements: {
     adminList: "announcements/admin-list",
     analytics: (id: string) => `announcements/${id}/analytics`,
@@ -275,9 +279,29 @@ export const EndpointsOperations = {
   MaintenanceCalendars: {
     create: "maintenance-calendars",
     delete: (id: string | number) => `maintenance-calendars/${id}`,
+    deleteLegacy: (id: string | number) => `maintenancecalendars/${id}`,
+    exportCalendarByCustomer: (customerId: string) =>
+      `maintenance-calendars/export-calendar/${customerId}`,
+    generalMaintenanceByCustomerAndProvider: (
+      customerId: string,
+      providerId: string | number,
+    ) => `maintenance-calendars/general-mantenimiento/${customerId}/${providerId}`,
     get: (id: string | number) => `maintenance-calendars/get/${id}`,
+    listAnnualByCustomerAndMonth: (
+      customerId: string,
+      month: string | number | null | undefined,
+    ) => `maintenance-calendars/list/${customerId}/${month ?? ""}`,
+    listProvidersCalendarByCustomer: (customerId: string) =>
+      `maintenance-calendars/proveedores-calendario/${customerId}`,
     listServiceByMachinery: (machineryId: string | number) =>
       `maintenance-calendars/list-service/${machineryId}`,
+    scheduleAnnualByCustomer: (
+      customerId: string,
+      filterId?: string | number,
+    ) =>
+      filterId === undefined || filterId === null || filterId === ""
+        ? `maintenance-calendars/cronograma-anual/${customerId}`
+        : `maintenance-calendars/cronograma-anual/${customerId}/${filterId}`,
   },
   InventarioProducto: {
     create: "inventario-producto",

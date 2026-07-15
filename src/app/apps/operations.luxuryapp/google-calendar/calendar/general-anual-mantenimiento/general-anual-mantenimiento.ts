@@ -44,10 +44,9 @@ export class GeneralAnualMantenimiento {
   }
 
   onLoadProveedores() {
-    const url =
-      Endpoints.RefactorOperations.maintenanceCalendarsProveedoresCalendarioById(
-        this.customerIdS.customerId(),
-      );
+    const url = Endpoints.MaintenanceCalendars.listProvidersCalendarByCustomer(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.cb_providers.set([
         { label: "Todos", value: "" } as any,
@@ -59,7 +58,7 @@ export class GeneralAnualMantenimiento {
   onLoadData() {
     this.dataSignal.set([]);
     const url =
-      Endpoints.RefactorOperations.maintenanceCalendarsGeneralMantenimientoByIdById(
+      Endpoints.MaintenanceCalendars.generalMaintenanceByCustomerAndProvider(
         this.customerIdS.customerId(),
         this.providerIdControl.value || "",
       );
