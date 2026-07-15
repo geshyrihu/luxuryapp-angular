@@ -93,7 +93,7 @@ export default class ModalPeriodoAdd implements OnInit {
       };
       this.submitting.set(true);
       this.apiResponseS
-        .onPost(Endpoints.RefactorRecursosHumanos.hrNominaPeriodos, dto)
+        .onPost(Endpoints.HR.Nomina.Periodos.create, dto)
         .then((r) => {
           if (r) this.ref.close(true);
         })
@@ -112,7 +112,7 @@ export default class ModalPeriodoAdd implements OnInit {
       this.submitting.set(true);
       this.apiResponseS
         .onPut(
-          Endpoints.RefactorRecursosHumanos.hrNominaPeriodosById(existing.id),
+          Endpoints.HR.Nomina.Periodos.update(existing.id),
           dto,
         )
         .then((r) => {

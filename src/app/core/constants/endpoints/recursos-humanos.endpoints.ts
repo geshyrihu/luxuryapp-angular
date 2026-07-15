@@ -165,18 +165,22 @@ export const EndpointsRecursosHumanos = {
           `hr/nomina/periodos/auto-crear?customer-id=${customerId}`,
         byCustomerAndYear: (customerId: string, anio: number) =>
           `hr/nomina/periodos?customer-id=${customerId}&anio=${anio}`,
+        create: "hr/nomina/periodos",
         delete: (id: string) => `hr/nomina/periodos/${id}`,
         diasNoHabiles: (periodoId: string) =>
           `hr/nomina/periodos/${periodoId}/dias-no-habiles`,
         deleteDiaNoHabil: (periodoId: string, diaId: string) =>
           `hr/nomina/periodos/${periodoId}/dias-no-habiles/${diaId}`,
+        update: (id: string) => `hr/nomina/periodos/${id}`,
       },
       Prestamos: {
         autorizar: (prestamoId: string) => `hr/nomina/prestamos/${prestamoId}/autorizar`,
         cancelar: (prestamoId: string) => `hr/nomina/prestamos/${prestamoId}/cancelar`,
         create: "hr/nomina/prestamos",
+        delete: (id: string) => `hr/nomina/prestamos/${id}`,
         historialPagos: (prestamoId: string) =>
           `hr/nomina/prestamos/${prestamoId}/historial-pagos`,
+        list: (customerId: string) => `hr/nomina/prestamos?customerId=${customerId}`,
       },
       TiempoExtra: {
         approve: (id: string) => `hr/nomina/tiempo-extra/${id}/aprobar`,
@@ -394,9 +398,4 @@ export const EndpointsRecursosHumanos = {
       `chekador-empleados/${id}/rechazar-anomalia`,
     sedes: "chekador-empleados/sedes",
   },
-  RefactorRecursosHumanos: {
-    hrNominaPeriodos: "hr/nomina/periodos",
-    hrNominaPeriodosById: (p0: any) => `hr/nomina/periodos/${p0}`,
-    hrNominaPrestamosById: (p0: any) => `hr/nomina/prestamos/${p0}`,
-},
 } as const;

@@ -79,9 +79,7 @@ export default class PrestamosEmpleado {
   onLoadData(customerId: string): void {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList<PrestamoEmpleadoDTO[]>(
-        `hr/nomina/prestamos?customerId=${customerId}`,
-      )
+      .onGetList<PrestamoEmpleadoDTO[]>(Endpoints.HR.Nomina.Prestamos.list(customerId))
       .then((resp: any) => {
         this.data.set(resp ?? []);
         this.loading.set(false);
@@ -116,9 +114,7 @@ export default class PrestamosEmpleado {
 
   onDelete(item: PrestamoEmpleadoDTO): void {
     this.apiResponseS
-      .onDelete(
-        Endpoints.RefactorRecursosHumanos.hrNominaPrestamosById(item.id),
-      )
+      .onDelete(Endpoints.HR.Nomina.Prestamos.delete(item.id))
       .then((result) => {
         if (result) this.onLoadData(this.customerIdS.customerId());
       });
