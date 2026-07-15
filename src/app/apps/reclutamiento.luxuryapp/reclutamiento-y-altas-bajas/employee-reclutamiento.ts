@@ -42,7 +42,7 @@ export class EmployeeReclutamiento implements OnInit {
   // Solicitud de modificacion de salario
   onValidarSolicitudesAbiertas() {
     const urlApi =
-      Endpoints.RefactorReclutamiento.employeesValidarsolicitudesabiertasById(
+      Endpoints.Employees.validateOpenRequests(
         this.employeeId(),
       );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {

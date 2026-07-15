@@ -70,7 +70,7 @@ export class SolicitudVacanteForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorReclutamiento.workPositionsById(
+    const urlApi = Endpoints.WorkPositions.getById(
       this.workPositionId,
     );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {

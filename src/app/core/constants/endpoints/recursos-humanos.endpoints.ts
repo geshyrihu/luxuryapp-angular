@@ -300,6 +300,8 @@ export const EndpointsRecursosHumanos = {
   Employees: {
     createEmployee: "employees/create-employee",
     createEmployeeExternal: "employees/create-employee-external",
+    validateOpenRequests: (employeeId: string | number) =>
+      `employees/validarsolicitudesabiertas/${employeeId}`,
   },
   EmployeeBankData: {
     base: "employee-bank-data",

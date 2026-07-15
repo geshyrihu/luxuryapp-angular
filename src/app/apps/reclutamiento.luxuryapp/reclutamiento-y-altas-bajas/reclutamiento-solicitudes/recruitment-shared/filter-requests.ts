@@ -102,7 +102,7 @@ export class FilterRequests {
 
   onSendReportVacants() {
     const urlApi =
-      Endpoints.RefactorReclutamiento.solicitudesreclutamientoSendreportvacants;
+      Endpoints.RecruitmentRequests.sendReportVacants;
     this.apiResponseS.onPost(urlApi).then(() => {
       this.onLoadData();
     });

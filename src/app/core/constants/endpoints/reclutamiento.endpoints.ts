@@ -6,6 +6,7 @@ export const EndpointsReclutamiento = {
     assignEmployee: (applicationUserId: Id, positionId: Id) =>
       `work-positions/assign-employee/${applicationUserId}/${positionId}`,
     delete: (id: Id) => `work-positions/${id}`,
+    getById: (workPositionId: Id) => `work-positions/${workPositionId}`,
     listByCustomer: (customerId: Id, state: string) =>
       `work-positions/list-by-customer/${customerId}/${state}`,
     unassignEmployee: (id: Id) => `work-positions/${id}/unassign-employee`,
@@ -35,6 +36,7 @@ export const EndpointsReclutamiento = {
     exportExcel: "request-position/export-excel",
   },
   RecruitmentRequests: {
+    sendReportVacants: "solicitudesreclutamiento/sendreportvacants",
     solicitudVacante: (applicationUserId: Id) => `recruitment-requests/solicitud-vacante/${applicationUserId}`,
     solicitudModificacionSalario: (customerId: Id, applicationUserId: Id) =>
       `recruitment-requests/solicitud-modificacion-salario/${customerId}/${applicationUserId}`,
@@ -77,9 +79,4 @@ export const EndpointsReclutamiento = {
     delete: (id: Id) => `request-employee-register/${id}`,
     exportExcel: "request-employee-register/export-excel",
   },
-  RefactorReclutamiento: {
-    employeesValidarsolicitudesabiertasById: (employeeId: any) => `employees/validarsolicitudesabiertas/${employeeId}`,
-      solicitudesreclutamientoSendreportvacants: "solicitudesreclutamiento/sendreportvacants",
-    workPositionsById: (workPositionId: any) => `work-positions/${workPositionId}`,
-},
 } as const;
