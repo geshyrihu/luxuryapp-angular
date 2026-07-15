@@ -214,7 +214,7 @@ export class GoogleCalendar {
     this.loading.set(true);
     this.apiResponseS
       .onGetList<IGoogleCalendarEventListItem[]>(
-        `google-calendar-events/customer/${customerId}`,
+        Endpoints.GoogleCalendarEvents.listByCustomer(customerId),
       )
       .then((result) => {
         this.dataSignal.set(result || []);
@@ -262,7 +262,7 @@ export class GoogleCalendar {
 
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.googleCalendarEventsById(id))
+      .onDelete(Endpoints.GoogleCalendarEvents.delete(id))
       .then((result) => {
         if (!result) return;
 

@@ -143,6 +143,7 @@ export const EndpointsOperations = {
       `dashboard/global-pending-items/${customerId}`,
   },
   DiagramDraw: {
+    create: "diagram-draw",
     delete: (id: string) => `diagram-draw/${id}`,
     getById: (id: string) => `diagram-draw/${id}`,
     update: (id: string) => `diagram-draw/${id}`,
@@ -190,7 +191,11 @@ export const EndpointsOperations = {
     update: (id: string | number) => `meeting-details-seguimientos/${id}`,
   },
   GoogleCalendarEvents: {
+    create: "google-calendar-events",
+    delete: (id: string) => `google-calendar-events/${id}`,
     getById: (id: string) => `google-calendar-events/${id}`,
+    listByCustomer: (customerId: string) =>
+      `google-calendar-events/customer/${customerId}`,
     updateSeries: (id: string) => `google-calendar-events/${id}/series`,
   },
   Manuals: {

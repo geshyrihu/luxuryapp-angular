@@ -71,7 +71,7 @@ export class DiagramEditor implements OnInit, OnDestroy {
 
   onLoadDiagram() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorOperations.diagramDrawById(this.id))
+      .onGetItem(Endpoints.DiagramDraw.getById(this.id))
       .then((result: any) => {
         this.diagram.set(result);
       });

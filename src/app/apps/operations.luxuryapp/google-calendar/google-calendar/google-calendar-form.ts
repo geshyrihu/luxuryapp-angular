@@ -526,7 +526,7 @@ export class GoogleCalendarForm implements OnInit {
     const result: any = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "google-calendar-events",
+      endpoint: Endpoints.GoogleCalendarEvents.create,
       id: this.id() || null,
       ref: this.ref,
       submitting: this.submitting,
@@ -1160,7 +1160,7 @@ export class GoogleCalendarForm implements OnInit {
     try {
       const events = await this.apiResponseS.onGetList<
         IGoogleCalendarEventListItem[]
-      >(`google-calendar-events/customer/${customerId}`);
+      >(Endpoints.GoogleCalendarEvents.listByCustomer(customerId));
 
       const filtered = (events ?? []).filter((event) =>
         this.isSameDay(
