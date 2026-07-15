@@ -40,7 +40,6 @@ export class TaskGroupService {
   }
 
   onLoadDataMessageInNotRead(): void {
-    // const urlApi = Endpoints.RefactorOperations.ticketsMessageInNotReadById(this.authS.applicationUserId);
     // this.apiResponseS.onGetList(urlApi).then((result: any) => {
     //   this.messageInNotRead = result;
     // });
