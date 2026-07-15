@@ -42,6 +42,11 @@ export const EndpointsAuth = {
       delete: (id: string) => `password-manager/credentials/${id}`,
     },
   },
+  Users: {
+    changePassword: (id: string) => `users/change-password/${id}`,
+    updateImage: (applicationUserId: string) =>
+      `users/update-image/${applicationUserId}`,
+  },
   RefactorAuth: {
     usersChangePasswordById: (id: any) => `users/change-password/${id}`,
     usersUpdateImageById: (applicationUserId: any) => `users/update-image/${applicationUserId}`,

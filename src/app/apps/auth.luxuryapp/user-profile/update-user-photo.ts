@@ -71,7 +71,7 @@ export class UpdateUserPhotoComponent implements OnInit {
     formData.append("file", this.imgUpload);
     this.apiResponseS
       .onPut(
-        Endpoints.RefactorAuth.usersUpdateImageById(this.applicationUserId),
+        Endpoints.Users.updateImage(this.applicationUserId),
         formData,
       )
       .then((result: any) => {

@@ -77,7 +77,7 @@ export class UpdatePasswordComponent implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPut(Endpoints.RefactorAuth.usersChangePasswordById(id), model)
+      .onPut(Endpoints.Users.changePassword(id), model)
       .then((result: boolean) => {
         if (result) {
           this.submitting.set(false);
