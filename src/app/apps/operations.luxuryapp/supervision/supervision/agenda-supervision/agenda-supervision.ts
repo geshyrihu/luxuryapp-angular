@@ -117,7 +117,7 @@ export class AgendaSupervision implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.agendaSupervisionListByIdById(
+    const urlApi = Endpoints.AgendaSupervision.listByDateRange(
       this.fechaInicial,
       this.fechaFinal,
     );
@@ -150,7 +150,7 @@ export class AgendaSupervision implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.agendaSupervisionById(id))
+      .onDelete(Endpoints.AgendaSupervision.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

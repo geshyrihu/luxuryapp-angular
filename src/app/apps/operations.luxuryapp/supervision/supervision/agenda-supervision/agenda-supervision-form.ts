@@ -95,7 +95,7 @@ export class AgendaSupervisionForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.agendaSupervisionById(this.id);
+    const urlApi = Endpoints.AgendaSupervision.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       // Date handling might need adjustment if getDateFormat returns string
       // But CustomInputDateSignal expects Date object or compatible string.
@@ -116,7 +116,7 @@ export class AgendaSupervisionForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "agenda-supervision",
+      endpoint: Endpoints.AgendaSupervision.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

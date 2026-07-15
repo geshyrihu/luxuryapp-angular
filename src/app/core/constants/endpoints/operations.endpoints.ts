@@ -124,6 +124,14 @@ export const EndpointsOperations = {
     testProfile: "ai-assistant/test-profile",
     generateImage: "ai-assistant/generate-image",
   },
+  AgendaSupervision: {
+    create: "agenda-supervision",
+    delete: (id: string | number) => `agenda-supervision/${id}`,
+    getById: (id: string | number) => `agenda-supervision/${id}`,
+    listByDateRange: (startDate: string, endDate: string) =>
+      `agenda-supervision/list/${startDate}/${endDate}`,
+    update: (id: string | number) => `agenda-supervision/${id}`,
+  },
   Birthday: {
     listByCustomerAndMonth: (customerId: string, month: number) =>
       `birthday/${customerId}/${month}`,
