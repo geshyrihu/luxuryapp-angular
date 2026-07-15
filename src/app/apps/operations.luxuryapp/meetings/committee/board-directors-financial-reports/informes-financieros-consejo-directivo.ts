@@ -68,10 +68,9 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
     }
 
     // Construimos la URL del endpoint que creamos en el backend
-    const urlApi =
-      Endpoints.RefactorOperations.boardDirectorsFinancialReportsById(
-        customerId,
-      );
+    const urlApi = Endpoints.BoardDirectors.financialReportsByCustomer(
+      customerId,
+    );
 
     this.apiResponseS
       .onGetList(urlApi)

@@ -265,6 +265,16 @@ export const EndpointsOperations = {
   FinancialReport: {
     listByCustomer: (customerId: string) => `financial-report/list/${customerId}`,
   },
+  BoardDirectors: {
+    financialReportsByCustomer: (customerId: string) =>
+      `board-directors/financial-reports/${customerId}`,
+    meetingMinuteDetailById: (meetingMinuteId: string | number) =>
+      `board-directors/meeting-minutes-detail/${meetingMinuteId}`,
+    meetingMinutesByCustomer: (customerId: string) =>
+      `board-directors/meeting-minutes/${customerId}`,
+    monthlyMeetingsByCustomer: (customerId: string) =>
+      `board-directors/monthly-meetings/${customerId}`,
+  },
   ManualFlowcharts: {
     create: "manual-flowcharts",
     delete: (id: string) => `manual-flowcharts/${id}`,
