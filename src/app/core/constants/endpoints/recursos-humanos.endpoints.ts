@@ -398,7 +398,5 @@ export const EndpointsRecursosHumanos = {
     hrNominaPeriodos: "hr/nomina/periodos",
     hrNominaPeriodosById: (p0: any) => `hr/nomina/periodos/${p0}`,
     hrNominaPrestamosById: (p0: any) => `hr/nomina/prestamos/${p0}`,
-    configuracionDiasFestivosById: (year: any) => `configuracion/dias-festivos/${year}`,
-    vacationRequestApprovalsByIdBalance: (employeeId: any) => `vacation-request-approvals/${employeeId}/balance`,
 },
 } as const;
