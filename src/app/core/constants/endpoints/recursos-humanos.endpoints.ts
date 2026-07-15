@@ -349,10 +349,20 @@ export const EndpointsRecursosHumanos = {
     update: (id: string) => `employee-external/${id}`,
   },
   PerformanceEvaluations: {
+    create: "performance-evaluations/create",
+    delete: (id: string) => `performance-evaluations/${id}`,
     result: (id: string) => `performance-evaluations/${id}/result`,
+    update: (evaluationId: string) =>
+      `performance-evaluations/update/${evaluationId}`,
+    historyByCustomer: (customerId: string) =>
+      `performance-evaluations/customer/${customerId}/history`,
   },
   TemplateEvaluation: {
+    create: "template-evaluation",
     delete: (id: string) => `template-evaluation/${id}`,
+    getById: (id: string) => `template-evaluation/${id}`,
+    listByCustomer: (customerId: string) => `template-evaluation/list/${customerId}`,
+    update: (id: string) => `template-evaluation/${id}`,
   },
   ChekadorEmpleados: {
     registrar: "chekador-empleados/registrar",
@@ -383,11 +393,6 @@ export const EndpointsRecursosHumanos = {
     sedes: "chekador-empleados/sedes",
   },
   RefactorRecursosHumanos: {
-    templateEvaluation: "template-evaluation",
-    templateEvaluationById: (id: any) => `template-evaluation/${id}`,
-    performanceEvaluationsById: (id: any) => `performance-evaluations/${id}`,
-    performanceEvaluationsUpdateById: (evaluationId: any) => `performance-evaluations/update/${evaluationId}`,
-    performanceEvaluationsCreate: "performance-evaluations/create",
     applicationUsersCardUserById: (appUserId: any) => `employee-internal/card-user/${appUserId}`,
     employeesValidaradminasisById: (authS: any) => `employees/validaradminasis/${authS}`,
     hrNominaPeriodos: "hr/nomina/periodos",
@@ -395,7 +400,5 @@ export const EndpointsRecursosHumanos = {
     hrNominaPrestamosById: (p0: any) => `hr/nomina/prestamos/${p0}`,
     configuracionDiasFestivosById: (year: any) => `configuracion/dias-festivos/${year}`,
     vacationRequestApprovalsByIdBalance: (employeeId: any) => `vacation-request-approvals/${employeeId}/balance`,
-      templateEvaluationListById: (customerIdS: any) => `template-evaluation/list/${customerIdS}`,
-    performanceEvaluationsCustomerByIdHistory: (customerIdS: any) => `performance-evaluations/customer/${customerIdS}/history`,
 },
 } as const;

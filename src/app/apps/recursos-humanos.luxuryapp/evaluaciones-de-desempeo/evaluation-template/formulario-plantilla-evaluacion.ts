@@ -119,9 +119,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
   }
 
   private onLoadData(): void {
-    const urlApi = Endpoints.RefactorRecursosHumanos.templateEvaluationById(
-      this.id,
-    );
+    const urlApi = Endpoints.TemplateEvaluation.getById(this.id!);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue({
         name: result.name,
@@ -215,7 +213,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     if (!this.id) {
       // Crear nuevo
       this.apiResponseS
-        .onPost(Endpoints.RefactorRecursosHumanos.templateEvaluation, formValue)
+        .onPost(Endpoints.TemplateEvaluation.create, formValue)
         .then((result: any) => {
           if (result) {
             console.log("Template creado exitosamente");
@@ -231,7 +229,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
       // Editar existente
       this.apiResponseS
         .onPut(
-          Endpoints.RefactorRecursosHumanos.templateEvaluationById(this.id),
+          Endpoints.TemplateEvaluation.update(this.id),
           formValue,
         )
         .then(() => {

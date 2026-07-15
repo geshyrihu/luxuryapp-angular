@@ -91,10 +91,9 @@ export class ListaEvaluacionRealizada {
   }
 
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorRecursosHumanos.performanceEvaluationsCustomerByIdHistory(
-        this.customerIdS.customerId(),
-      );
+    const urlApi = Endpoints.PerformanceEvaluations.historyByCustomer(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result || []));
@@ -102,9 +101,7 @@ export class ListaEvaluacionRealizada {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(
-        Endpoints.RefactorRecursosHumanos.performanceEvaluationsById(id),
-      )
+      .onDelete(Endpoints.PerformanceEvaluations.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>
