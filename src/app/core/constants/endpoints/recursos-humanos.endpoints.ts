@@ -300,6 +300,8 @@ export const EndpointsRecursosHumanos = {
   Employees: {
     createEmployee: "employees/create-employee",
     createEmployeeExternal: "employees/create-employee-external",
+    validateAdminAsis: (applicationUserId: string | number) =>
+      `employees/validaradminasis/${applicationUserId}`,
     validateOpenRequests: (employeeId: string | number) =>
       `employees/validarsolicitudesabiertas/${employeeId}`,
   },
@@ -393,8 +395,6 @@ export const EndpointsRecursosHumanos = {
     sedes: "chekador-empleados/sedes",
   },
   RefactorRecursosHumanos: {
-    applicationUsersCardUserById: (appUserId: any) => `employee-internal/card-user/${appUserId}`,
-    employeesValidaradminasisById: (authS: any) => `employees/validaradminasis/${authS}`,
     hrNominaPeriodos: "hr/nomina/periodos",
     hrNominaPeriodosById: (p0: any) => `hr/nomina/periodos/${p0}`,
     hrNominaPrestamosById: (p0: any) => `hr/nomina/prestamos/${p0}`,

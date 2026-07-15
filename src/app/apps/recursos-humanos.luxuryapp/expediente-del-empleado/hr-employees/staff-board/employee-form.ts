@@ -79,11 +79,7 @@ export class EmployeeForm implements OnInit {
         }
 
         this.apiResponseS
-          .onGetItem(
-            Endpoints.RefactorRecursosHumanos.applicationUsersCardUserById(
-              appUserId,
-            ),
-          )
+          .onGetItem(Endpoints.EmployeeInternal.cardUser(appUserId))
           .then((result: any) => {
             this.nameEmployee.set(`${result.fullName} `);
           });
@@ -253,11 +249,7 @@ export class EmployeeForm implements OnInit {
 
   onValidarAdminAsis() {
     this.apiResponseS
-      .onGetItem(
-        Endpoints.RefactorRecursosHumanos.employeesValidaradminasisById(
-          this.authS.applicationUserId,
-        ),
-      )
+      .onGetItem(Endpoints.Employees.validateAdminAsis(this.authS.applicationUserId))
       .then((result: any) => {
         this.tienePermiso = result;
       });
