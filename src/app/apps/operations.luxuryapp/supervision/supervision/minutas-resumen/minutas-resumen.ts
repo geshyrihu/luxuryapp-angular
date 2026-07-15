@@ -76,7 +76,7 @@ export class MinutasResumen implements OnInit {
   onLoadData(fehcaInicio: string, fechaFinal: string) {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorOperations.resumenGeneralResumenMinutasGeneralListaByIdById(
+        Endpoints.ResumenGeneral.minutasGeneralList(
           fehcaInicio,
           fechaFinal,
         ),
@@ -87,7 +87,7 @@ export class MinutasResumen implements OnInit {
 
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorOperations.resumenGeneralResumenMinutasGeneralGrupoByIdById(
+        Endpoints.ResumenGeneral.minutasGeneralGroup(
           fehcaInicio,
           fechaFinal,
         ),

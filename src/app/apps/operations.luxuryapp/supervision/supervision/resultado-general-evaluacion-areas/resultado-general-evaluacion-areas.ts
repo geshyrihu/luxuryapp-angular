@@ -57,11 +57,10 @@ export class ResultadoGeneralEvaluacionAreas implements OnInit {
     });
   }
   onLoadData(fechaInicio: string, fechaFinal: string) {
-    const urlApi =
-      Endpoints.RefactorOperations.resumenGeneralEvaluacionAreasByIdById(
-        fechaInicio,
-        fechaFinal,
-      );
+    const urlApi = Endpoints.ResumenGeneral.evaluationAreas(
+      fechaInicio,
+      fechaFinal,
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

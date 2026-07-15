@@ -56,7 +56,7 @@ export class ResultadoGeneralPosicion {
   });
 
   onLoadData(fechaInicio: string, fechaFinal: string) {
-    const urlApi = Endpoints.RefactorOperations.resumenGeneralPosicionByIdById(
+    const urlApi = Endpoints.ResumenGeneral.position(
       fechaInicio,
       fechaFinal,
     );

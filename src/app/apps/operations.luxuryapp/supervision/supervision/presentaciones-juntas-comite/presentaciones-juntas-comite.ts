@@ -74,10 +74,7 @@ export class PresentacionesJuntasComite implements OnInit {
     let inicial = this.dateS.getDateFormat(
       new Date((this.periodoControl.value || "") + "-" + 1),
     );
-    const urlApi =
-      Endpoints.RefactorOperations.presentacionJuntaComiteGeneralesById(
-        inicial,
-      );
+    const urlApi = Endpoints.CommitteePresentations.generalByDate(inicial);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

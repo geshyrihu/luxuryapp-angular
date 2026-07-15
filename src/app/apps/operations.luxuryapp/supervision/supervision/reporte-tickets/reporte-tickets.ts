@@ -64,12 +64,11 @@ export class ReporteTickets {
   }
 
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.resumenGeneralReporteResumenTicketByIdByIdById(
-        this.customerIdS.customerId(),
-        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
-        this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin),
-      );
+    const urlApi = Endpoints.ResumenGeneral.reporteResumenTicketByCustomer(
+      this.customerIdS.customerId(),
+      this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoInicio),
+      this.dateS.getDateFormat(this.PeriodMonthService.getPeriodoFin),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

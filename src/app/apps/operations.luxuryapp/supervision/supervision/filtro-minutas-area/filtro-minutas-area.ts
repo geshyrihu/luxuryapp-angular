@@ -77,12 +77,11 @@ export class FiltroMinutasArea implements OnInit {
   }
 
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.dashboardFiltroMinutasAreaByIdByIdById(
-        this.meetingId,
-        this.area,
-        this.estatus,
-      );
+    const urlApi = Endpoints.Dashboard.filtroMinutasArea(
+      this.meetingId,
+      this.area,
+      this.estatus,
+    );
 
     this.apiResponseS
       .onGetList(urlApi)

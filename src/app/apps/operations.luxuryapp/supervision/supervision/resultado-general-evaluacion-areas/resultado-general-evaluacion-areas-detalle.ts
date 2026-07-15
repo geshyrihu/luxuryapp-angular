@@ -54,12 +54,11 @@ export class ResultadoGeneralEvaluacionAreasDetalle implements OnInit {
   }
 
   onLoadData(fecha: string, area: number, status?: number) {
-    const urlApi =
-      Endpoints.RefactorOperations.resumenGeneralEvaluacionAreasDetalleByIdByIdById(
-        fecha,
-        area,
-        status,
-      );
+    const urlApi = Endpoints.ResumenGeneral.evaluationAreasDetail(
+      fecha,
+      area,
+      status,
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

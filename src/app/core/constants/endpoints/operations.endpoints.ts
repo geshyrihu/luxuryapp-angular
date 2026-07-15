@@ -149,10 +149,18 @@ export const EndpointsOperations = {
   },
   Dashboard: {
     analyze: "dashboard/analyze",
+    filtroMinutasArea: (
+      meetingId: string | number,
+      area: string | number,
+      status: string | number,
+    ) => `dashboard/filtro-minutas-area/${meetingId}/${area}/${status}`,
     sendExecutiveReport: (customerId: string) =>
       `dashboard/send-executive-report/${customerId}`,
     globalPendingItems: (customerId: string) =>
       `dashboard/global-pending-items/${customerId}`,
+  },
+  CommitteePresentations: {
+    generalByDate: (date: string) => `presentaciones-junta-comite/generales/${date}/`,
   },
   DiagramDraw: {
     create: "diagram-draw",
@@ -264,6 +272,52 @@ export const EndpointsOperations = {
   },
   FinancialReport: {
     listByCustomer: (customerId: string) => `financial-report/list/${customerId}`,
+  },
+  ResumenGeneral: {
+    evaluationAreas: (startDate: string, endDate: string) =>
+      `resumen-general/evaluacion-areas/${startDate}/${endDate}`,
+    evaluationAreasDetail: (
+      date: string,
+      area: string | number,
+      status: string | number | undefined,
+    ) => `resumen-general/evaluacion-areas-detalle/${date}/${area}/${status}`,
+    minutasGeneralGroup: (startDate: string, endDate: string) =>
+      `resumen-general/resumen-minutas-general-grupo/${startDate}/${endDate}`,
+    minutasGeneralList: (startDate: string, endDate: string) =>
+      `resumen-general/resumen-minutas-general-lista/${startDate}/${endDate}`,
+    position: (startDate: string, endDate: string) =>
+      `resumen-general/posicion/${startDate}/${endDate}`,
+    reporteResumenMinutas: (
+      startDate: string,
+      endDate: string,
+      reportLevel: string | number,
+    ) => `resumen-general/reporte-resumen-minutas/${startDate}/${endDate}/${reportLevel}`,
+    reporteResumenMinutasFiltro: (
+      startDate: string,
+      endDate: string,
+      areaMinutasDetalle: string | number,
+      reportLevel: string | number,
+    ) =>
+      `resumen-general/reporte-resumen-minutas-filtro/${startDate}/${endDate}/${areaMinutasDetalle}/${reportLevel}`,
+    reporteResumenPreventivos: (startDate: string, endDate: string) =>
+      `resumen-general/reporte-resumen-preventivos/${startDate}/${endDate}`,
+    reporteResumenTicketByCustomer: (
+      customerId: string,
+      startDate: string,
+      endDate: string,
+    ) => `resumen-general/reporte-resumen-ticket/${customerId}/${startDate}/${endDate}`,
+    reporteResumenTicket: (startDate: string, endDate: string) =>
+      `resumen-general/reporte-resumen-ticket/${startDate}/${endDate}`,
+  },
+  SupervisionReports: {
+    financialStatementsByCustomer: (customerId: string) =>
+      `supervision-reports/estados-financieros/${customerId}`,
+    pendingLegalByCustomer: (customerId: string) =>
+      `supervision-reports/pending-legal/${customerId}`,
+    pendingMinutesByCustomer: (customerId: string) =>
+      `supervision-reports/pending-minutes/${customerId}`,
+    pendingTicketsByCustomer: (customerId: string) =>
+      `supervision-reports/pending-tickets/${customerId}`,
   },
   BoardDirectors: {
     financialReportsByCustomer: (customerId: string) =>

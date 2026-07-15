@@ -50,9 +50,7 @@ export class ReportSupervision {
     this.minutas.set(null);
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorOperations.supervisionReportsPendingMinutesById(
-          customerId,
-        ),
+        Endpoints.SupervisionReports.pendingMinutesByCustomer(customerId),
       )
       .then((result: any) => {
         this.minutas.set(result);
@@ -71,9 +69,7 @@ export class ReportSupervision {
     this.tickets.set(null);
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorOperations.supervisionReportsPendingTicketsById(
-          customerId,
-        ),
+        Endpoints.SupervisionReports.pendingTicketsByCustomer(customerId),
       )
       .then((result: any) => {
         this.tickets.set(result);
@@ -92,9 +88,7 @@ export class ReportSupervision {
     this.pendingLegal.set(null);
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorOperations.supervisionReportsPendingLegalById(
-          customerId,
-        ),
+        Endpoints.SupervisionReports.pendingLegalByCustomer(customerId),
       )
       .then((result: any) => {
         this.pendingLegal.set(result);
@@ -113,9 +107,7 @@ export class ReportSupervision {
     this.envioFinancieros.set(null);
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorOperations.supervisionReportsEstadosFinancierosById(
-          customerId,
-        ),
+        Endpoints.SupervisionReports.financialStatementsByCustomer(customerId),
       )
       .then((result: any) => {
         this.envioFinancieros.set(result);
