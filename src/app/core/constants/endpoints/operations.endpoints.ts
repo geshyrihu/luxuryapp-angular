@@ -263,6 +263,16 @@ export const EndpointsOperations = {
   SpecialDocuments: {
     updateOrder: "special-document/update-order",
   },
+  CustomDocuments: {
+    create: "custom-document",
+    delete: (id: string | number) => `custom-document/${id}`,
+    getById: (id: string | number) => `custom-document/${id}`,
+    listByCustomerAndType: (
+      customerId: string,
+      documentType: string | number,
+    ) => `custom-document/list/${customerId}/${documentType}`,
+    update: (id: string | number) => `custom-document/${id}`,
+  },
   Almacen: {
     create: "almacen",
     delete: (id: string) => `almacen/${id}`,

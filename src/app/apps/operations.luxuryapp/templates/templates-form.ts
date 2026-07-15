@@ -53,7 +53,7 @@ export class TemplatesForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.customdocumentById(this.id);
+    const urlApi = Endpoints.CustomDocuments.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -67,13 +67,13 @@ export class TemplatesForm implements OnInit {
 
     if (this.id === "") {
       this.apiResponseS
-        .onPost(Endpoints.RefactorOperations.customdocument, model)
+        .onPost(Endpoints.CustomDocuments.create, model)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(Endpoints.RefactorOperations.customdocumentById(this.id), model)
+        .onPut(Endpoints.CustomDocuments.update(this.id), model)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

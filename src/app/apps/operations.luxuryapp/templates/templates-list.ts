@@ -108,7 +108,7 @@ export class TemplatesList implements OnInit {
 
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    const urlApi = Endpoints.RefactorOperations.customdocumentListByIdById(
+    const urlApi = Endpoints.CustomDocuments.listByCustomerAndType(
       customerId,
       EDocumentType.Template,
     );
@@ -120,7 +120,7 @@ export class TemplatesList implements OnInit {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.customdocumentById(id))
+      .onDelete(Endpoints.CustomDocuments.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) =>

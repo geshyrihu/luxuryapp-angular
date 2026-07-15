@@ -72,7 +72,7 @@ export class ActaConstitutivaList {
 
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    const urlApi = Endpoints.RefactorOperations.customdocumentListByIdById(
+    const urlApi = Endpoints.CustomDocuments.listByCustomerAndType(
       customerId,
       EDocumentType.ActaConstitutiva,
     );
