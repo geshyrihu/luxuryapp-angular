@@ -268,7 +268,9 @@ export const EndpointsOperations = {
       `inventory-engine-system/list/${customerId}`,
   },
   MaintenanceCalendars: {
+    create: "maintenance-calendars",
     delete: (id: string | number) => `maintenance-calendars/${id}`,
+    get: (id: string | number) => `maintenance-calendars/get/${id}`,
     listServiceByMachinery: (machineryId: string | number) =>
       `maintenance-calendars/list-service/${machineryId}`,
   },

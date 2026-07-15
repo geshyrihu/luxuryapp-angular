@@ -292,7 +292,7 @@ export class MantenimientoPreventivoForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "maintenance-calendars",
+      endpoint: Endpoints.MaintenanceCalendars.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
