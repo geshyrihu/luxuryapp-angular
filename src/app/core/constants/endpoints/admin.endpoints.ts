@@ -99,7 +99,13 @@ export const EndpointsAdmin = {
       "update-data-base/seed-native-collection-test-data",
   },
   CustomerProvider: {
+    delete: (id: string) => `customer-provider/${id}`,
     getById: (id: string) => `customer-provider/get-by-id/${id}`,
+    listByCustomer: (customerId: string) => `customer-provider/${customerId}`,
+  },
+  Permission: {
+    userAdminByApplicationUser: (applicationUserId: string) =>
+      `permission/permission-user-admin/${applicationUserId}`,
   },
   VaultSecrets: {
     getAll: "vault-secrets/list",

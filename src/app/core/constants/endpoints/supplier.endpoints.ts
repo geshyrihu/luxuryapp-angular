@@ -33,7 +33,9 @@ export const EndpointsSupplier = {
     comiteEvents: (customerId: string) => `solicitud-compra/comite-events/${customerId}`,
   },
   CustomerProvider: {
+    delete: (id: string) => `customer-provider/${id}`,
     getById: (id: string) => `customer-provider/get-by-id/${id}`,
+    listByCustomer: (customerId: string) => `customer-provider/${customerId}`,
   },
   InventarioIluminacion: {
     getById: (id: string) => `inventario-iluminacion/${id}`,

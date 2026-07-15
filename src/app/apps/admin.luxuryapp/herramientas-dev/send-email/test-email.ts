@@ -25,9 +25,7 @@ export class TestEmail {
     }
 
     // Endpoint: api/test/test-email/{email}
-    const urlApi = Endpoints.RefactorAdmin.sendEmailTestEmailById(
-      this.emailControl.value,
-    );
+    const urlApi = Endpoints.EmailData.sendTestEmail(this.emailControl.value);
 
     this.apiResponseS
       .onPost(urlApi, {})

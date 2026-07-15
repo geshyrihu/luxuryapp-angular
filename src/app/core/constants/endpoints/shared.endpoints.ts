@@ -215,6 +215,8 @@ export const EndpointsShared = {
     byCustomer: (customerId: string) => `menu-items/${customerId}`,
   },
   Permission: {
+    userAdminByApplicationUser: (applicationUserId: string) =>
+      `permission/permission-user-admin/${applicationUserId}`,
     update: (id: string | number) => `permission/${id}`,
   },
   EmergencyPhones: {

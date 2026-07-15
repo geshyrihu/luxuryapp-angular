@@ -28,7 +28,7 @@ export class EmployeePermissionApp implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.RefactorAdmin.permissionPermissionUserAdminById(
+        Endpoints.Permission.userAdminByApplicationUser(
           this.applicationUserId(),
         ),
       )

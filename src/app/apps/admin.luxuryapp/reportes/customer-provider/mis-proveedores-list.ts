@@ -81,7 +81,7 @@ export class MisProveedores {
 
   // Función para cargar los datos de los CustomerProviders
   onLoadData() {
-    const urlApi = Endpoints.RefactorAdmin.customerProviderById(
+    const urlApi = Endpoints.CustomerProvider.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS
@@ -105,7 +105,7 @@ export class MisProveedores {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorAdmin.customerproviderById(id))
+      .onDelete(Endpoints.CustomerProvider.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((prev) =>
