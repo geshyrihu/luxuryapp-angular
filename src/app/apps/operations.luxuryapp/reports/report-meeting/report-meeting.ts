@@ -54,9 +54,7 @@ export class ReportMeeting {
   }
 
   loadMeetingData() {
-    const urlApi = Endpoints.RefactorOperations.meetingsMeetingReportPdfById(
-      this.meetingId,
-    );
+    const urlApi = Endpoints.Meetings.reportPdf(this.meetingId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       // Parse the date string into a Date object
       if (result && result.minuta && result.minuta.date) {
@@ -124,7 +122,7 @@ export class ReportMeeting {
   }
 
   onLoadCustomer() {
-    const urlApi = Endpoints.RefactorOperations.customersById(this.customerId);
+    const urlApi = Endpoints.Customers.getById(this.customerId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.nameCustomer.set(result.nameCustomer);
       this.logoCustomer.set(result.photoPath);

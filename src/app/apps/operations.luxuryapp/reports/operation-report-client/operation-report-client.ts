@@ -41,12 +41,11 @@ export class OperationReportClient implements OnInit {
   }
 
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.taskReportGetReportClientByIdByIdById(
-        this.customer,
-        this.inicio,
-        this.final,
-      );
+    const urlApi = Endpoints.TaskReports.reportClient(
+      this.customer,
+      this.inicio,
+      this.final,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       // Actualizamos el valor del signal con los datos recibidos
       this.data.set(result);

@@ -48,11 +48,10 @@ export class ReporteTicketPendientesProveedor implements OnInit {
     this.onLoadData();
   }
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.ticketGetreportpendingproviderByIdById(
-        this.customerId,
-        this.departamentId,
-      );
+    const urlApi = Endpoints.Tickets.pendingProviderReport(
+      this.customerId,
+      this.departamentId,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 

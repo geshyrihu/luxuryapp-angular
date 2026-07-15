@@ -30,12 +30,11 @@ export class ReportClient implements OnInit {
     this.customer = this.rutaActiva.snapshot.params.customer;
     this.inicio = this.rutaActiva.snapshot.params.inicio;
     this.final = this.rutaActiva.snapshot.params.final;
-    this.rutaFinal =
-      Endpoints.RefactorOperations.tasksGetReportClientByIdByIdById(
-        this.customer,
-        this.inicio,
-        this.final,
-      );
+    this.rutaFinal = Endpoints.TasksReport.reportClient(
+      this.customer,
+      this.inicio,
+      this.final,
+    );
 
     this.apiResponseS.onGetList(this.rutaFinal).then((result: any) => {
       // Actualizamos el valor del signal con los datos recibidos

@@ -90,6 +90,8 @@ export const EndpointsOperations = {
       `task-read/list/${ticketMessageId}`,
   },
   TaskReports: {
+    reportClient: (customerId: string, startDate: string, endDate: string) =>
+      `task-report/get-report-client/${customerId}/${startDate}/${endDate}`,
     ticketReport: (customerId: string, startDate: string, endDate: string) =>
       `task-report/get-ticket-report/${customerId}/${startDate}/${endDate}`,
     weeklyPreview: (customerId: string, year: number, weekNumber: number) =>
@@ -111,6 +113,10 @@ export const EndpointsOperations = {
     pending: (customerId: string) => `task-work-plan/pending/${customerId}`,
     preview: (customerId: string, year: number, weekNumber: number) =>
       `task-work-plan/preview/${customerId}/${year}/${weekNumber}`,
+  },
+  TasksReport: {
+    reportClient: (customerId: string, startDate: string, endDate: string) =>
+      `tasks/get-report-client/${customerId}/${startDate}/${endDate}`,
   },
   RecurringTasks: {
     Templates: {
@@ -143,6 +149,12 @@ export const EndpointsOperations = {
   Birthday: {
     listByCustomerAndMonth: (customerId: string, month: number) =>
       `birthday/${customerId}/${month}`,
+  },
+  BudgetMaintenance: {
+    resumenGastosByCustomer: (customerId: string) =>
+      `budget-maintenance/resumengastos/${customerId}`,
+    summaryOfExpensesByCustomer: (customerId: string) =>
+      `budget-maintenance/summary-of-expenses/${customerId}`,
   },
   Announcements: {
     adminList: "announcements/admin-list",
@@ -441,6 +453,10 @@ export const EndpointsOperations = {
     returnProduct: "salidaproductos/devolver",
     update: (id: string, currentUsedQuantity: number) =>
       `salidas-productos/${id}/${currentUsedQuantity}`,
+  },
+  Tickets: {
+    pendingProviderReport: (customerId: string, departmentId: string) =>
+      `ticket/getreportpendingprovider/${customerId}/${departmentId}`,
   },
   FireExtinguishers: {
     bulkExpirationByCustomer: (customerId: string) =>

@@ -49,14 +49,12 @@ export class GastosMantenimiento {
   }
   onLoadData() {
     this.loading.set(true);
-    const urlApi =
-      Endpoints.RefactorOperations.budgetMaintenanceSummaryOfExpensesById(
-        this.customerIdS.customerId(),
-      );
-    const urlApi2 =
-      Endpoints.RefactorOperations.budgetMaintenanceResumengastosById(
-        this.customerIdS.customerId(),
-      );
+    const urlApi = Endpoints.BudgetMaintenance.summaryOfExpensesByCustomer(
+      this.customerIdS.customerId(),
+    );
+    const urlApi2 = Endpoints.BudgetMaintenance.resumenGastosByCustomer(
+      this.customerIdS.customerId(),
+    );
 
     Promise.all([
       this.apiResponseS.onGetList(urlApi),

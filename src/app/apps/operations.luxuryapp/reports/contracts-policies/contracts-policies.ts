@@ -63,8 +63,9 @@ export class ContractsPolicies {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.policyContractListById(
+    const urlApi = Endpoints.PolicyContracts.list(
       this.customerIdS.customerId(),
+      true,
     );
     this.apiResponseS
       .onGetList(urlApi)
