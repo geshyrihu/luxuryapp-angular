@@ -93,8 +93,7 @@ export class UnifiedPendingDashboardMobile {
     this.data.set([]);
     this.loadedCustomerId.set(customerId);
 
-    const url =
-      Endpoints.RefactorOperations.dashboardGlobalPendingItemsById(customerId);
+    const url = Endpoints.Dashboard.globalPendingItems(customerId);
 
     this.apiResponseS
       .onGetList(url)

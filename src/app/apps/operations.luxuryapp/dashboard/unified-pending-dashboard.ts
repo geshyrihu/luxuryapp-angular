@@ -136,8 +136,7 @@ export class UnifiedPendingDashboard {
     this.data.set([]);
     this.loadedCustomerId.set(customerId);
 
-    const url =
-      Endpoints.RefactorOperations.dashboardGlobalPendingItemsById(customerId);
+    const url = Endpoints.Dashboard.globalPendingItems(customerId);
 
     this.apiResponseS
       .onGetList(url)
@@ -521,9 +520,7 @@ export class UnifiedPendingDashboard {
 
     this.apiResponseS
       .onPost(
-        Endpoints.RefactorOperations.dashboardSendExecutiveReportById(
-          customerId,
-        ),
+        Endpoints.Dashboard.sendExecutiveReport(customerId),
         {},
       )
       .then(() => {
