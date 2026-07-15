@@ -58,7 +58,7 @@ export class ReunionesMensualesConsejoDirectivo implements OnInit {
 
     // Usamos el endpoint específico para las juntas mensuales que creamos en el backend
     const urlApi =
-      Endpoints.RefactorLegal.boardDirectorsMonthlyMeetingsById(customerId);
+      Endpoints.BoardDirectors.monthlyMeetingsByCustomer(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

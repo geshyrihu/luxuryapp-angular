@@ -47,7 +47,7 @@ export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {
     this.loading.set(true);
     // Usamos el endpoint específico para las minutas que creamos en el backend
     const urlApi =
-      Endpoints.RefactorLegal.boardDirectorsMeetingMinutesDetailById(
+      Endpoints.BoardDirectors.meetingMinuteDetailById(
         meetingMinuteId,
       );
 

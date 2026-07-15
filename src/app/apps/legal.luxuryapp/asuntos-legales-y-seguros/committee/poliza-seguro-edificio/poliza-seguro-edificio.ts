@@ -53,7 +53,7 @@ export class PolizaSeguroEdificio {
     const customerId: string = this.customerIdS.customerId();
     this.apiResponseS
       .onGetItem(
-        Endpoints.RefactorLegal.policyContractBuildingInsuranceById(customerId),
+        Endpoints.PolicyContracts.buildingInsurance(customerId),
       )
       .then((result) => {
         this.data.set(result);

@@ -61,11 +61,4 @@ export const EndpointsLegal = {
     updateStatus: (id: string, status: number | null) =>
       `task-legal/update-status/${id}/${status}`,
   },
-  RefactorLegal: {
-    policyContractBuildingInsuranceById: (customerId: any) => `policy-contract/building-insurance/${customerId}`,
-      boardDirectorsFinancialReportsById: (customerId: any) => `board-directors/financial-reports/${customerId}`,
-    boardDirectorsMeetingMinutesDetailById: (meetingMinuteId: any) => `board-directors/meeting-minutes-detail/${meetingMinuteId}`,
-    boardDirectorsMeetingMinutesById: (customerId: any) => `board-directors/meeting-minutes/${customerId}`,
-    boardDirectorsMonthlyMeetingsById: (customerId: any) => `board-directors/monthly-meetings/${customerId}`,
-},
 } as const;
