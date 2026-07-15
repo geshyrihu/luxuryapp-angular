@@ -52,10 +52,9 @@ export class EntregaRecepcionInstalaciones {
     });
   }
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.entregaRecepcionInventarioInstalacionesById(
-        this.customerIdS.customerId(),
-      );
+    const urlApi = Endpoints.EntregaRecepcionReports.facilitiesInventoryByCustomer(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

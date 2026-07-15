@@ -38,7 +38,7 @@ export class EntregaRecepcionMantenimientosPendientes {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.EntregaRecepcionPendientesById(
+    const urlApi = Endpoints.EntregaRecepcionReports.pendingMaintenanceByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {

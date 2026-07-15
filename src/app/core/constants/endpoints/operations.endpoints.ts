@@ -482,6 +482,26 @@ export const EndpointsOperations = {
     validateFile: (applicationUserId: string, id: string) =>
       `entrega-recepcion-cliente/validar-archivo/${applicationUserId}/${id}`,
   },
+  EntregaRecepcionReports: {
+    equipmentInventoryByCustomer: (customerId: string) =>
+      `entrega-recepcion/inventario-equipos/${customerId}`,
+    toolsInventoryByCustomer: (customerId: string) =>
+      `entrega-recepcion/inventario-herramientas/${customerId}`,
+    fireExtinguishersByCustomer: (customerId: string) =>
+      `entrega-recepcion/extintores/${customerId}`,
+    facilitiesInventoryByCustomer: (customerId: string) =>
+      `entrega-recepcion/inventario-instalaciones/${customerId}`,
+    suppliesInventoryByCustomer: (customerId: string) =>
+      `entrega-recepcion/inventario-insumos/${customerId}`,
+    keysInventoryByCustomer: (customerId: string) =>
+      `entrega-recepcion/inventario-llaves/${customerId}`,
+    pendingMaintenanceByCustomer: (customerId: string) =>
+      `entrega-recepcion/pendientes/${customerId}`,
+    maintenanceInventoryByCustomer: (customerId: string) =>
+      `entrega-recepcion/inventario-mantenimientos/${customerId}`,
+    organizationChartByCustomer: (customerId: string) =>
+      `entrega-recepcion/organigrama/${customerId}`,
+  },
   RefactorOperations: {
     dashboardSendExecutiveReportById: (customerId: any) => `dashboard/send-executive-report/${customerId}`,
     diagramDrawById: (id: any) => `diagram-draw/${id}`,

@@ -45,7 +45,7 @@ export class EntregaRecepcionHidrantes {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.entregaRecepcionExtintoresById(
+    const urlApi = Endpoints.EntregaRecepcionReports.fireExtinguishersByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS

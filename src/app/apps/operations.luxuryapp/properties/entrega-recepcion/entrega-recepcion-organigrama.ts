@@ -28,7 +28,7 @@ export class EntregaRecepcionOrganigrama {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.entregaRecepcionOrganigramaById(
+    const urlApi = Endpoints.EntregaRecepcionReports.organizationChartByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS

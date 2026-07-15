@@ -45,10 +45,9 @@ export class EntregaRecepcionLlaves {
     });
   }
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.entregaRecepcionInventarioLlavesById(
-        this.customerIdS.customerId(),
-      );
+    const urlApi = Endpoints.EntregaRecepcionReports.keysInventoryByCustomer(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

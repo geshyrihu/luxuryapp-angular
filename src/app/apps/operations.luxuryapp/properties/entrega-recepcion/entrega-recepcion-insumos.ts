@@ -46,10 +46,9 @@ export class EntregaRecepcionInsumos {
     });
   }
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.entregaRecepcionInventarioInsumosById(
-        this.customerIdS.customerId(),
-      );
+    const urlApi = Endpoints.EntregaRecepcionReports.suppliesInventoryByCustomer(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

@@ -53,10 +53,9 @@ export class EntregaRecepcionEquipos {
     });
   }
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.entregarecepcionInventarioequiposById(
-        this.customerIdS.customerId(),
-      );
+    const urlApi = Endpoints.EntregaRecepcionReports.equipmentInventoryByCustomer(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

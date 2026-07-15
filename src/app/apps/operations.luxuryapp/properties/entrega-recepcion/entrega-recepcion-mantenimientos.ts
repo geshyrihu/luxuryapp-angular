@@ -43,10 +43,9 @@ export class EntregaRecepcionMantenimientos {
     });
   }
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorOperations.entregaRecepcionInventarioMantenimientosById(
-        this.customerIdS.customerId(),
-      );
+    const urlApi = Endpoints.EntregaRecepcionReports.maintenanceInventoryByCustomer(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
