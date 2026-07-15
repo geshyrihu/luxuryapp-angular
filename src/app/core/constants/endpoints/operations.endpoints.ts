@@ -262,6 +262,9 @@ export const EndpointsOperations = {
     updatePaso: (manualId: string, pasoId: string) =>
       `manuals/${manualId}/pasos/${pasoId}`,
   },
+  FinancialReport: {
+    listByCustomer: (customerId: string) => `financial-report/list/${customerId}`,
+  },
   ManualFlowcharts: {
     create: "manual-flowcharts",
     delete: (id: string) => `manual-flowcharts/${id}`,

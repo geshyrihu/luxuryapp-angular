@@ -148,6 +148,8 @@ export const EndpointsShared = {
     getById: (id: string) => `custom-documents/${id}`,
     list: (customerId: string, documentType: number) =>
       `custom-documents/list/${customerId}/${documentType}`,
+    listByCustomerAndType: (customerId: string, documentType: number) =>
+      `custom-documents/list/${customerId}/${documentType}`,
     update: (id: string) => `custom-documents/${id}`,
     updateOrder: "custom-documents/update-order",
   },

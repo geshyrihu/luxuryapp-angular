@@ -41,7 +41,7 @@ export class InformeFinanciero {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorOperations.financialReportListById(
+    const urlApi = Endpoints.FinancialReport.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS.onGetList(urlApi).then((response: any) => {

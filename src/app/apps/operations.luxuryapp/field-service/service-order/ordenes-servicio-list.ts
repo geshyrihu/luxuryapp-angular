@@ -303,7 +303,7 @@ export class OrdenesServicio {
 
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorOperations.serviceOrdersById(id))
+      .onDelete(Endpoints.ServiceOrders.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) =>
