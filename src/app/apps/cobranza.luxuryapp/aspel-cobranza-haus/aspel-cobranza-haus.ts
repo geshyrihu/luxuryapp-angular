@@ -19,7 +19,6 @@ import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AspelSyncService } from "src/app/apps/contabilidad.luxuryapp/ar/aspel-sync/aspel-sync.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -81,7 +80,7 @@ export class AspelCobranzaHaus {
   private readonly dialogHandlerS = inject(DialogHandlerService);
   private readonly cobranzaPdfS = inject(AspelCobranzaHausPdfService);
   private readonly tableScrollHeightS = inject(TableScrollHeightService);
-  private readonly aspelSyncS = inject(AspelSyncService);
+  // private readonly aspelSyncS = inject(AspelSyncService);
 
   readonly endpointOptions: SelectItem<AspelQueryMode>[] = [
     {
@@ -93,7 +92,7 @@ export class AspelCobranzaHaus {
       value: "estado-cuenta-rango",
     },
     {
-      label: "Detalle cobranza",
+      label: "Aviso de cobro",
       value: "detalle-cobranza-rango",
     },
     {
@@ -206,12 +205,14 @@ export class AspelCobranzaHaus {
       }
 
       untracked(() => {
+        /*
         const shouldRefreshLocalStatus =
           this.localStatus()?.customerId !== nextCustomerId;
 
         if (shouldRefreshLocalStatus) {
           void this.refreshLocalStatus();
         }
+        */
       });
 
       const year = this.getContextYear();
@@ -283,9 +284,11 @@ export class AspelCobranzaHaus {
       void this.loadAccountOptions(this.customerId(), year, true);
     }
 
+    /*
     if (this.customerId()) {
       void this.refreshLocalStatus();
     }
+    */
   }
 
   canSearch(): boolean {
@@ -500,18 +503,23 @@ export class AspelCobranzaHaus {
   }
 
   async syncCobranzaSnapshot(): Promise<void> {
+    /*
     await this.runSyncAction(() =>
       this.aspelSyncS.syncCobranza(this.customerId(), this.getSyncYear()),
     );
+    */
   }
 
   async syncCompleteSnapshot(): Promise<void> {
+    /*
     await this.runSyncAction(() =>
       this.aspelSyncS.syncCompleto(this.customerId(), this.getSyncYear()),
     );
+    */
   }
 
   async refreshLocalStatus(): Promise<void> {
+    /*
     const customerId = this.customerId();
     if (!customerId) return;
 
@@ -525,26 +533,26 @@ export class AspelCobranzaHaus {
     } finally {
       this.localStatusLoading.set(false);
     }
+    */
   }
 
   private async runSyncAction(runner: () => Promise<any>): Promise<void> {
+    /*
     const customerId = this.customerId();
     if (!customerId) return;
 
     this.syncLoading.set(true);
     try {
       const result = await runner();
-      if (result !== false) {
-        await this.refreshLocalStatus();
-
-        const year = this.getContextYear();
-        if (year) {
-          await this.loadAccountOptions(customerId, year, true);
-        }
+      if (result) {
+        this.dialogHandlerS.showSuccess("Sincronización completada con éxito");
+        void this.refreshLocalStatus();
+        this.onClear();
       }
     } finally {
       this.syncLoading.set(false);
     }
+    */
   }
 
   private async loadAccountOptions(

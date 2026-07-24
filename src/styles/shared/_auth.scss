@@ -68,20 +68,53 @@
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
-.auth-dark-panel input {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: white !important;
+// Inputs: fondo semi-transparente más visible sobre el panel oscuro
+.auth-dark-panel input,
+.auth-dark-panel .p-select,
+.auth-dark-panel .p-inputtext {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #ffffff !important;
 }
 
-.auth-dark-panel input::placeholder {
-  color: rgba(255, 255, 255, 0.5) !important;
+.auth-dark-panel input::placeholder,
+.auth-dark-panel .p-select-label.p-placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
 }
 
-.auth-dark-panel .p-password i {
-  color: rgba(255, 255, 255, 0.7) !important;
+// FloatLabel: label blanca sobre el panel oscuro (variant="on")
+.auth-dark-panel .p-floatlabel label {
+  color: rgba(255, 255, 255, 0.75) !important;
+  background: transparent !important;
+}
+
+// FloatLabel: cuando el campo tiene valor o está enfocado, label sube al borde
+.auth-dark-panel .p-floatlabel:has(input:not(:placeholder-shown)) label,
+.auth-dark-panel .p-floatlabel:has(input:focus) label {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+// Password: icono de mostrar/ocultar (PrimeNG 21 usa button, no <i> directo)
+.auth-dark-panel .p-password button,
+.auth-dark-panel .p-password-mask-toggle-button {
+  color: rgba(255, 255, 255, 0.75) !important;
+  &:hover { color: #ffffff !important; }
+}
+
+// Fallback para versiones anteriores de PrimeNG con <i>
+.auth-dark-panel .p-password i,
+.auth-dark-panel .p-password .p-icon {
+  color: rgba(255, 255, 255, 0.75) !important;
 }
 
 .auth-dark-panel .p-password-meter {
   background: rgba(255, 255, 255, 0.2) !important;
+}
+
+// Bordes en foco: primary ligero sobre fondo oscuro
+.auth-dark-panel input:focus,
+.auth-dark-panel .p-inputtext:focus {
+  border-color: var(--ds-border-focus) !important;
+  box-shadow: 0 0 0 2px rgba(112, 155, 254, 0.25) !important;
+  outline: none !important;
 }

@@ -7,7 +7,6 @@ import {
   OnDestroy,
   OnInit,
 } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormArray,
   FormBuilder,
@@ -33,7 +32,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PaginationService } from "src/app/core/services/pagination.service"; // Importar el nuevo servicio
+import { PaginationStore } from "src/app/core/services/pagination-store";
 import { IProductData } from "./product-data.interface";
 /**
  * Componente modal para agregar productos a una solicitud de compra.
@@ -66,7 +65,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     PrimeNgCustomTableFooter,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [PaginationService], // Proveer una instancia fresca de PaginationService para este componente
+  providers: [PaginationStore], // Instancia fresca del store de paginación por componente
 })
 export class ProductModalAdd implements OnInit, OnDestroy {
   // --- Inyección de Dependencias ---
@@ -76,8 +75,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   public ref = inject(DynamicDialogRef); // Referencia al diólogo dinámico para cerrarlo
   private authS = inject(AuthService);
   formB = inject(FormBuilder);
-  public paginationService =
-    inject<PaginationService<IProductData>>(PaginationService); // Inyectar el servicio de paginación genórico
+  private store = inject<PaginationStore<IProductData>>(PaginationStore);
 
   // --- Estado del Componente ---
   /** Identificador de la solicitud de compra a la que se agregarón productos. */
@@ -99,15 +97,13 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   /** Posición inicial de la paginación (óndice del primer registro). */
   public first: number = 0; // Se actualiza basado en el estado del servicio de paginación
 
-  // --- Datos para la Tabla (manejados por PaginationService) ---
+  // --- Datos para la Tabla (manejados por PaginationStore) ---
   /** Datos actuales mostrados en la tabla. */
-  dataSignal = toSignal(this.paginationService.data$, { initialValue: [] });
+  dataSignal = this.store.data;
   /** Número total de registros disponibles para la paginación. */
-  totalRecordsSignal = toSignal(this.paginationService.totalRecords$, {
-    initialValue: 0,
-  });
+  totalRecordsSignal = this.store.totalRecords;
   /** Estado de carga de los datos. */
-  loading = toSignal(this.paginationService.loading$, { initialValue: true });
+  loading = this.store.loading;
   /** Campos utilizados para el filtro global de la tabla PrimeNG. */
   public globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -153,10 +149,10 @@ export class ProductModalAdd implements OnInit, OnDestroy {
     const apiUrl = Endpoints.PurchaseRequestDetails.addProductList(
       this.solicitudCompraId,
     );
-    this.paginationService.initialize(apiUrl, this.tablePrimeNgRows);
+    this.store.configure(apiUrl, { recordsNumber: this.tablePrimeNgRows });
 
     // Cargar los datos iniciales
-    this.paginationService.loadData();
+    this.store.load();
   }
 
   /**
@@ -181,7 +177,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
    */
   public loadDataLazy(event: any): void {
     this.first = event.first; // Actualizar 'first' para la sincronización de la vista de PrimeNG
-    this.paginationService.handleLazyLoad(event);
+    this.store.onLazyLoad(event);
   }
 
   /**
@@ -191,7 +187,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
    */
   public applyFilter(): void {
     this.first = 0; // Resetear 'first' visualmente al aplicar filtro
-    this.paginationService.applyFilter(this.searchControl.value || "");
+    this.store.setFilter(this.searchControl.value || "");
   }
 
   /**
@@ -223,7 +219,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
       .onPost(Endpoints.PurchaseRequestDetails.create, payload)
       .then(() => {
         // Recargar los datos de la tabla para reflejar cualquier cambio (ej. si el producto ya no debe aparecer)
-        this.paginationService.refreshData();
+        this.store.refresh();
       })
       .catch((error) => {
         console.error("Error submitting product:", error);

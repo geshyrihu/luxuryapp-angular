@@ -508,7 +508,7 @@ resumenGastosByCustomer: (customerId: string) =>
       if (recordsNumber !== undefined)
         params.push(`RecordsNumber=${recordsNumber}`);
       if (page !== undefined) params.push(`Page=${page}`);
-      return `salidas-productos/GetPagedList?${params.join("&")}`;
+      return `salidas-productos/get-paged-list?${params.join("&")}`;
     },
     returnProduct: "salidaproductos/devolver",
     update: (id: string, currentUsedQuantity: number) =>
@@ -548,6 +548,8 @@ resumenGastosByCustomer: (customerId: string) =>
   ManualCallPoints: {
     create: "inventario-estacion-manual",
     delete: (id: string | number) => `inventario-estacion-manual/${id}`,
+    deleteAllByCustomer: (customerId: string) =>
+      `inventario-estacion-manual/all/${customerId}`,
     getById: (id: string | number) => `inventario-estacion-manual/${id}`,
     importByCustomer: (customerId: string) =>
       `inventario-estacion-manual/import/${customerId}`,
@@ -558,6 +560,8 @@ resumenGastosByCustomer: (customerId: string) =>
   SmokeDetectors: {
     create: "inventario-detector-humo",
     delete: (id: string | number) => `inventario-detector-humo/${id}`,
+    deleteAllByCustomer: (customerId: string) =>
+      `inventario-detector-humo/all/${customerId}`,
     getById: (id: string | number) => `inventario-detector-humo/${id}`,
     importByCustomer: (customerId: string) =>
       `inventario-detector-humo/import/${customerId}`,

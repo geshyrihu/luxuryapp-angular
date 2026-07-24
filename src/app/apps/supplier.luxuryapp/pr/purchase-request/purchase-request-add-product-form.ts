@@ -1,13 +1,11 @@
 import {
   Component,
   computed,
-  DestroyRef,
+  effect,
   inject,
   OnDestroy,
   OnInit,
-  signal,
 } from "@angular/core";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   FormArray,
   FormBuilder,
@@ -35,7 +33,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PaginationService } from "src/app/core/services/pagination.service";
+import { PaginationStore } from "src/app/core/services/pagination-store";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { IProductData } from "./product-data.interface";
 
@@ -53,7 +51,7 @@ import { IProductData } from "./product-data.interface";
     PrimeNgCustomTableFooter,
     AppAvatar,
   ],
-  providers: [PaginationService], // Proveer una instancia fresca de PaginationService para este componente
+  providers: [PaginationStore], // Instancia fresca del store de paginación por componente
 })
 export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
   // --- Inyección de Dependencias ---
@@ -61,8 +59,7 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
   private dialogHandlerS = inject(DialogHandlerService);
   private config = inject(DynamicDialogConfig); // Configuración pasada al abrir el diólogo
   public ref = inject(DynamicDialogRef); // Referencia al diólogo dinámico para cerrarlo
-  public paginationService =
-    inject<PaginationService<IProductData>>(PaginationService); // Inyectar el servicio de paginación genórico
+  private store = inject<PaginationStore<IProductData>>(PaginationStore);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
   // --- Estado del Componente ---
@@ -92,23 +89,42 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
   public first: number = 0; // Se actualiza basado en el estado del servicio de paginación
   public scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  // --- Datos para la Tabla (manejados por PaginationService) ---
+  // --- Datos para la Tabla (manejados por PaginationStore) ---
   /** Datos actuales mostrados en la tabla. */
-  public dataSignal = signal<IProductData[]>([]);
+  public dataSignal = this.store.data;
   /** Número total de registros disponibles para la paginación. */
-  public totalRecords = signal(0);
+  public totalRecords = this.store.totalRecords;
   /** Estado de carga de los datos. */
-  public loading = signal(true);
+  public loading = this.store.loading;
   /** Campos utilizados para el filtro global de la tabla PrimeNG. */
-  public globalFilterFieldsSignal = signal<string[]>([]);
-  public globalFilterFields = computed(() => this.globalFilterFieldsSignal());
-
-  // --- Suscripciones ---
-  private destroyRef = inject(DestroyRef);
+  public globalFilterFields = computed(() => {
+    const d = this.store.data();
+    return d.length > 0 ? Object.keys(d[0]) : [];
+  });
 
   constructor() {
     // Cargar datos iniciales que no dependen de la paginación, como dropdowns
     this.loadMeasurementUnits();
+
+    // Reconstruir el formArray cuando cambian los datos paginados
+    effect(() => {
+      const items = this.store.data();
+      this.formArray.clear();
+      items.forEach((item) => {
+        this.formArray.push(
+          this.formB.group({
+            productId: new FormControl(
+              (item as any).productId || (item as any).productid,
+            ),
+            quantity: new FormControl(item.quantity || 0, {
+              nonNullable: true,
+              validators: [Validators.min(0)],
+            }),
+            unitId: new FormControl<any>(item.unitId || null),
+          }),
+        );
+      });
+    });
   }
 
   /**
@@ -123,41 +139,10 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
     const apiUrl = Endpoints.PurchaseRequests.addProductList(
       this.purchaseRequestId,
     );
-    this.paginationService.initialize(apiUrl, this.tablePrimeNgRows);
+    this.store.configure(apiUrl, { recordsNumber: this.tablePrimeNgRows });
 
-    // Suscribirse a los observables del servicio de paginación
-    this.paginationService.data$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((items) => {
-        this.dataSignal.set(items);
-        this.formArray.clear();
-        items.forEach((item) => {
-          this.formArray.push(
-            this.formB.group({
-              productId: new FormControl(
-                (item as any).productId || (item as any).productid,
-              ),
-              quantity: new FormControl(item.quantity || 0, {
-                nonNullable: true,
-                validators: [Validators.min(0)],
-              }),
-              unitId: new FormControl<any>(item.unitId || null),
-            }),
-          );
-        });
-      });
-    this.paginationService.totalRecords$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((count) => this.totalRecords.set(count));
-    this.paginationService.loading$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((isLoading) => this.loading.set(isLoading));
-    this.paginationService.globalFilterFields$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((fields) => this.globalFilterFieldsSignal.set(fields));
-
-    // Cargar los datos iniciales
-    this.paginationService.loadData();
+    // Cargar los datos iniciales (el effect del constructor reconstruye el formArray)
+    this.store.load();
   }
 
   /**
@@ -178,7 +163,7 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
    */
   public loadDataLazy(event: any): void {
     this.first = event.first; // Actualizar 'first' para la sincronización de la vista de PrimeNG
-    this.paginationService.handleLazyLoad(event);
+    this.store.onLazyLoad(event);
   }
 
   /**
@@ -188,7 +173,7 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
    */
   public applyFilter(): void {
     this.first = 0; // Resetear 'first' visualmente al aplicar filtro
-    this.paginationService.applyFilter(this.searchControl.value || "");
+    this.store.setFilter(this.searchControl.value || "");
   }
 
   /**
@@ -211,7 +196,7 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
       .onPost(Endpoints.PurchaseRequests.addProduct, payload)
       .then(() => {
         // Recargar los datos de la tabla para reflejar cualquier cambio (ej. si el producto ya no debe aparecer)
-        this.paginationService.refreshData();
+        this.store.refresh();
       });
   }
 

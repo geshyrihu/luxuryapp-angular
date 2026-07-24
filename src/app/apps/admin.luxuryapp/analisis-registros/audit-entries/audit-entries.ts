@@ -135,9 +135,9 @@ export class AuditEntries implements OnInit {
     const urlApi = Endpoints.AuditEntries.base;
 
     const params: any = {
-      "pagination.Page": this.currentPage(),
-      "pagination.RecordsNumber": this.rows(),
-      "pagination.Filter": this.searchTerm(),
+      page: this.currentPage(),
+      recordsNumber: this.rows(),
+      filter: this.searchTerm(),
     };
 
     if (this.filterOperationControl.value) {

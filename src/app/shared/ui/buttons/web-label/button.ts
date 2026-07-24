@@ -14,7 +14,9 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >
-      @if (emoji()) {
+      @if (loading()) {
+        <i class="pi pi-spinner pi-spin" aria-hidden="true"></i>
+      } @else if (emoji()) {
         <span>{{ emoji() }}</span>
       } @else if (iconClass()) {
         @if (isPrimeIcon(iconClass())) {
@@ -22,6 +24,8 @@ import { BaseButton } from "../base/base-button";
         } @else {
           <app-icon [icon]="iconClass()" />
         }
+      } @else if (icon()) {
+        <app-icon [icon]="icon()" />
       }
       <span>{{ label() || "Continuar" }}</span>
     </button>

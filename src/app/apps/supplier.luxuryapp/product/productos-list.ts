@@ -102,7 +102,7 @@ export class ProductosList implements OnInit {
 
   onLoadMobile() {
     this.mobilePage.set(1);
-    const params = { page: 1, limit: this.MOBILE_PAGE_SIZE, sort: "", order: "", filter: "" };
+    const params = { page: 1, recordsNumber: this.MOBILE_PAGE_SIZE, sortField: "", sortOrder: 1, filter: "" };
     return this.apiResponseS
       .onGetListNotLoading<any>(Endpoints.Products.getAllPaged, params)
       .then((result: any) => {
@@ -135,7 +135,7 @@ export class ProductosList implements OnInit {
 
   loadNextPage(event: any) {
     const nextPage = this.mobilePage() + 1;
-    const params = { page: nextPage, limit: this.MOBILE_PAGE_SIZE, sort: "", order: "", filter: "" };
+    const params = { page: nextPage, recordsNumber: this.MOBILE_PAGE_SIZE, sortField: "", sortOrder: 1, filter: "" };
     this.apiResponseS
       .onGetListNotLoading<any>(Endpoints.Products.getAllPaged, params)
       .then((result: any) => {

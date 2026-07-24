@@ -29,6 +29,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
+import { PagedResultDto } from "src/app/core/interfaces/paged-result.dto";
 import { PasswordForm } from "./password-form";
 
 @Component({
@@ -78,18 +79,18 @@ export class PasswordList implements OnInit {
 
     const filter = {
       page: event.first! / event.rows! + 1,
-      pageSize: event.rows,
-      search: event.globalFilter || "",
+      recordsNumber: event.rows,
+      filter: event.globalFilter || "",
     };
 
-    const res = await this.apiS.onPostPaged<CredentialDetailDto[]>(
+    const res = await this.apiS.onGetPaged<PagedResultDto<CredentialDetailDto>>(
       Endpoints.PasswordManager.Credentials.getPaged,
       filter,
     );
 
-    if (res) {
-      this.data.set(res.data);
-      this.totalRecords.set(res.totalCount || 0);
+    if (res?.data) {
+      this.data.set(res.data.items ?? []);
+      this.totalRecords.set(res.data.totalRecords ?? 0);
     }
     this.loading.set(false);
   }

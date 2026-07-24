@@ -328,10 +328,10 @@ export class TaskList implements OnInit {
 
     const httpParams = {
       page: currentPage,
-      limit: currentSize,
+      recordsNumber: currentSize,
       filter: this.searchTerm(),
-      sort: this.sortField(),
-      order: this.sortOrder(),
+      sortField: this.sortField(),
+      sortOrder: this.sortOrder(),
     };
 
     this.loading.set(true);
@@ -356,10 +356,10 @@ export class TaskList implements OnInit {
 
     const httpParams = {
       page: currentPage,
-      limit: currentSize,
+      recordsNumber: currentSize,
       filter: this.searchTerm(),
-      sort: this.sortField(),
-      order: this.sortOrder(),
+      sortField: this.sortField(),
+      sortOrder: this.sortOrder(),
     };
 
     this.apiS
@@ -638,10 +638,10 @@ export class TaskList implements OnInit {
 
     const httpParams = {
       page: currentPage,
-      limit: currentSize,
+      recordsNumber: currentSize,
       filter: this.searchTerm(),
-      sort: this.sortField(),
-      order: this.sortOrder(),
+      sortField: this.sortField(),
+      sortOrder: this.sortOrder(),
     };
 
     this.apiS

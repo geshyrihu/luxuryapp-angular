@@ -8,11 +8,9 @@ import {
   OnDestroy,
   OnInit,
 } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { LazyLoadEvent } from "@ui/web/primeng-api/primeng-api";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -33,7 +31,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PaginationService } from "src/app/core/services/pagination.service";
+import { PaginationStore } from "src/app/core/services/pagination-store";
 import { ProductOutputForm } from "./product-output-form";
 import { ProductReturn } from "./product-return";
 
@@ -73,7 +71,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [PaginationService],
+  providers: [PaginationStore],
 })
 export class ProductOutputList implements OnInit, OnDestroy {
   // Inyección de Dependencias
@@ -81,7 +79,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
   public aspRoleS = inject(AspRoleService);
-  public paginationService = inject(PaginationService);
+  private store = inject<PaginationStore<any>>(PaginationStore);
   private excelExportS = inject(ExcelExportService);
   // Enums y referencias
   public AspRole = ApplicationRole;
@@ -91,12 +89,10 @@ export class ProductOutputList implements OnInit, OnDestroy {
   // Estado del componente
   // dataSignal = signal<any[]>([]); // Replaced by toSignal below
 
-  // Signals from PaginationService
-  dataSignal = toSignal(this.paginationService.data$, { initialValue: [] });
-  loading = toSignal(this.paginationService.loading$, { initialValue: true });
-  totalRecords = toSignal(this.paginationService.totalRecords$, {
-    initialValue: 0,
-  });
+  // Signals del PaginationStore (mecanismo canónico)
+  protected readonly dataSignal = this.store.data;
+  protected readonly loading = this.store.loading;
+  protected readonly totalRecords = this.store.totalRecords;
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -140,19 +136,18 @@ export class ProductOutputList implements OnInit, OnDestroy {
       : undefined;
     const url = Endpoints.ProductOutputs.getPaged(customerId, month, year);
 
-    this.paginationService.initialize(url, this.tablePrimeNgRows);
-    // this.subscribeToPaginationObservables(); // Removed
-    this.paginationService.loadData();
+    this.store.configure(url, { recordsNumber: this.tablePrimeNgRows });
+    this.store.load();
   }
 
   // subscribeToPaginationObservables method removed
 
-  loadDataLazy(event: LazyLoadEvent): void {
-    this.paginationService.handleLazyLoad(event);
+  loadDataLazy(event: any): void {
+    this.store.onLazyLoad(event);
   }
 
   applyFilter(): void {
-    this.paginationService.applyFilter(this.filterControl.value || "");
+    this.store.setFilter(this.filterControl.value || "");
   }
 
   clearFilter(): void {
@@ -203,7 +198,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
     this.apiResponseS
       .onDelete(Endpoints.ProductOutputs.delete(id))
       .then((result: boolean) => {
-        if (result) this.paginationService.refreshData();
+        if (result) this.store.refresh();
       });
   }
 
@@ -222,7 +217,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
-        if (result) this.paginationService.refreshData();
+        if (result) this.store.refresh();
       });
   }
 
@@ -236,7 +231,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
       )
       .then((result: boolean) => {
         if (result) {
-          this.paginationService.refreshData();
+          this.store.refresh();
         }
       });
   }

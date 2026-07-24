@@ -10,13 +10,15 @@
     </div>
     <div class="flex flex-wrap gap-2">
       <lx-tag [value]="customerId()" severity="secondary" class="max-w-16rem overflow-hidden text-overflow-ellipsis" />
-      <lx-tag [value]="dataSource() === 'local' ? 'Local' : 'Live'" [severity]="dataSource() === 'local' ? 'info' : 'contrast'" />
+      <!-- <lx-tag [value]="dataSource() === 'local' ? 'Local' : 'Live'" [severity]="dataSource() === 'local' ? 'info' : 'contrast'" /> -->
+      <lx-tag value="Live" severity="contrast" />
     </div>
   </div>
 
   @if (!hasCustomerContext()) {
   <lx-message severity="warn" text="No hay customer activo en contexto. Abre esta pantalla desde un condominio con CustomerId cargado." />
   } @else {
+  <!--
   <app-aspel-cobranza-haus-source-toolbar
     [customerId]="customerId()"
     [dataSource]="dataSource()"
@@ -30,6 +32,7 @@
     (syncCompleta)="syncCompleteSnapshot()"
     (refreshStatus)="refreshLocalStatus()"
   />
+  -->
 
   <app-aspel-cobranza-haus-query-panel
     [mode]="mode()"

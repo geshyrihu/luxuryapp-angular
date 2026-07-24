@@ -105,6 +105,19 @@ export class InventarioDetectorHumo {
     });
   }
 
+  async onDeleteAll() {
+    const confirmed = confirm(
+      "¿Eliminar TODOS los registros de Detectores de Humo? Esta acción no se puede deshacer.",
+    );
+    if (!confirmed) return;
+    const result = await this.apiResponseS.onDelete(
+      Endpoints.SmokeDetectors.deleteAllByCustomer(
+        this.customerIdS.customerId(),
+      ),
+    );
+    if (result) this.onLoadData();
+  }
+
   onOpenScanner() {
     this.router.navigate(ROUTES.BITACORAS.SCANNER_EQUIPOS);
   }

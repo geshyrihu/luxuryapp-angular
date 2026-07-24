@@ -51,6 +51,13 @@
           #fileInput
           (change)="onImportExcel($event)"
         />
+        <button
+          class="p-button p-button-danger p-button-sm"
+          (click)="onDeleteAll()"
+          type="button"
+        >
+          Eliminar Todo
+        </button>
       </div>
       <primeng-custom-caption
         [title]="'Inventario de Estaciones Manuales'"
@@ -128,6 +135,9 @@
     <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onViewPeriodos()">
       <app-icon icon="mdi:clock-outline" slot="start" />
       Periodos de Inspección
+    </button>
+    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-danger" (click)="onDeleteAll()">
+      Eliminar Todo
     </button>
   </div>
   <ng-template #listItemTemplate let-item>
