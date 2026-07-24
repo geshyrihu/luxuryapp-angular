@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TableModule } from 'primeng/table';
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { ChartWrapper } from '@ui/web/charts/chart-wrapper';
 import { CustomInputSelectSignal } from '@ui/inputs/web/custom-input-select-signal';
 import type {

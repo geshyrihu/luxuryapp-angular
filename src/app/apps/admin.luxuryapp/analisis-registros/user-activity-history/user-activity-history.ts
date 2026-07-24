@@ -18,7 +18,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";

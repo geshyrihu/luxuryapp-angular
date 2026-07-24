@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -17,6 +17,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importac
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
@@ -65,7 +66,9 @@ export class OrdenCompraFacturasParcial {
     this.isValidating.set(true);
     this.validationResult.set(null);
 
-    const urlApi = `funding/validate-invoice/${this.ordenCompraId()}`;
+    const urlApi = Endpoints.PurchaseOrders.validateInvoice(
+      this.ordenCompraId(),
+    );
 
     this.apiResponseS
       .onPost<any>(urlApi, {})

@@ -20,7 +20,7 @@ import { BaseButton } from "../base/base-button";
       (click)="toggleState()"
     >
       <app-icon
-        [icon]="state() ? 'fluent-color:lock-16' : 'fluent-color:unlock-16'"
+        [icon]="state() ? 'mdi:lock' : 'mdi:lock-open'"
       />
     </button>
   `,

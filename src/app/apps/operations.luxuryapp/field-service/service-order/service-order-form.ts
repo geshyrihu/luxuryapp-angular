@@ -20,7 +20,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -168,14 +168,14 @@ export class ServiceOrderForm implements OnInit {
 
   private async loadStatus(): Promise<void> {
     const data = await this.apiResponseS.onGetEnumSelectItem(
-      Endpoints.EnumSelectItems.status,
+      "status",
     );
     this.cb_Status.set((data as SelectItemDto[]) || []);
   }
 
   private async loadTypeMaintance(): Promise<void> {
     const data = await this.apiResponseS.onGetEnumSelectItem<SelectItemDto[]>(
-      Endpoints.EnumSelectItems.typeMaintance,
+      "type-maintance",
     );
     this.cb_TypeMaintance.set(data || []);
   }

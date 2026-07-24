@@ -20,8 +20,16 @@ export class ChekadorEmpleadosService {
     tipo?: number;
     soloAnomalias?: boolean;
   }) {
+    const query = new URLSearchParams();
+    if (params.empleadoId) query.set("empleadoId", params.empleadoId);
+    if (params.desde) query.set("desde", params.desde);
+    if (params.hasta) query.set("hasta", params.hasta);
+    if (params.tipo !== undefined) query.set("tipo", String(params.tipo));
+    if (params.soloAnomalias !== undefined)
+      query.set("soloAnomalias", String(params.soloAnomalias));
+
     return this._api.onGetList<IRegistroChecador[]>(
-      Endpoints.ChekadorEmpleados.porTenant(params),
+      `${Endpoints.ChekadorEmpleados.porTenantBase}${query.toString() ? `?${query.toString()}` : ""}`,
     );
   }
 

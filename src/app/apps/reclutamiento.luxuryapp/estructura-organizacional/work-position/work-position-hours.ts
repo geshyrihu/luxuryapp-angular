@@ -8,7 +8,7 @@ import {
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IWorkPositionHours } from './interfaces/work-position.model';
 

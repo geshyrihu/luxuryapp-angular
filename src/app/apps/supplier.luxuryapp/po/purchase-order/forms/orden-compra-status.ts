@@ -16,9 +16,9 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputTextModule } from "primeng/inputtext";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 export interface IOrdenCompraStatusForm {

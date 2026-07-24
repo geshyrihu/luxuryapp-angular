@@ -14,7 +14,7 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -52,7 +52,7 @@ export class UnitOfMeasurementForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.UnitsOfMeasurement.getById(this.id))
+      .onGetItem(Endpoints.Catalogs.UnitsOfMeasurement.getById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
       });
@@ -62,7 +62,7 @@ export class UnitOfMeasurementForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.UnitsOfMeasurement.getAll,
+      endpoint: Endpoints.Catalogs.UnitsOfMeasurement.getAll,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

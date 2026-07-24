@@ -1,4 +1,48 @@
 export const EndpointsOperations = {
+  AccessControlOperations: {
+    // Ownership canonico: OperationsLuxuryApp.
+    // Consumido tambien por admin.luxuryapp como portal supervisor.
+    events: "access-controls/events",
+    eventsExport: "access-controls/events/export",
+    occupancy: "access-controls/dashboard/occupancy",
+    stats: "access-controls/dashboard/stats",
+  },
+  AccessControlAccessPoints: {
+    // Ownership canonico: OperationsLuxuryApp.
+    // Consumido por security.luxuryapp y admin.luxuryapp.
+    getAll: "access-controls/access-points",
+    create: "access-controls/access-points",
+    update: (id: string) => `access-controls/access-points/${id}`,
+  },
+  AccessControlVisits: {
+    // Ownership canonico: OperationsLuxuryApp.
+    // Consumido principalmente por resident.luxuryapp y parcialmente por security.luxuryapp.
+    create: "access-controls/visits",
+    getPaged: "access-controls/visits",
+    getById: (id: string) => `access-controls/visits/${id}`,
+    active: "access-controls/visits/active",
+    cancel: (id: string) => `access-controls/visits/${id}/cancel`,
+  },
+  AccessControlCredentials: {
+    // Ownership canonico: OperationsLuxuryApp.
+    generateQr: "access-controls/credentials/qr",
+    getById: (id: string) => `access-controls/credentials/${id}`,
+    revoke: (id: string) => `access-controls/credentials/${id}/revoke`,
+  },
+  AccessControlInvitations: {
+    // Ownership canonico: OperationsLuxuryApp.
+    send: "access-controls/invitations",
+    resend: (id: string) => `access-controls/invitations/${id}/resend`,
+    byVisit: (visitId: string) => `access-controls/invitations/by-visit/${visitId}`,
+  },
+  AccessControlVisitors: {
+    // Ownership canonico: OperationsLuxuryApp.
+    // Consumido tambien por admin.luxuryapp como portal supervisor.
+    getAll: "access-controls/visitors",
+    getById: (id: string) => `access-controls/visitors/${id}`,
+    create: "access-controls/visitors",
+    update: (id: string) => `access-controls/visitors/${id}`,
+  },
   Tasks: {
     close: "tasks/closed",
     create: "tasks/create",
@@ -87,13 +131,13 @@ export const EndpointsOperations = {
   TaskReads: {
     byMessage: (id: string) => `task-reads/by-message/${id}`,
     listByTicketMessage: (ticketMessageId: string) =>
-      `task-read/list/${ticketMessageId}`,
+      `task-message-read/list/${ticketMessageId}`,
   },
   TaskReports: {
     reportClient: (customerId: string, startDate: string, endDate: string) =>
       `task-report/get-report-client/${customerId}/${startDate}/${endDate}`,
     ticketReport: (customerId: string, startDate: string, endDate: string) =>
-      `task-report/get-ticket-report/${customerId}/${startDate}/${endDate}`,
+      `task-report/get-task-report/${customerId}/${startDate}/${endDate}`,
     weeklyPreview: (customerId: string, year: number, weekNumber: number) =>
       `task-report/weekly-report-preview/${customerId}/${year}/${weekNumber}`,
     weeklyReport: (
@@ -135,6 +179,8 @@ export const EndpointsOperations = {
     },
   },
   AiAssistant: {
+    // Alias legacy.
+    // El ownership canonico de este contrato ya corresponde a `EndpointsShared.AiAssistant`.
     testProfile: "ai-assistant/test-profile",
     generateImage: "ai-assistant/generate-image",
   },
@@ -151,8 +197,8 @@ export const EndpointsOperations = {
       `birthday/${customerId}/${month}`,
   },
   BudgetMaintenance: {
-    resumenGastosByCustomer: (customerId: string) =>
-      `budget-maintenance/resumengastos/${customerId}`,
+resumenGastosByCustomer: (customerId: string) =>
+      `budget-maintenance/resumen-gastos/${customerId}`,
     summaryOfExpensesByCustomer: (customerId: string) =>
       `budget-maintenance/summary-of-expenses/${customerId}`,
   },
@@ -187,6 +233,9 @@ export const EndpointsOperations = {
     delete: (id: string) => `diagram-draw/${id}`,
     getById: (id: string) => `diagram-draw/${id}`,
     update: (id: string) => `diagram-draw/${id}`,
+  },
+  Gantt: {
+    byCustomer: (customerId: string) => `gantt/${customerId}`,
   },
   Meetings: {
     allPendingMinutas: (customerId: string) =>
@@ -298,6 +347,8 @@ export const EndpointsOperations = {
   ResumenGeneral: {
     evaluationAreas: (startDate: string, endDate: string) =>
       `resumen-general/evaluacion-areas/${startDate}/${endDate}`,
+    resultGeneral: (startDate: string, endDate: string) =>
+      `resumen-general/resultado-general/${startDate}/${endDate}`,
     evaluationAreasDetail: (
       date: string,
       area: string | number,
@@ -330,6 +381,7 @@ export const EndpointsOperations = {
     ) => `resumen-general/reporte-resumen-ticket/${customerId}/${startDate}/${endDate}`,
     reporteResumenTicket: (startDate: string, endDate: string) =>
       `resumen-general/reporte-resumen-ticket/${startDate}/${endDate}`,
+    filtroDto: "resumen-general/filtro-dto",
   },
   SupervisionReports: {
     financialStatementsByCustomer: (customerId: string) =>
@@ -364,14 +416,14 @@ export const EndpointsOperations = {
     updateOrder: "special-document/update-order",
   },
   CustomDocuments: {
-    create: "custom-document",
-    delete: (id: string | number) => `custom-document/${id}`,
-    getById: (id: string | number) => `custom-document/${id}`,
+    create: "custom-documents",
+    delete: (id: string | number) => `custom-documents/${id}`,
+    getById: (id: string | number) => `custom-documents/${id}`,
     listByCustomerAndType: (
       customerId: string,
       documentType: string | number,
-    ) => `custom-document/list/${customerId}/${documentType}`,
-    update: (id: string | number) => `custom-document/${id}`,
+    ) => `custom-documents/list/${customerId}/${documentType}`,
+    update: (id: string | number) => `custom-documents/${id}`,
   },
   Almacen: {
     create: "almacen",
@@ -419,6 +471,9 @@ export const EndpointsOperations = {
     getById: (id: string | number) => `inventario-producto/${id}`,
     listByWarehouse: (customerId: string, warehouseId: string | null) =>
       `inventario-producto/get-async-all/${customerId}/${warehouseId}`,
+    listByWarehousePaged: (customerId: string, warehouseId: string | null) =>
+      `inventario-producto/get-async-all-paged/${customerId}/${warehouseId}`,
+    productDropdownPaged: `inventario-producto/get-producto-dropdown-paged`,
     stockByProductAndWarehouse: (
       customerId: string,
       productId: string,
@@ -511,6 +566,9 @@ export const EndpointsOperations = {
     update: (id: string | number) => `inventario-detector-humo/${id}`,
   },
   PanicAlerts: {
+    active: "panic-alerts/active",
+    create: "panic-alerts",
+    history: "panic-alerts/history",
     attend: (id: string) => `panic-alerts/${id}/attend`,
     resolve: (id: string) => `panic-alerts/${id}/resolve`,
   },
@@ -549,11 +607,15 @@ export const EndpointsOperations = {
   },
   EntregaRecepcion: {
     base: "catalogo-entrega-recepcion-descripcion",
+    delete: (id: string) => `catalogo-entrega-recepcion-descripcion/${id}`,
     getByClient: (id: string) => `entrega-recepcion-cliente/${id}`,
     getById: (id: string) => `catalogo-entrega-recepcion-descripcion/${id}`,
     grupos: "catalogo-entrega-recepcion-descripcion/grupos",
     updateClient: (id: string, userId: string, customerId: string) =>
       `entrega-recepcion-cliente/${id}/${userId}/${customerId}`,
+  },
+  EntregaRecepcionDescripcion: {
+    getById: (id: string) => `entrega-recepcion-descripcion/${id}`,
   },
   EntregaRecepcionCliente: {
     deleteFile: (id: string) => `entrega-recepcion-cliente/delete-file/${id}`,

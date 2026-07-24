@@ -10,7 +10,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -59,7 +59,7 @@ export class FundingForm implements OnInit {
       this.onLoadData();
     }
 
-    const urlApi = Endpoints.RefactorContabilidad.fundingPeriodById(
+    const urlApi = Endpoints.Funding.period(
       this.customerIdS.customerId(),
     );
     this.apiResponseS
@@ -73,7 +73,7 @@ export class FundingForm implements OnInit {
     if (!this.id) return;
 
     console.log(`Cargando datos para el ID: ${this.id}`);
-    const urlApi = `funding/${this.id}`;
+    const urlApi = Endpoints.Funding.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -89,7 +89,7 @@ export class FundingForm implements OnInit {
     });
 
     this.apiResponseS
-      .onPost(Endpoints.RefactorContabilidad.funding, this.form.value)
+      .onPost(Endpoints.Funding.create, this.form.value)
       .then((result: boolean) => {
         if (result) {
           this.ref.close(true);

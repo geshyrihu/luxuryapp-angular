@@ -18,15 +18,15 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [readonly]="readonly()"
       [required]="requiredInput()"
     >
-      <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+      <div class="w-full flex flex-column gap-2 align-items-center">
         @if (!imageUrl) {
-          <ion-button expand="block" mode="md" fill="outline" (click)="triggerFileInput()">
+          <ion-button expand="block" mode="md" fill="outline" (click)="triggerFileInput()" class="w-full">
             <ion-icon slot="start" name="camera-outline"></ion-icon>
             Seleccionar imagen
           </ion-button>
         } @else {
-          <div style="display: flex; flex-direction: column; gap: 4px;">
-            <ion-img [src]="imageUrl" style="max-height: 200px; object-fit: cover; border-radius: 8px;" />
+          <div class="flex flex-column gap-1 w-15rem align-items-center">
+            <ion-img [src]="imageUrl" class="w-full h-10rem border-round shadow-1 object-cover" />
             <ion-button fill="clear" color="danger" size="small" (click)="removeFile()">
               <ion-icon slot="start" name="trash-outline"></ion-icon>
               Eliminar

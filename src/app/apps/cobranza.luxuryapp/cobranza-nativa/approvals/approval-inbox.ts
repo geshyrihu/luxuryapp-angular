@@ -1,4 +1,4 @@
-﻿import { DatePipe } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +15,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { shieldCheckmarkOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -81,7 +81,7 @@ export default class ApprovalInbox {
     const res = await this.apiResponseS.onGetItem<
       FinancialApprovalResponseDTO[]
     >(
-      Endpoints.CobranzaNative.FinancialApprovals.pending(
+      Endpoints.CobranzaCore.FinancialApprovals.pending(
         customerId,
       ),
     );

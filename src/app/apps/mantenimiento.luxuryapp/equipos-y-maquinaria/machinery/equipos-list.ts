@@ -29,8 +29,8 @@ import {
   timeOutline,
   trashOutline,
 } from "ionicons/icons";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { EquipmentInspectionQrPrintService } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-print.service";
 import { EquipmentInspectionService } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection.service";
 import { EquipmentInspectionsShell } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspections-shell";

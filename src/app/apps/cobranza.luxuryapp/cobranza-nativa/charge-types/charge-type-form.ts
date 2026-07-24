@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -83,7 +83,7 @@ export class ChargeTypeForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<ChargeTypeCatalogResponseDTO>(
-      Endpoints.CobranzaNative.ChargeTypes.getById(this.id),
+      Endpoints.CobranzaCore.ChargeTypes.getById(this.id),
     );
 
     if (!res) return;
@@ -100,7 +100,7 @@ export class ChargeTypeForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.CobranzaNative.ChargeTypes.create,
+      endpoint: Endpoints.CobranzaCore.ChargeTypes.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

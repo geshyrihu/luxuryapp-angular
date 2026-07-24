@@ -11,8 +11,8 @@ import {
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
   globalFilterFields,
   rowsPerPageOptions,

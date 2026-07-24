@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -16,7 +16,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -99,7 +99,7 @@ export class PropertyFineForm implements OnInit {
     const arts = await this.apiResponseS.onGetItem<
       RegulationArticleResponseDTO[]
     >(
-      Endpoints.CobranzaNative.RegulationArticles.byCustomer(
+      Endpoints.CobranzaCore.RegulationArticles.byCustomer(
         this.customerId,
       ),
     );
@@ -117,7 +117,7 @@ export class PropertyFineForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaNative.PropertyFines.getById(this.id),
+      Endpoints.CobranzaCore.PropertyFines.getById(this.id),
     );
     if (res) this.form.patchValue(res);
   }
@@ -126,7 +126,7 @@ export class PropertyFineForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.CobranzaNative.PropertyFines.create,
+      endpoint: Endpoints.CobranzaCore.PropertyFines.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

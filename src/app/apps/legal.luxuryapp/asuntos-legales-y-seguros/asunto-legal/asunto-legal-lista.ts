@@ -18,8 +18,8 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { addOutline, createOutline, trashOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AsuntoLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/asunto-legal-form";
 import { CategoriaAsuntoLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/asunto-legal/categoria-asunto-legal-form";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";

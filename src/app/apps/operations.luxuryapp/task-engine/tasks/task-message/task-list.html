@@ -113,13 +113,7 @@
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
           <span
-            style="
-              display: inline-block;
-              width: 10px;
-              height: 10px;
-              border-radius: 2px;
-              background: var(--task-not-started);
-            "
+            
           ></span>
           No iniciado
         </span>
@@ -127,13 +121,7 @@
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
           <span
-            style="
-              display: inline-block;
-              width: 10px;
-              height: 10px;
-              border-radius: 2px;
-              background: var(--task-in-progress);
-            "
+            
           ></span>
           En proceso
         </span>
@@ -141,13 +129,7 @@
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
           <span
-            style="
-              display: inline-block;
-              width: 10px;
-              height: 10px;
-              border-radius: 2px;
-              background: var(--task-completed);
-            "
+            
           ></span>
           Completado
         </span>
@@ -155,13 +137,7 @@
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
           <span
-            style="
-              display: inline-block;
-              width: 10px;
-              height: 10px;
-              border-radius: 2px;
-              background: var(--task-reopened);
-            "
+            
           ></span>
           Reabierto
         </span>
@@ -177,7 +153,7 @@
         />
 
         <lx-popover #helpPopover styleClass="shadow-4">
-          <div style="width: 280px; padding: 0.25rem 0">
+          <div >
             <p
               class="m-0 mb-3 font-semibold text-900 text-sm border-bottom-1 surface-border pb-2"
             >
@@ -190,12 +166,12 @@
               <div class="flex align-items-start gap-2">
                 <span
                   class="flex-shrink-0 border-circle bg-primary-100 flex align-items-center justify-content-center"
-                  style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
+                  
                 >
                   <app-icon
                     [icon]="'mdi:menu'"
                     class="text-primary"
-                    style="font-size: 0.75rem"
+                    
                   />
                 </span>
                 <div>
@@ -215,12 +191,12 @@
               <div class="flex align-items-start gap-2">
                 <span
                   class="flex-shrink-0 border-circle bg-purple-100 flex align-items-center justify-content-center"
-                  style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
+                  
                 >
                   <app-icon
                     [icon]="'mdi:link'"
                     class="text-purple-600"
-                    style="font-size: 0.75rem"
+                    
                   />
                 </span>
                 <div>
@@ -244,12 +220,12 @@
               <div class="flex align-items-start gap-2">
                 <span
                   class="flex-shrink-0 border-circle bg-orange-100 flex align-items-center justify-content-center"
-                  style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
+                  
                 >
                   <app-icon
                     [icon]="'mdi:sitemap'"
                     class="text-orange-600"
-                    style="font-size: 0.75rem"
+                    
                   />
                 </span>
                 <div>
@@ -261,13 +237,13 @@
                     <app-icon
                       [icon]="'mdi:sitemap'"
                       class="text-primary"
-                      style="font-size: 0.7rem"
+                      
                     />
                     tienen subtareas. Las tareas con
                     <app-icon
                       [icon]="'mdi:arrow-down-bold'"
                       class="text-400"
-                      style="font-size: 0.7rem"
+                      
                     />
                     son hijas de otra. Al crear o editar una tarea puedes
                     asignarle una tarea padre.
@@ -283,25 +259,25 @@
 
   <ng-template #header>
     <tr>
-      <th style="width: 4%"></th>
-      <th style="width: 22%" pSortableColumn="createdAtFilter">
+      <th ></th>
+      <th  pSortableColumn="createdAtFilter">
         SOLICITUD <p-sorticon field="createdAtFilter" />
       </th>
-      <th style="width: 7%" pSortableColumn="responsableNombre">
+      <th  pSortableColumn="responsableNombre">
         RESP. <p-sorticon field="responsableNombre" />
       </th>
-      <th style="width: 9%" pSortableColumn="scheduledAtFilter">
+      <th  pSortableColumn="scheduledAtFilter">
         FECHAS <p-sorticon field="scheduledAtFilter" />
       </th>
-      <th style="width: 8%">EVIDENCIAS</th>
-      <th style="width: 5%" pSortableColumn="daysDifference">
+      <th >EVIDENCIAS</th>
+      <th  pSortableColumn="daysDifference">
         DIAS <p-sorticon field="daysDifference" />
       </th>
-      <th style="width: 6%" pSortableColumn="isRelevant">
+      <th  pSortableColumn="isRelevant">
         REPORTE <p-sorticon field="isRelevant" />
       </th>
-      <th style="width: 22%">ULTIMO SEGUIMIENTO</th>
-      <th style="width: 9%" class="no-print"></th>
+      <th >ULTIMO SEGUIMIENTO</th>
+      <th  class="no-print"></th>
     </tr>
   </ng-template>
 
@@ -326,14 +302,14 @@
             [icon]="'mdi:menu'"
             class="cursor-move text-400"
             pReorderableRowHandle
-            style="font-size: 0.85rem"
+            
           />
           <app-icon
             [icon]="'mdi:link'"
             class="text-300 cursor-grab"
             draggable="true"
             [class.text-purple-500]="linkDragSourceId() === item.id"
-            style="font-size: 0.85rem"
+            
             (dragstart)="onLinkDragStart($event, item.id)"
             (dragend)="onLinkDragEnd()"
             lxTooltip="Arrastra sobre otra tarea para asignar predecesora"
@@ -350,7 +326,7 @@
           <app-icon
             [icon]="'mdi:arrow-down-bold'"
             class="text-400 flex-shrink-0 mr-1"
-            style="font-size: 0.75rem; margin-top: 0.2rem"
+            
             lxTooltip="Tarea hija"
             tooltipPosition="top"
           />
@@ -358,7 +334,7 @@
           <app-icon
             [icon]="'mdi:sitemap'"
             class="text-primary flex-shrink-0 mr-1"
-            style="font-size: 0.75rem; margin-top: 0.2rem"
+            
             lxTooltip="Tiene subtareas"
             tooltipPosition="top"
           />
@@ -410,7 +386,7 @@
                 [icon]="'mdi:star-outline'"
                 class="text-primary cursor-pointer"
                 (click)="onUpdatePriority(item.id)"
-                style="font-size: 0.8rem"
+                
                 lxTooltip="Alta prioridad - click para cambiar"
               />
               } @if (item.priority === 'Low') {
@@ -418,18 +394,14 @@
                 [icon]="'mdi:alert'"
                 class="text-red-500 cursor-pointer"
                 (click)="onUpdatePriority(item.id)"
-                style="font-size: 0.8rem"
+                
                 lxTooltip="Baja prioridad - click para cambiar"
               />
               } {{ item.title }}
             </p>
             <p
               class="m-0 text-xs text-700"
-              style="
-                white-space: normal;
-                overflow-wrap: break-word;
-                word-break: break-word;
-              "
+              
             >
               {{ item.description }}
             </p>
@@ -504,13 +476,7 @@
       </td>
 
       <td
-        style="
-          white-space: normal;
-          overflow-wrap: break-word;
-          word-break: break-word;
-          overflow: hidden;
-          max-width: 0;
-        "
+        
       >
         @if (item.lastFollowUp) {
         <span class="text-xs text-400 font-medium block mb-1"
@@ -518,11 +484,7 @@
         >
         <p
           class="m-0 text-xs text-700"
-          style="
-            white-space: normal;
-            overflow-wrap: break-word;
-            word-break: break-word;
-          "
+          
         >
           {{ item.lastFollowUp }}
         </p>
@@ -638,7 +600,7 @@
         >
           <app-icon
             icon="mdi:view-grid-outline"
-            style="font-size: 14px"
+            
             class="mr-1"
           />
           Tablero
@@ -649,7 +611,7 @@
         >
           <app-icon
             icon="mdi:clipboard-text-outline"
-            style="font-size: 14px"
+            
             class="mr-1"
           />
           Plan
@@ -660,7 +622,7 @@
         >
           <app-icon
             icon="mdi:eye-outline"
-            style="font-size: 14px"
+            
             class="mr-1"
           />
           Previa
@@ -671,7 +633,7 @@
         >
           <app-icon
             icon="mdi:send-outline"
-            style="font-size: 14px"
+            
             class="mr-1"
           />
           Reporte
@@ -838,21 +800,21 @@
     <span
       ><span
         class="print-legend-dot"
-        style="background: var(--ds-danger)"
+        
       ></span>
       No iniciado</span
     >
     <span
       ><span
         class="print-legend-dot"
-        style="background: var(--ds-warning)"
+        
       ></span>
       En proceso</span
     >
     <span
       ><span
         class="print-legend-dot"
-        style="background: var(--ds-danger)"
+        
       ></span>
       Reabierto</span
     >
@@ -876,8 +838,8 @@
         <th class="col-resp">Responsable</th>
         <th class="col-fecha">Programado</th>
         <th class="col-estado">Estado</th>
-        <th class="col-dias" style="text-align: center">Dias</th>
-        <th class="col-evid" style="text-align: center">Evidencias</th>
+        <th class="col-dias" >Dias</th>
+        <th class="col-evid" >Evidencias</th>
         <th class="col-seg">Ultimo seguimiento</th>
       </tr>
     </thead>
@@ -886,7 +848,7 @@
       <tr>
         <td
           [class]="statusTdClass(item.status)"
-          style="font-size: 7.5pt; color: var(--ds-text-muted)"
+          
         >
           {{ idx + 1 }}
         </td>
@@ -899,38 +861,33 @@
           <div class="print-desc">{{ item.description }}</div>
           }
         </td>
-        <td style="font-size: 7.5pt">{{ item.assignee || 'é' }}</td>
-        <td style="font-size: 7.5pt; white-space: nowrap">
+        <td >{{ item.assignee || 'é' }}</td>
+        <td >
           {{ item.scheduledAt || 'é' }}
         </td>
         <td>
           <span
             class="print-status-pill"
-            [style]="statusPillStyle(item.status)"
+            
           >
             {{ statusLabel(item.status) }}
           </span>
         </td>
-        <td style="text-align: center; font-size: 7.5pt">
+        <td >
           {{ item.daysDifference }}
         </td>
-        <td style="text-align: center; font-size: 9pt">
+        <td >
           @if (item.beforeWork || item.afterWork) { ? } @else { é }
         </td>
         <td>
           @if (item.lastFollowUp) {
           <span
-            style="
-              font-size: 7pt;
-              color: var(--ds-text-muted);
-              display: block;
-              margin-bottom: 2px;
-            "
+            
             >{{ item.lastFollowUpDate }}</span
           >
           <p class="print-followup">{{ item.lastFollowUp }}</p>
           } @else {
-          <span style="font-size: 7.5pt; color: var(--ds-text-muted)">é</span>
+          <span >é</span>
           }
         </td>
       </tr>
@@ -945,3 +902,4 @@
 </div>
 
 }
+

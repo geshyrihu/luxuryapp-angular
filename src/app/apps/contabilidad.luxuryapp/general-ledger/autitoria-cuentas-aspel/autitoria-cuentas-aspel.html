@@ -1,18 +1,12 @@
 <div
   class="surface-card border-bottom-1 surface-border shadow-1"
-  style="
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1.25rem;
-  "
+  
 >
   <div class="flex flex-wrap align-items-center gap-3">
-    <div class="flex align-items-center gap-2" style="flex-shrink: 0">
+    <div class="flex align-items-center gap-2" >
       <div
         class="flex align-items-center justify-content-center bg-primary-50 border-round-lg"
-        style="width: 38px; height: 38px"
+        
       >
         <app-icon [icon]="'mdi:sitemap'" class="text-primary-600" />
       </div>
@@ -20,7 +14,7 @@
         <p class="font-bold text-900 m-0 line-height-1">
           Auditoria de Cuentas Aspel
         </p>
-        <p class="text-500 m-0" style="font-size: 0.75rem">
+        <p class="text-500 m-0" >
           Catalogo general por cuenta y descripcion, con presencia por customer
         </p>
       </div>
@@ -28,7 +22,7 @@
 
     <span
       class="border-left-1 surface-border"
-      style="height: 2rem; flex-shrink: 0"
+      
     ></span>
 
     <custom-input-select-button-signal
@@ -39,7 +33,7 @@
       optionValue="value"
     />
 
-    <div class="flex align-items-center gap-1" style="flex-shrink: 0">
+    <div class="flex align-items-center gap-1" >
       <iw-button
         iconClass="mdi:chevron-left"
         variant="text"
@@ -49,7 +43,7 @@
       />
       <span
         class="font-bold text-900 px-1"
-        style="min-width: 3rem; text-align: center"
+        
       >
         {{ filterS.year() }}
       </span>
@@ -65,7 +59,7 @@
     @if (!loading() && rawData()) {
     <span
       class="border-left-1 surface-border"
-      style="height: 2rem; flex-shrink: 0"
+      
     ></span>
 
     <il-button
@@ -76,7 +70,7 @@
       (clicked)="soloParciales.set(!soloParciales())"
     />
 
-    <div style="width: 260px; max-width: 100%">
+    <div >
       <custom-search-input-signal
         placeholder="Buscar cuenta o customer..."
         (searchChange)="busquedaCatalogo.set($event)"
@@ -164,28 +158,28 @@
           ><app-icon
             [icon]="'mdi:check'"
             class="mr-1"
-            style="color: var(--ds-success)"
+            
           />Existe</span
         >
         <span class="mr-3"
           ><app-icon
             [icon]="'mdi:close'"
             class="mr-1"
-            style="color: var(--ds-danger)"
+            
           />No existe</span
         >
         <span
           ><app-icon
             [icon]="'mdi:alert'"
             class="mr-1"
-            style="color: var(--ds-warning)"
+            
           />Estructura distinta</span
         >
       </div>
     </div>
   </div>
 
-  <div style="border-radius: 0.75rem; overflow: hidden">
+  <div >
     <p-table
       [value]="catalogoGeneral()"
       class="p-datatable-sm p-datatable-gridlines"
@@ -196,26 +190,26 @@
         <tr>
           <th
             class="text-center"
-            style="min-width: 70px; background: var(--ds-surface-variant)"
+            
           >
             Nivel
           </th>
-          <th style="min-width: 140px; background: var(--ds-surface-variant)">
+          <th >
             No. Cuenta
           </th>
           <th
             class="text-center"
-            style="min-width: 110px; background: var(--ds-surface-variant)"
+            
           >
             Naturaleza
           </th>
-          <th style="min-width: 220px; background: var(--ds-surface-variant)">
+          <th >
             Descripcion
           </th>
           @for (customer of customerColumns(); track customer.customerId) {
           <th
             class="text-center"
-            style="min-width: 120px; background: var(--ds-surface-variant)"
+            
           >
             {{ customer.customerShortName }}
           </th>
@@ -260,7 +254,7 @@
               [class]="getPresenceIcon(presencia)"
               [style.color]="getPresenceColor(presencia)"
               [title]="getPresenceTitle(presencia)"
-              style="font-size: 1rem"
+              
             ></i>
           </td>
           }

@@ -16,8 +16,8 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import { checkboxOutline, createOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement.enum";

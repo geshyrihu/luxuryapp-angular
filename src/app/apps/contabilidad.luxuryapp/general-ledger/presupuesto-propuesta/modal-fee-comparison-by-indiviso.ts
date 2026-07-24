@@ -21,8 +21,8 @@ import {
 } from "@angular/core";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.model";

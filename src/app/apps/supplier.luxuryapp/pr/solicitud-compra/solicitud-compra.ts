@@ -19,7 +19,7 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { AppBadge } from "@ui/web/badge/badge";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { LxTag } from "@ui/adaptive/tag/tag";

@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 // Custom Inputs
@@ -85,12 +85,12 @@ export default class BillingConfigModal implements OnInit {
   async loadData() {
     this.isLoading = true;
     const billingConfig = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaNative.BillingConfig.customer(
+      Endpoints.CobranzaCore.BillingConfig.customer(
         this.customerId,
       ),
     );
     const notificationSettings = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaNative.NotificationSettings.byCustomer(
+      Endpoints.CobranzaCore.NotificationSettings.byCustomer(
         this.customerId,
       ),
     );
@@ -139,7 +139,7 @@ export default class BillingConfigModal implements OnInit {
       } as SaveNativeCollectionNotificationSettingsDTO;
 
       const billingResult = await this.apiResponseS.onPost(
-        Endpoints.CobranzaNative.BillingConfig.save,
+        Endpoints.CobranzaCore.BillingConfig.save,
         billingPayload,
       );
 
@@ -148,7 +148,7 @@ export default class BillingConfigModal implements OnInit {
       }
 
       const notificationResult = await this.apiResponseS.onPost(
-        Endpoints.CobranzaNative.NotificationSettings.save,
+        Endpoints.CobranzaCore.NotificationSettings.save,
         notificationPayload,
       );
 

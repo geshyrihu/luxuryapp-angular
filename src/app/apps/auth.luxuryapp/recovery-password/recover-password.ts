@@ -20,7 +20,7 @@ import { RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MessageModule } from "primeng/message";
+import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";

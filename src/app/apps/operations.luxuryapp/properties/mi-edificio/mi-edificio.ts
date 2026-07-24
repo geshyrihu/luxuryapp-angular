@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { FichaTecnicaActivo } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";

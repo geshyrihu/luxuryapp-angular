@@ -24,7 +24,6 @@
           <il-button
             label="Saldo"
             icon="mdi:calendar"
-            size="small"
             [fluid]="true"
             (clicked)="onNavSaldo()"
           />
@@ -92,10 +91,12 @@
 
         <td class="no-print">
           <div class="flex justify-content-end">
-            <!-- Botún Ver Detalle -->
+            <!-- botón Ver Detalle -->
             <iw-button-item
+              icon="mdi:eye-outline"
+              label="Ver Detalle"
               (clicked)="onDetail(item.id)"
-              lxTooltip="??"
+              lxTooltip="Ver detalle"
             />
 
             @if (item.status === "Pendiente") {
@@ -126,31 +127,27 @@
         <div
           start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-          style="
-            width: 38px;
-            height: 38px;
-            background: var(--ds-info-light, #e0f2fe);
-          "
+          
         >
           <app-icon
             icon="mdi:beach"
-            style="font-size: 1.1rem; color: var(--ds-info)"
+            
           />
         </div>
-        
-          <h2 class="font-bold">{{ item.requestDate }}</h2>
-          <p class="text-sm text-500">
-            {{ item.startDate }} é {{ item.endDate }}
-          </p>
-          <p class="text-sm text-500">Días: {{ item.requestedDays }}</p>
-          <p class="text-sm">
-            <lx-tag
-              [value]="item.status"
-              [severity]="getStatusSeverity(item.status)"
-            />
-          </p>
-          <p class="text-sm text-500">{{ item.approverFullName || 'é' }}</p>
-        
+
+        <h2 class="font-bold">{{ item.requestDate }}</h2>
+        <p class="text-sm text-500">
+          {{ item.startDate }} é {{ item.endDate }}
+        </p>
+        <p class="text-sm text-500">Días: {{ item.requestedDays }}</p>
+        <p class="text-sm">
+          <lx-tag
+            [value]="item.status"
+            [severity]="getStatusSeverity(item.status)"
+          />
+        </p>
+        <p class="text-sm text-500">{{ item.approverFullName || 'é' }}</p>
+
         <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item

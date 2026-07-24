@@ -44,16 +44,16 @@
       <td class="text-right font-bold">
         {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
-      <td style="min-width: 120px">
+      <td >
         <div class="flex align-items-center gap-2">
           <div
             class="border-round overflow-hidden flex-1"
-            style="height: 6px; background: var(--surface-200)"
+            
           >
             <div
               class="border-round bg-primary"
               [style.width.%]="getProgreso(item)"
-              style="height: 100%"
+              
             ></div>
           </div>
           <span class="text-xs"
@@ -100,15 +100,11 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="
-          width: 38px;
-          height: 38px;
-          background: var(--ds-success-light, #d1fae5);
-        "
+        
       >
         <app-icon
           icon="mdi:currency-usd"
-          style="font-size: 1.1rem; color: var(--ds-success)"
+          
         />
       </div>
       
@@ -127,12 +123,12 @@
         <div class="mt-1">
           <div
             class="border-round overflow-hidden"
-            style="height: 4px; background: var(--surface-200)"
+            
           >
             <div
               class="border-round bg-primary"
               [style.width.%]="getProgreso(item)"
-              style="height: 100%"
+              
             ></div>
           </div>
         </div>

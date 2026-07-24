@@ -5,19 +5,20 @@ import {
   forwardRef,
 } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { IonCheckbox, IonItem, IonList } from "@ionic/angular/standalone";
 import { ListboxBase } from "@ui/base/listbox.base";
-import { IonList, IonItem, IonLabel, IonCheckbox } from "@ionic/angular/standalone";
 
 @Component({
   selector: "ili-listbox",
-  imports: [FormsModule, IonList, IonItem, IonLabel, IonCheckbox],
+  imports: [FormsModule, IonList, IonItem, IonCheckbox],
   template: `
     <ion-list [class]="styleClass()">
       @for (option of options(); track option) {
         <ion-item>
-          <ion-checkbox 
+          <ion-checkbox
             [checked]="value() === option[optionValue()] || value() === option"
-            (ionChange)="selectOption(option)">
+            (ionChange)="selectOption(option)"
+          >
             {{ optionLabel() ? option[optionLabel()] : option }}
           </ion-checkbox>
         </ion-item>

@@ -4,7 +4,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 
 // PrimeNG Modules
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";

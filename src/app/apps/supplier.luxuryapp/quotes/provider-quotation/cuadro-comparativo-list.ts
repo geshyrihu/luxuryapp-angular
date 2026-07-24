@@ -15,9 +15,9 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 import { AppImage } from "@ui/web/image/image";
-import { DividerModule } from "primeng/divider";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { AutorizacionCuadroComparativo } from "src/app/core/enums/autorizacion-cuadro-comparativo.enum";
@@ -392,7 +392,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       html: `
         <div class="flex flex-column gap-2 text-left">
           <label for="swal-authorizer" class="font-semibold">Quien decide</label>
-          <select id="swal-authorizer" class="swal2-select" style="display:flex; width:100%;">
+          <select id="swal-authorizer" class="swal2-select" class="flex w-full">
             <option value="">Selecciona quien decide</option>
             ${Object.entries(inputOptions)
               .map(
@@ -402,7 +402,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
               .join("")}
           </select>
           <label for="swal-reason" class="font-semibold mt-2">Motivo</label>
-          <textarea id="swal-reason" class="swal2-textarea" style="display:flex; width:100%; margin:0;" placeholder="Explica por que no se autoriza"></textarea>
+          <textarea id="swal-reason" class="swal2-textarea" class="flex w-full m-0" placeholder="Explica por que no se autoriza"></textarea>
         </div>
       `,
       showCancelButton: true,

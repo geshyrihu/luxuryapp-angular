@@ -4,7 +4,7 @@ import {
   inject,
   OnInit,
 } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
@@ -20,7 +20,7 @@ export class TarjetaProducto implements OnInit {
   producto: any;
 
   ngOnInit(): void {
-    const urlApi = Endpoints.RefactorSupplier.productosById(this.productoId);
+    const urlApi = Endpoints.Products.getById(this.productoId);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.producto = result;
     });

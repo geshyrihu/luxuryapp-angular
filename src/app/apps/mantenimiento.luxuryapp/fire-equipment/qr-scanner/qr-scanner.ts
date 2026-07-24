@@ -122,7 +122,7 @@ export class QrScanner implements OnDestroy {
     const id = segments[0];
     this.statusMsg.set("Identificando equipo...");
     const result: any = await this.apiResponseS
-      .onGetItem(Endpoints.RefactorMantenimiento.fireEquipmentResolveById(id))
+      .onGetItem(Endpoints.FireEquipment.resolveById(id))
       .catch(() => null);
 
     if (!result) {

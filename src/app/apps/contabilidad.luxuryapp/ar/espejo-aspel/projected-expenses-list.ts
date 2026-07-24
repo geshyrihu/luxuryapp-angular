@@ -15,8 +15,8 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -87,7 +87,7 @@ export default class ProjectedExpensesList {
     this.loading.set(true);
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorContabilidad.projectedExpensesById(
+        Endpoints.ProjectedExpenses.list(
           this.customerIdS.customerId(),
         ),
       )
@@ -100,10 +100,7 @@ export default class ProjectedExpensesList {
   onDelete(id: string) {
     this.apiResponseS
       .onDelete(
-        Endpoints.RefactorContabilidad.projectedExpensesByIdById(
-          this.customerIdS.customerId(),
-          id,
-        ),
+        Endpoints.ProjectedExpenses.delete(this.customerIdS.customerId(), id),
       )
       .then((result: boolean) => {
         if (result)

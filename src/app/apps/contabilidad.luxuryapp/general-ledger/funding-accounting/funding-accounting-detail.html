@@ -91,14 +91,14 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th class="text-center" style="width: 30px">N°</th>
+        <th class="text-center" >N°</th>
         <th class="text-right table-col-80px">CUENTA</th>
-        <th class="text-start" style="width: 200px">CONCEPTO</th>
-        <th class="text-center" style="width: 20px">PAGADA</th>
+        <th class="text-start" >CONCEPTO</th>
+        <th class="text-center" >PAGADA</th>
         <th class="text-center table-col-100px">FECHA</th>
         <th class="text-start table-col-80px">FAC</th>
         <th class="text-center table-col-60px">Val. XML</th>
-        <th class="text-start" style="width: 220px">PROVEEDOR Y/O ACREEDOR</th>
+        <th class="text-start" >PROVEEDOR Y/O ACREEDOR</th>
         <th class="text-right table-col-120px">TOTAL</th>
         <th class="text-right table-col-120px">BANCO</th>
         <th class="text-right table-col-160px">CUENTA/CLABE</th>
@@ -138,7 +138,7 @@
           </span>
           }  -->
           @if (orden.factura || orden.pdfFile) {
-          <lx-tag class="tag-sm cursor-pointer w-text-xs" [style]="{ width: '100%' }" severity="danger" [value]="orden.folioFiscal" (click)="viewPDF(orden.pdfFile)" />
+          <lx-tag class="tag-sm cursor-pointer w-text-xs"  severity="danger" [value]="orden.folioFiscal" (click)="viewPDF(orden.pdfFile)" />
           }
         </td>
         <!-- Columna de Validación XML -->

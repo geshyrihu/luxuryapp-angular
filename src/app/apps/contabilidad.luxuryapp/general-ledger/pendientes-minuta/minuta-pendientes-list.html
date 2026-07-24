@@ -28,7 +28,7 @@
       <!-- LADO DERECHO: Filtros, Acciones y Toggles -->
       <div class="flex flex-column sm:flex-row align-items-center gap-2">
         <!-- Filtro Select (Ancho mínimo fluido) -->
-        <div style="min-width: 200px">
+        <div >
           <custom-input-select-signal
             [data]="[
               { label: 'Pendientes', value: 0 },
@@ -46,7 +46,7 @@
           />
         </div>
 
-        <!-- Botún de Descarga PDF (Ancho fijo preventivo) -->
+        <!-- botón de Descarga PDF (Ancho fijo preventivo) -->
         <div class="flex-shrink-0">
           <il-button
             label="?? Descargar PDF"

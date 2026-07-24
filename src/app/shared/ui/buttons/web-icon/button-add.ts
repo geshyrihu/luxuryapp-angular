@@ -14,7 +14,7 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'fluent-color:add-16'" />
+      <app-icon [icon]="iconClass() || 'fluent-color:add-circle-16'" />
     </button>
   `,
 })

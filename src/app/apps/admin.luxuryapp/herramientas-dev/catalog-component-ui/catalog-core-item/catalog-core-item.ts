@@ -44,11 +44,11 @@ import { SplitPane } from "@ui/web/split-pane/split-pane";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TreeTable, TreeTableColumn } from "@ui/web/tree-table/tree-table";
 import { Wizard, WizardStep } from "@ui/web/wizard/wizard";
-import { MenuItem, TreeNode } from "primeng/api";
-import { ButtonModule } from "primeng/button";
-import { CheckboxModule } from "primeng/checkbox";
-import { DividerModule } from "primeng/divider";
-import { TagModule } from "primeng/tag";
+import { MenuItem, TreeNode } from "@ui/web/primeng-api/primeng-api";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
+import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 // 13.3.3 demos de prioridad baja
 import { WebSkeletonPresets as SkeletonPresets } from "@ui/web/skeleton-presets/skeleton-presets";
 import {

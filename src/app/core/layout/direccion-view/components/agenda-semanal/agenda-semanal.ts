@@ -11,6 +11,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TagModule } from "primeng/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -136,7 +137,7 @@ export class AgendaSemanal {
     this.cargando.set(true);
     const fechaStr = fecha.toISOString().slice(0, 10);
     const data = await this.apiResponseS.onGetItem<AgendaSemanalEventDto[]>(
-      `direccion-dashboard/agenda-semanal?fecha=${fechaStr}`,
+      Endpoints.DireccionDashboard.agendaSemanal(fechaStr),
       false,
     );
     this.eventos.set(data ?? []);

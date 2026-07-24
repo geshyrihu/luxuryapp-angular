@@ -17,8 +17,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -71,7 +71,7 @@ export class PaymentTypeList implements OnInit {
   }
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.PaymentTypes.getAll)
+      .onGetList(Endpoints.Catalogs.PaymentTypes.getAll)
       .then((result: any) => {
         this.data.set(result);
       });
@@ -79,7 +79,7 @@ export class PaymentTypeList implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.PaymentTypes.delete(id))
+      .onDelete(Endpoints.Catalogs.PaymentTypes.delete(id))
       .then((result: boolean) => {
         if (result)
           this.data.update((currentData) =>

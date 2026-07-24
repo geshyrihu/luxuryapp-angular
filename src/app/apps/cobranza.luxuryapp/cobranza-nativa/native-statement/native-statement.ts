@@ -1,4 +1,4 @@
-﻿import {
+import {
   CommonModule,
   CurrencyPipe,
   DatePipe,
@@ -15,7 +15,7 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -156,7 +156,7 @@ export class NativeStatement implements OnInit {
     this.loading.set(true);
     try {
       const res = await this.apiResponseS.onGetItem<NativeStatementResponseDTO>(
-        Endpoints.CobranzaNative.Statements.get(
+        Endpoints.CobranzaCore.Statements.get(
           propertyId,
           this.asOfCtrl.value
             ? this.asOfCtrl.value instanceof Date
@@ -182,7 +182,7 @@ export class NativeStatement implements OnInit {
   }
 
   private getStatementPdfUrl(propertyId: string): string {
-    return Endpoints.CobranzaNative.Statements.pdf(
+    return Endpoints.CobranzaCore.Statements.pdf(
       propertyId,
       this.getAsOfValue(),
     );
@@ -232,7 +232,7 @@ export class NativeStatement implements OnInit {
     this.sendingStatement.set(true);
     try {
       await this.apiResponseS.onPost<boolean>(
-        Endpoints.CobranzaNative.Notifications.sendStatement,
+        Endpoints.CobranzaCore.Notifications.sendStatement,
         {
           customerId: this.customerId(),
           propertyId,
@@ -259,7 +259,7 @@ export class NativeStatement implements OnInit {
     this.sendingBatchStatements.set(true);
     try {
       await this.apiResponseS.onPost<SendNativeStatementBatchResponseDTO>(
-        Endpoints.CobranzaNative.Notifications
+        Endpoints.CobranzaCore.Notifications
           .sendStatementBatch,
         {
           customerId: this.customerId(),
@@ -281,7 +281,7 @@ export class NativeStatement implements OnInit {
     this.processingNotifications.set(true);
     try {
       await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaNative.Notifications.process(
+        Endpoints.CobranzaCore.Notifications.process(
           this.customerId(),
         ),
       );

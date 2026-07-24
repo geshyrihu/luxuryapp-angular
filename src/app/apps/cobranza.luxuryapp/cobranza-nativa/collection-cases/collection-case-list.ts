@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +15,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -74,7 +74,7 @@ export default class CollectionCaseList {
 
   async onLoadData(customerId: string) {
     const res = await this.apiResponseS.onGetItem<CollectionCaseResponseDTO[]>(
-      Endpoints.CobranzaNative.CollectionCases.byCustomer(
+      Endpoints.CobranzaCore.CollectionCases.byCustomer(
         customerId,
       ),
     );
@@ -87,7 +87,7 @@ export default class CollectionCaseList {
     this.escalating.set(true);
     try {
       const res = await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaNative.CollectionCases.evaluateAndEscalate(
+        Endpoints.CobranzaCore.CollectionCases.evaluateAndEscalate(
           customerId,
         ),
         {},

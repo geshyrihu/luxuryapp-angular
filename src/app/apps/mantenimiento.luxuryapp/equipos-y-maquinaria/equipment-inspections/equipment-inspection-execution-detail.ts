@@ -5,9 +5,9 @@ import {
   signal,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { AppImage } from "@ui/web/image/image";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";

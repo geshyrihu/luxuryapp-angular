@@ -10,11 +10,12 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MessageModule } from "primeng/message";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { MessageModule } from "@ui/web/primeng-message/primeng-message";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -30,11 +31,13 @@ import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service"
 import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 import {
   ASPEL_MONTHS,
+  getBudgetAccounts,
   getCuentaMonthValue,
   getPresupuestoBaseMensual,
   hasAnyBudgetOrExpense,
   isParentAccount,
   normalizeAspelAccounts,
+  normalizeAspelBudgetResponse,
   splitAspelAccounts,
 } from "./presupuesto-web-aspel.shared";
 import { BudgetAccountRuleDataDTO } from "./presupuestos.interfaces";
@@ -106,31 +109,37 @@ export class EspejoAspelExtraordinarios {
     this.loading.set(true);
     this.sharedS.errorMensaje.set(null);
 
-    const urlBudget = `presupuesto/presupuesto-limpio-ejercicio-fiscal?customerId=${customerId}&intYear=${this.sharedS.intYear()}`;
+    const urlBudget = Endpoints.Presupuestos.presupuestoLimpioEjercicioFiscal(
+      customerId,
+      this.sharedS.intYear(),
+    );
     const urlRules = `budget-account-rules/${customerId}`;
 
     this.apiResponseS
       .onGetList<AspelBudgetDTO>(urlBudget)
       .then(async (response) => {
-        if (response?.cuentas?.length > 0) {
+        const normalizedResponse = normalizeAspelBudgetResponse(response);
+        const budgetAccounts = getBudgetAccounts(normalizedResponse);
+
+        if (budgetAccounts.length > 0) {
           const rules =
             (await this.apiResponseS.onGetList<BudgetAccountRuleDataDTO[]>(
               urlRules,
             )) || [];
-          const cuentas = normalizeAspelAccounts(response.cuentas);
+          const cuentas = normalizeAspelAccounts(budgetAccounts);
           const grouped = splitAspelAccounts(
             cuentas,
             customerId,
             rules as BudgetAccountRuleDataDTO[],
           );
 
-          this.sharedS.budgetData.set(response);
+          this.sharedS.budgetData.set(normalizedResponse);
           this.allExtraordinarias.set(grouped.extraordinarias);
           this.allProyectos.set(grouped.proyectos);
           this.globalFilterFields.set(globalFilterFields(cuentas));
         } else {
           this.handleError(
-            (response as any)?.strMensaje || "No se encontraron datos.",
+            (normalizedResponse as any)?.strMensaje || "No se encontraron datos.",
           );
         }
         this.loading.set(false);

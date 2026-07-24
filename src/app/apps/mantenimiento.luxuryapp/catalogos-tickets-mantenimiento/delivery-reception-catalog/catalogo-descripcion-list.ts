@@ -13,8 +13,8 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CatalogoDescripcionForm } from "src/app/apps/operations.luxuryapp/properties/entrega-recepcion/catalogo-descripcion-form";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -73,7 +73,7 @@ export class CatalogoDescripcionList implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `CatalogoEntregaRecepcionDescripcion`;
+    const urlApi = Endpoints.EntregaRecepcion.base;
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -93,11 +93,7 @@ export class CatalogoDescripcionList implements OnInit {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(
-        Endpoints.RefactorMantenimiento.catalogoentregarecepciondescripcionById(
-          id,
-        ),
-      )
+      .onDelete(Endpoints.EntregaRecepcion.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>

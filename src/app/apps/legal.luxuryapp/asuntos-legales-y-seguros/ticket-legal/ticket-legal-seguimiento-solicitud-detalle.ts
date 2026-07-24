@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({

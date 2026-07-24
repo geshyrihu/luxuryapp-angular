@@ -96,7 +96,7 @@
         #videoEl
         autoplay
         playsinline
-        style="width: 100%; max-width: 400px; border-radius: 8px"
+        
       ></video>
       @if (scanStatus()) {
       <p class="text-600 mt-1">{{ scanStatus() }}</p>
@@ -108,7 +108,7 @@
     @if (mergedItems().length === 0) {
     <p class="text-600 text-center py-3">No hay hidrantes en este periodo.</p>
     } @else {
-    <table class="w-full" style="border-collapse: collapse">
+    <table class="w-full" >
       <thead>
         <tr class="surface-100">
           <th class="p-2 text-left text-600 font-medium">Código</th>

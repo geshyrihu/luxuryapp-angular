@@ -1,28 +1,21 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
-  (onLazyLoad)="loadDataLazy($event)"
-  [first]="first"
   [globalFilterFields]="globalFilterFields()"
-  [lazy]="true"
   [loading]="loading()"
   [paginator]="true"
-  rows="6"
+  [rows]="rows"
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [totalRecords]="totalRecords"
   [value]="formArray.controls"
+  [lazy]="true"
+  (onLazyLoad)="onLazyLoad($event)"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   class="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <div class="w-full md:w-5/12 mb-4">
-      <custom-search-input-signal
-        (searchChange)="applyGlobalFilter($event)"
-        placeholder="Buscar producto..."
-      />
-    </div>
+    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -97,7 +90,6 @@
             [horizontal]="false"
           />
         </td>
-        <!-- Opciones -->
         <td>
           <div class="flex">
             <iw-button-item

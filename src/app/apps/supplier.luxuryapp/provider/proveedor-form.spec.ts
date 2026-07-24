@@ -92,7 +92,7 @@ describe("ProveedorForm", () => {
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith("Categories");
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith("Bank");
     expect(mockApiResponseS.onGetEnumSelectItem).toHaveBeenCalledWith(
-      "e-service-type",
+      "service-type",
     );
     expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith(
       "Providers/prov-001/cust-123",

@@ -4,7 +4,7 @@ import {
   inject,
   input,
 } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { UpdatePasswordAccount } from "src/app/shared/user-account-access/update-password-account";
 import { UpdateRole } from "src/app/shared/user-account-access/update-role";

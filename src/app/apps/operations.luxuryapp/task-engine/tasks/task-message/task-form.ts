@@ -22,7 +22,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -432,7 +432,6 @@ export class TaskForm implements OnInit {
     );
     this.form.patchValue({
       title: selectedMatter ? selectedMatter.label : "",
-      isInternal: !!value,
     });
   }
 

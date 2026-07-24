@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { LxListbox } from "@ui/adaptive/listbox/listbox";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -89,10 +89,10 @@ export class DiagramForm implements OnInit {
     try {
       const [roles, customers] = await Promise.all([
         this.apiResponseS.onGetSelectItem<SelectItem[]>(
-          "roles-for-announcements",
+          Endpoints.SelectItems.rolesForAnnouncements,
         ),
         this.apiResponseS.onGetSelectItem<SelectItem[]>(
-          "CustomersActiveNameShort",
+          Endpoints.SelectItems.customersActiveShortName,
         ),
       ]);
 

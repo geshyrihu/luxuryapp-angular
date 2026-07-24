@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";

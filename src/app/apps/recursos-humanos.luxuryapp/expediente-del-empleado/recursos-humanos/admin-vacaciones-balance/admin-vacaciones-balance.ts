@@ -12,9 +12,9 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { ConfirmationService, MessageService } from "primeng/api";
-import { DynamicDialogModule } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { ConfirmationService, MessageService } from "@ui/web/primeng-api/primeng-api";
+import { DynamicDialogModule } from "@ui/web/primeng-dynamicdialog/primeng-dynamicdialog";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {

@@ -46,7 +46,7 @@ export class EnumSelectService {
     );
   }
 
-  boolYesNo = () => this.onLoadSelectList("bool-yes-no");
+  boolYesNo = () => this.onLoadSelectList("BoolYesNo");
 
   areaMinutasDetalles = (d?: boolean) =>
     this.onLoadEnumList("area-minutas-detalles", d);

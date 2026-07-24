@@ -1,7 +1,7 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -217,7 +217,7 @@ export class CatalogoGastosFijosList {
   async loadFundingOptions() {
     this.cb_fundingYear = this.generateYearOptions();
     this.cb_fundingPeriod = (await firstValueFrom(
-      this.enumSelectS.onLoadEnumList("e-funding-period", false),
+      this.enumSelectS.onLoadEnumList("funding-period", false),
     )) as SelectItemDto[];
     this.processFundingPeriods(this.cb_fundingPeriod);
   }
@@ -260,7 +260,7 @@ export class CatalogoGastosFijosList {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosListById(
+    const urlApi = Endpoints.CatalogoGastosFijos.list(
       this.customerIdS.customerId(),
     );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
@@ -292,11 +292,7 @@ export class CatalogoGastosFijosList {
   }
 
   updateItemSelectionOnApi(id: any, value: any) {
-    const urlApi =
-      Endpoints.RefactorContabilidad.catalogoGastosFijosUpdateValidationByIdById(
-        id,
-        value,
-      );
+    const urlApi = Endpoints.CatalogoGastosFijos.updateValidation(id, value);
     this.apiResponseS.onGetListNotLoading(urlApi, null).then(() => {
       // Opcional: se podría volver a llamar a updateSelectedItems aquí si hubiera alguna duda,
       // pero ya se hace en el método que origina el cambio.
@@ -390,7 +386,7 @@ export class CatalogoGastosFijosList {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorContabilidad.catalogogastosfijosById(id))
+      .onDelete(Endpoints.CatalogoGastosFijos.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((current) =>
@@ -435,13 +431,12 @@ export class CatalogoGastosFijosList {
 
     const fundingPeriodId = monthData.quincenas[quincenaIndex].value;
 
-    const urlApi =
-      Endpoints.RefactorContabilidad.ordenCompraGenerarOrdenCompraFijosByIdByIdByIdById(
-        this.customerIdS.customerId(),
-        quincenaIndex,
-        this.fundingYear(),
-        fundingPeriodId,
-      );
+    const urlApi = Endpoints.CatalogoGastosFijos.generatePurchaseOrders(
+      this.customerIdS.customerId(),
+      quincenaIndex,
+      this.fundingYear(),
+      fundingPeriodId,
+    );
 
     this.apiResponseS.onPostNotLoading(urlApi, {}).then((result) => {
       if (result !== false) {

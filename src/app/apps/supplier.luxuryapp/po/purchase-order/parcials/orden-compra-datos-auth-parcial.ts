@@ -8,7 +8,7 @@ import {
   Signal,
   ChangeDetectionStrategy
 } from "@angular/core";
-import { ButtonModule } from "primeng/button";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";

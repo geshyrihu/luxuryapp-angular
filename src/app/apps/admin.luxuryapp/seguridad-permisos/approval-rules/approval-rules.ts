@@ -11,7 +11,7 @@ import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";

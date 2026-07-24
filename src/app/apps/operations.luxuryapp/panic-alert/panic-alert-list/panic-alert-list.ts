@@ -398,14 +398,14 @@ export class PanicAlertList implements OnInit {
 
   async loadActive(): Promise<void> {
     const result = await this.apiResponseS.onGetList<PanicAlertDto[]>(
-      "panic-alerts/active",
+      Endpoints.PanicAlerts.active,
     );
     if (result) this.activeAlerts.set(result);
   }
 
   async loadHistory(): Promise<void> {
     const result = await this.apiResponseS.onGetList<PanicAlertDto[]>(
-      "panic-alerts/history",
+      Endpoints.PanicAlerts.history,
     );
     if (result) this.historyAlerts.set(result);
   }

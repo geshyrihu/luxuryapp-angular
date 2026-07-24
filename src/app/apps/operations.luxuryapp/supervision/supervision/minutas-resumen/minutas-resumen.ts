@@ -9,8 +9,8 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxMultiSelect } from "@ui/adaptive/multi-select/multi-select";
 import { Mesanio as MesAnio } from "@ui/web/mesanio/mesanio";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -46,7 +46,7 @@ export class MinutasResumen implements OnInit {
     );
 
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(`NombreCorto`)
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.nombreCorto)
       .then((response: any) => {
         this.cb_customers.set(
           response.map((selectList: any) => ({

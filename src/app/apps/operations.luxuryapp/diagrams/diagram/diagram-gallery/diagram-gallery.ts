@@ -57,8 +57,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                 >
               </div>
               <div
-                class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3"
-                style="min-height: 150px"
+                class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3 min-h-10rem"
               >
                 <app-icon
                   [icon]="'mdi:image-multiple'"

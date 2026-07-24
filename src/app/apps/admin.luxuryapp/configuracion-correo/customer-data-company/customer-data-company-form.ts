@@ -17,7 +17,7 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { InputPhonePrefix } from "@ui/inputs/adaptive/input-phone-prefix/input-phone-prefix";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";

@@ -5,7 +5,7 @@ import { committeeGuard } from "./core/auth/guards/committee.guard";
 import { direccionGuard } from "./core/auth/guards/direccion.guard";
 import { employeeGuard } from "./core/auth/guards/employee.guard";
 import { roleRedirectGuard } from "./core/auth/guards/role-redirect.guard";
-import { LayoutCommittee } from "./core/layout/committee-view/layout-committee";
+import { LayoutCommittee } from "./core/layout/committee-layout/layout-committee";
 import { LayoutDireccion } from "./core/layout/direccion-view/layout-direccion";
 import { LayoutEmployee } from "./core/layout/employee-view/layout-employee";
 

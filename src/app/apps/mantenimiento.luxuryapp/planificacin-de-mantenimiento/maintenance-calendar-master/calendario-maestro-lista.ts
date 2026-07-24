@@ -18,9 +18,9 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MenuItem } from "primeng/api";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { Menu } from "primeng/menu";
+import { MenuItem } from "@ui/web/primeng-api/primeng-api";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { Menu } from "@ui/web/primeng-menu/primeng-menu";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";

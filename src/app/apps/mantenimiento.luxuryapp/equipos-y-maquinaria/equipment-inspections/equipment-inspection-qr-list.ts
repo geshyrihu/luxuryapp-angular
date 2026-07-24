@@ -8,8 +8,8 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EquipmentInspectionQrForm } from "./equipment-inspection-qr-form";

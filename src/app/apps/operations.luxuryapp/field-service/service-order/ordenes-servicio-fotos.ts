@@ -8,8 +8,8 @@ import {
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppImage } from "@ui/web/image/image";
-import { ConfirmationService, MessageService } from "primeng/api";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { ConfirmationService, MessageService } from "@ui/web/primeng-api/primeng-api";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";

@@ -90,6 +90,35 @@ export class UpdateDataBase {
       });
   }
 
+  runCapitalizeUserNames() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Capitalizando nombres de usuarios...",
+      "Se corregira el formato de nombres existentes en cuentas de usuario.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.capitalizeUserNames, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Nombres de usuarios capitalizados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La capitalizacion de nombres de usuario fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
+
   runBackfillAgendaEventsFromMeetings() {
     this.loading.set(true);
     this.result.set(null);

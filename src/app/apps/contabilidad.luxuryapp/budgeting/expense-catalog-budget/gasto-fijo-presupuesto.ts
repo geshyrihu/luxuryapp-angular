@@ -13,11 +13,11 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
@@ -84,11 +84,10 @@ export class GastoFijoPresupuesto implements OnInit {
   }
 
   onLoadPresupuesto() {
-    const urlApi =
-      Endpoints.RefactorContabilidad.presupuestoFixedExpensesCatalogByIdById(
-        this.customerIdS.customerId(),
-        this.intYear,
-      );
+    const urlApi = Endpoints.CatalogoGastosFijosPresupuesto.fixedExpensesCatalog(
+      this.customerIdS.customerId(),
+      this.intYear,
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
@@ -103,8 +102,7 @@ export class GastoFijoPresupuesto implements OnInit {
       catalogoGastosFijosId: this.catalogoGastosFijosId,
     };
 
-    const urlApi =
-      Endpoints.RefactorContabilidad.catalogoGastosFijosPresupuesto;
+    const urlApi = Endpoints.CatalogoGastosFijosPresupuesto.create;
     this.apiResponseS.onPost(urlApi, model).then(() => {
       this.onLoadPresupuestoAgregados();
       this.onLoadPresupuesto();
@@ -113,7 +111,7 @@ export class GastoFijoPresupuesto implements OnInit {
 
   onLoadPresupuestoAgregados() {
     const urlApi =
-      Endpoints.RefactorContabilidad.catalogoGastosFijosPresupuestoPresupuestoOrdenCompraFijosById(
+      Endpoints.CatalogoGastosFijosPresupuesto.purchaseOrderBudget(
         this.catalogoGastosFijosId,
       );
 
@@ -124,9 +122,7 @@ export class GastoFijoPresupuesto implements OnInit {
 
   deletePresupuestoAgregado(id: any) {
     this.apiResponseS
-      .onDelete(
-        Endpoints.RefactorContabilidad.catalogoGastosFijosPresupuestoById(id),
-      )
+      .onDelete(Endpoints.CatalogoGastosFijosPresupuesto.delete(id))
       .then(() => {
         this.onLoadPresupuesto();
         this.onLoadPresupuestoAgregados();
@@ -135,23 +131,17 @@ export class GastoFijoPresupuesto implements OnInit {
 
   onUpdatePresupuestoAgregado(item: any) {
     this.apiResponseS
-      .onPut(
-        Endpoints.RefactorContabilidad.catalogoGastosFijosPresupuestoById(
-          item.id,
-        ),
-        item,
-      )
+      .onPut(Endpoints.CatalogoGastosFijosPresupuesto.update(item.id), item)
       .then(() => {
         this.onLoadPresupuestoAgregados();
       });
   }
 
   onLoadCedulas() {
-    const urlApi =
-      Endpoints.RefactorContabilidad.presupuestoFixedExpensesCatalogByIdById(
-        this.customerIdS.customerId(),
-        this.intYear,
-      );
+    const urlApi = Endpoints.CatalogoGastosFijosPresupuesto.fixedExpensesCatalog(
+      this.customerIdS.customerId(),
+      this.intYear,
+    );
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

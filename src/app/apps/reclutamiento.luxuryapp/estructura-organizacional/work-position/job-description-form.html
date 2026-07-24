@@ -35,6 +35,49 @@
       />
     </div>
 
+    <custom-input-textarea-signal
+      [control]="form.controls.summary"
+      label="Resumen"
+      placeholder="Descripción breve del puesto..."
+      [rows]="3"
+    />
+    <custom-input-textarea-signal
+      [control]="form.controls.responsibilities"
+      label="Responsabilidades"
+      placeholder="Principales funciones y responsabilidades..."
+      [rows]="4"
+    />
+    <custom-input-textarea-signal
+      [control]="form.controls.skills"
+      label="Habilidades Requeridas"
+      placeholder="Competencias y habilidades necesarias..."
+      [rows]="4"
+    />
+    <custom-input-textarea-signal
+      [control]="form.controls.additionalRequirements"
+      label="Requisitos Adicionales"
+      placeholder="Escolaridad, certificaciones, experiencia..."
+      [rows]="3"
+    />
+    <custom-input-textarea-signal
+      [control]="form.controls.workEnvironment"
+      label="Entorno de Trabajo"
+      placeholder="Condiciones y ambiente laboral..."
+      [rows]="3"
+    />
+    <custom-input-switch-signal
+      [control]="form.controls.requiresWeekendShift"
+      label="¿Requiere cobertura de fin de semana?"
+    />
+
+    <div class="flex justify-content-end pt-4">
+      <il-button-save
+        [propertyId]="id() || ''"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </div>
+
     <lx-modal
       header="Instrucciones para la IA (Opcional)"
       [visible]="showInstructionsDialog()"

@@ -31,8 +31,8 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { InputGroupModule } from "primeng/inputgroup";
-import { InputGroupAddonModule } from "primeng/inputgroupaddon";
+import { InputGroupModule } from "@ui/web/primeng-inputgroup/primeng-inputgroup";
+import { InputGroupAddonModule } from "@ui/web/primeng-inputgroupaddon/primeng-inputgroupaddon";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";

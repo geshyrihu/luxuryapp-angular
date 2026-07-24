@@ -11,10 +11,10 @@ import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { ButtonModule } from "primeng/button";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";

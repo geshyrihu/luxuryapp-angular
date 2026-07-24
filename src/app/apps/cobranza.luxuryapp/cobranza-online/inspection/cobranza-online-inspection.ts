@@ -8,8 +8,8 @@ import {
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ButtonModule } from "primeng/button";
-import { TableModule } from "primeng/table";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";

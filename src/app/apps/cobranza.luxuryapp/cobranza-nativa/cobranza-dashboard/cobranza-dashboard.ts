@@ -1,4 +1,4 @@
-﻿import { CommonModule, DecimalPipe } from "@angular/common";
+import { CommonModule, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -117,7 +117,7 @@ export default class CobranzaDashboard {
     if (!customerId) return;
 
     const res = await this.apiResponseS.onGetItem<CobranzaMetricasResponseDTO>(
-      Endpoints.CobranzaNative.Analytics.metrics(customerId) +
+      Endpoints.CobranzaCore.Analytics.metrics(customerId) +
         this.meses(),
     );
     if (res) this.metricas.set(res);

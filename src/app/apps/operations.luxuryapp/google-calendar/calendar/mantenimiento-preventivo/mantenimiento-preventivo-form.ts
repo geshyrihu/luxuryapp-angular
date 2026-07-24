@@ -18,7 +18,7 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -158,21 +158,25 @@ export class MantenimientoPreventivoForm implements OnInit {
 
   private async loadMachineries(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      `MachineriesGetAll/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.machineriesAllByCustomer(
+        this.customerIdS.customerId(),
+      ),
     );
     this.cb_machinery.set(data);
   }
 
   private async loadProviders(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      `providers/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.providers(this.customerIdS.customerId()),
     );
     this.cb_providers.set(data);
   }
 
   private async loadAccountingCatalogs(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      `AccountingCatalogs/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.accountingCatalogsByCustomer(
+        this.customerIdS.customerId(),
+      ),
     );
     this.cb_accountingCatalogs.set(data);
   }

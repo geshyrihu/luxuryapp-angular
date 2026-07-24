@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -90,7 +90,7 @@ export class LateFeePolicyForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaNative.LateFeePolicies.getById(this.id),
+      Endpoints.CobranzaCore.LateFeePolicies.getById(this.id),
     );
     if (res) this.form.patchValue(res);
   }
@@ -99,7 +99,7 @@ export class LateFeePolicyForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.CobranzaNative.LateFeePolicies.create,
+      endpoint: Endpoints.CobranzaCore.LateFeePolicies.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

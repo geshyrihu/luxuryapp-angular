@@ -14,8 +14,8 @@ import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -80,7 +80,7 @@ export class InventarioIluminacion {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorSupplier.inventarioIluminacionListById(
+        Endpoints.InventarioIluminacion.listByCustomer(
           this.customerIdS.customerId(),
         ),
       )
@@ -90,7 +90,7 @@ export class InventarioIluminacion {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorSupplier.inventarioIluminacionById(id))
+      .onDelete(Endpoints.InventarioIluminacion.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

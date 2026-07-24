@@ -14,8 +14,8 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { ProductOutputForm } from "src/app/apps/operations.luxuryapp/inventarios-y-almacn/product-exit/product-output-form";
 import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";

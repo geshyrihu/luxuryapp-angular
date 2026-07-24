@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TaskDateRangeSelector } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
 import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";

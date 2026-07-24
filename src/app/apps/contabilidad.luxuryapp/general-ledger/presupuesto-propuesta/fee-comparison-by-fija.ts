@@ -20,12 +20,12 @@ import {
   signal,
 } from "@angular/core";
 
-import { DividerModule } from "primeng/divider";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 // Definimos la interfaz del DTO aqué mismo para simplicidad

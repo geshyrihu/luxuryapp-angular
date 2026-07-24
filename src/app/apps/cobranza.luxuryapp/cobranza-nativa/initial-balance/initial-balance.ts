@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -15,7 +15,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -76,7 +76,7 @@ export default class InitialBalance {
     this.loading.set(true);
     const customerId = this.customerIdS.customerId();
     const res = await this.apiS.onGetItem<PropertyInitialBalanceDTO[]>(
-      Endpoints.CobranzaNative.Charges.initialBalanceStatus(
+      Endpoints.CobranzaCore.Charges.initialBalanceStatus(
         customerId,
       ),
     );
@@ -108,7 +108,7 @@ export default class InitialBalance {
     this.saving.set(true);
     const payload: BulkSetInitialBalanceDTO = { customerId, items };
     const res = await this.apiS.onPost(
-      Endpoints.CobranzaNative.Charges.bulkSetInitialBalance,
+      Endpoints.CobranzaCore.Charges.bulkSetInitialBalance,
       payload,
     );
     this.saving.set(false);

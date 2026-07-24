@@ -15,7 +15,7 @@ import { BitacoraFiltroFechaForm } from "@ui/web/bitacora-filtro-fecha/bitacora-
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -84,7 +84,7 @@ export class HidranteBitacoraList implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorMantenimiento.bitacoraHidranteListById(
+        Endpoints.FireEquipmentLogs.hidrante.listByEquipment(
           this.hydrantId,
         ),
       )
@@ -93,7 +93,7 @@ export class HidranteBitacoraList implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorMantenimiento.bitacoraHidranteById(id))
+      .onDelete(Endpoints.FireEquipmentLogs.hidrante.getById(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

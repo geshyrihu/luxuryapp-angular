@@ -14,7 +14,7 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { WebButtonLabelSendEmail } from "@ui/buttons/web-label/button-send-email";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -77,7 +77,7 @@ export class EmailDataForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList<EmailDataFormDto>(Endpoints.EmailData.getById(this.id))
+      .onGetList<EmailDataFormDto>(Endpoints.Catalogs.EmailData.getById(this.id))
       .then((result: any) => {
         if (result !== null) {
           this.form.patchValue(result);
@@ -90,7 +90,9 @@ export class EmailDataForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.EmailData.base,
+      endpoint: this.id
+        ? Endpoints.Catalogs.EmailData.update(this.id)
+        : Endpoints.Catalogs.EmailData.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -100,7 +102,7 @@ export class EmailDataForm implements OnInit {
   TestEmail(): void {
     this.submitting.set(true);
     this.apiResponseS
-      .onPost(Endpoints.EmailData.sendTestEmail(this.id), null)
+      .onPost(Endpoints.Catalogs.EmailData.sendTestEmail(this.id), null)
       .then((result: any) => {
         this.testEmailMessage.set(result.message);
         this.submitting.set(false);

@@ -1,6 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { ModalController } from "@ionic/angular/standalone";
-import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DialogService, DynamicDialogRef, DynamicDialogConfig } from "primeng/dynamicdialog";
+export { DialogService, DynamicDialogRef, DynamicDialogConfig };
 import { DialogSize } from "../enums/dialog-size.enum";
 import { PlatformService } from "./platform.service";
 import { IonicDialogModal } from "./ionic-dialog-modal";

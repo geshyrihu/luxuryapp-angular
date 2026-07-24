@@ -1,4 +1,4 @@
-﻿import { DatePipe } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +10,7 @@ import { MobileBadge } from "@ui/mobile/badge/badge";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -88,7 +88,7 @@ export default class MemberList {
     if (!customerId) return;
     this.apiResponseS
       .onGetItem<PropertyMemberResponseDTO[]>(
-        Endpoints.CobranzaNative.PropertyMembers.byCustomer(
+        Endpoints.CobranzaCore.PropertyMembers.byCustomer(
           customerId,
         ),
       )
@@ -114,7 +114,7 @@ export default class MemberList {
 
   async onDeleteMember(item: PropertyMemberResponseDTO) {
     const res = await this.apiResponseS.onDelete(
-      Endpoints.CobranzaNative.PropertyMembers.delete(item.id),
+      Endpoints.CobranzaCore.PropertyMembers.delete(item.id),
     );
     if (res) this.onLoadData();
   }
@@ -122,7 +122,7 @@ export default class MemberList {
   async onEndMembership(item: PropertyMemberResponseDTO) {
     const today = this.dateS.getDateFormat(new Date());
     const res = await this.apiResponseS.onPost(
-      Endpoints.CobranzaNative.PropertyMembers.endMembership(
+      Endpoints.CobranzaCore.PropertyMembers.endMembership(
         item.id,
       ),
       { endDate: today ?? "", updatedBy: "operador" },

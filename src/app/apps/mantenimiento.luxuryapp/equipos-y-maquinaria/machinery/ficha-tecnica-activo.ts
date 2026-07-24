@@ -4,7 +4,7 @@ import {
   inject,
   OnInit,
 } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { FichaTecnicaActivoDto } from "src/app/core/interfaces/ficha-tecnica-activo.interface";
@@ -26,9 +26,7 @@ export class FichaTecnicaActivo implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.machineriesFichatecnicaById(
-      this.id,
-    );
+    const urlApi = Endpoints.Machineries.technicalSheet(this.id);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
     });

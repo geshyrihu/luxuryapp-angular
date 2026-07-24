@@ -17,7 +17,7 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EquipmentQrLabelAddOrEditDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";

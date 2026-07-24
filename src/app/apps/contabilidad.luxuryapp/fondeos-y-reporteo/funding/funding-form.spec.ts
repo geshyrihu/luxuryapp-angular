@@ -13,6 +13,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Subject } from "rxjs";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { FundingForm } from "./funding-form";
@@ -71,7 +72,9 @@ describe("FundingForm", () => {
     component = fixture.componentInstance;
     component.ngOnInit();
 
-    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith("funding/fnd-001");
+    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith(
+      Endpoints.Funding.getById("fnd-001"),
+    );
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalled();
   });
 
@@ -92,7 +95,9 @@ describe("FundingForm", () => {
 
     messageSubject.next("refresh");
 
-    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith("funding/fnd-001");
+    expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith(
+      Endpoints.Funding.getById("fnd-001"),
+    );
   });
 
   it("should submit and close dialog on valid form", async () => {

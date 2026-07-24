@@ -21,7 +21,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { SolicitudVacanteForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/components/solicitud-vacante-form";
 import { EmployeeProviderForm } from "src/app/apps/supplier.luxuryapp/providers/provider/pages/employee-provider-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -395,7 +395,7 @@ export class StaffBoard {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
 
-  /** Muestra el botún si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
+  /** Muestra el botón si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
   shouldShowVacancyRequest(item: any): boolean {
     return !item.positionRequest;
   }

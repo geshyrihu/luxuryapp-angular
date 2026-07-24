@@ -314,7 +314,7 @@ export const adminRoutes: Routes = [
   {
     path: "assembly-checklist-catalog",
     loadComponent: () =>
-      import("src/app/apps/system.luxuryapp/configuracion-sistema/asamblea-checklist-template/asamblea-checklist-template-list").then(
+      import("src/app/apps/admin.luxuryapp/configuracion-sistema/asamblea-checklist-template/asamblea-checklist-template-list").then(
         (m) => m.AsambleaChecklistTemplateList,
       ),
     canActivate: [authGuard],
@@ -338,7 +338,7 @@ export const adminRoutes: Routes = [
   {
     path: "jobs",
     loadComponent: () =>
-      import("src/app/apps/system.luxuryapp/configuracion-sistema/jobs/jobs-dashboard").then(
+      import("src/app/apps/admin.luxuryapp/configuracion-sistema/jobs/jobs-dashboard").then(
         (m) => m.JobsDashboard,
       ),
     canActivate: [authGuard],

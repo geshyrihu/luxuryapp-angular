@@ -9,9 +9,10 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SatFundingDto } from "src/app/apps/contabilidad.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding.interface";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -59,7 +60,9 @@ export class SatFundingListComponent implements OnInit {
   onLoadData() {
     if (this.customerId) {
       this.apiResponseService
-        .onGetList<SatFundingDto[]>(`SatFunding/ForCustomer/${this.customerId}`)
+        .onGetList<SatFundingDto[]>(
+          Endpoints.SatFunding.forCustomer(this.customerId),
+        )
         .then((result) => {
           if (result) this.data.set(result);
         });

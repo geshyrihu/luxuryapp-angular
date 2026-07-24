@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body flex flex-column align-items-center gap-3">
     @if (!supported()) {
-      <div class="flex flex-column gap-3 w-full" style="max-width:480px">
+      <div class="flex flex-column gap-3 w-full" >
         <p class="text-orange-600 text-center m-0 text-sm">
           Tu navegador no soporta escaneo QR nativo (requiere Chrome/Edge).
           En iOS, usa la cámara nativa para escanear el código y sigue el enlace,
@@ -28,21 +28,16 @@
         }
       </div>
     } @else {
-      <div style="position:relative; width:100%; max-width:480px;">
+      <div >
         <video
           #videoEl
           autoplay
           playsinline
           muted
-          style="width:100%; border-radius:8px; background:var(--ds-text-primary);"
+          
         ></video>
         @if (scanning()) {
-          <div style="
-            position:absolute; inset:0;
-            border: 3px solid var(--ds-luxury-gold);
-            border-radius:8px;
-            pointer-events:none;
-          "></div>
+          <div ></div>
         }
       </div>
 

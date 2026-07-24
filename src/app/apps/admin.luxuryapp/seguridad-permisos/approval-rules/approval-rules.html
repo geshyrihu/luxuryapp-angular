@@ -35,14 +35,14 @@
       <ng-template #header>
         <tr>
           <th
-            style="min-width: 250px"
+            
             pFrozenColumn
             class="header-cell sticky-column"
           >
             Rol Solicitante
           </th>
           @for (approver of approverRoles(); track approver) {
-          <th class="header-cell text-center" style="min-width: 200px">
+          <th class="header-cell text-center" >
             <span>{{ approver }}</span>
           </th>
           }
@@ -51,7 +51,7 @@
       <ng-template #body let-target>
         <tr>
           <td
-            style="min-width: 250px"
+            
             pFrozenColumn
             class="body-cell sticky-column"
           >

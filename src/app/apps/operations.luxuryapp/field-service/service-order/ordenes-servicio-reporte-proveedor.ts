@@ -6,15 +6,19 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { MessageService } from "primeng/api";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { MessageService } from "@ui/web/primeng-api/primeng-api";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 
 @Component({
   selector: "app-ordenes-servicio-reporte-proveedor",
@@ -23,6 +27,8 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
   imports: [
     AppIcon,
     WebButtonIconDelete,
+    WebButtonIconItem,
+    LxTooltipDirective,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
   ],
@@ -33,6 +39,7 @@ export class OrdenesServicioReporteProveedor {
   messageS = inject(MessageService);
   apiResponseS = inject(ApiResponseService);
   ref = inject(DynamicDialogRef);
+  dialogHandlerS = inject(DialogHandlerService);
   id: string = "";
   dataSignal = signal<any[]>([]);
 
@@ -56,6 +63,16 @@ export class OrdenesServicioReporteProveedor {
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
+  }
+
+  viewPdf(url: string, fileName: string): void {
+    this.dialogHandlerS.openDialog(
+      PdfViewerModal,
+      { pdfSrc: url, fileName: fileName },
+      fileName,
+      this.dialogHandlerS.sizeFull,
+      true,
+    );
   }
 
   deleteDoc(id: string): void {

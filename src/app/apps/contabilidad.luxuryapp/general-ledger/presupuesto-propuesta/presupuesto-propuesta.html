@@ -53,7 +53,7 @@
     scrollDirection="both"
     scrollHeight="calc(100vh - 320px)"
     class="financial-data-table budget-sticky-footer-table"
-    [style]="{ 'min-width': '1800px' }"
+    
     #dt
   >
     <!--
@@ -64,7 +64,7 @@
     <ng-template #caption>
       <div
         class="flex flex-row overflow-x-auto gap-2 p-2 align-items-stretch w-full"
-        style="scrollbar-width: thin"
+        
       >
         <!-- Cuotas (Fija) -->
         <div class="flex-shrink-0 w-8rem flex">
@@ -75,7 +75,7 @@
             <app-icon
               icon="mdi:tag-outline"
               class="mb-1"
-              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+              
             />
             <span class="text-xs text-center line-height-2 text-700"
               >Cuotas (Fija)</span
@@ -92,7 +92,7 @@
             <app-icon
               icon="mdi:chart-bar"
               class="mb-1"
-              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+              
             />
             <span class="text-xs text-center line-height-2 text-700"
               >Cuotas (Indiviso)</span
@@ -110,7 +110,7 @@
             <app-icon
               icon="mdi:plus-circle-outline"
               class="mb-1"
-              style="font-size: 1.5rem; color: var(--ds-primary)"
+              
             />
             <span class="text-xs text-center line-height-2 text-blue-700"
               >Añadir Cuenta</span
@@ -128,7 +128,7 @@
             <app-icon
               icon="mdi:robot-outline"
               class="mb-1"
-              style="font-size: 1.5rem; color: #4338ca"
+              
             />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
@@ -147,7 +147,7 @@
             <app-icon
               icon="mdi:chart-line"
               class="mb-1"
-              style="font-size: 1.5rem; color: #4338ca"
+              
             />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
@@ -165,7 +165,7 @@
             <app-icon
               icon="mdi:alert-decagram-outline"
               class="mb-1"
-              style="font-size: 1.5rem; color: #ea580c"
+              
             />
             <span
               class="text-xs text-center line-height-2 text-orange-700 font-medium"
@@ -183,7 +183,7 @@
             <app-icon
               icon="mdi:microsoft-excel"
               class="mb-1"
-              style="font-size: 1.5rem; color: var(--ds-success, #006837)"
+              
             />
             <span class="text-xs text-center line-height-2 text-green-700"
               >Excel</span
@@ -201,7 +201,7 @@
             <app-icon
               [icon]="baseBudgetMonthlyButtonIcon"
               class="mb-1"
-              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+              
             />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ baseBudgetMonthlyButtonLabel }}</span
@@ -217,7 +217,7 @@
             <app-icon
               [icon]="baseBudgetAnnualButtonIcon"
               class="mb-1"
-              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+              
             />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ baseBudgetAnnualButtonLabel }}</span
@@ -233,7 +233,7 @@
             <app-icon
               [icon]="fiscalYearAnnualButtonIcon"
               class="mb-1"
-              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+              
             />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ fiscalYearAnnualButtonLabel }}</span
@@ -249,7 +249,7 @@
             <app-icon
               [icon]="projectedExpensesButtonIcon"
               class="mb-1"
-              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+              
             />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ projectedExpensesButtonLabel }}</span
@@ -266,7 +266,7 @@
             <app-icon
               icon="mdi:cog-outline"
               class="mb-1"
-              style="font-size: 1.5rem; color: var(--ds-warning, #b45309)"
+              
             />
             <span class="text-xs text-center line-height-2 text-orange-700"
               >Admin Proyección</span
@@ -283,7 +283,7 @@
             <app-icon
               icon="mdi:calendar-outline"
               class="mb-1"
-              style="font-size: 1.5rem; color: #4338ca"
+              
             />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
@@ -337,7 +337,7 @@
           <div class="font-semibold text-800 flex align-items-center gap-1">
             <app-icon
               icon="mdi:information-outline"
-              style="font-size: 1.2rem"
+              
             />
             Guía Rápida:
           </div>
@@ -427,7 +427,7 @@
       </tr>
       <tr>
         <!-- Columna congelada a la izquierda: Nombre de la cuenta -->
-        <th pFrozenColumn style="min-width: 200px; max-width: 200px">Cuenta</th>
+        <th pFrozenColumn >Cuenta</th>
         <!-- Columnas del medio (scrollables): Los 12 meses del Año -->
         @for (mes of months; track mes) {
         <th class="text-center">{{ mes.substring(0, 3) | uppercase }}</th>
@@ -438,7 +438,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="text-align: center"
+          
         >
           PROM MENSUAL
         </th>
@@ -447,7 +447,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="text-align: center"
+          
         >
           PSTO ({{ baseBudgetYear }}) MENSUAL
         </th>
@@ -456,7 +456,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="text-align: center"
+          
         >
           PSTO ({{ baseBudgetYear }}) ANUAL
         </th>
@@ -464,7 +464,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="text-align: center"
+          
         >
           PSTO ({{ fiscalYear }}) MENSUAL
         </th>
@@ -473,7 +473,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="text-align: center"
+          
         >
           PSTO ({{ fiscalYear }}) ANUAL
         </th>
@@ -481,7 +481,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="text-align: center"
+          
         >
           DIF
         </th>
@@ -489,7 +489,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="text-align: center"
+          
         >
           %
         </th>
@@ -522,7 +522,7 @@
         <!-- [class.bg-red-100]="isDeficit(item)"
         [class.bg-yellow-100]="isHighIncrease(item)" -->
         <!-- Columna congelada a la izquierda: Detalles de la cuenta -->
-        <td pFrozenColumn style="min-width: 200px">
+        <td pFrozenColumn >
           <div class="flex justify-content-between w-full">
             <div>
               <span
@@ -611,7 +611,7 @@
         <td
           pFrozenColumn
           alignFrozen="right"
-          style="min-width: 100px"
+          
           class="text-right numeric-column"
         >
           <span
@@ -627,7 +627,7 @@
           [hidden]="!showBaseBudgetMonthlyColumn()"
           pFrozenColumn
           alignFrozen="right"
-          style="min-width: 100px"
+          
           class="text-right numeric-column"
         >
           {{ item.currentAmount | number: "1.0-0" }}
@@ -636,7 +636,7 @@
           [hidden]="!showBaseBudgetAnnualColumn()"
           pFrozenColumn
           alignFrozen="right"
-          style="min-width: 100px"
+          
           class="text-right numeric-column"
         >
           {{ (item.currentAmount * 12) | number: "1.0-0" }}
@@ -645,7 +645,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="display: flex; align-items: center; justify-content: flex-end"
+          
         >
           <custom-input-number-signal
             (blur)="updateProposalItem(item)"
@@ -668,14 +668,14 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="text-align: right"
+          
         >
           {{item.proposedAmount * 12 | number: "1.0-0"}}
         </td>
         <td
           pFrozenColumn
           alignFrozen="right"
-          style="min-width: 100px"
+          
           class="numeric-column"
         >
           <div class="flex justify-content-between align-items-center">
@@ -698,7 +698,7 @@
         <td
           pFrozenColumn
           alignFrozen="right"
-          style="min-width: 100px"
+          
           class="numeric-column"
         >
           <div class="flex justify-content-end align-items-center">
@@ -730,7 +730,7 @@
         <td
           pFrozenColumn
           class="text-right amount-total"
-          style="min-width: 200px"
+          
         >
           TOTAL PRESUP. MES:
         </td>
@@ -898,7 +898,7 @@
 <lx-modal
   [visible]="showHighIncreaseModal()"
   (visibleChange)="showHighIncreaseModal.set($event)"
-  [style]="{width: '80vw'}"
+  
 >
   <div class="p-3">
     <p-table

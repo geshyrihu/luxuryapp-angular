@@ -4,7 +4,7 @@ import {
   signal,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { EquipmentInspectionDefinitionsList } from "./equipment-inspection-definitions-list";
 import { EquipmentInspectionExecutionHistoryList } from "./equipment-inspection-execution-history-list";

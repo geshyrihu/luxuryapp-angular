@@ -13,9 +13,10 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -78,7 +79,11 @@ export class PurchaseHistory implements OnInit {
     const fiscalYear = this.config.data.fiscalYear;
     const accountNumber = this.config.data.accountNumber;
 
-    const urlApi = `funding/purchase-history/${customerId}/${fiscalYear}/${accountNumber}`;
+    const urlApi = Endpoints.Funding.purchaseHistory(
+      customerId,
+      fiscalYear,
+      accountNumber,
+    );
     this.loading.set(true);
 
     this.apiResponseS

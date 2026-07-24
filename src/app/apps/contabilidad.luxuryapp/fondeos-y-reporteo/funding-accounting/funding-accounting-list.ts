@@ -17,7 +17,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { calculatorOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { FaqsFondeo } from "src/app/apps/contabilidad.luxuryapp/fondeos-y-reporteo/funding/faqs-fondeo";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -80,7 +80,7 @@ export class FundingAccountingList {
   }
 
   onLoadData(): void {
-    const urlApi = Endpoints.RefactorContabilidad.fundingaccountingListById(
+    const urlApi = Endpoints.Funding.listAccounting(
       this.customerIdS.customerId(),
     );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {

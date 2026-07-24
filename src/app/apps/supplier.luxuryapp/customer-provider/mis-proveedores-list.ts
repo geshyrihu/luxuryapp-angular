@@ -13,8 +13,8 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -73,7 +73,7 @@ export class MisProveedores {
 
   // Función para cargar los datos de los CustomerProviders
   onLoadData() {
-    const urlApi = Endpoints.RefactorSupplier.customerProviderById(
+    const urlApi = Endpoints.CustomerProvider.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS
@@ -97,7 +97,7 @@ export class MisProveedores {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorSupplier.customerproviderById(id))
+      .onDelete(Endpoints.CustomerProvider.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((prev) =>

@@ -63,7 +63,7 @@
     }
 
     <!-- Resumen Cards Individuales -->
-    <p class="font-bold uppercase mb-3 text-sm" style="color: var(--rf-muted)">
+    <p class="font-bold uppercase mb-3 text-sm" >
       Detalle por Proyecto
     </p>
     <div class="grid mb-4">
@@ -71,7 +71,7 @@
       <div class="col-12 md:col-6 xl:col-4">
         <div
           class="rf-card p-4 h-full"
-          style="border-top: 3px solid var(--rf-head)"
+          
         >
           <div class="flex justify-content-between align-items-center mb-3">
             <span class="text-900 font-bold uppercase text-sm line-height-3"
@@ -116,7 +116,7 @@
       >
         <ng-template #header>
           <tr>
-            <th class="th-col-dark" style="min-width: 250px">CUENTA</th>
+            <th class="th-col-dark" >CUENTA</th>
             <th class="th-col-green">PRE-MEN</th>
 
             @for (mes of mesesNombres; track mes) {
@@ -144,7 +144,7 @@
             </td>
 
             @for (m of proyecto.meses; track m.mes) {
-            <td class="p-1" style="min-width: 80px">
+            <td class="p-1" >
               <div
                 class="flex flex-column align-items-center justify-content-center h-full gap-1"
               >
@@ -190,7 +190,7 @@
               >
                 <span
                   class="rf-td-cuenta text-xs"
-                  style="color: var(--rf-muted)"
+                  
                 >
                   {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-'
                   }}

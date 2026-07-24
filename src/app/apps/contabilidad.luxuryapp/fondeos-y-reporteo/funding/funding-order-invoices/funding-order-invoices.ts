@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";

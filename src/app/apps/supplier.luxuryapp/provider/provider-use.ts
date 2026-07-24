@@ -5,7 +5,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -36,8 +36,7 @@ export class ProviderUse implements OnInit {
   }
 
   onLoadData(providerId: any) {
-    const urlApi =
-      Endpoints.RefactorSupplier.providersCoincidenciasById(providerId);
+    const urlApi = Endpoints.Providers.coincidences(providerId);
     return this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 

@@ -9,8 +9,8 @@ import {
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MessageService } from "primeng/api";
-import { ToastModule } from "primeng/toast";
+import { MessageService } from "@ui/web/primeng-api/primeng-api";
+import { ToastModule } from "@ui/web/primeng-toast/primeng-toast";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { IManualDiagramSimpleDTO } from "../interfaces/manuals-and-processes.dto";

@@ -1,6 +1,6 @@
 <div class="area-page">
   <!-- ══════ HERO (compacto) ══════ -->
-  <section class="hero-compact" style="background:linear-gradient(135deg, #1b365d 0%, #2a4d7c 100%)">
+  <section class="hero-compact" >
     <div class="hero-compact-bg"></div>
     <span class="shadow-title">ÁREA LEGAL</span>
     <div class="hero-compact-content">
@@ -17,10 +17,10 @@
   <!-- ══════ SERVICES ══════ -->
   <div class="page-container">
     <section class="animate-on-scroll">
-      <div style="text-align:center;margin-bottom:3rem">
-        <span class="section-tagline" style="color:#2a4d7c">Servicios</span>
+      <div >
+        <span class="section-tagline" >Servicios</span>
         <h2 class="section-heading">¿Qué hacemos?</h2>
-        <p class="section-desc" style="margin:0 auto">Brindamos soporte legal integral para tu residencial.</p>
+        <p class="section-desc" >Brindamos soporte legal integral para tu residencial.</p>
       </div>
       <div class="services-grid">
         @for (svc of services; track svc.title) {
@@ -37,15 +37,15 @@
   <!-- ══════ PROCESS (dark section) ══════ -->
   <section class="section-dark animate-on-scroll">
     <div class="section-dark-inner">
-      <div style="text-align:center;margin-bottom:3rem">
-        <span class="section-tagline" style="color:var(--ds-text-secondary)">Metodología</span>
+      <div >
+        <span class="section-tagline" >Metodología</span>
         <h2 class="section-heading">Nuestro Proceso</h2>
       </div>
       <div class="process-steps">
         @for (step of process; track step.title; let i = $index) {
           @if (i > 0) { <div class="step-connector"></div> }
           <div class="step">
-            <div class="step-circle" style="--sc-color:#2a4d7c">
+            <div class="step-circle" >
               <span>{{ i + 1 }}</span>
             </div>
             <h3 class="step-title">{{ step.title }}</h3>
@@ -57,10 +57,10 @@
   </section>
 
   <!-- ══════ CTA ══════ -->
-  <section class="animate-on-scroll" style="background:linear-gradient(135deg, #1b365d 0%, #2a4d7c 100%);padding:3.5rem 1.5rem;text-align:center">
-    <div style="max-width:520px;margin:0 auto">
-      <h2 style="font-family:var(--ds-font-family-document);font-size:clamp(1.15rem,2vw,1.5rem);font-weight:700;color:#fff;margin:0 0 0.75rem">¿Necesitas asesoría legal?</h2>
-      <p style="font-size:var(--ds-font-size-body);color:rgba(255,255,255,0.75);margin:0 0 1.5rem">Contáctanos para una consulta inicial sin compromiso.</p>
+  <section class="animate-on-scroll" >
+    <div >
+      <h2 >¿Necesitas asesoría legal?</h2>
+      <p >Contáctanos para una consulta inicial sin compromiso.</p>
       <a routerLink="/web" class="btn-luxury btn-luxury-primary">Solicitar información</a>
     </div>
   </section>

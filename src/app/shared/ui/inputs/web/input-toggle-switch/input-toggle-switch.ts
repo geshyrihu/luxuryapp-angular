@@ -34,7 +34,6 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       <p-toggleswitch
         [formControl]="control() || internalControl"
         [size]="size()"
-        [disabled]="disabled()"
         [readonly]="readonly()"
         [invalid]="isInvalid()"
         (onChange)="onValueChange($event)"

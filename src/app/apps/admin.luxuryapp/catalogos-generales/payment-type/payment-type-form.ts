@@ -14,7 +14,7 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -60,7 +60,7 @@ export class PaymentTypeForm implements OnInit {
   }
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.PaymentTypes.getById(this.id))
+      .onGetItem(Endpoints.Catalogs.PaymentTypes.getById(this.id))
       .then((result: any) => {
         if (result) {
           this.form.patchValue(result);
@@ -72,7 +72,7 @@ export class PaymentTypeForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.PaymentTypes.getAll,
+      endpoint: Endpoints.Catalogs.PaymentTypes.getAll,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

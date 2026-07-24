@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -148,8 +148,8 @@ export class OrdenCompraDatosPago implements OnInit {
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.wayToPay,
       ),
-      lastValueFrom(this.enumSelectS.onLoadEnumList("e-tipo-gasto")),
-      lastValueFrom(this.enumSelectS.onLoadEnumList("e-funding-period", false)),
+      lastValueFrom(this.enumSelectS.onLoadEnumList("tipo-gasto")),
+      lastValueFrom(this.enumSelectS.onLoadEnumList("funding-period", false)),
     ];
 
     const [

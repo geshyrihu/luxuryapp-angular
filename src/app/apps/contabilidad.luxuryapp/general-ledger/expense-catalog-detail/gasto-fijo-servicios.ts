@@ -20,8 +20,8 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -76,7 +76,9 @@ export class GastoFijoServicios implements OnInit {
 
   ngOnInit(): void {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>("getMeasurementUnits")
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.measurementUnits,
+      )
       .then((response: any) => {
         this.cb_unidadMedida = response;
         this.cdr.detectChanges(); // Call detectChanges after updating the data
@@ -87,10 +89,9 @@ export class GastoFijoServicios implements OnInit {
     this.onLoadProductsAgregados();
   }
   onLoadProductsAgregados() {
-    const urlApi =
-      Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesDetallesOrdenCompraFijosById(
-        this.catalogoGastosFijosId,
-      );
+    const urlApi = Endpoints.CatalogoGastosFijosDetalles.purchaseOrderDetails(
+      this.catalogoGastosFijosId,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.productosAgregados.set(result);
       this.cdr.detectChanges(); // Call detectChanges after updating the data
@@ -105,10 +106,9 @@ export class GastoFijoServicios implements OnInit {
       });
   }
   onLoadProducts() {
-    const urlApi =
-      Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesProductsById(
-        this.catalogoGastosFijosId,
-      );
+    const urlApi = Endpoints.CatalogoGastosFijosDetalles.products(
+      this.catalogoGastosFijosId,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.productos.set(result);
       this.cdr.detectChanges(); // Call detectChanges after updating the data
@@ -136,10 +136,7 @@ export class GastoFijoServicios implements OnInit {
 
   onUpdateProductoAgregado(item: any) {
     this.apiResponseS
-      .onPut(
-        Endpoints.RefactorContabilidad.catalogoGastosFijosDetallesById(item.id),
-        item,
-      )
+      .onPut(Endpoints.CatalogoGastosFijosDetalles.update(item.id), item)
       .then(() => {
         this.mensajeError = false;
         this.onLoadProducts();

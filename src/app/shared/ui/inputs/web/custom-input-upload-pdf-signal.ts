@@ -3,8 +3,6 @@ import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/cor
 import { SharedModule } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
-import { environment } from "src/environments/environment";
-
 /**
  * 📤 SUBIR PDF (MODAL)
  * -------------------------------------------------------------------------
@@ -50,7 +48,7 @@ export class SubirPdf implements OnInit {
 
   ngOnInit(): void {
     this.pathUrl = this.config.data.pathUrl;
-    this.url = `${environment.API_BASE_URL}${this.pathUrl}${this.config.data.serviceOrderId}`;
+    this.url = `${this.pathUrl}${this.config.data.serviceOrderId}`;
   }
 
   customUploadHandler(event: FileUploadHandlerEvent) {

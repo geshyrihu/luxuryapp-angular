@@ -14,7 +14,7 @@ import {
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskInstance } from "src/app/core/interfaces/recurring-tasks/task-instance.interface";
 

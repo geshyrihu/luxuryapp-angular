@@ -1,10 +1,10 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
   inject,
 } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 // PrimeNG
@@ -63,7 +63,7 @@ export default class BulkImportModal implements OnInit {
     this.result = null;
 
     const res = await this.apiResponseS.onPostFile<BulkImportResult>(
-      Endpoints.CobranzaNative.Charges.bulkImportSaldoInicial(
+      Endpoints.CobranzaCore.Charges.bulkImportSaldoInicial(
         this.customerId,
       ),
       formData,

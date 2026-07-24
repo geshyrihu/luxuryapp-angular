@@ -11,16 +11,16 @@ import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-swit
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { CheckboxModule } from "primeng/checkbox";
-import { DialogModule } from "primeng/dialog";
-import { DividerModule } from "primeng/divider";
-import { MessageModule } from "primeng/message";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { RadioButtonModule } from "primeng/radiobutton";
-import { SkeletonModule } from "primeng/skeleton";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
-import { ToolbarModule } from "primeng/toolbar";
+import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
+import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
+import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
+import { MessageModule } from "@ui/web/primeng-message/primeng-message";
+import { ProgressSpinnerModule } from "@ui/web/primeng-progressspinner/primeng-progressspinner";
+import { RadioButtonModule } from "@ui/web/primeng-radiobutton/primeng-radiobutton";
+import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
+import { ToolbarModule } from "@ui/web/primeng-toolbar/primeng-toolbar";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contrast";

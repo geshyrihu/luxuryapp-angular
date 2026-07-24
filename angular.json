@@ -73,7 +73,10 @@
               "exceljs",
               "quill-delta",
               "dagre",
-              "webcola"
+              "webcola",
+              "qrcode",
+              "heic2any",
+              "localforage"
             ],
             "styles": [
               "node_modules/primeflex/primeflex.css",

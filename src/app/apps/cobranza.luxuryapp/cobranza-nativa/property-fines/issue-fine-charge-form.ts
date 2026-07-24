@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +14,7 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -59,7 +59,7 @@ export class IssueFineChargeForm implements OnInit {
       form: this.form,
       api: this.apiResponseS,
       endpoint:
-        Endpoints.CobranzaNative.PropertyFines.issueCharge,
+        Endpoints.CobranzaCore.PropertyFines.issueCharge,
       id: "",
       ref: this.ref,
       submitting: this.submitting,

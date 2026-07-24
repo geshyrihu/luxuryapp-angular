@@ -12,8 +12,8 @@ import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LxRating } from "@ui/adaptive/rating/rating";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -177,7 +177,7 @@ export class ListProvider implements OnInit {
     pageSize: number = this.rows,
     filter: string = this.searchTerm,
   ) {
-    const urlApi = Endpoints.RefactorSupplier.providersList;
+    const urlApi = Endpoints.Providers.list;
     const httpParams: any = {
       customerId: this.customerIdS.customerId(), // Obtenemos el ID del servicio
       page,
@@ -235,9 +235,10 @@ export class ListProvider implements OnInit {
 
   // Autoriza un proveedor
   onAutorizarProvider(providerId: any) {
-    const urlApi =
-      Endpoints.RefactorSupplier.providersAutorizarById(providerId);
-    this.apiResponseS.onGetList(urlApi).then(() => {
+    const urlApi = Endpoints.Providers.authorize(providerId);
+    this.apiResponseS.onPut(urlApi, {
+      customerId: this.customerIdS.customerId(),
+    }).then(() => {
       this.onLoadData();
     });
   }
@@ -299,7 +300,7 @@ export class ListProvider implements OnInit {
   onActivateProvider(data: any) {
     this.apiResponseS
       .onPut(
-        Endpoints.RefactorSupplier.providersChangeStateByIdById(
+        Endpoints.Providers.changeState(
           data.providerId,
           data.state,
         ),

@@ -41,6 +41,8 @@ export const Endpoints = {
   ...EndpointsShared,
   BudgetingProposal: EndpointsContabilidad.BudgetingProposal,
   BudgetingProposalSupport: EndpointsContabilidad.BudgetingProposalSupport,
+  AccountingCoi: EndpointsContabilidad.AccountingCoi,
+  CobranzaCore: EndpointsCobranza.CobranzaCore,
   CobranzaNative: EndpointsCobranza.CobranzaNative,
   CobranzaOnline: EndpointsCobranza.CobranzaOnline,
   CobranzaLive: EndpointsCobranza.CobranzaLive,

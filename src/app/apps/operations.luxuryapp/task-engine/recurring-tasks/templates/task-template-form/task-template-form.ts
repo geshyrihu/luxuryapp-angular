@@ -18,7 +18,8 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -88,7 +89,9 @@ export class TaskTemplateForm implements OnInit {
 
   loadRoles() {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>("ApplicationRoles")
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.applicationRoles,
+      )
       .then((response) => {
         this.roles.set(response || []);
       });
@@ -96,7 +99,9 @@ export class TaskTemplateForm implements OnInit {
 
   loadAvailableCustomers() {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>("customers-active")
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.customersActive,
+      )
       .then((response) => {
         this.availableCustomers.set(response || []);
       });

@@ -10,8 +10,7 @@
           : 'assets/images/default-avatar.png'
       "
       alt="Logo del cliente"
-      class="w-full h-auto mb-3"
-      style="max-width: 150px; height: auto"
+      class="max-h-8rem w-auto mx-auto d-block mb-3"
     />
     <h1 class="text-2xl font-bold text-primary">{{ data()!.customer }}</h1>
     <p class="text-lg text-color-secondary">{{ data()!.periodReport }}</p>
@@ -33,7 +32,6 @@
               "
               alt="Imagen antes"
               class="w-full border-round shadow-2"
-              style="height: auto; max-height: 300px; object-fit: cover"
             />
           </div>
           <div class="col-6">
@@ -45,7 +43,6 @@
               "
               alt="Imagen después"
               class="w-full border-round shadow-2"
-              style="height: auto; max-height: 300px; object-fit: cover"
             />
           </div>
         </div>
@@ -55,10 +52,3 @@
   }
 </div>
 }
-
-
-
-
-
-
-

@@ -11,7 +11,7 @@ import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 // Definimos interfaces para los eventos de salida para mayor claridad y tipado

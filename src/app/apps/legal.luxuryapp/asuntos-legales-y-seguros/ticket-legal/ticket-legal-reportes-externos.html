@@ -61,7 +61,7 @@
           <th colspan="3" class="text-center">
             <app-icon
               icon="mdi:check-circle"
-              style="color: var(--ds-success); vertical-align: middle"
+              
               class="mr-2"
             />
             SOLICITUDES ATENDIDAS
@@ -95,7 +95,7 @@
           <th colspan="7" class="text-center">
             <app-icon
               icon="mdi:alert-circle"
-              style="color: var(--ds-danger); vertical-align: middle"
+              
               class="mr-2"
             />
             SOLICITUDES PENDIENTES
@@ -145,7 +145,7 @@
   <div class="card mb-4">
     <h5
       class="p-3 m-0 text-center"
-      style="border-bottom: 1px solid var(--ds-border, #e2e8f0)"
+      
     >
       RESULTADO
     </h5>
@@ -155,15 +155,11 @@
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-            style="
-              width: 38px;
-              height: 38px;
-              background: var(--ds-primary-50, #edf1ff);
-            "
+            class="w-3rem h-3rem bg-primary-50"
           >
             <app-icon
               icon="mdi:ticket-outline"
-              style="font-size: 1.1rem; color: var(--ds-primary)"
+              class="text-xl text-primary"
             />
           </div>
           
@@ -206,11 +202,11 @@
   <div class="card mb-4">
     <h5
       class="p-3 m-0 text-center"
-      style="border-bottom: 1px solid var(--ds-border, #e2e8f0)"
+      
     >
       <app-icon
         icon="mdi:check-circle"
-        style="color: var(--ds-success); vertical-align: middle"
+        
         class="mr-2"
       />
       SOLICITUDES ATENDIDAS
@@ -221,15 +217,11 @@
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-            style="
-              width: 38px;
-              height: 38px;
-              background: var(--ds-success-light, #d1fae5);
-            "
+            
           >
             <app-icon
               icon="mdi:check"
-              style="font-size: 1.1rem; color: var(--ds-success, #006837)"
+              
             />
           </div>
           
@@ -246,11 +238,11 @@
   <div class="card mb-4">
     <h5
       class="p-3 m-0 text-center"
-      style="border-bottom: 1px solid var(--ds-border, #e2e8f0)"
+      
     >
       <app-icon
         icon="mdi:alert"
-        style="color: var(--ds-danger); vertical-align: middle"
+        
         class="mr-2"
       />
       SOLICITUDES PENDIENTES
@@ -261,15 +253,11 @@
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-            style="
-              width: 38px;
-              height: 38px;
-              background: var(--ds-danger-light, #ffdad6);
-            "
+            
           >
             <app-icon
               icon="mdi:ticket-confirmation"
-              style="font-size: 1.1rem; color: var(--ds-danger, #ba1a1a)"
+              
             />
           </div>
           
@@ -277,7 +265,7 @@
               <h6 class="mb-1">Folio: {{ ticket.folio }}</h6>
               <lx-tag [value]="ticket.dias + ' días'" severity="danger"></lx-tag>
             </div>
-            <small style="color: var(--ds-text-secondary)"
+            <small 
               >{{ ticket.fecha | date: "dd/MM/yyyy" }} — {{ ticket.cliente
               }}</small
             >

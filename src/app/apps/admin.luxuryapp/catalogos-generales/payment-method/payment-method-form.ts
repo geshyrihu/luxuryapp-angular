@@ -14,7 +14,7 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -63,7 +63,7 @@ export class PaymentMethodForm implements OnInit {
   onLoadItem() {
     this.apiResponseS
       .onGetItem<PaymentMethodAddOrEditDto>(
-        Endpoints.PaymentMethods.getById(this.id),
+        Endpoints.Catalogs.PaymentMethods.getById(this.id),
       )
       .then((result) => {
         if (result) this.form.patchValue(result as any);
@@ -74,7 +74,7 @@ export class PaymentMethodForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.PaymentMethods.create,
+      endpoint: Endpoints.Catalogs.PaymentMethods.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

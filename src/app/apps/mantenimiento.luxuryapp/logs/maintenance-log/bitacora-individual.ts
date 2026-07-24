@@ -14,8 +14,8 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -109,7 +109,7 @@ export class BitacoraIndividual implements OnInit {
 
   onLoadData() {
     const urlApi =
-      Endpoints.RefactorMantenimiento.bitacoraMantenimientoBitacoraIndividualByIdByIdById(
+      Endpoints.BitacoraMantenimientoConsultas.bitacoraIndividual(
         this.machineryId,
         this.fechaInicial,
         this.fechaFinal,

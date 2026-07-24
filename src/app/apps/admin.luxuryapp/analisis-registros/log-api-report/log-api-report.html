@@ -31,7 +31,7 @@
             />
           </div>
           <div class="flex flex-column sm:flex-row align-items-center gap-2">
-            <div style="min-width: 200px">
+            <div >
               <custom-input-select-signal
                 [data]="levelOptions"
                 optionLabel="label"
@@ -44,7 +44,7 @@
                 [noMargin]="true"
               />
             </div>
-            <div style="min-width: 200px">
+            <div >
               <custom-input-date-signal
                 [control]="filterDateRangeControl"
                 mode="range"
@@ -80,7 +80,7 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th style="width: 60px"></th>
+          <th ></th>
           <th pSortableColumn="timestamp">
             Fecha y Hora
             <p-sorticon field="timestamp" />

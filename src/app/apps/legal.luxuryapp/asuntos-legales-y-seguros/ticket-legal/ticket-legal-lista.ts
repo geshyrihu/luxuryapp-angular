@@ -17,7 +17,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -89,7 +89,7 @@ export class TicketLegalLista implements OnInit {
   ngOnInit() {
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.customersActiveNameShort,
+        Endpoints.SelectItems.customersActiveShortName,
       )
       .then((result: any) => this.cb_customer.set(result ?? []));
     this.onLoadData();

@@ -9,7 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { ReportHeader } from "@ui/web/report-header/report-header";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {

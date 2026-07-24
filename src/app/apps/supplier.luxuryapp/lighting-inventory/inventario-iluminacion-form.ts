@@ -16,7 +16,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -154,8 +154,11 @@ export class InventarioIluminacionForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "inventario-iluminacion",
+      endpoint: this.id
+        ? Endpoints.InventarioIluminacion.update(this.id)
+        : Endpoints.InventarioIluminacion.create,
       id: this.id,
+      method: this.id ? "PUT" : "POST",
       ref: this.ref,
       submitting: this.submitting,
       transformPayload: () => {

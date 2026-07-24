@@ -1,4 +1,10 @@
 export const EndpointsShared = {
+  AiAssistant: {
+    // Ownership canonico compartido/transversal.
+    // Consumido desde core/services y herramientas de diagnostico de admin.
+    testProfile: "ai-assistant/test-profile",
+    generateImage: "ai-assistant/generate-image",
+  },
   File: {
     comiteHomeImages: "files/comite-home-images",
     download: (filePath: string) =>
@@ -11,7 +17,15 @@ export const EndpointsShared = {
     searchExistingPhone: (phoneNumber: string) =>
       `user-validation/search-existing-phone/${phoneNumber}`,
   },
+  Notifications: {
+    getAll: "notifications",
+    markAsRead: (notificationId: string) =>
+      `notifications/mark-as-read/${notificationId}`,
+    unreadCount: "notifications/unread-count",
+  },
   Banks: {
+    // Legacy shared alias.
+    // El ownership canonico de este catalogo ya corresponde a `EndpointsAdmin.Catalogs.Banks`.
     create: "banks",
     delete: (id: string) => `banks/${id}`,
     getAll: "banks",
@@ -21,6 +35,8 @@ export const EndpointsShared = {
     update: (id: string) => `banks/${id}`,
   },
   CfdiUses: {
+    // Legacy shared alias.
+    // El ownership canonico de este catalogo ya corresponde a `EndpointsAdmin.Catalogs.CfdiUses`.
     create: "cfdi-use",
     delete: (id: string) => `cfdi-use/${id}`,
     getAll: "cfdi-use",
@@ -29,20 +45,25 @@ export const EndpointsShared = {
     update: (id: string) => `cfdi-use/${id}`,
   },
   EnumSelectItems: {
-    assetCategory: "e-asset-category",
+    assetCategory: "asset-category",
     brand: "ebrand",
-    departament: "e-departament",
-    inventoryCategory: "e-inventory-category",
+    departament: "departament",
+    inventoryCategory: "inventory-category",
+    leaveType: "leave-type",
     inventorySubCategory: "einventory-sub-category",
     measurementUnit: "emeasurement-unit",
     paymentMethod: "epayment-method",
     priority: "epriority",
-    purchaseRequestStatus: "e-purchase-request-status",
-    relationEmployee: "e-relation-employee",
-    status: "e-status",
+    purchaseRequestStatus: "purchase-request-status",
+    relationEmployee: "relation-employee",
+    serviceType: "service-type",
+    state: "state",
+    status: "status",
     statusMaintenance: "estatus-maintenance",
     typeDocument: "etype-document",
-    typeMaintance: "e-type-maintance",
+    typeOfContract: "type-of-contract",
+    typeMaintance: "type-maintance",
+    typePiscina: "type-piscina",
     selectItemEnum: (nameEnum: string, defaultOption?: string) =>
       `select-item-enum/${nameEnum}${defaultOption ? "/" + defaultOption : ""}`,
   },
@@ -54,19 +75,27 @@ export const EndpointsShared = {
     applicationRoles: "application-roles",
     applicationRolesToAdministrator: "application-roles-to-administrator",
     applicationRolesToProvider: "application-roles-to-provider",
+    roleOptionsByType: (roleType: string) => `RolesByRoleType/${roleType}`,
     rolesByRoleType: (roleType: string) => `RolesByRoleType/${roleType}`,
     roles: "roles",
+    legalMatterCategories: "LegalMatterCategory",
     legalMatterCategory: "LegalMatterCategory",
+    legalMatters: "LegalMatter",
     legalMatter: "LegalMatter",
+    ticketLegalMatterOptions: "SelectForAddTicket",
     selectForAddTicket: "SelectForAddTicket",
+    documentRoles: "RolForDocument",
     rolForDocument: "RolForDocument",
     applicationUser: "application-users",
     applicationUsers: "application-users",
     customersActive: "customers-active",
+    customersActiveShortName: "CustomersActiveNameShort",
     customersActiveNameShort: "CustomersActiveNameShort",
     customersInactive: "CustomersInactive",
     customersAll: "CustomersAll",
     nombreCorto: "NombreCorto",
+    customerAccessByApplicationUser: (applicationUserId: string) =>
+      `CustomersAcceso/${applicationUserId}`,
     customersAcceso: (applicationUserId: string) =>
       `CustomersAcceso/${applicationUserId}`,
     professions: "professions",
@@ -82,10 +111,14 @@ export const EndpointsShared = {
     responsableSistemas: "responsablesistemas",
     allEmployeesActive: "getallemployeeactive",
     equipoCalendarioMaestro: "equipocalendariomaestro",
+    providerApplicationUsers: "ApplicationUserProvider",
     applicationUserProvider: "ApplicationUserProvider",
+    inspectionReviewCatalog: "InspectionReviewsCatalog",
     inspectionReviewsCatalog: "InspectionReviewsCatalog",
     moduleApps: "module-apps",
+    equipmentClassifications: "EquipoClasificacion",
     equipoClasificacion: "EquipoClasificacion",
+    yesNoOptions: "BoolYesNo",
     boolYesNo: "BoolYesNo",
 
     // Con customerId
@@ -96,6 +129,7 @@ export const EndpointsShared = {
     employeesByUserId: (customerId: string) =>
       `employee-by-user-id/${customerId}`,
     person: (customerId: string) => `person/${customerId}`,
+    employeePeople: (customerId: string) => `PersonEmployee/${customerId}`,
     personEmployee: (customerId: string) => `PersonEmployee/${customerId}`,
     employeeActive: (customerId: string) => `employeeactivo/${customerId}`,
     participantAdministration: (customerId: string) =>
@@ -110,21 +144,28 @@ export const EndpointsShared = {
       `AccountingCatalogs/${customerId}`,
     listadoInstalaciones: (customerId: string) =>
       `listadoinstalaciones/${customerId}`,
+    usersFromCustomer: (customerId: string) => `UserFromCustomer/${customerId}`,
     usersByCustomer: (customerId: string) => `UserFromCustomer/${customerId}`,
     accountsByCustomer: (customerId: string) =>
       `getlistaccountforcustomer/${customerId}`,
     anioOrdenService: (customerId: string) => `anioordenservice/${customerId}`,
+    buildingResidents: (customerId: string) =>
+      `ResidentesEdificio/${customerId}`,
     residentesEdificio: (customerId: string) =>
       `ResidentesEdificio/${customerId}`,
     allEmployeesActiveByCustomer: (customerId: string) =>
       `getallemployeeactive/${customerId}`,
     providers: (customerId: string) => `providers/${customerId}`,
     machineriesAllByCustomer: (customerId: string) =>
-      `machineriesgetall/${customerId}`,
+      `machineries/get-all/${customerId}`,
     machineryActiveByCustomer: (customerId: string) =>
       `machineries-active/${customerId}`,
+    inspectionsByCustomer: (customerId: string) =>
+      `CustomerInspections/${customerId}`,
     customerInspections: (customerId: string) =>
       `CustomerInspections/${customerId}`,
+    performanceEvaluationTemplatesByCustomer: (customerId: string) =>
+      `EvaluationTemplates/${customerId}`,
     evaluationTemplates: (customerId: string) =>
       `EvaluationTemplates/${customerId}`,
     taskGroupCategory: (customerId: string, workGroupId?: string) =>
@@ -135,8 +176,12 @@ export const EndpointsShared = {
     richProducts: (term: string) => `get-rich-products?term=${term}`,
     applicationUsersByCustomer: (customerId: string) =>
       `application-users/${customerId}`,
+    committeeMinuteParticipants: (customerId: string, meetingId: string) =>
+      `GetListComiteMinuta/${customerId}/${meetingId}`,
     comiteMinuta: (customerId: string, meetingId: string) =>
       `GetListComiteMinuta/${customerId}/${meetingId}`,
+    administrationMinuteParticipants: (customerId: string, meetingId: string) =>
+      `getlistadministracionminuta/${customerId}/${meetingId}`,
     administracionMinuta: (customerId: string, meetingId: string) =>
       `getlistadministracionminuta/${customerId}/${meetingId}`,
   },
@@ -154,7 +199,7 @@ export const EndpointsShared = {
     updateOrder: "custom-documents/update-order",
   },
   Products: {
-    autoComplete: "productos/getautocompleteselectitem/",
+    autoComplete: "productos/get-auto-complete-select-item",
     delete: (id: string) => `productos/${id}`,
     getAll: "productos",
     getAllPaged: "productos/paged",
@@ -206,10 +251,13 @@ export const EndpointsShared = {
       `send-email/presentacion-final-comite/${idJunta}`,
   },
   EmailData: {
+    // Legacy shared alias.
+    // El ownership canonico de este catalogo ya corresponde a `EndpointsAdmin.Catalogs.EmailData`.
     base: "email-data",
     getAll: "email-data/list",
     getById: (id: string) => `email-data/${id}`,
     sendTestEmail: (id: string) => `send-email/test-email/${id}`,
+    update: (id: string) => `email-data/${id}`,
   },
   MenuItems: {
     byCustomer: (customerId: string) => `menu-items/${customerId}`,
@@ -220,10 +268,10 @@ export const EndpointsShared = {
     update: (id: string | number) => `permission/${id}`,
   },
   EmergencyPhones: {
-    create: "telefonos-emergencia",
-    delete: (id: string) => `telefonos-emergencia/${id}`,
-    getAll: "telefonos-emergencia",
-    getById: (id: string | number) => `telefonos-emergencia/${id}`,
-    update: (id: string | number) => `telefonos-emergencia/${id}`,
+    create: "telefonosemergencia",
+    delete: (id: string) => `telefonosemergencia/${id}`,
+    getAll: "telefonosemergencia",
+    getById: (id: string | number) => `telefonosemergencia/${id}`,
+    update: (id: string | number) => `telefonosemergencia/${id}`,
   },
 } as const;

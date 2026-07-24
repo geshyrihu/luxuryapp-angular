@@ -63,11 +63,11 @@
 
   <ng-template #header>
     <tr>
-      <th style="width: 6%" pSortableColumn="areaResponsable">
+      <th  pSortableColumn="areaResponsable">
         AREA
         <p-sorticon field="areaResponsable" />
       </th>
-      <th style="width: 28%" pSortableColumn="fechaSolicitudFiltro">
+      <th  pSortableColumn="fechaSolicitudFiltro">
         SOLICITUD
         <p-sorticon field="fechaSolicitudFiltro" />
       </th>
@@ -76,20 +76,20 @@
         <p-sorticon field="pendiente" />
       </th>
       <th class="table-col-seguimiento">SEGUIMIENTO</th>
-      <th style="width: 6%" class="text-center" pSortableColumn="status">
+      <th  class="text-center" pSortableColumn="status">
         ESTATUS
         <p-sorticon field="status" />
       </th>
-      <th style="width: 3%" class="no-print"></th>
+      <th  class="no-print"></th>
     </tr>
   </ng-template>
 
   <ng-template #body let-item>
     <tr>
-      <td style="width: 6%" class="font-medium text-900">
+      <td  class="font-medium text-900">
         {{ item.areaResponsable }}
       </td>
-      <td style="width: 28%" class="table-col-description">
+      <td  class="table-col-description">
         <div class="text-base font-bold text-900 mb-1">
           {{ item.fechaSolicitud }} {{ item.titulo | titlecase }}
         </div>
@@ -109,7 +109,7 @@
         </div>
         }
       </td>
-      <td style="width: 6%" class="text-center">
+      <td  class="text-center">
         <lx-tag
           [severity]="
             item.status == 0
@@ -128,7 +128,7 @@
           "
         />
       </td>
-      <td style="width: 3%" class="no-print">
+      <td  class="no-print">
         <app-action-menu>
           <ng-container actions>
             <il-button-item
@@ -205,15 +205,11 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="
-          width: 38px;
-          height: 38px;
-          background: var(--ds-primary-50, #edf1ff);
-        "
+        class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
           icon="mdi:timeline-check-outline"
-          style="font-size: 1.1rem; color: var(--ds-primary)"
+          class="text-xl text-primary"
         />
       </div>
       

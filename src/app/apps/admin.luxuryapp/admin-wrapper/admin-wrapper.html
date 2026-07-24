@@ -5,7 +5,7 @@
     <!-- Header de grupo alineado con master-dashboard -->
     <div class="flex align-items-center gap-2 mb-4 mt-6">
       <div class="border-round"
-           style="width:4px;height:20px;"
+           
            [style.backgroundColor]="menuTone(group).accent"></div>
       <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase"
           [ngClass]="menuTone(group).heading">
@@ -22,16 +22,16 @@
           class="surface-card border-round-xl p-3 h-full cursor-pointer relative overflow-hidden
                  shadow-1 hover:shadow-3 transition-all transition-duration-200
                  flex flex-column gap-3"
-          [style]="{'border-top': '3px solid ' + menuTone(group).accent}"
+          
           [routerLink]="item.routerLink || null"
         >
           <!-- Ícono + flecha (igual a master-dashboard) -->
           <div class="flex align-items-center justify-content-between">
             <div class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
-                 style="width:44px;height:44px;"
+                 
                  [style.backgroundColor]="menuTone(group).bgColor">
               <app-icon [icon]="item.icon"
-                        style="font-size:1.35rem;"
+                        
                         [style.color]="menuTone(group).accent" />
             </div>
             <app-icon icon="mdi:arrow-up-right" class="text-400 text-lg" />
@@ -60,7 +60,7 @@
       <div start
            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2"
            [ngClass]="menuTone(item.group).mobileShell"
-           style="width:36px;height:36px;">
+           >
         <app-icon [icon]="item.icon"
                   class="text-base"
                   [ngClass]="menuTone(item.group).glyph" />

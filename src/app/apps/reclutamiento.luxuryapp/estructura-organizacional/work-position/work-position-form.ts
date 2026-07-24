@@ -8,8 +8,8 @@ import {
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
 import { LxDivider } from "@ui/adaptive/divider/divider";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputTextModule } from "primeng/inputtext";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
@@ -24,6 +24,7 @@ import { lastValueFrom } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -124,9 +125,11 @@ export class WorkPositionForm implements OnInit {
         lastValueFrom(this.enumSelectS.turnoTrabajo()),
         lastValueFrom(this.enumSelectS.state()),
         this.apiS.onGetSelectItem<SelectItemDto[]>(
-          `application-roles-to-administrator`,
+          Endpoints.SelectItems.applicationRolesToAdministrator,
         ),
-        this.apiS.onGetSelectItem<SelectItemDto[]>(`employee/${customerId}`),
+        this.apiS.onGetSelectItem<SelectItemDto[]>(
+          Endpoints.SelectItems.employeesByCustomer(customerId),
+        ),
       ]);
 
     this.cb_turnoTrabajo.set(turnoTrabajo);

@@ -5,7 +5,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { ButtonModule } from "primeng/button";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";

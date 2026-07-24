@@ -23,8 +23,8 @@ import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DialogModule } from "primeng/dialog";
-import { TableModule } from "primeng/table";
+import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
   BulkUpdateTipoGastoDto,
   SatCfdiDto,
@@ -99,7 +99,7 @@ export class SatFundingDetailComponent implements OnInit {
 
   onLoadData() {
     this.apiResponseService
-      .onGetItem<SatFundingDetailDto>(`SatFunding/${this.fundingId}`)
+      .onGetItem<SatFundingDetailDto>(Endpoints.SatFunding.details(this.fundingId))
       .then((result) => {
         if (result) {
           this.data.set(result);
@@ -125,7 +125,7 @@ export class SatFundingDetailComponent implements OnInit {
     };
 
     this.apiResponseService
-      .onPost(Endpoints.RefactorContabilidad.satFundingRequestDownload, request)
+      .onPost(Endpoints.SatFunding.requestDownload, request)
       .then(() => {
         this.onLoadData(); // Refresh data after processing
       })
@@ -168,7 +168,7 @@ export class SatFundingDetailComponent implements OnInit {
 
     this.apiResponseService
       .onPut(
-        Endpoints.RefactorContabilidad.satFundingBulkUpdateTipoGasto,
+        Endpoints.SatFunding.bulkUpdateTipoGasto,
         request,
       )
       .then(() => {

@@ -14,7 +14,7 @@ import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { LeaveRequestMyDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/leave-request.interface";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -91,7 +91,7 @@ export class PermisoForm implements OnInit {
 
   loadRequestTypes() {
     this.apiResponseS
-      .onGetEnumSelectItem("e-leave-type")
+      .onGetEnumSelectItem(Endpoints.EnumSelectItems.leaveType)
       .then((data: SelectItemDto[]) => {
         this.requestTypes.set(data);
       });

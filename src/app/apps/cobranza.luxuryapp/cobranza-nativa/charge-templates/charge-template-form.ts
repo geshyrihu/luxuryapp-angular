@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   effect,
@@ -12,8 +12,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonModule } from "primeng/button";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -182,7 +182,7 @@ export class ChargeTemplateForm implements OnInit {
     const res = await this.apiResponseS.onGetItem<
       ChargeTypeCatalogResponseDTO[]
     >(
-      Endpoints.CobranzaNative.ChargeTypes.customer(
+      Endpoints.CobranzaCore.ChargeTypes.customer(
         this.customerId,
       ),
     );
@@ -207,7 +207,7 @@ export class ChargeTemplateForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaNative.Templates.getById(this.id),
+      Endpoints.CobranzaCore.Templates.getById(this.id),
     );
     if (res) {
       if (res.startDate) res.startDate = this.dateS.parseDate(res.startDate);
@@ -225,8 +225,8 @@ export class ChargeTemplateForm implements OnInit {
       form: this.form,
       api: this.apiResponseS,
       endpoint: this.id
-        ? Endpoints.CobranzaNative.Templates.update(this.id)
-        : Endpoints.CobranzaNative.Templates.create,
+        ? Endpoints.CobranzaCore.Templates.update(this.id)
+        : Endpoints.CobranzaCore.Templates.create,
       method: this.id ? "PUT" : "POST",
       ref: this.ref,
       submitting: this.submitting,
@@ -283,7 +283,7 @@ export class ChargeTemplateForm implements OnInit {
 
     this.apiResponseS
       .onPost(
-        Endpoints.CobranzaNative.Templates.preview,
+        Endpoints.CobranzaCore.Templates.preview,
         payload,
       )
       .then((res) => {

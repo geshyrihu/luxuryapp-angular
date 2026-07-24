@@ -4,7 +4,7 @@ import {
   inject,
   OnInit,
 } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";

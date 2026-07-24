@@ -14,7 +14,7 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -61,7 +61,7 @@ export class BankForm implements OnInit {
   }
   onLoadData() {
     this.apiResponseS
-      .onGetItem<BankAddOrEditDto>(Endpoints.Banks.getById(this.id))
+      .onGetItem<BankAddOrEditDto>(Endpoints.Catalogs.Banks.getById(this.id))
       .then((result) => {
         if (result) this.form.patchValue(result);
       });
@@ -70,7 +70,7 @@ export class BankForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.Banks.create,
+      endpoint: Endpoints.Catalogs.Banks.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

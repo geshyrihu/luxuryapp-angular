@@ -11,7 +11,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importac
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -48,7 +48,7 @@ export class ActivosDocumentos implements OnInit {
     if (this.machineryId !== 0) this.onLoadData();
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorMantenimiento.machineryDocumentListById(
+    const urlApi = Endpoints.MachineryDocuments.listByMachinery(
       this.machineryId,
     );
     this.apiResponseS
@@ -57,9 +57,7 @@ export class ActivosDocumentos implements OnInit {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(
-        Endpoints.RefactorMantenimiento.machineriesDeleteDocumentById(id),
-      )
+      .onDelete(Endpoints.Machineries.deleteDocument(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>
@@ -73,7 +71,7 @@ export class ActivosDocumentos implements OnInit {
         SubirPdf,
         {
           serviceOrderId: id,
-          pathUrl: "machineries/subir-documento/",
+          pathUrl: Endpoints.Machineries.uploadDocumentBase,
         },
         "Cargar Documentos",
         this.dialogHandlerS.sizeLg,

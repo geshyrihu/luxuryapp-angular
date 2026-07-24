@@ -14,7 +14,7 @@
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   class="custom-table p-1 hidden md:block"
 >
-  <!-- CAPTION: Filtros y botún de agregar -->
+  <!-- CAPTION: Filtros y botón de agregar -->
   <ng-template #caption>
     <div class="grid align-items-center">
       <div class="col-12 md:col-3">
@@ -123,7 +123,7 @@
                 [src]="item.pathPhoto"
                 alt="Logo"
                 class="border-round mr-3 shadow-1"
-                style="width: 64px; height: 64px; object-fit: cover"
+                
               />
               <div class="min-w-0">
                 <div class="font-bold text-lg text-900 truncate">
@@ -152,8 +152,13 @@
               }
               <div class="flex flex-wrap gap-1 mt-1">
                 @if (item.sales) {
-                <lx-tag value="Ventas" severity="secondary" class="text-xs" />} @if (item.repair) {
-                <lx-tag value="Reparación" severity="secondary" class="text-xs" />
+                <lx-tag value="Ventas" severity="secondary" class="text-xs" />}
+                @if (item.repair) {
+                <lx-tag
+                  value="Reparación"
+                  severity="secondary"
+                  class="text-xs"
+                />
                 }
               </div>
             </div>
@@ -166,7 +171,21 @@
             >
               <div class="flex flex-wrap gap-1">
                 @for (categoria of item.categorias; track $index) {
-                <lx-tag value="{{ categoria.nombreCategoria | uppercase }}" severity="info" class="text-xs" ></lx-tag> } </div> <div class="flex align-items-center gap-1"> @if ( validateRole([ roles.Asistente, roles.JefeMantenimiento, roles.Administrador, roles.SuperUsuario, roles.SupervisionOperativa, roles.Legal, ]) && item.id != 109 ) { <iw-button-edit (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })" />
+                <lx-tag
+                  value="{{ categoria.nombreCategoria | uppercase }}"
+                  severity="info"
+                  class="text-xs"
+                ></lx-tag>
+                }
+              </div>
+              <div class="flex align-items-center gap-1">
+                @if ( validateRole([ roles.Asistente, roles.JefeMantenimiento,
+                roles.Administrador, roles.SuperUsuario,
+                roles.SupervisionOperativa, roles.Legal, ]) && item.id != 109 )
+                {
+                <iw-button-edit
+                  (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
+                />
                 } @if (item.activo) {
                 <iw-button-item
                   iconClass="mdi:chart-bar"
@@ -222,19 +241,19 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-<div
+      <div
         start
         class="w-3rem h-3rem border-round-lg bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon icon="mdi:store-outline" class="text-green-600 text-xl" />
       </div>
-      
-        <h3 class="font-bold text-900">{{ item.nameComercial }}</h3>
-        <p class="text-sm text-600">
-          {{ item.nameProvider }} é {{ item.tipoServicio }}
-        </p>
-        <p class="text-xs text-500">{{ item.phoneOne }}</p>
-      
+
+      <h3 class="font-bold text-900">{{ item.nameComercial }}</h3>
+      <p class="text-sm text-600">
+        {{ item.nameProvider }} é {{ item.tipoServicio }}
+      </p>
+      <p class="text-xs text-500">{{ item.phoneOne }}</p>
+
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
@@ -247,6 +266,6 @@
           />
         </ng-container>
       </ili-action-menu>
-</ili-list-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

@@ -42,7 +42,7 @@ import {
   settingsOutline,
   trashOutline,
 } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -328,10 +328,10 @@ export class TaskList implements OnInit {
 
     const httpParams = {
       page: currentPage,
-      pageSize: currentSize,
+      limit: currentSize,
       filter: this.searchTerm(),
-      sortField: this.sortField(),
-      sortOrder: this.sortOrder(),
+      sort: this.sortField(),
+      order: this.sortOrder(),
     };
 
     this.loading.set(true);
@@ -356,10 +356,10 @@ export class TaskList implements OnInit {
 
     const httpParams = {
       page: currentPage,
-      pageSize: currentSize,
+      limit: currentSize,
       filter: this.searchTerm(),
-      sortField: this.sortField(),
-      sortOrder: this.sortOrder(),
+      sort: this.sortField(),
+      order: this.sortOrder(),
     };
 
     this.apiS
@@ -638,10 +638,10 @@ export class TaskList implements OnInit {
 
     const httpParams = {
       page: currentPage,
-      pageSize: currentSize,
+      limit: currentSize,
       filter: this.searchTerm(),
-      sortField: this.sortField(),
-      sortOrder: this.sortOrder(),
+      sort: this.sortField(),
+      order: this.sortOrder(),
     };
 
     this.apiS

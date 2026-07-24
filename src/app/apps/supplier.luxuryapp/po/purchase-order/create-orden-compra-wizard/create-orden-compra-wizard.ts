@@ -18,13 +18,13 @@ import {
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 // PrimeNG Modules
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { MenuItem } from "primeng/api";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog"; // Added DynamicDialogConfig
+import { MenuItem } from "@ui/web/primeng-api/primeng-api";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service"; // Added DynamicDialogConfig
 // Added
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 // Added
 import { LxSteps } from "@ui/adaptive/steps/steps";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 // Added
 import { firstValueFrom } from "rxjs";
 
@@ -234,7 +234,7 @@ export class CreateOrdenCompraWizard implements OnInit {
   async loadFundingOptions() {
     this.cb_fundingYear.set(this.generateYearOptions());
     const periods = await firstValueFrom(
-      this.enumSelectS.onLoadEnumList("e-funding-period", false),
+      this.enumSelectS.onLoadEnumList("funding-period", false),
     );
     this.processFundingPeriods(periods as SelectItemDto[]);
   }

@@ -7,7 +7,7 @@ import {
   signal,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import type { IFlujoCajaDto } from "../../contabilidad-online/interfaces/aspel-budget.interface";
 import { AccountingNumberPipe } from "../../contabilidad-online/pipes/accounting-number.pipe";
 import { ContabilidadClienteService } from "../contabilidad-cliente.service";

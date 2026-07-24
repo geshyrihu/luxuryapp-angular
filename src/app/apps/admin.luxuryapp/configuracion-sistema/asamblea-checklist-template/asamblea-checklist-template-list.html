@@ -1,0 +1,135 @@
+<p-table
+  [globalFilterFields]="globalFilterFields"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '80rem' }"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo item de checklist' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="sortOrder">
+        Orden <p-sorticon field="sortOrder" />
+      </th>
+      <th pSortableColumn="code">Codigo <p-sorticon field="code" /></th>
+      <th pSortableColumn="title">Titulo <p-sorticon field="title" /></th>
+      <th pSortableColumn="category">
+        Categoria <p-sorticon field="category" />
+      </th>
+      <th pSortableColumn="defaultResponsibleRole">
+        Responsable
+        <p-sorticon field="defaultResponsibleRole" />
+      </th>
+      <th pSortableColumn="offsetDaysFromMeeting">
+        Dias
+        <p-sorticon field="offsetDaysFromMeeting" />
+      </th>
+      <th pSortableColumn="version">Version <p-sorticon field="version" /></th>
+      <th>Estado</th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.sortOrder }}</td>
+      <td>{{ item.code }}</td>
+      <td>
+        <div class="font-semibold">{{ item.title }}</div>
+        @if (item.description) {
+        <div class="text-xs text-color-secondary">{{ item.description }}</div>
+        }
+      </td>
+      <td>{{ item.category }}</td>
+      <td>{{ item.defaultResponsibleRole }}</td>
+      <td>{{ item.offsetDaysFromMeeting }}</td>
+      <td>{{ item.version }}</td>
+      <td>
+        <lx-tag
+          [severity]="severity(item.isActive)"
+          [value]="item.isActive ? 'Activo' : 'Inactivo'"
+         />
+      </td>
+      <td class="no-print">
+        <div class="flex">
+          <iw-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar item de checklist' })"
+          />
+          @if (item.isActive) {
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="9" />
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo item de checklist' })"
+  [globalFilterFields]="globalFilterFields"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        class="w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="mdi:clipboard-list-outline"
+          class="text-xl text-primary"
+        />
+      </div>
+      
+        <p class="font-semibold m-0 text-color">{{ item.title }}</p>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
+          }}
+        </p>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          Orden {{ item.sortOrder }} | Dia {{ item.offsetDaysFromMeeting }} |
+          V{{ item.version }}
+        </p>
+        <p class="text-xs m-0 mt-1">
+          <span [class]="item.isActive ? 'text-green-600' : 'text-red-500'">
+            {{ item.isActive ? "Activo" : "Inactivo" }}
+          </span>
+        </p>
+      
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar item de checklist' })"
+            label="Editar"
+          />
+          @if (item.isActive) {
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

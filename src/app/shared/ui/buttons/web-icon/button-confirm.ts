@@ -23,7 +23,7 @@ import { confirmAction } from "../shared/confirm";
       @if (emoji()) {
         <span>{{ emoji() }}</span>
       } @else {
-        <app-icon [icon]="iconClass() || 'fluent-color:checkmark-16'" />
+        <app-icon [icon]="iconClass() || 'fluent-color:checkmark-circle-16'" />
       }
     </button>
   `,

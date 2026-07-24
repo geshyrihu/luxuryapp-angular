@@ -17,7 +17,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -123,7 +123,7 @@ export class TicketLegalForm implements OnInit {
         Endpoints.TaskLegal.selectForAddTicket,
       ),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.customersActiveNameShort,
+        Endpoints.SelectItems.customersActiveShortName,
       ),
       this.apiResponseS.onGetList(
         Endpoints.TaskGroupParticipants.listByGroup(LEGAL_WORK_GROUP_ID),
@@ -156,7 +156,7 @@ export class TicketLegalForm implements OnInit {
   }
 
   saveLegalMatter = (item: SelectItemDto) => {
-    this.form.patchValue({ title: item?.label, isInternal: !!item?.value });
+    this.form.patchValue({ title: item?.label });
   };
 
   saveAssignee = (item: SelectItemDto) => {

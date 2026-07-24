@@ -26,7 +26,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
   PastVacationHistoryItemDTO,
   RegisterPastVacationDTO,
@@ -224,7 +224,9 @@ export class VacacionesPasadasRegistro implements OnInit {
     const customerId: string = this.customerIdS.customerId();
     if (!customerId) return;
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(`employee/${customerId}`)
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.employeesByCustomer(customerId),
+      )
       .then((response: SelectItemDto[]) => this.employees.set(response));
   }
 

@@ -16,7 +16,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -122,14 +122,16 @@ export class CalendarioMaestroForm implements OnInit {
 
   onLoadSelectItem() {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>("equipo-calendario-maestro")
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.equipoCalendarioMaestro,
+      )
       .then((response: SelectItemDto[]) => {
         this.cb_equipoCalendarioMaestro.set(response);
       });
 
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(
-        `providers/${this.customerIdS.customerId()}`,
+        Endpoints.SelectItems.providers(this.customerIdS.customerId()),
       )
       .then((response: SelectItemDto[]) => {
         this.cb_providers.set(response);

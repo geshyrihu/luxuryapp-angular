@@ -8,6 +8,7 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ContratosVigentesModal } from "../contratos-vigentes-modal/contratos-vigentes-modal";
@@ -61,7 +62,7 @@ export class ContratosCard implements OnInit {
     this.cargando.set(true);
     const data =
       await this.apiResponseS.onGetItem<ContratosPorVencerResumenDto>(
-        "direccion-dashboard/contratos-por-vencer",
+        Endpoints.DireccionDashboard.contratosPorVencer,
         false,
       );
     this.resumen.set(data ?? null);

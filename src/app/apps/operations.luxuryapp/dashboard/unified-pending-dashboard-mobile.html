@@ -1,3 +1,6 @@
+<style>
+  .custom-w-4px { width: 4px; }
+</style>
 <app-data-view-mobile
   [data]="data()"
   [loading]="loading"
@@ -12,8 +15,7 @@
     <div class="flex align-items-center gap-2 w-max">
       <!-- AI Report Action -->
       <div 
-        class="px-3 py-2 border-round-3xl flex align-items-center gap-1 cursor-pointer shadow-1 transition-colors"
-        style="background: linear-gradient(135deg, var(--ds-primary), var(--ds-help)); color: white;"
+        class="px-3 py-2 border-round-3xl flex align-items-center gap-1 cursor-pointer shadow-1 transition-colors bg-primary text-white"
         (click)="generateDailyReport()"
       >
         <app-icon icon="mdi:creation" class="text-white" />
@@ -54,8 +56,7 @@
     >
       <!-- Left Edge Color Strip -->
       <div 
-        class="absolute left-0 top-0 bottom-0 w-min" 
-        style="width: 4px;"
+        class="absolute left-0 top-0 bottom-0 custom-w-4px"
         [class.bg-primary]="getModuleColor(item.module) === 'primary'"
         [class.bg-warning]="getModuleColor(item.module) === 'warning'"
         [class.bg-success]="getModuleColor(item.module) === 'success'"

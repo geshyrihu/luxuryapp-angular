@@ -13,8 +13,8 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -102,7 +102,7 @@ export class ProductosList implements OnInit {
 
   onLoadMobile() {
     this.mobilePage.set(1);
-    const params = { page: 1, recordsNumber: this.MOBILE_PAGE_SIZE };
+    const params = { page: 1, limit: this.MOBILE_PAGE_SIZE, sort: "", order: "", filter: "" };
     return this.apiResponseS
       .onGetListNotLoading<any>(Endpoints.Products.getAllPaged, params)
       .then((result: any) => {
@@ -135,7 +135,7 @@ export class ProductosList implements OnInit {
 
   loadNextPage(event: any) {
     const nextPage = this.mobilePage() + 1;
-    const params = { page: nextPage, recordsNumber: this.MOBILE_PAGE_SIZE };
+    const params = { page: nextPage, limit: this.MOBILE_PAGE_SIZE, sort: "", order: "", filter: "" };
     this.apiResponseS
       .onGetListNotLoading<any>(Endpoints.Products.getAllPaged, params)
       .then((result: any) => {

@@ -22,8 +22,8 @@ import {
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
 import { LxListbox } from "@ui/adaptive/listbox/listbox";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputTextModule } from "primeng/inputtext";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";

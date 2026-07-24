@@ -14,12 +14,84 @@ export const EndpointsMantenimiento = {
   BitacoraMantenimiento: {
     delete: (id: string) => `bitacora-mantenimiento/${id}`,
   },
+  BitacoraMantenimientoConsultas: {
+    bitacoraIndividual: (
+      machineryId: string,
+      fechaInicial: string,
+      fechaFinal: string,
+    ) =>
+      `bitacora-mantenimiento/bitacora-individual/${machineryId}/${fechaInicial}/${fechaFinal}`,
+    listByCustomerAndRange: (
+      customerId: string,
+      fechaInicial: string,
+      fechaFinal: string,
+    ) =>
+      `bitacora-mantenimiento/list/${customerId}/${fechaInicial}/${fechaFinal}`,
+  },
   FireInspectionPeriod: {
+    base: "fire-inspection-period",
+    delete: (id: string) => `fire-inspection-period/${id}`,
     getById: (periodId: string) => `fire-inspection-period/${periodId}`,
+    listByCustomer: (customerId: string) =>
+      `fire-inspection-period/list/${customerId}`,
   },
   FireInspectionCycle: {
     active: (periodId: string) => `fire-inspection-cycle/active/${periodId}`,
     generate: (periodId: string) => `fire-inspection-cycle/generate/${periodId}`,
+    getById: (cycleId: string) => `fire-inspection-cycle/${cycleId}`,
+    listByCustomer: (customerId: string) =>
+      `fire-inspection-cycle/list/${customerId}`,
+  },
+  FireEquipment: {
+    resolveById: (id: string) => `fire-equipment/resolve/${id}`,
+  },
+  FireEquipmentLogs: {
+    extintor: {
+      base: "bitacora-extintor",
+      getById: (id: string) => `bitacora-extintor/${id}`,
+      listByEquipment: (extinguisherId: string) =>
+        `bitacora-extintor/list/${extinguisherId}`,
+    },
+    hidrante: {
+      base: "bitacora-hidrante",
+      getById: (id: string) => `bitacora-hidrante/${id}`,
+      listByEquipment: (hydrantId: string) =>
+        `bitacora-hidrante/list/${hydrantId}`,
+    },
+    estacionManual: {
+      base: "bitacora-estacion-manual",
+      getById: (id: string) => `bitacora-estacion-manual/${id}`,
+      listByEquipment: (stationId: string) =>
+        `bitacora-estacion-manual/list/${stationId}`,
+    },
+    detectorHumo: {
+      base: "bitacora-detector-humo",
+      getById: (id: string) => `bitacora-detector-humo/${id}`,
+      listByEquipment: (detectorId: string) =>
+        `bitacora-detector-humo/list/${detectorId}`,
+    },
+  },
+  FireCycleInspection: {
+    detector: {
+      base: "fire-cycle-inspection/detector",
+      getByCycleAndEquipment: (cycleId: string, equipmentId: string) =>
+        `fire-cycle-inspection/detector/${cycleId}/${equipmentId}`,
+    },
+    estacion: {
+      base: "fire-cycle-inspection/estacion",
+      getByCycleAndEquipment: (cycleId: string, equipmentId: string) =>
+        `fire-cycle-inspection/estacion/${cycleId}/${equipmentId}`,
+    },
+    extintor: {
+      base: "fire-cycle-inspection/extintor",
+      getByCycleAndEquipment: (cycleId: string, equipmentId: string) =>
+        `fire-cycle-inspection/extintor/${cycleId}/${equipmentId}`,
+    },
+    hidrante: {
+      base: "fire-cycle-inspection/hidrante",
+      getByCycleAndEquipment: (cycleId: string, equipmentId: string) =>
+        `fire-cycle-inspection/hidrante/${cycleId}/${equipmentId}`,
+    },
   },
   FireInspectionPeriodItems: {
     detectorList: (periodId: string) => `fire-inspection-period-items/detector/list/${periodId}`,
@@ -48,12 +120,12 @@ export const EndpointsMantenimiento = {
     list: (customerId: string) => `inventario-hidrante/list/${customerId}`,
   },
   ToolLoans: {
-    create: "controlprestamoherramientas",
+    create: "control-prestamo-herramientas",
     delete: (id: string | number) => `control-prestamo-herramientas/${id}`,
-    getById: (id: string | number) => `controlprestamoherramientas/${id}`,
+    getById: (id: string | number) => `control-prestamo-herramientas/${id}`,
     listByCustomer: (customerId: string) =>
       `control-prestamo-herramientas/list/${customerId}`,
-    update: (id: string | number) => `controlprestamoherramientas/${id}`,
+    update: (id: string | number) => `control-prestamo-herramientas/${id}`,
   },
   Meters: {
     create: "medidor",
@@ -63,22 +135,25 @@ export const EndpointsMantenimiento = {
     update: (id: string | number) => `medidor/${id}`,
   },
   MeterReadings: {
-    create: "medidor-lectura",
+    create: "medidorlectura",
+    adminCreate: "medidorlectura/admin-create-lectura",
     dailyChart: (medidorId: string, fechaInicial: string, fechaFinal: string) =>
-      `medidor-lectura/data-grafico-diaria/${medidorId}/${fechaInicial}/${fechaFinal}`,
-    delete: (id: string | number) => `medidor-lectura/${id}`,
-    exportExcel: (id: string | number) => `medidor-lectura/export-excel/${id}`,
-    getById: (id: string | number) => `medidor-lectura/${id}`,
+      `medidorlectura/data-grafico-diaria/${medidorId}/${fechaInicial}/${fechaFinal}`,
+    delete: (id: string | number) => `medidorlectura/${id}`,
+    exportExcel: (id: string | number) => `medidorlectura/export-excel/${id}`,
+    getById: (id: string | number) => `medidorlectura/${id}`,
     lastReading: (medidorId: string) =>
-      `medidor-lectura/ultima-lectura/${medidorId}`,
-    listByMeter: (medidorId: string) => `medidor-lectura/list/${medidorId}`,
+      `medidorlectura/ultima-lectura/${medidorId}`,
+    listByMeter: (medidorId: string) => `medidorlectura/list/${medidorId}`,
     monthlyChart: (
       medidorId: string,
       fechaInicial: string,
       fechaFinal: string,
     ) =>
-      `medidor-lectura/data-grafico-mensual/${medidorId}/${fechaInicial}/${fechaFinal}`,
-    update: (id: string | number) => `medidor-lectura/${id}`,
+      `medidorlectura/data-grafico-mensual/${medidorId}/${fechaInicial}/${fechaFinal}`,
+    update: (id: string | number) => `medidorlectura/${id}`,
+    verifyDailyRecord: (medidorId: string) =>
+      `medidorlectura/verificar-registro-del-dia/${medidorId}`,
   },
   MeterCategories: {
     create: "medidor-categoria",
@@ -91,9 +166,22 @@ export const EndpointsMantenimiento = {
     delete: (id: string) => `piscina/${id}`,
   },
   Machineries: {
+    base: "machineries",
     delete: (id: string) => `machineries/${id}`,
+    deleteDocument: (id: string) => `machineries/delete-document/${id}`,
+    getById: (id: string) => `machineries/${id}`,
     getMachinerySelectItem: (machineryId: string) => `machineries/get-machinery-select-item/${machineryId}`,
     getAutocompleteInv: (customerId: string) => `machineries/get-autocompete-inv/${customerId}`,
+    serviceHistory: (machineryId: string) =>
+      `machineries/service-history/${machineryId}`,
+    technicalSheet: (id: string) => `machineries/fichatecnica/${id}`,
+    uploadDocumentBase: "machineries/subir-documento/",
+    uploadDocument: (machineryId: string) =>
+      `machineries/subir-documento/${machineryId}`,
+  },
+  MachineryDocuments: {
+    listByMachinery: (machineryId: string) =>
+      `machinery-document/list/${machineryId}`,
   },
   EquipmentInspectionDefinitions: {
     byMachinery: (machineryId: string) =>
@@ -130,7 +218,7 @@ export const EndpointsMantenimiento = {
   },
   MachineryClassification: {
     create: "equipo-clasificacion",
-    delete: (id: string) => `equipoclasificacion/${id}`,
+    delete: (id: string) => `equipo-clasificacion/${id}`,
     getAll: "equipo-clasificacion",
     getById: (id: string | number) => `equipo-clasificacion/${id}`,
     update: (id: string | number) => `equipo-clasificacion/${id}`,
@@ -196,6 +284,23 @@ export const EndpointsMantenimiento = {
     getById: (id: string) => `inspection-reviews-catalog/${id}`,
     update: (id: string) => `inspection-reviews-catalog/${id}`,
   },
+  RecepcionPipasAgua: {
+    base: "recepcion-pipas-agua",
+    getById: (id: string) => `recepcion-pipas-agua/${id}`,
+    listByCustomer: (customerId: string) => `recepcion-pipas-agua/list/${customerId}`,
+  },
+  ResponsablesCliente: {
+    byRole: (customerId: string, role: string) =>
+      `responsables-cliente/por-rol?customerId=${customerId}&role=${role}`,
+    sugeridosAgenda: (
+      customerId: string,
+      subjectType: number,
+      includeSystems: boolean,
+    ) =>
+      `responsables-cliente/sugeridos-agenda?customerId=${customerId}&subjectType=${subjectType}&includeSystems=${includeSystems}`,
+    jefeMantenimiento: (customerId: string) =>
+      `responsables-cliente/por-rol?customerId=${customerId}&role=JefeMantenimiento`,
+  },
   CustomerInspections: {
     selectByCustomer: (customerId: string) =>
       `customer-inspections/${customerId}`,
@@ -228,7 +333,7 @@ export const EndpointsMantenimiento = {
     piscinabitacoraById: (id: any) => `piscina-bitacora/${id}`,
     recepcionPipasAguaListById: (customerIdS: any) => `recepcion-pipas-agua/list/${customerIdS}`,
     recepcionPipasAguaById: (id: any) => `recepcion-pipas-agua/${id}`,
-    responsablesClientePorRolcustomerIdroleJefeMantenimiento: (customerIdS: any) => `responsables-cliente/por-rol?customer-id=${customerIdS}&role=jefe-mantenimiento`,
+    responsablesClientePorRolcustomerIdroleJefeMantenimiento: (customerIdS: any) => `responsables-cliente/por-rol?customerId=${customerIdS}&role=JefeMantenimiento`,
     calendarioMaestroById: (id: any) => `calendario-maestro/${id}`,
     calendariomaestroList: "calendario-maestro/list",
     calendariomaestroById: (id: any) => `calendario-maestro/${id}`,

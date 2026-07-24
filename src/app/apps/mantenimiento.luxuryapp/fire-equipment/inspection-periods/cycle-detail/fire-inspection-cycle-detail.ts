@@ -51,9 +51,7 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(
-        Endpoints.RefactorMantenimiento.fireInspectionCycleById(this.cycleId),
-      )
+      .onGetItem(Endpoints.FireInspectionCycle.getById(this.cycleId))
       .then((result: any) => this.cycle.set(result));
   }
 
@@ -180,9 +178,7 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
     } else {
       this.scanStatus.set("Identificando equipo...");
       const result: any = await this.apiResponseS
-        .onGetItem(
-          Endpoints.RefactorMantenimiento.fireEquipmentResolveById(segments[0]),
-        )
+        .onGetItem(Endpoints.FireEquipment.resolveById(segments[0]))
         .catch(() => null);
       if (!result) {
         this.scanError.set("No se encontré el equipo en el sistema.");

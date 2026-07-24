@@ -14,14 +14,19 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >
+      @let iconName = iconClass() || icon();
       @if (emoji()) {
         <span>{{ emoji() }}</span>
-      } @else if (iconClass()) {
-        @if (isPrimeIcon(iconClass())) {
-          <i [class]="iconClass()"></i>
+      }
+      @if (iconName) {
+        @if (isPrimeIcon(iconName)) {
+          <i [class]="iconName"></i>
         } @else {
-          <app-icon [icon]="iconClass()" />
+          <app-icon [icon]="iconName" />
         }
+      }
+      @if (label(); as labelText) {
+        <span>{{ labelText }}</span>
       }
     </button>
   `,

@@ -2,7 +2,7 @@
   @if (loading()) {
   <div
     class="flex align-items-center justify-content-center py-8"
-    style="min-height: 20rem"
+    
   >
     <app-icon [icon]="'mdi:loading'" class="text-primary text-4xl" />
   </div>
@@ -12,7 +12,7 @@
     <header
       class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden"
     >
-      <div class="bg-yellow-500" style="height: 0.4rem"></div>
+      <div class="bg-yellow-500" ></div>
 
       <div class="p-4 md:p-5">
         <div class="mb-3">
@@ -26,7 +26,7 @@
 
         <p
           class="text-xs font-bold text-color-secondary m-0 mb-2"
-          style="letter-spacing: 0.12em"
+          
         >
           TABLERO DE PENDIENTES
         </p>
@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <div class="bg-yellow-500" style="height: 0.2rem"></div>
+      <div class="bg-yellow-500" ></div>
     </header>
 
     <!-- Grupos por area -->
@@ -83,7 +83,7 @@
         <div class="flex align-items-center gap-3">
           <span
             class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold flex-shrink-0"
-            style="background: var(--ds-luxury-gold-hover)"
+            
           >
             {{ formatIndex(i + 1) }}
           </span>
@@ -112,7 +112,7 @@
             <div class="flex align-items-start gap-3">
               <div
                 class="w-2rem h-2rem border-circle text-white flex align-items-center justify-content-center font-bold flex-shrink-0 text-xs"
-                style="background: var(--ds-luxury-gold-hover)"
+                
               >
                 {{ formatIndex(ti + 1) }}
               </div>

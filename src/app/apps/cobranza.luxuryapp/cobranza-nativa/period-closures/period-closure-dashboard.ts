@@ -1,4 +1,4 @@
-﻿import { DatePipe } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +18,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -111,7 +111,7 @@ export default class PeriodClosureDashboard {
 
   async onLoadData(customerId: string) {
     const res = await this.apiResponseS.onGetItem<PeriodClosureResponseDTO[]>(
-      Endpoints.CobranzaNative.PeriodClosures.byCustomer(
+      Endpoints.CobranzaCore.PeriodClosures.byCustomer(
         customerId,
       ),
     );
@@ -124,7 +124,7 @@ export default class PeriodClosureDashboard {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.CobranzaNative.PeriodClosures.close(
+        Endpoints.CobranzaCore.PeriodClosures.close(
           customerId,
         ),
         {
@@ -149,7 +149,7 @@ export default class PeriodClosureDashboard {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.CobranzaNative.PeriodClosures.reopen(
+        Endpoints.CobranzaCore.PeriodClosures.reopen(
           customerId,
         ),
         {

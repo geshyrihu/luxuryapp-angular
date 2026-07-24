@@ -43,7 +43,7 @@
       @if (useBaseUrl()) {
       <span class="text-400 text-xs font-italic">{{ baseUrl }}</span>
       } @if (url()) {
-      <span class="text-300 text-xs ml-auto truncate" style="max-width: 50ch">
+      <span class="text-300 text-xs ml-auto truncate" >
         {{ fullUrl() }}
       </span>
       }
@@ -55,7 +55,7 @@
     <!-- Panel izquierdo: Request -->
     <div
       class="surface-card border-round shadow-1 flex flex-column"
-      style="flex: 1; min-width: 0"
+      
     >
       <lx-tabs [tabs]="reqTabs()" [(activeId)]="activeTabReq" class="flex flex-column h-full">
         <div class="flex-1 overflow-auto">
@@ -170,7 +170,7 @@
     <!-- Panel derecho: Response -->
     <div
       class="surface-card border-round shadow-1 flex flex-column"
-      style="flex: 1; min-width: 0"
+      
     >
       <!-- Status bar -->
       <div
@@ -263,7 +263,7 @@
     </div>
     <div
       class="flex flex-column gap-1"
-      style="max-height: 160px; overflow-y: auto"
+      
     >
       @for (entry of history(); track entry.timestamp) {
       <div

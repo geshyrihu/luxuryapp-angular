@@ -17,7 +17,7 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -103,7 +103,9 @@ export class ProductosForm implements OnInit {
 
     // Carga de catálogos en paralelo
     const [categories, clasificacion] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>("Categories"),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.categories,
+      ),
       firstValueFrom(this.enumSelectS.productClasificacion()),
     ]);
 

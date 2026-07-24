@@ -36,7 +36,7 @@ import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { ButtonModule } from "primeng/button";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -202,7 +202,9 @@ export class ManualsAndProcessesEditor implements OnInit {
 
   onLoadRoles(): void {
     this.apiS
-      .onGetSelectItem<SelectItemDto[]>("roles-for-announcements")
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.rolesForAnnouncements,
+      )
       .then((res) => {
         const groupedRoles = (res || []).reduce((acc: any[], curr) => {
           const groupName = curr.group || "Otros";

@@ -1,4 +1,4 @@
-﻿import { DatePipe, DecimalPipe } from "@angular/common";
+import { DatePipe, DecimalPipe } from "@angular/common";
 import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -16,7 +16,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -132,7 +132,7 @@ export default class PaymentList {
 
     const result = await this.apiResponseS.onGetItem<
       CobranzaPaymentResponseDTO[]
-    >(Endpoints.CobranzaNative.Payments.customer(customerId));
+    >(Endpoints.CobranzaCore.Payments.customer(customerId));
 
     this.dataSignal.set(result ?? []);
   }
@@ -197,7 +197,7 @@ export default class PaymentList {
     }
 
     const success = await this.apiResponseS.onPost(
-      Endpoints.CobranzaNative.Payments.cancel(item.id),
+      Endpoints.CobranzaCore.Payments.cancel(item.id),
       { reason: reason.trim() },
     );
 

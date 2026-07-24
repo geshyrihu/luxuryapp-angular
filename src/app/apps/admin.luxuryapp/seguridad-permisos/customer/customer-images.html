@@ -12,14 +12,14 @@
     <app-icon
       [icon]="'mdi:loading'"
       class="ds-animate-spin text-primary mb-2"
-      style="font-size: 2.5rem"
+      
     />
     <p class="text-700 font-medium m-0">Subiendo imágenes...</p>
     } @else {
     <app-icon
       [icon]="'mdi:cloud-upload'"
       class="mb-2"
-      style="font-size: 2.5rem"
+      
     />
     <p class="text-700 font-medium m-0">
       Arrastra imágenes aquí o haz clic para seleccionar
@@ -34,7 +34,7 @@
       accept="image/*"
       multiple
       (change)="onFileSelect($event)"
-      style="display: none"
+      class="hidden"
     />
   </div>
 
@@ -54,7 +54,7 @@
     <app-icon
       [icon]="'mdi:loading'"
       class="ds-animate-spin text-primary"
-      style="font-size: 3rem"
+      
     />
   </div>
   } @else { @if (hasImages()) {
@@ -92,7 +92,7 @@
     <app-icon
       [icon]="'mdi:image-multiple'"
       class="text-300 mb-2"
-      style="font-size: 3rem"
+      
     />
     <p class="text-500 m-0">No hay imágenes aún</p>
   </div>

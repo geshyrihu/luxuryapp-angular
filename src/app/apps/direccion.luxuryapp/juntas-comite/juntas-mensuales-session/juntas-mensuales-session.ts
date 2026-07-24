@@ -14,10 +14,11 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -179,8 +180,8 @@ export class JuntasMensualesSession {
     if (!customerId && !this.canViewAllCustomers()) return;
 
     const url = this.canViewAllCustomers()
-      ? "junta-mensual-sessions"
-      : `JuntaMensualSession?customerId=${customerId}`;
+      ? Endpoints.JuntaMensualSession.base
+      : Endpoints.JuntaMensualSession.byCustomer(customerId);
 
     this.loading.set(true);
     this.apiResponseS
@@ -207,7 +208,9 @@ export class JuntasMensualesSession {
     this.selectedId.set(id);
     this.detailLoading.set(true);
     this.apiResponseS
-      .onGetItem<IJuntaMensualSessionDetail>(`junta-mensual-sessions/${id}/detail`)
+      .onGetItem<IJuntaMensualSessionDetail>(
+        Endpoints.JuntaMensualSession.detail(id),
+      )
       .then((result) => {
         this.selectedDetail.set(result || null);
       })
@@ -254,7 +257,7 @@ export class JuntasMensualesSession {
 
     this.apiResponseS
       .onPost<IJuntaMensualSessionListItem>(
-        `junta-mensual-sessions/${detail.id}/meeting/create`,
+        Endpoints.JuntaMensualSession.createMeeting(detail.id),
         {},
       )
       .then((result) => {
@@ -275,7 +278,7 @@ export class JuntasMensualesSession {
 
     this.apiResponseS
       .onPost<IJuntaMensualSessionListItem>(
-        `junta-mensual-sessions/${detail.id}/cancel`,
+        Endpoints.JuntaMensualSession.cancel(detail.id),
         {
           reason:
             "Sesion cancelada desde el modulo central de juntas mensuales.",

@@ -14,7 +14,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ButtonType } from "src/app/core/enums/button-type.enum";
@@ -83,7 +83,7 @@ export class BitacoraAcceso {
 
   private onLoadData(fechaInicial: string, fechaFinal: string): void {
     // óCORRECCIóN! Leemos el valor del customerId con paróntesis.
-    const urlApi = Endpoints.AccessHistory.byCustomerAndRange(
+    const urlApi = Endpoints.UserActivityHistory.byCustomerAndRange(
       this.customerIdS.customerId(),
       fechaInicial,
       fechaFinal,

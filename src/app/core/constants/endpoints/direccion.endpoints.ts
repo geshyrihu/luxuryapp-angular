@@ -1,17 +1,24 @@
 export const EndpointsDireccion = {
+  DireccionDashboard: {
+    agendaSemanal: (fecha: string) => `direccion-dashboard/agenda-semanal?fecha=${fecha}`,
+    agendaMeses: (meses: number) => `direccion-dashboard/agenda-meses?meses=${meses}`,
+    contratosPorVencer: "direccion-dashboard/contratos-por-vencer",
+    contratosVigentes: "direccion-dashboard/contratos-vigentes",
+    personalAusente: "direccion-dashboard/personal-ausente",
+    reclutamientoResumen: "direccion-dashboard/reclutamiento-resumen",
+    tareasLegal: "direccion-dashboard/tareas-legal",
+  },
   AsambleaChecklist: {
     bySession: (sessionId: string) => `asamblea-checklist/session/${sessionId}`,
     updateStatus: (id: string) => `asamblea-checklist/${id}/status`,
   },
-  AsambleaChecklistTemplate: {
-    create: "asamblea-checklist-template",
-    delete: (id: string) => `asamblea-checklist-template/${id}`,
-    getAll: "asamblea-checklist-template",
-    getById: (id: string) => `asamblea-checklist-template/${id}`,
-    update: (id: string) => `asamblea-checklist-template/${id}`,
-  },
   JuntaMensualSession: {
+    base: "junta-mensual-sessions",
+    byCustomer: (customerId: string) =>
+      `junta-mensual-sessions/customer/${customerId}`,
     detail: (sessionId: string) => `junta-mensual-sessions/${sessionId}/detail`,
+    createMeeting: (id: string) => `junta-mensual-sessions/${id}/meeting/create`,
+    cancel: (id: string) => `junta-mensual-sessions/${id}/cancel`,
     reschedule: (id: string) => `junta-mensual-sessions/${id}/reschedule`,
   },
   MeetingAdministracion: {

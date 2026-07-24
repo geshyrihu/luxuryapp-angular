@@ -9,12 +9,12 @@ import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
-import { ButtonModule } from "primeng/button";
-import { DividerModule } from "primeng/divider";
-import { InputTextModule } from "primeng/inputtext";
-import { MessageModule } from "primeng/message";
-import { TableModule } from "primeng/table";
-import { TabsModule } from "primeng/tabs";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
+import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
+import { MessageModule } from "@ui/web/primeng-message/primeng-message";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { TabsModule } from "@ui/web/primeng-tabs/primeng-tabs";
 
 const PATTERNS_LABELS: Record<string, string> = {
   complexcard: "Complex Card",

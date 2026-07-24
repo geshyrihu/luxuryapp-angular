@@ -13,7 +13,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { BrevoEmailLogDto } from "./interfaces/brevo-email-log.interface";
 import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";

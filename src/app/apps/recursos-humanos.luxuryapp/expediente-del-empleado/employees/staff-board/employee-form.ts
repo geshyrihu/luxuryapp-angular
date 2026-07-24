@@ -11,7 +11,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxPanelMenu } from "@ui/adaptive/panel-menu/panel-menu";
-import { MenuItem } from "primeng/api";
+import { MenuItem } from "@ui/web/primeng-api/primeng-api";
 import { EmployeeReclutamiento } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/employee-reclutamiento";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";

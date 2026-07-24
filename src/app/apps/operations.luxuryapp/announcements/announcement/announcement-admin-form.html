@@ -17,7 +17,7 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <!-- SECCIóN 1: DATOS PRINCIPALES DEL ANUNCIO -->
-  <div class="grid" style="min-height: 600px">
+  <div class="grid min-h-screen">
     <!-- Columna Izquierda -->
     <div class="col-12 md:col-3">
       <custom-input-text-signal
@@ -153,7 +153,7 @@
       <div class="editor-container">
         <lx-editor
           formControlName="content"
-          [style]="{ height: '350px', 'min-height': '350px' }"
+          class="h-20rem block"
           [placeholder]="'Ingrese el contenido del anuncio aquó...'"
         ></lx-editor>
       </div>
@@ -181,8 +181,7 @@
                 <a
                   [href]="item.filePath"
                   target="_blank"
-                  class="text-primary hover:underline text-sm overflow-hidden text-overflow-ellipsis"
-                  style="max-width: 200px"
+                  class="text-primary hover:underline text-sm overflow-hidden text-overflow-ellipsis w-10rem inline-block white-space-nowrap"
                 >
                   <app-icon [icon]="'mdi:file-document-outline'" class="mr-2" />
                   {{ item.fileName }}
@@ -248,7 +247,7 @@
               [multiple]="true"
               [metaKeySelection]="false"
               optionValue="value"
-              [style]="{ height: '300px' }"
+              class="h-20rem block"
               [listStyle]="{'max-height': '300px'}"
               [filter]="true"
             >
@@ -285,7 +284,7 @@
               [multiple]="true"
               [metaKeySelection]="false"
               optionValue="value"
-              [style]="{ height: '300px' }"
+              class="h-20rem block"
               [listStyle]="{'max-height': '300px'}"
               [filter]="true"
             >

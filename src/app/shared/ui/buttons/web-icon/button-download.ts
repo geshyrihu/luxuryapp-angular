@@ -14,7 +14,7 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'fluent-color:cloud-download-16'" />
+      <app-icon [icon]="iconClass() || 'flat-color-icons:download'" />
     </button>
   `,
 })

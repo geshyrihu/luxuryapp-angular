@@ -18,9 +18,9 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { checkmarkCircleOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { SelectModule } from "primeng/select";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { SelectModule } from "@ui/web/primeng-select/primeng-select";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -84,7 +84,7 @@ export class OrdenCompraPagadas {
     });
   }
   onLoadData(type: any) {
-    const urlApi = Endpoints.RefactorSupplier.ordenCompraPagadasByIdById(
+    const urlApi = Endpoints.PurchaseOrders.listPagadas(
       this.customerIdS.customerId(),
       type,
     );

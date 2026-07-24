@@ -1,4 +1,4 @@
-﻿import { NgClass } from "@angular/common";
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +18,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { layersOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -77,7 +77,7 @@ export default class ChargeTypeList {
     const result = await this.apiResponseS.onGetItem<
       ChargeTypeCatalogResponseDTO[]
     >(
-      Endpoints.CobranzaNative.ChargeTypes.customer(customerId),
+      Endpoints.CobranzaCore.ChargeTypes.customer(customerId),
     );
 
     this.dataSignal.set(result ?? []);
@@ -102,7 +102,7 @@ export default class ChargeTypeList {
 
     this.apiResponseS
       .onDelete(
-        Endpoints.CobranzaNative.ChargeTypes.delete(item.id),
+        Endpoints.CobranzaCore.ChargeTypes.delete(item.id),
       )
       .then((res) => {
         if (res) this.onLoadData();

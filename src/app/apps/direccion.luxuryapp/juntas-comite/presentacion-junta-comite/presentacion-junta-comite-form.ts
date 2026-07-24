@@ -13,8 +13,8 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputFile } from "@ui/inputs/adaptive/input-file/input-file";
-import { ButtonModule } from "primeng/button";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -79,7 +79,7 @@ export class PresentacionJuntaComiteForm implements OnInit {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
     // Validación extra si archivo es requerido y no esté en form validators
-    // El HTML usa !selectedFileName() para deshabilitar botún.
+    // El HTML usa !selectedFileName() para deshabilitar botón.
 
     this.id = this.config.data.id;
     const formValue = this.form.getRawValue();

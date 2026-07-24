@@ -18,7 +18,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { businessOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -85,7 +85,7 @@ export class BankList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList<BankDto[]>(Endpoints.Banks.getAll)
+      .onGetList<BankDto[]>(Endpoints.Catalogs.Banks.getAll)
       .then((result) => {
         if (result) this.dataSignal.set(result);
       });
@@ -94,7 +94,7 @@ export class BankList implements OnInit {
   // Funcion para eliminar un banco y refres
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.Banks.delete(id))
+      .onDelete(Endpoints.Catalogs.Banks.delete(id))
       .then((response: boolean) => {
         if (response) {
           // Actualizamos el signal para eliminar el elemento de la lista

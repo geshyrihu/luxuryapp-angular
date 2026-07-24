@@ -134,12 +134,12 @@
         </table>
 
         <div class="mt-4">
-          <div style="position: relative; width: 100%; height: 280px">
+          <div >
             <app-chart-wrapper
               type="pie"
               [data]="chartData()!"
               [options]="chartOptions"
-              style="width: 100%; height: 100%"
+              
             />
           </div>
         </div>
@@ -299,15 +299,11 @@
           <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-            style="
-              width: 38px;
-              height: 38px;
-              background: var(--ds-info-light, #e0f2fe);
-            "
+            
           >
             <app-icon
               icon="mdi:bank-transfer"
-              style="font-size: 1.1rem; color: var(--ds-info)"
+              
             />
           </div>
           <div class="flex-1 min-w-0 ion-text-wrap">

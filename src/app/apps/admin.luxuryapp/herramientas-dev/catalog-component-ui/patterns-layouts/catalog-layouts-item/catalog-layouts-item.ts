@@ -6,9 +6,9 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ButtonModule } from "primeng/button";
-import { DividerModule } from "primeng/divider";
-import { TagModule } from "primeng/tag";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 
 const LAYOUTS_LABELS: Record<string, string> = {
   fullwidth: "Full Width",

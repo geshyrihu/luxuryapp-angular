@@ -10,8 +10,8 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { ServiceOrderForm } from "src/app/apps/operations.luxuryapp/field-service/service-order/service-order-form";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -53,10 +53,7 @@ export class ServiceHistoryMachinery implements OnInit {
   }
 
   onLoadData() {
-    const urlApi =
-      Endpoints.RefactorMantenimiento.machineriesServiceHistoryById(
-        this.config.data.id,
-      );
+    const urlApi = Endpoints.Machineries.serviceHistory(this.config.data.id);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));

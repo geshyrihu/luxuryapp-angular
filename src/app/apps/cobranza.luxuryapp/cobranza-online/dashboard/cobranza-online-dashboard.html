@@ -7,12 +7,7 @@
         <div class="flex align-items-center gap-2 mb-2">
           <span
             class="inline-flex align-items-center justify-content-center border-round-xl"
-            style="
-              width: 2.5rem;
-              height: 2.5rem;
-              background: var(--ds-border);
-              color: var(--ds-primary);
-            "
+            
           >
             <app-icon [icon]="'mdi:chart-line'" class="text-sm" />
           </span>
@@ -34,7 +29,7 @@
           <input
             type="date"
             class="p-inputtext p-component p-inputtext-sm"
-            style="padding: 0.4rem"
+            
             [value]="currentDate()"
             (change)="onDateChange($any($event.target).value)"
           />
@@ -178,7 +173,7 @@
     <div class="col-12 md:col-6 xl:col-3">
       <div class="co-panel co-kpi p-3">
         <div class="co-kpi-label">Abonos del mes</div>
-        <div class="co-kpi-value mt-3" style="color: var(--co-good)">
+        <div class="co-kpi-value mt-3" >
           {{ dashboard()?.kpis?.totalCollectedCurrentMonth | currency:
           "MXN":"symbol":"1.0-0" }}
         </div>
@@ -193,7 +188,7 @@
     <div class="col-12 md:col-6 xl:col-3">
       <div class="co-panel co-kpi p-3">
         <div class="co-kpi-label">Saldo neto del mes</div>
-        <div class="co-kpi-value mt-3" style="color: var(--co-bad)">
+        <div class="co-kpi-value mt-3" >
           {{ dashboard()?.kpis?.netBalanceCurrentMonth | currency:
           "MXN":"symbol":"1.0-0" }}
         </div>
@@ -230,7 +225,7 @@
     <div class="co-chip-grid mb-3">
       <div class="co-chip-card">
         <div class="co-kpi-label">Mtto vigente (Cargos)</div>
-        <div class="co-kpi-value mt-2" style="font-size: 1.35rem">
+        <div class="co-kpi-value mt-2" >
           {{ currentCharges.maintenanceFee | currency: "MXN":"symbol":"1.0-0" }}
         </div>
       </div>
@@ -238,7 +233,7 @@
         <div class="co-kpi-label">Mtto cobrado (Abonos)</div>
         <div
           class="co-kpi-value mt-2"
-          style="font-size: 1.35rem; color: var(--co-good)"
+          
         >
           {{ currentCharges.maintenanceCollected | currency:
           "MXN":"symbol":"1.0-0" }}
@@ -246,14 +241,14 @@
       </div>
       <div class="co-chip-card">
         <div class="co-kpi-label">Extraordinaria vigente</div>
-        <div class="co-kpi-value mt-2" style="font-size: 1.35rem">
+        <div class="co-kpi-value mt-2" >
           {{ currentCharges.extraordinaryFee | currency: "MXN":"symbol":"1.0-0"
           }}
         </div>
       </div>
       <div class="co-chip-card">
         <div class="co-kpi-label">Cuota mensual total</div>
-        <div class="co-kpi-value mt-2" style="font-size: 1.35rem">
+        <div class="co-kpi-value mt-2" >
           {{ currentCharges.monthlyFeeTotal | currency: "MXN":"symbol":"1.0-0"
           }}
         </div>
@@ -309,14 +304,14 @@
       </div>
       <div class="text-right">
         <div class="co-kpi-label">Balance mensual</div>
-        <div class="text-xl font-semibold" style="color: var(--co-bad)">
+        <div class="text-xl font-semibold" >
           {{ dashboard()?.kpis?.netBalanceCurrentMonth | currency:
           "MXN":"symbol":"1.0-0" }}
         </div>
       </div>
     </div>
 
-    <div class="flex-1 w-full" style="min-height: 250px">
+    <div class="flex-1 w-full" >
       <div class="grid mt-2">
         <div class="col-12 xl:col-6">
           <div class="border-round border-1 surface-border mb-4">
@@ -335,7 +330,7 @@
             >
               <div class="card-header">
                 <tr>
-                  <th style="width: 3rem">ID</th>
+                  <th >ID</th>
                   <th>CLASIFICACIÓN</th>
                   <th class="text-right">SALDO</th>
                   <th class="text-right">%</th>
@@ -374,7 +369,7 @@
             >
               <div class="card-header">
                 <tr>
-                  <th style="width: 3rem">ID</th>
+                  <th >ID</th>
                   <th>CLASIFICACIÓN</th>
                   <th class="text-right">SALDO</th>
                   <th class="text-right">%</th>
@@ -400,7 +395,7 @@
         <div
           class="col-12 xl:col-6 flex align-items-center justify-content-center"
         >
-          <div class="w-full" style="min-height: 250px">
+          <div class="w-full" >
             <app-pie-chart
               [dataGrafico]="pieChartData()"
               [colorScheme]="pieColorScheme()"
@@ -519,7 +514,7 @@
           <td class="text-right">
             {{ debtor.extraordinaryBalance | currency: 'MXN':'symbol':'1.0-0' }}
           </td>
-          <td class="text-right font-bold" style="color: var(--co-bad)">
+          <td class="text-right font-bold" >
             {{ debtor.balance | currency: 'MXN':'symbol':'1.0-0' }}
           </td>
         </tr>
@@ -540,7 +535,7 @@
           <td class="text-right font-bold">
             {{ totalDebtorsExtraordinary() | currency: 'MXN':'symbol':'1.0-0' }}
           </td>
-          <td class="text-right font-bold" style="color: var(--co-bad)">
+          <td class="text-right font-bold" >
             {{ totalDebtorsBalance() | currency: 'MXN':'symbol':'1.0-0' }}
           </td>
         </tr>

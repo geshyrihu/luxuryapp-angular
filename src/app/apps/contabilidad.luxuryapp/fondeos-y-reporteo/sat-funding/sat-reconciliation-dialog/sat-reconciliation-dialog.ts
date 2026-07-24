@@ -1,9 +1,9 @@
 import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MessageModule } from "primeng/message";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { MessageModule } from "@ui/web/primeng-message/primeng-message";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";

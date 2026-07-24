@@ -19,7 +19,7 @@
       <img
         [src]="qrSrc(c.qrImageBase64)"
         alt="Código QR"
-        style="width: 220px; height: 220px; image-rendering: pixelated"
+        
       />
       <p class="text-500 text-sm m-0">
         Código: <strong>{{ c.publicCode }}</strong> · Estado: {{ c.status }}
@@ -29,7 +29,7 @@
       }
 
       <div class="flex align-items-end justify-content-center gap-2 mt-3">
-        <div style="min-width: 180px">
+        <div >
           <custom-input-select-signal
             [control]="validityControl"
             label="Vigencia"
@@ -51,7 +51,7 @@
 <div class="card p-4 mt-3">
   <h3 class="text-lg font-semibold mb-3">Invitaciones</h3>
   <div class="flex align-items-end gap-2 mb-3">
-    <div style="min-width: 200px">
+    <div >
       <custom-input-select-signal
         [control]="channelControl"
         label="Canal"

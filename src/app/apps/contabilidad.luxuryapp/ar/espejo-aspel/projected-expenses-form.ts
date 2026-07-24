@@ -13,7 +13,7 @@ import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -101,13 +101,17 @@ export class ProjectedExpensesForm implements OnInit {
   private async loadAccountingCatalogs(): Promise<void> {
     this.cb_accountingCatalogs = await this.apiResponseS.onGetSelectItem<
       SelectItemDto[]
-    >(`AccountingCatalogs/${this.customerIdS.customerId()}`);
+    >(
+      Endpoints.SelectItems.accountingCatalogsByCustomer(
+        this.customerIdS.customerId(),
+      ),
+    );
   }
 
   private async loadProviders(): Promise<void> {
     this.cb_providers = await this.apiResponseS.onGetSelectItem<
       SelectItemDto[]
-    >(`providers/${this.customerIdS.customerId()}`);
+    >(Endpoints.SelectItems.providers(this.customerIdS.customerId()));
   }
 
   private async loadMonths(): Promise<void> {
@@ -116,13 +120,13 @@ export class ProjectedExpensesForm implements OnInit {
 
   private async loadExpenseTypes(): Promise<void> {
     this.cb_expenseTypes = await firstValueFrom(
-      this.enumSelectS.onLoadEnumList("e-expense-type"),
+      this.enumSelectS.onLoadEnumList("expense-type"),
     );
   }
 
   private async loadRecurrences(): Promise<void> {
     this.cb_recurrences = await firstValueFrom(
-      this.enumSelectS.onLoadEnumList("e-recurrence"),
+      this.enumSelectS.onLoadEnumList("recurrence"),
     );
   }
 
@@ -143,7 +147,7 @@ export class ProjectedExpensesForm implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.RefactorContabilidad.projectedExpensesByIdById(
+        Endpoints.ProjectedExpenses.getById(
           this.customerIdS.customerId(),
           this.id,
         ),
@@ -209,10 +213,7 @@ export class ProjectedExpensesForm implements OnInit {
       }
       formValue.initialMonth = formValue.executionMonth;
       this.apiResponseS
-        .onPost(
-          Endpoints.RefactorContabilidad.projectedExpensesRecurrence,
-          formValue,
-        )
+        .onPost(Endpoints.ProjectedExpenses.recurrence, formValue)
         .then((result) => {
           this.ref.close(true);
         })
@@ -221,7 +222,7 @@ export class ProjectedExpensesForm implements OnInit {
         });
     } else if (this.id === "") {
       this.apiResponseS
-        .onPost(Endpoints.RefactorContabilidad.projectedExpenses, formValue)
+        .onPost(Endpoints.ProjectedExpenses.create, formValue)
         .then((result) => {
           this.ref.close(true);
         })
@@ -231,7 +232,7 @@ export class ProjectedExpensesForm implements OnInit {
     } else {
       this.apiResponseS
         .onPut(
-          Endpoints.RefactorContabilidad.projectedExpensesByIdById(
+          Endpoints.ProjectedExpenses.update(
             this.customerIdS.customerId(),
             this.id,
           ),

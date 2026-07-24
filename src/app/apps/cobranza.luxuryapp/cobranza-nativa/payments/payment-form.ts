@@ -1,11 +1,11 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -114,7 +114,7 @@ export class PaymentForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaNative.Payments.getById(this.id),
+      Endpoints.CobranzaCore.Payments.getById(this.id),
     );
     if (!res) return;
     if (res.paymentDate) {
@@ -147,7 +147,7 @@ export class PaymentForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.CobranzaNative.Payments.create,
+      endpoint: Endpoints.CobranzaCore.Payments.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

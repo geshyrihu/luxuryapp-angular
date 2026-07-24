@@ -9,29 +9,19 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <a
-          [ngbTooltip]="item.document"
-          placement="top"
-          target="_blank"
-          [href]="item.document"
-          class="pointer text-danger mr-1"
+        <iw-button-item
+          [tooltip]="'Visualizar ' + item.nameDocument"
+          (clicked)="viewPdf(item.document, item.nameDocument)"
         >
-          <app-icon
-            [icon]="'mdi:download'"
-            class="icon icon- label-icon text-danger"
-          />
-          Pdf
-        </a>
+          <app-icon [icon]="'mdi:file-pdf-box'" class="icon icon- label-icon text-danger" />
+        </iw-button-item>
       </td>
       <td>{{ item.nameDocument }}</td>
-
-      <!-- Opciones -->
       <td>
         <div class="flex justify-content-center">
           <iw-button-delete (confirmed)="deleteDoc(item.id)" />
         </div>
       </td>
-      <!-- Opciones -->
     </tr>
   </ng-template>
   <ng-template #emptymessage>

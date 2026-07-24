@@ -63,7 +63,7 @@
       <th
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
         class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
-        style="padding: 0.5rem"
+        
       >
         <app-icon [icon]="'mdi:briefcase'" class="mr-2" />GESTIóN DEL PUESTO DE
         TRABAJO
@@ -71,7 +71,7 @@
       <th
         colspan="1"
         class="text-center bg-bluegray-50 text-bluegray-700 font-bold border-bottom-2 border-bluegray-200 border-left-2"
-        style="padding: 0.5rem"
+        
       >
         <app-icon [icon]="'mdi:account'" class="mr-2" />COLABORADOR ASIGNADO
       </th>
@@ -79,7 +79,7 @@
 
     <!-- ⚪ Fila de Tútulos de Columna -->
     <tr>
-      <th style="width: 18%" pSortableColumn="applicationRoleName">
+      <th  pSortableColumn="applicationRoleName">
         PUESTO <p-sorticon field="applicationRoleName" />
       </th>
       <th class="w-32" pSortableColumn="turno">
@@ -90,7 +90,7 @@
       <th class="w-40 no-print">SUELDOS (PRE / ACT)</th>
       }
       <th class="w-52 text-center">ACCIONES PUESTO</th>
-      <th style="width: 30%" class="border-left-2">NOMBRE / PERFIL</th>
+      <th  class="border-left-2">NOMBRE / PERFIL</th>
     </tr>
   </ng-template>
 
@@ -133,7 +133,7 @@
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
       AspRole.Administrador, AspRole.SuperUsuario])) {
       <td class="no-print">
-        <div class="flex flex-column gap-1" style="max-width: 140px">
+        <div class="flex flex-column gap-1" >
           <div
             class="flex justify-content-between border-bottom-1 border-200 pb-1"
           >
@@ -258,7 +258,7 @@
           >
             <div class="flex align-items-center gap-2">
               <app-icon [icon]="'mdi:account-group'" class="text-400" />
-              <span class="text-sm font-bold" style="color: var(--p-orange-600)"
+              <span class="text-sm font-bold" 
                 >VACANTE</span
               >
             </div>
@@ -390,7 +390,7 @@
     <div class="drawer-position-card">
       <div class="flex align-items-center mb-1">
         <app-icon [icon]="'mdi:briefcase'" />
-        <span class="font-bold" style="color: var(--ds-primary)"
+        <span class="font-bold" 
           >{{ pos.folio }}</span
         >
       </div>
@@ -414,10 +414,7 @@
     <!-- DS: menu-item (dropdown/_dropdowns.scss) é flex, hover bg, cursor pointer -->
     <div
       class="menu-item"
-      style="
-        border-radius: var(--ds-radius-lg);
-        border: 1px solid var(--ds-border);
-      "
+      
       (click)="onAssignFromDrawer(emp)"
     >
       <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
@@ -425,7 +422,7 @@
         <span class="font-semibold truncate">{{ emp.fullName }}</span>
         <span class="text-sm text-500 truncate">{{ emp.userName }}</span>
       </div>
-      <app-icon [icon]="'mdi:chevron-right'" style="color: var(--ds-primary)" />
+      <app-icon [icon]="'mdi:chevron-right'"  />
     </div>
     } }
   </div>
@@ -476,13 +473,7 @@
     @for (pos of inactivePositions(); track pos.id) {
     <div
       class="card card--bordered"
-      style="
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 14px;
-        gap: 12px;
-      "
+      
     >
       <div class="flex flex-column gap-1 min-w-0">
         <span class="text-label">{{ pos.folio }}</span>
@@ -512,12 +503,7 @@
     @for (emp of inactiveEmployees(); track emp.applicationUserId) {
     <div
       class="card card--bordered"
-      style="
-        flex-direction: row;
-        align-items: center;
-        gap: 12px;
-        padding: 10px 14px;
-      "
+      
     >
       <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
       <div class="flex flex-column min-w-0 flex-grow-1">

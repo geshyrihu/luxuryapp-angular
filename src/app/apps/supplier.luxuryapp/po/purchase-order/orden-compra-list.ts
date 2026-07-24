@@ -8,8 +8,8 @@ import {
   signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -227,7 +227,7 @@ export class OrdenCompraList {
     const statusCompra = this.statusCompra();
     const tipoGasto = this.tipoGasto();
 
-    const url = Endpoints.RefactorSupplier.ordenCompraListByIdByIdById(
+    const url = Endpoints.PurchaseOrders.list(
       customerId,
       statusCompra,
       tipoGasto,

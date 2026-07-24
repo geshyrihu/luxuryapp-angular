@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type { TareasLegalResumenDto } from "./tareas-legal-card.model";
 
@@ -48,7 +49,7 @@ export class TareasLegalCard implements OnInit {
   private async cargar(): Promise<void> {
     this.cargando.set(true);
     const data = await this.apiResponseS.onGetItem<TareasLegalResumenDto>(
-      "direccion-dashboard/tareas-legal",
+      Endpoints.DireccionDashboard.tareasLegal,
       false,
     );
     this.resumen.set(data ?? null);

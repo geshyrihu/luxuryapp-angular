@@ -9,8 +9,8 @@ import {
 import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -46,9 +46,7 @@ export class ContMinutaSeguimientos implements OnInit {
     // Mostrar un mensaje de carga
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorContabilidad.contabilidadMinutaListaSeguimientosById(
-          this.id,
-        ),
+        Endpoints.ContabilidadMinuta.followUps(this.id),
       )
       .then((result: any) => {
         this.dataSignal.set(result);
@@ -57,9 +55,7 @@ export class ContMinutaSeguimientos implements OnInit {
 
   onDeleteSeguimiento(id: any) {
     this.apiResponseS
-      .onDelete(
-        Endpoints.RefactorContabilidad.meetingDertailsSeguimientoById(id),
-      )
+      .onDelete(Endpoints.ContabilidadMinuta.deleteFollowUp(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((currentData) =>

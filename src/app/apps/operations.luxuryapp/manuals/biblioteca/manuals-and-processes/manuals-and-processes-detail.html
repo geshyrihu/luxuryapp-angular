@@ -2,7 +2,7 @@
   @if (loading()) {
   <div
     class="flex align-items-center justify-content-center py-8"
-    style="min-height: 20rem"
+    
   >
     <app-icon
       [icon]="'mdi:loading'"
@@ -14,7 +14,7 @@
     <header
       class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden"
     >
-      <div class="bg-yellow-500" style="height: 0.4rem"></div>
+      <div class="bg-yellow-500" ></div>
 
       <div class="p-4 md:p-5 border-bottom-1 surface-border">
         <div
@@ -26,7 +26,7 @@
                 [src]="logoPath"
                 alt="Luxury Building Group"
                 class="block h-3rem md:h-4rem w-auto"
-                style="object-fit: contain; max-width: 250px;"
+                
               />
             </div>
             <div>
@@ -84,7 +84,7 @@
 
         <p
           class="text-xs font-bold text-color-secondary m-0 mb-2"
-          style="letter-spacing: 0.12em"
+          
         >
           {{ manual()!.folio }}
         </p>
@@ -148,7 +148,7 @@
         </div>
       </div>
 
-      <div class="bg-yellow-500" style="height: 0.2rem"></div>
+      <div class="bg-yellow-500" ></div>
     </header>
 
     <div class="grid">
@@ -160,7 +160,7 @@
           <div class="flex align-items-center gap-3 mb-3">
             <span
               class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
-              style="background: var(--ds-luxury-gold-hover)"
+              
             >
               01
             </span>
@@ -173,7 +173,7 @@
           </div>
           <p
             class="m-0 line-height-3 text-color-secondary"
-            style="white-space: pre-wrap"
+            
           >
             {{ manual()!.objetivo }}
           </p>
@@ -187,7 +187,7 @@
           <div class="flex align-items-center gap-3 mb-3">
             <span
               class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
-              style="background: var(--ds-luxury-gold-hover)"
+              
             >
               02
             </span>
@@ -200,7 +200,7 @@
           </div>
           <p
             class="m-0 line-height-3 text-color-secondary"
-            style="white-space: pre-wrap"
+            
           >
             {{ manual()!.marcoLegal }}
           </p>
@@ -218,7 +218,7 @@
         <div class="flex align-items-center gap-3">
           <span
             class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
-            style="background: var(--ds-luxury-gold-hover)"
+            
           >
             03
           </span>
@@ -251,7 +251,7 @@
           <div class="flex align-items-start gap-3">
             <div
               class="w-3rem h-3rem border-circle text-white flex align-items-center justify-content-center font-bold flex-shrink-0"
-              style="background: var(--ds-luxury-gold-hover)"
+              
             >
               {{ displayStepNumber(paso.id) }}
             </div>
@@ -265,7 +265,7 @@
               @if (paso.descripcion) {
               <p
                 class="m-0 line-height-3 text-color-secondary"
-                style="white-space: pre-wrap"
+                
               >
                 {{ paso.descripcion }}
               </p>
@@ -293,7 +293,7 @@
           @if (paso.descripcion) {
           <p
             class="m-0 line-height-3 text-color-secondary"
-            style="white-space: pre-wrap"
+            
           >
             {{ paso.descripcion }}
           </p>
@@ -326,7 +326,7 @@
             (enlace.esVideo) { @if (safeUrl(enlace.urlEnlace)) {
             <div
               class="border-round-xl overflow-hidden border-1 surface-border"
-              style="aspect-ratio: 16/9"
+              
             >
               <iframe
                 [src]="safeUrl(enlace.urlEnlace)"
@@ -382,7 +382,7 @@
           <div class="flex align-items-center gap-3 mb-4">
             <span
               class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
-              style="background: var(--ds-luxury-gold-hover)"
+              
             >
               04
             </span>
@@ -426,7 +426,7 @@
           <div class="flex align-items-center gap-3 mb-4">
             <span
               class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
-              style="background: var(--ds-luxury-gold-hover)"
+              
             >
               05
             </span>
@@ -455,7 +455,7 @@
                   @if (v.descripcionCambio) {
                   <p
                     class="m-0 text-sm line-height-3 text-color-secondary"
-                    style="white-space: pre-wrap"
+                    
                   >
                     {{ v.descripcionCambio }}
                   </p>

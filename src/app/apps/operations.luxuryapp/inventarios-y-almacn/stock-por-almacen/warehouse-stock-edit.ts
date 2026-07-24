@@ -15,7 +15,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -44,27 +44,36 @@ export class WarehouseStockEdit implements OnInit {
   ref = inject(DynamicDialogRef);
 
   submitting = signal(false);
-  id = signal<number>(0);
+  editId = signal<string | null>(null);
   cb_measurementUnits = signal<SelectItemDto[]>([]);
   cb_almacenes = signal<SelectItemDto[]>([]);
+  formReady = signal(false);
 
-  form = this.formB.nonNullable.group({
-    id: [{ value: 0, disabled: true }],
-    customerId: [this.customerIdS.customerId(), [Validators.required]],
-    productoId: ["", [Validators.required]],
-    almacenId: ["", [Validators.required]],
-    producto: [""],
-    existencia: [0, [Validators.required]],
-    unidadDeMedidaId: ["", [Validators.required]],
-    stockMin: [0, [Validators.required]],
-    stockMax: [0, [Validators.required]],
-    applicationUserId: [this.authS.applicationUserId],
-  });
+  form!: ReturnType<typeof this.buildForm>;
+
+  private buildForm(data?: any) {
+    return this.formB.nonNullable.group({
+      customerId: [data?.customerId ?? this.customerIdS.customerId(), [Validators.required]],
+      productoId: [data?.productoId ?? "", [Validators.required]],
+      almacenId: [data?.almacenId ?? "", [Validators.required]],
+      producto: [data?.producto ?? ""],
+      existencia: [data?.existencia ?? 0, [Validators.required]],
+      unidadDeMedidaId: [data?.unidadDeMedidaId ?? "", [Validators.required]],
+      stockMin: [data?.stockMin ?? 0, [Validators.required]],
+      stockMax: [data?.stockMax ?? 0, [Validators.required]],
+      applicationUserId: [data?.applicationUserId ?? this.authS.applicationUserId],
+    });
+  }
 
   ngOnInit(): void {
     this.onLoadProducts();
-    this.id.set(this.config.data.id);
-    if (this.id() !== 0) this.onLoadData();
+    this.editId.set(this.config.data.id);
+    if (this.editId()) {
+      this.onLoadData();
+    } else {
+      this.form = this.buildForm();
+      this.formReady.set(true);
+    }
   }
 
   onLoadProducts() {
@@ -83,9 +92,12 @@ export class WarehouseStockEdit implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.InventarioProducto.getById(this.id());
+    const urlApi = Endpoints.InventarioProducto.getById(this.editId());
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.form.patchValue(result);
+      if (result) {
+        this.form = this.buildForm(result);
+        this.formReady.set(true);
+      }
     });
   }
 
@@ -93,7 +105,7 @@ export class WarehouseStockEdit implements OnInit {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
     this.submitting.set(true);
-    if (this.id() === 0) {
+    if (!this.editId()) {
       this.apiResponseS
         .onPost(Endpoints.InventarioProducto.create, this.form.getRawValue())
         .then((result: boolean) => {
@@ -102,7 +114,7 @@ export class WarehouseStockEdit implements OnInit {
     } else {
       this.apiResponseS
         .onPut(
-          Endpoints.InventarioProducto.update(this.id()),
+          Endpoints.InventarioProducto.update(this.editId()!),
           this.form.getRawValue(),
         )
         .then((result: boolean) => {

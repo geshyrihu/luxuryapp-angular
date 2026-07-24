@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -142,7 +142,7 @@ export class ChargeForm implements OnInit {
     const res = await this.apiResponseS.onGetItem<
       ChargeTypeCatalogResponseDTO[]
     >(
-      Endpoints.CobranzaNative.ChargeTypes.customer(
+      Endpoints.CobranzaCore.ChargeTypes.customer(
         this.customerId,
       ),
     );
@@ -176,7 +176,7 @@ export class ChargeForm implements OnInit {
 
   async loadTemplates() {
     const res = await this.apiResponseS.onGetItem<any[]>(
-      Endpoints.CobranzaNative.Templates.customer(
+      Endpoints.CobranzaCore.Templates.customer(
         this.customerId,
       ),
     );
@@ -191,7 +191,7 @@ export class ChargeForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaNative.Charges.getById(this.id),
+      Endpoints.CobranzaCore.Charges.getById(this.id),
     );
     if (res) {
       if (res.dueDate) res.dueDate = this.dateS.parseDate(res.dueDate);
@@ -226,7 +226,7 @@ export class ChargeForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.CobranzaNative.Charges.create,
+      endpoint: Endpoints.CobranzaCore.Charges.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

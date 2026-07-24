@@ -19,8 +19,8 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -99,7 +99,7 @@ export class AgendaSupervision implements OnInit {
     this.onLoadUserSupervisor();
 
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(`NombreCorto`)
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.nombreCorto)
       .then((response: any) => {
         this.cb_customers.set(
           response.map((selectList: any) => ({
@@ -127,7 +127,7 @@ export class AgendaSupervision implements OnInit {
   }
 
   onLoadUserSupervisor() {
-    const urlApi = `getlistsupervision`;
+    const urlApi = Endpoints.SelectItems.supervision;
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(urlApi)
       .then((result: any) => {

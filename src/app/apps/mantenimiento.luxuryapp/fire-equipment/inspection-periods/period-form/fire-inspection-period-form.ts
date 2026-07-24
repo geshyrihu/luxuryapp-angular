@@ -12,7 +12,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -71,9 +71,7 @@ export class FireInspectionPeriodForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(
-        Endpoints.RefactorMantenimiento.fireInspectionPeriodById(this.id),
-      )
+      .onGetItem(Endpoints.FireInspectionPeriod.getById(this.id))
       .then((result: any) => {
         this.form.patchValue({
           ...result,
@@ -86,7 +84,7 @@ export class FireInspectionPeriodForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "fire-inspection-period",
+      endpoint: Endpoints.FireInspectionPeriod.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

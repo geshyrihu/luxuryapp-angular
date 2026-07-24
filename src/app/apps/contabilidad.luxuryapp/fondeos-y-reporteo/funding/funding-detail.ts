@@ -12,13 +12,13 @@ import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { LxBadge } from "@ui/adaptive/badge/badge";
-import { MenuItem, SortEvent } from "primeng/api";
+import { MenuItem, SortEvent } from "@ui/web/primeng-api/primeng-api";
 
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar"; // Added
 import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
@@ -228,7 +228,7 @@ export class FundingDetail {
   }
 
   onLoadData(customerId: string) {
-    const urlApi = Endpoints.RefactorContabilidad.fundingDetailsByIdById(
+    const urlApi = Endpoints.Funding.details(
       this.id,
       customerId,
     );
@@ -292,7 +292,7 @@ export class FundingDetail {
   }
 
   onValidate() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingValidateById(this.id);
+    const urlApi = Endpoints.Funding.validate(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.onLoadData(this.customerIdS.customerId());
@@ -301,7 +301,7 @@ export class FundingDetail {
     });
   }
   onAuthorize() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingAuthorizeById(this.id);
+    const urlApi = Endpoints.Funding.authorize(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.onLoadData(this.customerIdS.customerId());
@@ -310,7 +310,7 @@ export class FundingDetail {
     });
   }
   onUnvalidate() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingUnvalidateById(
+    const urlApi = Endpoints.Funding.unvalidate(
       this.id,
     );
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
@@ -322,7 +322,7 @@ export class FundingDetail {
   }
 
   onUnauthorize() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingUnauthorizeById(
+    const urlApi = Endpoints.Funding.unauthorize(
       this.id,
     );
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
@@ -334,7 +334,7 @@ export class FundingDetail {
   }
 
   onConfirm() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingConfirmById(this.id);
+    const urlApi = Endpoints.Funding.confirm(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.onLoadData(this.customerIdS.customerId());
@@ -344,7 +344,7 @@ export class FundingDetail {
   }
 
   onRevokeConfirmation() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingRevokeConfirmationById(
+    const urlApi = Endpoints.Funding.revokeConfirmation(
       this.id,
     );
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
@@ -370,7 +370,7 @@ export class FundingDetail {
 
     // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
     const urlApi =
-      Endpoints.RefactorContabilidad.fundingUpdatePurchasePaidStatusById(
+      Endpoints.Funding.updatePurchasePaidStatus(
         ordenId,
       );
     const body = { isPaid: nuevoEstado };
@@ -450,7 +450,7 @@ export class FundingDetail {
   onRemoveFueraFondeo(ordenCompraId: string): void {
     this.apiResponseS
       .onDelete(
-        Endpoints.RefactorContabilidad.ordenCompraByIdFueraFondeo(
+        Endpoints.Funding.removeOutsideProcessPurchaseOrder(
           ordenCompraId,
         ),
       )
@@ -530,12 +530,12 @@ export class FundingDetail {
   }
 
   onDownloadFilePdf() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingfilePdfById(this.id);
+    const urlApi = Endpoints.FundingFiles.pdf(this.id);
     const nameReport = this.periodo() + ".pdf";
     this.apiResponseS.onDownloadFile(urlApi, nameReport);
   }
   onDownloadInvoces() {
-    const urlApi = `fundingfile/invoices/${this.id}`; // Nota: "invoices" plural y coincidir con backend
+    const urlApi = Endpoints.FundingFiles.invoicesZip(this.id);
     const nameReport = this.periodo() + "_Facturas.zip";
     this.apiResponseS.onDownloadFile(urlApi, nameReport);
   }
@@ -590,7 +590,7 @@ export class FundingDetail {
       .map((orden) => orden.ordenCompraId);
 
     this.apiResponseS
-      .onPut(Endpoints.RefactorContabilidad.fundingUpdateOrder, {
+      .onPut(Endpoints.Funding.updateOrder, {
         ids: allOrderedIds,
       })
       .then(() => {

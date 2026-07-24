@@ -3,9 +3,9 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { MessageModule } from "primeng/message";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { MessageModule } from "@ui/web/primeng-message/primeng-message";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 
 @Component({
   selector: "app-tokens-typography",

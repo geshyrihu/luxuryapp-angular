@@ -18,7 +18,7 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -118,7 +118,7 @@ export class HidranteChecklist implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorMantenimiento.bitacoraHidranteById(this.id))
+      .onGetItem(Endpoints.FireEquipmentLogs.hidrante.getById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
       });
@@ -128,7 +128,7 @@ export class HidranteChecklist implements OnInit {
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "bitacora-hidrante",
+      endpoint: Endpoints.FireEquipmentLogs.hidrante.base,
       id: this.id,
       ref: this.ref ?? undefined,
       submitting: this.submitting,

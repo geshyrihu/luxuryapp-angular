@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskInstance } from "src/app/core/interfaces/recurring-tasks/task-instance.interface";
 import { DateService } from "src/app/core/services/date.service";

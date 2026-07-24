@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   effect,
@@ -11,7 +11,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -88,7 +88,7 @@ export default class ChargeTemplateList {
 
     const result = await this.apiResponseS.onGetItem<
       ChargeTemplateResponseDTO[]
-    >(Endpoints.CobranzaNative.Templates.customer(customerId));
+    >(Endpoints.CobranzaCore.Templates.customer(customerId));
     if (result) {
       this.dataSignal.set(result);
     } else {
@@ -117,7 +117,7 @@ export default class ChargeTemplateList {
   async onDelete(item: ChargeTemplateResponseDTO) {
     this.apiResponseS
       .onDelete(
-        Endpoints.CobranzaNative.Templates.delete(item.id),
+        Endpoints.CobranzaCore.Templates.delete(item.id),
       )
       .then((res) => {
         if (res) this.onLoadData();

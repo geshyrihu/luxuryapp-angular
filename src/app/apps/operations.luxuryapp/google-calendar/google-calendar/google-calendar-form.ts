@@ -21,7 +21,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -707,7 +707,11 @@ export class GoogleCalendarForm implements OnInit {
       const result = await this.apiResponseS.onGetList<
         IGoogleCalendarInviteeSuggestion[]
       >(
-        `responsables-cliente/sugeridos-agenda?customerId=${customerId}&subjectType=${subjectType}&includeSystems=${includeSystems}`,
+        Endpoints.ResponsablesCliente.sugeridosAgenda(
+          customerId,
+          subjectType,
+          includeSystems,
+        ),
       );
 
       const suggestions = Array.isArray(result) ? result : [];

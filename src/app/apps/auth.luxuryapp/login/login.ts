@@ -22,7 +22,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { MessageModule } from "primeng/message";
+import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { catchError, finalize, of, startWith, switchMap } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";

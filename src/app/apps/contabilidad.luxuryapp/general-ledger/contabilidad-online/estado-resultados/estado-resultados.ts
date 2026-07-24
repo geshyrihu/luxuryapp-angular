@@ -9,7 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";

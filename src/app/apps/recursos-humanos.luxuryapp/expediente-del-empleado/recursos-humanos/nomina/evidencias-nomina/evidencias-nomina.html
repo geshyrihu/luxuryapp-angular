@@ -70,7 +70,7 @@
     @for (ev of evidenciasPorTipo()[tipoEntry.value]; track ev.id) {
     <div
       class="border-round p-3 cursor-pointer"
-      style="width: 180px; border: 1px solid var(--surface-border)"
+      
       [style.background]="getCardColor(ev.tipoEvidencia)"
     >
       <div class="flex flex-column align-items-center gap-2">
@@ -80,7 +80,7 @@
         />
         <p
           class="text-xs text-center m-0 font-semibold"
-          style="word-break: break-word"
+          
         >
           {{ ev.fileName }}
         </p>

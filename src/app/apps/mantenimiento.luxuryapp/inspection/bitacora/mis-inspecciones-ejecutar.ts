@@ -20,7 +20,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { map } from "rxjs";
 import { MisInspeccionesAgregarImagenes } from "src/app/apps/mantenimiento.luxuryapp/inspection/bitacora/mis-inspecciones-agregar-imagenes";
 import { AuthService } from "src/app/core/auth/services/auth.service";

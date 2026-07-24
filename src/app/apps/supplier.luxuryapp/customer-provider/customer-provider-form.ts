@@ -9,7 +9,7 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -106,9 +106,11 @@ export class CustomerProviderForm implements OnInit {
   async onLoadSelectItem(): Promise<void> {
     const [providers, categories] = await Promise.all([
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        `providers/${this.customerIdS.customerId()}`,
+        Endpoints.SelectItems.providers(this.customerIdS.customerId()),
       ),
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(`categories`),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.categories,
+      ),
     ]);
 
     this.cb_providers.set(providers as SelectItemDto[]);
@@ -130,8 +132,11 @@ export class CustomerProviderForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "customerprovider",
+      endpoint: this.id
+        ? Endpoints.CustomerProvider.update(this.id)
+        : Endpoints.CustomerProvider.create,
       id: this.id,
+      method: this.id ? "PUT" : "POST",
       ref: this.ref,
       submitting: this.submitting,
       transformPayload: () => {

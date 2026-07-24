@@ -163,11 +163,17 @@ export class RealizarEvaluacion implements OnInit {
   loadInitialData(): void {
     const customerId: string = this.customerIdS.customerId();
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(`employee/${customerId}`)
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.employeesByCustomer(customerId),
+      )
       .then((response: any) => (this.employees = response));
 
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(`EvaluationTemplates/${customerId}`)
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.performanceEvaluationTemplatesByCustomer(
+          customerId,
+        ),
+      )
       .then((response: any) => (this.templates = response));
   }
 

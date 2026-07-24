@@ -12,8 +12,8 @@ import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/butto
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { firstValueFrom } from "rxjs";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";

@@ -1,0 +1,22 @@
+PS D:\repos\luxuryapp-api\client\angular> ng s
+Application bundle generation failed. [29.859 seconds] - 2026-07-17T07:15:13.213Z
+
+X [ERROR] TS2724: '"src/app/core/services/dialog-handler.service"' has no exported member named 'DynamicDialogModule'. Did you mean 'DynamicDialogRef'? [plugin angular-compiler]
+
+    src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/admin-vacaciones-balance/admin-vacaciones-balance.ts:16:9:
+      16 │ import { DynamicDialogModule } from "src/app/core/services/dialog-...
+         ╵          ~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] NG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically. [plugin angular-compiler]
+
+    src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/admin-vacaciones-balance/admin-vacaciones-balance.ts:46:4:
+      46 │     DynamicDialogModule,
+         ╵     ~~~~~~~~~~~~~~~~~~~
+
+  Unknown reference.
+
+    src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/admin-vacaciones-balance/admin-vacaciones-balance.ts:46:4:
+      46 │     DynamicDialogModule,
+         ╵     ~~~~~~~~~~~~~~~~~~~

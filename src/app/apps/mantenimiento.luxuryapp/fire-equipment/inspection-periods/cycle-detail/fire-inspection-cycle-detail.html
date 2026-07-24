@@ -40,14 +40,14 @@
       @if (scanError()) {
         <p class="text-red-600 text-sm mt-2 mb-0">{{ scanError() }}</p>
       }
-      <video #video [hidden]="!scanning()" autoplay playsinline class="w-full mt-2" style="max-height:280px;border-radius:8px;"></video>
+      <video #video [hidden]="!scanning()" autoplay playsinline class="w-full mt-2" ></video>
     </div>
   </div>
 
   <div class="card hidden md:block">
-    <table class="w-full" style="border-collapse:collapse;">
+    <table class="w-full" >
       <thead>
-        <tr style="background:var(--ds-surface-variant);">
+        <tr >
           <th class="p-2 text-left">Tipo</th>
           <th class="p-2 text-left">Ubicación</th>
           <th class="p-2 text-left">Código</th>
@@ -58,7 +58,7 @@
       </thead>
       <tbody>
         @for (item of cycle().items; track item.inspectionId) {
-          <tr style="border-top:1px solid var(--ds-border);">
+          <tr >
             <td class="p-2"><small>{{ item.equipmentType }}</small></td>
             <td class="p-2">{{ item.location }}</td>
             <td class="p-2"><small>{{ item.localCode }}</small></td>

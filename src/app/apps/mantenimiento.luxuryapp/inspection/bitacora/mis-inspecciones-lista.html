@@ -40,9 +40,9 @@
         <tr>
           <td>
             @if (item.isRealized) {
-            <app-icon [icon]="'mdi:check'" style="color: var(--ds-success)" />
+            <app-icon [icon]="'mdi:check'"  />
             Realizada } @else {
-            <app-icon [icon]="'mdi:close'" style="color: var(--ds-danger)" />
+            <app-icon [icon]="'mdi:close'"  />
             Pendiente }
           </td>
           <td>{{ item.nameInspection }}</td>
@@ -85,15 +85,11 @@
         <div
           start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-          style="
-            width: 38px;
-            height: 38px;
-            background: var(--ds-primary-50, #edf1ff);
-          "
+          class="w-3rem h-3rem bg-primary-50"
         >
           <app-icon
             icon="mdi:clipboard-search-outline"
-            style="font-size: 1.1rem; color: var(--ds-primary)"
+            class="text-xl text-primary"
           />
         </div>
 
@@ -102,13 +98,13 @@
           <app-icon
             [icon]="'mdi:check'"
             class="mr-2"
-            style="color: var(--ds-success)"
+            
           />
           } @if (!item.isRealized) {
           <app-icon
             [icon]="'mdi:close'"
             class="mr-2"
-            style="color: var(--ds-danger)"
+            
           />
           }
           <h2 class="font-normal m-0">{{ item.nameInspection }}</h2>

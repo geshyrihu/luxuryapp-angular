@@ -20,7 +20,7 @@ import { BaseButton } from "../base/base-button";
       (click)="emitClick($event)"
     >
       <app-icon
-        [icon]="propertyId() ? 'fluent-color:save-16' : 'fluent-color:save-16'"
+        [icon]="propertyId() ? 'twemoji:floppy-disk' : 'twemoji:floppy-disk'"
       />
     </button>
   `,

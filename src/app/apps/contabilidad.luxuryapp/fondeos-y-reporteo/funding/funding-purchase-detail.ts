@@ -8,7 +8,7 @@ import {
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
@@ -37,7 +37,7 @@ export class FundingPurchaseDetail {
     if (this.ordenCompraId !== "") this.onLoadData();
   }
   onLoadData() {
-    const urlApi = Endpoints.RefactorContabilidad.fundingPurchaseDetailsById(
+    const urlApi = Endpoints.Funding.purchaseDetails(
       this.ordenCompraId,
     );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {

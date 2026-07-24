@@ -133,7 +133,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", errorMessage);
+      this.consoleLogger.error(`API Error: GET LIST: ${urlApi}`, errorMessage);
       return null;
     } finally {
       this.loaderS.hide();
@@ -167,7 +167,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: GET PAGED: ${urlApi}`, error);
       return null;
     } finally {
       this.loaderS.hide();
@@ -194,10 +194,10 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: GET ITEM: ${urlApi}`, error);
       return null;
     } finally {
-      this.loaderS.hide();
+      if (showLoader) this.loaderS.hide();
     }
   }
 
@@ -219,7 +219,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: POST: ${urlApi}`, error);
       return false;
     } finally {
       this.loaderS.hide();
@@ -253,7 +253,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: POST PAGED: ${urlApi}`, error);
       return null;
     } finally {
       this.loaderS.hide();
@@ -283,7 +283,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: PUT: ${urlApi}`, error);
       return false;
     } finally {
       this.loaderS.hide();
@@ -312,7 +312,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: PATCH: ${urlApi}`, error);
       return false;
     } finally {
       this.loaderS.hide();
@@ -337,7 +337,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: DELETE: ${urlApi}`, error);
       return false;
     } finally {
       this.loaderS.hide();
@@ -371,7 +371,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: GET NoLoading: ${urlApi}`, error);
       return null;
     }
   }
@@ -393,7 +393,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: POST NoLoading: ${urlApi}`, error);
       return false;
     }
   }
@@ -453,7 +453,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: Download: ${urlApi}`, error);
     } finally {
       this.loaderS.hide();
     }
@@ -474,7 +474,7 @@ export class ApiResponseService {
         "No se pudo cargar el PDF.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: Preview PDF: ${urlApi}`, error);
     } finally {
       this.loaderS.hide();
     }
@@ -507,7 +507,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: Download POST: ${urlApi}`, error);
     } finally {
       this.loaderS.hide();
     }
@@ -538,7 +538,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: BLOB FROM URL: ${fullUrl}`, error);
       return null;
     } finally {
       this.loaderS.hide();
@@ -573,7 +573,7 @@ export class ApiResponseService {
         "No se pudo completar la operacion.";
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
-      this.consoleLogger.error("API Error", error);
+      this.consoleLogger.error(`API Error: POST FILE: ${urlApi}`, error);
       return false;
     } finally {
       this.loaderS.hide();

@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe, DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -17,7 +17,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { addIcons } from "ionicons";
 import { listOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -107,7 +107,7 @@ export default class LedgerViewer {
       if (this.toCtrl.value) params = params.set("to", this.toCtrl.value);
 
       const url =
-        Endpoints.CobranzaNative.Ledger.propertyEntries(
+        Endpoints.CobranzaCore.Ledger.propertyEntries(
           propertyId,
           customerId,
         ) + (params.toString() ? "?" + params.toString() : "");

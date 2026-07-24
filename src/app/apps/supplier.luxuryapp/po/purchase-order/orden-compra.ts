@@ -16,11 +16,11 @@ import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
-import { ConfirmationService } from "primeng/api";
+import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
 
 import { AppSpinner } from "@ui/web/spinner/spinner";
-import { SkeletonModule } from "primeng/skeleton";
-import { TableModule } from "primeng/table";
+import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";

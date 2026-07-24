@@ -19,10 +19,11 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -120,7 +121,7 @@ export class SolicitudModificacionSalarioForm implements OnInit {
     const [siNo, applicationRoles, vacantes] = await Promise.all([
       firstValueFrom(this.enumSelectS.boolYesNo()),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        `application-roles-to-administrator`,
+        Endpoints.SelectItems.applicationRolesToAdministrator,
       ),
       this.apiResponseS.onGetList<SelectItemDto[]>(
         EndpointsReclutamiento.RequestEmployeeRegister.getVacantes(customerId),

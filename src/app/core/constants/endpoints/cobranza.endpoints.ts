@@ -383,20 +383,35 @@ const accountingCoiEndpoints = {
     syncCoi: cobranzaSyncEndpoints.contabilidad,
     syncCobranza: cobranzaSyncEndpoints.cobranza,
   },
-  CobranzaOnline: cobranzaOnlineEndpoints,
-  LegacyCollection: legacyCollectionEndpoints,
-  NativeCollection: cobranzaNativeEndpoints,
 };
 
 export const EndpointsCobranza = {
-  CobranzaLive: cobranzaLiveEndpoints,
-  CobranzaLocal: cobranzaLocalEndpoints,
+  // Canonico: familia principal del dominio Cobranza.
+  // Toda nueva capacidad funcional del bloque nativo debe crecer aqui.
+  CobranzaCore: cobranzaNativeEndpoints,
+
+  // Subdominio operativo vigente.
+  // Se mantiene mientras cerramos el dictamen fino de `cobranza/online`.
   CobranzaSync: cobranzaSyncEndpoints,
   CobranzaOnline: cobranzaOnlineEndpoints,
-  CobranzaNative: cobranzaNativeEndpoints,
 
-  // Compatibilidad temporal mientras migramos consumidores legacy.
+  // Legacy temporal / compatibilidad interna.
+  // No deben crecer y deben desaparecer conforme se migren consumidores.
+  CobranzaNative: cobranzaNativeEndpoints,
+  LegacyCollection: legacyCollectionEndpoints,
+  NativeCollection: cobranzaNativeEndpoints,
+
+  // Legacy operativo.
+  // Siguen vivos por compatibilidad funcional e integraciones existentes.
+  CobranzaLive: cobranzaLiveEndpoints,
+  CobranzaLocal: cobranzaLocalEndpoints,
+
+  // Compatibilidad historica protegida.
+  // No son nombres objetivo de arquitectura.
   AspelCobranza: cobranzaLiveEndpoints,
   AspelCobranzaLocal: cobranzaLocalEndpoints,
+
+  // Alias temporal. La propiedad canonica ya vive en Contabilidad.
+  // No debe crecer desde el dominio Cobranza.
   AccountingCoi: accountingCoiEndpoints,
 } as const;

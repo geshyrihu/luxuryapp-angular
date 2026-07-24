@@ -7,7 +7,7 @@ import {
 import { RouterModule } from "@angular/router";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { ButtonModule } from "primeng/button";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 @Component({
   selector: "app-orden-compra-datos-cotizacion",
   templateUrl: "./orden-compra-datos-cotizacion.html",

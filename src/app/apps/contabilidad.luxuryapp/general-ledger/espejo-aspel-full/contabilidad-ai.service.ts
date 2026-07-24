@@ -1,4 +1,5 @@
 import { Injectable, inject } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 
 interface AskAccountingAiDTO {
@@ -12,7 +13,7 @@ export class ContabilidadAiService {
 
   async askAi(reportData: string, userQuery: string): Promise<string> {
     const payload: AskAccountingAiDTO = { reportData, userQuery };
-    const url = `contabilidad-online/ask-ai`;
+    const url = Endpoints.ContabilidadOnline.askAi;
 
     // Obteniendo respuesta en formato T directamente (o false si falla)
     const response = await this.apiS.onPost<string>(url, payload);

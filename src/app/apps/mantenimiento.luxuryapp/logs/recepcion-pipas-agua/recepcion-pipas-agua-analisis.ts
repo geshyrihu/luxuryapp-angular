@@ -154,7 +154,7 @@ export class RecepcionPipasAguaAnalisis implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorMantenimiento.recepcionPipasAguaListById(
+        Endpoints.RecepcionPipasAgua.listByCustomer(
           this.customerIdS.customerId(),
         ),
       )

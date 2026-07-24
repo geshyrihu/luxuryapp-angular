@@ -9,7 +9,7 @@ import {
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { UserCard } from "src/app/core/interfaces/user-card.interface";

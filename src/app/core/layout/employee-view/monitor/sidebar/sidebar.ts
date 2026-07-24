@@ -64,7 +64,7 @@ export class Sidebar {
   public isSearching: boolean = false;
   public loading = this.menuService.menuLoading;
 
-  private readonly catalogBase = ["/", "settings", "ui-catalog"];
+  private readonly catalogBase = ["/admin", "ui-catalog"];
 
   readonly dsMenuItems: MenuItem[] = [
     {
@@ -695,32 +695,32 @@ export class Sidebar {
             {
               label: "Guía ERP",
               icon: "mdi:book-open-page-variant",
-              routerLink: [...this.catalogBase, "guia"],
+              routerLink: [...this.catalogBase, "guide"],
               items: [
                 {
                   label: "Identity Pillars",
-                  routerLink: [...this.catalogBase, "guia", "identitypillars"],
+                  routerLink: [...this.catalogBase, "guide", "identitypillars"],
                 },
                 {
                   label: "Color Validation",
-                  routerLink: [...this.catalogBase, "guia", "colorvalidation"],
+                  routerLink: [...this.catalogBase, "guide", "colorvalidation"],
                 },
                 {
                   label: "Component Catalog",
-                  routerLink: [...this.catalogBase, "guia", "componentcatalog"],
+                  routerLink: [...this.catalogBase, "guide", "componentcatalog"],
                 },
                 {
                   label: "Button Rules",
-                  routerLink: [...this.catalogBase, "guia", "buttonrules"],
+                  routerLink: [...this.catalogBase, "guide", "buttonrules"],
                 },
                 {
                   label: "Button Catalog",
                   icon: "mdi:button-cursor",
-                  routerLink: [...this.catalogBase, "guia", "buttoncatalog"],
+                  routerLink: [...this.catalogBase, "guide", "buttoncatalog"],
                 },
                 {
                   label: "Reference Form",
-                  routerLink: [...this.catalogBase, "guia", "referenceform"],
+                  routerLink: [...this.catalogBase, "guide", "referenceform"],
                 },
               ],
             },

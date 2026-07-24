@@ -14,7 +14,7 @@
           REPORTE DE ENVÍO DE ESTADOS FINANCIEROS A CONDÓMINOS AÑO {{
           selectedYear }}
         </h3>
-        <p class="m-0 text-muted" style="font-size: 0.85rem">
+        <p class="m-0 text-muted" >
           ðŸ’¡ Regla: El informe del mes anterior debe enviarse a más tardar el
           día 10 de cada mes.
         </p>
@@ -37,7 +37,7 @@
     <tr>
       <th class="table-col-20">CLIENTE</th>
       @for (month of monthNames; track $index) {
-      <th class="text-center" style="min-width: 60px">{{ month }}</th>
+      <th class="text-center" >{{ month }}</th>
       }
     </tr>
   </ng-template>
@@ -55,7 +55,7 @@
             tooltipPosition="top"
             class="text-success"
           />
-          <span style="font-size: 0.65rem" class="text-success mt-1">
+          <span  class="text-success mt-1">
             {{ mes.fecha }}
           </span>
         </div>

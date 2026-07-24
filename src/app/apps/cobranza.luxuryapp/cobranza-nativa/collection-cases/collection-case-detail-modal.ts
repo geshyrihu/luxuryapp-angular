@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -61,7 +61,7 @@ export default class CollectionCaseDetailModal implements OnInit {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.CobranzaNative.CollectionCases.logActivity(
+        Endpoints.CobranzaCore.CollectionCases.logActivity(
           item.id,
         ),
         { caseId: item.id, notes: this.notesCtrl.value, promisedDate: null },

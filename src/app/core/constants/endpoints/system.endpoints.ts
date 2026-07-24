@@ -17,13 +17,23 @@ export const EndpointsSystem = {
     getById: (id: string) => `ai-knowledge-base/${id}`,
     modules: "ai-knowledge-base/modules",
   },
+  TicketAnalysis: {
+    analyzeImage: "ticket-analysis/analyze-image",
+  },
   AuditEntries: {
     base: "audit-entries",
   },
   UserActivityHistory: {
     base: "user-activity-history",
+    byCustomerAndRange: (
+      customerId: string,
+      fechaInicial: string,
+      fechaFinal: string,
+    ) => `user-activity-history?customer-id=${customerId}&start-date=${fechaInicial}&end-date=${fechaFinal}`,
   },
   AccessHistory: {
+    // Alias legacy semantico.
+    // El ownership canonico de esta consulta corresponde a `EndpointsSystem.UserActivityHistory`.
     byCustomerAndRange: (
       customerId: string,
       fechaInicial: string,
@@ -34,21 +44,6 @@ export const EndpointsSystem = {
     deleteAll: "logs/all",
     getAll: "logs",
   },
-  AppImplementationTracking: {
-    triggerEmployeeValidation:
-      "app-implementation-tracking/trigger-employee-validation",
-  },
-  Notifications: {
-    getAll: "notifications",
-    markAsRead: (notificationId: string) =>
-      `notifications/mark-as-read/${notificationId}`,
-    testOneSignal: "notifications/test-one-signal",
-    testOneSignalWeb: "notifications/test-one-signal-web",
-    testSignalR: (userId: string) => `notifications/test-signal-r/${userId}`,
-    testSignalUsers: "notifications/test-signal-users",
-    unreadCount: "notifications/unread-count",
-    users: "notifications/users",
-  },
   AspelCustomerEmpresa: {
     base: "aspel-customer-empresa",
     delete: (id: string | number) => `aspel-customer-empresa/${id}`,
@@ -56,20 +51,15 @@ export const EndpointsSystem = {
   },
   AutitoriaCuentasAspel: {
     get: (year: number, empresa: string) =>
-      `autitoria-cuentas-aspel?int-year=${year}&empresa=${empresa}`,
+      `autitoria-cuentas-aspel?intYear=${year}&empresa=${empresa}`,
   },
   EspejoAspelFull: {
     get: (customerId: string, year: number, empresa: string) =>
-      `espejo-aspel-full?customer-id=${customerId}&year=${year}&empresa=${empresa}`,
-  },
-  EmergencyPhones: {
-    create: "telefonos-emergencia",
-    delete: (id: string) => `telefonos-emergencia/${id}`,
-    getAll: "telefonos-emergencia",
-    getById: (id: string | number) => `telefonos-emergencia/${id}`,
-    update: (id: string | number) => `telefonos-emergencia/${id}`,
+      `espejo-aspel-full?customerId=${customerId}&year=${year}&empresa=${empresa}`,
   },
   PaymentMethods: {
+    // Legacy alias.
+    // El ownership canonico de este catalogo ya corresponde a `EndpointsAdmin.Catalogs.PaymentMethods`.
     create: "payment-methods",
     delete: (id: string) => `payment-methods/${id}`,
     getAll: "payment-methods",
@@ -78,17 +68,12 @@ export const EndpointsSystem = {
     update: (id: string) => `payment-methods/${id}`,
   },
   PaymentTypes: {
+    // Legacy alias.
+    // El ownership canonico de este catalogo ya corresponde a `EndpointsAdmin.Catalogs.PaymentTypes`.
     create: "metodo-pago",
     delete: (id: string) => `metodo-pago/${id}`,
     getAll: "metodo-pago",
     getById: (id: string | number) => `metodo-pago/${id}`,
     update: (id: string | number) => `metodo-pago/${id}`,
-  },
-  UnitsOfMeasurement: {
-    create: "unidad-medida",
-    delete: (id: string) => `unidad-medida/${id}`,
-    getAll: "unidad-medida",
-    getById: (id: string | number) => `unidad-medida/${id}`,
-    update: (id: string | number) => `unidad-medida/${id}`,
   },
 } as const;

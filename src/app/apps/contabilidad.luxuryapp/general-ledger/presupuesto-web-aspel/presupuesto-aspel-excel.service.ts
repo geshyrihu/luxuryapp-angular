@@ -7,6 +7,7 @@ import {
 } from "../interfaces/presupuesto-shared.models";
 import {
   ASPEL_MONTHS,
+  getBudgetCompanyName,
   getCuentaMonthValue,
   getPresupuestoBaseMensual,
 } from "./presupuesto-web-aspel.shared";
@@ -37,7 +38,7 @@ export class PresupuestoAspelExcelService {
     year: number,
   ): Promise<void> {
     const wb = this.newWorkbook();
-    const empresa = budgetData?.Nombre_Empresa ?? "";
+    const empresa = getBudgetCompanyName(budgetData);
     this.buildMainSheet(wb, "Presupuesto", cuentas, empresa, year);
     this.buildResumen(wb, cuentas, [], [], empresa, year);
     const buffer = await wb.xlsx.writeBuffer();
@@ -51,7 +52,7 @@ export class PresupuestoAspelExcelService {
     year: number,
   ): Promise<void> {
     const wb = this.newWorkbook();
-    const empresa = budgetData?.Nombre_Empresa ?? "";
+    const empresa = getBudgetCompanyName(budgetData);
     this.buildExtSheet(wb, extraordinarias, empresa, year);
     this.buildMainSheet(wb, "Proyectos (606)", proyectos, empresa, year);
     this.buildResumen(wb, [], extraordinarias, proyectos, empresa, year);

@@ -29,7 +29,7 @@
           [noMargin]="true"
         />
       </div>
-      <div class="flex-shrink-0" style="width: 200px">
+      <div class="flex-shrink-0" >
         <custom-input-select-signal
           [data]="groupingOptions"
           optionLabel="label"
@@ -66,22 +66,22 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="customer" style="width: 25%">
+      <th pSortableColumn="customer" >
         CLIENTE <p-sorticon field="customer" />
       </th>
-      <th pSortableColumn="applicationRoleName" style="width: 20%">
+      <th pSortableColumn="applicationRoleName" >
         ROL <p-sorticon field="applicationRoleName" />
       </th>
-      <th pSortableColumn="applicationUser" style="width: 20%">
+      <th pSortableColumn="applicationUser" >
         USUARIO <p-sorticon field="applicationUser" />
       </th>
-      <th pSortableColumn="email" style="width: 20%">
+      <th pSortableColumn="email" >
         EMAIL <p-sorticon field="email" />
       </th>
-      <th pSortableColumn="phoneNumber" style="width: 10%">
+      <th pSortableColumn="phoneNumber" >
         TELóFONO <p-sorticon field="phoneNumber" />
       </th>
-      <th style="width: 5%"></th>
+      <th ></th>
     </tr>
   </ng-template>
 
@@ -135,15 +135,11 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="
-          width: 38px;
-          height: 38px;
-          background: var(--ds-primary-50, #edf1ff);
-        "
+        class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
           icon="mdi:office-building-outline"
-          style="font-size: 1.1rem; color: var(--ds-primary)"
+          class="text-xl text-primary"
         />
       </div>
       <div class="flex justify-content-between align-items-start mb-2">

@@ -1,4 +1,4 @@
-﻿import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
+import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +19,7 @@ import {
 } from "@angular/forms";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -189,7 +189,7 @@ export class Payments implements OnInit {
     this.loadingCharges.set(true);
     try {
       const res = await this.apiResponseS.onGetItem<PendingChargeDTO[]>(
-        Endpoints.CobranzaNative.Payments.pendingCharges(
+        Endpoints.CobranzaCore.Payments.pendingCharges(
           propertyId,
           this.customerId(),
         ),
@@ -300,7 +300,7 @@ export class Payments implements OnInit {
 
       const paymentRes =
         await this.apiResponseS.onPost<CobranzaPaymentResponseDTO>(
-          Endpoints.CobranzaNative.Payments.create,
+          Endpoints.CobranzaCore.Payments.create,
           paymentPayload,
         );
 
@@ -316,7 +316,7 @@ export class Payments implements OnInit {
         };
 
         const applyRes = await this.apiResponseS.onPost(
-          Endpoints.CobranzaNative.Payments.applyToCharges,
+          Endpoints.CobranzaCore.Payments.applyToCharges,
           allocationPayload,
         );
 

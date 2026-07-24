@@ -19,8 +19,8 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -77,7 +77,7 @@ export class CfdiUseList implements OnInit {
   }
   onLoadData() {
     this.apiResponseS
-      .onGetList<CfdiUseDto[]>(Endpoints.CfdiUses.getAll)
+      .onGetList<CfdiUseDto[]>(Endpoints.Catalogs.CfdiUses.getAll)
       .then((result) => {
         if (result) this.dataSignal.set(result);
       });
@@ -85,7 +85,7 @@ export class CfdiUseList implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.CfdiUses.delete(id))
+      .onDelete(Endpoints.Catalogs.CfdiUses.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

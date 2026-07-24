@@ -6,20 +6,14 @@
   <div class="print-preparing-overlay">
     <app-icon
       [icon]="'mdi:loading'"
-      style="font-size: 2.5rem; color: var(--ds-primary-hover)"
+      
     />
     <p
-      style="
-        margin: 0;
-        font-size: 1.1rem;
-        color: var(--ds-primary-hover);
-        font-weight: 700;
-        letter-spacing: 0.04em;
-      "
+      
     >
       Cargando todos los reportes...
     </p>
-    <p style="margin: 0; font-size: 0.85rem; color: var(--ds-text-muted)">
+    <p >
       El dialogo de impresion abrira automaticamente cuando todos los datos
       esten listos.
     </p>
@@ -45,32 +39,25 @@
     <header
       class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden print-hide-on-print"
     >
-      <div class="bg-primary" style="height: 0.45rem"></div>
+      <div class="bg-primary" ></div>
 
       <div class="surface-100 p-2 flex gap-3">
         <div class="flex align-items-center gap-3 flex-1 min-w-0">
           <div
             class="surface-card border-round-xl border-1 surface-border inline-flex align-items-center justify-content-center p-2"
-            style="width: auto; height: auto; max-height: 72px; flex-shrink: 0"
+            
           >
             <img
               [src]="customerLogo()"
               [alt]="customerName()"
-              style="
-                display: block;
-                width: auto;
-                height: auto;
-                max-width: 160px;
-                max-height: 56px;
-                object-fit: contain;
-              "
+              
             />
           </div>
 
           <div class="flex flex-column gap-1 min-w-0">
             <small
               class="text-primary font-bold uppercase"
-              style="letter-spacing: 0.14em"
+              
             >
               LuxuryApp é Contabilidad Online
             </small>
@@ -93,7 +80,7 @@
             <div
               class="flex align-items-center gap-2 bg-white px-2 py-1 border-round-lg border-1 border-200 flex-wrap"
             >
-              <div style="width: 140px">
+              <div >
                 <custom-input-text-signal
                   [(ngModel)]="filterS.year"
                   type="number"
@@ -103,7 +90,7 @@
                 />
               </div>
 
-              <div style="width: 165px">
+              <div >
                 <custom-input-select-signal
                   [data]="[
                   { label: 'Enero', value: 0 },
@@ -187,7 +174,7 @@
         </div>
       </div>
 
-      <div class="bg-yellow-500" style="height: 0.2rem"></div>
+      <div class="bg-yellow-500" ></div>
     </header>
 
     <!-- Seccion de impresion: se renderiza solo al presionar Imprimir -->

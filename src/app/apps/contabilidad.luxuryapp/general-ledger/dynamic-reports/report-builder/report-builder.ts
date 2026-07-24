@@ -23,15 +23,15 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { AutoCompleteModule } from "primeng/autocomplete";
-import { BadgeModule } from "primeng/badge";
+import { AutoCompleteModule } from "@ui/web/primeng-autocomplete/primeng-autocomplete";
+import { BadgeModule } from "@ui/web/primeng-badge/primeng-badge";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { InputGroupModule } from "primeng/inputgroup";
-import { InputGroupAddonModule } from "primeng/inputgroupaddon";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { InputGroupModule } from "@ui/web/primeng-inputgroup/primeng-inputgroup";
+import { InputGroupAddonModule } from "@ui/web/primeng-inputgroupaddon/primeng-inputgroupaddon";
+import { ProgressSpinnerModule } from "@ui/web/primeng-progressspinner/primeng-progressspinner";
 
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxTag } from "@ui/adaptive/tag/tag";

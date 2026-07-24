@@ -23,8 +23,8 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
-import { MessageService } from "primeng/api";
-import { TableModule } from "primeng/table";
+import { MessageService } from "@ui/web/primeng-api/primeng-api";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -93,7 +93,7 @@ export class ContListMinutaPendientes implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorContabilidad.contabilidadMinutaListaMinutaByIdById(
+        Endpoints.ContabilidadMinuta.pendingList(
           this.authS.userToken.infoUserAuthDTO.applicationUserId,
           this.statusFiltroControl.value,
         ),
@@ -153,7 +153,7 @@ export class ContListMinutaPendientes implements OnInit {
 
   async onDownloadPdf() {
     const pendientes = await this.apiResponseS.onGetList<any[]>(
-      "contabilidad-minuta/Pendientes/0",
+      Endpoints.ContabilidadMinuta.pendingPdf(0),
     );
 
     if (!pendientes || pendientes.length === 0) {

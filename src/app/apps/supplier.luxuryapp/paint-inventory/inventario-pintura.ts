@@ -14,8 +14,8 @@ import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -77,7 +77,7 @@ export class InventarioPintura {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorSupplier.inventarioPinturaListById(
+    const urlApi = Endpoints.InventarioPintura.listByCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS
@@ -86,7 +86,7 @@ export class InventarioPintura {
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorSupplier.inventarioPinturaById(id))
+      .onDelete(Endpoints.InventarioPintura.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

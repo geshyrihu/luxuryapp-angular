@@ -22,18 +22,6 @@ export const EndpointsAdmin = {
       `admin/user-accounts/to-unlock-account/${id}`,
     updateAccount: (id: string) => `admin/user-accounts/update-account/${id}`,
   },
-  AccessControlOperations: {
-    events: "access-controls/events",
-    eventsExport: "access-controls/events/export",
-    occupancy: "access-controls/dashboard/occupancy",
-    stats: "access-controls/dashboard/stats",
-  },
-  AccessControlVisitors: {
-    getAll: "access-controls/visitors",
-    getById: (id: string) => `access-controls/visitors/${id}`,
-    create: "access-controls/visitors",
-    update: (id: string) => `access-controls/visitors/${id}`,
-  },
   Customers: {
     create: "customers",
     delete: (id: string) => `customers/${id}`,
@@ -78,30 +66,109 @@ export const EndpointsAdmin = {
     getPdf: (id: string) => `module-apps/${id}/pdf`,
     update: (id: string) => `module-apps/${id}`,
   },
-
-  AppImplementationTracking: {
-    triggerEmployeeValidation:
-      "app-implementation-tracking/trigger-employee-validation",
-  },
   JuntaMensualSessionBackfill: {
     apply: "junta-mensual-session-backfill/apply",
     preview: "junta-mensual-session-backfill/preview",
   },
+  AsambleaChecklistTemplate: {
+    create: "asamblea-checklist-template",
+    delete: (id: string) => `asamblea-checklist-template/${id}`,
+    getAll: "asamblea-checklist-template",
+    getById: (id: string) => `asamblea-checklist-template/${id}`,
+    update: (id: string) => `asamblea-checklist-template/${id}`,
+  },
   UpdateDataBase: {
     backfillAgendaEvents:
-      "update-data-base/backfill-agenda-events-from-meetings",
+      "admin/system-maintenance/backfill-agenda-events-from-meetings",
     backfillHistoricalMeetings:
-      "update-data-base/backfill-historical-meeting-times",
+      "admin/system-maintenance/backfill-historical-meeting-times",
+    capitalizeUserNames:
+      "admin/system-maintenance/capitalize-user-names",
     importAsambleaChecklist:
-      "update-data-base/import-asamblea-checklist-catalog",
-    resyncGoogleCalendar: "update-data-base/resync-google-calendar-event-times",
+      "admin/system-maintenance/import-asamblea-checklist-catalog",
+    resyncGoogleCalendar:
+      "admin/system-maintenance/resync-google-calendar-event-times",
     seedNativeCollectionTestData:
-      "update-data-base/seed-native-collection-test-data",
+      "admin/system-maintenance/seed-native-collection-test-data",
+  },
+  AppImplementationTracking: {
+    triggerEmployeeValidation:
+      "app-implementation-tracking/trigger-employee-validation",
+  },
+  RealtimeDiagnostics: {
+    testConnection: "admin/realtime-diagnostics/test-connection",
+    sendTestMessage: "admin/realtime-diagnostics/sendtestmessage",
+    sendToGroup: (groupName: string) =>
+      `admin/realtime-diagnostics/send-to-group/${groupName}`,
+    broadcast: "admin/realtime-diagnostics/broadcast",
+    sendMessage: "admin/realtime-diagnostics/sendmessage",
+    sendMessageToUser: "admin/realtime-diagnostics/sendmessagetouser",
+    sendAnnouncement: "admin/realtime-diagnostics/sendannouncement",
+  },
+  NotificationDiagnostics: {
+    testOneSignal: "admin/notification-diagnostics/test-one-signal",
+    testOneSignalWeb: "admin/notification-diagnostics/test-one-signal-web",
+    testSignalR: (userId: string) =>
+      `admin/notification-diagnostics/test-signal-r/${userId}`,
+    testSignalUsers: "admin/notification-diagnostics/test-signal-users",
+    connectedUsers: "admin/notification-diagnostics/connected-users",
+    connectedUsersWeb: "admin/notification-diagnostics/connected-users-web",
+    users: "admin/notification-diagnostics/users",
   },
   CustomerProvider: {
+    create: "customer-provider",
     delete: (id: string) => `customer-provider/${id}`,
     getById: (id: string) => `customer-provider/get-by-id/${id}`,
     listByCustomer: (customerId: string) => `customer-provider/${customerId}`,
+    update: (id: string) => `customer-provider/${id}`,
+  },
+  Catalogs: {
+    Banks: {
+      create: "banks",
+      delete: (id: string) => `banks/${id}`,
+      getAll: "banks",
+      getById: (id: string) => `banks/${id}`,
+      getPdf: (id: string) => `banks/${id}/pdf`,
+      selectItems: "select-items/banks",
+      update: (id: string) => `banks/${id}`,
+    },
+    CfdiUses: {
+      create: "cfdi-use",
+      delete: (id: string) => `cfdi-use/${id}`,
+      getAll: "cfdi-use",
+      getById: (id: string) => `cfdi-use/${id}`,
+      getPdf: (id: string) => `cfdi-use/${id}/pdf`,
+      update: (id: string) => `cfdi-use/${id}`,
+    },
+    EmailData: {
+      base: "email-data",
+      getAll: "email-data/list",
+      getById: (id: string) => `email-data/${id}`,
+      sendTestEmail: (id: string) => `send-email/test-email/${id}`,
+      update: (id: string) => `email-data/${id}`,
+    },
+    PaymentMethods: {
+      create: "payment-methods",
+      delete: (id: string) => `payment-methods/${id}`,
+      getAll: "payment-methods",
+      getById: (id: string) => `payment-methods/${id}`,
+      getPdf: (id: string) => `payment-methods/${id}/pdf`,
+      update: (id: string) => `payment-methods/${id}`,
+    },
+    PaymentTypes: {
+      create: "metodo-pago",
+      delete: (id: string) => `metodo-pago/${id}`,
+      getAll: "metodo-pago",
+      getById: (id: string | number) => `metodo-pago/${id}`,
+      update: (id: string | number) => `metodo-pago/${id}`,
+    },
+    UnitsOfMeasurement: {
+      create: "unidad-medida",
+      delete: (id: string) => `unidad-medida/${id}`,
+      getAll: "unidad-medida",
+      getById: (id: string | number) => `unidad-medida/${id}`,
+      update: (id: string | number) => `unidad-medida/${id}`,
+    },
   },
   Permission: {
     userAdminByApplicationUser: (applicationUserId: string) =>
@@ -113,14 +180,5 @@ export const EndpointsAdmin = {
     update: (secretName: string) => `vault-secrets/${secretName}`,
     rotate: (secretName: string) => `vault-secrets/${secretName}/rotate`,
     revoke: (secretName: string) => `vault-secrets/${secretName}/revoke`,
-  },
-  RefactorAdmin: {
-    customerproviderById: (id: any) => `customer-provider/${id}`,
-    permissionPermissionUserAdminById: (applicationUserId: any) =>
-      `permission/permission-user-admin/${applicationUserId}`,
-    sendEmailTestEmailById: (emailControl: any) =>
-      `send-email/test-email/${emailControl}`,
-    customerProviderById: (customerIdS: any) =>
-      `customer-provider/${customerIdS}`,
   },
 } as const;

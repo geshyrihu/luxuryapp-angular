@@ -15,7 +15,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -97,7 +97,7 @@ export class FireInspectionPeriodList implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorMantenimiento.fireInspectionPeriodListById(
+        Endpoints.FireInspectionPeriod.listByCustomer(
           this.customerIdS.customerId(),
         ),
       )
@@ -106,7 +106,7 @@ export class FireInspectionPeriodList implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.RefactorMantenimiento.fireInspectionPeriodById(id))
+      .onDelete(Endpoints.FireInspectionPeriod.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((data) =>

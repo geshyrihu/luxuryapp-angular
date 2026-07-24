@@ -6,9 +6,9 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SelectButtonModule } from "primeng/selectbutton";
-import { TableModule } from "primeng/table";
-import { ToggleSwitchModule } from "primeng/toggleswitch";
+import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { ToggleSwitchModule } from "@ui/web/primeng-toggleswitch/primeng-toggleswitch";
 
 import {
   MobileButtonIconActiveDesactive,

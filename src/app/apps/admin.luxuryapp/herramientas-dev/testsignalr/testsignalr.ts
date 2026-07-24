@@ -46,7 +46,7 @@ export class Testsignalr implements OnInit {
 
   async onLoadUsers(): Promise<void> {
     const result: any = await this.apiResponseS.onGetListNotLoading(
-      Endpoints.Notifications.users,
+      Endpoints.NotificationDiagnostics.users,
     );
     this.users.set(result as SelectItemDto[]);
   }
@@ -64,7 +64,7 @@ export class Testsignalr implements OnInit {
     if (!this.selectedUserId()) return;
 
     await this.apiResponseS.onPost(
-      Endpoints.Notifications.testSignalR(this.selectedUserId()!),
+      Endpoints.NotificationDiagnostics.testSignalR(this.selectedUserId()!),
       {},
     );
 
@@ -74,7 +74,7 @@ export class Testsignalr implements OnInit {
   async sendSignalRToUsers(): Promise<void> {
     if (!this.selectedUserIds().length) return;
 
-    await this.apiResponseS.onPost(Endpoints.Notifications.testSignalUsers, {
+    await this.apiResponseS.onPost(Endpoints.NotificationDiagnostics.testSignalUsers, {
       userIds: this.selectedUserIds(),
     });
 
@@ -92,7 +92,7 @@ export class Testsignalr implements OnInit {
     };
 
     const result: any = await this.apiResponseS.onPost(
-      Endpoints.Notifications.testOneSignal,
+      Endpoints.NotificationDiagnostics.testOneSignal,
       body,
     );
 
@@ -111,7 +111,7 @@ export class Testsignalr implements OnInit {
     };
 
     const result: any = await this.apiResponseS.onPost(
-      Endpoints.Notifications.testOneSignalWeb,
+      Endpoints.NotificationDiagnostics.testOneSignalWeb,
       body,
     );
 

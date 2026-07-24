@@ -18,9 +18,9 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { PrimeNgCustomToast } from "@ui/web/primeng-custom-toast/primeng-custom-toast";
 import { AppSpinner } from "@ui/web/spinner/spinner";
-import { MessageService } from "primeng/api";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { MessageService } from "@ui/web/primeng-api/primeng-api";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -114,6 +114,10 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     this.loading.set(true);
 
     const customerId: string = this.customerIdS.customerId();
+    if (!customerId) {
+      this.loading.set(false);
+      return;
+    }
     const urlApi = Endpoints.Presupuestos.toPurchaseOrder(
       customerId,
       this.ordenCompraId,
@@ -209,7 +213,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     return item.availableBudget <= 0 || totalPorCubrir <= 0;
   }
 
-  // Determinar si el botún de guardar esté habilitado ??
+  // Determinar si el botón de guardar esté habilitado ??
   isSaveDisabled(item: any): boolean {
     const superUser = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,

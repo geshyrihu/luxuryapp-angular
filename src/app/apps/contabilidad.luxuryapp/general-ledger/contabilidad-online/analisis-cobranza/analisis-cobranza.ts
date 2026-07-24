@@ -3,8 +3,8 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";

@@ -14,7 +14,7 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { getStatusSeverity as statusSeverityFn } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
 import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/vacation-balance.interface";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -112,7 +112,9 @@ export class VacacionesAdminAuditoria implements OnInit {
     if (!customerId) return;
     this.loadingEmployees.set(true);
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(`employee/${customerId}`)
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.employeesByCustomer(customerId),
+      )
       .then((response: SelectItemDto[]) => this.employees.set(response ?? []))
       .finally(() => this.loadingEmployees.set(false));
   }

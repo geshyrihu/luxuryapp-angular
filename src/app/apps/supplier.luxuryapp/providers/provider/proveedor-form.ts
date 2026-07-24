@@ -24,7 +24,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -184,9 +184,11 @@ export class ProveedorForm implements OnInit {
 
   async onLoadSelectItem(): Promise<void> {
     const [categories, banks, tipoServicio] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(`Categories`),
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(`Bank`),
-      this.apiResponseS.onGetEnumSelectItem(`e-service-type`),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.categories,
+      ),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.bank),
+      this.apiResponseS.onGetEnumSelectItem(Endpoints.EnumSelectItems.serviceType),
     ]);
 
     this.cb_category.set(categories as SelectItemDto[]);
@@ -229,7 +231,9 @@ export class ProveedorForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: this.id === "" ? `providers/` : `providers/${this.id}`,
+      endpoint: this.id === ""
+        ? Endpoints.Providers.create
+        : Endpoints.Providers.update(this.id),
       method: this.id === "" ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,
@@ -275,7 +279,7 @@ export class ProveedorForm implements OnInit {
 
   onValidarRFC(valueRfc: string) {
     if (valueRfc.length > 5) {
-      const urlApi = Endpoints.RefactorSupplier.providersValidarRfcByIdById(
+      const urlApi = Endpoints.Providers.validateRfc(
         valueRfc,
         this.customerIdS.customerId(),
       );

@@ -5,7 +5,7 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { TagModule } from "primeng/tag";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { WebButtonIcon } from "@ui/buttons/web-icon";

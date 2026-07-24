@@ -64,10 +64,7 @@ export class HomeComite implements OnInit {
     const imageUrlMap = await this.apiResponseS.onGetList<
       Record<string, string>
     >(Endpoints.File.comiteHomeImages);
-    console.log(
-      "?? ~ BibliotecaConsejoDirectivo ~ loadImages ~ imageUrlMap:",
-      imageUrlMap,
-    );
+
     if (imageUrlMap) {
       this.comiteMenuOptions.forEach((option) => {
         const imageKey = this.getImageKeyFromPath(option.image);

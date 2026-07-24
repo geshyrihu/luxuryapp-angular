@@ -17,7 +17,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -100,7 +100,7 @@ export class ExtintorChecklist implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.RefactorMantenimiento.bitacoraExtintorById(this.id))
+      .onGetItem(Endpoints.FireEquipmentLogs.extintor.getById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
       });
@@ -110,7 +110,7 @@ export class ExtintorChecklist implements OnInit {
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "bitacora-extintor",
+      endpoint: Endpoints.FireEquipmentLogs.extintor.base,
       id: this.id,
       ref: this.ref ?? undefined,
       submitting: this.submitting,

@@ -9,7 +9,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AiService } from "src/app/core/services/ai.service";
 import { SwalService } from "src/app/core/services/swal.service";
 

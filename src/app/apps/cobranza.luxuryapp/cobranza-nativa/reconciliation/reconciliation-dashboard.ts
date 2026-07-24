@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +11,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -66,7 +66,7 @@ export default class ReconciliationDashboard {
 
   async onLoadData() {
     const res = await this.apiResponseS.onGetItem<UnallocatedPayment[]>(
-      Endpoints.CobranzaNative.Reconciliation.unallocated,
+      Endpoints.CobranzaCore.Reconciliation.unallocated,
     );
     this.dataSignal.set(res ?? []);
   }
@@ -75,7 +75,7 @@ export default class ReconciliationDashboard {
     this.reconciling.set(true);
     try {
       const count = await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaNative.Reconciliation.autoApplyAll,
+        Endpoints.CobranzaCore.Reconciliation.autoApplyAll,
         {},
       );
       this.lastResult.set(typeof count === "number" ? count : 0);

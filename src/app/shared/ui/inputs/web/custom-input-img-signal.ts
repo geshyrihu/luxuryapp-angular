@@ -24,7 +24,9 @@ import { BaseInputSignal } from "../base/base-input-signal";
     >
       <div class="image-upload-container" (click)="triggerFileInput()">
         @if (hasImageError()) {
-          <div class="image-placeholder error">
+          <div class="image-placeholder error"
+               [style.height.px]="contentHeight()"
+               [style.width.px]="contentWidth()">
             <span class="emoji">⚠️</span>
             <span class="placeholder-text">Imagen no disponible</span>
           </div>
@@ -32,14 +34,15 @@ import { BaseInputSignal } from "../base/base-input-signal";
           <img
             [src]="displayImageSrc()"
             [alt]="title()"
-            [style.max-height.px]="contentHeight()"
-            [style.max-width.px]="contentWidth()"
-            style="width: auto; height: auto;"
-            class="image-preview"
+            [style.height.px]="contentHeight()"
+            [style.width.px]="contentWidth()"
+            class="image-preview object-cover"
             (error)="onImageError()"
           />
         } @else {
-          <div class="image-placeholder">
+          <div class="image-placeholder"
+               [style.height.px]="contentHeight()"
+               [style.width.px]="contentWidth()">
             <span class="emoji">📷</span>
             <span class="placeholder-text">{{ chooseLabel() }}</span>
           </div>
@@ -143,11 +146,11 @@ export class CustomInputImg implements OnChanges {
   horizontal = input<boolean>(true);
 
   // Transform inputs for height/width
-  contentHeight = input(100, {
+  contentHeight = input(160, {
     transform: (value: string | number) =>
       typeof value === "string" ? parseInt(value, 10) : value,
   });
-  contentWidth = input(150, {
+  contentWidth = input(240, {
     transform: (value: string | number) =>
       typeof value === "string" ? parseInt(value, 10) : value,
   });

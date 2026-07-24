@@ -192,7 +192,7 @@ export const EndpointsRecursosHumanos = {
       },
     },
     PastVacations: {
-      create: "past-vacations",
+      create: "hr/vacations/past-requests",
     },
     Sanction: {
       getAll: "hr/sanctions",
@@ -204,38 +204,38 @@ export const EndpointsRecursosHumanos = {
       changeStatus: (id: string) => `hr/sanctions/${id}/change-status`,
     },
     VacationRequest: {
-      getAll: "my-vacation-requests",
-      getById: (id: string) => `my-vacation-requests/${id}`,
-      getDetail: (id: string) => `my-vacation-requests/${id}/detail`,
-      getBalance: "my-vacation-requests/my-balance",
+      getAll: "hr/vacations/my-requests",
+      getById: (id: string) => `hr/vacations/my-requests/${id}`,
+      getDetail: (id: string) => `hr/vacations/my-requests/${id}/detail`,
+      getBalance: "hr/vacations/my-requests/my-balance",
       getBalanceByYear: (year: number) =>
-        `my-vacation-requests/my-balance?year=${year}`,
-      availableYears: "my-vacation-requests/available-years",
-      create: "my-vacation-requests",
-      update: (id: string) => `my-vacation-requests/${id}`,
-      delete: (id: string) => `my-vacation-requests/${id}`,
+        `hr/vacations/my-requests/my-balance?year=${year}`,
+      availableYears: "hr/vacations/my-requests/available-years",
+      create: "hr/vacations/my-requests",
+      update: (id: string) => `hr/vacations/my-requests/${id}`,
+      delete: (id: string) => `hr/vacations/my-requests/${id}`,
     },
     VacationRequestApproval: {
-      getAll: "vacation-request-approvals",
-      history: "vacation-request-approvals/history",
+      getAll: "hr/vacations/approvals",
+      history: "hr/vacations/approvals/history",
       calendarEvents: (year: number, customerId: string, month?: number) =>
-        `vacation-request-approvals/calendar-events/${year}/${customerId}${month ? `?month=${month}` : ""}`,
+        `hr/vacations/approvals/calendar-events/${year}/${customerId}${month ? `?month=${month}` : ""}`,
       balance: (employeeId: string | number) =>
-        `vacation-request-approvals/${employeeId}/balance`,
+        `hr/vacations/approvals/${employeeId}/balance`,
       balanceByYear: (employeeId: string | number, year: number) =>
-        `vacation-request-approvals/${employeeId}/balance-by-year?year=${year}`,
+        `hr/vacations/approvals/${employeeId}/balance-by-year?year=${year}`,
       availableYears: (employeeId: string | number) =>
-        `vacation-request-approvals/${employeeId}/available-years`,
+        `hr/vacations/approvals/${employeeId}/available-years`,
       overlappingRequests: (
         customerId: string,
         startDate: string,
         endDate: string,
         excludeEmployeeId: string,
       ) =>
-        `vacation-request-approvals/overlapping-requests?customer-id=${customerId}&start-date=${startDate}&end-date=${endDate}&exclude-employee-id=${excludeEmployeeId}`,
-      approve: (id: string) => `vacation-request-approvals/${id}/approve`,
-      reject: (id: string) => `vacation-request-approvals/${id}/reject`,
-      cancel: (id: string) => `vacation-request-approvals/${id}/cancel`,
+        `hr/vacations/approvals/overlapping-requests?customer-id=${customerId}&start-date=${startDate}&end-date=${endDate}&exclude-employee-id=${excludeEmployeeId}`,
+      approve: (id: string) => `hr/vacations/approvals/${id}/approve`,
+      reject: (id: string) => `hr/vacations/approvals/${id}/reject`,
+      cancel: (id: string) => `hr/vacations/approvals/${id}/cancel`,
     },
     WorkContract: {
       byEmployee: (employeeId: string) =>
@@ -250,10 +250,10 @@ export const EndpointsRecursosHumanos = {
     },
     VacationBalanceAdmin: {
       byCustomer: (customerId: string) =>
-        `recursos-humanos/vacation-balances/customer/${customerId}`,
+        `hr/vacations/balances/customer/${customerId}`,
       recalculateAll: (customerId: string) =>
-        `recursos-humanos/vacation-balances/recalculate-all/${customerId}`,
-      manualUpdate: "recursos-humanos/vacation-balances/manual-update",
+        `hr/vacations/balances/recalculate-all/${customerId}`,
+      manualUpdate: "hr/vacations/balances/manual-update",
     },
   },
   Settings: {
@@ -302,12 +302,15 @@ export const EndpointsRecursosHumanos = {
       `employee-internal/update-principal-data/${applicationUserId}`,
   },
   Employees: {
+    birthday: (customerId: string, month: number) =>
+      `employees/birthday/${customerId}/${month}`,
     createEmployee: "employees/create-employee",
     createEmployeeExternal: "employees/create-employee-external",
+    employeeTemp: "employees/employee-temp",
     validateAdminAsis: (applicationUserId: string | number) =>
-      `employees/validaradminasis/${applicationUserId}`,
+      `employees/validar-admin-asis/${applicationUserId}`,
     validateOpenRequests: (employeeId: string | number) =>
-      `employees/validarsolicitudesabiertas/${employeeId}`,
+      `employees/validar-solicitudes-abiertas/${employeeId}`,
   },
   EmployeeBankData: {
     base: "employee-bank-data",
@@ -358,6 +361,8 @@ export const EndpointsRecursosHumanos = {
     create: "performance-evaluations/create",
     delete: (id: string) => `performance-evaluations/${id}`,
     result: (id: string) => `performance-evaluations/${id}/result`,
+    historyByEmployee: (employeeId: string | number) =>
+      `performance-evaluations/employee/${employeeId}/history`,
     update: (evaluationId: string) =>
       `performance-evaluations/update/${evaluationId}`,
     historyByCustomer: (customerId: string) =>
@@ -374,6 +379,7 @@ export const EndpointsRecursosHumanos = {
     registrar: "chekador-empleados/registrar",
     misRegistros: (pagina: number, tamano: number) =>
       `chekador-empleados/mis-registros?pagina=${pagina}&tamano=${tamano}`,
+    porTenantBase: "chekador-empleados/por-tenant",
     resumenHoy: "chekador-empleados/resumen-hoy",
     porTenant: (params: {
       empleadoId?: string;
@@ -383,12 +389,12 @@ export const EndpointsRecursosHumanos = {
       soloAnomalias?: boolean;
     }) => {
       const q = new URLSearchParams();
-      if (params.empleadoId) q.set("empleado-id", params.empleadoId);
+      if (params.empleadoId) q.set("empleadoId", params.empleadoId);
       if (params.desde) q.set("desde", params.desde);
       if (params.hasta) q.set("hasta", params.hasta);
       if (params.tipo !== undefined) q.set("tipo", String(params.tipo));
       if (params.soloAnomalias !== undefined)
-        q.set("solo-anomalias", String(params.soloAnomalias));
+        q.set("soloAnomalias", String(params.soloAnomalias));
       const qs = q.toString();
       return `chekador-empleados/por-tenant${qs ? "?" + qs : ""}`;
     },
@@ -399,3 +405,4 @@ export const EndpointsRecursosHumanos = {
     sedes: "chekador-empleados/sedes",
   },
 } as const;
+

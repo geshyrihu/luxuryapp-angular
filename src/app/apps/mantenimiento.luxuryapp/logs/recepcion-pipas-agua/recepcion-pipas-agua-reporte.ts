@@ -13,7 +13,7 @@ import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-date
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import FileSaver from "file-saver";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -131,7 +131,7 @@ export class RecepcionPipasAguaReporte implements OnInit {
   onLoadData(): void {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorMantenimiento.recepcionPipasAguaListById(
+        Endpoints.RecepcionPipasAgua.listByCustomer(
           this.customerIdS.customerId(),
         ),
       )

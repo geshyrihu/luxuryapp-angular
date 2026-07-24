@@ -14,8 +14,8 @@ import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range"
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import type { EChartsCoreOption } from "echarts/core";
 import { NgxEchartsDirective } from "ngx-echarts";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { RadioButtonModule } from "primeng/radiobutton";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { RadioButtonModule } from "@ui/web/primeng-radiobutton/primeng-radiobutton";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ChartType } from "src/app/core/interfaces/chart-type.interface";

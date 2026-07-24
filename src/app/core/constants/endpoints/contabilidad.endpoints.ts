@@ -28,12 +28,90 @@ const budgetProposalSupportEndpoints = {
     `budget-proposal-item-support/support-file/${fileId}`,
 };
 
+// Legacy namespace:
+// `AccountingCoi` sobrevive por compatibilidad documental e historica.
+// No existe hoy un dominio backend canonico `api/accounting-coi/...` detectado en `MapGroup`.
+// Los contratos backend activos ya viven en familias dueñas como:
+// - `ContabilidadOnline`
+// - `AccountingAccounts`
+// - `CobranzaSync`
+// - `CobranzaCore` / `CobranzaOnline`
+// Evitar usar este arbol en desarrollo nuevo si existe una familia canonica.
+const accountingCoiEndpoints = {
+  // Legacy fuerte:
+  // Este subarbol modela contratos historicos `accounting-coi/accounting/...`.
+  // Hoy no se detectan consumidores frontend directos ni `MapGroup` backend activos equivalentes.
+  // Conservar solo mientras se completa la conciliacion de menus, metadata y documentacion antigua.
+  Accounting: {
+    Accounts: {
+      tree: (customerId: string) =>
+        `accounting-coi/accounting/accounts/tree/${customerId}`,
+      getById: (id: string) => `accounting-coi/accounting/accounts/${id}`,
+      create: "accounting-coi/accounting/accounts",
+      update: (id: string) => `accounting-coi/accounting/accounts/${id}`,
+      delete: (id: string) => `accounting-coi/accounting/accounts/${id}`,
+    },
+    Budgets: {
+      get: (customerId: string, accountId: string, year: number) =>
+        `accounting-coi/accounting/budgets/${customerId}/${accountId}/${year}`,
+      paginated: (customerId: string, year: number) =>
+        `accounting-coi/accounting/budgets/paginated/${customerId}/${year}`,
+      create: "accounting-coi/accounting/budgets",
+      update: (id: string) => `accounting-coi/accounting/budgets/${id}`,
+      delete: (id: string) => `accounting-coi/accounting/budgets/${id}`,
+    },
+    Policies: {
+      paginated: (customerId: string) =>
+        `accounting-coi/accounting/policies/paginated/${customerId}`,
+      getById: (id: string) => `accounting-coi/accounting/policies/${id}`,
+      create: "accounting-coi/accounting/policies",
+      update: (id: string) => `accounting-coi/accounting/policies/${id}`,
+      delete: (id: string) => `accounting-coi/accounting/policies/${id}`,
+    },
+    FiscalPeriods: {
+      paginated: (customerId: string) =>
+        `accounting-coi/accounting/fiscal-periods/paginated/${customerId}`,
+      allByYear: (customerId: string, year: number) =>
+        `accounting-coi/accounting/fiscal-periods/all/${customerId}/${year}`,
+      create: "accounting-coi/accounting/fiscal-periods",
+      toggleStatus: (id: string) =>
+        `accounting-coi/accounting/fiscal-periods/${id}/toggle-status`,
+      update: (id: string) => `accounting-coi/accounting/fiscal-periods/${id}`,
+      delete: (id: string) => `accounting-coi/accounting/fiscal-periods/${id}`,
+    },
+  },
+  Configuration: {
+    AspelSync: {
+      // Alias legacy: el backend activo hoy publica esta sincronizacion en `cobranza/online/aspel-sync/...`.
+      // Aunque sobreviven clases fisicas `Coi*` en backend, el ownership publico vigente es `Cobranza`.
+      completo: (customerId: string, year: number) =>
+        `cobranza/online/aspel-sync/${customerId}/ejercicio/${year}/completo`,
+      contabilidad: (customerId: string, year: number) =>
+        `cobranza/online/aspel-sync/${customerId}/ejercicio/${year}/contabilidad`,
+      cobranza: (customerId: string, year: number) =>
+        `cobranza/online/aspel-sync/${customerId}/ejercicio/${year}/cobranza`,
+    },
+  },
+  Migration: {
+    // Alias legacy: mantener solo mientras existan referencias historicas a `accounting-coi`.
+    // Desarrollo nuevo debe consumir `Endpoints.CobranzaSync`.
+    syncCoi: (customerId: string, year: number) =>
+      `cobranza/online/aspel-sync/${customerId}/ejercicio/${year}/contabilidad`,
+    syncCobranza: (customerId: string, year: number) =>
+      `cobranza/online/aspel-sync/${customerId}/ejercicio/${year}/cobranza`,
+  },
+};
+
 export const EndpointsContabilidad = {
   AccountingAccounts: {
     base: "cuentas",
     delete: (id: string | number) => `cuentas/${id}`,
     getById: (id: string | number) => `cuentas/${id}`,
     getList: (state: boolean) => `cuentas/get-list/${state ? 0 : 1}`,
+  },
+  AccountingCatalog: {
+    byCustomerYear: (customerId: string, year: number) =>
+      `accounting-catalog/customer/${customerId}?year=${year}`,
   },
 
   ContabilidadOnline: {
@@ -81,6 +159,16 @@ export const EndpointsContabilidad = {
   },
   Presupuestos: {
     analyze: "presupuesto/analyze",
+    aspel: (customerId: string, intYear: number) =>
+      `presupuesto/aspel?customerId=${customerId}&intYear=${intYear}`,
+    aspelFull: (customerId: string, intYear: number) =>
+      `presupuesto/aspel-full?customerId=${customerId}&intYear=${intYear}`,
+    aspelSummary: (customerId: string, intYear: number) =>
+      `presupuesto/aspel-summary?customerId=${customerId}&intYear=${intYear}`,
+    presupuestoLimpioEjercicioFiscal: (customerId: string, intYear: number) =>
+      `presupuesto/presupuesto-limpio-ejercicio-fiscal?customerId=${customerId}&intYear=${intYear}`,
+    presupuestoLimpioCobranza: (customerId: string, intYear: number) =>
+      `presupuesto/presupuesto-limpio-cobranza?customerId=${customerId}&intYear=${intYear}`,
     create: "presupuesto/create",
     toPurchaseOrder: (customerId: string, ordenCompraId: string, year: number) =>
       `presupuesto/to-purchase-order/${customerId}/${ordenCompraId}/${year}`,
@@ -93,16 +181,93 @@ export const EndpointsContabilidad = {
     ordenesCompra: (id: string | number) =>
       `cedula-presupuestal/ordenes-compra/${id}`,
   },
+  CatalogoGastosFijos: {
+    base: "catalogo-gastos-fijos",
+    create: "catalogo-gastos-fijos",
+    delete: (id: string) => `catalogo-gastos-fijos/${id}`,
+    getById: (id: string) => `catalogo-gastos-fijos/${id}`,
+    list: (customerId: string) => `catalogo-gastos-fijos/list/${customerId}`,
+    update: (id: string) => `catalogo-gastos-fijos/${id}`,
+    updateValidation: (id: string, value: boolean) =>
+      `catalogo-gastos-fijos/update-validation/${id}/${value}`,
+    generatePurchaseOrders: (
+      customerId: string,
+      quincenaIndex: number,
+      fundingYear: number,
+      fundingPeriodId: string | number,
+    ) =>
+      `orden-compra/generar-orden-compra-fijos/${customerId}/${quincenaIndex}/${fundingYear}/${fundingPeriodId}`,
+  },
+  ProjectedExpenses: {
+    base: "projected-expenses",
+    create: "projected-expenses",
+    recurrence: "projected-expenses/recurrence",
+    list: (customerId: string) => `projected-expenses/${customerId}`,
+    getById: (customerId: string, id: string) =>
+      `projected-expenses/${customerId}/${id}`,
+    update: (customerId: string, id: string) =>
+      `projected-expenses/${customerId}/${id}`,
+    delete: (customerId: string, id: string) =>
+      `projected-expenses/${customerId}/${id}`,
+  },
+  CatalogoGastosFijosPresupuesto: {
+    base: "catalogo-gastos-fijos-presupuesto",
+    create: "catalogo-gastos-fijos-presupuesto",
+    delete: (id: string) => `catalogo-gastos-fijos-presupuesto/${id}`,
+    update: (id: string) => `catalogo-gastos-fijos-presupuesto/${id}`,
+    fixedExpensesCatalog: (customerId: string, fiscalYear: number) =>
+      `presupuesto/fixed-expenses-catalog/${customerId}/${fiscalYear}`,
+    purchaseOrderBudget: (catalogoGastosFijosId: string) =>
+      `catalogo-gastos-fijos-presupuesto/presupuesto-orden-compra-fijos/${catalogoGastosFijosId}`,
+  },
   CatalogoGastosFijosDetalles: {
     base: "catalogo-gastos-fijos-detalles",
     delete: (id: string) => `catalogo-gastos-fijos-detalles/${id}`,
+    products: (catalogoGastosFijosId: string) =>
+      `catalogo-gastos-fijos-detalles/products/${catalogoGastosFijosId}`,
+    purchaseOrderDetails: (catalogoGastosFijosId: string) =>
+      `catalogo-gastos-fijos-detalles/detalles-orden-compra-fijos/${catalogoGastosFijosId}`,
+    update: (id: string) => `catalogo-gastos-fijos-detalles/${id}`,
   },
   Funding: {
+    confirm: (id: string) => `funding/confirm/${id}`,
+    create: "funding",
+    createOutsideProcessPurchaseOrder: "orden-compra/fuera-fondeo",
+    details: (id: string, customerId: string) => `funding/details/${id}/${customerId}`,
+    downloadBulkInvoicesZip: "funding/download-bulk-invoices-zip",
     delete: (id: string) => `funding/${id}`,
     deleteDetail: (id: string) => `funding/detail/${id}`,
+    complete: (id: string) => `funding/completed/${id}`,
+    createOrdersFromInvoices: "funding/create-orders-from-invoices",
+    getById: (id: string) => `funding/${id}`,
     list: (customerId: string) => `funding/list/${customerId}`,
+    listAccounting: (customerId: string) => `funding-accounting/list/${customerId}`,
+    period: (customerId: string) => `funding-period/${customerId}`,
+    analyzeInvoices: (customerId: string, fundingId: string) =>
+      `funding/analyze-invoices/${customerId}?fundingId=${fundingId}`,
+    purchaseHistory: (
+      customerId: string,
+      fiscalYear: number,
+      accountNumber: string,
+    ) => `funding/purchase-history/${customerId}/${fiscalYear}/${accountNumber}`,
+    purchaseDetails: (ordenCompraId: string) => `funding/purchase-details/${ordenCompraId}`,
+    removeOutsideProcessPurchaseOrder: (ordenCompraId: string) =>
+      `orden-compra/${ordenCompraId}/fuera-fondeo`,
+    revokeComplete: (id: string) => `funding/revert-complete/${id}`,
+    revokeConfirmation: (id: string) => `funding/revoke-confirmation/${id}`,
+    unauthorize: (id: string) => `funding/unauthorize/${id}`,
+    unvalidate: (id: string) => `funding/unvalidate/${id}`,
+    updateOrder: "funding/update-order",
+    updatePurchasePaidStatus: (ordenId: string) => `funding/update-purchase-paid-status/${ordenId}`,
+    validate: (id: string) => `funding/validate/${id}`,
+    authorize: (id: string) => `funding/authorize/${id}`,
   },
   SatFunding: {
+    details: (id: string) => `SatFunding/${id}`,
+    forCustomer: (customerId: string) => `SatFunding/ForCustomer/${customerId}`,
+    bulkUpdateTipoGasto: "sat-funding/bulk-update-tipo-gasto",
+    requestDownload: "sat-funding/request-download",
+    updateDetail: "sat-funding/update-detail",
     updateOrder: "sat-funding/update-order",
   },
   SatReconciliation: {
@@ -112,6 +277,9 @@ export const EndpointsContabilidad = {
     processLegacy: "sat-reconciliation/process-legacy",
   },
   FundingFiles: {
+    downloadZip: "funding-file/download-zip",
+    invoicesZip: (id: string) => `funding-file/invoices/${id}`,
+    pdf: (id: string) => `funding-file/pdf/${id}`,
     solicitudesPago: "funding-file/solicitudes-pago",
   },
   DynamicReports: {
@@ -132,64 +300,42 @@ export const EndpointsContabilidad = {
     livePreview: "dynamic-reports/live-preview",
     update: (id: string) => `dynamic-reports/${id}`,
   },
+  FinancialReports: {
+    createPeriod: "financial-report/create-period",
+    annualShippingReport: (year: number) =>
+      `financial-report/reporte-envio-anual/${year}`,
+    monthlyShippingReport: (periodo: string) =>
+      `financial-report/reporteenviomensual/${periodo}`,
+    owners: (customerId: string) => `financial-report/propietarios/${customerId}`,
+    authorize: (id: string, applicationUserId: string) =>
+      `financial-report/authorize/${id}/${applicationUserId}`,
+    deauthorize: (id: string) => `financial-report/desauthorize/${id}`,
+    send: (id: string, applicationUserId: string) =>
+      `financial-report/send/${id}/${applicationUserId}`,
+    toCustomer: (customerId: string) => `financial-report/to-customer/${customerId}/`,
+    uploadFile: (id: string, applicationUserId: string) =>
+      `financial-report/upload-file/${id}/${applicationUserId}`,
+  },
+  BudgetAccountRules: {
+    byCustomerId: (customerId: string) => `budget-account-rules/${customerId}`,
+  },
+  BudgetProposalItems: {
+    delete: (itemId: string) => `budget-proposal/item/${itemId}`,
+  },
+  ContabilidadMinuta: {
+    pendingList: (applicationUserId: string, status: number | null) =>
+      `contabilidad-minuta/lista-minuta/${applicationUserId}/${status ?? 0}`,
+    pendingPdf: (status: number | null) =>
+      `contabilidad-minuta/Pendientes/${status ?? 0}`,
+    followUps: (id: string | number) =>
+      `contabilidad-minuta/lista-seguimientos/${id}`,
+    deleteFollowUp: (id: string | number) => `meeting-details-seguimientos/${id}`,
+  },
+  // Legacy documental / compatibilidad.
+  // No debe crecer desde Contabilidad si existe una familia canonica real.
+  AccountingCoi: accountingCoiEndpoints,
   BudgetingProposal: budgetProposalEndpoints,
   BudgetingProposalSupport: budgetProposalSupportEndpoints,
   BudgetProposal: budgetProposalEndpoints,
   BudgetProposalItemSupport: budgetProposalSupportEndpoints,
-  RefactorContabilidad: {
-    catalogogastosfijosById: (id: any) => `catalogo-gastos-fijos/${id}`,
-    projectedExpensesByIdById: (customerIdS: any, id: any) => `projected-expenses/${customerIdS}/${id}`,
-    projectedExpensesRecurrence: "projected-expenses/recurrence",
-    projectedExpenses: "projected-expenses",
-    projectedExpensesById: (customerIdS: any) => `projected-expenses/${customerIdS}`,
-    catalogoGastosFijosPresupuestoById: (id: any) => `catalogo-gastos-fijos-presupuesto/${id}`,
-    catalogoGastosFijosDetallesById: (p0: any) => `catalogo-gastos-fijos-detalles/${p0}`,
-    ordenCompraFueraFondeo: "orden-compra/fuera-fondeo",
-    ordenCompraByIdFueraFondeo: (ordenCompraId: any) => `orden-compra/${ordenCompraId}/fuera-fondeo`,
-    fundingUpdateOrder: "funding/update-order",
-    funding: "funding",
-    fundingDownloadBulkInvoicesZip: "funding/download-bulk-invoices-zip",
-    fundingCreateOrdersFromInvoices: "funding/create-orders-from-invoices",
-    satFundingRequestDownload: "sat-funding/request-download",
-    satFundingBulkUpdateTipoGasto: "sat-funding/bulk-update-tipo-gasto",
-    satFundingUpdateDetail: "sat-funding/update-detail",
-    financialReportUploadFileByIdById: (id: any, authS: any) => `financial-report/upload-file/${id}/${authS}`,
-    financialReportAuthorizeByIdById: (id: any, authS: any) => `financial-report/authorize/${id}/${authS}`,
-    financialReportDesauthorizeById: (id: any) => `financial-report/desauthorize/${id}`,
-    financialReportSendByIdById: (p0: any, authS: any) => `financial-report/send/${p0}/${authS}`,
-    contabilidadMinutaListaMinutaByIdById: (authS: any, statusFiltroControl: any) => `contabilidad-minuta/lista-minuta/${authS}/${statusFiltroControl}`,
-    contabilidadMinutaListaSeguimientosById: (id: any) => `contabilidad-minuta/lista-seguimientos/${id}`,
-    meetingDertailsSeguimientoById: (id: any) => `meeting-details-seguimientos/${id}`,
-    budgetProposalItemSupportSupportFileById: (fileId: any) => `budget-proposal-item-support/support-file/${fileId}`,
-    budgetProposalItemById: (p0: any) => `budget-proposal/item/${p0}`,
-    financialReportReporteEnvioAnualById: (selectedYear: any) => `financial-report/reporte-envio-anual/${selectedYear}`,
-      catalogoGastosFijosById: (id: any) => `catalogo-gastos-fijos/${id}`,
-    catalogoGastosFijosListById: (customerIdS: any) => `catalogo-gastos-fijos/list/${customerIdS}`,
-    catalogoGastosFijosUpdateValidationByIdById: (id: any, value: any) => `catalogo-gastos-fijos/update-validation/${id}/${value}`,
-    ordenCompraGenerarOrdenCompraFijosByIdByIdByIdById: (customerIdS: any, quincenaIndex: any, fundingYear: any, fundingPeriodId: any) => `orden-compra/generar-orden-compra-fijos/${customerIdS}/${quincenaIndex}/${fundingYear}/${fundingPeriodId}`,
-    presupuestoFixedExpensesCatalogByIdById: (customerIdS: any, intYear: any) => `presupuesto/fixed-expenses-catalog/${customerIdS}/${intYear}`,
-    catalogoGastosFijosPresupuesto: "catalogo-gastos-fijos-presupuesto",
-    catalogoGastosFijosPresupuestoPresupuestoOrdenCompraFijosById: (catalogoGastosFijosId: any) => `catalogo-gastos-fijos-presupuesto/presupuesto-orden-compra-fijos/${catalogoGastosFijosId}`,
-    catalogoGastosFijosDetallesDetallesOrdenCompraFijosById: (catalogoGastosFijosId: any) => `catalogo-gastos-fijos-detalles/detalles-orden-compra-fijos/${catalogoGastosFijosId}`,
-    catalogoGastosFijosDetallesProductsById: (catalogoGastosFijosId: any) => `catalogo-gastos-fijos-detalles/products/${catalogoGastosFijosId}`,
-    fundingDetailsByIdById: (id: any, customerId: any) => `funding/details/${id}/${customerId}`,
-    fundingValidateById: (id: any) => `funding/validate/${id}`,
-    fundingAuthorizeById: (id: any) => `funding/authorize/${id}`,
-    fundingUnvalidateById: (id: any) => `funding/unvalidate/${id}`,
-    fundingUnauthorizeById: (id: any) => `funding/unauthorize/${id}`,
-    fundingConfirmById: (id: any) => `funding/confirm/${id}`,
-    fundingRevokeConfirmationById: (id: any) => `funding/revoke-confirmation/${id}`,
-    fundingUpdatePurchasePaidStatusById: (ordenId: any) => `funding/update-purchase-paid-status/${ordenId}`,
-    fundingfilePdfById: (id: any) => `funding-file/pdf/${id}`,
-    fundingPeriodById: (customerIdS: any) => `funding-period/${customerIdS}`,
-    fundingListById: (customerIdS: any) => `funding/list/${customerIdS}`,
-    fundingPurchaseDetailsById: (ordenCompraId: any) => `funding/purchase-details/${ordenCompraId}`,
-    fundingfileInvoicesById: (id: any) => `funding-file/invoices/${id}`,
-    fundingCompletedById: (id: any) => `funding/completed/${id}`,
-    fundingRevertCompleteById: (id: any) => `funding/revert-complete/${id}`,
-    fundingaccountingListById: (customerIdS: any) => `funding-accounting/list/${customerIdS}`,
-    accountingCatalogCustomeryear: (customerId: any, currentYear: any) => `accounting-catalog/customer/${customerId}?year=${currentYear}`,
-    financialReportToCustomerById: (customerIdS: any) => `financial-report/to-customer/${customerIdS}/`,
-    budgetAccountRulesById: (customerIdToLoad: any) => `budget-account-rules/${customerIdToLoad}`,
-},
 } as const;

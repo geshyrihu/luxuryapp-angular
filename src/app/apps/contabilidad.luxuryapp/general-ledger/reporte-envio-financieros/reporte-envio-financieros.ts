@@ -9,9 +9,9 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -87,7 +87,7 @@ export class ReporteEnvioFinancieros implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.RefactorContabilidad.financialReportReporteEnvioAnualById(
+        Endpoints.FinancialReports.annualShippingReport(
           this.selectedYear,
         ),
       )

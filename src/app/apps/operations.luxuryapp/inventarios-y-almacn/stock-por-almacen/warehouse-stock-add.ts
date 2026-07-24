@@ -18,23 +18,23 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
-import {
-  rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
+import { rowsPerPageOptions } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 
 interface IWarehouseStockRowForm {
-  productoId: FormControl<number>;
+  productoId: FormControl<string>;
   nombreProducto: FormControl<string>;
   existencia: FormControl<number | null>;
   unidadDeMedidaId: FormControl<string | null>;
@@ -45,6 +45,8 @@ interface IWarehouseStockRowForm {
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { PrimeNgCustomCaption } from "../../../../shared/ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableLazyLoadEvent } from "@ui/web/primeng-table/primeng-table";
 
 @Component({
   selector: "app-warehouse-stock-add",
@@ -58,7 +60,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     PrimeNgCustomTableFooter,
     CustomInputNumberSignal,
     ReactiveFormsModule,
-
+    PrimeNgCustomCaption,
     CustomSearchInput,
   ],
 })
@@ -75,24 +77,21 @@ export class WarehouseStockAdd implements OnInit {
   formArray = new FormArray<FormGroup<IWarehouseStockRowForm>>([]);
   submitting = signal(false);
 
-  globalFilterFields = computed(() => {
-    const data = this.dataSignal();
-    if (!data || !Array.isArray(data) || data.length === 0 || !data[0])
-      return [];
-    return Object.keys(data[0]).map((k) => `value.${k}`);
-  });
+  globalFilterFields = computed(() => [
+    "value.nombreProducto",
+    "value.existencia",
+    "value.stockMax",
+    "value.stockMin",
+  ]);
 
   loading = signal(true);
-  totalRecords: number = 0; // Total de registros para paginador
+  totalRecords: number = 0;
 
-  // Configuración de paginación y filtro
-  rows: number = 30; // Registros por página
-  first: number = 0; // Índice del primer registro
-  page: number = 1; // Página actual
-  searchTerm: string = ""; // Filtro global
-
-  tablePrimeNgRows: number = tablePrimeNgRows();
+  rows: number = 6;
   rowsPerPageOptions: number[] = rowsPerPageOptions();
+  private currentFilter: string = "";
+  private currentPage: number = 1;
+
   cb_UnidadMedida = signal<SelectItemDto[]>([]);
 
   onLoadSelectItem() {
@@ -105,7 +104,6 @@ export class WarehouseStockAdd implements OnInit {
 
   ngOnInit(): void {
     this.onLoadSelectItem();
-    // La primera carga es disparada automíticamente por el (onLazyLoad) de p-table
   }
 
   onModalTarjetaProducto(productoId: any): void {
@@ -119,33 +117,40 @@ export class WarehouseStockAdd implements OnInit {
     );
   }
 
-  async onLoadData(
-    page: number = 1,
-    pageSize: number = this.rows,
-    filter: string = this.searchTerm,
-  ) {
+  onLazyLoad(event: TableLazyLoadEvent): void {
+    this.currentPage = Math.floor((event.first ?? 0) / (event.rows ?? this.rows)) + 1;
+    const pageSize = event.rows ?? this.rows;
+    this.currentFilter = (event.globalFilter as string) ?? "";
+    this.loadPage(this.currentPage, pageSize, this.currentFilter);
+  }
+
+  async loadPage(page: number, pageSize: number, filter: string): Promise<void> {
     this.loading.set(true);
 
     const customerId: string = this.customerIdS.customerId();
-    const almacenId = this.config.data.almacenId; // Get almacenId from dialog config
-    const urlApi = Endpoints.Products.getAllPaged;
+    const almacenId = this.config.data.almacenId;
+    const urlApi = Endpoints.InventarioProducto.productDropdownPaged;
 
-    const params = {
-      page: page,
-      recordsNumber: pageSize,
-      filter: filter,
-      customerId: customerId,
-      almacenId: almacenId,
+    const params: any = {
+      customerId,
+      almacenId,
+      Page: page,
+      RecordsNumber: pageSize,
     };
+    if (filter) {
+      params.Filter = filter;
+    }
 
-    const res = await this.apiResponseS.onGetPaged<any>(urlApi, params);
+    const res = await this.apiResponseS.onGetPaged<{
+      items: any[];
+      totalRecords: number;
+    }>(urlApi, params);
 
-    if (res && res.data) {
-      const items = res.data.items || [];
-      const tCount = res.data.totalRecords || res.totalCount || 0;
+    if (res?.data) {
+      const items = res.data.items;
 
       this.dataSignal.set(items);
-      this.totalRecords = tCount;
+      this.totalRecords = res.data.totalRecords;
       this.formArray.clear();
 
       items.forEach((item: any) => {
@@ -159,16 +164,16 @@ export class WarehouseStockAdd implements OnInit {
             nombreProducto: new FormControl(item.nombreProducto, {
               nonNullable: true,
             }),
-            existencia: new FormControl<number | null>(item.existencia, {
+            existencia: new FormControl<number | null>(null, {
               validators: [Validators.required, Validators.min(0)],
             }),
             unidadDeMedidaId: new FormControl<string | null>(unidadId, {
               validators: [Validators.required],
             }),
-            stockMax: new FormControl<number | null>(item.stockMax, {
+            stockMax: new FormControl<number | null>(null, {
               validators: [Validators.required, Validators.min(1)],
             }),
-            stockMin: new FormControl<number | null>(item.stockMin, {
+            stockMin: new FormControl<number | null>(null, {
               validators: [Validators.required, Validators.min(0)],
             }),
             errorMessage: new FormControl<string | null>(null),
@@ -176,21 +181,8 @@ export class WarehouseStockAdd implements OnInit {
         );
       });
     }
+
     this.loading.set(false);
-  }
-
-  loadDataLazy(event: any) {
-    this.page = Math.floor((event.first || 0) / (event.rows || 30)) + 1;
-    this.rows = event.rows || 30;
-    this.first = event.first || 0;
-    this.onLoadData(this.page, this.rows, this.searchTerm);
-  }
-
-  applyGlobalFilter(filterValue: string) {
-    this.searchTerm = filterValue;
-    this.first = 0;
-    this.page = 1;
-    this.onLoadData(this.page, this.rows, this.searchTerm);
   }
 
   async onSubmit(rowGroup: FormGroup<IWarehouseStockRowForm>) {
@@ -206,7 +198,6 @@ export class WarehouseStockAdd implements OnInit {
 
     const value = rowGroup.getRawValue();
 
-    // Validar que Stock Mínimo < Stock Máximo
     if (value.stockMax && value.stockMin && value.stockMin >= value.stockMax) {
       rowGroup.controls.errorMessage.setValue(
         "El 'Stock Mínimo' no puede ser mayor o igual al 'Stock Máximo'.",
@@ -230,7 +221,7 @@ export class WarehouseStockAdd implements OnInit {
     });
 
     if (success !== false) {
-      this.onLoadData(this.page, this.rows, this.searchTerm);
+      this.loadPage(this.currentPage, this.rows, this.currentFilter);
     }
   }
 }

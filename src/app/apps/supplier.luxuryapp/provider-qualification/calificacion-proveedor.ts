@@ -7,7 +7,7 @@ import {
 } from "@angular/forms";
 import { NgbRatingModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -40,7 +40,7 @@ export class CalificacionProveedor implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.RefactorSupplier.qualificationProviderByIdById(
+    const urlApi = Endpoints.QualificationProvider.getByApplicationUserAndProvider(
       this.authS.applicationUserId,
       this.providerId,
     );
@@ -59,8 +59,8 @@ export class CalificacionProveedor implements OnInit {
 
     if (this.qualificationProviderId) {
       this.apiResponseS
-        .onPost(
-          Endpoints.RefactorSupplier.qualificationProvider,
+        .onPut(
+          Endpoints.QualificationProvider.update(this.qualificationProviderId),
           this.form.value,
         )
         .then((result: boolean) => {
@@ -68,10 +68,8 @@ export class CalificacionProveedor implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPut(
-          Endpoints.RefactorSupplier.qualificationProviderById(
-            this.qualificationProviderId,
-          ),
+        .onPost(
+          Endpoints.QualificationProvider.create,
           this.form.value,
         )
         .then((result: boolean) => {

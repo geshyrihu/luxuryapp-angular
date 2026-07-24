@@ -23,8 +23,8 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { addIcons } from "ionicons";
 import { analyticsOutline } from "ionicons/icons";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -81,8 +81,7 @@ export class BudgetRuleList implements OnInit {
   onLoadData() {
     // Si viene customerId en config (opcional), usarlo, sino el del servicio
     const customerIdToLoad = this.config.data?.customerId || this.customerId;
-    const url =
-      Endpoints.RefactorContabilidad.budgetAccountRulesById(customerIdToLoad);
+    const url = Endpoints.BudgetAccountRules.byCustomerId(customerIdToLoad);
 
     this.apiResponseS
       .onGetList(url)
@@ -109,7 +108,7 @@ export class BudgetRuleList implements OnInit {
   }
 
   onDelete(id: string) {
-    const url = Endpoints.RefactorContabilidad.budgetAccountRulesById(id);
+    const url = Endpoints.BudgetAccountRules.byCustomerId(id);
     this.apiResponseS.onDelete(url).then((result: boolean) => {
       if (result) this.onLoadData();
     });

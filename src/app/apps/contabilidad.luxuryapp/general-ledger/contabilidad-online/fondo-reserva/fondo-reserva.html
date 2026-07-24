@@ -15,20 +15,14 @@
         <!-- Encabezado de la tabla -->
         <div
           class="grid grid-nogutter text-white font-bold p-3 border-round-top"
-          style="
-            background: linear-gradient(
-              180deg,
-              var(--ds-text-secondary) 0%,
-              var(--ds-primary-hover) 100%
-            );
-          "
+          
         >
           <div class="col-8 text-center text-lg uppercase letter-spacing-1">
             CONCEPTO
           </div>
           <div
             class="col-4 text-center text-lg border-left-1"
-            style="border-color: rgba(255, 255, 255, 0.3)"
+            
           >
             IMPORTE
           </div>
@@ -38,7 +32,7 @@
         <div
           class="grid grid-nogutter border-bottom-1 surface-border p-3 align-items-center rf-row-concepto"
         >
-          <div class="col-8 font-bold" style="color: var(--rf-ink)">
+          <div class="col-8 font-bold" >
             DISPONIBLE AL 01 DE ENERO {{ filters.year() }}
           </div>
           <div class="col-4 rf-td-number--total text-lg">
@@ -50,7 +44,7 @@
         <div
           class="grid grid-nogutter border-bottom-1 surface-border p-3 align-items-center rf-row-concepto"
         >
-          <div class="col-8" style="color: var(--rf-muted)">
+          <div class="col-8" >
             +) INTERESES {{ filters.year() }}
           </div>
           <div class="col-4 rf-td-number border-bottom-1 surface-border pb-1">
@@ -61,15 +55,15 @@
         <!-- Fila 3: Disponible Teórico (subtotal) -->
         <div
           class="grid grid-nogutter p-3 align-items-center border-bottom-1 surface-border"
-          style="background: var(--rf-total)"
+          
         >
-          <div class="col-8 font-bold text-lg" style="color: var(--rf-head)">
+          <div class="col-8 font-bold text-lg" >
             DISPONIBLE, CTA. {{ reserva.cuentaBancaria.replace('CTA. No. ', '')
             }}
           </div>
           <div
             class="col-4 rf-td-number--total text-xl"
-            style="color: var(--rf-head)"
+            
           >
             {{ reserva.disponibleTeorico | number:'1.0-0' }}
           </div>
@@ -78,10 +72,7 @@
         <!-- Fila 4: Cuenta Bancaria Real (resultado positivo) -->
         <div
           class="grid grid-nogutter p-3 align-items-center border-round-bottom"
-          style="
-            background: var(--ds-surface-variant);
-            border-top: 3px solid var(--ds-success);
-          "
+          
         >
           <div class="col-8 font-bold text-green-800">
             {{ reserva.cuentaBancaria }}

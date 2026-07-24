@@ -213,32 +213,23 @@
               >
                 Detalles del Empleado
               </h3>
-              <div class="grid">
-                <div class="col-12 md:col-3">
-                  <p>
-                    <strong class="font-semibold">Nombre:</strong>
-                    {{ balance()?.userName }}
-                  </p>
+              <div class="grid text-center lg:text-left mt-2">
+                <div class="col-12 md:col-3 flex flex-column">
+                  <span class="text-500 font-semibold mb-1 uppercase text-xs tracking-wider">Nombre del Empleado</span>
+                  <span class="text-900 font-bold text-lg">{{ balance()?.userName }}</span>
                 </div>
-                <div class="col-12 md:col-3">
-                  <p>
-                    <strong class="font-semibold">Antigüedad:</strong>
-                    {{ balance()?.actualSeniorityYears }} año(s)
-                  </p>
+                <div class="col-12 md:col-3 flex flex-column">
+                  <span class="text-500 font-semibold mb-1 uppercase text-xs tracking-wider">Antigüedad en este periodo</span>
+                  <span class="text-900 font-bold text-lg">{{ balance()?.seniorityYears }} año(s)</span>
+                  <span class="text-400 text-xs font-medium mt-1">Antigüedad actual (hoy): {{ balance()?.actualSeniorityYears }} año(s)</span>
                 </div>
-                <div class="col-12 md:col-3">
-                  <p>
-                    <strong class="font-semibold">Fecha de Ingreso:</strong>
-                    {{ balance()?.employeeAdmissionDate | date: 'longDate' }}
-                  </p>
+                <div class="col-12 md:col-3 flex flex-column">
+                  <span class="text-500 font-semibold mb-1 uppercase text-xs tracking-wider">Fecha de Ingreso</span>
+                  <span class="text-900 font-bold text-lg">{{ balance()?.employeeAdmissionDate | date: 'longDate' }}</span>
                 </div>
-                <div class="col-12 md:col-3">
-                  <p>
-                    <strong class="font-semibold"
-                      >Periodo de aniversario:</strong
-                    >
-                    {{ balance()?.year }}
-                  </p>
+                <div class="col-12 md:col-3 flex flex-column">
+                  <span class="text-500 font-semibold mb-1 uppercase text-xs tracking-wider">Año Base (Generación)</span>
+                  <span class="text-900 font-bold text-lg">{{ balance()?.year }}</span>
                 </div>
               </div>
             </div>

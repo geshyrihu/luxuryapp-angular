@@ -395,7 +395,7 @@
               @if (enlace.esVideo) { @if (safeUrl(enlace.urlEnlace)) {
               <div
                 class="border-round overflow-hidden mt-3"
-                style="aspect-ratio: 16/9"
+                
               >
                 <iframe
                   [src]="safeUrl(enlace.urlEnlace)"
@@ -430,7 +430,7 @@
                 </a>
                 <span
                   class="text-sm text-500 text-overflow-ellipsis overflow-hidden white-space-nowrap"
-                  style="max-width: 300px"
+                  
                   >{{ enlace.urlEnlace }}</span
                 >
               </div>

@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   effect,
@@ -11,7 +11,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { addIcons } from "ionicons";
 import { warningOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -85,7 +85,7 @@ export default class LateFeePolicyList {
     const result = await this.apiResponseS.onGetItem<
       LateFeePolicyResponseDTO[]
     >(
-      Endpoints.CobranzaNative.LateFeePolicies.customer(
+      Endpoints.CobranzaCore.LateFeePolicies.customer(
         customerId,
       ),
     );
@@ -117,7 +117,7 @@ export default class LateFeePolicyList {
   async onDelete(item: LateFeePolicyResponseDTO) {
     this.apiResponseS
       .onDelete(
-        Endpoints.CobranzaNative.LateFeePolicies.delete(
+        Endpoints.CobranzaCore.LateFeePolicies.delete(
           item.id,
         ),
       )

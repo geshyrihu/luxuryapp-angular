@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe, NgClass } from "@angular/common";
+import { CurrencyPipe, NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -74,7 +74,7 @@ export default class ChargeTemplateCoverage {
     if (!customerId) return;
     this.apiResponseS
       .onGetItem<TemplateCoverageDTO[]>(
-        Endpoints.CobranzaNative.Templates.coverage(customerId),
+        Endpoints.CobranzaCore.Templates.coverage(customerId),
       )
       .then((res) => this.dataSignal.set(res ?? []));
   }

@@ -10,6 +10,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type { AgendaSemanalEventDto } from "../agenda-semanal/agenda-semanal.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -93,7 +94,7 @@ export class AgendaMesesModal implements OnInit {
   private async cargar(): Promise<void> {
     this.cargando.set(true);
     const data = await this.apiResponseS.onGetItem<AgendaSemanalEventDto[]>(
-      `direccion-dashboard/agenda-meses?meses=${this.mesesSeleccionados()}`,
+      Endpoints.DireccionDashboard.agendaMeses(this.mesesSeleccionados()),
       false,
     );
     this.eventos.set(data ?? []);

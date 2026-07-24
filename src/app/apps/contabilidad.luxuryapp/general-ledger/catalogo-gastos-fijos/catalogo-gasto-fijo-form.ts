@@ -25,7 +25,7 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { GastoFijoPresupuesto } from "src/app/apps/contabilidad.luxuryapp/budgeting/expense-catalog-budget/gasto-fijo-presupuesto";
 import { GastoFijoServicios } from "src/app/apps/contabilidad.luxuryapp/budgeting/expense-catalog-detail/gasto-fijo-servicios";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -157,9 +157,7 @@ export class CatalogoGastoFijoForm implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const urlApi = Endpoints.RefactorContabilidad.catalogoGastosFijosById(
-      this.id(),
-    );
+    const urlApi = Endpoints.CatalogoGastosFijos.getById(this.id());
     const result: any = await this.apiResponseS.onGetItem(urlApi);
 
     if (!result) return;
@@ -187,11 +185,17 @@ export class CatalogoGastoFijoForm implements OnInit {
 
   async onLoadCombos(): Promise<void> {
     const [usoCFDI, metodoDePago, formaDePago, providers] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>("UseCFDI"),
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>("PaymentMethod"),
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>("WayToPay"),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        `providers/${this.customerIdS.customerId()}`,
+        Endpoints.SelectItems.useCFDI,
+      ),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.paymentMethod,
+      ),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.wayToPay,
+      ),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.providers(this.customerIdS.customerId()),
       ),
     ]);
 
@@ -205,7 +209,7 @@ export class CatalogoGastoFijoForm implements OnInit {
     const result: any = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "catalogo-gastos-fijos",
+      endpoint: Endpoints.CatalogoGastosFijos.base,
       id: this.id() || "",
       submitting: this.submitting,
       closeOnSuccess: false,

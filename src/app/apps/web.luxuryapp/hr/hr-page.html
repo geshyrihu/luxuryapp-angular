@@ -1,5 +1,5 @@
 <div class="area-page">
-  <section class="hero-compact" style="background:linear-gradient(135deg, #4338ca 0%, #6366f1 100%)">
+  <section class="hero-compact" >
     <div class="hero-compact-bg"></div>
     <span class="shadow-title">RECURSOS HUMANOS</span>
     <div class="hero-compact-content">
@@ -15,15 +15,15 @@
 
   <div class="page-container">
     <section class="animate-on-scroll">
-      <div style="text-align:center;margin-bottom:2.5rem">
-        <span class="section-tagline" style="color:#4338ca">Servicios</span>
+      <div >
+        <span class="section-tagline" >Servicios</span>
         <h2 class="section-heading">¿Qué hacemos?</h2>
-        <p class="section-desc" style="margin:0 auto">Cuidamos del equipo que cuida tu hogar.</p>
+        <p class="section-desc" >Cuidamos del equipo que cuida tu hogar.</p>
       </div>
       <div class="services-grid">
         @for (svc of services; track svc.title) {
           <div class="service-card">
-            <div class="service-card-icon" style="--sc-icon-bg:#e0e7ff;--sc-icon-color:#4338ca">{{ svc.icon }}</div>
+            <div class="service-card-icon" >{{ svc.icon }}</div>
             <h3 class="service-card-title">{{ svc.title }}</h3>
             <p class="service-card-desc">{{ svc.desc }}</p>
           </div>
@@ -34,15 +34,15 @@
 
   <section class="section-dark animate-on-scroll">
     <div class="section-dark-inner">
-      <div style="text-align:center;margin-bottom:2.5rem">
-        <span class="section-tagline" style="color:var(--ds-text-secondary)">Metodología</span>
+      <div >
+        <span class="section-tagline" >Metodología</span>
         <h2 class="section-heading">Nuestro Proceso</h2>
       </div>
       <div class="process-steps">
         @for (step of process; track step.title; let i = $index) {
           @if (i > 0) { <div class="step-connector"></div> }
           <div class="step">
-            <div class="step-circle" style="--sc-color:#4338ca"><span>{{ i + 1 }}</span></div>
+            <div class="step-circle" ><span>{{ i + 1 }}</span></div>
             <h3 class="step-title">{{ step.title }}</h3>
             <p class="step-desc">{{ step.desc }}</p>
           </div>
@@ -51,10 +51,10 @@
     </div>
   </section>
 
-  <section class="animate-on-scroll" style="background:linear-gradient(135deg, #4338ca 0%, #6366f1 100%);padding:3.5rem 1.5rem;text-align:center">
-    <div style="max-width:520px;margin:0 auto">
-      <h2 style="font-family:var(--ds-font-family-document);font-size:clamp(1.15rem,2vw,1.5rem);font-weight:700;color:#fff;margin:0 0 0.75rem">¿Necesitas fortalecer tu equipo?</h2>
-      <p style="font-size:var(--ds-font-size-body);color:rgba(255,255,255,0.75);margin:0 0 1.5rem">Te ayudamos a construir el mejor equipo para tu residencial.</p>
+  <section class="animate-on-scroll" >
+    <div >
+      <h2 >¿Necesitas fortalecer tu equipo?</h2>
+      <p >Te ayudamos a construir el mejor equipo para tu residencial.</p>
       <a routerLink="/web" class="btn-luxury btn-luxury-primary">Solicitar información</a>
     </div>
   </section>

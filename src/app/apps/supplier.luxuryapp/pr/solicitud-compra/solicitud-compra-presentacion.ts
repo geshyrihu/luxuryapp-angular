@@ -11,7 +11,7 @@ import { LxCarousel } from "@ui/adaptive/carousel/carousel";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { AppImage } from "@ui/web/image/image";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -22,7 +22,7 @@ import { SwalService } from "src/app/core/services/swal.service";
 import Swal from "sweetalert2";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { Carousel } from "primeng/carousel";
+import { Carousel } from "@ui/web/primeng-carousel/primeng-carousel";
 
 @Component({
   selector: "app-solicitud-compra-presentacion",

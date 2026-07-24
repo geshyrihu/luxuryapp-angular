@@ -31,7 +31,7 @@
             />
           </div>
           <div class="flex flex-column sm:flex-row align-items-center gap-2">
-            <div style="min-width: 200px">
+            <div >
               <custom-input-select-signal
                 [data]="customerOptions"
                 optionLabel="label"
@@ -44,7 +44,7 @@
                 [noMargin]="true"
               />
             </div>
-            <div style="min-width: 180px">
+            <div >
               <custom-input-select-signal
                 [data]="userTypeOptions"
                 optionLabel="label"
@@ -57,7 +57,7 @@
                 [noMargin]="true"
               />
             </div>
-            <div style="min-width: 200px">
+            <div >
               <custom-input-date-signal
                 [control]="filterDateRangeControl"
                 mode="range"
@@ -155,9 +155,9 @@
           <div
             start
             class="mobile-avatar-slot"
-            style="background: var(--ds-primary); border-radius: 50%"
+            
           >
-            <span style="font-size: 1rem; font-weight: 700; color: #fff"
+            <span 
               >{{ item.userName.charAt(0).toUpperCase() }}</span
             >
           </div>

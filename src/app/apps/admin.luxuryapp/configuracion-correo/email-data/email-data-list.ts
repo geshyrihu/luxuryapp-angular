@@ -18,8 +18,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -70,7 +70,7 @@ export class EmailDataList {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.EmailData.getAll)
+      .onGetList(Endpoints.Catalogs.EmailData.getAll)
       .then((result: any) => {
         this.dataSignal.set(result);
       });
@@ -84,6 +84,6 @@ export class EmailDataList {
   }
 
   onSendTestEmail(id: string) {
-    this.apiResponseS.onPost(Endpoints.EmailData.sendTestEmail(id), null);
+    this.apiResponseS.onPost(Endpoints.Catalogs.EmailData.sendTestEmail(id), null);
   }
 }

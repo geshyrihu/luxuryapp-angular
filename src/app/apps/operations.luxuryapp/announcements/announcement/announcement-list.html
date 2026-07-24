@@ -21,9 +21,8 @@
       @for (anuncio of announcements(); track anuncio.id) {
       <div class="col-12">
         <div
-          class="card cursor-pointer hover:shadow-4 transition-duration-200 flex flex-column"
+          class="card cursor-pointer hover:shadow-4 transition-duration-200 flex flex-column h-full"
           (click)="navigateToDetail(anuncio.id)"
-          [style]="{ height: '100%' }"
         >
           <div class="card-header">
             @if(anuncio.imagePath) {
@@ -75,7 +74,7 @@
   <div class="ion-text-center ion-padding mt-5">
     <app-icon
       icon="mdi:tray"
-      style="font-size: 4rem; color: var(--ion-color-medium)"
+      class="text-6xl text-color-secondary"
     />
     <p class="text-medium text-500 mt-2">No hay comunicados disponibles</p>
   </div>
@@ -84,7 +83,7 @@
     @for (anuncio of announcements(); track anuncio.id) {
     <div class="card shadow-2 border-round-xl mb-3 overflow-hidden cursor-pointer flex flex-column surface-card" (click)="navigateToDetail(anuncio.id)">
       @if(anuncio.imagePath) {
-        <img [src]="anuncio.imagePath" [alt]="anuncio.title" class="w-full h-10rem object-cover" onerror="this.style.display='none'" />
+        <img [src]="anuncio.imagePath" [alt]="anuncio.title" class="w-full h-10rem object-cover hidden-on-error" />
       }
       <div class="p-3">
         <div class="text-lg font-bold text-900 mb-1">{{ anuncio.title }}</div>

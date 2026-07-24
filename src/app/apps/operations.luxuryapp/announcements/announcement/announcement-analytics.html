@@ -1,4 +1,4 @@
-﻿<div class="p-4">
+<div class="p-4">
   <div class="card">
     <div class="text-xl font-bold mb-2">
       <div class="flex justify-content-between align-items-center">
@@ -17,43 +17,12 @@
       } @else {
       <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
       <div class="hidden md:block">
-        <p-table
-          [value]="analytics()"
+        <app-data-grid
+          [data]="analytics()"
+          [columns]="tableColumns"
           [paginator]="true"
           [rows]="10"
-          [showCurrentPageReport]="true"
-          currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-        >
-          <ng-template pTemplate="header">
-            <tr>
-              <th pSortableColumn="userName">
-                Usuario <p-sorticon field="userName"></p-sorticon>
-              </th>
-              <th pSortableColumn="userEmail">
-                Email <p-sorticon field="userEmail"></p-sorticon>
-              </th>
-              <th pSortableColumn="customerName">
-                Cliente <p-sorticon field="customerName"></p-sorticon>
-              </th>
-              <th pSortableColumn="role">
-                Rol <p-sorticon field="role"></p-sorticon>
-              </th>
-              <th pSortableColumn="viewDate">
-                Fecha de Visualización
-                <p-sorticon field="viewDate"></p-sorticon>
-              </th>
-            </tr>
-          </ng-template>
-          <ng-template #body let-analytic>
-            <tr>
-              <td>{{ analytic.userName }}</td>
-              <td>{{ analytic.userEmail }}</td>
-              <td>{{ analytic.customerName }}</td>
-              <td>{{ analytic.role }}</td>
-              <td>{{ analytic.viewDate | date : "dd/MM/yyyy h:mm a" }}</td>
-            </tr>
-          </ng-template>
-        </p-table>
+        />
       </div>
 
       <!-- 📱 INICIO: Componente adaptado para versión móvil -->
@@ -65,8 +34,8 @@
         >
           <ng-template #listItemTemplate let-analytic>
             <ili-list-item>
-              <div start class="mobile-avatar-slot" style="background:var(--ds-primary);border-radius:50%;">
-                <span style="font-size:1rem;font-weight:700;color:#fff;">{{ analytic.userName.charAt(0).toUpperCase() }}</span>
+              <div start class="mobile-avatar-slot flex align-items-center justify-content-center border-circle bg-primary w-3rem h-3rem">
+                <span class="text-white font-bold text-lg">{{ analytic.userName.charAt(0).toUpperCase() }}</span>
               </div>
                 <h2 class="font-bold m-0 text-base">{{ analytic.userName }}</h2>
                 <div class="flex flex-column gap-1 mt-1">

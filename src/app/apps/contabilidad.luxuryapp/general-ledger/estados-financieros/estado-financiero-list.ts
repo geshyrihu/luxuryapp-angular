@@ -18,7 +18,7 @@ import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -85,7 +85,7 @@ export class EstadoFinancieroList {
   }
 
   onLoadData(): void {
-    const urlApi = Endpoints.RefactorContabilidad.financialReportToCustomerById(
+    const urlApi = Endpoints.FinancialReports.toCustomer(
       this.customerIdS.customerId(),
     );
     this.apiResponseS
@@ -146,7 +146,7 @@ export class EstadoFinancieroList {
 
     this.apiResponseS
       .onGetItem(
-        Endpoints.RefactorContabilidad.financialReportAuthorizeByIdById(
+        Endpoints.FinancialReports.authorize(
           id,
           this.authS.applicationUserId,
         ),
@@ -169,9 +169,7 @@ export class EstadoFinancieroList {
     this.processingDesauthorize.set(currentSet);
 
     this.apiResponseS
-      .onGetItem(
-        Endpoints.RefactorContabilidad.financialReportDesauthorizeById(id),
-      )
+      .onGetItem(Endpoints.FinancialReports.deauthorize(id))
       .then((_) => {
         this.onLoadData();
       })
@@ -191,7 +189,7 @@ export class EstadoFinancieroList {
 
     this.apiResponseS
       .onPost(
-        Endpoints.RefactorContabilidad.financialReportSendByIdById(
+        Endpoints.FinancialReports.send(
           data.id,
           this.authS.applicationUserId,
         ),

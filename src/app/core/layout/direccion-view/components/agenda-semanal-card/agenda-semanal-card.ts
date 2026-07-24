@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -86,7 +87,7 @@ export class AgendaSemanalCard implements OnInit {
     this.cargando.set(true);
     const hoy = new Date().toISOString().slice(0, 10);
     const data = await this.apiResponseS.onGetItem<AgendaSemanalEventDto[]>(
-      `direccion-dashboard/agenda-semanal?fecha=${hoy}`,
+      Endpoints.DireccionDashboard.agendaSemanal(hoy),
       false,
     );
     this.eventos.set(data ?? []);

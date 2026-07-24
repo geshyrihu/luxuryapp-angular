@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -20,7 +20,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -148,7 +148,7 @@ export default class MemberForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaNative.PropertyMembers.byId(this.id),
+      Endpoints.CobranzaCore.PropertyMembers.byId(this.id),
     );
     if (res) {
       this.memberForm.patchValue({
@@ -164,10 +164,10 @@ export default class MemberForm implements OnInit {
       form: this.memberForm,
       api: this.apiResponseS,
       endpoint: this.id
-        ? Endpoints.CobranzaNative.PropertyMembers.update(
+        ? Endpoints.CobranzaCore.PropertyMembers.update(
             this.id,
           )
-        : Endpoints.CobranzaNative.PropertyMembers
+        : Endpoints.CobranzaCore.PropertyMembers
             .createWithAccount,
       method: this.id ? "PUT" : "POST",
       ref: this.ref,

@@ -9,7 +9,7 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -144,12 +144,14 @@ export class ProviderSupportForm implements OnInit {
         `providers/${this.customerIdS.customerId()}`,
       ),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        "application-roles-to-administrator",
+        Endpoints.SelectItems.applicationRolesToAdministrator,
       ),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        "ApplicationUserProvider",
+        Endpoints.SelectItems.applicationUserProvider,
       ),
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>("customers-active"),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.customersActive,
+      ),
     ]);
 
     this.cb_providers.set(providers as SelectItemDto[]);

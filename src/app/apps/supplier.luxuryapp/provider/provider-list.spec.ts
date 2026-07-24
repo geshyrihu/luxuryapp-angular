@@ -121,10 +121,11 @@ describe("ListProvider", () => {
 
   it("should call onLoadData on autorizar provider", () => {
     vi.spyOn(component as any, "onLoadData");
-    mockApiResponseS.onGetList.mockResolvedValue([]);
+    mockApiResponseS.onPut.mockResolvedValue(true);
     component.onAutorizarProvider("prov-001");
-    expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
-      "providers/Autorizar/prov-001",
+    expect(mockApiResponseS.onPut).toHaveBeenCalledWith(
+      "providers/autorizar/prov-001",
+      { customerId: "cust-123" },
     );
   });
 
@@ -158,7 +159,7 @@ describe("ListProvider", () => {
     const data = { providerId: "1", state: true };
     component.onActivateProvider(data);
     expect(mockApiResponseS.onPut).toHaveBeenCalledWith(
-      "Providers/change-state/1/true",
+      "providers/change-state/1/true",
       null,
     );
   });

@@ -1,7 +1,7 @@
 import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { TableModule } from 'primeng/table';
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
 import { ContabilidadClienteService } from '../contabilidad-cliente.service';
 import { IProyectosAprobadosDTO } from '../../contabilidad-online/interfaces/aspel-budget.interface';

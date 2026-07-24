@@ -18,7 +18,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -137,7 +137,7 @@ export class ActivosForm implements OnInit {
     this.form.patchValue({ photoPath: file });
   }
   onLoadData(id: string) {
-    const urlApi = Endpoints.RefactorMantenimiento.machineriesById(id);
+    const urlApi = Endpoints.Machineries.getById(id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.id = result.id;
       result.dateOfPurchase = this.getdateService.getDateFormat(
@@ -175,7 +175,7 @@ export class ActivosForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "machineries",
+      endpoint: Endpoints.Machineries.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -218,7 +218,7 @@ export class ActivosForm implements OnInit {
   }
 
   onLoadEquipoClasificacion() {
-    const urlApi = `equipoclasificacion`;
+    const urlApi = Endpoints.SelectItems.equipmentClassifications;
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(urlApi)
       .then((result: any) => {

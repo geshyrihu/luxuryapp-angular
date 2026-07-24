@@ -33,15 +33,27 @@ export const EndpointsSupplier = {
     comiteEvents: (customerId: string) => `solicitud-compra/comite-events/${customerId}`,
   },
   CustomerProvider: {
+    create: "customer-provider",
     delete: (id: string) => `customer-provider/${id}`,
     getById: (id: string) => `customer-provider/get-by-id/${id}`,
     listByCustomer: (customerId: string) => `customer-provider/${customerId}`,
+    update: (id: string) => `customer-provider/${id}`,
   },
   InventarioIluminacion: {
+    create: "inventario-iluminacion",
+    delete: (id: string) => `inventario-iluminacion/${id}`,
     getById: (id: string) => `inventario-iluminacion/${id}`,
+    listByCustomer: (customerId: string) =>
+      `inventario-iluminacion/list/${customerId}`,
+    update: (id: string) => `inventario-iluminacion/${id}`,
   },
   InventarioPintura: {
+    create: "inventario-pintura",
+    delete: (id: string) => `inventario-pintura/${id}`,
     getById: (id: string) => `inventario-pintura/${id}`,
+    listByCustomer: (customerId: string) =>
+      `inventario-pintura/list/${customerId}`,
+    update: (id: string) => `inventario-pintura/${id}`,
   },
   PurchaseRequestDetails: {
     addProductList: (solicitudCompraId: string) =>
@@ -63,17 +75,26 @@ export const EndpointsSupplier = {
   PurchaseOrders: {
     authorize: (id: string, userId: string) =>
       `orden-compra-auth/autorizar/${id}/${userId}`,
-    create: (providerId: string | number, posicion: number, solicitudCompraId: string) =>
-      `ordencompra/${providerId}/${posicion}/${solicitudCompraId}`,
-    delete: (id: string | number) => `ordencompra/${id}`,
+    create: (providerId: string | number, posicion: number, solicitudCompraId?: string) =>
+      solicitudCompraId
+        ? `orden-compra/${providerId}/${posicion}/${solicitudCompraId}`
+        : `orden-compra/${providerId}/${posicion}`,
+    delete: (id: string | number) => `orden-compra/${id}`,
     getById: (id: string | number) => `orden-compra/${id}`,
     getForEdit: (id: string | number) => `orden-compra/get-for-edit/${id}`,
+    list: (
+      customerId: string,
+      statusCompra: number | string,
+      tipoGasto: number | string,
+    ) => `orden-compra/list/${customerId}/${statusCompra}/${tipoGasto}`,
     listPagadas: (customerId: string, type: string) =>
       `orden-compra/pagadas/${customerId}/${type}`,
-    pdf: (id: string | number) => `ordencompra/pdf/${id}`,
-    progressiveCreate: "ordencompra/progressive-create",
+    pdf: (id: string | number) => `orden-compra/pdf/${id}`,
+    progressiveCreate: "orden-compra/progressive-create",
     relatedQuotes: (solicitudCompraId: string) =>
       `orden-compra/cotizaciones-relacionadas/${solicitudCompraId}`,
+    reject: (ordenCompraAuthId: string | number, applicationUserId: string) =>
+      `orden-compra-auth/no-autorizada/${ordenCompraAuthId}/${applicationUserId}`,
     solicitudPago: (id: string | number) => `orden-compra/solicitud-pago/${id}`,
     unauthorize: (id: string) => `orden-compra-auth/desautorizar/${id}`,
     linkManagerList: (customerId: string) =>
@@ -95,11 +116,29 @@ export const EndpointsSupplier = {
       `orden-compra-status/invoices/${id}/type`,
   },
   Providers: {
+    authorize: (providerId: string | number) => `providers/autorizar/${providerId}`,
+    changeState: (providerId: string | number, state: boolean) =>
+      `providers/change-state/${providerId}/${state}`,
+    coincidences: (providerId: string | number) =>
+      `providers/coincidencias/${providerId}`,
+    create: "providers",
     delete: (id: string) => `providers/${id}`,
     getByIdAndCustomer: (id: string | number, customerId: string) =>
       `providers/${id}/${customerId}`,
     getByIdAndCustomerAlt: (id: string, customerId: string) =>
       `providers/${id}/${customerId}`,
+    list: "providers/list",
+    update: (id: string | number) => `providers/${id}`,
+    validateRfc: (valueRfc: string, customerId: string) =>
+      `providers/validar-rfc/${valueRfc}/${customerId}`,
+  },
+  QualificationProvider: {
+    create: "qualification-provider",
+    getByApplicationUserAndProvider: (
+      applicationUserId: string,
+      providerId: string | number,
+    ) => `qualification-provider/${applicationUserId}/${providerId}`,
+    update: (id: string | number) => `qualification-provider/${id}`,
   },
   PurchaseOrderBudgets: {
     create: "orden-compra-presupuesto",
@@ -130,11 +169,8 @@ export const EndpointsSupplier = {
     inventarioIluminacionListById: (customerIdS: any) => `inventario-iluminacion/list/${customerIdS}`,
     inventarioIluminacionById: (id: any) => `inventario-iluminacion/${id}`,
     inventarioPinturaById: (id: any) => `inventario-pintura/${id}`,
-    ordenCompraAuthNoAutorizadaByIdById: (ordenCompraAuthId: any, authS: any) => `orden-compra-auth/no-autorizada/${ordenCompraAuthId}/${authS}`,
     providersByIdById: (providerId: any, customerIdS: any) => `providers/${providerId}/${customerIdS}`,
     providersChangeStateByIdById: (p0: any, p1: any) => `providers/change-state/${p0}/${p1}`,
-    qualificationProvider: "qualification-provider",
-    qualificationProviderById: (qualificationProviderId: any) => `qualification-provider/${qualificationProviderId}`,
     cotizacionproveedor: "cotizacion-proveedor",
     cotizacionProveedorById: (cotizacionProveedorId: any) => `cotizacion-proveedor/${cotizacionProveedorId}`,
     cotizacionProveedorUpdateProviderById: (cotizacionProveedor: any) => `cotizacion-proveedor/update-provider/${cotizacionProveedor}`,
@@ -144,17 +180,13 @@ export const EndpointsSupplier = {
     solicitudCompraCuadroComparativoBudgetsById: (budgetId: any) => `solicitud-compra/cuadro-comparativo/budgets/${budgetId}`,
       customerProviderById: (customerIdS: any) => `customer-provider/${customerIdS}`,
     inventarioPinturaListById: (customerIdS: any) => `inventario-pintura/list/${customerIdS}`,
-    ordenCompraListByIdByIdById: (customerId: any, statusCompra: any, tipoGasto: any) => `orden-compra/list/${customerId}/${statusCompra}/${tipoGasto}`,
-    ordenCompraPagadasByIdById: (customerIdS: any, type: any) => `orden-compra/pagadas/${customerIdS}/${type}`,
-    productosById: (productoId: any) => `productos/${productoId}`,
     providersValidarRfcByIdById: (valueRfc: any, customerIdS: any) => `providers/validar-rfc/${valueRfc}/${customerIdS}`,
     providersList: "providers/list",
     providersAutorizarById: (providerId: any) => `providers/autorizar/${providerId}`,
     providersCoincidenciasById: (providerId: any) => `providers/coincidencias/${providerId}`,
-    qualificationProviderByIdById: (authS: any, providerId: any) => `qualification-provider/${authS}/${providerId}`,
     cotizacionProveedorPosicionCotizacionByIdById: (solicitudCompraId: any, posicionCotizacion: any) => `cotizacion-proveedor/posicion-cotizacion/${solicitudCompraId}/${posicionCotizacion}`,
     solicitudcompraById: (solicitudCompraId: any) => `solicitud-compra/${solicitudCompraId}`,
     ordenCompraCotizacionesRelacionadasById: (solicitudCompraId: any) => `orden-compra/cotizaciones-relacionadas/${solicitudCompraId}`,
-    solicitudcompraCuadrocomparativoById: (solicitudCompraId: any) => `solicitud-compra/cuadrocomparativo/${solicitudCompraId}`,
+    solicitudcompraCuadrocomparativoById: (solicitudCompraId: any) => `solicitud-compra/cuadro-comparativo/${solicitudCompraId}`,
 },
 } as const;

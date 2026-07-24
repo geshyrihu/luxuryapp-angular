@@ -5,16 +5,8 @@
     <div class="flex align-items-center gap-3 mb-2">
       <div
         class="flex align-items-center justify-content-center border-round-xl shadow-1"
-        style="
-          width: 56px;
-          height: 56px;
-          background: var(--ds-primary-50, #edf1ff);
-        "
       >
-        <app-icon
-          icon="mdi:wallet"
-          style="font-size: 1.75rem; color: var(--ds-primary)"
-        />
+        <app-icon icon="mdi:wallet" />
       </div>
       <div>
         <h1 class="ds-heading text-3xl font-bold text-900 m-0">Contabilidad</h1>
@@ -29,10 +21,7 @@
   <!-- Grupos de módulos -->
   @for (group of getVisibleGroups(); track group.label) {
   <div class="flex align-items-center gap-2 mb-4 mt-6">
-    <app-icon
-      [icon]="group.icon"
-      style="font-size: 1.25rem; color: var(--ds-primary)"
-    />
+    <app-icon [icon]="group.icon" />
     <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase">
       {{ group.label }}
     </h2>
@@ -42,12 +31,14 @@
   <div class="grid">
     @for (module of group.cards; track module.route) {
     <div class="col-12 sm:col-6 md:col-3">
-      <lx-card class="card card--interactive card--elevated h-full" (click)="navigateTo(module.route)">
+      <lx-card
+        class="card card--interactive card--elevated h-full"
+        (click)="navigateTo(module.route)"
+      >
         <div class="flex flex-column gap-3">
           <div class="flex align-items-center justify-content-between">
             <div
               class="flex align-items-center justify-content-center border-round-lg text-2xl flex-shrink-0"
-              style="width: 48px; height: 48px"
               [style.backgroundColor]="module.bgColor"
             >
               <app-icon [icon]="module.icon" [style.color]="module.color" />
@@ -78,21 +69,11 @@
   >
     <div
       class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
-      style="
-        width: 40px;
-        height: 40px;
-        background: var(--ds-primary-50, #edf1ff);
-      "
     >
-      <app-icon
-        icon="mdi:wallet"
-        style="font-size: 1.25rem; color: var(--ds-primary)"
-      />
+      <app-icon icon="mdi:wallet" />
     </div>
     <div>
-      <h2 class="font-bold m-0 text-color" style="font-size: 1.1rem">
-        Contabilidad
-      </h2>
+      <h2 class="font-bold m-0 text-color">Contabilidad</h2>
       <p class="text-xs m-0 text-color-secondary">
         Gestión contable y financiera
       </p>
@@ -103,17 +84,10 @@
   @for (group of getVisibleGroups(); track group.label) {
   <div>
     <!-- Divisor de grupo -->
-    <div class="px-3 py-2" style="background: var(--ds-bg-elevated, #f4f5f8)">
+    <div class="px-3 py-2">
       <div class="flex align-items-center gap-2">
-        <app-icon
-          [icon]="group.icon"
-          style="font-size: 1rem; color: var(--ds-primary)"
-        />
-        <span
-          class="text-xs font-bold uppercase"
-          style="color: var(--ds-text-secondary)"
-          >{{ group.label }}</span
-        >
+        <app-icon [icon]="group.icon" />
+        <span class="text-xs font-bold uppercase">{{ group.label }}</span>
       </div>
     </div>
 
@@ -122,14 +96,9 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width: 38px; height: 38px"
         [style.backgroundColor]="module.bgColor"
       >
-        <app-icon
-          [icon]="module.icon"
-          [style.color]="module.color"
-          style="font-size: 1.1rem"
-        />
+        <app-icon [icon]="module.icon" [style.color]="module.color" />
       </div>
 
       <h3 class="font-semibold m-0 text-color">{{ module.title }}</h3>

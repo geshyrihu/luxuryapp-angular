@@ -27,7 +27,7 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
+import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -36,7 +36,7 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Table, TableModule } from "primeng/table";
+import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Subscription } from "rxjs";
 import {
   BudgetProposalDTO,
@@ -1359,9 +1359,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       if (result.isConfirmed) {
         this.loading.set(true);
         this.apiResponseS
-          .onDelete(
-            Endpoints.RefactorContabilidad.budgetProposalItemById(item.id),
-          )
+          .onDelete(Endpoints.BudgetProposalItems.delete(item.id))
           .then((success) => {
             if (success) {
               // Actualiza el estado local para remover el ótem sin recargar toda la data.

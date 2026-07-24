@@ -16,7 +16,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
@@ -90,7 +90,7 @@ export class CreateOrdenCompraFueraFondeo implements OnInit {
 
     const result: any = await this.apiResponseS.onGetSelectItem<
       SelectItemDto[]
-    >(`providers/${this.customerIdS.customerId()}`);
+    >(Endpoints.SelectItems.providers(this.customerIdS.customerId()));
     this.cb_providers.set(result as SelectItemDto[]);
   }
 
@@ -108,7 +108,7 @@ export class CreateOrdenCompraFueraFondeo implements OnInit {
 
     this.apiResponseS
       .onPost(
-        Endpoints.RefactorContabilidad.ordenCompraFueraFondeo,
+        Endpoints.Funding.createOutsideProcessPurchaseOrder,
         this.form.value,
       )
       .then((result: any) => {

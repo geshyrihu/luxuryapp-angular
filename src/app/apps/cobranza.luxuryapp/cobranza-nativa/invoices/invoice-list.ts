@@ -1,4 +1,4 @@
-﻿import { DatePipe } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +14,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -69,7 +69,7 @@ export default class InvoiceList {
 
   async loadCharges(customerId: string) {
     const res = await this.apiResponseS.onGetItem<any[]>(
-      Endpoints.CobranzaNative.Charges.customer(customerId),
+      Endpoints.CobranzaCore.Charges.customer(customerId),
     );
     if (res) {
       this.charges.set(
@@ -85,7 +85,7 @@ export default class InvoiceList {
     const chargeId = this.chargeIdCtrl.value;
     if (!chargeId) return;
     const res = await this.apiResponseS.onGetItem<InvoiceResponseDTO[]>(
-      Endpoints.CobranzaNative.Invoices.byCharge(chargeId),
+      Endpoints.CobranzaCore.Invoices.byCharge(chargeId),
     );
     this.dataSignal.set(res ?? []);
   }

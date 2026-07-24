@@ -12,8 +12,8 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { ConfirmationService } from "primeng/api";
-import { TableModule } from "primeng/table";
+import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -110,7 +110,7 @@ export class AccountingCatalog {
     const customerId = this.customerIdService.customerId();
     if (!customerId) return;
 
-    const urlApi = Endpoints.RefactorContabilidad.accountingCatalogCustomeryear(
+    const urlApi = Endpoints.AccountingCatalog.byCustomerYear(
       customerId,
       this.currentYear(),
     );

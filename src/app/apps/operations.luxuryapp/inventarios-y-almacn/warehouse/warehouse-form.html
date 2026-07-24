@@ -38,12 +38,12 @@
               [cdkDropListData]="filteredAvailableUsers()"
               [cdkDropListConnectedTo]="['assignedList']"
               (cdkDropListDropped)="onDropToAvailable($event)"
-              class="warehouse-drop-zone"
+              class="border-1 surface-border border-round p-3 min-h-10rem surface-ground"
             >
               @for (user of filteredAvailableUsers(); track user.value) {
               <div
                 (dblclick)="onAddUser(user)"
-                class="warehouse-user-item pointer"
+                class="surface-card p-2 border-round shadow-1 mb-2 cursor-grab"
                 cdkDrag
               >
                 {{ user.label }}
@@ -60,11 +60,11 @@
               [cdkDropListData]="assignedUsers"
               [cdkDropListConnectedTo]="['availableUsers']"
               (cdkDropListDropped)="onDropToAssigned($event)"
-              class="warehouse-drop-zone"
+              class="border-1 surface-border border-round p-3 min-h-10rem surface-ground"
             >
               @for (user of assignedUsers; track user.value) {
               <div
-                class="warehouse-user-item flex justify-content-between align-items-center"
+                class="surface-card p-2 border-round shadow-1 mb-2 cursor-grab flex justify-content-between align-items-center"
                 cdkDrag
                 @dropAnimation
               >
@@ -72,7 +72,7 @@
                 <iw-button
                   iconClass="mdi:delete"
                   severity="danger"
-                  variant="ghost-text"
+                  variant="text"
                   (clicked)="onRemoveUser(user)"
                 />
               </div>

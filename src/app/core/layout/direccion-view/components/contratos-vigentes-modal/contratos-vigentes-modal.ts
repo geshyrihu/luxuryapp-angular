@@ -8,6 +8,7 @@ import {
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TagModule } from "primeng/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type {
   ContratosVigentesCustomerGroupDto,
@@ -73,7 +74,7 @@ export class ContratosVigentesModal implements OnInit {
   private async cargar(): Promise<void> {
     this.cargando.set(true);
     const data = await this.apiResponseS.onGetItem<ContratosVigentesResumenDto>(
-      "direccion-dashboard/contratos-vigentes",
+      Endpoints.DireccionDashboard.contratosVigentes,
       false,
     );
     this.resumen.set(data ?? null);

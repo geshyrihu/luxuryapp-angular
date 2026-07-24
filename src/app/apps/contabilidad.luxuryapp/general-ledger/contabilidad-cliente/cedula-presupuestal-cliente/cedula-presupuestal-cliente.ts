@@ -7,7 +7,7 @@ import {
   signal,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import type {
   IBaseAccountDto,
   IFinancialStatementDto,

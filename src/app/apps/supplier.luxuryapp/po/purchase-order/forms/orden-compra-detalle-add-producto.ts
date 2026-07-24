@@ -16,10 +16,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { AppAvatar } from "@ui/web/avatar/avatar";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputNumberModule } from "primeng/inputnumber";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { InputNumberModule } from "@ui/web/primeng-inputnumber/primeng-inputnumber";
 
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -147,13 +147,15 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
     const urlApi = Endpoints.PurchaseOrderDetails.addProductToOrder(
       this.ordenCompraId,
     );
-    const httpParams = {
+    const httpParams: Record<string, unknown> = {
       page: this.page,
       recordsNumber: this.rows,
       filter: this.searchTerm,
-      sortField: this.sortField,
       sortOrder: this.sortOrder,
     };
+    if (this.sortField) {
+      httpParams.sortField = this.sortField;
+    }
 
     this.apiResponseS.onGetList(urlApi, httpParams).then((result: any) => {
       if (!result) {

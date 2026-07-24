@@ -8,7 +8,7 @@ import {
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -48,7 +48,7 @@ export class AddFileEstadoFinanciero implements OnInit {
 
     this.apiResponseS
       .onPost(
-        Endpoints.RefactorContabilidad.financialReportUploadFileByIdById(
+        Endpoints.FinancialReports.uploadFile(
           this.id,
           this.authS.applicationUserId,
         ),

@@ -6,6 +6,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type { PersonalAusenteResumenDto } from "./personal-ausente-card.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -51,7 +52,7 @@ export class PersonalAusenteCard implements OnInit {
   private async cargar(): Promise<void> {
     this.cargando.set(true);
     const data = await this.apiResponseS.onGetItem<PersonalAusenteResumenDto>(
-      "direccion-dashboard/personal-ausente",
+      Endpoints.DireccionDashboard.personalAusente,
       false,
     );
     this.resumen.set(data ?? null);

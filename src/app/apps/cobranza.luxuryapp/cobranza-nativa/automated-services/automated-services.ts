@@ -1,4 +1,4 @@
-﻿import { DatePipe } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -64,7 +64,7 @@ export default class AutomatedServices {
     this.running.set("generate");
     try {
       const count = await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaNative.Automation
+        Endpoints.CobranzaCore.Automation
           .generateMonthlyCharges,
         { customerId, month: this.monthCtrl.value, year: this.yearCtrl.value },
       );
@@ -84,7 +84,7 @@ export default class AutomatedServices {
     this.running.set("latefees");
     try {
       const count = await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaNative.Automation.calculateLateFees(
+        Endpoints.CobranzaCore.Automation.calculateLateFees(
           customerId,
         ),
         {},
@@ -105,7 +105,7 @@ export default class AutomatedServices {
     this.running.set("escalate");
     try {
       const count = await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaNative.Automation.evaluateCollectionCases(
+        Endpoints.CobranzaCore.Automation.evaluateCollectionCases(
           customerId,
         ),
         {},
@@ -126,7 +126,7 @@ export default class AutomatedServices {
     this.running.set("reconcile");
     try {
       const count = await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaNative.Automation.autoReconcile,
+        Endpoints.CobranzaCore.Automation.autoReconcile,
         {},
       );
       this.addResult(

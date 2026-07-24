@@ -20,7 +20,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
         Verificación Manual: Reporte de Empleados
       </h2>
       <p class="mb-4 text-color-secondary">
-        Al presionar el botún a continuación, se encolaré un trabajo en segundo
+        Al presionar el botón a continuación, se encolaré un trabajo en segundo
         plano para revisar los datos faltantes de los empleados activos y se
         enviaré un reporte al administrador correspondiente (configurado
         internamente).

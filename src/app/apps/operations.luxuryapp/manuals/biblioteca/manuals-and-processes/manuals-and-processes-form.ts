@@ -19,7 +19,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -171,9 +171,15 @@ export class ManualsAndProcessesForm implements OnInit {
 
   async loadCatalogos() {
     const [roles, customers, depts] = await Promise.all([
-      this.apiS.onGetSelectItem<SelectItemDto[]>("roles-for-announcements"),
-      this.apiS.onGetSelectItem<SelectItemDto[]>("CustomersActiveNameShort"),
-      this.apiS.onGetItem<SelectItemDto[]>("select-item-enum/e-departament"),
+      this.apiS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.rolesForAnnouncements,
+      ),
+      this.apiS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.customersActiveShortName,
+      ),
+      this.apiS.onGetItem<SelectItemDto[]>(
+        Endpoints.EnumSelectItems.departament,
+      ),
     ]);
 
     const groupedRoles = (roles ?? []).reduce((acc: any[], curr) => {

@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TipoDocumento } from "./interfaces/tipo-documento.interface";
 import { AccesoRol } from "./interfaces/acceso-rol.interface";

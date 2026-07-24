@@ -14,13 +14,11 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import {
-  DialogService,
+import { DialogService,
   DynamicDialogConfig,
-  DynamicDialogRef,
-} from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+  DynamicDialogRef, } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
@@ -121,7 +119,7 @@ export class FundingUploadInvoicesModal {
     const customerId = this.customerIdService.customerId();
     this.apiResponseService
       .onPost<any[]>(
-        `funding/analyze-invoices/${customerId}?fundingId=${this.fundingId}`,
+        Endpoints.Funding.analyzeInvoices(customerId, this.fundingId),
         formData,
       )
       .then((result) => {
@@ -186,7 +184,7 @@ export class FundingUploadInvoicesModal {
 
     this.apiResponseService
       .onPost(
-        Endpoints.RefactorContabilidad.fundingCreateOrdersFromInvoices,
+        Endpoints.Funding.createOrdersFromInvoices,
         requestDto,
       )
       .then(() => {

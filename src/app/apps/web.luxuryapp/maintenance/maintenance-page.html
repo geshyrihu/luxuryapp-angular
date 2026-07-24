@@ -1,6 +1,6 @@
 <div class="area-page">
   <!-- ══════ HEADER (compacto) ══════ -->
-  <header class="proc-header" style="--proc-gradient: linear-gradient(135deg, #c2410c 0%, #ea580c 100%)">
+  <header class="proc-header" >
     <div class="proc-header-start">
       <a routerLink="/web" class="back-link">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -14,14 +14,14 @@
   <!-- ══════ PROCEDURES ══════ -->
   <div class="page-container">
     <section class="animate-on-scroll">
-      <div style="text-align:center;margin-bottom:2.5rem">
-        <span class="section-tagline" style="color:#c2410c">Procedimientos</span>
+      <div >
+        <span class="section-tagline" >Procedimientos</span>
         <h2 class="section-heading">Nuestros procedimientos</h2>
-        <p class="section-desc" style="margin:0 auto">Cada procedimiento está diseñado para asegurar resultados consistentes y trazables.</p>
+        <p class="section-desc" >Cada procedimiento está diseñado para asegurar resultados consistentes y trazables.</p>
       </div>
       <div class="procedures-grid">
         @for (proc of procedures; track proc.id) {
-          <a class="proc-card" [routerLink]="['/web/maintenance', proc.id]" [style]="{ '--card-accent': proc.gradient }">
+          <a class="proc-card" [routerLink]="['/web/maintenance', proc.id]" >
             <div class="proc-card-top">
               <span class="proc-card-icon" [style.background]="proc.gradient">{{ proc.emoji }}</span>
               <span class="proc-card-steps">{{ proc.steps }} pasos</span>
@@ -39,36 +39,36 @@
   </div>
 
   <!-- ══════ OBJECTIVES ══════ -->
-  <section class="section-dark animate-on-scroll" style="padding:2rem 1.5rem">
+  <section class="section-dark animate-on-scroll" >
     <div class="section-dark-inner">
-      <div style="text-align:center;margin-bottom:1.5rem">
-        <span class="section-tagline" style="color:var(--ds-text-secondary)">Objetivos</span>
-        <h2 class="section-heading" style="font-size:1.1rem;margin-bottom:0">¿Qué buscamos con estos procedimientos?</h2>
+      <div >
+        <span class="section-tagline" >Objetivos</span>
+        <h2 class="section-heading" >¿Qué buscamos con estos procedimientos?</h2>
       </div>
       <div class="objectives-grid">
         <div class="obj-card">
-          <div class="obj-card-icon" style="--obj-bg:#ffedd5;--obj-color:#c2410c">
+          <div class="obj-card-icon" >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
           <h3 class="obj-card-title">Calidad garantizada</h3>
           <p class="obj-card-desc">Resultados consistentes mediante pasos estandarizados y verificables.</p>
         </div>
         <div class="obj-card">
-          <div class="obj-card-icon" style="--obj-bg:#ffedd5;--obj-color:#ea580c">
+          <div class="obj-card-icon" >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3 class="obj-card-title">Seguridad primero</h3>
           <p class="obj-card-desc">Protocolos que protegen ejecutores, condóminos e instalaciones.</p>
         </div>
         <div class="obj-card">
-          <div class="obj-card-icon" style="--obj-bg:#fef3c7;--obj-color:#d97706">
+          <div class="obj-card-icon" >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg>
           </div>
           <h3 class="obj-card-title">Trazabilidad total</h3>
           <p class="obj-card-desc">Cada intervención queda registrada para su revisión y auditoría.</p>
         </div>
         <div class="obj-card">
-          <div class="obj-card-icon" style="--obj-bg:#dcfce7;--obj-color:#15803d">
+          <div class="obj-card-icon" >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M12 6v6l4 2"/></svg>
           </div>
           <h3 class="obj-card-title">Eficiencia operativa</h3>

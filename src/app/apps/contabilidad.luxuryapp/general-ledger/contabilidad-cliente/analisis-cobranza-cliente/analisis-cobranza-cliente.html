@@ -88,12 +88,12 @@
             </tbody>
           </table>
           <div class="mt-4">
-            <div style="position: relative; width: 100%; height: 280px">
+            <div >
               <app-chart-wrapper
                 type="pie"
                 [data]="chartData()!"
                 [options]="chartOptions"
-                style="width: 100%; height: 100%"
+                
               />
             </div>
           </div>
@@ -182,8 +182,8 @@
       >
         <ng-template #header>
           <tr>
-            <th style="width: 70%">Condómino</th>
-            <th class="text-right" style="width: 30%">Total Deuda</th>
+            <th >Condómino</th>
+            <th class="text-right" >Total Deuda</th>
           </tr>
         </ng-template>
         <ng-template #body let-row>
@@ -246,24 +246,18 @@
       >
         <ng-template #header>
           <tr>
-            <th style="min-width: 250px">Condómino</th>
+            <th >Condómino</th>
             @for (col of uniqueConcepts(); track col) {
             <th
               class="text-right"
-              style="
-                width: 140px;
-                min-width: 140px;
-                max-width: 140px;
-                word-wrap: break-word;
-                white-space: normal;
-              "
+              
             >
               {{ col }}
             </th>
             }
             <th
               class="text-right text-primary font-bold"
-              style="width: 140px; min-width: 140px"
+              
             >
               Saldo Final
             </th>
@@ -276,14 +270,14 @@
               <div class="font-bold">{{ row.condomino }}</div>
             </td>
             @for (col of uniqueConcepts(); track col) {
-            <td class="rf-td-number" style="width: 140px; min-width: 140px">
+            <td class="rf-td-number" >
               {{ getConceptBalance(row, col) === 0 ? '—' :
               (getConceptBalance(row, col) | accountingNumber) }}
             </td>
             }
             <td
               class="rf-td-number font-bold"
-              style="width: 140px; min-width: 140px"
+              
               [class.rf-neg]="row.saldo < 0"
             >
               {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2')
@@ -297,7 +291,7 @@
             @for (col of uniqueConcepts(); track col) {
             <td
               class="rf-td-number font-bold border-top-1 surface-border py-2 text-primary"
-              style="width: 140px; min-width: 140px"
+              
             >
               {{ getTotalConceptBalance(col) === 0 ? '—' :
               (getTotalConceptBalance(col) | accountingNumber) }}
@@ -305,7 +299,7 @@
             }
             <td
               class="rf-td-number font-bold border-top-1 surface-border text-primary text-lg py-2"
-              style="width: 140px; min-width: 140px"
+              
             >
               {{ totalFilteredSaldo | accountingNumber:'1.2-2' }}
             </td>
@@ -325,7 +319,7 @@
   <!-- Debugger solicitado por el usuario -->
   <div
     class="card mt-4 bg-gray-50 p-3 overflow-auto text-xs"
-    style="max-height: 400px"
+    
   >
     <h3 class="font-bold mb-2">DEBUG: Raw Data del Reporte (data() | json)</h3>
     <pre>{{ data() | json }}</pre>

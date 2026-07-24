@@ -23,7 +23,7 @@ import {
   timeOutline,
   trashOutline,
 } from "ionicons/icons";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { SolicitudVacanteForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";

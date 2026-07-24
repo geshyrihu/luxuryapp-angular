@@ -5,7 +5,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({

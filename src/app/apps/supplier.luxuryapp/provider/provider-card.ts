@@ -9,7 +9,7 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -39,7 +39,7 @@ export class TarjetaProveedor implements OnInit {
   onLoadItem() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.RefactorSupplier.providersByIdById(
+        Endpoints.Providers.getByIdAndCustomer(
           this.providerId,
           this.customerIdS.customerId(),
         ),

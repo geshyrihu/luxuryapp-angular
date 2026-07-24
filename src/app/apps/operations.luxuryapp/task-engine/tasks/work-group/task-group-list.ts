@@ -19,8 +19,8 @@ import {
   mailOutline,
   peopleOutline,
 } from "ionicons/icons";
-import { DataViewModule } from "primeng/dataview";
-import { TableModule } from "primeng/table";
+import { DataViewModule } from "@ui/web/primeng-dataview/primeng-dataview";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TaskGroupParticipant } from "src/app/apps/operations.luxuryapp/task-engine/tasks/participants/task-group-participant";
 import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";

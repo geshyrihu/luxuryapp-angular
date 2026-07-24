@@ -6,7 +6,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { SkeletonModule } from "primeng/skeleton";
+import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -15,7 +15,7 @@ import { reportFilterState } from "../state/financial-report-filter.state";
 
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 @Component({
   selector: "app-bancos-inversiones",

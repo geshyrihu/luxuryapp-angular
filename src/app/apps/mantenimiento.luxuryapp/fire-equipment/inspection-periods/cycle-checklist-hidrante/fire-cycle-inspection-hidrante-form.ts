@@ -15,7 +15,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -84,7 +84,7 @@ export class FireCycleInspectionHidranteForm implements OnInit {
   onLoadExisting() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.RefactorMantenimiento.fireCycleInspectionHidranteByIdById(
+        Endpoints.FireCycleInspection.hidrante.getByCycleAndEquipment(
           this.cycleId,
           this.equipmentId,
         ),
@@ -98,7 +98,7 @@ export class FireCycleInspectionHidranteForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "fire-cycle-inspection/hidrante",
+      endpoint: Endpoints.FireCycleInspection.hidrante.base,
       id: "",
       ref: this.ref,
       submitting: this.submitting,

@@ -2,7 +2,7 @@
 <header
   class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden mb-4 w-full"
 >
-  <div class="bg-primary" style="height: 0.45rem"></div>
+  <div class="bg-primary" ></div>
   <div class="surface-100 p-1 md:p-2 text-center">
     <div class="w-full">
       <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
@@ -82,7 +82,7 @@
       <input
         type="file"
         #evidenceInput
-        style="display: none"
+        class="hidden"
         accept=".jpg,.jpeg,.png"
         multiple
         (change)="onEvidenceFilesSelected($event)"
@@ -347,7 +347,7 @@
   <ng-template #body>
     <tr>
       <td
-        style="width: 50%; border: none !important"
+        
         class="text-right font-bold"
       >
         TIEMPO DE ENTREGA
@@ -363,7 +363,7 @@
     </tr>
     <tr>
       <td
-        style="width: 50%; border: none !important"
+        
         class="text-right font-bold"
       >
         GARANTIA
@@ -379,7 +379,7 @@
     </tr>
     <tr>
       <td
-        style="width: 50%; border: none !important"
+        
         class="text-right font-bold"
       >
         POLITICAS DE PAGO
@@ -395,7 +395,7 @@
     </tr>
     <tr>
       <td
-        style="width: 50%; border: none !important"
+        
         class="text-right font-bold"
       >
         VER COTIZACION

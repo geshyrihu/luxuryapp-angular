@@ -5,6 +5,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type { VacantesResumenDto } from "./reclutamiento-card.model";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -38,7 +39,7 @@ export class ReclutamientoCard implements OnInit {
   private async cargar(): Promise<void> {
     this.cargando.set(true);
     const data = await this.apiResponseS.onGetItem<VacantesResumenDto>(
-      "direccion-dashboard/reclutamiento-resumen",
+      Endpoints.DireccionDashboard.reclutamientoResumen,
       false,
     );
     this.resumen.set(data ?? null);

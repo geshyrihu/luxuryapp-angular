@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -16,7 +16,7 @@ import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -80,7 +80,7 @@ export class RegulationArticleForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaNative.RegulationArticles.getById(
+      Endpoints.CobranzaCore.RegulationArticles.getById(
         this.id,
       ),
     );
@@ -92,7 +92,7 @@ export class RegulationArticleForm implements OnInit {
       form: this.form,
       api: this.apiResponseS,
       endpoint:
-        Endpoints.CobranzaNative.RegulationArticles.create,
+        Endpoints.CobranzaCore.RegulationArticles.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

@@ -36,9 +36,8 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
         @if (config(); as viewerConfig) {
           <div
             #container
-            class="mxgraph"
+            class="mxgraph max-w-full border-1 border-transparent border-solid"
             [attr.data-mxgraph]="viewerConfig"
-            style="max-width:100%;border:1px solid transparent;"
           ></div>
         } @else {
           <div

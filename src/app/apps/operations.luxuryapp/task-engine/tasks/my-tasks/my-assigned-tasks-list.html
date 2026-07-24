@@ -48,17 +48,17 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th style="width: 7%">FOLIO</th>
-          <th style="width: 5%" class="hidden md:table-cell">SOLICITA</th>
-          <th style="width: 8%">FECHA SOL.</th>
-          <th style="width: 22%">SOLICITUD</th>
-          <th style="width: 5%" class="hidden md:table-cell">EVIDENCIA</th>
-          <th style="width: 6%">RESP.</th>
-          <th style="width: 8%">PROGRAMADO</th>
-          <th style="width: 7%" class="hidden md:table-cell">CIERRE</th>
-          <th style="width: 5%">DIAS</th>
-          <th style="width: 22%">ULTIMO SEGUIMIENTO</th>
-          <th style="width: 5%"></th>
+          <th >FOLIO</th>
+          <th  class="hidden md:table-cell">SOLICITA</th>
+          <th >FECHA SOL.</th>
+          <th >SOLICITUD</th>
+          <th  class="hidden md:table-cell">EVIDENCIA</th>
+          <th >RESP.</th>
+          <th >PROGRAMADO</th>
+          <th  class="hidden md:table-cell">CIERRE</th>
+          <th >DIAS</th>
+          <th >ULTIMO SEGUIMIENTO</th>
+          <th ></th>
         </tr>
       </ng-template>
       <ng-template #body let-item>
@@ -89,11 +89,7 @@
             <p class="m-0 font-semibold text-xs text-900">{{ item.title }}</p>
             <p
               class="m-0 text-xs text-700"
-              style="
-                white-space: normal;
-                overflow-wrap: break-word;
-                word-break: break-word;
-              "
+              
             >
               {{ item.description }}
             </p>
@@ -119,13 +115,7 @@
             <strong class="text-xs">{{ item.daysDifference }}</strong>
           </td>
           <td
-            style="
-              white-space: normal;
-              overflow-wrap: break-word;
-              word-break: break-word;
-              overflow: hidden;
-              max-width: 0;
-            "
+            
           >
             @if (item.lastFollowUp) {
             <span class="text-xs text-400 font-medium block mb-1"
@@ -133,11 +123,7 @@
             >
             <p
               class="m-0 text-xs text-700"
-              style="
-                white-space: normal;
-                overflow-wrap: break-word;
-                word-break: break-word;
-              "
+              
             >
               {{ item.lastFollowUp }}
             </p>
@@ -301,21 +287,21 @@
       <span
         ><span
           class="print-legend-dot"
-          style="background: var(--ds-danger)"
+          
         ></span>
         No iniciado</span
       >
       <span
         ><span
           class="print-legend-dot"
-          style="background: var(--ds-warning)"
+          
         ></span>
         En proceso</span
       >
       <span
         ><span
           class="print-legend-dot"
-          style="background: var(--ds-danger)"
+          
         ></span>
         Reabierto</span
       >
@@ -339,8 +325,8 @@
           <th class="col-resp">Responsable</th>
           <th class="col-fecha">Programado</th>
           <th class="col-estado">Estado</th>
-          <th class="col-dias" style="text-align: center">Dias</th>
-          <th class="col-evid" style="text-align: center">Evidencias</th>
+          <th class="col-dias" >Dias</th>
+          <th class="col-evid" >Evidencias</th>
           <th class="col-seg">Ultimo seguimiento</th>
         </tr>
       </thead>
@@ -349,7 +335,7 @@
         <tr>
           <td
             [class]="statusTdClass(item.status)"
-            style="font-size: 7.5pt; color: var(--ds-text-muted)"
+            
           >
             {{ idx + 1 }}
           </td>
@@ -362,38 +348,33 @@
             <div class="print-desc">{{ item.description }}</div>
             }
           </td>
-          <td style="font-size: 7.5pt">{{ item.creator || 'é' }}</td>
-          <td style="font-size: 7.5pt; white-space: nowrap">
+          <td >{{ item.creator || 'é' }}</td>
+          <td >
             {{ item.scheduledAt || 'é' }}
           </td>
           <td>
             <span
               class="print-status-pill"
-              [style]="statusPillStyle(item.status)"
+              
             >
               {{ statusLabel(item.status) }}
             </span>
           </td>
-          <td style="text-align: center; font-size: 7.5pt">
+          <td >
             {{ item.daysDifference }}
           </td>
-          <td style="text-align: center; font-size: 9pt">
+          <td >
             @if (item.beforeWork || item.afterWork) { ? } @else { é }
           </td>
           <td>
             @if (item.lastFollowUp) {
             <span
-              style="
-                font-size: 7pt;
-                color: var(--ds-text-muted);
-                display: block;
-                margin-bottom: 2px;
-              "
+              
               >{{ item.lastFollowUpDate }}</span
             >
             <p class="print-followup">{{ item.lastFollowUp }}</p>
             } @else {
-            <span style="font-size: 7.5pt; color: var(--ds-text-muted)">é</span>
+            <span >é</span>
             }
           </td>
         </tr>

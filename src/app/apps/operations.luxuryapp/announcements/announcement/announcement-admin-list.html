@@ -25,7 +25,7 @@
       </div>
 
       <div class="flex flex-column sm:flex-row align-items-center gap-2">
-        <div style="min-width: 200px">
+        <div class="w-15rem">
           <custom-input-select-signal
             [control]="statusControl"
             (onChange)="onFilterChange()"
@@ -35,7 +35,7 @@
             [noMargin]="true"
           />
         </div>
-        <div style="min-width: 200px">
+        <div class="w-15rem">
           <custom-input-select-signal
             [control]="typeControl"
             (onChange)="onFilterChange()"
@@ -196,16 +196,11 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="
-          width: 38px;
-          height: 38px;
-          background: var(--ds-primary-50, #edf1ff);
-        "
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg bg-primary-50 w-3rem h-3rem"
       >
         <app-icon
           icon="mdi:bullhorn-outline"
-          style="font-size: 1.1rem; color: var(--ds-primary)"
+          class="text-xl text-primary"
         />
       </div>
 

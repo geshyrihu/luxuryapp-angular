@@ -171,8 +171,8 @@
           >Foto del antes</label
         >
         @if (beforeWorkPreview()) {
-          <div class="mb-2">
-            <img [src]="beforeWorkPreview()" class="w-full border-round shadow-1" style="max-height: 200px; object-fit: contain;" alt="Evidencia Antes" />
+          <div class="mb-2 flex justify-content-center">
+            <img [src]="beforeWorkPreview()" class="w-15rem h-10rem object-cover border-round shadow-1"  alt="Evidencia Antes" />
           </div>
         }
         <lx-file-upload
@@ -192,8 +192,8 @@
           >Foto del después</label
         >
         @if (afterWorkPreview()) {
-          <div class="mb-2">
-            <img [src]="afterWorkPreview()" class="w-full border-round shadow-1" style="max-height: 200px; object-fit: contain;" alt="Evidencia Después" />
+          <div class="mb-2 flex justify-content-center">
+            <img [src]="afterWorkPreview()" class="w-15rem h-10rem object-cover border-round shadow-1"  alt="Evidencia Después" />
           </div>
         }
         <lx-file-upload

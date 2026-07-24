@@ -17,8 +17,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -72,7 +72,7 @@ export class UnitOfMeasurementList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.UnitsOfMeasurement.getAll)
+      .onGetList(Endpoints.Catalogs.UnitsOfMeasurement.getAll)
       .then((result: any) => {
         this.dataSignal.set(result);
       });
@@ -80,7 +80,7 @@ export class UnitOfMeasurementList implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(Endpoints.UnitsOfMeasurement.delete(id))
+      .onDelete(Endpoints.Catalogs.UnitsOfMeasurement.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

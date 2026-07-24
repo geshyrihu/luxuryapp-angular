@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { IonSegment, IonSegmentButton, IonLabel } from "@ionic/angular/standalone";
+import { IonSegment, IonSegmentButton, IonLabel } from "@ui/mobile/ionic-segment/ionic-segment";
 import { addIcons } from "ionicons";
 import {
   checkmarkCircleOutline,

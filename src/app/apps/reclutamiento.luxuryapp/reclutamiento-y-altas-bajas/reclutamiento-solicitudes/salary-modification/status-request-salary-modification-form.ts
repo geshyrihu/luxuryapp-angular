@@ -11,8 +11,9 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -90,7 +91,9 @@ export class StatusRequestSalaryModificationForm implements OnInit {
   }
   onApplicationRoleSelectItem() {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(`application-roles-to-administrator`)
+      .onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.applicationRolesToAdministrator,
+      )
       .then((response: any) => {
         this.cb_applicationRole.set(response);
       });

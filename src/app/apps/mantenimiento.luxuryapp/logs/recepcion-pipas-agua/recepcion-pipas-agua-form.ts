@@ -17,7 +17,7 @@ import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { CustomInputDateTimeNative } from "@ui/inputs/web/custom-input-date-time-native";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -113,7 +113,7 @@ export class RecepcionPipasAguaForm implements OnInit {
 
   private async loadEmpleados(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      `employeeactivo/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.employeeActive(this.customerIdS.customerId()),
     );
     this.cb_empleados.set(data || []);
   }
@@ -127,7 +127,7 @@ export class RecepcionPipasAguaForm implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetItem(
-        Endpoints.RefactorMantenimiento.recepcionPipasAguaById(this.id),
+        Endpoints.RecepcionPipasAgua.getById(this.id),
       )
       .then((result: any) => {
         this.urlFotoPipaLlena.set(result.fotoPipaLlenaUrl ?? "");
@@ -147,7 +147,7 @@ export class RecepcionPipasAguaForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "recepcion-pipas-agua",
+      endpoint: Endpoints.RecepcionPipasAgua.base,
       id: this.id || null,
       ref: this.ref,
       submitting: this.submitting,

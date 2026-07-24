@@ -19,7 +19,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -110,11 +110,10 @@ export class LogApiReport implements OnInit {
     this.loading.set(true);
     const urlApi = Endpoints.Logs.getAll;
 
-    // Los parámetros deben ir prefixeados con "pagination." para que el backend los bindé correctamente
     const params: any = {
-      "pagination.Page": this.currentPage(),
-      "pagination.RecordsNumber": this.rows(),
-      "pagination.Filter": this.searchTerm(),
+      Page: this.currentPage(),
+      RecordsNumber: this.rows(),
+      Filter: this.searchTerm(),
     };
 
     if (this.filterLevelControl.value) {

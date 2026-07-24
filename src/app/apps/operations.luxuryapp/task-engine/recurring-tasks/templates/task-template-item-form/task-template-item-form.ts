@@ -19,8 +19,8 @@ import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-date
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CheckboxModule } from "primeng/checkbox";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -118,7 +118,7 @@ export class TaskTemplateItemForm implements OnInit {
 
   loadPriorities() {
     firstValueFrom(
-      this.enumSelectService.onLoadEnumList("e-priority-level"),
+      this.enumSelectService.onLoadEnumList("priority-level"),
     ).then((resp) => {
       this.priorities.set(resp);
     });

@@ -11,7 +11,7 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { IonInputToggle } from "@ui/inputs/mobile/ion-input-toggle";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {

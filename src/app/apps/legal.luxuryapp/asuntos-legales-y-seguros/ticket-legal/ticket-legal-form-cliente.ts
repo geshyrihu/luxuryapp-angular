@@ -16,7 +16,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -126,7 +126,7 @@ export class TicketLegalFormCliente implements OnInit {
   }
 
   saveLegalMatter = (item: SelectItemDto) => {
-    this.form.patchValue({ title: item?.label, isInternal: !!item?.value });
+    this.form.patchValue({ title: item?.label });
   };
 
   onOpenSeguimiento() {

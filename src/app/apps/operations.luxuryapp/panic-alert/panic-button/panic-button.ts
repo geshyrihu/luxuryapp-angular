@@ -14,6 +14,7 @@ import {
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { GeolocationService } from "src/app/core/services/geolocation.service";
 import { PanicAlertCreateDto } from "../interfaces/panic-alert-create.dto";
@@ -391,7 +392,7 @@ export class PanicButton implements OnDestroy {
       };
 
       const result = await this.apiResponseS.onPost<PanicAlertDto>(
-        "panic-alerts",
+        Endpoints.PanicAlerts.create,
         dto,
       );
 

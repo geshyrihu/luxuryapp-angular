@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +17,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -74,7 +74,7 @@ export default class RegulationArticleList {
     const result = await this.apiResponseS.onGetItem<
       RegulationArticleResponseDTO[]
     >(
-      Endpoints.CobranzaNative.RegulationArticles.byCustomer(
+      Endpoints.CobranzaCore.RegulationArticles.byCustomer(
         customerId,
       ),
     );
@@ -102,7 +102,7 @@ export default class RegulationArticleList {
   async onDelete(item: RegulationArticleResponseDTO) {
     this.apiResponseS
       .onDelete(
-        Endpoints.CobranzaNative.RegulationArticles.delete(
+        Endpoints.CobranzaCore.RegulationArticles.delete(
           item.id,
         ),
       )

@@ -41,7 +41,6 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
         [readonly]="readonly()"
-        [disabled]="disabled()"
         [disable]="disable()"
         [mode]="mode()"
         [locale]="spanishLocale"

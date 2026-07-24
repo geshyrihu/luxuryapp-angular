@@ -60,7 +60,7 @@ export class TaskPendingBoard implements OnInit {
   async ngOnInit(): Promise<void> {
     const result = await this.apiS.onGetList<ITaskResultDTO>(
       Endpoints.Tasks.list(this.ticketGroupId, "0"),
-      { page: 1, recordsNumber: 500, filter: "", sortField: "", sortOrder: 1 },
+      { page: 1, limit: 500, filter: "", sort: "", order: 1 },
     );
     if (result) {
       this.nameGroup.set(result.nameGroup ?? "");

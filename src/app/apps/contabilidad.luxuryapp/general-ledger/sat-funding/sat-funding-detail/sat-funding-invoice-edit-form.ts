@@ -10,8 +10,8 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { InputTextModule } from "primeng/inputtext";
+import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { UpdateSatFundingDetailDto } from "src/app/apps/contabilidad.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -81,7 +81,7 @@ export class SatFundingInvoiceEditFormComponent implements OnInit {
 
   loadBanks() {
     this.apiResponseService
-      .onGetSelectItem<SelectItemDto[]>("Bank")
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.bank)
       .then((result) => {
         if (result) this.banks = result;
       });
@@ -95,7 +95,7 @@ export class SatFundingInvoiceEditFormComponent implements OnInit {
       this.form.getRawValue() as UpdateSatFundingDetailDto;
 
     this.apiResponseService
-      .onPut(Endpoints.RefactorContabilidad.satFundingUpdateDetail, request)
+      .onPut(Endpoints.SatFunding.updateDetail, request)
       .then((result) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });

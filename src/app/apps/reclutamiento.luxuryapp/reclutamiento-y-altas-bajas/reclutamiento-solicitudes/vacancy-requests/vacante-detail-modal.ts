@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";

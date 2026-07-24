@@ -7,8 +7,8 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 
 type TagSeverity =
   "success" | "info" | "warn" | "danger" | "secondary" | "contrast";

@@ -8,7 +8,7 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 
-import { TableModule } from "primeng/table";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";

@@ -8,7 +8,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <tr>
-      <td [attr.colspan]="colspan()">
+      <td [attr.colspan]="colspan()" style="text-align: center">
         <app-empty-state
           [icon]="icon()"
           [iconColor]="iconColor()"

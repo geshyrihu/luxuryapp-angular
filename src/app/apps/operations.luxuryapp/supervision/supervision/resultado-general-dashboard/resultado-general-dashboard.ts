@@ -14,8 +14,8 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Mesanio } from "@ui/web/mesanio/mesanio";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -65,7 +65,7 @@ export class ResultadoGeneralDashboard implements OnInit {
 
   ngOnInit(): void {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(`NombreCorto`)
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.nombreCorto)
       .then((response: any) => {
         this.cb_customers = response.map((selectList: any) => ({
           label: selectList.label,

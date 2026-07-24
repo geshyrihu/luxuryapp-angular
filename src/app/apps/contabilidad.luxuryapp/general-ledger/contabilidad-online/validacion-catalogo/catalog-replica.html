@@ -117,8 +117,8 @@
   >
     <ng-template #header>
       <tr>
-        <th style="width: 180px">No. de cuenta</th>
-        <th style="width: 300px">Descripción</th>
+        <th >No. de cuenta</th>
+        <th >Descripción</th>
         <th class="table-col-160px">Origen de datos</th>
         <th class="text-center table-col-60px">Cta.M</th>
         <th class="table-col-90px">Debe</th>
@@ -148,7 +148,7 @@
               (clicked)="toggleNode(account)"
             />
             } @else {
-            <span class="inline-block" style="width: 2.5rem"></span>
+            <span class="inline-block" ></span>
             }
             <span class="font-mono text-xs">{{ account.numeroCuenta }}</span>
           </div>
