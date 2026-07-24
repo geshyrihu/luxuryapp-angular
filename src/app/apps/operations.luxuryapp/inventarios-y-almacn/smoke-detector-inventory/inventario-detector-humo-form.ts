@@ -1,4 +1,5 @@
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   inject,
@@ -18,7 +19,6 @@ import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -91,10 +91,15 @@ export class InventarioDetectorHumoForm implements OnInit {
     this.form.patchValue({ photo: file });
   }
 
-  async ngOnInit() {
-    this.cb_detectorType = await firstValueFrom(
-      this.enumSelectS.smokeDetectorType(),
-    );
+  constructor() {
+    afterNextRender(() => {
+      this.enumSelectS.smokeDetectorType().subscribe((types) => {
+        this.cb_detectorType = types;
+      });
+    });
+  }
+
+  ngOnInit() {
     this.id = this.config.data.id;
     if (this.id) {
       this.onLoadData();
@@ -110,7 +115,7 @@ export class InventarioDetectorHumoForm implements OnInit {
       )
       .then((result: any) => {
         this.urlBaseImg = result.currentPhoto;
-        this.form.patchValue(result);
+        this.form.patchValue({ ...result, applicationUserId: this.authS.applicationUserId });
       });
   }
 
@@ -142,7 +147,7 @@ export class InventarioDetectorHumoForm implements OnInit {
     formData.append("detectorType", String(DTO.detectorType));
     formData.append("location", String(DTO.location));
     formData.append("localCode", String(DTO.localCode));
-    formData.append("applicationUserId", String(DTO.applicationUserId));
+    if (DTO.applicationUserId) formData.append("applicationUserId", String(DTO.applicationUserId));
     if (DTO.photo) formData.append("photo", DTO.photo);
     return formData;
   }

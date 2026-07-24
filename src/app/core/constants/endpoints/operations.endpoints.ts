@@ -550,7 +550,7 @@ resumenGastosByCustomer: (customerId: string) =>
     delete: (id: string | number) => `inventario-estacion-manual/${id}`,
     getById: (id: string | number) => `inventario-estacion-manual/${id}`,
     importByCustomer: (customerId: string) =>
-      `InventarioEstacionManual/import/${customerId}`,
+      `inventario-estacion-manual/import/${customerId}`,
     listByCustomer: (customerId: string) =>
       `inventario-estacion-manual/list/${customerId}`,
     update: (id: string | number) => `inventario-estacion-manual/${id}`,
@@ -560,7 +560,7 @@ resumenGastosByCustomer: (customerId: string) =>
     delete: (id: string | number) => `inventario-detector-humo/${id}`,
     getById: (id: string | number) => `inventario-detector-humo/${id}`,
     importByCustomer: (customerId: string) =>
-      `InventarioDetectorHumo/import/${customerId}`,
+      `inventario-detector-humo/import/${customerId}`,
     listByCustomer: (customerId: string) =>
       `inventario-detector-humo/list/${customerId}`,
     update: (id: string | number) => `inventario-detector-humo/${id}`,

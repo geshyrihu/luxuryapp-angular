@@ -6,6 +6,13 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
 
   imports: [EmptyState],
   changeDetection: ChangeDetectionStrategy.Eager,
+  styles: [
+    `
+      :host > td {
+        text-align: center !important;
+      }
+    `,
+  ],
   template: `
     <tr>
       <td [attr.colspan]="colspan()" style="text-align: center">
@@ -18,6 +25,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
           [actionLabel]="actionLabel()"
           [actionIcon]="actionIcon()"
           [actionSeverity]="actionSeverity()"
+          style="display: inline-block"
         />
       </td>
     </tr>
