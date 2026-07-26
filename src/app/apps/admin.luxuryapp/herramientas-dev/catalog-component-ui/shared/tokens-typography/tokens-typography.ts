@@ -226,7 +226,7 @@ export class TokensTypography {
       token: "--ds-font-size-body",
       size: "15px",
       usage: "Pórrafos breves, instrucciones y lectura normal del ERP.",
-      example: "Selecciona el órea responsable",
+      example: "Selecciona el área responsable",
     },
     {
       role: "Label",

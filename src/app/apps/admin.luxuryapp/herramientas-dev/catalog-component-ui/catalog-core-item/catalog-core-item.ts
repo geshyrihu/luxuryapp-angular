@@ -39,18 +39,17 @@ import {
   NotificationCenter,
   NotificationItem,
 } from "@ui/web/notification-center/notification-center";
+import { MenuItem, TreeNode } from "@ui/web/primeng-api/primeng-api";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
+import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { SplitPane } from "@ui/web/split-pane/split-pane";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TreeTable, TreeTableColumn } from "@ui/web/tree-table/tree-table";
 import { Wizard, WizardStep } from "@ui/web/wizard/wizard";
-import { MenuItem, TreeNode } from "@ui/web/primeng-api/primeng-api";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 // 13.3.3 demos de prioridad baja
-import { WebSkeletonPresets as SkeletonPresets } from "@ui/web/skeleton-presets/skeleton-presets";
 import {
   ApprovalNode,
   ApprovalWorkflow,
@@ -103,6 +102,7 @@ import { AppProfileCard } from "@ui/web/profile-card/profile-card";
 import { AppQrCode } from "@ui/web/qr-code/qr-code";
 import { AppRating } from "@ui/web/rating/rating";
 import { AppSignaturePad } from "@ui/web/signature-pad/signature-pad";
+import { WebSkeletonPresets as SkeletonPresets } from "@ui/web/skeleton-presets/skeleton-presets";
 import { AppSlider } from "@ui/web/slider/slider";
 import { AppTagInput } from "@ui/web/tag-input/tag-input";
 import { AppThemeSwitcher } from "@ui/web/theme-switcher/theme-switcher";
@@ -779,7 +779,7 @@ const CORE_LABELS: Record<string, string> = {
                     class="border-round-lg p-4 text-center cursor-pointer"
                     style="border:2px dashed var(--ds-border-strong);background:var(--ds-bg-elevated);"
                   >
-                    <p class="m-0 font-bold">órea de contexto</p>
+                    <p class="m-0 font-bold">área de contexto</p>
                     <p class="m-0 text-xs text-secondary mt-1">
                       Clic derecho aqu
                     </p>
@@ -1484,7 +1484,7 @@ export class CatalogCoreItem {
     },
     {
       field: "area",
-      header: "órea",
+      header: "área",
       type: "select",
       editable: true,
       sortable: true,
@@ -1555,7 +1555,7 @@ export class CatalogCoreItem {
     },
     {
       title: "Revisión de cródito",
-      description: "Validación aprobada por el órea financiera.",
+      description: "Validación aprobada por el área financiera.",
       date: "12 Jun 2026",
       icon: "mdi:shield-check",
       color: "var(--ds-success)",
@@ -1712,7 +1712,7 @@ export class CatalogCoreItem {
     },
     {
       id: "2",
-      label: "Jefe de órea",
+      label: "Jefe de área",
       status: "approved",
       assignee: "Maróa López",
       date: "11 Jun 2026",
@@ -1841,7 +1841,7 @@ export class CatalogCoreItem {
     {
       key: "area",
       type: "select",
-      label: "órea",
+      label: "área",
       required: true,
       options: [
         { label: "Contabilidad", value: "cont" },
@@ -2003,7 +2003,7 @@ export class CatalogCoreItem {
   ];
 
   readonly pivotRows: PivotDimension[] = [
-    { field: "area", label: "órea", sort: "asc" },
+    { field: "area", label: "área", sort: "asc" },
   ];
   readonly pivotColumns: PivotDimension = { field: "mes", label: "Mes" };
   readonly pivotValues: PivotValue[] = [
@@ -2074,7 +2074,7 @@ export class CatalogCoreItem {
       id: "5",
       type: "approval",
       title: "Aprobación de cródito",
-      description: "Aprobado por el órea financiera.",
+      description: "Aprobado por el área financiera.",
       user: "Sistema",
       timestamp: new Date("2026-06-20T12:00:00"),
     },
@@ -2271,7 +2271,7 @@ export class CatalogCoreItem {
     {
       title: "Mené lateral",
       description:
-        "Aqué encontrarós todos los módulos del ERP organizados por órea.",
+        "Aqué encontrarós todos los módulos del ERP organizados por área.",
       icon: "mdi:menu",
       position: "center",
     },

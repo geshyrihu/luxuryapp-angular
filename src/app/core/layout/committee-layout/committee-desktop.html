@@ -1,14 +1,13 @@
 <div class="page-body-wrapper" [class]="layoutClass">
   <app-header-committee-monitor />
 
-  <div class="container mt-2 relative">
-    <div class="page-body committee-background">
-      <br />
-      <br />
+  <div class="committee-background relative">
+    <div class="committee-container">
       <router-outlet />
     </div>
     <app-loader />
   </div>
+
   <footer class="footer">
     <app-footer-committee-monitor />
   </footer>

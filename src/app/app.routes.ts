@@ -91,7 +91,7 @@ export const appRoutes: Routes = [
     component: LayoutCommittee,
     canActivate: [authGuard, committeeGuard],
     loadChildren: () =>
-      import("src/app/apps/operations.luxuryapp/meetings/committee/committee.routing").then(
+      import("src/app/apps/committee.luxuryapp/committee.routing").then(
         (m) => m.committeeRoutes,
       ),
   },

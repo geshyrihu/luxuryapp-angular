@@ -80,10 +80,6 @@ export class PdfViewerModal implements OnInit, OnDestroy {
     document.body.removeChild(link);
   }
 
-  close(): void {
-    this.dialogRef.close();
-  }
-
   /**
    * Maximiza el modal al abrirse (una vez renderizado el diálogo), para que el
    * visor de PDF ocupe toda la pantalla por defecto sin depender del llamador.

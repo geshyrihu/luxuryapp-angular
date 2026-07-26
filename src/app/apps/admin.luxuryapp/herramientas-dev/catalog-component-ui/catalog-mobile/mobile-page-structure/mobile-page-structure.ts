@@ -51,7 +51,7 @@ import {
             <div class="anatomy-content">
               <span class="anatomy-label">ion-content</span>
               <span class="anatomy-desc"
-                >órea scrollable. Gestiona padding seguro (notch/home
+                >área scrollable. Gestiona padding seguro (notch/home
                 bar).</span
               >
             </div>
@@ -342,7 +342,7 @@ import {
         <ion-content class="ion-padding">
           <p class="text-sm text-secondary mb-3">
             El <strong>ion-footer</strong> mantiene los botones de acción fijos
-            en la parte inferior, fuera del órea scrollable.
+            en la parte inferior, fuera del área scrollable.
           </p>
           @for (i of items; track i) {
             <div class="demo-item">Campo {{ i }}</div>

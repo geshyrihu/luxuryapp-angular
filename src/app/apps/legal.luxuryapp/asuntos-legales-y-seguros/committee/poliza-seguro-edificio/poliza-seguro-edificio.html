@@ -1,99 +1,62 @@
-<!-- ??? DESKTOP: visible solo md+ -->
-<div class="hidden md:block">
-  <h3 class="text-center p-2 text-2xl font-bold text-900">Póliza de Seguro del Edificio</h3>
-  <div class="card-body">
-    @if (data(); as policy) {
-    <div class="grid">
-      <div class="col-12 md:col-6">
-        <p class="m-0 mb-2"><strong class="text-900">Proveedor:</strong> <span class="text-700">{{ policy.providerName }}</span></p>
-        <p class="m-0 mb-2"><strong class="text-900">Descripción:</strong> <span class="text-700">{{ policy.description }}</span></p>
-      </div>
-      <div class="col-12 md:col-6">
-        <p class="m-0 mb-2"><strong class="text-900">Fecha de Inicio:</strong> <span class="text-700">{{ policy.startDate | date: 'dd/MM/yyyy' }}</span></p>
-        <p class="m-0 mb-2"><strong class="text-900">Fecha de Fin:</strong> <span class="text-700">{{ policy.endDate | date: 'dd/MM/yyyy' }}</span></p>
-      </div>
-    </div>
-    @if (policy.pathDocument) {
-    <div class="grid mt-3">
-      <div class="col-12">
-        <il-button-view-pdf
-          []="true"
-          [url]="policy.pathDocument"
-          fileName="Póliza | Contrato"
-        />
-      </div>
-    </div>
-    }
-    } @else {
-    <div class="empty-state-card">
-      <div class="empty-state-icon">
-        <app-icon [icon]="'mdi:folder-open'" class="text-4xl text-primary" />
-      </div>
-      <h5 class="empty-state-title">No hay documentos disponibles</h5>
-    </div>
-    }
-  </div>
-</div>
-
-<!-- ?? MOBILE: visible solo sm -->
-<div class="block md:hidden">
+<div class="committee-detail">
   @if (data(); as policy) {
-  <div class="">
-    Póliza de Seguro del Edificio
-  </ion-list-header>
-
-  <div class="m-0">
-    <ili-list-item>
-      <div start class="w-2rem h-2rem border-round bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
-        <app-icon [icon]="'mdi:office-building'" class="text-xl text-blue-700" />
+  <div class="committee-card-panel">
+    <div class="committee-card-panel__header">
+      <span class="committee-card-panel__icon">
+        <app-icon icon="mdi:shield-home" />
+      </span>
+      <div class="committee-card-panel__titles">
+        <h3 class="committee-card-panel__title">Póliza de Seguro del Edificio</h3>
+        <p class="committee-card-panel__subtitle">{{ policy.providerName }}</p>
       </div>
-      
-        <h3 class="font-bold text-900">Proveedor</h3>
-        <p class="text-wrap text-sm text-500">{{ policy.providerName }}</p>
-      
-    </ili-list-item>
+    </div>
 
-    <ili-list-item>
-      <div start class="w-2rem h-2rem border-round bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
-        <app-icon [icon]="'mdi:file-document-outline'" class="text-xl text-purple-700" />
+    <div class="committee-card-panel__body">
+      <div class="committee-field-grid">
+        <div class="committee-field">
+          <span class="committee-field__label">
+            <app-icon icon="mdi:office-building" /> Proveedor
+          </span>
+          <span class="committee-field__value">{{ policy.providerName }}</span>
+        </div>
+        <div class="committee-field">
+          <span class="committee-field__label">
+            <app-icon icon="mdi:file-document-outline" /> Descripción
+          </span>
+          <span class="committee-field__value">{{ policy.description }}</span>
+        </div>
+        <div class="committee-field">
+          <span class="committee-field__label">
+            <app-icon icon="mdi:calendar-start" /> Fecha de Inicio
+          </span>
+          <span class="committee-field__value"
+            >{{ policy.startDate | date: 'dd/MM/yyyy' }}</span
+          >
+        </div>
+        <div class="committee-field">
+          <span class="committee-field__label">
+            <app-icon icon="mdi:calendar-end" /> Fecha de Fin
+          </span>
+          <span class="committee-field__value"
+            >{{ policy.endDate | date: 'dd/MM/yyyy' }}</span
+          >
+        </div>
       </div>
-      
-        <h3 class="font-bold text-900">Descripción</h3>
-        <p class="text-wrap text-sm text-500">{{ policy.description }}</p>
-      
-    </ili-list-item>
+    </div>
 
-    <ili-list-item>
-      <div start class="w-2rem h-2rem border-round bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
-        <app-icon [icon]="'mdi:calendar'" class="text-xl text-green-600" />
-      </div>
-      
-        <h3 class="font-bold text-900">Fecha de Inicio</h3>
-        <p class="text-sm text-500">{{ policy.startDate | date: 'dd/MM/yyyy' }}</p>
-      
-    </ili-list-item>
-
-    <ili-list-item>
-      <div start class="w-2rem h-2rem border-round bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
-        <app-icon [icon]="'mdi:calendar-remove'" class="text-xl text-red-600" />
-      </div>
-      
-        <h3 class="font-bold text-900">Fecha de Fin</h3>
-        <p class="text-sm text-500">{{ policy.endDate | date: 'dd/MM/yyyy' }}</p>
-      
-    </ili-list-item>
+    @if (policy.pathDocument) {
+    <div class="committee-card-panel__footer">
+      <il-button-view-pdf
+        [url]="policy.pathDocument"
+        fileName="Póliza | Contrato"
+      />
+    </div>
+    }
   </div>
-
-  @if (policy.pathDocument) {
-  <div class="p-3">
-    <il-button-view-pdf [url]="policy.pathDocument" fileName="Póliza | Contrato" />
-  </div>
-  }
-
   } @else {
-  <div class="text-center p-6">
-    <app-icon [icon]="'mdi:folder-open'" class="text-6xl text-400" />
-    <p class="text-500 mt-3 text-base">No hay documentos disponibles</p>
+  <div class="committee-doc-empty">
+    <app-icon icon="mdi:folder-open" class="committee-doc-empty__icon" />
+    <p class="committee-doc-empty__text">No hay póliza disponible</p>
   </div>
   }
 </div>

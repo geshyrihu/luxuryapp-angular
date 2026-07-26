@@ -11,19 +11,27 @@
  * Por favor, NO rompan el código.
  * ============================================================================
  */
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-budget-audit-dialog",
   templateUrl: "./budget-audit-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,WebButtonLabel],
+  imports: [AppIcon, WebButtonLabel],
 })
 export class BudgetAuditDialog implements OnInit {
   private ref = inject(DynamicDialogRef);
@@ -68,7 +76,7 @@ export class BudgetAuditDialog implements OnInit {
     } catch (error) {
       console.error(error);
       this.auditReportHtml.set(
-        "<p class='text-red-500'>Ocurrió un error al generar la auditoróa. Por favor intente nuevamente.</p>",
+        "<p class='text-red-500'>Ocurrió un error al generar la Auditoría. Por favor intente nuevamente.</p>",
       );
       this.customToastService.showError(
         "Error",

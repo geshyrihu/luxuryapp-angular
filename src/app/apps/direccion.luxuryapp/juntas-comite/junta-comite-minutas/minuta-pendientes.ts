@@ -77,7 +77,7 @@ export class MinutaPendientes {
 
     // Define columns
     worksheet.columns = [
-      { header: "órea Responsable", key: "area", width: 30 },
+      { header: "área Responsable", key: "area", width: 30 },
       { header: "Asunto", key: "asunto", width: 40 },
       { header: "Solicitud", key: "solicitud", width: 50 },
       { header: "óltimo Seguimiento", key: "seguimiento", width: 50 },

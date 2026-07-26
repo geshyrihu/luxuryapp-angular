@@ -1,35 +1,43 @@
 <div class="h-screen w-screen overflow-hidden">
   <ion-app>
     <div class="ion-page h-full flex flex-column">
-      <ion-header class="ion-no-border">
-        <ion-toolbar class="ion-no-padding">
+      <ion-header class="ion-no-border committee-mobile-header">
+        <ion-toolbar>
           <ion-buttons slot="start">
             <ion-button (click)="onBack()">
               <app-icon icon="mdi:chevron-left" slot="icon-only" />
             </ion-button>
           </ion-buttons>
 
-          <div class="flex justify-content-center align-items-center w-full">
+          <div class="committee-mobile-header__title">
             <app-customer-header-data-committee />
           </div>
 
           <ion-buttons slot="end">
-            <app-profile-committee-monitor />
+            <app-profile-committee-monitor [compact]="true" />
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
 
-      <ion-content [scrollY]="true" [fullscreen]="true" class="flex-flex-grow-1-1 relative">
+      <ion-content
+        [scrollY]="true"
+        [fullscreen]="true"
+        class="flex-flex-grow-1-1 relative"
+      >
         <div
           class="page-body-wrapper"
           [class.scorlled]="hideScroolNavService.headerFixed == true"
         >
-          <div class="pb-4">
+          <div class="px-2 pt-3 pb-4">
             <router-outlet />
           </div>
         </div>
         <lx-loader />
       </ion-content>
+
+      <ion-footer class="ion-no-border committee-mobile-footer">
+        <app-committee-mobile-nav />
+      </ion-footer>
     </div>
   </ion-app>
 </div>

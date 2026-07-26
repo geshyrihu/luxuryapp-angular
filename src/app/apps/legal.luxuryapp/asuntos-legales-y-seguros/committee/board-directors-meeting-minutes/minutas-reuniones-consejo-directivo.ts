@@ -1,10 +1,8 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
-import { folderOpenOutline, readerOutline } from "ionicons/icons"; // Importamos el Router para la navegación
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { folderOpenOutline, readerOutline } from "ionicons/icons";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
@@ -16,7 +14,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo",
-  imports: [MobileListItem, TableModule, RouterModule, AppIcon],
+  imports: [RouterModule, AppIcon],
   templateUrl: "./minutas-reuniones-consejo-directivo.html",
 })
 export class MinutasReunionesConsejoDirectivo implements OnInit {

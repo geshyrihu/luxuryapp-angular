@@ -1,0 +1,1181 @@
+// ════════════════════════════════════════════════════════════════
+// 🏛️ _committee.scss — Portal de Comité (Consejo Directivo)
+// ════════════════════════════════════════════════════════════════
+// Fuente única de los estilos visuales del módulo de comité:
+//   · Fondo y contenedor del layout desktop (`.committee-background`)
+//   · Bloque de bienvenida del header (`.committee-welcome`)
+//   · Grid de accesos con tarjetas premium (`.committee-grid` / `.committee-card`)
+//   · Tarjetas de la biblioteca (clases legadas `committee-folder-box` …)
+//
+// 💎 Estética ERP Premium · Deep Navy: superficie limpia, foto con recorte
+//    uniforme, acento gold en hover y título legible sobre degradado navy.
+//    Todos los colores salen de tokens `--ds-*` (dark mode incluido); el
+//    degradado de imagen usa navy fijo porque el texto blanco debe ser
+//    legible sobre la foto sin depender del tema.
+// ════════════════════════════════════════════════════════════════
+
+// ── Fondo y contenedor del shell desktop ──────────────────────────
+.committee-background {
+  min-height: 100%;
+  background: var(--ds-bg-page);
+  padding: clamp(1rem, 3vw, 2rem) 0 3rem;
+}
+
+.committee-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+// ── Bloque de bienvenida (nombre del condominio) ──────────────────
+.committee-welcome {
+  min-width: 0;
+
+  &__title {
+    margin: 0;
+    font-size: var(--ds-font-size-section-title);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-line-height-tight);
+    color: var(--ds-primary);
+    letter-spacing: 0.01em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: var(--ds-font-size-help);
+    color: var(--ds-text-secondary);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 🖥️  HEADER DESKTOP (topbar propio del portal de comité)
+// ══════════════════════════════════════════════════════════════════
+.committee-topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--ds-surface-container-lowest);
+  border-bottom: 1px solid var(--ds-border);
+  box-shadow: var(--ds-shadow-xs);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 64px;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+  }
+
+  &__start {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__end {
+    flex-shrink: 0;
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 👤  PERFIL (compartido desktop/mobile; compact = solo avatar)
+// ══════════════════════════════════════════════════════════════════
+.committee-profile {
+  position: relative;
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.25rem 0.4rem;
+    background: transparent;
+    border: none;
+    border-radius: var(--ds-radius-md);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: var(--ds-bg-sunken);
+    }
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid var(--ds-border);
+    background: var(--ds-surface-container);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    line-height: 1.15;
+  }
+
+  &__name {
+    font-size: 0.9rem;
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-text-primary);
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__position {
+    font-size: var(--ds-font-size-micro);
+    color: var(--ds-text-secondary);
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__caret {
+    color: var(--ds-text-secondary);
+    font-size: 1rem;
+  }
+
+  // Cabecera del popover: nombre del condominio
+  &__customer {
+    padding: 0.35rem 1rem 0.6rem;
+    margin-bottom: 0.35rem;
+    border-bottom: 1px solid var(--ds-border);
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-text-primary);
+  }
+
+  // Selector de cliente (si el usuario tiene acceso a más de uno)
+  &__customer-select {
+    padding: 0.4rem 0.75rem 0.65rem;
+    margin-bottom: 0.35rem;
+    border-bottom: 1px solid var(--ds-border);
+  }
+
+  &__customer-label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: var(--ds-font-size-micro);
+    font-weight: var(--ds-font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ds-text-secondary);
+  }
+
+  &__customer-input {
+    width: 100%;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid var(--ds-border);
+    border-radius: var(--ds-radius-md);
+    background: var(--ds-surface-container-lowest);
+    color: var(--ds-text-primary);
+    font-family: inherit;
+    font-size: var(--ds-font-size-help);
+    cursor: pointer;
+  }
+
+  // Modo compacto (mobile): solo avatar
+  &--compact {
+    .committee-profile__avatar {
+      width: 34px;
+      height: 34px;
+      border-width: 1px;
+    }
+
+    .committee-profile__caret {
+      display: none;
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 📱  HEADER MOBILE (ion-header del portal de comité)
+// ══════════════════════════════════════════════════════════════════
+.committee-mobile-header {
+  ion-toolbar {
+    --background: var(--ds-surface-container-lowest);
+    --border-width: 0;
+    --min-height: 56px;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --padding-start: 4px;
+    --padding-end: 4px;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    text-align: center;
+    padding-inline: 0.25rem;
+  }
+
+  // Ajustes del bloque de bienvenida dentro del toolbar
+  .committee-welcome {
+    max-width: 100%;
+
+    &__title {
+      font-size: 0.95rem;
+      max-width: 100%;
+    }
+
+    &__subtitle {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+// ── Grid de accesos del home ──────────────────────────────────────
+.committee-grid {
+  display: grid;
+  // Móvil: 1 columna a todo el ancho (banners), gap compacto para ver las 7 sin scroll
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+// ── Tarjeta de acceso (título en overlay) ─────────────────────────
+.committee-card {
+  display: block;
+  text-decoration: none;
+  border-radius: var(--ds-radius-lg);
+  overflow: hidden;
+  background: var(--ds-surface-container-lowest);
+  border: 1px solid var(--ds-border);
+  box-shadow: var(--ds-shadow-sm);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+
+  &__media {
+    position: relative;
+    // Móvil: banner ancho y bajo (las 7 opciones caben sin scroll)
+    aspect-ratio: 9 / 2;
+    overflow: hidden;
+    // Fallback navy cuando la imagen no existe o aún no carga
+    background: linear-gradient(
+      135deg,
+      var(--ds-primary) 0%,
+      var(--ds-primary-active) 100%
+    );
+
+    @media (min-width: 768px) {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(18, 36, 61, 0.92) 0%,
+      rgba(18, 36, 61, 0.55) 34%,
+      rgba(18, 36, 61, 0) 68%
+    );
+    transition: opacity 0.22s ease;
+  }
+
+  &__title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0.75rem 0.9rem;
+    padding-left: 1.1rem;
+    color: #fff;
+    font-size: var(--ds-font-size-card-title);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-line-height-tight);
+
+    // Acento gold que crece en hover
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0.9rem;
+      bottom: 0.55rem;
+      height: 3px;
+      width: 1.5rem;
+      border-radius: var(--ds-radius-full);
+      background: var(--ds-luxury-gold);
+      transition: width 0.28s ease;
+    }
+  }
+
+  // ── Interacción ──
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: var(--ds-shadow-lg);
+    border-color: var(--ds-luxury-gold);
+
+    .committee-card__img {
+      transform: scale(1.06);
+    }
+
+    .committee-card__title::before {
+      width: 3rem;
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-shadow-lg), var(--ds-shadow-focus);
+  }
+}
+
+// ── Footer (copyright, desktop y mobile) ──────────────────────────
+.committee-footer {
+  padding: 0.85rem 1rem;
+  text-align: center;
+
+  &__text {
+    margin: 0;
+    font-size: var(--ds-font-size-help);
+    font-weight: var(--ds-font-weight-medium);
+    color: var(--ds-text-secondary);
+  }
+}
+
+// El bottom-nav del catálogo (ili-bottom-nav) aporta fondo, borde y safe-area.
+.committee-mobile-footer::before {
+  display: none; // Elimina la línea/sombra por defecto del ion-footer (iOS)
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 📄  LISTADOS DE DOCUMENTOS (reuniones, minutas, informes…)
+// ══════════════════════════════════════════════════════════════════
+.committee-doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.committee-doc-title {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font-size: var(--ds-font-size-page-title);
+  font-weight: var(--ds-font-weight-bold);
+  color: var(--ds-text-primary);
+}
+
+.committee-doc-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--ds-surface-container-lowest);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  // reset de <button>
+  font: inherit;
+  color: inherit;
+  appearance: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease;
+
+  // Acento gold lateral que crece en hover (en vez de teñir toda la fila)
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    border-radius: var(--ds-radius-full);
+    background: var(--ds-luxury-gold);
+    transition: height 0.22s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    border-color: var(--ds-border-strong);
+    background: var(--ds-surface-container-high);
+    box-shadow: var(--ds-shadow-md);
+    transform: translateX(3px);
+
+    &::before {
+      height: 62%;
+    }
+
+    .committee-doc-item__icon {
+      transform: scale(1.05);
+    }
+
+    .committee-doc-item__chevron {
+      color: var(--ds-luxury-gold);
+      transform: translateX(2px);
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--ds-radius-md);
+    background: var(--ds-primary-container);
+    font-size: 1.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__title {
+    font-size: var(--ds-font-size-card-title);
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__subtitle {
+    font-size: var(--ds-font-size-help);
+    color: var(--ds-text-secondary);
+  }
+
+  &__chevron {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    color: var(--ds-text-muted);
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+}
+
+.committee-doc-empty {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--ds-text-secondary);
+
+  &__icon {
+    font-size: 3rem;
+    color: var(--ds-text-muted);
+  }
+
+  &__text {
+    margin: 0.75rem 0 0;
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 🗂️  DETALLE / REPORTE (póliza, minuta) — tarjetas ERP profesionales
+// ══════════════════════════════════════════════════════════════════
+.committee-detail {
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+.committee-report {
+  max-width: 960px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+// ── Tarjeta base (encabezado + cuerpo + pie) ──────────────────────
+.committee-card-panel {
+  background: var(--ds-surface-container-lowest);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-sm);
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.15rem 1.5rem;
+    background: var(--ds-primary-container);
+    border-bottom: 1px solid var(--ds-border);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--ds-radius-md);
+    background: var(--ds-surface-container-lowest);
+    color: var(--ds-primary);
+    font-size: 1.6rem;
+    box-shadow: var(--ds-shadow-xs);
+  }
+
+  &__titles {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: var(--ds-font-size-section-title);
+    font-weight: var(--ds-font-weight-bold);
+    color: var(--ds-on-primary-container);
+    line-height: var(--ds-line-height-tight);
+  }
+
+  &__subtitle {
+    margin: 0.15rem 0 0;
+    font-size: var(--ds-font-size-help);
+    color: var(--ds-on-primary-container);
+    opacity: 0.75;
+  }
+
+  &__body {
+    padding: 1.5rem;
+  }
+
+  &__footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--ds-border);
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+// ── Rejilla de campos definición (label + valor) ──────────────────
+.committee-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 2rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.committee-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--ds-font-size-micro);
+    font-weight: var(--ds-font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ds-text-secondary);
+  }
+
+  &__value {
+    font-size: var(--ds-font-size-body);
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-text-primary);
+    word-break: break-word;
+  }
+}
+
+// ── Badge / pill ──────────────────────────────────────────────────
+.committee-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--ds-radius-full);
+  font-size: var(--ds-font-size-micro);
+  font-weight: var(--ds-font-weight-semibold);
+  background: var(--ds-success-light);
+  color: var(--ds-success);
+  white-space: nowrap;
+}
+
+// ── Secciones del reporte (asistentes, acuerdos) ──────────────────
+.committee-section {
+  background: var(--ds-surface-container-lowest);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-sm);
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid var(--ds-border);
+  }
+
+  &__icon {
+    color: var(--ds-primary);
+    font-size: 1.25rem;
+  }
+
+  &__title {
+    margin: 0;
+    flex: 1 1 auto;
+    font-size: var(--ds-font-size-card-title);
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-text-primary);
+  }
+
+  &__count {
+    flex-shrink: 0;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--ds-radius-full);
+    background: var(--ds-primary-container);
+    color: var(--ds-on-primary-container);
+    font-size: var(--ds-font-size-micro);
+    font-weight: var(--ds-font-weight-semibold);
+  }
+
+  &__body {
+    padding: 1rem 1.25rem;
+  }
+
+  &__empty {
+    padding: 1.25rem;
+    text-align: center;
+    color: var(--ds-text-muted);
+    font-style: italic;
+    font-size: var(--ds-font-size-help);
+  }
+}
+
+// ── Personas (asistentes) ─────────────────────────────────────────
+.committee-people {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.committee-person {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-surface-container-low);
+
+  &__avatar {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--ds-radius-full);
+    background: var(--ds-primary-container);
+    color: var(--ds-primary);
+    font-size: 1.1rem;
+  }
+
+  &__info {
+    min-width: 0;
+  }
+
+  &__name {
+    display: block;
+    font-size: var(--ds-font-size-help);
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__role {
+    display: block;
+    font-size: var(--ds-font-size-micro);
+    color: var(--ds-text-secondary);
+  }
+
+  &__phone {
+    display: block;
+    font-size: var(--ds-font-size-micro);
+    color: var(--ds-text-muted);
+    margin-top: 0.15rem;
+  }
+
+  &__email {
+    display: block;
+    font-size: var(--ds-font-size-micro);
+    color: var(--ds-text-muted);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 📇  DIRECTORIO (tarjetas de contacto)
+// ══════════════════════════════════════════════════════════════════
+// Barra fija con el control segmentado (queda visible al hacer scroll)
+.committee-sticky-bar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0 0.75rem;
+  margin-bottom: 0.25rem;
+  background: var(--ds-bg-page);
+
+  // En desktop el topbar ocupa la parte superior; pegar debajo de él
+  @media (min-width: 768px) {
+    top: var(--topbar-height, 0);
+  }
+}
+
+.committee-directory {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 0.85rem;
+}
+
+.committee-contact {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1rem;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  background: var(--ds-surface-container-lowest);
+  box-shadow: var(--ds-shadow-sm);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ds-shadow-md);
+    border-color: var(--ds-border-strong);
+  }
+
+  &__avatar {
+    flex-shrink: 0;
+    line-height: 0;
+  }
+
+  &__body {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &__name {
+    margin: 0;
+    font-size: var(--ds-font-size-card-title);
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-text-primary);
+    line-height: 1.2;
+  }
+
+  &__role {
+    display: inline-block;
+    margin-top: 0.35rem;
+    padding: 0.12rem 0.6rem;
+    border-radius: var(--ds-radius-full);
+    background: var(--ds-primary-container);
+    color: var(--ds-on-primary-container);
+    font-size: var(--ds-font-size-micro);
+    font-weight: var(--ds-font-weight-semibold);
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 0.7rem;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-width: 0;
+    font-size: var(--ds-font-size-help);
+    color: var(--ds-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    i {
+      flex-shrink: 0;
+      font-size: 0.9rem;
+      color: var(--ds-primary);
+    }
+
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      color: var(--ds-primary);
+    }
+  }
+}
+
+// ── Acuerdos ──────────────────────────────────────────────────────
+.committee-agreement-group {
+  & + & {
+    margin-top: 1.25rem;
+  }
+
+  &__title {
+    margin: 0 0 0.6rem;
+    padding-left: 0.6rem;
+    border-left: 3px solid var(--ds-luxury-gold);
+    font-size: var(--ds-font-size-help);
+    font-weight: var(--ds-font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--ds-text-secondary);
+  }
+}
+
+.committee-agreement {
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-surface-container-low);
+  padding: 0.9rem 1rem;
+
+  & + & {
+    margin-top: 0.6rem;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: var(--ds-font-size-card-title);
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-text-primary);
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: var(--ds-font-size-help);
+    color: var(--ds-text-secondary);
+    line-height: var(--ds-line-height-base);
+  }
+
+  &__followup {
+    margin-top: 0.7rem;
+    padding-top: 0.7rem;
+    border-top: 1px dashed var(--ds-border);
+
+    &-label {
+      margin: 0 0 0.2rem;
+      font-size: var(--ds-font-size-micro);
+      font-weight: var(--ds-font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--ds-text-muted);
+    }
+
+    &-text {
+      margin: 0;
+      font-size: var(--ds-font-size-help);
+      color: var(--ds-text-primary);
+    }
+
+    &-date {
+      margin: 0.15rem 0 0;
+      font-size: var(--ds-font-size-micro);
+      color: var(--ds-text-muted);
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 👤  PERFIL MOBILE NATIVO (avatar + cambio de contraseña)
+// ══════════════════════════════════════════════════════════════════
+.committee-profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 520px;
+  margin-inline: auto;
+  padding: 0.25rem;
+}
+
+.committee-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 1rem;
+
+  &__ring {
+    position: relative;
+    width: 120px;
+    height: 120px;
+  }
+
+  &__img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--ds-primary-container);
+    background: var(--ds-surface-container);
+  }
+
+  &__camera {
+    position: absolute;
+    right: 0;
+    bottom: 2px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 3px solid var(--ds-surface-container-lowest);
+    background: var(--ds-primary);
+    color: var(--ds-on-primary);
+    font-size: 1.15rem;
+    cursor: pointer;
+    box-shadow: var(--ds-shadow-sm);
+
+    &:active {
+      transform: scale(0.92);
+    }
+  }
+
+  &__name {
+    margin: 0.85rem 0 0;
+    font-size: var(--ds-font-size-section-title);
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-text-primary);
+  }
+
+  &__role {
+    margin: 0.1rem 0 0;
+    font-size: var(--ds-font-size-help);
+    color: var(--ds-text-secondary);
+  }
+}
+
+.committee-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  padding: 1.15rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__icon {
+    color: var(--ds-primary);
+    font-size: 1.25rem;
+  }
+
+  &__title {
+    font-size: var(--ds-font-size-card-title);
+    font-weight: var(--ds-font-weight-semibold);
+    color: var(--ds-text-primary);
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 💰  COBRANZA / MOROSIDAD
+// ══════════════════════════════════════════════════════════════════
+.committee-cobranza {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 760px;
+  margin-inline: auto;
+
+  // Hero: deuda total (navy con acento gold)
+  &__hero {
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem 1.35rem;
+    border-radius: var(--ds-radius-lg);
+    color: #fff;
+    background: linear-gradient(
+      135deg,
+      var(--ds-primary) 0%,
+      var(--ds-primary-active) 100%
+    );
+    box-shadow: var(--ds-shadow-md);
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -30px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(212, 167, 74, 0.28),
+        transparent 70%
+      );
+    }
+
+    &-label {
+      display: block;
+      font-size: var(--ds-font-size-help);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.85;
+    }
+
+    &-amount {
+      display: block;
+      margin: 0.35rem 0 0.9rem;
+      font-size: 2.15rem;
+      font-weight: var(--ds-font-weight-bold);
+      line-height: 1.05;
+    }
+
+    &-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      font-size: var(--ds-font-size-help);
+      opacity: 0.92;
+
+      span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+    }
+  }
+
+  // Monto de deuda por propiedad (en la lista)
+  &__amount {
+    flex-shrink: 0;
+    font-size: var(--ds-font-size-card-title);
+    font-weight: var(--ds-font-weight-bold);
+    color: var(--ds-danger);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// Tarjetas de estadística (web y mobile)
+.committee-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.committee-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--ds-radius-lg);
+  background: var(--ds-surface-container-lowest);
+  border: 1px solid var(--ds-border);
+  box-shadow: var(--ds-shadow-sm);
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--ds-font-size-micro);
+    font-weight: var(--ds-font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ds-text-secondary);
+  }
+
+  &__value {
+    font-size: var(--ds-font-size-metric);
+    font-weight: var(--ds-font-weight-bold);
+    color: var(--ds-text-primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  &--danger .committee-stat__value {
+    color: var(--ds-danger);
+  }
+}
+

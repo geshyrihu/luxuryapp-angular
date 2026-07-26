@@ -67,6 +67,17 @@ export const EndpointsSystem = {
     getPdf: (id: string) => `payment-methods/${id}/pdf`,
     update: (id: string) => `payment-methods/${id}`,
   },
+  DatabaseBackup: {
+    configs: "admin/database-backup/configs",
+    configById: (id: string) => `admin/database-backup/configs/${id}`,
+    store: "admin/database-backup/configs",
+    update: (id: string) => `admin/database-backup/configs/${id}`,
+    delete: (id: string) => `admin/database-backup/configs/${id}`,
+    execute: (id: string) => `admin/database-backup/configs/${id}/execute`,
+    databases: "admin/database-backup/databases",
+    history: (configId: string) => `admin/database-backup/history/${configId}`,
+    testConnection: (id: string) => `admin/database-backup/configs/${id}/test-connection`,
+  },
   PaymentTypes: {
     // Legacy alias.
     // El ownership canonico de este catalogo ya corresponde a `EndpointsAdmin.Catalogs.PaymentTypes`.

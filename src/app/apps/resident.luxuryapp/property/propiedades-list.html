@@ -1,4 +1,3 @@
-<div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -52,49 +51,49 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th class="w-5rem text-small" pSortableColumn="accountNumber">
+      <th class="w-5rem" pSortableColumn="accountNumber">
         Cta.
         <p-sorticon field="accountNumber" />
       </th>
-      <th class="w-6rem text-small" pSortableColumn="tower">
+      <th class="w-6rem" pSortableColumn="tower">
         Torre
         <p-sorticon field="tower" />
       </th>
-      <th class="w-9rem text-small" pSortableColumn="department">
+      <th class="w-9rem" pSortableColumn="department">
         Departamento
         <p-sorticon field="department" />
       </th>
-      <th class="w-6rem text-small" pSortableColumn="floor">
+      <th class="w-6rem" pSortableColumn="floor">
         Piso
         <p-sorticon field="floor" />
       </th>
-      <th class="w-7rem text-small" pSortableColumn="unitNumber">
+      <th class="w-7rem" pSortableColumn="unitNumber">
         No. Int.
         <p-sorticon field="unitNumber" />
       </th>
-      <th class="w-7rem text-small" pSortableColumn="areaM2">
-        órea mí
+      <th class="w-7rem" pSortableColumn="areaM2">
+        área m2
         <p-sorticon field="areaM2" />
       </th>
-      <th class="w-8rem text-small" pSortableColumn="indivisoPercentage">
+      <th class="w-8rem" pSortableColumn="indivisoPercentage">
         Indiviso
         <p-sorticon field="indivisoPercentage" />
       </th>
-      <th class="w-7rem text-small" pSortableColumn="parkingSlots">
+      <th class="w-7rem" pSortableColumn="parkingSlots">
         Cajones
         <p-sorticon field="parkingSlots" />
       </th>
-      <th class="w-7rem text-small" pSortableColumn="storageUnit">
+      <th class="w-7rem" pSortableColumn="storageUnit">
         Bodega
         <p-sorticon field="storageUnit" />
       </th>
-      <th class="w-6rem text-center text-small" pSortableColumn="isDelinquent">
+      <th class="w-6rem text-center" pSortableColumn="isDelinquent">
         Moroso
         <p-sorticon field="isDelinquent" />
       </th>
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador,
       AspRole.SuperUsuario])) {
-      <th class="w-8rem text-small"></th>
+      <th class="w-8rem"></th>
       }
     </tr>
   </ng-template>
@@ -156,31 +155,24 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        
       >
-        <app-icon
-          icon="mdi:home-city-outline"
-          
-        />
+        <app-icon icon="mdi:home-city-outline" />
       </div>
-      
-        <h2 class="font-normal m-0">
-          {{ item.tower }} - {{ item.department }}
-        </h2>
-        <p>
-          Cta: {{ item.accountNumber }} @if (item.floor) { &middot; Piso: {{
-          item.floor }} } @if (item.unitNumber) { &middot; Int: {{
-          item.unitNumber }} }
-        </p>
-        <p>
-          @if (item.areaM2) { órea: {{ item.areaM2 | number:'1.2-2' }} mí } @if
-          (item.indivisoPercentage) { &middot; Indiviso: {{
-          item.indivisoPercentage | percent:'1.2-5' }} }
-        </p>
-        @if (item.isDelinquent) {
-        <p class="text-red-600 font-medium">Moroso</p>
-        }
-      
+
+      <h2 class="font-normal m-0">{{ item.tower }} - {{ item.department }}</h2>
+      <p>
+        Cta: {{ item.accountNumber }} @if (item.floor) { &middot; Piso: {{
+        item.floor }} } @if (item.unitNumber) { &middot; Int: {{ item.unitNumber
+        }} }
+      </p>
+      <p>
+        @if (item.areaM2) { área: {{ item.areaM2 | number:'1.2-2' }} mí } @if
+        (item.indivisoPercentage) { &middot; Indiviso: {{
+        item.indivisoPercentage | percent:'1.2-5' }} }
+      </p>
+      @if (item.isDelinquent) {
+      <p class="text-red-600 font-medium">Moroso</p>
+      }
 
       <ili-action-menu slot="end">
         <ng-container actions>

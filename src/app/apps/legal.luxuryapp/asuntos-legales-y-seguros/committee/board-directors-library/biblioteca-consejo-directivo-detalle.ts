@@ -1,8 +1,6 @@
-// @ts-nocheck
-const EDocumentType = {} as any;
 import {
+  ChangeDetectionStrategy,
   Component,
-  computed,
   effect,
   inject,
   OnInit,
@@ -10,37 +8,18 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { EDocumentType } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/document-type.enum";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-// missing document-type
 
 @Component({
   selector: "app-biblioteca-consejo-directivo-detalle",
-  imports: [
-    WebButtonIconViewPdf,
-    TableModule,
-    WebButtonLabelViewPdf,
-    DataViewMobile,
-    CustomSearchInput,
-    AppIcon,
-    MobileListItem,
-  ],
-
+  imports: [AppIcon],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./biblioteca-consejo-directivo-detalle.html",
 })
 export class BibliotecaConsejoDirectivoDetalle implements OnInit {
@@ -50,8 +29,9 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
   route = inject(ActivatedRoute);
   dataSignal = signal<any[]>([]);
 
-  documentType: any | undefined;
+  documentType: EDocumentType | undefined;
   pageTitle: string = "";
+  loading = signal(true);
 
   routeData = toSignal(this.route.data);
 
@@ -66,31 +46,18 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
       if (data) {
         this.pageTitle = data["title"];
         this.documentType = data["documentType"];
-        console.log("Tipo de documento:", this.documentType);
-        console.log("Tútulo de la página:", this.pageTitle);
         this.onLoadData();
       }
     });
   }
 
   ngOnInit(): void {
-    // Subscription moved to effect
+    // Carga disparada por los effects del constructor.
   }
-
-  globalFilterFields = computed(() => {
-    const data = this.dataSignal();
-    if (!data || data.length === 0) return [];
-    return globalFilterFields(data);
-  });
-  loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  filterText: string = "";
-  window: any = window; // Make window object available in template
 
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    if (this.documentType == any.MaintenancePolicy) {
+    if (this.documentType == EDocumentType.MaintenancePolicy) {
       const urlApi = Endpoints.PolicyContracts.list(customerId, true);
       this.apiResponseS.onGetList(urlApi).then((result: any[] | null) => {
         if (result) {
@@ -128,7 +95,7 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
             customCreatedBy: x.createdById,
           }));
 
-          if (this.documentType === any.Asambleas) {
+          if (this.documentType === EDocumentType.Asambleas) {
             mappedData.sort((a, b) => {
               const dateA = new Date(a.date).getTime();
               const dateB = new Date(b.date).getTime();
@@ -142,6 +109,7 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
       });
     }
   }
+
   viewPdf(url: string, fileName: string): void {
     this.dialogHandlerS.openDialog(
       PdfViewerModal,

@@ -1,10 +1,14 @@
 import { Injectable, inject } from "@angular/core";
 import { ModalController } from "@ionic/angular/standalone";
-import { DialogService, DynamicDialogRef, DynamicDialogConfig } from "primeng/dynamicdialog";
-export { DialogService, DynamicDialogRef, DynamicDialogConfig };
+import {
+  DialogService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "primeng/dynamicdialog";
 import { DialogSize } from "../enums/dialog-size.enum";
-import { PlatformService } from "./platform.service";
 import { IonicDialogModal } from "./ionic-dialog-modal";
+import { PlatformService } from "./platform.service";
+export { DialogService, DynamicDialogConfig, DynamicDialogRef, DialogSize };
 @Injectable({
   providedIn: "root",
 })
@@ -192,12 +196,3 @@ export interface DialogConfig {
     | "bottom-right";
   extraOptions?: any;
 }
-
-
-
-
-
-
-
-
-

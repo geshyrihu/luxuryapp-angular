@@ -119,7 +119,7 @@ export class ListaInspecciones {
         this.inspeccionesOriginalesSignal.set(result);
 
         const data: any[] = result;
-        // Extraer óreas responsables del arreglo y eliminar duplicados
+        // Extraer áreas responsables del arreglo y eliminar duplicados
         const areas = [...new Set(data.map((item) => item.areaResponsable))];
         this.areasResponsablesSignal.set(
           areas.map((area: string) => ({

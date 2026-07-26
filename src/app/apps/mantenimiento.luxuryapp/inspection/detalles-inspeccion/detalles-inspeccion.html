@@ -13,7 +13,7 @@
       lxTooltip="Agregar"
       (clicked)="
           onModalInspectionCondominiumAssetAdd({
-            title: 'Agregar órea',
+            title: 'Agregar área',
             inspectionId: data
           })
         "
@@ -35,20 +35,23 @@
           <il-button-edit
             (clicked)="
                   onModalInspectionCondominiumAssetEdit({
-                    title: 'Editar órea',
+                    title: 'Editar área',
                     id: item.id,
                     inspectionId: data.inspectionId,
                     inspectionCondominiumAssetId: item.inspectionCondominiumAssetId
                   })
                 "
- label="Editar"/>
+            label="Editar"
+          />
           <il-button-item
             [iconClass]="'mdi:plus'"
             label="Agregar Revisión"
-            (clicked)="onModalAddRevision()"/>
+            (clicked)="onModalAddRevision()"
+          />
           <il-button-delete
             (confirmed)="onDeleteArea(item.inspectionCondominiumAssetId, data.amenities)"
- label="Eliminar"/>
+            label="Eliminar"
+          />
         </ng-container>
       </app-action-menu>
     </li>
@@ -61,7 +64,8 @@
         <ng-container actions>
           <il-button-delete
             (confirmed)="onDeleteReview(review.id, item.reviews)"
- label="Eliminar"/>
+            label="Eliminar"
+          />
         </ng-container>
       </app-action-menu>
     </li>
@@ -70,10 +74,3 @@
   }
 </div>
 }
-
-
-
-
-
-
-

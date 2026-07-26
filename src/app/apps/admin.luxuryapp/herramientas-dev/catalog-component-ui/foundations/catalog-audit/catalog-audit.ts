@@ -8,8 +8,8 @@ import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
-import { ItemChecklist } from "./interfaces/item-checklist.interface";
 import { BloqueVisual } from "./interfaces/bloque-visual.interface";
+import { ItemChecklist } from "./interfaces/item-checklist.interface";
 
 @Component({
   selector: "app-catalog-audit",
@@ -26,7 +26,7 @@ import { BloqueVisual } from "./interfaces/bloque-visual.interface";
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
-        <h2 class="text-3xl font-bold m-0">Auditoróa y Bloques Documentales</h2>
+        <h2 class="text-3xl font-bold m-0">Auditoría y Bloques Documentales</h2>
         <p class="text-secondary">
           Herramientas para validar la calidad documental y bloques visuales de
           soporte.
@@ -68,7 +68,7 @@ import { BloqueVisual } from "./interfaces/bloque-visual.interface";
 
         <div class="col-12 mt-5">
           <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">
-            Checklist de Auditoróa Rápida
+            Checklist de Auditoría Rápida
           </h3>
           <div
             [class]="

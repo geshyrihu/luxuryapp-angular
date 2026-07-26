@@ -1,0 +1,98 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '60rem' }"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onNew()"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="w-24">Tipo</th>
+      <th class="w-32">Nombre</th>
+      <th class="w-24">Tel. 1</th>
+      <th class="w-24">Tel. 2</th>
+      <th>Contacto</th>
+      <th class="w-20">Estado</th>
+      <th class="w-16 no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ getLocationTypeLabel(item.locationType) }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.phoneOne }}</td>
+      <td>{{ item.phoneTwo || "-" }}</td>
+      <td>{{ item.contactName || "-" }}</td>
+      <td>{{ item.isActive ? "Activo" : "Inactivo" }}</td>
+      <td class="no-print">
+        <div class="flex gap-1">
+          <iw-button-edit
+            size="sm"
+            class="btn--circle"
+            (clicked)="onEdit(item)"
+          />
+          <iw-button-delete
+            size="sm"
+            class="btn--circle"
+            (clicked)="onDelete(item.id)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage
+      [colspan]="7"
+      message="No hay ubicaciones registradas para este cliente"
+      icon="pi pi-map-marker"
+    />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!--📲INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+  (add)="onNew()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item lines="full" detail="false">
+      <div class="ion-text-wrap">
+        <p class="font-semibold m-0 text-color">{{ item.name }}</p>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          {{ getLocationTypeLabel(item.locationType) }} - {{ item.phoneOne }}
+        </p>
+      </div>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onEdit(item)"
+            label="Editar"
+          />
+          <ili-button-delete
+            (clicked)="onDelete(item.id)"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

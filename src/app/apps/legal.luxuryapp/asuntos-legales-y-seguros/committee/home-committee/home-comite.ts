@@ -1,20 +1,17 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { LxImage } from "@ui/adaptive/image/image";
+import { RouterModule } from "@angular/router";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { MenuOption } from "src/app/core/interfaces/menu-option.interface";
 @Component({
   selector: "app-home-comite",
-  imports: [RouterModule, LxImage],
+  imports: [RouterModule],
   templateUrl: "./home-comite.html",
 })
 export class HomeComite implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
-  router = inject(Router);
-  activeRoute = inject(ActivatedRoute);
   cdRef = inject(ChangeDetectorRef);
   public comiteMenuOptions: MenuOption[] = [
     {
@@ -57,10 +54,6 @@ export class HomeComite implements OnInit {
     const imageUrlMap = await this.apiResponseS.onGetList<
       Record<string, string>
     >(Endpoints.File.comiteHomeImages);
-    console.log(
-      "?? ~ BibliotecaConsejoDirectivo ~ loadImages ~ imageUrlMap:",
-      imageUrlMap,
-    );
     if (imageUrlMap) {
       this.comiteMenuOptions.forEach((option) => {
         const imageKey = this.getImageKeyFromPath(option.image);
@@ -75,9 +68,5 @@ export class HomeComite implements OnInit {
   private getImageKeyFromPath(path: string): string {
     // Extrae el nombre del archivo sin la extensión. Ej: 'assets/images/committee/junta-mensual.jpg' -> 'junta-mensual'
     return path.split("/").pop()?.split(".")[0].toLowerCase() ?? "";
-  }
-
-  navigateTo(route: string) {
-    this.router.navigate([route], { relativeTo: this.activeRoute });
   }
 }

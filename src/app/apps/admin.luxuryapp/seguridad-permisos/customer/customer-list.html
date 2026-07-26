@@ -76,6 +76,12 @@
             iconClass="mdi:map-marker"
             (clicked)="onUpdateAddress(item.id)"
           />
+          <iw-button-item
+            lxTooltip="Ubicaciones"
+            tooltipPosition="top"
+            iconClass="mdi:map-marker-multiple"
+            (clicked)="onManageLocations(item.id, item.nameCustomer)"
+          />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
@@ -148,6 +154,11 @@
             iconClass="mdi:map-marker-outline"
             label="Dirección"
             (clicked)="onUpdateAddress(item.id)"
+          />
+          <ili-button-item
+            iconClass="mdi:map-marker-multiple"
+            label="Ubicaciones"
+            (clicked)="onManageLocations(item.id, item.nameCustomer)"
           />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>

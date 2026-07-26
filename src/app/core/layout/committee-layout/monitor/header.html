@@ -1,15 +1,11 @@
-<p-toolbar
-  styleClass="mobile-header-toolbar committee-header-toolbar w-full border-none p-0 m-0"
->
-  <ng-template #start>
-    <div class="header-welcome">
+<header class="committee-topbar">
+  <div class="committee-topbar__inner">
+    <div class="committee-topbar__start">
       <app-customer-header-data-committee />
     </div>
-  </ng-template>
 
-  <ng-template #center> </ng-template>
-
-  <ng-template #end>
-    <app-profile-committee-monitor />
-  </ng-template>
-</p-toolbar>
+    <div class="committee-topbar__end">
+      <app-profile-committee-monitor />
+    </div>
+  </div>
+</header>

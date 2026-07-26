@@ -16,7 +16,11 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { AspelPendientesConceptoResponse } from "./aspel-cobranza-haus.models";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
+
+import { ButtonModule } from "primeng/button";
+import { RippleModule } from "primeng/ripple";
 
 @Component({
   selector: "app-aspel-cobranza-haus-debt-detail-modal",
@@ -31,6 +35,8 @@ import { AspelPendientesConceptoResponse } from "./aspel-cobranza-haus.models";
     NgClass,
     LxTag,
     LxMessage,
+    ButtonModule,
+    RippleModule,
   ],
 })
 export class AspelCobranzaHausDebtDetailModal implements OnInit {
@@ -39,11 +45,12 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
   private readonly ref = inject(DynamicDialogRef);
 
   readonly loading = signal(true);
-  readonly detail = signal<AspelPendientesConceptoResponse | null>(null);
+  readonly detail = signal<AspelCobranzaDetalleResponse | null>(null);
 
   readonly row = this.config.data?.row;
   readonly customerId = this.config.data?.customerId as string | undefined;
   readonly fechaFin = this.config.data?.fechaFin as string | undefined;
+  readonly isCommitteeMode = this.config.data?.isCommitteeMode ?? false;
   readonly fechaInicio = this.buildFechaInicio(this.fechaFin);
 
   readonly totalSaldoInicial = computed(() =>
@@ -66,7 +73,7 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
   );
   readonly totalPendiente = computed(() =>
     (this.detail()?.conceptos ?? []).reduce(
-      (sum, item) => sum + (item.saldoPendiente ?? item.saldo_pendiente ?? 0),
+      (sum, item) => sum + (item.saldoFinal ?? item.saldo_final ?? 0),
       0,
     ),
   );
@@ -112,22 +119,40 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
     }
 
     this.loading.set(true);
-    this.loading.set(false);
+    try {
+      const response = await this.apiResponseS.onGetItem<AspelCobranzaDetalleResponse>(
+        Endpoints.CobranzaLive.detalleCobranzaRango(this.customerId, this.row.numCtaBase)
+      );
+      if (response) {
+        const normalized = this.normalizeResponse(response);
+        if (this.isCommitteeMode) {
+          normalized.conceptos = normalized.conceptos.filter(c => c.saldoFinal > 0);
+          normalized.conceptos.forEach(c => {
+            c.vencidos = c.vencidos.filter(v => v.saldoPendiente > 0);
+          });
+          normalized.totalConceptos = normalized.conceptos.length;
+        }
+        this.detail.set(normalized);
+      }
+    } finally {
+      this.loading.set(false);
+    }
   }
 
   private normalizeResponse(
-    response: AspelPendientesConceptoResponse,
-  ): AspelPendientesConceptoResponse {
+    response: AspelCobranzaDetalleResponse,
+  ): AspelCobranzaDetalleResponse {
     return {
       numCtaBase: response.numCtaBase ?? response.num_cta_base ?? "",
       departamento: response.departamento ?? "",
       fechaInicio: response.fechaInicio ?? response.fecha_inicio ?? "",
       fechaFin: response.fechaFin ?? response.fecha_fin ?? "",
-      totalConceptos:
-        response.totalConceptos ??
-        response.total_conceptos ??
-        response.conceptos?.length ??
-        0,
+      saldoInicialTotal: response.saldoInicialTotal ?? response.saldo_inicial_total ?? 0,
+      totalCargos: response.totalCargos ?? response.total_cargos ?? 0,
+      totalAbonos: response.totalAbonos ?? response.total_abonos ?? 0,
+      saldoFinalTotal: response.saldoFinalTotal ?? response.saldo_final_total ?? 0,
+      totalAdelantos: response.totalAdelantos ?? response.total_adelantos ?? 0,
+      totalConceptos: response.totalConceptos ?? response.total_conceptos ?? 0,
       conceptos: (response.conceptos ?? []).map((item) => ({
         concepto: item.concepto ?? "",
         numCta: item.numCta ?? item.num_cta ?? "",
@@ -135,7 +160,14 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
         saldoInicial: item.saldoInicial ?? item.saldo_inicial ?? 0,
         cargos: item.cargos ?? 0,
         abonos: item.abonos ?? 0,
-        saldoPendiente: item.saldoPendiente ?? item.saldo_pendiente ?? 0,
+        saldoFinal: item.saldoFinal ?? item.saldo_final ?? 0,
+        totalVencido: item.totalVencido ?? item.total_vencido ?? 0,
+        adelanto: item.adelanto ?? 0,
+        vencidos: (item.vencidos ?? []).map(v => ({
+          fechaCargo: v.fechaCargo ?? v.fecha_cargo ?? "",
+          conceptoDetalle: v.conceptoDetalle ?? v.concepto_detalle ?? "",
+          saldoPendiente: v.saldoPendiente ?? v.saldo_pendiente ?? 0
+        }))
       })),
     };
   }

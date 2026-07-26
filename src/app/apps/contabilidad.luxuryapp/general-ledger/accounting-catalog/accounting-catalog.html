@@ -24,7 +24,7 @@
             label="Exportar"
             (clicked)="exportData()"
             severity="success"
-          ></il-button>
+          />
         </div>
       </ng-template>
 
@@ -86,7 +86,7 @@
     >
       <ng-template #listItemTemplate let-item>
         <ili-list-item>
-<div
+          <div
             start
             class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
             class="w-3rem h-3rem bg-primary-50"
@@ -96,17 +96,17 @@
               class="text-xl text-primary"
             />
           </div>
-          
-            <div class="flex flex-column">
-              <small class="text-color-secondary">
-                📂 {{ item.cuentaPadre }}</small
-              >
-              <span class="font-bold">{{ item.descripcionCuenta }}</span>
-              <small class="text-color-secondary font-mono"
-                >{{ item.codigoCuenta }}</small
-              >
-            </div>
-</ili-list-item>
+
+          <div class="flex flex-column">
+            <small class="text-color-secondary">
+              📂 {{ item.cuentaPadre }}</small
+            >
+            <span class="font-bold">{{ item.descripcionCuenta }}</span>
+            <small class="text-color-secondary font-mono"
+              >{{ item.codigoCuenta }}</small
+            >
+          </div>
+        </ili-list-item>
       </ng-template>
     </app-data-view-mobile>
   </div>

@@ -1,0 +1,100 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        hidden
+        label="Id"
+        [readonly]="true"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.customerId"
+        hidden
+        label="CustomerId"
+        [readonly]="true"
+      />
+
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-6">
+          <custom-input-text-signal
+            [control]="form.controls.name"
+            label="Nombre"
+            placeholder="Ej: Caseta Principal"
+            [required]="true"
+          />
+        </div>
+
+        <div class="field col-12 md:col-6">
+          <custom-input-select-signal
+            [control]="form.controls.locationType"
+            label="Tipo de Ubicación"
+            [data]="locationTypeOptions"
+            [filter]="true"
+            [required]="true"
+          />
+        </div>
+
+        <div class="field col-12 md:col-6">
+          <custom-input-mask-signal
+            [control]="form.controls.phoneOne"
+            label="Tél. 1"
+            placeholder="teléfono"
+            [required]="true"
+            customMask="(00) 0000-0000"
+          />
+        </div>
+
+        <div class="field col-12 md:col-6">
+          <custom-input-mask-signal
+            [control]="form.controls.phoneTwo"
+            label="Tél. 2"
+            placeholder="teléfono"
+            customMask="(00) 0000-0000"
+          />
+        </div>
+
+        <div class="field col-12 md:col-6">
+          <custom-input-text-signal
+            [control]="form.controls.contactName"
+            label="Contacto"
+            placeholder="Nombre del responsable"
+          />
+        </div>
+
+        <div class="field col-12 md:col-3">
+          <custom-input-text-signal
+            [control]="form.controls.sortOrder"
+            label="Orden"
+            type="number"
+          />
+        </div>
+
+        <div class="field col-12 md:col-3">
+          <custom-input-select-signal-bool
+            [control]="form.controls.isActive"
+            label="Estado"
+            [activeLabel]="'Activo'"
+            [inactiveLabel]="'Inactivo'"
+          />
+        </div>
+
+        <div class="field col-12">
+          <custom-input-textarea-signal
+            [control]="form.controls.notes"
+            label="Notas"
+            placeholder="Observaciones adicionales"
+          />
+        </div>
+      </div>
+
+      <div class="flex justify-content-end pt-3 border-top-1 surface-border">
+        <il-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

@@ -21,13 +21,12 @@
   } @else {
   <div
     class="line-height-3 text-lg overflow-y-auto pr-3 surface-ground border-round p-3"
-    
   >
     @if (auditReportHtml()) {
     <div [innerHTML]="auditReportHtml()"></div>
     } @else {
     <div class="text-center p-4 text-500 italic">
-      No se pudo generar el reporte de auditoróa.
+      No se pudo generar el reporte de Auditoría.
     </div>
     }
   </div>

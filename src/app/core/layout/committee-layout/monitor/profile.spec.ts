@@ -90,21 +90,7 @@ describe("ProfileCommitteeMonitor", () => {
   });
 
   it("should initialize profileImageUrl from authService", () => {
-    expect(component.profileImageUrl).toBe("test-photo.jpg");
-  });
-
-  it("should toggle menu", () => {
-    expect(component.isMenuVisible).toBe(false);
-    component.toggleMenu();
-    expect(component.isMenuVisible).toBe(true);
-    component.toggleMenu();
-    expect(component.isMenuVisible).toBe(false);
-  });
-
-  it("should close menu", () => {
-    component.isMenuVisible = true;
-    component.closeMenu();
-    expect(component.isMenuVisible).toBe(false);
+    expect(component.profileImageUrl()).toBe("test-photo.jpg");
   });
 
   it("should call authService.logout on logout", () => {

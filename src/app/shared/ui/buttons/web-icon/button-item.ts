@@ -4,7 +4,7 @@ import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "iw-button-item",
-
+  standalone: true,
   imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

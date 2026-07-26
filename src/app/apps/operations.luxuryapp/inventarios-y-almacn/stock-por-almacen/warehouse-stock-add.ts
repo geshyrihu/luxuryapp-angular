@@ -16,7 +16,6 @@ import {
 } from "@angular/forms";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
@@ -45,8 +44,8 @@ interface IWarehouseStockRowForm {
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { PrimeNgCustomCaption } from "../../../../shared/ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableLazyLoadEvent } from "@ui/web/primeng-table/primeng-table";
+import { PrimeNgCustomCaption } from "../../../../shared/ui/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
   selector: "app-warehouse-stock-add",
@@ -61,7 +60,6 @@ import { TableLazyLoadEvent } from "@ui/web/primeng-table/primeng-table";
     CustomInputNumberSignal,
     ReactiveFormsModule,
     PrimeNgCustomCaption,
-    CustomSearchInput,
   ],
 })
 export class WarehouseStockAdd implements OnInit {
@@ -118,13 +116,18 @@ export class WarehouseStockAdd implements OnInit {
   }
 
   onLazyLoad(event: TableLazyLoadEvent): void {
-    this.currentPage = Math.floor((event.first ?? 0) / (event.rows ?? this.rows)) + 1;
+    this.currentPage =
+      Math.floor((event.first ?? 0) / (event.rows ?? this.rows)) + 1;
     const pageSize = event.rows ?? this.rows;
     this.currentFilter = (event.globalFilter as string) ?? "";
     this.loadPage(this.currentPage, pageSize, this.currentFilter);
   }
 
-  async loadPage(page: number, pageSize: number, filter: string): Promise<void> {
+  async loadPage(
+    page: number,
+    pageSize: number,
+    filter: string,
+  ): Promise<void> {
     this.loading.set(true);
 
     const customerId: string = this.customerIdS.customerId();

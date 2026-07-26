@@ -120,7 +120,7 @@ export class DetallesInspeccion implements OnInit {
   onModalAddRevision() {
     this.dialogHandlerS.openDialog(
       InspeccionAgregarRevision,
-      { title: "Agregar órea" },
+      { title: "Agregar área" },
       "Agregar revisión",
       this.dialogHandlerS.sizeLg,
     );

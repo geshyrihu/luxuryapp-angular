@@ -1,51 +1,86 @@
-<li class="profile-nav onhover-dropdown px-0 py-0 m-0">
-  <div class="flex profile-media-committee align-items-center" (click)="toggleMenu()">
+<div class="committee-profile" [class.committee-profile--compact]="compact()">
+  <div
+    class="committee-profile__trigger"
+    (click)="profilePopover.toggle($event)"
+  >
     <img
-      class="img-40"
-      style="border-radius:var(--ds-radius-lg,8px);"
-      [src]="profileImageUrl || 'assets/images/default-avatar.png'"
-      alt="Img"
+      class="committee-profile__avatar"
+      [src]="profileImageUrl() || defaultAvatar"
+      (error)="onImgError($event)"
+      alt="Perfil"
     />
-    <div class="flex-flex-grow-1-1 ms-2">
-      <span>
+    @if (!compact()) {
+    <span class="committee-profile__info">
+      <span class="committee-profile__name">
         {{ infoAccountAuthDTO?.firstName }} {{ infoAccountAuthDTO?.lastName }}
       </span>
-      <p class="mb-0 font-outfit">
+      <span class="committee-profile__position">
         {{ infoAccountAuthDTO?.position }}
-        <app-icon icon="mdi:chevron-down" class="ms-1 text-sm" />
-      </p>
-    </div>
+      </span>
+    </span>
+    }
+    <app-icon icon="mdi:chevron-down" class="committee-profile__caret" />
   </div>
 
-  <ul
-    class="profile-dropdown onhover-show-div"
-    [class.active]="isMenuVisible"
-    (mouseleave)="closeMenu()"
-  >
-    <li>
-      <div class="ps-2 pe-2 mb-2">
-        <span>{{ customerName() }}</span>
+  <p-popover #profilePopover appendTo="body">
+    <div class="profile-popup-menu">
+      @if (cb_customer.length > 1) {
+      <div class="committee-profile__customer-select">
+        <label class="committee-profile__customer-label">Cliente</label>
+        <select
+          class="committee-profile__customer-input"
+          [value]="customerId()"
+          (change)="selectCustomer($any($event.target).value)"
+        >
+          @for (customer of cb_customer; track customer.value) {
+          <option [value]="customer.value">{{ customer.label }}</option>
+          }
+        </select>
       </div>
-    </li>
-    <li>
-      <a [routerLink]="['/profile/update-user-profile']">
-        <app-icon icon="mdi:account" class="m-2" style="color:var(--ds-primary);" />
-        <span>Cambiar contraseña</span>
-      </a>
-    </li>
-    @if (updateService.isUpdateAvailable()) {
-    <li (click)="onUpdateClick()">
-      <a>
-        <app-icon icon="mdi:sync" class="m-2" style="color:var(--ds-primary);" />
+      } @else {
+      <div class="committee-profile__customer">{{ customerName() }}</div>
+      }
+
+      <button
+        class="profile-popup-item"
+        (click)="goToProfile(); profilePopover.hide()"
+      >
+        <i class="pi pi-user"></i>
+        <span>Perfil</span>
+      </button>
+
+      @if (updateService.isUpdateAvailable()) {
+      <button
+        class="profile-popup-item"
+        (click)="onUpdateClick(); profilePopover.hide()"
+      >
+        <i class="pi pi-sync"></i>
         <span>Actualizar</span>
-      </a>
-    </li>
-    }
-    <li (click)="logout()">
-      <a>
-        <app-icon icon="mdi:logout" class="m-2" style="color:var(--ds-primary);" />
+      </button>
+      }
+
+      <button class="profile-popup-item" (click)="onForceReload()">
+        <i class="pi pi-refresh"></i>
+        <span>Recargar app</span>
+      </button>
+
+      <button
+        class="profile-popup-item"
+        (click)="openAdminSite(); profilePopover.hide()"
+      >
+        <i class="pi pi-external-link"></i>
+        <span>Más de mi administración</span>
+      </button>
+
+      <div class="profile-popup-separator"></div>
+
+      <button
+        class="profile-popup-item profile-popup-item--danger"
+        (click)="logout(); profilePopover.hide()"
+      >
+        <i class="pi pi-sign-out"></i>
         <span>Cerrar sesión</span>
-      </a>
-    </li>
-  </ul>
-</li>
+      </button>
+    </div>
+  </p-popover>
+</div>

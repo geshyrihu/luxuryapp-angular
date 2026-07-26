@@ -336,6 +336,18 @@ export const adminRoutes: Routes = [
     },
   },
   {
+    path: "database-backup",
+    loadComponent: () =>
+      import("src/app/apps/system.luxuryapp/configuracion-sistema/database-backup/database-backup-list").then(
+        (m) => m.DatabaseBackupList,
+      ),
+    canActivate: [authGuard, superUsuarioGuard],
+    data: {
+      title: "Respaldo de Bases de Datos",
+      breadcrumb: "Respaldo de BD",
+    },
+  },
+  {
     path: "jobs",
     loadComponent: () =>
       import("src/app/apps/admin.luxuryapp/configuracion-sistema/jobs/jobs-dashboard").then(

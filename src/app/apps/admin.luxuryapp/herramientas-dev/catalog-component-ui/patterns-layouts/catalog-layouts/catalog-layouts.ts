@@ -8,13 +8,7 @@ import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 @Component({
   selector: "app-catalog-layouts",
 
-  imports: [
-    CommonModule,
-    ButtonModule,
-    DividerModule,
-    TagModule,
-    AppIcon,
-  ],
+  imports: [CommonModule, ButtonModule, DividerModule, TagModule, AppIcon],
   template: `
     <div class="grid">
       <!-- -- Layouts de Página --------------------------------------- -->
@@ -444,7 +438,7 @@ export class CatalogLayouts {
       tag: "Esténdar",
       tagSeverity: "info" as const,
       descripcion:
-        "Navegación lateral fija + órea de contenido principal. Layout base del ERP para la mayoróa de módulos.",
+        "Navegación lateral fija + área de contenido principal. Layout base del ERP para la mayoróa de módulos.",
       uso: "Dashboard principal, navegación entre sub-módulos.",
       template: null,
       mockupColors: { sidebar: "var(--ds-primary)", content: "#f1f5f9" },

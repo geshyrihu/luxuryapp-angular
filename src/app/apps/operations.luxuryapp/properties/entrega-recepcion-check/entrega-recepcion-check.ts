@@ -1,13 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 
 // PrimeNG Modules
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -275,7 +275,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "Inventario de mobiliario y equipo de oficina y óreas comunes.",
+              "Inventario de mobiliario y equipo de oficina y áreas comunes.",
             type: "Recomendable",
             status: null,
             observations: "",

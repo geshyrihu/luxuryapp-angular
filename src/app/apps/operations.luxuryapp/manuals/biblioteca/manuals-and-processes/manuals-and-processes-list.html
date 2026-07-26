@@ -8,7 +8,6 @@
       <div class="flex align-items-center gap-3">
         <div
           class="flex align-items-center justify-content-center bg-blue-50 border-round-xl flex-shrink-0"
-          
         >
           <app-icon [icon]="'mdi:book'" class="text-3xl text-blue-600" />
         </div>
@@ -73,7 +72,6 @@
         <div class="flex align-items-center gap-3">
           <div
             class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
-            
             [style.backgroundColor]="group.config.bgColor"
           >
             <app-icon
@@ -87,7 +85,7 @@
               {{ group.dept }}
             </h2>
             <p class="text-xs text-500 m-0 mt-1">
-              Manuales y directrices del órea
+              Manuales y directrices del área
             </p>
           </div>
         </div>
@@ -135,7 +133,6 @@
             <!-- Lónea punteada de óndice (TOC Leader Line) -->
             <div
               class="flex-grow-1 border-bottom-1 border-dotted surface-border mx-3 align-self-end mb-2 hidden md:block"
-              
             ></div>
           </div>
 
@@ -215,26 +212,26 @@
             class="text-xl text-primary"
           />
         </div>
-        
-          <div class="flex align-items-center gap-2 mb-1">
-            <span class="font-mono text-xs font-bold text-primary"
-              >{{ item.folio }}</span
-            >
-            @if (item.isGlobal) {
-            <span
-              class="text-xs font-bold px-1.5 py-0.5 border-round bg-green-50 text-green-700"
-              >G</span
-            >
-            }
-            <span class="text-xs text-500 font-mono"
-              >v{{ item.currentVersion }}</span
-            >
-          </div>
-          <p class="font-semibold text-wrap m-0 text-color">
-            {{ item.description }}
-          </p>
-          <p class="text-xs text-500 mt-1 uppercase">{{ item.departament }}</p>
-        
+
+        <div class="flex align-items-center gap-2 mb-1">
+          <span class="font-mono text-xs font-bold text-primary"
+            >{{ item.folio }}</span
+          >
+          @if (item.isGlobal) {
+          <span
+            class="text-xs font-bold px-1.5 py-0.5 border-round bg-green-50 text-green-700"
+            >G</span
+          >
+          }
+          <span class="text-xs text-500 font-mono"
+            >v{{ item.currentVersion }}</span
+          >
+        </div>
+        <p class="font-semibold text-wrap m-0 text-color">
+          {{ item.description }}
+        </p>
+        <p class="text-xs text-500 mt-1 uppercase">{{ item.departament }}</p>
+
         <div
           end
           class="flex align-items-center gap-1"

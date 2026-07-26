@@ -230,6 +230,7 @@ export const ROUTES = {
     CATALOGO_UI: ["/settings", "ui-catalog"],
     BASE_CONOCIMIENTO_AI: ["/settings", "ai-knowledge-base"],
     VAULT_SECRETOS: ["/settings", "vault-secrets"],
+    DATABASE_BACKUP: ["/settings", "database-backup"],
     ELEVEN_LABS: ["/settings", "eleven-labs"],
     IA_TEST: ["/settings", "ai-test"],
   },

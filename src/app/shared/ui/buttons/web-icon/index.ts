@@ -9,4 +9,5 @@ export { WebButtonIconSendEmail } from "./button-send-email";
 export { WebButtonIconViewPdf } from "./button-view-pdf";
 export { WebButtonIconTracking } from "./button-tracking";
 export { WebButtonIconActiveDesactive } from "./button-active-desactive";
+export { WebButtonIconItem } from "./button-item";
 

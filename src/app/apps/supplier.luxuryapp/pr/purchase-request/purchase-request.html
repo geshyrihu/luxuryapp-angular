@@ -30,7 +30,7 @@
       <p class="m-0">{{ data.requestedBy }}</p>
     </div>
     <div class="col-12 md:col-2">
-      <strong class="block text-color-secondary">órea:</strong>
+      <strong class="block text-color-secondary">área:</strong>
       <p class="m-0">{{ data.area }}</p>
     </div>
     <div class="col-12 md:col-4">
@@ -72,7 +72,12 @@
           />
           <div>
             @for (item of purchaseOrders; track item) {
-            <lx-tag (click)="onModalForm({ id: item.id, title: 'Editar Orden de Compra' })" severity="warn" [value]="item.folio" class="m-1 cursor-pointer" />
+            <lx-tag
+              (click)="onModalForm({ id: item.id, title: 'Editar Orden de Compra' })"
+              severity="warn"
+              [value]="item.folio"
+              class="m-1 cursor-pointer"
+            />
             }
           </div>
         </ng-container>

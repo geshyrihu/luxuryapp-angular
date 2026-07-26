@@ -53,7 +53,6 @@
     scrollDirection="both"
     scrollHeight="calc(100vh - 320px)"
     class="financial-data-table budget-sticky-footer-table"
-    
     #dt
   >
     <!--
@@ -64,7 +63,6 @@
     <ng-template #caption>
       <div
         class="flex flex-row overflow-x-auto gap-2 p-2 align-items-stretch w-full"
-        
       >
         <!-- Cuotas (Fija) -->
         <div class="flex-shrink-0 w-8rem flex">
@@ -72,11 +70,7 @@
             (click)="showFeeComparisonModal()"
             class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              icon="mdi:tag-outline"
-              class="mb-1"
-              
-            />
+            <app-icon icon="mdi:tag-outline" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
               >Cuotas (Fija)</span
             >
@@ -89,11 +83,7 @@
             (click)="showFeeComparisonByIndivisoModal()"
             class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              icon="mdi:chart-bar"
-              class="mb-1"
-              
-            />
+            <app-icon icon="mdi:chart-bar" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
               >Cuotas (Indiviso)</span
             >
@@ -107,11 +97,7 @@
             [class.opacity-50]="currentProposal()?.status !== 'Borrador'"
             class="bg-blue-50 hover:bg-blue-100 shadow-1 hover:shadow-3 border-2 border-blue-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              icon="mdi:plus-circle-outline"
-              class="mb-1"
-              
-            />
+            <app-icon icon="mdi:plus-circle-outline" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-blue-700"
               >Añadir Cuenta</span
             >
@@ -125,11 +111,7 @@
             (click)="auditProposal()"
             class="bg-indigo-50 hover:bg-indigo-100 shadow-1 hover:shadow-3 border-2 border-indigo-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              icon="mdi:robot-outline"
-              class="mb-1"
-              
-            />
+            <app-icon icon="mdi:robot-outline" class="mb-1" />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
               >Auditoría IA</span
@@ -144,11 +126,7 @@
             [class.opacity-50]="auditLoading || forecastLoading"
             class="bg-indigo-50 hover:bg-indigo-100 shadow-1 hover:shadow-3 border-2 border-indigo-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              icon="mdi:chart-line"
-              class="mb-1"
-              
-            />
+            <app-icon icon="mdi:chart-line" class="mb-1" />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
               >Proyección {{ fiscalYear }}</span
@@ -162,11 +140,7 @@
             (click)="openHighIncreaseModal()"
             class="bg-orange-50 hover:bg-orange-100 shadow-1 hover:shadow-3 border-2 border-orange-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              icon="mdi:alert-decagram-outline"
-              class="mb-1"
-              
-            />
+            <app-icon icon="mdi:alert-decagram-outline" class="mb-1" />
             <span
               class="text-xs text-center line-height-2 text-orange-700 font-medium"
               >Alertas > 5%</span
@@ -180,11 +154,7 @@
             (click)="exportarResumenExcel()"
             class="bg-green-50 hover:bg-green-100 shadow-1 hover:shadow-3 border-2 border-green-300 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              icon="mdi:microsoft-excel"
-              class="mb-1"
-              
-            />
+            <app-icon icon="mdi:microsoft-excel" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-green-700"
               >Excel</span
             >
@@ -198,11 +168,7 @@
             (click)="toggleBaseBudgetMonthlyColumn()"
             class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              [icon]="baseBudgetMonthlyButtonIcon"
-              class="mb-1"
-              
-            />
+            <app-icon [icon]="baseBudgetMonthlyButtonIcon" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ baseBudgetMonthlyButtonLabel }}</span
             >
@@ -214,11 +180,7 @@
             (click)="toggleBaseBudgetAnnualColumn()"
             class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              [icon]="baseBudgetAnnualButtonIcon"
-              class="mb-1"
-              
-            />
+            <app-icon [icon]="baseBudgetAnnualButtonIcon" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ baseBudgetAnnualButtonLabel }}</span
             >
@@ -230,11 +192,7 @@
             (click)="toggleFiscalYearAnnualColumn()"
             class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              [icon]="fiscalYearAnnualButtonIcon"
-              class="mb-1"
-              
-            />
+            <app-icon [icon]="fiscalYearAnnualButtonIcon" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ fiscalYearAnnualButtonLabel }}</span
             >
@@ -246,11 +204,7 @@
             (click)="toggleshowProjectedExpenses()"
             class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              [icon]="projectedExpensesButtonIcon"
-              class="mb-1"
-              
-            />
+            <app-icon [icon]="projectedExpensesButtonIcon" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
               >{{ projectedExpensesButtonLabel }}</span
             >
@@ -263,11 +217,7 @@
             (click)="showProjectedExpensesModal()"
             class="bg-orange-50 hover:bg-orange-100 shadow-1 hover:shadow-3 border-2 border-orange-300 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              icon="mdi:cog-outline"
-              class="mb-1"
-              
-            />
+            <app-icon icon="mdi:cog-outline" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-orange-700"
               >Admin Proyección</span
             >
@@ -280,11 +230,7 @@
             (click)="showMaintenanceCalendarModal()"
             class="bg-indigo-50 hover:bg-indigo-100 shadow-1 hover:shadow-3 border-2 border-indigo-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon
-              icon="mdi:calendar-outline"
-              class="mb-1"
-              
-            />
+            <app-icon icon="mdi:calendar-outline" class="mb-1" />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
               >Calendario Mtto</span
@@ -335,10 +281,7 @@
       >
         <div class="flex flex-wrap gap-4 align-items-center text-sm text-700">
           <div class="font-semibold text-800 flex align-items-center gap-1">
-            <app-icon
-              icon="mdi:information-outline"
-              
-            />
+            <app-icon icon="mdi:information-outline" />
             Guía Rápida:
           </div>
 
@@ -427,19 +370,14 @@
       </tr>
       <tr>
         <!-- Columna congelada a la izquierda: Nombre de la cuenta -->
-        <th pFrozenColumn >Cuenta</th>
+        <th pFrozenColumn>Cuenta</th>
         <!-- Columnas del medio (scrollables): Los 12 meses del Año -->
         @for (mes of months; track mes) {
         <th class="text-center">{{ mes.substring(0, 3) | uppercase }}</th>
         }
         <!-- Columnas congeladas a la derecha: Cólculos y totales -->
         <!-- Columnas congeladas a la derecha: Cálculos y totales -->
-        <th
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          
-        >
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px">
           PROM MENSUAL
         </th>
         <th
@@ -447,7 +385,6 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          
         >
           PSTO ({{ baseBudgetYear }}) MENSUAL
         </th>
@@ -456,16 +393,10 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          
         >
           PSTO ({{ baseBudgetYear }}) ANUAL
         </th>
-        <th
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          
-        >
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px">
           PSTO ({{ fiscalYear }}) MENSUAL
         </th>
         <th
@@ -473,26 +404,11 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          
         >
           PSTO ({{ fiscalYear }}) ANUAL
         </th>
-        <th
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          
-        >
-          DIF
-        </th>
-        <th
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          
-        >
-          %
-        </th>
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px">DIF</th>
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px">%</th>
       </tr>
     </ng-template>
 
@@ -522,7 +438,7 @@
         <!-- [class.bg-red-100]="isDeficit(item)"
         [class.bg-yellow-100]="isHighIncrease(item)" -->
         <!-- Columna congelada a la izquierda: Detalles de la cuenta -->
-        <td pFrozenColumn >
+        <td pFrozenColumn>
           <div class="flex justify-content-between w-full">
             <div>
               <span
@@ -560,7 +476,7 @@
             <div
               class="flex align-items-center justify-content-end whitespace-nowrap"
             >
-              <!-- Indicadores visuales de auditoróa -->
+              <!-- Indicadores visuales de Auditoría -->
               @if (isDeficit(item)) {
               <span
                 class="text-red-500 ml-1 text-2xl"
@@ -608,12 +524,7 @@
         }
 
         <!-- Columnas congeladas a la derecha: Cólculos -->
-        <td
-          pFrozenColumn
-          alignFrozen="right"
-          
-          class="text-right numeric-column"
-        >
+        <td pFrozenColumn alignFrozen="right" class="text-right numeric-column">
           <span
             [class.font-semibold]="getAverageMonthlyExpense(item) > getAverageMonthlyBudget(item)"
             [class.text-red-700]="getAverageMonthlyExpense(item) > getAverageMonthlyBudget(item)"
@@ -627,7 +538,6 @@
           [hidden]="!showBaseBudgetMonthlyColumn()"
           pFrozenColumn
           alignFrozen="right"
-          
           class="text-right numeric-column"
         >
           {{ item.currentAmount | number: "1.0-0" }}
@@ -636,17 +546,11 @@
           [hidden]="!showBaseBudgetAnnualColumn()"
           pFrozenColumn
           alignFrozen="right"
-          
           class="text-right numeric-column"
         >
           {{ (item.currentAmount * 12) | number: "1.0-0" }}
         </td>
-        <td
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          
-        >
+        <td pFrozenColumn alignFrozen="right" class="table-col-100px">
           <custom-input-number-signal
             (blur)="updateProposalItem(item)"
             (keydown.enter)="updateProposalItem(item)"
@@ -668,16 +572,10 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          
         >
           {{item.proposedAmount * 12 | number: "1.0-0"}}
         </td>
-        <td
-          pFrozenColumn
-          alignFrozen="right"
-          
-          class="numeric-column"
-        >
+        <td pFrozenColumn alignFrozen="right" class="numeric-column">
           <div class="flex justify-content-between align-items-center">
             <div class="justify-content-start font-semibold text-red-700">
               {{ item.difference > 0 ? "(+)" : "" }}
@@ -695,12 +593,7 @@
             </div>
           </div>
         </td>
-        <td
-          pFrozenColumn
-          alignFrozen="right"
-          
-          class="numeric-column"
-        >
+        <td pFrozenColumn alignFrozen="right" class="numeric-column">
           <div class="flex justify-content-end align-items-center">
             @if (item.percentageIncrease < 0) {
             <span class="font-semibold text-green-700">
@@ -727,11 +620,7 @@
     <ng-template #footer>
       <!-- Fila para los totales de PRESUPUESTO por mes -->
       <tr>
-        <td
-          pFrozenColumn
-          class="text-right amount-total"
-          
-        >
+        <td pFrozenColumn class="text-right amount-total">
           TOTAL PRESUP. MES:
         </td>
         @for (mes of months; track mes) {
@@ -898,7 +787,6 @@
 <lx-modal
   [visible]="showHighIncreaseModal()"
   (visibleChange)="showHighIncreaseModal.set($event)"
-  
 >
   <div class="p-3">
     <p-table

@@ -155,7 +155,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, this.nameGroup(), `Total: ${this.totalTasks()} tareas | óreas: ${groups.length}`, today, "TABLERO DE PENDIENTES")}
+  ${this.htmlPrintS.buildStandardHeader(logo, this.nameGroup(), `Total: ${this.totalTasks()} tareas | áreas: ${groups.length}`, today, "TABLERO DE PENDIENTES")}
 
   <div class="body-doc">
     ${groupsHtml}

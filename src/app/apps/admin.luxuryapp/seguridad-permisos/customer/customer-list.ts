@@ -20,6 +20,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import {
   createOutline,
@@ -27,8 +28,6 @@ import {
   locationOutline,
   trashOutline,
 } from "ionicons/icons";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -36,8 +35,13 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { CustomerLocationList } from "../customer-location/customer-location-list";
+import { CustomerAddress } from "./customer-address";
 import { CustomerForm } from "./customer-form";
 import { CustomerImages } from "./customer-images";
 import { CustomerDto } from "./interfaces/customer.dto";
@@ -45,7 +49,6 @@ import { CustomerDto } from "./interfaces/customer.dto";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { CustomerAddress } from "./customer-address";
 
 @Component({
   selector: "app-customer-list",
@@ -156,6 +159,19 @@ export class CustomerList implements OnInit {
         CustomerAddress,
         { customerId },
         "Actualizar Direccion",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+
+  onManageLocations(customerId: string, customerName?: string) {
+    this.dialogHandlerS
+      .openDialog(
+        CustomerLocationList,
+        { customerId },
+        `Ubicaciones - ${customerName || customerId}`,
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {

@@ -1,0 +1,138 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.name"
+        label="Nombre de la configuracion"
+        placeholder="ej. Respaldo diario BD principales"
+      />
+
+      <custom-input-textarea-signal
+        [control]="form.controls.description"
+        label="Descripcion"
+        placeholder="Descripcion opcional del respaldo"
+        [rows]="2"
+      />
+
+      @if (loadingDatabases()) {
+        <div class="mb-3 text-color-secondary">Cargando bases de datos disponibles...</div>
+      } @else {
+        <custom-input-multiselect-signal
+          [control]="form.controls.selectedDatabases"
+          label="Bases de datos a respaldar"
+          placeholder="Selecciona las bases de datos"
+          [options]="availableDatabases()"
+          [maxSelectedLabels]="5"
+          selectedItemsLabel="{0} bases seleccionadas"
+        />
+      }
+
+      <div class="mb-3">
+        <label class="block mb-1 text-sm font-medium">Programacion (Cron)</label>
+        <div class="grid">
+          <div class="col-8">
+            <custom-input-text-signal
+              [control]="form.controls.cronExpression"
+              placeholder="ej. 0 2 * * *"
+            />
+          </div>
+          <div class="col-4">
+            <select
+              class="w-full p-2 border-round border-300"
+              (change)="onCronPresetSelect($event)"
+            >
+              <option value="">Preseleccionar...</option>
+              @for (preset of cronPresets; track preset.value) {
+                <option [value]="preset.value">{{ preset.label }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <small class="text-color-secondary">
+          Formato cron: minuto hora dia-del-mes mes dia-de-la-semana
+        </small>
+      </div>
+
+      <custom-input-select-button-signal
+        [control]="form.controls.destinationType"
+        label="Destino del respaldo"
+        [options]="destinationOptions"
+      />
+
+      @if (form.controls.destinationType.value === 'GraphApi') {
+        <div class="card p-3 mb-3 border-1 border-200 border-round">
+          <h5 class="mt-0 mb-2">Conexion OneDrive (Graph API)</h5>
+
+          <custom-input-text-signal
+            [control]="form.controls.graphTenantId"
+            label="Tenant ID (Azure AD)"
+            placeholder="ej. 00000000-0000-0000-0000-000000000000"
+          />
+
+          <custom-input-text-signal
+            [control]="form.controls.graphClientId"
+            label="Client ID (App Registration)"
+            placeholder="ej. 00000000-0000-0000-0000-000000000000"
+          />
+
+          <custom-input-text-signal
+            [control]="form.controls.graphClientSecret"
+            label="Client Secret"
+            placeholder="Ingresa el Client Secret de Azure AD"
+            [type]="'password'"
+          />
+
+          <custom-input-text-signal
+            [control]="form.controls.graphUserEmail"
+            label="Correo del usuario de OneDrive"
+            placeholder="ej. admin@luxurybuildingapp.com"
+          />
+
+          <custom-input-text-signal
+            [control]="form.controls.graphFolderPath"
+            label="Carpeta en OneDrive"
+            placeholder="LuxuryAppBackups"
+          />
+
+          @if (isEditMode()) {
+            <div class="flex justify-content-end mt-2">
+              <il-button
+                label="Probar conexion"
+                iconClass="mdi:cloud-check"
+                severity="info"
+                [loading]="testingConnection()"
+                (clicked)="onTestConnection()"
+              />
+            </div>
+          }
+        </div>
+      } @else {
+        <custom-input-text-signal
+          [control]="form.controls.localPath"
+          label="Ruta de destino local"
+          placeholder="ej. D:\Backups"
+        />
+      }
+
+      <custom-input-number-signal
+        [control]="form.controls.retentionDays"
+        label="Dias de retencion"
+        placeholder="30"
+      />
+
+      <custom-input-select-button-signal
+        [control]="form.controls.isActive"
+        label="Activo"
+        [options]="[{ label: 'Si', value: true }, { label: 'No', value: false }]"
+      />
+
+      <div class="flex justify-content-end mt-3">
+        <il-button-save
+          [propertyId]="isEditMode() ? 'edit' : ''"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

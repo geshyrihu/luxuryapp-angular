@@ -303,13 +303,13 @@ ${this.htmlPrintS.getStandardCss()}
                 </div>
                 <div class="flex align-items-center mb-2">
                   <span class="mr-2 ${item.equiposOperando ? "text-green-600" : "text-red-600"}">${item.equiposOperando ? "?" : "?"}</span>
-                  <span>Equipos/óreas operando correctamente</span>
+                  <span>Equipos/áreas operando correctamente</span>
                 </div>
               </div>
               <div class="col-6">
                 <div class="flex align-items-center mb-2">
                   <span class="mr-2 ${!item.ocacionoDanos ? "text-green-600" : "text-orange-600"}">${!item.ocacionoDanos ? "?" : "??"}</span>
-                  <span>Sin daños al órea de trabajo</span>
+                  <span>Sin daños al área de trabajo</span>
                 </div>
                 <div class="flex align-items-center mb-2">
                   <span class="mr-2 ${item.calidadTrabajos ? "text-green-600" : "text-red-600"}">${item.calidadTrabajos ? "?" : "?"}</span>

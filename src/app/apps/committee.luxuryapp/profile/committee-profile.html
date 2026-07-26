@@ -1,0 +1,71 @@
+<div class="committee-profile-page">
+  <!-- Foto de perfil -->
+  <lx-card>
+    <div class="committee-avatar">
+      <div class="committee-avatar__ring">
+        <img
+          class="committee-avatar__img"
+          [src]="photoPreview() || defaultAvatar"
+          (error)="onImgError($event)"
+          alt="Foto de perfil"
+        />
+        <button
+          type="button"
+          class="committee-avatar__camera"
+          (click)="triggerFile()"
+          aria-label="Cambiar foto"
+        >
+          <app-icon icon="mdi:camera" />
+        </button>
+      </div>
+
+      @if (fullName) {
+      <p class="committee-avatar__name">{{ fullName }}</p>
+      } @if (position) {
+      <p class="committee-avatar__role">{{ position }}</p>
+      }
+
+      <input
+        #fileInput
+        type="file"
+        accept="image/*"
+        hidden
+        (change)="onFileSelected($event)"
+      />
+    </div>
+  </lx-card>
+
+  <!-- Cambiar contraseña -->
+  <lx-card>
+    <div class="committee-form">
+      <div class="committee-form__header">
+        <app-icon icon="mdi:lock" class="committee-form__icon" />
+        <span class="committee-form__title">Cambiar contraseña</span>
+      </div>
+
+      <div class="committee-form__fields">
+        <ion-input-password
+          [control]="form.controls.currentPassword"
+          label="Contraseña actual"
+          [required]="true"
+        />
+        <ion-input-password
+          [control]="form.controls.newPassword"
+          label="Nueva contraseña"
+          [required]="true"
+        />
+        <ion-input-password
+          [control]="form.controls.confirm"
+          label="Confirmar contraseña"
+          [required]="true"
+        />
+      </div>
+
+      <ili-button-save
+        expand="block"
+        [submitting]="submitting()"
+        (clicked)="updatePassword()"
+      />
+    </div>
+  </lx-card>
+</div>

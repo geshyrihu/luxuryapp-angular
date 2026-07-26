@@ -1,0 +1,22 @@
+<div class="committee-grid">
+  @for (option of comiteMenuOptions; track option.routeParam) {
+  <a
+    [routerLink]="[option.routeParam]"
+    class="committee-card animate__animated animate__fadeIn"
+    [title]="option.title"
+  >
+    <div class="committee-card__media">
+      <img
+        [src]="option.image"
+        [alt]="option.title"
+        class="committee-card__img"
+        loading="lazy"
+        (load)="onImgLoad($event)"
+        (error)="onImgError($event)"
+      />
+      <span class="committee-card__overlay"></span>
+      <h3 class="committee-card__title">{{ option.title }}</h3>
+    </div>
+  </a>
+  }
+</div>

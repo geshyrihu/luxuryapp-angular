@@ -32,7 +32,6 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { AspelCobranzaHausDebtDetailModal } from "./aspel-cobranza-haus-debt-detail-modal";
 import { AspelCobranzaHausPdfService } from "./aspel-cobranza-haus-pdf.service";
 import { AspelCobranzaHausQueryPanel } from "./aspel-cobranza-haus-query-panel";
-import { AspelCobranzaHausSourceToolbar } from "./aspel-cobranza-haus-source-toolbar";
 import {
   AspelAccount,
   AspelAccountsByCustomerResponse,
@@ -65,7 +64,6 @@ import {
     WebButtonLabelDownload,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    AspelCobranzaHausSourceToolbar,
     AspelCobranzaHausQueryPanel,
     CurrencyPipe,
     NgClass,

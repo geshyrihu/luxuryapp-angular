@@ -142,7 +142,7 @@ interface IResetPasswordForm {
                   [fluid]="true"
                   severity="warning"
                   customClass="shadow-4"
-                ></il-button>
+                />
               </div>
 
               <!-- Mensaje Error -->

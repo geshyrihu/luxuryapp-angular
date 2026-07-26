@@ -47,6 +47,13 @@ export const EndpointsAdmin = {
     delete: (id: string) => `customer-images/${id}`,
     getByCustomerId: (customerId: string) => `customer-images/${customerId}`,
   },
+  CustomerLocations: {
+    listByCustomer: (customerId: string) => `customer-locations/customer/${customerId}`,
+    getById: (id: string) => `customer-locations/${id}`,
+    create: "customer-locations",
+    update: (id: string) => `customer-locations/${id}`,
+    delete: (id: string) => `customer-locations/${id}`,
+  },
   ModuleAppCustomers: {
     activeModules: (customerId: string) =>
       `module-app-customers/customer/${customerId}/active-modules`,

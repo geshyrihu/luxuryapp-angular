@@ -1,0 +1,91 @@
+<section class="flex flex-column gap-4 p-4">
+  <div>
+    <h1 class="m-0 text-2xl font-bold text-900">Reporte de Morosidad</h1>
+    <p class="m-0 mt-1 text-600">
+      Propiedades con deudas pendientes · Corte
+      {{ baseService.morososData()?.fechaCorte }}
+    </p>
+  </div>
+
+  <div class="committee-stats">
+    <div class="committee-stat">
+      <span class="committee-stat__label">
+        <app-icon icon="mdi:home-city-outline" /> Propiedades morosas
+      </span>
+      <span class="committee-stat__value">
+        {{ baseService.morososData()?.totalMorosos ?? 0 }}
+      </span>
+    </div>
+    <div class="committee-stat committee-stat--danger">
+      <span class="committee-stat__label">
+        <app-icon icon="mdi:cash-multiple" /> Deuda total consolidada
+      </span>
+      <span class="committee-stat__value">
+        {{ baseService.morososData()?.totalDeudaPendiente ?? 0 | currency: "MXN" : "symbol" : "1.0-0" }}
+      </span>
+    </div>
+    <div class="committee-stat">
+      <span class="committee-stat__label">
+        <app-icon icon="mdi:calendar-clock" /> Fecha de corte
+      </span>
+      <span class="committee-stat__value" style="font-size: 1.15rem">
+        {{ baseService.morososData()?.fechaCorte || "—" }}
+      </span>
+    </div>
+  </div>
+
+  <p-table
+    [value]="baseService.morososData()?.propiedades ?? []"
+    [loading]="baseService.loading()"
+    dataKey="numCtaBase"
+    [paginator]="true"
+    [rows]="30"
+    [rowsPerPageOptions]="[30, 50, 100]"
+    [scrollable]="true"
+    scrollHeight="flex"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} propiedades"
+    [tableStyle]="{ 'min-width': '42rem' }"
+    class="custom-table border-1 surface-border border-round shadow-1 bg-white"
+    #dt
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        [dt]="dt"
+        [showAdd]="false"
+        label="Morosos"
+      />
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="departamento">
+          Propiedad <p-sortIcon field="departamento"></p-sortIcon>
+        </th>
+        <th pSortableColumn="saldoPendiente" class="text-right">
+          Deuda Actual <p-sortIcon field="saldoPendiente"></p-sortIcon>
+        </th>
+        <th style="width: 3rem"></th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td class="font-medium text-900">{{ item.departamento || "Sin nombre" }}</td>
+        <td class="text-right font-semibold font-mono text-orange-600 text-lg">
+          {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
+        </td>
+        <td>
+          <p-button type="button" pRipple (click)="openDetailModal(item)" [text]="true" [rounded]="true" [plain]="true" icon="pi pi-eye" pTooltip="Ver Detalle" />
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #empty>
+      <primeng-custom-table-emptymessage 
+        title="Sin morosos" 
+        message="No se encontraron propiedades con deuda." 
+      />
+    </ng-template>
+  </p-table>
+</section>

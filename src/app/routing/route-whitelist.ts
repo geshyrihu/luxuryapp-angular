@@ -49,6 +49,7 @@ const ROUTE_WHITELIST = new Set([
   "/admin/ui-catalog",
   "/admin/ai-knowledge-base",
   "/admin/vault-secrets",
+  "/admin/database-backup",
   "/admin/eleven-labs",
   "/admin/ai-test",
   "/admin/pricing-calculator",

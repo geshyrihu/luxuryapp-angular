@@ -1,10 +1,8 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
 import { documentTextOutline, folderOpenOutline } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
@@ -17,7 +15,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
   selector: "app-informes-financieros-consejo-directivo",
-  imports: [MobileListItem, TableModule, AppIcon],
+  imports: [AppIcon],
   templateUrl: "./informes-financieros-consejo-directivo.html",
 })
 export class InformesFinancierosConsejoDirectivo implements OnInit {

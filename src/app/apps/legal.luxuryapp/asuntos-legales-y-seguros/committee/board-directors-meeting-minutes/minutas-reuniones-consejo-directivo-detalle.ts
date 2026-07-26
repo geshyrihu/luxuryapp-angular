@@ -1,9 +1,6 @@
-import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { LxBadge } from "@ui/adaptive/badge/badge";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import {
@@ -18,7 +15,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",
-  imports: [MobileListItem, CommonModule, AppIcon, LxTag, LxBadge],
+  imports: [AppIcon, LxTag],
   templateUrl: "./minutas-reuniones-consejo-directivo-detalle.html",
 })
 export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {

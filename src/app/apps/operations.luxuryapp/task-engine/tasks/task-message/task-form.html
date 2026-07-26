@@ -1,224 +1,232 @@
 <div class="md:p-3">
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <!-- Guóa de usuario para mejorar la consistencia de datos -->
-  <div
-    class="border-round border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-1"
-  >
-    <app-icon [icon]="'mdi:information'" class="text-blue-600 text-xl mt-1" />
-    <div class="flex-1">
-      <div class="text-blue-900 font-bold mb-1 uppercase text-xs">
-        Guóa de registro
+    <!-- Guóa de usuario para mejorar la consistencia de datos -->
+    <div
+      class="border-round border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-1"
+    >
+      <app-icon [icon]="'mdi:information'" class="text-blue-600 text-xl mt-1" />
+      <div class="flex-1">
+        <div class="text-blue-900 font-bold mb-1 uppercase text-xs">
+          Guóa de registro
+        </div>
+        <p class="m-0 text-blue-800 text-sm line-height-3">
+          Para facilitar el seguimiento y generar reportes precisos, por favor:
+        </p>
+        <ul class="mt-2 p-0 list-none text-blue-800 text-sm line-height-3">
+          <li class="mb-1 flex align-items-start">
+            <app-icon
+              [icon]="'mdi:check'"
+              class="text-blue-500 mr-2 mt-1 text-xs"
+            />
+            <span>
+              <strong>Áreas consistentes:</strong> Usa siempre el mismo nombre
+              para un mismo lugar (ej:
+              <em>Administración, TORRE 1 s5, Ludoteca, Alberca</em>).
+            </span>
+          </li>
+          <li class="mb-1 flex align-items-start">
+            <app-icon
+              [icon]="'mdi:check'"
+              class="text-blue-500 mr-2 mt-1 text-xs"
+            />
+            <span>
+              <strong>Evidencia visual:</strong> Toma las fotos en
+              <strong>horizontal</strong>, sin objetos que obstruyan y enfocadas
+              al detalle. Usa el <strong>mismo óngulo</strong> para el antes y
+              despuós.
+            </span>
+          </li>
+        </ul>
       </div>
-      <p class="m-0 text-blue-800 text-sm line-height-3">
-        Para facilitar el seguimiento y generar reportes precisos, por favor:
-      </p>
-      <ul class="mt-2 p-0 list-none text-blue-800 text-sm line-height-3">
-        <li class="mb-1 flex align-items-start">
-          <app-icon
-            [icon]="'mdi:check'"
-            class="text-blue-500 mr-2 mt-1 text-xs"
-          />
-          <span>
-            <strong>Áreas consistentes:</strong> Usa siempre el mismo nombre
-            para un mismo lugar (ej:
-            <em>Administración, TORRE 1 s5, Ludoteca, Alberca</em>).
-          </span>
-        </li>
-        <li class="mb-1 flex align-items-start">
-          <app-icon
-            [icon]="'mdi:check'"
-            class="text-blue-500 mr-2 mt-1 text-xs"
-          />
-          <span>
-            <strong>Evidencia visual:</strong> Toma las fotos en
-            <strong>horizontal</strong>, sin objetos que obstruyan y enfocadas
-            al detalle. Usa el <strong>mismo óngulo</strong> para el antes y
-            despuós.
-          </span>
-        </li>
-      </ul>
     </div>
-  </div>
 
-  <custom-input-text-signal
-    [control]="form.controls.id"
-    hidden
-    [readonly]="true"
-    label="Id"
-    [hidden]="true"
-  />
+    <custom-input-text-signal
+      [control]="form.controls.id"
+      hidden
+      [readonly]="true"
+      label="Id"
+      [hidden]="true"
+    />
 
-  <custom-input-select-signal
-    [control]="form.controls.ticketGroupId"
-    label="Grupo"
-    [data]="cb_ticket_group()"
-    (selectionChange)="onTicketGroupChange($event.value)"
-    [filter]="true"
-  />
-  @if (isLegalWorkGroup()) {
-  <custom-input-select-signal
-    (selectionChange)="onLegalMatterChange($event.value)"
-    [data]="cb_legal_matter()"
-    label="Asunto legal"
-    placeholder="Selecciona asunto"
-    [filter]="true"
-    description="Selecciona el asunto legal correspondiente para este ticket."
-  />
-  } @else {
-  <custom-input-text-signal
-    [control]="form.controls.title"
-    label="Area"
-    placeholder="Ej: Administración, Pasillo Principal..."
-    description="Usa nombres consistentes para óreas (ej: Administración, TORRE 1 s5, Ludoteca)."
-  />
-  }
+    <custom-input-select-signal
+      [control]="form.controls.ticketGroupId"
+      label="Grupo"
+      [data]="cb_ticket_group()"
+      (selectionChange)="onTicketGroupChange($event.value)"
+      [filter]="true"
+    />
+    @if (isLegalWorkGroup()) {
+    <custom-input-select-signal
+      (selectionChange)="onLegalMatterChange($event.value)"
+      [data]="cb_legal_matter()"
+      label="Asunto legal"
+      placeholder="Selecciona asunto"
+      [filter]="true"
+      description="Selecciona el asunto legal correspondiente para este ticket."
+    />
+    } @else {
+    <custom-input-text-signal
+      [control]="form.controls.title"
+      label="Area"
+      placeholder="Ej: Administración, Pasillo Principal..."
+      description="Usa nombres consistentes para áreas (ej: Administración, TORRE 1 s5, Ludoteca)."
+    />
+    }
 
-  <custom-input-textarea-signal
-    [control]="form.controls.description"
-    label="Descripción"
-    placeholder="Describe el problema de forma simple y concisa..."
-    description="Sí específico, simple y conciso (míx. 250 caracteres)."
-    [maxLength]="250"
-  />
+    <custom-input-textarea-signal
+      [control]="form.controls.description"
+      label="Descripción"
+      placeholder="Describe el problema de forma simple y concisa..."
+      description="Sí específico, simple y conciso (míx. 250 caracteres)."
+      [maxLength]="250"
+    />
 
-  <div class="grid">
-    <div class="col-12 md:col-6">
-      <custom-input-select-signal
-        [control]="form.controls.priority"
-        label="Prioridad"
-        [data]="cb_priority()"
-        [filter]="true"
-      />
-    </div>
-    <div class="col-12 md:col-6">
-      <custom-input-date-signal
-        [control]="form.controls.scheduledDate"
-        label="Fecha de programación"
-        placeholder="fecha"
-      />
-    </div>
-  </div>
-
-  <div class="grid">
-    <div class="col-12 md:col-6">
-      <!-- Responsable -->
-      <custom-input-select-signal
-        (selectionChange)="onAssigneeChange($event.value)"
-        [control]="form.controls.assigneeId"
-        [data]="cb_application_user()"
-        label="Asignar"
-        placeholder="Selecciona colaborador"
-        [filter]="true"
-        description="Si se deja vacóo, se asignaré a los responsables del grupo."
-      />
-    </div>
-    <div class="col-12 md:col-6">
-      <!-- Este es por si es ticket concluido -->
-      <custom-input-date-signal
-        [control]="form.controls.closedDate"
-        label="Fecha de término"
-        placeholder="fecha de cierre"
-        description="Al colocar esta fecha, el ticket se marcaré como completado."
-      />
-    </div>
-  </div>
-
-  @if (cb_predecessors().length > 0) {
-  <custom-input-select-signal
-    [control]="form.controls.dependsOnTaskId"
-    label="Tarea predecesora"
-    placeholder="Ninguna (sin dependencia)"
-    [data]="cb_predecessors()"
-    [filter]="true"
-    description="Esta tarea se ejecutaré despuós de la seleccionada."
-  />
-  } @if (isLegalWorkGroup()) {
-  <div class="border-round border-1 border-orange-200 bg-orange-50 p-3 mb-3">
-    <div class="text-xs font-bold text-orange-700 uppercase mb-2">
-      Campos legales
-    </div>
-    <div class="flex flex-wrap gap-4">
-      <custom-input-check-signal
-        [control]="form.controls.isInternal"
-        label=""
-        placeholder="Solicitud interna"
-      />
-      <custom-input-check-signal
-        [control]="form.controls.documentCloud"
-        label=""
-        placeholder="Documentación en la nube"
-      />
-      <custom-input-check-signal
-        [control]="form.controls.documentEmail"
-        label=""
-        placeholder="Documentación por email"
-      />
-    </div>
-  </div>
-  }
-
-  <div class="grid">
-    <div class="col-12 mb-2">
-      <small class="text-500 italic">
-        <app-icon [icon]="'mdi:camera'" class="mr-1" />
-        Recuerda: Fotos horizontales, centradas en el detalle y desde el mismo
-        óngulo.
-      </small>
-    </div>
-    <div class="col-12 md:col-6">
-      <div class="mb-4">
-        <label class="font-bold text-xs uppercase text-700 block mb-2"
-          >Foto del antes</label
-        >
-        @if (beforeWorkPreview()) {
-          <div class="mb-2 flex justify-content-center">
-            <img [src]="beforeWorkPreview()" class="w-15rem h-10rem object-cover border-round shadow-1"  alt="Evidencia Antes" />
-          </div>
-        }
-        <lx-file-upload
-          accept="image/*,.heic,.heif"
-          [maxFileSize]="10000000"
-          [multiple]="false"
-          [chooseLabel]="'Seleccionar foto'"
-          (onSelect)="onFileSelect($event, 'beforeWork')"
-          (filesChange)="onFilesChange($event, 'beforeWork')"
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <custom-input-select-signal
+          [control]="form.controls.priority"
+          label="Prioridad"
+          [data]="cb_priority()"
+          [filter]="true"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-date-signal
+          [control]="form.controls.scheduledDate"
+          label="Fecha de programación"
+          placeholder="fecha"
         />
       </div>
     </div>
 
-    <div class="col-12 md:col-6">
-      <div class="mb-4">
-        <label class="font-bold text-xs uppercase text-700 block mb-2"
-          >Foto del después</label
-        >
-        @if (afterWorkPreview()) {
-          <div class="mb-2 flex justify-content-center">
-            <img [src]="afterWorkPreview()" class="w-15rem h-10rem object-cover border-round shadow-1"  alt="Evidencia Después" />
-          </div>
-        }
-        <lx-file-upload
-          accept="image/*,.heic,.heif"
-          [maxFileSize]="10000000"
-          [multiple]="false"
-          [chooseLabel]="'Seleccionar foto'"
-          (onSelect)="onFileSelect($event, 'afterWork')"
-          (filesChange)="onFilesChange($event, 'afterWork')"
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <!-- Responsable -->
+        <custom-input-select-signal
+          (selectionChange)="onAssigneeChange($event.value)"
+          [control]="form.controls.assigneeId"
+          [data]="cb_application_user()"
+          label="Asignar"
+          placeholder="Selecciona colaborador"
+          [filter]="true"
+          description="Si se deja vacóo, se asignaré a los responsables del grupo."
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <!-- Este es por si es ticket concluido -->
+        <custom-input-date-signal
+          [control]="form.controls.closedDate"
+          label="Fecha de término"
+          placeholder="fecha de cierre"
+          description="Al colocar esta fecha, el ticket se marcaré como completado."
         />
       </div>
     </div>
-  </div>
-  <div class="flex justify-content-end mt-2 gap-2">
-    <il-button
-      [variant]="'outlined'"
-      label="Seguimientos"
-      iconClass="mdi:comment-multiple"
-      (clicked)="openFollowUp()"
+
+    @if (cb_predecessors().length > 0) {
+    <custom-input-select-signal
+      [control]="form.controls.dependsOnTaskId"
+      label="Tarea predecesora"
+      placeholder="Ninguna (sin dependencia)"
+      [data]="cb_predecessors()"
+      [filter]="true"
+      description="Esta tarea se ejecutaré despuós de la seleccionada."
     />
-    <il-button-save
-      [propertyId]="id"
-      [disabled]="form.invalid"
-      [submitting]="submitting()"
-    />
-  </div>
+    } @if (isLegalWorkGroup()) {
+    <div class="border-round border-1 border-orange-200 bg-orange-50 p-3 mb-3">
+      <div class="text-xs font-bold text-orange-700 uppercase mb-2">
+        Campos legales
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <custom-input-check-signal
+          [control]="form.controls.isInternal"
+          label=""
+          placeholder="Solicitud interna"
+        />
+        <custom-input-check-signal
+          [control]="form.controls.documentCloud"
+          label=""
+          placeholder="Documentación en la nube"
+        />
+        <custom-input-check-signal
+          [control]="form.controls.documentEmail"
+          label=""
+          placeholder="Documentación por email"
+        />
+      </div>
+    </div>
+    }
+
+    <div class="grid">
+      <div class="col-12 mb-2">
+        <small class="text-500 italic">
+          <app-icon [icon]="'mdi:camera'" class="mr-1" />
+          Recuerda: Fotos horizontales, centradas en el detalle y desde el mismo
+          óngulo.
+        </small>
+      </div>
+      <div class="col-12 md:col-6">
+        <div class="mb-4">
+          <label class="font-bold text-xs uppercase text-700 block mb-2"
+            >Foto del antes</label
+          >
+          @if (beforeWorkPreview()) {
+          <div class="mb-2 flex justify-content-center">
+            <img
+              [src]="beforeWorkPreview()"
+              class="w-15rem h-10rem object-cover border-round shadow-1"
+              alt="Evidencia Antes"
+            />
+          </div>
+          }
+          <lx-file-upload
+            accept="image/*,.heic,.heif"
+            [maxFileSize]="10000000"
+            [multiple]="false"
+            [chooseLabel]="'Seleccionar foto'"
+            (onSelect)="onFileSelect($event, 'beforeWork')"
+            (filesChange)="onFilesChange($event, 'beforeWork')"
+          />
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6">
+        <div class="mb-4">
+          <label class="font-bold text-xs uppercase text-700 block mb-2"
+            >Foto del después</label
+          >
+          @if (afterWorkPreview()) {
+          <div class="mb-2 flex justify-content-center">
+            <img
+              [src]="afterWorkPreview()"
+              class="w-15rem h-10rem object-cover border-round shadow-1"
+              alt="Evidencia Después"
+            />
+          </div>
+          }
+          <lx-file-upload
+            accept="image/*,.heic,.heif"
+            [maxFileSize]="10000000"
+            [multiple]="false"
+            [chooseLabel]="'Seleccionar foto'"
+            (onSelect)="onFileSelect($event, 'afterWork')"
+            (filesChange)="onFilesChange($event, 'afterWork')"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-content-end mt-2 gap-2">
+      <il-button
+        [variant]="'outlined'"
+        label="Seguimientos"
+        iconClass="mdi:comment-multiple"
+        (clicked)="openFollowUp()"
+      />
+      <il-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </div>
   </form>
 </div>

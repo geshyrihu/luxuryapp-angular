@@ -6,6 +6,7 @@ import {
   IonButton,
   IonButtons,
   IonContent,
+  IonFooter,
   IonHeader,
   IonToolbar,
 } from "@ionic/angular/standalone";
@@ -16,6 +17,7 @@ import { chevronBack } from "ionicons/icons";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { NavigationService } from "src/app/core/services/navigation.service";
 import { CustomerHeaderDataCommittee } from "./monitor/client-data";
+import { CommitteeMobileNav } from "./monitor/mobile-nav";
 import { ProfileCommitteeMonitor } from "./monitor/profile";
 
 @Component({
@@ -25,9 +27,11 @@ import { ProfileCommitteeMonitor } from "./monitor/profile";
     AppIcon,
     CustomerHeaderDataCommittee,
     ProfileCommitteeMonitor,
+    CommitteeMobileNav,
     IonApp,
     IonContent,
     IonHeader,
+    IonFooter,
     IonToolbar,
     IonButtons,
     IonButton,

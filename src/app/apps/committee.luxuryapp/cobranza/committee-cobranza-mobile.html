@@ -1,0 +1,51 @@
+@if (baseService.morososData(); as data) {
+<div class="committee-cobranza">
+  <!-- Hero: deuda total -->
+  <div class="committee-cobranza__hero">
+    <span class="committee-cobranza__hero-label">Deuda total pendiente</span>
+    <span class="committee-cobranza__hero-amount">
+      {{ data.totalDeudaPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
+    </span>
+    <div class="committee-cobranza__hero-meta">
+      <span>
+        <app-icon icon="mdi:home-city-outline" /> {{ data.totalMorosos }}
+        propiedades
+      </span>
+      <span> <app-icon icon="mdi:calendar-clock" /> Corte {{ data.fechaCorte }} </span>
+    </div>
+  </div>
+
+  <!-- Lista de propiedades morosas (ordenada por saldo desc) -->
+  @if (data.propiedades.length) {
+  <div class="committee-doc-list">
+    @for (item of data.propiedades; track item.numCtaBase) {
+    <button
+      type="button"
+      class="committee-doc-item"
+      (click)="openDetailModal(item)"
+    >
+      <span class="committee-doc-item__content">
+        <span class="committee-doc-item__title">
+          {{ item.departamento || "Sin nombre" }}
+        </span>
+      </span>
+      <span class="committee-cobranza__amount">
+        {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
+      </span>
+      <app-icon icon="mdi:chevron-right" class="committee-doc-item__chevron" />
+    </button>
+    }
+  </div>
+  } @else {
+  <div class="committee-doc-empty">
+    <app-icon icon="mdi:check-circle-outline" class="committee-doc-empty__icon" />
+    <p class="committee-doc-empty__text">Sin propiedades con deuda.</p>
+  </div>
+  }
+</div>
+} @else if (!baseService.loading()) {
+<div class="committee-doc-empty">
+  <app-icon icon="mdi:folder-open" class="committee-doc-empty__icon" />
+  <p class="committee-doc-empty__text">No hay información de cobranza.</p>
+</div>
+}

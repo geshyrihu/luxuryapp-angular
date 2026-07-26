@@ -216,6 +216,13 @@ export const settingMenu = (aspRoleS: AspRoleService): SettingsMenuItem[] => [
   {
     group: "Configuracion de Sistema",
     visible: aspRoleS.hasRole(ApplicationRole.SuperUsuario),
+    label: "Respaldo de BD",
+    routerLink: "/admin/database-backup",
+    icon: "mdi:database-export",
+  },
+  {
+    group: "Configuracion de Sistema",
+    visible: aspRoleS.hasRole(ApplicationRole.SuperUsuario),
     label: "jobs",
     routerLink: "/admin/jobs",
     icon: "mdi:briefcase",
@@ -258,7 +265,7 @@ export const settingMenu = (aspRoleS: AspRoleService): SettingsMenuItem[] => [
   {
     group: "Analisis y Registros",
     visible: aspRoleS.hasRole(ApplicationRole.SuperUsuario),
-    label: "Auditoróa de cambios",
+    label: "Auditoría de cambios",
     routerLink: "/admin/audit-entries",
     icon: "mdi:file-document-edit",
   },
@@ -361,4 +368,3 @@ export const settingMenu = (aspRoleS: AspRoleService): SettingsMenuItem[] => [
     icon: "mdi:calculator",
   },
 ];
-

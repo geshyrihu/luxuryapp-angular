@@ -317,7 +317,7 @@ export class SolicitudCompra implements OnInit {
     message += `Folio: ${this.solicitudCompra.folio}\n`;
     message += `Solicita: ${this.solicitudCompra.solicita}\n`;
     if (this.solicitudCompra.equipoOInstalacion)
-      message += `órea/Equipo: ${this.solicitudCompra.equipoOInstalacion}\n`;
+      message += `área/Equipo: ${this.solicitudCompra.equipoOInstalacion}\n`;
     message += `\n*Detalle de Requerimiento:*\n`;
 
     this.SolicitudCompraDetalle.forEach((item, index) => {

@@ -1,0 +1,64 @@
+<div class="committee-detail">
+  @if (data(); as policy) {
+  <div class="committee-card-panel">
+    <div class="committee-card-panel__header">
+      <span class="committee-card-panel__icon">
+        <app-icon icon="mdi:shield-home" />
+      </span>
+      <div class="committee-card-panel__titles">
+        <h3 class="committee-card-panel__title">
+          Póliza de Seguro del Edificio
+        </h3>
+        <p class="committee-card-panel__subtitle">{{ policy.providerName }}</p>
+      </div>
+    </div>
+
+    <div class="committee-card-panel__body">
+      <div class="committee-field-grid">
+        <div class="committee-field">
+          <span class="committee-field__label">
+            <app-icon icon="mdi:office-building" /> Proveedor
+          </span>
+          <span class="committee-field__value">{{ policy.providerName }}</span>
+        </div>
+        <div class="committee-field">
+          <span class="committee-field__label">
+            <app-icon icon="mdi:file-document-outline" /> Descripción
+          </span>
+          <span class="committee-field__value">{{ policy.description }}</span>
+        </div>
+        <div class="committee-field">
+          <span class="committee-field__label">
+            <app-icon icon="mdi:calendar-start" /> Fecha de Inicio
+          </span>
+          <span class="committee-field__value"
+            >{{ policy.startDate | date: 'dd/MM/yyyy' }}</span
+          >
+        </div>
+        <div class="committee-field">
+          <span class="committee-field__label">
+            <app-icon icon="mdi:calendar-end" /> Fecha de Fin
+          </span>
+          <span class="committee-field__value"
+            >{{ policy.endDate | date: 'dd/MM/yyyy' }}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    @if (policy.pathDocument) {
+    <div class="committee-card-panel__footer">
+      <il-button-view-pdf
+        [url]="policy.pathDocument"
+        fileName="Póliza | Contrato"
+      />
+    </div>
+    }
+  </div>
+  } @else {
+  <div class="committee-doc-empty">
+    <app-icon icon="mdi:folder-open" class="committee-doc-empty__icon" />
+    <p class="committee-doc-empty__text">No hay póliza disponible</p>
+  </div>
+  }
+</div>

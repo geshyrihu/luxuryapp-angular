@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, forwardRef, ViewChild, ChangeDetectionStrategy
+  Component, ElementRef, forwardRef, ViewChild, ChangeDetectionStrategy, effect, input, output
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonButton, IonIcon, IonImg } from "@ionic/angular/standalone";
@@ -43,6 +43,8 @@ import { BaseIonicInput } from "../base/base-ionic-input";
   ],
 })
 export class IonInputImg extends BaseIonicInput {
+  urlImgCurrent = input<string>("");
+  fileSelected = output<File>();
   imageUrl: string | null = null;
 
   @ViewChild("fileInput", { static: false }) fileInput!: ElementRef<HTMLInputElement>;
@@ -50,6 +52,12 @@ export class IonInputImg extends BaseIonicInput {
   constructor() {
     super();
     addIcons({ cameraOutline, trashOutline });
+    effect(() => {
+      const url = this.urlImgCurrent();
+      if (url && !this.imageUrl) {
+        this.imageUrl = url;
+      }
+    });
   }
 
   triggerFileInput(): void {
@@ -67,6 +75,7 @@ export class IonInputImg extends BaseIonicInput {
     const ctrl = this.control() || this.internalControl;
     ctrl.setValue(file);
     ctrl.markAsDirty();
+    this.fileSelected.emit(file);
   }
 
   removeFile(): void {

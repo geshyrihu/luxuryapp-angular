@@ -1,0 +1,58 @@
+<div class="committee-detail">
+  <div class="committee-sticky-bar">
+    <app-segmented-control
+      [items]="segments"
+      [(value)]="view"
+      ariaLabel="Tipo de directorio"
+    />
+  </div>
+
+  @if (items().length === 0) {
+  <div class="committee-doc-empty">
+    <p class="committee-doc-empty__text">
+      @if (view() === "casetas") { No hay casetas registradas } @else { No hay
+      miembros disponibles }
+    </p>
+  </div>
+  } @else {
+  <div class="committee-directory">
+    @for (person of items(); track $index) {
+    <article class="committee-contact">
+      <div class="committee-contact__avatar">
+        <app-image-fallback
+          [src]="person.photoPath || ''"
+          [alt]="person.firstName"
+          width="56px"
+          height="56px"
+          [fallbackIcon]="view() === 'casetas' ? 'mdi:office-building' : 'mdi:account'"
+          [imageStyle]="{ 'border-radius': '50%', 'object-fit': 'cover' }"
+          [fallbackStyle]="{ 'border-radius': '50%' }"
+        />
+      </div>
+      <div class="committee-contact__body">
+        <h4 class="committee-contact__name">
+          {{ person.firstName }} {{ person.lastName }}
+        </h4>
+        @if (person.roleName) {
+        <span class="committee-contact__role">{{ person.roleName }}</span>
+        }
+        <div class="committee-contact__links">
+          @if (person.phoneNumber) {
+          <a class="committee-contact__link" [href]="'tel:' + person.phoneNumber">
+            <i class="pi pi-phone"></i>
+            <span>{{ person.phoneNumber }}</span>
+          </a>
+          }
+          @if (person.email) {
+          <a class="committee-contact__link" [href]="'mailto:' + person.email">
+            <i class="pi pi-envelope"></i>
+            <span>{{ person.email }}</span>
+          </a>
+          }
+        </div>
+      </div>
+    </article>
+    }
+  </div>
+  }
+</div>

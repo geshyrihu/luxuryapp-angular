@@ -25,7 +25,7 @@
   // Namespaced --ds-m-* para que móvil use esquinas redondeadas y alturas
   // táctiles SIN tocar los --ds-radius-* globales (compartidos con PrimeNG/web,
   // que usan 3px a propósito). Todo lo móvil consume estos tokens.
-  --ds-m-radius-btn: 12px;
+  --ds-m-radius-btn: 3px;
   --ds-m-radius-input: 10px;
   --ds-m-radius-sheet: 16px;
   --ds-m-radius-row: 12px;

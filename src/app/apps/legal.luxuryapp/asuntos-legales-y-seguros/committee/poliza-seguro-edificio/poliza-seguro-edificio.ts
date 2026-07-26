@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
@@ -19,13 +18,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
   selector: "app-poliza-seguro-edificio",
-  imports: [
-    MobileListItem,
-    CommonModule,
-    WebButtonLabelViewPdf,
-    WebButtonLabelViewPdf,
-    AppIcon,
-  ],
+  imports: [CommonModule, WebButtonLabelViewPdf, AppIcon],
   templateUrl: "./poliza-seguro-edificio.html",
 })
 export class PolizaSeguroEdificio {

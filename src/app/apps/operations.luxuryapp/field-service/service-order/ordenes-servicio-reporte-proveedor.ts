@@ -8,17 +8,19 @@ import {
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { MessageService } from "@ui/web/primeng-api/primeng-api";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 
 @Component({
   selector: "app-ordenes-servicio-reporte-proveedor",
@@ -28,7 +30,6 @@ import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
     AppIcon,
     WebButtonIconDelete,
     WebButtonIconItem,
-    LxTooltipDirective,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
   ],

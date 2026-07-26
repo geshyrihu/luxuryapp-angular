@@ -29,6 +29,8 @@ import { WebInputImg } from "../../web/input-img/input-img";
         [label]="label()"
         [readonly]="readonly()"
         [required]="requiredInput()"
+        [urlImgCurrent]="urlImgCurrent()"
+        (fileSelected)="fileSelected.emit($event); propagar.emit($event)"
       />
     } @else {
       <web-input-img

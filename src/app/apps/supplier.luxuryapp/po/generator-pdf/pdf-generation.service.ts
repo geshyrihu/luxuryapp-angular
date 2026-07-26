@@ -283,7 +283,7 @@ ${this.htmlPrintS.getStandardCss()}
       <div>
         <div class="subheader" style="margin-top: 0;">DATOS DE LA SOLICITUD</div>
         <div class="info-text">Fecha: ${this.formatDateOnly(model.fechaSolicitud)}</div>
-        <div class="info-text">órea/Depto: ${this.htmlPrintS.esc(model.equipoOInstalacion || "N/A")}</div>
+        <div class="info-text">área/Depto: ${this.htmlPrintS.esc(model.equipoOInstalacion || "N/A")}</div>
         <div class="info-text">Solicitante: ${this.htmlPrintS.esc(this.getSolicitanteDisplayName(model))}</div>
       </div>
       <div>

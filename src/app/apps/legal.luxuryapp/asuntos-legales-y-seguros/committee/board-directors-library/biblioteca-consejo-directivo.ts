@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { LxImage } from "@ui/adaptive/image/image";
+import { RouterModule } from "@angular/router";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -13,14 +12,12 @@ export interface DocumentCategory {
 
 @Component({
   selector: "app-biblioteca-consejo-directivo",
-  imports: [RouterModule, LxImage],
+  imports: [RouterModule],
   templateUrl: "./biblioteca-consejo-directivo.html",
 })
 export class BibliotecaConsejoDirectivo implements OnInit {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
-  router = inject(Router);
-  activeRoute = inject(ActivatedRoute);
   cdRef = inject(ChangeDetectorRef);
   public documentCategories: DocumentCategory[] = [];
 
@@ -73,10 +70,6 @@ export class BibliotecaConsejoDirectivo implements OnInit {
     const imageUrlMap = await this.apiResponseS.onGetList<
       Record<string, string>
     >(Endpoints.File.comiteHomeImages);
-    console.log(
-      "?? ~ BibliotecaConsejoDirectivo ~ loadImages ~ imageUrlMap:",
-      imageUrlMap,
-    );
 
     if (imageUrlMap) {
       this.allCategories.forEach((category) => {
@@ -102,9 +95,5 @@ export class BibliotecaConsejoDirectivo implements OnInit {
       }
       return category.allowedCustomerIds.includes(currentCustomerId);
     });
-  }
-
-  navigateTo(route: string) {
-    this.router.navigate([route], { relativeTo: this.activeRoute });
   }
 }
