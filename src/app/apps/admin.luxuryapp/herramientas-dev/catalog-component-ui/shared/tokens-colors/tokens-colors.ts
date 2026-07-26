@@ -5,6 +5,7 @@ import {
   inject,
   ViewEncapsulation,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MessageService } from "@ui/web/primeng-api/primeng-api";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
@@ -12,7 +13,6 @@ import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { ToastModule } from "@ui/web/primeng-toast/primeng-toast";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { TokenColor } from "./interfaces/token-color.interface";
 import { TokenGroup } from "./interfaces/token-group.interface";
 
@@ -230,7 +230,7 @@ export class TokensColors {
     {
       nombre: "Tertiary",
       token: "--ds-tertiary",
-      uso: "Acento terciario: óxito alternativo, teal.",
+      uso: "Acento terciario: éxito alternativo, teal.",
     },
     {
       nombre: "On Tertiary",
@@ -306,18 +306,18 @@ export class TokensColors {
   // -- Semantic operational tokens (grouped) -----------------------
   readonly semanticGroups: TokenGroup[] = [
     {
-      titulo: "óxito",
+      titulo: "éxito",
       descripcion: "Confirmaciones, mítricas positivas, estados completados",
       tokens: [
         {
           nombre: "Success",
           token: "--ds-success",
-          uso: "Color de texto/icono en elementos de óxito.",
+          uso: "Color de texto/icono en elementos de éxito.",
         },
         {
           nombre: "Success Light",
           token: "--ds-success-light",
-          uso: "Fondo suave para banners y badges de óxito.",
+          uso: "Fondo suave para banners y badges de éxito.",
         },
       ],
     },

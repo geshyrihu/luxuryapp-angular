@@ -84,7 +84,7 @@ export class Asambleas {
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificación de óxito
+        // Opcional: Mostrar una notificación de éxito
       })
       .catch((error) => {
         // Opcional: Manejar el error y revertir el orden si es necesario

@@ -35,17 +35,11 @@ export class UpdateDataBase {
 
     // Usamos el endpoint unificado de migración COI
     this.apiResponseS
-      .onPost(
-        Endpoints.CobranzaSync.completo(
-          customerId,
-          year,
-        ),
-        {},
-      )
+      .onPost(Endpoints.CobranzaSync.completo(customerId, year), {})
       .then((res: any) => {
         this.result.set(res);
         this.customToastS.showSuccess(
-          "óxito",
+          "éxito",
           res.message || "Migración COI completada.",
         );
         this.loading.set(false);

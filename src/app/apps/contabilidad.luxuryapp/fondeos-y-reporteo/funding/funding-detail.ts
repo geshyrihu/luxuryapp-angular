@@ -228,10 +228,7 @@ export class FundingDetail {
   }
 
   onLoadData(customerId: string) {
-    const urlApi = Endpoints.Funding.details(
-      this.id,
-      customerId,
-    );
+    const urlApi = Endpoints.Funding.details(this.id, customerId);
     this.apiResponseS.onGetList<FundingDetailDTO>(urlApi).then((result) => {
       this.fullData.set(result);
       this.onSetSignalProperty(result);
@@ -310,9 +307,7 @@ export class FundingDetail {
     });
   }
   onUnvalidate() {
-    const urlApi = Endpoints.Funding.unvalidate(
-      this.id,
-    );
+    const urlApi = Endpoints.Funding.unvalidate(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.onLoadData(this.customerIdS.customerId());
@@ -322,9 +317,7 @@ export class FundingDetail {
   }
 
   onUnauthorize() {
-    const urlApi = Endpoints.Funding.unauthorize(
-      this.id,
-    );
+    const urlApi = Endpoints.Funding.unauthorize(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.onLoadData(this.customerIdS.customerId());
@@ -344,9 +337,7 @@ export class FundingDetail {
   }
 
   onRevokeConfirmation() {
-    const urlApi = Endpoints.Funding.revokeConfirmation(
-      this.id,
-    );
+    const urlApi = Endpoints.Funding.revokeConfirmation(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.onLoadData(this.customerIdS.customerId());
@@ -369,14 +360,11 @@ export class FundingDetail {
     );
 
     // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
-    const urlApi =
-      Endpoints.Funding.updatePurchasePaidStatus(
-        ordenId,
-      );
+    const urlApi = Endpoints.Funding.updatePurchasePaidStatus(ordenId);
     const body = { isPaid: nuevoEstado };
 
     // 2. Llamamos a nuestro nuevo y flamante método onPatch.
-    //    Tu servicio ya se encarga de los toasts de carga y óxito/error.
+    //    Tu servicio ya se encarga de los toasts de carga y éxito/error.
     this.apiResponseS.onPatch(urlApi, body).then((success) => {
       // 3. Manejamos el caso de error. Si la API falla, 'success' seré false.
       if (!success) {
@@ -450,9 +438,7 @@ export class FundingDetail {
   onRemoveFueraFondeo(ordenCompraId: string): void {
     this.apiResponseS
       .onDelete(
-        Endpoints.Funding.removeOutsideProcessPurchaseOrder(
-          ordenCompraId,
-        ),
+        Endpoints.Funding.removeOutsideProcessPurchaseOrder(ordenCompraId),
       )
       .then((result: boolean) => {
         if (result) this.onLoadData(this.customerIdS.customerId());

@@ -234,7 +234,7 @@ export class SolicitudCompra implements OnInit {
 
         this.tempProducts.set([]);
         this.customToastS.showSuccess(
-          "óxito",
+          "éxito",
           "Solicitud y productos guardados correctamente",
         );
       } else {

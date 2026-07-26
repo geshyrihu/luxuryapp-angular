@@ -1,0 +1,228 @@
+:host {
+  display: block;
+}
+
+.cb-wrapper-tabs {
+  display: block;
+}
+
+.cb-metric__icon {
+  &--primary {
+    background: var(--primary-50, var(--ds-surface-variant));
+    color: var(--ds-primary, var(--ds-primary));
+  }
+
+  &--info {
+    background: var(--ds-surface-variant);
+    color: var(--ds-info, var(--ds-info));
+  }
+
+  &--success {
+    background: var(--ds-surface-variant);
+    color: var(--ds-success, #16a34a);
+  }
+}
+
+.dashboard-spotlights {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+
+  @media (min-width: 992px) {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+}
+
+.mobile-flow-entry,
+.desktop-flow-entry,
+.mobile-config-entry,
+.desktop-config-entry {
+  width: 100%;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mobile-flow-entry,
+.mobile-config-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 12px 24px rgba(17, 34, 59, 0.16);
+}
+
+.mobile-flow-entry {
+  background:
+    linear-gradient(135deg, rgba(15, 39, 73, 0.96), rgba(38, 83, 134, 0.94));
+  color: #f4f9ff;
+}
+
+.mobile-config-entry {
+  background:
+    linear-gradient(135deg, rgba(253, 248, 240, 0.98), rgba(255, 241, 225, 0.98));
+  color: #5f3a07;
+}
+
+.mobile-flow-entry__icon,
+.desktop-flow-entry__icon,
+.mobile-config-entry__icon,
+.desktop-config-entry__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.mobile-flow-entry__icon,
+.mobile-config-entry__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.9rem;
+}
+
+.mobile-flow-entry__icon {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.mobile-config-entry__icon {
+  background: rgba(146, 64, 14, 0.09);
+}
+
+.mobile-flow-entry__icon app-icon,
+.desktop-flow-entry__icon app-icon,
+.mobile-config-entry__icon app-icon,
+.desktop-config-entry__icon app-icon,
+.mobile-flow-entry__arrow,
+.desktop-flow-entry__arrow,
+.mobile-config-entry__arrow {
+  font-size: 1.25rem;
+}
+
+.mobile-flow-entry__copy,
+.mobile-config-entry__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.mobile-flow-entry__copy strong,
+.mobile-config-entry__copy strong {
+  font-size: 0.95rem;
+}
+
+.mobile-flow-entry__copy small {
+  color: rgba(244, 249, 255, 0.78);
+  line-height: 1.45;
+}
+
+.mobile-config-entry__copy small {
+  color: rgba(95, 58, 7, 0.78);
+  line-height: 1.45;
+}
+
+.mobile-flow-entry__arrow,
+.mobile-config-entry__arrow {
+  margin-left: auto;
+  opacity: 0.86;
+}
+
+.desktop-flow-entry,
+.desktop-config-entry {
+  padding: 1rem;
+  border-radius: 1.4rem;
+  box-shadow: 0 18px 34px rgba(17, 34, 59, 0.06);
+}
+
+.desktop-flow-entry {
+  background:
+    linear-gradient(135deg, rgba(241, 247, 255, 0.96), rgba(225, 240, 255, 0.96));
+  border: 1px solid rgba(76, 124, 187, 0.18);
+}
+
+.desktop-config-entry {
+  background:
+    linear-gradient(135deg, rgba(255, 249, 240, 0.96), rgba(255, 241, 225, 0.96));
+  border: 1px solid rgba(180, 117, 37, 0.18);
+}
+
+.desktop-flow-entry__badge {
+  display: inline-flex;
+  margin-bottom: 0.7rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(29, 78, 216, 0.1);
+  color: #1d4ed8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.desktop-flow-entry__badge--neutral {
+  background: rgba(146, 64, 14, 0.1);
+  color: #92400e;
+}
+
+.desktop-flow-entry__body {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.desktop-flow-entry__icon,
+.desktop-config-entry__icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 1rem;
+  color: #f6fbff;
+  box-shadow: 0 12px 24px rgba(21, 52, 92, 0.18);
+}
+
+.desktop-flow-entry__icon {
+  background: linear-gradient(135deg, #15345c, #2d588e);
+}
+
+.desktop-config-entry__icon {
+  background: linear-gradient(135deg, #8f5314, #c27a22);
+}
+
+.desktop-flow-entry__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.desktop-flow-entry__copy strong {
+  color: #10233d;
+  font-size: 1rem;
+}
+
+.desktop-config-entry .desktop-flow-entry__copy strong {
+  color: #6d3c08;
+}
+
+.desktop-flow-entry__copy span {
+  color: #5f7188;
+  line-height: 1.5;
+}
+
+.desktop-config-entry .desktop-flow-entry__copy span {
+  color: #8a6237;
+}
+
+.desktop-flow-entry__arrow {
+  margin-left: auto;
+  color: #244f82;
+}
+
+.desktop-config-entry .desktop-flow-entry__arrow {
+  color: #9a6122;
+}
+
+.group-description {
+  max-width: 62rem;
+}

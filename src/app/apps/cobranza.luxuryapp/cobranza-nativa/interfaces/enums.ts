@@ -123,16 +123,3 @@ export enum EFinancialEventType {
     CierrePeriodo = 40,
 }
 
-export enum EBillingMode {
-    Native = 0,
-    AspelCoiSync = 1,
-}
-
-
-
-
-
-
-
-
-

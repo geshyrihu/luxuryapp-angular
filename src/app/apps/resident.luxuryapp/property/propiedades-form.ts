@@ -93,7 +93,7 @@ export class PropiedadesForm implements OnInit {
       parkingSlots: new FormControl<number | null>(null),
       storageUnit: new FormControl(""),
       accountNumber: new FormControl<string | null>(null, {
-        validators: [Validators.maxLength(9)],
+        validators: [Validators.pattern(/^$|^(\d{9}|\d{12})$/)],
       }),
       applicationUserId: new FormControl<string | null>(
         this.authS.applicationUserId,
@@ -104,16 +104,22 @@ export class PropiedadesForm implements OnInit {
       this.onLoadData();
     }
   }
+
   submit() {
+    this.form.controls.accountNumber.setValue(
+      this.normalizeAccountNumber(this.form.controls.accountNumber.value),
+    );
+
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "property",
+      endpoint: Endpoints.Properties.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
     });
   }
+
   onLoadData() {
     this.apiResponseS
       .onGetItem(Endpoints.Properties.getById(this.id))
@@ -121,19 +127,36 @@ export class PropiedadesForm implements OnInit {
         if (!result) return;
         this.isDelinquent = result.isDelinquent ?? false;
         this.delinquentSince = result.delinquentSince ?? null;
-        this.form.patchValue(result);
+        this.form.patchValue({
+          ...result,
+          accountNumber: this.normalizeAccountNumber(result.accountNumber),
+        });
       });
   }
 
   private onLoadCuentasCoi() {
     const customerId = this.customerIdS.customerId();
+    if (!customerId) {
+      this.cuentasCoi.set([]);
+      return;
+    }
+
     const year = new Date().getFullYear();
     this.apiResponseS
       .onGetList<SelectItemDto[]>(
-        `aspel-cobranza/accounts-select?customerId=${customerId}&year=${year}`,
+        Endpoints.SelectItems.propertyAccounts(customerId, year),
       )
       .then((result) => {
         this.cuentasCoi.set(result ?? []);
       });
+  }
+
+  private normalizeAccountNumber(accountNumber: string | null | undefined) {
+    if (!accountNumber) {
+      return null;
+    }
+
+    const digits = accountNumber.replace(/\D/g, "");
+    return digits.length > 0 ? digits : null;
   }
 }

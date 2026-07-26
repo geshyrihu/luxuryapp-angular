@@ -151,10 +151,20 @@ const cobranzaNativeEndpoints = {
     update: (id: string) => `cobranza/charges/${id}`,
     cancel: (id: string) => `cobranza/charges/${id}/cancel`,
     delete: (id: string) => `cobranza/charges/${id}`,
-    generateMonthly: "cobranza/charges/generate-monthly",
-    calculateLateFees: "cobranza/charges/calculate-late-fees",
+    generateMonthly: (
+      customerId?: string,
+      month?: number,
+      year?: number,
+    ) =>
+      customerId && month && year
+        ? `cobranza/charges/generate-monthly?customerId=${customerId}&month=${month}&year=${year}`
+        : "cobranza/charges/generate-monthly",
+    calculateLateFees: (customerId?: string) =>
+      customerId
+        ? `cobranza/charges/calculate-late-fees?customerId=${customerId}`
+        : "cobranza/charges/calculate-late-fees",
     bulkImportSaldoInicial: (customerId: string) =>
-      `cobranza/charges/bulk-import/saldo-inicial?customer-id=${customerId}`,
+      `cobranza/charges/bulk-import/saldo-inicial?customerId=${customerId}`,
     initialBalanceStatus: (customerId: string) =>
       `cobranza/charges/initial-balance-status/customer/${customerId}`,
     bulkSetInitialBalance: "cobranza/charges/initial-balance/bulk",
@@ -194,7 +204,7 @@ const cobranzaNativeEndpoints = {
   },
   Notifications: {
     process: (customerId: string) =>
-      `cobranza/notifications/process?customer-id=${customerId}`,
+      `cobranza/notifications/process?customerId=${customerId}`,
     sendStatement: "cobranza/notifications/statements/send",
     sendStatementBatch: "cobranza/notifications/statements/send-batch",
     sendPaymentReceipt: (paymentId: string) =>
@@ -326,11 +336,20 @@ const cobranzaNativeEndpoints = {
       `cobranza/audit-logs/property/${propertyId}/customer/${customerId}`,
   },
   Automation: {
-    generateMonthlyCharges: "cobranza/charges/generate-monthly",
+    generateMonthlyCharges: (
+      customerId?: string,
+      month?: number,
+      year?: number,
+    ) =>
+      cobranzaNativeEndpoints.Charges.generateMonthly(
+        customerId,
+        month,
+        year,
+      ),
     calculateLateFees: (customerId: string) =>
-      `cobranza/charges/calculate-late-fees?customer-id=${customerId}`,
+      `cobranza/charges/calculate-late-fees?customerId=${customerId}`,
     processNotifications: (customerId: string) =>
-      `cobranza/notifications/process?customer-id=${customerId}`,
+      `cobranza/notifications/process?customerId=${customerId}`,
     evaluateCollectionCases: (customerId: string) =>
       `cobranza/collection-cases/evaluate-and-escalate/${customerId}`,
     autoReconcile: "cobranza/reconciliations/auto-apply-all",

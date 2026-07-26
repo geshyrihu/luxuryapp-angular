@@ -148,6 +148,8 @@ export const EndpointsShared = {
     usersByCustomer: (customerId: string) => `UserFromCustomer/${customerId}`,
     accountsByCustomer: (customerId: string) =>
       `getlistaccountforcustomer/${customerId}`,
+    propertyAccounts: (customerId: string, year: number) =>
+      `select-items/property-accounts/${customerId}/${year}`,
     anioOrdenService: (customerId: string) => `anioordenservice/${customerId}`,
     buildingResidents: (customerId: string) =>
       `ResidentesEdificio/${customerId}`,

@@ -20,7 +20,9 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "dashboard",
     loadComponent: () =>
-      import("./cobranza-dashboard/cobranza-dashboard").then((m) => m.default),
+      import("./core/cobranza-dashboard/cobranza-dashboard").then(
+        (m) => m.default,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Dashboard de Cobranza",
@@ -32,7 +34,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "charge-types",
     loadComponent: () =>
-      import("./charge-types/charge-type-list").then((m) => m.default),
+      import("./core/charge-types/charge-type-list").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Tipos de Cargo",
@@ -44,7 +46,9 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "charge-templates",
     loadComponent: () =>
-      import("./charge-templates/charge-template-list").then((m) => m.default),
+      import("./core/charge-templates/charge-template-list").then(
+        (m) => m.default,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Plantillas de Cargos",
@@ -55,7 +59,8 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   // Cargos individuales
   {
     path: "charges",
-    loadComponent: () => import("./charges/charge-list").then((m) => m.default),
+    loadComponent: () =>
+      import("./core/charges/charge-list").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Cargos",
@@ -66,7 +71,8 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   // Registrar pagos con asignación a cargos
   {
     path: "payments",
-    loadComponent: () => import("./payments/payments").then((m) => m.Payments),
+    loadComponent: () =>
+      import("./core/payments/payments").then((m) => m.Payments),
     canActivate: [authGuard],
     data: {
       title: "Registrar Pago",
@@ -78,7 +84,9 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "late-fee-policies",
     loadComponent: () =>
-      import("./late-fee-policies/late-fee-policy-list").then((m) => m.default),
+      import("./core/late-fee-policies/late-fee-policy-list").then(
+        (m) => m.default,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Políticas de Mora",
@@ -90,7 +98,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "estado-cuenta",
     loadComponent: () =>
-      import("./native-statement/native-statement").then(
+      import("./core/native-statement/native-statement").then(
         (m) => m.NativeStatement,
       ),
     canActivate: [authGuard],
@@ -117,7 +125,8 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   // Miembros de propiedad (identidad unificada)
   {
     path: "members",
-    loadComponent: () => import("./members/member-list").then((m) => m.default),
+    loadComponent: () =>
+      import("./core/members/member-list").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Miembros de Propiedad",
@@ -129,7 +138,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "approvals",
     loadComponent: () =>
-      import("./approvals/approval-inbox").then((m) => m.default),
+      import("./core/approvals/approval-inbox").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Aprobaciones Financieras",
@@ -141,7 +150,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "ledger",
     loadComponent: () =>
-      import("./ledger/ledger-viewer").then((m) => m.default),
+      import("./core/ledger/ledger-viewer").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Ledger Financiero",
@@ -153,7 +162,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "period-closures",
     loadComponent: () =>
-      import("./period-closures/period-closure-dashboard").then(
+      import("./core/period-closures/period-closure-dashboard").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -167,7 +176,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "regulation-articles",
     loadComponent: () =>
-      import("./regulation-articles/regulation-article-list").then(
+      import("./core/regulation-articles/regulation-article-list").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -178,7 +187,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "property-fines",
     loadComponent: () =>
-      import("./property-fines/property-fine-list").then((m) => m.default),
+      import("./core/property-fines/property-fine-list").then((m) => m.default),
     canActivate: [authGuard],
     data: { title: "Multas Reglamentarias", breadcrumb: "Multas" },
   },
@@ -187,7 +196,9 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "collection-cases",
     loadComponent: () =>
-      import("./collection-cases/collection-case-list").then((m) => m.default),
+      import("./core/collection-cases/collection-case-list").then(
+        (m) => m.default,
+      ),
     canActivate: [authGuard],
     data: { title: "Casos de Cobranza Legal", breadcrumb: "Cobranza Legal" },
   },
@@ -196,7 +207,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "invoices",
     loadComponent: () =>
-      import("./invoices/invoice-list").then((m) => m.default),
+      import("./core/invoices/invoice-list").then((m) => m.default),
     canActivate: [authGuard],
     data: { title: "Facturas CFDI", breadcrumb: "Facturas" },
   },
@@ -205,7 +216,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "reconciliation",
     loadComponent: () =>
-      import("./reconciliation/reconciliation-dashboard").then(
+      import("./core/reconciliation/reconciliation-dashboard").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -216,7 +227,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "audit",
     loadComponent: () =>
-      import("./audit/financial-audit-log").then((m) => m.default),
+      import("./core/audit/financial-audit-log").then((m) => m.default),
     canActivate: [authGuard],
     data: { title: "Auditoria Financiera", breadcrumb: "Auditoria" },
   },
@@ -225,7 +236,9 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "automated-services",
     loadComponent: () =>
-      import("./automated-services/automated-services").then((m) => m.default),
+      import("./core/automated-services/automated-services").then(
+        (m) => m.default,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Servicios Automatizados",
@@ -237,7 +250,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "charge-template-coverage",
     loadComponent: () =>
-      import("./charge-template-coverage/charge-template-coverage").then(
+      import("./core/charge-template-coverage/charge-template-coverage").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -251,7 +264,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "initial-balance",
     loadComponent: () =>
-      import("./initial-balance/initial-balance").then((m) => m.default),
+      import("./core/initial-balance/initial-balance").then((m) => m.default),
     canActivate: [authGuard],
     data: { title: "Saldos Iniciales", breadcrumb: "Saldos Iniciales" },
   },

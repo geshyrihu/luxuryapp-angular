@@ -1,0 +1,93 @@
+﻿import { CurrencyPipe, NgClass } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ECalculationMethod } from "../../interfaces/enums";
+import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
+
+@Component({
+  selector: "app-charge-template-coverage",
+  imports: [AppIcon, TableModule, PrimeNgCustomCaption, CurrencyPipe, NgClass],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  templateUrl: "./charge-template-coverage.html",
+})
+export default class ChargeTemplateCoverage {
+  private apiResponseS = inject(ApiResponseService);
+  private customerIdS = inject(CustomerIdService);
+
+  scrollHeight = inject(TableScrollHeightService).scrollHeight;
+  ECalculationMethod = ECalculationMethod;
+
+  dataSignal = signal<TemplateCoverageDTO[]>([]);
+
+  /** Columnas de periodo ónicas ordenadas, extraódas de todos los registros */
+  periodColumns = computed(() => {
+    const keys = new Map<
+      string,
+      { label: string; year: number; month: number }
+    >();
+    for (const row of this.dataSignal()) {
+      for (const p of row.periods) {
+        const key = `${p.year}-${String(p.month).padStart(2, "0")}`;
+        if (!keys.has(key))
+          keys.set(key, { label: p.label, year: p.year, month: p.month });
+      }
+    }
+    return [...keys.entries()]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([key, v]) => ({ key, ...v }));
+  });
+
+  /** Mapa precalculado: rowIndex ? { periodKey ? amount } */
+  periodsMap = computed(() => {
+    return this.dataSignal().map((row) => {
+      const map: Record<string, number> = {};
+      for (const p of row.periods) {
+        const key = `${p.year}-${String(p.month).padStart(2, "0")}`;
+        map[key] = p.amount;
+      }
+      return map;
+    });
+  });
+
+  constructor() {
+    effect(() => {
+      const customerId = this.customerIdS.customerId();
+      if (customerId) this.onLoadData();
+    });
+  }
+
+  onLoadData() {
+    const customerId = this.customerIdS.customerId();
+    if (!customerId) return;
+    this.apiResponseS
+      .onGetItem<TemplateCoverageDTO[]>(
+        Endpoints.CobranzaCore.Templates.coverage(customerId),
+      )
+      .then((res) => this.dataSignal.set(res ?? []));
+  }
+
+  methodLabel(method: ECalculationMethod): string {
+    return method === ECalculationMethod.Indiviso ? "Indiviso" : "Fijo";
+  }
+
+  methodSeverity(method: ECalculationMethod): string {
+    return method === ECalculationMethod.Indiviso
+      ? "bg-purple-100 text-purple-800"
+      : "bg-blue-100 text-blue-800";
+  }
+}
+
+

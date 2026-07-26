@@ -132,7 +132,7 @@ import {
               (click)="presentToast('success')"
             >
               <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
-              óxito
+              éxito
             </ion-button>
             <ion-button
               size="small"

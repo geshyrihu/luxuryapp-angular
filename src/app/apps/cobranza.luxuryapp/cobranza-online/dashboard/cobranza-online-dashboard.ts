@@ -19,11 +19,11 @@ import { PieChart } from "@ui/web/charts/pie-chart";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { ChargeTemplateForm } from "src/app/apps/cobranza.luxuryapp/cobranza-nativa/charge-templates/charge-template-form";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ChargeTemplateForm } from "../../cobranza-nativa/core/charge-templates/charge-template-form";
 import type {
   CobranzaOnlineDashboardResponse,
   CobranzaOnlineResumenItem,

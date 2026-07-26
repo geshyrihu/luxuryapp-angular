@@ -11,18 +11,20 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 
 @Component({
   selector: "app-database-backup-form",
@@ -34,7 +36,6 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
     WebButtonLabel,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    CustomInputSelectSignal,
     CustomInputMultiselectSignal,
     CustomInputNumberSignal,
     CustomInputSelectButton,
@@ -93,7 +94,9 @@ export class DatabaseBackupForm implements OnInit {
     graphClientId: new FormControl<string>("", { nonNullable: true }),
     graphClientSecret: new FormControl<string>("", { nonNullable: true }),
     graphUserEmail: new FormControl<string>("", { nonNullable: true }),
-    graphFolderPath: new FormControl<string>("LuxuryAppBackups", { nonNullable: true }),
+    graphFolderPath: new FormControl<string>("LuxuryAppBackups", {
+      nonNullable: true,
+    }),
     retentionDays: new FormControl<number>(30, {
       nonNullable: true,
       validators: [Validators.required, Validators.min(1), Validators.max(365)],

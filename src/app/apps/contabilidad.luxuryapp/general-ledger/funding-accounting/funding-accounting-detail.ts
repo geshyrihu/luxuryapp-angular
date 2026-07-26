@@ -98,10 +98,7 @@ export class FundingAccountingDetail {
   }
 
   onLoadData(customerId: string) {
-    const urlApi = Endpoints.Funding.details(
-      this.id,
-      customerId,
-    );
+    const urlApi = Endpoints.Funding.details(this.id, customerId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.fullData.set(result);
       this.onSetSignalProperty(result);
@@ -167,9 +164,7 @@ export class FundingAccountingDetail {
     });
   }
   onRevokeConfirmation() {
-    const urlApi = Endpoints.Funding.revokeConfirmation(
-      this.id,
-    );
+    const urlApi = Endpoints.Funding.revokeConfirmation(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.isConfirmed.set(false);
@@ -185,9 +180,7 @@ export class FundingAccountingDetail {
     });
   }
   onRevertComplete() {
-    const urlApi = Endpoints.Funding.revokeComplete(
-      this.id,
-    );
+    const urlApi = Endpoints.Funding.revokeComplete(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
       if (result) {
         this.inProgress.set(false);
@@ -226,12 +219,11 @@ export class FundingAccountingDetail {
     );
 
     // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
-    const urlApi =
-      Endpoints.Funding.updatePurchasePaidStatus(ordenId);
+    const urlApi = Endpoints.Funding.updatePurchasePaidStatus(ordenId);
     const body = { isPaid: nuevoEstado };
 
     // 2. Llamamos a nuestro nuevo y flamante método onPatch.
-    //    Tu servicio ya se encarga de los toasts de carga y óxito/error.
+    //    Tu servicio ya se encarga de los toasts de carga y éxito/error.
     this.apiResponseS.onPatch(urlApi, body).then((success) => {
       // 3. Manejamos el caso de error. Si la API falla, 'success' seré false.
       if (!success) {

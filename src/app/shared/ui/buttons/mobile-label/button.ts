@@ -29,5 +29,17 @@ import { MobileButtonBase } from "../mobile-button-base";
       }
     </ion-button>
   `,
+  styles: [
+    `
+      /* app-icon (a diferencia de ion-icon) no recibe el margen por defecto de
+         ion-button, por eso el icono queda pegado al texto. Lo separamos. */
+      app-icon[slot="start"] {
+        margin-inline-end: 0.45rem;
+      }
+      app-icon[slot="end"] {
+        margin-inline-start: 0.45rem;
+      }
+    `,
+  ],
 })
 export class MobileButtonLabel extends MobileButtonBase {}

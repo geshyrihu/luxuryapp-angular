@@ -96,6 +96,13 @@ export class PropiedadesList {
     });
   }
 
+  formatAccountNumber(accountNumber: string): string {
+    const digits = (accountNumber || "").replace(/\D/g, "");
+    if (!digits) return "";
+
+    return digits.match(/.{1,3}/g)?.join("-") ?? digits;
+  }
+
   onDelete(id: any) {
     return this.apiResponseS
       .onDelete(Endpoints.Properties.delete(id))

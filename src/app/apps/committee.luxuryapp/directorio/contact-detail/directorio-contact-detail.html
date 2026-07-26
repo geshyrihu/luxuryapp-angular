@@ -1,0 +1,98 @@
+<div class="committee-contact-detail">
+  <!-- Cabecera centrada: foto + nombre + rol + turno -->
+  <div class="committee-contact-detail__head">
+    <div class="committee-contact-detail__avatar">
+      <app-image-fallback
+        [src]="person.photoPath || ''"
+        [alt]="person.firstName"
+        width="88px"
+        height="88px"
+        fallbackIcon="mdi:account"
+        [imageStyle]="{ 'border-radius': '50%', 'object-fit': 'cover' }"
+        [fallbackStyle]="{ 'border-radius': '50%' }"
+      />
+    </div>
+    <h3 class="committee-contact-detail__name">
+      {{ person.firstName }} {{ person.lastName }}
+    </h3>
+    @if (person.roleName) {
+    <span class="committee-contact__role">{{ person.roleName }}</span>
+    }
+    @if (person.isOnShift !== null) {
+    <div class="committee-contact-detail__shift">
+      <app-realtime-indicator
+        [status]="person.isOnShift ? 'live' : 'paused'"
+        [label]="person.isOnShift ? 'En turno' : 'Fuera de turno'"
+      />
+    </div>
+    }
+  </div>
+
+  <!-- Teléfono -->
+  @if (person.phoneNumber) {
+  <lx-card>
+    <div class="committee-contact-detail__section">
+      <span class="committee-field__label">
+        <app-icon icon="mdi:phone" /> Teléfono
+      </span>
+      <span class="committee-contact-detail__value">{{ person.phoneNumber }}</span>
+      <div class="committee-contact-detail__actions">
+        <ili-button
+          label="Llamar"
+          iconClass="mdi:phone"
+          expand="block"
+          (clicked)="call()"
+        />
+        <ili-button
+          label="WhatsApp"
+          iconClass="mdi:whatsapp"
+          color="success"
+          expand="block"
+          (clicked)="whatsapp()"
+        />
+      </div>
+    </div>
+  </lx-card>
+  }
+
+  <!-- Correo -->
+  @if (person.email) {
+  <lx-card>
+    <div class="committee-contact-detail__section">
+      <span class="committee-field__label">
+        <app-icon icon="mdi:email-outline" /> Correo
+      </span>
+      <span class="committee-contact-detail__value">{{ person.email }}</span>
+      <div class="committee-contact-detail__actions">
+        <ili-button
+          label="Enviar correo"
+          iconClass="mdi:email-fast-outline"
+          expand="block"
+          (clicked)="email()"
+        />
+      </div>
+    </div>
+  </lx-card>
+  }
+
+  <!-- Horario -->
+  <lx-card>
+    <div class="committee-contact-detail__section">
+      <span class="committee-field__label">
+        <app-icon icon="mdi:clock-outline" /> Horario
+      </span>
+      @if (person.schedule?.length) {
+      <div class="committee-schedule">
+        @for (d of person.schedule; track d.day) {
+        <div class="committee-schedule__row">
+          <span class="committee-schedule__day">{{ d.day }}</span>
+          <span class="committee-schedule__time">{{ d.entry }} – {{ d.exit }}</span>
+        </div>
+        }
+      </div>
+      } @else {
+      <span class="committee-schedule__empty">Sin horario registrado.</span>
+      }
+    </div>
+  </lx-card>
+</div>

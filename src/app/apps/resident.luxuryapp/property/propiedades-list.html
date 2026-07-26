@@ -99,15 +99,15 @@
   </ng-template>
   <ng-template #body let-item>
     <tr [class.surface-50]="item.isDelinquent">
-      <td><small>{{ item.accountNumber }}</small></td>
-      <td><small>{{ item.tower }}</small></td>
-      <td><small>{{ item.department }}</small></td>
-      <td><small>{{ item.floor }}</small></td>
-      <td><small>{{ item.unitNumber }}</small></td>
-      <td><small>{{ item.areaM2 | number:'1.2-2' }}</small></td>
-      <td><small>{{ item.indivisoPercentage | percent:'1.2-5' }}</small></td>
-      <td><small>{{ item.parkingSlots | number }}</small></td>
-      <td><small>{{ item.storageUnit }}</small></td>
+      <td>{{ formatAccountNumber(item.accountNumber) }}</td>
+      <td>{{ item.tower }}</td>
+      <td>{{ item.department }}</td>
+      <td>{{ item.floor }}</td>
+      <td>{{ item.unitNumber }}</td>
+      <td>{{ item.areaM2 | number:'1.2-2' }}</td>
+      <td>{{ item.indivisoPercentage | percent:'1.2-5' }}</td>
+      <td>{{ item.parkingSlots | number }}</td>
+      <td>{{ item.storageUnit }}</td>
       <td class="text-center">
         @if (item.isDelinquent) {
         <span
@@ -161,7 +161,7 @@
 
       <h2 class="font-normal m-0">{{ item.tower }} - {{ item.department }}</h2>
       <p>
-        Cta: {{ item.accountNumber }} @if (item.floor) { &middot; Piso: {{
+        Cta: {{ formatAccountNumber(item.accountNumber) }} @if (item.floor) { &middot; Piso: {{
         item.floor }} } @if (item.unitNumber) { &middot; Int: {{ item.unitNumber
         }} }
       </p>

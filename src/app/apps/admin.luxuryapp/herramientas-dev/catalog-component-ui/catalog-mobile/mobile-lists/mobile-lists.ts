@@ -251,7 +251,7 @@ import { Task } from "./interfaces/task.interface";
           </div>
           <div
             class="ripple-item ripple-success ion-activatable"
-            (click)="onRippleTap('óxito')"
+            (click)="onRippleTap('éxito')"
           >
             <span>Acción de confirmación</span>
             <ion-ripple-effect type="bounded"></ion-ripple-effect>
