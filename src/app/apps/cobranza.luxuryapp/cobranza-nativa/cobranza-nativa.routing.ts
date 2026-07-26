@@ -6,7 +6,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("./cobranza-nativa-dashboard/cobranza-nativa-dashboard").then(
+      import("./entry/cobranza-nativa-wrapper/cobranza-nativa-wrapper").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -20,9 +20,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "dashboard",
     loadComponent: () =>
-      import("./cobranza-dashboard/cobranza-dashboard").then(
-        (m) => m.default,
-      ),
+      import("./cobranza-dashboard/cobranza-dashboard").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Dashboard de Cobranza",
@@ -46,9 +44,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "charge-templates",
     loadComponent: () =>
-      import("./charge-templates/charge-template-list").then(
-        (m) => m.default,
-      ),
+      import("./charge-templates/charge-template-list").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Plantillas de Cargos",
@@ -59,8 +55,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   // Cargos individuales
   {
     path: "charges",
-    loadComponent: () =>
-      import("./charges/charge-list").then((m) => m.default),
+    loadComponent: () => import("./charges/charge-list").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Cargos",
@@ -71,8 +66,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   // Registrar pagos con asignación a cargos
   {
     path: "payments",
-    loadComponent: () =>
-      import("./payments/payments").then((m) => m.Payments),
+    loadComponent: () => import("./payments/payments").then((m) => m.Payments),
     canActivate: [authGuard],
     data: {
       title: "Registrar Pago",
@@ -84,9 +78,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "late-fee-policies",
     loadComponent: () =>
-      import("./late-fee-policies/late-fee-policy-list").then(
-        (m) => m.default,
-      ),
+      import("./late-fee-policies/late-fee-policy-list").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Políticas de Mora",
@@ -125,8 +117,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   // Miembros de propiedad (identidad unificada)
   {
     path: "members",
-    loadComponent: () =>
-      import("./members/member-list").then((m) => m.default),
+    loadComponent: () => import("./members/member-list").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Miembros de Propiedad",
@@ -187,9 +178,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "property-fines",
     loadComponent: () =>
-      import("./property-fines/property-fine-list").then(
-        (m) => m.default,
-      ),
+      import("./property-fines/property-fine-list").then((m) => m.default),
     canActivate: [authGuard],
     data: { title: "Multas Reglamentarias", breadcrumb: "Multas" },
   },
@@ -198,9 +187,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "collection-cases",
     loadComponent: () =>
-      import("./collection-cases/collection-case-list").then(
-        (m) => m.default,
-      ),
+      import("./collection-cases/collection-case-list").then((m) => m.default),
     canActivate: [authGuard],
     data: { title: "Casos de Cobranza Legal", breadcrumb: "Cobranza Legal" },
   },
@@ -238,9 +225,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "automated-services",
     loadComponent: () =>
-      import("./automated-services/automated-services").then(
-        (m) => m.default,
-      ),
+      import("./automated-services/automated-services").then((m) => m.default),
     canActivate: [authGuard],
     data: {
       title: "Servicios Automatizados",
@@ -275,7 +260,9 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "system-overview",
     loadComponent: () =>
-      import("./system-overview/system-overview").then((m) => m.default),
+      import("./onboarding/system-overview/system-overview").then(
+        (m) => m.default,
+      ),
     canActivate: [authGuard],
     data: { title: "Como Funciona el Sistema", breadcrumb: "Como Funciona" },
   },
@@ -283,7 +270,9 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "flow-map",
     loadComponent: () =>
-      import("./system-flow-map/system-flow-map").then((m) => m.default),
+      import("./onboarding/system-flow-map/system-flow-map").then(
+        (m) => m.default,
+      ),
     canActivate: [authGuard],
     data: { title: "Mapa Visual del Flujo", breadcrumb: "Mapa Visual" },
   },

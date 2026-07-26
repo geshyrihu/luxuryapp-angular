@@ -15,16 +15,21 @@ import {
   SegmentedControl,
   SegmentItem,
 } from "@ui/shared/segmented-control/segmented-control";
+import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-indicator";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { DialogSize } from "src/app/core/enums/dialog-size.enum";
+import { DirectorioContactDetail } from "./contact-detail/directorio-contact-detail";
 
 @Component({
   selector: "app-committee-directorio",
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./directorio.html",
-  imports: [AppImageFallback, SegmentedControl],
+  imports: [AppImageFallback, SegmentedControl, AppRealtimeIndicator],
 })
 export class CommitteeDirectorio implements OnInit {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
+  private dialogS = inject(DialogHandlerService);
   data = signal<CommitteeDirectorioDTO[]>([]);
 
   /** Vista activa del directorio ("personal" | "casetas"). */
@@ -60,5 +65,14 @@ export class CommitteeDirectorio implements OnInit {
         Endpoints.Committee.Directorio.byCustomer(customerId),
       )
       .then((result) => this.data.set(result ?? []));
+  }
+
+  /** Abre el detalle de contacto (teléfono, correo, horario). */
+  openContact(person: CommitteeDirectorioDTO): void {
+    this.dialogS.openDialogCustom(DirectorioContactDetail, {
+      title: `${person.firstName ?? ""} ${person.lastName ?? ""}`.trim(),
+      size: DialogSize.md,
+      data: { person },
+    });
   }
 }

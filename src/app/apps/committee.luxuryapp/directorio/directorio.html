@@ -17,7 +17,10 @@
   } @else {
   <div class="committee-directory">
     @for (person of items(); track $index) {
-    <article class="committee-contact">
+    <article
+      class="committee-contact committee-contact--clickable"
+      (click)="openContact(person)"
+    >
       <div class="committee-contact__avatar">
         <app-image-fallback
           [src]="person.photoPath || ''"
@@ -36,21 +39,16 @@
         @if (person.roleName) {
         <span class="committee-contact__role">{{ person.roleName }}</span>
         }
-        <div class="committee-contact__links">
-          @if (person.phoneNumber) {
-          <a class="committee-contact__link" [href]="'tel:' + person.phoneNumber">
-            <i class="pi pi-phone"></i>
-            <span>{{ person.phoneNumber }}</span>
-          </a>
-          }
-          @if (person.email) {
-          <a class="committee-contact__link" [href]="'mailto:' + person.email">
-            <i class="pi pi-envelope"></i>
-            <span>{{ person.email }}</span>
-          </a>
-          }
+        @if (person.isOnShift !== null) {
+        <div class="committee-contact__shift">
+          <app-realtime-indicator
+            [status]="person.isOnShift ? 'live' : 'paused'"
+            [label]="person.isOnShift ? 'En turno' : 'Fuera de turno'"
+          />
         </div>
+        }
       </div>
+      <i class="pi pi-chevron-right committee-contact__chevron"></i>
     </article>
     }
   </div>

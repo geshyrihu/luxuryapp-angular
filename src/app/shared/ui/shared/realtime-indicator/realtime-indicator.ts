@@ -125,12 +125,15 @@ export class AppRealtimeIndicator {
   status = input<RealtimeStatus>("live");
   lastUpdate = input<string>("");
   latencyMs = input<number | undefined>(undefined);
+  /** Etiqueta personalizada; si está vacía usa la etiqueta por defecto del status. */
+  label = input<string>("");
 
   dotClass(): string {
     return `rt-dot rt-dot-${this.status()}`;
   }
 
   statusLabel(): string {
+    if (this.label()) return this.label();
     const map: Record<RealtimeStatus, string> = {
       live: "En vivo",
       paused: "Pausado",
