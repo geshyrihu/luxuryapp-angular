@@ -25,13 +25,13 @@
   @for (module of group.cards; track module.route) {
   <div class="col-12 sm:col-6 md:col-3">
     <div
-      class="surface-card border-round-xl shadow-2 cursor-pointer p-4 flex flex-column border-1 surface-border transition-all hover:shadow-4 h-full"
+      class="surface-card rounded-xl shadow-sm cursor-pointer p-4 flex flex-column border-1 surface-border transition-all hover:shadow h-full"
       (click)="navigateTo(module.route)"
     >
       <!-- Icono + título -->
       <div class="flex align-items-center mb-3">
         <div
-          class="flex align-items-center justify-content-center border-round-lg text-4xl flex-shrink-0"
+          class="flex align-items-center justify-content-center rounded-lg text-4xl flex-shrink-0"
           
           [style.backgroundColor]="module.bgColor"
         >

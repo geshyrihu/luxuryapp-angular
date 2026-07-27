@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe, DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -8,6 +8,8 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -15,9 +17,9 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { listOutline } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -36,6 +38,8 @@ import { FinancialLedgerEntryDTO } from "../../interfaces/ledger.dto";
     TableModule,
     PrimeNgCustomCaption,
     WebButtonLabel,
+    LxCard,
+    LxTag,
     DataViewMobile,
     DatePipe,
     CurrencyPipe,
@@ -70,16 +74,16 @@ export default class LedgerViewer {
 
   eventTypeOptions = [
     { label: "Todos", value: null },
-    { label: "Emision Cargo", value: EFinancialEventType.EmisionCargo },
-    { label: "Cancelacion Cargo", value: EFinancialEventType.CancelacionCargo },
+    { label: "Emisión Cargo", value: EFinancialEventType.EmisionCargo },
+    { label: "Cancelación Cargo", value: EFinancialEventType.CancelacionCargo },
     { label: "Ajuste Cargo", value: EFinancialEventType.AjusteCargo },
-    { label: "Condonacion Cargo", value: EFinancialEventType.CondonacionCargo },
-    { label: "Recepcion Pago", value: EFinancialEventType.RecepcionPago },
-    { label: "Aplicacion Pago", value: EFinancialEventType.AplicacionPago },
-    { label: "Cancelacion Pago", value: EFinancialEventType.CancelacionPago },
+    { label: "Condonación Cargo", value: EFinancialEventType.CondonacionCargo },
+    { label: "Recepción Pago", value: EFinancialEventType.RecepcionPago },
+    { label: "Aplicación Pago", value: EFinancialEventType.AplicacionPago },
+    { label: "Cancelación Pago", value: EFinancialEventType.CancelacionPago },
     { label: "Reverso Pago", value: EFinancialEventType.ReversoPago },
-    { label: "Nota Credito", value: EFinancialEventType.EmisionNotaCredito },
-    { label: "Cierre Periodo", value: EFinancialEventType.CierrePeriodo },
+    { label: "Nota Crédito", value: EFinancialEventType.EmisionNotaCredito },
+    { label: "Cierre Período", value: EFinancialEventType.CierrePeriodo },
   ];
 
   constructor() {
@@ -143,25 +147,25 @@ export default class LedgerViewer {
 
   eventTypeLabel(type: EFinancialEventType): string {
     const labels: Record<EFinancialEventType, string> = {
-      [EFinancialEventType.EmisionCargo]: "Emision Cargo",
-      [EFinancialEventType.CancelacionCargo]: "Cancelacion Cargo",
+      [EFinancialEventType.EmisionCargo]: "Emisión Cargo",
+      [EFinancialEventType.CancelacionCargo]: "Cancelación Cargo",
       [EFinancialEventType.AjusteCargo]: "Ajuste Cargo",
-      [EFinancialEventType.CondonacionCargo]: "Condonacion Cargo",
-      [EFinancialEventType.RecepcionPago]: "Recepcion Pago",
-      [EFinancialEventType.AplicacionPago]: "Aplicacion Pago",
-      [EFinancialEventType.CancelacionPago]: "Cancelacion Pago",
+      [EFinancialEventType.CondonacionCargo]: "Condonación Cargo",
+      [EFinancialEventType.RecepcionPago]: "Recepción Pago",
+      [EFinancialEventType.AplicacionPago]: "Aplicación Pago",
+      [EFinancialEventType.CancelacionPago]: "Cancelación Pago",
       [EFinancialEventType.ReversoPago]: "Reverso Pago",
       [EFinancialEventType.RechazoPago]: "Rechazo Pago",
-      [EFinancialEventType.EmisionNotaCredito]: "Nota Credito",
-      [EFinancialEventType.AplicacionNotaCredito]: "Aplicacion NC",
-      [EFinancialEventType.CancelacionNotaCredito]: "Cancelacion NC",
+      [EFinancialEventType.EmisionNotaCredito]: "Nota Crédito",
+      [EFinancialEventType.AplicacionNotaCredito]: "Aplicación NC",
+      [EFinancialEventType.CancelacionNotaCredito]: "Cancelación NC",
       [EFinancialEventType.GeneracionRecargo]: "Recargo Mora",
-      [EFinancialEventType.CierrePeriodo]: "Cierre Periodo",
+      [EFinancialEventType.CierrePeriodo]: "Cierre Período",
     };
     return labels[type] ?? String(type);
   }
 
-  eventTypeClass(type: EFinancialEventType): string {
+  eventTypeMeta(type: EFinancialEventType) {
     if (
       [
         EFinancialEventType.RecepcionPago,
@@ -169,7 +173,7 @@ export default class LedgerViewer {
         EFinancialEventType.EmisionNotaCredito,
       ].includes(type)
     ) {
-      return "bg-green-100 text-green-800";
+      return { label: this.eventTypeLabel(type), severity: "success" as const };
     }
     if (
       [
@@ -178,17 +182,15 @@ export default class LedgerViewer {
         EFinancialEventType.CancelacionPago,
       ].includes(type)
     ) {
-      return "bg-red-100 text-red-800";
+      return { label: this.eventTypeLabel(type), severity: "danger" as const };
     }
     if ([EFinancialEventType.CierrePeriodo].includes(type)) {
-      return "bg-blue-100 text-blue-800";
+      return { label: this.eventTypeLabel(type), severity: "info" as const };
     }
-    return "bg-yellow-100 text-yellow-800";
+    return { label: this.eventTypeLabel(type), severity: "warning" as const };
   }
 
   private getQueryDate(value: Date | string | null): string | null {
     return this.dateS.getDateFormat(value);
   }
 }
-
-

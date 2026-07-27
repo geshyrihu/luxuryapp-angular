@@ -36,7 +36,7 @@
 
         @if (balance()) { @if (balance()?.isAdvancePeriod) {
         <!-- Fila Especial: Proyección LFT real para Periodo de Adelanto -->
-        <div class="surface-50 border-round-xl p-4 mt-4 border-1 border-200">
+        <div class="surface-50 rounded-xl p-4 mt-4 border-1 border-200">
           <h4 class="text-700 font-bold mb-3 mt-0">
             Proyección (Días reales base LFT)
           </h4>
@@ -47,7 +47,7 @@
           </p>
           <div class="flex flex-wrap">
             <div
-              class="bg-white border-round-lg shadow-1 p-3 flex align-items-center"
+              class="bg-white rounded-lg shadow-sm p-3 flex align-items-center"
             >
               <span class="text-600 font-semibold uppercase text-xs mr-4"
                 >Días LFT Asignados:</span
@@ -57,7 +57,7 @@
               >
             </div>
             <div
-              class="bg-white border-round-lg shadow-1 p-3 flex align-items-center"
+              class="bg-white rounded-lg shadow-sm p-3 flex align-items-center"
             >
               <span class="text-600 font-semibold uppercase text-xs mr-4"
                 >Días Reales Disponibles:</span
@@ -73,7 +73,7 @@
         <div class="grid mt-4 text-center">
           <div class="col-12 sm:col-6 lg:col-3 mb-4">
             <div
-              class="h-full p-4 border-round-xl shadow-2 surface-card transition-transform transition-duration-300 hover:shadow-4 flex flex-column justify-content-between"
+              class="h-full p-4 rounded-xl shadow-sm surface-card transition-transform transition-duration-300 hover:shadow flex flex-column justify-content-between"
             >
               <div>
                 <app-icon
@@ -92,7 +92,7 @@
 
           <div class="col-12 sm:col-6 lg:col-3 mb-4">
             <div
-              class="h-full p-4 border-round-xl shadow-2 surface-card transition-transform transition-duration-300 hover:shadow-4 flex flex-column justify-content-between"
+              class="h-full p-4 rounded-xl shadow-sm surface-card transition-transform transition-duration-300 hover:shadow flex flex-column justify-content-between"
             >
               <div>
                 <app-icon
@@ -125,7 +125,7 @@
 
           <div class="col-12 sm:col-6 lg:col-3 mb-4">
             <div
-              class="h-full p-4 border-round-xl shadow-2 surface-card transition-transform transition-duration-300 hover:shadow-4 flex flex-column justify-content-between"
+              class="h-full p-4 rounded-xl shadow-sm surface-card transition-transform transition-duration-300 hover:shadow flex flex-column justify-content-between"
             >
               <div>
                 <app-icon
@@ -160,7 +160,7 @@
 
           <div class="col-12 sm:col-6 lg:col-3 mb-4">
             <div
-              class="h-full p-4 border-round-xl shadow-2 surface-card transition-transform transition-duration-300 hover:shadow-4 flex flex-column justify-content-between"
+              class="h-full p-4 rounded-xl shadow-sm surface-card transition-transform transition-duration-300 hover:shadow flex flex-column justify-content-between"
             >
               <div>
                 <app-icon
@@ -183,7 +183,7 @@
         @if (balance()?.isAdvancePeriod && balance()?.availableAdvanceDays > 0)
         {
         <div
-          class="p-4 border-round-lg shadow-2 mt-4 mx-3 surface-100 text-900 border-1 border-300"
+          class="p-4 rounded-lg shadow-sm mt-4 mx-3 surface-100 text-900 border-1 border-300"
         >
           <div class="flex align-items-center">
             <app-icon [icon]="'mdi:information'" class="text-2xl mr-3" />
@@ -207,7 +207,7 @@
         }
         <div class="mt-4">
           <div>
-            <div class="surface-100 border-round-lg p-5">
+            <div class="surface-100 rounded-lg p-5">
               <h3
                 class="border-bottom-2 border-primary pb-2 mb-4 text-700 font-bold"
               >
@@ -246,7 +246,7 @@
             </h3>
 
             @if (requests().length === 0) {
-            <div class="surface-100 border-round-lg p-4 text-center text-500">
+            <div class="surface-100 rounded-lg p-4 text-center text-500">
               <app-icon [icon]="'mdi:information'" class="mr-2" />
               No hay solicitudes de vacaciones en este periodo.
             </div>

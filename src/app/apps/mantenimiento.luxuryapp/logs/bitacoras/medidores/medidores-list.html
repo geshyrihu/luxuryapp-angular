@@ -13,7 +13,7 @@
     <div class="p-2 col-12 md:col-2">
       <!-- DIV Contenedor para aplicar el borde de forma segura -->
       <div
-        class="h-full border-round-lg border-left-3"
+        class="h-full rounded-lg border-left-3"
         [class.border-yellow-500]="item.medidorCategoriaId == '019c6c01-bbcf-76a2-a863-43569af55a55'"
         [class.border-green-500]="item.medidorCategoriaId == '019c6c01-bbdd-7698-9f76-db06f3c6ef0c'"
         [class.border-blue-500]="item.medidorCategoriaId == '019c6c01-bbde-703d-85dd-a4e88651e0d3'"
@@ -103,7 +103,7 @@
 >
   <ng-template #listItemTemplate let-item>
     <div
-      class="surface-card shadow-1 border-round-lg mb-3 border-left-3 overflow-hidden"
+      class="surface-card shadow-sm rounded-lg mb-3 border-left-3 overflow-hidden"
       [class.border-yellow-500]="item.medidorCategoriaId == 1"
       [class.border-green-500]="item.medidorCategoriaId == 2"
       [class.border-blue-500]="item.medidorCategoriaId == 3"

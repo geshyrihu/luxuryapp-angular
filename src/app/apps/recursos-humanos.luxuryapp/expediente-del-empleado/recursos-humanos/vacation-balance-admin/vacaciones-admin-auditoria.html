@@ -60,7 +60,7 @@
       <!-- ─── Estado: sin empleado seleccionado ─────────────────── -->
       @if (!selectedEmployeeId()) {
       <div
-        class="flex flex-column align-items-center justify-content-center text-center surface-100 border-round-lg p-6 min-h-15rem"
+        class="flex flex-column align-items-center justify-content-center text-center surface-100 rounded-lg p-6 min-h-15rem"
       >
         <app-icon [icon]="'mdi:account-group'" class="text-4xl text-300 mb-3" />
         <p class="text-500 m-0">
@@ -83,7 +83,7 @@
       @if (selectedEmployeeId() && !loadingResults() && balance()) {
       <div>
         <!-- Info del empleado -->
-        <div class="surface-100 border-round-lg p-4 mb-4">
+        <div class="surface-100 rounded-lg p-4 mb-4">
           <div class="grid">
             <div class="col-12 md:col-3">
               <p class="m-0">
@@ -121,7 +121,7 @@
 
         @if (balance()?.isAdvancePeriod) {
         <!-- Fila Especial: Proyección LFT real para Periodo de Adelanto -->
-        <div class="surface-100 border-round-xl p-4 mb-4 border-1 border-300">
+        <div class="surface-100 rounded-xl p-4 mb-4 border-1 border-300">
           <h4 class="text-700 font-bold mb-3 mt-0">
             Proyección (Días reales base LFT)
           </h4>
@@ -132,7 +132,7 @@
           </p>
           <div class="flex flex-wrap">
             <div
-              class="bg-white border-round-lg shadow-1 p-3 flex align-items-center"
+              class="bg-white rounded-lg shadow-sm p-3 flex align-items-center"
             >
               <span class="text-600 font-semibold uppercase text-xs mr-4"
                 >Días LFT Asignados:</span
@@ -142,7 +142,7 @@
               >
             </div>
             <div
-              class="bg-white border-round-lg shadow-1 p-3 flex align-items-center"
+              class="bg-white rounded-lg shadow-sm p-3 flex align-items-center"
             >
               <span class="text-600 font-semibold uppercase text-xs mr-4"
                 >Días Reales Disponibles:</span
@@ -159,7 +159,7 @@
         <div class="grid text-center mb-4">
           <div class="col-12 sm:col-6 lg:col-3">
             <div
-              class="h-full p-4 border-round-xl shadow-2 surface-card flex flex-column justify-content-between"
+              class="h-full p-4 rounded-xl shadow-sm surface-card flex flex-column justify-content-between"
             >
               <div>
                 <app-icon
@@ -176,7 +176,7 @@
 
           <div class="col-12 sm:col-6 lg:col-3">
             <div
-              class="h-full p-4 border-round-xl shadow-2 surface-card flex flex-column justify-content-between"
+              class="h-full p-4 rounded-xl shadow-sm surface-card flex flex-column justify-content-between"
             >
               <div>
                 <app-icon
@@ -207,7 +207,7 @@
 
           <div class="col-12 sm:col-6 lg:col-3">
             <div
-              class="h-full p-4 border-round-xl shadow-2 surface-card flex flex-column justify-content-between"
+              class="h-full p-4 rounded-xl shadow-sm surface-card flex flex-column justify-content-between"
             >
               <div>
                 <app-icon
@@ -240,7 +240,7 @@
 
           <div class="col-12 sm:col-6 lg:col-3">
             <div
-              class="h-full p-4 border-round-xl shadow-2 surface-card flex flex-column justify-content-between"
+              class="h-full p-4 rounded-xl shadow-sm surface-card flex flex-column justify-content-between"
             >
               <div>
                 <app-icon
@@ -273,7 +273,7 @@
         </h3>
 
         @if (requests().length === 0) {
-        <div class="surface-100 border-round-lg p-4 text-center text-500">
+        <div class="surface-100 rounded-lg p-4 text-center text-500">
           <app-icon [icon]="'mdi:information'" class="mr-2" />
           No hay solicitudes en este periodo de aniversario.
         </div>
@@ -336,7 +336,7 @@
 
       <!-- ─── Estado: empleado seleccionado pero sin balance ─────── -->
       @if (selectedEmployeeId() && !loadingResults() && !balance()) {
-      <div class="surface-100 border-round-lg p-4 text-center text-500 mt-3">
+      <div class="surface-100 rounded-lg p-4 text-center text-500 mt-3">
         <app-icon [icon]="'mdi:alert-circle'" class="mr-2 text-yellow-500" />
         No se encontró balance para este empleado en el año seleccionado. Es
         posible que el empleado no tenga periodos de aniversario registrados.

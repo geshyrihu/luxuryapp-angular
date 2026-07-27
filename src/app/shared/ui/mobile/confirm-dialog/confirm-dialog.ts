@@ -12,16 +12,16 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       <div class="ili-confirm-backdrop" (click)="onCancel()">
         <div class="ili-confirm-sheet" (click)="$event.stopPropagation()">
           <app-icon
-            [icon]="config.icon"
+            [icon]="config().icon"
             class="ili-confirm-icon"
-            [style.color]="config.color"
+            [style.color]="config().color"
           />
           <strong class="ili-confirm-title">{{ title() }}</strong>
           <p class="ili-confirm-message">{{ message() }}</p>
           <div class="ili-confirm-actions">
             <ion-button
               expand="block"
-              [color]="config.severity === 'warn' ? 'warning' : config.severity"
+              [color]="config().severity === 'warn' ? 'warning' : config().severity"
               (click)="onConfirm()"
             >
               {{ confirmLabel() }}

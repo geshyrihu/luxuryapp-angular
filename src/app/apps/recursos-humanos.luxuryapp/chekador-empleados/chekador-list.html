@@ -16,7 +16,7 @@
   <!-- ── Caption con filtros alineados (Patrón Compacto Flex) ─────────── -->
   <ng-template #caption>
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded"
     >
       <!-- Izquierda: buscador global -->
       <div class="flex-grow-1">
@@ -129,7 +129,7 @@
           alt="Selfie"
           width="48"
           [preview]="true"
-          imageClass="border-round"
+          imageClass="rounded"
         />
         } @else {
         <span class="text-color-secondary text-xs">Sin foto</span>
@@ -296,7 +296,7 @@
           alt="Selfie"
           width="40"
           [preview]="true"
-          imageClass="border-round"
+          imageClass="rounded"
         />
         }
       </div>

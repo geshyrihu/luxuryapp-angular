@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,15 +7,20 @@ import {
   signal,
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -27,15 +32,12 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto";
 
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-
 @Component({
   selector: "app-collection-case-list",
   imports: [
     AppIcon,
+    LxCard,
+    LxTag,
     MobileListItem,
     WebButtonIconEdit,
     MobileActionMenu,
@@ -113,21 +115,25 @@ export default class CollectionCaseList {
     });
   }
 
-  agingClass(bucket: string): string {
-    if (bucket?.includes("90")) return "bg-red-100 text-red-800";
-    if (bucket?.includes("60")) return "bg-orange-100 text-orange-800";
-    if (bucket?.includes("30")) return "bg-yellow-100 text-yellow-800";
-    return "bg-gray-100 text-gray-600";
+  agingMeta(bucket: string) {
+    if (bucket?.includes("90")) {
+      return { label: bucket, severity: "danger" as const };
+    }
+    if (bucket?.includes("60")) {
+      return { label: bucket, severity: "warning" as const };
+    }
+    if (bucket?.includes("30")) {
+      return { label: bucket, severity: "secondary" as const };
+    }
+    return { label: bucket, severity: "contrast" as const };
   }
 
-  statusClass(status: string): string {
-    const map: Record<string, string> = {
-      Activo: "bg-red-100 text-red-800",
-      Resuelto: "bg-green-100 text-green-800",
-      Pausado: "bg-yellow-100 text-yellow-800",
+  statusMeta(status: string) {
+    const map: Record<string, { label: string; severity: "danger" | "success" | "warning" | "contrast" }> = {
+      Activo: { label: "Activo", severity: "danger" },
+      Resuelto: { label: "Resuelto", severity: "success" },
+      Pausado: { label: "Pausado", severity: "warning" },
     };
-    return map[status] ?? "bg-gray-100 text-gray-600";
+    return map[status] ?? { label: status, severity: "contrast" };
   }
 }
-
-

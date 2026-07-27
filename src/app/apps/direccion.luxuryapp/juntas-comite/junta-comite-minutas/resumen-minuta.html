@@ -5,7 +5,7 @@
   >
     <div class="flex align-items-center gap-3">
       <div
-        class="border-round-xl bg-primary shadow-3 flex align-items-center justify-content-center"
+        class="rounded-xl bg-primary shadow flex align-items-center justify-content-center"
         
       >
         <app-icon
@@ -26,7 +26,7 @@
 
   <!-- 📊 CONTENIDO PRINCIPAL -->
   @if (dataSignal()) {
-  <div class="card" class="shadow-2 border-round-xl overflow-hidden p-0 border-none hidden md:block">
+  <div class="card" class="shadow-sm rounded-xl overflow-hidden p-0 border-none hidden md:block">
     <p-table
       #dt
       [value]="dataSignal()"
@@ -108,7 +108,7 @@
             @if (item.meetingDertailsSeguimientos &&
             item.meetingDertailsSeguimientos.length > 0) {
             <div
-              class="flex flex-column gap-2 p-3 bg-blue-50 border-round-lg border-1 border-blue-100 mx-2 shadow-1"
+              class="flex flex-column gap-2 p-3 bg-blue-50 rounded-lg border-1 border-blue-100 mx-2 shadow-sm"
             >
               <div class="flex align-items-center justify-content-between">
                 <div class="flex align-items-center gap-2">
@@ -147,19 +147,19 @@
                 [value]="getSeverityText(item.status)"
                 [severity]="getSeverity(item.status)"
                 [rounded]="true"
-                class="px-3 py-1 font-bold text-xs shadow-1"
+                class="px-3 py-1 font-bold text-xs shadow-sm"
                />
 
               @if (item.status === 0) {
               <div
-                class="flex align-items-center gap-2 text-red-600 bg-red-50 px-2 py-1 border-round-sm font-semibold text-xs border-1 border-red-100"
+                class="flex align-items-center gap-2 text-red-600 bg-red-50 px-2 py-1 rounded-sm font-semibold text-xs border-1 border-red-100"
               >
                 <app-icon [icon]="'mdi:calendar-alert'" />
                 <span>Vence: {{ item.deliveryDate | date: 'shortDate' }}</span>
               </div>
               } @if (item.status === 1) {
               <div
-                class="flex align-items-center gap-2 text-green-600 bg-green-50 px-2 py-1 border-round-sm font-semibold text-xs border-1 border-green-100"
+                class="flex align-items-center gap-2 text-green-600 bg-green-50 px-2 py-1 rounded-sm font-semibold text-xs border-1 border-green-100"
               >
                 <app-icon [icon]="'mdi:check-circle'" />
                 <span>Completado</span>
@@ -176,7 +176,7 @@
           <td colspan="3" class="text-center p-8 bg-surface-50">
             <div class="flex flex-column align-items-center gap-4 py-4">
               <div
-                class="border-circle bg-surface-200 p-5 flex align-items-center justify-content-center shadow-2"
+                class="border-circle bg-surface-200 p-5 flex align-items-center justify-content-center shadow-sm"
               >
                 <app-icon
                   [icon]="'mdi:clipboard-check-outline'"

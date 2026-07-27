@@ -77,7 +77,7 @@ import {
           <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
             <label class="text-sm font-semibold text-900">Fecha corte</label>
             <div
-              class="flex align-items-center h-3rem px-3 border-1 surface-border border-round surface-50 text-900 font-medium"
+              class="flex align-items-center h-3rem px-3 border-1 surface-border rounded surface-50 text-900 font-medium"
             >
               Hoy
             </div>

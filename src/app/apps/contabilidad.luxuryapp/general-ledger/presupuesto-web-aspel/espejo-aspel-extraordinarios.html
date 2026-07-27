@@ -84,7 +84,7 @@
               <span
                 [class.text-red-700]="monto < 0"
                 [class.font-bold]="monto < 0"
-                class="px-2 py-1 border-round"
+                class="px-2 py-1 rounded"
               >
                 {{ monto !== 0 ? (monto | number: "1.0-0") : "-" }}
               </span>
@@ -108,7 +108,7 @@
               <span
                 [class.text-red-700]="gastoExcedido(extraordinarias(), mes)"
                 [class.bg-red-50]="gastoExcedido(extraordinarias(), mes)"
-                class="px-2 py-1 border-round block"
+                class="px-2 py-1 rounded block"
               >
                 {{ getTotalMontoPorMes(extraordinarias(), mes) | number: "1.0-0"
                 }}
@@ -222,7 +222,7 @@
                 [class.text-red-700]="monto < 0 || monto > getPresupuestoDelMes(cuenta, mes)"
                 [class.font-bold]="monto < 0 || monto > getPresupuestoDelMes(cuenta, mes)"
                 [class.bg-red-50]="monto > getPresupuestoDelMes(cuenta, mes)"
-                class="px-2 py-1 border-round"
+                class="px-2 py-1 rounded"
               >
                 {{ monto !== 0 ? (monto | number: "1.0-0") : "-" }}
               </span>
@@ -262,7 +262,7 @@
               <span
                 [class.text-red-700]="gastoExcedido(proyectos(), mes)"
                 [class.bg-red-50]="gastoExcedido(proyectos(), mes)"
-                class="px-2 py-1 border-round block"
+                class="px-2 py-1 rounded block"
               >
                 {{ getTotalMontoPorMes(proyectos(), mes) | number: "1.0-0" }}
               </span>

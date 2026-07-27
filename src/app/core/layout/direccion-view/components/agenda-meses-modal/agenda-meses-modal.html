@@ -49,7 +49,7 @@
   @for (mes of eventosPorMes(); track mes.label) {
 
   <div
-    class="surface-card border-1 surface-border border-round-lg overflow-hidden"
+    class="surface-card border-1 surface-border rounded-lg overflow-hidden"
   >
     <!-- Cabecera del mes -->
     <div
@@ -80,7 +80,7 @@
         <div class="flex flex-column gap-1 flex-auto min-w-0">
           <span class="text-sm font-semibold text-900">{{ evento.title }}</span>
           <div class="flex align-items-center gap-2 flex-wrap">
-            <span class="text-xs surface-200 text-600 border-round px-2 py-1">
+            <span class="text-xs surface-200 text-600 rounded px-2 py-1">
               {{ evento.customerName }}
             </span>
             <span class="text-xs text-500">{{ evento.subjectTypeName }}</span>

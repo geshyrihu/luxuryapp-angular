@@ -35,7 +35,7 @@
             @if (uniqueModules().length > 0) {
             <div class="flex overflow-x-auto align-items-center pb-1">
               <div
-                class="surface-card border-1 border-round-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+                class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
                 [class.border-primary]="selectedModule() === null"
                 [class.bg-primary-50]="selectedModule() === null"
                 (click)="onModuleFilterChange(null)"
@@ -51,7 +51,7 @@
 
               @for (mod of uniqueModules(); track mod.name) {
               <div
-                class="surface-card border-1 border-round-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+                class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
                 [class.border-primary]="selectedModule() === mod.name"
                 [class.bg-primary-50]="selectedModule() === mod.name"
                 (click)="onModuleFilterChange(mod.name)"
@@ -59,7 +59,7 @@
                 <span>{{ mod.emoji }}</span>
                 <span class="font-medium text-sm">{{ mod.name }}</span>
                 <span
-                  class="text-xs text-500 font-bold bg-surface-200 px-1 border-round"
+                  class="text-xs text-500 font-bold bg-surface-200 px-1 rounded"
                   >{{ mod.count }}</span
                 >
               </div>
@@ -106,13 +106,13 @@
             <app-icon [icon]="'mdi:information'" class="text-primary" />
             <div class="flex align-items-center gap-1">
               <span
-                class="w-1rem h-0_5rem bg-red-100 border-1 border-red-300 border-round"
+                class="w-1rem h-0_5rem bg-red-100 border-1 border-red-300 rounded"
               ></span>
               Critico (>8d)
             </div>
             <div class="flex align-items-center gap-1">
               <span
-                class="w-1rem h-0_5rem bg-yellow-100 border-1 border-yellow-300 border-round"
+                class="w-1rem h-0_5rem bg-yellow-100 border-1 border-yellow-300 rounded"
               ></span>
               Alerta (7-8d)
             </div>
@@ -215,7 +215,7 @@
         <!-- Followup -->
         <td class="vertical-align-middle">
           @if (item.lastFollowup && item.lastFollowup !== 'Sin seguimiento') {
-          <div class="flex align-items-start p-2 surface-50 border-round">
+          <div class="flex align-items-start p-2 surface-50 rounded">
             <app-icon [icon]="'mdi:comment'" class="text-primary mt-1" />
             <span
               class="text-600 text-xs line-height-2 line-clamp-2"
@@ -297,7 +297,7 @@
       @if (uniqueModules().length > 0) {
       <div class="flex overflow-x-auto align-items-center pb-1">
         <div
-          class="surface-card border-1 border-round-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+          class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
           [class.border-primary]="selectedModule() === null"
           [class.bg-primary-50]="selectedModule() === null"
           (click)="onModuleFilterChange(null)"
@@ -313,7 +313,7 @@
 
         @for (mod of uniqueModules(); track mod.name) {
         <div
-          class="surface-card border-1 border-round-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+          class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
           [class.border-primary]="selectedModule() === mod.name"
           [class.bg-primary-50]="selectedModule() === mod.name"
           (click)="onModuleFilterChange(mod.name)"
@@ -321,7 +321,7 @@
           <span>{{ mod.emoji }}</span>
           <span class="font-medium text-sm">{{ mod.name }}</span>
           <span
-            class="text-xs text-500 font-bold bg-surface-200 px-1 border-round"
+            class="text-xs text-500 font-bold bg-surface-200 px-1 rounded"
             >{{ mod.count }}</span
           >
         </div>

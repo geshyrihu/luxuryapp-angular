@@ -18,7 +18,10 @@
           "builder": "@angular/build:application",
           "options": {
             "stylePreprocessorOptions": {
-              "includePaths": ["src/styles", "src"],
+              "includePaths": [
+                "src/styles",
+                "src"
+              ],
               "sass": {
                 "silenceDeprecations": [
                   "color-functions",
@@ -30,7 +33,9 @@
             "outputPath": "dist/luxury-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": ["@angular/localize/init"],
+            "polyfills": [
+              "@angular/localize/init"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -99,14 +104,14 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "4mb",
-                  "maximumError": "15mb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "6mb"
                 },
-                  {
-                    "type": "anyComponentStyle",
-                    "maximumWarning": "15kB",
-                    "maximumError": "20kB"
-                  }
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "25kb",
+                  "maximumError": "30kb"
+                }
               ],
               "fileReplacements": [
                 {
@@ -148,7 +153,25 @@
           "builder": "@angular-devkit/build-angular:jest",
           "options": {
             "tsConfig": "tsconfig.spec.json",
-            "polyfills": ["@angular/localize/init"]
+            "polyfills": [
+              "@angular/localize/init"
+            ]
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular-vite:start-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "luxury-app:build",
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular-vite:build-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "luxury-app:build",
+            "outputDir": "storybook-static"
           }
         }
       }

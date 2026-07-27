@@ -17,7 +17,7 @@ import { StepsModule } from "primeng/steps";
     (activeIndexChange)="activeIndex.set($event)"
     [class]="styleClass()"
   ></p-steps>`,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppSteps extends StepsBase {}

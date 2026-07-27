@@ -168,7 +168,7 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item alignTop="true" class="w-full">
-      <div slot="start" class="flex align-items-center justify-content-center flex-shrink-0 border-round-lg mt-1" class="w-3rem h-3rem bg-primary-50">
+      <div slot="start" class="flex align-items-center justify-content-center flex-shrink-0 rounded-lg mt-1" class="w-3rem h-3rem bg-primary-50">
         <app-icon
           icon="mdi:clipboard-list-outline"
           class="text-xl text-primary"
@@ -178,7 +178,7 @@
       <div class="flex flex-column w-full gap-1">
         <div class="flex justify-content-between align-items-start mt-1">
           <small class="text-color-secondary text-xs">{{ item.folio }} | {{ item.createdAtDate }}</small>
-          <span class="bg-primary-100 text-primary-700 border-round px-2 py-1 text-xs font-bold">{{ item.daysDifference }} d</span>
+          <span class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-xs font-bold">{{ item.daysDifference }} d</span>
         </div>
         <p class="font-semibold m-0 text-color line-height-2 text-sm ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap">
           {{ item.title }}

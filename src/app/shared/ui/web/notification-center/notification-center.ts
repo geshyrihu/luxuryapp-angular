@@ -56,7 +56,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
           <div class="notification-list">
             @for (item of notifications(); track item.id) {
               <div
-                class="notification-item flex align-items-start gap-2 p-2 border-round cursor-pointer"
+                class="notification-item flex align-items-start gap-2 p-2 rounded cursor-pointer"
                 [class.notification-unread]="!item.read"
                 (click)="onItemClick(item)"
               >

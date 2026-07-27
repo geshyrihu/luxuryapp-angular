@@ -36,7 +36,7 @@ import { IndivisoFeeComparisonDTO } from "./interfaces/indiviso-fee-comparison.m
             <p class="text-600 flex items-center ">
               Cólculo basado en el porcentaje de indiviso de cada propiedad.
               <span
-                class="text-xs font-semibold px-2 py-1 border-round bg-blue-100 text-blue-700"
+                class="text-xs font-semibold px-2 py-1 rounded bg-blue-100 text-blue-700"
                 title="Suma total de todos los porcentajes de indiviso"
               >
                 S Indiviso:

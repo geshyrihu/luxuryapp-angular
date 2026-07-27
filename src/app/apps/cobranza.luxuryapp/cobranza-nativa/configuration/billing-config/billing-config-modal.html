@@ -5,7 +5,7 @@
   </div>
   } @else {
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
-    <div class="p-3 border-round surface-100 mb-2">
+    <div class="p-3 rounded surface-100 mb-2">
       <custom-input-select-signal
         [control]="form.controls['billingMode']"
         label="Modo de Operacion AR"
@@ -40,7 +40,7 @@
       />
     </div>
 
-    <div class="p-3 border-round surface-50 border-1 border-200 mb-4">
+    <div class="p-3 rounded surface-50 border-1 border-200 mb-4">
       <div class="mb-3">
         <h3 class="text-base font-semibold text-900 m-0">
           Canales de Comunicacion

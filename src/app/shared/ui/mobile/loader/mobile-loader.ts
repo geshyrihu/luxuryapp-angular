@@ -9,7 +9,7 @@ import { LoaderBase } from "../../base/loader.base";
   template: `
     @if (isLoading()) {
       <div class="mobile-loader-container">
-        <div class="mobile-loader-pill shadow-4">
+        <div class="mobile-loader-pill shadow">
           <ion-spinner name="crescent"></ion-spinner>
           <span class="ml-2">Cargando...</span>
         </div>

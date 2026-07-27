@@ -18,7 +18,7 @@ import { Popover, PopoverModule } from "primeng/popover";
       <ng-content />
     </p-popover>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppPopover extends PopoverBase {
   private inner = viewChild.required<Popover>("inner");

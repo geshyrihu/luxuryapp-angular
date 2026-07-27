@@ -6,6 +6,8 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -36,6 +38,8 @@ interface UnallocatedPayment {
     TableModule,
     PrimeNgCustomCaption,
     WebButtonLabel,
+    LxTag,
+    LxCard,
     DataViewMobile,
     MobileListItem,
     AppIcon,
@@ -85,4 +89,3 @@ export default class ReconciliationDashboard {
     }
   }
 }
-

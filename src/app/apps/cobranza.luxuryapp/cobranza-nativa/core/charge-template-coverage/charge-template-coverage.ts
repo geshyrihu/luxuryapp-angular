@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe, NgClass } from "@angular/common";
+import { CurrencyPipe, NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +7,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -19,7 +20,7 @@ import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
 
 @Component({
   selector: "app-charge-template-coverage",
-  imports: [AppIcon, TableModule, PrimeNgCustomCaption, CurrencyPipe, NgClass],
+  imports: [AppIcon, LxTag, TableModule, PrimeNgCustomCaption, CurrencyPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-coverage.html",
 })
@@ -32,7 +33,6 @@ export default class ChargeTemplateCoverage {
 
   dataSignal = signal<TemplateCoverageDTO[]>([]);
 
-  /** Columnas de periodo ónicas ordenadas, extraódas de todos los registros */
   periodColumns = computed(() => {
     const keys = new Map<
       string,
@@ -41,8 +41,9 @@ export default class ChargeTemplateCoverage {
     for (const row of this.dataSignal()) {
       for (const p of row.periods) {
         const key = `${p.year}-${String(p.month).padStart(2, "0")}`;
-        if (!keys.has(key))
+        if (!keys.has(key)) {
           keys.set(key, { label: p.label, year: p.year, month: p.month });
+        }
       }
     }
     return [...keys.entries()]
@@ -50,7 +51,6 @@ export default class ChargeTemplateCoverage {
       .map(([key, v]) => ({ key, ...v }));
   });
 
-  /** Mapa precalculado: rowIndex ? { periodKey ? amount } */
   periodsMap = computed(() => {
     return this.dataSignal().map((row) => {
       const map: Record<string, number> = {};
@@ -83,11 +83,7 @@ export default class ChargeTemplateCoverage {
     return method === ECalculationMethod.Indiviso ? "Indiviso" : "Fijo";
   }
 
-  methodSeverity(method: ECalculationMethod): string {
-    return method === ECalculationMethod.Indiviso
-      ? "bg-purple-100 text-purple-800"
-      : "bg-blue-100 text-blue-800";
+  methodSeverity(method: ECalculationMethod): "secondary" | "info" {
+    return method === ECalculationMethod.Indiviso ? "secondary" : "info";
   }
 }
-
-

@@ -30,9 +30,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [readonly]="readonly()"
       [required]="requiredInput()"
     >
-      <div
-        style="width: 100%; display: flex; flex-direction: column; gap: 8px;"
-      >
+      <div class="w-full flex flex-column gap-2">
         @if (!fileSelectedValue) {
           <ion-button
             expand="block"
@@ -44,12 +42,8 @@ import { BaseIonicInput } from "../base/base-ionic-input";
             {{ chooseLabel() }}
           </ion-button>
         } @else {
-          <div
-            style="display: flex; justify-content: space-between; align-items: center; background: var(--ion-color-step-50, #f4f5f8); padding: 8px; border-radius: 8px;"
-          >
-            <span
-              style="font-size: 0.85rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;"
-            >
+          <div class="flex justify-content-between align-items-center surface-100 p-2 rounded">
+            <span class="text-sm overflow-hidden text-overflow-ellipsis white-space-nowrap flex-1">
               {{ fileSelectedValue.name }} ({{
                 formatFileSize(fileSelectedValue.size)
               }})

@@ -93,6 +93,8 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/capitalize-user-names",
     importAsambleaChecklist:
       "admin/system-maintenance/import-asamblea-checklist-catalog",
+    reseedNativeChargeTypeCatalogs:
+      "admin/system-maintenance/reseed-native-charge-type-catalogs",
     resyncGoogleCalendar:
       "admin/system-maintenance/resync-google-calendar-event-times",
     seedNativeCollectionTestData:

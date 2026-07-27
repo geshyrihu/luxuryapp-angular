@@ -1,7 +1,7 @@
 <lx-card [padded]="false">
 @if (data()) {
     <div class="flex flex-column">
-      <div class="flex align-items-center p-3 surface-100 border-round-lg">
+      <div class="flex align-items-center p-3 surface-100 rounded-lg">
         <app-icon [icon]="'mdi:clock-outline'" class="text-2xl text-600" />
         <div>
           <h3 class="text-lg font-bold text-800 m-0">Horarios de Trabajo</h3>
@@ -19,7 +19,7 @@
         data()?.sabadoSalida }, { n: 'Domingo', e: data()?.domingoEntrada, s:
         data()?.domingoSalida } ]; track dia.n) {
         <div
-          class="flex justify-content-between align-items-center p-3 border-bottom-1 surface-border hover:surface-50 transition-colors transition-duration-200 border-round"
+          class="flex justify-content-between align-items-center p-3 border-bottom-1 surface-border hover:surface-50 transition-colors transition-duration-200 rounded"
         >
           <span class="font-semibold text-700 w-6rem">{{ dia.n }}</span>
           <div class="flex align-items-center">

@@ -13,7 +13,7 @@ import { MenuModule } from "primeng/menu";
   template: `<p-menu [model]="model()" [popup]="popup()" [class]="styleClass()"
     ><ng-content
   /></p-menu>`,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppMenu extends MenuBase {}

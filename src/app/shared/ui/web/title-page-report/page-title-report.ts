@@ -30,7 +30,7 @@ import { PeriodMonthService } from "src/app/core/services/periodo-month.service"
             logoCustomer() ? logoCustomer() : 'assets/images/default-avatar.png'
           "
           alt=""
-          class="w-full border-round"
+          class="w-full rounded"
           style="max-height: 100px;"
         />
       </div>
@@ -45,7 +45,7 @@ import { PeriodMonthService } from "src/app/core/services/periodo-month.service"
         <img
           src="assets/images/logo-luxury.jpg"
           alt=""
-          class="w-full border-round"
+          class="w-full rounded"
           style="max-height: 150px;"
         />
       </div>

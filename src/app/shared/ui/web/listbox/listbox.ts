@@ -30,7 +30,7 @@ import { ListboxModule } from "primeng/listbox";
     [class]="styleClass()"
     ><ng-content
   /></p-listbox>`,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppListbox extends ListboxBase {}

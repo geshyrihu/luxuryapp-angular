@@ -63,13 +63,13 @@
           </div>
           <div class="flex align-items-center gap-2 flex-none">
             <span
-              class="text-xs border-round px-1"
+              class="text-xs rounded px-1"
               [style.color]="tarea.diasPendiente > 30 ? 'var(--ds-error)' : (tarea.diasPendiente > 14 ? 'var(--ds-warning)' : 'var(--ds-text-secondary)')"
             >
               {{ tarea.diasPendiente }}d
             </span>
             <span
-              class="text-xs border-round px-2 py-0 surface-100 text-color-secondary"
+              class="text-xs rounded px-2 py-0 surface-100 text-color-secondary"
             >
               {{ tarea.status }}
             </span>

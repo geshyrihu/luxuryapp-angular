@@ -51,7 +51,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
         </div>
       } @else {
         <div
-          class="overflow-auto border-round surface-border"
+          class="overflow-auto rounded surface-border"
           cdkDropList
           cdkDropListSortingDisabled="true"
         >
@@ -75,7 +75,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
               >
                 <div
                   *cdkDragPreview
-                  class="bg-primary-50 border-1 border-primary-200 border-round p-2 shadow-2 flex align-items-center gap-2 opacity-90 z-5"
+                  class="bg-primary-50 border-1 border-primary-200 rounded p-2 shadow-sm flex align-items-center gap-2 opacity-90 z-5"
                 >
                   <app-icon [icon]="'mdi:menu'" class="text-primary-500" />
                   <span class="font-mono text-xs font-bold text-primary-900">{{

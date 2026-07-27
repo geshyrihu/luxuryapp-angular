@@ -1,4 +1,4 @@
-import { Directive, input } from "@angular/core";
+import { Directive, input, computed } from "@angular/core";
 
 /**
  * Base compartida de Spinner (indicador de carga circular).
@@ -15,7 +15,7 @@ export abstract class SpinnerBase {
   strokeWidth = input<number>(4);
   ariaLabel = input<string>("Cargando");
 
-  sizePx(): string {
+  sizePx = computed<string>(() => {
     return `${this.size()}px`;
-  }
+  });
 }

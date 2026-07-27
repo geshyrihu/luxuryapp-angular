@@ -1,7 +1,7 @@
 <section class="surface-ground min-h-screen flex flex-column gap-4">
   <div class="w-full xl:w-11 mx-auto flex flex-column gap-4 p-3">
     <header
-      class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden"
+      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden"
     >
       <div class="bg-primary" ></div>
       <div class="surface-100 p-3 flex align-items-center gap-3">
@@ -25,7 +25,7 @@
       <div class="bg-yellow-500" ></div>
     </header>
 
-    <div class="surface-card border-round-xl border-1 surface-border shadow-1">
+    <div class="surface-card rounded-xl border-1 surface-border shadow-sm">
       <lx-tabs [tabs]="reportTabs" [activeId]="tabIndex().toString()" (tabChange)="onTabChange($event)">
         <div tab="0" class="p-4 pt-5">
             <app-epf-cliente

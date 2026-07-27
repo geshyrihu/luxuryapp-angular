@@ -37,14 +37,14 @@
 
   <div class="w-full xl:w-11 mx-auto flex flex-column gap-4">
     <header
-      class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden print-hide-on-print"
+      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden print-hide-on-print"
     >
       <div class="bg-primary" ></div>
 
       <div class="surface-100 p-2 flex gap-3">
         <div class="flex align-items-center gap-3 flex-1 min-w-0">
           <div
-            class="surface-card border-round-xl border-1 surface-border inline-flex align-items-center justify-content-center p-2"
+            class="surface-card rounded-xl border-1 surface-border inline-flex align-items-center justify-content-center p-2"
             
           >
             <img
@@ -78,7 +78,7 @@
           </div>
           <div class="flex justify-content-end">
             <div
-              class="flex align-items-center gap-2 bg-white px-2 py-1 border-round-lg border-1 border-200 flex-wrap"
+              class="flex align-items-center gap-2 bg-white px-2 py-1 rounded-lg border-1 border-200 flex-wrap"
             >
               <div >
                 <custom-input-text-signal
@@ -242,7 +242,7 @@
     }
 
     <div
-      class="surface-card border-round-xl border-1 surface-border shadow-1 print-hide-on-print"
+      class="surface-card rounded-xl border-1 surface-border shadow-sm print-hide-on-print"
     >
       <lx-tabs [tabs]="reportTabs" [activeId]="reportIndex().toString()" (tabChange)="onTabChange($event)">
         <div tab="0" class="p-4 pt-5">

@@ -54,7 +54,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppTag extends TagBase {}

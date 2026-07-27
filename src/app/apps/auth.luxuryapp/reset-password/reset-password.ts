@@ -71,7 +71,7 @@ interface IResetPasswordForm {
       <div class="relative z-10 flex w-full h-full">
         <!-- Lado Izquierdo: Formulario -->
         <div
-          class="w-full lg:w-5 flex flex-column align-items-center justify-content-center relative px-4 md:px-6 py-8 z-20 shadow-8 auth-dark-panel"
+          class="w-full lg:w-5 flex flex-column align-items-center justify-content-center relative px-4 md:px-6 py-8 z-20 shadow-lg auth-dark-panel"
         >
           <!-- Barra superior dorada (Accent) -->
           <div
@@ -141,7 +141,7 @@ interface IResetPasswordForm {
                   icon="mdi:lock-reset"
                   [fluid]="true"
                   severity="warning"
-                  customClass="shadow-4"
+                  customClass="shadow"
                 />
               </div>
 
@@ -149,7 +149,7 @@ interface IResetPasswordForm {
               @if (errorMessage()) {
                 <div class="mt-3 fadein animation-duration-300">
                   <div
-                    class="flex align-items-center p-3 border-round border-1 border-red-300 bg-red-50 text-red-800 shadow-1"
+                    class="flex align-items-center p-3 rounded border-1 border-red-300 bg-red-50 text-red-800 shadow-sm"
                   >
                     <app-icon
                       icon="mdi:alert-circle-outline"
@@ -191,7 +191,7 @@ interface IResetPasswordForm {
             class="relative z-10 text-white max-w-30rem text-center fadein animation-duration-1000"
           >
             <div
-              class="mb-5 inline-flex align-items-center justify-content-center w-5rem h-5rem border-circle shadow-6"
+              class="mb-5 inline-flex align-items-center justify-content-center w-5rem h-5rem border-circle shadow-md"
               style="background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2);"
             >
               <app-icon

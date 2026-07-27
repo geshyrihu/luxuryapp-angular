@@ -23,7 +23,8 @@ import { ColorPickerModule } from "primeng/colorpicker";
 
       <div class="cp-row">
         <p-colorpicker
-          [(ngModel)]="value"
+          [ngModel]="value()"
+          (ngModelChange)="value.set($event)"
           [inline]="inline()"
           [format]="format()"
           [defaultColor]="defaultColor()"
@@ -106,7 +107,7 @@ import { ColorPickerModule } from "primeng/colorpicker";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppColorPicker extends ColorPickerBase {}

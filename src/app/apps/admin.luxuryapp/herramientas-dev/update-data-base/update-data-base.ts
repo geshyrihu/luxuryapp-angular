@@ -84,6 +84,35 @@ export class UpdateDataBase {
       });
   }
 
+  runReseedNativeChargeTypeCatalogs() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Reiniciando tipos de cargo nativos...",
+      "Se borrara por completo el catalogo actual y se volvera a sembrar en todos los customers activos.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.reseedNativeChargeTypeCatalogs, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Catalogos nativos reiniciados correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "El reinicio del catalogo de tipos de cargo fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
+
   runCapitalizeUserNames() {
     this.loading.set(true);
     this.result.set(null);

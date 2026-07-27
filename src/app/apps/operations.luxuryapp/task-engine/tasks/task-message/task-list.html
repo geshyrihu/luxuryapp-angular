@@ -152,7 +152,7 @@
           (clicked)="helpPopover.toggle($event)"
         />
 
-        <lx-popover #helpPopover styleClass="shadow-4">
+        <lx-popover #helpPopover styleClass="shadow">
           <div >
             <p
               class="m-0 mb-3 font-semibold text-900 text-sm border-bottom-1 surface-border pb-2"
@@ -354,7 +354,7 @@
               {{ item.folio }} | {{ item.createdAtDate }} @if
               (chainedTaskIds().has(item.id)) {
               <span
-                class="px-1 border-round text-xs font-semibold"
+                class="px-1 rounded text-xs font-semibold"
                 [style.background]="chainStepMap().get(item.id) === 1 ? 'rgba(16,185,129,0.15)' : 'rgba(147,51,234,0.15)'"
                 [style.color]="chainStepMap().get(item.id) === 1 ? 'var(--ds-success)' : 'var(--ds-help)'"
                 [lxTooltip]="'Secuencia: paso ' + chainStepMap().get(item.id)"
@@ -446,7 +446,7 @@
             [src]="item.beforeWork"
             alt="Antes"
             width="40"
-            styleClass="border-round"
+            styleClass="rounded"
             [preview]="true"
           />
           } @if (item.afterWork) {
@@ -454,7 +454,7 @@
             [src]="item.afterWork"
             alt="Despues"
             width="40"
-            styleClass="border-round"
+            styleClass="rounded"
             [preview]="true"
           />
           }
@@ -728,7 +728,7 @@
         <div class="flex flex-wrap gap-1 mb-1">
           @if (chainedTaskIds().has(item.id)) {
           <span
-            class="px-2 py-1 border-round text-xs font-semibold inline-block"
+            class="px-2 py-1 rounded text-xs font-semibold inline-block"
             [style.background]="chainStepMap().get(item.id) === 1 ? 'rgba(16,185,129,0.15)' : 'rgba(147,51,234,0.15)'"
             [style.color]="chainStepMap().get(item.id) === 1 ? 'var(--ds-success)' : 'var(--ds-help)'"
             >Paso {{ chainStepMap().get(item.id) }}</span

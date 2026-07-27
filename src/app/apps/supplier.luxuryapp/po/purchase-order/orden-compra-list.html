@@ -24,7 +24,7 @@
           [class.surface-card]="tipo.id !== tipoGasto()"
           [class.surface-border]="tipo.id !== tipoGasto()"
           [class.hover:surface-hover]="tipo.id !== tipoGasto()"
-          class="border-1 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-colors transition-duration-150"
+          class="border-1 rounded-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-colors transition-duration-150"
         >
           <i
             [class]="tipo.iconClass"
@@ -44,7 +44,7 @@
 
     <!-- ??? Contenedor Maestro: Alineación Perfecta (Tútulo + Buscador + Acciones) -->
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round shadow-1"
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded shadow-sm"
     >
       <!-- IZQUIERDA: Tútulo y Buscador (Toma el espacio libre) -->
       <div
@@ -281,7 +281,7 @@
               [class.surface-card]="tipo.id !== tipoGasto()"
               [class.surface-border]="tipo.id !== tipoGasto()"
               [class.hover:surface-hover]="tipo.id !== tipoGasto()"
-              class="border-1 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-colors transition-duration-150"
+              class="border-1 rounded-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-colors transition-duration-150"
             >
               <i
                 [class]="tipo.iconClass"

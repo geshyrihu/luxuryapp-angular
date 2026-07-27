@@ -166,7 +166,7 @@ ${this.htmlPrintS.getStandardCss()}
   .surface-50 { background-color: #f9fafb !important; }
   .surface-100 { background-color: #f3f4f6 !important; }
   .bg-primary { background-color: #3b82f6 !important; color: white !important; }
-  .border-round { border-radius: 6px; }
+  .rounded { border-radius: 6px; }
   .border-1 { border: 1px solid #e5e7eb; }
   .p-3 { padding: 1rem; }
   .mb-4 { margin-bottom: 1.5rem; }
@@ -202,7 +202,7 @@ ${this.htmlPrintS.getStandardCss()}
   .pb-2 { padding-bottom: 0.5rem; }
   .pb-3 { padding-bottom: 1rem; }
   .border-bottom-1 { border-bottom: 1px solid #e5e7eb; }
-  .border-round { border-radius: 0.5rem; }
+  .rounded { border-radius: 0.5rem; }
   .w-full { width: 100%; }
   .h-full { height: 100%; }
   .mr-2 { margin-right: 0.5rem; }
@@ -223,8 +223,8 @@ ${this.htmlPrintS.getStandardCss()}
                 .map(
                   (img: string) => `
                 <div class="col-3 text-center">
-                  <div class="border-1 border-round p-1">
-                    <img src="${this.htmlPrintS.esc(img)}" class="w-full border-round" style="aspect-ratio: 4/3; object-fit: cover" alt="Evidencia" />
+                  <div class="border-1 rounded p-1">
+                    <img src="${this.htmlPrintS.esc(img)}" class="w-full rounded" style="aspect-ratio: 4/3; object-fit: cover" alt="Evidencia" />
                   </div>
                 </div>
               `,
@@ -255,7 +255,7 @@ ${this.htmlPrintS.getStandardCss()}
                 <div class="mb-1"><span class="font-bold">Folio:</span> #${this.htmlPrintS.esc(item.id || "S/N")}</div>
                 <div class="mb-1"><span class="font-bold">Solicitud:</span> ${this.htmlPrintS.esc(item.requestDate)}</div>
                 <div class="mb-1"><span class="font-bold">Ejecución:</span> ${this.htmlPrintS.esc(item.executionDate)}</div>
-                <div class="mt-2 text-xs uppercase font-medium bg-primary border-round" style="display:inline-block; padding: 2px 4px;">
+                <div class="mt-2 text-xs uppercase font-medium bg-primary rounded" style="display:inline-block; padding: 2px 4px;">
                   ${this.htmlPrintS.esc(item.typeMaintance)} ${item.maintenanceCalendar ? "| " + this.htmlPrintS.esc(item.recurrence) : ""}
                 </div>
               </div>
@@ -264,7 +264,7 @@ ${this.htmlPrintS.getStandardCss()}
 
           <div class="grid mb-4">
             <div class="col-6">
-              <div class="p-3 surface-50 border-round border-1 h-full">
+              <div class="p-3 surface-50 rounded border-1 h-full">
                 <span class="block text-xs font-bold text-500 uppercase mb-1">Equipo / Maquinaria</span>
                 <div class="text-base font-medium text-900">
                   <span class="text-primary font-bold mr-2">${this.htmlPrintS.esc(item.machineryId)}</span>
@@ -273,7 +273,7 @@ ${this.htmlPrintS.getStandardCss()}
               </div>
             </div>
             <div class="col-6">
-              <div class="p-3 surface-50 border-round border-1 h-full">
+              <div class="p-3 surface-50 rounded border-1 h-full">
                 <span class="block text-xs font-bold text-500 uppercase mb-1">Proveedor de Servicio</span>
                 <div class="text-base font-medium text-900">${this.htmlPrintS.esc(item.nameComercial)}</div>
               </div>

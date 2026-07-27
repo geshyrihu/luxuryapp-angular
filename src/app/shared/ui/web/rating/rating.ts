@@ -25,10 +25,10 @@ import { RatingModule } from "primeng/rating";
 
       <div class="app-rating-row" [class.app-rating-disabled]="disabled()">
         <p-rating
-          [(ngModel)]="value"
+          [ngModel]="value()"
           [stars]="stars()"
           [readonly]="readonly() || disabled()"
-          (ngModelChange)="changed.emit($event)"
+          (ngModelChange)="setValue($event)"
         />
 
         <!-- Boton limpiar — reemplaza la propiedad cancel eliminada en PrimeNG 17+ -->
@@ -105,7 +105,7 @@ import { RatingModule } from "primeng/rating";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppRating extends RatingBase {}

@@ -104,7 +104,7 @@ import { SliderModule } from "primeng/slider";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppSlider extends SliderBase {}

@@ -137,7 +137,6 @@ export class MobileTable extends TableBase {
     this.rowClick.emit(row);
     if (this.selectionMode() === "single") {
       this.selection.set(row);
-      this.selectionChange.emit(row);
     }
   }
 }

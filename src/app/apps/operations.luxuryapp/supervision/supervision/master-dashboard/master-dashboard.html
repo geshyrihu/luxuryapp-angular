@@ -2,7 +2,7 @@
 <div class="mb-6">
   <div class="flex align-items-center gap-3 mb-2">
     <div
-      class="flex align-items-center justify-content-center bg-primary-50 border-round-xl"
+      class="flex align-items-center justify-content-center bg-primary-50 rounded-xl"
       
     >
       <app-icon [icon]="'mdi:shield-check'" class="text-3xl text-primary-600" />
@@ -31,7 +31,7 @@
   @for (module of group.cards; track module.route) {
   <div class="col-12 sm:col-6 md:col-3">
     <div class="card"
-      class="h-full border-top-3 surface-card shadow-2 cursor-pointer hover:shadow-4 transition-all transition-duration-200"
+      class="h-full border-top-3 surface-card shadow-sm cursor-pointer hover:shadow transition-all transition-duration-200"
       
       (click)="navigateTo(module.route)"
     >
@@ -39,7 +39,7 @@
         <!-- Icono y meta -->
         <div class="flex align-items-center justify-content-between">
           <div
-            class="flex align-items-center justify-content-center border-round-lg text-2xl flex-shrink-0"
+            class="flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
             
             [style.backgroundColor]="module.bgColor"
           >

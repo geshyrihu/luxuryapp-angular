@@ -38,7 +38,7 @@
           </div>
           <div class="col-4">
             <select
-              class="w-full p-2 border-round border-300"
+              class="w-full p-2 rounded border-300"
               (change)="onCronPresetSelect($event)"
             >
               <option value="">Preseleccionar...</option>
@@ -60,7 +60,7 @@
       />
 
       @if (form.controls.destinationType.value === 'GraphApi') {
-        <div class="card p-3 mb-3 border-1 border-200 border-round">
+        <div class="card p-3 mb-3 border-1 border-200 rounded">
           <h5 class="mt-0 mb-2">Conexion OneDrive (Graph API)</h5>
 
           <custom-input-text-signal

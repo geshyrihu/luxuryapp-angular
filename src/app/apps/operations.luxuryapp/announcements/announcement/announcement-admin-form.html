@@ -91,12 +91,12 @@
         <!-- Vista previa de la imagen existente -->
         @if (data()?.imagePath && !mainImageToDelete()) {
         <div
-          class="flex flex-column align-items-center mb-3 p-3 surface-100 border-round border-1 surface-border"
+          class="flex flex-column align-items-center mb-3 p-3 surface-100 rounded border-1 surface-border"
         >
           <img
             [src]="data()?.imagePath"
             alt="Imagen actual"
-            class="max-w-10rem h-auto border-round"
+            class="max-w-10rem h-auto rounded"
           />
           <div class="flex align-items-center">
             <span class="text-sm text-500">Imagen actual</span>
@@ -176,7 +176,7 @@
             <div class="flex flex-column">
               @for(item of data()!.attachments; track item.id) {
               <div
-                class="flex align-items-center justify-content-between p-2 surface-50 border-round border-1 surface-border"
+                class="flex align-items-center justify-content-between p-2 surface-50 rounded border-1 surface-border"
               >
                 <a
                   [href]="item.filePath"

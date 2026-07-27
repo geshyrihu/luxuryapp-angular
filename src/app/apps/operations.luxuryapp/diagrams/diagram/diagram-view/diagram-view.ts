@@ -31,7 +31,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
       </div>
 
       <div
-        class="diagram-wrapper shadow-2 border-round overflow-hidden bg-white"
+        class="diagram-wrapper shadow-sm rounded overflow-hidden bg-white"
       >
         @if (config(); as viewerConfig) {
           <div

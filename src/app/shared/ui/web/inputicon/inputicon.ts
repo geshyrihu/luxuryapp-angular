@@ -7,6 +7,6 @@ import { InputIconModule } from "primeng/inputicon";
 
   imports: [InputIconModule],
   template: `<p-inputicon [attr.styleClass]="styleClass()" />`,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppInputIcon extends InputIconBase {}

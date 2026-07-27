@@ -1,4 +1,4 @@
-﻿import { DatePipe, DecimalPipe } from "@angular/common";
+import { DatePipe, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,15 +8,22 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { cardOutline } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -24,20 +31,18 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ChargeResponseDTO } from "../../contracts/external-compatibility/interfaces/charge.dto";
+import {
+  ChargeResponseDTO,
+  PropertyInitialBalanceDTO,
+} from "../../contracts/external-compatibility/interfaces/charge.dto";
 import { EChargeStatus } from "../../interfaces/enums";
+import BulkImportModal from "./bulk-import-modal";
 import { ChargeForm } from "./charge-form";
-
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { downloadInitialBalanceTemplate } from "./initial-balance-template.helper";
 
 @Component({
   selector: "app-charge-list",
@@ -47,6 +52,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonIcon,
     WebButtonIconEdit,
     LxTooltipDirective,
+    LxTag,
     MobileActionMenu,
     MobileButtonLabelEdit,
     TableModule,
@@ -66,6 +72,8 @@ export default class ChargeList {
   private dialogHandlerS = inject(DialogHandlerService);
   private destroyRef = inject(DestroyRef);
   private signalRService = inject(SignalRService);
+  private toastS = inject(CustomToastService);
+  private confirmS = inject(ConfirmService);
 
   private realtimeCustomerId: string | null = null;
 
@@ -142,11 +150,11 @@ export default class ChargeList {
   }
 
   async onCancel(item: ChargeResponseDTO) {
-    if (
-      !window.confirm(
-        `¿Deseas cancelar el cargo "${item.concept}" de ${item.propertyFullName || "la propiedad seleccionada"}?`,
-      )
-    ) {
+    const confirmed = await this.confirmS.confirm(
+      `¿Deseas cancelar el cargo "${item.concept}" de ${item.propertyFullName || "la propiedad seleccionada"}?`,
+      "Cancelar cargo",
+    );
+    if (!confirmed) {
       return;
     }
 
@@ -158,20 +166,55 @@ export default class ChargeList {
   }
 
   openBulkImport() {
-    import("./bulk-import-modal").then((m) => {
-      const data = { customerId: this.customerIdS.customerId() };
-      this.dialogHandlerS
-        .openDialog(
-          m.default,
-          data,
-          "Importar Saldos Iniciales",
-          this.dialogHandlerS.sizeLg,
-        )
-        .then((res: boolean) => {
-          if (res) this.onLoadData();
-        });
-    });
+    const data = { customerId: this.customerIdS.customerId() };
+    this.dialogHandlerS
+      .openDialog(
+        BulkImportModal,
+        data,
+        "Importar Saldos Iniciales",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((res: boolean) => {
+        if (res) this.onLoadData();
+      });
+  }
+
+  async downloadBulkImportTemplate() {
+    const customerId = this.customerIdS.customerId();
+    if (!customerId) {
+      this.toastS.showWarn("Aviso", "No se encontró el customerId activo.");
+      return;
+    }
+
+    const properties = await this.apiResponseS.onGetItem<PropertyInitialBalanceDTO[]>(
+      Endpoints.CobranzaCore.Charges.initialBalanceStatus(customerId),
+    );
+
+    if (!properties?.length) {
+      this.toastS.showWarn(
+        "Aviso",
+        "No se encontraron propiedades para generar la plantilla.",
+      );
+      return;
+    }
+
+    downloadInitialBalanceTemplate(properties);
+  }
+
+  statusMeta(status: EChargeStatus) {
+    switch (status) {
+      case EChargeStatus.Pendiente:
+        return { label: "Pendiente", severity: "warning" as const };
+      case EChargeStatus.Pagado:
+        return { label: "Pagado", severity: "success" as const };
+      case EChargeStatus.PagoParcial:
+        return { label: "Pago Parcial", severity: "info" as const };
+      case EChargeStatus.Vencido:
+        return { label: "Vencido", severity: "danger" as const };
+      case EChargeStatus.Cancelado:
+        return { label: "Cancelado", severity: "contrast" as const };
+      default:
+        return { label: String(status), severity: "contrast" as const };
+    }
   }
 }
-
-

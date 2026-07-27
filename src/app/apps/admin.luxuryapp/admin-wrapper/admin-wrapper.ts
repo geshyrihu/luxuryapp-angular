@@ -39,8 +39,8 @@ export class AdminWrapper {
     card: "border-primary",
     accent: "#003d9b",
     bgColor: "#edf1ff",
-    desktopShell: "surface-100 border-1 border-primary border-round-xl",
-    mobileShell: "surface-100 border-1 border-primary border-round-md",
+    desktopShell: "surface-100 border-1 border-primary rounded-xl",
+    mobileShell: "surface-100 border-1 border-primary rounded-md",
     glyph: "text-primary",
     heading: "text-900",
   };
@@ -50,8 +50,8 @@ export class AdminWrapper {
       card: "border-blue-200",
       accent: "#1d4ed8",
       bgColor: "#dbeafe",
-      desktopShell: "bg-blue-50 border-1 border-blue-200 border-round-xl",
-      mobileShell: "bg-blue-50 border-1 border-blue-200 border-round-md",
+      desktopShell: "bg-blue-50 border-1 border-blue-200 rounded-xl",
+      mobileShell: "bg-blue-50 border-1 border-blue-200 rounded-md",
       glyph: "text-blue-700",
       heading: "text-blue-900",
     },
@@ -59,8 +59,8 @@ export class AdminWrapper {
       card: "border-cyan-200",
       accent: "#0e7490",
       bgColor: "#cffafe",
-      desktopShell: "bg-cyan-50 border-1 border-cyan-200 border-round-lg",
-      mobileShell: "bg-cyan-50 border-1 border-cyan-200 border-round-md",
+      desktopShell: "bg-cyan-50 border-1 border-cyan-200 rounded-lg",
+      mobileShell: "bg-cyan-50 border-1 border-cyan-200 rounded-md",
       glyph: "text-cyan-700",
       heading: "text-cyan-900",
     },
@@ -68,8 +68,8 @@ export class AdminWrapper {
       card: "border-orange-200",
       accent: "#c2410c",
       bgColor: "#ffedd5",
-      desktopShell: "bg-orange-50 border-1 border-orange-200 border-round-xl",
-      mobileShell: "bg-orange-50 border-1 border-orange-200 border-round-lg",
+      desktopShell: "bg-orange-50 border-1 border-orange-200 rounded-xl",
+      mobileShell: "bg-orange-50 border-1 border-orange-200 rounded-lg",
       glyph: "text-orange-700",
       heading: "text-orange-900",
     },
@@ -77,8 +77,8 @@ export class AdminWrapper {
       card: "border-indigo-200",
       accent: "#4338ca",
       bgColor: "#e0e7ff",
-      desktopShell: "bg-indigo-50 border-1 border-indigo-200 border-round-xl",
-      mobileShell: "bg-indigo-50 border-1 border-indigo-200 border-round-md",
+      desktopShell: "bg-indigo-50 border-1 border-indigo-200 rounded-xl",
+      mobileShell: "bg-indigo-50 border-1 border-indigo-200 rounded-md",
       glyph: "text-indigo-700",
       heading: "text-indigo-900",
     },
@@ -86,8 +86,8 @@ export class AdminWrapper {
       card: "border-pink-200",
       accent: "#be185d",
       bgColor: "#fce7f3",
-      desktopShell: "bg-pink-50 border-1 border-pink-200 border-round-lg",
-      mobileShell: "bg-pink-50 border-1 border-pink-200 border-round-md",
+      desktopShell: "bg-pink-50 border-1 border-pink-200 rounded-lg",
+      mobileShell: "bg-pink-50 border-1 border-pink-200 rounded-md",
       glyph: "text-pink-700",
       heading: "text-pink-900",
     },
@@ -95,8 +95,8 @@ export class AdminWrapper {
       card: "border-teal-200",
       accent: "#0f766e",
       bgColor: "#ccfbf1",
-      desktopShell: "bg-teal-50 border-1 border-teal-200 border-round-xl",
-      mobileShell: "bg-teal-50 border-1 border-teal-200 border-round-md",
+      desktopShell: "bg-teal-50 border-1 border-teal-200 rounded-xl",
+      mobileShell: "bg-teal-50 border-1 border-teal-200 rounded-md",
       glyph: "text-teal-700",
       heading: "text-teal-900",
     },
@@ -104,8 +104,8 @@ export class AdminWrapper {
       card: "border-yellow-200",
       accent: "#a16207",
       bgColor: "#fef9c3",
-      desktopShell: "bg-yellow-50 border-1 border-yellow-200 border-round-lg",
-      mobileShell: "bg-yellow-50 border-1 border-yellow-200 border-round-md",
+      desktopShell: "bg-yellow-50 border-1 border-yellow-200 rounded-lg",
+      mobileShell: "bg-yellow-50 border-1 border-yellow-200 rounded-md",
       glyph: "text-yellow-700",
       heading: "text-yellow-900",
     },
@@ -113,8 +113,8 @@ export class AdminWrapper {
       card: "border-green-200",
       accent: "#15803d",
       bgColor: "#dcfce7",
-      desktopShell: "bg-green-50 border-1 border-green-200 border-round-xl",
-      mobileShell: "bg-green-50 border-1 border-green-200 border-round-md",
+      desktopShell: "bg-green-50 border-1 border-green-200 rounded-xl",
+      mobileShell: "bg-green-50 border-1 border-green-200 rounded-md",
       glyph: "text-green-700",
       heading: "text-green-900",
     },
@@ -160,8 +160,8 @@ export class AdminWrapper {
 
   menuCardClass(group: string | null | undefined): string {
     return [
-      "h-full border-1 shadow-1 overflow-hidden transition-all transition-duration-300 relative",
-      "hover:shadow-3 hover:border-primary cursor-pointer",
+      "h-full border-1 shadow-sm overflow-hidden transition-all transition-duration-300 relative",
+      "hover:shadow hover:border-primary cursor-pointer",
       this.menuTone(group).card,
     ].join(" ");
   }
@@ -170,7 +170,7 @@ export class AdminWrapper {
     const tone = this.menuTone(group);
     const sizeClasses = isMobile
       ? "w-2rem h-2rem mr-2"
-      : "w-2.5rem h-2.5rem shadow-1 mb-2";
+      : "w-2.5rem h-2.5rem shadow-sm mb-2";
 
     return [
       "flex align-items-center justify-content-center flex-shrink-0",

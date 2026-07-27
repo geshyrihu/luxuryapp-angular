@@ -1,4 +1,4 @@
-import { Directive, input, model, output } from "@angular/core";
+import { Directive, input, model, output, computed } from "@angular/core";
 
 /**
  * Base compartida de OtpInput (API + notificación de completado).
@@ -20,11 +20,10 @@ export abstract class OtpInputBase {
   complete = output<string>();
 
   /** Índices [0..length-1] para renderizar cajas en la versión mobile. */
-  get slots(): number[] {
-    return Array.from({ length: this.length() }, (_, i) => i);
-  }
+  slots = computed(() => Array.from({ length: this.length() }, (_, i) => i));
 
   onValueChange(val: string): void {
+    this.value.set(val);
     if (val && val.length === this.length()) {
       this.complete.emit(val);
     }

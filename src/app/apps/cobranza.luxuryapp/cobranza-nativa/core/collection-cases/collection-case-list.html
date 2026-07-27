@@ -1,27 +1,23 @@
 <div class="card p-0 md:p-4">
-  <!-- Accion: evaluar y escalar -->
-  <div
-    class="p-3 mb-3 surface-50 border-round border-1 surface-border flex align-items-center justify-content-between flex-wrap gap-2"
-  >
-    <div>
-      <div class="font-semibold text-sm">
-        Evaluacion Automatica de Morosidad
+  <lx-card class="card card--elevated mb-3">
+    <div class="flex align-items-center justify-content-between flex-wrap gap-2">
+      <div>
+        <div class="font-semibold text-sm">Evaluación Automática de Morosidad</div>
+        <div class="text-xs text-500 mt-1">
+          Analiza deudas por antigüedad (30/60/90+ días) y escala a gestoría las
+          propiedades que superan el umbral.
+        </div>
       </div>
-      <div class="text-xs text-500 mt-1">
-        Analiza deudas por antiguedad (30/60/90+ dias) y escala a gestoria las
-        propiedades que superan el umbral.
-      </div>
+      <il-button
+        label="Evaluar y Escalar Ahora"
+        iconClass="mdi:alert"
+        severity="warn"
+        [disabled]="escalating()"
+        (clicked)="onEvaluateAndEscalate()"
+      />
     </div>
-    <il-button
-      label="Evaluar y Escalar Ahora"
-      iconClass="mdi:alert"
-      severity="warn"
-      [disabled]="escalating()"
-      (clicked)="onEvaluateAndEscalate()"
-    />
-  </div>
+  </lx-card>
 
-  <!-- Tabla desktop -->
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -44,12 +40,12 @@
       <tr>
         <th>Propiedad</th>
         <th class="w-10rem text-right">Deuda Total</th>
-        <th class="w-9rem text-center">Antiguedad</th>
+        <th class="w-9rem text-center">Antigüedad</th>
         <th class="w-8rem">Asignado a</th>
         <th class="w-8rem text-center">Estado</th>
-        <th class="w-8rem text-center">Ultimo Contacto</th>
+        <th class="w-8rem text-center">Último Contacto</th>
         <th class="w-6rem text-center">Actividades</th>
-        <th class="w-6rem text-center">Accion</th>
+        <th class="w-6rem text-center">Acción</th>
       </tr>
     </ng-template>
 
@@ -57,21 +53,23 @@
       <tr>
         <td class="font-medium text-sm">{{ item.propertyName }}</td>
         <td class="text-right font-bold text-red-700">
-          {{ item.totalOwed | currency:'MXN':'symbol-narrow':'1.2-2' }}
+          {{ item.totalOwed | currency:"MXN":"symbol-narrow":"1.2-2" }}
         </td>
         <td class="text-center">
-          <span class="badge text-xs" [class]="agingClass(item.agingBucket)">
-            {{ item.agingBucket }}
-          </span>
+          <lx-tag
+            [value]="agingMeta(item.agingBucket).label"
+            [severity]="agingMeta(item.agingBucket).severity"
+          />
         </td>
-        <td class="text-sm">{{ item.assignedTo || 'Sin asignar' }}</td>
+        <td class="text-sm">{{ item.assignedTo || "Sin asignar" }}</td>
         <td class="text-center">
-          <span class="badge text-xs" [class]="statusClass(item.status)"
-            >{{ item.status }}</span
-          >
+          <lx-tag
+            [value]="statusMeta(item.status).label"
+            [severity]="statusMeta(item.status).severity"
+          />
         </td>
         <td class="text-center text-sm">
-          {{ item.lastContactAt | date:'dd/MM/yyyy' }}
+          {{ item.lastContactAt | date:"dd/MM/yyyy" }}
         </td>
         <td class="text-center text-sm font-semibold">
           {{ item.activities.length }}
@@ -87,7 +85,6 @@
     </ng-template>
   </p-table>
 
-  <!-- Vista mobile -->
   <app-data-view-mobile
     [data]="dataSignal()"
     [globalFilterFields]="['propertyName', 'assignedTo', 'status']"
@@ -97,7 +94,7 @@
       <ili-list-item>
         <div
           start
-          class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          class="w-2rem h-2rem rounded-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
           <app-icon
             icon="mdi:alert-circle-outline"
@@ -107,11 +104,11 @@
         <div class="flex-1 min-w-0">
           <h3>{{ item.propertyName }}</h3>
           <p>
-            {{ item.totalOwed | currency:'MXN':'symbol-narrow':'1.2-2' }}
-            &middot; {{ item.agingBucket }}
+            {{ item.totalOwed | currency:"MXN":"symbol-narrow":"1.2-2" }} ·
+            {{ item.agingBucket }}
           </p>
           <p>
-            {{ item.status }} &middot; {{ item.activities.length }} actividades
+            {{ item.status }} · {{ item.activities.length }} actividades
           </p>
         </div>
         <ili-action-menu slot="end">

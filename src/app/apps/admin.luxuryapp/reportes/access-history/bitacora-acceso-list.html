@@ -31,7 +31,7 @@
         <td>
           <iw-button
             [pRowToggler]="item"
-            [customClass]="'p-button-text p-button-border-round p-button-plain'"
+            [customClass]="'p-button-text p-button-rounded p-button-plain'"
             [iconClass]="'mdi:' + (expanded ? 'chevron-down' : 'chevron-right')"
           />
         </td>
@@ -115,7 +115,7 @@
         <div class="flex flex-column p-2 surface-card">
           @for(registro of item.historial; track registro) {
           <div
-            class="flex justify-content-between align-items-center surface-card p-2 border-round shadow-1"
+            class="flex justify-content-between align-items-center surface-card p-2 rounded shadow-sm"
           >
             <span class="font-medium text-sm"
               >{{ registro.fechaRegistro }}</span

@@ -47,7 +47,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
         @for (diagram of paginatedDiagrams(); track diagram) {
           <div class="col-12 md:col-4 p-2">
             <div
-              class="card h-full shadow-2 hover:shadow-4 transition-duration-150"
+              class="card h-full shadow-sm hover:shadow transition-duration-150"
             >
               <div class="card-header flex-column gap-1">
                 <span class="card-title">{{ diagram.name }}</span>
@@ -57,7 +57,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                 >
               </div>
               <div
-                class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3 min-h-10rem"
+                class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 rounded mb-3 min-h-10rem"
               >
                 <app-icon
                   [icon]="'mdi:image-multiple'"

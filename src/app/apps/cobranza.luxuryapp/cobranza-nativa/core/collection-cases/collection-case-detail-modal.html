@@ -1,7 +1,7 @@
 @if (item(); as c) {
 <div class="p-3">
   <!-- Cabecera -->
-  <div class="flex align-items-center gap-3 mb-4 p-3 border-round surface-100">
+  <div class="flex align-items-center gap-3 mb-4 p-3 rounded surface-100">
     <app-icon [icon]="'mdi:alert'" class="text-3xl text-red-600" />
     <div>
       <div class="font-bold text-lg">{{ c.propertyName }}</div>
@@ -25,7 +25,7 @@
     } @else {
     <div class="mt-2 flex flex-column gap-2">
       @for (act of c.activities; track act.id) {
-      <div class="p-2 surface-50 border-round border-1 surface-border text-sm">
+      <div class="p-2 surface-50 rounded border-1 surface-border text-sm">
         <div class="flex justify-content-between mb-1">
           <span class="font-medium"
             >{{ act.activityDate | date:'dd/MM/yyyy HH:mm' }}</span

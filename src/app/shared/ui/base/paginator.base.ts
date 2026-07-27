@@ -1,4 +1,4 @@
-import { Directive, input, model, output } from "@angular/core";
+import { Directive, input, model, output, computed } from "@angular/core";
 
 export interface PageEvent {
   page: number;
@@ -16,40 +16,40 @@ export abstract class PaginatorBase {
   showJumpToPage = input<boolean>(false);
   showPageLinks = input<boolean>(true);
 
-  pageChange = output<PageEvent>();
+  paginationChange = output<PageEvent>();
 
-  totalPages(): number {
+  totalPages = computed(() => {
     const t = this.totalRecords();
     const r = this.rows();
     return t > 0 && r > 0 ? Math.ceil(t / r) : 0;
-  }
+  });
 
-  isFirstPage(): boolean {
+  isFirstPage = computed(() => {
     return this.page() <= 0;
-  }
+  });
 
-  isLastPage(): boolean {
+  isLastPage = computed(() => {
     return this.page() >= this.totalPages() - 1;
-  }
+  });
 
-  firstItem(): number {
+  firstItem = computed(() => {
     return Math.min(this.totalRecords(), this.page() * this.rows() + 1);
-  }
+  });
 
-  lastItem(): number {
+  lastItem = computed(() => {
     return Math.min(this.totalRecords(), (this.page() + 1) * this.rows());
-  }
+  });
 
   onPageChange(newPage: number): void {
     const total = this.totalPages();
     if (newPage < 0 || newPage >= total) return;
     this.page.set(newPage);
-    this.pageChange.emit({ page: newPage, rows: this.rows(), totalRecords: this.totalRecords() });
+    this.paginationChange.emit({ page: newPage, rows: this.rows(), totalRecords: this.totalRecords() });
   }
 
   onRowsChange(newRows: number): void {
     this.rows.set(newRows);
     this.page.set(0);
-    this.pageChange.emit({ page: 0, rows: newRows, totalRecords: this.totalRecords() });
+    this.paginationChange.emit({ page: 0, rows: newRows, totalRecords: this.totalRecords() });
   }
 }

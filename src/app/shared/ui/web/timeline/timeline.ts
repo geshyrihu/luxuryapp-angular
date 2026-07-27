@@ -103,7 +103,7 @@ export { type TimelineEvent } from "@ui/base/timeline.base";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Timeline extends TimelineBase {}

@@ -24,7 +24,7 @@ import { InputOtpModule } from "primeng/inputotp";
       <!-- p-inputotp: readonly cubre el caso disabled en PrimeNG 21 -->
       <div [class.app-otp-disabled]="disabled()">
         <p-inputotp
-          [(ngModel)]="value"
+          [ngModel]="value()"
           [length]="length()"
           [integerOnly]="integerOnly()"
           [readonly]="disabled()"
@@ -87,7 +87,7 @@ import { InputOtpModule } from "primeng/inputotp";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppOtpInput extends OtpInputBase {}

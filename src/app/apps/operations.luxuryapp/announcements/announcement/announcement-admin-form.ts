@@ -131,7 +131,7 @@ export class AnnouncementAdminForm implements OnInit {
           Endpoints.SelectItems.rolesForAnnouncements,
         ),
         this.apiResponseS.onGetSelectItem<Customer[]>(
-          Endpoints.SelectItems.customersActiveNameShort,
+          Endpoints.SelectItems.customersActiveShortName,
         ),
       ]);
 

@@ -31,7 +31,7 @@ export type WizardStep = StepperStep;
         @for (step of steps(); track step.value) {
           <p-step-panel [value]="step.value">
             <ng-template #content let-activateCallback="activateCallback">
-              <div class="wizard-body p-3 surface-ground border-round">
+              <div class="wizard-body p-3 surface-ground rounded">
                 <ng-content [select]="'[step=' + step.value + ']'" />
               </div>
               <div class="flex justify-content-between mt-3">
@@ -46,7 +46,7 @@ export type WizardStep = StepperStep;
                 } @else {
                   <div></div>
                 }
-                @if (step.value < lastStep) {
+                @if (step.value < lastStep()) {
                   <p-button
                     label="Siguiente"
                     icon="mdi:arrow-right"
@@ -79,7 +79,7 @@ export type WizardStep = StepperStep;
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Wizard extends StepperBase {}

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 
@@ -23,6 +23,7 @@ import { BreadcrumbModule } from "primeng/breadcrumb";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Breadcrumbs extends BreadcrumbsBase {}

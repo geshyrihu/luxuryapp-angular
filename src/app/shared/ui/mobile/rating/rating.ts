@@ -16,7 +16,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
         class="ili-rating-row"
         [class.ili-rating-disabled]="disabled() || readonly()"
       >
-        @for (s of starRange; track s) {
+        @for (s of starRange(); track s) {
           <button
             type="button"
             class="ili-rating-star"

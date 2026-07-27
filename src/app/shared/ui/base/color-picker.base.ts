@@ -1,4 +1,4 @@
-import { Directive, input, model, output } from "@angular/core";
+import { Directive, input, model, output, computed } from "@angular/core";
 
 /**
  * Base compartida de ColorPicker.
@@ -20,11 +20,11 @@ export abstract class ColorPickerBase {
 
   changed = output<string>();
 
-  hexDisplay(): string {
+  hexDisplay = computed(() => {
     const v = this.value();
     if (!v) return "";
     return v.startsWith("#") ? v.toUpperCase() : `#${v}`.toUpperCase();
-  }
+  });
 
   clear(): void {
     this.value.set("");

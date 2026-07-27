@@ -57,7 +57,7 @@
 
   <!-- BODY: Filas de la tabla con acciones -->
   <ng-template #body let-item>
-    <div class="border-1 surface-border mb-3 border-round overflow-hidden">
+    <div class="border-1 surface-border mb-3 rounded overflow-hidden">
       <div
         class="p-3 border-left-4 h-full"
         [class]="item.autorizado ? 'border-green-500' : 'border-red-500'"
@@ -81,7 +81,7 @@
           <!-- Calificaciones -->
           <div class="col-12 md:col-4">
             @if (item.calificacionProveedor.length > 0) {
-            <div class="flex flex-column gap-2 surface-50 p-2 border-round">
+            <div class="flex flex-column gap-2 surface-50 p-2 rounded">
               <div class="flex align-items-center justify-content-between">
                 <span class="text-xs text-600">Servicio</span>
                 <lx-rating
@@ -124,7 +124,7 @@
                 icon="mdi:store-outline"
                 shape="square"
                 size="xlarge"
-                styleClass="border-round mr-3 shadow-1"
+                styleClass="rounded mr-3 shadow-sm"
               />
               <div class="min-w-0">
                 <div class="font-bold text-lg text-900 truncate">
@@ -244,7 +244,7 @@
     <ili-list-item>
       <div
         start
-        class="w-3rem h-3rem border-round-lg bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-3rem h-3rem rounded-lg bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon icon="mdi:store-outline" class="text-green-600 text-xl" />
       </div>

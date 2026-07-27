@@ -13,7 +13,8 @@ import { OrderListModule } from "primeng/orderlist";
   imports: [CommonModule, OrderListModule],
   template: `
     <p-orderList
-      [(value)]="value"
+      [value]="value()"
+      (valueChange)="value.set($event)"
       [listStyle]="listStyle()"
       styleClass="w-full"
     >
@@ -35,7 +36,7 @@ import { OrderListModule } from "primeng/orderlist";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class OrderList extends OrderListBase {}

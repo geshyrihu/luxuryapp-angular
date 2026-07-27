@@ -13,7 +13,8 @@ import { CascadeSelectModule } from "primeng/cascadeselect";
   imports: [FormsModule, CascadeSelectModule],
   template: `
     <p-cascadeSelect
-      [(ngModel)]="value"
+      [ngModel]="value()"
+      (ngModelChange)="value.set($event)"
       [options]="options()"
       [optionLabel]="optionLabel()"
       [placeholder]="placeholder()"

@@ -17,7 +17,7 @@ import { RadioButtonModule } from "primeng/radiobutton";
     [inputId]="inputId()"
     [class]="styleClass()"
   ></p-radiobutton>`,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppRadioButton extends RadioButtonBase {}

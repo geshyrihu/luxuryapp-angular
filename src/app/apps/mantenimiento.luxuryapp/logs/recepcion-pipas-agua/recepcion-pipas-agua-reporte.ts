@@ -286,7 +286,7 @@ ${this.htmlPrintS.getStandardCss()}
   }
 
   exportExcel(): void {
-    import("xlsx").then((xlsx) => {
+    import("exceljs").then(async (ExcelJS) => {
       const rows = this.dataSignal().map((item) => {
         const m3 =
           (item.lecturaMedidorFinal ?? 0) - (item.lecturaMedidorInicial ?? 0);
@@ -306,16 +306,23 @@ ${this.htmlPrintS.getStandardCss()}
             (item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0),
           "Medidor inicial": item.lecturaMedidorInicial,
           "Medidor final": item.lecturaMedidorFinal,
-          "mí ingresados": m3,
-          "Costo mí": item.costoMetroCubico,
+          "m3 ingresados": m3,
+          "Costo m3": item.costoMetroCubico,
           "Importe (c/IVA)": (item.costoMetroCubico ?? 0) * m3,
           "Colaborador mtto": item.colaboradorMtto ?? "",
           "Guardia testigo": item.guardiaSeguridad ?? "",
         };
       });
-      const ws = xlsx.utils.json_to_sheet(rows);
-      const wb = { Sheets: { Reporte: ws }, SheetNames: ["Reporte"] };
-      const buffer: any = xlsx.write(wb, { bookType: "xlsx", type: "array" });
+
+      const workbook = new ExcelJS.Workbook();
+      const worksheet = workbook.addWorksheet("Reporte");
+      
+      if (rows.length > 0) {
+        worksheet.columns = Object.keys(rows[0]).map(key => ({ header: key, key }));
+        rows.forEach(item => worksheet.addRow(item));
+      }
+
+      const buffer = await workbook.xlsx.writeBuffer();
       FileSaver.saveAs(
         new Blob([buffer], {
           type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8",

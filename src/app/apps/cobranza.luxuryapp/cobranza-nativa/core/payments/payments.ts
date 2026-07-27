@@ -1,4 +1,4 @@
-﻿import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
+import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,6 +10,8 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { LxCard } from "@ui/adaptive/card/card";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import {
   FormControl,
   FormGroup,
@@ -20,7 +22,6 @@ import {
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -37,11 +38,11 @@ import {
   CreateCobranzaPaymentDTO,
 } from "../../contracts/external-compatibility/interfaces/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
-
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -63,8 +64,10 @@ interface IPaymentForm {
     FormsModule,
     ReactiveFormsModule,
     TableModule,
+    LxCard,
     CustomInputCheckSignal,
     CustomInputCurrencySignal,
+    CustomInputDecimal,
     CustomInputSelectSignal,
     CustomInputDateSignal,
     CustomInputTextSignal,
@@ -76,6 +79,7 @@ interface IPaymentForm {
   providers: [DatePipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./payments.html",
+  styleUrls: ["./payments.scss"],
 })
 export class Payments implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -85,6 +89,7 @@ export class Payments implements OnInit {
   private toastService = inject(CustomToastService);
   private customerIdS = inject(CustomerIdService);
   private dateS = inject(DateService);
+  private confirmS = inject(ConfirmService);
 
   EPaymentMethod = EPaymentMethod;
 
@@ -125,10 +130,7 @@ export class Payments implements OnInit {
   });
 
   paymentMethods = [
-    {
-      label: "Transferencia Electrónica",
-      value: EPaymentMethod.ElectronicTransfer,
-    },
+    { label: "Transferencia Electrónica", value: EPaymentMethod.ElectronicTransfer },
     { label: "Depósito / Efectivo", value: EPaymentMethod.Cash },
     { label: "Tarjeta de Crédito", value: EPaymentMethod.CreditCard },
     { label: "Tarjeta de Débito", value: EPaymentMethod.DebitCard },
@@ -143,11 +145,16 @@ export class Payments implements OnInit {
   }
 
   getChargeTypeMeta(charge: PendingChargeDTO): string {
-    const parts = [
-      charge.chargeTypeAccountNumber,
-      charge.chargeTypeCode,
-    ].filter((value): value is string => !!value);
+    const parts = [charge.chargeTypeAccountNumber, charge.chargeTypeCode].filter(
+      (value): value is string => !!value,
+    );
     return parts.join(" · ");
+  }
+
+  getSelectedAmountClass(): string {
+    return this.totalSelectedToApply() <= this.form.controls.amount.value
+      ? "cb-payments__amount cb-payments__amount--ok"
+      : "cb-payments__amount cb-payments__amount--error";
   }
 
   constructor() {
@@ -240,16 +247,14 @@ export class Payments implements OnInit {
     this.pendingCharges.update((charges) => [...charges]);
   }
 
-  onApplyAmountChange(charge: PendingChargeDTO, event: Event) {
-    const input = event.target as HTMLInputElement;
-    let val = parseFloat(input.value);
+  onApplyAmountModelChange(charge: PendingChargeDTO, value: number | null) {
+    let normalized = value ?? 0;
 
-    if (isNaN(val) || val < 0) val = 0;
-    if (val > charge.balance) val = charge.balance;
+    if (normalized < 0) normalized = 0;
+    if (normalized > charge.balance) normalized = charge.balance;
 
-    charge._applyAmount = val;
-    input.value = val.toString();
-    charge._selected = val > 0;
+    charge._applyAmount = normalized;
+    charge._selected = normalized > 0;
 
     this.pendingCharges.update((charges) => [...charges]);
   }
@@ -275,11 +280,11 @@ export class Payments implements OnInit {
       (c) => c._selected && (c._applyAmount || 0) > 0,
     );
     if (selectedCharges.length === 0) {
-      if (
-        !confirm(
-          "No has seleccionado ningún cargo para aplicar el pago. El pago quedará registrado como saldo a favor sin aplicar. ¿Continuar?",
-        )
-      ) {
+      const confirmed = await this.confirmS.confirm(
+        "No has seleccionado ningun cargo para aplicar el pago. El pago quedara registrado como saldo a favor sin aplicar. ¿Continuar?",
+        "Registrar saldo a favor",
+      );
+      if (!confirmed) {
         return;
       }
     }
@@ -291,8 +296,7 @@ export class Payments implements OnInit {
         customerId: this.customerId(),
         propertyId: this.form.controls.propertyId.value,
         amount: this.form.controls.amount.value,
-        paymentDate:
-          this.dateS.getDateFormat(this.form.controls.paymentDate.value) ?? "",
+        paymentDate: this.dateS.getDateFormat(this.form.controls.paymentDate.value) ?? "",
         method: this.form.controls.method.value,
         reference: this.form.controls.reference.value,
         status: EPaymentStatus.Registrado,
@@ -346,5 +350,3 @@ export class Payments implements OnInit {
     }
   }
 }
-
-

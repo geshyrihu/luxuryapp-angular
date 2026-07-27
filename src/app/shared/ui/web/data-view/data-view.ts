@@ -129,7 +129,7 @@ export type DataViewLayout = "list" | "grid";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataView {
   data = input<any[]>([]);

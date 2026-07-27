@@ -1,6 +1,7 @@
-﻿import { DatePipe, DecimalPipe } from "@angular/common";
+import { DatePipe, DecimalPipe } from "@angular/common";
 import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -14,9 +15,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -24,13 +25,13 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CobranzaPaymentResponseDTO } from "../../contracts/external-compatibility/interfaces/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
 import CreditNoteModalComponent from "./credit-note-modal";
+import PaymentCancelModal from "./payment-cancel-modal";
 import { PaymentDetailModal } from "./payment-detail-modal";
 import { PaymentForm } from "./payment-form";
 
@@ -40,6 +41,7 @@ import { PaymentForm } from "./payment-form";
     WebButtonIcon,
     WebButtonIconEdit,
     LxTooltipDirective,
+    LxTag,
     MobileActionMenu,
     MobileButtonLabelEdit,
     TableModule,
@@ -58,7 +60,6 @@ import { PaymentForm } from "./payment-form";
 })
 export default class PaymentList {
   private apiResponseS = inject(ApiResponseService);
-  private toastService = inject(CustomToastService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
   private destroyRef = inject(DestroyRef);
@@ -177,32 +178,62 @@ export default class PaymentList {
   }
 
   async onCancelPayment(item: CobranzaPaymentResponseDTO) {
-    const confirmed = window.confirm(
-      `¿Deseas cancelar el pago de ${item.propertyFullName} por $${item.amount.toFixed(2)}?\n\nEsta acción revertirá los cargos aplicados a este pago.`,
+    const reason = await this.dialogHandlerS.openDialog<string | null>(
+      PaymentCancelModal,
+      {
+        summary: `Pago de ${item.propertyFullName} por $${item.amount.toFixed(2)}. Esta acción revertirá los cargos aplicados.`,
+      },
+      "Cancelar pago",
+      this.dialogHandlerS.sizeSm,
     );
-    if (!confirmed) return;
-
-    const reason = window.prompt(
-      "Ingresa el motivo formal de cancelación del pago (mínimo 10 caracteres):",
-      "Pago cancelado por aclaración operativa",
-    );
-
     if (!reason) return;
-    if (reason.trim().length < 10) {
-      this.toastService.showError(
-        "Error",
-        "El motivo de cancelación debe tener al menos 10 caracteres.",
-      );
-      return;
-    }
 
     const success = await this.apiResponseS.onPost(
       Endpoints.CobranzaCore.Payments.cancel(item.id),
-      { reason: reason.trim() },
+      { reason },
     );
 
     if (success !== false) this.onLoadData();
   }
+
+  paymentMethodLabel(method: EPaymentMethod): string {
+    switch (method) {
+      case EPaymentMethod.Cash:
+        return "Efectivo";
+      case EPaymentMethod.ElectronicTransfer:
+        return "Transferencia";
+      case EPaymentMethod.NominativeCheck:
+        return "Cheque";
+      case EPaymentMethod.CreditCard:
+        return "Tarjeta Cto.";
+      case EPaymentMethod.DebitCard:
+        return "Tarjeta Dto.";
+      case EPaymentMethod.ToBeDefined:
+        return "Por Definir";
+      default:
+        return String(method);
+    }
+  }
+
+  paymentStatusMeta(item: CobranzaPaymentResponseDTO) {
+    switch (item.status) {
+      case EPaymentStatus.Registrado:
+        return {
+          label: this.getPaymentFlowLabel(item),
+          severity: "warning" as const,
+        };
+      case EPaymentStatus.Verificado:
+        return { label: "Verificado", severity: "success" as const };
+      case EPaymentStatus.Rechazado:
+        return { label: "Rechazado", severity: "danger" as const };
+      case EPaymentStatus.Cancelado:
+        return { label: "Cancelado", severity: "contrast" as const };
+      case EPaymentStatus.Revertido:
+        return { label: "Revertido", severity: "secondary" as const };
+      case EPaymentStatus.NoIdentificado:
+        return { label: "No identificado", severity: "info" as const };
+      default:
+        return { label: String(item.status), severity: "contrast" as const };
+    }
+  }
 }
-
-

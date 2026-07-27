@@ -29,6 +29,7 @@ export class CatalogLayout {
     document.documentElement.classList.contains("theme-dark"),
   );
   mobilePreview = signal<boolean>(false);
+  sidebarOpen = signal<boolean>(false);
 
   toggleTheme(): void {
     const newTheme = !this.isDarkMode();

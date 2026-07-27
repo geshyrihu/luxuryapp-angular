@@ -1,15 +1,19 @@
-﻿import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
+import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+} from "src/app/core/services/dialog-handler.service";
 import { ChargeForm } from "../charges/charge-form";
 import {
   CobranzaPaymentAllocationDetailDTO,
@@ -24,6 +28,8 @@ import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
     TableModule,
     CurrencyPipe,
     DatePipe,
+    LxCard,
+    LxTag,
     MobileListItem,
     AppIcon,
     PrimeNgCustomTableEmptyMessage,
@@ -103,6 +109,23 @@ export class PaymentDetailModal implements OnInit {
     }
   }
 
+  getStatusSeverity(payment: CobranzaPaymentResponseDTO) {
+    switch (payment.status) {
+      case EPaymentStatus.Verificado:
+        return "success" as const;
+      case EPaymentStatus.Rechazado:
+        return "danger" as const;
+      case EPaymentStatus.Cancelado:
+        return "contrast" as const;
+      case EPaymentStatus.Revertido:
+        return "warning" as const;
+      case EPaymentStatus.NoIdentificado:
+        return "info" as const;
+      default:
+        return "secondary" as const;
+    }
+  }
+
   getChargeTypeMeta(item: CobranzaPaymentAllocationDetailDTO): string {
     const parts = [item.chargeTypeAccountNumber, item.chargeTypeCode].filter(
       (value): value is string => !!value,
@@ -122,5 +145,3 @@ export class PaymentDetailModal implements OnInit {
     );
   }
 }
-
-

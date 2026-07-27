@@ -1,17 +1,21 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   inject,
   OnInit,
   signal,
 } from "@angular/core";
+import { LxCard } from "@ui/adaptive/card/card";
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -20,18 +24,14 @@ import {
   CreateChargeTypeCatalogDTO,
   UpdateChargeTypeCatalogDTO,
 } from "../../interfaces/charge-type-catalog.dto";
-
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface IChargeTypeForm {
   name: FormControl<string>;
   code: FormControl<string>;
-  accountNumber: FormControl<string>;
   description: FormControl<string | null>;
-  isActive: FormControl<boolean>;
 }
 
 @Component({
@@ -40,8 +40,8 @@ interface IChargeTypeForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    CustomInputCheckSignal,
     WebButtonLabelSave,
+    LxCard,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-type-form.html",
@@ -65,14 +65,9 @@ export class ChargeTypeForm implements OnInit {
       nonNullable: true,
       validators: [Validators.required, Validators.maxLength(80)],
     }),
-    accountNumber: new FormControl("", {
-      nonNullable: true,
-      validators: [Validators.required, Validators.maxLength(50)],
-    }),
     description: new FormControl<string | null>(null, {
       validators: [Validators.maxLength(300)],
     }),
-    isActive: new FormControl(true, { nonNullable: true }),
   });
 
   ngOnInit() {
@@ -110,9 +105,7 @@ export class ChargeTypeForm implements OnInit {
           customerId: this.customerId,
           name: raw.name.trim(),
           code: raw.code.trim(),
-          accountNumber: raw.accountNumber.trim(),
           description: raw.description?.trim() || null,
-          isActive: raw.isActive,
         };
 
         return this.id
@@ -122,5 +115,3 @@ export class ChargeTypeForm implements OnInit {
     });
   }
 }
-
-

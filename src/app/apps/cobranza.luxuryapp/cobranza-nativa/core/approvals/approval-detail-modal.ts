@@ -1,4 +1,4 @@
-﻿import { DatePipe } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,13 +7,17 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { EFinancialApprovalOperationType } from "../../interfaces/enums";
 import { FinancialApprovalResponseDTO } from "../../interfaces/financial-approval.dto";
 
@@ -21,6 +25,7 @@ import { FinancialApprovalResponseDTO } from "../../interfaces/financial-approva
   selector: "app-approval-detail-modal",
   imports: [
     AppIcon,
+    LxCard,
     ReactiveFormsModule,
     WebButtonLabel,
     CustomInputTextAreaSignal,
@@ -106,15 +111,13 @@ export default class ApprovalDetailModal implements OnInit {
 
   operationLabel(op: EFinancialApprovalOperationType): string {
     const labels: Record<EFinancialApprovalOperationType, string> = {
-      [EFinancialApprovalOperationType.Condonacion]: "Condonacion",
-      [EFinancialApprovalOperationType.DevolucionPago]: "Devolucion Pago",
-      [EFinancialApprovalOperationType.ReaperturaPeriodo]: "Reapertura Periodo",
+      [EFinancialApprovalOperationType.Condonacion]: "Condonación",
+      [EFinancialApprovalOperationType.DevolucionPago]: "Devolución Pago",
+      [EFinancialApprovalOperationType.ReaperturaPeriodo]: "Reapertura Período",
       [EFinancialApprovalOperationType.AnulacionCargoPagado]:
-        "Anulacion Cargo Pagado",
+        "Anulación Cargo Pagado",
       [EFinancialApprovalOperationType.AjusteAlAlza]: "Ajuste al Alza",
     };
     return labels[op] ?? String(op);
   }
 }
-
-

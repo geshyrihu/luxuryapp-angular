@@ -21,7 +21,7 @@
       @for (anuncio of announcements(); track anuncio.id) {
       <div class="col-12">
         <div
-          class="card cursor-pointer hover:shadow-4 transition-duration-200 flex flex-column h-full"
+          class="card cursor-pointer hover:shadow transition-duration-200 flex flex-column h-full"
           (click)="navigateToDetail(anuncio.id)"
         >
           <div class="card-header">
@@ -81,7 +81,7 @@
   } @if (!loading() && announcements().length > 0) {
   <div class="flex flex-column p-2">
     @for (anuncio of announcements(); track anuncio.id) {
-    <div class="card shadow-2 border-round-xl mb-3 overflow-hidden cursor-pointer flex flex-column surface-card" (click)="navigateToDetail(anuncio.id)">
+    <div class="card shadow-sm rounded-xl mb-3 overflow-hidden cursor-pointer flex flex-column surface-card" (click)="navigateToDetail(anuncio.id)">
       @if(anuncio.imagePath) {
         <img [src]="anuncio.imagePath" [alt]="anuncio.title" class="w-full h-10rem object-cover hidden-on-error" />
       }

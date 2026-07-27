@@ -12,9 +12,9 @@
   ============================================================================
 -->
 @if (loading()) { } @else if (errorMensaje) {
-<div class="p-3 bg-red-100 text-red-900 border-round mt-3 text-center">{{ errorMensaje }}</div>
+<div class="p-3 bg-red-100 text-red-900 rounded mt-3 text-center">{{ errorMensaje }}</div>
 } @else if (history().length === 0) {
-<div class="p-3 surface-card border-round shadow-1 mt-3 text-center text-color-secondary">
+<div class="p-3 surface-card rounded shadow-sm mt-3 text-center text-color-secondary">
   No hay historial de cambios para esta partida.
 </div>
 } @else {

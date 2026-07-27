@@ -1,6 +1,6 @@
 <div class="px-1 py-2">
   <ion-accordion-group
-    class="bg-white dark:surface-900 border-round-2xl shadow-1 overflow-hidden"
+    class="bg-white dark:surface-900 rounded-2xl shadow-sm overflow-hidden"
   >
     @for (item of menuItems(); track $index) {
 
@@ -40,7 +40,7 @@
         lines="full"
         detail="true"
         button
-        class="border-round-xl"
+        class="rounded-xl"
       >
         <app-icon [icon]="item.icon" slot="start" class="text-xl text-primary" />
         <ion-label class="font-medium">{{ item.label }}</ion-label>

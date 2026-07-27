@@ -227,7 +227,7 @@ export class ReportConsumos {
     const report = this.report();
     if (!report) return;
 
-    import("xlsx").then((xlsx) => {
+    import("exceljs").then(async (ExcelJS) => {
       const dataToExport = report.medidores.map((item) => ({
         Categoria: item.categoria,
         "Numero de medidor": item.numeroMedidor,
@@ -239,13 +239,15 @@ export class ReportConsumos {
         "Maximo detectado": item.consumoMaximoDetectado,
       }));
 
-      const worksheet = xlsx.utils.json_to_sheet(dataToExport);
-      const workbook = { Sheets: { data: worksheet }, SheetNames: ["data"] };
-      const excelBuffer: ArrayBuffer = xlsx.write(workbook, {
-        bookType: "xlsx",
-        type: "array",
-      });
+      const workbook = new ExcelJS.Workbook();
+      const worksheet = workbook.addWorksheet("data");
 
+      if (dataToExport.length > 0) {
+        worksheet.columns = Object.keys(dataToExport[0]).map(key => ({ header: key, key }));
+        dataToExport.forEach(item => worksheet.addRow(item));
+      }
+
+      const excelBuffer = await workbook.xlsx.writeBuffer();
       const data = new Blob([excelBuffer], {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8",
       });

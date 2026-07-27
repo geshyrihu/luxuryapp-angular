@@ -5,7 +5,7 @@
     <lx-skeleton height="10rem" />
   </div>
   } @else if (!rows().length) {
-  <div class="surface-card p-6 border-round shadow-1 text-center">
+  <div class="surface-card p-6 rounded shadow-sm text-center">
     <app-icon [icon]="'mdi:magnify'" class="text-4xl text-500 mb-3" />
     <p class="text-color-secondary m-0">
       No se encontraron registros para el periodo seleccionado.
@@ -113,11 +113,11 @@
   >
     <ng-template #listItemTemplate let-item>
       @if (item.tipo === 'header') {
-      <div class="rf-mobile-section p-2 text-xs mb-2 border-round-sm">
+      <div class="rf-mobile-section p-2 text-xs mb-2 rounded-sm">
         {{ item.descripcion }}
       </div>
       } @else if (item.tipo === 'item') {
-      <div class="surface-card p-3 mb-2 border-round shadow-1">
+      <div class="surface-card p-3 mb-2 rounded shadow-sm">
         <div class="flex justify-content-between align-items-start mb-2 gap-2">
           <span class="text-sm font-bold w-9">{{ item.descripcion }}</span>
           <span class="text-xs font-mono text-500 shrink-0"
@@ -163,7 +163,7 @@
       </div>
       } @else {
       <div
-        class="p-3 mb-3 border-round shadow-2"
+        class="p-3 mb-3 rounded shadow-sm"
         [style.background]="item.tipo === 'diferencia' ? 'var(--rf-result)' : 'var(--rf-total)'"
         [style.color]="'var(--rf-total-ink)'"
       >

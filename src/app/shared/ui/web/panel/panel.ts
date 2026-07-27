@@ -15,7 +15,7 @@ import { PanelModule } from "primeng/panel";
       <ng-content />
     </p-panel>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppPanel extends PanelBase {}

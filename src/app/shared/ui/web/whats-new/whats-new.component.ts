@@ -37,7 +37,7 @@ import { FeatureAnnouncementService } from "src/app/core/services/feature-announ
           <li>Adjuntos PDF y trazabilidad más clara para revisiones.</li>
         </ul>
 
-        <div class="surface-ground p-3 border-round mt-4 text-sm text-700">
+        <div class="surface-ground p-3 rounded mt-4 text-sm text-700">
           Recuerda guardar cambios antes de salir de un formulario o diálogo.
         </div>
       </div>

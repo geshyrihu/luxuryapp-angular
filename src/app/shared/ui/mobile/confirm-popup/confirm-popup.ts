@@ -11,15 +11,15 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       <div class="ili-cp-backdrop" (click)="close()">
         <div class="ili-cp-sheet" (click)="$event.stopPropagation()">
           <app-icon
-            [icon]="severityConfig.icon"
+            [icon]="severityConfig().icon"
             class="ili-cp-icon"
-            [style.color]="severityConfig.color"
+            [style.color]="severityConfig().color"
           />
           <p class="ili-cp-message">{{ message() }}</p>
           <div class="ili-cp-actions">
             <button
               class="ili-cp-btn ili-cp-btn-accept"
-              [style.--btn-color]="severityConfig.color"
+              [style.--btn-color]="severityConfig().color"
               (click)="accept.emit(); close()"
             >
               {{ acceptLabel() }}

@@ -1,4 +1,4 @@
-﻿import { NgClass } from "@angular/common";
+import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,6 +6,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -16,9 +17,9 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { layersOutline } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -34,13 +35,12 @@ import { ChargeTypeForm } from "./charge-type-form";
 @Component({
   selector: "app-charge-type-list",
   imports: [
-    NgClass,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
+    LxTag,
     DataViewMobile,
     MobileListItem,
-
     MobileActionMenu,
     AppIcon,
     WebButtonIconEdit,
@@ -76,9 +76,7 @@ export default class ChargeTypeList {
 
     const result = await this.apiResponseS.onGetItem<
       ChargeTypeCatalogResponseDTO[]
-    >(
-      Endpoints.CobranzaCore.ChargeTypes.customer(customerId),
-    );
+    >(Endpoints.CobranzaCore.ChargeTypes.customer(customerId));
 
     this.dataSignal.set(result ?? []);
   }
@@ -101,13 +99,15 @@ export default class ChargeTypeList {
     if (item.isSystem) return;
 
     this.apiResponseS
-      .onDelete(
-        Endpoints.CobranzaCore.ChargeTypes.delete(item.id),
-      )
+      .onDelete(Endpoints.CobranzaCore.ChargeTypes.delete(item.id))
       .then((res) => {
         if (res) this.onLoadData();
       });
   }
+
+  originMeta(isSystem: boolean) {
+    return isSystem
+      ? { label: "Sistema", severity: "info" as const }
+      : { label: "Custom", severity: "success" as const };
+  }
 }
-
-

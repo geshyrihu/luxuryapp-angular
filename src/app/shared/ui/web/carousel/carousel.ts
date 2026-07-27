@@ -40,7 +40,7 @@ import { CarouselModule } from "primeng/carousel";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Carousel extends CarouselBase {}

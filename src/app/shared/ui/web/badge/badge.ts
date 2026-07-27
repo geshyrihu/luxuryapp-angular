@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  computed
 } from "@angular/core";
 import { BadgeBase } from "@ui/base/badge.base";
 import { BadgeModule } from "primeng/badge";
@@ -38,7 +39,7 @@ import { BadgeSeverity, BadgeSize } from "primeng/types/badge";
   encapsulation: ViewEncapsulation.None,
 })
 export class AppBadge extends BadgeBase {
-  severity(): BadgeSeverity {
+  severity = computed<BadgeSeverity>(() => {
     const map: Record<string, BadgeSeverity> = {
       primary: "info",
       secondary: "secondary",
@@ -49,14 +50,14 @@ export class AppBadge extends BadgeBase {
       neutral: "secondary",
     };
     return map[this.color()] ?? "secondary";
-  }
+  });
 
-  badgeSize(): BadgeSize {
+  badgeSize = computed<BadgeSize>(() => {
     const map: Record<string, BadgeSize> = {
       small: "small",
       normal: null,
       large: "large",
     };
     return map[this.size()] ?? null;
-  }
+  });
 }

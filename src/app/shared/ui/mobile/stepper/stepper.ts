@@ -40,7 +40,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
             Anterior
           </ion-button>
         }
-        @if (activeStep() < lastStep) {
+        @if (activeStep() < lastStep()) {
           <ion-button (click)="next()">
             Siguiente
             <app-icon icon="mdi:arrow-right" slot="end" />

@@ -152,16 +152,16 @@ export class MedidoresList {
   }
 
   generate() {
-    import("xlsx").then((xlsx) => {
-      const worksheet = xlsx.utils.json_to_sheet(this.datosExcel);
-      const workbook = {
-        Sheets: { data: worksheet },
-        SheetNames: ["data"],
-      };
-      const excelBuffer: any = xlsx.write(workbook, {
-        bookType: "xlsx",
-        type: "array",
-      });
+    import("exceljs").then(async (ExcelJS) => {
+      const workbook = new ExcelJS.Workbook();
+      const worksheet = workbook.addWorksheet("data");
+      
+      if (this.datosExcel && this.datosExcel.length > 0) {
+        worksheet.columns = Object.keys(this.datosExcel[0]).map(key => ({ header: key, key }));
+        this.datosExcel.forEach(item => worksheet.addRow(item));
+      }
+
+      const excelBuffer = await workbook.xlsx.writeBuffer();
       this.saveAsExcelFile(excelBuffer, "lecturas");
     });
   }

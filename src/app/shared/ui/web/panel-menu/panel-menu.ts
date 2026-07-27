@@ -13,7 +13,7 @@ import { PanelMenuModule } from "primeng/panelmenu";
   template: `<p-panelmenu [model]="model()" [class]="styleClass()"
     ><ng-content
   /></p-panelmenu>`,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppPanelMenu extends PanelMenuBase {}

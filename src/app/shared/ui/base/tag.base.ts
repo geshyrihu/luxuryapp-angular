@@ -1,4 +1,4 @@
-import { Directive, input } from "@angular/core";
+import { Directive, input, computed } from "@angular/core";
 
 export type TagSeverity =
   | "success"
@@ -17,16 +17,16 @@ export abstract class TagBase {
   icon = input<string>("");
   tooltip = input<string>("");
 
-  displayValue(): string {
-    const value = this.value();
-    return value === null || value === undefined ? "" : String(value);
-  }
+  displayValue = computed<string>(() => {
+    const val = this.value();
+    return val === null || val === undefined ? "" : String(val);
+  });
 
-  normalizedSeverity(): TagSeverity {
+  normalizedSeverity = computed<TagSeverity>(() => {
     return this.severity() === "warning" ? "warn" : this.severity();
-  }
+  });
 
-  colors(): { bg: string; text: string; border: string } {
+  colors = computed<{ bg: string; text: string; border: string }>(() => {
     const map: Record<TagSeverity, { bg: string; text: string; border: string }> = {
       success: {
         bg: "var(--ds-success-light, #d8f8e1)",
@@ -66,5 +66,5 @@ export abstract class TagBase {
     };
 
     return map[this.normalizedSeverity()] ?? map.secondary;
-  }
+  });
 }

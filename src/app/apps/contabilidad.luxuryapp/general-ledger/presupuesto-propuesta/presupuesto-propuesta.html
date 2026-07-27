@@ -30,7 +30,7 @@
 </div> -->
 @if (errorMensaje) {
 <!-- Bloque para mostrar un mensaje de error si algo falla. La clósica alerta de peligro. -->
-<div class="p-3 bg-red-100 text-red-900 border-round mt-3 text-center">
+<div class="p-3 bg-red-100 text-red-900 rounded mt-3 text-center">
   {{ errorMensaje }}
 </div>
 } @if (currentProposal()) {
@@ -68,7 +68,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="showFeeComparisonModal()"
-            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon icon="mdi:tag-outline" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
@@ -81,7 +81,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="showFeeComparisonByIndivisoModal()"
-            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon icon="mdi:chart-bar" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
@@ -95,7 +95,7 @@
           <div
             (click)="currentProposal()?.status === 'Borrador' && showAddAccountModal()"
             [class.opacity-50]="currentProposal()?.status !== 'Borrador'"
-            class="bg-blue-50 hover:bg-blue-100 shadow-1 hover:shadow-3 border-2 border-blue-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-blue-50 hover:bg-blue-100 shadow-sm hover:shadow border-2 border-blue-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon icon="mdi:plus-circle-outline" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-blue-700"
@@ -109,7 +109,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="auditProposal()"
-            class="bg-indigo-50 hover:bg-indigo-100 shadow-1 hover:shadow-3 border-2 border-indigo-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-indigo-50 hover:bg-indigo-100 shadow-sm hover:shadow border-2 border-indigo-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon icon="mdi:robot-outline" class="mb-1" />
             <span
@@ -124,7 +124,7 @@
           <div
             (click)="!(auditLoading || forecastLoading) && forecastProposal()"
             [class.opacity-50]="auditLoading || forecastLoading"
-            class="bg-indigo-50 hover:bg-indigo-100 shadow-1 hover:shadow-3 border-2 border-indigo-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-indigo-50 hover:bg-indigo-100 shadow-sm hover:shadow border-2 border-indigo-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon icon="mdi:chart-line" class="mb-1" />
             <span
@@ -138,7 +138,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="openHighIncreaseModal()"
-            class="bg-orange-50 hover:bg-orange-100 shadow-1 hover:shadow-3 border-2 border-orange-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-orange-50 hover:bg-orange-100 shadow-sm hover:shadow border-2 border-orange-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon icon="mdi:alert-decagram-outline" class="mb-1" />
             <span
@@ -152,7 +152,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="exportarResumenExcel()"
-            class="bg-green-50 hover:bg-green-100 shadow-1 hover:shadow-3 border-2 border-green-300 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-green-50 hover:bg-green-100 shadow-sm hover:shadow border-2 border-green-300 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon icon="mdi:microsoft-excel" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-green-700"
@@ -166,7 +166,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="toggleBaseBudgetMonthlyColumn()"
-            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon [icon]="baseBudgetMonthlyButtonIcon" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
@@ -178,7 +178,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="toggleBaseBudgetAnnualColumn()"
-            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon [icon]="baseBudgetAnnualButtonIcon" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
@@ -190,7 +190,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="toggleFiscalYearAnnualColumn()"
-            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon [icon]="fiscalYearAnnualButtonIcon" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
@@ -202,7 +202,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="toggleshowProjectedExpenses()"
-            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon [icon]="projectedExpensesButtonIcon" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
@@ -215,7 +215,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="showProjectedExpensesModal()"
-            class="bg-orange-50 hover:bg-orange-100 shadow-1 hover:shadow-3 border-2 border-orange-300 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-orange-50 hover:bg-orange-100 shadow-sm hover:shadow border-2 border-orange-300 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon icon="mdi:cog-outline" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-orange-700"
@@ -228,7 +228,7 @@
         <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="showMaintenanceCalendarModal()"
-            class="bg-indigo-50 hover:bg-indigo-100 shadow-1 hover:shadow-3 border-2 border-indigo-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+            class="bg-indigo-50 hover:bg-indigo-100 shadow-sm hover:shadow border-2 border-indigo-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
             <app-icon icon="mdi:calendar-outline" class="mb-1" />
             <span
@@ -277,7 +277,7 @@
 
       <!-- Leyenda y Acotaciones -->
       <div
-        class="mt-3 surface-ground border-round-md p-3 border-1 surface-border"
+        class="mt-3 surface-ground rounded-md p-3 border-1 surface-border"
       >
         <div class="flex flex-wrap gap-4 align-items-center text-sm text-700">
           <div class="font-semibold text-800 flex align-items-center gap-1">
@@ -290,7 +290,7 @@
             lxTooltip="La cuenta presenta un déficit en el presupuesto actual"
           >
             <span
-              class="w-1rem h-1rem border-round bg-red-100 border-2 border-red-300"
+              class="w-1rem h-1rem rounded bg-red-100 border-2 border-red-300"
             ></span>
             <span>Déficit Presupuestal</span>
           </div>
@@ -300,7 +300,7 @@
             lxTooltip="La propuesta supera en más de 10% al presupuesto actual"
           >
             <span
-              class="w-1rem h-1rem border-round bg-yellow-100 border-2 border-yellow-300"
+              class="w-1rem h-1rem rounded bg-yellow-100 border-2 border-yellow-300"
             ></span>
             <span>Incremento > 10%</span>
           </div>
@@ -816,7 +816,7 @@
           <td class="text-right text-red-600 font-medium">
             {{item.difference | number:'1.0-0'}}
           </td>
-          <td class="text-right text-red-600 font-bold bg-red-50 border-round">
+          <td class="text-right text-red-600 font-bold bg-red-50 rounded">
             {{item.percentageIncrease | number:'1.0-0'}}%
           </td>
         </tr>

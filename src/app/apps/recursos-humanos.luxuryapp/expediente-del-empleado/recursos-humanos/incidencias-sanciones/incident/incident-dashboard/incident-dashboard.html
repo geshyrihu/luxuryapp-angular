@@ -159,7 +159,7 @@
     <div class="flex flex-wrap gap-2">
       @for (item of dashboard()!.bySeverity; track item.name) {
       <div
-        class="flex align-items-center px-3 py-2 surface-100 border-round-lg"
+        class="flex align-items-center px-3 py-2 surface-100 rounded-lg"
       >
         <span class="font-medium">{{ item.name }}</span>
         <span class="badge badge-info ml-2">{{ item.count }}</span>

@@ -5,9 +5,7 @@ import { committeeGuard } from "./core/auth/guards/committee.guard";
 import { direccionGuard } from "./core/auth/guards/direccion.guard";
 import { employeeGuard } from "./core/auth/guards/employee.guard";
 import { roleRedirectGuard } from "./core/auth/guards/role-redirect.guard";
-import { LayoutCommittee } from "./core/layout/committee-layout/layout-committee";
-import { LayoutDireccion } from "./core/layout/direccion-view/layout-direccion";
-import { LayoutEmployee } from "./core/layout/employee-view/layout-employee";
+// Layouts se cargan de forma diferida (lazy load)
 
 /**
  * Rutas Principales de la Aplicación: El Gran Distribuidor 🚦
@@ -88,7 +86,7 @@ export const appRoutes: Routes = [
   // --- Ruta para Comite (Nivel Superior) ---
   {
     path: "committee",
-    component: LayoutCommittee,
+    loadComponent: () => import("./core/layout/committee-layout/layout-committee").then(m => m.LayoutCommittee),
     canActivate: [authGuard, committeeGuard],
     loadChildren: () =>
       import("src/app/apps/committee.luxuryapp/committee.routing").then(
@@ -99,7 +97,7 @@ export const appRoutes: Routes = [
   // --- Ruta para Direccion (Nivel Superior) ---
   {
     path: "direccion",
-    component: LayoutDireccion,
+    loadComponent: () => import("./core/layout/direccion-view/layout-direccion").then(m => m.LayoutDireccion),
     canActivate: [authGuard, direccionGuard],
     loadChildren: () =>
       import("src/app/apps/direccion.luxuryapp/direccion.routing").then(
@@ -112,7 +110,7 @@ export const appRoutes: Routes = [
   // Captura la raíz y todas las demás rutas (dashboard, home, etc.) definidas en pages.routing.
   {
     path: "",
-    component: LayoutEmployee,
+    loadComponent: () => import("./core/layout/employee-view/layout-employee").then(m => m.LayoutEmployee),
     canActivate: [authGuard, employeeGuard],
     loadChildren: () =>
       import("src/app/routing/pages.routes").then((m) => m.pagesRoutes),

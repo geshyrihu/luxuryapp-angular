@@ -29,7 +29,7 @@ import { PaginatorModule } from "primeng/paginator";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppPaginator extends PaginatorBase {

@@ -12,7 +12,7 @@
   } @else if (manual()) {
   <div class="w-full xl:w-10 mx-auto flex flex-column gap-4">
     <header
-      class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden"
+      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden"
     >
       <div class="bg-yellow-500" ></div>
 
@@ -43,7 +43,7 @@
             class="flex flex-column sm:flex-row align-items-start sm:align-items-center gap-3"
           >
             <div
-              class="surface-100 border-1 surface-border border-round-xl px-3 py-2 inline-flex align-items-center gap-2 text-sm text-color"
+              class="surface-100 border-1 surface-border rounded-xl px-3 py-2 inline-flex align-items-center gap-2 text-sm text-color"
             >
               <app-icon [icon]="'mdi:book'" class="text-xs" />
               <span>Manual de Proceso · {{ manual()!.folio }}</span>
@@ -155,11 +155,11 @@
       @if (manual()!.objetivo) {
       <div class="col-12 lg:col-6">
         <article
-          class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full"
+          class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
         >
           <div class="flex align-items-center gap-3 mb-3">
             <span
-              class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded flex align-items-center justify-content-center text-white font-bold"
               
             >
               01
@@ -182,11 +182,11 @@
       } @if (manual()!.marcoLegal) {
       <div class="col-12 lg:col-6">
         <article
-          class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full"
+          class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
         >
           <div class="flex align-items-center gap-3 mb-3">
             <span
-              class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded flex align-items-center justify-content-center text-white font-bold"
               
             >
               02
@@ -210,14 +210,14 @@
     </div>
 
     <article
-      class="surface-card border-round-xl border-1 surface-border p-4 shadow-1"
+      class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm"
     >
       <div
         class="flex align-items-start justify-content-between gap-3 flex-wrap mb-4"
       >
         <div class="flex align-items-center gap-3">
           <span
-            class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
+            class="w-3rem h-3rem rounded flex align-items-center justify-content-center text-white font-bold"
             
           >
             03
@@ -299,7 +299,7 @@
           </p>
           } } @if (paso.diagramaXml) {
           <div
-            class="mt-3 border-round-xl overflow-hidden border-1 surface-border"
+            class="mt-3 rounded-xl overflow-hidden border-1 surface-border"
           >
             <app-diagram-preview [xml]="paso.diagramaXml" />
           </div>
@@ -308,13 +308,13 @@
             @for (img of paso.imagenes; track img.id) {
             <div class="col-12 sm:col-6 xl:col-4">
               <div
-                class="surface-card border-1 surface-border border-round-xl overflow-hidden p-2 flex justify-content-center"
+                class="surface-card border-1 surface-border rounded-xl overflow-hidden p-2 flex justify-content-center"
               >
                 <app-image
                   [src]="img.url"
                   alt="Imagen de apoyo del paso"
                   [preview]="true"
-                  imageClass="block max-w-full h-auto border-round-lg"
+                  imageClass="block max-w-full h-auto rounded-lg"
                 ></app-image>
               </div>
             </div>
@@ -325,7 +325,7 @@
             @for (enlace of paso.enlaces; track enlace.id) { @if
             (enlace.esVideo) { @if (safeUrl(enlace.urlEnlace)) {
             <div
-              class="border-round-xl overflow-hidden border-1 surface-border"
+              class="rounded-xl overflow-hidden border-1 surface-border"
               
             >
               <iframe
@@ -377,11 +377,11 @@
       @if (manual()!.adjuntos?.length) {
       <div class="col-12 xl:col-6">
         <article
-          class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full"
+          class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
         >
           <div class="flex align-items-center gap-3 mb-4">
             <span
-              class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded flex align-items-center justify-content-center text-white font-bold"
               
             >
               04
@@ -396,7 +396,7 @@
           <div class="flex flex-column gap-3">
             @for (adj of manual()!.adjuntos; track adj.id) {
             <div
-              class="surface-ground border-round-xl border-1 surface-border p-3 flex align-items-center justify-content-between gap-3 flex-wrap"
+              class="surface-ground rounded-xl border-1 surface-border p-3 flex align-items-center justify-content-between gap-3 flex-wrap"
             >
               <div class="flex align-items-center gap-3">
                 <app-icon
@@ -421,11 +421,11 @@
       } @if (manual()!.versiones?.length) {
       <div class="col-12 xl:col-6">
         <article
-          class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full"
+          class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
         >
           <div class="flex align-items-center gap-3 mb-4">
             <span
-              class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded flex align-items-center justify-content-center text-white font-bold"
               
             >
               05
@@ -440,11 +440,11 @@
           <div class="flex flex-column gap-3">
             @for (v of manual()!.versiones; track v.id) {
             <div
-              class="surface-ground border-round-xl border-1 surface-border p-3"
+              class="surface-ground rounded-xl border-1 surface-border p-3"
             >
               <div class="flex align-items-start gap-3">
                 <span
-                  class="bg-primary text-white border-round-xl px-3 py-2 text-xs font-bold flex-shrink-0"
+                  class="bg-primary text-white rounded-xl px-3 py-2 text-xs font-bold flex-shrink-0"
                 >
                   v{{ v.version }}
                 </span>

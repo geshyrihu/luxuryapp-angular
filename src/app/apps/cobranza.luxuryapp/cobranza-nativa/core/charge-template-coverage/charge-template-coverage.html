@@ -17,7 +17,6 @@
       />
     </ng-template>
 
-    <!-- Cabecera fija: columnas de propiedad + plantilla + meses dinámicos -->
     <ng-template #header>
       <tr>
         <th class="w-14rem" pFrozenColumn>Plantilla / Cuota</th>
@@ -29,19 +28,13 @@
       </tr>
     </ng-template>
 
-    <!-- Encabezado de grupo: la propiedad -->
     <ng-template #groupheader let-row>
       <tr pRowGroupHeader>
-        <td
-          [attr.colspan]="3 + periodColumns().length"
-          class="surface-100 py-2 px-3"
-        >
+        <td [attr.colspan]="3 + periodColumns().length" class="surface-100 py-2 px-3">
           <div class="flex align-items-center gap-2">
             <app-icon [icon]="'mdi:office-building'" class="text-primary" />
             <span class="font-bold text-primary">{{ row.propertyName }}</span>
-            <span class="text-500 text-sm"
-              >&middot; Cta: {{ row.accountNumber }}</span
-            >
+            <span class="text-500 text-sm">· Cta: {{ row.accountNumber }}</span>
             @if (row.indivisoPercentage) {
             <span class="text-xs text-purple-600 ml-2">
               Indiviso: {{ row.indivisoPercentage }}%
@@ -52,36 +45,23 @@
       </tr>
     </ng-template>
 
-    <!-- Fila: una por plantilla vigente -->
     <ng-template #body let-row let-rowIndex="rowIndex">
       <tr>
-        <!-- Plantilla -->
         <td pFrozenColumn>
           <div class="font-medium text-sm">{{ row.templateName }}</div>
-          <div class="text-xs text-500">{{ row.chargeType }}</div>
+          <div class="text-xs text-500">{{ row.chargeTypeName || "Tipo sin clasificar" }}</div>
         </td>
-
-        <!-- Método de cálculo -->
         <td class="text-center">
-          <span
-            class="text-xs px-2 py-1 border-round font-medium"
-            [ngClass]="methodSeverity(row.calculationMethod)"
-          >
-            {{ methodLabel(row.calculationMethod) }}
-          </span>
+          <lx-tag [value]="methodLabel(row.calculationMethod)" [severity]="methodSeverity(row.calculationMethod)" />
         </td>
-
-        <!-- Monto base -->
         <td class="text-right text-sm font-bold">
           {{ row.baseAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
         </td>
-
-        <!-- Celdas dinámicas por mes -->
         @for (col of periodColumns(); track col.key) {
         <td class="text-right text-sm">
-          @if (periodsMap()[rowIndex][col.key] !== undefined) { {{
-          periodsMap()[rowIndex][col.key] |
-          currency:'MXN':'symbol-narrow':'1.2-2' }} } @else {
+          @if (periodsMap()[rowIndex][col.key] !== undefined) {
+          {{ periodsMap()[rowIndex][col.key] | currency:'MXN':'symbol-narrow':'1.2-2' }}
+          } @else {
           <span class="text-200">—</span>
           }
         </td>
@@ -91,10 +71,7 @@
 
     <ng-template #emptymessage>
       <tr>
-        <td
-          [attr.colspan]="3 + periodColumns().length"
-          class="text-center p-4 text-500"
-        >
+        <td [attr.colspan]="3 + periodColumns().length" class="text-center p-4 text-500">
           No hay plantillas activas configuradas.
         </td>
       </tr>

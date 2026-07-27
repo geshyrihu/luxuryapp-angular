@@ -2,7 +2,7 @@
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
     <!-- Guóa de usuario para mejorar la consistencia de datos -->
     <div
-      class="border-round border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-1"
+      class="rounded border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-sm"
     >
       <app-icon [icon]="'mdi:information'" class="text-blue-600 text-xl mt-1" />
       <div class="flex-1">
@@ -133,7 +133,7 @@
       description="Esta tarea se ejecutaré despuós de la seleccionada."
     />
     } @if (isLegalWorkGroup()) {
-    <div class="border-round border-1 border-orange-200 bg-orange-50 p-3 mb-3">
+    <div class="rounded border-1 border-orange-200 bg-orange-50 p-3 mb-3">
       <div class="text-xs font-bold text-orange-700 uppercase mb-2">
         Campos legales
       </div>
@@ -174,7 +174,7 @@
           <div class="mb-2 flex justify-content-center">
             <img
               [src]="beforeWorkPreview()"
-              class="w-15rem h-10rem object-cover border-round shadow-1"
+              class="w-15rem h-10rem object-cover rounded shadow-sm"
               alt="Evidencia Antes"
             />
           </div>
@@ -199,7 +199,7 @@
           <div class="mb-2 flex justify-content-center">
             <img
               [src]="afterWorkPreview()"
-              class="w-15rem h-10rem object-cover border-round shadow-1"
+              class="w-15rem h-10rem object-cover rounded shadow-sm"
               alt="Evidencia Después"
             />
           </div>

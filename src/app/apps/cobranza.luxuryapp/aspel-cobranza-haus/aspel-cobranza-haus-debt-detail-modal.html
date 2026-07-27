@@ -24,7 +24,7 @@
   </div>
 
   @if (loading()) {
-  <div class="border-dashed border-1 surface-border border-round-xl p-4">
+  <div class="border-dashed border-1 surface-border rounded-xl p-4">
     <div class="font-medium mb-1 text-900">Cargando detalle...</div>
     <div class="text-600">
       Consultando los cargos pendientes de la propiedad seleccionada.
@@ -34,7 +34,7 @@
   <div class="grid">
     <div class="col-12 md:col-6 lg:col">
       <div
-        class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center"
+        class="border-1 surface-border rounded-xl p-3 bg-white h-full flex flex-column justify-content-center"
       >
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Conceptos</span
@@ -46,7 +46,7 @@
     @if (!isCommitteeMode) {
       <div class="col-12 md:col-6 lg:col">
         <div
-          class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center"
+          class="border-1 surface-border rounded-xl p-3 bg-white h-full flex flex-column justify-content-center"
         >
           <span class="block mb-1 text-xs uppercase font-semibold text-500"
             >Saldo inicial</span
@@ -59,7 +59,7 @@
       </div>
       <div class="col-12 md:col-6 lg:col">
         <div
-          class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center"
+          class="border-1 surface-border rounded-xl p-3 bg-white h-full flex flex-column justify-content-center"
         >
           <span class="block mb-1 text-xs uppercase font-semibold text-500"
             >Cargos</span
@@ -71,7 +71,7 @@
       </div>
       <div class="col-12 md:col-6 lg:col">
         <div
-          class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center"
+          class="border-1 surface-border rounded-xl p-3 bg-white h-full flex flex-column justify-content-center"
         >
           <span class="block mb-1 text-xs uppercase font-semibold text-500"
             >Abonos</span
@@ -85,7 +85,7 @@
 
     <div class="col-12 md:col-6 lg:col">
       <div
-        class="border-1 surface-border border-round-xl p-3 bg-blue-50 h-full flex flex-column justify-content-center"
+        class="border-1 surface-border rounded-xl p-3 bg-blue-50 h-full flex flex-column justify-content-center"
       >
         <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo pendiente</span
@@ -103,7 +103,7 @@
 
   <div class="mt-3 block" [ngClass]="{ 'md:hidden': !isCommitteeMode }">
     @for (item of detail()?.conceptos; track item.concepto) {
-      <div class="border-1 surface-border border-round-xl bg-white mb-3 overflow-hidden shadow-1">
+      <div class="border-1 surface-border rounded-xl bg-white mb-3 overflow-hidden shadow-sm">
         <div class="p-3 surface-50 border-bottom-1 surface-border flex flex-column gap-2">
           <div class="flex justify-content-between align-items-center">
             <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
@@ -156,7 +156,7 @@
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
     [tableStyle]="{ 'min-width': '64rem' }"
-    class="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white mt-3"
+    class="custom-table hidden md:block border-1 surface-border rounded shadow-sm bg-white mt-3"
     #detailTable
   >
     <ng-template #caption>
@@ -195,7 +195,7 @@
         </td>
         @if (!isCommitteeMode) {
           <td>
-            <code class="text-sm px-2 py-1 border-round surface-100 font-mono"
+            <code class="text-sm px-2 py-1 rounded surface-100 font-mono"
               >{{ item.numCta }}</code
             >
           </td>
@@ -222,7 +222,7 @@
     <ng-template #rowexpansion let-item>
       <tr>
         <td [attr.colspan]="isCommitteeMode ? 2 : 7">
-          <div class="p-3 surface-50 border-round">
+          <div class="p-3 surface-50 rounded">
             @if (item.vencidos?.length) {
               <p-table [value]="item.vencidos" [tableStyle]="{ 'min-width': isCommitteeMode ? '100%' : '40rem' }">
                 <ng-template #header>

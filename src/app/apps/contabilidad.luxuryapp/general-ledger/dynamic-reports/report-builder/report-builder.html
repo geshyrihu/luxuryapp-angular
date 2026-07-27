@@ -1,10 +1,10 @@
 <div class="h-full flex flex-column overflow-hidden">
   <!-- Header Premium -->
   <div
-    class="surface-0 p-3 shadow-2 flex align-items-center justify-content-between border-bottom-1 border-primary-100 z-5"
+    class="surface-0 p-3 shadow-sm flex align-items-center justify-content-between border-bottom-1 border-primary-100 z-5"
   >
     <div class="flex align-items-center gap-3">
-      <div class="bg-primary-500 text-white border-round p-2 shadow-2">
+      <div class="bg-primary-500 text-white rounded p-2 shadow-sm">
         <app-icon [icon]="'mdi:chart-line'" class="text-2xl" />
       </div>
       <div>
@@ -27,7 +27,7 @@
     <div class="flex gap-2 align-items-center">
       <!-- Filtro de periodo rápido para el preview -->
       <div
-        class="flex align-items-center bg-primary-50 border-round-xl px-3 py-1 mr-3 border-1 border-primary-100"
+        class="flex align-items-center bg-primary-50 rounded-xl px-3 py-1 mr-3 border-1 border-primary-100"
       >
         <app-icon [icon]="'mdi:calendar'" class="text-primary mr-2" />
         <span class="text-xs font-bold text-primary-800 mr-2"
@@ -71,7 +71,7 @@
         iconClass="mdi:content-save"
         [loading]="guardando()"
         (clicked)="guardar()"
-        class="shadow-4"
+        class="shadow"
       />
     </div>
   </div>
@@ -80,7 +80,7 @@
   <div cdkDropListGroup class="flex-1 flex overflow-hidden bg-surface-50">
     <!-- PANEL IZQUIERDO: Catálogo de Cuentas -->
     <div
-      class="w-20rem surface-0 border-right-1 border-primary-100 flex flex-column shadow-1 z-2"
+      class="w-20rem surface-0 border-right-1 border-primary-100 flex flex-column shadow-sm z-2"
     >
       <div class="p-3 border-bottom-1 border-surface-100 bg-surface-50">
         <h4 class="m-0 text-primary-900 flex align-items-center gap-2">
@@ -128,7 +128,7 @@
         </div>
         <div class="flex align-items-center gap-3">
           <div
-            class="hidden md:flex align-items-center gap-2 bg-surface-50 border-1 border-surface-200 border-round-lg px-3 py-2"
+            class="hidden md:flex align-items-center gap-2 bg-surface-50 border-1 border-surface-200 rounded-lg px-3 py-2"
           >
             <span class="text-xs font-bold text-500">CONTEXTO:</span>
             <span class="text-xs font-medium text-primary-900"
@@ -163,12 +163,12 @@
 
       <div class="px-4 pt-3">
         <div
-          class="surface-50 border-1 border-surface-200 border-round-lg px-3 py-2 flex flex-wrap align-items-center gap-2"
+          class="surface-50 border-1 border-surface-200 rounded-lg px-3 py-2 flex flex-wrap align-items-center gap-2"
         >
           <span class="text-xs font-bold text-500">COLUMNAS ACTIVAS:</span>
           @for (col of columns(); track col.id) {
           <span
-            class="inline-flex align-items-center px-2 py-1 border-round bg-primary-100 text-primary-900 text-xs font-medium"
+            class="inline-flex align-items-center px-2 py-1 rounded bg-primary-100 text-primary-900 text-xs font-medium"
           >
             {{ col.label }}
           </span>
@@ -202,7 +202,7 @@
           @for (sec of sections(); track sec.sectionId) {
           <div [ngClass]="isTwoColumnPreview() ? 'col-12 xl:col-6 p-2' : ''">
             <div
-              class="surface-0 border-round-xl shadow-3 border-1 border-surface-200 overflow-hidden section-card fadeinright animation-duration-300 h-full flex flex-column"
+              class="surface-0 rounded-xl shadow border-1 border-surface-200 overflow-hidden section-card fadeinright animation-duration-300 h-full flex flex-column"
             >
               <!-- Header de Sección -->
               <div
@@ -238,7 +238,7 @@
                 <div
                   cdkDropList
                   (cdkDropListDropped)="onAccountCdkDropToSection(sec.sectionId, $event)"
-                  class="border-2 border-dashed border-primary-200 border-round-lg p-4 bg-primary-50 flex flex-column align-items-center justify-content-center text-center gap-2 text-primary-900"
+                  class="border-2 border-dashed border-primary-200 rounded-lg p-4 bg-primary-50 flex flex-column align-items-center justify-content-center text-center gap-2 text-primary-900"
                 >
                   <app-icon
                     [icon]="'mdi:download'"
@@ -252,7 +252,7 @@
                 </div>
                 } @for (row of sec.rows; track row.rowId; let rowIdx = $index) {
                 <div
-                  class="surface-0 border-round-lg border-1 border-surface-100 p-2 flex align-items-center gap-3 shadow-1 hover:shadow-2 transition-all hover:border-primary-200"
+                  class="surface-0 rounded-lg border-1 border-surface-100 p-2 flex align-items-center gap-3 shadow-sm hover:shadow-sm transition-all hover:border-primary-200"
                   [class.bg-blue-50]="row.rowType === 'account'"
                   [class.bg-purple-50]="row.rowType === 'formula'"
                 >
@@ -288,7 +288,7 @@
                       [ngModel]="row.label"
                       (ngModelChange)="row.label = $event; livePreviewS.triggerCompute()"
                       placeholder="Nombre de la fila..."
-                      class="bg-transparent border-none w-full font-medium text-surface-900 focus:outline-none focus:surface-100 p-1 border-round"
+                      class="bg-transparent border-none w-full font-medium text-surface-900 focus:outline-none focus:surface-100 p-1 rounded"
                     />
                   </div>
 
@@ -297,7 +297,7 @@
                   <div
                     cdkDropList
                     (cdkDropListDropped)="onAccountCdkDropToRow(sec.sectionId, row.rowId, $event)"
-                    class="flex-2 flex align-items-center gap-1 overflow-hidden px-2 border-left-1 surface-border min-h-3rem hover:bg-white-alpha-20 transition-all border-round relative"
+                    class="flex-2 flex align-items-center gap-1 overflow-hidden px-2 border-left-1 surface-border min-h-3rem hover:bg-white-alpha-20 transition-all rounded relative"
                   >
                     @if (row.accountNumbers.length === 0) {
                     <div
@@ -453,7 +453,7 @@
 
     <!-- PANEL DERECHO: Live Preview Final -->
     <div
-      class="w-24rem surface-0 border-left-1 border-primary-100 flex flex-column shadow-4 z-3"
+      class="w-24rem surface-0 border-left-1 border-primary-100 flex flex-column shadow z-3"
     >
       <div
         class="p-3 border-bottom-1 border-surface-100 bg-primary-900 text-white flex align-items-center justify-content-between"
@@ -496,7 +496,7 @@
             } }
           </tbody>
           <tfoot
-            class="bg-surface-900 text-white sticky bottom-0 font-bold shadow-4"
+            class="bg-surface-900 text-white sticky bottom-0 font-bold shadow"
           >
             <tr>
               <td class="p-3 uppercase">Total Reporte</td>
@@ -513,7 +513,7 @@
             @for (sec of sections(); track sec.sectionId) {
             <div class="col-6 p-1">
               <div
-                class="border-1 border-surface-200 border-round overflow-hidden h-full flex flex-column"
+                class="border-1 border-surface-200 rounded overflow-hidden h-full flex flex-column"
               >
                 <div
                   class="bg-surface-100 px-3 py-2 text-xs font-bold text-primary uppercase border-bottom-1 border-surface-200"
@@ -549,7 +549,7 @@
           track row.rowId) {
           <div class="col-12">
             <div
-              class="border-1 border-surface-200 border-round-xl p-3 bg-surface-50"
+              class="border-1 border-surface-200 rounded-xl p-3 bg-surface-50"
             >
               <div class="text-xs text-500 uppercase mb-2">
                 {{ sec.title || 'SECCION' }}
@@ -610,7 +610,7 @@
         @if (livePreviewS.warnings().length > 0) {
         <div class="p-3">
           <div
-            class="bg-orange-50 border-round p-2 border-left-3 border-orange-500"
+            class="bg-orange-50 rounded p-2 border-left-3 border-orange-500"
           >
             <span class="text-xs font-bold text-orange-900 block mb-2"
               ><app-icon [icon]="'mdi:alert'" /> ADVERTENCIAS:</span
@@ -679,7 +679,7 @@
 <lx-modal header="Aplicar Plantilla Predefinida" [(visible)]="showExamples" class="premium-dialog">
 <div class="flex flex-column gap-3 p-2">
     <div
-      class="surface-card border-1 surface-border border-round-xl p-3 hover:surface-100 cursor-pointer flex align-items-center gap-3 transition-all hover:border-primary shadow-1"
+      class="surface-card border-1 surface-border rounded-xl p-3 hover:surface-100 cursor-pointer flex align-items-center gap-3 transition-all hover:border-primary shadow-sm"
       (click)="aplicarEjemplo('egp')"
     >
       <div
@@ -693,7 +693,7 @@
       </div>
     </div>
     <div
-      class="surface-card border-1 surface-border border-round-xl p-3 opacity-50 cursor-not-allowed flex align-items-center gap-3 grayscale shadow-1"
+      class="surface-card border-1 surface-border rounded-xl p-3 opacity-50 cursor-not-allowed flex align-items-center gap-3 grayscale shadow-sm"
     >
       <div
         class="bg-surface-100 text-surface-500 border-circle w-3rem h-3rem flex align-items-center justify-content-center"

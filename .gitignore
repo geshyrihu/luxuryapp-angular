@@ -53,3 +53,33 @@ Thumbs.db
 node_modules/
 
 package-lock.json
+
+*storybook.log
+storybook-static
+
+# Environment Files with Secrets
+src/environments/environment.*.ts
+src/environments/environment.local.ts
+src/environments/environment.prod.local.ts
+!src/environments/environment.example.ts
+!src/environments/environment.prod.example.ts
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# API Keys and Credentials
+secrets/
+.secrets
+*.key
+*.pem
+credentials.json
+service-account*.json
+
+# Local configuration files
+config.local.ts
+config.local.json

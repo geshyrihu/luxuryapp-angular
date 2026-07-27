@@ -1,4 +1,4 @@
-import { ECalculationMethod, EChargeType, EDiscountType, Recurrence } from './enums';
+import { ECalculationMethod, EDiscountType, Recurrence } from './enums';
 
 export interface ChargeTemplateResponseDTO {
     id: string;
@@ -9,7 +9,6 @@ export interface ChargeTemplateResponseDTO {
     chargeTypeCode?: string | null;
     chargeTypeName?: string | null;
     chargeTypeAccountNumber?: string | null;
-    chargeType: EChargeType;
     amount: number;
     recurrence: Recurrence;
     dayOfMonth: number;
@@ -29,7 +28,6 @@ export interface CreateChargeTemplateDTO {
     name: string;
     calculationMethod: ECalculationMethod;
     chargeTypeId?: string | null;
-    chargeType?: EChargeType | null;
     amount: number;
     recurrence: Recurrence;
     dayOfMonth: number;
@@ -49,7 +47,6 @@ export interface UpdateChargeTemplateDTO {
     name: string;
     calculationMethod: ECalculationMethod;
     chargeTypeId?: string | null;
-    chargeType?: EChargeType | null;
     amount: number;
     recurrence: Recurrence;
     dayOfMonth: number;

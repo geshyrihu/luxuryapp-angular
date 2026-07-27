@@ -234,13 +234,13 @@ export class ManualsAndProcessesDetail implements OnInit {
   noteClass(tipoNota: number): string {
     switch (tipoNota) {
       case 1:
-        return "border-round-xl border-1 p-4";
+        return "rounded-xl border-1 p-4";
       case 2:
-        return "border-round-xl border-1 p-4";
+        return "rounded-xl border-1 p-4";
       case 3:
-        return "border-round-xl border-1 p-4";
+        return "rounded-xl border-1 p-4";
       default:
-        return "surface-ground border-round-xl border-1 surface-border p-4";
+        return "surface-ground rounded-xl border-1 surface-border p-4";
     }
   }
 

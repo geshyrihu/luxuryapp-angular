@@ -47,7 +47,7 @@ import { TabsModule } from "primeng/tabs";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Tabs extends TabsBase {

@@ -1,4 +1,4 @@
-import { ECalculationMethod, EChargeType, Recurrence } from "./enums";
+import { ECalculationMethod, Recurrence } from "./enums";
 
 export interface PeriodAmountDTO {
   year: number;
@@ -15,7 +15,6 @@ export interface TemplateCoverageDTO {
   templateId: string;
   templateName: string;
   chargeTypeId?: string | null;
-  chargeType: EChargeType;
   chargeTypeCode?: string | null;
   chargeTypeName?: string | null;
   chargeTypeAccountNumber?: string | null;

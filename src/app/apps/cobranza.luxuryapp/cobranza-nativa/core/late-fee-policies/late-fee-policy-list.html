@@ -22,7 +22,7 @@
         <th class="w-8rem text-center">Días de Gracia</th>
         <th class="w-10rem">Tipo</th>
         <th class="w-8rem text-right">Tasa / Monto</th>
-        <th class="w-10rem text-center">Interós Compuesto</th>
+        <th class="w-10rem text-center">Interés Compuesto</th>
         <th class="w-10rem text-right">Monto Máximo</th>
         <th class="w-8rem text-center">Opciones</th>
       </tr>
@@ -32,22 +32,18 @@
       <tr>
         <td class="text-center font-bold text-700">{{ item.graceDays }}</td>
         <td class="font-medium text-800">
-          @switch (item.type) { @case (ELateFeeType.Fijo) {
-          <span class="badge bg-blue-100 text-blue-800">Monto Fijo</span> }
-          @case (ELateFeeType.Porcentaje) {
-          <span class="badge bg-purple-100 text-purple-800">Porcentaje</span> }
-          }
+          <lx-tag
+            [value]="lateFeeTypeMeta(item.type).label"
+            [severity]="lateFeeTypeMeta(item.type).severity"
+          />
         </td>
         <td class="text-right font-medium text-red-600">
           {{ item.rate | number: "1.2-2" }}{{ item.type ===
-          ELateFeeType.Porcentaje ? '%' : '' }}
+          ELateFeeType.Porcentaje ? "%" : "" }}
         </td>
         <td class="text-center">
           @if (item.compoundsMonthly) {
-          <span
-            class="text-xs bg-red-100 text-red-700 px-2 py-1 border-round font-semibold"
-            >Sí</span
-          >
+          <lx-tag value="Sí" severity="danger" />
           } @else {
           <span class="text-xs text-500">No</span>
           }
@@ -83,17 +79,17 @@
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon icon="mdi:alert-outline" class="text-red-600 text-xl" />
       </div>
       <div class="flex-1 min-w-0">
         <h3>{{ item.graceDays }} días de gracia</h3>
         <p>
-          Tasa: {{ item.rate | number:'1.2-2' }}{{ item.type ===
-          ELateFeeType.Porcentaje ? '%' : '' }}
+          Tasa: {{ item.rate | number:"1.2-2" }}{{ item.type ===
+          ELateFeeType.Porcentaje ? "%" : "" }}
         </p>
-        <p>Míx: {{ item.maxRate | number:'1.2-2' }}</p>
+        <p>Máx: {{ item.maxRate | number:"1.2-2" }}</p>
       </div>
       <ili-action-menu slot="end">
         <ng-container actions>

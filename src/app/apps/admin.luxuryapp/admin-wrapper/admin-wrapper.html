@@ -4,7 +4,7 @@
     (menuItemsGrouped[group]?.length > 0) {
     <!-- Header de grupo alineado con master-dashboard -->
     <div class="flex align-items-center gap-2 mb-4 mt-6">
-      <div class="border-round"
+      <div class="rounded"
            
            [style.backgroundColor]="menuTone(group).accent"></div>
       <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase"
@@ -19,15 +19,15 @@
       @for (item of menuItemsGrouped[group]; track item) { @if (item.visible) {
       <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2">
         <div
-          class="surface-card border-round-xl p-3 h-full cursor-pointer relative overflow-hidden
-                 shadow-1 hover:shadow-3 transition-all transition-duration-200
+          class="surface-card rounded-xl p-3 h-full cursor-pointer relative overflow-hidden
+                 shadow-sm hover:shadow transition-all transition-duration-200
                  flex flex-column gap-3"
           
           [routerLink]="item.routerLink || null"
         >
           <!-- Ícono + flecha (igual a master-dashboard) -->
           <div class="flex align-items-center justify-content-between">
-            <div class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
+            <div class="flex align-items-center justify-content-center rounded-lg flex-shrink-0"
                  
                  [style.backgroundColor]="menuTone(group).bgColor">
               <app-icon [icon]="item.icon"

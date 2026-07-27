@@ -18,6 +18,13 @@ import {
   IonSkeletonText,
   IonSpinner,
 } from "@ionic/angular/standalone";
+import { MobileSkeleton } from "@ui/mobile/skeleton/skeleton";
+import { MobileSpinner } from "@ui/mobile/spinner/spinner";
+import { MobileProgressBar } from "@ui/mobile/progress-bar/progress-bar";
+import { MobileMessage } from "@ui/mobile/message/message";
+import { MobileGlobalErrorAlert } from "@ui/mobile/global-error-alert/global-error-alert";
+import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
+import { MobileToast } from "@ui/mobile/toast/toast";
 
 @Component({
   selector: "app-mobile-feedback",
@@ -35,6 +42,13 @@ import {
     IonRefresherContent,
     IonSkeletonText,
     IonSpinner,
+    MobileSkeleton,
+    MobileSpinner,
+    MobileProgressBar,
+    MobileMessage,
+    MobileGlobalErrorAlert,
+    MobileEmptyState,
+    MobileToast,
   ],
   template: `
     <div class="mobile-card">
@@ -275,8 +289,40 @@ import {
             Simular refresh
           </ion-button>
         </div>
+        </div>
+
+        <!-- --- WRAPPERS (ili-*) --- -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-skeleton</div>
+          <ili-skeleton width="100%" height="50px" borderRadius="8px"></ili-skeleton>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-spinner</div>
+          <ili-spinner color="success" sizePx="32px"></ili-spinner>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-progress-bar</div>
+          <ili-progress-bar mode="determinate" [value]="50" color="primary" [showValue]="true"></ili-progress-bar>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-message</div>
+          <ili-message text="This is a test message" severity="info" [closable]="true"></ili-message>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-global-error-alert</div>
+          <ili-global-error-alert></ili-global-error-alert>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-empty-state</div>
+          <ili-empty-state title="No Data" message="There is no data to show" icon="mdi:alert" actionLabel="Retry"></ili-empty-state>
+        </div>
+
       </div>
-    </div>
   `,
   styleUrls: ["../../shared/mobile-showcase-styles.css"],
   styles: [

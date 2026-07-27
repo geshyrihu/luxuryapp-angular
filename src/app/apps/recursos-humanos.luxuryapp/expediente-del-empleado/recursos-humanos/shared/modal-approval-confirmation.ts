@@ -53,7 +53,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Permiso") {
           <div class="mb-4 text-center">
             <div
-              class="flex items-center justify-center p-3 border-round"
+              class="flex items-center justify-center p-3 rounded"
               [class.bg-green-100]="paidStatus.value"
               [class.text-green-800]="paidStatus.value"
               [class.bg-yellow-100]="!paidStatus.value"
@@ -121,7 +121,7 @@ import { ApprovalInfoService } from "./approval-info.service";
 
           @if (request.requestType === "Permiso") {
             @if (overlappingLeaveRequests.length > 0) {
-              <div class="surface-100 border-round p-3">
+              <div class="surface-100 rounded p-3">
                 <ul class="m-0 p-0 list-none">
                   @for (req of overlappingLeaveRequests; track req.id) {
                     <li class="flex items-center justify-between p-2">
@@ -154,7 +154,7 @@ import { ApprovalInfoService } from "./approval-info.service";
 
           @if (request.requestType === "Vacaciones") {
             @if (overlappingVacationRequests.length > 0) {
-              <div class="surface-100 border-round p-3">
+              <div class="surface-100 rounded p-3">
                 <ul class="m-0 p-0 list-none">
                   @for (req of overlappingVacationRequests; track req.id) {
                     <li class="flex items-center justify-between p-2">

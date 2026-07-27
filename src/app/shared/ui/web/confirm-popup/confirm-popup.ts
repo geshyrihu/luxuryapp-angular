@@ -21,6 +21,7 @@ import { ConfirmPopupModule } from "primeng/confirmpopup";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class ConfirmPopup extends ConfirmPopupBase {

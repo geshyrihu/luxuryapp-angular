@@ -43,10 +43,10 @@ import { TrackingEvent } from "../shared/tracking";
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: transparent !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        border: none !important;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        border: none;
       }
 
       :host ::ng-deep .p-overlaybadge > iconify-icon {

@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   effect,
@@ -12,12 +12,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import {
   CreateChargeTemplateDTO,
   UpdateChargeTemplateDTO,
@@ -28,8 +33,6 @@ import {
   EDiscountType,
   Recurrence,
 } from "../../interfaces/enums";
-
-// Custom Inputs
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
@@ -68,6 +71,7 @@ interface IChargeTemplateForm {
     CustomInputNumberSignal,
     WebButtonLabelSave,
     ButtonModule,
+    LxCard,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-form.html",
@@ -77,9 +81,10 @@ export class ChargeTemplateForm implements OnInit {
   private dateS = inject(DateService);
   private ref = inject(DynamicDialogRef);
   private config = inject(DynamicDialogConfig);
+  private toastS = inject(CustomToastService);
 
-  id: string = "";
-  customerId: string = "";
+  id = "";
+  customerId = "";
   form: FormGroup<IChargeTemplateForm>;
   submitting = signal(false);
   chargeTypes = signal<{ label: string; value: string }[]>([]);
@@ -188,12 +193,10 @@ export class ChargeTemplateForm implements OnInit {
     );
 
     this.chargeTypes.set(
-      (res ?? [])
-        .filter((x) => x.isActive)
-        .map((x) => ({
-          label: `${x.name} · ${x.accountNumber}`,
-          value: x.id,
-        })),
+      (res ?? []).map((x) => ({
+        label: `${x.name} · ${x.code}`,
+        value: x.id,
+      })),
     );
 
     if (
@@ -212,10 +215,9 @@ export class ChargeTemplateForm implements OnInit {
     if (res) {
       if (res.startDate) res.startDate = this.dateS.parseDate(res.startDate);
       if (res.endDate) res.endDate = this.dateS.parseDate(res.endDate);
-      if (res.retroactiveStartDate)
-        res.retroactiveStartDate = this.dateS.parseDate(
-          res.retroactiveStartDate,
-        );
+      if (res.retroactiveStartDate) {
+        res.retroactiveStartDate = this.dateS.parseDate(res.retroactiveStartDate);
+      }
       this.form.patchValue(res);
     }
   }
@@ -236,21 +238,18 @@ export class ChargeTemplateForm implements OnInit {
           ...raw,
           startDate: this.dateS.getDateFormat(raw.startDate) ?? "",
           endDate: this.dateS.getDateFormat(raw.endDate),
-          retroactiveStartDate: this.dateS.getDateFormat(
-            raw.retroactiveStartDate,
-          ),
+          retroactiveStartDate: this.dateS.getDateFormat(raw.retroactiveStartDate),
         };
         if (this.id) {
           return {
             id: this.id,
+            customerId: this.customerId,
             ...payloadBase,
-            chargeType: null,
           } as UpdateChargeTemplateDTO;
         } else {
           return {
             customerId: this.customerId,
             ...payloadBase,
-            chargeType: null,
           } as CreateChargeTemplateDTO;
         }
       },
@@ -258,7 +257,6 @@ export class ChargeTemplateForm implements OnInit {
   }
 
   async onPreviewFees() {
-    // Collect what we need from the form
     const formValue = this.form.getRawValue();
     const payload = {
       customerId: this.customerId,
@@ -268,8 +266,7 @@ export class ChargeTemplateForm implements OnInit {
       startDate: this.dateS.getDateFormat(this.form.getRawValue().startDate),
       endDate: this.dateS.getDateFormat(this.form.getRawValue().endDate),
       earlyPaymentDiscount: this.form.getRawValue().earlyPaymentDiscount,
-      earlyPaymentDiscountType:
-        this.form.getRawValue().earlyPaymentDiscountType,
+      earlyPaymentDiscountType: this.form.getRawValue().earlyPaymentDiscountType,
       earlyPaymentGraceDays: this.form.getRawValue().earlyPaymentGraceDays,
       isRetroactive: this.form.getRawValue().isRetroactive,
       retroactiveStartDate: this.dateS.getDateFormat(
@@ -278,9 +275,6 @@ export class ChargeTemplateForm implements OnInit {
       isActive: this.form.getRawValue().isActive,
     };
 
-    // NOTE: This will require the backend endpoint to be implemented first!
-    // Modal will display based on the selected calculation method.
-
     this.apiResponseS
       .onPost(
         Endpoints.CobranzaCore.Templates.preview,
@@ -288,17 +282,17 @@ export class ChargeTemplateForm implements OnInit {
       )
       .then((res) => {
         if (res) {
-          // Open Modal displaying result
-          console.log("Preview Response: ", res);
+          this.toastS.showSuccess(
+            "Vista previa generada",
+            "El cálculo se ejecutó correctamente. El visor detallado será el siguiente paso de esta pantalla.",
+          );
         }
       })
-      .catch((e) => {
-        console.error(
-          "Preview execution failed - backend endpoint likely missing",
-          e,
+      .catch(() => {
+        this.toastS.showWarn(
+          "Vista previa no disponible",
+          "No fue posible mostrar la vista previa en este momento.",
         );
       });
   }
 }
-
-

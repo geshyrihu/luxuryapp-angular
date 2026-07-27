@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   inject,
   signal,
   ViewEncapsulation,
@@ -29,6 +30,12 @@ import {
   IonToolbar,
   MenuController,
 } from "@ionic/angular/standalone";
+import { MobileTabs } from "@ui/mobile/tabs/tabs";
+import { MobileBreadcrumbs } from "@ui/mobile/breadcrumbs/breadcrumbs";
+import { MobileSteps } from "@ui/mobile/steps/steps";
+import { MobileBottomNav } from "@ui/mobile/bottom-nav/bottom-nav";
+import { MobileMenu } from "@ui/mobile/menu/menu";
+import { MobileMenubar } from "@ui/mobile/menubar/menubar";
 import { addIcons } from "ionicons";
 import {
   addOutline,
@@ -66,7 +73,14 @@ import {
     IonTabs,
     IonTitle,
     IonToolbar,
+    MobileTabs,
+    MobileBreadcrumbs,
+    MobileSteps,
+    MobileBottomNav,
+    MobileMenu,
+    MobileMenubar,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- ion-menu: se declara en el template, Ionic lo eleva al overlay system -->
     <ion-menu menuId="cat-nav-menu" contentId="cat-nav-content" type="overlay">
@@ -314,6 +328,44 @@ import {
               Acción: <strong>{{ lastFabAction() }}</strong>
             </p>
           }
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-card mt-4">
+      <div class="mobile-card-header">Navigation Wrappers (ili-*)</div>
+      <div class="mobile-card-body flex flex-column gap-5">
+        <div>
+          <div class="font-bold text-sm mb-3">ili-tabs</div>
+          <ili-tabs [tabs]="[{id:'1', label:'General'}, {id:'2', label:'Advanced'}]" [activeId]="'1'">
+            <div tab="1" class="p-3">General Content</div>
+            <div tab="2" class="p-3">Advanced Content</div>
+          </ili-tabs>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-breadcrumbs</div>
+          <ili-breadcrumbs [home]="{icon:'mdi:home'}" [items]="[{label:'Settings'}, {label:'Profile'}]"></ili-breadcrumbs>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-steps</div>
+          <ili-steps [model]="[{label:'Cart'}, {label:'Payment'}, {label:'Done'}]" [activeIndex]="0"></ili-steps>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-bottom-nav</div>
+          <ili-bottom-nav [items]="[{id:'1', label:'Home', icon:'mdi:home'}, {id:'2', label:'Search', icon:'mdi:magnify'}]" [activeId]="'1'"></ili-bottom-nav>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-menu</div>
+          <ili-menu [model]="[{label:'New', icon:'mdi:plus'}, {label:'Open', icon:'mdi:folder'}]"></ili-menu>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-menubar</div>
+          <ili-menubar [items]="[{label:'File', items:[{label:'New'}, {label:'Open'}]}, {label:'Edit'}]"></ili-menubar>
         </div>
       </div>
     </div>

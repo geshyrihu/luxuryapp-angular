@@ -49,11 +49,11 @@
           <img
             [src]="item.photoUrl"
             [alt]="item.fullName"
-            class="w-3rem h-3rem border-round-circle object-cover"
+            class="w-3rem h-3rem rounded-circle object-cover"
           />
           } @else {
           <div
-            class="w-3rem h-3rem border-round-circle surface-200 flex align-items-center justify-content-center text-500 text-sm font-bold"
+            class="w-3rem h-3rem rounded-circle surface-200 flex align-items-center justify-content-center text-500 text-sm font-bold"
           >
             {{ item.fullName.charAt(0) }}
           </div>
@@ -94,7 +94,7 @@
       <ili-list-item>
         <div
           start
-          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
           class="w-3rem h-3rem bg-primary-50"
         >
           <app-icon

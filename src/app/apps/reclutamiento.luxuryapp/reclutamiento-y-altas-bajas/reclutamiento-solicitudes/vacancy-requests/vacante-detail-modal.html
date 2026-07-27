@@ -6,7 +6,7 @@
     @if (wp) {
     <div class="flex flex-column gap-2">
       <div
-        class="flex align-items-center gap-3 p-3 surface-100 border-round-lg mb-2"
+        class="flex align-items-center gap-3 p-3 surface-100 rounded-lg mb-2"
       >
         <app-icon [icon]="'mdi:clock-outline'" class="text-2xl text-600" />
         <div>
@@ -18,7 +18,7 @@
       @for (dia of dias; track dia.n) { @let entrada = wp[dia.e]; @let salida
       = wp[dia.s];
       <div
-        class="flex justify-content-between align-items-center p-2 border-bottom-1 surface-border border-round hover:surface-50"
+        class="flex justify-content-between align-items-center p-2 border-bottom-1 surface-border rounded hover:surface-50"
       >
         <span class="font-semibold text-700 w-7rem">{{ dia.n }}</span>
         @if (entrada && salida) {
@@ -36,7 +36,7 @@
         }
       </div>
       } @if (wp.observationsWorkShift) {
-      <div class="p-3 surface-50 border-round mt-2">
+      <div class="p-3 surface-50 rounded mt-2">
         <div class="font-semibold text-600 mb-1">
           <app-icon [icon]="'mdi:information'" class="mr-1" />Observaciones de
           horario
@@ -112,7 +112,7 @@
     @if (wp) {
     <div class="flex flex-column gap-3">
       <div
-        class="flex align-items-center gap-3 p-3 surface-100 border-round-lg"
+        class="flex align-items-center gap-3 p-3 surface-100 rounded-lg"
       >
         <app-icon [icon]="'mdi:dollar'" class="text-2xl text-600" />
         <div>

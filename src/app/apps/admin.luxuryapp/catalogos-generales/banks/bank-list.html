@@ -1,96 +1,17 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-
-<p-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tablePrimeNgRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight()"
-  [showCurrentPageReport]="true"
-  [tableStyle]="{ 'min-width': '50rem' }"
-  [value]="dataSignal()"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block"
->
-  <ng-template #caption>
-    <primeng-custom-caption
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th pSortableColumn="code">
-        Codigo
-        <p-sorticon field="code" />
-      </th>
-      <th pSortableColumn="shortName">
-        Nombre
-        <p-sorticon field="shortName" />
-      </th>
-      <th pSortableColumn="largeName">
-        Razón social
-        <p-sorticon field="largeName" />
-      </th>
-      <th class="no-print"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.code }}</td>
-      <td>{{ item.shortName }}</td>
-      <td>{{ item.largeName }}</td>
-      <!-- Opciones -->
-      <td class="no-print">
-        <div class="flex gap-1">
-          <iw-button-edit
-            size="sm"
-            class="btn--circle"
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          <iw-button-delete
-            size="sm"
-            class="btn--circle"
-            (confirmed)="onDelete(item.id)"
-          />
-        </div>
-      </td>
-      <!-- Opciones -->
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="4" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
-  </ng-template>
-</p-table>
-
-<!--📲INICIO: Componente adaptado para versión mívil -->
-<app-data-view-mobile
-  [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-  [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div class="flex flex-column gap-1">
-        <p class="font-semibold m-0 text-color line-height-2">{{ item.shortName }}</p>
-        <p class="text-xs m-0 text-color-secondary">
-          {{ item.code }} - {{ item.largeName }}
-        </p>
-      </div>
-
-      <ili-action-menu slot="end">
-        <ili-button-edit
-          (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          label="Editar"
-        />
-        <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-bank-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+} @else {
+  <app-bank-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+  />
+}

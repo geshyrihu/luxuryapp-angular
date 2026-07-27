@@ -82,7 +82,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
         margin-bottom: 1rem;
       }
       .field.mb-0 {
-        margin-bottom: 0 !important;
+        margin-bottom: 0;
       }
       .field-horizontal {
         display: grid;

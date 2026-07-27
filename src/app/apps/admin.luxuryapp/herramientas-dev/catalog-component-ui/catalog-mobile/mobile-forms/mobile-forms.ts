@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -31,6 +32,14 @@ import {
   keyOutline,
   timeOutline,
 } from "ionicons/icons";
+import { IliCheckbox } from "@ui/mobile/checkbox/checkbox";
+import { MobileRadioButton } from "@ui/mobile/radio-button/radio-button";
+import { MobileStepper } from "@ui/mobile/stepper/stepper";
+import { MobileSlider } from "@ui/mobile/slider/slider";
+import { MobileRating } from "@ui/mobile/rating/rating";
+import { MobileKnob } from "@ui/mobile/knob/knob";
+import { MobileColorPicker } from "@ui/mobile/color-picker/color-picker";
+import { MobileOtpInput } from "@ui/mobile/otp-input/otp-input";
 
 @Component({
   selector: "app-mobile-forms",
@@ -57,7 +66,16 @@ import {
     IonSelectOption,
     IonTextarea,
     IonToggle,
+    IliCheckbox,
+    MobileRadioButton,
+    MobileStepper,
+    MobileSlider,
+    MobileRating,
+    MobileKnob,
+    MobileColorPicker,
+    MobileOtpInput,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">
@@ -367,6 +385,51 @@ import {
               <span class="stiich-login-badge__value">SOC2 Certified</span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-card mt-4">
+      <div class="mobile-card-header">Form Wrappers (ili-*)</div>
+      <div class="mobile-card-body flex flex-column gap-5">
+        <div>
+          <div class="font-bold text-sm mb-3">ili-checkbox</div>
+          <ili-checkbox label="Ili Checkbox" [checked]="true"></ili-checkbox>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-radio-button</div>
+          <ili-radio-button label="Ili Radio"></ili-radio-button>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-stepper</div>
+          <ili-stepper [steps]="[{label:'Step 1', value:1}, {label:'Step 2', value:2}, {label:'Step 3', value:3}]"></ili-stepper>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-slider</div>
+          <ili-slider [value]="50" [min]="0" [max]="100" label="Volume"></ili-slider>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-rating</div>
+          <ili-rating [value]="4"></ili-rating>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-knob</div>
+          <ili-knob [value]="60"></ili-knob>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-color-picker</div>
+          <ili-color-picker [value]="'#ff0000'"></ili-color-picker>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-otp-input</div>
+          <ili-otp-input [value]="'1234'"></ili-otp-input>
         </div>
       </div>
     </div>

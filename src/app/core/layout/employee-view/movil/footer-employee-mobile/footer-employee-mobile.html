@@ -1,5 +1,5 @@
 @if (footerItems().length > 0) {
-<ion-tab-bar class="shadow-1 pb-3 pt-1 border-none">
+<ion-tab-bar class="shadow-sm pb-3 pt-1 border-none">
   @for (item of footerItems(); track item.label) {
   <ion-tab-button
     [routerLink]="item.link || []"

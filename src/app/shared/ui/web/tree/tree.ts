@@ -13,7 +13,8 @@ import { TreeModule } from "primeng/tree";
   template: `
     <p-tree
       [value]="value()"
-      [(selection)]="selection"
+      [selection]="selection()"
+      (selectionChange)="selection.set($event)"
       [selectionMode]="selectionMode()"
       [scrollHeight]="scrollHeight()"
       [metaKeySelection]="metaKeySelection()"
@@ -30,7 +31,7 @@ import { TreeModule } from "primeng/tree";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Tree extends TreeBase {}

@@ -14,7 +14,7 @@
   </div>
   @for (ticket of data()!.reportes; track ticket) {
   <div class="container mb-4">
-    <div class="card shadow-1 mb-4">
+    <div class="card shadow-sm mb-4">
       <div class="card-body">
         <strong>{{ ticket.title }}</strong>
         <p class="text-justify mt-2 mb-4">{{ ticket.description }}</p>
@@ -24,7 +24,7 @@
             <img
               [src]="ticket.beforeWork"
               alt="Imagen antes"
-              class="w-full h-full border-round shadow-2"
+              class="w-full h-full rounded shadow-sm"
               
             />
           </div>
@@ -32,7 +32,7 @@
             <img
               [src]="ticket.afterWork"
               alt="Imagen después"
-              class="w-full h-full border-round shadow-2"
+              class="w-full h-full rounded shadow-sm"
               
             />
           </div>

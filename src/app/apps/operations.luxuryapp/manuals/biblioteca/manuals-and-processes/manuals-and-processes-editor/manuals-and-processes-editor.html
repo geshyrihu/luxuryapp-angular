@@ -1,7 +1,7 @@
 <div class="flex flex-column h-full">
   <!-- Top Bar -->
   <div
-    class="surface-card p-3 shadow-1 flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
+    class="surface-card p-3 shadow-sm flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
   >
     <div class="flex align-items-center gap-3">
       <iw-button
@@ -167,7 +167,7 @@
       } @else {
 
       <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
-        <div class="surface-ground border-round-xl p-4 border-1 surface-border">
+        <div class="surface-ground rounded-xl p-4 border-1 surface-border">
           <div class="flex align-items-center gap-3 mb-2">
             <app-icon [icon]="'mdi:pencil'" class="text-2xl text-primary" />
             <h3 class="m-0 text-900 font-semibold">
@@ -244,7 +244,7 @@
             />
           </div>
           @if (!selectedPaso()!.diagramaId) {
-          <div class="surface-ground border-round p-3 border-1 surface-border">
+          <div class="surface-ground rounded p-3 border-1 surface-border">
             <div class="flex align-items-center gap-2 mb-2">
               <app-icon
                 [icon]="'mdi:lightbulb-on-outline'"
@@ -261,7 +261,7 @@
           </div>
           } @else {
           <div
-            class="surface-ground border-round p-3 border-1 surface-border mb-2"
+            class="surface-ground rounded p-3 border-1 surface-border mb-2"
           >
             <div class="flex align-items-center gap-2 mb-2">
               <app-icon
@@ -276,7 +276,7 @@
             </p>
           </div>
           } @if (selectedPaso()!.diagramaXml) {
-          <div class="border-round overflow-hidden border-1 border-200">
+          <div class="rounded overflow-hidden border-1 border-200">
             <app-diagram-preview [xml]="selectedPaso()!.diagramaXml!" />
           </div>
           }
@@ -311,11 +311,11 @@
           <div class="flex flex-wrap gap-3">
             @for (img of selectedPaso()!.imagenes; track img.id) {
             <div
-              class="relative surface-card border-1 surface-border border-round-xl overflow-hidden p-2"
+              class="relative surface-card border-1 surface-border rounded-xl overflow-hidden p-2"
             >
               <img
                 [src]="img.url"
-                class="block max-w-full h-auto border-round-lg"
+                class="block max-w-full h-auto rounded-lg"
                 alt="imagen"
               />
               <div class="absolute top-0 right-0 m-1">
@@ -344,7 +344,7 @@
           <form
             [formGroup]="enlaceForm"
             (ngSubmit)="onAddEnlace()"
-            class="flex flex-column gap-2 border-1 border-round p-3 surface-50 border-200"
+            class="flex flex-column gap-2 border-1 rounded p-3 surface-50 border-200"
           >
             <div class="grid align-items-end">
               <div class="col-12 md:col-7">
@@ -379,7 +379,7 @@
           <div class="flex flex-column gap-3 mt-2">
             @for (enlace of selectedPaso()!.enlaces; track enlace.id) {
             <div
-              class="relative border-round overflow-hidden border-1 border-200 p-3 bg-white"
+              class="relative rounded overflow-hidden border-1 border-200 p-3 bg-white"
             >
               <div class="absolute top-0 right-0 m-2 z-5">
                 <iw-button
@@ -394,7 +394,7 @@
 
               @if (enlace.esVideo) { @if (safeUrl(enlace.urlEnlace)) {
               <div
-                class="border-round overflow-hidden mt-3"
+                class="rounded overflow-hidden mt-3"
                 
               >
                 <iframe
@@ -468,7 +468,7 @@
 
       @if (showVersionForm()) {
       <div
-        class="surface-card p-4 border-round-xl border-1 border-200 shadow-1"
+        class="surface-card p-4 rounded-xl border-1 border-200 shadow-sm"
       >
         <h4 class="text-base font-bold text-700 m-0 mb-3">Agregar Version</h4>
         <form
@@ -530,7 +530,7 @@
       <div class="flex flex-column gap-2">
         @for (v of versiones(); track v.id) {
         <div
-          class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-start justify-content-between gap-3"
+          class="surface-card p-3 rounded-xl border-1 border-200 flex align-items-start justify-content-between gap-3"
         >
           <div class="flex-1">
             <div class="flex align-items-center gap-2 mb-1">
@@ -572,7 +572,7 @@
       </h3>
 
       <div
-        class="surface-card p-4 border-round-xl border-1 border-200 shadow-1"
+        class="surface-card p-4 rounded-xl border-1 border-200 shadow-sm"
       >
         <h4 class="text-base font-bold text-700 m-0 mb-3">Subir Archivo</h4>
         <div class="flex flex-column gap-3">
@@ -619,7 +619,7 @@
       <div class="flex flex-column gap-2">
         @for (adj of adjuntos(); track adj.id) {
         <div
-          class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-center gap-3"
+          class="surface-card p-3 rounded-xl border-1 border-200 flex align-items-center gap-3"
         >
           <app-icon
             [icon]="'mdi:file-document-outline'"

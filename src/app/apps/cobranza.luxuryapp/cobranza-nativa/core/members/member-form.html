@@ -2,7 +2,7 @@
 @if (!id) {
 <div class="flex align-items-center gap-2 px-3 pt-3 pb-1">
   <div
-    class="flex align-items-center justify-content-center w-2rem h-2rem border-round-full text-sm font-bold"
+    class="flex align-items-center justify-content-center w-2rem h-2rem rounded-full text-sm font-bold"
     [class.bg-primary]="step() >= 1"
     [class.text-white]="step() >= 1"
     [class.surface-300]="step() < 1"
@@ -17,7 +17,7 @@
   >
   <app-icon [icon]="'mdi:chevron-right'" class="text-300 text-xs" />
   <div
-    class="flex align-items-center justify-content-center w-2rem h-2rem border-round-full text-sm font-bold"
+    class="flex align-items-center justify-content-center w-2rem h-2rem rounded-full text-sm font-bold"
     [class.bg-primary]="step() >= 2"
     [class.text-white]="step() >= 2"
     [class.surface-300]="step() < 2"

@@ -104,7 +104,7 @@
               <!--
   p-button: El contenedor de la acción.
   p-button-secondary: Color grisíceo, menos prominente que el primario.
-  p-button-border-round: Hace el botón circular.
+  p-button-rounded: Hace el botón circular.
   p-overlay-badge: Permite que el badge se superponga sobre el botón.
   (click): Ejecuta la función deseada.
   p-badge: Muestra el contador. Se oculta si el contador es 0.
@@ -240,7 +240,7 @@
               >{{ item.folio }} | {{ item.createdAtDate }}</small
             >
             <span
-              class="bg-primary-100 text-primary-700 border-round px-2 py-1 text-sm"
+              class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-sm"
             >
               {{ item.daysDifference }}
             </span>
@@ -257,7 +257,7 @@
             "
                 alt="."
                 width="50"
-                class="border-round border-1 border-200"
+                class="rounded border-1 border-200"
                 [preview]="true"
               ></app-image>
               }

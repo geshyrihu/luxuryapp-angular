@@ -51,7 +51,7 @@
       <tr>
         <td class="text-center">
           <div
-            class="flex align-items-center justify-content-center border-round flex-shrink-0 w-3rem h-3rem mx-auto"
+            class="flex align-items-center justify-content-center rounded flex-shrink-0 w-3rem h-3rem mx-auto"
             [style.backgroundColor]="item.color || 'var(--primary-color)'"
           >
             <span class="text-white text-xl">{{ item.emoji || '??' }}</span>
@@ -76,7 +76,7 @@
         </td>
         <td class="text-center">
           <div
-            class="inline-flex align-items-center justify-content-center gap-2 px-3 py-1 border-round surface-50 cursor-pointer hover:surface-100 transition-colors"
+            class="inline-flex align-items-center justify-content-center gap-2 px-3 py-1 rounded surface-50 cursor-pointer hover:surface-100 transition-colors"
             (click)="onNavigateMessage(item.id, 0)"
           >
             <span

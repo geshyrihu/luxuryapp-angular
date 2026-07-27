@@ -26,7 +26,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
           </ion-button>
         } @else {
           <div class="flex flex-column gap-1 w-15rem align-items-center">
-            <ion-img [src]="imageUrl" class="w-full h-10rem border-round shadow-1 object-cover" />
+            <ion-img [src]="imageUrl" class="w-full h-10rem rounded shadow-sm object-cover" />
             <ion-button fill="clear" color="danger" size="small" (click)="removeFile()">
               <ion-icon slot="start" name="trash-outline"></ion-icon>
               Eliminar

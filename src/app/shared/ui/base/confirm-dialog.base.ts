@@ -1,4 +1,4 @@
-import { Directive, input, model, output } from "@angular/core";
+import { Directive, input, model, output, computed } from "@angular/core";
 
 export type ConfirmType = "danger" | "warning" | "info" | "success";
 
@@ -30,9 +30,9 @@ export abstract class ConfirmDialogBase {
   confirm = output<void>();
   cancel = output<void>();
 
-  get config() {
+  config = computed(() => {
     return CONFIRM_TYPE_CONFIG[this.type()] || CONFIRM_TYPE_CONFIG.danger;
-  }
+  });
 
   onConfirm(): void {
     this.visible.set(false);

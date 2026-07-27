@@ -12,12 +12,21 @@
     <ng-template #caption>
       <div class="flex justify-content-between align-items-end mb-4">
         <primeng-custom-caption
-          title="Emision de Cargos (Motor Nativo)"
+          title="Emisión de Cargos (Motor Nativo)"
           (add)="onModalForm()"
           [dt]="dt"
           [noMargin]="true"
           [noPadding]="true"
           class="flex-grow-1"
+        />
+        <il-button
+          iconClass="mdi:download"
+          label="Descargar Plantilla"
+          variant="outlined"
+          severity="secondary"
+          size="small"
+          (clicked)="downloadBulkImportTemplate()"
+          customClass="ml-3"
         />
         <il-button
           iconClass="mdi:upload"
@@ -45,11 +54,11 @@
 
     <ng-template #body let-item>
       <tr>
-        <td class="font-bold text-800">{{ item.propertyFullName || 'N/A' }}</td>
+        <td class="font-bold text-800">{{ item.propertyFullName || "N/A" }}</td>
         <td>{{ item.concept }}</td>
         <td class="text-xs">
           <div class="flex flex-column">
-            <span>{{ item.chargeTypeName || 'Sin tipo' }}</span>
+            <span>{{ item.chargeTypeName || "Sin tipo" }}</span>
             <span class="text-400">{{ item.chargeTypeAccountNumber }}</span>
           </div>
         </td>
@@ -57,7 +66,7 @@
           {{ item.amount | number: "1.2-2" }}
         </td>
         <td class="text-center font-medium">
-          {{ item.dueDate | date: 'dd/MM/yyyy':'UTC' }}
+          {{ item.dueDate | date: "dd/MM/yyyy":"UTC" }}
         </td>
         <td class="text-center">
           @if (item.generatedAutomatically) {
@@ -69,16 +78,10 @@
           }
         </td>
         <td class="text-center">
-          @switch (item.status) { @case (EChargeStatus.Pendiente) {
-          <span class="badge bg-yellow-100 text-yellow-800">Pendiente</span> }
-          @case (EChargeStatus.Pagado) {
-          <span class="badge bg-green-100 text-green-800">Pagado</span> } @case
-          (EChargeStatus.PagoParcial) {
-          <span class="badge bg-blue-100 text-blue-800">Pago Parcial</span> }
-          @case (EChargeStatus.Vencido) {
-          <span class="badge bg-red-100 text-red-800">Vencido</span> } @case
-          (EChargeStatus.Cancelado) {
-          <span class="badge bg-gray-100 text-gray-800">Cancelado</span> } }
+          <lx-tag
+            [value]="statusMeta(item.status).label"
+            [severity]="statusMeta(item.status).severity"
+          />
         </td>
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
@@ -114,7 +117,7 @@
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
           icon="mdi:credit-card-outline"
@@ -122,13 +125,13 @@
         />
       </div>
       <div class="flex-1 min-w-0">
-        <h3>{{ item.propertyFullName || 'N/A' }}</h3>
-        <p>{{ item.chargeTypeName || 'Sin tipo' }} · {{ item.concept }}</p>
+        <h3>{{ item.propertyFullName || "N/A" }}</h3>
+        <p>{{ item.chargeTypeName || "Sin tipo" }} · {{ item.concept }}</p>
         <p>
-          {{ item.amount | number:'1.2-2' }} · {{ item.chargeTypeAccountNumber
-          }}
+          {{ item.amount | number:"1.2-2" }} ·
+          {{ item.chargeTypeAccountNumber }}
         </p>
-        <p>Venc: {{ item.dueDate | date:'dd/MM/yyyy':'UTC' }}</p>
+        <p>Venc: {{ item.dueDate | date:"dd/MM/yyyy":"UTC" }}</p>
       </div>
       <ili-action-menu slot="end">
         <ng-container actions>

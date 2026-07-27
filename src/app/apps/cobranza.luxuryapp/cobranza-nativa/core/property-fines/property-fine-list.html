@@ -35,9 +35,7 @@
         <td class="font-medium text-800">{{ item.propertyFullName }}</td>
         <td class="text-xs text-500">
           @if (item.regulationArticleNumber) {
-          <span class="font-semibold text-primary"
-            >{{ item.regulationArticleNumber }}</span
-          >
+          <span class="font-semibold text-primary">{{ item.regulationArticleNumber }}</span>
           <br />
           <span>{{ item.regulationArticleTitle }}</span>
           } @else {
@@ -45,35 +43,20 @@
           }
         </td>
         <td class="text-xs text-700">{{ item.description }}</td>
-        <td class="text-center text-xs">
-          {{ item.infractionDate | date: 'dd/MM/yyyy' : 'UTC' }}
-        </td>
-        <td class="text-right font-semibold text-red-600">
-          {{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }}
-        </td>
+        <td class="text-center text-xs">{{ item.infractionDate | date: 'dd/MM/yyyy' : 'UTC' }}</td>
+        <td class="text-right font-semibold text-red-600">{{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }}</td>
         <td class="text-center">
-          <lx-tag
-            [value]="fineStatusLabel(item.status)"
-            [severity]="fineStatusSeverity(item.status)"
-          />
+          <lx-tag [value]="fineStatusLabel(item.status)" [severity]="fineStatusSeverity(item.status)" />
         </td>
-        <td class="text-center text-xs text-500">
-          {{ item.evidences?.length ?? 0 }}
-        </td>
+        <td class="text-center text-xs text-500">{{ item.evidences?.length ?? 0 }}</td>
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
             @if (canIssueCharge(item.status)) {
-            <iw-button-edit
-              (clicked)="onIssueCharge(item)"
-              title="Generar cargo financiero"
-            />
+            <iw-button-edit (clicked)="onIssueCharge(item)" title="Generar cargo financiero" />
             } @if (canEdit(item.status)) {
             <iw-button-edit (clicked)="onModalForm(item.id)" />
             } @if (canVoid(item.status)) {
-            <iw-button-delete
-              (customClick)="onVoid(item)"
-              title="Anular multa"
-            />
+            <iw-button-delete (customClick)="onVoid(item)" title="Anular multa" />
             }
           </div>
         </td>
@@ -95,20 +78,14 @@
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon
-          icon="mdi:alert-circle-outline"
-          class="text-orange-600 text-xl"
-        />
+        <app-icon icon="mdi:alert-circle-outline" class="text-orange-600 text-xl" />
       </div>
       <div class="flex-1 min-w-0">
         <h3>{{ item.propertyFullName }}</h3>
         <p>{{ item.description }}</p>
-        <p>
-          {{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }} · {{
-          fineStatusLabel(item.status) }}
-        </p>
+        <p>{{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }} · {{ fineStatusLabel(item.status) }}</p>
       </div>
       <ili-action-menu slot="end">
         <ng-container actions>

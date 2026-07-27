@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   ViewEncapsulation,
 } from "@angular/core";
 import {
@@ -23,6 +24,13 @@ import {
   IonRow,
   IonThumbnail,
 } from "@ionic/angular/standalone";
+import { MobileAccordion } from "@ui/mobile/accordion/accordion";
+import { MobileOrgChart } from "@ui/mobile/org-chart/org-chart";
+import { MobilePaginator } from "@ui/mobile/paginator/paginator";
+import { MobileTable } from "@ui/mobile/table/table";
+import { MobileTreeTable } from "@ui/mobile/tree-table/tree-table";
+import { MobileTree } from "@ui/mobile/tree/tree";
+import { MobileVirtualScroller } from "@ui/mobile/virtual-scroller/virtual-scroller";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -52,7 +60,15 @@ import {
     IonNote,
     IonRow,
     IonThumbnail,
+    MobileAccordion,
+    MobileTable,
+    MobileTreeTable,
+    MobileTree,
+    MobilePaginator,
+    MobileVirtualScroller,
+    MobileOrgChart,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">Data Display (Ionic)</div>
@@ -390,6 +406,69 @@ import {
         </div>
       </div>
     </div>
+
+    <div class="mobile-card mt-4">
+      <div class="mobile-card-header">Data Wrappers (ili-*)</div>
+      <div class="mobile-card-body flex flex-column gap-5">
+        <div>
+          <div class="font-bold text-sm mb-3">ili-accordion</div>
+          <ili-accordion
+            [items]="[{ id: '1', title: 'Section 1' }]"
+            [expandedIds]="['1']"
+          >
+            <div accordion="1">Content of section 1</div>
+          </ili-accordion>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-table</div>
+          <ili-table
+            [data]="[{ id: 1, name: 'Product A', price: '$10' }]"
+            [columns]="[
+              { field: 'name', header: 'Name', icon: 'mdi:box' },
+              { field: 'price', header: 'Price' },
+            ]"
+            dataKey="id"
+          ></ili-table>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-paginator</div>
+          <ili-paginator
+            [totalRecords]="100"
+            [rows]="10"
+            [page]="0"
+          ></ili-paginator>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-tree-table</div>
+          <ili-tree-table
+            [nodes]="treeTableData"
+            [columns]="[{ field: 'name', header: 'Name' }]"
+            dataKey="id"
+          ></ili-tree-table>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-tree</div>
+          <ili-tree [value]="treeData"></ili-tree>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-virtual-scroller</div>
+          <ili-virtual-scroller
+            [items]="['Item 1', 'Item 2', 'Item 3']"
+            scrollHeight="100px"
+          ></ili-virtual-scroller>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-org-chart</div>
+          <ili-org-chart [value]="orgChartData"></ili-org-chart>
+        </div>
+      </div>
+    </div>
   `,
   styleUrls: ["../../shared/mobile-showcase-styles.css"],
   styles: [
@@ -681,4 +760,21 @@ export class MobileData {
   constructor() {
     addIcons({ calendarOutline, mailOutline, notificationsOutline });
   }
+
+  treeTableData = [
+    {
+      data: { id: "1", name: "Node 1" },
+      children: [{ data: { id: "1-1", name: "Child 1.1" } }],
+    },
+  ];
+
+  treeData = [{ label: "Root Node", children: [{ label: "Child Node 1" }] }];
+
+  orgChartData = [
+    {
+      label: "CEO",
+      type: "person",
+      children: [{ label: "CTO", type: "person" }],
+    },
+  ];
 }

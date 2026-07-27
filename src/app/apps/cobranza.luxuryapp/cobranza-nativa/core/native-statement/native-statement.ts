@@ -1,4 +1,4 @@
-﻿import {
+import {
   CommonModule,
   CurrencyPipe,
   DatePipe,
@@ -15,13 +15,15 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
@@ -39,6 +41,8 @@ import {
     CommonModule,
     ReactiveFormsModule,
     TableModule,
+    LxCard,
+    LxTag,
     CustomInputSelectSignal,
     CustomInputDateSignal,
     UpperCasePipe,
@@ -54,10 +58,10 @@ export class NativeStatement implements OnInit {
   private destroyRef = inject(DestroyRef);
   private customerIdS = inject(CustomerIdService);
   private signalRService = inject(SignalRService);
+  private confirmS = inject(ConfirmService);
 
   private realtimePropertyId: string | null = null;
 
-  // State
   customerId = signal<string>("");
   properties = signal<{ label: string; value: string }[]>([]);
   propertyIdCtrl = new FormControl<string>("", { nonNullable: true });
@@ -251,16 +255,16 @@ export class NativeStatement implements OnInit {
   async sendBatchStatementEmails() {
     if (!this.customerId()) return;
 
-    const confirmed = window.confirm(
+    const confirmed = await this.confirmS.confirm(
       "Se enviaran estados de cuenta a todas las propiedades del condominio con correo notificable. ¿Deseas continuar?",
+      "Enviar estados de cuenta",
     );
     if (!confirmed) return;
 
     this.sendingBatchStatements.set(true);
     try {
       await this.apiResponseS.onPost<SendNativeStatementBatchResponseDTO>(
-        Endpoints.CobranzaCore.Notifications
-          .sendStatementBatch,
+        Endpoints.CobranzaCore.Notifications.sendStatementBatch,
         {
           customerId: this.customerId(),
           asOf: this.asOfCtrl.value
@@ -281,14 +285,14 @@ export class NativeStatement implements OnInit {
     this.processingNotifications.set(true);
     try {
       await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaCore.Notifications.process(
-          this.customerId(),
-        ),
+        Endpoints.CobranzaCore.Notifications.process(this.customerId()),
       );
     } finally {
       this.processingNotifications.set(false);
     }
   }
+
+  entryTypeSeverity(type: string) {
+    return type === "Cargo" ? "danger" as const : "success" as const;
+  }
 }
-
-

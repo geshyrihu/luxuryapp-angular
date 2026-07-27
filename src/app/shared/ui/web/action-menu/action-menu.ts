@@ -26,7 +26,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       <button
         pButton
         type="button"
-        class="border-round-lg p-button-text p-button-icon-only action-menu-button"
+        class="rounded-lg p-button-text p-button-icon-only action-menu-button"
         (click)="popover.toggle($event)"
         aria-label="Opciones"
       >

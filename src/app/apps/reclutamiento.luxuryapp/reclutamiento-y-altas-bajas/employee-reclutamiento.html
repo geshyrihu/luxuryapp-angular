@@ -5,7 +5,7 @@
         <!-- Solicitud de alta -->
         @if(solicitudAltaStatus()){
         <li
-          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round"
+          class="flex align-items-center p-3 mb-2 border-1 surface-border rounded"
         >
           <app-icon
             [icon]="'mdi:account-plus'"
@@ -17,7 +17,7 @@
         </li>
         }@else{
         <li
-          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round cursor-pointer hover:surface-hover"
+          class="flex align-items-center p-3 mb-2 border-1 surface-border rounded cursor-pointer hover:surface-hover"
           (click)="onModalSolicitudALta()"
         >
           <app-icon [icon]="'mdi:account-plus'" class="mr-3 text-lg" />
@@ -27,7 +27,7 @@
         <!-- Mensaje para baja o modificación de salario -->
         @if (!workPosition()) {
         <li
-          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round surface-100"
+          class="flex align-items-center p-3 mb-2 border-1 surface-border rounded surface-100"
         >
           <em class="text-red-500">
             Para solicitar baja o modificación de salario, este empleado debe
@@ -38,7 +38,7 @@
         <!-- Solicitud de baja -->
         @if (!solicitudBajaStatus() && workPosition()) {
         <li
-          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round cursor-pointer hover:surface-hover"
+          class="flex align-items-center p-3 mb-2 border-1 surface-border rounded cursor-pointer hover:surface-hover"
           (click)="onModalSolicitudBaja()"
         >
           <app-icon [icon]="'mdi:account-minus'" class="mr-3 text-lg" />
@@ -46,7 +46,7 @@
         </li>
         } @if (solicitudBajaStatus()) {
         <li
-          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round"
+          class="flex align-items-center p-3 mb-2 border-1 surface-border rounded"
         >
           <app-icon
             [icon]="'mdi:account-minus'"
@@ -60,7 +60,7 @@
         <!-- Solicitud de modificación de salario -->
         @if (!solicitudModificacionSalarioStatus() && workPosition()) {
         <li
-          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round cursor-pointer hover:surface-hover"
+          class="flex align-items-center p-3 mb-2 border-1 surface-border rounded cursor-pointer hover:surface-hover"
           (click)="onModalSolicitudModificacionSalarion()"
         >
           <app-icon [icon]="'mdi:currency-usd'" class="mr-3 text-lg" />
@@ -70,7 +70,7 @@
         <!-- Solicitud de modificación de salario en proceso -->
         @if (solicitudModificacionSalarioStatus()) {
         <li
-          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round"
+          class="flex align-items-center p-3 mb-2 border-1 surface-border rounded"
         >
           <app-icon
             [icon]="'mdi:currency-usd'"

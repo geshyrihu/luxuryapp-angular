@@ -42,7 +42,7 @@
 <div class="flex flex-column mt-3 gap-2">
   @for (item of cb_existing_Participant(); track item.id) {
   <ili-list-item
-    class="w-full border-1 border-round-md"
+    class="w-full border-1 rounded-md"
     [class.border-green-500]="item.isAdmin === 'Administrador'"
     [class.border-red-500]="item.isAdmin !== 'Administrador'"
   >

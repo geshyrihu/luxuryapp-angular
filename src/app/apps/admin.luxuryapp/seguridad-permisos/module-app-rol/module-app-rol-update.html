@@ -2,7 +2,7 @@
 <div class="hidden md:block p-2">
   <!-- Título del cliente -->
   <div
-    class="p-3 mb-4 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 border-round-md text-center uppercase tracking-widest"
+    class="p-3 mb-4 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center uppercase tracking-widest"
   >
     Módulos asignados a: {{ roleName }}
   </div>
@@ -20,7 +20,7 @@
   <div class="mb-5">
     <!-- Título del grupo -->
     <div class="flex align-items-center gap-2 mb-3 px-1">
-      <div class="w-1rem h-1rem border-round bg-primary"></div>
+      <div class="w-1rem h-1rem rounded bg-primary"></div>
       <h5 class="m-0 font-bold text-primary uppercase tracking-widest text-sm">
         {{ group.groupTitle }}
       </h5>
@@ -34,10 +34,10 @@
       @for (item of group.items; track item.moduleAppId) {
       <div class="col-12 md:col-6 lg:col-4">
         <div
-          class="border-1 cursor-pointer p-3 border-round-lg transition-all transition-duration-200 shadow-hover h-full flex align-items-center"
+          class="border-1 cursor-pointer p-3 rounded-lg transition-all transition-duration-200 shadow-hover h-full flex align-items-center"
           [class.border-green-500]="item.isAssigned"
           [class.bg-green-50]="item.isAssigned"
-          [class.shadow-1]="item.isAssigned"
+          [class.shadow-sm]="item.isAssigned"
           [class.border-red-100]="!item.isAssigned"
           [class.surface-50]="!item.isAssigned"
           (click)="toggleModuleActivation(item)"
@@ -45,7 +45,7 @@
           <div class="flex justify-content-between align-items-center w-full">
             <div class="flex align-items-center gap-3">
               <span
-                class="w-2rem h-2rem border-round-circle flex align-items-center justify-content-center border-1"
+                class="w-2rem h-2rem rounded-circle flex align-items-center justify-content-center border-1"
                 [class.bg-green-100]="item.isAssigned"
                 [class.text-green-700]="item.isAssigned"
                 [class.border-green-200]="item.isAssigned"
@@ -80,7 +80,7 @@
 <div class="md:hidden">
   <div class="ion-padding">
     <div
-      class="p-3 mb-3 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 border-round-md text-center"
+      class="p-3 mb-3 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center"
     >
       MODULOS ASIGNADOS A {{ roleName | uppercase }}
     </div>

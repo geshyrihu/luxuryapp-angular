@@ -6,6 +6,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -41,6 +42,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     MobileListItem,
     WebButtonIcon,
     LxTooltipDirective,
+    LxTag,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomCaption,
@@ -114,18 +116,40 @@ export default class ApprovalInbox {
     return labels[op] ?? String(op);
   }
 
-  statusClass(status: EFinancialApprovalStatus): string {
-    const classes: Record<EFinancialApprovalStatus, string> = {
-      [EFinancialApprovalStatus.Pendiente]: "bg-yellow-100 text-yellow-800",
-      [EFinancialApprovalStatus.Aprobada]: "bg-green-100 text-green-800",
-      [EFinancialApprovalStatus.Rechazada]: "bg-red-100 text-red-800",
-      [EFinancialApprovalStatus.Cancelada]: "bg-gray-100 text-gray-600",
-    };
-    return classes[status] ?? "";
-  }
-
   statusLabel(status: EFinancialApprovalStatus): string {
     return EFinancialApprovalStatus[status] ?? String(status);
+  }
+
+  operationSeverity(operation: EFinancialApprovalOperationType) {
+    switch (operation) {
+      case EFinancialApprovalOperationType.Condonacion:
+        return "warning" as const;
+      case EFinancialApprovalOperationType.DevolucionPago:
+        return "info" as const;
+      case EFinancialApprovalOperationType.ReaperturaPeriodo:
+        return "secondary" as const;
+      case EFinancialApprovalOperationType.AnulacionCargoPagado:
+        return "danger" as const;
+      case EFinancialApprovalOperationType.AjusteAlAlza:
+        return "success" as const;
+      default:
+        return "contrast" as const;
+    }
+  }
+
+  statusSeverity(status: EFinancialApprovalStatus) {
+    switch (status) {
+      case EFinancialApprovalStatus.Pendiente:
+        return "warning" as const;
+      case EFinancialApprovalStatus.Aprobada:
+        return "success" as const;
+      case EFinancialApprovalStatus.Rechazada:
+        return "danger" as const;
+      case EFinancialApprovalStatus.Cancelada:
+        return "contrast" as const;
+      default:
+        return "contrast" as const;
+    }
   }
 }
 

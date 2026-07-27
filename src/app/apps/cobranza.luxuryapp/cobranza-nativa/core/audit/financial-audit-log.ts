@@ -1,4 +1,4 @@
-﻿import { DatePipe } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -8,6 +8,8 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -33,6 +35,8 @@ import { FinancialAuditLogDTO } from "../../interfaces/financial-audit.dto";
     TableModule,
     PrimeNgCustomCaption,
     WebButtonLabel,
+    LxCard,
+    LxTag,
     DataViewMobile,
     MobileListItem,
     DatePipe,
@@ -72,8 +76,9 @@ export default class FinancialAuditLog {
     const res = await this.apiResponseS.onGetSelectItem<any[]>(
       Endpoints.SelectItems.properties(customerId),
     );
-    if (res)
+    if (res) {
       this.properties.set([{ label: "Todo el condominio", value: "" }, ...res]);
+    }
   }
 
   async onSearch() {
@@ -100,23 +105,20 @@ export default class FinancialAuditLog {
             customerId,
           ) + qs;
 
-      const res =
-        await this.apiResponseS.onGetItem<FinancialAuditLogDTO[]>(url);
+      const res = await this.apiResponseS.onGetItem<FinancialAuditLogDTO[]>(url);
       this.dataSignal.set(res ?? []);
     } finally {
       this.loading.set(false);
     }
   }
 
-  successClass(isSuccess: boolean): string {
+  successMeta(isSuccess: boolean) {
     return isSuccess
-      ? "bg-green-100 text-green-800"
-      : "bg-red-100 text-red-800";
+      ? ({ label: "Exitoso", severity: "success" as const })
+      : ({ label: "Fallido", severity: "danger" as const });
   }
 
   private getQueryDate(value: Date | string | null): string | null {
     return this.dateS.getDateFormat(value);
   }
 }
-
-

@@ -11,6 +11,7 @@ import { EndpointsReclutamiento } from "./reclutamiento.endpoints";
 import { EndpointsRecursosHumanos } from "./recursos-humanos.endpoints";
 import { EndpointsResident } from "./resident.endpoints";
 import { EndpointsSecurity } from "./security.endpoints";
+import { EndpointsSelectItem } from "./select-item.endpoints";
 import { EndpointsShared } from "./shared.endpoints";
 import { EndpointsSupplier } from "./supplier.endpoints";
 import { EndpointsSystem } from "./system.endpoints";
@@ -40,6 +41,7 @@ export const Endpoints = {
   ...EndpointsReclutamiento,
   ...EndpointsResident,
   ...EndpointsWeb,
+  ...EndpointsSelectItem,
   ...EndpointsShared,
   BudgetingProposal: EndpointsContabilidad.BudgetingProposal,
   BudgetingProposalSupport: EndpointsContabilidad.BudgetingProposalSupport,

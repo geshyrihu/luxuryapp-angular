@@ -2,7 +2,7 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
-    <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
+    <div class="mb-3 p-3 rounded bg-blue-50 text-700 text-sm">
       Las minutas de comite y asamblea ya no se crean directamente desde este
       modulo. Primero debe registrarse la agenda de la junta para generar la
       sesion mensual y, desde ella, la minuta vinculada.
@@ -118,7 +118,7 @@
           <!-- TOTAL -->
           <td class="text-center">
             <div
-              class="cursor-pointer flex align-items-center justify-content-between p-2 border-round bg-cyan-700 text-white w-full mx-auto hover:bg-cyan-800 transition-all transition-duration-200"
+              class="cursor-pointer flex align-items-center justify-content-between p-2 rounded bg-cyan-700 text-white w-full mx-auto hover:bg-cyan-800 transition-all transition-duration-200"
               lxTooltip="Revisar todos los asuntos"
               tooltipPosition="top"
               (click)="showModalAddOrEditMeetingDetails(item.id, 'Asuntos', 4)"
@@ -137,7 +137,7 @@
           <!-- CONCLUIDOS -->
           <td class="text-center">
             <div
-              class="cursor-pointer flex align-items-center justify-content-between p-2 border-round bg-green-500 text-white w-full mx-auto hover:bg-green-600 transition-all transition-duration-200"
+              class="cursor-pointer flex align-items-center justify-content-between p-2 rounded bg-green-500 text-white w-full mx-auto hover:bg-green-600 transition-all transition-duration-200"
               lxTooltip="Revisar Concluidos"
               tooltipPosition="top"
               (click)="
@@ -158,7 +158,7 @@
           <!-- PENDIENTES -->
           <td class="text-center">
             <div
-              class="cursor-pointer flex align-items-center justify-content-between p-2 border-round bg-red-500 text-white w-full mx-auto hover:bg-red-600 transition-all transition-duration-200"
+              class="cursor-pointer flex align-items-center justify-content-between p-2 rounded bg-red-500 text-white w-full mx-auto hover:bg-red-600 transition-all transition-duration-200"
               lxTooltip="Revisar Pendientes"
               tooltipPosition="top"
               (click)="
@@ -179,7 +179,7 @@
           <!-- NO AUTORIZADOS -->
           <td class="text-center">
             <div
-              class="cursor-pointer flex align-items-center justify-content-between p-2 border-round bg-gray-500 text-white w-full mx-auto hover:bg-gray-600 transition-all transition-duration-200"
+              class="cursor-pointer flex align-items-center justify-content-between p-2 rounded bg-gray-500 text-white w-full mx-auto hover:bg-gray-600 transition-all transition-duration-200"
               lxTooltip="Revisar No Autorizados"
               tooltipPosition="top"
               (click)="
@@ -266,7 +266,7 @@
 <!-- 📱 INICIO: Componente adaptado para versión mívil -->
 <div class="block md:hidden">
   <div class="card border-none shadow-none">
-    <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
+    <div class="mb-3 p-3 rounded bg-blue-50 text-700 text-sm">
       Las minutas de comite y asamblea ya no se crean directamente aqui. Primero
       registra la agenda de la junta para generar la sesion mensual y la minuta
       relacionada.
@@ -338,7 +338,7 @@
         <ili-list-item>
           <div
             start
-            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
             class="w-3rem h-3rem bg-primary-50"
           >
             <app-icon
@@ -401,7 +401,7 @@
             <div class="grid">
               <div class="col-6">
                 <div
-                  class="cursor-pointer flex flex-column align-items-center justify-content-center p-2 border-round bg-green-600 text-white w-full mx-auto"
+                  class="cursor-pointer flex flex-column align-items-center justify-content-center p-2 rounded bg-green-600 text-white w-full mx-auto"
                   lxTooltip="Revisar Concluidos"
                   tooltipPosition="top"
                   (click)="
@@ -416,7 +416,7 @@
               </div>
               <div class="col-6">
                 <div
-                  class="cursor-pointer flex flex-column align-items-center justify-content-center p-2 border-round bg-red-600 text-white w-full mx-auto"
+                  class="cursor-pointer flex flex-column align-items-center justify-content-center p-2 rounded bg-red-600 text-white w-full mx-auto"
                   lxTooltip="Revisar Pendientes"
                   tooltipPosition="top"
                   (click)="
@@ -431,7 +431,7 @@
               </div>
               <div class="col-12">
                 <div
-                  class="cursor-pointer flex flex-column align-items-center justify-content-center p-2 border-round bg-purple-600 text-white w-full mx-auto"
+                  class="cursor-pointer flex flex-column align-items-center justify-content-center p-2 rounded bg-purple-600 text-white w-full mx-auto"
                   lxTooltip="Revisar No Autorizados"
                   tooltipPosition="top"
                   (click)="

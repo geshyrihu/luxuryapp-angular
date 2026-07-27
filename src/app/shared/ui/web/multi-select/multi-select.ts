@@ -21,7 +21,7 @@ import { MultiSelectModule } from "primeng/multiselect";
     [class]="styleClass()"
     ><ng-content
   /></p-multiselect>`,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppMultiSelect extends MultiSelectBase {}

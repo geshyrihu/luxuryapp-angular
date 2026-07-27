@@ -15,7 +15,7 @@
 
   <div formArrayName="items" class="flex flex-column gap-3 mb-4">
     @for (item of items.controls; track $index) {
-    <div [formGroupName]="$index" class="surface-ground border-round p-3">
+    <div [formGroupName]="$index" class="surface-ground rounded p-3">
       <div class="font-medium mb-1">{{ $index + 1 }}. {{ item.controls.criterionTitle.value }}</div>
       <div class="text-sm text-600 mb-3">
         {{ item.controls.criterionDescription.value || "Sin descripcion adicional" }}

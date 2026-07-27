@@ -16,7 +16,8 @@ export type { ConfirmType } from "@ui/base/confirm-dialog.base";
   imports: [DialogModule, ButtonModule, AppIcon],
   template: `
     <p-dialog
-      [(visible)]="visible"
+      [visible]="visible()"
+      (visibleChange)="visible.set($event)"
       [header]="title()"
       [modal]="true"
       [closable]="false"
@@ -26,9 +27,9 @@ export type { ConfirmType } from "@ui/base/confirm-dialog.base";
     >
       <div class="flex flex-column align-items-center text-center gap-3 py-3">
         <app-icon
-          [icon]="config.icon"
+          [icon]="config().icon"
           class="text-4xl"
-          [style.color]="config.color"
+          [style.color]="config().color"
         />
         <p class="m-0 text-color-secondary line-height-3">{{ message() }}</p>
       </div>
@@ -42,7 +43,7 @@ export type { ConfirmType } from "@ui/base/confirm-dialog.base";
           />
           <p-button
             [label]="confirmLabel()"
-            [severity]="config.severity"
+            [severity]="config().severity"
             (onClick)="onConfirm()"
           />
         </div>
@@ -56,7 +57,7 @@ export type { ConfirmType } from "@ui/base/confirm-dialog.base";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class ConfirmDialog extends ConfirmDialogBase {}

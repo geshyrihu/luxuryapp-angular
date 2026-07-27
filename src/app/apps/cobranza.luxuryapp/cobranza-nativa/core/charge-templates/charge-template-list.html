@@ -23,7 +23,7 @@
       <tr>
         <th class="w-4rem text-center">Activa</th>
         <th class="w-12rem">Tipo y Nombre</th>
-        <th class="w-10rem text-center">Cólculo y Monto</th>
+        <th class="w-10rem text-center">Cálculo y Monto</th>
         <th class="w-8rem text-center">Recurrencia</th>
         <th class="w-8rem text-center">Vigencia</th>
         <th class="w-6rem text-center">Propiedades</th>
@@ -32,7 +32,7 @@
     </ng-template>
 
     <ng-template #body let-item>
-      <tr [ngClass]="{'opacity-50': !item.isActive}">
+      <tr [ngClass]="{ 'opacity-50': !item.isActive }">
         <td class="text-center">
           @if (item.isActive) {
           <app-icon
@@ -55,43 +55,21 @@
           </div>
         </td>
         <td class="text-center font-medium">
-          <div class="flex flex-column align-items-center">
-            @if (item.calculationMethod === ECalculationMethod.FixedAmount) {
-            <span class="text-xs surface-100 px-2 border-round mb-1"
-              >Fijo Depto</span
-            >
-            } @else {
-            <span
-              class="text-xs bg-yellow-100 text-yellow-800 px-2 border-round mb-1"
-              >Indiviso Total</span
-            >
-            }
-            <span
-              >{{ item.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</span
-            >
+          <div class="flex flex-column align-items-center gap-2">
+            <lx-tag
+              [value]="calculationMethodMeta(item.calculationMethod).label"
+              [severity]="calculationMethodMeta(item.calculationMethod).severity"
+            />
+            <span>{{ item.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</span>
           </div>
         </td>
         <td class="text-center text-sm">
-          <div class="flex flex-column align-items-center">
-            @switch (item.recurrence) { @case (Recurrence.Eventual) {
-            <span class="badge surface-100 text-gray-700">Eventual</span> }
-            @case (Recurrence.Mensual) {
-            <span class="badge bg-blue-100 text-blue-700">Mensual</span> } @case
-            (Recurrence.Bimestral) {
-            <span class="badge bg-indigo-100 text-indigo-700">Bimestral</span> }
-            @case (Recurrence.Trimestral) {
-            <span class="badge bg-cyan-100 text-cyan-700">Trimestral</span> }
-            @case (Recurrence.Cuatrimestral) {
-            <span class="badge bg-teal-100 text-teal-700">Cuatrimestral</span> }
-            @case (Recurrence.Quimestral) {
-            <span class="badge bg-green-100 text-green-700">Quimestral</span> }
-            @case (Recurrence.Semestral) {
-            <span class="badge bg-orange-100 text-orange-700">Semestral</span> }
-            @case (Recurrence.Anual) {
-            <span class="badge bg-red-100 text-red-700">Anual</span> } }
-            <span class="text-xs text-500 mt-1"
-              >Dóa: {{ item.dayOfMonth }}</span
-            >
+          <div class="flex flex-column align-items-center gap-2">
+            <lx-tag
+              [value]="recurrenceMeta(item.recurrence).label"
+              [severity]="recurrenceMeta(item.recurrence).severity"
+            />
+            <span class="text-xs text-500">Día: {{ item.dayOfMonth }}</span>
           </div>
         </td>
         <td class="text-center text-xs">
@@ -106,10 +84,7 @@
         </td>
         <td class="text-center">
           @if (item.applyToAllProperties) {
-          <span
-            class="text-xs bg-purple-100 text-purple-700 px-2 py-1 border-round"
-            >Todas</span
-          >
+          <lx-tag value="Todas" severity="secondary" />
           } @else {
           <span class="text-xs text-500">Seleccionadas</span>
           }
@@ -138,7 +113,7 @@
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon icon="mdi:receipt" class="text-purple-600 text-xl" />
       </div>
@@ -146,7 +121,7 @@
         <h3>{{ item.name }}</h3>
         <p>{{ item.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</p>
         <p>
-          {{ item.startDate | date:'dd/MM/yyyy':'UTC' }} é {{ item.endDate ?
+          {{ item.startDate | date:'dd/MM/yyyy':'UTC' }} a {{ item.endDate ?
           (item.endDate | date:'dd/MM/yyyy':'UTC') : 'Indefinido' }}
         </p>
       </div>

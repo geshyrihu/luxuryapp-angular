@@ -12,7 +12,12 @@ import { PickListModule } from "primeng/picklist";
 
   imports: [CommonModule, PickListModule],
   template: `
-    <p-pickList [(source)]="source" [(target)]="target" styleClass="w-full">
+    <p-pickList 
+      [source]="source()" 
+      (sourceChange)="source.set($event)" 
+      [target]="target()" 
+      (targetChange)="target.set($event)" 
+      styleClass="w-full">
       <ng-template let-item pTemplate="item">
         <ng-container
           *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"
@@ -31,7 +36,7 @@ import { PickListModule } from "primeng/picklist";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class PickList extends PickListBase {}

@@ -22,7 +22,8 @@ import {
   provideAppInitializer,
   provideZonelessChangeDetection,
 } from "@angular/core";
-import { provideAnimations } from "@angular/platform-browser/animations";
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
+
 import {
   provideRouter,
   withInMemoryScrolling,
@@ -40,7 +41,7 @@ import { environment } from "src/environments/environment";
 import { provideTranslateService } from "@ngx-translate/core";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
-import * as echarts from "echarts";
+// Echarts se importa dinámicamente en provider
 import { Spanish } from "flatpickr/dist/l10n/es";
 import { provideEchartsCore } from "ngx-echarts";
 import { provideMarkdown } from "ngx-markdown";
@@ -54,7 +55,8 @@ import { jwtInterceptor } from "src/app/core/http/interceptors/jwt.interceptor.f
 import { offlineInterceptorFn } from "src/app/core/http/interceptors/offline.interceptor.fn";
 import { preloadIconifyIcons } from "src/app/core/services/icon-preload.service";
 import { MessagingService } from "src/app/core/services/notification-messaging.service";
-import MyPreset, { PrimeNgSpanishLocale } from "src/app/mypreset";
+import { PrimeNgSpanishLocale } from "src/app/mypreset";
+import { LuxuryPreset } from "src/styles/theme/mypreset";
 import { initializeAppState } from "./app-initializer";
 import { appRoutes } from "./app.routes";
 // Registrar datos locales para el pipe de fecha en español
@@ -65,7 +67,7 @@ const primeNgConfig: PrimeNGConfigType = {
   license:
     "eyJpZCI6IjYwMjZhNmI2LTAxM2MtNGI1Yy1hZTc0LTFjMjUyZWI0NmRmNCIsInByb2R1Y3QiOiJwcmltZXVpIiwidGllciI6ImNvbW11bml0eSIsInR5cGUiOiJkZXYiLCJpYXQiOjE3ODMzOTM4NjcsImV4cCI6MTgxNDkyOTg2N30.q9Bg8B3KhNVh6x40y5CBrosDUg5XsbUSUGE3tVtwl66DwRgF5pj8HdWB0906k5qFcEGQNTz5Gs7VzQAtoT0XBg",
   theme: {
-    preset: MyPreset,
+    preset: LuxuryPreset,
     options: {
       darkModeSelector: '[data-theme="dark"], .theme-dark',
       cssLayer: {
@@ -100,11 +102,14 @@ export const appConfig: ApplicationConfig = {
       useFactory: (backend: HttpBackend) => new HttpClient(backend),
       deps: [HttpBackend],
     },
-    provideAnimations(),
+    // Elimina provideAnimationsAsync() de tus providers
+    // Migra tus animaciones a CSS + animate.enter/animate.leave
+    // Elimina @angular/animations de tus dependencias (cuando hayas migrado todo)
+    provideAnimationsAsync(),
     // --- Configuración de Librerías de UI y Terceros ---
     provideToastr(),
     providePrimeNG(primeNgConfig),
-    provideEchartsCore({ echarts }),
+    provideEchartsCore({ echarts: () => import("echarts") }),
     provideEnvironmentNgxMask(),
     provideFlatpickrDefaults({
       locale: Spanish,

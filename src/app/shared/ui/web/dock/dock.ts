@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  computed,
   ViewEncapsulation,
 } from "@angular/core";
 import { DockBase } from "@ui/base/dock.base";
@@ -80,17 +81,18 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppDock extends DockBase {
   dockId = input<string>("app-dock");
 
-  tooltipPosition(): string {
+  tooltipPosition = computed(() => {
     const pos = this.position();
     if (pos === "bottom") return "top";
     if (pos === "top") return "bottom";
     if (pos === "left") return "right";
     return "left";
-  }
+  });
 }
+

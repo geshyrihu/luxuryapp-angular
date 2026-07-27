@@ -5,6 +5,7 @@ import {
   inject,
   OnDestroy,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { InfiniteScrollBase } from "@ui/base/infinite-scroll.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -49,6 +50,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class InfiniteScroll

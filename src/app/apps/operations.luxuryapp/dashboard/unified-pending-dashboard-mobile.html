@@ -15,7 +15,7 @@
     <div class="flex align-items-center gap-2 w-max">
       <!-- AI Report Action -->
       <div 
-        class="px-3 py-2 border-round-3xl flex align-items-center gap-1 cursor-pointer shadow-1 transition-colors bg-primary text-white"
+        class="px-3 py-2 rounded-3xl flex align-items-center gap-1 cursor-pointer shadow-sm transition-colors bg-primary text-white"
         (click)="generateDailyReport()"
       >
         <app-icon icon="mdi:creation" class="text-white" />
@@ -24,7 +24,7 @@
 
       <!-- 'All' Filter -->
       <div 
-        class="px-3 py-2 border-round-3xl cursor-pointer text-sm font-semibold transition-colors"
+        class="px-3 py-2 rounded-3xl cursor-pointer text-sm font-semibold transition-colors"
         [class.bg-primary]="selectedModule() === null"
         [class.text-white]="selectedModule() === null"
         [class.surface-100]="selectedModule() !== null"
@@ -37,7 +37,7 @@
       <!-- Dynamic Module Filters -->
       @for (mod of uniqueModules(); track mod) {
       <div 
-        class="px-3 py-2 border-round-3xl cursor-pointer text-sm font-semibold transition-colors"
+        class="px-3 py-2 rounded-3xl cursor-pointer text-sm font-semibold transition-colors"
         [class.bg-primary]="selectedModule() === mod"
         [class.text-white]="selectedModule() === mod"
         [class.surface-100]="selectedModule() !== mod"
@@ -51,7 +51,7 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <div 
-      class="surface-card p-3 mb-2 mx-3 shadow-1 border-round-xl flex align-items-start gap-3 relative overflow-hidden transition-colors cursor-pointer hover:surface-hover"
+      class="surface-card p-3 mb-2 mx-3 shadow-sm rounded-xl flex align-items-start gap-3 relative overflow-hidden transition-colors cursor-pointer hover:surface-hover"
       (click)="onNavigate(item)"
     >
       <!-- Left Edge Color Strip -->
@@ -98,7 +98,7 @@
         <!-- Footer -->
         <div class="flex justify-content-between align-items-center text-xs mt-2 border-top-1 surface-border pt-2">
           @if (item.responsible) {
-          <div class="flex align-items-center gap-1 text-500 bg-surface-50 px-2 py-1 border-round-2xl">
+          <div class="flex align-items-center gap-1 text-500 bg-surface-50 px-2 py-1 rounded-2xl">
             <app-icon icon="mdi:account-circle-outline" />
             <span class="font-medium">{{ item.responsible?.split(' ')[0] }}</span>
           </div>

@@ -6,7 +6,7 @@
   } @else { @for (item of data(); track item.id) {
   <div class="col-12 md:col-4 lg:col-3">
     <div
-      class="card shadow-1 border-none surface-card border-round p-0 overflow-hidden"
+      class="card shadow-sm border-none surface-card rounded p-0 overflow-hidden"
     >
       <div class="flex justify-content-end p-2">
         <il-button-delete (confirmed)="confirmDelete(item.id)" />
@@ -17,7 +17,7 @@
           [src]="item.img || 'assets/images/default-avatar.png'"
           alt="Vista previa"
           width="100%"
-          imageClass="border-round w-full h-15rem object-cover"
+          imageClass="rounded w-full h-15rem object-cover"
           [preview]="true"
         ></app-image>
       </div>

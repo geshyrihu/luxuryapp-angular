@@ -10,12 +10,12 @@
   tableLayout="fixed"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card hidden md:block border-none shadow-1"
+  class="custom-table card hidden md:block border-none shadow-sm"
 >
   <ng-template #caption>
     <!-- Contenedor Maestro: Apila en mívil, alinea en lónea en escritorio -->
     <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded"
     >
       <!-- LADO IZQUIERDO: Buscador y Tútulo (Toma el espacio libre) -->
       <div class="flex-grow-1">
@@ -204,7 +204,7 @@
     <ili-list-item>
       <div
         start
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon

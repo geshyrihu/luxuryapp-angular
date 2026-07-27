@@ -1,4 +1,4 @@
-import { EChargeStatus, EChargeType } from "../../../interfaces/enums";
+import { EChargeStatus } from "../../../interfaces/enums";
 
 export interface ChargeResponseDTO {
   id: string;
@@ -10,7 +10,6 @@ export interface ChargeResponseDTO {
   chargeTypeCode?: string | null;
   chargeTypeName?: string | null;
   chargeTypeAccountNumber?: string | null;
-  type: EChargeType;
   concept: string;
   amount: number;
   dueDate: Date | string;
@@ -28,7 +27,6 @@ export interface CreateChargeDTO {
   customerId: string;
   propertyId: string;
   chargeTypeId?: string | null;
-  type?: EChargeType | null;
   concept: string;
   amount: number;
   dueDate: Date | string;
@@ -72,7 +70,6 @@ export interface UpdateChargeDTO {
   id: string;
   propertyId: string;
   chargeTypeId?: string | null;
-  type?: EChargeType | null;
   concept: string;
   amount: number;
   dueDate: Date | string;

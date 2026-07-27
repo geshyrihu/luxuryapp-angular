@@ -18,7 +18,7 @@
     >
       <ng-template #caption>
         <div
-          class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+          class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded"
         >
           <div class="flex-grow-1">
             <primeng-custom-caption
@@ -198,7 +198,7 @@
             getGroupItems(item.groupKey!).length }} campo(s) modificado(s) }
           </p>
           @if (item.expanded && item.groupKey) {
-          <div class="mt-2 surface-ground p-2 border-round">
+          <div class="mt-2 surface-ground p-2 rounded">
             @for (prop of getGroupItems(item.groupKey!); track prop.id) {
             <div class="flex flex-column mb-2">
               <strong class="text-sm">{{ prop.propertyName }}</strong>

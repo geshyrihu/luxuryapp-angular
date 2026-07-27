@@ -22,7 +22,7 @@ import {
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div
-      class="flex flex-column xl:flex-row justify-content-between align-items-start gap-3 p-4 border-round-xl border-1 surface-border bg-white"
+      class="flex flex-column xl:flex-row justify-content-between align-items-start gap-3 p-4 rounded-xl border-1 surface-border bg-white"
     >
       <div class="grid w-full m-0">
         <div class="col-12 xl:col-4">

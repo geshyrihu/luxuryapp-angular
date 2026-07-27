@@ -17,7 +17,7 @@
       @for (option of styles; track option.value) {
       <div class="col-12">
         <div
-          class="option-card p-3 border-round flex flex-column align-items-center text-center h-full justify-content-center"
+          class="option-card p-3 rounded flex flex-column align-items-center text-center h-full justify-content-center"
           [class.selected]="selectedStyle() === option.value"
           (click)="selectStyle(option.value)"
         >
@@ -32,7 +32,7 @@
       @for (option of moods; track option.value) {
       <div class="col-12">
         <div
-          class="option-card p-3 border-round flex flex-column align-items-center text-center h-full justify-content-center"
+          class="option-card p-3 rounded flex flex-column align-items-center text-center h-full justify-content-center"
           [class.selected]="selectedMood() === option.value"
           (click)="selectMood(option.value)"
         >
@@ -47,7 +47,7 @@
       @for (option of elements; track option.value) {
       <div class="col-12">
         <div
-          class="option-card p-3 border-round flex flex-column align-items-center text-center h-full justify-content-center"
+          class="option-card p-3 rounded flex flex-column align-items-center text-center h-full justify-content-center"
           [class.selected]="selectedElement() === option.value"
           (click)="selectElement(option.value)"
         >
@@ -79,7 +79,7 @@
         <div class="flex justify-content-center mt-3">
           <iw-button
             [iconClass]="isListening() ? 'mdi:stop' : 'mdi:microphone'"
-            [class]="isListening() ? 'mic-button shadow-2 listening' : 'mic-button shadow-2'"
+            [class]="isListening() ? 'mic-button shadow-sm listening' : 'mic-button shadow-sm'"
             title="Presiona para dictar"
             (clicked)="toggleListing()"
           />

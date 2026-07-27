@@ -2,12 +2,12 @@
   @if (!result) {
   <!-- Upload View -->
   <div class="mb-4">
-    <lx-message severity="info" text="El archivo debe ser formato CSV con las siguientes columnas, separadas por coma (,): PropertyId (Guid), Monto (Decimal), FechaVencimiento (YYYY-MM-DD), Concepto (Opcional)." class="mb-3 w-full" />
+    <lx-message severity="info" text="El archivo debe ser formato CSV. Las primeras 4 columnas requeridas son: PropertyId (Guid), Monto (Decimal), FechaVencimiento (YYYY-MM-DD) y Concepto (Opcional). La plantilla agrega ReferenciaCuenta y ReferenciaPropiedad solo como apoyo visual." class="mb-3 w-full" />
 
     <div class="flex justify-content-end mb-3">
       <il-button
         iconClass="mdi:download"
-        label="Descargar CSV de Ejemplo"
+        label="Descargar Plantilla CSV"
         variant="outlined"
         severity="secondary"
         size="small"
@@ -16,7 +16,7 @@
     </div>
 
     <div
-      class="border-2 border-dashed border-300 border-round p-5 text-center surface-50 flex flex-column align-items-center"
+      class="border-2 border-dashed border-300 rounded p-5 text-center surface-50 flex flex-column align-items-center"
     >
       <app-icon [icon]="'mdi:cloud-upload'" class="text-5xl text-400 mb-3" />
       <h3 class="mt-0 text-700">Seleccionar archivo CSV</h3>
@@ -68,7 +68,7 @@
 
     <div class="flex justify-content-center mt-4">
       <div
-        class="text-center surface-50 p-3 border-round border-1 border-300 w-8rem"
+        class="text-center surface-50 p-3 rounded border-1 border-300 w-8rem"
       >
         <span class="block text-3xl font-bold text-green-600"
           >{{result.successCount}}</span
@@ -76,7 +76,7 @@
         <span class="block text-sm text-600">Exitosos</span>
       </div>
       <div
-        class="text-center surface-50 p-3 border-round border-1 border-300 w-8rem"
+        class="text-center surface-50 p-3 rounded border-1 border-300 w-8rem"
       >
         <span class="block text-3xl font-bold text-red-600"
           >{{result.failedCount}}</span
@@ -87,7 +87,7 @@
 
     @if (result.errors && result.errors.length > 0) {
     <div
-      class="text-left mt-5 surface-50 p-3 border-round border-1 border-red-200"
+      class="text-left mt-5 surface-50 p-3 rounded border-1 border-red-200"
       
     >
       <h4 class="text-red-700 mt-0 mb-2">

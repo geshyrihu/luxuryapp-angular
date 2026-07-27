@@ -1,5 +1,5 @@
 <div
-  class="card p-3 mb-3 shadow-none border-1 surface-border border-round-xl bg-surface-0"
+  class="card p-3 mb-3 shadow-none border-1 surface-border rounded-xl bg-surface-0"
 >
   <div
     class="flex flex-column md:flex-row justify-content-between align-items-center gap-3"
@@ -97,9 +97,9 @@
         ></lx-split-button>
 
         <!-- Tools Group -->
-        <div class="hidden md:flex gap-1 bg-surface-100 border-round p-1">
+        <div class="hidden md:flex gap-1 bg-surface-100 rounded p-1">
           <div
-            class="flex align-items-center gap-1 border-1 surface-border border-round-3xl px-2 py-1 bg-surface-0"
+            class="flex align-items-center gap-1 border-1 surface-border rounded-3xl px-2 py-1 bg-surface-0"
           >
             <iw-button
               iconClass="mdi:file-excel"
@@ -204,7 +204,7 @@
     habilitar cambios, revierte la autorizacion primero.</lx-message>
   } @if (isConfirmed()) {
   <div
-    class="w-full bg-green-50 border-green-200 border-1 border-round p-3 mt-2 flex align-items-center gap-2 text-green-700"
+    class="w-full bg-green-50 border-green-200 border-1 rounded p-3 mt-2 flex align-items-center gap-2 text-green-700"
   >
     <app-icon [icon]="'mdi:verified'" class="text-xl" />
     <span class="font-bold"
@@ -214,7 +214,7 @@
   </div>
   } @if (dataSignal().length < 1) {
   <div
-    class="flex flex-column align-items-center justify-content-center p-6 border-1 surface-border border-round-xl bg-surface-0 text-center shadow-1"
+    class="flex flex-column align-items-center justify-content-center p-6 border-1 surface-border rounded-xl bg-surface-0 text-center shadow-sm"
   >
     <div class="bg-surface-100 border-circle p-3 mb-3">
       <app-icon [icon]="'mdi:folder-open'" class="text-4xl text-500" />
@@ -226,7 +226,7 @@
   </div>
   } @for (grupo of dataSignal(); track grupo.tipoGasto) {
   <div
-    class="card mb-3 border-1 surface-border border-round-xl overflow-hidden shadow-1"
+    class="card mb-3 border-1 surface-border rounded-xl overflow-hidden shadow-sm"
   >
     <!-- Group Header -->
     <div
@@ -332,7 +332,7 @@
               >
               <span class="text-xs text-500 flex align-items-center gap-1">
                 <span
-                  class="bg-blue-50 text-blue-700 px-1 border-round font-medium"
+                  class="bg-blue-50 text-blue-700 px-1 rounded font-medium"
                   >{{ orden.codigoCuenta }}</span
                 >
                 {{ orden.accountName }}
@@ -374,7 +374,7 @@
           <td class="p-2 text-right">
             <div class="flex flex-column align-items-end gap-1">
               <span
-                class="text-xs font-bold text-700 bg-surface-100 px-1 border-round"
+                class="text-xs font-bold text-700 bg-surface-100 px-1 rounded"
                 >{{ orden.shortName | uppercase }}</span
               >
               <span class="text-xs text-500 font-mono"
@@ -459,7 +459,7 @@
 
   <!-- SECCIÓN: ÓRDENES FUERA DE PROCESO DE FONDEO -->
   <div
-    class="card mt-4 border-1 border-orange-300 border-round-xl overflow-hidden shadow-1"
+    class="card mt-4 border-1 border-orange-300 rounded-xl overflow-hidden shadow-sm"
   >
     <div
       class="flex justify-content-between align-items-center bg-orange-50 px-3 py-2 border-bottom-1 border-orange-200"

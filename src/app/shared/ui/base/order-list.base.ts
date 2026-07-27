@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { any, Directive, input, model } from "@angular/core";
+import { Directive, input, model } from "@angular/core";
 
 @Directive()
 export abstract class OrderListBase {

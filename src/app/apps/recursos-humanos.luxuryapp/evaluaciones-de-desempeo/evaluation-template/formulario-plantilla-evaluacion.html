@@ -1,4 +1,4 @@
-<div class="card p-4 shadow-1">
+<div class="card p-4 shadow-sm">
   <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
     <!-- Cabecera de la Plantilla -->
     <div class="grid mb-4">
@@ -111,7 +111,7 @@
           j = $index) {
           <div
             [formGroup]="questionGroup"
-            class="flex align-items-center gap-3 p-2 surface-100 border-round hover:surface-200 transition-colors"
+            class="flex align-items-center gap-3 p-2 surface-100 rounded hover:surface-200 transition-colors"
             cdkDrag
           >
             <!-- Drag Handle Pregunta -->
@@ -137,7 +137,7 @@
           </div>
           } @if (questions(i).controls.length === 0) {
           <div
-            class="text-center p-4 border-2 border-dashed surface-border border-round text-500"
+            class="text-center p-4 border-2 border-dashed surface-border rounded text-500"
           >
             <app-icon [icon]="'mdi:information'" class="mr-2" />
             No hay preguntas en esta categoría. Haga clic en "Pregunta" para
@@ -148,7 +148,7 @@
       </lx-fieldset>
       } @if (categories.controls.length === 0) {
       <div
-        class="text-center p-8 border-2 border-dashed surface-border border-round bg-white"
+        class="text-center p-8 border-2 border-dashed surface-border rounded bg-white"
       >
         <app-icon
           [icon]="'mdi:folder-open'"

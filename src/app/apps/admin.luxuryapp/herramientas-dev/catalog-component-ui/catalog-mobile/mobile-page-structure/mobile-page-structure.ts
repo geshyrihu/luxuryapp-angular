@@ -17,6 +17,19 @@ import {
   layersOutline,
   phonePortraitOutline,
 } from "ionicons/icons";
+import { MobilePage } from "@ui/mobile/page/page";
+import { MobileAvatar } from "@ui/mobile/avatar/avatar";
+import { MobileBadge } from "@ui/mobile/badge/badge";
+import { MobileChip } from "@ui/mobile/chip/chip";
+import { MobileTag } from "@ui/mobile/tag/tag";
+import { MobileImage } from "@ui/mobile/image/image";
+import { MobileCarousel } from "@ui/mobile/carousel/carousel";
+import { MobileGallery } from "@ui/mobile/gallery/gallery";
+import { MobileTimeline } from "@ui/mobile/timeline/timeline";
+import { MobileStatusBadge } from "@ui/mobile/status-badge/status-badge";
+import { MobileProfileCard } from "@ui/mobile/profile-card/profile-card";
+import { MobileContactCard } from "@ui/mobile/contact-card/contact-card";
+import { MobileSkeletonPresets } from "@ui/mobile/skeleton-presets/skeleton-presets";
 
 @Component({
   selector: "app-mobile-page-structure",
@@ -31,6 +44,19 @@ import {
     IonModal,
     IonTitle,
     IonToolbar,
+    MobilePage,
+    MobileAvatar,
+    MobileBadge,
+    MobileChip,
+    MobileTag,
+    MobileImage,
+    MobileCarousel,
+    MobileGallery,
+    MobileTimeline,
+    MobileStatusBadge,
+    MobileProfileCard,
+    MobileContactCard,
+    MobileSkeletonPresets,
   ],
   template: `
     <div class="mobile-card">
@@ -247,6 +273,76 @@ import {
               }
             }
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-card mt-4">
+      <div class="mobile-card-header">Page Structure Wrappers (ili-*)</div>
+      <div class="mobile-card-body flex flex-column gap-5">
+        <div>
+          <div class="font-bold text-sm mb-3">ili-page</div>
+          <ili-page title="Page Wrapper"></ili-page>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-avatar</div>
+          <ili-avatar label="A"></ili-avatar>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-badge</div>
+          <ili-badge value="New"></ili-badge>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-chip</div>
+          <ili-chip label="Chip"></ili-chip>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-tag</div>
+          <ili-tag value="Tag"></ili-tag>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-image</div>
+          <ili-image src="https://via.placeholder.com/150"></ili-image>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-carousel</div>
+          <ili-carousel [value]="[1,2,3]"></ili-carousel>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-gallery</div>
+          <ili-gallery [images]="[{itemImageSrc: 'https://via.placeholder.com/150'}]"></ili-gallery>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-timeline</div>
+          <ili-timeline [value]="[{status: 'Started'}]"></ili-timeline>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-status-badge</div>
+          <ili-status-badge status="active"></ili-status-badge>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-profile-card</div>
+          <ili-profile-card name="John Doe" role="Admin"></ili-profile-card>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-contact-card</div>
+          <ili-contact-card name="Jane Doe"></ili-contact-card>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-skeleton-presets</div>
+          <ili-skeleton-presets type="card"></ili-skeleton-presets>
         </div>
       </div>
     </div>

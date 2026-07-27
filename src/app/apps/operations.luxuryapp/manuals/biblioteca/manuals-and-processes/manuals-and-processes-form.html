@@ -6,7 +6,7 @@
   <div class="grid">
     <div class="col-12">
       <div
-        class="surface-ground border-round-xl p-4 mb-4 border-1 surface-border"
+        class="surface-ground rounded-xl p-4 mb-4 border-1 surface-border"
       >
         <div class="flex align-items-center gap-3 mb-2">
           <app-icon
@@ -59,7 +59,7 @@
       />
 
       <!-- Periodicidad / Frecuencia -->
-      <div class="surface-ground p-3 border-round mb-3 border-1 surface-border">
+      <div class="surface-ground p-3 rounded mb-3 border-1 surface-border">
         <custom-input-select-signal
           [control]="form.controls.periodicity"
           [data]="periodicityOptions"
@@ -169,7 +169,7 @@
         [horizontal]="false"
       />
       <div
-        class="flex align-items-center justify-content-between gap-4 p-3 bg-gray-50 border-round-xl border-1 border-200"
+        class="flex align-items-center justify-content-between gap-4 p-3 bg-gray-50 rounded-xl border-1 border-200"
       >
         <div class="flex gap-4">
           <div class="flex align-items-center gap-2">
@@ -217,7 +217,7 @@
             
             [listStyle]="{ 'max-height': '680px' }"
             emptyFilterMessage="No se encontraron clientes"
-            class="w-full border-round-xl overflow-hidden shadow-1"
+            class="w-full rounded-xl overflow-hidden shadow-sm"
           />
         </div>
         <div class="col-12 md:col-6">
@@ -238,7 +238,7 @@
             
             [listStyle]="{ 'max-height': '680px' }"
             emptyFilterMessage="No se encontraron roles"
-            class="w-full border-round-xl overflow-hidden shadow-1"
+            class="w-full rounded-xl overflow-hidden shadow-sm"
           />
         </div>
       </div>

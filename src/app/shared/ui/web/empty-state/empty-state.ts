@@ -80,7 +80,7 @@ import { ButtonModule } from "primeng/button";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class EmptyState extends EmptyStateBase {}

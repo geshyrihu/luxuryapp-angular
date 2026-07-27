@@ -85,7 +85,8 @@ export interface DataGridColumn {
         [sortField]="sortField()"
         [sortOrder]="sortOrder()"
         [selectionMode]="selectionMode()"
-        [(selection)]="selection"
+        [selection]="selection()"
+        (selectionChange)="selection.set($event)"
         [scrollable]="scrollable()"
         [scrollHeight]="scrollHeight()"
         [virtualScroll]="virtualScroll()"
@@ -247,7 +248,7 @@ export interface DataGridColumn {
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class DataGrid {

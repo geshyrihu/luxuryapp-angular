@@ -1,4 +1,4 @@
-import { Directive, input, model, output } from "@angular/core";
+import { Directive, input, model, output, computed } from "@angular/core";
 
 /**
  * Base compartida de Rating (API + lógica de etiqueta/valor).
@@ -22,15 +22,15 @@ export abstract class RatingBase {
   private readonly labels = ["", "Muy malo", "Malo", "Regular", "Bueno", "Excelente"];
 
   /** [1..stars] para renderizar estrellas en la versión mobile. */
-  get starRange(): number[] {
+  starRange = computed(() => {
     return Array.from({ length: this.stars() }, (_, i) => i + 1);
-  }
+  });
 
-  ratingLabel(): string {
+  ratingLabel = computed(() => {
     const v = this.value();
     if (!v) return "";
     return this.stars() === 5 ? (this.labels[v] ?? String(v)) : `${v} / ${this.stars()}`;
-  }
+  });
 
   setValue(n: number): void {
     if (this.readonly() || this.disabled()) return;

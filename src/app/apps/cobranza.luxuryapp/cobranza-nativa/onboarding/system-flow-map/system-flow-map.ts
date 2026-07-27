@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 type FlowNode = {
@@ -11,7 +13,7 @@ type FlowNode = {
 
 @Component({
   selector: "app-system-flow-map",
-  imports: [AppIcon],
+  imports: [LxCard, LxTag, AppIcon],
   templateUrl: "./system-flow-map.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./system-flow-map.scss"],

@@ -246,16 +246,16 @@ export class CronogramaAnualMantenimiento {
         ),
       )
       .then((dataToExport: any[]) => {
-        import("xlsx").then((xlsx) => {
-          const worksheet = xlsx.utils.json_to_sheet(dataToExport);
-          const workbook = {
-            Sheets: { data: worksheet },
-            SheetNames: ["Cronograma"],
-          };
-          const excelBuffer: any = xlsx.write(workbook, {
-            bookType: "xlsx",
-            type: "array",
-          });
+        import("exceljs").then(async (ExcelJS) => {
+          const workbook = new ExcelJS.Workbook();
+          const worksheet = workbook.addWorksheet("Cronograma");
+          
+          if (dataToExport && dataToExport.length > 0) {
+            worksheet.columns = Object.keys(dataToExport[0]).map(key => ({ header: key, key }));
+            dataToExport.forEach(item => worksheet.addRow(item));
+          }
+
+          const excelBuffer = await workbook.xlsx.writeBuffer();
           const fileName = `Cronograma_Anual_Mantenimiento_LuxuryApp`;
           this.saveAsExcelFile(excelBuffer, fileName);
         });

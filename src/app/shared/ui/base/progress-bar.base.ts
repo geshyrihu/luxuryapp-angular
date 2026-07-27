@@ -1,4 +1,4 @@
-import { Directive, input } from "@angular/core";
+import { Directive, input, computed } from "@angular/core";
 
 export type ProgressBarMode = "determinate" | "indeterminate";
 
@@ -20,12 +20,12 @@ export abstract class ProgressBarBase {
   color = input<string>("primary");
 
   /** Valor 0..100 acotado. */
-  clampedValue(): number {
+  clampedValue = computed<number>(() => {
     return Math.max(0, Math.min(100, this.value() ?? 0));
-  }
+  });
 
   /** Valor 0..1 para Ionic. */
-  fraction(): number {
+  fraction = computed<number>(() => {
     return this.clampedValue() / 100;
-  }
+  });
 }

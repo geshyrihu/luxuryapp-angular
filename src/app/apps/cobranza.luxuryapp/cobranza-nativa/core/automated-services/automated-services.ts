@@ -7,8 +7,10 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LxCard } from "@ui/adaptive/card/card";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -27,10 +29,12 @@ interface JobResult {
   selector: "app-automated-services",
   imports: [
     WebButtonLabel,
+    LxTag,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     ReactiveFormsModule,
     DatePipe,
+    LxCard,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -1,7 +1,7 @@
 <!-- -- Cabecera -------------------------------------------------------------- -->
 @if (header()) {
 <div
-  class="card mb-4 p-4 border-round-xl shadow-2 border-top-3 border-primary overflow-hidden"
+  class="card mb-4 p-4 rounded-xl shadow-sm border-top-3 border-primary overflow-hidden"
 >
   <div class="flex flex-column sm:flex-row align-items-center gap-4">
     <div class="flex-shrink-0">
@@ -9,11 +9,11 @@
       <img
         [src]="header()!.photoUrl"
         [alt]="header()!.fullName"
-        class="w-8rem h-8rem border-round-circle object-cover border-3 border-primary shadow-3"
+        class="w-8rem h-8rem rounded-circle object-cover border-3 border-primary shadow"
       />
       } @else {
       <div
-        class="w-8rem h-8rem border-round-circle bg-primary-100 flex align-items-center justify-content-center text-primary text-4xl font-black border-3 border-primary-200 shadow-2"
+        class="w-8rem h-8rem rounded-circle bg-primary-100 flex align-items-center justify-content-center text-primary text-4xl font-black border-3 border-primary-200 shadow-sm"
       >
         {{ header()!.fullName.charAt(0) }}
       </div>
@@ -42,7 +42,7 @@
         class="flex flex-wrap justify-content-center sm:justify-content-start gap-2"
       >
         <div
-          class="flex align-items-center gap-2 surface-100 border-round-lg px-3 py-2 text-sm"
+          class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
           <app-icon [icon]="'mdi:card-account-details'" class="text-primary" />
           <span class="text-500">No.</span>
@@ -51,20 +51,20 @@
           >
         </div>
         <div
-          class="flex align-items-center gap-2 surface-100 border-round-lg px-3 py-2 text-sm"
+          class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
           <app-icon [icon]="'mdi:email-outline'" class="text-primary" />
           <strong class="text-800">{{ header()!.email }}</strong>
         </div>
         <div
-          class="flex align-items-center gap-2 surface-100 border-round-lg px-3 py-2 text-sm"
+          class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
           <app-icon [icon]="'mdi:phone'" class="text-primary" />
           <strong class="text-800">{{ header()!.phoneNumber || 'é' }}</strong>
         </div>
         @if (header()!.dateAdmission) {
         <div
-          class="flex align-items-center gap-2 surface-100 border-round-lg px-3 py-2 text-sm"
+          class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
           <app-icon [icon]="'mdi:calendar'" class="text-primary" />
           <span class="text-500">Ingreso:</span>
@@ -86,11 +86,11 @@
       @if (personalData(); as pd) {
       <div class="flex flex-column gap-4 py-3">
         <!-- Identificación -->
-        <lx-card class="shadow-1 border-round-xl overflow-hidden" [elevated]="true">
+        <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
-                class="w-2rem h-2rem border-round-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+                class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
               >
                 <app-icon
                   [icon]="'mdi:card-account-details'"
@@ -189,11 +189,11 @@
         <!-- Contacto + Salario -->
         <div class="grid row-gap-4">
           <div class="col-12 lg:col-8">
-            <lx-card class="shadow-1 border-round-xl h-full" [elevated]="true">
+            <lx-card class="shadow-sm rounded-xl h-full" [elevated]="true">
               <ng-template #header>
                 <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
                   <div
-                    class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
+                    class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
                   >
                     <app-icon [icon]="'mdi:phone'" class="text-blue-500" />
                   </div>
@@ -236,7 +236,7 @@
           </div>
           <div class="col-12 lg:col-4">
             <div
-              class="border-round-xl bg-primary shadow-2 p-4 h-full flex flex-column justify-content-center gap-2"
+              class="rounded-xl bg-primary shadow-sm p-4 h-full flex flex-column justify-content-center gap-2"
             >
               <div class="flex align-items-center gap-2 text-white opacity-80">
                 <app-icon [icon]="'mdi:cash-multiple'" class="text-lg" />
@@ -253,11 +253,11 @@
         </div>
 
         <!-- Dirección -->
-        <lx-card class="shadow-1 border-round-xl overflow-hidden" [elevated]="true">
+        <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
-                class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
+                class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
               >
                 <app-icon [icon]="'mdi:map-marker'" class="text-orange-500" />
               </div>
@@ -321,7 +321,7 @@
       } @else {
       <div class="flex flex-column align-items-center py-8 gap-3">
         <div
-          class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
+          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
         >
           <app-icon [icon]="'mdi:account-minus'" class="text-4xl text-300" />
         </div>
@@ -335,7 +335,7 @@
       @if (emergencyContacts().length > 0) {
       <p-table
         [value]="emergencyContacts()"
-        class="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
+        class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
       >
         <ng-template #header>
           <tr>
@@ -368,7 +368,7 @@
       } @else {
       <div class="flex flex-column align-items-center py-8 gap-3">
         <div
-          class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
+          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
         >
           <app-icon [icon]="'mdi:phone'" class="text-4xl text-300" />
         </div>
@@ -382,7 +382,7 @@
       @if (clinicalData().length > 0) {
       <p-table
         [value]="clinicalData()"
-        class="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
+        class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
       >
         <ng-template #header>
           <tr>
@@ -405,7 +405,7 @@
       } @else {
       <div class="flex flex-column align-items-center py-8 gap-3">
         <div
-          class="w-5rem h-5rem border-round-circle bg-green-50 flex align-items-center justify-content-center"
+          class="w-5rem h-5rem rounded-circle bg-green-50 flex align-items-center justify-content-center"
         >
           <app-icon [icon]="'mdi:heart'" class="text-4xl text-green-400" />
         </div>
@@ -419,7 +419,7 @@
       @if (bankData().length > 0) {
       <p-table
         [value]="bankData()"
-        class="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
+        class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
       >
         <ng-template #header>
           <tr>
@@ -448,7 +448,7 @@
       } @else {
       <div class="flex flex-column align-items-center py-8 gap-3">
         <div
-          class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
+          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
         >
           <app-icon [icon]="'mdi:credit-card'" class="text-4xl text-300" />
         </div>
@@ -462,7 +462,7 @@
       @if (contracts().length > 0) {
       <p-table
         [value]="contracts()"
-        class="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
+        class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
       >
         <ng-template #header>
           <tr>
@@ -507,7 +507,7 @@
       } @else {
       <div class="flex flex-column align-items-center py-8 gap-3">
         <div
-          class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
+          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
         >
           <app-icon
             [icon]="'mdi:file-document-outline'"
@@ -523,11 +523,11 @@
     <div tab="5">
       @if (workPosition(); as wp) {
       <div class="flex flex-column gap-4 py-3">
-        <lx-card class="shadow-1 border-round-xl overflow-hidden" [elevated]="true">
+        <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
-                class="w-2rem h-2rem border-round-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+                class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
               >
                 <app-icon [icon]="'mdi:briefcase'" class="text-primary" />
               </div>
@@ -595,11 +595,11 @@
         </lx-card>
 
         <!-- Horarios -->
-        <lx-card class="shadow-1 border-round-xl overflow-hidden" [elevated]="true">
+        <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
-                class="w-2rem h-2rem border-round-lg bg-teal-100 flex align-items-center justify-content-center flex-shrink-0"
+                class="w-2rem h-2rem rounded-lg bg-teal-100 flex align-items-center justify-content-center flex-shrink-0"
               >
                 <app-icon [icon]="'mdi:calendar-clock'" class="text-teal-500" />
               </div>
@@ -698,7 +698,7 @@
         <div>
           <div class="flex align-items-center gap-3 mb-3">
             <div
-              class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon [icon]="'mdi:history'" class="text-orange-500" />
             </div>
@@ -708,7 +708,7 @@
           </div>
           <p-table
             [value]="wp.salaryModifications"
-            class="p-datatable-sm shadow-1 border-round-xl overflow-hidden"
+            class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
           >
             <ng-template #header>
               <tr>
@@ -759,7 +759,7 @@
       } @else {
       <div class="flex flex-column align-items-center py-8 gap-3">
         <div
-          class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
+          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
         >
           <app-icon [icon]="'mdi:briefcase'" class="text-4xl text-300" />
         </div>
@@ -775,12 +775,12 @@
         <!-- Balance -->
         @if (vl.balance) {
         <lx-card
-          class="shadow-1 border-round-xl overflow-hidden bg-primary-reverse"
+          class="shadow-sm rounded-xl overflow-hidden bg-primary-reverse"
          [elevated]="true">
           <ng-template #header>
             <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
               <div
-                class="w-2rem h-2rem border-round-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0"
+                class="w-2rem h-2rem rounded-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0"
               >
                 <app-icon [icon]="'mdi:calculator'" class="text-yellow-600" />
               </div>
@@ -838,7 +838,7 @@
         <div>
           <div class="flex align-items-center gap-3 mb-3">
             <div
-              class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon [icon]="'mdi:weather-sunny'" class="text-orange-500" />
             </div>
@@ -847,7 +847,7 @@
           @if (vl.vacations.length > 0) {
           <p-table
             [value]="vl.vacations"
-            class="p-datatable-sm shadow-1 border-round-xl overflow-hidden"
+            class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
           >
             <ng-template #header>
               <tr>
@@ -889,7 +889,7 @@
           </p-table>
           } @else {
           <p
-            class="text-400 p-3 surface-50 border-round-lg border-1 border-100 m-0"
+            class="text-400 p-3 surface-50 rounded-lg border-1 border-100 m-0"
           >
             No se registran periodos vacacionales solicitados.
           </p>
@@ -900,7 +900,7 @@
         <div>
           <div class="flex align-items-center gap-3 mb-3">
             <div
-              class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon [icon]="'mdi:clock-outline'" class="text-blue-500" />
             </div>
@@ -909,7 +909,7 @@
           @if (vl.leaves.length > 0) {
           <p-table
             [value]="vl.leaves"
-            class="p-datatable-sm shadow-1 border-round-xl overflow-hidden"
+            class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
           >
             <ng-template #header>
               <tr>
@@ -944,7 +944,7 @@
           </p-table>
           } @else {
           <p
-            class="text-400 p-3 surface-50 border-round-lg border-1 border-100 m-0"
+            class="text-400 p-3 surface-50 rounded-lg border-1 border-100 m-0"
           >
             No se registran permisos especiales.
           </p>
@@ -959,7 +959,7 @@
       @if (incidents().length > 0) {
       <p-table
         [value]="incidents()"
-        class="p-datatable-sm shadow-1 border-round-xl overflow-hidden mt-3"
+        class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
       >
         <ng-template #header>
           <tr>
@@ -1033,7 +1033,7 @@
       } @else {
       <div class="flex flex-column align-items-center py-8 gap-3">
         <div
-          class="w-5rem h-5rem border-round-circle bg-green-50 flex align-items-center justify-content-center"
+          class="w-5rem h-5rem rounded-circle bg-green-50 flex align-items-center justify-content-center"
         >
           <app-icon [icon]="'mdi:verified'" class="text-4xl text-green-400" />
         </div>
@@ -1050,14 +1050,14 @@
       <div class="flex flex-column gap-3 mt-3">
         @for (eval of evaluations(); track eval.id) {
         <div
-          class="surface-card shadow-1 border-round-xl overflow-hidden border-1 border-200"
+          class="surface-card shadow-sm rounded-xl overflow-hidden border-1 border-200"
         >
           <div
             class="flex flex-wrap align-items-center justify-content-between p-4 border-bottom-1 border-100"
           >
             <div class="flex align-items-center gap-3">
               <div
-                class="w-3rem h-3rem border-round-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+                class="w-3rem h-3rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
               >
                 <app-icon
                   [icon]="'mdi:chart-bar'"
@@ -1114,7 +1114,7 @@
       } @else {
       <div class="flex flex-column align-items-center py-8 gap-3">
         <div
-          class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center"
+          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
         >
           <app-icon [icon]="'mdi:chart-line'" class="text-4xl text-300" />
         </div>
@@ -1133,14 +1133,14 @@
         <div class="col-12 lg:col-6">
           <div class="flex align-items-center gap-3 mb-3">
             <div
-              class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon [icon]="'mdi:account-plus'" class="text-green-500" />
             </div>
             <h4 class="m-0 font-bold text-900">Solicitud de Ingreso (Alta)</h4>
           </div>
           @if (req.registerRequest; as r) {
-          <div class="surface-card shadow-1 border-round-xl p-4">
+          <div class="surface-card shadow-sm rounded-xl p-4">
             <div class="grid row-gap-3">
               <div class="col-6">
                 <span class="text-xs text-500 uppercase block mb-1">Folio</span>
@@ -1193,7 +1193,7 @@
           </div>
           } @else {
           <div
-            class="surface-50 border-round-lg border-1 border-100 p-4 text-400 italic"
+            class="surface-50 rounded-lg border-1 border-100 p-4 text-400 italic"
           >
             No hay registros de solicitud de alta.
           </div>
@@ -1204,7 +1204,7 @@
         <div class="col-12 lg:col-6">
           <div class="flex align-items-center gap-3 mb-3">
             <div
-              class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon [icon]="'mdi:account-minus'" class="text-red-500" />
             </div>
@@ -1212,7 +1212,7 @@
           </div>
           @if (req.dismissalRequest; as d) {
           <div
-            class="surface-card shadow-1 border-round-xl border-left-3 border-red-500 p-4"
+            class="surface-card shadow-sm rounded-xl border-left-3 border-red-500 p-4"
           >
             <div class="grid row-gap-3">
               <div class="col-6">
@@ -1347,7 +1347,7 @@
                 <div class="flex flex-wrap gap-2">
                   @for (acta of d.incidents; track acta.id) {
                   <div
-                    class="border-1 border-300 border-round-lg p-2 surface-0 text-sm"
+                    class="border-1 border-300 rounded-lg p-2 surface-0 text-sm"
                   >
                     <strong>{{ acta.incidentTypeName }}</strong> - {{
                     acta.incidentDateTime | date:'dd/MM/yyyy' }} @if
@@ -1371,7 +1371,7 @@
                 <div class="flex flex-wrap gap-2">
                   @for (eval of d.evaluations; track eval.id) {
                   <div
-                    class="border-1 border-300 border-round-lg p-2 surface-0 text-sm"
+                    class="border-1 border-300 rounded-lg p-2 surface-0 text-sm"
                   >
                     <strong>{{ eval.templateName }}</strong> - {{
                     eval.evaluationDate | date:'dd/MM/yyyy' }}
@@ -1389,7 +1389,7 @@
           </div>
           } @else {
           <div
-            class="surface-50 border-round-lg border-1 border-100 p-4 text-400 italic"
+            class="surface-50 rounded-lg border-1 border-100 p-4 text-400 italic"
           >
             No hay registros de solicitud de baja activa.
           </div>

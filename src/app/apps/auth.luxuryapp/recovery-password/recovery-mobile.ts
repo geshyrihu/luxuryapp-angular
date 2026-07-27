@@ -57,7 +57,7 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
           </div>
 
           <!-- Bottom Sheet Card -->
-          <div class="lm-card shadow-8 fadeinup animation-duration-500">
+          <div class="lm-card shadow-lg fadeinup animation-duration-500">
             <h2 class="lm-title">Recuperar Contraseña</h2>
             <p class="lm-subtitle mb-4">
               Ingresa tu correo electrónico y te enviaremos instrucciones.
@@ -72,7 +72,7 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
 
               @if (errorMessage) {
                 <div
-                  class="p-3 border-round border-1 border-red-300 bg-red-50 text-red-800 shadow-1 mt-2 flex align-items-center"
+                  class="p-3 rounded border-1 border-red-300 bg-red-50 text-red-800 shadow-sm mt-2 flex align-items-center"
                 >
                   <span class="text-sm font-medium">{{ errorMessage }}</span>
                 </div>
@@ -80,7 +80,7 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
 
               @if (successMessage) {
                 <div
-                  class="p-3 border-round border-1 border-green-300 bg-green-50 text-green-800 shadow-1 mt-2 flex align-items-center"
+                  class="p-3 rounded border-1 border-green-300 bg-green-50 text-green-800 shadow-sm mt-2 flex align-items-center"
                 >
                   <span class="text-sm font-medium">{{ successMessage }}</span>
                 </div>

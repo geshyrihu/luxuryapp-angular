@@ -42,7 +42,8 @@ export interface TreeTableColumn {
         [value]="nodesWithIcon()"
         [columns]="cols()"
         [selectionMode]="selectionMode()"
-        [(selection)]="selection"
+        [selection]="selection()"
+        (selectionChange)="selection.set($event)"
         [dataKey]="dataKey()"
         [loading]="loading()"
         [paginator]="paginator()"
@@ -112,7 +113,7 @@ export interface TreeTableColumn {
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class TreeTable {

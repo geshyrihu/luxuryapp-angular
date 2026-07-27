@@ -227,7 +227,7 @@
       <!-- Category Filters (Chips) -->
       <div class="flex overflow-x-auto pb-2 mb-2 px-1">
         @for (filtro of filtroEquipos; track filtro.id) {
-        <div class="p-1 border-round surface-100 mr-2 mb-2 inline-flex align-items-center">
+        <div class="p-1 rounded surface-100 mr-2 mb-2 inline-flex align-items-center">
           <app-icon [icon]="getFiltroIconClass(filtro.emoji)" class="mr-1" />
           <span class="">{{ filtro.nombre | titlecase }}</span>
         </div>
@@ -235,7 +235,7 @@
       </div>
 
       <!-- Month Selector -->
-      <div class="flex gap-2 mb-3 bg-surface-100 p-1 border-round">
+      <div class="flex gap-2 mb-3 bg-surface-100 p-1 rounded">
         @for (mes of meses; track mes; let i = $index) {
         <button class="p-button p-button-text p-button-sm flex-1">
           <span class="">{{ mes }}</span>
@@ -244,14 +244,14 @@
       </div>
 
       <!-- Results List -->
-      <div class="surface-card mb-3 border-round">
+      <div class="surface-card mb-3 rounded">
         @for (group of mobileData(); track group.system) {
-        <div class="surface-card mb-3 border-round">
+        <div class="surface-card mb-3 rounded">
           <span class="font-bold text-lg text-primary">{{ group.system }}</span>
         </div>
 
         @for (item of group.items; track item.id) {
-        <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+        <div class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center">
           <!-- Icon based on system type could be cool here, but we don't have mapping easily available. Using generic check. -->
           <app-icon
             icon="mdi:checkbox-marked-outline"

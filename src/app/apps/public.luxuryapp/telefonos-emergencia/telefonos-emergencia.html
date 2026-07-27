@@ -1,10 +1,10 @@
 <!-- Cabecera -->
 <div
-  class="surface-card shadow-1 border-round-lg p-3 mb-4 flex flex-column sm:flex-row align-items-start sm:align-items-center justify-content-between gap-3"
+  class="surface-card shadow-sm rounded-lg p-3 mb-4 flex flex-column sm:flex-row align-items-start sm:align-items-center justify-content-between gap-3"
 >
   <div class="flex align-items-center gap-3">
     <div
-      class="flex align-items-center justify-content-center border-round-lg bg-red-500 text-white"
+      class="flex align-items-center justify-content-center rounded-lg bg-red-500 text-white"
       
     >
       <app-icon [icon]="'mdi:phone-alert'" class="text-2xl" />
@@ -39,7 +39,7 @@
   @for (item of filteredData(); track item.id) {
   <div class="col-12 sm:col-6 xl:col-4">
     <div
-      class="surface-card shadow-1 border-round-xl overflow-hidden h-full flex flex-column"
+      class="surface-card shadow-sm rounded-xl overflow-hidden h-full flex flex-column"
       
     >
       <!-- Encabezado de tarjeta -->
@@ -55,7 +55,7 @@
         />
         } @else {
         <div
-          class="flex align-items-center justify-content-center border-round-full bg-red-100 flex-shrink-0"
+          class="flex align-items-center justify-content-center rounded-full bg-red-100 flex-shrink-0"
           
         >
           <app-icon [icon]="'mdi:shield-alert'" class="text-red-500 text-2xl" />
@@ -89,7 +89,7 @@
           tooltipPosition="top"
         >
           <div
-            class="flex align-items-center justify-content-center border-round-full bg-green-100 flex-shrink-0"
+            class="flex align-items-center justify-content-center rounded-full bg-green-100 flex-shrink-0"
             
           >
             <app-icon [icon]="'mdi:phone'" class="text-green-600 text-lg" />
@@ -107,7 +107,7 @@
           tooltipPosition="top"
         >
           <div
-            class="flex align-items-center justify-content-center border-round-full bg-blue-100 flex-shrink-0"
+            class="flex align-items-center justify-content-center rounded-full bg-blue-100 flex-shrink-0"
             
           >
             <app-icon [icon]="'mdi:phone-plus'" class="text-blue-600 text-lg" />
@@ -130,7 +130,7 @@
   </div>
   } @empty {
   <div class="col-12">
-    <div class="surface-card border-round-xl p-6 text-center shadow-1">
+    <div class="surface-card rounded-xl p-6 text-center shadow-sm">
       <app-icon [icon]="'mdi:phone-off'" class="text-6xl text-400" />
       <p class="text-secondary mt-3 mb-0">
         No se encontraron servicios de emergencia.

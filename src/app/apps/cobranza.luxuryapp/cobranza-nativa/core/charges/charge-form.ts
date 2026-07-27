@@ -151,12 +151,10 @@ export class ChargeForm implements OnInit {
     );
 
     this.chargeTypeOptions.set(
-      (res ?? [])
-        .filter((x) => x.isActive)
-        .map((x) => ({
-          label: `${x.name} · ${x.accountNumber}`,
-          value: x.id,
-        })),
+      (res ?? []).map((x) => ({
+        label: `${x.name} · ${x.code}`,
+        value: x.id,
+      })),
     );
 
     if (
@@ -243,11 +241,10 @@ export class ChargeForm implements OnInit {
           discountDeadline: this.dateS.getDateFormat(raw.discountDeadline),
         };
         return this.id
-          ? ({ id: this.id, type: null, ...payload } as UpdateChargeDTO)
+          ? ({ id: this.id, ...payload } as UpdateChargeDTO)
           : ({
               customerId: this.customerId,
               sourcePolicyId: null,
-              type: null,
               ...payload,
             } as CreateChargeDTO);
       },

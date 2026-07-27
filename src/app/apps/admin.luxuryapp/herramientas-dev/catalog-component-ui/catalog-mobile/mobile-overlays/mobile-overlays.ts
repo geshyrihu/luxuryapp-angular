@@ -19,6 +19,12 @@ import {
   LoadingController,
   ToastController,
 } from "@ionic/angular/standalone";
+import { MobileConfirmDialog } from "@ui/mobile/confirm-dialog/confirm-dialog";
+import { MobileConfirmPopup } from "@ui/mobile/confirm-popup/confirm-popup";
+import { MobileContextMenu } from "@ui/mobile/context-menu/context-menu";
+import { MobileModal } from "@ui/mobile/modal/modal";
+import { MobilePopover } from "@ui/mobile/popover/popover";
+import { MobileSidebar } from "@ui/mobile/sidebar/sidebar";
 import { addIcons } from "ionicons";
 import {
   alertCircleOutline,
@@ -46,6 +52,12 @@ import {
     IonModal,
     IonTitle,
     IonToolbar,
+    MobileConfirmDialog,
+    MobileConfirmPopup,
+    MobileModal,
+    MobileSidebar,
+    MobilePopover,
+    MobileContextMenu,
   ],
   template: `
     <div class="mobile-card">
@@ -361,6 +373,43 @@ import {
               </button>
             </div>
           }
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-card mt-4">
+      <div class="mobile-card-header">Overlay Wrappers (ili-*)</div>
+      <div class="mobile-card-body flex flex-column gap-5">
+        <div>
+          <div class="font-bold text-sm mb-3">ili-confirm-dialog</div>
+          <ili-confirm-dialog></ili-confirm-dialog>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-confirm-popup</div>
+          <ili-confirm-popup></ili-confirm-popup>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-modal</div>
+          <ili-modal></ili-modal>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-sidebar</div>
+          <ili-sidebar></ili-sidebar>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-popover</div>
+          <ili-popover></ili-popover>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-context-menu</div>
+          <ili-context-menu
+            [items]="[{ label: 'Menu Item' }]"
+          ></ili-context-menu>
         </div>
       </div>
     </div>

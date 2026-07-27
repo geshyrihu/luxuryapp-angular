@@ -1,4 +1,4 @@
-<div class="card shadow-1 border-round p-4 surface-card">
+<div class="card shadow-sm rounded p-4 surface-card">
   <!-- BARRA DE ESTADO VISUAL -->
   <div class="mb-4">
     <app-progress-bar
@@ -126,7 +126,7 @@
   </div>
 
   <!-- Buscador inline de productos -->
-  <div class="surface-ground p-3 border-round mb-4">
+  <div class="surface-ground p-3 rounded mb-4">
     <app-product-add
       [solicitudCompraId]="id"
       (updateData)="onLoadData()"
@@ -142,7 +142,7 @@
   />
 
   <!-- Órdenes Relacionadas (Solo si existen) -->
-  <div class="mt-5 p-3 surface-100 border-round">
+  <div class="mt-5 p-3 surface-100 rounded">
     <div class="flex align-items-center justify-content-between mb-2">
       <span class="text-sm font-bold text-600 uppercase"
         >Órdenes de Compra Relacionadas:</span

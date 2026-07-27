@@ -1,4 +1,4 @@
-import { Directive, input, output } from "@angular/core";
+import { Directive, input, output, computed } from "@angular/core";
 
 export type MessageSeverity =
   | "success"
@@ -18,13 +18,13 @@ export abstract class MessageBase {
 
   close = output<void>();
 
-  normalizedSeverity(): MessageSeverity {
+  normalizedSeverity = computed<MessageSeverity>(() => {
     if (this.severity() === "warning") return "warn";
     if (this.severity() === "error") return "danger";
     return this.severity();
-  }
+  });
 
-  colors(): { bg: string; text: string; border: string; icon: string } {
+  colors = computed<{ bg: string; text: string; border: string; icon: string }>(() => {
     const map: Record<MessageSeverity, { bg: string; text: string; border: string; icon: string }> = {
       success: {
         bg: "var(--ds-success-light, #d8f8e1)",
@@ -71,11 +71,11 @@ export abstract class MessageBase {
     };
 
     return map[this.normalizedSeverity()] ?? map.info;
-  }
+  });
 
-  displayIcon(): string {
+  displayIcon = computed<string>(() => {
     return this.icon() || this.colors().icon;
-  }
+  });
 
   onClose(): void {
     this.close.emit();

@@ -1,6 +1,6 @@
 <div class="flex flex-column gap-3">
   <div
-    class="flex flex-column lg:flex-row justify-content-between align-items-start gap-3 p-4 border-round-xl border-1 surface-border surface-ground"
+    class="flex flex-column lg:flex-row justify-content-between align-items-start gap-3 p-4 rounded-xl border-1 surface-border surface-ground"
   >
     <div>
       <h1 class="m-0 mb-2 text-2xl font-bold text-900">{{ getModeTitle() }}</h1>
@@ -80,7 +80,7 @@
     }
   </div>
   } @if (loading()) {
-  <lx-card class="shadow-none border-1 surface-border border-dashed border-round-xl">
+  <lx-card class="shadow-none border-1 surface-border border-dashed rounded-xl">
 <div
       class="flex align-items-center justify-content-center gap-3 min-h-6rem text-600"
     >
@@ -140,7 +140,7 @@
     [value]="accountRows()"
     #dtAccounts
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
-    class="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
+    class="custom-table hidden md:block border-1 surface-border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -170,7 +170,7 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <code class="text-sm px-2 py-1 border-round surface-100 font-mono"
+          <code class="text-sm px-2 py-1 rounded surface-100 font-mono"
             >{{ item.numCta }}</code
           >
         </td>
@@ -249,7 +249,7 @@
     [value]="estadoMovimientos()"
     #dtEstado
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} movimientos"
-    class="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
+    class="custom-table hidden md:block border-1 surface-border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -437,7 +437,7 @@
               <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
             </td>
             <td>
-              <code class="text-sm px-2 py-1 border-round surface-100 font-mono"
+              <code class="text-sm px-2 py-1 rounded surface-100 font-mono"
                 >{{ item.numCta }}</code
               >
             </td>
@@ -528,7 +528,7 @@
         [value]="contrapartidaRows()"
         #dtContra
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} grupos"
-        class="custom-table  hidden md:block border-1 surface-border border-round shadow-1 bg-white"
+        class="custom-table  hidden md:block border-1 surface-border rounded shadow-sm bg-white"
       >
         <ng-template #caption>
           <primeng-custom-caption
@@ -561,7 +561,7 @@
 
         <ng-template #body let-item>
           <tr>
-            <td><code class="text-sm px-2 py-1 border-round surface-100 font-mono">{{ item.numCtaContra }}</code></td>
+            <td><code class="text-sm px-2 py-1 rounded surface-100 font-mono">{{ item.numCtaContra }}</code></td>
             <td>{{ item.nombreCuenta }}</td>
             <td class="text-right font-mono">{{ item.totalMonto | currency: "MXN" : "symbol" : "1.2-2" }}</td>
             <td class="text-right font-mono">{{ item.totalMovimientos }}</td>
@@ -634,7 +634,7 @@
     [value]="deudaActualRows()"
     #dtDeudas
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} propiedades con deuda"
-    class="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white"
+    class="custom-table hidden md:block border-1 surface-border rounded shadow-sm bg-white"
   >
     <ng-template #caption>
       <primeng-custom-caption
@@ -676,7 +676,7 @@
         (click)="openDebtDetail(item)"
       >
         <td>
-          <code class="text-sm px-2 py-1 border-round surface-100 font-mono"
+          <code class="text-sm px-2 py-1 rounded surface-100 font-mono"
             >{{ item.numCtaBase }}</code
           >
         </td>
@@ -761,7 +761,7 @@
         [value]="pendienteRows()"
         #dtPend
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
-        class="custom-table  hidden md:block border-1 surface-border border-round shadow-1 bg-white"
+        class="custom-table  hidden md:block border-1 surface-border rounded shadow-sm bg-white"
       >
         <ng-template #caption>
           <primeng-custom-caption
@@ -809,7 +809,7 @@
             <td>
               <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
             </td>
-            <td><code class="text-sm px-2 py-1 border-round surface-100 font-mono">{{ item.numCta }}</code></td>
+            <td><code class="text-sm px-2 py-1 rounded surface-100 font-mono">{{ item.numCta }}</code></td>
             <td>{{ item.nombreCuenta }}</td>
             <td class="text-right font-mono">{{ item.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</td>
             <td class="text-right font-mono text-orange-600">{{ item.cargos | currency: "MXN" : "symbol" : "1.2-2" }}</td>

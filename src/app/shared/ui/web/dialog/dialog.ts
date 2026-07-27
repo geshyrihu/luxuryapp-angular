@@ -12,7 +12,8 @@ import { DialogModule } from "primeng/dialog";
   imports: [DialogModule],
   template: `
     <p-dialog
-      [(visible)]="visible"
+      [visible]="visible()"
+      (visibleChange)="visible.set($event)"
       [header]="header()"
       [modal]="true"
       [closable]="closable()"
@@ -32,7 +33,7 @@ import { DialogModule } from "primeng/dialog";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Dialog extends ModalBase {}

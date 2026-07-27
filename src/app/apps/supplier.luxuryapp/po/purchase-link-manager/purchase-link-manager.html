@@ -4,10 +4,10 @@
 >
   <!-- HEADER MAESTRO -->
   <div
-    class="flex align-items-center justify-content-between mb-3 p-3 surface-card border-round shadow-2 flex-shrink-0"
+    class="flex align-items-center justify-content-between mb-3 p-3 surface-card rounded shadow-sm flex-shrink-0"
   >
     <div class="flex align-items-center">
-      <div class="bg-primary-100 p-2 border-round">
+      <div class="bg-primary-100 p-2 rounded">
         <app-icon [icon]="'mdi:link'" class="text-primary text-2xl" />
       </div>
       <div>
@@ -43,7 +43,7 @@
     <!-- 🟢 COLUMNA: SOLICITUDES DE COMPRA -->
     <div class="flex flex-column h-full pr-2">
       <div
-        class="surface-card h-full flex flex-column border-round-xl shadow-3 border-top-3 border-green-500 overflow-hidden"
+        class="surface-card h-full flex flex-column rounded-xl shadow border-top-3 border-green-500 overflow-hidden"
       >
         <!-- Filtros SC -->
         <div
@@ -75,7 +75,7 @@
           <div
             cdkDropList
             (cdkDropListDropped)="onDropOnSolicitud($event, sc)"
-            class="sc-card p-3 mb-2 border-round-lg surface-card border-1 surface-border shadow-1 hover:shadow-3 transition-all transition-duration-200"
+            class="sc-card p-3 mb-2 rounded-lg surface-card border-1 surface-border shadow-sm hover:shadow transition-all transition-duration-200"
           >
             <div
               cdkDrag
@@ -87,7 +87,7 @@
               <!-- Drag Preview -->
               <div
                 *cdkDragPreview
-                class="shadow-8 p-3 border-round-xl bg-green-100 border-green-500 border-2 w-20rem"
+                class="shadow-lg p-3 rounded-xl bg-green-100 border-green-500 border-2 w-20rem"
               >
                 <div class="font-bold text-green-800">📦 {{ sc.folio }}</div>
                 <div class="text-xs text-green-600 truncate">
@@ -115,14 +115,14 @@
                 </div>
                 <div
                   cdkDragHandle
-                  class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 border-round hover:bg-gray-200 transition-colors"
+                  class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
                 >
                   <app-icon [icon]="'mdi:menu'" class="text-600" />
                 </div>
               </div>
 
               <div
-                class="text-sm text-600 line-height-3 italic mb-3 bg-gray-50 p-2 border-round"
+                class="text-sm text-600 line-height-3 italic mb-3 bg-gray-50 p-2 rounded"
               >
                 "{{ sc.justificacionGasto }}"
               </div>
@@ -133,7 +133,7 @@
                   >ÓRDENES VINCULADAS:</span
                 >
                 @for (orden of sc.ordenesRelacionadas; track orden.id) {
-                <lx-tag severity="warning" [rounded]="true" class="px-3 py-1 shadow-2 border-1 border-orange-200"><div class="flex align-items-center">
+                <lx-tag severity="warning" [rounded]="true" class="px-3 py-1 shadow-sm border-1 border-orange-200"><div class="flex align-items-center">
                     <app-icon [icon]="'mdi:cart'" class="text-xs" />
                     <span class="text-xs font-bold">{{ orden.folio }}</span>
                     <app-icon
@@ -153,7 +153,7 @@
           </div>
           } @empty {
           <div
-            class="text-center p-5 surface-50 border-round-xl text-500 border-dashed border-2"
+            class="text-center p-5 surface-50 rounded-xl text-500 border-dashed border-2"
           >
             <app-icon [icon]="'mdi:magnify'" class="text-4xl mb-3 block" />
             No se encontraron solicitudes con estos criterios.
@@ -166,7 +166,7 @@
     <!-- 🔵 COLUMNA: ÓRDENES DE COMPRA -->
     <div class="flex flex-column h-full pl-2">
       <div
-        class="surface-card h-full flex flex-column border-round-xl shadow-3 border-top-3 border-orange-500 overflow-hidden"
+        class="surface-card h-full flex flex-column rounded-xl shadow border-top-3 border-orange-500 overflow-hidden"
       >
         <!-- Filtros OC -->
         <div
@@ -195,7 +195,7 @@
           <div
             cdkDropList
             (cdkDropListDropped)="onDropOnOrder($event, oc)"
-            class="oc-card p-3 mb-2 border-round-lg border-1 transition-all transition-duration-200"
+            class="oc-card p-3 mb-2 rounded-lg border-1 transition-all transition-duration-200"
             [class.bg-white]="!oc.solicitudCompraId"
             [class.bg-orange-50]="oc.solicitudCompraId"
             [class.surface-border]="!oc.solicitudCompraId"
@@ -211,7 +211,7 @@
               <!-- Drag Preview -->
               <div
                 *cdkDragPreview
-                class="shadow-8 p-3 border-round-xl bg-orange-100 border-orange-500 border-2 w-20rem"
+                class="shadow-lg p-3 rounded-xl bg-orange-100 border-orange-500 border-2 w-20rem"
               >
                 <div class="font-bold text-orange-800">🛒 {{ oc.folio }}</div>
                 <div class="text-xs text-orange-600 truncate">
@@ -239,7 +239,7 @@
                 </div>
                 <div
                   cdkDragHandle
-                  class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 border-round hover:bg-gray-200 transition-colors"
+                  class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
                 >
                   <app-icon [icon]="'mdi:menu'" class="text-600" />
                 </div>
@@ -255,7 +255,7 @@
                   >VINCULADA A:</span
                 >
                 @if (oc.solicitudCompraId) {
-                <lx-tag severity="success" [rounded]="true" class="px-3 py-1 shadow-2 border-1 border-green-200"><div class="flex align-items-center">
+                <lx-tag severity="success" [rounded]="true" class="px-3 py-1 shadow-sm border-1 border-green-200"><div class="flex align-items-center">
                     <app-icon
                       [icon]="'mdi:file-document-outline'"
                       class="text-xs"
@@ -280,7 +280,7 @@
           </div>
           } @empty {
           <div
-            class="text-center p-5 surface-50 border-round-xl text-500 border-dashed border-2"
+            class="text-center p-5 surface-50 rounded-xl text-500 border-dashed border-2"
           >
             <app-icon [icon]="'mdi:shopping'" class="text-4xl mb-3 block" />
             No hay órdenes disponibles para este estado.
@@ -297,7 +297,7 @@
   .oc-card {
     transition:
       transform 0.2s,
-      box-shadow-2 0.2s;
+      box-shadow-sm 0.2s;
   }
   .cdk-drop-list-receiving {
     background-color: var(--primary-50) !important;

@@ -69,7 +69,7 @@
   <div class="flex flex-wrap gap-3">
     @for (ev of evidenciasPorTipo()[tipoEntry.value]; track ev.id) {
     <div
-      class="border-round p-3 cursor-pointer"
+      class="rounded p-3 cursor-pointer"
       
       [style.background]="getCardColor(ev.tipoEvidencia)"
     >

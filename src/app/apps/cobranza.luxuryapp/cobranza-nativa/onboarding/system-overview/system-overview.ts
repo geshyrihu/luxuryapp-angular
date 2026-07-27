@@ -1,10 +1,12 @@
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-system-overview',
-  imports: [AppIcon],
+  selector: "app-system-overview",
+  imports: [LxCard, LxTag, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: './system-overview.html',
+  templateUrl: "./system-overview.html",
 })
 export default class SystemOverview {}

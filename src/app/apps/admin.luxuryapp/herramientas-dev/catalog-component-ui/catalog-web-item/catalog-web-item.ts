@@ -20,17 +20,31 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import {
+  WebButtonIconActiveDesactive,
+  WebButtonIconAdd,
+  WebButtonIconConfirm,
+  WebButtonIconDelete,
   WebButtonIconDownload,
+  WebButtonIconEdit,
+  WebButtonIconItem,
+  WebButtonIconSave,
   WebButtonIconSendEmail,
+  WebButtonIconTracking,
   WebButtonIconViewPdf,
 } from "@ui/buttons/web-icon";
 import {
   WebButtonLabel,
+  WebButtonLabelActiveDesactive,
   WebButtonLabelAdd,
   WebButtonLabelConfirm,
   WebButtonLabelDelete,
+  WebButtonLabelDownload,
   WebButtonLabelEdit,
+  WebButtonLabelItem,
   WebButtonLabelSave,
+  WebButtonLabelSendEmail,
+  WebButtonLabelTracking,
+  WebButtonLabelViewPdf,
 } from "@ui/buttons/web-label";
 import {
   CustomInputCheckSignal,
@@ -150,13 +164,27 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     FullCalendarModule,
     AppIcon,
     WebButtonLabel,
+    WebButtonLabelActiveDesactive,
     WebButtonLabelAdd,
     WebButtonLabelConfirm,
     WebButtonLabelDelete,
+    WebButtonLabelDownload,
     WebButtonLabelEdit,
+    WebButtonLabelItem,
     WebButtonLabelSave,
+    WebButtonLabelSendEmail,
+    WebButtonLabelTracking,
+    WebButtonLabelViewPdf,
+    WebButtonIconActiveDesactive,
+    WebButtonIconAdd,
+    WebButtonIconConfirm,
+    WebButtonIconDelete,
     WebButtonIconDownload,
+    WebButtonIconEdit,
+    WebButtonIconItem,
+    WebButtonIconSave,
     WebButtonIconSendEmail,
+    WebButtonIconTracking,
     WebButtonIconViewPdf,
   ],
   template: `
@@ -284,9 +312,24 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <il-button-save label="Guardar" />
                   <il-button-delete label="Eliminar" />
                   <il-button-confirm label="Aprobar" />
+                  <il-button-active-desactive [state]="true" activasLabel="Activos" inactivasLabel="Inactivos" />
+                  <il-button-download />
+                  <il-button-item />
+                  <il-button-send-email />
+                  <il-button-tracking [badgeCount]="5" [ticketId]="123" />
+                  <il-button-view-pdf url="" fileName="doc.pdf" />
+
+                  <iw-button-active-desactive [state]="true" />
+                  <iw-button-add />
+                  <iw-button-confirm />
+                  <iw-button-delete />
                   <iw-button-download />
-                  <iw-button-view-pdf />
+                  <iw-button-edit />
+                  <iw-button-item />
+                  <iw-button-save />
                   <iw-button-send-email />
+                  <iw-button-tracking [badgeCount]="3" [ticketId]="228" />
+                  <iw-button-view-pdf url="" fileName="doc.pdf" />
                 </div>
               </div>
             </div>

@@ -706,4 +706,3 @@ export const adminRoutes: Routes = [
     },
   },
 ];
-

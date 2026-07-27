@@ -22,6 +22,8 @@ import { BaseButton } from "../base/base-button";
         } @else {
           <app-icon [icon]="iconClass()" />
         }
+      } @else if (icon()) {
+        <app-icon [icon]="icon()" />
       }
     </button>
   `,

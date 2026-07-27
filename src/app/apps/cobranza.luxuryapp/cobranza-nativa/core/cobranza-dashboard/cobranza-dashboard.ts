@@ -11,6 +11,8 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -49,7 +51,7 @@ export interface TendenciaMensualDTO {
 
 @Component({
   selector: "app-cobranza-dashboard",
-  imports: [CommonModule, DecimalPipe, WebButtonLabel, AppIcon],
+  imports: [CommonModule, DecimalPipe, WebButtonLabel, LxCard, LxProgressBar, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cobranza-dashboard.html",
 })
@@ -117,8 +119,7 @@ export default class CobranzaDashboard {
     if (!customerId) return;
 
     const res = await this.apiResponseS.onGetItem<CobranzaMetricasResponseDTO>(
-      Endpoints.CobranzaCore.Analytics.metrics(customerId) +
-        this.meses(),
+      Endpoints.CobranzaCore.Analytics.metrics(customerId) + this.meses(),
     );
     if (res) this.metricas.set(res);
   }
@@ -136,4 +137,3 @@ export default class CobranzaDashboard {
     return `${Math.round((value / this.maxFacturado()) * 100)}%`;
   }
 }
-

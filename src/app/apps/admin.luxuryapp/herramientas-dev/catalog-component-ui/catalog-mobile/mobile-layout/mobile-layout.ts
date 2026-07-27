@@ -20,6 +20,12 @@ import {
   menuOutline,
   settingsOutline,
 } from "ionicons/icons";
+import { MobileCard } from "@ui/mobile/card/card";
+import { IliPanel } from "@ui/mobile/panel/panel";
+import { IliFieldset } from "@ui/mobile/fieldset/fieldset";
+import { IliDivider } from "@ui/mobile/divider/divider";
+import { MobileToolbar } from "@ui/mobile/toolbar/toolbar";
+import { MobileSplitButton } from "@ui/mobile/split-button/split-button";
 
 @Component({
   selector: "app-mobile-layout",
@@ -37,6 +43,12 @@ import {
     IonSplitPane,
     IonTitle,
     IonToolbar,
+    MobileCard,
+    IliPanel,
+    IliFieldset,
+    IliDivider,
+    MobileToolbar,
+    MobileSplitButton,
   ],
   template: `
     <div class="mobile-card">
@@ -273,6 +285,50 @@ import {
               Tab activo: <strong>{{ activeTab() }}</strong>
             </p>
           }
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-card mt-4">
+      <div class="mobile-card-header">Layout Wrappers (ili-*)</div>
+      <div class="mobile-card-body flex flex-column gap-5">
+        <div>
+          <div class="font-bold text-sm mb-3">ili-card</div>
+          <ili-card header="Card Header">
+            Card Content
+          </ili-card>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-panel</div>
+          <ili-panel header="Panel Header">
+            Panel Content
+          </ili-panel>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-fieldset</div>
+          <ili-fieldset legend="Fieldset Legend">
+            Fieldset Content
+          </ili-fieldset>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-divider</div>
+          <ili-divider></ili-divider>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-toolbar</div>
+          <ili-toolbar>
+            <div class="p-toolbar-group-start">Start</div>
+            <div class="p-toolbar-group-end">End</div>
+          </ili-toolbar>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-split-button</div>
+          <ili-split-button label="Save" [model]="[{label:'Update', icon:'mdi:refresh'}, {label:'Delete', icon:'mdi:close'}]"></ili-split-button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -7,15 +7,17 @@
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -36,6 +38,8 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
     TableModule,
     CustomInputCurrencySignal,
     WebButtonLabel,
+    LxTag,
+    LxCard,
     DataViewMobile,
     MobileListItem,
     AppIcon,
@@ -118,5 +122,3 @@ export default class InitialBalance {
     }
   }
 }
-
-

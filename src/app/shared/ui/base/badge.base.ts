@@ -1,4 +1,4 @@
-import { Directive, input } from "@angular/core";
+import { Directive, input, computed } from "@angular/core";
 
 export type BadgeColor =
   | "primary"
@@ -24,13 +24,13 @@ export abstract class BadgeBase {
   size = input<BadgeSizeToken>("normal");
 
   /** Texto a mostrar; vacío/0 sigue renderizando salvo que el consumidor lo oculte. */
-  displayValue(): string {
+  displayValue = computed<string>(() => {
     const v = this.value();
     return v === null || v === undefined ? "" : String(v);
-  }
+  });
 
   /** Mapea el color semántico a la paleta de Ionic (`ion-badge [color]`). */
-  ionColor(): string {
+  ionColor = computed<string>(() => {
     const map: Record<BadgeColor, string> = {
       primary: "primary",
       secondary: "secondary",
@@ -41,5 +41,5 @@ export abstract class BadgeBase {
       neutral: "medium",
     };
     return map[this.color()] ?? "medium";
-  }
+  });
 }

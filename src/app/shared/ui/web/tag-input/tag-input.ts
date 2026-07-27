@@ -22,7 +22,8 @@ import { AutoCompleteModule } from "primeng/autocomplete";
       }
 
       <p-autocomplete
-        [(ngModel)]="value"
+        [ngModel]="value()"
+        (ngModelChange)="value.set($event)"
         [suggestions]="filteredSuggestions"
         [multiple]="true"
         [dropdown]="suggestions().length > 0"
@@ -104,7 +105,7 @@ import { AutoCompleteModule } from "primeng/autocomplete";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppTagInput extends TagInputBase {}

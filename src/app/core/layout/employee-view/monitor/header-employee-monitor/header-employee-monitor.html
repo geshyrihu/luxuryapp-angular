@@ -186,13 +186,13 @@
     </div>
     } @if (aiAnnouncementResult() && !isGeneratingAnnouncement()) {
     <div
-      class="ai-result-container surface-ground p-4 border-round-xl border-1 surface-border"
+      class="ai-result-container surface-ground p-4 rounded-xl border-1 surface-border"
     >
       @if (currentMode() === 'poster' && aiAnnouncementImageResult()) {
       <!-- Póster Infográfico Estructurado -->
       <div
         id="print-section"
-        class="surface-card p-0 border-round-xl shadow-1 mt-4 relative overflow-hidden flex flex-column bg-white"
+        class="surface-card p-0 rounded-xl shadow-sm mt-4 relative overflow-hidden flex flex-column bg-white"
         style="border: 1px solid var(--surface-border); border-top: 6px solid"
         [style.border-top-color]="'var(' + documentColor() + ')'"
       >
@@ -226,7 +226,7 @@
             @if (aiAnnouncementPosterPoints().length > 0) { @for (point of
             aiAnnouncementPosterPoints(); track point; let i = $index) {
             <div
-              class="flex align-items-start gap-3 p-3 border-round-lg"
+              class="flex align-items-start gap-3 p-3 rounded-lg"
               style="
                 background-color: var(--surface-50);
                 border-left: 4px solid;
@@ -234,7 +234,7 @@
               [style.border-left-color]="'var(' + documentColor() + ')'"
             >
               <div
-                class="flex align-items-center justify-content-center border-round-circle p-2"
+                class="flex align-items-center justify-content-center rounded-circle p-2"
                 [style.background-color]="'var(' + documentColor() + ')'"
                 [style.color]="'white'"
               >
@@ -261,7 +261,7 @@
           <!-- Columna Derecha: Imagen Ilustrativa -->
           <div class="col-12 md:col-5 flex justify-content-center">
             <div
-              class="relative w-full border-round-xl overflow-hidden shadow-2"
+              class="relative w-full rounded-xl overflow-hidden shadow-sm"
               style="min-height: 250px; background-color: var(--surface-100)"
             >
               <img
@@ -275,7 +275,7 @@
 
         <!-- Call to Action -->
         <div
-          class="mx-4 mb-4 p-3 border-round-lg text-center"
+          class="mx-4 mb-4 p-3 rounded-lg text-center"
           style="
             background-color: var(--surface-100);
             border: 2px dashed var(--surface-300);
@@ -312,7 +312,7 @@
       <!-- Documento Formal -->
       <div
         id="print-section"
-        class="surface-card p-5 border-round-xl shadow-1 mt-4 relative bg-white"
+        class="surface-card p-5 rounded-xl shadow-sm mt-4 relative bg-white"
         style="border: 1px solid var(--surface-border); border-top: 6px solid"
         [style.border-top-color]="'var(' + documentColor() + ')'"
       >
@@ -355,7 +355,7 @@
 
         <!-- Call to Action (Estilo Tema) -->
         <div
-          class="surface-100 p-4 border-round-lg text-center mt-4 border-left-3"
+          class="surface-100 p-4 rounded-lg text-center mt-4 border-left-3"
           [style.border-left-color]="'var(' + documentColor() + ')'"
         >
           <p

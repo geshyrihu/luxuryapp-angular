@@ -4,7 +4,7 @@
   </div>
 
   <div class="col-12">
-    <div class="card" class="shadow-1 border-round-xl overflow-hidden">
+    <div class="card" class="shadow-sm rounded-xl overflow-hidden">
 
         <div class="grid">
           <div class="col-12 lg:col-4">
@@ -80,7 +80,7 @@
   @if (report(); as data) {
   <div class="col-12 md:col-6 xl:col-3">
     <div
-      class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full"
+      class="surface-card rounded-xl p-3 border-1 border-surface-200 h-full"
     >
       <div class="text-500 text-sm mb-2">Consumo total</div>
       <div class="text-3xl font-bold text-900">
@@ -95,7 +95,7 @@
 
   <div class="col-12 md:col-6 xl:col-3">
     <div
-      class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full"
+      class="surface-card rounded-xl p-3 border-1 border-surface-200 h-full"
     >
       <div class="text-500 text-sm mb-2">Promedio semanal</div>
       <div class="text-3xl font-bold text-900">
@@ -109,7 +109,7 @@
 
   <div class="col-12 md:col-6 xl:col-3">
     <div
-      class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full"
+      class="surface-card rounded-xl p-3 border-1 border-surface-200 h-full"
     >
       <div class="text-500 text-sm mb-2">Medidores incluidos</div>
       <div class="text-3xl font-bold text-900">{{ data.totalMedidores }}</div>
@@ -121,7 +121,7 @@
 
   <div class="col-12 md:col-6 xl:col-3">
     <div
-      class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full"
+      class="surface-card rounded-xl p-3 border-1 border-surface-200 h-full"
     >
       <div class="text-500 text-sm mb-2">Categorias</div>
       <div class="text-3xl font-bold text-900">{{ data.totalCategorias }}</div>
@@ -130,7 +130,7 @@
   </div>
 
   <div class="col-12 xl:col-8">
-    <div class="card" class="h-full shadow-1 border-round-xl">
+    <div class="card" class="h-full shadow-sm rounded-xl">
       <div class="card-header">
         <div class="px-3 pt-3">
           <div class="text-xl font-semibold">Consumo semanal</div>
@@ -146,7 +146,7 @@
   </div>
 
   <div class="col-12 xl:col-4">
-    <div class="card" class="h-full shadow-1 border-round-xl">
+    <div class="card" class="h-full shadow-sm rounded-xl">
       <div class="card-header">
         <div class="px-3 pt-3">
           <div class="text-xl font-semibold">Resumen por categoria</div>
@@ -160,7 +160,7 @@
           @for (categoria of data.categorias; track
           categoria.medidorCategoriaId) {
           <div
-            class="surface-50 border-round-lg p-3 border-1 border-surface-200"
+            class="surface-50 rounded-lg p-3 border-1 border-surface-200"
           >
             <div class="flex justify-content-between gap-3">
               <div>
@@ -186,7 +186,7 @@
   </div>
 
   <div class="col-12">
-    <div class="card" class="shadow-1 border-round-xl">
+    <div class="card" class="shadow-sm rounded-xl">
       <div class="card-header">
         <div class="px-3 pt-3">
           <div class="text-xl font-semibold">Detalle por medidor</div>
@@ -246,7 +246,7 @@
 } @else {
   <div class="col-12">
     <div
-      class="surface-card border-round-xl border-1 border-surface-200 p-4 text-center text-500"
+      class="surface-card rounded-xl border-1 border-surface-200 p-4 text-center text-500"
     >
       No hay datos disponibles para el rango y filtros seleccionados.
     </div>

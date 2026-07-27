@@ -44,10 +44,10 @@ $z-tooltip:   800  !default;
 // ── TAMAÑOS DE COMPONENTES ────────────────────────────────────
 // Alturas estándar para inputs, botones y controles
 $component-height-xs:  28px  !default;
-$component-height-sm:  34px  !default;
-$component-height-md:  40px  !default;   // default
-$component-height-lg:  48px  !default;
-$component-height-xl:  56px  !default;
+$component-height-sm:  36px  !default;
+$component-height-md:  44px  !default;   // WCAG 2.5.8 minimum target size
+$component-height-lg:  52px  !default;
+$component-height-xl:  60px  !default;
 
 // ── OPACIDADES SEMÁNTICAS ─────────────────────────────────────
 $opacity-disabled:  0.5  !default;

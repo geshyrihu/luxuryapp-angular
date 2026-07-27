@@ -45,5 +45,4 @@ export abstract class TableBase {
   pageChange = output<TablePageEvent>();
   sortChange = output<TableSortEvent>();
   rowClick = output<any>();
-  selectionChange = output<any>();
 }

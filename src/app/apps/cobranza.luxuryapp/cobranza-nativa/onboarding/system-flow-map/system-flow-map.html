@@ -11,38 +11,26 @@
     </div>
 
     <div class="hero-board">
-      <div class="hero-chip">
-        <app-icon [icon]="'mdi:home-city-outline'" />
-        <span>Properties</span>
-      </div>
+      <lx-tag value="Properties" icon="mdi:home-city-outline" severity="secondary" [rounded]="true" class="hero-chip" />
       <div class="hero-arrow">
         <app-icon [icon]="'mdi:arrow-right-thin'" />
       </div>
-      <div class="hero-chip">
-        <app-icon [icon]="'mdi:cash-plus'" />
-        <span>Cargos</span>
-      </div>
+      <lx-tag value="Cargos" icon="mdi:cash-plus" severity="secondary" [rounded]="true" class="hero-chip" />
       <div class="hero-arrow">
         <app-icon [icon]="'mdi:arrow-right-thin'" />
       </div>
-      <div class="hero-chip">
-        <app-icon [icon]="'mdi:credit-card-check-outline'" />
-        <span>Pagos</span>
-      </div>
+      <lx-tag value="Pagos" icon="mdi:credit-card-check-outline" severity="secondary" [rounded]="true" class="hero-chip" />
       <div class="hero-arrow">
         <app-icon [icon]="'mdi:arrow-right-thin'" />
       </div>
-      <div class="hero-chip">
-        <app-icon [icon]="'mdi:file-pdf-box'" />
-        <span>Estado de cuenta</span>
-      </div>
+      <lx-tag value="Estado de cuenta" icon="mdi:file-pdf-box" severity="secondary" [rounded]="true" class="hero-chip" />
     </div>
   </section>
 
   <section class="event-ribbon">
     @for (item of eventStream; track item; let last = $last) {
     <div class="event-pill">
-      <span>{{ item }}</span>
+      <lx-tag [value]="item" severity="contrast" [rounded]="true" />
       @if (!last) {
       <app-icon [icon]="'mdi:arrow-right'" class="event-link" />
       }
@@ -61,7 +49,7 @@
 
     <div class="lane-grid">
       @for (node of sourceNodes; track node.title) {
-      <article class="flow-card" [class]="toneClass(node.tone)">
+      <lx-card class="flow-card card card--elevated h-full" [class]="toneClass(node.tone)">
         <div class="flow-card__head">
           <div class="flow-card__icon">
             <app-icon [icon]="node.icon" />
@@ -77,7 +65,7 @@
           <li>{{ bullet }}</li>
           }
         </ul>
-      </article>
+      </lx-card>
       }
     </div>
   </section>
@@ -104,7 +92,7 @@
 
     <div class="lane-grid">
       @for (node of generationNodes; track node.title) {
-      <article class="flow-card" [class]="toneClass(node.tone)">
+      <lx-card class="flow-card card card--elevated h-full" [class]="toneClass(node.tone)">
         <div class="flow-card__head">
           <div class="flow-card__icon">
             <app-icon [icon]="node.icon" />
@@ -120,24 +108,24 @@
           <li>{{ bullet }}</li>
           }
         </ul>
-      </article>
+      </lx-card>
       }
     </div>
   </section>
 
   <section class="center-engine">
-    <div class="engine-node engine-node--core">
-      <span class="engine-label">Nucleo operativo</span>
+    <lx-card class="engine-node engine-node--core card card--elevated">
+      <lx-tag value="Nucleo operativo" severity="secondary" [rounded]="true" class="engine-label" />
       <h3>Motor de aplicacion y control</h3>
       <p>
         Todo cargo, pago, nota o recargo entra a un flujo donde se aplica,
         valida, audita y proyecta.
       </p>
-    </div>
+    </lx-card>
 
     <div class="engine-spokes">
       @for (node of engineNodes; track node.title) {
-      <article class="engine-node" [class]="toneClass(node.tone)">
+      <lx-card class="engine-node card card--elevated h-full" [class]="toneClass(node.tone)">
         <div class="flow-card__head">
           <div class="flow-card__icon">
             <app-icon [icon]="node.icon" />
@@ -153,7 +141,7 @@
           <li>{{ bullet }}</li>
           }
         </ul>
-      </article>
+      </lx-card>
       }
     </div>
   </section>
@@ -171,7 +159,7 @@
 
     <div class="lane-grid">
       @for (node of outputNodes; track node.title) {
-      <article class="flow-card" [class]="toneClass(node.tone)">
+      <lx-card class="flow-card card card--elevated h-full" [class]="toneClass(node.tone)">
         <div class="flow-card__head">
           <div class="flow-card__icon">
             <app-icon [icon]="node.icon" />
@@ -187,33 +175,33 @@
           <li>{{ bullet }}</li>
           }
         </ul>
-      </article>
+      </lx-card>
       }
     </div>
   </section>
 
   <section class="decision-wall">
-    <div class="decision-card">
-      <span class="decision-title">Si sucede este evento</span>
+    <lx-card class="decision-card card card--elevated">
+      <lx-tag value="Si sucede este evento" severity="secondary" [rounded]="true" class="decision-title" />
       <h3>Se registra un pago</h3>
       <p>
         El sistema intenta aplicarlo a cargos pendientes, actualiza saldo,
         genera ledger, puede disparar notificacion y deja trazabilidad de quien
         lo registro.
       </p>
-    </div>
+    </lx-card>
 
     <div class="decision-arrow">
       <app-icon [icon]="'mdi:arrow-right-bold'" />
     </div>
 
-    <div class="decision-card">
-      <span class="decision-title">Entonces pasa esto</span>
+    <lx-card class="decision-card card card--elevated">
+      <lx-tag value="Entonces pasa esto" severity="secondary" [rounded]="true" class="decision-title" />
       <h3>Se recalcula la fotografia financiera</h3>
       <p>
         Cambian estado de cuenta, aging, conciliacion, salidas PDF y posibles
         casos de cobranza si la deuda sigue viva.
       </p>
-    </div>
+    </lx-card>
   </section>
 </div>

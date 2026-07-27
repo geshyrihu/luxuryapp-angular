@@ -12,7 +12,8 @@ import { DrawerModule } from "primeng/drawer";
   imports: [DrawerModule],
   template: `
     <p-drawer
-      [(visible)]="visible"
+      [visible]="visible()"
+      (visibleChange)="visible.set($event)"
       [position]="position()"
       [closable]="closable()"
       [header]="header()"
@@ -28,7 +29,7 @@ import { DrawerModule } from "primeng/drawer";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Sidebar extends SidebarBase {}

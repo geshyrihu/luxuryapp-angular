@@ -74,7 +74,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppMessage extends MessageBase {}

@@ -1,0 +1,81 @@
+:host {
+  display: block;
+}
+
+.cb-payments__header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.cb-payments__title {
+  color: var(--text-color);
+}
+
+.cb-payments__subtitle {
+  color: var(--text-color-secondary);
+}
+
+.cb-payments__summary {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--surface-50);
+  border: 1px solid var(--surface-100);
+  border-radius: 0.75rem;
+}
+
+.cb-payments__summary-label {
+  color: var(--text-color-secondary);
+}
+
+.cb-payments__amount {
+  font-weight: 700;
+}
+
+.cb-payments__amount--ok {
+  color: var(--green-600);
+}
+
+.cb-payments__amount--error {
+  color: var(--red-600);
+}
+
+.cb-payments__warning {
+  padding: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--red-500) 18%, transparent);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--red-500) 9%, var(--surface-card));
+  color: var(--red-700);
+}
+
+.cb-payments__empty-icon {
+  color: var(--green-500);
+}
+
+.cb-payments__table-head {
+  background: var(--surface-50);
+}
+
+.cb-payments__table-head--accent {
+  background: color-mix(in srgb, var(--primary-500) 8%, var(--surface-card));
+}
+
+.cb-payments__cell-divider {
+  border-right: 1px solid var(--surface-border);
+}
+
+.cb-payments__row--selected {
+  background: color-mix(in srgb, var(--primary-500) 6%, var(--surface-card));
+}
+
+.cb-payments__cell-apply {
+  background: color-mix(in srgb, var(--primary-500) 4%, var(--surface-card));
+}
+
+.cb-payments__concept {
+  color: var(--text-color);
+}
+
+.cb-payments__balance {
+  color: var(--text-color);
+}

@@ -20,11 +20,9 @@
     <ng-template #header>
       <tr>
         <th class="w-14rem">Nombre</th>
-        <th class="w-10rem">Código</th>
-        <th class="w-10rem">Cuenta</th>
+        <th class="w-10rem">Código / Cuenta</th>
         <th>Descripción</th>
         <th class="w-8rem text-center">Origen</th>
-        <th class="w-8rem text-center">Estado</th>
         <th class="w-8rem text-center">Opciones</th>
       </tr>
     </ng-template>
@@ -33,33 +31,14 @@
       <tr>
         <td class="font-semibold text-800">{{ item.name }}</td>
         <td>
-          <span class="font-mono text-sm text-700">{{ item.code }}</span>
-        </td>
-        <td>
-          <span class="font-mono text-sm text-primary"
-            >{{ item.accountNumber }}</span
-          >
+          <span class="font-mono text-sm text-primary">{{ item.code }}</span>
         </td>
         <td class="text-600">{{ item.description || "Sin descripción" }}</td>
         <td class="text-center">
-          <span
-            class="px-2 py-1 border-round text-xs font-semibold"
-            [ngClass]="item.isSystem
-              ? 'bg-blue-100 text-blue-800'
-              : 'bg-green-100 text-green-800'"
-          >
-            {{ item.isSystem ? "Sistema" : "Custom" }}
-          </span>
-        </td>
-        <td class="text-center">
-          <span
-            class="px-2 py-1 border-round text-xs font-semibold"
-            [ngClass]="item.isActive
-              ? 'bg-emerald-100 text-emerald-800'
-              : 'bg-orange-100 text-orange-800'"
-          >
-            {{ item.isActive ? "Activo" : "Inactivo" }}
-          </span>
+          <lx-tag
+            [value]="originMeta(item.isSystem).label"
+            [severity]="originMeta(item.isSystem).severity"
+          />
         </td>
         <td class="text-center">
           <div class="flex justify-content-center align-items-center gap-2">
@@ -76,7 +55,7 @@
 
     <ng-template #emptymessage>
       <primeng-custom-table-emptymessage
-        [colspan]="7"
+        [colspan]="5"
         icon="mdi:shape-outline"
         title="Sin tipos de cargo"
         message="Los tipos base aparecerán aquí y desde esta pantalla podrás agregar tipos personalizados."
@@ -87,24 +66,21 @@
 
 <app-data-view-mobile
   [data]="dataSignal()"
-  [globalFilterFields]="['name', 'code', 'accountNumber', 'description']"
+  [globalFilterFields]="['name', 'code', 'description']"
   (add)="onModalForm()"
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon icon="mdi:shape-outline" class="text-blue-700 text-xl" />
       </div>
       <div class="flex-1 min-w-0">
         <h3>{{ item.name }}</h3>
-        <p>{{ item.accountNumber }} · {{ item.code }}</p>
-        <p>
-          {{ item.isSystem ? "Sistema" : "Custom" }} · {{ item.isActive ?
-          "Activo" : "Inactivo" }}
-        </p>
+        <p>{{ item.code }}</p>
+        <p>{{ originMeta(item.isSystem).label }}</p>
       </div>
       <ili-action-menu slot="end">
         <ng-container actions>

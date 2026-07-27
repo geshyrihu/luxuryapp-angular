@@ -1,5 +1,5 @@
-<div class="card p-3 md:p-4">
-  <div class="flex align-items-center justify-content-between mb-3">
+<lx-card class="card">
+  <div class="flex align-items-center justify-content-between mb-3 gap-3 flex-wrap">
     <div>
       <h3 class="text-lg font-bold m-0">Saldos Iniciales por Propiedad</h3>
       <p class="text-500 text-sm m-0 mt-1">
@@ -24,28 +24,26 @@
     <app-icon [icon]="'mdi:loading'" class="text-3xl text-primary" />
   </div>
   } @else {
-
-  <!-- Resumen -->
   @if (rows().length > 0) {
   <div class="flex gap-3 mb-3 flex-wrap">
-    <div class="surface-100 border-round px-3 py-2 text-sm">
-      Total propiedades: <strong>{{ rows().length }}</strong>
-    </div>
-    <div class="bg-green-50 border-round px-3 py-2 text-sm text-green-800">
-      Con saldo inicial: <strong>{{ contarConSaldo() }}</strong>
-    </div>
-    <div class="bg-yellow-50 border-round px-3 py-2 text-sm text-yellow-800">
-      Sin saldo inicial: <strong>{{ rows().length - contarConSaldo() }}</strong>
-    </div>
+    <lx-tag [value]="'Total propiedades: ' + rows().length" severity="contrast" />
+    <lx-tag
+      [value]="'Con saldo inicial: ' + contarConSaldo()"
+      severity="success"
+    />
+    <lx-tag
+      [value]="'Sin saldo inicial: ' + (rows().length - contarConSaldo())"
+      severity="warning"
+    />
     @if (hasPendingChanges()) {
-    <div class="bg-blue-50 border-round px-3 py-2 text-sm text-blue-800">
-      Pendientes de guardar: <strong>{{ contarPendientes() }}</strong>
-    </div>
+    <lx-tag
+      [value]="'Pendientes de guardar: ' + contarPendientes()"
+      severity="info"
+    />
     }
   </div>
   }
 
-  <!-- Tabla escritorio -->
   <p-table
     [value]="rows()"
     [globalFilterFields]="['propertyFullName', 'accountNumber']"
@@ -79,20 +77,11 @@
         <td class="text-sm text-500">{{ row.accountNumber }}</td>
         <td class="text-center">
           @if (row.dirty && (row.amount ?? 0) > 0) {
-          <span
-            class="badge bg-blue-100 text-blue-800 text-xs px-2 py-1 border-round"
-            >Por guardar</span
-          >
+          <lx-tag value="Por guardar" severity="info" />
           } @else if (row.hasSaldoInicial) {
-          <span
-            class="badge bg-green-100 text-green-800 text-xs px-2 py-1 border-round"
-            >Registrado</span
-          >
+          <lx-tag value="Registrado" severity="success" />
           } @else {
-          <span
-            class="badge bg-yellow-100 text-yellow-800 text-xs px-2 py-1 border-round"
-            >Sin saldo</span
-          >
+          <lx-tag value="Sin saldo" severity="warning" />
           }
         </td>
         <td>
@@ -115,7 +104,6 @@
     </ng-template>
   </p-table>
 
-  <!-- Vista movil -->
   <app-data-view-mobile
     [data]="rows()"
     [globalFilterFields]="['propertyFullName', 'accountNumber']"
@@ -125,7 +113,7 @@
       <ili-list-item>
         <div
           start
-          class="w-2rem h-2rem border-round-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          class="w-2rem h-2rem rounded-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
           <app-icon icon="mdi:wallet-outline" class="text-yellow-600 text-xl" />
         </div>
@@ -133,7 +121,7 @@
           <h3>{{ row.propertyFullName }}</h3>
           <p>Cta: {{ row.accountNumber }}</p>
         </div>
-        <div end class="pr-2 py-2" >
+        <div end class="pr-2 py-2">
           <custom-input-currency-signal
             [(ngModel)]="row.amount"
             [minFractionDigits]="2"
@@ -145,6 +133,5 @@
       </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
-
   }
-</div>
+</lx-card>

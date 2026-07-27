@@ -32,7 +32,7 @@ export interface UploadFile {
     <div class="file-upload-root">
       <!-- Drop Zone -->
       <div
-        class="file-upload-dropzone border-2 border-dashed border-round p-4 flex flex-column align-items-center gap-2 cursor-pointer"
+        class="file-upload-dropzone border-2 border-dashed rounded p-4 flex flex-column align-items-center gap-2 cursor-pointer"
         [class.file-upload-dragover]="isDragOver()"
         (dragover)="onDragOver($event)"
         (dragleave)="onDragLeave($event)"
@@ -107,13 +107,13 @@ export interface UploadFile {
         <div class="file-list flex flex-column gap-2 mt-3">
           @for (file of files(); track file.name) {
             <div
-              class="file-item flex align-items-center gap-2 p-2 surface-ground border-round"
+              class="file-item flex align-items-center gap-2 p-2 surface-ground rounded"
             >
               @if (isImage(file.type)) {
                 <img
                   [src]="file.objectURL"
                   [alt]="file.name"
-                  class="file-preview border-round"
+                  class="file-preview rounded"
                 />
               } @else {
                 <app-icon
@@ -189,7 +189,7 @@ export interface UploadFile {
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class FileUpload {

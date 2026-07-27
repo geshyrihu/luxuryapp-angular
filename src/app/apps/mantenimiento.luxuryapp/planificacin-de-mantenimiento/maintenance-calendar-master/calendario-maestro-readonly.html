@@ -3,7 +3,7 @@
   <div class="col-12 md:col-3">
     <!-- Cabecera del mes -->
     <div
-      class="flex align-items-center justify-content-between p-2 font-bold text-primary surface-100 border-round mb-2"
+      class="flex align-items-center justify-content-between p-2 font-bold text-primary surface-100 rounded mb-2"
     >
       <span>{{ item.month }}</span>
       @if (item.items?.length > 0) {
@@ -15,7 +15,7 @@
     <div class="flex flex-column gap-2">
       @for (evento of item.items; track evento.id) {
       <div
-        class="p-3 border-1 surface-border border-round cursor-pointer hover:surface-100 transition-colors transition-duration-150"
+        class="p-3 border-1 surface-border rounded cursor-pointer hover:surface-100 transition-colors transition-duration-150"
         (click)="onVerDetalle(evento)"
         lxTooltip="Ver detalles del servicio"
         tooltipPosition="right"
@@ -48,7 +48,7 @@
         </div>
       </div>
       } @empty {
-      <div class="text-center text-400 text-xs py-3 surface-50 border-round">
+      <div class="text-center text-400 text-xs py-3 surface-50 rounded">
         Sin actividades
       </div>
       }

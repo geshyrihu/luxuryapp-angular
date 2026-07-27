@@ -1,4 +1,4 @@
-import { Directive, input } from "@angular/core";
+import { Directive, input, computed } from "@angular/core";
 
 export type AvatarShape = "circle" | "square";
 export type AvatarSize = "normal" | "large" | "xlarge";
@@ -24,8 +24,8 @@ export abstract class AvatarBase {
   styleClass = input<string>("");
 
   /** Diámetro en px según el token de tamaño (para el móvil). */
-  sizePx(): number {
+  sizePx = computed<number>(() => {
     const map: Record<AvatarSize, number> = { normal: 32, large: 48, xlarge: 64 };
     return map[this.size()] ?? 32;
-  }
+  });
 }

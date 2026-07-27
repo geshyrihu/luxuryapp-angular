@@ -4,7 +4,7 @@
   <app-spinner [size]="48" [strokeWidth]="4" />
 </div>
 } @if (reportData() && !loading()) {
-<div class="surface-card shadow-2 border-round">
+<div class="surface-card shadow-sm rounded">
   <!-- Encabezado del reporte -->
   <div class="border-bottom-1 surface-border p-3 surface-100"></div>
   <!-- Tabla de solicitudes pendientes -->
@@ -104,7 +104,7 @@
   </p-table>
   <!-- (MEJORA) Mensaje claro si no hay datos después de cargar -->
   @if (!reportData() && !loading()) {
-  <div class="p-3 surface-100 text-center border-round text-color-secondary">
+  <div class="p-3 surface-100 text-center rounded text-color-secondary">
     No se encontraron minutas pendientes para este cliente.
   </div>
   }

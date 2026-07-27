@@ -2,13 +2,13 @@
 <div class="hidden md:block p-3">
   <div class="flex flex-column gap-4">
     @for (area of areas; track area.key) {
-    <div class="surface-card border-1 surface-border border-round-lg p-3">
+    <div class="surface-card border-1 surface-border rounded-lg p-3">
       <!-- Encabezado del area -->
       <div
         class="flex align-items-center gap-2 mb-3 pb-2 border-bottom-1 surface-border"
       >
         <span
-          class="flex align-items-center justify-content-center border-round"
+          class="flex align-items-center justify-content-center rounded"
           [style.width.rem]="2"
           [style.height.rem]="2"
           [style.background-color]="area.color + '22'"
@@ -38,7 +38,7 @@
         @for (metrica of area.metricas; track $index) {
         <div class="col-12 md:col-6 lg:col-4 xl:col-3 p-2">
           <div
-            class="border-1 surface-border border-round p-3 h-full"
+            class="border-1 surface-border rounded p-3 h-full"
             
           >
             <p class="text-xs text-500 m-0 mb-1 uppercase font-semibold">
@@ -99,7 +99,7 @@
       <!-- Cards de metricas placeholder -->
       @for (metrica of area.metricas; track $index) {
       <div class="col-6 p-1">
-        <div class="m-0 shadow-1">
+        <div class="m-0 shadow-sm">
           <div class="pb-0 pt-2 px-3">
             <div class="text-xs text-500 uppercase font-semibold">
               {{ metrica }}

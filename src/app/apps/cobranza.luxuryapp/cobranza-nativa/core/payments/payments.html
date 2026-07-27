@@ -1,21 +1,18 @@
 <div class="card p-4">
-  <div class="mb-5 pb-4 border-b border-gray-200">
-    <h1 class="text-xl font-bold text-gray-800">
+  <div class="cb-payments__header">
+    <h1 class="cb-payments__title text-xl font-bold">
       <app-icon [icon]="'mdi:wallet'" class="mr-2 text-primary" />
       Registrar Pago y Aplicar a Cargos
     </h1>
-    <p class="text-gray-500 text-sm mt-1">
-      Registra un depósito/transferencia y distribuye el monto entre la deuda
+    <p class="cb-payments__subtitle text-sm mt-1">
+      Registra un depósito o transferencia y distribuye el monto entre la deuda
       pendiente de la propiedad.
     </p>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <!-- STEP 1: Property and Search -->
-    <div class="surface-50 p-4 border-round-lg mb-6 border-1 border-200">
-      <h2 class="text-md font-semibold text-700 mb-3">
-        1. Seleccionar Propiedad
-      </h2>
+    <lx-card class="card card--elevated mb-6">
+      <h2 class="text-md font-semibold text-700 mb-3">1. Seleccionar Propiedad</h2>
       <div class="flex flex-column md:flex-row align-items-end gap-3">
         <div class="flex-1">
           <custom-input-select-signal
@@ -38,29 +35,18 @@
           [disabled]="!form.controls.propertyId.value || loadingCharges()"
         />
       </div>
-    </div>
+    </lx-card>
 
-    <!-- MAIN CONTENT (Only visible after searching and finding a property) -->
     @if (selectedPropertyName()) {
     <div class="grid">
-      <!-- LEFT COLUMN: Payment Details Form -->
       <div class="col-12 lg:col-4">
-        <div
-          class="surface-card border-1 border-200 border-round-lg p-4 shadow-1 h-full"
-        >
-          <h2 class="text-md font-semibold text-700 mb-4 border-bottom-1 pb-2">
-            2. Datos del Ingreso
-          </h2>
-
+        <lx-card class="card h-full">
+          <h2 class="text-md font-semibold text-700 mb-4 border-bottom-1 pb-2">2. Datos del Ingreso</h2>
           <div class="flex flex-column gap-4">
-            <custom-input-currency-signal
-              [control]="form.controls.amount"
-              label="Monto Recibido"
-              required
-            />
-            <div class="flex justify-content-end mt-[-10px]">
+            <custom-input-currency-signal [control]="form.controls.amount" label="Monto Recibido" required />
+            <div class="flex justify-content-end">
               <il-button
-                label="Distribuir/Auto-asignar"
+                label="Distribuir / Auto-asignar"
                 iconClass="mdi:lightning-bolt"
                 variant="link"
                 size="small"
@@ -68,13 +54,7 @@
                 (clicked)="autoAllocate()"
               />
             </div>
-
-            <custom-input-date-signal
-              [control]="form.controls.paymentDate"
-              label="Fecha de Pago"
-              required
-            />
-
+            <custom-input-date-signal [control]="form.controls.paymentDate" label="Fecha de Pago" required />
             <custom-input-select-signal
               [control]="form.controls.method"
               [data]="paymentMethods"
@@ -84,64 +64,36 @@
               [filter]="true"
               required
             />
-
             <custom-input-text-signal
               [control]="form.controls.reference"
               label="Referencia / Folio (Opcional)"
               placeholder="Ej: Traspaso 59302"
             />
-
             <custom-input-textarea-signal
               [control]="form.controls.notes"
               label="Notas de aplicación (Opcional)"
               [rows]="3"
             />
-
-            <!-- Totals Verification -->
-            <div class="mt-6 p-4 surface-50 border-round border-1 border-100">
+            <div class="cb-payments__summary">
               <div class="flex justify-content-between py-2 align-items-center">
-                <span class="text-sm font-medium text-600"
-                  >Monto del Pago:</span
-                >
-                <span class="font-bold text-800 text-lg"
-                  >{{ form.controls.amount.value | currency:'MXN' }}</span
-                >
+                <span class="cb-payments__summary-label text-sm font-medium">Monto del Pago:</span>
+                <span class="font-bold text-800 text-lg">{{ form.controls.amount.value | currency:'MXN' }}</span>
               </div>
               <div class="flex justify-content-between py-2 align-items-center">
-                <span class="text-sm font-medium text-600"
-                  >Monto Aplicado:</span
-                >
-                <span
-                  class="font-bold"
-                  [ngClass]="{'text-green-600': totalSelectedToApply() <= form.controls.amount.value, 'text-red-600': totalSelectedToApply() > form.controls.amount.value}"
-                >
-                  {{ totalSelectedToApply() | currency:'MXN' }}
-                </span>
+                <span class="cb-payments__summary-label text-sm font-medium">Monto Aplicado:</span>
+                <span [class]="getSelectedAmountClass()">{{ totalSelectedToApply() | currency:'MXN' }}</span>
               </div>
               <div class="flex justify-content-between py-2 align-items-center">
-                <span class="text-sm font-medium text-600"
-                  >Monto Disponible:</span
-                >
-                <span class="font-bold text-500">
-                  {{ (form.controls.amount.value - totalSelectedToApply()) |
-                  currency:'MXN' }}
-                </span>
+                <span class="cb-payments__summary-label text-sm font-medium">Monto Disponible:</span>
+                <span class="font-bold text-500">{{ (form.controls.amount.value - totalSelectedToApply()) | currency:'MXN' }}</span>
               </div>
             </div>
-
-            <!-- OVERALLOCATION WARNING -->
             @if (totalSelectedToApply() > form.controls.amount.value) {
-            <div
-              class="p-3 bg-red-50 text-red-700 border-1 border-red-200 border-round text-xs flex align-items-center"
-            >
+            <div class="cb-payments__warning text-xs flex align-items-center">
               <app-icon [icon]="'mdi:alert'" class="mr-2 text-lg" />
-              <span
-                >No puedes aplicar más monto del que estás recibiendo en este
-                pago.</span
-              >
+              <span>No puedes aplicar más monto del que estás recibiendo en este pago.</span>
             </div>
             }
-
             <div class="pt-4 flex flex-column">
               <il-button-save
                 [disabled]="form.invalid || submitting() || (totalSelectedToApply() > form.controls.amount.value)"
@@ -150,76 +102,43 @@
               />
             </div>
           </div>
-        </div>
+        </lx-card>
       </div>
 
-      <!-- RIGHT COLUMN: Debt and Allocation Table -->
       <div class="col-12 lg:col-8">
-        <div
-          class="surface-card border-1 border-200 border-round-lg shadow-1 overflow-hidden h-full flex flex-column"
-        >
-          <div
-            class="surface-50 px-4 py-3 border-bottom-1 border-200 flex justify-content-between align-items-center"
-          >
+        <lx-card class="card h-full">
+          <div class="surface-50 px-4 py-3 border-bottom-1 border-200 flex justify-content-between align-items-center">
             <div>
-              <h2 class="text-md font-semibold text-800">
-                3. Seleccionar Cargos a Pagar
-              </h2>
-              <div class="text-xs text-500 font-medium">
-                Deuda de {{ selectedPropertyName() }}
-              </div>
+              <h2 class="text-md font-semibold text-800">3. Seleccionar Cargos a Pagar</h2>
+              <div class="text-xs text-500 font-medium">Deuda de {{ selectedPropertyName() }}</div>
             </div>
             <div class="text-right">
-              <div
-                class="text-xs text-red-600 font-medium uppercase tracking-wide"
-              >
-                Deuda Total
-              </div>
-              <div class="text-xl font-bold text-red-700">
-                {{ totalDebt() | currency:'MXN' }}
-              </div>
+              <div class="text-xs text-red-600 font-medium uppercase">Deuda Total</div>
+              <div class="text-xl font-bold text-red-700">{{ totalDebt() | currency:'MXN' }}</div>
             </div>
           </div>
 
           <div class="flex-flex-grow-1 p-0">
             @if (pendingCharges().length === 0) {
-            <div
-              class="flex flex-column align-items-center justify-content-center p-12 text-500"
-            >
-              <app-icon
-                [icon]="'mdi:check-circle'"
-                class="text-green-500 text-5xl mb-4"
-              />
-              <p class="text-lg font-medium text-700">
-                Esta propiedad está al día.
-              </p>
-              <p class="text-sm">
-                No tiene cargos pendientes de pago o vencidos.
-              </p>
+            <div class="flex flex-column align-items-center justify-content-center p-12 text-500">
+              <app-icon [icon]="'mdi:check-circle'" class="cb-payments__empty-icon text-5xl mb-4" />
+              <p class="text-lg font-medium text-700">Esta propiedad está al día.</p>
+              <p class="text-sm">No tiene cargos pendientes de pago o vencidos.</p>
             </div>
             } @else {
-            <p-table
-              [value]="pendingCharges()"
-              [scrollable]="true"
-              scrollHeight="flex"
-              class="p-datatable-sm custom-table"
-            >
+            <p-table [value]="pendingCharges()" [scrollable]="true" scrollHeight="flex" class="p-datatable-sm custom-table">
               <ng-template #header>
                 <tr>
-                  <th class="w-12 text-center border-r border-gray-200">
-                    Sel.
-                  </th>
-                  <th class="w-32">Vencimiento</th>
-                  <th class="w-48">Cargo</th>
-                  <th class="w-24 text-right">Saldo</th>
-                  <th class="w-32 text-center bg-blue-50">Aplicar ($)</th>
+                  <th class="w-12 text-center cb-payments__cell-divider">Sel.</th>
+                  <th class="w-32 cb-payments__table-head">Vencimiento</th>
+                  <th class="w-48 cb-payments__table-head">Cargo</th>
+                  <th class="w-24 text-right cb-payments__table-head">Saldo</th>
+                  <th class="w-32 text-center cb-payments__table-head cb-payments__table-head--accent">Aplicar ($)</th>
                 </tr>
               </ng-template>
               <ng-template #body let-charge>
-                <tr
-                  [ngClass]="{'bg-blue-50/30': charge._selected, 'opacity-70': charge.balance <= 0}"
-                >
-                  <td class="text-center border-r border-gray-100">
+                <tr [class.cb-payments__row--selected]="charge._selected" [class.opacity-70]="charge.balance <= 0">
+                  <td class="text-center cb-payments__cell-divider">
                     <custom-input-check-signal
                       [(ngModel)]="charge._selected"
                       (checkChange)="onChargeSelectionChange(charge)"
@@ -229,67 +148,47 @@
                   </td>
                   <td>
                     <div class="flex flex-column">
-                      <span class="font-medium text-700"
-                        >{{ charge.dueDate | date:'dd/MMM/yyyy' }}</span
-                      >
+                      <span class="font-medium text-700">{{ charge.dueDate | date:'dd/MMM/yyyy' }}</span>
                       @if (charge.daysOverdue > 0) {
-                      <span class="text-xs font-bold text-red-600"
-                        >{{ charge.daysOverdue }} días vencido</span
-                      >
+                      <span class="text-xs font-bold text-red-600">{{ charge.daysOverdue }} días vencido</span>
                       } @else {
-                      <span class="text-xs font-medium text-green-600"
-                        >En tiempo</span
-                      >
+                      <span class="text-xs font-medium text-green-600">En tiempo</span>
                       }
                     </div>
                   </td>
                   <td>
                     <div class="flex flex-column">
-                      <span
-                        class="text-xs text-500 font-semibold tracking-wide"
-                      >
-                        {{ getChargeTypeLabel(charge) }}
-                      </span>
+                      <span class="text-xs text-500 font-semibold">{{ getChargeTypeLabel(charge) }}</span>
                       @if (getChargeTypeMeta(charge)) {
-                      <span class="text-xs text-400">
-                        {{ getChargeTypeMeta(charge) }}
-                      </span>
+                      <span class="text-xs text-400">{{ getChargeTypeMeta(charge) }}</span>
                       }
-                      <span
-                        class="text-sm font-medium text-gray-800 line-clamp-2"
-                        [title]="charge.concept"
-                        >{{ charge.concept }}</span
-                      >
+                      <span class="cb-payments__concept text-sm font-medium" [title]="charge.concept">{{ charge.concept }}</span>
                     </div>
                   </td>
-                  <td class="text-right font-bold text-gray-700">
-                    {{ charge.balance | currency:'MXN' }}
-                  </td>
-                  <td class="bg-blue-50/40 px-2 py-2">
-                    <!-- Native input override to avoid formControl overhead in loops -->
-                    <div class="p-inputgroup">
-                      <span
-                        class="p-inputgroup-addon bg-white border-r-0 text-gray-500 px-1 py-1 h-8"
-                        ><app-icon [icon]="'mdi:dollar'" class="text-xs"
-                      /></span>
-                      <input
-                        type="number"
-                        class="p-inputtext p-component w-full border-l-0 text-right font-semibold text-blue-700 h-8 px-2"
-                        [value]="charge._applyAmount"
-                        [disabled]="!charge._selected"
-                        [max]="charge.balance"
-                        min="0"
-                        step="0.01"
-                        (input)="onApplyAmountChange(charge, $event)"
-                      />
-                    </div>
+                  <td class="cb-payments__balance text-right font-bold">{{ charge.balance | currency:'MXN' }}</td>
+                  <td class="cb-payments__cell-apply px-2 py-2">
+                    <custom-input-decimal-signal
+                      [(ngModel)]="charge._applyAmount"
+                      [ngModelOptions]="{ standalone: true }"
+                      [disabled]="!charge._selected"
+                      [minFractionDigits]="2"
+                      [maxFractionDigits]="2"
+                      [min]="0"
+                      [max]="charge.balance"
+                      [useGrouping]="false"
+                      [onlyInput]="true"
+                      [noMargin]="true"
+                      [horizontal]="false"
+                      customClass="w-full p-inputtext-sm text-right font-semibold text-primary"
+                      (ngModelChange)="onApplyAmountModelChange(charge, $event)"
+                    />
                   </td>
                 </tr>
               </ng-template>
             </p-table>
             }
           </div>
-        </div>
+        </lx-card>
       </div>
     </div>
     }

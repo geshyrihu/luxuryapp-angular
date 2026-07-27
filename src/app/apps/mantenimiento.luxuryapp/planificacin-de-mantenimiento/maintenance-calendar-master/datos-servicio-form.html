@@ -13,7 +13,7 @@
       class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block"
       >Actividad</label
     >
-    <div class="surface-100 border-round p-3 text-900 line-height-3">
+    <div class="surface-100 rounded p-3 text-900 line-height-3">
       {{ data?.servicio || 'Sin descripcion' }}
     </div>
   </div>
@@ -24,7 +24,7 @@
       class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block"
       >Observaciones</label
     >
-    <div class="surface-100 border-round p-3 text-700 line-height-3">
+    <div class="surface-100 rounded p-3 text-700 line-height-3">
       {{ data.observaciones }}
     </div>
   </div>
@@ -44,7 +44,7 @@
     </label>
     @if (proveedores?.length > 0) {
     <div
-      class="surface-card border-1 surface-border border-round overflow-hidden"
+      class="surface-card border-1 surface-border rounded overflow-hidden"
     >
       @for (proveedor of proveedores; track proveedor; let last = $last) {
       <div
@@ -54,7 +54,7 @@
         [class.surface-border]="!last"
       >
         <div
-          class="flex align-items-center justify-content-center w-2rem h-2rem border-round-lg bg-primary-100"
+          class="flex align-items-center justify-content-center w-2rem h-2rem rounded-lg bg-primary-100"
         >
           <app-icon
             [icon]="'mdi:office-building'"
@@ -69,7 +69,7 @@
       }
     </div>
     } @else {
-    <div class="surface-100 border-round p-3 text-400 text-sm text-center">
+    <div class="surface-100 rounded p-3 text-400 text-sm text-center">
       <app-icon [icon]="'mdi:inbox'" class="mr-2" />Sin proveedores asignados
     </div>
     }

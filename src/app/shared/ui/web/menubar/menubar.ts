@@ -41,7 +41,7 @@ import { MenubarModule } from "primeng/menubar";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Menubar extends MenubarBase {}

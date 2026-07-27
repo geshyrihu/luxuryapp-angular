@@ -1,4 +1,4 @@
-import { Directive, input, output } from "@angular/core";
+import { Directive, input, output, computed } from "@angular/core";
 
 export type ConfirmPopupType = "danger" | "warning" | "info" | "success";
 
@@ -14,7 +14,7 @@ export abstract class ConfirmPopupBase {
   accept = output<void>();
   reject = output<void>();
 
-  get severityConfig() {
+  severityConfig = computed(() => {
     const map: Record<ConfirmPopupType, { icon: string; color: string; severity: string }> = {
       danger: { icon: "mdi:alert-circle", color: "var(--ds-danger)", severity: "danger" },
       warning: { icon: "mdi:alert", color: "var(--ds-warning)", severity: "warn" },
@@ -22,5 +22,5 @@ export abstract class ConfirmPopupBase {
       success: { icon: "mdi:check-circle", color: "var(--ds-success)", severity: "success" },
     };
     return map[this.type()] ?? map.danger;
-  }
+  });
 }

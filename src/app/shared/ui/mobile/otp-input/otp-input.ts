@@ -18,7 +18,7 @@ import { OtpInputBase } from "@ui/base/otp-input.base";
       }
 
       <div class="ili-otp-boxes" [class.ili-otp-disabled]="disabled()">
-        @for (i of slots; track i) {
+        @for (i of slots(); track i) {
           <input
             #box
             class="ili-otp-box"

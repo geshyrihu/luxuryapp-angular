@@ -6,16 +6,13 @@ export interface ChargeTypeCatalogResponseDTO {
   accountNumber: string;
   description?: string | null;
   isSystem: boolean;
-  isActive: boolean;
 }
 
 export interface CreateChargeTypeCatalogDTO {
   customerId: string;
   name: string;
   code: string;
-  accountNumber: string;
   description?: string | null;
-  isActive: boolean;
 }
 
 export interface UpdateChargeTypeCatalogDTO {
@@ -23,7 +20,5 @@ export interface UpdateChargeTypeCatalogDTO {
   customerId: string;
   name: string;
   code: string;
-  accountNumber: string;
   description?: string | null;
-  isActive: boolean;
 }

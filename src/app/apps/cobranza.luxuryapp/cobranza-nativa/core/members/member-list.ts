@@ -1,4 +1,4 @@
-﻿import { DatePipe } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,8 +6,17 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { MobileBadge } from "@ui/mobile/badge/badge";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -25,23 +34,12 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { PropertyMemberResponseDTO } from "../../interfaces/property-member.dto";
 
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-
 @Component({
   selector: "app-member-list",
   imports: [
     WebButtonIcon,
     LxTooltipDirective,
+    LxTag,
     WebButtonIconEdit,
     WebButtonIconDelete,
     MobileActionMenu,
@@ -51,7 +49,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     TableModule,
     PrimeNgCustomCaption,
     DataViewMobile,
-    MobileBadge,
     DatePipe,
     MobileListItem,
     AppIcon,
@@ -74,9 +71,7 @@ export default class MemberList {
   dataSignal = signal<PropertyMemberResponseDTO[]>([]);
 
   constructor() {
-    this.enumSelectS
-      .memberRole()
-      .subscribe((opts) => this.roleOptions.set(opts));
+    this.enumSelectS.memberRole().subscribe((opts) => this.roleOptions.set(opts));
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) this.onLoadData();
@@ -135,6 +130,10 @@ export default class MemberList {
       this.roleOptions().find((o) => o.value === role)?.label ?? String(role)
     );
   }
+
+  activeStatusMeta(isActive: boolean) {
+    return isActive
+      ? ({ label: "Activo", severity: "success" as const })
+      : ({ label: "Baja", severity: "contrast" as const });
+  }
 }
-
-

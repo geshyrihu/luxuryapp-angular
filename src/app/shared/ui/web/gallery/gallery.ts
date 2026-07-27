@@ -43,7 +43,7 @@ import { GalleriaModule } from "primeng/galleria";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class Gallery extends GalleryBase {

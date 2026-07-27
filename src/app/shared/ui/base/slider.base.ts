@@ -1,4 +1,4 @@
-import { Directive, input, model } from "@angular/core";
+import { Directive, input, model, computed } from "@angular/core";
 
 /**
  * Base compartida de Slider.
@@ -20,13 +20,13 @@ export abstract class SliderBase {
   prefix = input<string>("");
   suffix = input<string>("");
 
-  singleDisplay(): string {
+  singleDisplay = computed<string>(() => {
     const v = this.value();
     return typeof v === "number" ? String(v) : "";
-  }
+  });
 
-  rangeDisplay(): string {
+  rangeDisplay = computed<string>(() => {
     const v = this.value();
     return Array.isArray(v) ? `${v[0]} – ${v[1]}` : "";
-  }
+  });
 }

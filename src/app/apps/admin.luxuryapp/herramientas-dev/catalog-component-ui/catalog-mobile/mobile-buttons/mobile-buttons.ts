@@ -4,9 +4,17 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import {
+  MobileButtonIcon,
+  MobileButtonIconActiveDesactive,
+  MobileButtonIconAdd,
+  MobileButtonIconConfirm,
+  MobileButtonIconDelete,
   MobileButtonIconDownload,
   MobileButtonIconEdit,
+  MobileButtonIconSave,
+  MobileButtonIconSendEmail,
   MobileButtonIconTracking,
+  MobileButtonIconViewPdf,
 } from "@ui/buttons/mobile-icon";
 import {
   MobileButtonLabel,
@@ -14,9 +22,12 @@ import {
   MobileButtonLabelAdd,
   MobileButtonLabelConfirm,
   MobileButtonLabelDelete,
+  MobileButtonLabelDownload,
   MobileButtonLabelEdit,
+  MobileButtonLabelItem,
   MobileButtonLabelSave,
   MobileButtonLabelSendEmail,
+  MobileButtonLabelTracking,
   MobileButtonLabelViewPdf,
 } from "@ui/buttons/mobile-label";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -37,9 +48,20 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
     MobileButtonLabelSendEmail,
     MobileButtonLabelViewPdf,
     MobileButtonLabelActiveDesactive,
+    MobileButtonLabelDownload,
+    MobileButtonLabelItem,
+    MobileButtonLabelTracking,
+    MobileButtonIcon,
+    MobileButtonIconActiveDesactive,
+    MobileButtonIconAdd,
+    MobileButtonIconConfirm,
+    MobileButtonIconDelete,
     MobileButtonIconEdit,
     MobileButtonIconDownload,
+    MobileButtonIconSave,
+    MobileButtonIconSendEmail,
     MobileButtonIconTracking,
+    MobileButtonIconViewPdf,
     MobileActionMenu,
   ],
   template: `
@@ -98,6 +120,9 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
                   expand="block"
                 />
                 <ili-button-delete expand="block" />
+                <ili-button-download expand="block" />
+                <ili-button-item expand="block" />
+                <ili-button-tracking [badgeCount]="5" [ticketId]="123" expand="block" />
               </div>
             </div>
 
@@ -123,9 +148,17 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
             <!-- Iconos compactos -->
             <div>
               <div class="section-label">Iconos compactos (ii-*)</div>
-              <div class="flex align-items-center gap-3">
+              <div class="flex align-items-center gap-3 flex-wrap">
+                <ii-button />
+                <ii-button-add />
                 <ii-button-edit />
+                <ii-button-save />
+                <ii-button-delete />
+                <ii-button-confirm />
                 <ii-button-download />
+                <ii-button-send-email />
+                <ii-button-view-pdf url="" fileName="doc.pdf" />
+                <ii-button-active-desactive [state]="true" />
                 <ii-button-tracking [badgeCount]="3" [ticketId]="228" />
               </div>
             </div>

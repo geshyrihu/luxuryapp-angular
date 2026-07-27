@@ -7,16 +7,14 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
-// PrimeNG
-
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-
-// Services
 import { LxMessage } from "@ui/adaptive/message/message";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { PropertyInitialBalanceDTO } from "../../contracts/external-compatibility/interfaces/charge.dto";
+import { downloadInitialBalanceTemplate } from "./initial-balance-template.helper";
 
 interface BulkImportResult {
   processedCount: number;
@@ -63,32 +61,40 @@ export default class BulkImportModal implements OnInit {
     this.result = null;
 
     const res = await this.apiResponseS.onPostFile<BulkImportResult>(
-      Endpoints.CobranzaCore.Charges.bulkImportSaldoInicial(
-        this.customerId,
-      ),
+      Endpoints.CobranzaCore.Charges.bulkImportSaldoInicial(this.customerId),
       formData,
     );
 
-    this.isLoading = false;
-    if (res) {
-      this.result = res;
-    }
+    setTimeout(() => {
+      this.isLoading = false;
+      if (res) {
+        this.result = res;
+      }
+    });
   }
 
-  downloadTemplate() {
-    const csvContent =
-      "PropertyId,Monto,FechaVencimiento,Concepto\n[GUID_AQUI],1500.50,2026-04-01,Saldo Inicial Deuda Histúrica\n[GUID_AQUI],400.00,2026-04-01,Saldo Inicial Abril";
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "Plantilla_Saldos_Iniciales.csv";
-    link.click();
-    URL.revokeObjectURL(url);
+  async downloadTemplate() {
+    if (!this.customerId) {
+      this.toastS.showWarn("Aviso", "No se encontro el customerId activo.");
+      return;
+    }
+
+    const properties = await this.apiResponseS.onGetItem<PropertyInitialBalanceDTO[]>(
+      Endpoints.CobranzaCore.Charges.initialBalanceStatus(this.customerId),
+    );
+
+    if (!properties?.length) {
+      this.toastS.showWarn(
+        "Aviso",
+        "No se encontraron propiedades para generar la plantilla.",
+      );
+      return;
+    }
+
+    downloadInitialBalanceTemplate(properties);
   }
 
   onClose() {
     this.ref.close(this.result && this.result.successCount > 0);
   }
 }
-

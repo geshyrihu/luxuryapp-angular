@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  computed
 } from "@angular/core";
 import { ProgressBarBase } from "@ui/base/progress-bar.base";
 import { ProgressBarModule } from "primeng/progressbar";
@@ -27,7 +28,7 @@ import { ProgressBarModule } from "primeng/progressbar";
 })
 export class AppProgressBar extends ProgressBarBase {
   /** Color CSS del valor de la barra, mapeado desde el color semántico. */
-  barColor(): string {
+  barColor = computed<string>(() => {
     const map: Record<string, string> = {
       primary: "var(--ds-primary, #2563eb)",
       success: "var(--ds-success, #16a34a)",
@@ -35,5 +36,5 @@ export class AppProgressBar extends ProgressBarBase {
       danger: "var(--ds-danger, #dc2626)",
     };
     return map[this.color()] ?? "var(--ds-primary, #2563eb)";
-  }
+  });
 }

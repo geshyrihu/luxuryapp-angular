@@ -8,6 +8,8 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label";
@@ -34,6 +36,8 @@ import { PeriodClosureResponseDTO } from "../../interfaces/period-closure.dto";
   selector: "app-period-closure-dashboard",
   imports: [
     WebButtonIcon,
+    LxCard,
+    LxTag,
     LxTooltipDirective,
     TableModule,
     PrimeNgCustomCaption,

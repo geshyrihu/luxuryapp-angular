@@ -1,6 +1,5 @@
 <div class="card p-0 md:p-4">
-  <!-- Filtros -->
-  <div class="p-3 mb-3 surface-50 border-round border-1 surface-border">
+  <lx-card class="card card--elevated mb-3">
     <div class="grid formgrid align-items-end">
       <div class="field col-12 md:col-4">
         <custom-input-select-signal
@@ -44,9 +43,8 @@
         />
       </div>
     </div>
-  </div>
+  </lx-card>
 
-  <!-- Tabla desktop -->
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -71,9 +69,9 @@
       <tr>
         <th class="w-8rem text-center">Fecha</th>
         <th class="w-10rem text-center">Tipo de Evento</th>
-        <th>Descripcion</th>
-        <th class="w-8rem text-right">Debito</th>
-        <th class="w-8rem text-right">Credito</th>
+        <th>Descripción</th>
+        <th class="w-8rem text-right">Débito</th>
+        <th class="w-8rem text-right">Crédito</th>
         <th class="w-7rem text-500 text-xs">Creado por</th>
       </tr>
     </ng-template>
@@ -81,28 +79,27 @@
     <ng-template #body let-entry>
       <tr>
         <td class="text-center text-sm">
-          {{ entry.effectiveDate | date:'dd/MM/yyyy' }}
+          {{ entry.effectiveDate | date:"dd/MM/yyyy" }}
         </td>
         <td class="text-center">
-          <span class="badge text-xs" [class]="eventTypeClass(entry.eventType)">
-            {{ eventTypeLabel(entry.eventType) }}
-          </span>
+          <lx-tag
+            [value]="eventTypeMeta(entry.eventType).label"
+            [severity]="eventTypeMeta(entry.eventType).severity"
+          />
         </td>
         <td class="text-sm">{{ entry.description }}</td>
         <td class="text-right text-sm">
           @if (entry.debitAmount > 0) {
-          <span class="text-red-700"
-            >{{ entry.debitAmount | currency:'MXN':'symbol-narrow':'1.2-2'
-            }}</span
-          >
+          <span class="text-red-700">
+            {{ entry.debitAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}
+          </span>
           }
         </td>
         <td class="text-right text-sm">
           @if (entry.creditAmount > 0) {
-          <span class="text-green-700"
-            >{{ entry.creditAmount | currency:'MXN':'symbol-narrow':'1.2-2'
-            }}</span
-          >
+          <span class="text-green-700">
+            {{ entry.creditAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}
+          </span>
           }
         </td>
         <td class="text-xs text-500">{{ entry.createdBy }}</td>
@@ -113,13 +110,12 @@
       <tr>
         <td colspan="6" class="text-center p-4 text-500">
           @if (!propertyIdCtrl.value) { Selecciona una propiedad para consultar
-          el ledger. } @else { No hay movimientos en el periodo seleccionado. }
+          el ledger. } @else { No hay movimientos en el período seleccionado. }
         </td>
       </tr>
     </ng-template>
   </p-table>
 
-  <!-- Vista mobile -->
   <app-data-view-mobile
     [data]="dataSignal()"
     [globalFilterFields]="['description', 'createdBy']"
@@ -127,35 +123,33 @@
   >
     <ng-template #listItemTemplate let-entry>
       <ili-list-item>
-<div
+        <div
           start
-          class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+          class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
           <app-icon
             icon="mdi:format-list-bulleted"
             class="text-blue-600 text-xl"
           />
         </div>
-        
-          <h3>{{ eventTypeLabel(entry.eventType) }}</h3>
-          <p>{{ entry.description }}</p>
-          <p>
-            {{ entry.effectiveDate | date:'dd/MM/yyyy' }} &middot; {{
-            entry.createdBy }}
-          </p>
-        
+        <h3>{{ eventTypeLabel(entry.eventType) }}</h3>
+        <p>{{ entry.description }}</p>
+        <p>
+          {{ entry.effectiveDate | date:"dd/MM/yyyy" }} ·
+          {{ entry.createdBy }}
+        </p>
         <div end class="pr-3 text-right">
           @if (entry.debitAmount > 0) {
           <div class="text-red-700 text-sm font-medium">
-            -{{ entry.debitAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
+            -{{ entry.debitAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}
           </div>
           } @if (entry.creditAmount > 0) {
           <div class="text-green-700 text-sm font-medium">
-            +{{ entry.creditAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
+            +{{ entry.creditAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}
           </div>
           }
         </div>
-</ili-list-item>
+      </ili-list-item>
     </ng-template>
   </app-data-view-mobile>
 </div>

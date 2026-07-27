@@ -151,7 +151,7 @@ Contenedor principal de la vista de presupuesto.
                 [class.text-red-700]="restante < 0"
                 [class.bg-red-50]="restante < 0"
                 [class.text-green-700]="restante >= 0"
-                class="px-2 py-1 border-round font-bold"
+                class="px-2 py-1 rounded font-bold"
               >
                 {{ restante | number: "1.0-0" }}
               </span>
@@ -208,7 +208,7 @@ Contenedor principal de la vista de presupuesto.
               <span
                 [class.text-red-700]="gastoExcedido(mes)"
                 [class.bg-red-50]="gastoExcedido(mes)"
-                class="px-2 py-1 border-round block"
+                class="px-2 py-1 rounded block"
               >
                 {{ getTotalMontoPorMes(mes) !== 0 ? (getTotalMontoPorMes(mes) |
                 number: "1.0-0") : "-" }}
@@ -295,7 +295,7 @@ Contenedor principal de la vista de presupuesto.
               {{ cuenta.descripcion_Cuenta }}
             </div>
 
-            <div class="grid text-xs surface-ground p-2 border-round">
+            <div class="grid text-xs surface-ground p-2 rounded">
               <div class="col-6 flex flex-column mb-1">
                 <span class="font-bold text-green-700">Presupuesto</span>
                 <span

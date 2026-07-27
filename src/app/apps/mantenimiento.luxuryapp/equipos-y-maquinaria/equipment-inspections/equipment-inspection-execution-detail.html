@@ -48,7 +48,7 @@
   @if (execution.observations) {
   <div>
     <div class="font-semibold mb-1">Observaciones generales</div>
-    <div class="surface-ground border-round p-3 white-space-pre-line">
+    <div class="surface-ground rounded p-3 white-space-pre-line">
       {{ execution.observations }}
     </div>
   </div>
@@ -91,7 +91,7 @@
     <div class="grid">
       @for (image of execution.images; track image.id) {
       <div class="col-12 md:col-4">
-        <div class="border-1 surface-border border-round p-2 h-full">
+        <div class="border-1 surface-border rounded p-2 h-full">
           <app-image
             [src]="image.imagePath"
             [preview]="true"

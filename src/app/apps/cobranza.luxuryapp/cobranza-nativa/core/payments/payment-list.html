@@ -48,20 +48,11 @@
     <ng-template #body let-item>
       <tr>
         <td class="font-medium">
-          {{ item.paymentDate | date: 'dd/MM/yyyy':'UTC' }}
+          {{ item.paymentDate | date: "dd/MM/yyyy":"UTC" }}
         </td>
-        <td class="font-bold text-800">{{ item.propertyFullName || 'N/A' }}</td>
-        <td class="text-xs">
-          @switch (item.method) { @case (EPaymentMethod.Cash) {
-          <span>Efectivo</span> } @case (EPaymentMethod.ElectronicTransfer) {
-          <span>Transferencia</span> } @case (EPaymentMethod.NominativeCheck) {
-          <span>Cheque</span> } @case (EPaymentMethod.CreditCard) {
-          <span>Tarjeta Cto.</span> } @case (EPaymentMethod.DebitCard) {
-          <span>Tarjeta Dto.</span> } @case (EPaymentMethod.ToBeDefined) {
-          <span>Por Definir</span> } @default { <span>{{ item.method }}</span> }
-          }
-        </td>
-        <td class="text-600 text-sm">{{ item.reference || '-' }}</td>
+        <td class="font-bold text-800">{{ item.propertyFullName || "N/A" }}</td>
+        <td class="text-xs">{{ paymentMethodLabel(item.method) }}</td>
+        <td class="text-600 text-sm">{{ item.reference || "-" }}</td>
         <td class="text-right font-medium text-green-600">
           {{ item.amount | number: "1.2-2" }}
         </td>
@@ -78,21 +69,10 @@
           </span>
         </td>
         <td class="text-center">
-          @switch (item.status) { @case (EPaymentStatus.Registrado) {
-          <span class="badge bg-yellow-100 text-yellow-800"
-            >{{ getPaymentFlowLabel(item) }}</span
-          >
-          } @case (EPaymentStatus.Verificado) {
-          <span class="badge bg-green-100 text-green-800">Verificado</span>
-          } @case (EPaymentStatus.Rechazado) {
-          <span class="badge bg-red-100 text-red-800">Rechazado</span> } @case
-          (EPaymentStatus.Cancelado) {
-          <span class="badge bg-gray-100 text-gray-800">Cancelado</span> } @case
-          (EPaymentStatus.Revertido) {
-          <span class="badge bg-orange-100 text-orange-800">Revertido</span>
-          } @case (EPaymentStatus.NoIdentificado) {
-          <span class="badge bg-slate-100 text-slate-800">No identificado</span>
-          } }
+          <lx-tag
+            [value]="paymentStatusMeta(item).label"
+            [severity]="paymentStatusMeta(item).severity"
+          />
         </td>
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
@@ -107,8 +87,7 @@
             />
             <iw-button-edit (clicked)="onModalForm(item.id)" />
             @if (item.status !== EPaymentStatus.Rechazado && item.status !==
-            EPaymentStatus.Cancelado && item.status !==
-            EPaymentStatus.Revertido) {
+            EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido) {
             <iw-button
               iconClass="mdi:close-circle"
               severity="warning"
@@ -139,21 +118,21 @@
     <ili-list-item>
       <div
         start
-        class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        class="w-2rem h-2rem rounded-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon icon="mdi:cash" class="text-green-600 text-xl" />
       </div>
       <div class="flex-1 min-w-0">
-        <h3>{{ item.propertyFullName || 'N/A' }}</h3>
+        <h3>{{ item.propertyFullName || "N/A" }}</h3>
         <p>
-          {{ item.paymentDate | date:'dd/MM/yyyy':'UTC' }} · {{ item.amount |
-          number:'1.2-2' }}
+          {{ item.paymentDate | date:"dd/MM/yyyy":"UTC" }} ·
+          {{ item.amount | number:"1.2-2" }}
         </p>
         <p>
-          Aplicado: {{ item.allocatedAmount | number:'1.2-2' }} · Sin aplicar:
-          {{ item.unappliedAmount | number:'1.2-2' }}
+          Aplicado: {{ item.allocatedAmount | number:"1.2-2" }} · Sin aplicar:
+          {{ item.unappliedAmount | number:"1.2-2" }}
         </p>
-        <p>{{ item.reference || '-' }}</p>
+        <p>{{ item.reference || "-" }}</p>
       </div>
       <ili-action-menu slot="end">
         <ng-container actions>
@@ -167,8 +146,7 @@
           />
           <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
           @if (item.status !== EPaymentStatus.Rechazado && item.status !==
-          EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido)
-          {
+          EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido) {
           <il-button
             label="Cancelar"
             iconClass="mdi:close-circle"

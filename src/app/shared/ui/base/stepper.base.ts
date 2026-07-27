@@ -1,4 +1,4 @@
-import { Directive, input, model, output } from "@angular/core";
+import { Directive, input, model, output, computed } from "@angular/core";
 
 export interface StepperStep {
   value: number;
@@ -16,13 +16,13 @@ export abstract class StepperBase {
 
   finish = output<void>();
 
-  get lastStep(): number {
+  lastStep = computed<number>(() => {
     return this.steps().length;
-  }
+  });
 
   next(): void {
     const next = this.activeStep() + 1;
-    if (next <= this.lastStep) {
+    if (next <= this.lastStep()) {
       this.activeStep.set(next);
     }
   }

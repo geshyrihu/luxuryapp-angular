@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { MegaMenuBase } from "@ui/base/mega-menu.base";
 import { MegaMenuModule } from "primeng/megamenu";
 
@@ -42,6 +42,7 @@ import { MegaMenuModule } from "primeng/megamenu";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class MegaMenu extends MegaMenuBase {}

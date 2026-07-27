@@ -42,7 +42,7 @@
   </p>
   <div class="mt-3">
     @for (item of data.results; track item) {
-    <div class="card shadow-1 p-3 mb-4">
+    <div class="card shadow-sm p-3 mb-4">
       <div class="flex justify-content-between align-items-center">
         <h5 class="font-bold text-900 m-0">{{ item.inspectionDescription }}</h5>
         @if (item.state) {
@@ -73,7 +73,7 @@
                     : 'assets/images/default-avatar.png'
                 "
               alt="photo"
-              class="border-round shadow-1 border-1 surface-border w-full h-auto"
+              class="rounded shadow-sm border-1 surface-border w-full h-auto"
             />
           </div>
           }

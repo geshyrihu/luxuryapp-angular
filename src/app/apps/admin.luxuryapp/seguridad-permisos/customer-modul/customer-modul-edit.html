@@ -2,7 +2,7 @@
 <div class="hidden md:block p-4">
   <div class="flex align-items-center justify-content-between mb-4 gap-4">
     <div
-      class="p-2 px-3 font-bold text-blue-700 bg-blue-50 border-round-md border-left-3 border-blue-500"
+      class="p-2 px-3 font-bold text-blue-700 bg-blue-50 rounded-md border-left-3 border-blue-500"
     >
       MÓDULOS DE {{ customerName | uppercase }}
     </div>
@@ -32,7 +32,7 @@
   <div class="mb-4">
     <!-- Título del grupo -->
     <div class="flex align-items-center gap-2 mb-2 px-1">
-      <div class="w-0-5rem h-1rem border-round bg-primary"></div>
+      <div class="w-0-5rem h-1rem rounded bg-primary"></div>
       <h5 class="m-0 font-bold text-primary uppercase text-xs tracking-wider">
         {{ group.groupTitle }}
       </h5>
@@ -46,17 +46,17 @@
       @for (item of group.items; track item.moduleAppId) {
       <div class="col-6 md:col-4 lg:col-3 xl:col-2">
         <div
-          class="border-1 cursor-pointer p-2 border-round-md transition-all transition-duration-200 shadow-hover flex align-items-center"
+          class="border-1 cursor-pointer p-2 rounded-md transition-all transition-duration-200 shadow-hover flex align-items-center"
           [class.border-green-500]="item.isAssigned"
           [class.bg-green-50]="item.isAssigned"
-          [class.shadow-1]="item.isAssigned"
+          [class.shadow-sm]="item.isAssigned"
           [class.border-red-100]="!item.isAssigned"
           [class.surface-50]="!item.isAssigned"
           (click)="toggleModuleActivation(item)"
         >
           <div class="flex align-items-center gap-2 w-full">
             <span
-              class="w-1-5rem h-1-5rem border-round-circle flex align-items-center justify-content-center border-1 flex-shrink-0"
+              class="w-1-5rem h-1-5rem rounded-circle flex align-items-center justify-content-center border-1 flex-shrink-0"
               [class.bg-green-100]="item.isAssigned"
               [class.text-green-700]="item.isAssigned"
               [class.border-green-200]="item.isAssigned"
@@ -90,7 +90,7 @@
 <div class="md:hidden">
   <div class="ion-padding">
     <div
-      class="p-2 mb-3 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 border-round-md text-center text-sm"
+      class="p-2 mb-3 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center text-sm"
     >
       MÓDULOS DE {{ customerName | uppercase }}
     </div>
@@ -118,7 +118,7 @@
       </h3>
       <div class="flex flex-column" 
         inset="true"
-        class="m-0 border-round-lg overflow-hidden shadow-1"
+        class="m-0 rounded-lg overflow-hidden shadow-sm"
       >
         @for (item of group.items; track item.moduleAppId) {
         <ili-list-item class="ion-no-padding">

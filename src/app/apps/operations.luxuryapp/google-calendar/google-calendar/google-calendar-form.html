@@ -86,7 +86,7 @@
 
   @if (isAssemblySelected()) {
   <div class="col-12">
-    <div class="border-1 border-blue-200 bg-blue-50 border-round p-3">
+    <div class="border-1 border-blue-200 bg-blue-50 rounded p-3">
       <strong class="block text-blue-900 mb-2">
         Configuracion inmediata de asamblea
       </strong>
@@ -102,7 +102,7 @@
   </div>
 
   <div class="col-12">
-    <div class="border-1 surface-border border-round p-3">
+    <div class="border-1 surface-border rounded p-3">
       <div class="grid">
         <div class="col-12 md:col-3">
           <custom-input-switch-signal
@@ -229,7 +229,7 @@
 
   @if (recurrencePreview()) {
   <div class="col-12">
-    <div class="border-1 surface-border border-round p-3 bg-blue-50">
+    <div class="border-1 surface-border rounded p-3 bg-blue-50">
       <strong class="block text-blue-900 mb-1">Resumen de la serie</strong>
       <small class="text-blue-900">{{ recurrencePreview() }}</small>
     </div>
@@ -399,7 +399,7 @@
   </div>
   } @if (overlapConflicts.length > 0) {
   <div class="col-12">
-    <div class="border-1 border-yellow-300 bg-yellow-50 border-round p-3">
+    <div class="border-1 border-yellow-300 bg-yellow-50 rounded p-3">
       <strong class="block mb-2 text-yellow-900">
         Ya existe una junta en ese horario dentro del calendario central.
       </strong>

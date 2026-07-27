@@ -27,7 +27,7 @@
           <div class="flex flex-wrap gap-2">
             @for (category of categories; track category.id) {
             <div
-              class="flex align-items-center gap-2 px-3 py-1 border-1 border-round-2xl cursor-pointer transition-all transition-duration-200 white-space-nowrap"
+              class="flex align-items-center gap-2 px-3 py-1 border-1 rounded-2xl cursor-pointer transition-all transition-duration-200 white-space-nowrap"
               [ngClass]="
                 inventoryCategoryId() === category.id
                   ? 'bg-primary border-primary text-white'
@@ -43,7 +43,7 @@
 
           <!-- Barra de herramientas (Búsqueda y Acciones) -->
           <div
-            class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+            class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground rounded"
           >
             <div class="flex-grow-1">
               <primeng-custom-caption
@@ -136,7 +136,7 @@
               [src]="item.photoPath"
               alt="."
               width="70"
-              styleClass="shadow-4"
+              styleClass="shadow"
               [preview]="true"
             ></app-image>
           </td>
@@ -294,7 +294,7 @@
         </ng-template>
       </p-table>
       } @else {
-      <div class="text-center text-500 p-4 surface-100 border-round italic">
+      <div class="text-center text-500 p-4 surface-100 rounded italic">
         Sin servicios de Mantenimiento registrados.
       </div>
       } }
@@ -320,7 +320,7 @@
     <!-- Selector de categorías móvil -->
     <div class="flex overflow-x-auto pb-2 no-scrollbar mb-2">
       @for (category of categories; track category.id) {
-      <div class="p-1 border-round surface-100 mr-2 mb-2 inline-flex align-items-center">
+      <div class="p-1 rounded surface-100 mr-2 mb-2 inline-flex align-items-center">
         <span class="flex align-items-center">
           <app-icon [icon]="category.emoji" />
           {{ category.name }}
@@ -358,7 +358,7 @@
         </div>
       </ng-template>
       <ng-template #listItemTemplate let-item>
-        <div class="surface-card p-3 mb-2 shadow-1 border-round flex justify-content-between align-items-center">
+        <div class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center">
           <div slot="start" class="mobile-avatar-slot">
             @if (item.photoPath) {
             <img
@@ -416,7 +416,7 @@
               @if (item.maintenanceCalendar?.length > 0) {
               <div class="flex flex-column gap-2">
                 @for (service of item.maintenanceCalendar; track service.id) {
-                <div class="surface-ground p-2 border-round">
+                <div class="surface-ground p-2 rounded">
                   <div class="flex justify-content-between align-items-center">
                     <span
                       class="font-bold flex-1 mr-2"
@@ -466,7 +466,7 @@
               </div>
               } @else {
               <div
-                class="text-center text-500 p-2 italic surface-100 border-round"
+                class="text-center text-500 p-2 italic surface-100 rounded"
               >
                 Sin servicios registrados
               </div>

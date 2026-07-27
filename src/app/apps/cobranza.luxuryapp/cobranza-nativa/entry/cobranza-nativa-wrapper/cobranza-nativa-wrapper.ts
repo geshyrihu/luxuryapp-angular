@@ -184,6 +184,30 @@ export default class CobranzaNativaWrapper {
     return map[role];
   }
 
+  metricCardClass(tone: HeroMetric["tone"]): string {
+    return tone === "primary"
+      ? "card card--elevated card--primary"
+      : tone === "success"
+        ? "card card--elevated card--success"
+        : "card card--elevated card--warning";
+  }
+
+  metricIconClass(tone: HeroMetric["tone"]): string {
+    return tone === "primary"
+      ? "cb-metric-icon cb-metric-icon--primary"
+      : tone === "success"
+        ? "cb-metric-icon cb-metric-icon--success"
+        : "cb-metric-icon cb-metric-icon--warning";
+  }
+
+  endpointMethodSeverity(method: string): "info" | "danger" | "success" {
+    return method === "GET"
+      ? "info"
+      : method === "DELETE"
+        ? "danger"
+        : "success";
+  }
+
   private findCard(title: string): CobranzaCard | undefined {
     return this.groups
       .flatMap((group) => group.cards)

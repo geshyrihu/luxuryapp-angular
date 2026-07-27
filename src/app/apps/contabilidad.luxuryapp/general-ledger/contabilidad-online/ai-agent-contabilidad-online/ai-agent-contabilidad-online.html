@@ -31,7 +31,7 @@
               [ngClass]="{'justify-content-end': msg.role === 'user', 'justify-content-start': msg.role === 'assistant'}"
             >
               <div
-                class="p-3 border-round-xl max-w-full md:max-w-90"
+                class="p-3 rounded-xl max-w-full md:max-w-90"
                 [ngClass]="msg.role === 'user' ? 'bg-primary text-white border-noround-right' : 'surface-200 text-800 border-noround-left'"
               >
                 <div
@@ -64,7 +64,7 @@
             } @if (loading()) {
             <div class="flex justify-content-start">
               <div
-                class="p-3 surface-200 border-round-xl border-noround-left flex align-items-center gap-2"
+                class="p-3 surface-200 rounded-xl border-noround-left flex align-items-center gap-2"
               >
                 <lx-spinner [size]="16" [strokeWidth]="6" />
                 <span class="text-sm">Analizando datos del módulo...</span>
@@ -73,7 +73,7 @@
             } @if (speaking()) {
             <div class="flex justify-content-start">
               <div
-                class="p-3 surface-100 border-round-xl border-1 border-primary flex align-items-center gap-2"
+                class="p-3 surface-100 rounded-xl border-1 border-primary flex align-items-center gap-2"
               >
                 <app-icon [icon]="'mdi:volume-high'" class="text-primary" />
                 <span class="text-sm"
@@ -86,7 +86,7 @@
         </div>
 
         <aside
-          class="xl:w-18rem surface-50 border-1 surface-border border-round-xl p-3 flex flex-column gap-3 overflow-y-auto"
+          class="xl:w-18rem surface-50 border-1 surface-border rounded-xl p-3 flex flex-column gap-3 overflow-y-auto"
         >
           <div>
             <div class="text-xs text-500 font-bold uppercase mb-2">
@@ -147,13 +147,13 @@
             [horizontal]="false"
             [onlyInput]="true"
             [noMargin]="true"
-            customClass="w-full border-round-left-3xl pl-4"
+            customClass="w-full rounded-left-3xl pl-4"
           />
           <iw-button
             iconClass="mdi:send"
             (clicked)="sendQuery()"
             [disabled]="loading() || !currentQuery()"
-            class="border-round-right-3xl px-4"
+            class="rounded-right-3xl px-4"
           />
         </div>
       </div>

@@ -15,7 +15,8 @@ import { OrgChartModule } from "primeng/orgchart";
   template: `
     <p-orgChart
       [value]="value()"
-      [(selection)]="selection"
+      [selection]="selection()"
+      (selectionChange)="selection.set($event)"
       selectionMode="single"
       styleClass="w-full"
     />
@@ -28,7 +29,7 @@ import { OrgChartModule } from "primeng/orgchart";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class OrgChart extends OrgChartBase {}

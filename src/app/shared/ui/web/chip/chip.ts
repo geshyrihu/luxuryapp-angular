@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  computed
 } from "@angular/core";
 import { ChipBase } from "@ui/base/chip.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -81,10 +82,10 @@ import { ChipModule } from "primeng/chip";
   encapsulation: ViewEncapsulation.None,
 })
 export class AppChip extends ChipBase {
-  chipClass(): string {
+  chipClass = computed<string>(() => {
     const parts = [`app-chip-${this.color()}`];
     if (this.clickable()) parts.push("app-chip-clickable");
     if (this.disabled()) parts.push("app-chip-disabled");
     return parts.join(" ");
-  }
+  });
 }

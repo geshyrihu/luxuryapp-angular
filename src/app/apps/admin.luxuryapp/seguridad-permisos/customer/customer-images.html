@@ -1,7 +1,7 @@
 <div class="p-4">
   <!-- Zona de carga drag-and-drop -->
   <div
-    class="drop-zone border-2 border-dashed border-round-xl p-5 mb-4 flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+    class="drop-zone border-2 border-dashed rounded-xl p-5 mb-4 flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
     [class.drag-active]="isDragOver()"
     (dragover)="onDragOver($event)"
     (dragleave)="onDragLeave($event)"
@@ -62,7 +62,7 @@
     @for (img of images(); track img.id) {
     <div class="col-12 sm:col-6 md:col-4 lg:col-3">
       <div
-        class="card-image-container relative border-round overflow-hidden shadow-2 hover:shadow-4 transition-all transition-duration-300"
+        class="card-image-container relative rounded overflow-hidden shadow-sm hover:shadow transition-all transition-duration-300"
       >
         <lx-image
           [src]="img.pathImag"

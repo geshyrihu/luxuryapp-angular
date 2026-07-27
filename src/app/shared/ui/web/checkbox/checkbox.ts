@@ -22,7 +22,7 @@ import { CheckboxModule } from "primeng/checkbox";
       <label [for]="inputId()" class="ml-2">{{ label() }}</label>
     }
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppCheckbox extends CheckboxBase {}

@@ -87,7 +87,7 @@ import { CardBase } from "@ui/base/card.base";
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class AppCard extends CardBase {}

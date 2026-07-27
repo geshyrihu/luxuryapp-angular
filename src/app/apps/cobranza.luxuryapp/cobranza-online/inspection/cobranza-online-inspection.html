@@ -26,21 +26,21 @@
   </div>
 
   @if (!hasCustomer()) {
-  <div class="mb-4 border-1 surface-border border-round p-4">
+  <div class="mb-4 border-1 surface-border rounded p-4">
     <div class="font-medium mb-2">Sin cliente activo</div>
     <div class="text-color-secondary">
       Selecciona un cliente para revisar el listado de inspección.
     </div>
   </div>
   } @else if (loading()) {
-  <div class="mb-4 border-1 surface-border border-round p-4">
+  <div class="mb-4 border-1 surface-border rounded p-4">
     <div class="font-medium mb-2">Cargando listado...</div>
     <div class="text-color-secondary">
       Preparando la unión de cuentas, movimientos y pólizas del mes consultado.
     </div>
   </div>
   } @else if (inspection(); as data) {
-  <div class="mb-4 border-1 surface-border border-round p-4">
+  <div class="mb-4 border-1 surface-border rounded p-4">
     <div class="grid">
       <div class="col-12 md:col-4">
         <div class="text-color-secondary text-sm">Cliente</div>
@@ -167,7 +167,7 @@
       >
         <div
           start
-          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
           
         >
           <app-icon
