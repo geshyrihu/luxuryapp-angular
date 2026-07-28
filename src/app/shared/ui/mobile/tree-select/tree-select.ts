@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { TreeSelectBase } from "@ui/base/tree-select.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-tree-select",
 
-  imports: [],
+  imports: [AppIcon],
   template: `
     <div class="ili-tree-select-root">
       <button class="ili-tree-select-trigger" (click)="toggleOpen()">

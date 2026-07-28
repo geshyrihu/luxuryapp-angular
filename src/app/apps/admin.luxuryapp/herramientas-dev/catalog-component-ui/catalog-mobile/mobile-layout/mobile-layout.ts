@@ -26,6 +26,15 @@ import { IliFieldset } from "@ui/mobile/fieldset/fieldset";
 import { IliDivider } from "@ui/mobile/divider/divider";
 import { MobileToolbar } from "@ui/mobile/toolbar/toolbar";
 import { MobileSplitButton } from "@ui/mobile/split-button/split-button";
+import { MobileDock } from "@ui/mobile/dock/dock";
+import { MobilePanelMenu } from "@ui/mobile/panel-menu/panel-menu";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileIconField } from "@ui/mobile/iconfield/iconfield";
+import { MobileInputGroup } from "@ui/mobile/input-group/input-group";
+import { MobileInputIcon } from "@ui/mobile/inputicon/inputicon";
+import { MobileFluid } from "@ui/mobile/fluid/fluid";
+import { MobileInfiniteScroll } from "@ui/mobile/infinite-scroll/infinite-scroll";
+import { MobileInplace } from "@ui/mobile/inplace/inplace";
 
 @Component({
   selector: "app-mobile-layout",
@@ -49,6 +58,15 @@ import { MobileSplitButton } from "@ui/mobile/split-button/split-button";
     IliDivider,
     MobileToolbar,
     MobileSplitButton,
+    AppIcon,
+    MobileDock,
+    MobilePanelMenu,
+    MobileIconField,
+    MobileInputGroup,
+    MobileInputIcon,
+    MobileFluid,
+    MobileInfiniteScroll,
+    MobileInplace,
   ],
   template: `
     <div class="mobile-card">
@@ -329,6 +347,60 @@ import { MobileSplitButton } from "@ui/mobile/split-button/split-button";
         <div>
           <div class="font-bold text-sm mb-3">ili-split-button</div>
           <ili-split-button label="Save" [model]="[{label:'Update', icon:'mdi:refresh'}, {label:'Delete', icon:'mdi:close'}]"></ili-split-button>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-dock</div>
+          <ili-dock [items]="[{label:'Home', icon:'mdi:home'}, {label:'Search', icon:'mdi:magnify'}, {label:'Profile', icon:'mdi:account'}]" position="bottom"></ili-dock>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-panel-menu</div>
+          <ili-panel-menu [model]="[{label:'Dashboard', icon:'mdi:view-dashboard'}, {label:'Reports', icon:'mdi:file-chart'}, {label:'Settings', icon:'mdi:cog'}]"></ili-panel-menu>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-iconfield</div>
+          <ili-iconfield iconPosition="left">
+            <app-icon icon="mdi:magnify" slot="start"></app-icon>
+            <span>Search...</span>
+          </ili-iconfield>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-input-group</div>
+          <ili-input-group addonBefore="$" addonAfter=".00">
+            <span>Amount placeholder</span>
+          </ili-input-group>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-inputicon</div>
+          <ili-inputicon>
+            <app-icon icon="mdi:email" slot="start"></app-icon>
+          </ili-inputicon>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-fluid</div>
+          <ili-fluid>
+            <div class="bg-gray-100 p-3 rounded">Fluid content fills width</div>
+          </ili-fluid>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-infinite-scroll</div>
+          <ili-infinite-scroll [threshold]="'100px'"></ili-infinite-scroll>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-inplace</div>
+          <ili-inplace [closable]="true">
+            <span inplaceDisplay>Click to edit</span>
+            <div inplaceContent>
+              <input type="text" value="Edit me" class="w-full p-2 border rounded" />
+            </div>
+          </ili-inplace>
         </div>
       </div>
     </div>

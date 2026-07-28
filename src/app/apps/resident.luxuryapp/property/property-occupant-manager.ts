@@ -14,25 +14,27 @@ import {
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { PropertyOccupant } from "src/app/core/interfaces/property-occupant.interface";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 
 @Component({
   selector: "app-property-occupant-manager",
   imports: [
-    WebButtonIconEdit,
-    WebButtonIconDelete,
     ReactiveFormsModule,
     TableModule,
     WebButtonLabel,
+    WebButtonIconEdit,
+    WebButtonIconDelete,
     CustomInputTextSignal,
     CustomInputCheckSignal,
     LxTag,
@@ -50,10 +52,9 @@ export class PropertyOccupantManager implements OnInit {
   occupants = signal<PropertyOccupant[]>([]);
   errorMensaje: string | null = null;
 
-  propertyId: any = this.config.data.propertyId;
+  propertyId: string = this.config.data.propertyId;
   propertyName: string = this.config.data.propertyName;
 
-  // Definición estricta del formulario
   occupantForm = new FormGroup({
     id: new FormControl<string | null>(null),
     fullName: new FormControl<string>("", {
@@ -61,9 +62,11 @@ export class PropertyOccupantManager implements OnInit {
       validators: [Validators.required],
     }),
     email: new FormControl<string>("", {
+      nonNullable: true,
       validators: [Validators.email, Validators.maxLength(100)],
     }),
     phoneNumber: new FormControl<string>("", {
+      nonNullable: true,
       validators: [Validators.maxLength(20)],
     }),
     isOwner: new FormControl<boolean>(false, { nonNullable: true }),
@@ -78,27 +81,20 @@ export class PropertyOccupantManager implements OnInit {
   loadOccupants(): void {
     this.loading.set(true);
     this.errorMensaje = null;
+
     this.apiResponseS
       .onGetList<PropertyOccupant[]>(
         Endpoints.PropertyOccupants.listByProperty(this.propertyId),
       )
       .then((response) => {
-        if (Array.isArray(response)) {
-          this.occupants.set(response);
-        } else {
-          this.errorMensaje =
-            "No se encontraron ocupantes para esta propiedad.";
-          this.occupants.set([]);
-        }
-        this.loading.set(false);
+        this.occupants.set(Array.isArray(response) ? response : []);
       })
       .catch((error) => {
         this.errorMensaje =
           error.error?.message || "Error al cargar los ocupantes.";
-        console.error("Error loading property occupants:", error);
         this.occupants.set([]);
-        this.loading.set(false);
-      });
+      })
+      .finally(() => this.loading.set(false));
   }
 
   onAddOrUpdateOccupant(): void {
@@ -109,15 +105,15 @@ export class PropertyOccupantManager implements OnInit {
 
     this.loading.set(true);
     this.errorMensaje = null;
+
     const formValue = this.occupantForm.getRawValue();
     const occupantData = {
       ...formValue,
       propertyId: this.propertyId,
-      isActive: true,
+      isActive: formValue.isActive,
     };
 
     if (occupantData.id) {
-      // Actualizar
       this.apiResponseS
         .onPut<PropertyOccupant>(
           Endpoints.PropertyOccupants.update(occupantData.id),
@@ -126,65 +122,78 @@ export class PropertyOccupantManager implements OnInit {
         .then((response) => {
           if (response && typeof response === "object" && "id" in response) {
             this.occupants.update((current) =>
-              current.map((o) => (o.id === response.id ? response : o)),
+              current.map((occupant) =>
+                occupant.id === response.id ? response : occupant,
+              ),
             );
             this.resetForm();
-          } else {
-            this.errorMensaje = "Error al actualizar el ocupante.";
+            return;
           }
+
+          this.errorMensaje = "Error al actualizar el ocupante.";
         })
         .catch((error) => {
           this.errorMensaje =
             error.error?.message || "Error al actualizar el ocupante.";
-          console.error("Error updating occupant:", error);
         })
         .finally(() => this.loading.set(false));
-    } else {
-      // Aóadir
-      this.apiResponseS
-        .onPost<PropertyOccupant>(Endpoints.PropertyOccupants.create, occupantData)
-        .then((response) => {
-          if (response && typeof response === "object" && "id" in response) {
-            this.occupants.update((current) => [...current, response]);
-            this.resetForm();
-          } else {
-            this.errorMensaje = "Error al Añadirel ocupante.";
-          }
-        })
-        .catch((error) => {
-          this.errorMensaje =
-            error.error?.message || "Error al Añadirel ocupante.";
-          console.error("Error adding occupant:", error);
-        })
-        .finally(() => this.loading.set(false));
+
+      return;
     }
+
+    this.apiResponseS
+      .onPost<PropertyOccupant>(
+        Endpoints.PropertyOccupants.create,
+        occupantData,
+      )
+      .then((response) => {
+        if (response && typeof response === "object" && "id" in response) {
+          this.occupants.update((current) => [...current, response]);
+          this.resetForm();
+          return;
+        }
+
+        this.errorMensaje = "Error al agregar el ocupante.";
+      })
+      .catch((error) => {
+        this.errorMensaje = error.error?.message || "Error al agregar el ocupante.";
+      })
+      .finally(() => this.loading.set(false));
   }
 
   onEditOccupant(occupant: PropertyOccupant): void {
-    this.occupantForm.patchValue(occupant);
+    this.occupantForm.patchValue({
+      id: occupant.id,
+      fullName: occupant.fullName,
+      email: occupant.email,
+      phoneNumber: occupant.phoneNumber,
+      isOwner: occupant.isOwner,
+      isResident: occupant.isResident,
+      isActive: occupant.isActive,
+    });
   }
 
   onDeleteOccupant(id: string): void {
     this.loading.set(true);
     this.errorMensaje = null;
+
     this.apiResponseS
       .onDelete(Endpoints.PropertyOccupants.delete(id))
       .then((response) => {
         if (response !== false) {
           this.occupants.update((current) =>
-            current.filter((o) => o.id !== id),
+            current.filter((occupant) => occupant.id !== id),
           );
-        } else {
-          this.errorMensaje = "Error al eliminar el ocupante.";
+          return;
         }
-        this.loading.set(false);
+
+        this.errorMensaje = "Error al eliminar el ocupante.";
       })
       .catch((error) => {
         this.errorMensaje =
           error.error?.message || "Error al eliminar el ocupante.";
-        console.error("Error deleting occupant:", error);
-        this.loading.set(false);
-      });
+      })
+      .finally(() => this.loading.set(false));
   }
 
   resetForm(): void {

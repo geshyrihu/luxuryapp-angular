@@ -2,13 +2,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
 } from "@angular/core";
 import { GalleryBase } from "@ui/base/gallery.base";
 import { GalleriaModule } from "primeng/galleria";
 
 @Component({
   selector: "app-gallery",
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   imports: [GalleriaModule],
   template: `
     <p-galleria

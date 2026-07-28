@@ -1,0 +1,147 @@
+<div class="conventions-viewer">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-content">
+      <h1>📋 CONVENTIONS.md - Guía Interactiva</h1>
+      <p>
+        Explora todas las convenciones, reglas y patrones de LuxuryApp. Filtrado
+        por rol, severidad y tecnología.
+      </p>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <div class="search-input-wrapper">
+      <input
+        type="text"
+        placeholder="🔍 Buscar convención (strict, wrapper, api, etc)..."
+        (input)="onSearch($event.target.value)"
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button
+      [class.active]="activeTab() === 'all'"
+      (click)="setActiveTab('all')"
+      class="tab-btn"
+    >
+      📚 Todas ({{ conventions().length }})
+    </button>
+    <button
+      [class.active]="activeTab() === 'by-section'"
+      (click)="setActiveTab('by-section')"
+      class="tab-btn"
+    >
+      📖 Por Sección
+    </button>
+    <button
+      [class.active]="activeTab() === 'by-severity'"
+      (click)="setActiveTab('by-severity')"
+      class="tab-btn"
+    >
+      ⚠️ Por Severidad
+    </button>
+    <button
+      [class.active]="activeTab() === 'by-technology'"
+      (click)="setActiveTab('by-technology')"
+      class="tab-btn"
+    >
+      💻 Por Tecnología
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-container">
+    <!-- Filter By Section -->
+    @if (activeTab() === 'by-section') {
+      <div class="filter-group">
+        <h3>Filtrar por Sección</h3>
+        <div class="filter-buttons">
+          @for (section of sections(); track section) {
+            <button
+              (click)="filterBySection(section)"
+              [class.active]="selectedSection() === section"
+              class="filter-btn"
+            >
+              § {{ section }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Filter By Severity -->
+    @if (activeTab() === 'by-severity') {
+      <div class="filter-group">
+        <h3>Filtrar por Severidad</h3>
+        <div class="filter-buttons">
+          @for (severity of severities(); track severity) {
+            <button
+              (click)="filterBySeverity(severity)"
+              [class.active]="selectedSeverity() === severity"
+              [style.background-color]="
+                selectedSeverity() === severity
+                  ? severityColor(severity)
+                  : 'transparent'
+              "
+              class="filter-btn severity-btn"
+            >
+              {{ severityIcon(severity) }} {{ severity }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Filter By Technology -->
+    @if (activeTab() === 'by-technology') {
+      <div class="filter-group">
+        <h3>Filtrar por Tecnología</h3>
+        <div class="filter-buttons">
+          @for (tech of technologies(); track tech) {
+            <button
+              (click)="filterByTechnology(tech)"
+              [class.active]="selectedTechnology() === tech"
+              class="filter-btn"
+            >
+              {{ tech }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Conventions Cards -->
+  <div class="conventions-grid">
+    @if (filteredConventions().length > 0) {
+      @for (convention of filteredConventions(); track convention.id) {
+        <app-convention-card [convention]="convention" />
+      }
+    } @else {
+      <div class="empty-state">
+        <p>No se encontraron convenciones con los filtros actuales.</p>
+      </div>
+    }
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-footer">
+    <div class="stat">
+      <strong>{{ filteredConventions().length }}</strong>
+      <span>Convenciones mostradas</span>
+    </div>
+    <div class="stat">
+      <strong>{{ getCriticalCount() }}</strong>
+      <span>Reglas Críticas</span>
+    </div>
+    <div class="stat">
+      <strong>{{ technologies().length }}</strong>
+      <span>Tecnologías cubiertas</span>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   inject,
   OnInit,
@@ -36,7 +37,7 @@ interface IComiteVigilanciaForm {
 @Component({
   selector: "app-comite-vigilancia-form",
   templateUrl: "./comite-vigilancia-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
@@ -47,6 +48,7 @@ interface IComiteVigilanciaForm {
 })
 export class ComiteVigilanciaForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  cdr = inject(ChangeDetectorRef);
   config = inject(DynamicDialogConfig);
   customerIdS = inject(CustomerIdService);
   enumSelectS = inject(EnumSelectService);
@@ -110,11 +112,18 @@ export class ComiteVigilanciaForm implements OnInit {
       (item) => item.value === propertyMemberId,
     );
 
+    const selectedPosition = this.cb_position().find(
+      (item) =>
+        item.value?.toString() === result.posicionComite?.toString(),
+    );
+
     this.form.patchValue({
       ...result,
       propertyMemberId,
       nameProperty: selectedCondomino || null,
+      ePosicionComite: selectedPosition || null,
     });
+    this.cdr.detectChanges();
   }
 
   saveCondominoId = (item: SelectItemDto) => {
@@ -122,6 +131,7 @@ export class ComiteVigilanciaForm implements OnInit {
       propertyMemberId: item?.value,
       nameProperty: item ?? null,
     });
+    this.cdr.detectChanges();
   };
 
   onSubmit() {

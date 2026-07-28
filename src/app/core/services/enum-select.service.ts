@@ -46,7 +46,7 @@ export class EnumSelectService {
     );
   }
 
-  boolYesNo = () => this.onLoadSelectList("BoolYesNo");
+  boolYesNo = () => this.onLoadSelectList("boolean-options");
 
   areaMinutasDetalles = (d?: boolean) =>
     this.onLoadEnumList("area-minutas-detalles", d);
@@ -152,8 +152,6 @@ export class EnumSelectService {
   rolLevel = (d?: boolean) => this.onLoadEnumList("rol-level", d);
 
   visibilityLevel = (d?: boolean) => this.onLoadEnumList("visibility-level", d);
-
-  requestType = (d?: boolean) => this.onLoadEnumList("request-type", d);
 
   expenseType = (d?: boolean) => this.onLoadEnumList("expense-type", d);
 

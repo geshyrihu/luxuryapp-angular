@@ -36,6 +36,13 @@ import { MobileSteps } from "@ui/mobile/steps/steps";
 import { MobileBottomNav } from "@ui/mobile/bottom-nav/bottom-nav";
 import { MobileMenu } from "@ui/mobile/menu/menu";
 import { MobileMenubar } from "@ui/mobile/menubar/menubar";
+import { MobileMegaMenu } from "@ui/mobile/mega-menu/mega-menu";
+import { MobileTapToTop } from "@ui/mobile/tap-to-top/tap-to-top";
+import { MobileThemeSwitcher } from "@ui/mobile/theme-switcher/theme-switcher";
+import { MobileLangSelector } from "@ui/mobile/lang-selector/lang-selector";
+import { MobileOfflineIndicator } from "@ui/mobile/offline-indicator/offline-indicator";
+import { MobileSwipeActions } from "@ui/mobile/swipe-actions/swipe-actions";
+import type { SwipeAction } from "@ui/mobile/swipe-actions/swipe-actions";
 import { addIcons } from "ionicons";
 import {
   addOutline,
@@ -79,6 +86,12 @@ import {
     MobileBottomNav,
     MobileMenu,
     MobileMenubar,
+    MobileMegaMenu,
+    MobileTapToTop,
+    MobileThemeSwitcher,
+    MobileLangSelector,
+    MobileOfflineIndicator,
+    MobileSwipeActions,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
@@ -367,6 +380,40 @@ import {
           <div class="font-bold text-sm mb-3">ili-menubar</div>
           <ili-menubar [items]="[{label:'File', items:[{label:'New'}, {label:'Open'}]}, {label:'Edit'}]"></ili-menubar>
         </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-mega-menu</div>
+          <ili-mega-menu [items]="[{label:'Products', icon:'mdi:package-variant-closed', items:[[{label:'Electronics', items:[{label:'Phones'},{label:'Laptops'}]},{label:'Clothing', items:[{label:'Men'},{label:'Women'}]}]]},{label:'Services', icon:'mdi:handshake'}]"></ili-mega-menu>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-tap-to-top</div>
+          <ili-tap-to-top></ili-tap-to-top>
+          <p class="text-xs text-secondary mt-1">Scroll down to see the tap-to-top button appear.</p>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-theme-switcher</div>
+          <ili-theme-switcher></ili-theme-switcher>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-lang-selector</div>
+          <ili-lang-selector></ili-lang-selector>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-offline-indicator</div>
+          <ili-offline-indicator></ili-offline-indicator>
+          <p class="text-xs text-secondary mt-1">Toggle airplane mode to test.</p>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-swipe-actions</div>
+          <ili-swipe-actions [actions]="mockSwipeActions">
+            <div class="p-3" style="border:1px solid var(--ds-border,#e2e8f0);border-radius:8px;">Swipe me left →</div>
+          </ili-swipe-actions>
+        </div>
       </div>
     </div>
   `,
@@ -499,6 +546,10 @@ export class MobileNavigation {
 
   selectedSegment = signal<string>("all");
   lastFabAction = signal<string>("");
+  protected mockSwipeActions: SwipeAction[] = [
+    { icon: "mdi:delete", label: "Delete", color: "#ef4444", action: () => console.log("Delete") },
+    { icon: "mdi:pencil", label: "Edit", color: "#3b82f6", action: () => console.log("Edit") },
+  ];
 
   async openMenu(): Promise<void> {
     await this.menuCtrl.open("cat-nav-menu");

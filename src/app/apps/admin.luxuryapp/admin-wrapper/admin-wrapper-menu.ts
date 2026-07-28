@@ -367,4 +367,11 @@ export const settingMenu = (aspRoleS: AspRoleService): SettingsMenuItem[] => [
     routerLink: "/admin/pricing-calculator",
     icon: "mdi:calculator",
   },
+  {
+    group: "Herramientas de Desarrollo/Prueba",
+    visible: aspRoleS.hasRole(ApplicationRole.SuperUsuario),
+    label: "📋 Conventions Guide",
+    routerLink: "/admin/conventions-guide",
+    icon: "mdi:book-open-variant",
+  },
 ];

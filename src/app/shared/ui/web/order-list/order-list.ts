@@ -3,13 +3,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
 } from "@angular/core";
 import { OrderListBase } from "@ui/base/order-list.base";
 import { OrderListModule } from "primeng/orderlist";
 
 @Component({
   selector: "app-order-list",
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   imports: [CommonModule, OrderListModule],
   template: `
     <p-orderList

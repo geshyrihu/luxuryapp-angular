@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { CascadeSelectBase } from "@ui/base/cascade-select.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface FlatOption {
   label: string;
@@ -10,7 +11,7 @@ interface FlatOption {
 @Component({
   selector: "ili-cascade-select",
 
-  imports: [],
+  imports: [AppIcon],
   template: `
     <div class="ili-cascade-select-root">
       <button class="ili-cascade-select-trigger" (click)="toggleOpen()">

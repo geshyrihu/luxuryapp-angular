@@ -1,6 +1,9 @@
 import {
+  ChangeDetectionStrategy,
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   DestroyRef,
+  NO_ERRORS_SCHEMA,
   ViewEncapsulation,
   inject,
 } from "@angular/core";
@@ -11,7 +14,7 @@ import { ConfirmPopupModule } from "primeng/confirmpopup";
 
 @Component({
   selector: "app-confirm-popup",
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   imports: [ConfirmPopupModule, ButtonModule],
   template: ` <p-confirmPopup [key]="key()" /> `,
   styles: [

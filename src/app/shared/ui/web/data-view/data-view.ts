@@ -9,7 +9,6 @@ import {
   signal,
   TemplateRef,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { ButtonModule } from "primeng/button";
 import { DataViewModule } from "primeng/dataview";
@@ -25,7 +24,6 @@ export type DataViewLayout = "list" | "grid";
     DataViewModule,
     InputTextModule,
     ButtonModule,
-    AppIcon,
     EmptyState,
   ],
   template: `

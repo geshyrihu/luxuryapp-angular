@@ -102,12 +102,16 @@ export class SendOperationReport {
         ),
       )
       .then((response: any) => {
+        if (!Array.isArray(response)) {
+          this.loading.set(false);
+          return;
+        }
         const items = response.map((item: any) => ({
           ...item,
           selectControl: new FormControl(item.select ?? false),
         }));
         this.destinatariosSignal.set(items);
-        this.loading.set(false); // Valid assumption to turn off loading
+        this.loading.set(false);
       });
   }
 

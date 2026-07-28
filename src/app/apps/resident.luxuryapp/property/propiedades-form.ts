@@ -135,20 +135,7 @@ export class PropiedadesForm implements OnInit {
   }
 
   private onLoadCuentasCoi() {
-    const customerId = this.customerIdS.customerId();
-    if (!customerId) {
-      this.cuentasCoi.set([]);
-      return;
-    }
-
-    const year = new Date().getFullYear();
-    this.apiResponseS
-      .onGetList<SelectItemDto[]>(
-        Endpoints.SelectItems.propertyAccounts(customerId, year),
-      )
-      .then((result) => {
-        this.cuentasCoi.set(result ?? []);
-      });
+    this.cuentasCoi.set([]);
   }
 
   private normalizeAccountNumber(accountNumber: string | null | undefined) {

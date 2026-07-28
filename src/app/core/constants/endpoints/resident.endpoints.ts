@@ -9,7 +9,7 @@ export const EndpointsResident = {
     downloadTemplate: (customerId: string) => `properties/download-template/${customerId}`,
   },
   ResidentesEdificio: {
-    selectByCustomer: (customerId: string) => `residentesedificio/${customerId}`,
+    selectByCustomer: (customerId: string) => `residentes-edificio/${customerId}`,
   },
   Owner: {
     base: "owners",

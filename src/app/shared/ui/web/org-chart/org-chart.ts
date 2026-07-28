@@ -1,17 +1,17 @@
-// @ts-nocheck
-
 import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
 } from "@angular/core";
 import { OrgChartBase } from "@ui/base/org-chart.base";
-import { OrgChartModule } from "primeng/orgchart";
+import { OrganizationChartModule } from "primeng/organizationchart";
 
 @Component({
   selector: "app-org-chart",
-
-  imports: [OrgChartModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  imports: [OrganizationChartModule],
   template: `
     <p-orgChart
       [value]="value()"

@@ -4,9 +4,6 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
-  IonItem,
-  IonLabel,
-  IonList,
   IonProgressBar,
 } from "@ionic/angular/standalone";
 import { TableBase } from "@ui/base/table.base";
@@ -21,9 +18,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     IonCardContent,
     IonCardHeader,
     IonCardTitle,
-    IonList,
-    IonItem,
-    IonLabel,
     IonProgressBar,
     AppIcon,
     MobileEmptyState,

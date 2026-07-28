@@ -1,13 +1,12 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonButton } from "@ionic/angular/standalone";
 import { MenubarBase } from "@ui/base/menubar.base";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "ili-menubar",
 
-  imports: [RouterModule, IonButton, AppIcon],
+  imports: [RouterModule, AppIcon],
   template: `
     <div class="ili-menubar">
       <button

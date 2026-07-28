@@ -39,7 +39,7 @@ export class AppPaginator extends PaginatorBase {
     if (event.rows !== this.rows()) {
       this.rows.set(event.rows);
     }
-    this.pageChange.emit({
+    this.paginationChange.emit({
       page: newPage,
       rows: event.rows,
       totalRecords: event.totalRecords,

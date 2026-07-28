@@ -2,13 +2,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
 } from "@angular/core";
 import { InplaceBase } from "@ui/base/inplace.base";
 import { InplaceModule } from "primeng/inplace";
 
 @Component({
   selector: "app-inplace",
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   imports: [InplaceModule],
   template: `
     <p-inplace

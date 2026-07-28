@@ -45,7 +45,7 @@
   <ng-template #body let-item>
     <tr>
       <td>{{ item.customerName }}</td>
-      <td>{{ item.ePosicionComite }}</td>
+      <td>{{ item.posicionComite }}</td>
       <td>{{ item.fullName }}</td>
       <td>{{ item.email }}</td>
       <td>{{ item.phoneNumber }}</td>
@@ -79,14 +79,13 @@
           class="text-xl text-primary"
         />
       </div>
-      
-        <h2 class="font-normal m-0">{{ item.fullName }}</h2>
-        <p class="text-medium text-500 m-0">
-          {{ item.ePosicionComite }} | {{ item.customerName }}
-        </p>
-        <p class="text-medium text-500 m-0">{{ item.email }}</p>
-        <p class="text-medium text-500 m-0">{{ item.phoneNumber }}</p>
-      
+
+      <h2 class="font-normal m-0">{{ item.fullName }}</h2>
+      <p class="text-medium text-500 m-0">
+        {{ item.ePosicionComite }} | {{ item.customerName }}
+      </p>
+      <p class="text-medium text-500 m-0">{{ item.email }}</p>
+      <p class="text-medium text-500 m-0">{{ item.phoneNumber }}</p>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

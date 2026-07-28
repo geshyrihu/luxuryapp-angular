@@ -40,6 +40,12 @@ import { MobileRating } from "@ui/mobile/rating/rating";
 import { MobileKnob } from "@ui/mobile/knob/knob";
 import { MobileColorPicker } from "@ui/mobile/color-picker/color-picker";
 import { MobileOtpInput } from "@ui/mobile/otp-input/otp-input";
+import { MobileCascadeSelect } from "@ui/mobile/cascade-select/cascade-select";
+import { MobileDateRange } from "@ui/mobile/date-range/date-range";
+import { MobileMultiSelect } from "@ui/mobile/multi-select/multi-select";
+import { MobileTagInput } from "@ui/mobile/tag-input/tag-input";
+import { MobileEditor } from "@ui/mobile/editor/editor";
+import { IliFileUpload } from "@ui/mobile/file-upload/file-upload";
 
 @Component({
   selector: "app-mobile-forms",
@@ -74,6 +80,12 @@ import { MobileOtpInput } from "@ui/mobile/otp-input/otp-input";
     MobileKnob,
     MobileColorPicker,
     MobileOtpInput,
+    MobileCascadeSelect,
+    MobileDateRange,
+    MobileMultiSelect,
+    MobileTagInput,
+    MobileEditor,
+    IliFileUpload,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
@@ -431,6 +443,36 @@ import { MobileOtpInput } from "@ui/mobile/otp-input/otp-input";
           <div class="font-bold text-sm mb-3">ili-otp-input</div>
           <ili-otp-input [value]="'1234'"></ili-otp-input>
         </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-cascade-select</div>
+          <ili-cascade-select [options]="cascadeOptions" optionLabel="label" placeholder="Seleccionar categoría..."></ili-cascade-select>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-date-range</div>
+          <ili-date-range></ili-date-range>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-multi-select</div>
+          <ili-multi-select [options]="multiSelectOptions" optionLabel="label" placeholder="Seleccionar opciones..."></ili-multi-select>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-tag-input</div>
+          <ili-tag-input label="Tags" placeholder="Escribe un tag..." [suggestions]="tagSuggestions"></ili-tag-input>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-editor</div>
+          <ili-editor placeholder="Escribe tu contenido aquí..." style="min-height:100px"></ili-editor>
+        </div>
+
+        <div>
+          <div class="font-bold text-sm mb-3">ili-file-upload</div>
+          <ili-file-upload chooseLabel="Subir archivos" accept="image/*" [maxFileSize]="5000000" [multiple]="true"></ili-file-upload>
+        </div>
       </div>
     </div>
   `,
@@ -691,6 +733,44 @@ export class MobileForms {
     "50",
     "55",
   ];
+
+  readonly cascadeOptions = [
+    { label: "Electrónica", children: [
+      { label: "Smartphones", children: [
+        { label: "iPhone" },
+        { label: "Samsung" },
+        { label: "Xiaomi" },
+      ]},
+      { label: "Laptops", children: [
+        { label: "MacBook" },
+        { label: "Dell" },
+        { label: "Lenovo" },
+      ]},
+    ]},
+    { label: "Ropa", children: [
+      { label: "Hombre", children: [
+        { label: "Camisas" },
+        { label: "Pantalones" },
+      ]},
+      { label: "Mujer", children: [
+        { label: "Vestidos" },
+        { label: "Faldas" },
+      ]},
+    ]},
+    { label: "Hogar", children: [
+      { label: "Muebles" },
+      { label: "Decoración" },
+    ]},
+  ];
+
+  readonly multiSelectOptions = [
+    { label: "Opción A", value: "a" },
+    { label: "Opción B", value: "b" },
+    { label: "Opción C", value: "c" },
+    { label: "Opción D", value: "d" },
+  ];
+
+  readonly tagSuggestions = ["Angular", "React", "Vue", "Svelte", "Solid", "Qwik"];
 
   constructor() {
     addIcons({ checkmarkCircleOutline, keyOutline, timeOutline });

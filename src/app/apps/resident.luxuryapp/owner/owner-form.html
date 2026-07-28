@@ -47,13 +47,21 @@
     [data]="cb_enviarMails"
     [filter]="true"
   />
-  <custom-input-autocomplete-signal
-    (propagar)="savePropiedadId($event)"
-    [control]="form.controls.property"
-    [data]="cb_properties()"
-    label="Propiedad"
-    placeholder="Escribe para buscar propiedad"
-  />
+  @if (readonlyPropertyName()) {
+    <custom-input-text-signal
+      [control]="form.controls.property"
+      label="Propiedad"
+      placeholder="Propiedad"
+    />
+  } @else {
+    <custom-input-autocomplete-signal
+      (propagar)="savePropiedadId($event)"
+      [control]="form.controls.property"
+      [data]="cb_properties()"
+      label="Propiedad"
+      placeholder="Escribe para buscar propiedad"
+    />
+  }
 
   <il-button-save
     [propertyId]="id"

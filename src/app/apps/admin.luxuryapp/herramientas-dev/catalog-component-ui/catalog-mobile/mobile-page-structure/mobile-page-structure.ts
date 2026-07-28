@@ -282,7 +282,7 @@ import { MobileSkeletonPresets } from "@ui/mobile/skeleton-presets/skeleton-pres
       <div class="mobile-card-body flex flex-column gap-5">
         <div>
           <div class="font-bold text-sm mb-3">ili-page</div>
-          <ili-page title="Page Wrapper"></ili-page>
+          <ili-page></ili-page>
         </div>
 
         <div>
@@ -317,12 +317,12 @@ import { MobileSkeletonPresets } from "@ui/mobile/skeleton-presets/skeleton-pres
 
         <div>
           <div class="font-bold text-sm mb-3">ili-gallery</div>
-          <ili-gallery [images]="[{itemImageSrc: 'https://via.placeholder.com/150'}]"></ili-gallery>
+          <ili-gallery [images]="[{src: 'https://via.placeholder.com/150'}]"></ili-gallery>
         </div>
 
         <div>
           <div class="font-bold text-sm mb-3">ili-timeline</div>
-          <ili-timeline [value]="[{status: 'Started'}]"></ili-timeline>
+          <ili-timeline [events]="[{status: 'Started', timestamp: '2024-01-01', description: 'Project started'}]"></ili-timeline>
         </div>
 
         <div>
@@ -342,7 +342,7 @@ import { MobileSkeletonPresets } from "@ui/mobile/skeleton-presets/skeleton-pres
 
         <div>
           <div class="font-bold text-sm mb-3">ili-skeleton-presets</div>
-          <ili-skeleton-presets type="card"></ili-skeleton-presets>
+          <ili-skeleton-presets variant="card"></ili-skeleton-presets>
         </div>
       </div>
     </div>

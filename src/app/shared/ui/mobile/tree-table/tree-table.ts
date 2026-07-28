@@ -1,13 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import {
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
-  IonProgressBar,
-} from "@ionic/angular/standalone";
+import { IonButton, IonProgressBar } from "@ionic/angular/standalone";
 import { TreeNodeBase, TreeTableBase } from "@ui/base/tree-table.base";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
@@ -15,17 +8,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "ili-tree-table",
 
-  imports: [
-    CommonModule,
-    IonButton,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
-    IonProgressBar,
-    AppIcon,
-    MobileEmptyState,
-  ],
+  imports: [CommonModule, IonButton, IonProgressBar, AppIcon, MobileEmptyState],
   template: `
     <div class="ili-tree-table-root">
       @if (headerTitle()) {

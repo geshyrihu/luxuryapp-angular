@@ -93,7 +93,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       </p-autocomplete>
     </base-input-signal>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -25,6 +25,11 @@ import { MobileMessage } from "@ui/mobile/message/message";
 import { MobileGlobalErrorAlert } from "@ui/mobile/global-error-alert/global-error-alert";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
 import { MobileToast } from "@ui/mobile/toast/toast";
+import { MobileLoader } from "@ui/mobile/loader/mobile-loader";
+import { MobileBlockUI } from "@ui/mobile/block-ui/block-ui";
+import { MobileMeterGroup } from "@ui/mobile/meter-group/meter-group";
+import { MobileNotificationCenter } from "@ui/mobile/notification-center/notification-center";
+import { MobileTooltip } from "@ui/mobile/tooltip/tooltip";
 
 @Component({
   selector: "app-mobile-feedback",
@@ -49,6 +54,11 @@ import { MobileToast } from "@ui/mobile/toast/toast";
     MobileGlobalErrorAlert,
     MobileEmptyState,
     MobileToast,
+    MobileLoader,
+    MobileBlockUI,
+    MobileMeterGroup,
+    MobileNotificationCenter,
+    MobileTooltip,
   ],
   template: `
     <div class="mobile-card">
@@ -322,6 +332,46 @@ import { MobileToast } from "@ui/mobile/toast/toast";
           <ili-empty-state title="No Data" message="There is no data to show" icon="mdi:alert" actionLabel="Retry"></ili-empty-state>
         </div>
 
+        <!-- ili-loader -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-loader</div>
+          <ili-loader></ili-loader>
+        </div>
+
+        <!-- ili-toast -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-toast</div>
+          <ili-toast severity="info" summary="Test Summary" detail="Test detail message"></ili-toast>
+        </div>
+
+        <!-- ili-block-ui -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-block-ui</div>
+          <ili-block-ui [blocked]="true">
+            <div style="padding:1rem;border:1px solid var(--ds-border);border-radius:8px;">Content inside block</div>
+          </ili-block-ui>
+        </div>
+
+        <!-- ili-meter-group -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-meter-group</div>
+          <ili-meter-group [value]="meterData"></ili-meter-group>
+        </div>
+
+        <!-- ili-notification-center -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-notification-center</div>
+          <ili-notification-center [notifications]="notifData" [unreadCount]="notifUnreadCount"></ili-notification-center>
+        </div>
+
+        <!-- ili-tooltip -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-tooltip</div>
+          <ili-tooltip text="This is a tooltip" position="top">
+            <span style="border-bottom:1px dashed var(--ds-text-muted);">Hover or tap me</span>
+          </ili-tooltip>
+        </div>
+
       </div>
   `,
   styleUrls: ["../../shared/mobile-showcase-styles.css"],
@@ -397,6 +447,17 @@ export class MobileFeedback {
     Array.from({ length: 10 }, (_, i) => `Elemento #${i + 1}`),
   );
   disableScroll = signal(false);
+  meterData = signal([
+    { label: 'Used', value: 60, color: '#003d9b' },
+    { label: 'Available', value: 30, color: '#10b981' },
+    { label: 'Free', value: 10, color: '#e2e8f0' },
+  ]);
+  notifData = signal([
+    { id: '1', icon: 'mdi:email', title: 'New message', description: 'You have a new message from the team', time: '2m ago', read: false },
+    { id: '2', icon: 'mdi:alert', title: 'Warning', description: 'Storage is almost full', time: '1h ago', read: true, severity: 'warn' },
+    { id: '3', icon: 'mdi:check-circle', title: 'Update complete', description: 'System update finished successfully', time: '3h ago', read: true, severity: 'success' },
+  ]);
+  notifUnreadCount = signal(1);
 
   // --- Pull-to-Refresh ---
   refreshCount = signal(0);

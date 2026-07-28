@@ -2,6 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CascadeSelectBase } from "@ui/base/cascade-select.base";
@@ -9,7 +11,7 @@ import { CascadeSelectModule } from "primeng/cascadeselect";
 
 @Component({
   selector: "app-cascade-select",
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   imports: [FormsModule, CascadeSelectModule],
   template: `
     <p-cascadeSelect

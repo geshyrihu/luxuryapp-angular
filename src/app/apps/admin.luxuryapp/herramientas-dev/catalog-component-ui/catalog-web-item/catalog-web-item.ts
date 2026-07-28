@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   signal,
   ViewEncapsulation,
@@ -57,6 +58,14 @@ import {
   CustomInputTextSignal,
 } from "@ui/inputs/web";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileButtons } from "../catalog-mobile/mobile-buttons/mobile-buttons";
+import { MobileInputs } from "../catalog-mobile/mobile-inputs/mobile-inputs";
+import { MobileFeedback } from "../catalog-mobile/mobile-feedback/mobile-feedback";
+import { MobileNavigation } from "../catalog-mobile/mobile-navigation/mobile-navigation";
+import { MobileLists } from "../catalog-mobile/mobile-lists/mobile-lists";
+import { MobileData } from "../catalog-mobile/mobile-data/mobile-data";
+import { MobileForms } from "../catalog-mobile/mobile-forms/mobile-forms";
+import { MobileOverlays } from "../catalog-mobile/mobile-overlays/mobile-overlays";
 import { AccordionModule } from "@ui/web/primeng-accordion/primeng-accordion";
 import { BadgeModule } from "@ui/web/primeng-badge/primeng-badge";
 import { BreadcrumbModule } from "@ui/web/primeng-breadcrumb/primeng-breadcrumb";
@@ -84,6 +93,39 @@ import { TabsModule } from "@ui/web/primeng-tabs/primeng-tabs";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { ToggleSwitchModule } from "@ui/web/primeng-toggleswitch/primeng-toggleswitch";
 import { ToolbarModule } from "@ui/web/primeng-toolbar/primeng-toolbar";
+
+const WEB_TO_MOBILE: Record<string, string | null> = {
+  accordion: "data",
+  badge: "feedback",
+  breadcrumb: "navigation",
+  button: "buttons",
+  card: "data",
+  checkbox: "inputs",
+  datepicker: "forms",
+  dialog: "overlays",
+  divider: null,
+  inputnumber: "inputs",
+  inputtext: "inputs",
+  message: "feedback",
+  multiselect: "inputs",
+  popover: "overlays",
+  progressbar: "feedback",
+  progressspinner: "feedback",
+  radiobutton: "inputs",
+  select: "inputs",
+  selectbutton: "inputs",
+  skeleton: "feedback",
+  table: "data",
+  tabs: "navigation",
+  tag: "data",
+  textarea: "forms",
+  toast: "overlays",
+  toggleswitch: "inputs",
+  toolbar: null,
+  tooltip: null,
+  custominputs: "forms",
+  calendar: null,
+};
 
 const WEB_ITEM_LABELS: Record<string, string> = {
   accordion: "Accordion",
@@ -186,15 +228,29 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     WebButtonIconSendEmail,
     WebButtonIconTracking,
     WebButtonIconViewPdf,
+    MobileButtons,
+    MobileInputs,
+    MobileFeedback,
+    MobileNavigation,
+    MobileLists,
+    MobileData,
+    MobileForms,
+    MobileOverlays,
   ],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
         <h2 class="text-3xl font-bold m-0">{{ label }}</h2>
-        <p class="text-secondary">
-          Componente PrimeNG: <strong>{{ item() }}</strong>
-        </p>
+        <div class="flex align-items-center gap-2">
+          <p class="text-secondary m-0">
+            Componente PrimeNG: <strong>{{ item() }}</strong>
+          </p>
+          <span class="badge-mode">Split Web + Mobile</span>
+        </div>
       </div>
+
+      <div class="unified-split">
+        <div class="unified-web">
 
       @switch (item()) {
         @case ("accordion") {
@@ -1134,6 +1190,32 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </div>
         }
       }
+        </div>
+
+        <div class="unified-mobile">
+          <div class="phone-card">
+            <div class="phone-dynamic-island"></div>
+            <div class="phone-screen">
+              @switch (mobileItem()) {
+                @case ("buttons") { <app-mobile-buttons /> }
+                @case ("inputs") { <app-mobile-inputs /> }
+                @case ("feedback") { <app-mobile-feedback /> }
+                @case ("navigation") { <app-mobile-navigation /> }
+                @case ("lists") { <app-mobile-lists /> }
+                @case ("data") { <app-mobile-data /> }
+                @case ("forms") { <app-mobile-forms /> }
+                @case ("overlays") { <app-mobile-overlays /> }
+                @default {
+                  <div class="flex align-items-center justify-content-center h-full text-secondary text-sm p-3">
+                    Sin equivalente mobile para este componente
+                  </div>
+                }
+              }
+            </div>
+            <div class="phone-home-bar"></div>
+          </div>
+        </div>
+      </div>
     </section>
   `,
   styles: [
@@ -1150,6 +1232,69 @@ const WEB_ITEM_LABELS: Record<string, string> = {
       .catalog-calendar-frame {
         height: 500px;
       }
+      .badge-mode {
+        background: #6366f1;
+        color: white;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      .unified-split {
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+      }
+      .unified-web {
+        flex: 3;
+        min-width: 0;
+      }
+      .unified-mobile {
+        flex: 1;
+        position: sticky;
+        top: 5rem;
+        align-self: flex-start;
+        max-width: 340px;
+      }
+      .phone-card {
+        background: #1a1a2e;
+        border-radius: 40px;
+        padding: 12px 8px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        position: relative;
+      }
+      .phone-dynamic-island {
+        width: 110px;
+        height: 26px;
+        background: #0d0d1a;
+        border-radius: 20px;
+        margin: 0 auto 10px;
+      }
+      .phone-screen {
+        background: var(--ds-bg-page);
+        border-radius: 28px;
+        overflow-y: auto;
+        height: 640px;
+        padding: 0.5rem;
+        scroll-behavior: smooth;
+      }
+      .phone-screen::-webkit-scrollbar {
+        width: 3px;
+      }
+      .phone-screen::-webkit-scrollbar-thumb {
+        background: var(--ds-border);
+        border-radius: 3px;
+      }
+      .phone-home-bar {
+        width: 120px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 2px;
+        margin: 8px auto 2px;
+      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -1165,6 +1310,8 @@ export class CatalogWebItem {
   get label(): string {
     return WEB_ITEM_LABELS[this.item()] ?? this.item();
   }
+
+  mobileItem = computed(() => WEB_TO_MOBILE[this.item()] ?? null);
 
   constructor() {
     this.route.paramMap.subscribe((p) => this.item.set(p.get("item") ?? ""));

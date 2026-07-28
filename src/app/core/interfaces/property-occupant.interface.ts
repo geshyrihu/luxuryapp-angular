@@ -1,6 +1,6 @@
 export interface PropertyOccupant {
   id: string;
-  propertyId: any;
+  propertyId: string;
   fullName: string;
   email: string;
   phoneNumber: string;
@@ -8,12 +8,3 @@ export interface PropertyOccupant {
   isResident: boolean;
   isActive: boolean;
 }
-
-
-
-
-
-
-
-
-

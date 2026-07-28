@@ -37,7 +37,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { Property } from "src/app/core/interfaces/property.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import Swal from "sweetalert2";
-import { PropertyOccupantManager } from "./property-occupant-manager";
+import { OwnerForm } from "../owner/owner-form";
 import { PropiedadesForm } from "./propiedades-form";
 
 @Component({
@@ -124,12 +124,14 @@ export class PropiedadesList {
   showOccupantsDialog(property: Property) {
     this.dialogHandlerS
       .openDialog(
-        PropertyOccupantManager,
+        OwnerForm,
         {
+          id: "",
           propertyId: property.id,
           propertyName: property.fullName,
+          title: `Agregar ocupante a ${property.fullName}`,
         },
-        `Ocupantes de ${property.fullName}`,
+        `Agregar ocupante a ${property.fullName}`,
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {

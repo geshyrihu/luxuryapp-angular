@@ -1,0 +1,162 @@
+<div class="convention-card" [style.border-left-color]="severityColor(convention().severity)">
+  <!-- Header -->
+  <div class="card-header" (click)="toggleExpanded()">
+    <div class="header-left">
+      <div class="severity-badge" [style.background-color]="severityColor(convention().severity)">
+        {{ severityIcon(convention().severity) }}
+      </div>
+      <div class="header-info">
+        <h2 class="convention-title">
+          § {{ convention().section }} — {{ convention().title }}
+        </h2>
+        <p class="convention-description">{{ convention().description }}</p>
+      </div>
+    </div>
+    <button
+      class="expand-btn"
+      [class.expanded]="expanded()"
+      type="button"
+    >
+      {{ expanded() ? '▼' : '▶' }}
+    </button>
+  </div>
+
+  <!-- Metadata -->
+  <div class="card-metadata">
+    <div class="meta-item">
+      <span class="meta-label">Severidad:</span>
+      <span class="meta-value" [style.color]="severityColor(convention().severity)">
+        {{ convention().severity }}
+      </span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Tecnologías:</span>
+      <div class="tech-tags">
+        @for (tech of convention().technologies; track tech) {
+          <span class="tech-tag">{{ techIcon(tech) }} {{ tech }}</span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Expanded Content -->
+  @if (expanded()) {
+    <div class="card-content">
+      <!-- Importancia -->
+      <div class="content-section">
+        <h3>💡 Por qué es importante</h3>
+        <p>{{ convention().importance }}</p>
+      </div>
+
+      <!-- Examples -->
+      @if (
+        convention().examples.angular ||
+        convention().examples.dotnet ||
+        convention().examples.flutter
+      ) {
+        <div class="content-section">
+          <h3>📝 Ejemplos de Código</h3>
+
+          <div class="example-tabs">
+            @if (hasExample('angular')) {
+              <button
+                (click)="selectExample('angular')"
+                [class.active]="selectedExample() === 'angular'"
+                class="example-tab"
+              >
+                🅰️ Angular
+              </button>
+            }
+            @if (hasExample('dotnet')) {
+              <button
+                (click)="selectExample('dotnet')"
+                [class.active]="selectedExample() === 'dotnet'"
+                class="example-tab"
+              >
+                🔷 .NET / C#
+              </button>
+            }
+            @if (hasExample('flutter')) {
+              <button
+                (click)="selectExample('flutter')"
+                [class.active]="selectedExample() === 'flutter'"
+                class="example-tab"
+              >
+                🐦 Flutter
+              </button>
+            }
+          </div>
+
+          @if (selectedExample() === 'angular') {
+            <div class="code-block">
+              <div class="code-header">
+                <span>Angular / TypeScript</span>
+                <button
+                  (click)="copyCode(convention().examples.angular!.code)"
+                  class="copy-btn"
+                  type="button"
+                >
+                  📋
+                </button>
+              </div>
+              <pre><code>{{ convention().examples.angular!.code }}</code></pre>
+              <p class="example-description">
+                {{ convention().examples.angular!.description }}
+              </p>
+            </div>
+          }
+
+          @if (selectedExample() === 'dotnet') {
+            <div class="code-block">
+              <div class="code-header">
+                <span>.NET / C#</span>
+                <button
+                  (click)="copyCode(convention().examples.dotnet!.code)"
+                  class="copy-btn"
+                  type="button"
+                >
+                  📋
+                </button>
+              </div>
+              <pre><code>{{ convention().examples.dotnet!.code }}</code></pre>
+              <p class="example-description">
+                {{ convention().examples.dotnet!.description }}
+              </p>
+            </div>
+          }
+
+          @if (selectedExample() === 'flutter') {
+            <div class="code-block">
+              <div class="code-header">
+                <span>Flutter / Dart</span>
+                <button
+                  (click)="copyCode(convention().examples.flutter!.code)"
+                  class="copy-btn"
+                  type="button"
+                >
+                  📋
+                </button>
+              </div>
+              <pre><code>{{ convention().examples.flutter!.code }}</code></pre>
+              <p class="example-description">
+                {{ convention().examples.flutter!.description }}
+              </p>
+            </div>
+          }
+        </div>
+      }
+
+      <!-- Related Sections -->
+      @if (convention().relatedSections && convention().relatedSections.length > 0) {
+        <div class="content-section">
+          <h3>🔗 Secciones Relacionadas</h3>
+          <div class="related-tags">
+            @for (section of convention().relatedSections; track section) {
+              <span class="related-tag">§ {{ section }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

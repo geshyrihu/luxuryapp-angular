@@ -511,6 +511,7 @@ export const adminRoutes: Routes = [
       { path: "layouts", redirectTo: "layouts/fullwidth" },
       { path: "guide-standards", redirectTo: "guide/identitypillars" },
       { path: "guide", redirectTo: "guide/identitypillars" },
+      { path: "extras", redirectTo: "extras/forms" },
       { path: "docs", redirectTo: "docs/documenttypes" },
       { path: "audit", redirectTo: "audit/contentblocks" },
       {
@@ -581,6 +582,13 @@ export const adminRoutes: Routes = [
         loadComponent: () =>
           import("src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/foundations/catalog-guia-item/catalog-guia-item").then(
             (m) => m.CatalogGuiaItem,
+          ),
+      },
+      {
+        path: "extras/:item",
+        loadComponent: () =>
+          import("src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-core-item/catalog-web-extras").then(
+            (m) => m.CatalogWebExtras,
           ),
       },
     ],
@@ -703,6 +711,18 @@ export const adminRoutes: Routes = [
     data: {
       title: "Bitácora de accesos",
       breadcrumb: "Bitácora de accesos",
+    },
+  },
+  {
+    path: "conventions-guide",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer").then(
+        (m) => m.ConventionsViewer,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "CONVENTIONS.md - Guía Interactiva",
+      breadcrumb: "Conventions Guide",
     },
   },
 ];

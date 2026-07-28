@@ -95,189 +95,54 @@ export class Sidebar {
           expanded: false,
           items: [
             {
-              label: "Web (PrimeNG)",
-              icon: "mdi:desktop-mac",
+              label: "Components (Web + Mobile)",
+              icon: "mdi:monitor-cellphone",
               routerLink: [...this.catalogBase, "web"],
               items: [
-                {
-                  label: "Accordion",
-                  routerLink: [...this.catalogBase, "web", "accordion"],
-                },
-                {
-                  label: "Calendar",
-                  icon: "mdi:calendar-outline",
-                  routerLink: [...this.catalogBase, "web", "calendar"],
-                },
-                {
-                  label: "Badge",
-                  routerLink: [...this.catalogBase, "web", "badge"],
-                },
-                {
-                  label: "Breadcrumb",
-                  routerLink: [...this.catalogBase, "web", "breadcrumb"],
-                },
-                {
-                  label: "Button",
-                  routerLink: [...this.catalogBase, "web", "button"],
-                },
-                {
-                  label: "Card",
-                  routerLink: [...this.catalogBase, "web", "card"],
-                },
-                {
-                  label: "Checkbox",
-                  routerLink: [...this.catalogBase, "web", "checkbox"],
-                },
-                {
-                  label: "DatePicker",
-                  routerLink: [...this.catalogBase, "web", "datepicker"],
-                },
-                {
-                  label: "Dialog",
-                  routerLink: [...this.catalogBase, "web", "dialog"],
-                },
-                {
-                  label: "Divider",
-                  routerLink: [...this.catalogBase, "web", "divider"],
-                },
-                {
-                  label: "InputNumber",
-                  routerLink: [...this.catalogBase, "web", "inputnumber"],
-                },
-                {
-                  label: "InputText",
-                  routerLink: [...this.catalogBase, "web", "inputtext"],
-                },
-                {
-                  label: "Message",
-                  routerLink: [...this.catalogBase, "web", "message"],
-                },
-                {
-                  label: "MultiSelect",
-                  routerLink: [...this.catalogBase, "web", "multiselect"],
-                },
-                {
-                  label: "Popover",
-                  routerLink: [...this.catalogBase, "web", "popover"],
-                },
-                {
-                  label: "ProgressBar",
-                  routerLink: [...this.catalogBase, "web", "progressbar"],
-                },
-                {
-                  label: "ProgressSpinner",
-                  routerLink: [...this.catalogBase, "web", "progressspinner"],
-                },
-                {
-                  label: "RadioButton",
-                  routerLink: [...this.catalogBase, "web", "radiobutton"],
-                },
-                {
-                  label: "Select",
-                  routerLink: [...this.catalogBase, "web", "select"],
-                },
-                {
-                  label: "SelectButton",
-                  routerLink: [...this.catalogBase, "web", "selectbutton"],
-                },
-                {
-                  label: "Skeleton",
-                  routerLink: [...this.catalogBase, "web", "skeleton"],
-                },
-                {
-                  label: "Table",
-                  routerLink: [...this.catalogBase, "web", "table"],
-                },
-                {
-                  label: "Tabs",
-                  routerLink: [...this.catalogBase, "web", "tabs"],
-                },
-                {
-                  label: "Tag",
-                  routerLink: [...this.catalogBase, "web", "tag"],
-                },
-                {
-                  label: "Textarea",
-                  routerLink: [...this.catalogBase, "web", "textarea"],
-                },
-                {
-                  label: "Toast",
-                  routerLink: [...this.catalogBase, "web", "toast"],
-                },
-                {
-                  label: "ToggleSwitch",
-                  routerLink: [...this.catalogBase, "web", "toggleswitch"],
-                },
-                {
-                  label: "Toolbar",
-                  routerLink: [...this.catalogBase, "web", "toolbar"],
-                },
-                {
-                  label: "Tooltip",
-                  routerLink: [...this.catalogBase, "web", "tooltip"],
-                },
-                {
-                  label: "Custom Inputs",
-                  icon: "mdi:form-textbox",
-                  routerLink: [...this.catalogBase, "web", "custominputs"],
-                },
-              ],
-            },
-            {
-              label: "Mobile (Ionic)",
-              icon: "mdi:cellphone",
-              routerLink: [...this.catalogBase, "mobile"],
-              items: [
-                {
-                  label: "Buttons",
-                  icon: "mdi:gesture-tap",
-                  routerLink: [...this.catalogBase, "mobile", "buttons"],
-                },
-                {
-                  label: "Inputs",
-                  icon: "mdi:keyboard",
-                  routerLink: [...this.catalogBase, "mobile", "inputs"],
-                },
-                {
-                  label: "Feedback & Skeleton",
-                  icon: "mdi:progress-clock",
-                  routerLink: [...this.catalogBase, "mobile", "feedback"],
-                },
-                {
-                  label: "Navigation & Segment",
-                  icon: "mdi:menu",
-                  routerLink: [...this.catalogBase, "mobile", "navigation"],
-                },
-                {
-                  label: "Lists & Reorder",
-                  icon: "mdi:format-list-bulleted",
-                  routerLink: [...this.catalogBase, "mobile", "lists"],
-                },
-                {
-                  label: "Data, Accordion & Grid",
-                  icon: "mdi:database-outline",
-                  routerLink: [...this.catalogBase, "mobile", "data"],
-                },
-                {
-                  label: "Forms",
-                  icon: "mdi:form-dropdown",
-                  routerLink: [...this.catalogBase, "mobile", "forms"],
-                },
-                {
-                  label: "Overlays",
-                  icon: "mdi:layers-outline",
-                  routerLink: [...this.catalogBase, "mobile", "overlays"],
-                },
-                {
-                  label: "Layout",
-                  icon: "mdi:page-layout-sidebar-left",
-                  routerLink: [...this.catalogBase, "mobile", "layout"],
-                },
-                {
-                  label: "Page Structure",
-                  icon: "mdi:page-layout-body",
-                  routerLink: [...this.catalogBase, "mobile", "page-structure"],
-                },
+                { label: "Accordion", routerLink: [...this.catalogBase, "web", "accordion"] },
+                { label: "Calendar", icon: "mdi:calendar-outline", routerLink: [...this.catalogBase, "web", "calendar"] },
+                { label: "Badge", routerLink: [...this.catalogBase, "web", "badge"] },
+                { label: "Breadcrumb", routerLink: [...this.catalogBase, "web", "breadcrumb"] },
+                { label: "Button", routerLink: [...this.catalogBase, "web", "button"] },
+                { label: "Card", routerLink: [...this.catalogBase, "web", "card"] },
+                { label: "Checkbox", routerLink: [...this.catalogBase, "web", "checkbox"] },
+                { label: "DatePicker", routerLink: [...this.catalogBase, "web", "datepicker"] },
+                { label: "Dialog", routerLink: [...this.catalogBase, "web", "dialog"] },
+                { label: "Divider", routerLink: [...this.catalogBase, "web", "divider"] },
+                { label: "InputNumber", routerLink: [...this.catalogBase, "web", "inputnumber"] },
+                { label: "InputText", routerLink: [...this.catalogBase, "web", "inputtext"] },
+                { label: "Message", routerLink: [...this.catalogBase, "web", "message"] },
+                { label: "MultiSelect", routerLink: [...this.catalogBase, "web", "multiselect"] },
+                { label: "Popover", routerLink: [...this.catalogBase, "web", "popover"] },
+                { label: "ProgressBar", routerLink: [...this.catalogBase, "web", "progressbar"] },
+                { label: "ProgressSpinner", routerLink: [...this.catalogBase, "web", "progressspinner"] },
+                { label: "RadioButton", routerLink: [...this.catalogBase, "web", "radiobutton"] },
+                { label: "Select", routerLink: [...this.catalogBase, "web", "select"] },
+                { label: "SelectButton", routerLink: [...this.catalogBase, "web", "selectbutton"] },
+                { label: "Skeleton", routerLink: [...this.catalogBase, "web", "skeleton"] },
+                { label: "Table", routerLink: [...this.catalogBase, "web", "table"] },
+                { label: "Tabs", routerLink: [...this.catalogBase, "web", "tabs"] },
+                { label: "Tag", routerLink: [...this.catalogBase, "web", "tag"] },
+                { label: "Textarea", routerLink: [...this.catalogBase, "web", "textarea"] },
+                { label: "Toast", routerLink: [...this.catalogBase, "web", "toast"] },
+                { label: "ToggleSwitch", routerLink: [...this.catalogBase, "web", "toggleswitch"] },
+                { label: "Toolbar", routerLink: [...this.catalogBase, "web", "toolbar"] },
+                { label: "Tooltip", routerLink: [...this.catalogBase, "web", "tooltip"] },
+                { label: "Custom Inputs", icon: "mdi:form-textbox", routerLink: [...this.catalogBase, "web", "custominputs"] },
+                { label: "QR Code Generator", icon: "mdi:qr-code", routerLink: [...this.catalogBase, "core", "qrcode"] },
+                { label: "Barcode / QR Input", icon: "mdi:barcode", routerLink: [...this.catalogBase, "core", "barcodeinput"] },
+                { label: "Barcode Scanner", icon: "mdi:camera", routerLink: [...this.catalogBase, "extras", "business"] },
+                { label: "┤ Mobile only ├", icon: "mdi:cellphone", routerLink: [...this.catalogBase, "mobile"] },
+                { label: "Mobile: Buttons", icon: "mdi:gesture-tap", routerLink: [...this.catalogBase, "mobile", "buttons"] },
+                { label: "Mobile: Inputs", icon: "mdi:keyboard", routerLink: [...this.catalogBase, "mobile", "inputs"] },
+                { label: "Mobile: Feedback", icon: "mdi:progress-clock", routerLink: [...this.catalogBase, "mobile", "feedback"] },
+                { label: "Mobile: Navigation", icon: "mdi:menu", routerLink: [...this.catalogBase, "mobile", "navigation"] },
+                { label: "Mobile: Lists", icon: "mdi:format-list-bulleted", routerLink: [...this.catalogBase, "mobile", "lists"] },
+                { label: "Mobile: Data & Grid", icon: "mdi:database-outline", routerLink: [...this.catalogBase, "mobile", "data"] },
+                { label: "Mobile: Forms", icon: "mdi:form-dropdown", routerLink: [...this.catalogBase, "mobile", "forms"] },
+                { label: "Mobile: Overlays", icon: "mdi:layers-outline", routerLink: [...this.catalogBase, "mobile", "overlays"] },
+                { label: "Mobile: Layout", icon: "mdi:page-layout-sidebar-left", routerLink: [...this.catalogBase, "mobile", "layout"] },
+                { label: "Mobile: Page Structure", icon: "mdi:page-layout-body", routerLink: [...this.catalogBase, "mobile", "page-structure"] },
               ],
             },
             {

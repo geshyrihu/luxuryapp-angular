@@ -32,7 +32,7 @@ interface IOwnerForm {
   id: FormControl<string | null>;
   customerId: FormControl<string | null>;
   phoneNumber: FormControl<string>;
-  propertyId: FormControl<number | null>;
+  propertyId: FormControl<string | null>;
   property: FormControl<string | null>;
   extencion: FormControl<string | null>;
   fixedPhone: FormControl<string | null>;
@@ -67,6 +67,7 @@ export class OwnerForm implements OnInit {
   ref = inject(DynamicDialogRef);
   submitting = signal(false);
   id: string = "";
+  readonlyPropertyName = signal("");
 
   // Signals para ComboBoxes
   cb_properties = signal<SelectItemDto[]>([]);
@@ -90,7 +91,7 @@ export class OwnerForm implements OnInit {
       validators: [Validators.required],
       nonNullable: true,
     }),
-    propertyId: new FormControl<number | null>(null, {
+    propertyId: new FormControl<string | null>(null, {
       validators: [Validators.required],
     }),
     property: new FormControl<string | null>(null),
@@ -115,6 +116,7 @@ export class OwnerForm implements OnInit {
     this.id = this.config.data.id;
 
     await this.onLoadSelectItems();
+    this.applyPreselectedProperty();
 
     if (this.id) {
       await this.getImem();
@@ -154,6 +156,24 @@ export class OwnerForm implements OnInit {
       propertyId,
       property: selectedProperty || null,
     });
+  }
+
+  applyPreselectedProperty(): void {
+    const propertyId = this.config.data.propertyId as string | undefined;
+    const propertyName = this.config.data.propertyName as string | undefined;
+
+    if (!propertyId) {
+      return;
+    }
+
+    this.readonlyPropertyName.set(propertyName ?? "");
+
+    this.form.patchValue({
+      propertyId,
+      property: propertyName ?? null,
+    });
+
+    this.form.controls.property.disable();
   }
 
   savePropiedadId = (item: SelectItemDto) => {

@@ -31,6 +31,12 @@ import { MobileTable } from "@ui/mobile/table/table";
 import { MobileTreeTable } from "@ui/mobile/tree-table/tree-table";
 import { MobileTree } from "@ui/mobile/tree/tree";
 import { MobileVirtualScroller } from "@ui/mobile/virtual-scroller/virtual-scroller";
+import { MobileListbox } from "@ui/mobile/listbox/listbox";
+import { MobileTreeSelect } from "@ui/mobile/tree-select/tree-select";
+import { MobilePickList } from "@ui/mobile/pick-list/pick-list";
+import { MobileOrderList } from "@ui/mobile/order-list/order-list";
+import { MobileTerminal } from "@ui/mobile/terminal/terminal";
+import { MobileCommentThread } from "@ui/mobile/comment-thread/comment-thread";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -67,6 +73,12 @@ import {
     MobilePaginator,
     MobileVirtualScroller,
     MobileOrgChart,
+    MobileListbox,
+    MobileTreeSelect,
+    MobilePickList,
+    MobileOrderList,
+    MobileTerminal,
+    MobileCommentThread,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
@@ -404,8 +416,43 @@ import {
             </ion-row>
           </ion-grid>
         </div>
+
+        <!-- --- LISTBOX --- -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-listbox</div>
+          <ili-listbox [options]="['Option 1', 'Option 2', 'Option 3']"></ili-listbox>
+        </div>
+
+        <!-- --- TREE SELECT --- -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-tree-select</div>
+          <ili-tree-select [options]="[{ label: 'Node 1', children: [{ label: 'Child 1' }] }]"></ili-tree-select>
+        </div>
+
+        <!-- --- PICK LIST --- -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-pick-list</div>
+          <ili-pick-list [source]="[{ label: 'Item 1' }, { label: 'Item 2' }]" [target]="[]"></ili-pick-list>
+        </div>
+
+        <!-- --- ORDER LIST --- -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-order-list</div>
+          <ili-order-list [value]="['Item A', 'Item B', 'Item C']"></ili-order-list>
+        </div>
+
+        <!-- --- TERMINAL --- -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-terminal</div>
+          <ili-terminal welcomeMessage="Terminal" prompt="$ "></ili-terminal>
+        </div>
+
+        <!-- --- COMMENT THREAD --- -->
+        <div>
+          <div class="font-bold text-sm mb-3">ili-comment-thread</div>
+          <ili-comment-thread [comments]="[{ id: '1', authorName: 'John Doe', authorInitials: 'JD', text: 'Great work!', timestamp: '10 Jun 2026' }, { id: '2', authorName: 'Jane Smith', authorInitials: 'JS', text: 'Thanks!', timestamp: '11 Jun 2026' }]"></ili-comment-thread>
+        </div>
       </div>
-    </div>
 
     <div class="mobile-card mt-4">
       <div class="mobile-card-header">Data Wrappers (ili-*)</div>

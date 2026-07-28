@@ -28,13 +28,13 @@ import { Subject, Subscription, interval, takeWhile, tap } from "rxjs";
           label="Cerrar sesión"
           severity="danger"
           (click)="logout()"
-        />
+        ></button>
         <button
           pButton
           label="Continuar sesión"
           severity="primary"
           (click)="extend()"
-        />
+        ></button>
       </div>
     </p-dialog>
   `,

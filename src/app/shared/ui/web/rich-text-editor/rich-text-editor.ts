@@ -1,4 +1,4 @@
-import { Component, input, model, ViewEncapsulation } from "@angular/core";
+import { Component, input, model, output, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { EditorModule } from "primeng/editor";
 
@@ -44,7 +44,7 @@ export class RichTextEditor {
   placeholder = input<string>("Escribe aquí...");
   height = input<string>("300px");
   readonly = input<boolean>(false);
-  onTextChange = input<(event: any) => void>();
+  onTextChange = output<any>();
 
   formats = input<string[]>([
     "header",

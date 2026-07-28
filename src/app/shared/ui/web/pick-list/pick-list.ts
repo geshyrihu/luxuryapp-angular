@@ -3,13 +3,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
 } from "@angular/core";
 import { PickListBase } from "@ui/base/pick-list.base";
 import { PickListModule } from "primeng/picklist";
 
 @Component({
   selector: "app-pick-list",
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   imports: [CommonModule, PickListModule],
   template: `
     <p-pickList 

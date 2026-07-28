@@ -311,7 +311,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
 
             <div class="card-body">
-              <app-data-view-mobile [data]="groupedData" groupKey="section">
+              <app-data-view-mobile [data]="groupedData" [isGrouped]="true">
                 <ng-template #header let-group
                   ><strong>{{ group.section }}</strong></ng-template
                 >
