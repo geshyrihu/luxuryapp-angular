@@ -4,16 +4,9 @@
   <!-- Overlay mientras se preparan los reportes -->
   @if (isPreparing()) {
   <div class="print-preparing-overlay">
-    <app-icon
-      [icon]="'mdi:loading'"
-      
-    />
-    <p
-      
-    >
-      Cargando todos los reportes...
-    </p>
-    <p >
+    <app-icon [icon]="'mdi:loading'" />
+    <p>Cargando todos los reportes...</p>
+    <p>
       El dialogo de impresion abrira automaticamente cuando todos los datos
       esten listos.
     </p>
@@ -39,27 +32,19 @@
     <header
       class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden print-hide-on-print"
     >
-      <div class="bg-primary" ></div>
+      <div class="bg-primary"></div>
 
       <div class="surface-100 p-2 flex gap-3">
         <div class="flex align-items-center gap-3 flex-1 min-w-0">
-          <div
+          <!-- <div
             class="surface-card rounded-xl border-1 surface-border inline-flex align-items-center justify-content-center p-2"
-            
           >
-            <img
-              [src]="customerLogo()"
-              [alt]="customerName()"
-              
-            />
-          </div>
+            <img [src]="customerLogo()" [alt]="customerName()" />
+          </div> -->
 
           <div class="flex flex-column gap-1 min-w-0">
-            <small
-              class="text-primary font-bold uppercase"
-              
-            >
-              LuxuryApp é Contabilidad Online
+            <small class="text-primary font-bold uppercase">
+              LuxuryApp | Contabilidad Online
             </small>
             <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
               Estados Financieros
@@ -80,7 +65,7 @@
             <div
               class="flex align-items-center gap-2 bg-white px-2 py-1 rounded-lg border-1 border-200 flex-wrap"
             >
-              <div >
+              <div>
                 <custom-input-text-signal
                   [(ngModel)]="filterS.year"
                   type="number"
@@ -90,7 +75,7 @@
                 />
               </div>
 
-              <div >
+              <div>
                 <custom-input-select-signal
                   [data]="[
                   { label: 'Enero', value: 0 },
@@ -174,7 +159,7 @@
         </div>
       </div>
 
-      <div class="bg-yellow-500" ></div>
+      <div class="bg-yellow-500"></div>
     </header>
 
     <!-- Seccion de impresion: se renderiza solo al presionar Imprimir -->
@@ -244,43 +229,47 @@
     <div
       class="surface-card rounded-xl border-1 surface-border shadow-sm print-hide-on-print"
     >
-      <lx-tabs [tabs]="reportTabs" [activeId]="reportIndex().toString()" (tabChange)="onTabChange($event)">
+      <lx-tabs
+        [tabs]="reportTabs()"
+        [activeId]="reportIndex().toString()"
+        (tabChange)="onTabChange($event)"
+      >
         <div tab="0" class="p-4 pt-5">
-            <app-estado-posicion-financiera />
-          </div>
-          <div tab="1" class="p-4 pt-5">
-            <app-estado-resultados />
-          </div>
-          <div tab="2" class="p-4 pt-5">
-            <app-estado-resultados-v2 />
-          </div>
-          <div tab="3" class="p-4 pt-5">
-            <app-cedula-extraordinaria />
-          </div>
-          <div tab="4" class="p-4 pt-5">
-            <app-cedula-presupuestal />
-          </div>
-          <div tab="5" class="p-4 pt-5">
-            <app-reporte-financiero />
-          </div>
-          <div tab="6" class="p-4 pt-5">
-            <app-flujo-efectivo />
-          </div>
-          <div tab="7" class="p-4 pt-5">
-            <app-cobranza-online-dashboard />
-          </div>
-          <div tab="8" class="p-4 pt-5">
-            <app-presupuesto-contabilidad />
-          </div>
-          <div tab="9" class="p-4 pt-5">
-            <app-bancos-inversiones />
-          </div>
-          <div tab="10" class="p-4 pt-5">
-            <app-fondo-reserva />
-          </div>
-          <div tab="11" class="p-4 pt-5">
-            <app-proyectos-aprobados />
-          </div>
+          <app-estado-posicion-financiera />
+        </div>
+        <div tab="1" class="p-4 pt-5">
+          <app-estado-resultados />
+        </div>
+        <div tab="2" class="p-4 pt-5">
+          <app-estado-resultados-v2 />
+        </div>
+        <div tab="3" class="p-4 pt-5">
+          <app-cedula-extraordinaria />
+        </div>
+        <div tab="4" class="p-4 pt-5">
+          <app-cedula-presupuestal />
+        </div>
+        <div tab="5" class="p-4 pt-5">
+          <app-reporte-financiero />
+        </div>
+        <div tab="6" class="p-4 pt-5">
+          <app-flujo-efectivo />
+        </div>
+        <div tab="7" class="p-4 pt-5">
+          <app-cobranza-online-dashboard />
+        </div>
+        <div tab="8" class="p-4 pt-5">
+          <app-presupuesto-contabilidad />
+        </div>
+        <div tab="9" class="p-4 pt-5">
+          <app-bancos-inversiones />
+        </div>
+        <div tab="10" class="p-4 pt-5">
+          <app-fondo-reserva />
+        </div>
+        <div tab="11" class="p-4 pt-5">
+          <app-proyectos-aprobados />
+        </div>
       </lx-tabs>
     </div>
 

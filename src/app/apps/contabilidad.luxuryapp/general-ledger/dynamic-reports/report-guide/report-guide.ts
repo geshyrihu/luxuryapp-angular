@@ -1,9 +1,9 @@
-import { Component, signal, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { LxAccordion } from "@ui/adaptive/accordion/accordion";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 
 interface RouteEntry {
   path: string;
@@ -65,7 +65,7 @@ export class ReportGuide {
     {
       path: "/contabilidad/reportes/guia",
       component: "ReportGuide",
-      description: "Esta guóa práctica del módulo.",
+      description: "Esta Guía práctica del módulo.",
     },
   ];
 

@@ -1,5 +1,5 @@
 <div class="md:p-3">
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form" aria-label="Formulario de banco">
     <custom-input-text-signal
       [control]="form.controls.id"
       hidden

@@ -67,7 +67,7 @@ export class IonInputSelect extends BaseIonicInput {
   override readonly customClass = () => "ion-input-select-wrapper";
 
   onSelectionChange(event: any): void {
-    this.selectionChange.emit(event.detail.value);
+    this.selectionChange.emit({ value: event.detail.value });
   }
 
   override registerOnChange(fn: any): void {

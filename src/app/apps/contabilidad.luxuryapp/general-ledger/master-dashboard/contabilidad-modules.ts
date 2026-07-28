@@ -63,7 +63,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       },
       {
         title: "Estados Financieros Online",
-        description: "Reportes y estados financieros dinámicos.",
+        description: "Reportes y estados financieros.",
         route: "/contabilidad/financial-statements-reports",
         icon: "mdi:chart-line",
         color: "#0891b2",

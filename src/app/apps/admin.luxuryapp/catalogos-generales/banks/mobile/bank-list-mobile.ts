@@ -29,5 +29,5 @@ export class BankListMobile {
 
   add = output<{ id: string; title: string }>();
   edit = output<{ id: string; title: string }>();
-  delete = output<any>();
+  delete = output<string>();
 }

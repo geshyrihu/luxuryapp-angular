@@ -6,10 +6,10 @@ import {
   signal,
 } from "@angular/core";
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -29,13 +29,27 @@ import { BankAddOrEditDto } from "./interfaces/banks-add-or-edit.dto";
 })
 export class BankForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
-  formB = inject(FormBuilder);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
   id: string = "";
   submitting = signal(false);
 
-  form: FormGroup<BankFormGroup> = this.formB.group({
+  /**
+   * Validador de cross-field que verifica que Code y ShortName no sean idénticos.
+   * Esto previene que se registren bancos con datos redundantes.
+   */
+  bankUniquenessValidator = (group: FormGroup): ValidationErrors | null => {
+    const code = group.get('code')?.value;
+    const shortName = group.get('shortName')?.value;
+
+    if (code && shortName && code.toLowerCase() === shortName.toLowerCase().substring(0, 3)) {
+      return { bankDuplicate: true };
+    }
+
+    return null;
+  };
+
+  form: FormGroup<BankFormGroup> = new FormGroup({
     id: new FormControl({ value: "", disabled: true }),
     code: new FormControl("", {
       nonNullable: true,
@@ -53,7 +67,7 @@ export class BankForm implements OnInit {
       nonNullable: true,
       validators: [Validators.required, Validators.maxLength(100)],
     }),
-  });
+  }, { validators: this.bankUniquenessValidator });
 
   ngOnInit(): void {
     this.id = this.config.data.id;

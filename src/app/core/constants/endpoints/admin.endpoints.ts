@@ -133,13 +133,13 @@ export const EndpointsAdmin = {
   },
   Catalogs: {
     Banks: {
-      create: "banks",
-      delete: (id: string) => `banks/${id}`,
-      getAll: "banks",
-      getById: (id: string) => `banks/${id}`,
-      getPdf: (id: string) => `banks/${id}/pdf`,
-      selectItems: "select-items/banks",
-      update: (id: string) => `banks/${id}`,
+      create: "admin/catalogs/banks",
+      delete: (id: string) => `admin/catalogs/banks/${id}`,
+      getAll: "admin/catalogs/banks",
+      getById: (id: string) => `admin/catalogs/banks/${id}`,
+      getPdf: (id: string) => `admin/catalogs/banks/${id}/pdf`,
+      selectItems: "admin/catalogs/select-items/banks",
+      update: (id: string) => `admin/catalogs/banks/${id}`,
     },
     CfdiUses: {
       create: "cfdi-use",

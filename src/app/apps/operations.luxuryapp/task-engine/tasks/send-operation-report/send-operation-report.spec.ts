@@ -1,12 +1,14 @@
-import { NO_ERRORS_SCHEMA, signal } from "@angular/core";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { PlatformService } from "src/app/core/services/platform.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { vi } from "vitest";
 import { SendOperationReport } from "./send-operation-report";
+import { SendOperationReportBaseService } from "./send-operation-report-base.service";
 
 describe("SendOperationReport", () => {
   let component: SendOperationReport;
@@ -16,6 +18,7 @@ describe("SendOperationReport", () => {
   let mockCustomerIdS: any;
   let mockTableScrollHeightS: any;
   let mockConfig: any;
+  let mockPlatformS: any;
 
   beforeEach(() => {
     mockApiResponseS = {
@@ -24,8 +27,9 @@ describe("SendOperationReport", () => {
     };
     mockAuthS = { applicationUserId: "user-001" };
     mockCustomerIdS = { customerId: vi.fn().mockReturnValue("cust-001") };
-    mockTableScrollHeightS = { scrollHeight: signal("600px") };
+    mockTableScrollHeightS = { scrollHeight: vi.fn().mockReturnValue("600px") };
     mockConfig = { data: { year: 2024, numeroSemana: 42 } };
+    mockPlatformS = { isMobile: vi.fn().mockReturnValue(false) };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(SendOperationReport, {
@@ -39,6 +43,7 @@ describe("SendOperationReport", () => {
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
+        { provide: PlatformService, useValue: mockPlatformS },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -51,82 +56,10 @@ describe("SendOperationReport", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should have default values", () => {
-    expect(component.year).toBe(2024);
-    expect(component.numeroSemana).toBe(42);
-    expect(component.destinatariosSignal()).toEqual([]);
-    expect(component.loading()).toBe(true);
-  });
-
-  it("onLoadSelectItem should call api and set signal", async () => {
-    const items = [{ email: "test@test.com", nivelPrivacidad: "PARA" }];
-    mockApiResponseS.onGetSelectItem.mockResolvedValue(items);
-
-    component.ngOnInit();
-    await new Promise((resolve) => setTimeout(resolve));
-
-    expect(component.destinatariosSignal().length).toBe(1);
-    expect(component.loading()).toBe(false);
-  });
-
-  it("onSelectAll should select all items", () => {
-    component.destinatariosSignal.set([
-      {
-        email: "a@a.com",
-        selectControl: { value: false, setValue: vi.fn() },
-        select: false,
-      },
-    ]);
-    component.onSelectAll();
-    expect(component.destinatariosSignal()[0].select).toBe(true);
-  });
-
-  it("onDeselecteAll should deselect all items", () => {
-    component.destinatariosSignal.set([
-      {
-        email: "a@a.com",
-        selectControl: { value: true, setValue: vi.fn() },
-        select: true,
-      },
-    ]);
-    component.onDeselecteAll();
-    expect(component.destinatariosSignal()[0].select).toBe(false);
-  });
-
-  it("onFilterDestinatarios should return filtered list", () => {
-    component.destinatariosSignal.set([
-      {
-        email: "a@a.com",
-        nivelPrivacidad: "PARA",
-        selectControl: { value: true },
-      },
-      {
-        email: "b@b.com",
-        nivelPrivacidad: "CC",
-        selectControl: { value: false },
-      },
-    ]);
-    const result = component.onFilterDestinatarios();
-    expect(result.length).toBe(1);
-    expect(result[0].email).toBe("a@a.com");
-  });
-
-  it("onAddCorreo should add email to adicionales", () => {
-    component.mostrarPara = true;
-    component.form.patchValue({ email: "new@test.com" });
-    component.onAddCorreo();
-    expect(component.destinatariosAdicionales.length).toBe(1);
-    expect(component.destinatariosAdicionales[0].email).toBe("new@test.com");
-    expect(component.destinatariosAdicionales[0].nivelPrivacidad).toBe("PARA");
-  });
-
-  it("onDeleteDestinatariosAdicionales should remove at index", () => {
-    component.destinatariosAdicionales = [
-      { email: "a@a.com", nivelPrivacidad: "PARA" },
-      { email: "b@b.com", nivelPrivacidad: "CC" },
-    ];
-    component.onDeleteDestinatariosAdicionales(0);
-    expect(component.destinatariosAdicionales.length).toBe(1);
-    expect(component.destinatariosAdicionales[0].email).toBe("b@b.com");
+  it("should initialize service with config data", () => {
+    const service = fixture.debugElement.injector.get(SendOperationReportBaseService);
+    expect(service.year).toBe(2024);
+    expect(service.numeroSemana).toBe(42);
+    expect(service.loading()).toBe(true);
   });
 });

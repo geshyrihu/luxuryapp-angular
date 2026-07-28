@@ -1,201 +1,29 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  signal,
-} from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { ConfirmationService } from "@ui/web/primeng-api/primeng-api";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { PlatformService } from "src/app/core/services/platform.service";
 import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ButtonType } from "src/app/core/enums/button-type.enum";
-import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DestinatariosMailReporte } from "src/app/core/interfaces/destinatarios-mail-reporte.interface";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { SendOperationReportBaseService } from "./send-operation-report-base.service";
+import { SendOperationReportWeb } from "./send-operation-report-web";
+import { SendOperationReportMobile } from "./send-operation-report-mobile";
+
 @Component({
   selector: "app-send-operation-report",
-  imports: [
-    AppIcon,
-    PrimeNgCustomTableEmptyMessage,
-    ReactiveFormsModule,
-    TableModule,
-    CustomInputTextSignal,
-    LxTag,
-    CustomInputCheckSignal,
-    WebButtonLabel,
-    WebButtonLabelConfirm,
-    WebButtonLabelAdd,
-    PrimeNgCustomCaption,
-  ],
-  templateUrl: "./send-operation-report.html",
+  imports: [SendOperationReportWeb, SendOperationReportMobile],
+  template: `
+    @if (platform.isMobile()) {
+      <app-send-operation-report-mobile />
+    } @else {
+      <app-send-operation-report-web />
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  providers: [ConfirmationService],
+  providers: [SendOperationReportBaseService],
 })
 export class SendOperationReport {
-  private authS = inject(AuthService);
-  private apiResponseS = inject(ApiResponseService);
-  private formB = inject(FormBuilder);
+  protected platform = inject(PlatformService);
   private config = inject(DynamicDialogConfig);
-  private customerIdS = inject(CustomerIdService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
-  // private messageS = inject(MessageService); // Unused
-  // private ref = inject(DynamicDialogRef); // Unused in original but maybe implicitly needed or mistake in cleaning? Keeping just in case or removing if sure. Original didn't use ref explicitly in methods shown except maybe close? Checked: no ref.close() in explicit methods shown, but logically maybe needed? The code shows `ref` injected but not used in onSubmit logic for this report sending component (it sends email). Wait, previous did `ref.close`. This one does `.then(() => {})` on `onEnviarEmail`. I will remove `ref` if unused to be clean.
+  private service = inject(SendOperationReportBaseService);
 
-  year: number = this.config.data.year;
-  numeroSemana: number = this.config.data.numeroSemana;
-  ButtonTypeSubmit = ButtonType.Submit;
-  destinatariosSignal = signal<any[]>([]);
-  globalFilterFields = computed(() =>
-    globalFilterFields(this.destinatariosSignal()),
-  );
-  loading = signal(true);
-  destinatariosFinal: DestinatariosMailReporte[] = [];
-  destinatariosAdicionales: DestinatariosMailReporte[] = [];
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
-  para: string = "";
-  cc: string = "";
-  cco: string = "";
-  mostrarPara: boolean = false;
-  mostrarCo: boolean = false;
-  mostrarCco: boolean = false;
-  placeholder: string = "";
-
-  form = this.formB.nonNullable.group({
-    email: [
-      "",
-      [
-        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
-        Validators.required,
-      ],
-    ],
-  });
-
-  ngOnInit(): void {
-    this.onLoadSelectItem();
-  }
-
-  onLoadSelectItem() {
-    this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(
-        Endpoints.ResidentesEdificio.selectByCustomer(
-          this.customerIdS.customerId(),
-        ),
-      )
-      .then((response: any) => {
-        if (!Array.isArray(response)) {
-          this.loading.set(false);
-          return;
-        }
-        const items = response.map((item: any) => ({
-          ...item,
-          selectControl: new FormControl(item.select ?? false),
-        }));
-        this.destinatariosSignal.set(items);
-        this.loading.set(false);
-      });
-  }
-
-  onEnviarEmail() {
-    const applicationUserId = this.authS.applicationUserId;
-    const customerId: string = this.customerIdS.customerId();
-    this.apiResponseS
-      .onPost(
-        Endpoints.SendEmail.operationReport(
-          applicationUserId,
-          customerId,
-          this.year,
-          this.numeroSemana,
-        ),
-        this.onFilterDestinatarios(),
-      )
-      .then(() => {});
-  }
-  onSelectAll() {
-    this.destinatariosSignal.update((current) =>
-      current.map((resp) => {
-        resp.selectControl?.setValue(true, { emitEvent: false });
-        return { ...resp, select: true };
-      }),
-    );
-  }
-  onDeselecteAll() {
-    this.destinatariosSignal.update((current) =>
-      current.map((resp) => {
-        resp.selectControl?.setValue(false, { emitEvent: false });
-        return { ...resp, select: false };
-      }),
-    );
-  }
-
-  onFilterDestinatarios(): DestinatariosMailReporte[] {
-    this.destinatariosFinal = [];
-    this.destinatariosSignal().forEach((resp) => {
-      // let correo: DestinatariosMailReporte;
-      if (resp.selectControl !== undefined && resp.email !== null) {
-        if (resp.selectControl.value) {
-          const correoFiltro = {
-            nivelPrivacidad: resp.nivelPrivacidad,
-            email: resp.email,
-          };
-          this.destinatariosFinal.push(correoFiltro);
-        }
-      }
-    });
-
-    this.destinatariosAdicionales.forEach((resp) => {
-      this.destinatariosFinal.push(resp);
-    });
-    return this.destinatariosFinal;
-  }
-
-  onAddCorreo() {
-    let nivelPrivacidad: string = "";
-    if (this.mostrarPara) nivelPrivacidad = "PARA";
-    if (this.mostrarCo) nivelPrivacidad = "CC";
-    if (this.mostrarCco) nivelPrivacidad = "CCO";
-    const correoFiltro = {
-      nivelPrivacidad: nivelPrivacidad,
-      email: this.form.controls.email.value,
-    };
-    this.form.patchValue({
-      email: "",
-    });
-    this.destinatariosAdicionales.push(correoFiltro);
-  }
-
-  onMostrarInput(
-    para: boolean,
-    cc: boolean,
-    cco: boolean,
-    placeholder: string,
-  ) {
-    this.mostrarPara = para;
-    this.mostrarCo = cc;
-    this.mostrarCco = cco;
-    this.placeholder = `${placeholder}  (separar correos con ";")`;
-  }
-
-  onDeleteDestinatariosAdicionales(indexArr: any) {
-    this.destinatariosAdicionales.splice(indexArr, 1);
+  constructor() {
+    this.service.initialize(this.config.data.year, this.config.data.numeroSemana);
   }
 }

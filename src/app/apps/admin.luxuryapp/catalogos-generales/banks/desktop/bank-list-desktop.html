@@ -16,6 +16,7 @@
     <primeng-custom-caption
       (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
+      aria-label="Agregar nuevo banco"
     />
   </ng-template>
   <ng-template #header>
@@ -45,11 +46,13 @@
           <iw-button-edit
             size="sm"
             class="btn--circle"
+            [attr.aria-label]="'Editar banco ' + item.shortName"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
           <iw-button-delete
             size="sm"
             class="btn--circle"
+            [attr.aria-label]="'Eliminar banco ' + item.shortName"
             (confirmed)="delete.emit(item.id)"
           />
         </div>

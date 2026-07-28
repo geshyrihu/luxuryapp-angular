@@ -754,6 +754,16 @@
           {{ item.description }}
         </p>
 
+        <!-- Toggle de relevancia para reporte -->
+        <div class="flex align-items-center gap-2 mt-1">
+          <span class="text-xs text-color-secondary">Incluir en reporte</span>
+          <custom-input-toggle-switch-signal
+            [(ngModel)]="item.isRelevant"
+            (toggleChange)="onUpdateStateTicket(item)"
+            size="small"
+          />
+        </div>
+
         <!-- Evidencias (Antes y Después) -->
         <div class="flex gap-2 mt-2">
           @if (item.beforeWork) {

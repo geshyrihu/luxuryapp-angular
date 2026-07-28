@@ -32,4 +32,59 @@ describe('BankForm', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize form group', () => {
+    expect(component.form).toBeDefined();
+    expect(component.form.get('code')).toBeDefined();
+    expect(component.form.get('shortName')).toBeDefined();
+    expect(component.form.get('largeName')).toBeDefined();
+  });
+
+  it('should have submitting signal initialized as false', () => {
+    expect(component.submitting()).toBe(false);
+  });
+
+  it('should have form with required validators on code', () => {
+    const control = component.form.get('code');
+    expect(control?.hasError('required')).toBe(true);
+  });
+
+  it('should have form with maxLength validator on code', () => {
+    const control = component.form.get('code');
+    control?.setValue('TOOLONG');
+    expect(control?.hasError('maxlength')).toBe(true);
+  });
+
+  it('should have form with required validators on shortName', () => {
+    const control = component.form.get('shortName');
+    expect(control?.hasError('required')).toBe(true);
+  });
+
+  it('should have form with minLength validator on shortName', () => {
+    const control = component.form.get('shortName');
+    control?.setValue('BOA');
+    expect(control?.hasError('minlength')).toBe(true);
+  });
+
+  it('should have form with required validators on largeName', () => {
+    const control = component.form.get('largeName');
+    expect(control?.hasError('required')).toBe(true);
+  });
+
+  it('should form be invalid when empty', () => {
+    expect(component.form.invalid).toBe(true);
+  });
+
+  it('should form be valid when all fields filled correctly', () => {
+    component.form.patchValue({
+      code: 'BOA',
+      shortName: 'Bank of America',
+      largeName: 'The Bank of America Corporation'
+    });
+    expect(component.form.valid).toBe(true);
+  });
+
+  it('should have id property initialized as empty string', () => {
+    expect(component.id).toBe('');
+  });
 });

@@ -2,6 +2,7 @@
   [data]="data()"
   (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
   [globalFilterFields]="globalFilterFields()"
+  aria-label="Lista de bancos"
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
@@ -16,8 +17,13 @@
         <ili-button-edit
           (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           label="Editar"
+          [attr.aria-label]="'Editar banco ' + item.shortName"
         />
-        <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        <ili-button-delete
+          (confirmed)="delete.emit(item.id)"
+          label="Eliminar"
+          [attr.aria-label]="'Eliminar banco ' + item.shortName"
+        />
       </ili-action-menu>
     </ili-list-item>
   </ng-template>

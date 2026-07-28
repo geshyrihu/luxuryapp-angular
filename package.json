@@ -12,6 +12,8 @@
     "audit:apps": "node scripts/audit-apps-boundaries.mjs",
     "audit:design": "node scripts/audit-design-system.mjs",
     "audit:tokens": "node scripts/audit-ds-tokens.mjs",
+    "audit:design-conventions": "node scripts/audit-design-conventions.mjs",
+    "extract:design-conventions": "node scripts/extract-design-conventions.mjs",
     "lint": "npm run audit:encoding && npm run audit:emoji && npm run audit:css && npm run audit:ui && npm run audit:apps && npm run audit:design && npm run audit:tokens",
     "audit:frontend": "node scripts/audit-frontend-senior.mjs",
     "audit:mobile": "node scripts/audit-mobile-developer.mjs",

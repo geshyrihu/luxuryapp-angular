@@ -1,0 +1,93 @@
+<div class="flex flex-column gap-2">
+  <app-segmented-control
+    [items]="segmentItems"
+    ariaLabel="Acciones de destinatarios"
+    (changed)="onSegmentChange($event)"
+  />
+  <ili-button-confirm
+    expand="block"
+    size="small"
+    label="Enviar Reporte"
+    swalTitle="Confirmar envío"
+    swalText="¿Está seguro de que desea enviar el reporte?"
+    swalConfirmButtonText="Sí, enviar"
+    (confirmed)="service.onEnviarEmail()"
+  />
+</div>
+
+@if (service.mostrarPara || service.mostrarCo || service.mostrarCco) {
+<form [formGroup]="service.form" (ngSubmit)="service.onAddCorreo()" class="ml-0 mt-1">
+  <div class="grid align-items-center">
+    <div class="col-10">
+      <ion-input-text
+        [control]="service.form.controls.email"
+        [placeholder]="service.placeholder"
+      />
+    </div>
+    <div class="col-2">
+      <ili-button-add
+        [type]="service.ButtonTypeSubmit"
+        label="Agregar Correo"
+        [disabled]="service.form.invalid"
+        [iconClass]="service.form.invalid ? 'mdi:close' : 'mdi:check'"
+        customClass=""
+      />
+    </div>
+  </div>
+  <div class="mt-1">
+    <div>
+      @if (service.form.controls.email.errors && (service.form.controls.email.dirty || service.form.controls.email.touched)) {
+      <small class="p-error block">
+        @if (service.form.controls.email.errors['required'] && (service.form.controls.email.dirty || service.form.controls.email.touched)) {
+        <span>Correo electronico es requerido</span>
+        }
+        @if (service.form.controls.email.errors['pattern'] && (service.form.controls.email.dirty || service.form.controls.email.touched)) {
+        <span>El correo electrónico debe ser una dirección de correo electrónico válida</span>
+        }
+      </small>
+      }
+    </div>
+  </div>
+</form>
+}
+
+<div class="mt-2">
+  <div>
+    @for (item of service.destinatariosAdicionales; track item; let i = $index) {
+    <span class="ml-1 relative inline-block">
+      <lx-tag
+        value="{{ item.nivelPrivacidad }}/{{ item.email }}"
+        severity="info"
+        class="p-2"
+      />
+      <span
+        class="absolute top-0 right-0 -mt-2 -mr-2 p-badge p-badge-success p-badge-rounded"
+      >
+        <app-icon
+          [icon]="'mdi:close'"
+          class="cursor-pointer"
+          tooltip="Descartar correo"
+          placement="top"
+          (click)="service.onDeleteDestinatariosAdicionales(i)"
+        />
+      </span>
+    </span>
+    }
+  </div>
+</div>
+
+<hr />
+
+<ion-list>
+  @for (item of service.destinatariosSignal(); track item) {
+  <ion-item>
+    <ion-checkbox slot="start" [formControl]="item.selectControl" />
+    <ion-label>
+      <h2>{{ item.label }}</h2>
+      <p>{{ item.email }}</p>
+      <p>{{ item.departamento }}</p>
+      <p>{{ item.figuraLegal }}</p>
+    </ion-label>
+  </ion-item>
+  }
+</ion-list>

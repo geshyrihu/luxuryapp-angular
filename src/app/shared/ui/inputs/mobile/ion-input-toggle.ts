@@ -1,4 +1,4 @@
-import { Component, forwardRef, output, ChangeDetectionStrategy } from "@angular/core";
+import { Component, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonToggle } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
@@ -24,6 +24,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         slot="end"
         [id]="id()"
         [formControl]="control() || internalControl"
+        [attr.size]="size()"
         (ionChange)="onToggleChange($event)"
       >
         @if (placeholder()) {
@@ -42,6 +43,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
   ],
 })
 export class IonInputToggle extends BaseIonicInput {
+  size = input<"small" | "default">("default");
   toggleChange = output<boolean>();
 
   onToggleChange(event: any): void {

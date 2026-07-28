@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   forwardRef,
   inject,
   input,
@@ -34,6 +35,7 @@ import { WebInputToggleSwitch } from "../../web/input-toggle-switch/input-toggle
         [readonly]="readonly()"
         [disabled]="disabled()"
         [required]="requiredInput()"
+        [size]="mobileSize()"
         (toggleChange)="onToggleChange($event)"
       />
     } @else {
@@ -60,6 +62,9 @@ export class InputToggleSwitch extends BaseInputSignal {
 
   toggleChange = output<any>();
   size = input<"small" | "large" | undefined>(undefined);
+  protected mobileSize = computed<"small" | "default">(() =>
+    this.size() === "small" ? "small" : "default",
+  );
 
   onToggleChange(event: any): void {
     this.toggleChange.emit(event);
