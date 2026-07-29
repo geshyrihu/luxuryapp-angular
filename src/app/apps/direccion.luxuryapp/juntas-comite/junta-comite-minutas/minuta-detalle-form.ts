@@ -34,7 +34,7 @@ interface IMinutaDetalleForm {
   id: FormControl<string | null>;
   deliveryDate: FormControl<Date | null>;
   status: FormControl<number | null>;
-  eAreaMinutasDetalles: FormControl<number | null>;
+  AreaMinutasDetalles: FormControl<number | null>;
   title: FormControl<string>;
   requestService: FormControl<string>;
   meetingId: FormControl<number | null>;
@@ -77,47 +77,42 @@ export class MinutaDetalleForm implements OnInit {
   ]);
   cb_area = signal<SelectItemDto[]>([]);
 
-  form: FormGroup<IMinutaDetalleForm>;
-
-  async ngOnInit() {
-    this.form = this.formB.group({
-      id: new FormControl({ value: this.config.data.id, disabled: true }),
-      deliveryDate: new FormControl<Date | null>(null, [Validators.required]),
-      status: new FormControl(0, [Validators.required]),
-      eAreaMinutasDetalles: new FormControl(this.config.data.areaResponsable, [
+  form: FormGroup<IMinutaDetalleForm> = new FormGroup({
+    id: new FormControl({ value: this.config.data.id, disabled: true }),
+    deliveryDate: new FormControl<Date | null>(null, [Validators.required]),
+    status: new FormControl(0, [Validators.required]),
+      AreaMinutasDetalles: new FormControl(this.config.data.areaResponsable ?? 0, [
         Validators.required,
       ]),
-      title: new FormControl("", {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
-      requestService: new FormControl("", {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
-      meetingId: new FormControl(this.config.data.meetingId),
-      applicationUserId: new FormControl(this.authS.applicationUserId, {
-        nonNullable: true,
-      }),
-    });
+    title: new FormControl("", {
+      validators: [Validators.required],
+      nonNullable: true,
+    }),
+    requestService: new FormControl("", {
+      validators: [Validators.required],
+      nonNullable: true,
+    }),
+    meetingId: new FormControl(this.config.data.meetingId),
+    applicationUserId: new FormControl(this.authS.applicationUserId, {
+      nonNullable: true,
+    }),
+  });
 
-    // Load Catalogs
-    const areas = await firstValueFrom(this.enumSelectS.areaMinutasDetalles());
-    this.cb_area.set(areas);
-
-    // Init Data
+  async ngOnInit() {
     this.id.set(this.config.data.id);
 
     if (this.id()) {
       this.onLoadData();
     }
+
+    const areas = await firstValueFrom(this.enumSelectS.areaMinutasDetalles());
+    this.cb_area.set(areas);
   }
 
   onLoadData() {
     this.apiResponseS
       .onGetItem(Endpoints.MeetingsDetails.getById(this.id()))
       .then((result: any) => {
-        // Clean HTML from requestService if present
         let content = result.requestService || "";
         if (content) {
           content = content.replace(/<[^>]*>|&nbsp;/g, "");
@@ -129,6 +124,11 @@ export class MinutaDetalleForm implements OnInit {
           this.form.controls.deliveryDate.setValue(
             this.dateS.parseDate(result.deliveryDate),
           );
+        }
+        if (result.AreaMinutasDetalles !== undefined) {
+          this.form.controls.AreaMinutasDetalles.setValue(result.AreaMinutasDetalles);
+        } else if (this.config.data.areaResponsable !== undefined) {
+          this.form.controls.AreaMinutasDetalles.setValue(this.config.data.areaResponsable);
         }
       });
   }

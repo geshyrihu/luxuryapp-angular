@@ -1,6 +1,7 @@
 import { EndpointsAdmin } from "./admin.endpoints";
 import { EndpointsAuth } from "./auth.endpoints";
 import { EndpointsCobranza } from "./cobranza.endpoints";
+import { EndpointsCompras } from "./compras.endpoints";
 import { EndpointsCommittee } from "./committee.endpoints";
 import { EndpointsContabilidad } from "./contabilidad.endpoints";
 import { EndpointsDireccion } from "./direccion.endpoints";
@@ -28,6 +29,7 @@ export const Endpoints = {
   ...EndpointsAuth,
   ...EndpointsSecurity,
   ...EndpointsAdmin,
+  ...EndpointsCompras,
   ...EndpointsSystem,
   ...EndpointsCommittee,
   ...EndpointsContabilidad,

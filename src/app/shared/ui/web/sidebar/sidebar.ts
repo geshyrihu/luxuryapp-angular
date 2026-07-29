@@ -17,6 +17,7 @@ import { DrawerModule } from "primeng/drawer";
       [position]="position()"
       [closable]="closable()"
       [header]="header()"
+      [styleClass]="styleClass()"
       (onHide)="onHide()"
     >
       <ng-content />

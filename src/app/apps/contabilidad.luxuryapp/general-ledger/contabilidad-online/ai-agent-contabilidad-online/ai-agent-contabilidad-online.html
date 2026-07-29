@@ -2,25 +2,21 @@
   [visible]="visible()"
   (visibleChange)="visible.set($event)"
   position="right"
-  class="w-full lg:w-8 xl:w-7 p-0"
+  styleClass="w-full lg:w-8 xl:w-7 p-0"
 >
-  <ng-template #header>
-    <div class="flex align-items-center gap-2">
-      <app-icon
-        [icon]="'mdi:sparkles'"
-        class="text-primary text-2xl font-bold"
-      />
-      <div class="flex flex-column">
-        <span class="font-bold text-xl">Auditor IA Contabilidad Online</span>
-        <span class="text-xs text-500"
-          >Analizando: {{ filterS.currentReportName() || 'Ningún reporte'
-          }}</span
-        >
-      </div>
+  <div class="flex align-items-center gap-2 mb-3">
+    <app-icon
+      [icon]="'mdi:sparkles'"
+      class="text-primary text-2xl font-bold"
+    />
+    <div class="flex flex-column">
+      <span class="font-bold text-xl">Auditor IA Contabilidad Online</span>
+      <span class="text-xs text-500"
+        >Analizando: {{ filterS.currentReportName() || 'Ningún reporte'
+        }}</span
+      >
     </div>
-  </ng-template>
-
-  <ng-template #content>
+  </div>
     <div class="flex flex-column h-full">
       <div class="flex-1 min-h-0 flex flex-column xl:flex-row gap-3 p-3">
         <div class="flex-1 min-h-0 flex flex-column">
@@ -158,5 +154,4 @@
         </div>
       </div>
     </div>
-  </ng-template>
 </lx-sidebar>

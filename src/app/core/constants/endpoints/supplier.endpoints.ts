@@ -87,8 +87,6 @@ export const EndpointsSupplier = {
       statusCompra: number | string,
       tipoGasto: number | string,
     ) => `orden-compra/list/${customerId}/${statusCompra}/${tipoGasto}`,
-    listPagadas: (customerId: string, type: string) =>
-      `orden-compra/pagadas/${customerId}/${type}`,
     pdf: (id: string | number) => `orden-compra/pdf/${id}`,
     progressiveCreate: "orden-compra/progressive-create",
     relatedQuotes: (solicitudCompraId: string) =>

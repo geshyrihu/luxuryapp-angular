@@ -181,8 +181,8 @@ export const comprasRoutes: Routes = [
   {
     path: "paid", // Ruta anterior: 'pagadas'
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/po/purchase-order/orden-compra-pagadas/orden-compra-pagadas").then(
-        (m) => m.OrdenCompraPagadas,
+      import("src/app/apps/compras.luxuryapp/historial-compras/historial-compras-wrapper").then(
+        (m) => m.HistorialComprasWrapper,
       ),
     canActivate: [authGuard],
     data: {

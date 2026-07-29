@@ -80,6 +80,7 @@ export class AreaDetailsTable {
       meetingId: this.meetingId(),
       id: detailId,
       header: `Editar Asunto de ${this.title()}`,
+      areaResponsable: this.areaResponsable(),
     });
   }
 

@@ -1,0 +1,226 @@
+<section class="card mb-3 p-3 md:p-4">
+  <div class="flex flex-column gap-2">
+    <div class="flex flex-column gap-1 mb-2">
+      <h2 class="m-0 text-xl">Historial de Compras</h2>
+      <small class="text-color-secondary">
+        Consulta compras pagadas y filtra por tipo de compra, rango de fechas y
+        tipo de orden.
+      </small>
+    </div>
+
+    <div class="surface-50 border-1 surface-border border-round-lg p-3">
+      <div class="grid formgrid">
+        <div class="col-12 lg:col-3">
+          <div class="flex flex-column gap-2 h-full">
+            <div class="flex align-items-center justify-content-between gap-2">
+              <label class="text-sm font-semibold">Rango de fechas</label>
+              <button
+                type="button"
+                class="border-1 surface-border bg-white border-round-md px-2 py-1 text-xs font-medium text-700 cursor-pointer"
+                (click)="clearDateRange()"
+              >
+                Limpiar
+              </button>
+            </div>
+
+            <div class="grid">
+              <div class="col-12 md:col-6">
+                <custom-input-date-signal
+                  [control]="filterForm.controls.fechaInicio"
+                  label="DESDE"
+                  placeholder="DESDE"
+                  [horizontal]="false"
+                  [noMargin]="true"
+                />
+              </div>
+              <div class="col-12 md:col-6">
+                <custom-input-date-signal
+                  [control]="filterForm.controls.fechaFin"
+                  label="HASTA"
+                  placeholder="HASTA"
+                  [horizontal]="false"
+                  [noMargin]="true"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              @for (preset of dateRangePresets; track preset.label) {
+                <button
+                  type="button"
+                  class="border-1 surface-border bg-white border-round-md px-2 py-1 text-xs font-medium text-primary cursor-pointer"
+                  (click)="applyDatePreset(preset.mode, preset.days ?? 0)"
+                >
+                  {{ preset.label }}
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 lg:col-5">
+          <div class="flex flex-column gap-3 h-full">
+            <div class="flex flex-column gap-2">
+              <label class="text-sm font-semibold">Estado de pago</label>
+              <app-segmented-control
+                ariaLabel="Filtro por estado de pago"
+                [items]="estadoPagoOptions"
+                [value]="selectedEstadoPago()"
+                (valueChange)="selectedEstadoPago.set($event)"
+              />
+            </div>
+
+            <div class="flex flex-column gap-2">
+              <label class="text-sm font-semibold">Tipo de compra</label>
+              <app-segmented-control
+                ariaLabel="Filtro por tipo de compra"
+                [items]="tipoCompraOptions"
+                [value]="selectedTipoCompra()"
+                (valueChange)="selectedTipoCompra.set($event)"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 lg:col-4">
+          <div class="flex flex-column gap-3 h-full">
+            <div class="flex flex-column gap-2">
+              <label class="text-sm font-semibold"
+                >Estado de autorizacion</label
+              >
+              <app-segmented-control
+                ariaLabel="Filtro por estado de autorizacion"
+                [items]="estadoAutorizacionOptions"
+                [value]="selectedEstadoAutorizacion()"
+                (valueChange)="selectedEstadoAutorizacion.set($event)"
+              />
+            </div>
+
+            <div class="flex flex-column gap-2">
+              <label class="text-sm font-semibold">Tipo de orden</label>
+              <app-segmented-control
+                ariaLabel="Filtro por tipo de orden"
+                [items]="tipoOrdenOptions"
+                [value]="selectedTipoOrden()"
+                (valueChange)="selectedTipoOrden.set($event)"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="card p-3 md:p-4 hidden md:block">
+  <p-table
+    #dt
+    [globalFilterFields]="globalFilterFields()"
+    [loading]="loading()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    [value]="dataSignal()"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    class="custom-table"
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        [title]="'Compras pagadas'"
+        [showAdd]="false"
+        [dt]="dt"
+      />
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th class="table-col-3">No</th>
+        <th class="table-col-6" pSortableColumn="fechaSolicitud">
+          Fecha
+          <p-sorticon field="fechaSolicitud" />
+        </th>
+        <th class="table-col-6" pSortableColumn="folio">
+          Folio
+          <p-sorticon field="folio" />
+        </th>
+        <th class="table-col-8" pSortableColumn="tipoOrdenLabel">
+          Tipo de orden
+          <p-sorticon field="tipoOrdenLabel" />
+        </th>
+        <th class="table-col-6" pSortableColumn="factura">
+          Factura
+          <p-sorticon field="factura" />
+        </th>
+        <th class="table-col-20" pSortableColumn="proveedor">
+          Proveedor
+          <p-sorticon field="proveedor" />
+        </th>
+        <th class="table-col-25" pSortableColumn="justificacionGasto">
+          Justificacion
+          <p-sorticon field="justificacionGasto" />
+        </th>
+        <th class="table-col-10" pSortableColumn="total">
+          Total
+          <p-sorticon field="total" />
+        </th>
+        <th class="table-col-5">Ver</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item let-ri="rowIndex">
+      <tr>
+        <td>{{ ri + 1 }}</td>
+        <td>{{ item.fechaSolicitud | date:'dd/MM/yyyy':'UTC' }}</td>
+        <td>{{ item.folio }}</td>
+        <td>{{ item.tipoOrdenLabel }}</td>
+        <td>{{ item.factura }}</td>
+        <td>{{ item.proveedor }}</td>
+        <td class="p-text-justify">
+          {{ item.equipoOInstalacion }} {{ item.justificacionGasto }}
+        </td>
+        <td>{{ item.total | number: '1.2-2' }}</td>
+        <td class="text-center">
+          <iw-button-edit (clicked)="onViewOrder(item.id)" />
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <primeng-custom-table-emptymessage [colspan]="9" />
+    </ng-template>
+
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="dataSignal()" />
+    </ng-template>
+  </p-table>
+</section>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        <app-icon
+          icon="mdi:check-circle-outline"
+          class="text-xl text-green-500"
+        />
+      </div>
+      <h3>{{ item.proveedor }}</h3>
+      <p>Folio: {{ item.folio }} | {{ item.tipoOrdenLabel }}</p>
+      <p>Factura: {{ item.factura }}</p>
+      <p>
+        Total: {{ item.total | number:'1.2-2' }} |
+        {{ item.fechaSolicitud | date:'dd/MM/yyyy':'UTC' }}
+      </p>
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit (clicked)="onViewOrder(item.id)" label="Ver" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -19,6 +19,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [position]="position()"
         [closable]="closable()"
         [header]="header()"
+        [styleClass]="styleClass()"
         (dismiss)="dismiss.emit()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
@@ -29,6 +30,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [position]="position()"
         [closable]="closable()"
         [header]="header()"
+        [styleClass]="styleClass()"
         (dismiss)="dismiss.emit()"
       >
         <ng-container [ngTemplateOutlet]="projected" />

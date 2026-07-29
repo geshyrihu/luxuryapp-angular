@@ -11,7 +11,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     @if (visible()) {
       <div class="ili-sidebar-backdrop" (click)="onBackdropClick()"></div>
       <div
-        class="ili-sidebar-panel"
+        class="ili-sidebar-panel {{ styleClass() }}"
         [class.ili-sidebar-right]="position() === 'right'"
       >
         <div class="ili-sidebar-header">

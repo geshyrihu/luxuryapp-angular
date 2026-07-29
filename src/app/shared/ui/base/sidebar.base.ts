@@ -6,6 +6,7 @@ export abstract class SidebarBase {
   position = input<"left" | "right" | "top" | "bottom">("left");
   closable = input<boolean>(true);
   header = input<string>("");
+  styleClass = input<string>("");
 
   dismiss = output<void>();
 
