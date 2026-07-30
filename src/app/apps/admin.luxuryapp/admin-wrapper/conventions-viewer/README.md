@@ -2,7 +2,7 @@
 
 **Ubicación:** `admin-wrapper/conventions-viewer/`  
 **Ruta:** `/admin/conventions-guide`  
-**Propósito:** Visualizar CONVENTIONS.md de manera interactiva con ejemplos por tecnología
+**Propósito:** Visualizar el sistema rector de convenciones por dominio, tipo de tarea y severidad.
 
 ---
 
@@ -11,6 +11,7 @@
 - ✅ **Interfaz Visual Limpia** — Tarjetas expandibles por convención
 - ✅ **Busqueda en Tiempo Real** — Filtra por palabras clave
 - ✅ **Filtrado Avanzado** — Por sección, severidad, tecnología
+- ✅ **Taxonomía Nueva** — Dominio y tipo de tarea alineados con el sistema rector
 - ✅ **Ejemplos de Código** — Angular, .NET, Flutter (copy-to-clipboard)
 - ✅ **Indicadores de Severidad** — Colores distintivos (🔴/🟠/🟡/🔵)
 - ✅ **Responsive** — Mobile-first design (375px+)
@@ -58,7 +59,8 @@ Usar la barra de búsqueda:
 
 **Tabs disponibles:**
 - 📚 **Todas** (muestra todas las reglas)
-- 📖 **Por Sección** (§2, §5, §6, etc.)
+- 🗂️ **Por Dominio** (Core, Backend, Frontend, UI, Styles, Audit, etc.)
+- 🛠️ **Por Tarea** (Implementación Backend, Frontend/UI, Flutter, Auditoría, etc.)
 - ⚠️ **Por Severidad** (CRÍTICA, ALTA, MEDIA, BAJA)
 - 💻 **Por Tecnología** (Angular, .NET, TypeScript, C#, Flutter)
 
@@ -80,7 +82,8 @@ Cada regla contiene:
 ```typescript
 interface ConventionRule {
   id: string;                    // "angular-strict-ts"
-  section: number;               // 2, 5, 6, 7, 9, etc.
+  domain: ConventionDomain;      // core, backend, frontend, ui, styles...
+  taskTypes: ConventionTaskType[]; // implementacion-backend, auditoria...
   title: string;                 // "TypeScript Strict Mode Obligatorio"
   description: string;           // Descripción breve
   severity: 'CRÍTICA' | 'ALTA' | 'MEDIA' | 'BAJA';
@@ -90,10 +93,14 @@ interface ConventionRule {
     dotnet?: { code: string; description: string };
     flutter?: { code: string; description: string };
   };
-  relatedSections?: number[];    // [7, 8]
+  relatedRules?: string[];       // reglas relacionadas
   importance: string;            // Por qué es importante
 }
 ```
+
+> Nota: el viewer ya no depende del esquema histórico por secciones 1-22 como
+> modelo principal. Ahora su dataset base responde a la taxonomía nueva del
+> sistema rector.
 
 ---
 

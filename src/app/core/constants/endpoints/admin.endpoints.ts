@@ -150,11 +150,11 @@ export const EndpointsAdmin = {
       update: (id: string) => `cfdi-use/${id}`,
     },
     EmailData: {
-      base: "email-data",
-      getAll: "email-data/list",
-      getById: (id: string) => `email-data/${id}`,
+      base: "admin/catalogs/email-data",
+      getAll: "admin/catalogs/email-data/list",
+      getById: (id: string) => `admin/catalogs/email-data/${id}`,
       sendTestEmail: (id: string) => `send-email/test-email/${id}`,
-      update: (id: string) => `email-data/${id}`,
+      update: (id: string) => `admin/catalogs/email-data/${id}`,
     },
     PaymentMethods: {
       create: "payment-methods",

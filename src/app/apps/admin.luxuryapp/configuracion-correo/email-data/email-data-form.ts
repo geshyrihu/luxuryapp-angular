@@ -21,7 +21,7 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { EmailDataFormDto } from "src/app/core/interfaces/email-data-form.interface";
+import { EmailDataFormDto, TestEmailResponse } from "src/app/core/interfaces/email-data-form.interface";
 @Component({
   selector: "app-email-data-form",
   templateUrl: "./email-data-form.html",
@@ -78,9 +78,9 @@ export class EmailDataForm implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList<EmailDataFormDto>(Endpoints.Catalogs.EmailData.getById(this.id))
-      .then((result: any) => {
+      .then((result) => {
         if (result !== null) {
-          this.form.patchValue(result);
+          this.form.patchValue({ ...result, port: String(result.port) });
           this.id = result.id;
         }
       });
@@ -102,9 +102,9 @@ export class EmailDataForm implements OnInit {
   TestEmail(): void {
     this.submitting.set(true);
     this.apiResponseS
-      .onPost(Endpoints.Catalogs.EmailData.sendTestEmail(this.id), null)
-      .then((result: any) => {
-        this.testEmailMessage.set(result.message);
+      .onPost<TestEmailResponse>(Endpoints.Catalogs.EmailData.sendTestEmail(this.id), null)
+      .then((result) => {
+        if (result) this.testEmailMessage.set(result.message);
         this.submitting.set(false);
       });
   }

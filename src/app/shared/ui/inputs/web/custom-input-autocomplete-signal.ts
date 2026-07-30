@@ -46,8 +46,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         (completeMethod)="onComplete($event)"
         (onSelect)="onSelectItem($event)"
         (onClear)="onClear()"
-        [ngModel]="(control() || internalControl).value"
-        (ngModelChange)="onModelChange($event)"
+        [formControl]="control() || internalControl"
         [optionLabel]="optionLabel()"
         [dataKey]="dataKey()"
         [placeholder]="placeholder()"
@@ -149,10 +148,6 @@ export class CustomInputAutoComplete extends BaseInputSignal {
     if (!item) return "";
     if (typeof item === "string") return item;
     return item?.[this.optionLabel()] ?? "";
-  }
-
-  public onModelChange(value: any): void {
-    (this.control() || this.internalControl).setValue(value);
   }
 
   public onSelectItem(event: any): void {

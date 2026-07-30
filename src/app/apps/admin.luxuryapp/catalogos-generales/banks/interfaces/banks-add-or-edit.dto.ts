@@ -1,4 +1,3 @@
-undefined;
 export interface BankAddOrEditDto {
   code: string;
   shortName: string;

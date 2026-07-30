@@ -18,9 +18,9 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="ePosicionComite">
-        <p class="card-title">Posición</p>
-        <p-sorticon field="ePosicionComite" />
+      <th pSortableColumn="posicionComite">
+        <p class="card-title">Posicion</p>
+        <p-sorticon field="posicionComite" />
       </th>
       <th pSortableColumn="nameProperty">
         <p class="card-title">Nombre</p>
@@ -60,22 +60,20 @@
       <td>
         <p class="card-title">{{ item.celular }}</p>
       </td>
-      <!-- Opciones -->
 
       <td class="no-print">
         <div class="flex">
           <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar', nameProperty: item.nameProperty })"
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
 
           <iw-button-send-email
-            confirmMessage="Enviar usuario y contraseóa de acceso."
+            confirmMessage="Enviar usuario y contrasena de acceso."
             (confirmed)="onSendCredential(item.id)"
           />
         </div>
       </td>
-      <!-- Opciones -->
     </tr>
   </ng-template>
   <ng-template #emptymessage>
@@ -86,7 +84,6 @@
   </ng-template>
 </p-table>
 
-<!--📲INICIO: Componente adaptado para versión mívil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -109,7 +106,7 @@
 
       <h2 class="font-normal m-0">{{ item.nameProperty }}</h2>
       <p class="text-medium text-500 m-0">
-        {{ item.ePosicionComite }} | {{ item.departamento }}
+        {{ item.posicionComite }} | {{ item.departamento }}
       </p>
       <p class="text-medium text-500 m-0">{{ item.email }}</p>
       <p class="text-medium text-500 m-0">{{ item.celular }}</p>
@@ -117,12 +114,12 @@
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar', nameProperty: item.nameProperty })"
             label="Editar"
           />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
           <ili-button-send-email
-            confirmMessage="Enviar usuario y contraseóa de acceso."
+            confirmMessage="Enviar usuario y contrasena de acceso."
             (confirmed)="onSendCredential(item.id)"
             label="Enviar"
           />

@@ -20,10 +20,19 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import {
+  CommitteeDirectoryGroup,
+  CommitteeDirectoryMember,
+} from "src/app/core/interfaces/comite-vigilancia.interface";
+
+type CommitteeDirectoryFlatItem = CommitteeDirectoryMember & {
+  customerName: string;
+};
+
 @Component({
   selector: "app-comites-list",
   templateUrl: "./comites-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PrimeNgCustomTableEmptyMessage,
     TableModule,
@@ -36,15 +45,14 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 })
 export class ComitesList implements OnInit {
   apiResponseS = inject(ApiResponseService);
-  // Declaración e inicialización de variables
-  dataSignal = signal<any[]>([]);
+  dataSignal = signal<CommitteeDirectoryGroup[]>([]);
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  tablePrimeNgRows = tablePrimeNgRows();
+  rowsPerPageOptions = rowsPerPageOptions();
 
-  flatData = computed(() => {
+  flatData = computed<CommitteeDirectoryFlatItem[]>(() => {
     return this.dataSignal().flatMap((customerGroup) =>
-      customerGroup.committeeMembers.map((member: any) => ({
+      customerGroup.committeeMembers.map((member) => ({
         ...member,
         customerName: customerGroup.customer.nombreCorto,
       })),
@@ -64,8 +72,8 @@ export class ComitesList implements OnInit {
   onLoadData() {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList(Endpoints.LegalDirectories.committees)
-      .then((result: any) => {
+      .onGetList<CommitteeDirectoryGroup[]>(Endpoints.LegalDirectories.committees)
+      .then((result) => {
         this.dataSignal.set(result);
         this.loading.set(false);
       });

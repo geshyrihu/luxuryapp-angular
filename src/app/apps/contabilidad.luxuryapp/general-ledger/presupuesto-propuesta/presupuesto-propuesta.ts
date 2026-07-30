@@ -1,4 +1,5 @@
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -142,7 +143,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   /** Aóo fiscal que se usa como base para comparaciones (normalmente el Aóo actual). */
   baseBudgetYear: number = this.selectedFiscalYear - 1;
   /** Lista de aóos disponibles para la selección del Aóo fiscal. */
-  availableYears: number[] = [];
+  availableYears: SelectItemDto<number>[] = [];
 
   /** Campos utilizados por el filtro global de la tabla PrimeNG. */
   globalFilterFields: string[] = ["accountNumber", "accountName"];
@@ -452,7 +453,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   initializeYears(): void {
     const currentYear = new Date().getFullYear();
     for (let year = 2014; year <= currentYear + 1; year++) {
-      this.availableYears.push(year);
+      this.availableYears.push({ value: year, label: String(year) });
     }
   }
 

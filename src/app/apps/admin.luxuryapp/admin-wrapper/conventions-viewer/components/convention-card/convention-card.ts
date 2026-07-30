@@ -5,7 +5,12 @@ import {
   signal,
 } from '@angular/core';
 import { ConventionRule } from '../../conventions-viewer.service';
-import { severityColor, severityIcon } from '../../conventions-viewer.utils';
+import {
+  severityColor,
+  severityIcon,
+  domainLabel,
+  taskTypeLabel,
+} from '../../conventions-viewer.utils';
 
 @Component({
   selector: 'app-convention-card',
@@ -53,4 +58,10 @@ export class ConventionCard {
   // Exponer funciones de utilidad al template
   protected readonly severityColor = severityColor;
   protected readonly severityIcon = severityIcon;
+  protected readonly domainLabel = domainLabel;
+  protected readonly taskTypeLabel = taskTypeLabel;
+
+  primaryTaskLabel(): string {
+    return taskTypeLabel(this.convention().taskTypes[0]);
+  }
 }

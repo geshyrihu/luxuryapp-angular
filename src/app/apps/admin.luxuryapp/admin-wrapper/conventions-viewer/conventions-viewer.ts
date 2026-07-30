@@ -13,10 +13,14 @@ import {
 import {
   severityColor,
   severityIcon,
+  domainLabel,
+  taskTypeLabel,
+  type ConventionDomain,
+  type ConventionTaskType,
   type SeverityType,
 } from "./conventions-viewer.utils";
 
-type TabType = "all" | "by-section" | "by-severity" | "by-technology";
+type TabType = "all" | "by-domain" | "by-task" | "by-severity" | "by-technology";
 
 @Component({
   selector: "app-conventions-viewer",
@@ -33,14 +37,30 @@ export class ConventionsViewer implements OnInit {
   filteredConventions = signal<ConventionRule[]>([]);
   activeTab = signal<TabType>("all");
   searchQuery = signal("");
-  selectedSection = signal<number | null>(null);
+  selectedDomain = signal<ConventionDomain | null>(null);
+  selectedTaskType = signal<ConventionTaskType | null>(null);
   selectedSeverity = signal<SeverityType | null>(null);
   selectedTechnology = signal<string>("");
 
   // UI
-  sections = signal([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22,
+  domains = signal<ConventionDomain[]>([
+    "core",
+    "backend",
+    "frontend",
+    "flutter",
+    "ui",
+    "styles",
+    "catalogs",
+    "audit",
+    "operations",
+  ]);
+  taskTypes = signal<ConventionTaskType[]>([
+    "implementacion-backend",
+    "implementacion-frontend",
+    "implementacion-flutter",
+    "auditoria",
+    "documentacion",
+    "operacion-transversal",
   ]);
   severities = signal<SeverityType[]>(["CRÍTICA", "ALTA", "MEDIA", "BAJA"]);
   technologies = signal([
@@ -81,9 +101,14 @@ export class ConventionsViewer implements OnInit {
     }
   }
 
-  filterBySection(section: number) {
-    this.selectedSection.set(
-      this.selectedSection() === section ? null : section,
+  filterByDomain(domain: ConventionDomain) {
+    this.selectedDomain.set(this.selectedDomain() === domain ? null : domain);
+    this.updateFiltered();
+  }
+
+  filterByTaskType(taskType: ConventionTaskType) {
+    this.selectedTaskType.set(
+      this.selectedTaskType() === taskType ? null : taskType,
     );
     this.updateFiltered();
   }
@@ -105,9 +130,18 @@ export class ConventionsViewer implements OnInit {
   private updateFiltered() {
     let filtered = this.conventions();
 
-    // Por sección
-    if (this.selectedSection() !== null) {
-      filtered = filtered.filter((c) => c.section === this.selectedSection());
+    // Por dominio
+    if (this.selectedDomain() !== null) {
+      filtered = filtered.filter(
+        (c) => c.domain === this.selectedDomain(),
+      );
+    }
+
+    // Por tipo de tarea
+    if (this.selectedTaskType() !== null) {
+      filtered = filtered.filter(
+        (c) => c.taskTypes.includes(this.selectedTaskType()!),
+      );
     }
 
     // Por severidad
@@ -132,4 +166,6 @@ export class ConventionsViewer implements OnInit {
   // Exponer funciones de utilidad al template
   protected readonly severityColor = severityColor;
   protected readonly severityIcon = severityIcon;
+  protected readonly domainLabel = domainLabel;
+  protected readonly taskTypeLabel = taskTypeLabel;
 }

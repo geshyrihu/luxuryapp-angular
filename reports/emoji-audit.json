@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-26T16:14:05.231Z",
-  "totalMatches": 1250,
-  "userFacingMatches": 323,
+  "generatedAt": "2026-07-29T19:59:38.318Z",
+  "totalMatches": 1378,
+  "userFacingMatches": 360,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/apps",
-      "count": 574
+      "count": 698
     },
     {
       "key": "app/shared",
@@ -29,18 +29,18 @@
       "count": 38
     },
     {
-      "key": "src/root",
-      "count": 4
+      "key": "src/environments",
+      "count": 5
     },
     {
-      "key": "src/environments",
-      "count": 1
+      "key": "src/root",
+      "count": 4
     }
   ],
   "byUserFacingModule": [
     {
       "key": "app/apps",
-      "count": 223
+      "count": 260
     },
     {
       "key": "app/core",
@@ -62,31 +62,31 @@
   "byCategory": [
     {
       "key": "docs",
-      "count": 484
+      "count": 480
     },
     {
       "key": "code_string",
-      "count": 196
+      "count": 217
+    },
+    {
+      "key": "code_comment",
+      "count": 215
     },
     {
       "key": "template_comment",
       "count": 185
     },
     {
-      "key": "code_comment",
-      "count": 177
+      "key": "template_text",
+      "count": 137
     },
     {
-      "key": "template_text",
-      "count": 121
+      "key": "code_misc",
+      "count": 72
     },
     {
       "key": "style_comment",
       "count": 57
-    },
-    {
-      "key": "code_misc",
-      "count": 17
     },
     {
       "key": "style_content",
@@ -98,7 +98,7 @@
     },
     {
       "key": "config",
-      "count": 1
+      "count": 3
     }
   ],
   "topPriorityFiles": [],
@@ -524,6 +524,2752 @@
       "preview": "detail: \"Hay una nueva versión de la aplicación. ¡Actualiza ahora! 🚀\","
     },
     {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/admin-wrapper-menu.ts",
+      "line": 373,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "label: \"📋 Conventions Guide\","
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 1,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "# 📋 Reporte de Auditoría: conventions-viewer vs CONVENTIONS.md"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 22,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "**Estado: ✅ Cumplimiento total** — todas las reglas de CONVENTIONS.md están definidas en el conventions-viewer y el código cumple con todas las convenciones del proyecto."
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 30,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **Cursor** | `.cursor/.cursorrules` | ✅ Sí — línea 3, 7 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 31,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **Cursor** | `.cursor/rules.md` | ✅ Sí — línea 3, 7 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 32,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **Antigravity** | `.antigravity/AGENTS.md` | ✅ Sí — línea 3, 7 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 33,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **Codex** | `.codex/AGENTS.md` | ✅ Sí — línea 3, 7 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 34,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌",
+        "→",
+        "✅",
+        "🔧"
+      ],
+      "preview": "| **Kilo** | `AGENTS.md` (raíz) | ❌ Referencia rota `.md`` → ✅ **Corregido a `CONVENTIONS.md`** | 🔧 Fijado |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 35,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌",
+        "→",
+        "✅",
+        "🔧"
+      ],
+      "preview": "| **Claude** | `CLAUDE.md` (raíz) | ❌ Referencia rota `.md`` → ✅ **Corregido a `CONVENTIONS.md`** | 🔧 Fijado |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 36,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌",
+        "⚠"
+      ],
+      "preview": "| **OpenCode** | `.opencode.json` | ❌ No es archivo de instrucciones (es config MCP) | ⚠️ Irrelevante |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 37,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌",
+        "ℹ"
+      ],
+      "preview": "| **Copilot** | *No existe en proyecto* | ❌ No aplica | ℹ️ N/A |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 38,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌",
+        "ℹ"
+      ],
+      "preview": "| **Gemini** | *No existe en proyecto* | ❌ No aplica | ℹ️ N/A |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 39,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌",
+        "ℹ"
+      ],
+      "preview": "| **Qwen** | *No existe en proyecto* | ❌ No aplica | ℹ️ N/A |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 44,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "- ❌ Antes: `Las reglas de codificación **OBLIGATORIAS** del proyecto están en **.md` (fuente única de verdad).`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 45,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Después: `Las reglas de codificación **OBLIGATORIAS** del proyecto están en **CONVENTIONS.md** (fuente única de verdad).`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 48,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "- ❌ Antes: `están en .md`. Cúmplelas y, si las modificas,`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 49,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Después: `están en CONVENTIONS.md. Cúmplelas y, si las modificas,`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 53,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "## 3. Sincronización CONVENTIONS.md → conventions-viewer"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 63,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "| 1 | Color hardcodeado `#bfdbfe` → CSS variable | `convention-card.scss:239` | `border: 1px solid var(--border-blue-200)` |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 64,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "| 2 | `rgba()` hardcodeado → CSS variable | `conventions-viewer.scss:75` | `box-shadow: 0 0 0 3px var(--color-primary-shadow)` |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 65,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "| 3 | Constructor → `ngOnInit()` | `conventions-viewer.ts` | `loadConventions()` movido a `ngOnInit()` con `implements OnInit` |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 68,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "| 6 | Referencia rota `AGENTS.md` → CONVENTIONS.md | `AGENTS.md:3` | `.md`` → `CONVENTIONS.md` |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 69,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "| 7 | Referencia rota `CLAUDE.md` → CONVENTIONS.md | `CLAUDE.md:10` | `.md`` → `CONVENTIONS.md` |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 76,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Agregadas 13 secciones ausentes (§8, §11, §12, §17, §18, §21, §22)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 77,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Eliminado `FormsModule` y `CommonModule` innecesarios"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 78,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅",
+        "→"
+      ],
+      "preview": "- ✅ Eliminado `@Input()` → `input.required<ConventionRule>()`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 79,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Eliminado sufijo `Component` de clases y archivos"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 80,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Extraído `severityColor`/`severityIcon` a `conventions-viewer.utils.ts`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 81,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Eliminado `undefined as any` y `as Record<string, any>`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 82,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Eliminado duplicado `plan-structure`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 83,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Eliminado duplicado `constructor()` + `ngOnInit()`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 84,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ README.md actualizado"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 87,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅",
+        "→"
+      ],
+      "preview": "- ✅ Hardcoded `#bfdbfe` → CSS variable"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 88,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅",
+        "→"
+      ],
+      "preview": "- ✅ Hardcoded `rgba()` → CSS variable"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 89,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅",
+        "→"
+      ],
+      "preview": "- ✅ Constructor → `ngOnInit()` + `implements OnInit`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 90,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ `navigator.clipboard` SSR safety check"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 91,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ CSS variables restantes agregadas (`.card-content p` fallback, `--color-neutral-600`)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 94,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Referencia rota `AGENTS.md` corregida a `CONVENTIONS.md`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 95,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Referencia rota `CLAUDE.md` corregida a `CONVENTIONS.md`"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 103,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §1 Stack y Arquitectura | 4 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 104,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §2 Reglas Frontend (Angular 22) | 9 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 105,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §3 UX/UI — PrimeNG e Ionic | 2 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 106,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §4 Acceso a API (Frontend) | 2 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 107,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §5 Componentes UI | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 108,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §6 Convención de Wrappers | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 109,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §7 Convención de Nombrado | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 110,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §8 Botones de Opciones de Menú | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 111,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §9 Backend (.NET 10) | 9 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 112,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §10 Codificación y Encoding | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 113,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §11 Estándares de Documentación | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 114,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §12 Skills y Conocimiento | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 115,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §13 Frontend Móvil (Flutter) | 2 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 116,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §14 Organización por Apps | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 117,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §15 Diseño Responsive y Mobile | 2 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 118,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §16 Testing Unitario (.NET) | 3 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 119,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §17 Git Workflow | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 120,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §18 Infraestructura Compartida | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 121,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §19 Auditoría de Módulos | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 122,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §20 Creación de Planes | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 123,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §21 Documentación de Módulos | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 124,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| §22 Guías Operativas | 1 | ✅ |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 125,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **Total** | **39** | **✅ 22/22** |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 134,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| Archivos sin sufijo `.component.` | ✅ `conventions-viewer.ts`, `convention-card.ts` |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 135,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| Clases sin sufijo `Component` | ✅ `ConventionsViewer`, `ConventionCard` |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 136,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| Selectores `app-{nombre}` | ✅ `app-conventions-viewer`, `app-convention-card` |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 141,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| `input()` / `input.required()` (no `@Input()`) | ✅ `ConventionCard.convention = input.required<ConventionRule>()` |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 142,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| No `@Output()`, `@ViewChild()` | ✅ Ninguno presente |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 147,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| `strict: true` (prohibido `any`) | ✅ Cero `any` en código fuente |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 152,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| `ChangeDetectionStrategy.OnPush` | ✅ Ambos componentes |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 157,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| `@if`/`@for`/`@switch` (no `*ngIf`/`*ngFor`) | ✅ Todas las plantillas |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 162,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| No importar PrimeNG/Ionic directamente | ✅ Ninguna importación directa |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 167,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| Sin colores hardcodeados | ✅ Todas las variables de color usan CSS custom properties |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 175,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "├── conventions-viewer.ts              # ✅ Componente principal (OnPush, OnInit)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 176,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "├── conventions-viewer.html            # ✅ Template con @if/@for"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 177,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "├── conventions-viewer.scss            # ✅ CSS variables, sin hardcoded colors"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 178,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "├── conventions-viewer.service.ts      # ✅ 39 reglas, 22 secciones"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 179,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "├── conventions-viewer.utils.ts        # ✅ Utilidades tipadas, sin any"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 182,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "│       ├── convention-card.ts         # ✅ input.required(), OnPush, SSR safety"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 183,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "│       ├── convention-card.html       # ✅ @if/@for, signals"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 184,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "│       └── convention-card.scss       # ✅ CSS variables"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 185,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "├── README.md                          # ✅ Actualizado"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 186,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "└── AUDIT-REPORT.md                    # ✅ Este archivo"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 200,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- Los 6 agentes con archivos de instrucciones (`cursor`, `antigravity`, `codex`, `kilo`, `claude`) y 2 archivos de reglas (`cursorrules`, `rules.md`) referencian `CONVENTIONS.md` ✅"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/AUDIT-REPORT.md",
+      "line": 205,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "**Estado:** ✅ Auditoría completa — sin hallazgos abiertos"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
+      "line": 20,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "▶"
+      ],
+      "preview": "{{ expanded() ? '▼' : '▶' }}"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
+      "line": 47,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "💡"
+      ],
+      "preview": "<h3>💡 Por qué es importante</h3>"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
+      "line": 58,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📝"
+      ],
+      "preview": "<h3>📝 Ejemplos de Código</h3>"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
+      "line": 67,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🅰"
+      ],
+      "preview": "🅰️ Angular"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
+      "line": 76,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔷"
+      ],
+      "preview": "🔷 .NET / C#"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
+      "line": 85,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🐦"
+      ],
+      "preview": "🐦 Flutter"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
+      "line": 99,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "📋"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
+      "line": 118,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "📋"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
+      "line": 137,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "📋"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
+      "line": 152,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔗"
+      ],
+      "preview": "<h3>🔗 Secciones Relacionadas</h3>"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
+      "line": 38,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🅰"
+      ],
+      "preview": "angular: '🅰️',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
+      "line": 39,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔷"
+      ],
+      "preview": "'.net': '🔷',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
+      "line": 40,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔷"
+      ],
+      "preview": "'c#': '🔷',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
+      "line": 41,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🐦"
+      ],
+      "preview": "flutter: '🐦',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
+      "line": 42,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📘"
+      ],
+      "preview": "typescript: '📘',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
+      "line": 44,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "💻"
+      ],
+      "preview": "return iconMap[tech.toLowerCase()] ?? '💻';"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
+      "line": 5,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "<h1>📋 CONVENTIONS.md - Guía Interactiva</h1>"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
+      "line": 18,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔍"
+      ],
+      "preview": "placeholder=\"🔍 Buscar convención (strict, wrapper, api, etc)...\""
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
+      "line": 32,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📚"
+      ],
+      "preview": "📚 Todas ({{ conventions().length }})"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
+      "line": 39,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📖"
+      ],
+      "preview": "📖 Por Sección"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
+      "line": 46,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "⚠"
+      ],
+      "preview": "⚠️ Por Severidad"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
+      "line": 53,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "💻"
+      ],
+      "preview": "💻 Por Tecnología"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 36,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (.NET 10)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 53,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (MVC Controller)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 74,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Angular 22 Standalone)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 119,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (@ui/*)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 130,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (importación directa)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 150,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Guid v7 - sortable)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 157,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (GUID v4 - random)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 162,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (string IDs del backend)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 164,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "←"
+      ],
+      "preview": "id: string;  // ← Del backend (Guid.CreateVersion7())"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 170,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "←"
+      ],
+      "preview": "userId = input<string>();  // ← String del backend"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 190,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Signals)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 218,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (RxJS)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 240,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Signal-based)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 257,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (@Input/@Output)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 281,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `<!-- ✅ BIEN (@defer) -->"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 301,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<!-- ❌ MAL (eager loading todo) -->"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 321,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (FormHelper)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 345,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (manual sin helper)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 370,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Patrón B: Web + Mobile)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 391,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (solo desktop)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 412,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 442,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 449,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "←"
+      ],
+      "preview": "changeDetection: ChangeDetectionStrategy.OnPush,  // ← OBLIGATORIO"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 473,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Standalone - Angular 22)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 478,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "←"
+      ],
+      "preview": "// standalone: true  ← Implícito en Angular 22, no hace falta"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 482,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (NgModule - Legacy)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 505,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `<!-- ✅ BIEN (Angular 17+) -->"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 516,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<!-- ❌ MAL (Antiguo) -->"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 540,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Usar catálogo @ui/*)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 551,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (Importación directa)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 574,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 579,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 601,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Sin sufijo .component)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 608,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (.component innecesario)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 630,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Minimal API)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 652,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (MVC Controller)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 678,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Primary Constructor)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 690,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (Tradicional)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 719,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Sempre ApiResponseDTO)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 738,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (Respuesta inconsistente)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 790,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "description: 'Patrón AAA: Arrange → Act → Assert',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 836,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "↔"
+      ],
+      "preview": "'Enums siempre se guardan como string en base de datos. Legibilidad en SQL, no magic numbers. Sincronizar valores C# ↔ TypeScript.',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 841,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (string enum)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 853,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (entero en BD)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 873,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Source Generator)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 887,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (Reflexión)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 906,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (HybridCache)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 923,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (MemoryCache directo)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 942,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (TimeProvider inyectado)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 961,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (DateTime.UtcNow directo)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 980,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (AsNoTracking + AsSplitQuery)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1001,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (con tracking innecesario)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1021,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `/* ✅ BIEN (Mobile-first) */"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1046,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "/* ❌ MAL (Desktop-first) */"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1075,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Patrón B)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1099,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (un componente para ambos)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1122,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (xUnit + FluentAssertions + Moq)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1148,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (Assert tradicional)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1168,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (AAA pattern)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1193,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (sin separación clara)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1202,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "description: 'AAA: Arrange → Act → Assert, una idea por test',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1215,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "'Todos los planes de implementación DEBEN seguir estructura: Resumen → Alcance → Fases → Timeline → Recursos → Riesgos → etc.',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1226,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Frontend: lista, CRUD, reportes"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1227,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Backend: Minimal APIs, paginación"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1228,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "- ❌ No incluye: integración contable"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1271,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "←"
+      ],
+      "preview": "PaginationCommonDTO pagination,  // ← BindAsync automático"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1349,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `<!-- ✅ BIEN (p-table con virtual scroll + lazy) -->"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1367,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<!-- ❌ MAL (sin virtual scroll, datos en memoria) -->"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1388,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `<!-- ✅ BIEN (Ionic patterns) -->"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1425,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (ApiResponseService)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1444,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (HttpClient directo)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1471,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Nomenclatura canónica)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1481,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1488,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Endpoint strings coinc iden exacto)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1494,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1517,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (UTF-8 sin BOM)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1518,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🚀"
+      ],
+      "preview": "// 🚀 Feature: Nueva funcionalidad"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1519,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "💡"
+      ],
+      "preview": "// 💡 Nota: Este es un ejemplo"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1520,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "⚠"
+      ],
+      "preview": "// ⚠️ Advertencia: No olvidar validar"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1523,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📝"
+      ],
+      "preview": "// 📝 TODO: Implementar loading state"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1526,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<!-- ❌ MAL: BOM (byte order mark) al inicio del archivo -->"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1546,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (Null-safe, records)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1566,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (dinámico)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1585,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (adaptive layout)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1630,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (apps separadas por rol)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1643,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (todo en una carpeta)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1663,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "'Todos los commits ejecutan auditoría automática según rol (frontend, backend, mobile, full-stack). Bloquea si hay 🔴 CRÍTICA.',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1675,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "✅ Auditoría por rol pasada"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1676,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "✅ Sin mojibake"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1680,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "❌ AUDITORÍA FRONTEND FALLIDA"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1682,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "🔴 CRÍTICA (1):"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1686,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "'Pre-commit hook detecta rama → ejecuta auditoría → bloquea si CRÍTICA',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1763,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "dotnet: { code: 'public interface ICurrentUserService\\n{\\n    string UserId { get; }\\n}\\n\\npublic interface IEmailService { }\\n\\n// ❌ Never: IHttpContextAccessor in services', desc"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1793,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "angular: { code: 'reglas-negocio-cobranza.md\\narquitectura-cobranza.md\\n\\n# ❌ MAL\\ncobranza-guide.md (sin prefijo)', description: 'Module documentation location and naming' },"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1808,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "angular: { code: '# Guía: Migrar MVC → Minimal API\\n\\n## Pre-requisitos\\n## Scope\\n## Arquitectura\\n## Procedimiento\\n## Rollback\\n## Validación', description: 'Structured operatio"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1828,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN (GetDisplayName en listas de enum)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1832,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "// ✅ BIEN (GetCelFormtat en listas de teléfonos)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1836,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (nombre técnico del enum)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 1840,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "// ❌ MAL (teléfono sin formatear)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.utils.ts",
+      "line": 4,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "CRÍTICA: { color: 'var(--severity-critica)', icon: '🔴' },"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.utils.ts",
+      "line": 5,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🟠"
+      ],
+      "preview": "ALTA: { color: 'var(--severity-alta)', icon: '🟠' },"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.utils.ts",
+      "line": 6,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🟡"
+      ],
+      "preview": "MEDIA: { color: 'var(--severity-media)', icon: '🟡' },"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.utils.ts",
+      "line": 7,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔵"
+      ],
+      "preview": "BAJA: { color: 'var(--severity-baja)', icon: '🔵' },"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.utils.ts",
+      "line": 15,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "⚫"
+      ],
+      "preview": "return SeverityConfig[severity]?.icon ?? '⚫';"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 1,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "# 📋 Conventions Viewer - Guía Visual Interactiva"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 9,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🎯"
+      ],
+      "preview": "## 🎯 Características"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 11,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Interfaz Visual Limpia** — Tarjetas expandibles por convención"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 12,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Busqueda en Tiempo Real** — Filtra por palabras clave"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 13,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Filtrado Avanzado** — Por sección, severidad, tecnología"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 14,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Ejemplos de Código** — Angular, .NET, Flutter (copy-to-clipboard)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 15,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅",
+        "🔴",
+        "🟠",
+        "🟡",
+        "🔵"
+      ],
+      "preview": "- ✅ **Indicadores de Severidad** — Colores distintivos (🔴/🟠/🟡/🔵)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 16,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Responsive** — Mobile-first design (375px+)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 17,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Fast Loading** — Standalone component, lazy-loaded"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 21,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📁"
+      ],
+      "preview": "## 📁 Estructura de Carpetas"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 40,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🚀"
+      ],
+      "preview": "## 🚀 Cómo Usar"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 45,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "2. Click en: **📋 Conventions Guide**"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 52,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- \"strict\" → encuentra regla de Strict TypeScript"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 53,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- \"wrapper\" → encuentra regla de wrappers"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 54,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- \"angular\" → encuentra reglas para Angular"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 60,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📚"
+      ],
+      "preview": "- 📚 **Todas** (muestra todas las reglas)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 61,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📖"
+      ],
+      "preview": "- 📖 **Por Sección** (§2, §5, §6, etc.)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 62,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "⚠"
+      ],
+      "preview": "- ⚠️ **Por Severidad** (CRÍTICA, ALTA, MEDIA, BAJA)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 63,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "💻"
+      ],
+      "preview": "- 💻 **Por Tecnología** (Angular, .NET, TypeScript, C#, Flutter)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 76,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📊"
+      ],
+      "preview": "## 📊 Estructura de Datos"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 100,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🎨"
+      ],
+      "preview": "## 🎨 Colores de Severidad"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 104,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **CRÍTICA** | 🔴 #dc2626 | 🔴 | Bloquea merge en pre-commit |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 105,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟠"
+      ],
+      "preview": "| **ALTA** | 🟠 #f97316 | 🟠 | Falla auditoría, debe arreglarse |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 106,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟡"
+      ],
+      "preview": "| **MEDIA** | 🟡 #eab308 | 🟡 | Comentario en code review |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 107,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔵"
+      ],
+      "preview": "| **BAJA** | 🔵 #3b82f6 | 🔵 | Sugerencia, mejora menor |"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 111,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "⚙"
+      ],
+      "preview": "## ⚙️ Componentes"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 162,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔍"
+      ],
+      "preview": "## 🔍 Agregar Nueva Convención"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 176,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN\\ncode example here`,"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 180,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "code: `// ✅ BIEN\\ncode example here`,"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 191,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📱"
+      ],
+      "preview": "## 📱 Responsive Breakpoints"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 199,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔗"
+      ],
+      "preview": "## 🔗 Conexiones"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 212,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "💡"
+      ],
+      "preview": "## 💡 Notas de Desarrollo"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 215,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ ChangeDetectionStrategy.OnPush en ambos componentes"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 216,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Signals en lugar de RxJS (más ligero)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 217,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Standalone implícito (Angular 22, sin boilerplate)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 218,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Lazy loading vía route (no precarga)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 219,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Ningún subscriptions sin unsubscribe (OnDestroy no necesario)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 238,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🐛"
+      ],
+      "preview": "## 🐛 Troubleshooting"
+    },
+    {
       "file": "src/app/apps/admin.luxuryapp/admin.routes.ts",
       "line": 299,
       "category": "code_string",
@@ -689,1084 +3435,8 @@
       "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
     },
     {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 28,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| P1 | Variables `--brand-*` huérfanas | ✅ Migradas a `--ds-*` |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 29,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "| P2 | Colores hardcodeados en `global.scss` | ⚠️ Parcial (fallbacks incorrectos pendientes) |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 30,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "| P3 | Ionic RN theme divergente del DS | ⚠️ Parcial (RGB hardcoded pendiente) |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 31,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| P4 | Border radius inconsistente (4px vs 0.25rem) | ✅ Unificado con `--ds-radius-*` tokens |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 32,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| P5 | M3 roles duplicados | ✅ Eliminados, `--ds-primary-container` corregido |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 35,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- `--ds-border` estaba duplicado en `_variables.scss` → **RESUELTO**"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 36,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- `p-button-secondary` con hardcodes `#f1f5f9` → **RESUELTO** con tokens DS"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 37,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- `.card` y `.p-card` con `rgba(0,0,0,0.07)` → **RESUELTO** con `var(--ds-border)`"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 38,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- `p-message` backgrounds hardcodeados → **RESUELTO** con `var(--ds-*-light)`"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 39,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- `.btn-help`, `.btn-icon-shell--warning` aún hardcodeados → **PENDIENTE** (Fase 16)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 40,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- `.alert-*` no responden a dark mode → **PENDIENTE** (Fase 16)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 44,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "$primary-500: #003d9b   ← PRIMARY (antes #0b3164)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 45,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "$primary-100: #dae2ff   ← primary-fixed (FloatLabel label bg)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 46,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "$primary-200: #b2c5ff   ← inverse-primary (dark mode primary)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 60,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| I1 | Font family dual (DM Sans vs Inter) | ✅ Inter + Hanken Grotesk unificado |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 61,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| I2 | Ionic usa system fonts | ✅ `--ion-font-family: var(--ds-font-family-base)` |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 62,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| I3 | Ionic dark mode tipografía separada | ✅ Unificado |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 63,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "| I4 | Body 15px < 16px recomendado | ⚠️ Mantenido por decisión de diseño ERP |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 64,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "| I5 | Sin tipografía responsive | ⚠️ Sin clamp() — pendiente |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 65,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| I6 | M3 roles duplicados | ✅ Eliminados |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 66,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "| I7 | StatusBadge limitado | ⚠️ Sin cambios |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 67,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "| I8 | Wizard SCSS no global | ⚠️ Sin cambios |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 75,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "core/_colors.scss          ← Única fuente Sass ($primary-*, $help-*, etc.)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 76,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "theme/_variables.scss      ← Genera CSS custom properties (--primary-*, --ds-*, --ion-*, --z-*)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 77,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "@use '../core/colors' as c   ← Importa desde la fuente única"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 78,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "prime-overrides/           ← Override de PrimeNG con tokens DS"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 79,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←",
-        "↔"
-      ],
-      "preview": "_prime-tokens.scss       ← Bridge --p-* ↔ --ds-*"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 80,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "_prime-button.scss       ← padding explícito + secondary tokens"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 81,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "_prime-card.scss         ← border con token"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 82,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "_prime-message.scss      ← border left 4px + backgrounds tokens"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 83,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "_prime-input.scss        ← border + height inputs"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 84,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "mypreset.ts                ← Preset JS (tag, message, datatable colors)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 118,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-text-signal | ✅ | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 119,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-number-signal | ✅ | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 120,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-currency-signal | ✅ | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 121,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-password-signal | ✅ | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 122,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-textarea-signal | ✅ | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 123,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-select-signal | ✅ | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 124,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-select-bool-signal | ✅ | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 125,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-multiselect-signal | ✅ | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 126,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-time-signal | ✅ | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 127,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-date-signal | ✅ | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 128,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-check-signal | N/A (checkbox) | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 129,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| custom-input-switch-signal | N/A (toggle) | ✅ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 146,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→",
-        "✅"
-      ],
-      "preview": "1. `_prime-message.scss` backgrounds → tokens DS ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 147,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→",
-        "✅"
-      ],
-      "preview": "2. `_prime-button.scss` secondary → tokens DS ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 148,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→",
-        "✅"
-      ],
-      "preview": "3. `_prime-card.scss` + `_cards.scss` border → `var(--ds-border)` ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 149,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→",
-        "✅"
-      ],
-      "preview": "4. `_sidebar.scss` online-indicator → `var(--ds-success)` ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 150,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "5. `_sidebar.scss` `@use 'core/colors'` eliminado ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 151,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "6. `mypreset.ts` info dark mode tag ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/AUDITORIA-COMPLETA.md",
-      "line": 152,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "7. `--ds-border` duplicado eliminado ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/INVENTARIO-DS-REVISION.md",
-      "line": 29,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⬜",
-        "✅",
-        "⚠",
-        "❌"
-      ],
-      "preview": "**Leyenda:** ⬜ sin revisar · ✅ cumple · ⚠️ parcial · ❌ no cumple"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/INVENTARIO-DS-REVISION.md",
-      "line": 114,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🔄"
-      ],
-      "preview": "| accounting | 94 | 2 | 🔄 En progreso |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/INVENTARIO-DS-REVISION.md",
-      "line": 115,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⬜"
-      ],
-      "preview": "| hr | ~120 | 0 | ⬜ Pendiente |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/INVENTARIO-DS-REVISION.md",
-      "line": 116,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⬜"
-      ],
-      "preview": "| legal | ~45 | 0 | ⬜ Pendiente |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/INVENTARIO-DS-REVISION.md",
-      "line": 117,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⬜"
-      ],
-      "preview": "| maintenance | ~80 | 0 | ⬜ Pendiente |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/INVENTARIO-DS-REVISION.md",
-      "line": 118,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⬜"
-      ],
-      "preview": "| operations | ~100 | 0 | ⬜ Pendiente |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/INVENTARIO-DS-REVISION.md",
-      "line": 119,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⬜"
-      ],
-      "preview": "| purchasing | ~70 | 0 | ⬜ Pendiente |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/INVENTARIO-DS-REVISION.md",
-      "line": 120,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⬜"
-      ],
-      "preview": "| recruitment | ~50 | 0 | ⬜ Pendiente |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/INVENTARIO-DS-REVISION.md",
-      "line": 121,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⬜"
-      ],
-      "preview": "| system | ~60 | 0 | ⬜ Pendiente |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/INVENTARIO-DS-REVISION.md",
-      "line": 122,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⬜"
-      ],
-      "preview": "| core components | ~456 | ~4 | ⬜ Parcial |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 36,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "3. **Cross-feature coupling**: HR → recruitment; operations → recruitment + legal + operations"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 51,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🔴"
-      ],
-      "preview": "**Prioridad:** 🔴 Alta — más masivo, más mecánico, bajo riesgo"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 67,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🔴"
-      ],
-      "preview": "**Prioridad:** 🔴 Alta — impacto visual en dark mode"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 83,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🟡"
-      ],
-      "preview": "**Prioridad:** 🟡 Media — requiere criterio"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 98,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🟡"
-      ],
-      "preview": "**Prioridad:** 🟡 Media — requiere criterio"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 112,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🟢"
-      ],
-      "preview": "**Prioridad:** 🟢 Baja — 1 sesión"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 116,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| `_buttons.scss` | `.btn-help`, `.btn-icon-shell--warning` → tokens |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 117,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| `_prime-dropdown.scss` | Focus/error box-shadow → tokens |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 118,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| `_alerts.scss` | `.alert-*` backgrounds → dark mode |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 119,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| `_global.scss` | skip-link fallbacks → tokens |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 120,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| `_ionic-rn-theme.scss` | RGB hardcoded → derivar |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 124,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🟢"
-      ],
-      "preview": "**Prioridad:** 🟢 Baja — 2 sesiones"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 129,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🟢"
-      ],
-      "preview": "**Prioridad:** 🟢 Baja — 3 sesiones"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 134,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🟢"
-      ],
-      "preview": "**Prioridad:** 🟢 Baja — 2 sesiones"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 144,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⭐"
-      ],
-      "preview": "| 0 — Inventario | — | 1 | ⭐ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 145,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⭐"
-      ],
-      "preview": "| 1 — C3 empty-state | 144 | 5 | ⭐⭐⭐⭐⭐ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 146,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⭐"
-      ],
-      "preview": "| 2 — A1 hardcodes | 122 | 5 | ⭐⭐⭐⭐⭐ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 147,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⭐"
-      ],
-      "preview": "| 3 — B1 botones | 36 | 3 | ⭐⭐⭐ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 148,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⭐"
-      ],
-      "preview": "| 4 — I1 inputs | 32 | 4 | ⭐⭐⭐⭐ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 149,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⭐"
-      ],
-      "preview": "| 5 — SCSS hardcodes | 9 | 1 | ⭐ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 150,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⭐"
-      ],
-      "preview": "| 6 — app-table | 1 | 2 | ⭐⭐ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 151,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⭐"
-      ],
-      "preview": "| 7 — Dedup | 4 áreas | 3 | ⭐⭐⭐ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 152,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⭐"
-      ],
-      "preview": "| 8 — Homogeneizar | 4 patrones | 2 | ⭐⭐ |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 161,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- **C3 es el más seguro** (solo agrega HTML, no toca lógica) → empezar por aquí"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 165,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- **El inventario actual CSV** tiene 386 entries pero 374 son \"excepciones\" no resueltas → **hay que regenerarlo**"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-AUDITORIA-GENERAL.md",
-      "line": 172,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "Fase 0 (Inventario) → Fase 6 (app-table) → Fase 1 (C3) → Fase 2 (A1) → Fase 3 (B1) → Fase 4 (I1) → Fase 5 (SCSS) → Fase 7 (Dedup) → Fase 8 (Homog)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-DE-ACCION-ARCHIVO.md",
-      "line": 11,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "### Fase 1 — Correcciones críticas de tokens ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-DE-ACCION-ARCHIVO.md",
-      "line": 12,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- `--brand-*` → `--ds-*` en todos los archivos"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-DE-ACCION-ARCHIVO.md",
-      "line": 16,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "### Fase 2 — Consistencia tipográfica ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-DE-ACCION-ARCHIVO.md",
-      "line": 21,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "### Fase 3 — Componentes alta prioridad ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-DE-ACCION-ARCHIVO.md",
-      "line": 26,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "### Fases 4–10 — Componentes media/baja prioridad ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-DE-ACCION-ARCHIVO.md",
-      "line": 34,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "### Fase 11 — Web inputs con branch mobile ✅ (2026-06-22)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-DE-ACCION-ARCHIVO.md",
-      "line": 38,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "### Fase 12 — Limpieza de páginas del catálogo ✅"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-DE-ACCION-ARCHIVO.md",
-      "line": 43,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "### Fase 13 — Expansión mobile feedback ✅ (2026-06-22)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-DE-ACCION-ARCHIVO.md",
-      "line": 47,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "### Fase 14 — Revisión mobile DataView ✅ (2026-06-22)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/archive/md/PLAN-DE-ACCION-ARCHIVO.md",
-      "line": 51,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅",
-        "→"
-      ],
-      "preview": "### Fase 15 — DS Infrastructure Cleanup ✅ (2026-06-22 → 2026-06-27)"
-    },
-    {
       "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-mobile/mobile-buttons/mobile-buttons.ts",
-      "line": 87,
+      "line": 109,
       "category": "code_misc",
       "module": "app/apps",
       "severity": "low",
@@ -1776,312 +3446,15 @@
       "preview": "Cada botón trae icono, label y variante por defecto (delete →"
     },
     {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 23,
-      "category": "docs",
+      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/catalog-mobile/mobile-navigation/mobile-navigation.ts",
+      "line": 414,
+      "category": "code_misc",
       "module": "app/apps",
       "severity": "low",
       "symbols": [
         "→"
       ],
-      "preview": "- [x] `_prime-button.scss` secondary: hardcodes → tokens"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 38,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| `.btn-help` | `#7c3aed`, `#6d28d9` hardcoded | → `var(--ds-help)`, `var(--ds-help-hover)` |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 39,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| `.btn-icon-shell--warning` | `#92400e` hardcoded | → `var(--ds-warning)` |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 54,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| Focus box-shadow | `rgba(59, 130, 246, 0.2)` | → `var(--ds-shadow-focus)` |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 55,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| Error box-shadow | `rgba(239, 68, 68, 0.2)` | → `0 0 0 3px rgba(var(--ds-danger-rgb, 186,26,26), 0.2)` |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 77,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| `.skip-link` outline | fallback `#2563eb` (otro proyecto) | → `var(--primary-500)` sin fallback |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 78,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| Focus outline | fallback `#93c5fd`, `#60a5fa` | → `var(--primary-300)`, `var(--primary-400)` |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 85,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "--ion-background-color-rgb: 249, 249, 255;  // hardcoded → no cambia si cambia --ds-bg-page"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 86,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "--ion-text-color-rgb: 4, 27, 60;            // hardcoded → no cambia si cambia --ds-text-primary"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 96,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "2. Si hay 0 resultados → eliminar el archivo"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 97,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "3. Si hay usos → migrar clases al componente correcto primero"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 117,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- [ ] B1: `<p-button>` raw → `<custom-button-*>`"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 118,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- [ ] I1: Inputs PrimeNG raw → `<custom-input-*-signal>`"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 119,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- [ ] C3: `<p-table>` → verificar si tiene `app-empty-state`"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 120,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- [ ] A1: Colores hardcodeados en template → tokens `var(--ds-*)`"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 150,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "**Para verificar:** Navegar a `localhost:4200/settings/ui-catalog` → sección \"Smart Inputs\""
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 171,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| Build Angular sin errores | ✅ obligatorio |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 172,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| Visual en browser | ✅ obligatorio |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 173,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| Dark mode verificado | ✅ obligatorio para tokens |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 174,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| Commit individual | ✅ obligatorio por componente |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 175,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| CSV actualizado | ✅ para Fase 17 |"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/RENDER-MULTIPLATAFORMA.md",
-      "line": 3,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "> Objetivo: mostrar en el Design System (`/settings/ui-catalog` → pestaña **Web**)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/RENDER-MULTIPLATAFORMA.md",
-      "line": 11,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- **≥ 768 px de ancho** (o no híbrido) → renderiza la versión **web** `app-*` (PrimeNG)."
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/RENDER-MULTIPLATAFORMA.md",
-      "line": 12,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "- **< 768 px** (o Capacitor/Ionic nativo) → renderiza la versión **mobile** `ili-*`."
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/RENDER-MULTIPLATAFORMA.md",
-      "line": 41,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "> `core/components/PLAN-WEB-MOBILE-SPLIT.md` → checklist), agregar su `lx-*` al"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/RENDER-MULTIPLATAFORMA.md",
-      "line": 360,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "👍"
-      ],
-      "preview": "reactions: [{ emoji: \"👍\", count: 2 }],"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/RENDER-MULTIPLATAFORMA.md",
-      "line": 373,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✔"
-      ],
-      "preview": "\"✔ Confirmado a las \" + new Date().toLocaleTimeString(),"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/RENDER-MULTIPLATAFORMA.md",
-      "line": 398,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "2. Ir a `/settings/ui-catalog` → pestaña **Web**."
+      "preview": "<div class=\"p-3\" style=\"border:1px solid var(--ds-border,#e2e8f0);border-radius:8px;\">Swipe me left →</div>"
     },
     {
       "file": "src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/shared/mobile-showcase-styles.css",
@@ -3180,7 +4553,7 @@
     },
     {
       "file": "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.ts",
-      "line": 4,
+      "line": 5,
       "category": "code_comment",
       "module": "app/apps",
       "severity": "low",
@@ -3191,7 +4564,7 @@
     },
     {
       "file": "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-propuesta/presupuesto-propuesta.ts",
-      "line": 202,
+      "line": 203,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -5405,7 +6778,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board.html",
-      "line": 80,
+      "line": 78,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -5416,7 +6789,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board.html",
-      "line": 286,
+      "line": 282,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
@@ -5427,7 +6800,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board.html",
-      "line": 293,
+      "line": 289,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
@@ -5482,7 +6855,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/staff-board/staff-board.html",
-      "line": 80,
+      "line": 78,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -5493,7 +6866,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/staff-board/staff-board.html",
-      "line": 286,
+      "line": 282,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
@@ -5504,7 +6877,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/staff-board/staff-board.html",
-      "line": 293,
+      "line": 289,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
@@ -11743,7 +13116,7 @@
     },
     {
       "file": "src/app/shared/ui/web/color-picker/color-picker.ts",
-      "line": 45,
+      "line": 46,
       "category": "code_misc",
       "module": "app/shared",
       "severity": "low",
@@ -12137,6 +13510,50 @@
         "⚠"
       ],
       "preview": "tokens: [\"⚠\", \"⚠️\"],"
+    },
+    {
+      "file": "src/environments/environment.example.ts",
+      "line": 17,
+      "category": "code_comment",
+      "module": "src/environments",
+      "severity": "low",
+      "symbols": [
+        "⚠"
+      ],
+      "preview": "// ⚠️ IMPORTANT: Use environment variables for these values"
+    },
+    {
+      "file": "src/environments/environment.example.ts",
+      "line": 28,
+      "category": "config",
+      "module": "src/environments",
+      "severity": "low",
+      "symbols": [
+        "⚠"
+      ],
+      "preview": "apiKey: \"YOUR_FIREBASE_API_KEY\", // ⚠️ This can be public but should be in .env"
+    },
+    {
+      "file": "src/environments/environment.prod.example.ts",
+      "line": 15,
+      "category": "code_comment",
+      "module": "src/environments",
+      "severity": "low",
+      "symbols": [
+        "⚠"
+      ],
+      "preview": "// ⚠️ IMPORTANT: Use environment variables injected at build/deploy time"
+    },
+    {
+      "file": "src/environments/environment.prod.example.ts",
+      "line": 27,
+      "category": "config",
+      "module": "src/environments",
+      "severity": "low",
+      "symbols": [
+        "⚠"
+      ],
+      "preview": "apiKey: \"YOUR_FIREBASE_API_KEY\", // ⚠️ This is semi-public but must still be from secrets"
     },
     {
       "file": "src/environments/environment.prod.ts",
@@ -13800,7 +15217,7 @@
     },
     {
       "file": "src/styles/theme/_variables.scss",
-      "line": 427,
+      "line": 428,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13811,7 +15228,7 @@
     },
     {
       "file": "src/styles/theme/_variables.scss",
-      "line": 613,
+      "line": 638,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",

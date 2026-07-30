@@ -30,6 +30,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { EmailDataForm } from "./email-data-form";
+import { EmailDataFormDto } from "src/app/core/interfaces/email-data-form.interface";
 @Component({
   selector: "app-email-data-list",
   templateUrl: "./email-data-list.html",
@@ -53,7 +54,7 @@ export class EmailDataList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  dataSignal = signal<any[]>([]);
+  dataSignal = signal<EmailDataFormDto[]>([]);
 
   readonly globalFilterFields = computed(() =>
     globalFilterFields(this.dataSignal()),
@@ -70,12 +71,12 @@ export class EmailDataList {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.Catalogs.EmailData.getAll)
-      .then((result: any) => {
-        this.dataSignal.set(result);
+      .onGetList<EmailDataFormDto[]>(Endpoints.Catalogs.EmailData.getAll)
+      .then((result) => {
+        if (result) this.dataSignal.set(result);
       });
   }
-  onModalForm(data: any) {
+  onModalForm(data: Partial<EmailDataFormDto & { title: string }>) {
     this.dialogHandlerS
       .openDialog(EmailDataForm, data, data.title, this.dialogHandlerS.sizeLg)
       .then((result: boolean) => {

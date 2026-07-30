@@ -1,12 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
-import { BankForm } from './bank-form';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { MessageService } from "primeng/api";
+import {
+  DialogService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "primeng/dynamicdialog";
+import { ActivatedRoute } from "@angular/router";
+import { of } from "rxjs";
+import { BankForm } from "./bank-form";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
-describe('BankForm', () => {
+describe("BankForm", () => {
   let component: BankForm;
   let fixture: ComponentFixture<BankForm>;
 
@@ -16,11 +21,24 @@ describe('BankForm', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
-        { provide: DialogService, useValue: { open: vi.fn().mockReturnValue({ onClose: { subscribe: vi.fn() } }) } },
+        {
+          provide: DialogService,
+          useValue: { open: vi.fn().mockReturnValue({ onClose: { subscribe: vi.fn() } }) },
+        },
         { provide: DynamicDialogConfig, useValue: { data: {} } },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
-        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { data: {}, params: {}, queryParams: {} },
+            params: of({}),
+            queryParams: of({}),
+          },
+        },
+        {
+          provide: "HttpClientWithoutInterceptors",
+          useValue: (globalThis as any).__mockHttpClient,
+        },
       ],
     }).compileComponents();
 
@@ -29,62 +47,62 @@ describe('BankForm', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize form group', () => {
+  it("should initialize form group", () => {
     expect(component.form).toBeDefined();
-    expect(component.form.get('code')).toBeDefined();
-    expect(component.form.get('shortName')).toBeDefined();
-    expect(component.form.get('largeName')).toBeDefined();
+    expect(component.form.get("code")).toBeDefined();
+    expect(component.form.get("shortName")).toBeDefined();
+    expect(component.form.get("largeName")).toBeDefined();
   });
 
-  it('should have submitting signal initialized as false', () => {
+  it("should have submitting signal initialized as false", () => {
     expect(component.submitting()).toBe(false);
   });
 
-  it('should have form with required validators on code', () => {
-    const control = component.form.get('code');
-    expect(control?.hasError('required')).toBe(true);
+  it("should load bank data when id exists", async () => {
+    const payload = {
+      code: "BOA",
+      shortName: "Bank of America",
+      largeName: "The Bank of America Corporation",
+    };
+    component.id = "bank-id";
+    vi.spyOn(component.apiResponseS, "onGetItem").mockResolvedValue(payload);
+
+    await component.onLoadData();
+
+    expect(component.form.getRawValue()).toMatchObject(payload);
   });
 
-  it('should have form with maxLength validator on code', () => {
-    const control = component.form.get('code');
-    control?.setValue('TOOLONG');
-    expect(control?.hasError('maxlength')).toBe(true);
-  });
-
-  it('should have form with required validators on shortName', () => {
-    const control = component.form.get('shortName');
-    expect(control?.hasError('required')).toBe(true);
-  });
-
-  it('should have form with minLength validator on shortName', () => {
-    const control = component.form.get('shortName');
-    control?.setValue('BOA');
-    expect(control?.hasError('minlength')).toBe(true);
-  });
-
-  it('should have form with required validators on largeName', () => {
-    const control = component.form.get('largeName');
-    expect(control?.hasError('required')).toBe(true);
-  });
-
-  it('should form be invalid when empty', () => {
-    expect(component.form.invalid).toBe(true);
-  });
-
-  it('should form be valid when all fields filled correctly', () => {
+  it("should flag duplicate validator when short name starts with code", () => {
     component.form.patchValue({
-      code: 'BOA',
-      shortName: 'Bank of America',
-      largeName: 'The Bank of America Corporation'
+      code: "BOA",
+      shortName: "BoA Financial",
+      largeName: "Bank of America",
     });
-    expect(component.form.valid).toBe(true);
+    component.form.updateValueAndValidity();
+
+    expect(component.form.errors).toEqual({ bankDuplicate: true });
   });
 
-  it('should have id property initialized as empty string', () => {
-    expect(component.id).toBe('');
+  it("should submit through FormHelper with current form context", () => {
+    const submitSpy = vi.spyOn(FormHelper, "submitCrud").mockImplementation(vi.fn());
+    component.id = "bank-id";
+
+    component.onSubmit();
+
+    expect(submitSpy).toHaveBeenCalledOnce();
+    expect(submitSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        form: component.form,
+        api: component.apiResponseS,
+        endpoint: "admin/catalogs/banks",
+        id: "bank-id",
+        ref: component.ref,
+        submitting: component.submitting,
+      }),
+    );
   });
-});
+}

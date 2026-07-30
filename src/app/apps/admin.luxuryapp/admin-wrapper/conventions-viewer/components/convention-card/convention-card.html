@@ -7,7 +7,7 @@
       </div>
       <div class="header-info">
         <h2 class="convention-title">
-          § {{ convention().section }} — {{ convention().title }}
+          {{ convention().title }}
         </h2>
         <p class="convention-description">{{ convention().description }}</p>
       </div>
@@ -23,6 +23,18 @@
 
   <!-- Metadata -->
   <div class="card-metadata">
+    <div class="meta-item">
+      <span class="meta-label">Dominio:</span>
+      <span class="meta-value">
+        {{ domainLabel(convention().domain) }}
+      </span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Tarea:</span>
+      <span class="meta-value">
+        {{ primaryTaskLabel() }}
+      </span>
+    </div>
     <div class="meta-item">
       <span class="meta-label">Severidad:</span>
       <span class="meta-value" [style.color]="severityColor(convention().severity)">
@@ -146,13 +158,13 @@
         </div>
       }
 
-      <!-- Related Sections -->
-      @if (convention().relatedSections && convention().relatedSections.length > 0) {
+      <!-- Related Rules -->
+      @if (convention().relatedRules && convention().relatedRules.length > 0) {
         <div class="content-section">
-          <h3>🔗 Secciones Relacionadas</h3>
+          <h3>🔗 Reglas Relacionadas</h3>
           <div class="related-tags">
-            @for (section of convention().relatedSections; track section) {
-              <span class="related-tag">§ {{ section }}</span>
+            @for (rule of convention().relatedRules; track rule) {
+              <span class="related-tag">{{ rule }}</span>
             }
           </div>
         </div>

@@ -4,8 +4,8 @@
     <div class="header-content">
       <h1>📋 CONVENTIONS.md - Guía Interactiva</h1>
       <p>
-        Explora todas las convenciones, reglas y patrones de LuxuryApp. Filtrado
-        por rol, severidad y tecnología.
+        Explora el sistema rector de convenciones de LuxuryApp. Filtrado por
+        dominio, tipo de tarea, severidad y tecnología.
       </p>
     </div>
   </div>
@@ -32,11 +32,18 @@
       📚 Todas ({{ conventions().length }})
     </button>
     <button
-      [class.active]="activeTab() === 'by-section'"
-      (click)="setActiveTab('by-section')"
+      [class.active]="activeTab() === 'by-domain'"
+      (click)="setActiveTab('by-domain')"
       class="tab-btn"
     >
-      📖 Por Sección
+      🗂️ Por Dominio
+    </button>
+    <button
+      [class.active]="activeTab() === 'by-task'"
+      (click)="setActiveTab('by-task')"
+      class="tab-btn"
+    >
+      🛠️ Por Tarea
     </button>
     <button
       [class.active]="activeTab() === 'by-severity'"
@@ -56,18 +63,36 @@
 
   <!-- Filters -->
   <div class="filters-container">
-    <!-- Filter By Section -->
-    @if (activeTab() === 'by-section') {
+    <!-- Filter By Domain -->
+    @if (activeTab() === 'by-domain') {
       <div class="filter-group">
-        <h3>Filtrar por Sección</h3>
+        <h3>Filtrar por Dominio</h3>
         <div class="filter-buttons">
-          @for (section of sections(); track section) {
+          @for (domain of domains(); track domain) {
             <button
-              (click)="filterBySection(section)"
-              [class.active]="selectedSection() === section"
+              (click)="filterByDomain(domain)"
+              [class.active]="selectedDomain() === domain"
               class="filter-btn"
             >
-              § {{ section }}
+              {{ domainLabel(domain) }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Filter By Task -->
+    @if (activeTab() === 'by-task') {
+      <div class="filter-group">
+        <h3>Filtrar por Tipo de Tarea</h3>
+        <div class="filter-buttons">
+          @for (taskType of taskTypes(); track taskType) {
+            <button
+              (click)="filterByTaskType(taskType)"
+              [class.active]="selectedTaskType() === taskType"
+              class="filter-btn"
+            >
+              {{ taskTypeLabel(taskType) }}
             </button>
           }
         </div>
@@ -140,8 +165,8 @@
       <span>Reglas Críticas</span>
     </div>
     <div class="stat">
-      <strong>{{ technologies().length }}</strong>
-      <span>Tecnologías cubiertas</span>
+      <strong>{{ domains().length }}</strong>
+      <span>Dominios cubiertos</span>
     </div>
   </div>
 </div>
