@@ -59,7 +59,7 @@ import { CardBase } from "@ui/base/card.base";
         overflow: hidden;
       }
       .ili-card-elevated {
-        box-shadow: var(--ds-shadow-sm, 0 4px 16px rgba(15, 23, 42, 0.08));
+        box-shadow: var(--ds-shadow-2);
       }
       .ili-card-header {
         padding: 0.9rem 0.9rem 0;

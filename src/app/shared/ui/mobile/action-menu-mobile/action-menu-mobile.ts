@@ -72,13 +72,26 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 8px;
         border: none;
         background: none;
         color: var(--ds-text-secondary);
         border-radius: 9999px;
         font-size: 1.25rem;
+        cursor: pointer;
+        transition: background-color 150ms ease, color 150ms ease;
+
+        &:hover {
+          background-color: var(--ds-bg-sunken);
+          color: var(--ds-text-primary);
+        }
+
+        &:focus-visible {
+          outline: 3px solid var(--ds-border-focus);
+          outline-offset: 2px;
+        }
       }
       .ili-am-backdrop {
         position: fixed;

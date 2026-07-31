@@ -7,7 +7,7 @@
 | Capa | Tecnología |
 |------|------------|
 | Framework | Angular 22.0.5 |
-| UI Web | PrimeNG 19 |
+| UI Web | PrimeNG 22 |
 | UI Mobile | Ionic 8 |
 | Design Tokens | SCSS vars → CSS custom properties (`--ds-*`) |
 | Charts | ECharts + ngx-echarts 22 |
