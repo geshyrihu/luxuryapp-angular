@@ -57,7 +57,7 @@
 
       <!-- Inline Add Button -->
       @if (showAdd()) {
-      <ion-button fill="clear" (click)="onAdd($event)">
+      <ion-button fill="clear" (click)="onAdd($event)" class="ion-button-touch-target">
         <app-icon icon="mdi:plus-circle" slot="icon-only" class="text-4xl" />
       </ion-button>
       }

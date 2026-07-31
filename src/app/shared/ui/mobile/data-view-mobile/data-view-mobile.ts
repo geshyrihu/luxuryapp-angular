@@ -51,6 +51,7 @@ export interface IMobileBreadcrumbItem {
 @Component({
   selector: "app-data-view-mobile",
   templateUrl: "./data-view-mobile.html",
+  styleUrls: ["./data-view-mobile.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterModule,

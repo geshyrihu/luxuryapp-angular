@@ -1,0 +1,23 @@
+// ============================================================
+// data-view-mobile.scss
+// Mobile data view component styles
+// ============================================================
+
+// Ionic button touch target compliance (WCAG 2.5.5)
+// Ensure icon-only buttons meet 44×44px minimum
+.ion-button-touch-target {
+  --min-width: 44px;
+  --min-height: 44px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+
+  min-width: 44px;
+  min-height: 44px;
+
+  &:focus-visible {
+    outline: 3px solid var(--ds-border-focus);
+    outline-offset: 2px;
+  }
+}

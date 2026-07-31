@@ -62,7 +62,7 @@ import { CardBase } from "@ui/base/card.base";
         box-shadow: var(--ds-shadow-2);
       }
       .ili-card-header {
-        padding: 0.9rem 0.9rem 0;
+        padding: var(--ds-space-lg) var(--ds-space-lg) 0;
       }
       .ili-card-title {
         font-size: 0.98rem;
@@ -77,13 +77,13 @@ import { CardBase } from "@ui/base/card.base";
         line-height: 1.4;
       }
       .ili-card-body {
-        padding: 0.9rem;
+        padding: var(--ds-space-lg);
       }
       .ili-card-body-unpadded {
         padding: 0;
       }
       .ili-card-footer-tpl {
-        margin-top: 0.9rem;
+        margin-top: var(--ds-space-lg);
       }
     `,
   ],
