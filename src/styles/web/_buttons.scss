@@ -56,9 +56,10 @@
   // Accesibilidad: focus ring
   @include m.focus-ring;
 
-  // Click feedback
+  // Click feedback (no scale to avoid CLS)
   &:active:not(:disabled):not(.is-disabled):not(.is-loading) {
-    transform: scale(0.98);
+    opacity: 0.9;
+    box-shadow: var(--ds-shadow-1);
   }
 
   // Estado disabled

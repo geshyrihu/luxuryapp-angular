@@ -47,7 +47,7 @@
     @for (group of inspeccionesFiltradasSignal(); track group) {
     <div>
       <div class="p-3 surface-100 rounded mb-2">
-        <strong class="text-lg"> {{ group.departament }} </strong>
+        <strong class="text-lg"> {{ group.departament ?? 'Sin Clasificar' }} </strong>
       </div>
       @for (item of group.inspecciones; track item) {
       <div
@@ -57,7 +57,7 @@
           <div>
             <div class="text-base font-medium">{{ item.name }}</div>
             <small class="text-sm text-color-secondary"
-              >{{ item.frequency }}</small
+              >{{ item.frequency ?? 'N/A' }}</small
             >
           </div>
         </div>
@@ -112,9 +112,9 @@
         [ngModel]="selectedRecurrenceSignal()"
         (ngModelChange)="selectedRecurrenceSignal.set($event)"
         [data]="[
-          { label: 'Diario', value: 'Diario' },
-          { label: 'Semanal', value: 'Semanal' },
-          { label: 'Mensual', value: 'Mensual' }
+          { label: 'Diario', value: 'daily' },
+          { label: 'Semanal', value: 'weekly' },
+          { label: 'Mensual', value: 'monthly' }
         ]"
         placeholder="Todas las Recurrencias"
         [filter]="true"
@@ -144,7 +144,7 @@
       </div>
       <span class="">
         <div class="text-base font-medium">{{ item.name }}</div>
-        <span class="text-sm">{{ item.frequency }}</span>
+        <span class="text-sm">{{ item.frequency ?? 'N/A' }}</span>
       </span>
       <ili-action-menu end>
         <ili-button-edit

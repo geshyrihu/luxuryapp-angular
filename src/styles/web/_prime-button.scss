@@ -50,7 +50,8 @@ body {
       transform 100ms ease;
 
     &:active:not(:disabled) {
-      transform: scale(0.98);
+      opacity: 0.9;
+      box-shadow: var(--ds-shadow-1);
     }
 
     .p-ink {

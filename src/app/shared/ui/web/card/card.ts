@@ -57,9 +57,14 @@ import { CardBase } from "@ui/base/card.base";
         border: 1px solid var(--ds-border, #d7dbe3);
         border-radius: var(--ds-radius-lg, 12px);
         overflow: hidden;
+        transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
       }
       .app-card-elevated {
-        box-shadow: var(--ds-shadow-sm, 0 4px 16px rgba(15, 23, 42, 0.08));
+        box-shadow: var(--ds-shadow-2);
+      }
+      .app-card-elevated:hover {
+        box-shadow: var(--ds-shadow-3);
+        transform: translateY(-2px);
       }
       .app-card-header {
         padding: 1rem 1rem 0;
