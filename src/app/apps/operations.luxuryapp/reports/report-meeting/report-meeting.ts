@@ -17,6 +17,7 @@ import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-report-meeting",
   templateUrl: "./report-meeting.html",
+  styleUrls: ["./report-meeting.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, SanitizeHtmlPipe, TableModule, AppSpinner],
 })

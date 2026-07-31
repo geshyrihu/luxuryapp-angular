@@ -21,7 +21,7 @@ import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CobranzaOnlineService } from "../cobranza-online.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ChargeTemplateForm } from "../../cobranza-nativa/core/charge-templates/charge-template-form";
 import type {
@@ -54,293 +54,13 @@ import type {
     WebButtonIcon,
   ],
   templateUrl: "./cobranza-online-dashboard.html",
+  styleUrls: ["./cobranza-online-dashboard.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
-  styles: `
-    :host {
-      --co-surface: #ffffff;
-      --co-ink: #0f172a;
-      --co-muted: #7c8aa5;
-      --co-line: #dbe4f0;
-      --co-soft: #f6f9fc;
-      --co-accent: #173b72;
-      --co-good: #166534;
-      --co-bad: #8f1d21;
-      --co-warm: #b7791f;
-    }
-
-    .co-shell {
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(23, 59, 114, 0.06),
-          transparent 24%
-        ),
-        linear-gradient(180deg, #fbfdff 0%, #f3f7fb 100%);
-    }
-
-    .co-panel {
-      background: var(--co-surface);
-      border: 1px solid var(--co-line);
-      border-radius: 18px;
-      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
-    }
-
-    .co-kpi {
-      min-height: 122px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .co-kpi::after {
-      content: "";
-      position: absolute;
-      inset: auto -18px -18px auto;
-      width: 70px;
-      height: 70px;
-      border-radius: 999px;
-      background: rgba(23, 59, 114, 0.06);
-    }
-
-    .co-kpi-label {
-      color: var(--co-muted);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 700;
-    }
-
-    .co-kpi-value {
-      color: var(--co-ink);
-      font-size: clamp(1.35rem, 2vw, 1.9rem);
-      font-weight: 800;
-      line-height: 1.05;
-    }
-
-    .co-kpi-note {
-      color: var(--co-muted);
-      font-size: 0.82rem;
-    }
-
-    .co-chip-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 0.75rem;
-    }
-
-    .co-chip-card {
-      background: var(--co-soft);
-      border: 1px solid var(--co-line);
-      border-radius: 14px;
-      padding: 0.9rem 1rem;
-    }
-
-    .co-template-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 0.75rem;
-    }
-
-    .co-template-card {
-      border: 1px solid var(--co-line);
-      border-radius: 14px;
-      padding: 0.9rem 1rem;
-      background: linear-gradient(180deg, #ffffff 0%, #f9fbfe 100%);
-    }
-
-    .co-chart-wrap {
-      display: grid;
-      grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .co-chart-box {
-      height: 240px;
-      max-width: 280px;
-      margin-inline: auto;
-    }
-
-    .co-legend-list {
-      display: grid;
-      gap: 0.75rem;
-    }
-
-    .co-legend-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.8rem 0.9rem;
-      border-radius: 14px;
-      border: 1px solid var(--co-line);
-      background: var(--co-soft);
-    }
-
-    .co-legend-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      min-width: 0;
-    }
-
-    .co-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      flex: 0 0 12px;
-    }
-
-    .co-legend-title {
-      color: var(--co-ink);
-      font-weight: 700;
-      font-size: 0.92rem;
-    }
-
-    .co-legend-subtitle {
-      color: var(--co-muted);
-      font-size: 0.78rem;
-    }
-
-    .co-legend-value {
-      color: var(--co-ink);
-      font-weight: 800;
-      font-size: 0.96rem;
-      white-space: nowrap;
-    }
-
-    .co-top-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-    }
-
-    .co-top-card {
-      border: 1px solid var(--co-line);
-      border-radius: 14px;
-      padding: 0.85rem 0.95rem;
-      background: var(--co-soft);
-      min-height: 98px;
-    }
-
-    .co-top-name {
-      color: var(--co-ink);
-      font-weight: 700;
-      font-size: 0.9rem;
-      line-height: 1.35;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .co-top-balance {
-      color: var(--co-bad);
-      font-weight: 800;
-      font-size: 1.25rem;
-      line-height: 1.1;
-    }
-
-    .co-mini-stat {
-      border: 1px dashed var(--co-line);
-      border-radius: 12px;
-      padding: 0.7rem 0.85rem;
-      background: rgba(255, 255, 255, 0.75);
-    }
-
-    .co-mini-stat-label {
-      color: var(--co-muted);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 700;
-    }
-
-    .co-mini-stat-value {
-      color: var(--co-ink);
-      font-size: 1rem;
-      font-weight: 800;
-    }
-
-    .co-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: flex-end;
-    }
-
-    .co-status-grid {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 0.75rem;
-    }
-
-    .co-status-box {
-      grid-column: span 6;
-      padding: 0.8rem 0.95rem;
-      border-radius: 14px;
-      background: var(--co-soft);
-      border: 1px solid var(--co-line);
-    }
-
-    .co-status-box--message {
-      grid-column: span 12;
-      border-color: rgba(22, 101, 52, 0.18);
-      background: linear-gradient(180deg, #f4fdf7 0%, #e9f8ef 100%);
-    }
-
-    .co-status-label {
-      color: var(--co-muted);
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 700;
-      margin-bottom: 0.2rem;
-    }
-
-    .co-status-value {
-      color: var(--co-ink);
-      font-weight: 700;
-    }
-
-    @media (min-width: 992px) {
-      .co-status-box {
-        grid-column: span 3;
-      }
-    }
-
-    @media (min-width: 1400px) {
-      .co-status-box {
-        grid-column: span 2;
-      }
-
-      .co-status-box--message {
-        grid-column: span 4;
-      }
-    }
-
-    @media (max-width: 991px) {
-      .co-chart-wrap,
-      .co-top-grid,
-      .co-status-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .co-status-box,
-      .co-status-box--message {
-        grid-column: span 1;
-      }
-
-      .co-chart-box {
-        height: 220px;
-      }
-    }
-  `,
 })
 export class CobranzaOnlineDashboard {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
-  private apiResponseS = inject(ApiResponseService);
+  private cobranzaOnlineS = inject(CobranzaOnlineService);
   private dialogHandlerS = inject(DialogHandlerService);
 
   readonly currentYear = signal(new Date().getFullYear());
@@ -775,17 +495,14 @@ export class CobranzaOnlineDashboard {
     this.loading.set(true);
 
     const dashboard =
-      await this.apiResponseS.onGetItem<CobranzaOnlineDashboardResponse>(
-        Endpoints.CobranzaOnline.Dashboard.get(
-          customerId,
-          this.currentYear(),
-          this.currentMonth(),
-          this.currentDay(),
-        ),
-        false,
+      await this.cobranzaOnlineS.getDashboard(
+        customerId,
+        this.currentYear(),
+        this.currentMonth(),
+        this.currentDay(),
       );
 
-    const typedDashboard = dashboard as CobranzaOnlineDashboardResponse | null;
+    const typedDashboard = dashboard;
     this.syncStatus.set(typedDashboard?.syncMetadata ?? null);
     this.dashboard.set(typedDashboard);
 
@@ -850,16 +567,12 @@ export class CobranzaOnlineDashboard {
 
     this.syncRunning.set(true);
     try {
-      const response =
-        await this.apiResponseS.onPost<CobranzaOnlineSyncResponse>(
-          Endpoints.CobranzaOnline.Sync.cobranza(
-            customerId,
-            this.currentYear(),
-          ),
-          {},
-        );
+      const response = await this.cobranzaOnlineS.syncCobranza(
+        customerId,
+        this.currentYear(),
+      );
 
-      if (response !== false) {
+      if (response !== null) {
         this.lastSyncDiagnostics.set(response?.diagnostics ?? null);
         await this.loadSummary(customerId);
       }
@@ -935,15 +648,13 @@ export class CobranzaOnlineDashboard {
     this.selectedMovement.set(null);
 
     const statement =
-      await this.apiResponseS.onGetItem<CobranzaOnlineStatementResponse>(
-        Endpoints.CobranzaOnline.Statements.get(
-          customerId,
-          accountId,
-          this.currentYear(),
-        ),
+      await this.cobranzaOnlineS.getStatement(
+        customerId,
+        accountId,
+        this.currentYear(),
       );
 
-    const typedStatement = statement as CobranzaOnlineStatementResponse | null;
+    const typedStatement = statement;
     this.selectedStatement.set(typedStatement);
     this.selectedMovement.set(typedStatement?.movimientos?.[0] ?? null);
     this.detailLoading.set(false);

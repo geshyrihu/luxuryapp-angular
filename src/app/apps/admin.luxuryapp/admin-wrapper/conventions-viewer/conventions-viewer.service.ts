@@ -31,45 +31,49 @@ export class ConventionsService {
   private readonly conventions: ConventionRule[] = [
     {
       id: 'core-single-source-of-truth',
-      title: 'CONVENTIONS.md es indice rector + reglas minimas universales',
+      title: 'CONVENTIONS.md es indice rector y conjunto minimo universal',
       description:
-        'El sistema oficial de reglas comienza en CONVENTIONS.md. Los documentos especializados desarrollan el detalle, pero no crean reglas nuevas por su cuenta.',
+        'El sistema oficial comienza en CONVENTIONS.md. Los documentos especializados desarrollan el detalle, pero no crean reglas nuevas por su cuenta.',
       severity: 'CRÍTICA',
       domain: 'core',
       taskTypes: ['operacion-transversal', 'documentacion'],
-      technologies: ['Documentación'],
+      technologies: ['Documentacion'],
       examples: {},
       sourceDocuments: ['CONVENTIONS.md', 'docs/conventions/core/precedencia-documental.md'],
       importance:
-        'Evita contradicciones, obliga a que todos los agentes consulten la misma jerarquia y elimina reglas paralelas.',
+        'Evita contradicciones, obliga a consultar la misma jerarquia y elimina reglas paralelas.',
     },
     {
       id: 'core-do-not-assume-verify',
       title: 'No asumir: toda tecnologia, helper o contrato debe verificarse',
       description:
-        'Ningun agente debe asumir librerias instaladas, helpers existentes, rutas, DTOs o contratos. Si la regla o dependencia no existe en el sistema oficial, se consulta.',
+        'Ningun agente debe asumir librerias, helpers, rutas, DTOs, servicios o contratos. Si la regla o dependencia no existe en el sistema oficial, se consulta.',
       severity: 'CRÍTICA',
       domain: 'core',
-      taskTypes: ['implementacion-backend', 'implementacion-frontend', 'implementacion-flutter', 'auditoria'],
-      technologies: ['Angular', '.NET', 'Flutter', 'Documentación'],
+      taskTypes: [
+        'implementacion-backend',
+        'implementacion-frontend',
+        'implementacion-flutter',
+        'auditoria',
+      ],
+      technologies: ['Angular', '.NET', 'Flutter', 'Documentacion'],
       examples: {
         dotnet: {
-          code: `// ✅ BIEN
-// Primero valida el catalogo de features disponibles
-// y luego implementa con stack oficial
+          code: `// OK
+// Validar stack y catalogos antes de implementar
 
-// ❌ MAL
-// Asumir que AutoMapper, MediatR o Dapper existen y codear directo`,
-          description: 'Toda dependencia o patron debe validarse antes de codificar.',
+// NO
+// Asumir que AutoMapper, MediatR o Dapper existen`,
+          description: 'Toda dependencia o patron debe verificarse antes de codificar.',
         },
       },
       sourceDocuments: ['CONVENTIONS.md', 'docs/conventions/operations/available-features.md'],
       importance:
-        'Reduce rework, evita compilaciones fallidas y mantiene el stack bajo control.',
+        'Reduce retrabajo, evita errores de compilacion y mantiene controlado el stack.',
     },
     {
       id: 'backend-minimal-api-stack',
-      title: 'Backend oficial: .NET 10, Minimal APIs, EF Core, AOT-friendly',
+      title: 'Backend oficial: .NET 10, Minimal APIs, EF Core y AOT-friendly',
       description:
         'El backend nuevo debe construirse con Minimal APIs, EF Core y patrones compatibles con AOT. No se permiten dependencias fuera del stack aprobado.',
       severity: 'CRÍTICA',
@@ -78,19 +82,21 @@ export class ConventionsService {
       technologies: ['.NET', 'C#'],
       examples: {
         dotnet: {
-          code: `// ✅ BIEN
+          code: `// OK
 app.MapGroup("api/admin/catalogs/banks")
-   .MapGet("/", GetBanks)
-   .MapPost("/", CreateBank);
+  .MapGet("/", GetBanks)
+  .MapPost("/", CreateBank);
 
-// ❌ MAL
+// NO
 [ApiController]
-[Route("api/[controller]")]
 public class BanksController : ControllerBase { }`,
-          description: 'Minimal APIs y rutas explicitas son el estandar del proyecto.',
+          description: 'Minimal APIs y rutas explicitas son el estandar del backend.',
         },
       },
-      sourceDocuments: ['docs/conventions/backend/backend-rules.md', 'docs/conventions/operations/available-features.md'],
+      sourceDocuments: [
+        'docs/conventions/backend/backend-rules.md',
+        'docs/conventions/operations/available-features.md',
+      ],
       importance:
         'Conserva consistencia arquitectonica y evita introducir deuda en el stack backend.',
     },
@@ -105,76 +111,115 @@ public class BanksController : ControllerBase { }`,
       technologies: ['.NET', 'C#'],
       examples: {
         dotnet: {
-          code: `// ✅ BIEN
-// Reportar impacto y proponer plan de migracion antes de tocar Shared
+          code: `// OK
+// Reportar impacto y proponer plan de migracion
 
-// ❌ MAL
-public record SharedBankDto { ... } // editar directo sin analisis`,
+// NO
+public record SharedBankDto { } // editar directo`,
           description: 'Shared no se toca por conveniencia local de un modulo.',
         },
       },
-      sourceDocuments: ['docs/conventions/backend/backend-rules.md', 'docs/conventions/backend/backend-generic-services-catalog.md'],
+      sourceDocuments: [
+        'docs/conventions/backend/backend-rules.md',
+        'docs/conventions/backend/backend-generic-services-catalog.md',
+      ],
       importance:
         'Protege contratos vivos y evita romper modulos no visibles en el cambio actual.',
     },
     {
-      id: 'backend-route-contract',
-      title: 'Rutas publicas semanticas, kebab-case y consistentes con frontend',
+      id: 'backend-shared-services-first',
+      title: 'Antes de crear proveedor nuevo, agota shared services backend',
       description:
-        'Las rutas del backend deben ser semanticas, kebab-case y coincidir exactamente con las consumidas por frontend. Cambios sobre rutas existentes requieren plan de migracion si hay consumidores activos.',
-      severity: 'ALTA',
-      domain: 'backend',
-      taskTypes: ['implementacion-backend', 'auditoria'],
-      technologies: ['.NET', 'Angular'],
-      examples: {
-        dotnet: {
-          code: `// ✅ BIEN
-app.MapGroup("api/admin/catalogs/banks");
-
-// ❌ MAL
-app.MapGroup("api/Banks");
-app.MapGroup("api/[controller]");`,
-          description: 'La ruta publica es contrato, no reflejo accidental de carpetas tecnicas.',
-        },
-        angular: {
-          code: `// ✅ BIEN
-export const ADMIN_ENDPOINTS = {
-  banks: 'api/admin/catalogs/banks',
-};
-
-// ❌ MAL
-const endpoint = 'api/Banks';`,
-          description: 'El string del frontend debe coincidir caracter por caracter con backend.',
-        },
-      },
-      sourceDocuments: ['docs/conventions/backend/backend-rules.md', 'docs/conventions/frontend/frontend-api-endpoints.md'],
-      importance:
-        'Evita drift entre front y back y mantiene el contrato estable.',
-    },
-    {
-      id: 'backend-dto-id-must-inherit-guid-base',
-      title: 'Todo DTO backend que declare Id debe heredar de GuidIdEntityDTO',
-      description:
-        'Si un DTO local del modulo declara propiedad Id, la regla oficial es heredar de GuidIdEntityDTO. No se permite redefinir un Id aislado en DTOs del stack backend.',
+        'Si ya existe servicio compartido, interfaz transversal o proveedor oficial, debe usarse antes de crear una variante local.',
       severity: 'ALTA',
       domain: 'backend',
       taskTypes: ['implementacion-backend', 'auditoria', 'documentacion'],
       technologies: ['.NET', 'C#'],
       examples: {
         dotnet: {
-          code: `// ✅ BIEN
-public record BankDTO : GuidIdEntityDTO
+          code: `// OK
+public class PurchaseOrderService(
+  ICurrentUserService currentUserService,
+  ITenantAccessor tenantAccessor,
+  IHttpClientFactory httpClientFactory)
 {
-    public string Code { get; set; }
 }
 
-// ❌ MAL
+// NO
+public class PurchaseOrderService()
+{
+  private readonly HttpClient _http = new();
+}`,
+          description:
+            'Los clientes HTTP y servicios transversales deben salir del catalogo oficial.',
+        },
+      },
+      sourceDocuments: [
+        'docs/conventions/backend/backend-shared-services-catalog.md',
+        'CONVENTIONS.md',
+      ],
+      importance:
+        'Reduce duplicacion, protege shared sensible y vuelve repetible el criterio entre agentes.',
+    },
+    {
+      id: 'backend-route-contract',
+      title: 'Rutas publicas semanticas, kebab-case y consistentes con frontend',
+      description:
+        'Las rutas del backend deben ser semanticas, kebab-case y coincidir exactamente con las consumidas por frontend.',
+      severity: 'ALTA',
+      domain: 'backend',
+      taskTypes: ['implementacion-backend', 'auditoria'],
+      technologies: ['.NET', 'Angular'],
+      examples: {
+        dotnet: {
+          code: `// OK
+app.MapGroup("api/admin/catalogs/banks");
+
+// NO
+app.MapGroup("api/Banks");
+app.MapGroup("api/[controller]");`,
+          description: 'La ruta publica es contrato, no reflejo accidental de carpetas tecnicas.',
+        },
+        angular: {
+          code: `// OK
+export const ADMIN_ENDPOINTS = {
+  banks: 'api/admin/catalogs/banks',
+};
+
+// NO
+const endpoint = 'api/Banks';`,
+          description: 'El string del frontend debe coincidir con backend.',
+        },
+      },
+      sourceDocuments: [
+        'docs/conventions/backend/backend-rules.md',
+        'docs/conventions/frontend/frontend-api-endpoints.md',
+      ],
+      importance: 'Evita drift entre front y back y mantiene el contrato estable.',
+    },
+    {
+      id: 'backend-dto-id-must-inherit-guid-base',
+      title: 'Todo DTO backend que declare Id debe heredar de GuidIdEntityDTO',
+      description:
+        'Si un DTO local del modulo declara propiedad Id, la regla oficial es heredar de GuidIdEntityDTO.',
+      severity: 'ALTA',
+      domain: 'backend',
+      taskTypes: ['implementacion-backend', 'auditoria', 'documentacion'],
+      technologies: ['.NET', 'C#'],
+      examples: {
+        dotnet: {
+          code: `// OK
+public record BankDTO : GuidIdEntityDTO
+{
+  public string Code { get; set; }
+}
+
+// NO
 public record BankDTO
 {
-    public Guid Id { get; set; }
-    public string Code { get; set; }
+  public Guid Id { get; set; }
 }`,
-          description: 'La base oficial para DTOs con Id en backend es GuidIdEntityDTO.',
+          description: 'La base oficial para DTOs con Id es GuidIdEntityDTO.',
         },
       },
       sourceDocuments: [
@@ -183,28 +228,27 @@ public record BankDTO
         'docs/conventions/backend/backend-module-structure.md',
       ],
       importance:
-        'Uniforma contratos, reduce variaciones accidentales y facilita auditoria de DTOs del backend.',
+        'Uniforma contratos, reduce variaciones accidentales y facilita auditoria de DTOs.',
     },
     {
       id: 'backend-one-file-per-dto',
       title: 'En backend la regla oficial es un archivo por DTO',
       description:
-        'Los DTOs locales del modulo no deben concentrarse todos en un solo archivo. Cada DTO vive en su propio archivo dentro de la carpeta DTOs, salvo excepcion aprobada expresamente.',
+        'Los DTOs locales del modulo no deben concentrarse todos en un solo archivo. Cada DTO vive en su propio archivo dentro de DTOs, salvo excepcion aprobada.',
       severity: 'ALTA',
       domain: 'backend',
       taskTypes: ['implementacion-backend', 'auditoria', 'documentacion'],
       technologies: ['.NET', 'C#'],
       examples: {
         dotnet: {
-          code: `// ✅ BIEN
+          code: `// OK
 DTOs/
-├── BankDTO.cs
-├── BankAddOrEditDTO.cs
-└── BankSavedDTO.cs
+- BankDTO.cs
+- BankAddOrEditDTO.cs
+- BankSavedDTO.cs
 
-// ❌ MAL
-DTOs/BankDtos.cs
-// contiene BankDTO, BankAddOrEditDTO y BankSavedDTO juntos`,
+// NO
+DTOs/BankDtos.cs`,
           description: 'La granularidad oficial de DTOs backend es un archivo por contrato.',
         },
       },
@@ -217,17 +261,48 @@ DTOs/BankDtos.cs
         'Mejora trazabilidad, busqueda semantica, diff limpio y mantenimiento por modulo.',
     },
     {
+      id: 'backend-fixed-namespaces-by-piece-type',
+      title: 'En backend los namespaces son fijos por tipo de pieza',
+      description:
+        'DTOs, EndPoints, Interfaces, Mappings y Services usan namespaces oficiales fijos del proyecto. No se construyen siguiendo la ruta completa del modulo.',
+      severity: 'ALTA',
+      domain: 'backend',
+      taskTypes: ['implementacion-backend', 'auditoria', 'documentacion'],
+      technologies: ['.NET', 'C#'],
+      examples: {
+        dotnet: {
+          code: `// OK
+namespace LuxuryApp.Application.DTOs;
+namespace LuxuryApp.Application.EndPoints;
+namespace LuxuryApp.Application.Interfaces;
+namespace LuxuryApp.Application.Mappings;
+namespace LuxuryApp.Application.Services;
+
+// NO
+namespace LuxuryApp.Application.Moduls.CobranzaLuxuryApp.CobranzaOnline.DTOs;`,
+          description: 'El namespace se define por tipo de pieza, no por profundidad de ruta.',
+        },
+      },
+      sourceDocuments: [
+        'CONVENTIONS.md',
+        'docs/conventions/backend/backend-rules.md',
+        'docs/conventions/backend/backend-namespaces.md',
+      ],
+      importance:
+        'Elimina ambiguedad entre agentes y hace repetible la alineacion de codigo backend.',
+    },
+    {
       id: 'frontend-signals-standalone',
       title: 'Frontend oficial: Angular 22 con Signals, Standalone y control flow nuevo',
       description:
-        'La implementacion frontend debe usar Signals, componentes standalone, OnPush y `@if/@for/@switch`. Los patrones antiguos quedan fuera del estandar nuevo.',
+        'La implementacion frontend debe usar Signals, componentes standalone, OnPush y @if/@for/@switch. Los patrones antiguos quedan fuera del estandar nuevo.',
       severity: 'CRÍTICA',
       domain: 'frontend',
       taskTypes: ['implementacion-frontend'],
       technologies: ['Angular', 'TypeScript'],
       examples: {
         angular: {
-          code: `// ✅ BIEN
+          code: `// OK
 users = signal<UserDto[]>([]);
 query = signal('');
 
@@ -235,12 +310,15 @@ filtered = computed(() =>
   this.users().filter(user => user.name.includes(this.query()))
 );
 
-// ❌ MAL
+// NO
 users$ = new BehaviorSubject<UserDto[]>([]);`,
           description: 'Signals y control flow nuevo son el estandar del proyecto.',
         },
       },
-      sourceDocuments: ['docs/conventions/frontend/frontend-rules.md', 'docs/conventions/operations/available-features.md'],
+      sourceDocuments: [
+        'docs/conventions/frontend/frontend-rules.md',
+        'docs/conventions/operations/available-features.md',
+      ],
       importance:
         'Alinea todas las features al modelo reactivo y de rendimiento oficial.',
     },
@@ -256,11 +334,11 @@ users$ = new BehaviorSubject<UserDto[]>([]);`,
       examples: {
         angular: {
           code: `client/angular/src/app/apps/admin.luxuryapp/catalogos-generales/banks/
-├── bank-form.ts
-├── bank-list.ts
-├── desktop/
-├── mobile/
-└── interfaces/`,
+- bank-form.ts
+- bank-list.ts
+- desktop/
+- mobile/
+- interfaces/`,
           description: 'La estructura viva del proyecto es la referencia primaria.',
         },
       },
@@ -279,10 +357,10 @@ users$ = new BehaviorSubject<UserDto[]>([]);`,
       technologies: ['Angular', 'TypeScript'],
       examples: {
         angular: {
-          code: `// ✅ BIEN
+          code: `// OK
 this.apiResponseService.onGetPaged<BankDto>('banks', request);
 
-// ❌ MAL
+// NO
 this.http.get('/api/admin/catalogs/banks');`,
           description: 'El catalogo generico debe agotarse antes de crear servicios ad hoc.',
         },
@@ -295,28 +373,31 @@ this.http.get('/api/admin/catalogs/banks');`,
       id: 'ui-catalog-first',
       title: 'Toda feature consume primero desde shared/ui',
       description:
-        'Desktop, mobile y capa adaptativa viven en `shared/ui`. Si ya existe componente o wrapper oficial, se consume ese antes de bajar directo a librerias base.',
+        'Desktop, mobile y capa adaptativa viven en shared/ui. Si ya existe componente o wrapper oficial, se consume antes de bajar directo a librerias base.',
       severity: 'CRÍTICA',
       domain: 'ui',
       taskTypes: ['implementacion-frontend', 'auditoria'],
       technologies: ['Angular'],
       examples: {
         angular: {
-          code: `// ✅ BIEN
+          code: `// OK
 import { LxStatusBadge } from '@ui/adaptive/status-badge/status-badge';
 
-// ❌ MAL
+// NO
 import { TagModule } from 'primeng/tag';`,
           description: 'El catalogo UI es la frontera oficial entre features y librerias visuales.',
         },
       },
-      sourceDocuments: ['docs/conventions/ui/ui-shared-library-architecture.md', 'docs/conventions/ui/ui-desktop-rules.md'],
+      sourceDocuments: [
+        'docs/conventions/ui/ui-shared-library-architecture.md',
+        'docs/conventions/ui/ui-desktop-rules.md',
+      ],
       importance:
         'Centraliza decisiones visuales y evita componentes paralelos.',
     },
     {
       id: 'ui-desktop-mobile-nature',
-      title: 'Desktop y mobile tienen paradigmas distintos; no se fuerza paridad exacta',
+      title: 'Desktop y mobile tienen paradigmas distintos',
       description:
         'Desktop privilegia productividad y densidad de datos. Mobile privilegia claridad, touch y flujo vertical. El sistema visual debe respetar la naturaleza de cada plataforma.',
       severity: 'ALTA',
@@ -325,25 +406,27 @@ import { TagModule } from 'primeng/tag';`,
       technologies: ['Angular', 'CSS'],
       examples: {
         angular: {
-          code: `<!-- ✅ BIEN -->
+          code: `<!-- OK -->
 @if (isMobile()) {
   <app-bank-list-mobile />
 } @else {
   <app-bank-list-desktop />
 }
 
-<!-- ❌ MAL -->
+<!-- NO -->
 <p-table class="mobile-hack-table"></p-table>`,
           description: 'El patron adaptativo separa implementaciones, no las fuerza a ser iguales.',
         },
       },
-      sourceDocuments: ['docs/conventions/ui/ui-mobile-rules.md', 'docs/conventions/ui/ui-desktop-rules.md'],
-      importance:
-        'Evita Frankenstein visual y mejora UX real por plataforma.',
+      sourceDocuments: [
+        'docs/conventions/ui/ui-mobile-rules.md',
+        'docs/conventions/ui/ui-desktop-rules.md',
+      ],
+      importance: 'Evita Frankenstein visual y mejora UX real por plataforma.',
     },
     {
       id: 'ui-usage-catalog',
-      title: 'Botones, cards, inputs y contenedores se eligen desde un catalogo de uso',
+      title: 'Botones, cards, inputs y contenedores se eligen desde catalogo',
       description:
         'Las decisiones visuales no se improvisan: el sistema define que boton, card, tabla, dialog o input usar segun la necesidad y la plataforma.',
       severity: 'ALTA',
@@ -352,12 +435,12 @@ import { TagModule } from 'primeng/tag';`,
       technologies: ['Angular', 'CSS'],
       examples: {
         angular: {
-          code: `<!-- ✅ BIEN -->
+          code: `<!-- OK -->
 <il-button-primary (clicked)="save()">Guardar</il-button-primary>
 <iw-button-edit aria-label="Editar registro" />
 <custom-input-text-signal [control]="form.controls.name" />
 
-<!-- ❌ MAL -->
+<!-- NO -->
 <button>Guardar</button>
 <input type="text" />`,
           description: 'Cada necesidad tiene componentes aprobados por catalogo.',
@@ -378,17 +461,20 @@ import { TagModule } from 'primeng/tag';`,
       technologies: ['CSS'],
       examples: {
         angular: {
-          code: `// ✅ BIEN
+          code: `// OK
 // token base -> core/_colors.scss
 // variable CSS -> theme/_variables.scss
 // override web -> web/_prime-button.scss
 
-// ❌ MAL
+// NO
 // meter cualquier cambio global en styles.scss`,
           description: 'Los estilos globales tienen capas y responsabilidades claras.',
         },
       },
-      sourceDocuments: ['docs/conventions/styles/styles-rules.md', 'docs/conventions/styles/styles-structure.md'],
+      sourceDocuments: [
+        'docs/conventions/styles/styles-rules.md',
+        'docs/conventions/styles/styles-structure.md',
+      ],
       importance:
         'Evita hardcodes, caos de cascada y proliferacion de estilos fuera de capa.',
     },
@@ -403,11 +489,11 @@ import { TagModule } from 'primeng/tag';`,
       technologies: ['CSS'],
       examples: {
         angular: {
-          code: `/* ✅ BIEN */
+          code: `/* OK */
 color: var(--ds-primary-text);
 background: var(--primary-500);
 
-/* ❌ MAL */
+/* NO */
 color: #ffffff;
 background: #1B365D;`,
           description: 'Los tokens son el lenguaje visual oficial del proyecto.',
@@ -424,8 +510,13 @@ background: #1B365D;`,
         'No basta con que el codigo funcione: nombres, ubicaciones y tipos de archivo deben respetar catalogos oficiales por stack y por dominio maestro.',
       severity: 'ALTA',
       domain: 'catalogs',
-      taskTypes: ['implementacion-backend', 'implementacion-frontend', 'implementacion-flutter', 'auditoria'],
-      technologies: ['Angular', '.NET', 'Flutter', 'Documentación'],
+      taskTypes: [
+        'implementacion-backend',
+        'implementacion-frontend',
+        'implementacion-flutter',
+        'auditoria',
+      ],
+      technologies: ['Angular', '.NET', 'Flutter', 'Documentacion'],
       examples: {},
       sourceDocuments: [
         'docs/conventions/catalogs/naming-conventions.md',
@@ -439,11 +530,11 @@ background: #1B365D;`,
       id: 'audit-complete-only',
       title: 'Solo existe auditoria completa; no se remedia durante la auditoria',
       description:
-        'La auditoria oficial siempre es completa, clasifica hallazgos, deja plan por fases con checklist y, si hay alto riesgo o legacy fuerte, marca `requiere plan de migracion`.',
+        'La auditoria oficial siempre es completa, clasifica hallazgos, deja plan por fases con checklist y, si hay alto riesgo o legacy fuerte, marca requiere plan de migracion.',
       severity: 'CRÍTICA',
       domain: 'audit',
       taskTypes: ['auditoria'],
-      technologies: ['Documentación', 'Angular', '.NET', 'Flutter'],
+      technologies: ['Documentacion', 'Angular', '.NET', 'Flutter'],
       examples: {},
       sourceDocuments: [
         'docs/conventions/audit/audit-module-conventions.md',
@@ -452,6 +543,113 @@ background: #1B365D;`,
       ],
       importance:
         'Evita mezclar diagnostico con ejecucion y reduce remediaciones peligrosas.',
+    },
+    {
+      id: 'operations-plan-protocol',
+      title: 'Todo plan debe seguir protocolo oficial y no estructura improvisada',
+      description:
+        'Los planes de remediacion, implementacion o migracion deben incluir objetivo, alcance, restricciones, fases, checklist, criterios de paso, riesgos y cierre esperado.',
+      severity: 'ALTA',
+      domain: 'operations',
+      taskTypes: ['documentacion', 'auditoria', 'operacion-transversal'],
+      technologies: ['Documentacion'],
+      examples: {
+        angular: {
+          code: `# Plan de Remediacion - Modulo X
+## Resumen Ejecutivo
+## Fase 0. Criterios de control
+## Fase 1
+## Riesgos
+## Cierre esperado`,
+          description: 'El plan oficial debe ser trazable, aprobable y ejecutable.',
+        },
+      },
+      sourceDocuments: [
+        'docs/conventions/operations/plan-creation-protocol.md',
+        'docs/conventions/operations/plan-agent-instructions.md',
+      ],
+      importance:
+        'Evita planes incompletos, duplicados o contradictorios y conserva la trazabilidad.',
+    },
+    {
+      id: 'core-compliance-cycle',
+      title: 'Toda remediacion o migracion sensible sigue el ciclo de compliance',
+      description:
+        'Diagnostico, reporte, plan, aprobacion, ejecucion y revalidacion no son opcionales en cambios sensibles.',
+      severity: 'CRÍTICA',
+      domain: 'core',
+      taskTypes: ['auditoria', 'documentacion', 'operacion-transversal'],
+      technologies: ['Documentacion', 'Angular', '.NET', 'Flutter'],
+      examples: {
+        dotnet: {
+          code: `1. Leer convenciones y stack
+2. Auditar o diagnosticar
+3. Reportar hallazgos
+4. Crear plan por fases
+5. Esperar aprobacion
+6. Ejecutar
+7. Reauditar`,
+          description: 'El flujo formal evita criterios o atajos distintos entre agentes.',
+        },
+      },
+      sourceDocuments: ['docs/conventions/core/compliance-protocol.md', 'CONVENTIONS.md'],
+      importance:
+        'Uniforma el comportamiento operativo de todos los agentes frente a cambios sensibles.',
+    },
+    {
+      id: 'operations-guides-protocol',
+      title: 'Las guias operativas deben tener limites, diagnostico y senales de escala',
+      description:
+        'Una guia reutilizable para agentes debe definir alcance permitido, alcance prohibido, patron de diagnostico, protocolo de intervencion, validaciones y senales de alto riesgo.',
+      severity: 'MEDIA',
+      domain: 'operations',
+      taskTypes: ['documentacion', 'operacion-transversal'],
+      technologies: ['Documentacion'],
+      examples: {
+        angular: {
+          code: `## Regla de Oro
+Diagnosticar primero, corregir despues.
+
+## Alcance Prohibido
+- no tocar formulas de negocio
+
+## Senales de Alto Riesgo
+- cambio transversal
+- contrato compartido`,
+          description: 'La guia operativa oficial funciona como protocolo defensivo.',
+        },
+      },
+      sourceDocuments: [
+        'docs/conventions/operations/guides-creation-protocol.md',
+        'docs/guides/GUIDE_AGENT_INSTRUCTIONS.md',
+      ],
+      importance:
+        'Permite que distintos agentes ejecuten intervenciones sensibles con el mismo criterio.',
+    },
+    {
+      id: 'operations-module-documentation-levels',
+      title: 'La documentacion de modulo tiene niveles oficiales y nunca se duplica',
+      description:
+        'El README y la documentacion tecnica del modulo tienen ubicaciones y cobertura definidas. Si ya existe un documento oficial, se actualiza.',
+      severity: 'MEDIA',
+      domain: 'operations',
+      taskTypes: ['documentacion', 'auditoria'],
+      technologies: ['Documentacion'],
+      examples: {
+        angular: {
+          code: `// OK
+api/LuxuryApp.Application/Moduls/ModuloLuxuryApp/README.md
+api/LuxuryApp.Application/Moduls/ModuloLuxuryApp/Docs/documentacion-modulo.md
+
+// NO
+README-v2.md
+documentacion-final-modulo.md`,
+          description: 'La documentacion del modulo debe mantenerse en el archivo oficial.',
+        },
+      },
+      sourceDocuments: ['docs/conventions/operations/module-documentation-instructions.md'],
+      importance:
+        'Evita dispersion documental y ayuda a que auditoria y remediacion apunten al mismo documento.',
     },
     {
       id: 'audit-ui-styles-included',
@@ -468,14 +666,44 @@ background: #1B365D;`,
         'Evita que un modulo apruebe funcionalmente pero quede fuera del sistema visual oficial.',
     },
     {
+      id: 'audit-business-invariants',
+      title: 'Toda auditoria debe validar reglas de negocio, duplicidades y solapamientos',
+      description:
+        'El auditor debe identificar reglas criticas del modulo y probar escenarios negativos: duplicados, solapamientos, doble submit, concurrencia, transiciones invalidas y huecos de validacion entre capas.',
+      severity: 'CRÍTICA',
+      domain: 'audit',
+      taskTypes: ['auditoria'],
+      technologies: ['Angular', '.NET', 'SQL', 'Documentacion'],
+      examples: {
+        angular: {
+          code: `// Validar invariantes criticas del modulo
+// Amenidades: impedir reservas solapadas
+// Vacaciones: impedir dos solicitudes aprobadas el mismo dia
+// Pagos: impedir doble aplicacion por doble click o reintento`,
+          description:
+            'La auditoria debe probar escenarios negativos, duplicidades y huecos de validacion entre capas.',
+        },
+      },
+      sourceDocuments: [
+        'docs/conventions/audit/audit-module-conventions.md',
+        'docs/conventions/audit/audit-checklist.md',
+      ],
+      importance:
+        'Evita falsos positivos de auditoria y detecta fallos reales de flujo y negocio.',
+    },
+    {
       id: 'operations-available-features',
-      title: 'Antes de codificar, consulta features disponibles y checklist de implementacion',
+      title: 'Antes de codificar, consulta features disponibles y checklist',
       description:
         'El sistema operacional define que dependencias y patrones estan aprobados, y que validaciones minimas deben completarse antes de escribir codigo.',
       severity: 'ALTA',
       domain: 'operations',
-      taskTypes: ['implementacion-backend', 'implementacion-frontend', 'implementacion-flutter'],
-      technologies: ['Documentación'],
+      taskTypes: [
+        'implementacion-backend',
+        'implementacion-frontend',
+        'implementacion-flutter',
+      ],
+      technologies: ['Documentacion'],
       examples: {},
       sourceDocuments: [
         'docs/conventions/operations/available-features.md',
@@ -492,11 +720,37 @@ background: #1B365D;`,
       severity: 'MEDIA',
       domain: 'operations',
       taskTypes: ['documentacion', 'auditoria'],
-      technologies: ['Documentación'],
+      technologies: ['Documentacion'],
       examples: {},
       sourceDocuments: ['docs/conventions/operations/module-documentation-instructions.md'],
+      importance: 'Evita dispersion documental y mantiene trazabilidad.',
+    },
+    {
+      id: 'core-viewer-subordinated-governance',
+      title: 'El conventions-viewer es capa subordinada y debe mantenerse sincronizado',
+      description:
+        'El viewer no es fuente de verdad. Si cambia una regla oficial, debe evaluarse y actualizarse su representacion visual y operativa para no propagar gobernanza vieja o incompleta.',
+      severity: 'ALTA',
+      domain: 'core',
+      taskTypes: ['documentacion', 'operacion-transversal', 'auditoria'],
+      technologies: ['Angular', 'Documentacion'],
+      examples: {
+        angular: {
+          code: `// Cambio oficial en convenciones
+// 1. actualizar CONVENTIONS.md
+// 2. actualizar documento especializado
+// 3. revisar conventions-viewer
+// 4. validar filtros, dataset y etiquetas`,
+          description:
+            'La sincronizacion del viewer forma parte del mantenimiento del sistema de convenciones.',
+        },
+      },
+      sourceDocuments: [
+        'CONVENTIONS.md',
+        'docs/conventions/ui/conventions-viewer-governance.md',
+      ],
       importance:
-        'Evita dispersion documental y mantiene trazabilidad.',
+        'Evita que agentes o developers consulten una capa visual con taxonomia vieja o reglas incompletas.',
     },
     {
       id: 'flutter-governed-growth',
@@ -509,13 +763,13 @@ background: #1B365D;`,
       technologies: ['Flutter', 'Dart'],
       examples: {
         flutter: {
-          code: `// ✅ BIEN
+          code: `// OK
 // Si no existe la regla para una estructura nueva:
 // 1. proponerla
 // 2. esperar aprobacion
 // 3. registrarla en el sistema oficial
 
-// ❌ MAL
+// NO
 // inventar carpeta, patron o servicio por intuicion`,
           description: 'Flutter no es zona libre: sigue el mismo modelo de gobernanza.',
         },
@@ -527,6 +781,100 @@ background: #1B365D;`,
       ],
       importance:
         'Permite que Flutter crezca ordenado desde ahora y no repita el desorden historico.',
+    },
+    {
+      id: 'operations-fase-0-mandatory',
+      title: 'FASE 0: Business Rules Discovery es obligatoria antes de cualquier plan',
+      description:
+        'Toda solicitud de modulo nuevo, migracion mayor o caracteristica transversal requiere completar FASE 0 antes de escribir el plan formal. FASE 0 incluye Problem Statement, Matriz de Reglas de Negocio (4 niveles), y Pre-Mortem. Sin FASE 0, el plan es rechazado.',
+      severity: 'CRÍTICA',
+      domain: 'operations',
+      taskTypes: ['creacion-modulo-fase-0'],
+      technologies: ['Documentacion'],
+      examples: {
+        dotnet: {
+          code: `// FASE 0 - Estructura obligatoria:
+// 0.1 Problem Statement + KPIs
+// "Actualmente [ACTOR] sufre [PROBLEMA] cuando [ACCION], resultando [CONSECUENCIA]"
+// KPIs: baseline → target, timeline, verificacion
+
+// 0.2 Matriz de Reglas (4 Niveles)
+// RN-MOD-001 (Nivel 1 - Invariante): "Todo X debe..."
+// RN-MOD-010 (Nivel 2 - Flujo): "X transiciona: STATE1 → STATE2"
+// RN-MOD-020 (Nivel 3 - Seguridad): "Solo ROLE puede..."
+// RN-MOD-030 (Nivel 4 - Validacion): "Campo X debe ser..."`
+
+,
+          description: 'FASE 0 es documentacion, no codigo. Pero es obligatoria y verificable.',
+        },
+      },
+      sourceDocuments: [
+        'docs/conventions/operations/fase-0-business-rules-discovery.md',
+        'docs/conventions/operations/plan-creation-protocol.md',
+        'CONVENTIONS.md',
+      ],
+      importance:
+        'Evita planes incompletos, reduce retrabajo en implementacion y garantiza trazabilidad auditoria→codigo.',
+    },
+    {
+      id: 'operations-business-rules-four-levels',
+      title: 'Reglas de Negocio: 4 niveles jerarquicos obligatorios (RN-MOD-NNN)',
+      description:
+        'Toda Regla de Negocio se numera RN-MOD-NNN y se clasifica en: Nivel 1 (Invariantes), Nivel 2 (Flujo/Estados), Nivel 3 (Seguridad/RBAC), Nivel 4 (Validacion de Datos). Esta taxonomia es obligatoria en FASE 0, plan y auditoria.',
+      severity: 'CRÍTICA',
+      domain: 'operations',
+      taskTypes: ['creacion-modulo-fase-0', 'auditoria'],
+      technologies: ['Documentacion'],
+      examples: {
+        dotnet: {
+          code: `// Nivel 1 - Invariantes de Dominio (nunca cambian)
+// RN-ACC-001: "Todo visitante debe tener QR único válido"
+
+// Nivel 2 - Flujo y Estados
+// RN-ACC-010: "Visitante: PENDING → CHECKED_IN → ACTIVE → CHECKED_OUT"
+
+// Nivel 3 - Seguridad/Autorización (RBAC)
+// RN-ACC-020: "Solo Admin/Manager pueden GENERAR QR"
+
+// Nivel 4 - Validación de Datos
+// RN-ACC-030: "QR expira en 24h (configurable por tenant)"`,
+          description: 'Los 4 niveles cubren dominio, flujo, seguridad y validacion.',
+        },
+      },
+      sourceDocuments: [
+        'docs/conventions/operations/fase-0-business-rules-discovery.md',
+        'docs/reporte_maestro/AUDIT_AGENT_INSTRUCTIONS.md',
+      ],
+      importance:
+        'Garantiza consistencia entre plan, codigo e auditoria. Cada RN es trazable de principio a fin.',
+    },
+    {
+      id: 'audit-fase-0-traceability',
+      title: 'Auditoria verifica trazabilidad: FASE 0 → Plan → Codigo',
+      description:
+        'Cuando se audita un modulo, toda Regla de Negocio debe trazarse: existe en FASE 0 → mapeada en plan (seccion 3) → implementada en codigo (archivo:linea). Si una RN no aparece en codigo, es un hallazgo de auditoria.',
+      severity: 'ALTA',
+      domain: 'audit',
+      taskTypes: ['auditoria', 'creacion-modulo-fase-0'],
+      technologies: ['Documentacion', '.NET', 'Angular'],
+      examples: {
+        dotnet: {
+          code: `// AUDITORIA: Verificar trazabilidad
+// RN-ACC-001 (FASE 0) → Plan Sección 3 → Codigo:
+// backend: api/LuxuryApp.Application/Services/VisitorAccessService.cs:42
+// frontend: client/angular/.../visitor-access/services/visitor-access.service.ts:15
+
+// Si RN no está en codigo → Hallazgo crítico
+// Accion: Plan de remediacion`,
+          description: 'La trazabilidad es el puente entre reglas y implementacion.',
+        },
+      },
+      sourceDocuments: [
+        'docs/reporte_maestro/AUDIT_AGENT_INSTRUCTIONS.md',
+        'docs/conventions/audit/audit-module-conventions.md',
+      ],
+      importance:
+        'Detecta brechas entre lo planeado y lo implementado. Garantiza que codigo cumple reglas de negocio.',
     },
   ];
 

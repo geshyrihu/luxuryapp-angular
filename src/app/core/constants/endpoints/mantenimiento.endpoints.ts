@@ -167,6 +167,7 @@ export const EndpointsMantenimiento = {
   },
   Machineries: {
     base: "machineries",
+    getAll: (customerId: string) => `machineries/get-all/${customerId}`,
     delete: (id: string) => `machineries/${id}`,
     deleteDocument: (id: string) => `machineries/delete-document/${id}`,
     getById: (id: string) => `machineries/${id}`,

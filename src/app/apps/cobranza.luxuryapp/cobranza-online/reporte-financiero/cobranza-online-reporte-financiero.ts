@@ -15,7 +15,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CobranzaOnlineService } from "../cobranza-online.service";
 import type {
   ReporteFinancieroFila,
   ReporteFinancieroResponse,
@@ -57,7 +57,7 @@ const MESES_OPCIONES: OpcionMes[] = [
 })
 export class CobranzaOnlineReporteFinanciero {
   private customerIdS = inject(CustomerIdService);
-  private apiResponseS = inject(ApiResponseService);
+  private cobranzaOnlineS = inject(CobranzaOnlineService);
 
   readonly currentYear = signal(new Date().getFullYear());
   readonly mesInicio = signal(1);
@@ -127,14 +127,11 @@ export class CobranzaOnlineReporteFinanciero {
 
   private async loadData(customerId: string) {
     this.loading.set(true);
-    const result = await this.apiResponseS.onGetItem<ReporteFinancieroResponse>(
-      Endpoints.CobranzaOnline.ReporteFinanciero.get(
-        customerId,
-        this.currentYear(),
-        this.mesInicio(),
-        this.mesFin(),
-      ),
-      false,
+    const result = await this.cobranzaOnlineS.getReporteFinanciero(
+      customerId,
+      this.currentYear(),
+      this.mesInicio(),
+      this.mesFin(),
     );
     this.data.set((result as ReporteFinancieroResponse | null) ?? null);
     this.loading.set(false);

@@ -9,7 +9,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 /** Opción de un control segmentado. */
 export interface SegmentItem {
-  value: string;
+  value: any;
   label: string;
   icon?: string;
 }
@@ -101,13 +101,13 @@ export class SegmentedControl {
   /** Opciones a mostrar. */
   items = input<SegmentItem[]>([]);
   /** Valor seleccionado (two-way: `[(value)]`). */
-  value = model<string>("");
+  value = model<any>("");
   /** Etiqueta accesible del grupo. */
   ariaLabel = input<string>("Selector");
   /** Emite el nuevo valor al cambiar. */
-  changed = output<string>();
+  changed = output<any>();
 
-  select(value: string): void {
+  select(value: any): void {
     this.value.set(value);
     this.changed.emit(value);
   }

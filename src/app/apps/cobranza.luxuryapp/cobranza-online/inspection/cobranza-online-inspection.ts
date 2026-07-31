@@ -21,7 +21,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CobranzaOnlineService } from "../cobranza-online.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import type {
@@ -55,7 +55,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 export class CobranzaOnlineInspection {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
-  private apiResponseS = inject(ApiResponseService);
+  private cobranzaOnlineS = inject(CobranzaOnlineService);
   private dialogHandlerS = inject(DialogHandlerService);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
@@ -116,13 +116,10 @@ export class CobranzaOnlineInspection {
 
     this.loading.set(true);
     const response =
-      await this.apiResponseS.onGetItem<CobranzaOnlineInspectionResponse>(
-        Endpoints.CobranzaOnline.Dashboard.inspection(
-          customerId,
-          this.currentYear(),
-          this.currentMonth(),
-        ),
-        false,
+      await this.cobranzaOnlineS.getInspection(
+        customerId,
+        this.currentYear(),
+        this.currentMonth(),
       );
 
     const typedResponse = response as CobranzaOnlineInspectionResponse | null;

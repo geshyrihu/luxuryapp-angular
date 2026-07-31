@@ -9,7 +9,14 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
   {
     label: "Contabilidad General",
     icon: "mdi:chart-bar",
-    roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
+    roles: [
+      ApplicationRole.Contador,
+      ApplicationRole.SuperUsuario,
+      ApplicationRole.Administrador,
+      ApplicationRole.GerenteOperaciones,
+      ApplicationRole.Asistente,
+      ApplicationRole.Cobranza,
+    ],
     cards: [
       {
         title: "Catálogo Contable",
@@ -31,7 +38,11 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         roles: [
           ApplicationRole.Contador,
           ApplicationRole.SuperUsuario,
+          ApplicationRole.GerenteOperaciones,
           ApplicationRole.Asistente,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+          ApplicationRole.Cobranza,
         ],
       },
       {
@@ -68,7 +79,13 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:chart-line",
         color: "#0891b2",
         bgColor: "#cffafe",
-        roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
+        roles: [
+          ApplicationRole.Contador,
+          ApplicationRole.Asistente,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+          ApplicationRole.SuperUsuario,
+        ],
       },
       {
         title: "Reportes Dinámicos",
@@ -98,7 +115,13 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
   {
     label: "Espejo Contabilidad Presupuestal",
     icon: "mdi:chart-bar",
-    roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
+    roles: [
+      ApplicationRole.Contador,
+      ApplicationRole.SuperUsuario,
+      ApplicationRole.Asistente,
+      ApplicationRole.Administrador,
+      ApplicationRole.GerenteOperaciones,
+    ],
     cards: [
       {
         title: "Propuesta Presupuesto Nuevo",
@@ -107,7 +130,13 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:file-edit",
         color: "#3730a3",
         bgColor: "#e0e7ff",
-        roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
+        roles: [
+          ApplicationRole.Contador,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Asistente,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+        ],
       },
       {
         title: "Presupuesto Espejo Aspel",
@@ -116,7 +145,13 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:briefcase",
         color: "#1e3a8a",
         bgColor: "#dbeafe",
-        roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
+        roles: [
+          ApplicationRole.Contador,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Asistente,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+        ],
       },
       {
         title: "Cobranza Online",
@@ -125,7 +160,13 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:wallet",
         color: "#047857",
         bgColor: "#d1fae5",
-        roles: [ApplicationRole.SuperUsuario, ApplicationRole.Contador],
+        roles: [
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Contador,
+          ApplicationRole.Asistente,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+        ],
       },
       {
         title: "Espejo Aspel Full",
@@ -166,7 +207,13 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:pencil-box-multiple",
         color: "#15803d",
         bgColor: "#dcfce7",
-        roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
+        roles: [
+          ApplicationRole.Contador,
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Asistente,
+          ApplicationRole.Administrador,
+          ApplicationRole.GerenteOperaciones,
+        ],
       },
     ],
   },

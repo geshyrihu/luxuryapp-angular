@@ -75,6 +75,67 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
   selector: "app-google-calendar",
   templateUrl: "./google-calendar.html",
   changeDetection: ChangeDetectionStrategy.Eager,
+  styles: [`
+    :host ::ng-deep .fc-theme-standard td, :host ::ng-deep .fc-theme-standard th {
+      border-color: var(--surface-border);
+    }
+    :host ::ng-deep .fc-header-toolbar {
+      padding: 1rem;
+      background: var(--surface-section);
+      border-radius: 16px 16px 0 0;
+      margin-bottom: 0 !important;
+      border: 1px solid var(--surface-border);
+      border-bottom: none;
+    }
+    :host ::ng-deep .fc-view-harness {
+      border: 1px solid var(--surface-border);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+    }
+    :host ::ng-deep .fc-daygrid-day-number {
+      font-weight: 600;
+      color: var(--text-color);
+      padding: 0.5rem;
+    }
+    :host ::ng-deep .fc-event {
+      border-radius: 6px;
+      border: none;
+      padding: 3px 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      margin: 1px 4px;
+    }
+    :host ::ng-deep .fc-day-today {
+      background: var(--primary-50) !important;
+    }
+    @media screen and (max-width: 768px) {
+      :host ::ng-deep .fc-header-toolbar {
+        flex-direction: column !important;
+        gap: 0.75rem;
+        align-items: stretch !important;
+        padding: 1rem 0.5rem;
+      }
+      :host ::ng-deep .fc-toolbar-chunk {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+      :host ::ng-deep .fc-toolbar-chunk:nth-child(2) {
+        order: -1;
+        margin-bottom: 0.5rem;
+      }
+      :host ::ng-deep .fc-toolbar-title {
+        font-size: 1.25rem !important;
+        text-align: center;
+      }
+      :host ::ng-deep .fc-button {
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.85rem !important;
+      }
+    }
+  `],
   imports: [
     WebButtonLabel,
     WebButtonIcon,
@@ -232,7 +293,7 @@ export class GoogleCalendar {
           events: this.dataSignal(),
         },
         id ? "Editar evento de comite" : "Nuevo evento de comite",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeFull,
       )
       .then(
         (
@@ -333,6 +394,37 @@ export class GoogleCalendar {
     const hours = `${parsed.getHours()}`.padStart(2, "0");
     const minutes = `${parsed.getMinutes()}`.padStart(2, "0");
     return `${day}/${month}/${year} ${hours}:${minutes}`;
+  }
+
+  getDay(value: string | Date | null | undefined): string {
+    const parsed = this.parseBusinessDateTime(value);
+    return parsed ? `${parsed.getDate()}`.padStart(2, "0") : "--";
+  }
+
+  getMonth(value: string | Date | null | undefined): string {
+    const parsed = this.parseBusinessDateTime(value);
+    if (!parsed) return "---";
+    const months = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+    return months[parsed.getMonth()];
+  }
+
+  formatBusinessTime(value: string | Date | null | undefined): string {
+    const parsed = this.parseBusinessDateTime(value);
+    if (!parsed) return "";
+    const hours = `${parsed.getHours()}`.padStart(2, "0");
+    const minutes = `${parsed.getMinutes()}`.padStart(2, "0");
+    return `${hours}:${minutes}`;
+  }
+
+  getSubjectTypeClass(item: IGoogleCalendarEventListItem): string {
+    // SubjectType values: 0: JCM, 1: Asamblea, 2: Junta Lujo, 3: Junta Interna
+    switch (item.subjectType) {
+      case 0: return "bg-blue-100 text-blue-800";
+      case 1: return "bg-purple-100 text-purple-800";
+      case 2: return "bg-orange-100 text-orange-800";
+      case 3: return "bg-teal-100 text-teal-800";
+      default: return "bg-gray-100 text-gray-800";
+    }
   }
 
   getStatusLabel(item: IGoogleCalendarEventListItem) {

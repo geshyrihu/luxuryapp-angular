@@ -23,7 +23,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CobranzaOnlineService } from "../cobranza-online.service";
 import type { CobranzaOnlineAnalysisResponse } from "../interfaces/cobranza-online-analysis.model";
 
 function buildTodayInputValue() {
@@ -57,7 +57,7 @@ function buildTodayInputValue() {
 export class CobranzaOnlineAnalysis {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
-  private apiResponseS = inject(ApiResponseService);
+  private cobranzaOnlineS = inject(CobranzaOnlineService);
 
   readonly loading = signal(false);
   readonly cutoffDateInput = signal(buildTodayInputValue());
@@ -219,15 +219,7 @@ export class CobranzaOnlineAnalysis {
 
     this.loading.set(true);
     const result =
-      await this.apiResponseS.onGetItem<CobranzaOnlineAnalysisResponse>(
-        Endpoints.CobranzaOnline.Dashboard.analysis(
-          customerId,
-          year,
-          month,
-          day,
-        ),
-        false,
-      );
+      await this.cobranzaOnlineS.getAnalysis(customerId, year, month, day);
     this.data.set(result ?? null);
     this.loading.set(false);
   }

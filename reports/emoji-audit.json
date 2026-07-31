@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-29T19:59:38.318Z",
-  "totalMatches": 1378,
-  "userFacingMatches": 360,
+  "generatedAt": "2026-07-30T17:20:30.867Z",
+  "totalMatches": 1265,
+  "userFacingMatches": 324,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/apps",
-      "count": 698
+      "count": 585
     },
     {
       "key": "app/shared",
@@ -40,7 +40,7 @@
   "byUserFacingModule": [
     {
       "key": "app/apps",
-      "count": 260
+      "count": 224
     },
     {
       "key": "app/core",
@@ -62,31 +62,31 @@
   "byCategory": [
     {
       "key": "docs",
-      "count": 480
+      "count": 496
     },
     {
       "key": "code_string",
-      "count": 217
-    },
-    {
-      "key": "code_comment",
-      "count": 215
+      "count": 197
     },
     {
       "key": "template_comment",
-      "count": 185
+      "count": 182
+    },
+    {
+      "key": "code_comment",
+      "count": 179
     },
     {
       "key": "template_text",
-      "count": 137
-    },
-    {
-      "key": "code_misc",
-      "count": 72
+      "count": 121
     },
     {
       "key": "style_comment",
       "count": 57
+    },
+    {
+      "key": "code_misc",
+      "count": 18
     },
     {
       "key": "style_content",
@@ -1462,1392 +1462,6 @@
       "preview": "**Estado:** ✅ Auditoría completa — sin hallazgos abiertos"
     },
     {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
-      "line": 20,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "▶"
-      ],
-      "preview": "{{ expanded() ? '▼' : '▶' }}"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
-      "line": 47,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "💡"
-      ],
-      "preview": "<h3>💡 Por qué es importante</h3>"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
-      "line": 58,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "📝"
-      ],
-      "preview": "<h3>📝 Ejemplos de Código</h3>"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
-      "line": 67,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🅰"
-      ],
-      "preview": "🅰️ Angular"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
-      "line": 76,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🔷"
-      ],
-      "preview": "🔷 .NET / C#"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
-      "line": 85,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🐦"
-      ],
-      "preview": "🐦 Flutter"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
-      "line": 99,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "📋"
-      ],
-      "preview": "📋"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
-      "line": 118,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "📋"
-      ],
-      "preview": "📋"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
-      "line": 137,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "📋"
-      ],
-      "preview": "📋"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.html",
-      "line": 152,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🔗"
-      ],
-      "preview": "<h3>🔗 Secciones Relacionadas</h3>"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
-      "line": 38,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🅰"
-      ],
-      "preview": "angular: '🅰️',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
-      "line": 39,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🔷"
-      ],
-      "preview": "'.net': '🔷',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
-      "line": 40,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🔷"
-      ],
-      "preview": "'c#': '🔷',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
-      "line": 41,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🐦"
-      ],
-      "preview": "flutter: '🐦',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
-      "line": 42,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "📘"
-      ],
-      "preview": "typescript: '📘',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/components/convention-card/convention-card.ts",
-      "line": 44,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "💻"
-      ],
-      "preview": "return iconMap[tech.toLowerCase()] ?? '💻';"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
-      "line": 5,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "📋"
-      ],
-      "preview": "<h1>📋 CONVENTIONS.md - Guía Interactiva</h1>"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
-      "line": 18,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🔍"
-      ],
-      "preview": "placeholder=\"🔍 Buscar convención (strict, wrapper, api, etc)...\""
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
-      "line": 32,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "📚"
-      ],
-      "preview": "📚 Todas ({{ conventions().length }})"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
-      "line": 39,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "📖"
-      ],
-      "preview": "📖 Por Sección"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
-      "line": 46,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "⚠️ Por Severidad"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.html",
-      "line": 53,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "💻"
-      ],
-      "preview": "💻 Por Tecnología"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 36,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (.NET 10)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 53,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (MVC Controller)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 74,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Angular 22 Standalone)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 119,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (@ui/*)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 130,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (importación directa)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 150,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Guid v7 - sortable)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 157,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (GUID v4 - random)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 162,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (string IDs del backend)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 164,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "id: string;  // ← Del backend (Guid.CreateVersion7())"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 170,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "userId = input<string>();  // ← String del backend"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 190,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Signals)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 218,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (RxJS)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 240,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Signal-based)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 257,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (@Input/@Output)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 281,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `<!-- ✅ BIEN (@defer) -->"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 301,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "<!-- ❌ MAL (eager loading todo) -->"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 321,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (FormHelper)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 345,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (manual sin helper)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 370,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Patrón B: Web + Mobile)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 391,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (solo desktop)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 412,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 442,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 449,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "changeDetection: ChangeDetectionStrategy.OnPush,  // ← OBLIGATORIO"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 473,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Standalone - Angular 22)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 478,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "// standalone: true  ← Implícito en Angular 22, no hace falta"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 482,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (NgModule - Legacy)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 505,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `<!-- ✅ BIEN (Angular 17+) -->"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 516,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "<!-- ❌ MAL (Antiguo) -->"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 540,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Usar catálogo @ui/*)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 551,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (Importación directa)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 574,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 579,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 601,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Sin sufijo .component)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 608,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (.component innecesario)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 630,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Minimal API)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 652,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (MVC Controller)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 678,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Primary Constructor)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 690,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (Tradicional)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 719,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Sempre ApiResponseDTO)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 738,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (Respuesta inconsistente)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 790,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "→"
-      ],
-      "preview": "description: 'Patrón AAA: Arrange → Act → Assert',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 836,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "↔"
-      ],
-      "preview": "'Enums siempre se guardan como string en base de datos. Legibilidad en SQL, no magic numbers. Sincronizar valores C# ↔ TypeScript.',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 841,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (string enum)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 853,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (entero en BD)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 873,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Source Generator)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 887,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (Reflexión)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 906,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (HybridCache)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 923,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (MemoryCache directo)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 942,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (TimeProvider inyectado)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 961,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (DateTime.UtcNow directo)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 980,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (AsNoTracking + AsSplitQuery)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1001,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (con tracking innecesario)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1021,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `/* ✅ BIEN (Mobile-first) */"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1046,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "/* ❌ MAL (Desktop-first) */"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1075,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Patrón B)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1099,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (un componente para ambos)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1122,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (xUnit + FluentAssertions + Moq)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1148,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (Assert tradicional)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1168,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (AAA pattern)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1193,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (sin separación clara)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1202,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "→"
-      ],
-      "preview": "description: 'AAA: Arrange → Act → Assert, una idea por test',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1215,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "→"
-      ],
-      "preview": "'Todos los planes de implementación DEBEN seguir estructura: Resumen → Alcance → Fases → Timeline → Recursos → Riesgos → etc.',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1226,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Frontend: lista, CRUD, reportes"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1227,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Backend: Minimal APIs, paginación"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1228,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "- ❌ No incluye: integración contable"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1271,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "←"
-      ],
-      "preview": "PaginationCommonDTO pagination,  // ← BindAsync automático"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1349,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `<!-- ✅ BIEN (p-table con virtual scroll + lazy) -->"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1367,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "<!-- ❌ MAL (sin virtual scroll, datos en memoria) -->"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1388,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `<!-- ✅ BIEN (Ionic patterns) -->"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1425,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (ApiResponseService)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1444,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (HttpClient directo)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1471,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Nomenclatura canónica)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1481,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1488,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Endpoint strings coinc iden exacto)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1494,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1517,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (UTF-8 sin BOM)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1518,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🚀"
-      ],
-      "preview": "// 🚀 Feature: Nueva funcionalidad"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1519,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "💡"
-      ],
-      "preview": "// 💡 Nota: Este es un ejemplo"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1520,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "// ⚠️ Advertencia: No olvidar validar"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1523,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "📝"
-      ],
-      "preview": "// 📝 TODO: Implementar loading state"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1526,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "<!-- ❌ MAL: BOM (byte order mark) al inicio del archivo -->"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1546,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (Null-safe, records)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1566,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (dinámico)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1585,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (adaptive layout)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1630,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (apps separadas por rol)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1643,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (todo en una carpeta)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1663,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🔴"
-      ],
-      "preview": "'Todos los commits ejecutan auditoría automática según rol (frontend, backend, mobile, full-stack). Bloquea si hay 🔴 CRÍTICA.',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1675,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "✅ Auditoría por rol pasada"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1676,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "✅ Sin mojibake"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1680,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "❌ AUDITORÍA FRONTEND FALLIDA"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1682,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🔴"
-      ],
-      "preview": "🔴 CRÍTICA (1):"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1686,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "→"
-      ],
-      "preview": "'Pre-commit hook detecta rama → ejecuta auditoría → bloquea si CRÍTICA',"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1763,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "dotnet: { code: 'public interface ICurrentUserService\\n{\\n    string UserId { get; }\\n}\\n\\npublic interface IEmailService { }\\n\\n// ❌ Never: IHttpContextAccessor in services', desc"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1793,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "angular: { code: 'reglas-negocio-cobranza.md\\narquitectura-cobranza.md\\n\\n# ❌ MAL\\ncobranza-guide.md (sin prefijo)', description: 'Module documentation location and naming' },"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1808,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "→"
-      ],
-      "preview": "angular: { code: '# Guía: Migrar MVC → Minimal API\\n\\n## Pre-requisitos\\n## Scope\\n## Arquitectura\\n## Procedimiento\\n## Rollback\\n## Validación', description: 'Structured operatio"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1828,
-      "category": "code_misc",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "code: `// ✅ BIEN (GetDisplayName en listas de enum)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1832,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "// ✅ BIEN (GetCelFormtat en listas de teléfonos)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1836,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (nombre técnico del enum)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
-      "line": 1840,
-      "category": "code_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "// ❌ MAL (teléfono sin formatear)"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.utils.ts",
-      "line": 4,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🔴"
-      ],
-      "preview": "CRÍTICA: { color: 'var(--severity-critica)', icon: '🔴' },"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.utils.ts",
-      "line": 5,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🟠"
-      ],
-      "preview": "ALTA: { color: 'var(--severity-alta)', icon: '🟠' },"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.utils.ts",
-      "line": 6,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🟡"
-      ],
-      "preview": "MEDIA: { color: 'var(--severity-media)', icon: '🟡' },"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.utils.ts",
-      "line": 7,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🔵"
-      ],
-      "preview": "BAJA: { color: 'var(--severity-baja)', icon: '🔵' },"
-    },
-    {
-      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.utils.ts",
-      "line": 15,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "⚫"
-      ],
-      "preview": "return SeverityConfig[severity]?.icon ?? '⚫';"
-    },
-    {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
       "line": 1,
       "category": "docs",
@@ -2911,11 +1525,22 @@
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ **Ejemplos de Código** — Angular, .NET, Flutter (copy-to-clipboard)"
+      "preview": "- ✅ **Taxonomía Nueva** — Dominio y tipo de tarea alineados con el sistema rector"
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
       "line": 15,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Ejemplos de Código** — Angular, .NET, Flutter (copy-to-clipboard)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 16,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -2930,7 +1555,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 16,
+      "line": 17,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -2941,7 +1566,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 17,
+      "line": 18,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -2952,7 +1577,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 21,
+      "line": 22,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -2963,7 +1588,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 40,
+      "line": 41,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -2974,7 +1599,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 45,
+      "line": 46,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -2985,7 +1610,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 52,
+      "line": 53,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -2996,7 +1621,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 53,
+      "line": 54,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3007,7 +1632,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 54,
+      "line": 55,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3018,7 +1643,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 60,
+      "line": 61,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3029,18 +1654,29 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 61,
+      "line": 62,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
       "symbols": [
-        "📖"
+        "🗂"
       ],
-      "preview": "- 📖 **Por Sección** (§2, §5, §6, etc.)"
+      "preview": "- 🗂️ **Por Dominio** (Core, Backend, Frontend, UI, Styles, Audit, etc.)"
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 62,
+      "line": 63,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🛠"
+      ],
+      "preview": "- 🛠️ **Por Tarea** (Implementación Backend, Frontend/UI, Flutter, Auditoría, etc.)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
+      "line": 64,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3051,7 +1687,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 63,
+      "line": 65,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3062,7 +1698,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 76,
+      "line": 78,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3073,7 +1709,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 100,
+      "line": 107,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3084,7 +1720,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 104,
+      "line": 111,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3095,7 +1731,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 105,
+      "line": 112,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3106,7 +1742,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 106,
+      "line": 113,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3117,7 +1753,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 107,
+      "line": 114,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3128,7 +1764,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 111,
+      "line": 118,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3139,7 +1775,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 162,
+      "line": 169,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3150,7 +1786,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 176,
+      "line": 183,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3161,7 +1797,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 180,
+      "line": 187,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3172,7 +1808,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 191,
+      "line": 198,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3183,7 +1819,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 199,
+      "line": 206,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3194,7 +1830,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 212,
+      "line": 219,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3205,7 +1841,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 215,
+      "line": 222,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3216,7 +1852,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 216,
+      "line": 223,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3227,7 +1863,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 217,
+      "line": 224,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3238,7 +1874,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 218,
+      "line": 225,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3249,7 +1885,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 219,
+      "line": 226,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3260,7 +1896,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
-      "line": 238,
+      "line": 245,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -3719,6 +2355,163 @@
         "🔐"
       ],
       "preview": "\"🔐 Cuenta de acceso\","
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 1,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📍",
+        "📂",
+        "💼",
+        "💰"
+      ],
+      "preview": "📍 Ruta: 📂 Documentación > 💼 Contabilidad > 💰 Cobranza Online"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 3,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📅"
+      ],
+      "preview": "📅 Última Revisión: Junio 2026"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 4,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🛡"
+      ],
+      "preview": "🛡️ Estado: Vigente"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 5,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "👤"
+      ],
+      "preview": "👤 Responsable: Antigravity"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 7,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📊"
+      ],
+      "preview": "# 📊 Análisis de Módulo: Cobranza Online (Frontend)"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 13,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🎯"
+      ],
+      "preview": "## 1. 🎯 Resumen Ejecutivo"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 17,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "### Criterios de Éxito ✅"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 24,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🧩"
+      ],
+      "preview": "## 2. 🧩 Estructura de Componentes y Páginas"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 28,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📂"
+      ],
+      "preview": "### 📂 Modelos (`models/`)"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 37,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📄"
+      ],
+      "preview": "### 📄 Páginas (`pages/`)"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 47,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📊"
+      ],
+      "preview": "## 3. 📊 Arquitectura y Flujo de Datos"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 65,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "⚖"
+      ],
+      "preview": "## 4. ⚖️ Funcionalidades Clave (Showcase)"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 75,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "⚠"
+      ],
+      "preview": "## 5. ⚠️ Alertas y Consideraciones"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
+      "line": 87,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🚀"
+      ],
+      "preview": "🚀 *Análisis Generado de Forma Exitosa.*"
     },
     {
       "file": "src/app/apps/contabilidad.luxuryapp/ar/aspel-customer-empresa/aspel-customer-empresa-list.html",
@@ -4814,39 +3607,6 @@
         "📱"
       ],
       "preview": "<!-- 📱 INICIO: Componente adaptado para versión mívil -->"
-    },
-    {
-      "file": "src/app/apps/legal.luxuryapp/comite-vigilancia/comite-vigilancia-list.html",
-      "line": 89,
-      "category": "template_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "📲"
-      ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
-    },
-    {
-      "file": "src/app/apps/legal.luxuryapp/comite-vigilancia/comites-list.html",
-      "line": 1,
-      "category": "template_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🖥"
-      ],
-      "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
-    },
-    {
-      "file": "src/app/apps/legal.luxuryapp/comite-vigilancia/comites-list.html",
-      "line": 62,
-      "category": "template_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "📱"
-      ],
-      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/apps/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/catalogo-activo-lista/catalogo-activo-lista.html",

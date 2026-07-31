@@ -230,9 +230,12 @@ export class EquiposList {
   // --- CARGA DE DATOS (Refactorizado) ---
   async onLoadData(customerId: string, categoryId: any, state: number) {
     this.loading.set(true);
-    const urlApi = `machineries/list/${customerId}/${categoryId}/${state}`;
+    const urlApi = Endpoints.Machineries.getAll(customerId);
     try {
-      const result = await this.apiResponseS.onGetList<Equipo[]>(urlApi);
+      const result = await this.apiResponseS.onGetList<Equipo[]>(urlApi, {
+        status: state,
+        inventoryCategory: categoryId,
+      });
       console.log(result);
       this.data.set(result);
     } catch (error) {

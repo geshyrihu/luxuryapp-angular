@@ -21,6 +21,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { SegmentedControl } from "@ui/shared/segmented-control/segmented-control";
 import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 
@@ -151,6 +152,7 @@ interface IGoogleCalendarEventForm {
     CustomInputSwitch,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
+    SegmentedControl,
   ],
 })
 export class GoogleCalendarForm implements OnInit {
@@ -244,6 +246,7 @@ export class GoogleCalendarForm implements OnInit {
   readonly selectedStartTime = signal<string>("");
   readonly loadingDateAvailability = signal(false);
   readonly loadingSuggestedInvitees = signal(false);
+  readonly implicitGuests = signal<IGoogleCalendarInviteeSuggestion[]>([]);
   readonly isStartTimeDisabled = computed(
     () =>
       !this.selectedDate() ||
@@ -434,6 +437,7 @@ export class GoogleCalendarForm implements OnInit {
     }
 
     this.form.updateValueAndValidity();
+    await this.loadSuggestedInvitees(true);
   }
 
   addGuest(guest?: {
@@ -685,8 +689,8 @@ export class GoogleCalendarForm implements OnInit {
     });
   }
 
-  private async loadSuggestedInvitees() {
-    if (this.isEditMode()) {
+  private async loadSuggestedInvitees(force = false) {
+    if (this.isEditMode() && !force) {
       return;
     }
 
@@ -729,63 +733,22 @@ export class GoogleCalendarForm implements OnInit {
   private mergeGuestSuggestions(
     suggestions: IGoogleCalendarInviteeSuggestion[],
   ) {
-    const existingControlsByEmail = new Map<
-      string,
-      FormGroup<IGoogleCalendarGuestForm>
-    >();
-    this.guestsArray.controls.forEach((control) => {
-      const email = control.controls.email.getRawValue().trim().toLowerCase();
-      if (email) existingControlsByEmail.set(email, control);
-    });
+    this.implicitGuests.set(suggestions);
 
-    suggestions.forEach((suggestion) => {
-      const email = suggestion.email?.trim().toLowerCase();
-      if (!email) return;
-
-      if (existingControlsByEmail.has(email)) {
-        const control = existingControlsByEmail.get(email)!;
-        control.controls.isImplicit.setValue(true, { emitEvent: false });
-        control.controls.name.disable({ emitEvent: false });
-        control.controls.email.disable({ emitEvent: false });
-      } else {
-        this.guestsArray.push(
-          new FormGroup<IGoogleCalendarGuestForm>({
-            id: new FormControl(suggestion.id ?? null),
-            name: new FormControl(
-              { value: suggestion.nameEmployee ?? "", disabled: true },
-              { nonNullable: true },
-            ),
-            email: new FormControl(
-              { value: suggestion.email ?? "", disabled: true },
-              {
-                nonNullable: true,
-                validators: [Validators.required, Validators.email],
-              },
-            ),
-            isImplicit: new FormControl(true, { nonNullable: true }),
-          }),
-          { emitEvent: false },
-        );
-      }
-    });
-
-    const sortedControls = [...this.guestsArray.controls].sort((a, b) => {
-      const emailA = a.controls.email.getRawValue().trim().toLowerCase();
-      const emailB = b.controls.email.getRawValue().trim().toLowerCase();
-      const idxA = suggestions.findIndex(
-        (s) => s.email?.trim().toLowerCase() === emailA,
-      );
-      const idxB = suggestions.findIndex(
-        (s) => s.email?.trim().toLowerCase() === emailB,
-      );
-      return (idxA === -1 ? 9999 : idxA) - (idxB === -1 ? 9999 : idxB);
-    });
-
-    this.guestsArray.clear({ emitEvent: false });
-    sortedControls.forEach((c) =>
-      this.guestsArray.push(c, { emitEvent: false }),
+    // Remove implicit guests from manual guests array if they were added during load
+    const implicitEmails = new Set(
+      suggestions
+        .map((s) => s.email?.trim().toLowerCase())
+        .filter((e) => !!e),
     );
-    this.guestsArray.updateValueAndValidity({ emitEvent: false });
+
+    const manualControls = this.guestsArray.controls;
+    for (let i = manualControls.length - 1; i >= 0; i--) {
+      const email = manualControls[i].controls.email.getRawValue()?.trim().toLowerCase();
+      if (email && implicitEmails.has(email)) {
+        this.guestsArray.removeAt(i);
+      }
+    }
   }
 
   private mergeAssemblyInviteeSuggestions(
@@ -1398,7 +1361,14 @@ export class GoogleCalendarForm implements OnInit {
       location: this.form.controls.location.getRawValue(),
       guests: isAssembly
         ? []
-        : this.guestsArray.getRawValue().filter((guest) => guest.email),
+        : [
+            ...this.guestsArray.getRawValue().filter((guest) => guest.email),
+            ...this.implicitGuests().map((g) => ({
+              id: g.id || null,
+              name: g.nameEmployee,
+              email: g.email,
+            })),
+          ],
       assembly: isAssembly
         ? {
             copyLegal: true,

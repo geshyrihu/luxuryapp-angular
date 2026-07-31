@@ -83,16 +83,6 @@ const cobranzaOnlineEndpoints = {
     get: (customerId: string, year: number) =>
       `cobranza/online/cartera/customer/${customerId}/year/${year}`,
   },
-  Mapping: {
-    status: (customerId: string) =>
-      `cobranza/online/mapping/customer/${customerId}`,
-    properties: (customerId: string) =>
-      `cobranza/online/mapping/customer/${customerId}/properties`,
-    update: (customerId: string) =>
-      `cobranza/online/mapping/customer/${customerId}`,
-    auto: (customerId: string) =>
-      `cobranza/online/mapping/customer/${customerId}/auto`,
-  },
   Movements: {
     get: (customerId: string, year: number) =>
       `cobranza/online/movements/customer/${customerId}/year/${year}`,
@@ -128,7 +118,6 @@ const legacyCollectionEndpoints = {
   Accounts: cobranzaOnlineEndpoints.Accounts,
   Balances: cobranzaOnlineEndpoints.Balances,
   Cartera: cobranzaOnlineEndpoints.Cartera,
-  Mapping: cobranzaOnlineEndpoints.Mapping,
   Movements: cobranzaOnlineEndpoints.Movements,
   Policies: cobranzaOnlineEndpoints.Policies,
   Statements: cobranzaOnlineEndpoints.Statements,

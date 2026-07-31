@@ -1,8 +1,13 @@
-<div class="convention-card" [style.border-left-color]="severityColor(convention().severity)">
-  <!-- Header -->
+<div
+  class="convention-card"
+  [style.border-left-color]="severityColor(convention().severity)"
+>
   <div class="card-header" (click)="toggleExpanded()">
     <div class="header-left">
-      <div class="severity-badge" [style.background-color]="severityColor(convention().severity)">
+      <div
+        class="severity-badge"
+        [style.background-color]="severityColor(convention().severity)"
+      >
         {{ severityIcon(convention().severity) }}
       </div>
       <div class="header-info">
@@ -17,11 +22,10 @@
       [class.expanded]="expanded()"
       type="button"
     >
-      {{ expanded() ? '▼' : '▶' }}
+      {{ expanded() ? 'v' : '>' }}
     </button>
   </div>
 
-  <!-- Metadata -->
   <div class="card-metadata">
     <div class="meta-item">
       <span class="meta-label">Dominio:</span>
@@ -37,12 +41,15 @@
     </div>
     <div class="meta-item">
       <span class="meta-label">Severidad:</span>
-      <span class="meta-value" [style.color]="severityColor(convention().severity)">
+      <span
+        class="meta-value"
+        [style.color]="severityColor(convention().severity)"
+      >
         {{ convention().severity }}
       </span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">Tecnologías:</span>
+      <span class="meta-label">Tecnologias:</span>
       <div class="tech-tags">
         @for (tech of convention().technologies; track tech) {
           <span class="tech-tag">{{ techIcon(tech) }} {{ tech }}</span>
@@ -51,23 +58,20 @@
     </div>
   </div>
 
-  <!-- Expanded Content -->
   @if (expanded()) {
     <div class="card-content">
-      <!-- Importancia -->
       <div class="content-section">
-        <h3>💡 Por qué es importante</h3>
+        <h3>Por que es importante</h3>
         <p>{{ convention().importance }}</p>
       </div>
 
-      <!-- Examples -->
       @if (
         convention().examples.angular ||
         convention().examples.dotnet ||
         convention().examples.flutter
       ) {
         <div class="content-section">
-          <h3>📝 Ejemplos de Código</h3>
+          <h3>Ejemplos de Codigo</h3>
 
           <div class="example-tabs">
             @if (hasExample('angular')) {
@@ -76,7 +80,7 @@
                 [class.active]="selectedExample() === 'angular'"
                 class="example-tab"
               >
-                🅰️ Angular
+                NG Angular
               </button>
             }
             @if (hasExample('dotnet')) {
@@ -85,7 +89,7 @@
                 [class.active]="selectedExample() === 'dotnet'"
                 class="example-tab"
               >
-                🔷 .NET / C#
+                NET .NET / C#
               </button>
             }
             @if (hasExample('flutter')) {
@@ -94,7 +98,7 @@
                 [class.active]="selectedExample() === 'flutter'"
                 class="example-tab"
               >
-                🐦 Flutter
+                FL Flutter
               </button>
             }
           </div>
@@ -108,7 +112,7 @@
                   class="copy-btn"
                   type="button"
                 >
-                  📋
+                  Copiar
                 </button>
               </div>
               <pre><code>{{ convention().examples.angular!.code }}</code></pre>
@@ -127,7 +131,7 @@
                   class="copy-btn"
                   type="button"
                 >
-                  📋
+                  Copiar
                 </button>
               </div>
               <pre><code>{{ convention().examples.dotnet!.code }}</code></pre>
@@ -146,7 +150,7 @@
                   class="copy-btn"
                   type="button"
                 >
-                  📋
+                  Copiar
                 </button>
               </div>
               <pre><code>{{ convention().examples.flutter!.code }}</code></pre>
@@ -158,10 +162,9 @@
         </div>
       }
 
-      <!-- Related Rules -->
       @if (convention().relatedRules && convention().relatedRules.length > 0) {
         <div class="content-section">
-          <h3>🔗 Reglas Relacionadas</h3>
+          <h3>Reglas Relacionadas</h3>
           <div class="related-tags">
             @for (rule of convention().relatedRules; track rule) {
               <span class="related-tag">{{ rule }}</span>

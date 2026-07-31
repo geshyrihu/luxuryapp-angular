@@ -24,7 +24,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CobranzaOnlineService } from "../cobranza-online.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import type {
   CobranzaOnlineExcludedAccountListResponse,
@@ -53,7 +53,7 @@ import type {
 })
 export class CobranzaOnlineExclusions {
   private customerIdS = inject(CustomerIdService);
-  private apiResponseS = inject(ApiResponseService);
+  private cobranzaOnlineS = inject(CobranzaOnlineService);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
   readonly currentYear = signal(new Date().getFullYear());
@@ -126,12 +126,9 @@ export class CobranzaOnlineExclusions {
 
     this.loading.set(true);
     const response =
-      await this.apiResponseS.onGetItem<CobranzaOnlineExcludedAccountListResponse>(
-        Endpoints.CobranzaOnline.Dashboard.excludedAccounts(
-          customerId,
-          this.currentYear(),
-        ),
-        false,
+      await this.cobranzaOnlineS.getExcludedAccounts(
+        customerId,
+        this.currentYear(),
       );
 
     this.data.set(
@@ -163,16 +160,12 @@ export class CobranzaOnlineExclusions {
       notes: row.notes || "",
     };
 
-    const result = await this.apiResponseS.onPut<boolean>(
-      Endpoints.CobranzaOnline.Dashboard.updateExcludedAccount(
-        customerId,
-      ),
+    const result = await this.cobranzaOnlineS.updateExcludedAccount(
+      customerId,
       payload,
-      true,
-      false,
     );
 
-    if (result === false) {
+    if (result === null) {
       row.isExcluded = previousValue;
       this.savingAccountNumber.set(null);
       return;

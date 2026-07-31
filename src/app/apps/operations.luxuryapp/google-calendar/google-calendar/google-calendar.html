@@ -4,11 +4,11 @@
       <div
         class="flex flex-column gap-2 md:flex-row md:justify-content-between md:align-items-center"
       >
-        <div>
-          <h2 class="m-0">
+        <div class="text-center md:text-left mb-2 px-2 md:px-0">
+          <h2 class="m-0 text-xl md:text-2xl font-bold line-height-3">
             Agenda central para reuniones con el comite y asambleas
           </h2>
-          <p class="m-0 text-color-secondary">
+          <p class="m-0 mt-2 text-sm text-color-secondary line-height-3">
             Eventos de Luxury App sincronizados con el calendario central.
           </p>
         </div>
@@ -148,35 +148,63 @@
     >
       <ng-template #listItemTemplate let-item>
         <ili-list-item>
-          <div
-            start
-            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-            class="w-3rem h-3rem bg-primary-50"
-          >
-            <app-icon
-              icon="mdi:calendar-outline"
-              class="text-xl text-primary"
-            />
+          <div start class="flex flex-column align-items-center justify-content-center mx-3 my-2 border-round-xl bg-primary-50 px-3 py-2 shadow-1">
+            <span class="text-xs font-bold text-primary uppercase tracking-widest">{{ getMonth(item.startAt) }}</span>
+            <span class="text-3xl font-bold text-primary" style="line-height: 1.1">{{ getDay(item.startAt) }}</span>
           </div>
           
-            <h2>{{ item.title }}</h2>
-            <p>{{ item.subjectTypeName }} | {{ item.modalityName }}</p>
-            <p>{{ item.recurrenceSummary || "Unica" }}</p>
-            <p>{{ formatBusinessDateTime(item.startAt) }}</p>
-            <p>Estado: {{ getStatusLabel(item) }}</p>
-            <p>Invitados: {{ item.guestCount }}</p>
+          <div class="flex flex-column gap-2 py-3 w-full">
+            <div class="flex flex-wrap align-items-center gap-2">
+              <span class="text-xs font-bold px-2 py-1 border-round-xl {{ getSubjectTypeClass(item) }}">
+                {{ item.subjectTypeName }}
+              </span>
+              <span class="text-xs font-medium text-color-secondary bg-surface-200 px-2 py-1 border-round-xl">
+                {{ item.modalityName }}
+              </span>
+            </div>
+            
+            <h2 class="m-0 text-lg font-bold text-color line-height-3">{{ item.title }}</h2>
+            
+            <div class="flex flex-wrap gap-3 mt-1">
+              <div class="flex align-items-center gap-1 text-sm font-medium text-color-secondary">
+                <app-icon icon="mdi:clock-outline" />
+                <span>{{ formatBusinessTime(item.startAt) }}</span>
+              </div>
+              <div class="flex align-items-center gap-1 text-sm font-medium text-color-secondary">
+                <app-icon icon="mdi:account-group-outline" />
+                <span>{{ item.guestCount }} Invitados</span>
+              </div>
+              @if (item.recurrenceSummary) {
+              <div class="flex align-items-center gap-1 text-sm font-medium text-color-secondary">
+                <app-icon icon="mdi:refresh" />
+                <span>{{ item.recurrenceSummary }}</span>
+              </div>
+              }
+            </div>
+            
+            <div class="flex flex-wrap align-items-center gap-2 mt-2">
+              <lx-tag [value]="getStatusLabel(item)" [severity]="getStatusSeverity(item)" />
+              
+              @if (item.googleMeetUrl) {
+                <a [href]="item.googleMeetUrl" rel="noopener noreferrer" target="_blank" 
+                   class="no-underline text-xs font-bold px-2 py-1 border-round-xl bg-green-100 text-green-800 flex align-items-center gap-1">
+                  <app-icon icon="mdi:video" /> Meet
+                </a>
+              }
+            </div>
+
             @if (canOpenAssemblyChecklist(item)) {
-            <div class="mt-2">
+            <div class="mt-2 w-full">
               <il-button
                 label="Checklist asamblea"
                 icon="mdi:format-list-checks"
                 [noMargin]="true"
-                customClass="p-button-sm p-button-outlined"
+                customClass="p-button-sm p-button-outlined w-full"
                 (clicked)="onOpenAssemblyChecklist(item)"
               />
             </div>
             }
-          
+          </div>
           <ili-action-menu end>
               <ng-container actions>
                 @if (canManageItem(item)) {

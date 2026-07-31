@@ -17,13 +17,14 @@ export type ConventionTaskType =
   | 'implementacion-flutter'
   | 'auditoria'
   | 'documentacion'
-  | 'operacion-transversal';
+  | 'operacion-transversal'
+  | 'creacion-modulo-fase-0';
 
 export const SeverityConfig: Record<SeverityType, { color: string; icon: string }> = {
-  CRÍTICA: { color: 'var(--severity-critica)', icon: '🔴' },
-  ALTA: { color: 'var(--severity-alta)', icon: '🟠' },
-  MEDIA: { color: 'var(--severity-media)', icon: '🟡' },
-  BAJA: { color: 'var(--severity-baja)', icon: '🔵' },
+  CRÍTICA: { color: 'var(--severity-critica)', icon: 'CR' },
+  ALTA: { color: 'var(--severity-alta)', icon: 'AL' },
+  MEDIA: { color: 'var(--severity-media)', icon: 'ME' },
+  BAJA: { color: 'var(--severity-baja)', icon: 'BA' },
 };
 
 export function severityColor(severity: SeverityType): string {
@@ -31,43 +32,7 @@ export function severityColor(severity: SeverityType): string {
 }
 
 export function severityIcon(severity: SeverityType): string {
-  return SeverityConfig[severity]?.icon ?? '⚫';
-}
-
-export function sectionToDomain(section: number): ConventionDomain {
-  switch (section) {
-    case 1:
-      return 'core';
-    case 2:
-    case 4:
-      return 'frontend';
-    case 3:
-    case 5:
-    case 6:
-    case 8:
-    case 15:
-      return 'ui';
-    case 7:
-    case 14:
-      return 'catalogs';
-    case 9:
-    case 18:
-      return 'backend';
-    case 10:
-    case 11:
-    case 12:
-    case 17:
-    case 21:
-    case 22:
-      return 'operations';
-    case 13:
-      return 'flutter';
-    case 19:
-    case 20:
-      return 'audit';
-    default:
-      return 'core';
-  }
+  return SeverityConfig[severity]?.icon ?? 'NA';
 }
 
 export function domainLabel(domain: ConventionDomain): string {
@@ -78,43 +43,23 @@ export function domainLabel(domain: ConventionDomain): string {
     flutter: 'Flutter',
     ui: 'UI',
     styles: 'Styles',
-    catalogs: 'Catálogos',
-    audit: 'Auditoría',
-    operations: 'Operación',
+    catalogs: 'Catalogos',
+    audit: 'Auditoria',
+    operations: 'Operacion',
   };
 
   return labels[domain];
 }
 
-export function sectionToTaskType(section: number): ConventionTaskType {
-  switch (sectionToDomain(section)) {
-    case 'backend':
-      return 'implementacion-backend';
-    case 'frontend':
-    case 'ui':
-    case 'styles':
-    case 'catalogs':
-      return 'implementacion-frontend';
-    case 'flutter':
-      return 'implementacion-flutter';
-    case 'audit':
-      return 'auditoria';
-    case 'operations':
-      return 'documentacion';
-    case 'core':
-    default:
-      return 'operacion-transversal';
-  }
-}
-
 export function taskTypeLabel(taskType: ConventionTaskType): string {
   const labels: Record<ConventionTaskType, string> = {
-    'implementacion-backend': 'Implementación Backend',
-    'implementacion-frontend': 'Implementación Frontend/UI',
-    'implementacion-flutter': 'Implementación Flutter',
-    auditoria: 'Auditoría',
-    documentacion: 'Documentación',
-    'operacion-transversal': 'Operación Transversal',
+    'implementacion-backend': 'Implementacion Backend',
+    'implementacion-frontend': 'Implementacion Frontend/UI',
+    'implementacion-flutter': 'Implementacion Flutter',
+    auditoria: 'Auditoria',
+    documentacion: 'Documentacion',
+    'operacion-transversal': 'Operacion Transversal',
+    'creacion-modulo-fase-0': 'Creacion Modulo (FASE 0)',
   };
 
   return labels[taskType];

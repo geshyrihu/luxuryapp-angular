@@ -1,69 +1,64 @@
 <div class="conventions-viewer">
-  <!-- Header -->
   <div class="header">
     <div class="header-content">
-      <h1>📋 CONVENTIONS.md - Guía Interactiva</h1>
+      <h1>CONVENTIONS.md - Guia Interactiva</h1>
       <p>
-        Explora el sistema rector de convenciones de LuxuryApp. Filtrado por
-        dominio, tipo de tarea, severidad y tecnología.
+        Explora el sistema rector de convenciones de LuxuryApp. Filtra por
+        dominio, tipo de tarea, severidad y tecnologia.
       </p>
     </div>
   </div>
 
-  <!-- Search Bar -->
   <div class="search-container">
     <div class="search-input-wrapper">
       <input
         type="text"
-        placeholder="🔍 Buscar convención (strict, wrapper, api, etc)..."
+        placeholder="Buscar convencion (strict, wrapper, api, dto, namespace)..."
         (input)="onSearch($event.target.value)"
         class="search-input"
       />
     </div>
   </div>
 
-  <!-- Tabs -->
   <div class="tabs">
     <button
       [class.active]="activeTab() === 'all'"
       (click)="setActiveTab('all')"
       class="tab-btn"
     >
-      📚 Todas ({{ conventions().length }})
+      Todas ({{ conventions().length }})
     </button>
     <button
       [class.active]="activeTab() === 'by-domain'"
       (click)="setActiveTab('by-domain')"
       class="tab-btn"
     >
-      🗂️ Por Dominio
+      Por Dominio
     </button>
     <button
       [class.active]="activeTab() === 'by-task'"
       (click)="setActiveTab('by-task')"
       class="tab-btn"
     >
-      🛠️ Por Tarea
+      Por Tarea
     </button>
     <button
       [class.active]="activeTab() === 'by-severity'"
       (click)="setActiveTab('by-severity')"
       class="tab-btn"
     >
-      ⚠️ Por Severidad
+      Por Severidad
     </button>
     <button
       [class.active]="activeTab() === 'by-technology'"
       (click)="setActiveTab('by-technology')"
       class="tab-btn"
     >
-      💻 Por Tecnología
+      Por Tecnologia
     </button>
   </div>
 
-  <!-- Filters -->
   <div class="filters-container">
-    <!-- Filter By Domain -->
     @if (activeTab() === 'by-domain') {
       <div class="filter-group">
         <h3>Filtrar por Dominio</h3>
@@ -81,7 +76,6 @@
       </div>
     }
 
-    <!-- Filter By Task -->
     @if (activeTab() === 'by-task') {
       <div class="filter-group">
         <h3>Filtrar por Tipo de Tarea</h3>
@@ -99,7 +93,6 @@
       </div>
     }
 
-    <!-- Filter By Severity -->
     @if (activeTab() === 'by-severity') {
       <div class="filter-group">
         <h3>Filtrar por Severidad</h3>
@@ -122,10 +115,9 @@
       </div>
     }
 
-    <!-- Filter By Technology -->
     @if (activeTab() === 'by-technology') {
       <div class="filter-group">
-        <h3>Filtrar por Tecnología</h3>
+        <h3>Filtrar por Tecnologia</h3>
         <div class="filter-buttons">
           @for (tech of technologies(); track tech) {
             <button
@@ -141,7 +133,6 @@
     }
   </div>
 
-  <!-- Conventions Cards -->
   <div class="conventions-grid">
     @if (filteredConventions().length > 0) {
       @for (convention of filteredConventions(); track convention.id) {
@@ -154,7 +145,6 @@
     }
   </div>
 
-  <!-- Stats -->
   <div class="stats-footer">
     <div class="stat">
       <strong>{{ filteredConventions().length }}</strong>
@@ -162,7 +152,7 @@
     </div>
     <div class="stat">
       <strong>{{ getCriticalCount() }}</strong>
-      <span>Reglas Críticas</span>
+      <span>Reglas criticas</span>
     </div>
     <div class="stat">
       <strong>{{ domains().length }}</strong>

@@ -59,6 +59,7 @@ export interface CobranzaOnlineCurrentChargeTemplate {
 
 export interface CobranzaOnlineCurrentCharges {
   maintenanceFee: number;
+  maintenanceCollected: number;
   extraordinaryFee: number;
   monthlyFeeTotal: number;
   totalDepartmentsByProperty: number;

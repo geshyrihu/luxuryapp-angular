@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { COBRANZA_ONLINE_ROUTES } from "src/app/apps/cobranza.luxuryapp/cobranza-online/cobranza.routes";
 
 export const CONTABILIDAD_ROUTES: Routes = [
   // Ruta: /contabilidad
@@ -167,80 +168,18 @@ export const CONTABILIDAD_ROUTES: Routes = [
     },
   },
 
-  {
-    path: "collections",
-    loadComponent: () =>
-      import("src/app/apps/cobranza.luxuryapp/cobranza-online/dashboard/cobranza-online-dashboard").then(
-        (m) => m.CobranzaOnlineDashboard,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Cobranza Online",
-      breadcrumb: "Cobranza Online",
-    },
-  },
-
-  {
-    path: "collections/inspection",
-    loadComponent: () =>
-      import("src/app/apps/cobranza.luxuryapp/cobranza-online/inspection/cobranza-online-inspection").then(
-        (m) => m.CobranzaOnlineInspection,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Inspección de Cobranza",
-      breadcrumb: "Inspección de Cobranza",
-    },
-  },
-
-  {
-    path: "collections/analysis",
-    loadComponent: () =>
-      import("src/app/apps/cobranza.luxuryapp/cobranza-online/analysis/cobranza-online-analysis").then(
-        (m) => m.CobranzaOnlineAnalysis,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Análisis de Cobranza",
-      breadcrumb: "Análisis de Cobranza",
-    },
-  },
-
-  {
-    path: "collections/reporte-financiero",
-    loadComponent: () =>
-      import("src/app/apps/cobranza.luxuryapp/cobranza-online/reporte-financiero/cobranza-online-reporte-financiero").then(
-        (m) => m.CobranzaOnlineReporteFinanciero,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Reporte Financiero",
-      breadcrumb: "Reporte Financiero",
-    },
-  },
+  ...COBRANZA_ONLINE_ROUTES,
 
   {
     path: "collections/presupuesto-contabilidad",
     loadComponent: () =>
-      import("src/app/apps/cobranza.luxuryapp/cobranza-online/presupuesto-contabilidad/presupuesto-contabilidad").then(
+      import("src/app/apps/contabilidad.luxuryapp/general-ledger/contabilidad-online/presupuesto-contabilidad/presupuesto-contabilidad").then(
         (m) => m.PresupuestoContabilidad,
       ),
     canActivate: [authGuard],
     data: {
       title: "Presupuesto Contabilidad",
       breadcrumb: "Presupuesto Contabilidad",
-    },
-  },
-  {
-    path: "collections/exclusions",
-    loadComponent: () =>
-      import("src/app/apps/cobranza.luxuryapp/cobranza-online/exclusions/cobranza-online-exclusions").then(
-        (m) => m.CobranzaOnlineExclusions,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Exclusiones",
-      breadcrumb: "Exclusiones",
     },
   },
 
