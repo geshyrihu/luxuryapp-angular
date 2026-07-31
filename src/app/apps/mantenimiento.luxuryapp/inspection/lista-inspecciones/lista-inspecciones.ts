@@ -23,6 +23,7 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { InspeccionesForm } from "../inspecciones-agregar-editar/inspecciones-form";
+import { InspectionListItem } from "../models/inspection.model";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -63,7 +64,7 @@ export class ListaInspecciones {
   customerIdS = inject(CustomerIdService);
 
   areasResponsablesSignal = signal<SelectItemDto[]>([]);
-  inspeccionesOriginalesSignal = signal<any[]>([]);
+  inspeccionesOriginalesSignal = signal<InspectionListItem[]>([]);
 
   selectedAreaSignal = signal<string>("");
   selectedRecurrenceSignal = signal<string>("");
@@ -79,7 +80,7 @@ export class ListaInspecciones {
         inspecciones: group.inspecciones.filter((inspeccion: any) => {
           const matchesArea = area === "" || group.areaResponsable === area;
           const matchesRecurrence =
-            recurrence === "" || inspeccion.recurrencia === recurrence;
+            recurrence === "" || inspeccion.frequency === recurrence;
           return matchesArea && matchesRecurrence;
         }),
       }))

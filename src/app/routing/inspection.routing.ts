@@ -16,8 +16,8 @@ export const inspectionRoutes: Routes = [
   {
     path: "details/:id",
     loadComponent: () =>
-      import("src/app/apps/mantenimiento.luxuryapp/inspection/detalles-inspeccion/detalles-inspeccion").then(
-        (m) => m.DetallesInspeccion,
+      import("src/app/apps/mantenimiento.luxuryapp/inspection/inspection-detalle/inspection-detalle").then(
+        (m) => m.InspectionDetailComponent,
       ),
     canActivate: [authGuard],
     data: {

@@ -20,7 +20,7 @@ import { DialogModule } from "primeng/dialog";
       [draggable]="false"
       [resizable]="false"
       [style]="{ width: '520px' }"
-      [breakpoints]="{ '640px': '96vw' }"
+      [breakpoints]="{ '375px': '96vw', '640px': '96vw' }"
       (onHide)="onDismiss()"
     >
       <ng-content />

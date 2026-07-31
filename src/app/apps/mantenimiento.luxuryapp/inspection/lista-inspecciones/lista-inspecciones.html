@@ -25,9 +25,9 @@
       [ngModel]="selectedRecurrenceSignal()"
       (ngModelChange)="selectedRecurrenceSignal.set($event)"
       [data]="[
-        { label: 'Diario', value: 'Diario' },
-        { label: 'Semanal', value: 'Semanal' },
-        { label: 'Mensual', value: 'Mensual' }
+        { label: 'Diario', value: 'daily' },
+        { label: 'Semanal', value: 'weekly' },
+        { label: 'Mensual', value: 'monthly' }
       ]"
       placeholder="Todas las Recurrencias"
       [horizontal]="false"

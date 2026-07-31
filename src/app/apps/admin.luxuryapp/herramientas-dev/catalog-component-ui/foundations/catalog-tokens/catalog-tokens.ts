@@ -1,13 +1,10 @@
-const TokensColors = {};
-const TokensTypography = {};
-
 import { Component, ViewEncapsulation } from "@angular/core";
-// missing color tokens
-// missing typography tokens
+import { TokensColors } from "../../shared/tokens-colors/tokens-colors";
+import { TokensTypography } from "../../shared/tokens-typography/tokens-typography";
 
 @Component({
   selector: "app-catalog-tokens",
-  imports: [],
+  imports: [TokensColors, TokensTypography],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">

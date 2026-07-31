@@ -783,6 +783,38 @@ documentacion-final-modulo.md`,
         'Permite que Flutter crezca ordenado desde ahora y no repita el desorden historico.',
     },
     {
+      id: 'backend-dto-one-file-per-dto',
+      title: 'DTOs: 1 Archivo = 1 DTO (REGLA CRÍTICA)',
+      description:
+        'Cada DTO debe estar en su propio archivo. NUNCA múltiples DTOs (records, classes) en un mismo archivo. Esto facilita navegación, reduce conflictos de PR, sigue Single Responsibility y mejora indexación de IDEs.',
+      severity: 'CRÍTICA',
+      domain: 'backend',
+      taskTypes: ['implementacion-backend', 'auditoria'],
+      technologies: ['.NET', 'C#'],
+      examples: {
+        dotnet: {
+          code: `// ❌ MAL: ReportResultItemDTO.cs (múltiples DTOs)
+public record ReportResultItemDTO { ... }
+public record ReportImageDTO { ... }      // ← PROHIBIDO
+public record ReportFilterDTO { ... }     // ← PROHIBIDO
+
+// ✅ BIEN: Archivo separado para cada DTO
+// ReportResultItemDTO.cs → solo ReportResultItemDTO
+// ReportImageDTO.cs → solo ReportImageDTO
+// ReportFilterDTO.cs → solo ReportFilterDTO`,
+          description:
+            '1 archivo = 1 DTO. Nunca múltiples registros o clases DTO en un mismo archivo. Facilita mantenimiento y reduce conflictos.',
+        },
+      },
+      sourceDocuments: [
+        'docs/conventions/backend/dto-file-organization-rule.md',
+        'docs/conventions/backend/backend-rules.md',
+        'CONVENTIONS.md §6.1',
+      ],
+      importance:
+        'Cumplimiento obligatorio en toda auditoría. Violación = Hallazgo CRÍTICO. Refactorizar en 1-2 sprints.',
+    },
+    {
       id: 'operations-fase-0-mandatory',
       title: 'FASE 0: Business Rules Discovery es obligatoria antes de cualquier plan',
       description:

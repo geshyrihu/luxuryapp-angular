@@ -1,10 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
   OnInit,
   signal,
 } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
   FormControl,
@@ -38,11 +40,12 @@ import { TaskGroupCategoryFormGroup } from "./interfaces/task-group-category-for
   ],
 })
 export class TaskGroupCategoryForm implements OnInit {
-  private apiResponseS = inject(ApiResponseService);
-  private formB = inject(FormBuilder);
-  private config = inject(DynamicDialogConfig);
-  private ref = inject(DynamicDialogRef);
-  private enumService = inject(EnumSelectService);
+  private readonly apiResponseS = inject(ApiResponseService);
+  private readonly formB = inject(FormBuilder);
+  private readonly config = inject(DynamicDialogConfig);
+  private readonly ref = inject(DynamicDialogRef);
+  private readonly enumService = inject(EnumSelectService);
+  private readonly destroyRef = inject(DestroyRef);
 
   id: string = "";
   submitting = signal(false);
@@ -72,9 +75,11 @@ export class TaskGroupCategoryForm implements OnInit {
   });
 
   ngOnInit() {
-    this.enumService.departament().subscribe((data) => {
-      this.cb_departament.set(data);
-    });
+    this.enumService.departament()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((data) => {
+        this.cb_departament.set(data);
+      });
     this.id = this.config.data.id;
     if (this.id !== "") this.onLoadData();
 

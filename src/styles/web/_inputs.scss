@@ -121,6 +121,31 @@
   }
 }
 
+// ── ANGULAR FORM VALIDATION ───────────────────────────────────
+// Cuando un input ha sido tocado (ng-touched) o modificado (ng-dirty)
+// y es inválido (ng-invalid), mostramos feedback visual cercano al campo
+
+.input.ng-invalid.ng-touched {
+  border-color: var(--ds-danger);
+
+  &:focus,
+  &:focus-visible {
+    border-color: var(--ds-danger);
+    box-shadow: 0 0 0 3px rgba(211, 75, 75, 0.1);
+  }
+}
+
+// Mismo para textarea
+.textarea.ng-invalid.ng-touched {
+  border-color: var(--ds-danger);
+
+  &:focus,
+  &:focus-visible {
+    border-color: var(--ds-danger);
+    box-shadow: 0 0 0 3px rgba(211, 75, 75, 0.1);
+  }
+}
+
 // ── TAMAÑOS ───────────────────────────────────────────────────
 
 .input-xs {

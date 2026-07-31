@@ -41,4 +41,10 @@ export namespace DSTokens {
 
   /** Capas de Z-Index */
   export type ZIndex = 'base' | 'raised' | 'dropdown' | 'sticky' | 'fixed' | 'overlay' | 'modal' | 'popover' | 'toast' | 'tooltip';
+
+  /** Escala de Duración de Animación (Motion) */
+  export type Motion = 'instant' | 'fast' | 'moderate' | 'slow';
+
+  /** Niveles de Opacidad */
+  export type Opacity = 'subtle' | 'medium' | 'strong' | 'disabled';
 }

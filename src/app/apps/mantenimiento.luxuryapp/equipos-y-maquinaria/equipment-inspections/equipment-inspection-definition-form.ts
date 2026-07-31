@@ -2,10 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
   inject,
   OnInit,
   signal,
 } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   FormArray,
   FormBuilder,
@@ -75,11 +77,12 @@ interface DefinitionFormGroup {
   ],
 })
 export class EquipmentInspectionDefinitionForm implements OnInit {
-  private formBuilder = inject(FormBuilder);
-  private apiResponseS = inject(ApiResponseService);
-  private authS = inject(AuthService);
-  private customerIdS = inject(CustomerIdService);
-  private equipmentInspectionS = inject(EquipmentInspectionService);
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly apiResponseS = inject(ApiResponseService);
+  private readonly authS = inject(AuthService);
+  private readonly customerIdS = inject(CustomerIdService);
+  private readonly equipmentInspectionS = inject(EquipmentInspectionService);
+  private readonly destroyRef = inject(DestroyRef);
 
   public ref = inject(DynamicDialogRef);
   public config = inject(DynamicDialogConfig);
@@ -129,12 +132,14 @@ export class EquipmentInspectionDefinitionForm implements OnInit {
       await this.equipmentInspectionS.getUserOptionsByCustomer(),
     );
 
-    this.form.controls.assigneeIds.valueChanges.subscribe((assigneeIds) => {
-      const primary = this.form.controls.primaryAssigneeId.value;
-      if (!primary || !assigneeIds.includes(primary)) {
-        this.form.controls.primaryAssigneeId.setValue(assigneeIds[0] || null);
-      }
-    });
+    this.form.controls.assigneeIds.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((assigneeIds) => {
+        const primary = this.form.controls.primaryAssigneeId.value;
+        if (!primary || !assigneeIds.includes(primary)) {
+          this.form.controls.primaryAssigneeId.setValue(assigneeIds[0] || null);
+        }
+      });
 
     if (this.definitionId()) {
       const detail = await this.equipmentInspectionS.getDefinitionById(

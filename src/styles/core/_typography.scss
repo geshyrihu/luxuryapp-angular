@@ -6,9 +6,9 @@
 
 // ── FAMILIAS TIPOGRÁFICAS ─────────────────────────────────────
 // Corporate Integrity System — DESIGN.md typography
-// System font: Outfit (headlines + body)
-$font-family-base:    'Outfit', 'Inter', sans-serif !default;
-$font-family-heading: 'Outfit', 'Inter', sans-serif !default;
+// System font: Inter (headlines + body)
+$font-family-base:    'Inter', '-apple-system', 'BlinkMacSystemFont', sans-serif !default;
+$font-family-heading: 'Inter', '-apple-system', 'BlinkMacSystemFont', sans-serif !default;
 $font-family-mono:    'JetBrains Mono', 'Roboto Mono', 'Courier New', monospace !default;
 
 // ── ESCALA DE TAMAÑOS ─────────────────────────────────────────
