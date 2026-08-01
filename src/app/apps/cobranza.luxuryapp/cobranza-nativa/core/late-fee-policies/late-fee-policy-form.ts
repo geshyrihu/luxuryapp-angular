@@ -18,6 +18,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { ELateFeeType } from "../../interfaces/enums";
 import {
   CreateLateFeePolicyDTO,
+  LateFeePolicyResponseDTO,
   UpdateLateFeePolicyDTO,
 } from "../../interfaces/late-fee-policy.dto";
 
@@ -89,7 +90,7 @@ export class LateFeePolicyForm implements OnInit {
   }
 
   async loadData() {
-    const res = await this.apiResponseS.onGetItem<any>(
+    const res = await this.apiResponseS.onGetItem<LateFeePolicyResponseDTO>(
       Endpoints.CobranzaCore.LateFeePolicies.getById(this.id),
     );
     if (res) this.form.patchValue(res);

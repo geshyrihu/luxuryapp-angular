@@ -112,12 +112,12 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "properties",
     loadComponent: () =>
-      import("src/app/apps/resident.luxuryapp/property/propiedades-list").then(
-        (m) => m.PropiedadesList,
+      import("./core/properties/property-boundary-placeholder").then(
+        (m) => m.default,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Propiedades",
+      title: "Propiedades en Transicion",
       breadcrumb: "Propiedades",
     },
   },

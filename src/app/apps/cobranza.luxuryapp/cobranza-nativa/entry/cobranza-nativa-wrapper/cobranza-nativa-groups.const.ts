@@ -27,44 +27,44 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
       {
         title: "Propiedades",
         description:
-          "Catalogo de unidades del condominio: departamento, torre, piso, numero de cuenta, superficie, indiviso y cajones.",
+          "Capacidad en transicion: el catalogo de unidades sigue siendo dependencia externa mientras se define feature propia o adaptador formal.",
         route: "/cobranza-nativa/properties",
         icon: "mdi:home",
         bgColor: "#dbeafe",
+        pending: true,
         roles: ["Administrador"],
         actions: [
-          { label: "Ver todas las propiedades del condominio" },
-          { label: "Crear nueva propiedad" },
+          { label: "Ver el estado de transicion del bounded context" },
+          { label: "Documentar los contratos actuales de propiedades" },
           {
             label:
-              "Editar datos de una propiedad (superficie, indiviso, cuenta)",
+              "Definir si el siguiente paso sera feature propia o adaptador local",
           },
-          { label: "Eliminar propiedad sin actividad financiera" },
         ],
         endpoints: [
           {
             method: "GET",
             path: pathOf(Endpoints.SelectItems.properties(customerIdPlaceholder)),
-            description: "Listar propiedades",
+            description: "Select vigente consumido desde dependencia externa",
           },
           {
             method: "POST",
             path: pathOf(Endpoints.Properties.create),
-            description: "Crear propiedad",
+            description: "Contrato externo actual para crear propiedad",
           },
           {
             method: "PUT",
             path: pathOf(Endpoints.Properties.update("{id}")),
-            description: "Actualizar propiedad",
+            description: "Contrato externo actual para actualizar propiedad",
           },
           {
             method: "DELETE",
             path: pathOf(Endpoints.Properties.delete("{id}")),
-            description: "Eliminar propiedad",
+            description: "Contrato externo actual para eliminar propiedad",
           },
         ],
         notes:
-          "El campo indivisoPercentage se usa para distribuir cargos cuando la plantilla trabaja por indiviso.",
+          "La navegacion ya no sale a resident.luxuryapp. Esta card queda como frontera documentada mientras se completa la separacion.",
       },
       {
         title: "Miembros de Propiedad",

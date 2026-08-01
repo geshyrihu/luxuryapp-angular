@@ -16,12 +16,15 @@ import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dia
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { ChargeTypeCatalogResponseDTO } from "../../interfaces/charge-type-catalog.dto";
+import { ChargeTemplateResponseDTO } from "../../interfaces/charge-template.dto";
 import {
+  ChargeResponseDTO,
   CreateChargeDTO,
   UpdateChargeDTO,
-} from "../../contracts/external-compatibility/interfaces/charge.dto";
+} from "../../interfaces/charge.dto";
 import { EChargeStatus } from "../../interfaces/enums";
 
 // Custom Inputs
@@ -74,8 +77,8 @@ export class ChargeForm implements OnInit {
   submitting = signal(false);
   formInvalid = signal(true);
 
-  propertiesOptions = signal<any[]>([]);
-  templatesOptions = signal<any[]>([]);
+  propertiesOptions = signal<SelectItemDto<string>[]>([]);
+  templatesOptions = signal<SelectItemDto<string>[]>([]);
   chargeTypeOptions = signal<{ label: string; value: string }[]>([]);
 
   // Pagado y PagoParcial solo los asigna el sistema via aplicacion de pago.
@@ -169,39 +172,39 @@ export class ChargeForm implements OnInit {
   }
 
   async loadProperties() {
-    const res = await this.apiResponseS.onGetSelectItem<any[]>(
+    const res = await this.apiResponseS.onGetSelectItem<SelectItemDto<string>[]>(
       Endpoints.SelectItems.properties(this.customerId),
     );
-    if (res) this.propertiesOptions.set(res);
+    this.propertiesOptions.set(res ?? []);
   }
 
   async loadTemplates() {
-    const res = await this.apiResponseS.onGetItem<any[]>(
+    const res = await this.apiResponseS.onGetItem<ChargeTemplateResponseDTO[]>(
       Endpoints.CobranzaCore.Templates.customer(
         this.customerId,
       ),
     );
-    if (res)
-      this.templatesOptions.set(
-        res.map((t) => ({
-          label: `${t.name} - ${t.amount}`,
-          value: t.id,
-        })),
-      );
+    this.templatesOptions.set(
+      (res ?? []).map((t) => ({
+        label: `${t.name} - ${t.amount}`,
+        value: t.id,
+      })),
+    );
   }
 
   async loadData() {
-    const res = await this.apiResponseS.onGetItem<any>(
+    const res = await this.apiResponseS.onGetItem<ChargeResponseDTO>(
       Endpoints.CobranzaCore.Charges.getById(this.id),
     );
     if (res) {
-      if (res.dueDate) res.dueDate = this.dateS.parseDate(res.dueDate);
-      if (res.periodStart)
-        res.periodStart = this.dateS.parseDate(res.periodStart);
-      if (res.periodEnd) res.periodEnd = this.dateS.parseDate(res.periodEnd);
-      if (res.discountDeadline)
-        res.discountDeadline = this.dateS.parseDate(res.discountDeadline);
-      this.form.patchValue(res);
+      const patchedValue = {
+        ...res,
+        dueDate: this.dateS.parseDate(res.dueDate) ?? new Date(),
+        periodStart: this.dateS.parseDate(res.periodStart),
+        periodEnd: this.dateS.parseDate(res.periodEnd),
+        discountDeadline: this.dateS.parseDate(res.discountDeadline),
+      };
+      this.form.patchValue(patchedValue);
 
       // Si el cargo ya tiene pagos aplicados, bloquear edicion del formulario.
       // El estado Pagado o PagoParcial solo lo asigna el sistema.

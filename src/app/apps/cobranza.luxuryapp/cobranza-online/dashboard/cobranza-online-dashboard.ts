@@ -20,10 +20,9 @@ import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { CobranzaOnlineService } from "../cobranza-online.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ChargeTemplateForm } from "../../cobranza-nativa/core/charge-templates/charge-template-form";
+import { CobranzaOnlineService } from "../cobranza-online.service";
 import type {
   CobranzaOnlineDashboardResponse,
   CobranzaOnlineResumenItem,
@@ -33,7 +32,6 @@ import type {
 import type {
   CobranzaOnlineSyncDiagnostics,
   CobranzaOnlineSyncMetadata,
-  CobranzaOnlineSyncResponse,
 } from "../interfaces/cobranza-online-sync.model";
 
 @Component({
@@ -153,17 +151,17 @@ export class CobranzaOnlineDashboard {
       (category) => Math.abs(category.total) > 0,
     );
     const categoryColorMap: Record<string, string> = {
-      morosos: "#b91c1c",
-      "deuda-corriente": "#1d4ed8",
-      collected: "#15803d",
+      morosos: "var(--ds-danger)",
+      "deuda-corriente": "var(--ds-info)",
+      collected: "var(--ds-success)",
     };
     const fallbackPalette = [
-      "#1d4ed8",
-      "#6d28d9",
-      "#0f766e",
-      "#be185d",
-      "#9a3412",
-      "#a16207",
+      "var(--ds-info)",
+      "var(--ds-help)",
+      "var(--ds-tertiary)",
+      "var(--ds-secondary)",
+      "var(--ds-warning)",
+      "var(--ds-luxury-gold)",
     ];
 
     if (!hasVisibleTotals) {
@@ -172,8 +170,8 @@ export class CobranzaOnlineDashboard {
         datasets: [
           {
             data: [1],
-            backgroundColor: ["#cbd5e1"],
-            hoverBackgroundColor: ["#cbd5e1"],
+            backgroundColor: ["var(--ds-surface-variant)"],
+            hoverBackgroundColor: ["var(--ds-surface-variant)"],
             borderWidth: 0,
           },
         ],
@@ -320,21 +318,21 @@ export class CobranzaOnlineDashboard {
     );
 
     const categoryColorMap: Record<string, string> = {
-      morosos: "#b91c1c",
-      "deuda-corriente": "#1d4ed8",
-      collected: "#15803d",
+      morosos: "var(--ds-danger)",
+      "deuda-corriente": "var(--ds-info)",
+      collected: "var(--ds-success)",
     };
     const fallbackPalette = [
-      "#1d4ed8",
-      "#6d28d9",
-      "#0f766e",
-      "#be185d",
-      "#9a3412",
-      "#a16207",
+      "var(--ds-info)",
+      "var(--ds-help)",
+      "var(--ds-tertiary)",
+      "var(--ds-secondary)",
+      "var(--ds-warning)",
+      "var(--ds-luxury-gold)",
     ];
 
     if (!hasVisibleTotals) {
-      return { domain: ["#cbd5e1"] };
+      return { domain: ["var(--ds-surface-variant)"] };
     }
 
     const domain = categories.map(
@@ -376,7 +374,7 @@ export class CobranzaOnlineDashboard {
       title: category.title,
       subtitle: `${category.count} cuentas consideradas`,
       total: category.total,
-      color: colors[index] ?? "#94a3b8",
+      color: colors[index] ?? "var(--ds-text-muted)",
     }));
   });
 
@@ -385,6 +383,63 @@ export class CobranzaOnlineDashboard {
   );
 
   readonly allDebtors = computed(() => this.dashboard()?.departments ?? []);
+
+  readonly towers = computed(() => this.dashboard()?.towers ?? []);
+
+  readonly advances = computed(() => this.dashboard()?.advances ?? []);
+
+  readonly conceptChartData = computed(() => {
+    const charges = this.dashboard()?.currentCharges;
+    if (!charges) return null;
+
+    const totalVigente =
+      charges.maintenanceFee + charges.extraordinaryFee + charges.finesFee;
+    if (totalVigente <= 0) {
+      return {
+        data: [{ name: "Sin Cuotas Vigentes", value: 1 }],
+        colors: ["var(--ds-surface-variant)"],
+      };
+    }
+
+    return {
+      data: [
+        { name: "Mantenimiento", value: charges.maintenanceFee },
+        { name: "Extraordinaria", value: charges.extraordinaryFee },
+        { name: "Multas", value: charges.finesFee },
+      ],
+      colors: [
+        "var(--ds-info)",
+        "var(--ds-warning)",
+        "var(--ds-danger)",
+      ],
+    };
+  });
+
+  readonly collectedChartData = computed(() => {
+    const charges = this.dashboard()?.currentCharges;
+    const collectedConcepts = charges?.collectedConcepts ?? [];
+    
+    if (!collectedConcepts.length) {
+      return {
+        data: [{ name: "Sin Recaudación", value: 1 }],
+        colors: ["var(--ds-surface-variant)"],
+      };
+    }
+
+    const fallbackColors = [
+      "var(--ds-success)",
+      "var(--ds-info)",
+      "var(--ds-help)",
+      "var(--ds-primary)",
+      "var(--ds-secondary)",
+      "var(--ds-tertiary)"
+    ];
+
+    return {
+      data: collectedConcepts.map(c => ({ name: c.conceptName, value: c.amount })),
+      colors: collectedConcepts.map((_, i) => fallbackColors[i % fallbackColors.length]),
+    };
+  });
 
   readonly totalDebtorsMaintenance = computed(() =>
     this.allDebtors().reduce((sum, d) => sum + (d.maintenanceBalance || 0), 0),
@@ -399,6 +454,10 @@ export class CobranzaOnlineDashboard {
 
   readonly totalDebtorsBalance = computed(() =>
     this.allDebtors().reduce((sum, d) => sum + (d.balance || 0), 0),
+  );
+
+  readonly totalDebtorsFines = computed(() =>
+    this.allDebtors().reduce((sum, d) => sum + (d.finesBalance || 0), 0),
   );
 
   readonly selectedSummary = computed(
@@ -494,13 +553,12 @@ export class CobranzaOnlineDashboard {
   private async loadSummary(customerId: string) {
     this.loading.set(true);
 
-    const dashboard =
-      await this.cobranzaOnlineS.getDashboard(
-        customerId,
-        this.currentYear(),
-        this.currentMonth(),
-        this.currentDay(),
-      );
+    const dashboard = await this.cobranzaOnlineS.getDashboard(
+      customerId,
+      this.currentYear(),
+      this.currentMonth(),
+      this.currentDay(),
+    );
 
     const typedDashboard = dashboard;
     this.syncStatus.set(typedDashboard?.syncMetadata ?? null);
@@ -647,12 +705,11 @@ export class CobranzaOnlineDashboard {
     this.selectedAccountId.set(accountId);
     this.selectedMovement.set(null);
 
-    const statement =
-      await this.cobranzaOnlineS.getStatement(
-        customerId,
-        accountId,
-        this.currentYear(),
-      );
+    const statement = await this.cobranzaOnlineS.getStatement(
+      customerId,
+      accountId,
+      this.currentYear(),
+    );
 
     const typedStatement = statement;
     this.selectedStatement.set(typedStatement);

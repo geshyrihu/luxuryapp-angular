@@ -13,7 +13,7 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { PropertyInitialBalanceDTO } from "../../contracts/external-compatibility/interfaces/charge.dto";
+import { PropertyInitialBalanceDTO } from "../../interfaces/charge.dto";
 import { downloadInitialBalanceTemplate } from "./initial-balance-template.helper";
 
 interface BulkImportResult {

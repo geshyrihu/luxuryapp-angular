@@ -12,7 +12,7 @@ export class PrintService {
   printElement(elementId?: string, documentTitle: string = 'Documento'): void {
     const originalTitle = document.title;
     document.title = documentTitle;
-    
+
     if (elementId) {
       const element = document.getElementById(elementId);
       if (element) {
@@ -22,9 +22,11 @@ export class PrintService {
 
     document.body.classList.add('is-printing');
 
-    window.print();
+    window.addEventListener('afterprint', () => {
+      document.body.classList.remove('is-printing');
+      document.title = originalTitle;
+    }, { once: true });
 
-    document.body.classList.remove('is-printing');
-    document.title = originalTitle;
+    window.print();
   }
 }

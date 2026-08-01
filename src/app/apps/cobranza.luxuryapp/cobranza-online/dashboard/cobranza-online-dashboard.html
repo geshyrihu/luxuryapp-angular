@@ -247,10 +247,32 @@
         </div>
       </div>
       <div class="co-chip-card">
+        <div class="co-kpi-label">Multas vigentes</div>
+        <div class="co-kpi-value mt-2 text-danger">
+          {{ currentCharges.finesFee | currency: "MXN":"symbol":"1.0-0" }}
+        </div>
+      </div>
+      <div class="co-chip-card">
         <div class="co-kpi-label">Cuota mensual total</div>
         <div class="co-kpi-value mt-2" >
           {{ currentCharges.monthlyFeeTotal | currency: "MXN":"symbol":"1.0-0"
           }}
+        </div>
+      </div>
+    </div>
+    <div class="grid mb-3">
+      <div class="col-12 xl:col-6 flex align-items-center justify-content-center">
+        <div class="w-full">
+           <h3 class="text-md font-semibold text-color p-2 m-0 text-center">Desglose de Conceptos Vigentes</h3>
+           <app-pie-chart [dataGrafico]="conceptChartData()?.data" [colorScheme]="{domain: conceptChartData()?.colors}"></app-pie-chart>
+           <div class="text-xs text-center text-color-secondary mt-2">Mantenimiento, Extraordinaria, Multas</div>
+        </div>
+      </div>
+      <div class="col-12 xl:col-6 flex align-items-center justify-content-center border-left-1 surface-border">
+        <div class="w-full">
+           <h3 class="text-md font-semibold text-color p-2 m-0 text-center">Desglose de Recaudación (Abonos)</h3>
+           <app-pie-chart [dataGrafico]="collectedChartData()?.data" [colorScheme]="{domain: collectedChartData()?.colors}"></app-pie-chart>
+           <div class="text-xs text-center text-color-secondary mt-2">Distribución real de cobros aplicados en el mes</div>
         </div>
       </div>
     </div>
@@ -328,15 +350,15 @@
               [value]="tableCobranzaPerfecta()"
               styleClass="p-datatable-sm"
             >
-              <div class="card-header">
+              <ng-template pTemplate="header">
                 <tr>
                   <th >ID</th>
                   <th>CLASIFICACIÓN</th>
                   <th class="text-right">SALDO</th>
                   <th class="text-right">%</th>
                 </tr>
-              </div>
-              <ng-template #body let-row>
+              </ng-template>
+              <ng-template pTemplate="body" let-row>
                 <tr
                   [ngClass]="{'font-bold text-primary': row.isTotal, 'border-bottom-2 surface-border': row.isTotal}"
                 >
@@ -367,15 +389,15 @@
               [value]="tableDeudaCondominos()"
               styleClass="p-datatable-sm"
             >
-              <div class="card-header">
+              <ng-template pTemplate="header">
                 <tr>
                   <th >ID</th>
                   <th>CLASIFICACIÓN</th>
                   <th class="text-right">SALDO</th>
                   <th class="text-right">%</th>
                 </tr>
-              </div>
-              <ng-template #body let-row>
+              </ng-template>
+              <ng-template pTemplate="body" let-row>
                 <tr
                   [ngClass]="{'font-bold text-primary': row.isTotal, 'border-top-2 surface-border': row.isTotal}"
                 >
@@ -404,7 +426,6 @@
         </div>
       </div>
     </div>
-  </div>
 
   <div class="col-12 xl:col-5">
     <div class="co-panel p-3 md:p-4">
@@ -447,8 +468,76 @@
       }
     </div>
   </div>
+  </div>
+  }
 
-  } @if (allDebtors()?.length) {
+  @if (towers()?.length) {
+  <div class="co-panel p-3 md:p-4 mb-3">
+    <div class="flex flex-column md:flex-row align-items-start justify-content-between gap-3 mb-4">
+      <div>
+        <div class="text-lg font-semibold">Resumen por Torres</div>
+        <div class="text-color-secondary text-sm mt-1">
+          Agrupación de saldos por nivel 2 (Torre o Bloque).
+        </div>
+      </div>
+    </div>
+    <p-table [value]="towers()" styleClass="p-datatable-sm">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Torre</th>
+          <th class="text-right">Deptos.</th>
+          <th class="text-right">Adeudo Mtto.</th>
+          <th class="text-right">Adeudo Ext.</th>
+          <th class="text-right">Multas</th>
+          <th class="text-right">Total Adeudo</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
+        <tr>
+          <td>{{ row.towerName }}</td>
+          <td class="text-right">{{ row.departmentCount }}</td>
+          <td class="text-right">{{ row.maintenanceBalance | currency: "MXN":"symbol":"1.0-0" }}</td>
+          <td class="text-right">{{ row.extraordinaryBalance | currency: "MXN":"symbol":"1.0-0" }}</td>
+          <td class="text-right">{{ row.finesBalance | currency: "MXN":"symbol":"1.0-0" }}</td>
+          <td class="text-right font-medium">{{ row.totalBalance | currency: "MXN":"symbol":"1.0-0" }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+
+  @if (advances()?.length) {
+  <div class="co-panel p-3 md:p-4 mb-3">
+    <div class="flex flex-column md:flex-row align-items-start justify-content-between gap-3 mb-4">
+      <div>
+        <div class="text-lg font-semibold text-success">Adelantos y Saldos a Favor</div>
+        <div class="text-color-secondary text-sm mt-1">
+          Condóminos cuyo saldo final es negativo (tienen pagos anticipados).
+        </div>
+      </div>
+    </div>
+    <p-table [value]="advances()" [paginator]="true" [rows]="10" styleClass="p-datatable-sm">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Cuenta</th>
+          <th>Condómino</th>
+          <th class="text-right text-success">Saldo a Favor</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
+        <tr>
+          <td>{{ row.accountNumber }}</td>
+          <td>{{ row.propertyFullName || row.accountName }}</td>
+          <td class="text-right text-success font-medium">
+            {{ (row.balance * -1) | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+
+  @if (allDebtors()?.length) {
   <div class="co-panel p-3 md:p-4 mb-3">
     <div
       class="flex flex-column md:flex-row align-items-start md:align-items-center justify-content-between gap-3 mb-4"
@@ -485,7 +574,7 @@
       [rowsPerPageOptions]="[10, 25, 50]"
       styleClass="p-datatable-sm"
     >
-      <div class="card-header">
+      <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="accountNumber">
             Cuenta <p-sorticon field="accountNumber" />
@@ -499,47 +588,49 @@
           <th pSortableColumn="extraordinaryBalance" class="text-right">
             Adeudo Ext. <p-sorticon field="extraordinaryBalance" />
           </th>
+          <th pSortableColumn="finesBalance" class="text-right">
+            Multas <p-sorticon field="finesBalance" />
+          </th>
           <th pSortableColumn="balance" class="text-right">
             Saldo Total <p-sorticon field="balance" />
           </th>
         </tr>
-      </div>
-      <ng-template #body let-debtor>
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
         <tr>
-          <td class="font-medium">{{ debtor.accountNumber }}</td>
-          <td>{{ debtor.propertyFullName || debtor.accountName }}</td>
+          <td>{{ row.accountNumber }}</td>
+          <td>{{ row.propertyFullName || row.accountName }}</td>
           <td class="text-right">
-            {{ debtor.maintenanceBalance | currency: 'MXN':'symbol':'1.0-0' }}
+            {{ row.maintenanceBalance | currency: "MXN":"symbol":"1.0-0" }}
           </td>
           <td class="text-right">
-            {{ debtor.extraordinaryBalance | currency: 'MXN':'symbol':'1.0-0' }}
+            {{ row.extraordinaryBalance | currency: "MXN":"symbol":"1.0-0" }}
           </td>
-          <td class="text-right font-bold" >
-            {{ debtor.balance | currency: 'MXN':'symbol':'1.0-0' }}
+          <td class="text-right">
+            {{ row.finesBalance | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+          <td class="text-right font-medium">
+            {{ row.balance | currency: "MXN":"symbol":"1.0-0" }}
           </td>
         </tr>
       </ng-template>
-      <ng-template #emptymessage>
-        <tr>
-          <td colspan="5" class="text-center p-4">
-            No se encontraron deudores con los criterios de búsqueda.
+      <ng-template pTemplate="footer">
+        <tr class="font-bold border-top-2 surface-border bg-black-alpha-10">
+          <td colspan="2" class="text-right">Totales:</td>
+          <td class="text-right">
+            {{ totalDebtorsMaintenance() | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+          <td class="text-right">
+            {{ totalDebtorsExtraordinary() | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+          <td class="text-right">
+            {{ totalDebtorsFines() | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+          <td class="text-right text-primary">
+            {{ totalDebtorsBalance() | currency: "MXN":"symbol":"1.0-0" }}
           </td>
         </tr>
       </ng-template>
-      <div class="mt-3 flex justify-content-end gap-2">
-        <tr>
-          <td colspan="2" class="text-right font-bold">TOTALES</td>
-          <td class="text-right font-bold">
-            {{ totalDebtorsMaintenance() | currency: 'MXN':'symbol':'1.0-0' }}
-          </td>
-          <td class="text-right font-bold">
-            {{ totalDebtorsExtraordinary() | currency: 'MXN':'symbol':'1.0-0' }}
-          </td>
-          <td class="text-right font-bold" >
-            {{ totalDebtorsBalance() | currency: 'MXN':'symbol':'1.0-0' }}
-          </td>
-        </tr>
-      </div>
     </p-table>
   </div>
   }

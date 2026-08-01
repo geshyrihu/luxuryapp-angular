@@ -31,12 +31,11 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MobileButtonLabel } from "../../../../shared/ui/buttons";
 
 @Component({
   selector: "app-lista-inspecciones",
   imports: [
-    AppIcon,
     WebButtonIcon,
     MobileActionMenu,
     MobileButtonLabelItem,
@@ -45,6 +44,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     FormsModule,
     CustomInputSelectSignal,
     WebButtonLabelItem,
+    MobileButtonLabel,
     ActionMenu,
     RouterModule,
     LxTooltipDirective,
@@ -55,6 +55,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./lista-inspecciones.html",
+  styleUrls: ["./lista-inspecciones.scss"],
 })
 export class ListaInspecciones {
   readonly ROUTES = ROUTES;

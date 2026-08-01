@@ -9,11 +9,13 @@ import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dia
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import {
+  CobranzaPaymentResponseDTO,
   CreateCobranzaPaymentDTO,
   UpdateCobranzaPaymentDTO,
-} from "../../contracts/external-compatibility/interfaces/cobranza-payment.dto";
+} from "../../interfaces/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
 
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -53,7 +55,7 @@ export class PaymentForm implements OnInit {
   customerId = "";
   submitting = signal(false);
 
-  propertiesOptions = signal<{ label: string; value: string }[]>([]);
+  propertiesOptions = signal<SelectItemDto<string>[]>([]);
 
   statusOptions = signal([
     { label: "Registrado", value: EPaymentStatus.Registrado },
@@ -106,21 +108,21 @@ export class PaymentForm implements OnInit {
   }
 
   async loadProperties() {
-    const res = await this.apiResponseS.onGetSelectItem<any[]>(
+    const res = await this.apiResponseS.onGetSelectItem<SelectItemDto<string>[]>(
       Endpoints.SelectItems.properties(this.customerId),
     );
-    if (res) this.propertiesOptions.set(res);
+    this.propertiesOptions.set(res ?? []);
   }
 
   async loadData() {
-    const res = await this.apiResponseS.onGetItem<any>(
+    const res = await this.apiResponseS.onGetItem<CobranzaPaymentResponseDTO>(
       Endpoints.CobranzaCore.Payments.getById(this.id),
     );
     if (!res) return;
-    if (res.paymentDate) {
-      res.paymentDate = this.dateS.parseDate(res.paymentDate);
-    }
-    this.form.patchValue(res);
+    this.form.patchValue({
+      ...res,
+      paymentDate: this.dateS.parseDate(res.paymentDate),
+    });
 
     const lockedStatuses: Partial<Record<EPaymentStatus, string>> = {
       [EPaymentStatus.Rechazado]: "Rechazado",

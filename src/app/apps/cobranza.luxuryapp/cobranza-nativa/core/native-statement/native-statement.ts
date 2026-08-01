@@ -256,7 +256,7 @@ export class NativeStatement implements OnInit {
     if (!this.customerId()) return;
 
     const confirmed = await this.confirmS.confirm(
-      "Se enviaran estados de cuenta a todas las propiedades del condominio con correo notificable. ¿Deseas continuar?",
+      "Se enviarán estados de cuenta a todas las propiedades del condominio con correo notificable. ¿Deseas continuar?",
       "Enviar estados de cuenta",
     );
     if (!confirmed) return;

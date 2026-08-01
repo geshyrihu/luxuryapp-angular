@@ -22,6 +22,7 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   CreateRegulationArticleDTO,
+  RegulationArticleResponseDTO,
   UpdateRegulationArticleDTO,
 } from "../../interfaces/property-fine.dto";
 
@@ -79,7 +80,7 @@ export class RegulationArticleForm implements OnInit {
   }
 
   async loadData() {
-    const res = await this.apiResponseS.onGetItem<any>(
+    const res = await this.apiResponseS.onGetItem<RegulationArticleResponseDTO>(
       Endpoints.CobranzaCore.RegulationArticles.getById(
         this.id,
       ),

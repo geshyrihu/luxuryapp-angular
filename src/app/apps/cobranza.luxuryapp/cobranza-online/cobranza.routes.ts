@@ -1,10 +1,5 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
-import { CobranzaOnlineDashboard } from "./dashboard/cobranza-online-dashboard";
-import { CobranzaOnlineInspection } from "./inspection/cobranza-online-inspection";
-import { CobranzaOnlineAnalysis } from "./analysis/cobranza-online-analysis";
-import { CobranzaOnlineReporteFinanciero } from "./reporte-financiero/cobranza-online-reporte-financiero";
-import { CobranzaOnlineExclusions } from "./exclusions/cobranza-online-exclusions";
 
 export const COBRANZA_ONLINE_ROUTES: Routes = [
   {

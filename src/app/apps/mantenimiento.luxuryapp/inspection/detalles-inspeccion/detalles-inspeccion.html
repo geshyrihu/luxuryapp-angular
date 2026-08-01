@@ -1,16 +1,15 @@
 @if (data) {
-<div class="p-2">
-  <div class="flex justify-content-between align-items-center mb-3">
+<div class="p-4 md:p-6">
+  <div class="flex flex-column md:flex-row justify-content-between align-items-start md:align-items-center gap-4 mb-6">
     <div>
-      <div class="text-center">
-        <p>Detalles de la inspección</p>
-      </div>
-      <h5 class="card-title">{{ data.departamentName }}</h5>
-      <small class="text-color-secondary">{{ data.inspectionName }}</small>
+      <p class="text-body-sm text-on-surface-secondary m-0">Detalles de la inspección</p>
+      <h5 class="text-title-lg text-on-surface m-0 mt-2">{{ data.departamentName }}</h5>
+      <small class="text-body-sm text-on-surface-secondary">{{ data.inspectionName }}</small>
     </div>
     <iw-button
-      iconClass="plus"
-      lxTooltip="Agregar"
+      iconClass="mdi:plus-circle"
+      label="Agregar Área"
+      lxTooltip="Agregar nueva área"
       (clicked)="
           onModalInspectionCondominiumAssetAdd({
             title: 'Agregar área',
@@ -20,57 +19,58 @@
     />
   </div>
 
-  <hr />
-
-  @for (item of data.amenities; track $index) {
-  <ul class="list-group mb-3">
-    <li
-      class="list-group-item border-primary flex justify-content-between align-items-center"
-    >
-      <div>
-        <strong> {{ item.name | uppercase }} </strong>
+  <div class="border-top-1 border-outline pt-4">
+    @for (item of data.amenities; track $index) {
+    <div class="card mb-4 p-4 border-outline">
+      <div class="flex justify-content-between align-items-center mb-4">
+        <h6 class="text-title-md text-on-surface m-0">{{ item.name | uppercase }}</h6>
+        <app-action-menu>
+          <ng-container actions>
+            <il-button-edit
+              (clicked)="
+                    onModalInspectionCondominiumAssetEdit({
+                      title: 'Editar área',
+                      id: item.id,
+                      inspectionId: data.inspectionId,
+                      inspectionCondominiumAssetId: item.inspectionCondominiumAssetId
+                    })
+                  "
+              label="Editar"
+            />
+            <il-button-item
+              iconClass="mdi:plus"
+              label="Agregar Revisión"
+              (clicked)="onModalAddRevision()"
+            />
+            <il-button-delete
+              (confirmed)="onDeleteArea(item.inspectionCondominiumAssetId, data.amenities)"
+              label="Eliminar"
+            />
+          </ng-container>
+        </app-action-menu>
       </div>
-      <app-action-menu class="inline-block text-right">
-        <ng-container actions>
-          <il-button-edit
-            (clicked)="
-                  onModalInspectionCondominiumAssetEdit({
-                    title: 'Editar área',
-                    id: item.id,
-                    inspectionId: data.inspectionId,
-                    inspectionCondominiumAssetId: item.inspectionCondominiumAssetId
-                  })
-                "
-            label="Editar"
-          />
-          <il-button-item
-            [iconClass]="'mdi:plus'"
-            label="Agregar Revisión"
-            (clicked)="onModalAddRevision()"
-          />
-          <il-button-delete
-            (confirmed)="onDeleteArea(item.inspectionCondominiumAssetId, data.amenities)"
-            label="Eliminar"
-          />
-        </ng-container>
-      </app-action-menu>
-    </li>
 
-    @for (review of item.reviews; track $index) {
-    <li class="list-group-item flex justify-content-between align-items-center">
-      {{ review.description }}
-
-      <app-action-menu class="inline-block text-right">
-        <ng-container actions>
-          <il-button-delete
-            (confirmed)="onDeleteReview(review.id, item.reviews)"
-            label="Eliminar"
-          />
-        </ng-container>
-      </app-action-menu>
-    </li>
+      @if (item.reviews && item.reviews.length > 0) {
+      <div class="flex flex-column gap-3">
+        @for (review of item.reviews; track $index) {
+        <div class="flex justify-content-between align-items-start gap-3 p-3 bg-surface rounded-md border-1 border-outline">
+          <p class="text-body-sm text-on-surface m-0 flex-grow-1">{{ review.description }}</p>
+          <app-action-menu>
+            <ng-container actions>
+              <il-button-delete
+                (confirmed)="onDeleteReview(review.id, item.reviews)"
+                label="Eliminar"
+              />
+            </ng-container>
+          </app-action-menu>
+        </div>
+        }
+      </div>
+      } @else {
+      <p class="text-body-sm text-on-surface-secondary m-0">Sin revisiones registradas</p>
+      }
+    </div>
     }
-  </ul>
-  }
+  </div>
 </div>
 }

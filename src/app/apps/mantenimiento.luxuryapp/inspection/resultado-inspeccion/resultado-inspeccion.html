@@ -1,86 +1,91 @@
-<!-- Contenido para pantallas pequeóas (sm y menores) -->
-<div class="container-fluid py-3">
-  <div class="flex justify-content-between align-items-center mb-1">
-    <h4 class="page-title-box">Reporte de Inspeccion</h4>
+<div class="p-4 md:p-6">
+  <div class="flex justify-content-between align-items-center mb-6">
+    <h4 class="text-headline-md text-on-surface m-0">Reporte de Inspección</h4>
+    @if (data) {
+    <iw-button
+      label="Descargar PDF"
+      severity="danger"
+      iconClass="mdi:file-pdf-box"
+      lxTooltip="Descargar reporte en PDF"
+      (clicked)="onExportPDF()"
+    />
+    }
   </div>
 
-  <!-- Filtros de Inspección -->
+  @if (!data) {
+  <div class="flex justify-content-center align-items-center p-6">
+    <p class="text-body-md text-on-surface-secondary">No hay datos para mostrar</p>
+  </div>
+  } @if (data) {
+  <div class="flex flex-column gap-6">
+    <!-- Información General -->
+    <div class="card p-4 md:p-6">
+      <h5 class="text-title-lg text-primary m-0 mb-4">{{ data.name }}</h5>
+      <div class="grid gap-3">
+        <div class="col-12 md:col-6">
+          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Departamento</p>
+          <p class="text-body-md text-on-surface m-0">{{ data.departament }}</p>
+        </div>
+        <div class="col-12 md:col-6">
+          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Frecuencia</p>
+          <p class="text-body-md text-on-surface m-0">{{ data.frequency }}</p>
+        </div>
+        <div class="col-12 md:col-6">
+          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Realizado por</p>
+          <p class="text-body-md text-on-surface m-0">{{ data.user }}</p>
+        </div>
+      </div>
+    </div>
 
-  <!-- Botón con Icono de PDF -->
-  @if (data) {
-  <iw-button
-    lxTooltip="Descargar PDF"
-    customClass="
-        btn-soft-danger
-      "
-    iconClass="file-pdf"
-    (clicked)="onExportPDF()"
-  />
-  }
-</div>
-
-<hr />
-
-@if (!data) {
-<div class="flex justify-content-center align-items-center p-4">
-  <p class="text-color-secondary">No hay datos para mostrar</p>
-</div>
-} @if (data) {
-<div class="mt-4">
-  <h4 class="font-bold text-primary">{{ data.name }}</h4>
-  <p class="text-color-secondary mb-0">
-    <strong>Departamento:</strong>
-    {{ data.departament }}
-  </p>
-  <p class="text-color-secondary mb-0">
-    <strong>Frecuencia:</strong>
-    {{ data.frequency }}
-  </p>
-  <p class="text-color-secondary mb-0">
-    <strong>Realizo:</strong>
-    {{ data.user }}
-  </p>
-  <div class="mt-3">
+    <!-- Resultados de Inspección -->
     @for (item of data.results; track item) {
-    <div class="card shadow-sm p-3 mb-4">
-      <div class="flex justify-content-between align-items-center">
-        <h5 class="font-bold text-900 m-0">{{ item.inspectionDescription }}</h5>
+    <div class="card p-4 md:p-6 border-outline">
+      <div class="flex justify-content-between align-items-center mb-4 pb-4 border-bottom-1 border-outline">
+        <h6 class="text-title-md text-on-surface m-0">{{ item.inspectionDescription }}</h6>
         @if (item.state) {
         <app-icon
-          [icon]="'mdi:check'"
-          
+          icon="mdi:check-circle"
+          class="text-2xl text-success-600"
         />
-        } @if (!item.state) {
+        } @else {
         <app-icon
-          [icon]="'mdi:close'"
-          
+          icon="mdi:alert-circle-outline"
+          class="text-2xl text-danger-600"
         />
         }
       </div>
-      <div class="mt-2">
-        <p class="font-bold mb-1">Observaciones:</p>
-        <p class="text-color-secondary m-0">{{ item.observations }}</p>
+
+      <!-- Observaciones -->
+      @if (item.observations) {
+      <div class="mb-4">
+        <p class="text-body-sm font-medium text-on-surface m-0 mb-2">Observaciones:</p>
+        <p class="text-body-sm text-on-surface-secondary m-0">{{ item.observations }}</p>
       </div>
-      <div class="mt-3">
-        <h5 class="font-bold mb-3">Reporte Fotogrófico</h5>
-        <div class="grid">
+      }
+
+      <!-- Reporte Fotográfico -->
+      @if (item.images && item.images.length > 0) {
+      <div>
+        <p class="text-body-sm font-medium text-on-surface m-0 mb-3">Reporte Fotográfico ({{ item.images.length }})</p>
+        <div class="grid gap-3">
           @for (image of item.images; track image) {
-          <div class="col-6 sm:col-3">
+          <div class="col-6 sm:col-4 md:col-3">
             <img
               [src]="
                   image.photoPath
                     ? image.photoPath
                     : 'assets/images/default-avatar.png'
                 "
-              alt="photo"
-              class="rounded shadow-sm border-1 surface-border w-full h-auto"
+              alt="Foto de inspección"
+              class="w-full h-24 object-cover rounded-md shadow-2 border-1 border-outline"
             />
           </div>
           }
         </div>
       </div>
+      }
     </div>
     }
   </div>
+  }
 </div>
-}

@@ -27,12 +27,12 @@ export class StorageService {
 
     if (item && item !== "undefined") {
       const parsed = JSON.parse(item);
-      this.consoleLogger.custom(
-        "✅",
-        "#4CAF50",
-        `[StorageService] Valor encontrado para '${key}':`,
-        parsed,
-      );
+      // this.consoleLogger.custom(
+      //   "✅",
+      //   "#4CAF50",
+      //   `[StorageService] Valor encontrado para '${key}':`,
+      //   parsed,
+      // );
       return parsed;
     }
 

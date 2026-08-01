@@ -24,6 +24,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DateService } from "src/app/core/services/date.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import {
+  ChargeTemplateResponseDTO,
   CreateChargeTemplateDTO,
   UpdateChargeTemplateDTO,
 } from "../../interfaces/charge-template.dto";
@@ -209,16 +210,16 @@ export class ChargeTemplateForm implements OnInit {
   }
 
   async loadData() {
-    const res = await this.apiResponseS.onGetItem<any>(
+    const res = await this.apiResponseS.onGetItem<ChargeTemplateResponseDTO>(
       Endpoints.CobranzaCore.Templates.getById(this.id),
     );
     if (res) {
-      if (res.startDate) res.startDate = this.dateS.parseDate(res.startDate);
-      if (res.endDate) res.endDate = this.dateS.parseDate(res.endDate);
-      if (res.retroactiveStartDate) {
-        res.retroactiveStartDate = this.dateS.parseDate(res.retroactiveStartDate);
-      }
-      this.form.patchValue(res);
+      this.form.patchValue({
+        ...res,
+        startDate: this.dateS.parseDate(res.startDate),
+        endDate: this.dateS.parseDate(res.endDate),
+        retroactiveStartDate: this.dateS.parseDate(res.retroactiveStartDate),
+      });
     }
   }
 

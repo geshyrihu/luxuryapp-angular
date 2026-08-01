@@ -1,4 +1,15 @@
 @if (data()) {
+<!-- Botón para descargar el reporte en PDF -->
+<div class="no-print text-right p-5 pb-0">
+  <il-button
+    iconClass="mdi:file-pdf-box"
+    label="Descargar PDF"
+    severity="secondary"
+    variant="outline"
+    [loading]="exportingPdf()"
+    (clicked)="exportPdf()"
+  />
+</div>
 <!-- Grid básico -->
 <div class="surface-ground p-5">
   <div class="text-center">

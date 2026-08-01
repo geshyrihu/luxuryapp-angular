@@ -36,7 +36,7 @@ import {
 import {
   CobranzaPaymentResponseDTO,
   CreateCobranzaPaymentDTO,
-} from "../../contracts/external-compatibility/interfaces/cobranza-payment.dto";
+} from "../../interfaces/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";

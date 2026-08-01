@@ -3,12 +3,13 @@
     <!-- Error Display -->
     @if (loadError()) {
     <div
-      class="p-3 mb-3 bg-red-50 border-1 border-red-200 rounded text-red-700"
+      class="p-4 mb-4 bg-surface rounded-md border-1 border-danger-600 text-danger-600"
       role="alert"
       aria-live="polite"
       aria-atomic="true"
     >
-      <strong>Error:</strong> {{ loadError() }}
+      <strong class="text-body-md">Error:</strong>
+      <p class="text-body-sm m-0 mt-2">{{ loadError() }}</p>
     </div>
     }
 
@@ -18,6 +19,7 @@
         [control]="form.controls.name"
         label="Nombre de la Inspección *"
         placeholder="Nombre de la Inspección"
+        aria-required="true"
       />
 
       <custom-input-select-signal
@@ -43,9 +45,9 @@
 
       <!-- Opciones de Frecuencia -->
       @if (selectedFrequency() === 'weekly') {
-      <div class="grid align-items-start mb-3">
-        <label class="col-12 md:col-3 font-medium mb-2 md:mb-0"
-          >Días de la semana *</label
+      <fieldset class="grid align-items-start mb-3">
+        <legend class="col-12 md:col-3 font-medium mb-2 md:mb-0"
+          >Días de la semana *</legend
         >
         <div class="col-12 md:col-9 flex flex-wrap gap-2 md:gap-3">
           @for (day of weekDays; track day.value) {
@@ -55,7 +57,7 @@
           />
           }
         </div>
-      </div>
+      </fieldset>
       } @if (selectedFrequency() === 'monthly') {
       <div class="grid mb-3 align-items-center">
         <label for="dayOfMonth" class="col-12 md:col-3 font-medium"

@@ -20,8 +20,10 @@ import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dia
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   CreatePropertyFineDTO,
+  PropertyFineResponseDTO,
   RegulationArticleResponseDTO,
   UpdatePropertyFineDTO,
 } from "../../interfaces/property-fine.dto";
@@ -57,8 +59,8 @@ export class PropertyFineForm implements OnInit {
   customerId: string = "";
   submitting = signal(false);
 
-  properties = signal<{ label: string; value: string }[]>([]);
-  articles = signal<{ label: string; value: string }[]>([]);
+  properties = signal<SelectItemDto<string>[]>([]);
+  articles = signal<SelectItemDto<string>[]>([]);
 
   form = new FormGroup<IPropertyFineForm>({
     propertyId: new FormControl("", {
@@ -89,12 +91,10 @@ export class PropertyFineForm implements OnInit {
   }
 
   private async loadSelectData() {
-    const props = await this.apiResponseS.onGetItem<
-      { label: string; value: string }[]
-    >(Endpoints.SelectItems.properties(this.customerId));
-    if (props) {
-      this.properties.set(props);
-    }
+    const props = await this.apiResponseS.onGetItem<SelectItemDto<string>[]>(
+      Endpoints.SelectItems.properties(this.customerId),
+    );
+    this.properties.set(props ?? []);
 
     const arts = await this.apiResponseS.onGetItem<
       RegulationArticleResponseDTO[]
@@ -116,7 +116,7 @@ export class PropertyFineForm implements OnInit {
   }
 
   async loadData() {
-    const res = await this.apiResponseS.onGetItem<any>(
+    const res = await this.apiResponseS.onGetItem<PropertyFineResponseDTO>(
       Endpoints.CobranzaCore.PropertyFines.getById(this.id),
     );
     if (res) this.form.patchValue(res);

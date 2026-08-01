@@ -1,4 +1,4 @@
-import { PropertyInitialBalanceDTO } from "../../contracts/external-compatibility/interfaces/charge.dto";
+import { PropertyInitialBalanceDTO } from "../../interfaces/charge.dto";
 
 const TEMPLATE_FILE_NAME = "Plantilla_Saldos_Iniciales.csv";
 

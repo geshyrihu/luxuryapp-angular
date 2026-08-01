@@ -1,43 +1,52 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block py-3">
-  <div class="flex justify-content-between align-items-center mb-1 p-2">
-    <h4 class="text-xl font-bold">Listado de Inspecciones</h4>
+<div class="hidden md:block p-4">
+  <div class="flex justify-content-between align-items-center mb-6">
+    <h4 class="text-headline-md m-0">Listado de Inspecciones</h4>
     <iw-button
-      iconClass="mdi:plus"
+      iconClass="mdi:plus-circle"
+      label="Agregar"
+      size="sm"
       lxTooltip="Nuevo Registro"
       (clicked)="onModalForm({ title: 'Agregar Inspección', id: '' })"
     />
   </div>
 
-  <div class="flex align-items-center">
-    <custom-input-select-signal
-      class="m-1"
-      [ngModel]="selectedAreaSignal()"
-      (ngModelChange)="selectedAreaSignal.set($event)"
-      [data]="areasResponsablesSignal()"
-      placeholder="Todas las áreas"
-      [horizontal]="false"
-      [filter]="true"
-    />
+  <!-- Filtros en una línea compacta -->
+  <div class="flex gap-3 mb-4 align-items-end">
+    <div class="flex-grow-1">
+      <custom-input-select-signal
+        [ngModel]="selectedAreaSignal()"
+        (ngModelChange)="selectedAreaSignal.set($event)"
+        [data]="areasResponsablesSignal()"
+        label="Área"
+        placeholder="Todas las áreas"
+        [horizontal]="true"
+        [filter]="true"
+      />
+    </div>
 
-    <custom-input-select-signal
-      class="m-1"
-      [ngModel]="selectedRecurrenceSignal()"
-      (ngModelChange)="selectedRecurrenceSignal.set($event)"
-      [data]="[
-        { label: 'Diario', value: 'daily' },
-        { label: 'Semanal', value: 'weekly' },
-        { label: 'Mensual', value: 'monthly' }
-      ]"
-      placeholder="Todas las Recurrencias"
-      [horizontal]="false"
-      [filter]="true"
-    />
+    <div class="flex-grow-1">
+      <custom-input-select-signal
+        [ngModel]="selectedRecurrenceSignal()"
+        (ngModelChange)="selectedRecurrenceSignal.set($event)"
+        [data]="[
+          { label: 'Diario', value: 'daily' },
+          { label: 'Semanal', value: 'weekly' },
+          { label: 'Mensual', value: 'monthly' }
+        ]"
+        label="Frecuencia"
+        placeholder="Todas las Recurrencias"
+        [horizontal]="true"
+        [filter]="true"
+      />
+    </div>
 
-    <il-button-item
-      iconClass="mdi:book"
+    <iw-button
+      iconClass="mdi:book-open-outline"
       label="Reportes"
-      tooltip="Ver reportes de inspección"
+      size="sm"
+      severity="secondary"
+      lxTooltip="Ver reportes de inspección"
       (clicked)="navigateToReportes()"
     />
   </div>
@@ -46,17 +55,17 @@
   <div class="mt-1">
     @for (group of inspeccionesFiltradasSignal(); track group) {
     <div>
-      <div class="p-3 surface-100 rounded mb-2">
-        <strong class="text-lg"> {{ group.departament ?? 'Sin Clasificar' }} </strong>
+      <div class="group-header">
+        <strong class="text-title-md"> {{ group.departament ?? 'Sin Clasificar' }} </strong>
       </div>
       @for (item of group.inspecciones; track item) {
       <div
-        class="flex align-items-center justify-content-between w-full py-1 mb-2 p-3 border-1 surface-border rounded"
+        class="list-item"
       >
         <div class="flex align-items-center">
           <div>
-            <div class="text-base font-medium">{{ item.name }}</div>
-            <small class="text-sm text-color-secondary"
+            <div class="text-body-md font-medium text-on-surface">{{ item.name }}</div>
+            <small class="text-body-sm text-on-surface-secondary"
               >{{ item.frequency ?? 'N/A' }}</small
             >
           </div>
@@ -90,61 +99,50 @@
   }
 </div>
 
-<!-- 📱 INICIO: Componente adaptado para versión mívil -->
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   class="md:hidden"
   [isGrouped]="true"
   [groupedData]="groupedData()"
   (add)="onModalForm({ title: 'Agregar Inspección', id: '' })"
 >
-  <div customFilters class="px-2 pb-2">
-    <div class="flex mb-2">
-      <custom-input-select-signal
-        class="flex-1"
-        [ngModel]="selectedAreaSignal()"
-        (ngModelChange)="selectedAreaSignal.set($event)"
-        [data]="areasResponsablesSignal()"
-        placeholder="Todas las áreas"
-        [filter]="true"
-      />
-      <custom-input-select-signal
-        class="flex-1"
-        [ngModel]="selectedRecurrenceSignal()"
-        (ngModelChange)="selectedRecurrenceSignal.set($event)"
-        [data]="[
-          { label: 'Diario', value: 'daily' },
-          { label: 'Semanal', value: 'weekly' },
-          { label: 'Mensual', value: 'monthly' }
-        ]"
-        placeholder="Todas las Recurrencias"
-        [filter]="true"
-      />
-    </div>
-    <ili-button-item
-      class="w-full"
-      iconClass="mdi:book"
-      label="Ver Reportes"
+  <div customFilters class="flex flex-column gap-3 p-4">
+    <custom-input-select-signal
+      [ngModel]="selectedAreaSignal()"
+      (ngModelChange)="selectedAreaSignal.set($event)"
+      [data]="areasResponsablesSignal()"
+      label="Área"
+      placeholder="Todas las áreas"
+      [horizontal]="false"
+      [filter]="true"
+    />
+    <custom-input-select-signal
+      [ngModel]="selectedRecurrenceSignal()"
+      (ngModelChange)="selectedRecurrenceSignal.set($event)"
+      [data]="[
+        { label: 'Diario', value: 'daily' },
+        { label: 'Semanal', value: 'weekly' },
+        { label: 'Mensual', value: 'monthly' }
+      ]"
+      label="Frecuencia"
+      placeholder="Todas las Recurrencias"
+      [horizontal]="false"
+      [filter]="true"
+    />
+    <ili-button
+      iconClass="mdi:book-open-outline"
+      label="Reportes"
       (clicked)="navigateToReportes()"
     />
   </div>
 
   <ng-template #listItemTemplate let-item>
     <div
-      class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+      class="list-item-mobile"
     >
-      <div
-        slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="mdi:clipboard-search-outline"
-          class="text-xl text-primary"
-        />
-      </div>
-      <span class="">
-        <div class="text-base font-medium">{{ item.name }}</div>
-        <span class="text-sm">{{ item.frequency ?? 'N/A' }}</span>
+      <span class="flex-1">
+        <div class="text-body-md font-medium text-on-surface">{{ item.name }}</div>
+        <span class="text-body-sm text-on-surface-secondary">{{ item.frequency ?? 'N/A' }}</span>
       </span>
       <ili-action-menu end>
         <ili-button-edit

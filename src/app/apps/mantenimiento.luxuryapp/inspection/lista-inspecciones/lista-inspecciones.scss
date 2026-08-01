@@ -1,0 +1,164 @@
+// Design System: MASTER.md compliant styles
+// Reference: design-system/luxuryapp-inspections/MASTER.md
+
+:host {
+  --group-bg: var(--primary-100, #E8EEF6);
+  --group-text: var(--primary-700, #1B365D);
+  --list-item-border: var(--outline, #E2E8F0);
+  --list-item-hover: var(--primary-50, #F8F9FC);
+}
+
+// Group header (department section) — MASTER.md § 262-269
+.group-header {
+  background: var(--group-bg);
+  padding: var(--ds-space-lg, 16px);
+  border-radius: var(--ds-radius-md, 8px);
+  font-weight: 600;
+  color: var(--group-text);
+  margin-bottom: var(--ds-space-md, 12px);
+  transition: background-color 150ms ease;
+
+  &:hover {
+    background: var(--primary-200, #D8E1EC);
+  }
+}
+
+// List item (inspection row) — MASTER.md § 242-259
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ds-space-md, 12px);
+  border: 1px solid var(--list-item-border);
+  border-radius: var(--ds-radius-md, 8px);
+  background: var(--surface-card, #FFFFFF);
+  gap: var(--ds-space-md, 12px);
+  margin-bottom: var(--ds-space-sm, 8px);
+  transition: all 150ms ease;
+
+  &:hover {
+    background: var(--list-item-hover);
+    box-shadow: var(--ds-shadow-2, 0 2px 8px rgba(27, 54, 93, 0.08));
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-shadow-focus-md, 0 0 0 3px var(--ds-color-focus, #4A90E2));
+  }
+}
+
+// Typography compliance — MASTER.md § 59-64
+.text-body-md {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.text-body-sm {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+// Color compliance — MASTER.md § 29-39
+.text-secondary {
+  color: var(--on-surface-secondary, #5A6878);
+}
+
+// Dark mode support — MASTER.md § 545-566
+@media (prefers-color-scheme: dark) {
+  :host {
+    --group-bg: var(--primary-900, #0D1829);
+    --group-text: var(--primary-100, #E8EEF6);
+    --list-item-border: var(--outline-dark, #2D3E52);
+    --list-item-hover: var(--primary-800, #1A2E48);
+  }
+
+  .group-header {
+    background: var(--group-bg);
+    color: var(--group-text);
+    border: 1px solid var(--list-item-border);
+  }
+
+  .list-item {
+    background: var(--surface-card-dark, #1F2937);
+    border-color: var(--list-item-border);
+  }
+}
+
+// Filter bar — compact spacing
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-sm, 8px);
+  margin-bottom: var(--ds-space-md, 12px);
+  flex-wrap: wrap;
+
+  custom-input-select-signal {
+    flex: 1;
+    min-width: 150px;
+  }
+}
+
+// Compact button variant
+.btn-compact {
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  min-height: 32px !important;
+}
+
+// Mobile list item — compact with no icon
+.list-item-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ds-space-sm, 8px) var(--ds-space-md, 12px);
+  border: 1px solid var(--list-item-border);
+  border-radius: var(--ds-radius-md, 8px);
+  background: var(--surface-card, #FFFFFF);
+  gap: var(--ds-space-md, 12px);
+  margin-bottom: var(--ds-space-xs, 4px);
+  transition: all 150ms ease;
+
+  &:hover {
+    background: var(--list-item-hover);
+    box-shadow: var(--ds-shadow-2, 0 2px 8px rgba(27, 54, 93, 0.08));
+  }
+
+  span {
+    flex: 1;
+  }
+
+  .text-body-md {
+    margin-bottom: 2px;
+  }
+}
+
+// Mobile filter bar — compact layout
+.filter-bar-mobile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ds-space-xs, 4px);
+  margin-bottom: var(--ds-space-sm, 8px);
+
+  custom-input-select-signal {
+    width: 100%;
+  }
+
+  .btn-compact-mobile {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    min-height: 32px !important;
+  }
+}
+
+// Reduced motion support — MASTER.md § 533-541
+@media (prefers-reduced-motion: reduce) {
+  .group-header,
+  .list-item,
+  .list-item-mobile {
+    transition: none !important;
+  }
+}

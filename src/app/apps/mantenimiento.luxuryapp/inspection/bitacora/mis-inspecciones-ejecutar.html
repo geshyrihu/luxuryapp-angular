@@ -1,5 +1,5 @@
-<div class="p-3">
-  <h4 class="text-2xl mb-4 text-center font-bold text-primary">
+<div class="p-4 md:p-6">
+  <h4 class="text-headline-md text-center text-primary m-0 mb-6">
     Ejecutar Inspección
   </h4>
 
@@ -91,45 +91,52 @@
     [showAdd]="false"
   >
     <ng-template #listItemTemplate let-item>
-      <div
-        class="p-3 border-bottom-1 surface-border surface-card mb-2 shadow-sm"
-      >
-        <div class="flex justify-content-between align-items-center mb-2">
-          <span class="font-bold text-sm">
+      <div class="card p-4 mb-4 border-outline">
+        <div class="flex justify-content-between align-items-center mb-4 pb-3 border-bottom-1 border-outline">
+          <span class="text-title-md text-on-surface font-medium m-0">
             {{ item.inspectionDescription }}
           </span>
-          <div class="flex align-items-center">
+          <div class="flex align-items-center gap-2">
             <custom-input-toggle-switch-signal
               [control]="item.stateControl"
               (toggleChange)="saveRevision(item)"
             />
-            <span class="text-xs ml-2">
+            <span class="text-body-sm text-on-surface-secondary min-w-fit">
               {{ item.stateControl.value ? "Bien" : "Mal" }}
             </span>
           </div>
         </div>
-        <custom-input-textarea-signal
-          [control]="item.observationsControl"
-          [rows]="2"
-          placeholder="Observaciones..."
-          (focusout)="saveRevision(item)"
-        />
-        <div class="flex justify-content-between align-items-center mt-2">
-          <div class="flex flex-wrap gap-1">
+
+        <div class="mb-4">
+          <label class="text-body-sm font-medium text-on-surface-secondary mb-2 block">Observaciones</label>
+          <custom-input-textarea-signal
+            [control]="item.observationsControl"
+            [rows]="3"
+            placeholder="Añade observaciones si es necesario..."
+            (focusout)="saveRevision(item)"
+          />
+        </div>
+
+        <div class="flex justify-content-between align-items-center gap-3">
+          @if (item.images && item.images.length > 0) {
+          <div class="flex flex-wrap gap-2">
             @for (image of item.images; track image) {
             <app-image
               [preview]="true"
               [src]="image.photoPath || 'assets/images/default-avatar.png'"
-              width="40"
+              width="48"
+              height="48"
+              styleClass="rounded-md shadow-1"
             />
             }
           </div>
+          }
           <il-button
             (clicked)="onModalAddImages(item.id)"
-            iconClass="mdi:camera"
-            label="Fotos"
+            iconClass="mdi:camera-plus"
+            label="Agregar fotos"
             variant="outlined"
-            size="small"
+            size="sm"
           />
         </div>
       </div>

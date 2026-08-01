@@ -24,7 +24,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import {
   BulkSetInitialBalanceDTO,
   PropertyInitialBalanceDTO,
-} from "../../contracts/external-compatibility/interfaces/charge.dto";
+} from "../../interfaces/charge.dto";
 
 interface BalanceRow extends PropertyInitialBalanceDTO {
   amount: number | null;

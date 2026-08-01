@@ -25,9 +25,15 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { UpsertBillingConfigDTO } from "../../contracts/external-compatibility/interfaces/billing-config.dto";
+import {
+  BillingConfigResponseDTO,
+  UpsertBillingConfigDTO,
+} from "../../contracts/external-compatibility/interfaces/billing-config.dto";
 import { EBillingMode } from "../../contracts/external-compatibility/interfaces/billing-mode.enum";
-import { SaveNativeCollectionNotificationSettingsDTO } from "../../interfaces/notification-settings.dto";
+import {
+  NativeCollectionNotificationSettingsResponseDTO,
+  SaveNativeCollectionNotificationSettingsDTO,
+} from "../../interfaces/notification-settings.dto";
 
 @Component({
   selector: "app-billing-config-modal",
@@ -82,16 +88,18 @@ export default class BillingConfigModal implements OnInit {
 
   async loadData() {
     this.isLoading = true;
-    const billingConfig = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaCore.BillingConfig.customer(
-        this.customerId,
-      ),
-    );
-    const notificationSettings = await this.apiResponseS.onGetItem<any>(
-      Endpoints.CobranzaCore.NotificationSettings.byCustomer(
-        this.customerId,
-      ),
-    );
+    const billingConfig =
+      await this.apiResponseS.onGetItem<BillingConfigResponseDTO>(
+        Endpoints.CobranzaCore.BillingConfig.customer(
+          this.customerId,
+        ),
+      );
+    const notificationSettings =
+      await this.apiResponseS.onGetItem<NativeCollectionNotificationSettingsResponseDTO>(
+        Endpoints.CobranzaCore.NotificationSettings.byCustomer(
+          this.customerId,
+        ),
+      );
     this.isLoading = false;
 
     if (billingConfig) {

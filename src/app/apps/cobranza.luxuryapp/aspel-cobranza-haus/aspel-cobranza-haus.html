@@ -9,14 +9,21 @@
       </p>
     </div>
     <div class="flex flex-wrap gap-2">
-      <lx-tag [value]="customerId()" severity="secondary" class="max-w-16rem overflow-hidden text-overflow-ellipsis" />
+      <lx-tag
+        [value]="customerId()"
+        severity="secondary"
+        class="max-w-16rem overflow-hidden text-overflow-ellipsis"
+      />
       <!-- <lx-tag [value]="dataSource() === 'local' ? 'Local' : 'Live'" [severity]="dataSource() === 'local' ? 'info' : 'contrast'" /> -->
       <lx-tag value="Live" severity="contrast" />
     </div>
   </div>
 
   @if (!hasCustomerContext()) {
-  <lx-message severity="warn" text="No hay customer activo en contexto. Abre esta pantalla desde un condominio con CustomerId cargado." />
+  <lx-message
+    severity="warn"
+    text="No hay customer activo en contexto. Abre esta pantalla desde un condominio con CustomerId cargado."
+  />
   } @else {
   <!--
   <app-aspel-cobranza-haus-source-toolbar
@@ -81,7 +88,7 @@
   </div>
   } @if (loading()) {
   <lx-card class="shadow-none border-1 surface-border border-dashed rounded-xl">
-<div
+    <div
       class="flex align-items-center justify-content-center gap-3 min-h-6rem text-600"
     >
       <app-icon [icon]="'mdi:loading'" class="text-2xl" />
@@ -90,41 +97,41 @@
         local" : "Aspel live" }}...
       </span>
     </div>
-</lx-card>
+  </lx-card>
   } @else if (mode() === "accounts" && accountRows().length) {
   <div class="grid">
     <div class="col-12 md:col-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Customer</span
         >
         <strong class="block text-xl">{{ customerId() }}</strong>
         <small class="text-500">Contexto actual</small>
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-4">
       <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Ejercicio</span
         >
         <strong class="block text-xl">{{ yearLabel() }}</strong>
         <small class="text-500"
           >Usado para cargar el catalogo seleccionado</small
         >
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-4">
       <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Total cuentas</span
         >
         <strong class="block text-xl">{{ accountRows().length }}</strong>
         <small class="text-500"
           >Cuentas devueltas por la fuente seleccionada</small
         >
-</lx-card>
+      </lx-card>
     </div>
   </div>
 
@@ -184,20 +191,27 @@
     </ng-template>
   </p-table>
   } @else if (mode() === "estado-cuenta-rango" && estadoCuenta()) {
+  <div class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3">
+    <app-icon icon="mdi:information" class="text-2xl mt-1" />
+    <div>
+      <strong class="block mb-1">Criterio de conciliación (Método FIFO)</strong>
+      <span class="text-sm">Los pagos y descuentos mostrados en este estado de cuenta se aplican siempre a la <strong>deuda más antigua</strong> pendiente, garantizando que el historial refleje el orden cronológico real de liquidación.</span>
+    </div>
+  </div>
   <div class="grid">
     <div class="col-12 md:col-6 lg:col-3">
       <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Cuenta</span
         >
         <strong class="block text-xl">{{ estadoCuenta()?.numCta }}</strong>
         <small class="text-500">{{ estadoCuenta()?.departamento }}</small>
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
       <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Rango</span
         >
         <strong class="block text-xl"
@@ -207,12 +221,12 @@
         <small class="text-500"
           >{{ estadoMovimientos().length }} movimientos</small
         >
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
       <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo inicial</span
         >
         <strong class="block text-xl"
@@ -220,12 +234,12 @@
           "1.2-2" }}</strong
         >
         <small class="text-500">Al corte de apertura</small>
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
       <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo final</span
         >
         <strong class="block text-xl"
@@ -233,7 +247,7 @@
           }}</strong
         >
         <small class="text-500">Al cierre del rango</small>
-</lx-card>
+      </lx-card>
     </div>
   </div>
 
@@ -292,7 +306,10 @@
       <tr>
         <td>{{ item.fecha }}</td>
         <td>
-          <lx-tag [value]="item.tipo" [severity]="item.tipo === 'cargo' ? 'warn' : 'success'" />
+          <lx-tag
+            [value]="item.tipo"
+            [severity]="item.tipo === 'cargo' ? 'warn' : 'success'"
+          />
         </td>
         <td>{{ item.concepto }}</td>
         <td class="text-right font-mono">
@@ -312,22 +329,29 @@
     </ng-template>
   </p-table>
   } @else if (mode() === "detalle-cobranza-rango" && detalleCobranza()) {
+  <div class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3">
+    <app-icon icon="mdi:information" class="text-2xl mt-1" />
+    <div>
+      <strong class="block mb-1">Criterio de conciliación (Método FIFO)</strong>
+      <span class="text-sm">Los abonos y adelantos se aplican siguiendo el estándar FIFO (Primeras entradas, primeras salidas). El saldo final y los vencidos son el resultado de saldar primero las deudas más antiguas, dando prioridad a las Cuotas de Mantenimiento.</span>
+    </div>
+  </div>
   <div class="grid">
     <div class="col-12 md:col-6 lg:col-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Cuenta base</span
         >
         <strong class="block text-xl"
           >{{ detalleCobranza()?.numCtaBase }}</strong
         >
         <small class="text-500">{{ detalleCobranza()?.departamento }}</small>
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Rango</span
         >
         <strong class="block text-xl"
@@ -337,12 +361,12 @@
         <small class="text-500"
           >{{ detalleConceptRows().length }} conceptos</small
         >
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
       <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo inicial total</span
         >
         <strong class="block text-xl"
@@ -350,12 +374,12 @@
           : "1.2-2" }}</strong
         >
         <small class="text-500">Arrastre al inicio del rango</small>
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Cargos / Abonos</span
         >
         <strong class="block text-xl">
@@ -366,12 +390,12 @@
         <small class="text-500"
           >{{ detalleCobranza()?.totalConceptos }} conceptos en deuda</small
         >
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Adelantos</span
         >
         <strong class="block text-xl"
@@ -379,12 +403,12 @@
           "1.2-2" }}</strong
         >
         <small class="text-500">Pagos a favor o sobrepagos</small>
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-4">
       <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Saldo final total</span
         >
         <strong class="block text-xl"
@@ -392,12 +416,12 @@
           "1.2-2" }}</strong
         >
         <small class="text-500">Deuda compuesta al cierre</small>
-</lx-card>
+      </lx-card>
     </div>
   </div>
 
   <lx-card class="shadow-none border-1 surface-border border-dashed">
-<div class="flex flex-column gap-3">
+    <div class="flex flex-column gap-3">
       <div class="flex justify-content-between align-items-start gap-3">
         <div>
           <h3 class="m-0 mb-1 text-lg font-bold text-900">
@@ -434,7 +458,10 @@
         <ng-template #body let-item>
           <tr>
             <td>
-              <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
+              <lx-tag
+                [value]="item.concepto"
+                [severity]="getConceptSeverity(item.concepto)"
+              />
             </td>
             <td>
               <code class="text-sm px-2 py-1 rounded surface-100 font-mono"
@@ -479,7 +506,7 @@
         </ng-template>
       </p-table>
     </div>
-</lx-card>
+  </lx-card>
 
   <!-- } @else if (mode() === "contrapartidas-rango" && contrapartidas()) {
       <div class="grid">
@@ -573,44 +600,51 @@
         </ng-template>
       </p-table> -->
   } @else if (mode() === "deudas-actuales" && deudasActuales()) {
+  <div class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3">
+    <app-icon icon="mdi:information" class="text-2xl mt-1" />
+    <div>
+      <strong class="block mb-1">Cálculo de deuda vigente (Método FIFO)</strong>
+      <span class="text-sm">La deuda actual mostrada es neta. Todos los pagos, descuentos y adelantos en el historial del residente fueron aplicados a sus cargos más antiguos (FIFO) antes de calcular el saldo vigente.</span>
+    </div>
+  </div>
   <div class="grid">
     <div class="col-12 md:col-6 lg:col-3">
       <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Customer</span
         >
         <strong class="block text-xl">{{ customerId() }}</strong>
         <small class="text-500">Contexto actual</small>
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
       <lx-card class="shadow-none border-1 surface-border h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Fecha corte</span
         >
         <strong class="block text-xl"
           >{{ deudasActuales()?.fechaCorte }}</strong
         >
         <small class="text-500">Saldo al corte consultado</small>
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
       <lx-card class="shadow-none border-1 surface-border bg-orange-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Propiedades con deuda</span
         >
         <strong class="block text-xl"
           >{{ deudasActuales()?.totalPropiedadesConDeuda }}</strong
         >
         <small class="text-500">Solo saldos positivos</small>
-</lx-card>
+      </lx-card>
     </div>
 
     <div class="col-12 md:col-6 lg:col-3">
       <lx-card class="shadow-none border-1 surface-border bg-blue-50 h-full">
-<span class="block mb-1 text-xs uppercase font-semibold text-500"
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
           >Deuda total</span
         >
         <strong class="block text-xl"
@@ -618,7 +652,7 @@
           }}</strong
         >
         <small class="text-500">Saldo vigente acumulado</small>
-</lx-card>
+      </lx-card>
     </div>
   </div>
 
@@ -682,7 +716,10 @@
         </td>
         <td>{{ item.departamento }}</td>
         <td>
-          <lx-tag [value]="item.tieneDesgloseConceptos ? 'Desglosado' : 'Global'" [severity]="item.tieneDesgloseConceptos ? 'info' : 'secondary'" />
+          <lx-tag
+            [value]="item.tieneDesgloseConceptos ? 'Desglosado' : 'Global'"
+            [severity]="item.tieneDesgloseConceptos ? 'info' : 'secondary'"
+          />
         </td>
         <td class="text-right font-mono">{{ item.totalConceptos }}</td>
         <td class="text-right font-mono font-semibold text-red-600">
@@ -849,8 +886,14 @@
         </ng-template>
       </p-table> -->
   } @else if (searched()) {
-  <lx-message severity="info" text="La consulta no devolvio registros con los filtros actuales." />
+  <lx-message
+    severity="info"
+    text="La consulta no devolvio registros con los filtros actuales."
+  />
   } @else {
-  <lx-message severity="info" text="Selecciona un endpoint, ajusta los filtros y ejecuta la consulta." />
+  <lx-message
+    severity="info"
+    text="Selecciona un endpoint, ajusta los filtros y ejecuta la consulta."
+  />
   } }
 </div>

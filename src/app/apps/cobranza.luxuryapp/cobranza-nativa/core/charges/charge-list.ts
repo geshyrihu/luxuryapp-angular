@@ -38,7 +38,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import {
   ChargeResponseDTO,
   PropertyInitialBalanceDTO,
-} from "../../contracts/external-compatibility/interfaces/charge.dto";
+} from "../../interfaces/charge.dto";
 import { EChargeStatus } from "../../interfaces/enums";
 import BulkImportModal from "./bulk-import-modal";
 import { ChargeForm } from "./charge-form";

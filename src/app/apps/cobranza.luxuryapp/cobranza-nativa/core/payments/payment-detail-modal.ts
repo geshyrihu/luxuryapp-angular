@@ -18,7 +18,7 @@ import { ChargeForm } from "../charges/charge-form";
 import {
   CobranzaPaymentAllocationDetailDTO,
   CobranzaPaymentResponseDTO,
-} from "../../contracts/external-compatibility/interfaces/cobranza-payment.dto";
+} from "../../interfaces/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
 
 @Component({

@@ -514,11 +514,30 @@
       max-width: 33.333%;
       flex: 0 0 33.333%;
     }
-    
+
     /* Evitar que las tarjetas/pasos se corten a la mitad */
     article, .surface-card, .paso-box {
       page-break-inside: avoid;
       break-inside: avoid;
     }
+  }
+
+  /* 11. Asegurar que el contenedor de manual sea visible y printable */
+  #manual-content {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: white !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  #manual-content * {
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }

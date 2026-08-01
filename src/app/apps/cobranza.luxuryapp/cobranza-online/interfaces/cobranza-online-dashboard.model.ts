@@ -21,6 +21,17 @@ export interface CobranzaOnlineDashboardSummary {
   movementCount: number;
 }
 
+export interface CobranzaOnlineDashboardTower {
+  towerId: string;
+  towerAccountNumber: string;
+  towerName: string;
+  totalBalance: number;
+  maintenanceBalance: number;
+  extraordinaryBalance: number;
+  finesBalance: number;
+  departmentCount: number;
+}
+
 export interface CobranzaOnlineDashboardDepartment {
   summaryAccountId: string;
   summaryAccountNumber: string;
@@ -33,6 +44,7 @@ export interface CobranzaOnlineDashboardDepartment {
   balance: number;
   maintenanceBalance: number;
   extraordinaryBalance: number;
+  finesBalance: number;
   categoryId: string;
   movementCount: number;
 }
@@ -61,9 +73,13 @@ export interface CobranzaOnlineCurrentCharges {
   maintenanceFee: number;
   maintenanceCollected: number;
   extraordinaryFee: number;
+  extraordinaryCollected: number;
+  finesFee: number;
+  finesCollected: number;
   monthlyFeeTotal: number;
   totalDepartmentsByProperty: number;
   activeTemplates: CobranzaOnlineCurrentChargeTemplate[];
+  collectedConcepts: { conceptName: string; amount: number }[];
 }
 
 export interface CobranzaOnlineDashboardResponse {
@@ -73,6 +89,8 @@ export interface CobranzaOnlineDashboardResponse {
   kpis: CobranzaOnlineDashboardKpis;
   summaries: CobranzaOnlineDashboardSummary[];
   departments: CobranzaOnlineDashboardDepartment[];
+  towers: CobranzaOnlineDashboardTower[];
+  advances: CobranzaOnlineDashboardDepartment[];
   categories: CobranzaOnlineDashboardCategory[];
   topDebtors: CobranzaOnlineDashboardDepartment[];
   currentCharges: CobranzaOnlineCurrentCharges;

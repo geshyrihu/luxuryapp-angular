@@ -77,8 +77,8 @@ import { Touchspin } from "@ui/web/touchspin/touchspin";
 import { AppTreeSelect } from "@ui/web/tree-select/tree-select";
 import { Tree } from "@ui/web/tree/tree";
 import { AppVirtualScroller } from "@ui/web/virtual-scroller/virtual-scroller";
-import { WhatsNew } from "@ui/web/whats-new/whats-new.component";
 import { MegaMenuItem, MenuItem, TreeNode } from "primeng/api";
+import { WhatsNew } from "src/app/shared/ui/web/whats-new/whats-new";
 
 const EXTRAS_LABELS: Record<string, string> = {
   forms: "Forms & Inputs",

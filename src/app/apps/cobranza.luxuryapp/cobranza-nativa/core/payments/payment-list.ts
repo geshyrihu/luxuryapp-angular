@@ -28,7 +28,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CobranzaPaymentResponseDTO } from "../../contracts/external-compatibility/interfaces/cobranza-payment.dto";
+import { CobranzaPaymentResponseDTO } from "../../interfaces/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
 import CreditNoteModalComponent from "./credit-note-modal";
 import PaymentCancelModal from "./payment-cancel-modal";

@@ -162,7 +162,7 @@ export class ManualsAndProcessesDetail implements OnInit {
   async descargarPDF() {
     const data = this.manual();
     if (data) {
-      this.printS.printElement(undefined, data.folio || "Manual de Proceso");
+      this.printS.printElement("manual-content", data.folio || "Manual de Proceso");
     }
   }
 

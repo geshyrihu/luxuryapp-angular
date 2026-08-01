@@ -1,10 +1,11 @@
-<div class="container py-3">
-  <!-- Input para cargar imógenes -->
-  <div class="flex justify-content-center gap-2 mb-3">
-    <!-- Botón para abrir la cómara -->
+<div class="p-4 md:p-6">
+  <!-- Botones para cargar imágenes -->
+  <div class="flex gap-3 mb-6 flex-wrap">
+    <!-- Botón cámara -->
     <iw-button
       iconClass="mdi:camera"
-      variant="outlined"
+      label="Tomar foto"
+      severity="secondary"
       (clicked)="cameraInput.click()"
     />
     <input
@@ -16,11 +17,11 @@
       capture="environment"
     />
 
-    <!-- Botón para abrir la galeróa -->
+    <!-- Botón galería -->
     <iw-button
-      iconClass="mdi:image"
+      iconClass="mdi:image-multiple"
+      label="Galería"
       severity="secondary"
-      variant="outlined"
       (clicked)="galleryInput.click()"
     />
     <input
@@ -33,60 +34,75 @@
     />
   </div>
 
-  <!-- Imógenes seleccionadas antes de enviar -->
-  <h6 class="text-primary">🆕 Nuevas imógenes:</h6>
-  <div class="grid">
-    @for (image of newImages; track image; let i = $index) {
-    <div class="col-4 md:col-2 relative">
-      <img
-        [src]="image.url ? image.url : 'assets/images/default-avatar.png'"
-        class="w-full rounded border-1 surface-border shadow-sm"
-        
-        alt="Imagen seleccionada"
-      />
-      <iw-button
-        iconClass="mdi:delete"
-        lxTooltip="Eliminar" tooltipPosition="bottom"
-        severity="danger"
-        size="sm"
-        variant="ghost-text"
-        customClass="absolute top-0 right-0"
-        (clicked)="removeNewImage(i)"
-      />
+  <!-- Nuevas imágenes -->
+  @if (newImages.length > 0) {
+  <div class="mb-6">
+    <div class="flex align-items-center gap-2 mb-4">
+      <app-icon icon="mdi:plus-circle" class="text-success-600 text-lg" />
+      <h6 class="text-title-md m-0 text-on-surface">Nuevas imágenes ({{ newImages.length }})</h6>
     </div>
-    }
-  </div>
-
-  <!-- Imógenes ya almacenadas en el backend -->
-  <h6 class="mt-3" >💾 Imógenes almacenadas:</h6>
-  <div class="grid">
-    @for (image of existingImages; track image) {
-    <div class="col-4 md:col-2 relative">
-      <img
-        [src]="image.photoPath ? image.photoPath : 'assets/images/default-avatar.png'"
-        class="w-full rounded border-1 surface-border shadow-sm"
-        
-        alt="Imagen subida"
-      />
-      <iw-button
-        iconClass="mdi:close"
-        severity="danger"
-        size="sm"
-        variant="ghost-text"
-        customClass="absolute top-0 right-0"
-        (clicked)="deleteExistingImage(image.id)"
-      />
+    <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      @for (image of newImages; track image; let i = $index) {
+      <div class="relative group">
+        <img
+          [src]="image.url ? image.url : 'assets/images/default-avatar.png'"
+          class="w-full h-24 object-cover rounded-md border-1 border-outline shadow-1"
+          alt="Foto nueva"
+        />
+        <iw-button
+          iconClass="mdi:trash-can-outline"
+          severity="danger"
+          size="sm"
+          variant="ghost-text"
+          customClass="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity"
+          (clicked)="removeNewImage(i)"
+          lxTooltip="Eliminar"
+          tooltipPosition="top"
+        />
+      </div>
+      }
     </div>
-    }
   </div>
+  }
 
-  <!-- Botón para guardar imógenes nuevas -->
-  <div class="text-center mt-4">
+  <!-- Imágenes almacenadas -->
+  @if (existingImages.length > 0) {
+  <div class="mb-6">
+    <div class="flex align-items-center gap-2 mb-4">
+      <app-icon icon="mdi:cloud-check-outline" class="text-info-600 text-lg" />
+      <h6 class="text-title-md m-0 text-on-surface">Imágenes almacenadas ({{ existingImages.length }})</h6>
+    </div>
+    <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      @for (image of existingImages; track image) {
+      <div class="relative group">
+        <img
+          [src]="image.photoPath ? image.photoPath : 'assets/images/default-avatar.png'"
+          class="w-full h-24 object-cover rounded-md border-1 border-outline shadow-1"
+          alt="Foto almacenada"
+        />
+        <iw-button
+          iconClass="mdi:close-circle-outline"
+          severity="danger"
+          size="sm"
+          variant="ghost-text"
+          customClass="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity"
+          (clicked)="deleteExistingImage(image.id)"
+          lxTooltip="Eliminar"
+          tooltipPosition="top"
+        />
+      </div>
+      }
+    </div>
+  </div>
+  }
+
+  <!-- Botón guardar -->
+  <div class="flex justify-content-center pt-4 border-top-1 border-outline">
     <il-button
-      label="Guardar imógenes"
+      label="Guardar imágenes"
       iconClass="mdi:content-save"
-      variant="outlined"
       (clicked)="onSaveImages()"
+      [disabled]="newImages.length === 0"
     />
   </div>
 </div>

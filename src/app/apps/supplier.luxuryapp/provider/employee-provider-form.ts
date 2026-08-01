@@ -18,7 +18,6 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { firstValueFrom } from "rxjs";
 import { EmployeeInternalService } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-internal/employee-internal.service";
@@ -30,6 +29,10 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { UserInfoDto } from "src/app/core/interfaces/user-info.interface";
 import { DateService } from "src/app/core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
 type Opcion = "none" | "vacante" | "alta";

@@ -30,6 +30,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { EMemberRole } from "../../interfaces/enums";
 import {
   CreatePropertyMemberWithAccountDTO,
+  PropertyMemberResponseDTO,
   UpdatePropertyMemberDTO,
 } from "../../interfaces/property-member.dto";
 
@@ -147,7 +148,7 @@ export default class MemberForm implements OnInit {
   }
 
   async loadData() {
-    const res = await this.apiResponseS.onGetItem<any>(
+    const res = await this.apiResponseS.onGetItem<PropertyMemberResponseDTO>(
       Endpoints.CobranzaCore.PropertyMembers.byId(this.id),
     );
     if (res) {

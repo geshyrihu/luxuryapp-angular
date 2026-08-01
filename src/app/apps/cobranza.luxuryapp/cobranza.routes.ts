@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
+// import { Routes } from '@angular/router';
 
-export const cobranzaRoutes: Routes = [
-  // { path: '', component: SomeComponent }
-];
+// export const cobranzaRoutes: Routes = [
+//   // { path: '', component: SomeComponent }
+// ];

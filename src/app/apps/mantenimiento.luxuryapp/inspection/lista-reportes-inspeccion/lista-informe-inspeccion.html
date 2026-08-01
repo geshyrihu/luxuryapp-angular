@@ -1,15 +1,12 @@
-<!-- Contenido para pantallas pequeóas (sm y menores) -->
-<div class="py-3">
-  <div class="flex justify-content-between align-items-center mb-1">
-    <h4 class="text-xl font-bold">Reporte de Inspecciones</h4>
-  </div>
+<div class="p-4 md:p-6">
+  <h4 class="text-headline-md text-on-surface m-0 mb-6">Reporte de Inspecciones</h4>
 
-  <!-- Filtros de Inspección -->
-  <div class="flex align-items-end">
-    <div class="mb-4 w-full">
+  <!-- Filtros -->
+  <div class="grid gap-4 mb-6">
+    <div class="col-12 md:col-6">
       <custom-input-select-signal
         id="inspection"
-        label="Inspección:"
+        label="Inspección"
         [data]="inspectionResultSignal()"
         optionLabel="label"
         optionValue="value"
@@ -17,17 +14,13 @@
         [control]="inspectionResultIdControl"
         (selectionChange)="onReload()"
         [horizontal]="false"
-        customClass="w-full"
         [filter]="true"
       />
     </div>
-  </div>
-  <div class="flex align-items-end">
-    <!-- Listado de Resultados -->
-    <div class="mb-4 w-50">
-      <label class="block mb-2" for="date">Fecha a revisar:</label>
+    <div class="col-12 md:col-6">
       <custom-input-date-signal
         [control]="dateControl"
+        label="Fecha a revisar"
         mode="single"
         dateFormat="Y-m-d"
         altFormat="d/m/Y"
@@ -35,87 +28,94 @@
         [horizontal]="false"
       />
     </div>
-
-    <!-- Botón con Icono de PDF -->
-    @if (inspectionResultIdControl.value !== '' && dataSignal()) {
-    <div class="mb-4">
-      <iw-button
-        lxTooltip="Descargar PDF"
-        severity="danger"
-        variant="text"
-        iconClass="mdi:file-pdf-box"
-        (clicked)="onExportPDF()"
-      />
-    </div>
-    }
   </div>
 
-  <hr />
+  <!-- Botón PDF -->
+  @if (inspectionResultIdControl.value !== '' && dataSignal()) {
+  <div class="mb-6 flex justify-content-end">
+    <iw-button
+      label="Descargar PDF"
+      severity="danger"
+      iconClass="mdi:file-pdf-box"
+      lxTooltip="Descargar reporte en PDF"
+      (clicked)="onExportPDF()"
+    />
+  </div>
+  }
 
   @if (!dataSignal()) {
-  <div class="flex justify-content-center align-items-center p-4">
-    <p class="text-color-secondary">No hay datos para mostrar</p>
+  <div class="flex justify-content-center align-items-center p-6">
+    <p class="text-body-md text-on-surface-secondary">No hay datos para mostrar</p>
   </div>
   } @if (dataSignal()) {
-  <div class="mt-4">
-    <h4 class="font-bold text-primary">{{ dataSignal().name }}</h4>
-    <p class="text-color-secondary mb-0">
-      <strong>Departamento:</strong>
-      {{ dataSignal().departament }}
-    </p>
-    <p class="text-color-secondary mb-0">
-      <strong>Frecuencia:</strong>
-      {{ dataSignal().frequency }}
-    </p>
-    <p class="text-color-secondary mb-0">
-      <strong>Realizo:</strong>
-      {{ dataSignal().user }}
-    </p>
-    <div class="mt-3">
-      @for (item of dataSignal().results; track item) {
-      <div class="card" class="shadow-sm p-3 mb-4">
-        <div class="flex justify-content-between align-items-center">
-          <h5 class="font-bold">{{ item.inspectionDescription }}</h5>
-          @if (item.state) {
-          <app-icon
-            [icon]="'mdi:check'"
-            class="text-2xl"
-            
-          />
-          } @if (!item.state) {
-          <app-icon
-            [icon]="'mdi:close'"
-            class="text-2xl"
-            
-          />
-          }
+  <div class="flex flex-column gap-6">
+    <!-- Información General -->
+    <div class="card p-4 md:p-6">
+      <h5 class="text-title-lg text-primary m-0 mb-4">{{ dataSignal().name }}</h5>
+      <div class="grid gap-3">
+        <div class="col-12 md:col-6">
+          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Departamento</p>
+          <p class="text-body-md text-on-surface m-0">{{ dataSignal().departament }}</p>
         </div>
-        <div class="mt-2">
-          <p class="font-bold">Observaciones:</p>
-          <p class="text-color-secondary">{{ item.observations }}</p>
+        <div class="col-12 md:col-6">
+          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Frecuencia</p>
+          <p class="text-body-md text-on-surface m-0">{{ dataSignal().frequency }}</p>
         </div>
-        <div class="mt-3">
-          <h5 class="font-bold">Reporte Fotogrófico</h5>
-          <div class="grid">
-            @for (image of item.images; track image) {
-            <div class="col-6 sm:col-3">
-              <app-image
-                [src]="
-                    image.photoPath
-                      ? image.photoPath
-                      : 'assets/images/default-avatar.png'
-                  "
-                alt="photo"
-                styleClass="rounded shadow-sm border-1 surface-border w-full"
-                [preview]="true"
-              ></app-image>
-            </div>
-            }
+        <div class="col-12">
+          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Realizado por</p>
+          <p class="text-body-md text-on-surface m-0">{{ dataSignal().user }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resultados -->
+    @for (item of dataSignal().results; track item) {
+    <div class="card p-4 md:p-6 border-outline">
+      <div class="flex justify-content-between align-items-center mb-4 pb-4 border-bottom-1 border-outline">
+        <h6 class="text-title-md text-on-surface m-0">{{ item.inspectionDescription }}</h6>
+        @if (item.state) {
+        <app-icon
+          icon="mdi:check-circle"
+          class="text-2xl text-success-600"
+        />
+        } @else {
+        <app-icon
+          icon="mdi:alert-circle-outline"
+          class="text-2xl text-danger-600"
+        />
+        }
+      </div>
+
+      @if (item.observations) {
+      <div class="mb-4">
+        <p class="text-body-sm font-medium text-on-surface m-0 mb-2">Observaciones:</p>
+        <p class="text-body-sm text-on-surface-secondary m-0">{{ item.observations }}</p>
+      </div>
+      }
+
+      @if (item.images && item.images.length > 0) {
+      <div>
+        <p class="text-body-sm font-medium text-on-surface m-0 mb-3">Reporte Fotográfico ({{ item.images.length }})</p>
+        <div class="grid gap-3">
+          @for (image of item.images; track image) {
+          <div class="col-6 sm:col-4 md:col-3">
+            <app-image
+              [src]="
+                  image.photoPath
+                    ? image.photoPath
+                    : 'assets/images/default-avatar.png'
+                "
+              alt="Foto de inspección"
+              styleClass="w-full h-24 object-cover rounded-md shadow-2 border-1 border-outline"
+              [preview]="true"
+            />
           </div>
+          }
         </div>
       </div>
       }
     </div>
+    }
   </div>
   }
 </div>

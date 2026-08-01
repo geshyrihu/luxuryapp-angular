@@ -4,6 +4,25 @@ Fecha de actualizacion: 2026-07-26
 Modulo: `client/angular/src/app/apps/cobranza.luxuryapp/cobranza-nativa`
 Estado funcional: Activo, con reorganizacion por frontera ejecutada
 
+## Estado de vigencia
+
+Este documento sigue vigente como referencia maestra del frontend, pero queda
+subordinado a la frontera tecnica oficial del modulo.
+
+Orden de lectura recomendado:
+
+1. `api/LuxuryApp.Application/Moduls/CobranzaLuxuryApp/CobranzaNativa/Docs/Architecture/00-frontera-y-matriz-cobranza-nativa.md`
+2. `api/LuxuryApp.Application/Moduls/CobranzaLuxuryApp/CobranzaNativa/Docs/reglas-negocio-cobranza-nativa.md`
+3. `docs/plans/20260731-cobranza-nativa-remediacion-plan.md`
+4. este documento
+
+Reglas de vigencia:
+
+- no usar este documento como contrato primario de rutas o DTOs
+- usarlo como explicacion funcional y mapa del frontend del modulo
+- la compatibilidad externa sigue permitida solo como zona encapsulada dentro
+  del propio modulo
+
 ## Objetivo del modulo
 
 Cobranza Nativa administra el ciclo financiero condominial completo dentro de LuxuryApp, sin depender de Aspel como motor operativo diario:
@@ -89,6 +108,14 @@ Las operaciones sensibles se controlan con:
 - multas y articulos de reglamento
 - casos de cobranza
 
+### Consolidado en la remediacion 2026-07-31
+
+- frontend critico validado con pruebas automatizadas
+- formularios, listados y vistas de consulta prioritarias con cobertura
+- refresh extendido validado en flujos criticos con realtime
+- estrategia mobile definida por subdominio critico
+- `billing-config` mantenido como compatibilidad temporal y no como centro del core
+
 ### Requerimientos agregados que deben seguir en roadmap
 
 - listado custom de cargos
@@ -173,6 +200,23 @@ El dashboard principal ya no mezcla conceptos, jobs internos y modales como si t
 - concentra automatizacion en una sola entrada
 - expone la configuracion de facturacion y notificaciones como modal real
 - deja las vistas de entendimiento en un bloque separado para onboarding
+
+## Regla de frontera para frontend
+
+El frontend de `cobranza-nativa` queda organizado asi:
+
+- `core/` para operacion nativa
+- `configuration/` para configuracion y compatibilidad permitida
+- `contracts/external-compatibility/` para semantica externa temporal
+- `onboarding/` y `docs/` para explicacion y apoyo visual
+
+No deben volver a entrar a `core/` referencias de lenguaje:
+
+- `Aspel`
+- `Coi`
+- `Live`
+- `Local`
+- `Online`
 
 ## Entidades y conceptos clave
 

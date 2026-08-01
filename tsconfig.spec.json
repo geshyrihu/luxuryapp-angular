@@ -10,8 +10,14 @@
       "@angular/localize"
     ]
   },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "android",
+    "ios"
+  ],
   "include": [
-    "src/**/*.spec.ts",
+    "src/**/*.ts",
     "src/**/*.d.ts",
     "src/test-setup.ts"
   ]

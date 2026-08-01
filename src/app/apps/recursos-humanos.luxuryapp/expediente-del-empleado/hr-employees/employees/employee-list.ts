@@ -1,17 +1,12 @@
 // @ts-nocheck
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { WebButtonLabelItem } from "@ui/buttons/web-label";
-import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -19,18 +14,20 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { EDepartament } from "src/app/core/enums/e-departament";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
-class EmployeeProviderForm {}
 import { EmployeeInternalService } from "../../employee-internal/services/employee-internal.service";
 import { IEmployee } from "../models/employee.interface";
 import { CardEmployee } from "./card-employee";
 
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { TooltipModule } from "@ui/web/primeng-tooltip/primeng-tooltip";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TooltipModule } from "@ui/web/primeng-tooltip/primeng-tooltip";
 
 @Component({
   selector: "app-employee-list",
@@ -45,13 +42,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
-    WebButtonLabelActiveDesactive,
-    WebButtonLabelItem,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    ActionMenu,
-    LxAvatar,
   ],
 })
 export class EmployeeList {

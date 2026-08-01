@@ -56,25 +56,15 @@
       <app-icon [icon]="'mdi:arrow-right'" class="mobile-flow-entry__arrow" />
     </lx-card>
 
-    <lx-card
-      class="mobile-config-entry card card--interactive"
-      (click)="openBillingConfig()"
-    >
-      <span class="mobile-config-entry__icon">
-        <app-icon [icon]="'mdi:tune'" />
-      </span>
-      <span class="mobile-config-entry__copy">
-        <strong>Configuracion y compatibilidad</strong>
-        <small
-          >Ajusta modo operativo, mora global y canales email/push del
-          modulo.</small
-        >
-      </span>
-      <app-icon
-        [icon]="'mdi:arrow-top-right'"
-        class="mobile-config-entry__arrow"
+    <div class="flex justify-content-end">
+      <il-button
+        label="Ajustes temporales"
+        iconClass="mdi:tune"
+        severity="secondary"
+        variant="text"
+        (clicked)="openBillingConfig()"
       />
-    </lx-card>
+    </div>
     }
   </div>
 
@@ -187,6 +177,15 @@
           </p>
         </div>
       </div>
+      <div class="flex justify-content-end">
+        <il-button
+          label="Ajustes temporales"
+          iconClass="mdi:tune"
+          severity="secondary"
+          variant="text"
+          (clicked)="openBillingConfig()"
+        />
+      </div>
     </div>
 
     <div class="grid mb-4">
@@ -237,34 +236,6 @@
         </div>
       </lx-card>
 
-      <lx-card
-        class="desktop-config-entry card card--interactive card--elevated"
-        (click)="openBillingConfig()"
-      >
-        <lx-tag
-          value="Compatibilidad temporal"
-          severity="secondary"
-          [rounded]="true"
-          class="desktop-flow-entry__badge"
-        />
-        <div class="desktop-flow-entry__body">
-          <div class="desktop-config-entry__icon">
-            <app-icon [icon]="'mdi:tune'" />
-          </div>
-          <div class="desktop-flow-entry__copy">
-            <strong>Configuracion del modulo</strong>
-            <span>
-              Este ajuste no forma parte del flujo operativo diario: se abre
-              como modal y concentra modo operativo, vencimiento, gracia, mora
-              global, email y push.
-            </span>
-          </div>
-          <app-icon
-            [icon]="'mdi:open-in-app'"
-            class="desktop-flow-entry__arrow"
-          />
-        </div>
-      </lx-card>
     </div>
 
     <div class="grid">

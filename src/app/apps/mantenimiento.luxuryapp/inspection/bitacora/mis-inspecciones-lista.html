@@ -1,11 +1,11 @@
 <div class="card">
-  <div class="container-fluid py-3 p-2">
+  <div class="container-fluid p-4">
     <!-- Encabezado -->
-    <div class="flex justify-content-between align-items-center mb-3">
-      <h4>
+    <div class="flex justify-content-between align-items-center mb-4">
+      <h4 class="text-title-md m-0">
         Inspecciones para:
-        <small>
-          <em> {{ dateSelectControl.value | date : "EEEE dd-MMM-yyyy" }} </em>
+        <small class="text-body-sm">
+          <em>{{ dateSelectControl.value | date : "EEEE dd-MMM-yyyy" }}</em>
         </small>
       </h4>
     </div>
@@ -22,7 +22,7 @@
     </div>
   </div>
   @if (dataSignal()) {
-  <h5 class="text-color-secondary px-3">{{ area }}</h5>
+  <h5 class="text-title-md text-on-surface-secondary px-4 pb-2">{{ area }}</h5>
 
   <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
   <div class="hidden md:block">
@@ -84,33 +84,32 @@
       <ili-list-item>
         <div
           start
-          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-          class="w-3rem h-3rem bg-primary-50"
+          class="flex align-items-center justify-content-center flex-shrink-0 w-3rem h-3rem bg-primary-50 rounded-md"
         >
           <app-icon
             icon="mdi:clipboard-search-outline"
-            class="text-xl text-primary"
+            class="text-xl text-primary-700"
           />
         </div>
 
-        <div class="flex align-items-center">
-          @if (item.isRealized) {
-          <app-icon
-            [icon]="'mdi:check'"
-            class="mr-2"
-            
-          />
-          } @if (!item.isRealized) {
-          <app-icon
-            [icon]="'mdi:close'"
-            class="mr-2"
-            
-          />
-          }
-          <h2 class="font-normal m-0">{{ item.nameInspection }}</h2>
+        <div class="flex flex-column gap-2 flex-grow-1">
+          <div class="flex align-items-center gap-2">
+            @if (item.isRealized) {
+            <app-icon
+              [icon]="'mdi:check-circle'"
+              class="text-success-600"
+            />
+            } @else {
+            <app-icon
+              [icon]="'mdi:alert-circle-outline'"
+              class="text-danger-600"
+            />
+            }
+            <h2 class="text-title-md m-0 text-on-surface">{{ item.nameInspection }}</h2>
+          </div>
+          <p class="text-body-sm text-on-surface-secondary m-0">{{ item.departament }}</p>
+          <p class="text-body-sm text-on-surface-secondary m-0">Frecuencia: {{ item.frequency }}</p>
         </div>
-        <p class="text-medium text-500 m-0">{{ item.departament }}</p>
-        <p class="text-medium text-500 m-0">{{ item.frequency }}</p>
 
         <ili-action-menu slot="end">
           <ng-container actions>
