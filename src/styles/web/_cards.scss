@@ -178,22 +178,22 @@
 .badge-success {
   @extend .badge;
   background-color: var(--ds-success-light);
-  color: var(--ds-success);
+  color: var(--ds-accent-text-success);
 }
 .badge-warning {
   @extend .badge;
   background-color: var(--ds-warning-light);
-  color: var(--ds-warning);
+  color: var(--ds-accent-text-warning);
 }
 .badge-danger {
   @extend .badge;
   background-color: var(--ds-danger-light);
-  color: var(--ds-danger);
+  color: var(--ds-accent-text-danger);
 }
 .badge-info {
   @extend .badge;
   background-color: var(--ds-info-light);
-  color: var(--ds-info);
+  color: var(--ds-accent-text-info);
 }
 .badge-neutral {
   @extend .badge;

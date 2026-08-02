@@ -352,7 +352,8 @@
   }
 
   &:focus-visible {
-    outline: none;
+    outline: 2px solid var(--ds-border-focus);
+    outline-offset: 2px;
     box-shadow: var(--ds-shadow-lg), var(--ds-shadow-focus);
   }
 }
@@ -433,7 +434,6 @@
 
   &:hover,
   &:focus-visible {
-    outline: none;
     border-color: var(--ds-border-strong);
     background: var(--ds-surface-container-high);
     box-shadow: var(--ds-shadow-md);
@@ -451,6 +451,11 @@
       color: var(--ds-luxury-gold);
       transform: translateX(2px);
     }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ds-border-focus);
+    outline-offset: 2px;
   }
 
   &__icon {

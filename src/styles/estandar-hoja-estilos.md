@@ -150,11 +150,16 @@ Punto de entrada del **Design System**. Se carga primero en `angular.json` para 
 
 ## 🅿️ `primeng-overrides.css`
 
-Archivo CSS plano que centraliza **todos los overrides visuales de PrimeNG** en una **capa CSS** (`@layer primeng-brand`). Orden de capas definido en `angular.json`:
+Archivo CSS plano que centraliza los overrides visuales de PrimeNG en una **capa CSS** (`@layer primeng-brand`). El orden global de capas se declara en `styles.scss` (§ Capas CSS, RN-DS-012):
 
 ```
-PrimeNG base → @layer primeng-brand → PrimeFlex utilities
+@layer reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides;
 ```
+
+- El preset de PrimeNG se inyecta en runtime dentro de `@layer primeng`/`@layer primevue`.
+- Los overrides efectivos de PrimeNG viven en `web/_prime-*.scss` (vía `ds-entry.scss`) y son **unlayered**, por lo que ganan sobre el preset.
+- `primeng-overrides.css` no está referenciado por `angular.json` (huérfano; pendiente de decidir carga o retiro).
+- `_dark-mode.scss` y `base/_global.scss` quedan **unlayered** intencionalmente (ganan sobre cualquier capa sin `!important`).
 
 ### Componentes overrideados
 
@@ -185,7 +190,7 @@ Hoja maestra legacy que se carga **después** del DS. Organizada en secciones nu
 4. **Tema Core** → Global, toast, header-mobile, Ionic CSS, auth, dark-mode
 5. **Componentes Custom** → Avatars, list, tables, financial-tables, print
 6. **Sidebar** → `theme/_sidebar.scss`
-7. **Fonts** → DM Sans (cargado desde index.html)
+7. **Fonts** → Outfit variable self-hosted (`core/_fonts.scss` + `public/assets/fonts/`)
 8. **Iconify** → Display inline-block estándar
 9. **Animaciones** → `ds-animate-spin`
 
@@ -307,9 +312,9 @@ flowchart TD
 >
 > ### 🌊 Reglas de Cascada
 > 1. **DS gana sobre legacy:** `ds-entry.scss` se carga antes que `styles.scss`
-> 2. **`@layer primeng-brand`** tiene prioridad intermedia entre preset PrimeNG y utilidades
-> 3. **Unlayered gana sobre `@layer`** (usado en `_dark-mode.scss`)
-> 4. **`!important` prohibido** en `primeng-overrides.css`; permitido en `_dark-mode.scss` (unlayered) y legacy
+> 2. **Orden de capas** declarado en `styles.scss`: `reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides` (RN-DS-012)
+> 3. **Unlayered gana sobre `@layer`** (usado en `_dark-mode.scss` y en `web/_prime-*.scss`)
+> 4. **`!important` prohibido** en overrides de marca; el único bloque global permitido es `prefers-reduced-motion` en `styles.scss` §11 (documentado); permitido en `_dark-mode.scss` (unlayered) y legacy
 >
 > ### 📏 Reglas de Código
 > - **Prohibido `::ng-deep`** en estilos globales

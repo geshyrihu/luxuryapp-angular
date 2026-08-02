@@ -71,15 +71,27 @@ body {
   }
 
   .p-button-danger {
-    background-color: var(--ds-danger);
-    border-color: var(--ds-danger);
+    background-color: var(--ds-accent-text-danger);
+    border-color: var(--ds-accent-text-danger);
     &:hover:not(:disabled) { background-color: var(--ds-danger-hover); }
   }
 
   .p-button-success {
-    background-color: var(--ds-success);
-    border-color: var(--ds-success);
+    background-color: var(--ds-accent-text-success);
+    border-color: var(--ds-accent-text-success);
     &:hover:not(:disabled) { background-color: var(--ds-success-hover); }
+  }
+
+  .p-button-info {
+    background-color: var(--ds-accent-text-info);
+    border-color: var(--ds-accent-text-info);
+    &:hover:not(:disabled) { background-color: var(--ds-info-hover); }
+  }
+
+  .p-button-warning {
+    background-color: var(--ds-accent-text-warning);
+    border-color: var(--ds-accent-text-warning);
+    &:hover:not(:disabled) { background-color: var(--ds-warning-hover); }
   }
 
   .p-button-outlined {

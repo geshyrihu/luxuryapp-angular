@@ -39,18 +39,18 @@ export const LuxuryPreset = definePreset(Aura, {
             },
             dark: {
                 surface: {
-                    0: '#121212',     // surface-card
-                    50: '#0A0A0A',    // surface base
-                    100: '#1A1A1A',   // surface-dim
-                    200: '#2A2A2A',   // outline
-                    300: '#3D3D3D',   // outline-strong
-                    400: '#545454',
-                    500: '#708599',   // [WCAG AA Corrección] on-surface-tertiary
-                    600: '#A1B1C2',   // on-surface-secondary
-                    700: '#C3CED9',
-                    800: '#E2E8F0',
-                    900: '#FFFFFF',   // on-surface (high contrast)
-                    950: '#F8F9FC'
+                    0: '#E8EEF6',     // on-surface · text (primary-100)
+                    50: '#D1DEF0',    // primary-200
+                    100: '#A6C2E3',   // primary-300 · on-surface-variant
+                    200: '#78A4D4',   // primary-400 · outline
+                    300: '#4A90E2',   // primary-500 · outline-strong
+                    400: '#C5D0DB',   // neutral-300 · muted text
+                    500: '#2A4D7C',   // primary-600
+                    600: '#1B365D',   // primary-700
+                    700: '#0A1422',   // primary-900 · surface-container-low
+                    800: '#0A1422',   // primary-900 · content-hover
+                    900: '#050A11',   // primary-950 · surface-container-lowest / content
+                    950: '#050A11'    // primary-950 · form-field
                 }
             }
         }

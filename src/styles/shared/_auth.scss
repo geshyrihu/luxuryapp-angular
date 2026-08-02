@@ -115,6 +115,6 @@
 .auth-dark-panel input:focus,
 .auth-dark-panel .p-inputtext:focus {
   border-color: var(--ds-border-focus) !important;
-  box-shadow: 0 0 0 2px rgba(112, 155, 254, 0.25) !important;
-  outline: none !important;
+  outline: 2px solid var(--ds-border-focus);
+  outline-offset: 0;
 }

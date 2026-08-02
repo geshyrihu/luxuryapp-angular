@@ -50,7 +50,7 @@ colors:
   shadow: "rgba(27, 54, 93, 0.15)"
 
 typography:
-  font-family: "Inter, -apple-system, BlinkMacSystemFont, sans-serif"
+  font-family: "Outfit, -apple-system, BlinkMacSystemFont, sans-serif"
 
   display-lg:
     fontSize: 48px
@@ -180,7 +180,7 @@ The primary color is used for navigation bars, primary buttons, headers, and key
 | `primary-container` | `#E8EEF6` | Selected cell backgrounds, subtle badges, tinted surfaces |
 | `on-primary`        | `#FFFFFF` | All text and icons on primary backgrounds                 |
 
-**Contrast:** White text on `#1B365D` achieves a **9.5:1** contrast ratio (AAA).
+**Contrast:** White text on `#1B365D` achieves a **12.12:1** contrast ratio (AAA).
 
 ---
 
@@ -195,7 +195,7 @@ Accent colors are used sparingly to draw attention to specific actions or status
 | `secondary-crimson` | `#D34B4B` | Danger states, "Delete" / "Reject" actions, critical errors      |
 | `secondary-cyan`    | `#4A90E2` | Informational links, help icons, non-critical notifications      |
 
-**Gold on Navy:** The gold accent (`#D4A74A`) on `#1B365D` achieves a **6.8:1** contrast ratio and is the signature "premium" combination.
+**Gold on Navy:** The gold accent (`#D4A74A`) on `#1B365D` achieves a **5.44:1** contrast ratio and is the signature "premium" combination (AA for large text).
 
 ---
 

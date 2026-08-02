@@ -269,7 +269,7 @@ export class TokensTypography {
     {
       label: "UI Base",
       token: "--ds-font-family-base",
-      css: "'Inter', 'Hanken Grotesk', sans-serif",
+      css: "'Outfit', '-apple-system', 'BlinkMacSystemFont', sans-serif",
       uso: "Pantallas Angular, PrimeNG, Ionic y todas las vistas operativas del ERP.",
     },
     {
@@ -281,7 +281,7 @@ export class TokensTypography {
     {
       label: "Documental",
       token: "--ds-font-family-document",
-      css: "'Hanken Grotesk', 'Inter', sans-serif",
+      css: "'Outfit', '-apple-system', 'BlinkMacSystemFont', sans-serif",
       uso: "Portadas, encabezados y cuerpo de documentos exportables (PDF, Word).",
     },
   ];

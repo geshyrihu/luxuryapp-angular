@@ -12,25 +12,19 @@
      8. Overrides: PrimeNG Image Preview, animaciones Iconify
    ═══════════════════════════════════════════════════════════════════════════ */
 
+/* Capas CSS (RN-DS-012). El orden declara prioridad: mayor = gana.
+   El preset de PrimeNG se inyecta en runtime dentro de @layer primeng/primevue.
+   Los estilos UNLAYERED ganan sobre cualquier capa (intencional en
+   _dark-mode.scss y en los overrides web/_prime-*.scss). */
+@layer reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides;
+
 /* 1. VARIABLES & TOKENS */
-@import "theme/variables";
+@layer tokens {
+  @import "theme/variables";
+}
 
 /* --- DESIGN SYSTEM TOKENS (T-006, T-009) --- */
 :root {
-  /* Typography (rem based) */
-  --ds-text-display-lg: 3rem;
-  --ds-text-display-md: 2.5rem;
-  --ds-text-headline-lg: 2rem;
-  --ds-text-headline-md: 1.5rem;
-  --ds-text-title-lg: 1.25rem;
-  --ds-text-title-md: 1.125rem;
-  --ds-text-body-lg: 1rem;
-  --ds-text-body-md: 0.875rem;
-  --ds-text-body-sm: 0.8125rem;
-  
-  /* Fluid typography */
-  --ds-text-fluid: clamp(1rem, 0.875rem + 0.5vw, 1.25rem);
-
   /* Motion & Interaction */
   --ds-transition-duration: 200ms;
   --ds-transition-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -38,10 +32,12 @@
 }
 
 /* 2. BASE */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 }
 
 /* 3. CUSTOM */
@@ -89,7 +85,8 @@ body {
 @import "shared/sidebar";
 
 /* 7. FONTS */
-// DM Sans se carga desde index.html para evitar FOUT y optimizar CSP.
+/* Outfit variable self-hosted (src/assets/fonts/) — sin CDN ni FOUT por subset. */
+@import "core/fonts";
 
 body {
   font-family:
@@ -158,8 +155,28 @@ body .p-dialog {
 
 /* 10. ESTADOS INTERACTIVOS GLOBALES (Fase 7) */
 *:focus-visible {
-  outline: none !important;
-  box-shadow: var(--ds-shadow-focus) !important;
+  outline: 2px solid var(--ds-border-focus);
+  outline-offset: 2px;
+}
+
+/* 11. PREFERS-REDUCED-MOTION (RN-DS-012)
+   Único bloque global con !important, aceptado y documentado: pausa todas
+   las animaciones/transiciones cuando el usuario lo solicita en su SO. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ds-motion-duration-fast: 0ms;
+    --ds-motion-duration-normal: 0ms;
+    --ds-motion-duration-slow: 0ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .ds-loading {

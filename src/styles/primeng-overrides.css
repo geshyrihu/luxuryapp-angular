@@ -63,15 +63,15 @@
 
   /* Botón de éxito */
   .p-button.p-button-success {
-    background: var(--ds-success);
-    border-color: var(--ds-success);
+    background: var(--ds-accent-text-success);
+    border-color: var(--ds-accent-text-success);
     color: white;
   }
 
   /* Botón de peligro */
   .p-button.p-button-danger {
-    background: var(--ds-danger);
-    border-color: var(--ds-danger);
+    background: var(--ds-accent-text-danger);
+    border-color: var(--ds-accent-text-danger);
     color: white;
   }
 
@@ -102,12 +102,8 @@
   .p-inputtext:focus {
     border-radius: var(--ds-radius-input);
     border-color: var(--ds-border-focus);
-    box-shadow: 0 0 0 2px var(--ds-border-focus);
-    outline: none;
-  }
-
-  .p-inputtext:focus-visible {
-    outline: none;
+    outline: 2px solid var(--ds-border-focus);
+    outline-offset: 0;
   }
 
   .p-inputtext:disabled {
@@ -144,7 +140,8 @@
 
   .p-select:focus {
     border-color: var(--ds-border-focus);
-    box-shadow: 0 0 0 2px var(--ds-border-focus);
+    outline: 2px solid var(--ds-border-focus);
+    outline-offset: 0;
   }
 
   .p-select.ng-dirty.ng-invalid {
@@ -222,17 +219,22 @@
 
   .p-tag.p-tag-success {
     background: var(--ds-success-light);
-    color: var(--ds-success);
+    color: var(--ds-accent-text-success);
   }
 
   .p-tag.p-tag-warn {
     background: var(--ds-warning-light);
-    color: var(--ds-warning);
+    color: var(--ds-accent-text-warning);
   }
 
   .p-tag.p-tag-danger {
     background: var(--ds-danger-light);
-    color: var(--ds-danger);
+    color: var(--ds-accent-text-danger);
+  }
+
+  .p-tag.p-tag-info {
+    background: var(--ds-info-light);
+    color: var(--ds-accent-text-info);
   }
 
   /* ═══════════════════════════════════════════
@@ -246,26 +248,26 @@
 
   .p-message.p-message-success {
     background: var(--ds-success-light);
-    border-left-color: var(--ds-success);
-    color: var(--ds-success);
+    border-left-color: var(--ds-accent-text-success);
+    color: var(--ds-accent-text-success);
   }
 
   .p-message.p-message-warn {
     background: var(--ds-warning-light);
-    border-left-color: var(--ds-warning);
-    color: var(--ds-warning);
+    border-left-color: var(--ds-accent-text-warning);
+    color: var(--ds-accent-text-warning);
   }
 
   .p-message.p-message-error {
     background: var(--ds-danger-light);
-    border-left-color: var(--ds-danger);
-    color: var(--ds-danger);
+    border-left-color: var(--ds-accent-text-danger);
+    color: var(--ds-accent-text-danger);
   }
 
   .p-message.p-message-info {
     background: var(--ds-info-light);
-    border-left-color: var(--ds-info);
-    color: var(--ds-info);
+    border-left-color: var(--ds-accent-text-info);
+    color: var(--ds-accent-text-info);
   }
 
   /* ═══════════════════════════════════════════

@@ -18,18 +18,26 @@ body {
   // Backgrounds usando tokens DS — responden a dark mode automáticamente
   .p-message-success {
     background-color: var(--ds-success-light) !important;
+    border-left-color: var(--ds-accent-text-success) !important;
+    color: var(--ds-accent-text-success) !important;
   }
 
   .p-message-info {
     background-color: var(--ds-info-light) !important;
+    border-left-color: var(--ds-accent-text-info) !important;
+    color: var(--ds-accent-text-info) !important;
   }
 
   .p-message-warn {
     background-color: var(--ds-warning-light) !important;
+    border-left-color: var(--ds-accent-text-warning) !important;
+    color: var(--ds-accent-text-warning) !important;
   }
 
   .p-message-error {
     background-color: var(--ds-danger-light) !important;
+    border-left-color: var(--ds-accent-text-danger) !important;
+    color: var(--ds-accent-text-danger) !important;
   }
 
   .p-message-secondary {

@@ -41,10 +41,6 @@
     outline-offset: $offset;
     box-shadow: var(--ds-shadow-focus);
   }
-  // Compatibilidad con navegadores que no soportan :focus-visible
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
 }
 
 // ── ESTADO DISABLED ───────────────────────────────────────────

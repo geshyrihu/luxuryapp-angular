@@ -30,7 +30,7 @@
   --primary-200: #{c.$primary-200};
   --primary-300: #{c.$primary-300};
   --primary-400: #{c.$primary-400};
-  --primary-500: #{c.$primary-500};
+  --primary-500: #{c.$primary-700}; /* brand base (navy) — alineado con mypreset.ts primary.500 (RN-DS-002) */
   --primary-600: #{c.$primary-600};
   --primary-700: #{c.$primary-700};
   --primary-800: #{c.$primary-800};
@@ -113,6 +113,15 @@
   --danger-bg: #{c.$color-danger-bg};
 
   // ── SPACING & BREAKPOINTS (desde core) ──
+  // Canonical CTI (RN-DS-001/002): --ds-space-{xs..3xl}
+  --ds-space-xs: #{s.$space-1};    // 4px
+  --ds-space-sm: #{s.$space-2};    // 8px
+  --ds-space-md: #{s.$space-3};    // 12px
+  --ds-space-lg: #{s.$space-4};    // 16px
+  --ds-space-xl: #{s.$space-6};    // 24px
+  --ds-space-2xl: #{s.$space-8};   // 32px
+  --ds-space-3xl: #{s.$space-12};  // 48px
+  // Aliases de compatibilidad (1 release, pre-remocion)
   --ds-spacing-1: #{s.$space-1};
   --ds-spacing-2: #{s.$space-2};
   --ds-spacing-3: #{s.$space-3};
@@ -291,7 +300,7 @@
   --ds-on-secondary-container: #{c.$warning-800};
 
   // Tertiary -> Cyan (Accent)
-  --ds-tertiary: #{c.$info-500};
+  --ds-tertiary: #{c.$info-600}; /* info-600 #3678C2 — ≠ --primary-500 (RN-DS-002) */
   --ds-on-tertiary: #{c.$neutral-0};
   --ds-tertiary-container: #{c.$info-100};
   --ds-on-tertiary-container: #{c.$primary-700};
@@ -357,6 +366,12 @@
   --ds-info-hover: #{c.$info-700};
   --ds-info-light: #{c.$info-50};
 
+  // Acentos AA como texto / estados (RN-DS-003/004) — variantes oscuras 700/800
+  --ds-accent-text-success: #{c.$success-700}; // #157A55 · 5.32:1 sobre blanco
+  --ds-accent-text-danger:  #{c.$danger-700};  // #A63939 · 6.43:1
+  --ds-accent-text-info:    #{c.$info-700};    // #245FA1 · 6.51:1
+  --ds-accent-text-warning: #{c.$warning-800}; // #7A5E15 · 6.11:1
+
   // Identidad Luxury / Documental
   --ds-luxury-gold: #{c.$tertiary-400};
   --ds-luxury-gold-hover: #{c.$tertiary-300};
@@ -367,9 +382,9 @@
   --ds-document-ink: #{c.$primary-900};
   --ds-document-surface: #{c.$neutral-0};
 
-  // Tipografía Documental
+  // Tipografía Documental — Outfit variable (T11)
   --ds-font-family-document:
-    "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI Emoji",
+    "Outfit", "-apple-system", "BlinkMacSystemFont", "Segoe UI Emoji",
     "Apple Color Emoji", "Noto Color Emoji", sans-serif;
   --ds-font-family-mono: "JetBrains Mono", "Roboto Mono", "Consolas", monospace;
   --ds-font-size-doc-title: 26pt;
@@ -390,25 +405,39 @@
   // Texto — DESIGN.md on-surface roles
   --ds-text-primary: var(--ds-on-surface);
   --ds-text-secondary: var(--ds-on-surface-variant);
-  --ds-text-muted: #{c.$neutral-500};
+  --ds-text-muted: #{c.$neutral-600}; /* #5A6878 · 5.70:1 sobre blanco (RN-DS-004, T09) */
+  --ds-text-tertiary: var(--ds-text-muted);
   --ds-text-inverse: var(--ds-inverse-on-surface);
   --ds-text-disabled: #{c.$neutral-400};
-  --ds-text-link: var(--ds-surface-tint);
+  --ds-text-link: var(--ds-accent-text-info); /* #245FA1 · 6.51:1 (RN-DS-004, T08) */
 
-  // Tipografía ERP — Inter (system font)
+  // Tipografía ERP — Outfit variable (T11)
   --ds-font-family-base:
-    "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI Emoji",
+    "Outfit", "-apple-system", "BlinkMacSystemFont", "Segoe UI Emoji",
     "Apple Color Emoji", "Noto Color Emoji", sans-serif;
-  --ds-font-size-display: clamp(1.75rem, 4vw, 2.5rem); // 28-40px
-  --ds-font-size-page-title: clamp(1.25rem, 3vw, 1.75rem); // 20-28px
-  --ds-font-size-section-title: clamp(1.125rem, 2vw, 1.25rem); // 18-20px
-  --ds-font-size-card-title: 1rem; // 16px
-  --ds-font-size-body: clamp(0.9375rem, 1.5vw, 1rem); // 15-16px
-  --ds-font-size-table: 0.875rem; // 14px
-  --ds-font-size-label: 0.875rem; // 14px
-  --ds-font-size-help: 0.8125rem; // 13px
-  --ds-font-size-micro: 0.75rem; // 12px
-  --ds-font-size-metric: clamp(1.25rem, 3vw, 1.5rem); // 20-24px
+  // Escala canónica CTI (RN-DS-002). Valores actuales del sistema;
+  // re-anclaje a escala DESIGN.md con la fuente real en FASE 3 (T11).
+  --ds-type-display-lg: clamp(1.75rem, 4vw, 2.5rem);     // ex --ds-font-size-display
+  --ds-type-display-md: clamp(1.25rem, 3vw, 1.75rem);    // ex --ds-font-size-page-title
+  --ds-type-headline-lg: clamp(1.125rem, 2vw, 1.25rem);  // ex --ds-font-size-section-title
+  --ds-type-headline-md: 1rem;                           // ex --ds-font-size-card-title
+  --ds-type-title-lg: clamp(1.25rem, 3vw, 1.5rem);       // ex --ds-font-size-metric
+  --ds-type-body-lg: clamp(0.9375rem, 1.5vw, 1rem);      // ex --ds-font-size-body
+  --ds-type-body-md: 0.875rem;                           // ex --ds-font-size-table
+  --ds-type-body-sm: 0.8125rem;                          // ex --ds-font-size-help
+  --ds-type-label-lg: 0.875rem;                          // ex --ds-font-size-label
+  --ds-type-label-md: 0.75rem;                           // ex --ds-font-size-micro
+  // Aliases de compatibilidad (1 release, RN-DS-001)
+  --ds-font-size-display: var(--ds-type-display-lg);
+  --ds-font-size-page-title: var(--ds-type-display-md);
+  --ds-font-size-section-title: var(--ds-type-headline-lg);
+  --ds-font-size-card-title: var(--ds-type-headline-md);
+  --ds-font-size-metric: var(--ds-type-title-lg);
+  --ds-font-size-body: var(--ds-type-body-lg);
+  --ds-font-size-table: var(--ds-type-body-md);
+  --ds-font-size-help: var(--ds-type-body-sm);
+  --ds-font-size-label: var(--ds-type-label-lg);
+  --ds-font-size-micro: var(--ds-type-label-md);
   --ds-line-height-tight: 1.2;
   --ds-line-height-base: 1.5;
   --ds-line-height-relaxed: 1.65;
@@ -439,21 +468,38 @@
   --ds-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   --ds-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   --ds-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --ds-shadow-focus: 0 0 0 3px color-mix(in srgb, #{c.$primary-500}, transparent 70%);
+  --ds-shadow-focus: 0 0 0 2px #{c.$primary-700}; /* solid navy · 12.12:1 (RN-DS-003, T07) */
 
   // ===================================================================
-  // HIGH CONTRAST MODE (Light)
+  // HIGH CONTRAST MODE (Light) — RN-DS-013
   // ===================================================================
   @media (prefers-contrast: more) {
     --ds-text-primary: #000000;
     --ds-text-secondary: #111111;
+    --ds-text-muted: #111111;
+    --ds-text-tertiary: #111111;
+    --ds-text-link: #0000ee;
     --ds-bg-sunken: #ffffff;
     --ds-bg-page: #ffffff;
     --ds-bg-surface: #ffffff;
     --ds-bg-elevated: #ffffff;
     --ds-border: #000000;
+    --ds-border-strong: #000000;
     --ds-primary: #0000ee;
     --ds-border-focus: #000000;
+    --ds-accent-text-success: #0f6b4d;
+    --ds-accent-text-danger: #a32222;
+    --ds-accent-text-info: #1f4f87;
+    --ds-accent-text-warning: #6b5200;
+
+    // Aliases --ds-contrast-* (RN-DS-013)
+    --ds-contrast-text: #000000;
+    --ds-contrast-bg: #ffffff;
+    --ds-contrast-border: #000000;
+    --ds-contrast-primary: #0000ee;
+    --ds-contrast-on-primary: #ffffff;
+    --ds-contrast-state-hover: #000000;
+    --ds-contrast-state-focus: #000000;
   }
 }
 
@@ -519,12 +565,13 @@ body.theme-dark {
   --ds-text-primary: var(--ds-on-surface);
   --ds-text-secondary: var(--ds-on-surface-variant);
   --ds-text-muted: #{c.$neutral-300};
+  --ds-text-tertiary: var(--ds-text-muted);
   --ds-text-inverse: var(--ds-on-background);
   --ds-text-disabled: #{c.$neutral-600};
   --ds-text-link: var(--ds-inverse-primary);
 
-  --ds-border: var(--ds-outline-variant);
-  --ds-border-strong: var(--ds-outline);
+  --ds-border: #{c.$primary-400}; /* #78A4D4 · 7.6:1 sobre navy-950 (T10) */
+  --ds-border-strong: #{c.$primary-500}; /* #4A90E2 · 6.03:1 (T10) */
   --ds-border-focus: var(--ds-inverse-primary);
   --ds-border-error: #{c.$danger-300};
   --ds-border-success: #{c.$success-300};
@@ -547,6 +594,12 @@ body.theme-dark {
   --ds-info: #{c.$info-300};
   --ds-info-hover: #{c.$info-200};
   --ds-info-light: color-mix(in srgb, #{c.$info-400}, transparent 88%);
+
+  // Acentos AA como texto / estados — dark (variantes 200, claras sobre navy)
+  --ds-accent-text-success: #{c.$success-200};
+  --ds-accent-text-danger:  #{c.$danger-200};
+  --ds-accent-text-info:    #{c.$info-200};
+  --ds-accent-text-warning: #{c.$warning-200};
 
   // Material 3 roles dark — invertidos
   --ds-on-primary: #{c.$primary-900};
@@ -612,8 +665,11 @@ body.theme-dark {
   --ds-shadow-xl:
     0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
   --ds-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-  --ds-shadow-focus: 0 0 0 3px
-    color-mix(in srgb, #{c.$primary-200}, transparent 70%);
+  --ds-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ds-shadow-2: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --ds-shadow-3: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --ds-shadow-4: 0 8px 32px rgba(0, 0, 0, 0.55);
+  --ds-shadow-focus: 0 0 0 2px #{c.$primary-200}; /* solid #D1DEF0 · 14.57:1 (RN-DS-003, T07) */
 
   // Neon glow tokens — dark mode
   --ds-glow-primary:
@@ -642,18 +698,35 @@ body.theme-dark {
   --p-content-border-color: var(--ds-border);
 
   // ===================================================================
-  // HIGH CONTRAST MODE (Dark)
+  // HIGH CONTRAST MODE (Dark) — RN-DS-013
   // ===================================================================
   @media (prefers-contrast: more) {
     --ds-text-primary: #ffffff;
     --ds-text-secondary: #f0f0f0;
+    --ds-text-muted: #f0f0f0;
+    --ds-text-tertiary: #f0f0f0;
+    --ds-text-link: #8ec9ff;
     --ds-bg-sunken: #000000;
     --ds-bg-page: #000000;
     --ds-bg-surface: #000000;
     --ds-bg-elevated: #000000;
     --ds-border: #ffffff;
+    --ds-border-strong: #ffffff;
     --ds-primary: #3b82f6;
     --ds-border-focus: #ffffff;
+    --ds-accent-text-success: #8ce3c1;
+    --ds-accent-text-danger: #ffb4b4;
+    --ds-accent-text-info: #9bc8f3;
+    --ds-accent-text-warning: #f3d58a;
+
+    // Aliases --ds-contrast-* (RN-DS-013)
+    --ds-contrast-text: #ffffff;
+    --ds-contrast-bg: #000000;
+    --ds-contrast-border: #ffffff;
+    --ds-contrast-primary: #3b82f6;
+    --ds-contrast-on-primary: #000000;
+    --ds-contrast-state-hover: #ffffff;
+    --ds-contrast-state-focus: #ffffff;
   }
 }
 

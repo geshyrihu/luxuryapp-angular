@@ -490,8 +490,8 @@ import { TagModule } from 'primeng/tag';`,
       examples: {
         angular: {
           code: `/* OK */
-color: var(--ds-primary-text);
-background: var(--primary-500);
+color: var(--ds-text-primary);
+background: var(--ds-bg-surface);
 
 /* NO */
 color: #ffffff;

@@ -11,4 +11,18 @@ body {
   .p-tag {
     border-radius: var(--ds-radius-sm, 4px);
   }
+
+  // Texto de severidad AA (RN-DS-004) — tokens --ds-accent-text-*
+  .p-tag-success {
+    color: var(--ds-accent-text-success) !important;
+  }
+  .p-tag-warn {
+    color: var(--ds-accent-text-warning) !important;
+  }
+  .p-tag-danger {
+    color: var(--ds-accent-text-danger) !important;
+  }
+  .p-tag-info {
+    color: var(--ds-accent-text-info) !important;
+  }
 }
