@@ -15,6 +15,8 @@ export interface ApiResponseDto<T> {
   totalCount?: number;
 }
 
+export type ApiRequestErrorHandler = (error: unknown) => void;
+
 @Injectable({
   providedIn: "root",
 })
@@ -201,7 +203,11 @@ export class ApiResponseService {
     }
   }
 
-  async onPost<T>(urlApi: string, data: unknown = null): Promise<T | false> {
+  async onPost<T>(
+    urlApi: string,
+    data: unknown = null,
+    onRequestError?: ApiRequestErrorHandler,
+  ): Promise<T | false> {
     this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
@@ -214,9 +220,8 @@ export class ApiResponseService {
       });
       return result !== null ? result : false;
     } catch (error: unknown) {
-      const errorMessage =
-        (error as { error?: { Message?: string } }).error?.Message ||
-        "No se pudo completar la operacion.";
+      this.notifyRequestError(onRequestError, error);
+      const errorMessage = this.resolveRequestErrorMessage(error);
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
       this.consoleLogger.error(`API Error: POST: ${urlApi}`, error);
@@ -265,6 +270,7 @@ export class ApiResponseService {
     data: unknown,
     showSuccess: boolean = true,
     showLoader: boolean = true,
+    onRequestError?: ApiRequestErrorHandler,
   ): Promise<T | false> {
     if (showLoader) this.loaderS.show();
     try {
@@ -278,9 +284,8 @@ export class ApiResponseService {
       });
       return result !== null ? result : false;
     } catch (error: unknown) {
-      const errorMessage =
-        (error as { error?: { Message?: string } }).error?.Message ||
-        "No se pudo completar la operacion.";
+      this.notifyRequestError(onRequestError, error);
+      const errorMessage = this.resolveRequestErrorMessage(error);
       this.customToastService.showError("Error", errorMessage);
       this.globalErrorService.setGlobalError(errorMessage);
       this.consoleLogger.error(`API Error: PUT: ${urlApi}`, error);
@@ -553,6 +558,47 @@ export class ApiResponseService {
       return false;
     }
     return true;
+  }
+
+  private notifyRequestError(
+    handler: ApiRequestErrorHandler | undefined,
+    error: unknown,
+  ): void {
+    if (!handler) return;
+
+    try {
+      handler(error);
+    } catch (handlerError) {
+      this.consoleLogger.error(
+        "Error al ejecutar el callback de diagnóstico HTTP",
+        handlerError,
+      );
+    }
+  }
+
+  private resolveRequestErrorMessage(error: unknown): string {
+    const httpError = error as {
+      status?: number;
+      message?: string;
+      error?: string | { Message?: string; message?: string; title?: string };
+    };
+    const responseError = httpError?.error;
+
+    if (typeof responseError === "string" && responseError.trim()) {
+      return responseError;
+    }
+
+    if (responseError && typeof responseError === "object") {
+      const serverMessage =
+        responseError.Message || responseError.message || responseError.title;
+      if (serverMessage) return serverMessage;
+    }
+
+    if (httpError?.status === 0) {
+      return "No se pudo conectar con el servidor. Revisa la conexión o vuelve a intentar.";
+    }
+
+    return httpError?.message || "No se pudo completar la operación.";
   }
 
   async onPostFile<T>(urlApi: string, data: FormData): Promise<T | false> {

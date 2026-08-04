@@ -74,4 +74,16 @@ export const COBRANZA_ONLINE_ROUTES: Routes = [
       breadcrumb: "Cargos por Departamento",
     },
   },
+  {
+    path: "collections/department-payments",
+    loadComponent: () =>
+      import("./department-payments/department-payments").then(
+        (m) => m.DepartmentPayments,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Abonos por Departamento",
+      breadcrumb: "Abonos por Departamento",
+    },
+  },
 ];

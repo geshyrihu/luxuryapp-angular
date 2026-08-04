@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
+  OnDestroy,
   OnInit,
   signal,
 } from "@angular/core";
@@ -23,7 +24,10 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -58,8 +62,11 @@ interface ITaskMessageForm {
   dependsOnTaskId: FormControl<string | null>;
 }
 
-import heic2any from "heic2any";
+type ImageFieldName = "beforeWork" | "afterWork";
+
 import { DateService } from "src/app/core/services/date.service";
+import { ClientErrorLoggerService } from "src/app/core/services/client-error-logger.service";
+import { HeicConverterService } from "src/app/core/services/heic-converter.service";
 
 @Component({
   selector: "app-task-form",
@@ -80,7 +87,7 @@ import { DateService } from "src/app/core/services/date.service";
     AppIcon,
   ],
 })
-export class TaskForm implements OnInit {
+export class TaskForm implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
   private authS = inject(AuthService);
   private config = inject(DynamicDialogConfig);
@@ -92,11 +99,14 @@ export class TaskForm implements OnInit {
   private TaskGroupService = inject(TaskGroupService);
   private formB = inject(FormBuilder);
   private dateS = inject(DateService);
+  private clientErrorLogger = inject(ClientErrorLoggerService);
+  private heicConverter = inject(HeicConverterService);
 
   id: string = "";
   submitting = signal(false);
   processingProgress = signal(0);
   processingMessage = signal("Guardando ticket...");
+  imageProcessingDiagnostic = signal<string | null>(null);
 
   // Signals para ComboBoxes
   cb_priority = signal<SelectItemDto[]>([]);
@@ -108,6 +118,7 @@ export class TaskForm implements OnInit {
   // Signals para previews de imígenes
   beforeWorkPreview = signal<string | null>(null);
   afterWorkPreview = signal<string | null>(null);
+  private previewObjectUrls: Partial<Record<ImageFieldName, string>> = {};
 
   isLegalWorkGroup = signal(false);
   private workGroupLegalMap = new Map<string, boolean>();
@@ -274,34 +285,55 @@ export class TaskForm implements OnInit {
   processingAfterWork = signal(false);
 
   async onFileSelect(
-    event: any,
-    fieldName: "beforeWork" | "afterWork",
+    event: { files?: File[]; originalEvent?: Event },
+    fieldName: ImageFieldName,
   ): Promise<void> {
     const file = event.files?.[0];
-    if (file) await this.onFileChange(file, fieldName);
-  }
-
-  onFilesChange(files: any[], fieldName: "beforeWork" | "afterWork"): void {
-    if (!files.length) {
-      this.form.get(fieldName)?.setValue(null);
-      if (fieldName === "beforeWork") this.beforeWorkPreview.set(null);
-      else this.afterWorkPreview.set(null);
+    try {
+      if (file) await this.onFileChange(file, fieldName);
+    } finally {
+      const input = event.originalEvent?.target;
+      if (input instanceof HTMLInputElement) input.value = "";
     }
   }
 
-  async onFileChange(
-    file: File,
-    fieldName: "beforeWork" | "afterWork",
-  ): Promise<void> {
+  onFilesChange(files: unknown[], fieldName: ImageFieldName): void {
+    if (!files.length) {
+      this.form.get(fieldName)?.setValue(null);
+      this.clearPreview(fieldName);
+    }
+  }
+
+  async onFileChange(file: File, fieldName: ImageFieldName): Promise<void> {
     const MAX_SIZE_MB = 5;
     const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
     const allowed = ["image/jpeg", "image/png", "image/webp"];
-    const isHeic =
+
+    const hasHeicHint =
       /\.(heic|heif)$/i.test(file.name) ||
       file.type === "image/heic" ||
       file.type === "image/heif";
+    const hasAmbiguousMime =
+      file.type === "" || file.type === "application/octet-stream";
+    const hasSupportedExtension = /\.(jpe?g|png|webp)$/i.test(file.name);
+    let isHeic = hasHeicHint;
+    let processingStage = "validación";
 
-    if (!isHeic && !allowed.includes(file.type)) {
+    this.imageProcessingDiagnostic.set(null);
+
+    if (!isHeic && hasAmbiguousMime && !hasSupportedExtension) {
+      try {
+        isHeic = await this.heicConverter.isHeic(file);
+      } catch (error) {
+        console.error("[IMAGE_PROCESS] Error al identificar la imagen:", error);
+      }
+    }
+
+    const isSupportedImage =
+      allowed.includes(file.type) ||
+      (hasAmbiguousMime && hasSupportedExtension);
+
+    if (!isHeic && !isSupportedImage) {
       this.customToastS.showError(
         "Formato no compatible",
         `Solo se permiten JPG, PNG, WebP o HEIC. El archivo "${file.name}" no puede cargarse.`,
@@ -327,34 +359,26 @@ export class TaskForm implements OnInit {
       let fileToProcess = file;
 
       if (isHeic) {
-        try {
-          const buffer = await file.arrayBuffer();
-          const heicBlob = new Blob([buffer], {
-            type: file.type || "image/heic",
-          });
-          const convertedBlob = await heic2any({
-            blob: heicBlob,
-            toType: "image/jpeg",
-            quality: 0.9,
-          });
-          const resultBlob = Array.isArray(convertedBlob)
-            ? convertedBlob[0]
-            : convertedBlob;
-          const newFileName = file.name.replace(/\.(heic|heif)$/i, ".jpg");
-          fileToProcess = new File([resultBlob], newFileName, {
-            type: "image/jpeg",
-          });
-        } catch (heicError) {
-          console.warn(
-            "heic2any falló al analizar el archivo, intentando como fallback nativo...",
-            heicError,
-          );
-        }
+        processingStage = "conversión HEIC";
+        console.log(`[IMAGE_PROCESS] Detectado HEIC: ${file.name}`);
+        fileToProcess = await this.heicConverter.convertHeicToJpeg(file);
+        console.log(
+          `[IMAGE_PROCESS] HEIC convertido a JPEG: ${fileToProcess.name}`,
+        );
       }
+
+      processingStage = "normalización y compresión";
+      console.log(
+        `[IMAGE_PROCESS] Iniciando compresión: ${(fileToProcess.size / (1024 * 1024)).toFixed(2)}MB`,
+      );
 
       const processed = await this.compressToMaxSize(
         fileToProcess,
         MAX_SIZE_BYTES,
+      );
+
+      console.log(
+        `[IMAGE_PROCESS] Compresión completada: ${(processed.size / (1024 * 1024)).toFixed(2)}MB`,
       );
 
       if (processed.size > MAX_SIZE_BYTES) {
@@ -366,22 +390,31 @@ export class TaskForm implements OnInit {
       }
 
       this.form.get(fieldName)?.setValue(processed);
-      const reader = new FileReader();
-      reader.onload = () => {
-        const sizeInMB = (processed.size / (1024 * 1024)).toFixed(2);
-        console.log(
-          `Imagen comprimida: ${sizeInMB}MB (máx permitido: ${MAX_SIZE_MB}MB)`,
-        );
-        if (fieldName === "beforeWork")
-          this.beforeWorkPreview.set(reader.result as string);
-        else this.afterWorkPreview.set(reader.result as string);
-      };
-      reader.readAsDataURL(processed);
+      this.setPreview(fieldName, processed);
+
+      const sizeInMB = (processed.size / (1024 * 1024)).toFixed(2);
+      console.log(
+        `[IMAGE_PROCESS] Imagen lista: ${sizeInMB}MB (máx permitido: ${MAX_SIZE_MB}MB)`,
+      );
     } catch (error) {
-      console.error("Error procesando imagen:", error);
+      const errorMessage = this.describeError(error);
+      console.error("[IMAGE_PROCESS] Error fatal:", errorMessage, error);
+      this.reportImageFailure(processingStage, fieldName, file, error);
+
+      let userMessage = "No se pudo procesar la imagen.";
+
+      if (errorMessage.includes("canvas")) {
+        userMessage = "Error al procesar la imagen. Prueba con otra imagen.";
+      } else if (errorMessage.includes("load")) {
+        userMessage = "Error al cargar la imagen. Verifica que sea válida.";
+      } else if (errorMessage.includes("memory")) {
+        userMessage =
+          "La imagen requiere demasiada memoria. Usa una de menor resolución.";
+      }
+
       this.customToastS.showError(
-        "Error al procesar imagen",
-        "No se pudo procesar o comprimir la imagen. Intenta con otro archivo.",
+        isHeic ? "Error al procesar foto HEIC" : "Error al procesar imagen",
+        userMessage + ` (${errorMessage})`,
       );
     } finally {
       processingSignal.set(false);
@@ -389,85 +422,270 @@ export class TaskForm implements OnInit {
   }
 
   private compressToMaxSize(file: File, maxBytes: number): Promise<File> {
-    if (file.size <= maxBytes) {
-      console.log(
-        `Imagen no requiere compresión: ${(file.size / (1024 * 1024)).toFixed(2)}MB`,
-      );
-      return Promise.resolve(file);
-    }
-
     console.log(
-      `Iniciando compresión: ${(file.size / (1024 * 1024)).toFixed(2)}MB → ${(maxBytes / (1024 * 1024)).toFixed(2)}MB`,
+      `[COMPRESS] Iniciando: ${(file.size / (1024 * 1024)).toFixed(2)}MB → ${(maxBytes / (1024 * 1024)).toFixed(2)}MB`,
     );
 
     return new Promise((resolve, reject) => {
       const img = new Image();
       const url = URL.createObjectURL(file);
 
-      img.onload = () => {
-        URL.revokeObjectURL(url);
-        const canvas = document.createElement("canvas");
-        let w = img.naturalWidth;
-        let h = img.naturalHeight;
-
-        console.log(`Dimensiones originales: ${w}x${h}px`);
-
-        const MAX_DIM = 4000;
-        if (w > MAX_DIM || h > MAX_DIM) {
-          const ratio = Math.min(MAX_DIM / w, MAX_DIM / h);
-          w = Math.round(w * ratio);
-          h = Math.round(h * ratio);
-          console.log(`Redimensionadas a: ${w}x${h}px`);
+      const cleanup = () => {
+        try {
+          URL.revokeObjectURL(url);
+        } catch (e) {
+          console.warn("[COMPRESS] Error al revocar ObjectURL:", e);
         }
+      };
 
-        canvas.width = w;
-        canvas.height = h;
-        canvas.getContext("2d")!.drawImage(img, 0, 0, w, h);
+      img.onload = () => {
+        try {
+          cleanup();
+          const canvas = document.createElement("canvas");
+          let w = img.naturalWidth;
+          let h = img.naturalHeight;
 
-        const baseName = file.name.replace(/\.[^.]+$/, "");
-        const outName = `${baseName}.jpg`;
+          console.log(`[COMPRESS] Dimensiones originales: ${w}x${h}px`);
 
-        const tryQuality = (quality: number): void => {
-          canvas.toBlob(
-            (blob) => {
-              if (!blob) {
-                console.error("Canvas.toBlob falló");
-                reject(new Error("Canvas toBlob failed"));
-                return;
-              }
+          const MAX_DIM = 2560;
+          const requiresResize = w > MAX_DIM || h > MAX_DIM;
 
-              const sizeInMB = (blob.size / (1024 * 1024)).toFixed(2);
-              console.log(
-                `Calidad ${quality}: ${sizeInMB}MB (máx: ${(maxBytes / (1024 * 1024)).toFixed(2)}MB)`,
+          if (!requiresResize && file.size <= maxBytes) {
+            console.log("[COMPRESS] Tamaño y dimensiones dentro del límite");
+            resolve(file);
+            return;
+          }
+
+          if (requiresResize) {
+            const ratio = Math.min(MAX_DIM / w, MAX_DIM / h);
+            w = Math.round(w * ratio);
+            h = Math.round(h * ratio);
+            console.log(`[COMPRESS] Redimensionadas a: ${w}x${h}px`);
+          }
+
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext("2d");
+          if (!ctx) {
+            throw new Error("No se pudo obtener contexto 2D del canvas");
+          }
+          ctx.drawImage(img, 0, 0, w, h);
+
+          const baseName = file.name.replace(/\.[^.]+$/, "");
+          const outName = `${baseName}.jpg`;
+
+          const tryQuality = (quality: number): void => {
+            try {
+              canvas.toBlob(
+                (blob) => {
+                  if (!blob) {
+                    console.error("[COMPRESS] canvas.toBlob retornó null");
+                    reject(
+                      new Error("canvas.toBlob falló - sin blob generado"),
+                    );
+                    return;
+                  }
+
+                  const sizeInMB = (blob.size / (1024 * 1024)).toFixed(2);
+                  console.log(
+                    `[COMPRESS] Calidad ${quality}: ${sizeInMB}MB (máx: ${(maxBytes / (1024 * 1024)).toFixed(2)}MB)`,
+                  );
+
+                  if (blob.size <= maxBytes) {
+                    console.log(`[COMPRESS] ✓ Exitosa a calidad ${quality}`);
+                    canvas.width = 1;
+                    canvas.height = 1;
+                    resolve(new File([blob], outName, { type: "image/jpeg" }));
+                  } else if (quality <= 0.05) {
+                    console.warn(
+                      `[COMPRESS] ⚠ Calidad mínima alcanzada (${sizeInMB}MB)`,
+                    );
+                    canvas.width = 1;
+                    canvas.height = 1;
+                    resolve(new File([blob], outName, { type: "image/jpeg" }));
+                  } else {
+                    tryQuality(+(quality - 0.05).toFixed(2));
+                  }
+                },
+                "image/jpeg",
+                quality,
               );
+            } catch (error) {
+              console.error("[COMPRESS] Error en canvas.toBlob:", error);
+              reject(error);
+            }
+          };
 
-              if (blob.size <= maxBytes) {
-                console.log(`✓ Compresión exitosa a calidad ${quality}`);
-                resolve(new File([blob], outName, { type: "image/jpeg" }));
-              } else if (quality <= 0.05) {
-                console.warn(
-                  `⚠ Calidad mínima alcanzada (${sizeInMB}MB), guardando con esta calidad`,
-                );
-                resolve(new File([blob], outName, { type: "image/jpeg" }));
-              } else {
-                tryQuality(+(quality - 0.05).toFixed(2));
-              }
-            },
-            "image/jpeg",
-            quality,
-          );
-        };
-
-        tryQuality(0.9);
+          tryQuality(0.9);
+        } catch (error) {
+          cleanup();
+          console.error("[COMPRESS] Error en onload:", error);
+          reject(error);
+        }
       };
 
-      img.onerror = () => {
-        URL.revokeObjectURL(url);
-        console.error("Error cargando imagen para compresión");
-        reject(new Error("Image load failed"));
+      img.onerror = (event) => {
+        cleanup();
+        console.error(
+          "[COMPRESS] Error al cargar imagen:",
+          event,
+          "Archivo:",
+          file.name,
+        );
+        reject(
+          new Error(
+            `Error al cargar la imagen: ${file.name}. Verifica que sea válida.`,
+          ),
+        );
       };
-      img.src = url;
+
+      img.onabort = () => {
+        cleanup();
+        console.error("[COMPRESS] Carga de imagen abortada");
+        reject(new Error("Carga de imagen cancelada"));
+      };
+
+      try {
+        img.src = url;
+      } catch (error) {
+        cleanup();
+        console.error("[COMPRESS] Error al asignar src:", error);
+        reject(error);
+      }
     });
+  }
+
+  private setPreview(fieldName: ImageFieldName, file: File): void {
+    this.clearPreview(fieldName);
+    const objectUrl = URL.createObjectURL(file);
+    this.previewObjectUrls[fieldName] = objectUrl;
+
+    if (fieldName === "beforeWork") this.beforeWorkPreview.set(objectUrl);
+    else this.afterWorkPreview.set(objectUrl);
+  }
+
+  private clearPreview(fieldName: ImageFieldName): void {
+    const objectUrl = this.previewObjectUrls[fieldName];
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
+      delete this.previewObjectUrls[fieldName];
+    }
+
+    if (fieldName === "beforeWork") this.beforeWorkPreview.set(null);
+    else this.afterWorkPreview.set(null);
+  }
+
+  private reportImageFailure(
+    stage: string,
+    fieldName: ImageFieldName,
+    file: File,
+    error: unknown,
+  ): void {
+    const diagnosticId = this.createDiagnosticId();
+    const errorMessage = this.describeError(error);
+    const details = [
+      `ID: ${diagnosticId}`,
+      `Etapa: ${stage}`,
+      `Campo: ${fieldName}`,
+      `Archivo: ${file.name}`,
+      `Tipo: ${file.type || "sin MIME"}`,
+      `Tamaño: ${this.formatFileSize(file.size)}`,
+      `PWA: ${this.isStandaloneMode() ? "sí" : "no"}`,
+      `Error: ${errorMessage}`,
+    ];
+
+    this.imageProcessingDiagnostic.set(details.join("\n"));
+    this.clientErrorLogger.logError(
+      `[IMAGE_PROCESS_ERROR] ${stage} (${diagnosticId})`,
+      details.join(" | "),
+    );
+  }
+
+  private reportRequestFailure(error: unknown): void {
+    const diagnosticId = this.createDiagnosticId();
+    const httpError = error as {
+      status?: number;
+      statusText?: string;
+      url?: string | null;
+    };
+    const details = [
+      `ID: ${diagnosticId}`,
+      "Etapa: envío HTTP",
+      `Estado: ${httpError.status ?? "desconocido"}`,
+      `StatusText: ${httpError.statusText || "sin detalle"}`,
+      `Error: ${this.describeError(error)}`,
+      `PWA: ${this.isStandaloneMode() ? "sí" : "no"}`,
+      `Online: ${navigator.onLine ? "sí" : "no"}`,
+      `Service Worker: ${this.getServiceWorkerState()}`,
+      `Antes: ${this.describeSelectedFile(this.form.controls.beforeWork.value)}`,
+      `Después: ${this.describeSelectedFile(this.form.controls.afterWork.value)}`,
+      `URL: ${httpError.url || "sin URL"}`,
+    ];
+
+    this.imageProcessingDiagnostic.set(details.join("\n"));
+    this.clientErrorLogger.logError(
+      `[IMAGE_UPLOAD_HTTP_ERROR] Fallo al enviar tarea (${diagnosticId})`,
+      details.join(" | "),
+    );
+  }
+
+  private describeSelectedFile(file: File | null): string {
+    if (!file) return "sin archivo nuevo";
+
+    const conversionMethod = this.heicConverter.getConversionMethod(file);
+    const conversion = conversionMethod
+      ? `, conversión ${conversionMethod}`
+      : "";
+    return `${file.name}, ${file.type || "sin MIME"}, ${this.formatFileSize(file.size)}${conversion}`;
+  }
+
+  private describeError(error: unknown): string {
+    if (error instanceof Error) {
+      const cause = error.cause
+        ? ` | causa: ${this.describeError(error.cause)}`
+        : "";
+      return `${error.name}: ${error.message}${cause}`;
+    }
+
+    if (typeof error === "string") return error;
+    if (error && typeof error === "object" && "message" in error) {
+      return String((error as { message: unknown }).message);
+    }
+
+    try {
+      return JSON.stringify(error);
+    } catch {
+      return String(error);
+    }
+  }
+
+  private createDiagnosticId(): string {
+    return globalThis.crypto?.randomUUID?.() ?? Date.now().toString(36);
+  }
+
+  private formatFileSize(bytes: number): string {
+    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+  }
+
+  private isStandaloneMode(): boolean {
+    const iosNavigator = navigator as Navigator & { standalone?: boolean };
+    return (
+      (typeof window.matchMedia === "function" &&
+        window.matchMedia("(display-mode: standalone)").matches) ||
+      iosNavigator.standalone === true
+    );
+  }
+
+  private getServiceWorkerState(): string {
+    if (!("serviceWorker" in navigator)) return "no disponible";
+    return navigator.serviceWorker.controller
+      ? "controlando"
+      : "sin controlador";
+  }
+
+  ngOnDestroy(): void {
+    this.clearPreview("beforeWork");
+    this.clearPreview("afterWork");
   }
 
   onTicketGroupChange(newValue: string) {
@@ -537,6 +755,7 @@ export class TaskForm implements OnInit {
       method: this.id === "" ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,
+      onRequestError: (error) => this.reportRequestFailure(error),
       transformPayload: (rawValues) => {
         const formData = new FormData();
 

@@ -17,7 +17,10 @@
 import { WritableSignal } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import {
+  ApiRequestErrorHandler,
+  ApiResponseService,
+} from "src/app/core/http/services/api-response.service";
 
 export interface CrudSubmitOptions {
   /** El FormGroup del formulario */
@@ -38,6 +41,8 @@ export interface CrudSubmitOptions {
   closeOnSuccess?: boolean;
   /** Método HTTP explícito (POST, PUT, PATCH). Si no se provee, se infiere del ID. */
   method?: "POST" | "PUT" | "PATCH";
+  /** Callback opcional para conservar el error HTTP original antes de normalizarlo. */
+  onRequestError?: ApiRequestErrorHandler;
 }
 
 export class FormHelper {
@@ -55,6 +60,7 @@ export class FormHelper {
       transformPayload,
       closeOnSuccess = true,
       method,
+      onRequestError,
     } = options;
 
     // Validar formulario
@@ -77,10 +83,10 @@ export class FormHelper {
           result = await api.onPatch(url, payload);
           break;
         case "PUT":
-          result = await api.onPut(url, payload);
+          result = await api.onPut(url, payload, true, true, onRequestError);
           break;
         default:
-          result = await api.onPost(url, payload);
+          result = await api.onPost(url, payload, onRequestError);
           break;
       }
 

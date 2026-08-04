@@ -173,6 +173,19 @@
           óngulo.
         </small>
       </div>
+      @if (imageProcessingDiagnostic()) {
+      <div class="col-12">
+        <p
+          role="alert"
+          aria-live="assertive"
+          data-testid="image-processing-diagnostic"
+          class="m-0 p-3 border-round surface-100 text-700 text-sm white-space-pre-line"
+        >
+          <strong>Detalle técnico de la imagen</strong>
+          {{ "\n" + imageProcessingDiagnostic() }}
+        </p>
+      </div>
+      }
       <div class="col-12 md:col-6">
         <div class="mb-4">
           <label class="font-bold text-xs uppercase text-700 block mb-2"

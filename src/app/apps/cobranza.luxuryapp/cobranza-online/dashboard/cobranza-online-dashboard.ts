@@ -84,13 +84,23 @@ export class CobranzaOnlineDashboard {
     return date.toLocaleDateString("es-MX", { month: "long" });
   });
 
-  onDateChange(dateString: string) {
-    if (!dateString) return;
-    const parts = dateString.split("-");
-    if (parts.length === 3) {
-      this.currentYear.set(parseInt(parts[0], 10));
-      this.currentMonth.set(parseInt(parts[1], 10));
-      this.currentDay.set(parseInt(parts[2], 10));
+  onDateChange(val: string | Date) {
+    if (!val) return;
+    
+    if (val instanceof Date) {
+      this.currentYear.set(val.getFullYear());
+      this.currentMonth.set(val.getMonth() + 1);
+      this.currentDay.set(val.getDate());
+      return;
+    }
+
+    if (typeof val === 'string') {
+      const parts = val.split("-");
+      if (parts.length >= 3) {
+        this.currentYear.set(parseInt(parts[0], 10));
+        this.currentMonth.set(parseInt(parts[1], 10));
+        this.currentDay.set(parseInt(parts[2], 10));
+      }
     }
   }
   readonly loading = signal(false);
@@ -209,28 +219,26 @@ export class CobranzaOnlineDashboard {
     };
   });
 
-  readonly pieChartData = computed<any[]>(() => {
-    const categories =
-      this.dashboard()?.categories.filter(
-        (c) => c.categoryId !== "deuda-anterior",
-      ) ?? [];
-    const hasVisibleTotals = categories.some(
-      (category) => Math.abs(category.total) > 0,
-    );
+  readonly collectionPieChart = computed(() => {
+    const items = this.tableCobranzaPerfecta().filter(r => !r.isTotal);
+    
+    const colors = {
+      'MOROSOS': '#ef4444', // red-500
+      'DEUDA CORRIENTE': '#3b82f6', // blue-500
+      'COBRADO / SIN ADEUDO': '#22c55e', // green-500
+    };
 
-    if (!hasVisibleTotals) {
-      return [
-        {
-          name: "Sin movimientos del mes",
-          value: 1,
-        },
-      ];
-    }
-
-    return categories.map((category) => ({
-      name: category.title,
-      value: Math.abs(category.total),
+    const data = items.map(item => ({
+      name: item.clasificacion,
+      value: item.saldo
     }));
+
+    const chartColors = items.map(item => colors[item.clasificacion as keyof typeof colors] || '#94a3b8');
+
+    return {
+      data,
+      colors: chartColors
+    };
   });
 
   readonly tableCobranzaPerfecta = computed(() => {
@@ -239,20 +247,16 @@ export class CobranzaOnlineDashboard {
     const total = kpis?.totalDueCurrentMonth ?? 0;
 
     // Grupos basados en la misma clasificacion frontend que usa el modal
-    const judiciales = all.filter(d => d.clasificacion === 'COBRANZA JUDICIAL');
     const morosos    = all.filter(d => d.clasificacion === 'MOROSOS');
     const corriente  = all.filter(d => d.clasificacion === 'DEUDA CORRIENTE');
-    const cobrado    = all.filter(d => d.clasificacion === 'SIN ADEUDO' || d.clasificacion === 'ANTICIPOS');
 
     const sumBalance = (arr: typeof all) => arr.reduce((s, d) => s + (d.balance || 0), 0);
 
-    const saldoJudicial  = sumBalance(judiciales);
     const saldoMorosos   = sumBalance(morosos);
     const saldoCorriente = sumBalance(corriente);
-    const saldoCobrado   = sumBalance(cobrado);
-    // COBRANZA PERFECTA = todo lo que se debe cobrar este mes (KPI del backend)
-    // Se mantiene como referencia; los demas renglones suman balances de departamentos
-    const deuda = saldoJudicial + saldoMorosos + saldoCorriente;
+    
+    // Cálculo matemático: Meta - Lo que nos deben los activos = Lo efectivamente cobrado
+    const saldoCobradoCalculado = Math.max(0, total - saldoMorosos - saldoCorriente);
 
     return [
       {
@@ -262,14 +266,6 @@ export class CobranzaOnlineDashboard {
         saldo: total,
         porcentaje: total ? 1 : 0,
         isTotal: true,
-      },
-      {
-        clasificacion: "COBRANZA JUDICIAL",
-        description: "Saldo >= 3 cuotas mensuales",
-        filterKey: "COBRANZA JUDICIAL",
-        saldo: saldoJudicial,
-        porcentaje: total ? saldoJudicial / total : 0,
-        isTotal: false,
       },
       {
         clasificacion: "MOROSOS",
@@ -289,10 +285,10 @@ export class CobranzaOnlineDashboard {
       },
       {
         clasificacion: "COBRADO / SIN ADEUDO",
-        description: "Saldo en cero o anticipo",
+        description: "Cobranza Perfecta - Morosos - Corriente",
         filterKey: "COBRADO",
-        saldo: saldoCobrado,
-        porcentaje: total ? saldoCobrado / total : 0,
+        saldo: saldoCobradoCalculado,
+        porcentaje: total ? saldoCobradoCalculado / total : 0,
         isTotal: false,
       },
     ];

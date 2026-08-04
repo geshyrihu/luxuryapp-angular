@@ -100,6 +100,8 @@ export interface CobranzaOnlineDashboardResponse {
   departments: CobranzaOnlineDashboardDepartment[];
   towers: CobranzaOnlineDashboardTower[];
   advances: CobranzaOnlineDashboardDepartment[];
+  departmentCharges?: any[];
+  departmentPayments?: any[];
   categories: CobranzaOnlineDashboardCategory[];
   topDebtors: CobranzaOnlineDashboardDepartment[];
   currentCharges: CobranzaOnlineCurrentCharges;
