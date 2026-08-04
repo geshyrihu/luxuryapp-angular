@@ -45,6 +45,8 @@ export interface CobranzaOnlineDashboardDepartment {
   maintenanceBalance: number;
   extraordinaryBalance: number;
   finesBalance: number;
+  /** Cargo de mantenimiento (-001) aplicado en el mes de consulta. Umbral para clasificar JUDICIAL/MOROSO. 0 = sin cargo vigente. */
+  currentMonthCharge: number;
   categoryId: string;
   movementCount: number;
 }
@@ -69,17 +71,24 @@ export interface CobranzaOnlineCurrentChargeTemplate {
   isActive: boolean;
 }
 
+export interface CobranzaOnlineMetric {
+    total: number;
+    collected: number;
+    pending: number;
+}
+
+export interface CobranzaCollectedConcept {
+    conceptName: string;
+    amount: number;
+}
+
 export interface CobranzaOnlineCurrentCharges {
-  maintenanceFee: number;
-  maintenanceCollected: number;
-  extraordinaryFee: number;
-  extraordinaryCollected: number;
-  finesFee: number;
-  finesCollected: number;
-  monthlyFeeTotal: number;
-  totalDepartmentsByProperty: number;
-  activeTemplates: CobranzaOnlineCurrentChargeTemplate[];
-  collectedConcepts: { conceptName: string; amount: number }[];
+    maintenance: CobranzaOnlineMetric;
+    extraordinary: CobranzaOnlineMetric;
+    monthlyFeeTotal: number;
+    totalDepartmentsByProperty: number;
+    activeTemplates: CobranzaOnlineCurrentChargeTemplate[];
+    additionalIncomes: CobranzaCollectedConcept[];
 }
 
 export interface CobranzaOnlineDashboardResponse {

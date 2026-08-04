@@ -78,13 +78,13 @@ flowchart TD
 
 ## 🅿️ `mypreset.ts`
 
-`src/app/mypreset.ts` es el **preset personalizado de PrimeNG** que extiende Lara. Define la paleta primaria, surfaces, y componentes (tag, datatable, message) usando **solo `var(--*)`** — sin valores hex/rgba directos.
+`src/styles/theme/mypreset.ts` exporta **`LuxuryPreset`** (preset activo de PrimeNG, basado en **Aura**, inyectado en `app.config.ts` dentro de `@layer primeng/primevue`). La escala `colorScheme.dark.surface` referencia **`var(--surface-dark-0..950)`** (T14), que es la escala navy DS con orientación Aura definida en `core/_colors.scss`. (*Nota: existe también `src/app/mypreset.ts`, preset alternativo basado en Lara, que NO es el activo.*)
 
 ```mermaid
 flowchart LR
-    A["core/_colors.scss"] -->|"#{c.$primary-*}"| B["theme/_variables.scss"]
-    B -->|"--primary-*, --secondary-*,<br/>--surface-dark-*, --success-500"| C["mypreset.ts"]
-    C -->|"var(--primary-*)"| D["🧩 PrimeNG"]
+    A["core/_colors.scss"] -->|"#{c.$primary-*}, #{c.$surface-dark-*}"| B["theme/_variables.scss"]
+    B -->|"--primary-*, --secondary-*,<br/>--surface-dark-*, --success-500"| C["src/styles/theme/mypreset.ts"]
+    C -->|"var(--primary-*), var(--surface-dark-*)"| D["🧩 PrimeNG"]
 ```
 
 | Token en mypreset.ts | Fuente en _variables.scss | Fuente última en _colors.scss |

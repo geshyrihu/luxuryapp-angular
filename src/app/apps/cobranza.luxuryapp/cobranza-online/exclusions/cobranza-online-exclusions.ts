@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -42,7 +41,6 @@ import type {
     RouterModule,
     TableModule,
     ButtonModule,
-    IonInputCheckbox,
     CustomInputCheckSignal,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
@@ -137,61 +135,5 @@ export class CobranzaOnlineExclusions {
     this.loading.set(false);
   }
 
-  async onToggleExcluded(
-    row: CobranzaOnlineExcludedAccountRow,
-    checked: boolean,
-  ) {
-    const customerId = this.customerIdS.customerId();
-    if (!customerId || this.savingAccountNumber() === row.accountNumber) {
-      return;
-    }
-
-    const previousValue = row.isExcluded;
-    row.isExcluded = checked;
-    this.savingAccountNumber.set(row.accountNumber);
-
-    const payload: CobranzaOnlineExcludedAccountUpsert = {
-      accountNumber: row.accountNumber,
-      accountName: row.accountName,
-      isExcluded: checked,
-      reason: checked
-        ? row.reason || "Excluida desde configuración de Cobranza Online."
-        : row.reason || "",
-      notes: row.notes || "",
-    };
-
-    const result = await this.cobranzaOnlineS.updateExcludedAccount(
-      customerId,
-      payload,
-    );
-
-    if (result === null) {
-      row.isExcluded = previousValue;
-      this.savingAccountNumber.set(null);
-      return;
-    }
-
-    this.data.update((current) => {
-      if (!current) return current;
-
-      const rows = current.rows.map((item) =>
-        item.accountNumber === row.accountNumber
-          ? {
-              ...item,
-              isExcluded: checked,
-              reason: payload.reason,
-              notes: payload.notes,
-            }
-          : item,
-      );
-
-      return {
-        ...current,
-        totalExcluded: rows.filter((item) => item.isExcluded).length,
-        rows,
-      };
-    });
-
-    this.savingAccountNumber.set(null);
-  }
+  // Readonly view
 }

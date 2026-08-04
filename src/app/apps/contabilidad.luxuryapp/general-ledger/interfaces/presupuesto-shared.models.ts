@@ -3,6 +3,7 @@ export interface AspelBudgetDTO {
   Nombre_Empresa?: string;
   ID_Periodo_presupuesto?: string;
   Periodo_Presupuesto?: string;
+  Cuentas?: CuentaAspelTercerNivelDTO[];
   idEmpresa?: string;
   nombreEmpresa?: string;
   idPeriodoPresupuesto?: string;
@@ -43,6 +44,10 @@ export interface AspelBudgetDTO {
 }
 
 export interface CuentaAspelTercerNivelDTO {
+  Codigo_Cuenta?: string;
+  Descripcion_Cuenta?: string;
+  Nivel_Cuenta?: number;
+  Cuenta_Padre?: string;
   codigo_Cuenta?: string;
   descripcion_Cuenta?: string;
   nivel_Cuenta?: number;
@@ -53,6 +58,30 @@ export interface CuentaAspelTercerNivelDTO {
   nivelCuenta?: number;
   cuentaPadre?: string;
 
+  Monto_Enero?: number;
+  Presup_Enero?: number;
+  Monto_Febrero?: number;
+  Presup_Febrero?: number;
+  Monto_Marzo?: number;
+  Presup_Marzo?: number;
+  Monto_Abril?: number;
+  Presup_Abril?: number;
+  Monto_Mayo?: number;
+  Presup_Mayo?: number;
+  Monto_Junio?: number;
+  Presup_Junio?: number;
+  Monto_Julio?: number;
+  Presup_Julio?: number;
+  Monto_Agosto?: number;
+  Presup_Agosto?: number;
+  Monto_Septiembre?: number;
+  Presup_Septiembre?: number;
+  Monto_Octubre?: number;
+  Presup_Octubre?: number;
+  Monto_Noviembre?: number;
+  Presup_Noviembre?: number;
+  Monto_Diciembre?: number;
+  Presup_Diciembre?: number;
   monto_Enero?: number;
   presup_Enero?: number;
   monto_Febrero?: number;
@@ -102,6 +131,7 @@ export interface CuentaAspelTercerNivelDTO {
   diciembreMonto?: number;
   diciembrePresupuesto?: number;
 
+  Acumulado_Anual?: number;
   acumulado_Anual?: number;
   anualAcumulado?: number;
   anualAcumuladoPresupuesto?: number;

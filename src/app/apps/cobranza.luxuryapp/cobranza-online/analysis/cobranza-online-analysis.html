@@ -249,12 +249,20 @@
       #dt
       [value]="filteredRows()"
       [globalFilterFields]="globalFilterFields()"
-      class="p-datatable-sm p-datatable-gridlines hidden md:block"
+      class="custom-table card p-datatable-sm p-datatable-gridlines hidden md:block"
       [tableStyle]="{ 'min-width': '700px' }"
       [paginator]="true"
       [rows]="50"
       [rowsPerPageOptions]="[25, 50, 100, 250]"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     >
+      <ng-template #caption>
+        <primeng-custom-caption
+          [showAdd]="false"
+          [dt]="dt"
+        />
+      </ng-template>
       <ng-template #header>
         <tr>
           <th class="table-col-160px">Cuenta</th>
@@ -285,6 +293,9 @@
             Sin condóminos en esta clasificación.
           </td>
         </tr>
+      </ng-template>
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="filteredRows()" />
       </ng-template>
     </p-table>
 

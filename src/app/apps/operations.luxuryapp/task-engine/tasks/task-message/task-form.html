@@ -1,4 +1,12 @@
 <div class="md:p-3">
+  <!-- Overlay de procesamiento con indicador de progreso -->
+  <lx-processing-overlay
+    [isProcessing]="submitting()"
+    [progress]="processingProgress()"
+    [message]="processingMessage()"
+    submessage="Comprimiendo y subiendo imágenes"
+  />
+
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
     <!-- Guía de usuario para mejorar la consistencia de datos -->
     <div

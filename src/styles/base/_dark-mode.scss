@@ -8,14 +8,10 @@
 //   (no está dentro de ningún @layer), por lo que gana en cascada sobre
 //   cualquier @layer sin necesidad de !important.
 //
-// Tokens usados (PrimeNG 21, se invierten en dark via darkModeSelector):
-//   --p-surface-100  →  light: slate-100 (#f1f5f9)  |  dark: zinc-900 (#18181b)
-//   --p-surface-200  →  light: slate-200 (#e2e8f0)  |  dark: zinc-800 (#27272a)
-//   --p-surface-300  →  light: slate-300 (#cbd5e1)  |  dark: zinc-700 (#3f3f46)
-//   --p-surface-400  →  light: slate-400 (#94a3b8)  |  dark: zinc-600 (#52525b)
-//   --p-surface-500  →  light: slate-500 (#64748b)  |  dark: zinc-500 (#71717a)
-//   --p-surface-700  →  light: slate-700 (#334155)  |  dark: zinc-300 (#d4d4d8)
-//   --p-surface-900  →  light: slate-900 (#0f172a)  |  dark: zinc-100 (#f4f4f5)
+// Escala dark (T14): el preset dark surface ya es navy DS via
+//   var(--surface-dark-0..950) (ver core/_colors.scss §Superficies dark).
+//   Estos overrides complementan casos no cubiertos por el preset
+//   (layout, utilidades legacy, bordes visibles --ds-border, etc.).
 // =============================================================
 
 .theme-dark {
@@ -33,7 +29,7 @@
 
   // ── 1. COMPAT PrimeNG v16 ────────────────────────────────────
   // surface-card / text-color usados en 36 templates — definidos en _prime-tokens.scss,
-  // se sobreescriben aquí con los valores zinc del dark palette.
+  // se sobreescriben aquí con los valores navy del dark palette.
 
   .surface-card {
     background-color: var(--ds-bg-surface);

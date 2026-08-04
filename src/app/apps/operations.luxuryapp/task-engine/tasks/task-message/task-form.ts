@@ -14,6 +14,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
+import { LxProcessingOverlay } from "@ui/adaptive/processing-overlay/processing-overlay";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
@@ -68,6 +69,7 @@ import { DateService } from "src/app/core/services/date.service";
     FormsModule,
     ReactiveFormsModule,
     LxFileUpload,
+    LxProcessingOverlay,
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputDateSignal,
@@ -93,6 +95,8 @@ export class TaskForm implements OnInit {
 
   id: string = "";
   submitting = signal(false);
+  processingProgress = signal(0);
+  processingMessage = signal("Guardando ticket...");
 
   // Signals para ComboBoxes
   cb_priority = signal<SelectItemDto[]>([]);
@@ -289,6 +293,8 @@ export class TaskForm implements OnInit {
     file: File,
     fieldName: "beforeWork" | "afterWork",
   ): Promise<void> {
+    const MAX_SIZE_MB = 5;
+    const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
     const allowed = ["image/jpeg", "image/png", "image/webp"];
     const isHeic =
       /\.(heic|heif)$/i.test(file.name) ||
@@ -299,6 +305,14 @@ export class TaskForm implements OnInit {
       this.customToastS.showError(
         "Formato no compatible",
         `Solo se permiten JPG, PNG, WebP o HEIC. El archivo "${file.name}" no puede cargarse.`,
+      );
+      return;
+    }
+
+    if (file.size > MAX_SIZE_BYTES * 2) {
+      this.customToastS.showError(
+        "Archivo demasiado grande",
+        `La imagen excede ${MAX_SIZE_MB * 2}MB. Usa una imagen más pequeña o de menor resolución.`,
       );
       return;
     }
@@ -314,7 +328,6 @@ export class TaskForm implements OnInit {
 
       if (isHeic) {
         try {
-          // Convertir explócitamente a Blob puro a travós de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
           const buffer = await file.arrayBuffer();
           const heicBlob = new Blob([buffer], {
             type: file.type || "image/heic",
@@ -333,27 +346,39 @@ export class TaskForm implements OnInit {
           });
         } catch (heicError) {
           console.warn(
-            "heic2any fallé al analizar el archivo, intentando como fallback nativo...",
+            "heic2any falló al analizar el archivo, intentando como fallback nativo...",
             heicError,
           );
-          // Si falla, fileToProcess sigue siendo el archivo original.
-          // En navegadores como Safari puede funcionar nativamente, o si era un JPG renombrado.
         }
       }
 
       const processed = await this.compressToMaxSize(
         fileToProcess,
-        2 * 1024 * 1024,
+        MAX_SIZE_BYTES,
       );
+
+      if (processed.size > MAX_SIZE_BYTES) {
+        this.customToastS.showError(
+          "Imagen aún demasiado grande",
+          `Después de la compresión, la imagen sigue excediendo ${MAX_SIZE_MB}MB. Intenta con una imagen de menor resolución.`,
+        );
+        return;
+      }
+
       this.form.get(fieldName)?.setValue(processed);
       const reader = new FileReader();
       reader.onload = () => {
+        const sizeInMB = (processed.size / (1024 * 1024)).toFixed(2);
+        console.log(
+          `Imagen comprimida: ${sizeInMB}MB (máx permitido: ${MAX_SIZE_MB}MB)`,
+        );
         if (fieldName === "beforeWork")
           this.beforeWorkPreview.set(reader.result as string);
         else this.afterWorkPreview.set(reader.result as string);
       };
       reader.readAsDataURL(processed);
-    } catch {
+    } catch (error) {
+      console.error("Error procesando imagen:", error);
       this.customToastS.showError(
         "Error al procesar imagen",
         "No se pudo procesar o comprimir la imagen. Intenta con otro archivo.",
@@ -364,7 +389,16 @@ export class TaskForm implements OnInit {
   }
 
   private compressToMaxSize(file: File, maxBytes: number): Promise<File> {
-    if (file.size <= maxBytes) return Promise.resolve(file);
+    if (file.size <= maxBytes) {
+      console.log(
+        `Imagen no requiere compresión: ${(file.size / (1024 * 1024)).toFixed(2)}MB`,
+      );
+      return Promise.resolve(file);
+    }
+
+    console.log(
+      `Iniciando compresión: ${(file.size / (1024 * 1024)).toFixed(2)}MB → ${(maxBytes / (1024 * 1024)).toFixed(2)}MB`,
+    );
 
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -376,11 +410,14 @@ export class TaskForm implements OnInit {
         let w = img.naturalWidth;
         let h = img.naturalHeight;
 
+        console.log(`Dimensiones originales: ${w}x${h}px`);
+
         const MAX_DIM = 4000;
         if (w > MAX_DIM || h > MAX_DIM) {
           const ratio = Math.min(MAX_DIM / w, MAX_DIM / h);
           w = Math.round(w * ratio);
           h = Math.round(h * ratio);
+          console.log(`Redimensionadas a: ${w}x${h}px`);
         }
 
         canvas.width = w;
@@ -390,17 +427,30 @@ export class TaskForm implements OnInit {
         const baseName = file.name.replace(/\.[^.]+$/, "");
         const outName = `${baseName}.jpg`;
 
-        const tryQuality = (quality: number) => {
+        const tryQuality = (quality: number): void => {
           canvas.toBlob(
             (blob) => {
               if (!blob) {
+                console.error("Canvas.toBlob falló");
                 reject(new Error("Canvas toBlob failed"));
                 return;
               }
-              if (blob.size <= maxBytes || quality <= 0.1) {
+
+              const sizeInMB = (blob.size / (1024 * 1024)).toFixed(2);
+              console.log(
+                `Calidad ${quality}: ${sizeInMB}MB (máx: ${(maxBytes / (1024 * 1024)).toFixed(2)}MB)`,
+              );
+
+              if (blob.size <= maxBytes) {
+                console.log(`✓ Compresión exitosa a calidad ${quality}`);
+                resolve(new File([blob], outName, { type: "image/jpeg" }));
+              } else if (quality <= 0.05) {
+                console.warn(
+                  `⚠ Calidad mínima alcanzada (${sizeInMB}MB), guardando con esta calidad`,
+                );
                 resolve(new File([blob], outName, { type: "image/jpeg" }));
               } else {
-                tryQuality(+(quality - 0.1).toFixed(1));
+                tryQuality(+(quality - 0.05).toFixed(2));
               }
             },
             "image/jpeg",
@@ -413,6 +463,7 @@ export class TaskForm implements OnInit {
 
       img.onerror = () => {
         URL.revokeObjectURL(url);
+        console.error("Error cargando imagen para compresión");
         reject(new Error("Image load failed"));
       };
       img.src = url;
@@ -463,7 +514,20 @@ export class TaskForm implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-    await FormHelper.submitCrud({
+    this.processingProgress.set(0);
+    this.processingMessage.set("Preparando datos...");
+
+    setTimeout(() => this.processingProgress.set(15), 200);
+    setTimeout(() => {
+      this.processingMessage.set("Validando y comprimiendo imágenes...");
+      this.processingProgress.set(35);
+    }, 800);
+    setTimeout(() => {
+      this.processingMessage.set("Enviando al servidor...");
+      this.processingProgress.set(65);
+    }, 1600);
+
+    const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
       endpoint:
@@ -499,5 +563,10 @@ export class TaskForm implements OnInit {
         return formData;
       },
     });
+
+    if (result !== false) {
+      this.processingProgress.set(100);
+      this.processingMessage.set("¡Completado!");
+    }
   }
 }

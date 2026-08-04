@@ -1,14 +1,19 @@
 import {
   ASPEL_MONTHS,
   filterVisibleAccounts,
+  getBudgetAccounts,
   getCuentaMonthValue,
   getPresupuestoBaseMensual,
   hasAnyBudgetOrExpense,
   hasAnyExpense,
   normalizeAspelAccounts,
+  normalizeAspelBudgetResponse,
   splitAspelAccounts,
 } from "./presupuesto-web-aspel.shared";
-import { CuentaAspelTercerNivelDTO } from "../interfaces/presupuesto-shared.models";
+import {
+  AspelBudgetDTO,
+  CuentaAspelTercerNivelDTO,
+} from "../interfaces/presupuesto-shared.models";
 import { BudgetAccountRuleDataDTO } from "./presupuestos.interfaces";
 
 describe("presupuesto-web-aspel.shared", () => {
@@ -74,6 +79,73 @@ describe("presupuesto-web-aspel.shared", () => {
     expect(result[5].nivel_Cuenta).toBe(3);
     expect(result[6].esFilaAgrupadora).toBe(false);
     expect(result[6].nivel_Cuenta).toBe(4);
+  });
+
+  it("supports Aspel payloads with PascalCase account collections and fields", () => {
+    const response = {
+      ID_Empresa: "4",
+      Nombre_Empresa: "CONTABILIDAD AVIVIA 58",
+      ID_Periodo_presupuesto: "2026",
+      Periodo_Presupuesto: "Ejercicio Fiscal 2026",
+      Cuentas: [
+        {
+          Codigo_Cuenta: "605-001-000",
+          Descripcion_Cuenta: "EXTRAORDINARIOS MTTO",
+          Nivel_Cuenta: 2,
+          Cuenta_Padre: "605-000-000",
+          Monto_Enero: 111759.33,
+          Presup_Enero: 0,
+          Acumulado_Anual: 699895.66,
+        },
+      ],
+      totalEneroMonto: 0,
+      totalEneroPresupuesto: 0,
+      totalFebreroMonto: 0,
+      totalFebreroPresupuesto: 0,
+      totalMarzoMonto: 0,
+      totalMarzoPresupuesto: 0,
+      totalAbrilMonto: 0,
+      totalAbrilPresupuesto: 0,
+      totalMayoMonto: 0,
+      totalMayoPresupuesto: 0,
+      totalJunioMonto: 0,
+      totalJunioPresupuesto: 0,
+      totalJulioMonto: 0,
+      totalJulioPresupuesto: 0,
+      totalAgostoMonto: 0,
+      totalAgostoPresupuesto: 0,
+      totalSeptiembreMonto: 0,
+      totalSeptiembrePresupuesto: 0,
+      totalOctubreMonto: 0,
+      totalOctubrePresupuesto: 0,
+      totalNoviembreMonto: 0,
+      totalNoviembrePresupuesto: 0,
+      totalDiciembreMonto: 0,
+      totalDiciembrePresupuesto: 0,
+      sumaAnualAcumuladoMontoOriginal: 0,
+      sumaAnualAcumuladoPresupuestoOriginal: 0,
+      sumaAnualAcumuladoMontoCalculado: 0,
+      sumaPresupuestoAnualCalculado: 0,
+      sumaPresupuestoRestanteCalculado: 0,
+    } satisfies AspelBudgetDTO;
+
+    const normalizedResponse = normalizeAspelBudgetResponse(response);
+    const accounts = getBudgetAccounts(normalizedResponse);
+    const normalizedAccounts = normalizeAspelAccounts(accounts);
+
+    expect(accounts).toHaveLength(1);
+    expect(normalizedAccounts[0]).toEqual(
+      expect.objectContaining({
+        codigo_Cuenta: "605-001-000",
+        descripcion_Cuenta: "EXTRAORDINARIOS MTTO",
+        cuenta_Padre: "605-000-000",
+        nivel_Cuenta: 2,
+        monto_Enero: 111759.33,
+        presup_Enero: 0,
+        acumulado_Anual: 699895.66,
+        esFilaAgrupadora: true,
+      }),
+    );
   });
 
   it("keeps only visible parent rows that have visible descendants", () => {

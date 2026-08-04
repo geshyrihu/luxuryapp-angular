@@ -65,7 +65,6 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th>Omitir</th>
         <th pSortableColumn="accountNumber">
           Cuenta
           <p-sorticon field="accountNumber" />
@@ -85,14 +84,11 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <custom-input-check-signal
-            [ngModel]="item.isExcluded"
-            [disabled]="savingAccountNumber() === item.accountNumber"
-            (checkChange)="onToggleExcluded(item, $event)"
-          />
+          <span [class.text-red-600]="item.isExcluded" class="font-medium">
+            {{ item.accountNumber }}
+          </span>
         </td>
-        <td>{{ item.accountNumber }}</td>
-        <td>{{ item.accountName }}</td>
+        <td [class.text-red-600]="item.isExcluded">{{ item.accountName }}</td>
         <td>{{ item.accountLevel }}</td>
         <td>
           @if (item.hasPropertyMatch) {
@@ -158,12 +154,10 @@
           </p>
         </div>
 
-        <div end class="pr-3">
-          <ion-input-checkbox
-            [ngModel]="item.isExcluded"
-            [disabled]="savingAccountNumber() === item.accountNumber"
-            (checkChange)="onToggleExcluded(item, $event)"
-          />
+        <div end class="pr-3 text-red-600 font-medium text-sm">
+          @if (item.isExcluded) {
+            Omitida
+          }
         </div>
       </ili-list-item>
     </ng-template>

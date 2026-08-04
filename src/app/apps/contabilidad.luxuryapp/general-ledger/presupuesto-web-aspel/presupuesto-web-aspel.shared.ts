@@ -44,45 +44,95 @@ export function normalizeAspelAccounts(
   cuentas: CuentaAspelTercerNivelDTO[],
 ): CuentaAspelTercerNivelDTO[] {
   return cuentas.map((cuenta) => {
-    const codigoCuenta = cuenta.codigo_Cuenta ?? cuenta.codigoCuenta ?? "";
+    const codigoCuenta =
+      cuenta.codigo_Cuenta ?? cuenta.Codigo_Cuenta ?? cuenta.codigoCuenta ?? "";
     const descripcionCuenta =
-      cuenta.descripcion_Cuenta ?? cuenta.descripcionCuenta ?? "";
-    const cuentaPadre = cuenta.cuenta_Padre ?? cuenta.cuentaPadre ?? "";
-    const nivelCuenta = cuenta.nivel_Cuenta ?? cuenta.nivelCuenta ?? 0;
+      cuenta.descripcion_Cuenta ??
+      cuenta.Descripcion_Cuenta ??
+      cuenta.descripcionCuenta ??
+      "";
+    const cuentaPadre =
+      cuenta.cuenta_Padre ?? cuenta.Cuenta_Padre ?? cuenta.cuentaPadre ?? "";
+    const nivelCuenta =
+      cuenta.nivel_Cuenta ?? cuenta.Nivel_Cuenta ?? cuenta.nivelCuenta ?? 0;
 
-    const monto_Enero = cuenta.monto_Enero ?? cuenta.eneroMonto ?? 0;
-    const presup_Enero = cuenta.presup_Enero ?? cuenta.eneroPresupuesto ?? 0;
-    const monto_Febrero = cuenta.monto_Febrero ?? cuenta.febreroMonto ?? 0;
+    const monto_Enero =
+      cuenta.monto_Enero ?? cuenta.Monto_Enero ?? cuenta.eneroMonto ?? 0;
+    const presup_Enero =
+      cuenta.presup_Enero ?? cuenta.Presup_Enero ?? cuenta.eneroPresupuesto ?? 0;
+    const monto_Febrero =
+      cuenta.monto_Febrero ?? cuenta.Monto_Febrero ?? cuenta.febreroMonto ?? 0;
     const presup_Febrero =
-      cuenta.presup_Febrero ?? cuenta.febreroPresupuesto ?? 0;
-    const monto_Marzo = cuenta.monto_Marzo ?? cuenta.marzoMonto ?? 0;
-    const presup_Marzo = cuenta.presup_Marzo ?? cuenta.marzoPresupuesto ?? 0;
-    const monto_Abril = cuenta.monto_Abril ?? cuenta.abrilMonto ?? 0;
-    const presup_Abril = cuenta.presup_Abril ?? cuenta.abrilPresupuesto ?? 0;
-    const monto_Mayo = cuenta.monto_Mayo ?? cuenta.mayoMonto ?? 0;
-    const presup_Mayo = cuenta.presup_Mayo ?? cuenta.mayoPresupuesto ?? 0;
-    const monto_Junio = cuenta.monto_Junio ?? cuenta.junioMonto ?? 0;
-    const presup_Junio = cuenta.presup_Junio ?? cuenta.junioPresupuesto ?? 0;
-    const monto_Julio = cuenta.monto_Julio ?? cuenta.julioMonto ?? 0;
-    const presup_Julio = cuenta.presup_Julio ?? cuenta.julioPresupuesto ?? 0;
-    const monto_Agosto = cuenta.monto_Agosto ?? cuenta.agostoMonto ?? 0;
-    const presup_Agosto = cuenta.presup_Agosto ?? cuenta.agostoPresupuesto ?? 0;
+      cuenta.presup_Febrero ??
+      cuenta.Presup_Febrero ??
+      cuenta.febreroPresupuesto ??
+      0;
+    const monto_Marzo =
+      cuenta.monto_Marzo ?? cuenta.Monto_Marzo ?? cuenta.marzoMonto ?? 0;
+    const presup_Marzo =
+      cuenta.presup_Marzo ?? cuenta.Presup_Marzo ?? cuenta.marzoPresupuesto ?? 0;
+    const monto_Abril =
+      cuenta.monto_Abril ?? cuenta.Monto_Abril ?? cuenta.abrilMonto ?? 0;
+    const presup_Abril =
+      cuenta.presup_Abril ?? cuenta.Presup_Abril ?? cuenta.abrilPresupuesto ?? 0;
+    const monto_Mayo =
+      cuenta.monto_Mayo ?? cuenta.Monto_Mayo ?? cuenta.mayoMonto ?? 0;
+    const presup_Mayo =
+      cuenta.presup_Mayo ?? cuenta.Presup_Mayo ?? cuenta.mayoPresupuesto ?? 0;
+    const monto_Junio =
+      cuenta.monto_Junio ?? cuenta.Monto_Junio ?? cuenta.junioMonto ?? 0;
+    const presup_Junio =
+      cuenta.presup_Junio ?? cuenta.Presup_Junio ?? cuenta.junioPresupuesto ?? 0;
+    const monto_Julio =
+      cuenta.monto_Julio ?? cuenta.Monto_Julio ?? cuenta.julioMonto ?? 0;
+    const presup_Julio =
+      cuenta.presup_Julio ?? cuenta.Presup_Julio ?? cuenta.julioPresupuesto ?? 0;
+    const monto_Agosto =
+      cuenta.monto_Agosto ?? cuenta.Monto_Agosto ?? cuenta.agostoMonto ?? 0;
+    const presup_Agosto =
+      cuenta.presup_Agosto ?? cuenta.Presup_Agosto ?? cuenta.agostoPresupuesto ?? 0;
     const monto_Septiembre =
-      cuenta.monto_Septiembre ?? cuenta.septiembreMonto ?? 0;
+      cuenta.monto_Septiembre ??
+      cuenta.Monto_Septiembre ??
+      cuenta.septiembreMonto ??
+      0;
     const presup_Septiembre =
-      cuenta.presup_Septiembre ?? cuenta.septiembrePresupuesto ?? 0;
-    const monto_Octubre = cuenta.monto_Octubre ?? cuenta.octubreMonto ?? 0;
+      cuenta.presup_Septiembre ??
+      cuenta.Presup_Septiembre ??
+      cuenta.septiembrePresupuesto ??
+      0;
+    const monto_Octubre =
+      cuenta.monto_Octubre ?? cuenta.Monto_Octubre ?? cuenta.octubreMonto ?? 0;
     const presup_Octubre =
-      cuenta.presup_Octubre ?? cuenta.octubrePresupuesto ?? 0;
+      cuenta.presup_Octubre ??
+      cuenta.Presup_Octubre ??
+      cuenta.octubrePresupuesto ??
+      0;
     const monto_Noviembre =
-      cuenta.monto_Noviembre ?? cuenta.noviembreMonto ?? 0;
+      cuenta.monto_Noviembre ??
+      cuenta.Monto_Noviembre ??
+      cuenta.noviembreMonto ??
+      0;
     const presup_Noviembre =
-      cuenta.presup_Noviembre ?? cuenta.noviembrePresupuesto ?? 0;
+      cuenta.presup_Noviembre ??
+      cuenta.Presup_Noviembre ??
+      cuenta.noviembrePresupuesto ??
+      0;
     const monto_Diciembre =
-      cuenta.monto_Diciembre ?? cuenta.diciembreMonto ?? 0;
+      cuenta.monto_Diciembre ??
+      cuenta.Monto_Diciembre ??
+      cuenta.diciembreMonto ??
+      0;
     const presup_Diciembre =
-      cuenta.presup_Diciembre ?? cuenta.diciembrePresupuesto ?? 0;
-    const acumulado_Anual = cuenta.acumulado_Anual ?? cuenta.anualAcumulado ?? 0;
+      cuenta.presup_Diciembre ??
+      cuenta.Presup_Diciembre ??
+      cuenta.diciembrePresupuesto ??
+      0;
+    const acumulado_Anual =
+      cuenta.acumulado_Anual ??
+      cuenta.Acumulado_Anual ??
+      cuenta.anualAcumulado ??
+      0;
 
     const parts = codigoCuenta.split("-");
     let esAgrupadora = false;
@@ -155,7 +205,7 @@ export function getBudgetAccounts(
   budget: AspelBudgetDTO | null | undefined,
 ): CuentaAspelTercerNivelDTO[] {
   if (!budget) return [];
-  return budget.cuentas ?? budget.cuentasDetalladas ?? [];
+  return budget.cuentas ?? budget.Cuentas ?? budget.cuentasDetalladas ?? [];
 }
 
 export function getBudgetCompanyName(
@@ -181,6 +231,7 @@ export function normalizeAspelBudgetResponse(
       budget.ID_Periodo_presupuesto ?? budget.idPeriodoPresupuesto,
     Periodo_Presupuesto:
       budget.Periodo_Presupuesto ?? budget.periodoPresupuesto,
+    Cuentas: budget.Cuentas ?? cuentas,
     cuentas,
     cuentasDetalladas: budget.cuentasDetalladas ?? cuentas,
   };

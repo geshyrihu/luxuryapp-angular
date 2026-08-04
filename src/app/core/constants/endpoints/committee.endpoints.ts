@@ -11,10 +11,20 @@ export const EndpointsCommittee = {
         `committee/board-directors/monthly-meetings/${customerId}`,
     },
     Cobranza: {
-      morosos: (customerId: string) => 
-        `committee/cobranza/morosos?customerId=${customerId}`,
-      morosoDetalle: (customerId: string, numCta: string) => 
-        `committee/cobranza/morosos/${numCta}/detalle?customerId=${customerId}`,
+      morosos: (customerId: string, year?: number, month?: number) => {
+        let url = `committee/cobranza/morosos?customerId=${customerId}`;
+        if (year && month) {
+          url += `&year=${year}&month=${month}`;
+        }
+        return url;
+      },
+      morosoDetalle: (customerId: string, numCta: string, year?: number, month?: number) => {
+        let url = `committee/cobranza/morosos/${numCta}/detalle?customerId=${customerId}`;
+        if (year && month) {
+          url += `&year=${year}&month=${month}`;
+        }
+        return url;
+      },
     },
     Home: {
       images: "committee/home-images",

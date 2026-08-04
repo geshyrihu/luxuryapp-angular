@@ -8,6 +8,17 @@
   --co-good: var(--ds-success);
   --co-bad: var(--ds-danger);
   --co-warm: var(--ds-warning);
+
+  // Colores de categorías para gráficos
+  --co-morosos: var(--ds-danger);
+  --co-deuda-corriente: var(--ds-info);
+  --co-collected: var(--ds-success);
+  --co-fallback-1: var(--ds-primary);
+  --co-fallback-2: var(--ds-secondary);
+  --co-fallback-3: var(--ds-tertiary);
+  --co-fallback-4: var(--ds-help);
+  --co-fallback-5: var(--ds-warning);
+  --co-fallback-6: var(--ds-luxury-gold);
 }
 
 .co-shell {

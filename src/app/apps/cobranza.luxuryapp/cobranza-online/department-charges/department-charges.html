@@ -1,0 +1,130 @@
+<section class="p-3 md:p-4 co-shell">
+  <div class="co-panel p-3 md:p-4 mb-3">
+    <div
+      class="flex flex-column xl:flex-row xl:align-items-start xl:justify-content-between gap-3"
+    >
+      <div class="min-w-0">
+        <div class="flex align-items-center gap-2 mb-2">
+          <span
+            class="inline-flex align-items-center justify-content-center rounded-xl"
+          >
+            <app-icon [icon]="'mdi:chart-line'" class="text-sm" />
+          </span>
+          <div>
+            <h2 class="m-0 text-xl font-semibold">Cargos por Departamento</h2>
+            <div class="text-color-secondary text-sm mt-1">
+              Desglose de los cargos aplicados durante el mes consultado ({{ currentMonthName() }}).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="co-toolbar">
+        <div class="flex align-items-center gap-2 mr-2">
+          <label class="text-sm font-medium text-color-secondary"
+            >Fecha corte:</label
+          >
+          <input
+            type="date"
+            class="p-inputtext p-component p-inputtext-sm"
+            [value]="currentDate()"
+            (change)="onDateChange($any($event.target).value)"
+          />
+        </div>
+        <il-button
+          label="Volver al Dashboard"
+          size="small"
+          severity="secondary"
+          variant="outline"
+          (clicked)="navigateTo('/contabilidad/collections')"
+        />
+      </div>
+    </div>
+
+    @if (!hasCustomer()) {
+    <div class="mt-3">
+      <div class="co-status-box">
+        <div class="font-medium mb-2">Sin cliente activo</div>
+        <div class="text-color-secondary">
+          Selecciona un cliente para consultar el estado de la cobranza.
+        </div>
+      </div>
+    </div>
+    } @else if (loading()) {
+    <div class="mt-3">
+      <div class="flex-1 flex flex-column justify-content-center">
+        <div class="font-medium">Cargando desglose de cargos...</div>
+        <div class="text-color-secondary">
+          Consultando Aspel live y preparando los datos de {{ currentMonthName() }}.
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div class="mt-4">
+      <p-table 
+        #dt
+        [value]="pivotData()" 
+        dataKey="accountNumber" 
+        styleClass="p-datatable-sm p-datatable-gridlines custom-table card" 
+        [scrollable]="true" 
+        [scrollHeight]="scrollHeight()"
+        [globalFilterFields]="['accountNumber', 'accountName']"
+        [paginator]="true"
+        [rows]="tablePrimeNgRows"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      >
+        <ng-template #caption>
+          <primeng-custom-caption
+            [dt]="dt"
+            [showAdd]="false"
+          />
+        </ng-template>
+        <ng-template #header>
+          <tr>
+            <th style="min-width: 250px" pFrozenColumn class="bg-surface-50 border-bottom-1 surface-border">
+              Cuenta / Depto
+            </th>
+            @for (concept of concepts; track concept.id) {
+              <th class="text-right text-xs bg-surface-50 border-bottom-1 surface-border" style="min-width: 110px;">
+                {{ concept.label }}
+              </th>
+            }
+            <th class="text-right font-bold bg-surface-50 border-bottom-1 surface-border" style="min-width: 120px" pFrozenColumn alignFrozen="right">
+              Total Cargos
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-row>
+          <tr class="border-bottom-1 surface-border">
+            <td style="background-color: var(--surface-card);" pFrozenColumn>
+              <div class="font-semibold text-sm">{{ row.accountName || row.accountNumber }}</div>
+              <div class="text-color-secondary text-xs">{{ row.accountNumber }}</div>
+            </td>
+            @for (concept of concepts; track concept.id) {
+              <td class="text-right text-sm">
+                @if (row['concept_' + concept.id]) {
+                  {{ row['concept_' + concept.id] | currency:'MXN':'symbol-narrow':'1.2-2' }}
+                } @else {
+                  <span class="text-color-secondary">-</span>
+                }
+              </td>
+            }
+            <td class="text-right font-medium text-blue-600" style="background-color: var(--surface-card);" pFrozenColumn alignFrozen="right">
+              {{ row.totalCharges | currency:'MXN':'symbol-narrow':'1.2-2' }}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <tr>
+            <td [attr.colspan]="concepts.length + 2" class="text-center p-4 text-color-secondary">
+              No se encontraron departamentos con cargos para este mes.
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    }
+  </div>
+</section>

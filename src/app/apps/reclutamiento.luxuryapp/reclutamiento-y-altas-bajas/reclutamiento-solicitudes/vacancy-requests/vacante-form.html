@@ -55,6 +55,15 @@
         placeholder="fecha de ingreso"
       />
 
+      <custom-input-select-signal
+        [control]="form.controls.candidateEmployeeId"
+        label="Candidato"
+        [data]="cb_candidate()"
+        [filter]="true"
+        [showClear]="false"
+        placeholder="--Selecciona un candidato--"
+      />
+
       <custom-input-textarea-signal
         [control]="form.controls.observations"
         label="Observaciones"

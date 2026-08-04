@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,14 +7,9 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { ActivatedRoute, RouterModule } from "@angular/router";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { CommonModule } from "@angular/common";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { AppCard } from "@ui/web/card/card";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -23,15 +19,7 @@ import { InspectionEdit } from "../models/inspection.model";
 @Component({
   selector: "app-inspection-detalle",
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    AppCard,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    WebButtonIcon,
-    AppIcon,
-  ],
+  imports: [CommonModule, RouterModule, AppCard],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="p-4">
@@ -53,7 +41,8 @@ import { InspectionEdit } from "../models/inspection.model";
                   <strong>Departamento:</strong> {{ inspection().departament }}
                 </span>
                 <span>
-                  <strong>Frecuencia:</strong> {{ formatFrequency(inspection().frequency) }}
+                  <strong>Frecuencia:</strong>
+                  {{ formatFrequency(inspection().frequency) }}
                 </span>
                 <span>
                   <strong>Estado:</strong>
@@ -87,33 +76,45 @@ import { InspectionEdit } from "../models/inspection.model";
                 </div>
                 <div>
                   <span class="text-gray-600">Cliente ID:</span>
-                  <span class="ml-2 font-mono">{{ inspection().customerId }}</span>
+                  <span class="ml-2 font-mono">{{
+                    inspection().customerId
+                  }}</span>
                 </div>
                 <div>
                   <span class="text-gray-600">Fecha de Creación:</span>
-                  <span class="ml-2">{{ formatDate(inspection().createdAt) }}</span>
+                  <span class="ml-2">{{
+                    formatDate(inspection().createdAt)
+                  }}</span>
                 </div>
               </div>
             </div>
 
-            @if (inspection().frequency === "weekly" && inspection().weeklyDays) {
+            @if (
+              inspection().frequency === "weekly" && inspection().weeklyDays
+            ) {
               <div>
                 <h3 class="font-semibold text-gray-700 mb-2">Días Semanales</h3>
                 <div class="flex flex-wrap gap-2">
-                  @for (day of getWeekdayLabels(inspection().weeklyDays); track day) {
-                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                  @for (
+                    day of getWeekdayLabels(inspection().weeklyDays);
+                    track day
+                  ) {
+                    <span
+                      class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                    >
                       {{ day }}
                     </span>
                   }
                 </div>
               </div>
             } @else if (
-              inspection().frequency === "monthly" &&
-              inspection().dayOfMonth
+              inspection().frequency === "monthly" && inspection().dayOfMonth
             ) {
               <div>
                 <h3 class="font-semibold text-gray-700 mb-2">Día del Mes</h3>
-                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                <span
+                  class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                >
                   Día {{ inspection().dayOfMonth }}
                 </span>
               </div>
@@ -182,7 +183,7 @@ export class InspectionDetailComponent implements OnInit {
         InspeccionesForm,
         { id: this.inspection()?.id, title: "Editar Inspección" },
         "Editar Inspección",
-        this.dialogHandlerS.sizeLg
+        this.dialogHandlerS.sizeLg,
       )
       .then((result) => {
         if (result) {

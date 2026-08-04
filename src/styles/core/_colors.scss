@@ -246,20 +246,21 @@ $color-budget-bg-dark:  #78350f !default;
 $color-budget-text-dark: #ffffff !default;
 
 // ── SUPERFICIES DARK MODE (PrimeNG) ─────────────────────────
-// Escala zinc/gris para dark surfaces de PrimeNG.
+// Escala navy DS para dark surfaces de PrimeNG, orientación Aura
+// (0 = texto más claro/más alto → 950 = fondo más oscuro/más bajo).
 // Excluida de la escala neutral porque solo aplica en dark mode.
-$surface-dark-0:   #09090b !default;
-$surface-dark-50:  #18181b !default;
-$surface-dark-100: #27272a !default;
-$surface-dark-200: #3f3f46 !default;
-$surface-dark-300: #52525b !default;
-$surface-dark-400: #71717a !default;
-$surface-dark-500: #a1a1aa !default;
-$surface-dark-600: #d4d4d8 !default;
-$surface-dark-700: #e4e4e7 !default;
-$surface-dark-800: #f4f4f5 !default;
-$surface-dark-900: #fafafa !default;
-$surface-dark-950: #ffffff !default;
+$surface-dark-0:   #e8eef6 !default; // primary-100 · on-surface / text
+$surface-dark-50:  #d1def0 !default; // primary-200
+$surface-dark-100: #a6c2e3 !default; // primary-300 · on-surface-variant
+$surface-dark-200: #78a4d4 !default; // primary-400 · outline
+$surface-dark-300: #4a90e2 !default; // primary-500 · outline-strong
+$surface-dark-400: #c5d0db !default; // neutral-300 · muted text
+$surface-dark-500: #2a4d7c !default; // primary-600
+$surface-dark-600: #1b365d !default; // primary-700
+$surface-dark-700: #0a1422 !default; // primary-900 · surface-container-low
+$surface-dark-800: #0a1422 !default; // primary-900 · content-hover
+$surface-dark-900: #050a11 !default; // primary-950 · content / bg
+$surface-dark-950: #050a11 !default; // primary-950 · form-field
 
 // ── SUPERFICIES M3 (ERP Premium) ──────────────────────
 $m3-surface:                    #f8f9fc !default;

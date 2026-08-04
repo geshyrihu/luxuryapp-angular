@@ -11,6 +11,7 @@ import { LxLoader } from "@ui/adaptive/loader/loader";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";
+import { RefreshService } from "src/app/core/services/refresh.service";
 import { HeaderEmployeeMonitor } from "../header-employee-monitor/header-employee-monitor";
 import { Sidebar } from "../sidebar/sidebar";
 @Component({
@@ -24,6 +25,7 @@ export class ViewEmployeeMonitor implements OnInit, AfterViewInit {
   public navService = inject(MenuService);
   public hideScroolNavService = inject(HidescrollnavService);
   public layout = inject(LayoutService);
+  public refreshService = inject(RefreshService);
   public footerFix = false;
   public footerLight = false;
   public footerDark: boolean = false;

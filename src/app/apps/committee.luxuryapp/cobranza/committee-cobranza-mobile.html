@@ -1,17 +1,80 @@
 @if (baseService.morososData(); as data) {
 <div class="committee-cobranza">
-  <!-- Hero: deuda total -->
-  <div class="committee-cobranza__hero">
-    <span class="committee-cobranza__hero-label">Deuda total pendiente</span>
-    <span class="committee-cobranza__hero-amount">
-      {{ data.totalDeudaPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
-    </span>
-    <div class="committee-cobranza__hero-meta">
-      <span>
-        <app-icon icon="mdi:home-city-outline" /> {{ data.totalMorosos }}
-        propiedades
+  <!-- KPIs eliminados para simplificar -->
+
+  @if (maintenanceMetrics()) {
+  <div class="px-3 pt-3 flex flex-column gap-3">
+    <!-- Mantenimiento -->
+    <div class="surface-card p-3 shadow-1 border-round-xl">
+      <h3 class="text-sm font-semibold m-0 mb-3 text-color text-center">
+        Mantenimiento Neto del Mes
+      </h3>
+      <div class="flex justify-content-center mb-3">
+        <div class="w-9rem">
+          <app-pie-chart
+            [dataGrafico]="maintenanceChartData()?.data"
+            [colorScheme]="{domain: maintenanceChartData()?.colors}"
+          ></app-pie-chart>
+        </div>
+      </div>
+      <div class="flex justify-content-between text-sm mb-1">
+        <span class="text-color-secondary">A recaudar:</span>
+        <span class="font-bold">{{ maintenanceMetrics().total | currency:"MXN":"symbol":"1.0-0" }}</span>
+      </div>
+      <div class="flex justify-content-between text-sm mb-1">
+        <span class="text-color-secondary">Abonado:</span>
+        <span class="font-bold text-success">{{ maintenanceMetrics().collected | currency:"MXN":"symbol":"1.0-0" }}</span>
+      </div>
+      <div class="flex justify-content-between text-sm">
+        <span class="text-color-secondary">Faltante por cobrar:</span>
+        <span class="font-bold text-warning">{{ maintenanceMetrics().pending | currency:"MXN":"symbol":"1.0-0" }}</span>
+      </div>
+    </div>
+
+    <!-- Extraordinaria -->
+    @if (extraordinaryChartData()) {
+    <div class="surface-card p-3 shadow-1 border-round-xl">
+      <h3 class="text-sm font-semibold m-0 mb-3 text-color text-center">
+        Cuotas Extraordinarias del Mes
+      </h3>
+      <div class="flex justify-content-center mb-3">
+        <div class="w-9rem">
+          <app-pie-chart
+            [dataGrafico]="extraordinaryChartData()?.data"
+            [colorScheme]="{domain: extraordinaryChartData()?.colors}"
+          ></app-pie-chart>
+        </div>
+      </div>
+      <div class="flex justify-content-between text-sm mb-1">
+        <span class="text-color-secondary">A recaudar:</span>
+        <span class="font-bold">{{ extraordinaryMetrics().total | currency:"MXN":"symbol":"1.0-0" }}</span>
+      </div>
+      <div class="flex justify-content-between text-sm mb-1">
+        <span class="text-color-secondary">Abonado:</span>
+        <span class="font-bold text-success">{{ extraordinaryMetrics().collected | currency:"MXN":"symbol":"1.0-0" }}</span>
+      </div>
+      <div class="flex justify-content-between text-sm">
+        <span class="text-color-secondary">Faltante por cobrar:</span>
+        <span class="font-bold text-warning">{{ extraordinaryMetrics().pending | currency:"MXN":"symbol":"1.0-0" }}</span>
+      </div>
+    </div>
+    }
+  </div>
+  }
+
+  <!-- Total Condóminos con Adeudo -->
+  <div class="px-3 pt-3">
+    <div class="committee-cobranza__hero" style="padding: 1.5rem 1rem">
+      <span class="committee-cobranza__hero-label" style="font-size: 0.8rem">Deuda Total Consolidada (Morosos)</span>
+      <span class="committee-cobranza__hero-amount" style="font-size: 1.8rem">
+        {{ data.totalDeudaPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
       </span>
-      <span> <app-icon icon="mdi:calendar-clock" /> Corte {{ data.fechaCorte }} </span>
+      <div class="committee-cobranza__hero-meta">
+        <span>
+          <app-icon icon="mdi:home-city-outline" /> {{ data.totalMorosos }} condóminos con adeudo
+        </span>
+        <span> <app-icon icon="mdi:domain" /> {{ data.totalDepartamentos }} deptos total</span>
+      </div>
     </div>
   </div>
 

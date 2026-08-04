@@ -7,21 +7,24 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { LxIconField } from "@ui/adaptive/iconfield/iconfield";
 import { LxInputIcon } from "@ui/adaptive/inputicon/inputicon";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PieChart } from "@ui/web/charts/pie-chart";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { SharedModule } from "primeng/api";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ChargeTemplateForm } from "../../cobranza-nativa/core/charge-templates/charge-template-form";
+import { CobranzaOnlineClasificacionDetail, type ClasificacionDetailData } from "./cobranza-online-clasificacion-detail";
 import { CobranzaOnlineService } from "../cobranza-online.service";
 import type {
   CobranzaOnlineDashboardResponse,
@@ -39,17 +42,21 @@ import type {
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     MessageModule,
     ButtonModule,
     TableModule,
+    SharedModule,
     LxIconField,
     LxInputIcon,
     CustomInputTextSignal,
+    CustomInputDateSignal,
     PieChart,
     AppIcon,
     WebButtonLabel,
     WebButtonIcon,
+    CobranzaOnlineClasificacionDetail,
   ],
   templateUrl: "./cobranza-online-dashboard.html",
   styleUrls: ["./cobranza-online-dashboard.component.scss"],
@@ -88,6 +95,9 @@ export class CobranzaOnlineDashboard {
   }
   readonly loading = signal(false);
   readonly syncRunning = signal(false);
+
+  readonly dateControl = new FormControl(this.currentDate());
+
   readonly detailLoading = signal(false);
   readonly syncStatus = signal<CobranzaOnlineSyncMetadata | null>(null);
   readonly lastSyncDiagnostics = signal<CobranzaOnlineSyncDiagnostics | null>(
@@ -224,86 +234,113 @@ export class CobranzaOnlineDashboard {
   });
 
   readonly tableCobranzaPerfecta = computed(() => {
+    const all = this.allDebtors();
     const kpis = this.dashboard()?.kpis;
-    const categories = this.dashboard()?.categories ?? [];
     const total = kpis?.totalDueCurrentMonth ?? 0;
 
-    const cobrado =
-      categories.find((c) => c.categoryId === "collected")?.total ?? 0;
-    const morosos =
-      categories.find((c) => c.categoryId === "morosos")?.total ?? 0;
-    const deudaCorriente =
-      categories.find((c) => c.categoryId === "deuda-corriente")?.total ?? 0;
+    // Grupos basados en la misma clasificacion frontend que usa el modal
+    const judiciales = all.filter(d => d.clasificacion === 'COBRANZA JUDICIAL');
+    const morosos    = all.filter(d => d.clasificacion === 'MOROSOS');
+    const corriente  = all.filter(d => d.clasificacion === 'DEUDA CORRIENTE');
+    const cobrado    = all.filter(d => d.clasificacion === 'SIN ADEUDO' || d.clasificacion === 'ANTICIPOS');
+
+    const sumBalance = (arr: typeof all) => arr.reduce((s, d) => s + (d.balance || 0), 0);
+
+    const saldoJudicial  = sumBalance(judiciales);
+    const saldoMorosos   = sumBalance(morosos);
+    const saldoCorriente = sumBalance(corriente);
+    const saldoCobrado   = sumBalance(cobrado);
+    // COBRANZA PERFECTA = todo lo que se debe cobrar este mes (KPI del backend)
+    // Se mantiene como referencia; los demas renglones suman balances de departamentos
+    const deuda = saldoJudicial + saldoMorosos + saldoCorriente;
 
     return [
       {
-        id: "",
         clasificacion: "COBRANZA PERFECTA",
+        description: "Total a recaudar este mes (-001 + -003)",
+        filterKey: "COBRANZA_PERFECTA_ALL",
         saldo: total,
         porcentaje: total ? 1 : 0,
         isTotal: true,
       },
       {
-        id: "2",
+        clasificacion: "COBRANZA JUDICIAL",
+        description: "Saldo >= 3 cuotas mensuales",
+        filterKey: "COBRANZA JUDICIAL",
+        saldo: saldoJudicial,
+        porcentaje: total ? saldoJudicial / total : 0,
+        isTotal: false,
+      },
+      {
         clasificacion: "MOROSOS",
-        saldo: morosos,
-        porcentaje: total ? morosos / total : 0,
+        description: "Saldo >= 1 cuota o cargos extraordinarios",
+        filterKey: "MOROSOS",
+        saldo: saldoMorosos,
+        porcentaje: total ? saldoMorosos / total : 0,
         isTotal: false,
       },
       {
-        id: "3",
         clasificacion: "DEUDA CORRIENTE",
-        saldo: deudaCorriente,
-        porcentaje: total ? deudaCorriente / total : 0,
+        description: "Saldo > 0 pero < 1 cuota",
+        filterKey: "DEUDA CORRIENTE",
+        saldo: saldoCorriente,
+        porcentaje: total ? saldoCorriente / total : 0,
         isTotal: false,
       },
       {
-        id: "",
-        clasificacion: "COBRADO",
-        saldo: cobrado,
-        porcentaje: total ? cobrado / total : 0,
+        clasificacion: "COBRADO / SIN ADEUDO",
+        description: "Saldo en cero o anticipo",
+        filterKey: "COBRADO",
+        saldo: saldoCobrado,
+        porcentaje: total ? saldoCobrado / total : 0,
         isTotal: false,
       },
     ];
   });
 
   readonly tableDeudaCondominos = computed(() => {
-    const categories = this.dashboard()?.categories ?? [];
+    const all = this.allDebtors();
 
-    const judicial =
-      categories.find((c) => c.categoryId === "deuda-anterior")?.total ?? 0;
-    const morosos =
-      categories.find((c) => c.categoryId === "morosos")?.total ?? 0;
-    const deudaCorriente =
-      categories.find((c) => c.categoryId === "deuda-corriente")?.total ?? 0;
+    const judiciales = all.filter(d => d.clasificacion === 'COBRANZA JUDICIAL');
+    const morosos    = all.filter(d => d.clasificacion === 'MOROSOS');
+    const corriente  = all.filter(d => d.clasificacion === 'DEUDA CORRIENTE');
 
-    const total = judicial + morosos + deudaCorriente;
+    const sumBalance = (arr: typeof all) => arr.reduce((s, d) => s + (d.balance || 0), 0);
+
+    const saldoJudicial  = sumBalance(judiciales);
+    const saldoMorosos   = sumBalance(morosos);
+    const saldoCorriente = sumBalance(corriente);
+    const total = saldoJudicial + saldoMorosos + saldoCorriente;
 
     return [
       {
-        id: "1",
         clasificacion: "COBRANZA JUDICIAL",
-        saldo: judicial,
-        porcentaje: total ? judicial / total : 0,
+        description: "Saldo >= 3 cuotas mensuales",
+        filterKey: "COBRANZA JUDICIAL",
+        saldo: saldoJudicial,
+        porcentaje: total ? saldoJudicial / total : 0,
         isTotal: false,
       },
       {
-        id: "2",
         clasificacion: "MOROSOS",
-        saldo: morosos,
-        porcentaje: total ? morosos / total : 0,
+        description: "Saldo >= 1 cuota o cargos extraordinarios",
+        filterKey: "MOROSOS",
+        saldo: saldoMorosos,
+        porcentaje: total ? saldoMorosos / total : 0,
         isTotal: false,
       },
       {
-        id: "3",
         clasificacion: "DEUDA CORRIENTE",
-        saldo: deudaCorriente,
-        porcentaje: total ? deudaCorriente / total : 0,
+        description: "Saldo > 0 pero < 1 cuota",
+        filterKey: "DEUDA CORRIENTE",
+        saldo: saldoCorriente,
+        porcentaje: total ? saldoCorriente / total : 0,
         isTotal: false,
       },
       {
-        id: "",
-        clasificacion: "TOTAL",
+        clasificacion: "TOTAL DEUDA",
+        description: "",
+        filterKey: "TOTAL_DEUDA_ALL",
         saldo: total,
         porcentaje: total ? 1 : 0,
         isTotal: true,
@@ -317,22 +354,32 @@ export class CobranzaOnlineDashboard {
       (category) => Math.abs(category.total) > 0,
     );
 
+    const getCSSVariable = (varName: string): string => {
+      if (typeof window !== "undefined") {
+        const root = document.documentElement;
+        return (
+          getComputedStyle(root).getPropertyValue(varName).trim() || "#000000"
+        );
+      }
+      return "#000000";
+    };
+
     const categoryColorMap: Record<string, string> = {
-      morosos: "var(--ds-danger)",
-      "deuda-corriente": "var(--ds-info)",
-      collected: "var(--ds-success)",
+      morosos: getCSSVariable("--co-morosos"),
+      "deuda-corriente": getCSSVariable("--co-deuda-corriente"),
+      collected: getCSSVariable("--co-collected"),
     };
     const fallbackPalette = [
-      "var(--ds-info)",
-      "var(--ds-help)",
-      "var(--ds-tertiary)",
-      "var(--ds-secondary)",
-      "var(--ds-warning)",
-      "var(--ds-luxury-gold)",
+      getCSSVariable("--co-fallback-1"),
+      getCSSVariable("--co-fallback-2"),
+      getCSSVariable("--co-fallback-3"),
+      getCSSVariable("--co-fallback-4"),
+      getCSSVariable("--co-fallback-5"),
+      getCSSVariable("--co-fallback-6"),
     ];
 
     if (!hasVisibleTotals) {
-      return { domain: ["var(--ds-surface-variant)"] };
+      return { domain: [getCSSVariable("--co-line")] };
     }
 
     const domain = categories.map(
@@ -382,62 +429,95 @@ export class CobranzaOnlineDashboard {
     (this.dashboard()?.topDebtors ?? []).slice(0, 6),
   );
 
-  readonly allDebtors = computed(() => this.dashboard()?.departments ?? []);
+  readonly allDebtors = computed(() => {
+    const deps = this.dashboard()?.departments ?? [];
+
+    return deps.map(d => {
+      const balance = d.balance || 0;
+      const charge = d.currentMonthCharge || 0;
+      const hasExtraordinary = (d.extraordinaryBalance || 0) > 0;
+
+      // Estrategia de clasificación por cargo individual:
+      // - Si la cuenta tiene cargo del mes, usarlo como umbral exacto.
+      // - Si no tiene cargo (saldo inicial / cuenta irregular), marcar como REVISAR.
+      let clasificacion = 'SIN ADEUDO';
+      let isJudicial = false;
+
+      if (balance < 0) {
+        clasificacion = 'ANTICIPOS';
+      } else if (balance === 0) {
+        clasificacion = 'SIN ADEUDO';
+      } else if (charge > 0) {
+        // Tiene cargo vigente: clasificar por múltiplos
+        if (balance >= charge * 3) {
+          clasificacion = 'COBRANZA JUDICIAL';
+          isJudicial = true;
+        } else if (balance >= charge || hasExtraordinary) {
+          clasificacion = 'MOROSOS';
+        } else {
+          clasificacion = 'DEUDA CORRIENTE';
+        }
+      } else {
+        // Sin cargo vigente este mes: tiene saldo pero no se generó cargo
+        // Puede ser saldo inicial o cuenta que cambió de cuota
+        clasificacion = 'REVISAR';
+      }
+
+      return { ...d, clasificacion, isJudicial };
+    }).sort((a, b) => b.balance - a.balance);
+  });
 
   readonly towers = computed(() => this.dashboard()?.towers ?? []);
 
   readonly advances = computed(() => this.dashboard()?.advances ?? []);
+  readonly totalAdvances = computed(() => this.advances().reduce((acc, curr) => acc + (curr.balance * -1), 0));
 
-  readonly conceptChartData = computed(() => {
-    const charges = this.dashboard()?.currentCharges;
-    if (!charges) return null;
+  readonly additionalIncomes = computed(() => {
+    return this.dashboard()?.currentCharges?.additionalIncomes ?? [];
+  });
 
-    const totalVigente =
-      charges.maintenanceFee + charges.extraordinaryFee + charges.finesFee;
-    if (totalVigente <= 0) {
+  readonly additionalIncomesTotal = computed(() => {
+    return this.additionalIncomes().reduce((acc, v) => acc + v.amount, 0);
+  });
+
+  readonly maintenanceMetrics = computed(() => {
+    return this.dashboard()?.currentCharges?.maintenance;
+  });
+
+  readonly extraordinaryMetrics = computed(() => {
+    return this.dashboard()?.currentCharges?.extraordinary;
+  });
+
+  readonly maintenanceChartData = computed(() => {
+    const m = this.maintenanceMetrics();
+    if (!m || m.total <= 0) {
       return {
-        data: [{ name: "Sin Cuotas Vigentes", value: 1 }],
-        colors: ["var(--ds-surface-variant)"],
+        data: [{ name: "Sin Mantenimiento", value: 1 }],
+        colors: ["#e2e8f0"],
       };
     }
 
     return {
       data: [
-        { name: "Mantenimiento", value: charges.maintenanceFee },
-        { name: "Extraordinaria", value: charges.extraordinaryFee },
-        { name: "Multas", value: charges.finesFee },
+        { name: "Cobrado", value: m.collected },
+        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 },
       ],
-      colors: [
-        "var(--ds-info)",
-        "var(--ds-warning)",
-        "var(--ds-danger)",
-      ],
+      colors: ["#22c55e", "#f59e0b"],
     };
   });
 
-  readonly collectedChartData = computed(() => {
-    const charges = this.dashboard()?.currentCharges;
-    const collectedConcepts = charges?.collectedConcepts ?? [];
-    
-    if (!collectedConcepts.length) {
-      return {
-        data: [{ name: "Sin Recaudación", value: 1 }],
-        colors: ["var(--ds-surface-variant)"],
-      };
+  readonly extraordinaryChartData = computed(() => {
+    const m = this.extraordinaryMetrics();
+    if (!m || m.total <= 0) {
+      return null;
     }
 
-    const fallbackColors = [
-      "var(--ds-success)",
-      "var(--ds-info)",
-      "var(--ds-help)",
-      "var(--ds-primary)",
-      "var(--ds-secondary)",
-      "var(--ds-tertiary)"
-    ];
-
     return {
-      data: collectedConcepts.map(c => ({ name: c.conceptName, value: c.amount })),
-      colors: collectedConcepts.map((_, i) => fallbackColors[i % fallbackColors.length]),
+      data: [
+        { name: "Cobrado", value: m.collected },
+        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 },
+      ],
+      colors: ["#22c55e", "#f59e0b"],
     };
   });
 
@@ -533,6 +613,10 @@ export class CobranzaOnlineDashboard {
   ];
 
   constructor() {
+    this.dateControl.valueChanges.subscribe(val => {
+      if (val) this.onDateChange(val);
+    });
+
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (!customerId) {
@@ -663,6 +747,45 @@ export class CobranzaOnlineDashboard {
           void this.loadSummary(customerId);
         }
       });
+  }
+
+  onOpenClasificacionDetail(row: { clasificacion: string; description: string; isTotal?: boolean; filterKey?: string }) {
+    const all = this.allDebtors();
+
+    let departamentos: typeof all;
+    const filterKey = row.filterKey ?? row.clasificacion;
+
+    switch (filterKey) {
+      case 'COBRANZA_PERFECTA_ALL':
+        // Fila total azul: todos los departamentos
+        departamentos = [...all];
+        break;
+      case 'COBRADO':
+        // Cobrado = quienes ya pagaron (saldo 0 o negativo)
+        departamentos = all.filter(
+          d => d.clasificacion === 'SIN ADEUDO' || d.clasificacion === 'ANTICIPOS',
+        );
+        break;
+      case 'TOTAL_DEUDA_ALL':
+        // Fila total roja: todos los deudores con saldo > 0
+        departamentos = all.filter(d => d.balance > 0);
+        break;
+      default:
+        departamentos = all.filter(d => d.clasificacion === filterKey);
+    }
+
+    const data: ClasificacionDetailData = {
+      clasificacion: row.clasificacion,
+      description: row.description,
+      departamentos,
+    };
+
+    void this.dialogHandlerS.openDialog(
+      CobranzaOnlineClasificacionDetail,
+      data,
+      `Detalle: ${row.clasificacion} (${departamentos.length} deptos.)`,
+      this.dialogHandlerS.sizeLg,
+    );
   }
 
   getCategoryLabel(categoryId: string) {

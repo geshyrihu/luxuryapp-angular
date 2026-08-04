@@ -39,18 +39,18 @@ export const LuxuryPreset = definePreset(Aura, {
             },
             dark: {
                 surface: {
-                    0: '#E8EEF6',     // on-surface · text (primary-100)
-                    50: '#D1DEF0',    // primary-200
-                    100: '#A6C2E3',   // primary-300 · on-surface-variant
-                    200: '#78A4D4',   // primary-400 · outline
-                    300: '#4A90E2',   // primary-500 · outline-strong
-                    400: '#C5D0DB',   // neutral-300 · muted text
-                    500: '#2A4D7C',   // primary-600
-                    600: '#1B365D',   // primary-700
-                    700: '#0A1422',   // primary-900 · surface-container-low
-                    800: '#0A1422',   // primary-900 · content-hover
-                    900: '#050A11',   // primary-950 · surface-container-lowest / content
-                    950: '#050A11'    // primary-950 · form-field
+                    0: "var(--surface-dark-0)",   // on-surface · text (primary-100)
+                    50: "var(--surface-dark-50)",  // primary-200
+                    100: "var(--surface-dark-100)", // primary-300 · on-surface-variant
+                    200: "var(--surface-dark-200)", // primary-400 · outline
+                    300: "var(--surface-dark-300)", // primary-500 · outline-strong
+                    400: "var(--surface-dark-400)", // neutral-300 · muted text
+                    500: "var(--surface-dark-500)", // primary-600
+                    600: "var(--surface-dark-600)", // primary-700
+                    700: "var(--surface-dark-700)", // primary-900 · surface-container-low
+                    800: "var(--surface-dark-800)", // primary-900 · content-hover
+                    900: "var(--surface-dark-900)", // primary-950 · content / bg
+                    950: "var(--surface-dark-950)"  // primary-950 · form-field
                 }
             }
         }

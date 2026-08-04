@@ -20,6 +20,8 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -43,6 +45,8 @@ function buildTodayInputValue() {
     ButtonModule,
     CustomInputSelectSignal,
     TableModule,
+    PrimeNgCustomCaption,
+    PrimeNgCustomTableFooter,
     DataViewMobile,
     MobileListItem,
     WebButtonLabel,

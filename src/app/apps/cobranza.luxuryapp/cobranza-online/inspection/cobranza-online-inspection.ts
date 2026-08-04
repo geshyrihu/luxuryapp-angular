@@ -16,14 +16,13 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { CobranzaOnlineService } from "../cobranza-online.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { CobranzaOnlineService } from "../cobranza-online.service";
 import type {
   CobranzaOnlineInspectionResponse,
   CobranzaOnlineInspectionRow,
@@ -115,12 +114,11 @@ export class CobranzaOnlineInspection {
     if (!customerId) return;
 
     this.loading.set(true);
-    const response =
-      await this.cobranzaOnlineS.getInspection(
-        customerId,
-        this.currentYear(),
-        this.currentMonth(),
-      );
+    const response = await this.cobranzaOnlineS.getInspection(
+      customerId,
+      this.currentYear(),
+      this.currentMonth(),
+    );
 
     const typedResponse = response as CobranzaOnlineInspectionResponse | null;
     this.inspection.set(typedResponse);
@@ -141,7 +139,7 @@ export class CobranzaOnlineInspection {
         month: this.currentMonth(),
         row,
       },
-      `Histúrico de ${row.departmentCode || row.accountNumber}`,
+      `Histórico  de ${row.departmentCode || row.accountNumber}`,
       this.dialogHandlerS.sizeFull,
       true,
     );

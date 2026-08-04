@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-07-30T17:20:30.867Z",
-  "totalMatches": 1265,
+  "generatedAt": "2026-08-02T00:57:26.388Z",
+  "totalMatches": 1260,
   "userFacingMatches": 324,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/apps",
-      "count": 585
+      "count": 584
     },
     {
       "key": "app/shared",
-      "count": 225
+      "count": 228
     },
     {
       "key": "src/styles",
-      "count": 156
+      "count": 149
     },
     {
       "key": "app/routing",
@@ -40,11 +40,11 @@
   "byUserFacingModule": [
     {
       "key": "app/apps",
-      "count": 224
+      "count": 225
     },
     {
       "key": "app/core",
-      "count": 60
+      "count": 59
     },
     {
       "key": "app/shared",
@@ -62,31 +62,31 @@
   "byCategory": [
     {
       "key": "docs",
-      "count": 496
+      "count": 481
     },
     {
       "key": "code_string",
-      "count": 197
+      "count": 199
+    },
+    {
+      "key": "code_comment",
+      "count": 192
     },
     {
       "key": "template_comment",
       "count": 182
     },
     {
-      "key": "code_comment",
-      "count": 179
-    },
-    {
       "key": "template_text",
-      "count": 121
+      "count": 119
     },
     {
       "key": "style_comment",
-      "count": 57
+      "count": 51
     },
     {
       "key": "code_misc",
-      "count": 18
+      "count": 21
     },
     {
       "key": "style_content",
@@ -1462,6 +1462,171 @@
       "preview": "**Estado:** ✅ Auditoría completa — sin hallazgos abiertos"
     },
     {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 796,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "code: `// ❌ MAL: ReportResultItemDTO.cs (múltiples DTOs)"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 798,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "←"
+      ],
+      "preview": "public record ReportImageDTO { ... }      // ← PROHIBIDO"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 799,
+      "category": "code_misc",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "←"
+      ],
+      "preview": "public record ReportFilterDTO { ... }     // ← PROHIBIDO"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 801,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "// ✅ BIEN: Archivo separado para cada DTO"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 802,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// ReportResultItemDTO.cs → solo ReportResultItemDTO"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 803,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// ReportImageDTO.cs → solo ReportImageDTO"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 804,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// ReportFilterDTO.cs → solo ReportFilterDTO`,"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 831,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// KPIs: baseline → target, timeline, verificacion"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 835,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// RN-MOD-010 (Nivel 2 - Flujo): \"X transiciona: STATE1 → STATE2\""
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 849,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "'Evita planes incompletos, reduce retrabajo en implementacion y garantiza trazabilidad auditoria→codigo.',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 866,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// RN-ACC-010: \"Visitante: PENDING → CHECKED_IN → ACTIVE → CHECKED_OUT\""
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 885,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "title: 'Auditoria verifica trazabilidad: FASE 0 → Plan → Codigo',"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 887,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "'Cuando se audita un modulo, toda Regla de Negocio debe trazarse: existe en FASE 0 → mapeada en plan (seccion 3) → implementada en codigo (archivo:linea). Si una RN no aparece en c"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 895,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// RN-ACC-001 (FASE 0) → Plan Sección 3 → Codigo:"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+      "line": 899,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// Si RN no está en codigo → Hallazgo crítico"
+    },
+    {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/README.md",
       "line": 1,
       "category": "docs",
@@ -2355,163 +2520,6 @@
         "🔐"
       ],
       "preview": "\"🔐 Cuenta de acceso\","
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 1,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "📍",
-        "📂",
-        "💼",
-        "💰"
-      ],
-      "preview": "📍 Ruta: 📂 Documentación > 💼 Contabilidad > 💰 Cobranza Online"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 3,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "📅"
-      ],
-      "preview": "📅 Última Revisión: Junio 2026"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 4,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🛡"
-      ],
-      "preview": "🛡️ Estado: Vigente"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 5,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "👤"
-      ],
-      "preview": "👤 Responsable: Antigravity"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 7,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "📊"
-      ],
-      "preview": "# 📊 Análisis de Módulo: Cobranza Online (Frontend)"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 13,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🎯"
-      ],
-      "preview": "## 1. 🎯 Resumen Ejecutivo"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 17,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "### Criterios de Éxito ✅"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 24,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🧩"
-      ],
-      "preview": "## 2. 🧩 Estructura de Componentes y Páginas"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 28,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "📂"
-      ],
-      "preview": "### 📂 Modelos (`models/`)"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 37,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "📄"
-      ],
-      "preview": "### 📄 Páginas (`pages/`)"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 47,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "📊"
-      ],
-      "preview": "## 3. 📊 Arquitectura y Flujo de Datos"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 65,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⚖"
-      ],
-      "preview": "## 4. ⚖️ Funcionalidades Clave (Showcase)"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 75,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "## 5. ⚠️ Alertas y Consideraciones"
-    },
-    {
-      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/Docs/analisis-cobranza-online.md",
-      "line": 87,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "🚀"
-      ],
-      "preview": "🚀 *Análisis Generado de Forma Exitosa.*"
     },
     {
       "file": "src/app/apps/contabilidad.luxuryapp/ar/aspel-customer-empresa/aspel-customer-empresa-list.html",
@@ -3798,28 +3806,6 @@
       "preview": "[innerHTML]=\"service.hasServiceOrder ? '🛠️' : '⚪'\""
     },
     {
-      "file": "src/app/apps/mantenimiento.luxuryapp/inspection/bitacora/mis-inspecciones-agregar-imagenes.html",
-      "line": 37,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🆕"
-      ],
-      "preview": "<h6 class=\"text-primary\">🆕 Nuevas imógenes:</h6>"
-    },
-    {
-      "file": "src/app/apps/mantenimiento.luxuryapp/inspection/bitacora/mis-inspecciones-agregar-imagenes.html",
-      "line": 61,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "💾"
-      ],
-      "preview": "<h6 class=\"mt-3\" >💾 Imógenes almacenadas:</h6>"
-    },
-    {
       "file": "src/app/apps/mantenimiento.luxuryapp/inspection/bitacora/mis-inspecciones-ejecutar.html",
       "line": 6,
       "category": "template_comment",
@@ -3876,14 +3862,14 @@
     },
     {
       "file": "src/app/apps/mantenimiento.luxuryapp/inspection/lista-inspecciones/lista-inspecciones.html",
-      "line": 93,
+      "line": 102,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
       "symbols": [
         "📱"
       ],
-      "preview": "<!-- 📱 INICIO: Componente adaptado para versión mívil -->"
+      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/apps/mantenimiento.luxuryapp/logs/bitacoras/medidores/medidor-lectura-chart.html",
@@ -8052,13 +8038,13 @@
     {
       "file": "src/app/core/services/storage.service.ts",
       "line": 31,
-      "category": "code_string",
+      "category": "code_comment",
       "module": "app/core",
-      "severity": "medium",
+      "severity": "low",
       "symbols": [
         "✅"
       ],
-      "preview": "\"✅\","
+      "preview": "//   \"✅\","
     },
     {
       "file": "src/app/core/services/storage.service.ts",
@@ -11533,7 +11519,7 @@
     },
     {
       "file": "src/app/shared/ui/mobile/data-view-mobile/data-view-mobile.ts",
-      "line": 205,
+      "line": 206,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -11785,6 +11771,39 @@
         "→"
       ],
       "preview": "3.1 → 3.2 → 3.3"
+    },
+    {
+      "file": "src/app/shared/ui/mobile/list-item/list-item.ts",
+      "line": 9,
+      "category": "code_comment",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "📱"
+      ],
+      "preview": "* 📱 ILI LIST ITEM (Mobile)"
+    },
+    {
+      "file": "src/app/shared/ui/mobile/list-item/list-item.ts",
+      "line": 17,
+      "category": "code_comment",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✓"
+      ],
+      "preview": "* ✓ GOOD:"
+    },
+    {
+      "file": "src/app/shared/ui/mobile/list-item/list-item.ts",
+      "line": 22,
+      "category": "code_comment",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✗"
+      ],
+      "preview": "* ✗ BAD (< 44px touch target):"
     },
     {
       "file": "src/app/shared/ui/mobile/rating/rating.ts",
@@ -12118,7 +12137,7 @@
       "preview": "label=\"➕\""
     },
     {
-      "file": "src/app/shared/ui/web/whats-new/whats-new.component.ts",
+      "file": "src/app/shared/ui/web/whats-new/whats-new.ts",
       "line": 7,
       "category": "code_comment",
       "module": "app/shared",
@@ -12339,7 +12358,7 @@
     },
     {
       "file": "src/index.html",
-      "line": 68,
+      "line": 64,
       "category": "template_comment",
       "module": "src/root",
       "severity": "low",
@@ -12350,84 +12369,7 @@
     },
     {
       "file": "src/styles/base/_dark-mode.scss",
-      "line": 12,
-      "category": "style_comment",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "//   --p-surface-100  →  light: slate-100 (#f1f5f9)  |  dark: zinc-900 (#18181b)"
-    },
-    {
-      "file": "src/styles/base/_dark-mode.scss",
-      "line": 13,
-      "category": "style_comment",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "//   --p-surface-200  →  light: slate-200 (#e2e8f0)  |  dark: zinc-800 (#27272a)"
-    },
-    {
-      "file": "src/styles/base/_dark-mode.scss",
-      "line": 14,
-      "category": "style_comment",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "//   --p-surface-300  →  light: slate-300 (#cbd5e1)  |  dark: zinc-700 (#3f3f46)"
-    },
-    {
-      "file": "src/styles/base/_dark-mode.scss",
-      "line": 15,
-      "category": "style_comment",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "//   --p-surface-400  →  light: slate-400 (#94a3b8)  |  dark: zinc-600 (#52525b)"
-    },
-    {
-      "file": "src/styles/base/_dark-mode.scss",
-      "line": 16,
-      "category": "style_comment",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "//   --p-surface-500  →  light: slate-500 (#64748b)  |  dark: zinc-500 (#71717a)"
-    },
-    {
-      "file": "src/styles/base/_dark-mode.scss",
-      "line": 17,
-      "category": "style_comment",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "//   --p-surface-700  →  light: slate-700 (#334155)  |  dark: zinc-300 (#d4d4d8)"
-    },
-    {
-      "file": "src/styles/base/_dark-mode.scss",
-      "line": 18,
-      "category": "style_comment",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "//   --p-surface-900  →  light: slate-900 (#0f172a)  |  dark: zinc-100 (#f4f4f5)"
-    },
-    {
-      "file": "src/styles/base/_dark-mode.scss",
-      "line": 430,
+      "line": 426,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -12456,11 +12398,11 @@
       "symbols": [
         "♿"
       ],
-      "preview": "/* ♿ Focus visible mejorado para todos los elementos interactivos (WCAG 2.4.7) */"
+      "preview": "/* ♿ Focus visible y reduced-motion consolidados en styles.scss (§10/§11) —"
     },
     {
       "file": "src/styles/base/_global.scss",
-      "line": 236,
+      "line": 233,
       "category": "style_text",
       "module": "src/styles",
       "severity": "low",
@@ -12587,6 +12529,17 @@
         "→"
       ],
       "preview": "// ⬜  $neutral  → Grises neutros para fondos, bordes, textos"
+    },
+    {
+      "file": "src/styles/core/_colors.scss",
+      "line": 250,
+      "category": "style_comment",
+      "module": "src/styles",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// (0 = texto más claro/más alto → 950 = fondo más oscuro/más bajo)."
     },
     {
       "file": "src/styles/core/_functions.scss",
@@ -12744,7 +12697,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 379,
+      "line": 380,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -12755,7 +12708,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 517,
+      "line": 522,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -12766,7 +12719,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 774,
+      "line": 779,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -12777,7 +12730,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 1073,
+      "line": 1078,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -12788,7 +12741,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 1173,
+      "line": 1178,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13120,18 +13073,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 156,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "PrimeNG base → @layer primeng-brand → PrimeFlex utilities"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 174,
+      "line": 179,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13142,7 +13084,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 178,
+      "line": 183,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13153,7 +13095,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 182,
+      "line": 187,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13164,7 +13106,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 183,
+      "line": 188,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13175,7 +13117,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 184,
+      "line": 189,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13186,7 +13128,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 185,
+      "line": 190,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13197,7 +13139,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 186,
+      "line": 191,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13208,7 +13150,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 187,
+      "line": 192,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13219,18 +13161,18 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 188,
+      "line": 193,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
       "symbols": [
         "→"
       ],
-      "preview": "7. **Fonts** → DM Sans (cargado desde index.html)"
+      "preview": "7. **Fonts** → Outfit variable self-hosted (`core/_fonts.scss` + `public/assets/fonts/`)"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 189,
+      "line": 194,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13241,7 +13183,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 190,
+      "line": 195,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13252,7 +13194,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 194,
+      "line": 199,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13263,7 +13205,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 203,
+      "line": 208,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13274,7 +13216,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 204,
+      "line": 209,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13285,7 +13227,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 205,
+      "line": 210,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13296,7 +13238,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 211,
+      "line": 216,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13307,7 +13249,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 227,
+      "line": 232,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13318,7 +13260,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 233,
+      "line": 238,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13329,7 +13271,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 245,
+      "line": 250,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13340,7 +13282,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 249,
+      "line": 254,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13351,7 +13293,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 250,
+      "line": 255,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13362,7 +13304,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 251,
+      "line": 256,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13373,7 +13315,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 252,
+      "line": 257,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13384,7 +13326,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 253,
+      "line": 258,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13395,7 +13337,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 254,
+      "line": 259,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13406,7 +13348,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 255,
+      "line": 260,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13417,7 +13359,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 256,
+      "line": 261,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13428,7 +13370,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 257,
+      "line": 262,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13439,7 +13381,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 261,
+      "line": 266,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13450,7 +13392,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 265,
+      "line": 270,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13461,7 +13403,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 266,
+      "line": 271,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13472,7 +13414,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 267,
+      "line": 272,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13483,7 +13425,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 268,
+      "line": 273,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13494,7 +13436,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 269,
+      "line": 274,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13505,7 +13447,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 270,
+      "line": 275,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13516,7 +13458,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 274,
+      "line": 279,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13527,7 +13469,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 285,
+      "line": 290,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13538,7 +13480,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 299,
+      "line": 304,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13549,7 +13491,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 302,
+      "line": 307,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13560,7 +13502,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 308,
+      "line": 313,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13571,7 +13513,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 314,
+      "line": 319,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13582,7 +13524,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 323,
+      "line": 328,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13593,7 +13535,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 336,
+      "line": 341,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13605,7 +13547,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 340,
+      "line": 345,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13616,7 +13558,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 342,
+      "line": 347,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13627,7 +13569,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 351,
+      "line": 356,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13638,7 +13580,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 357,
+      "line": 362,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13646,66 +13588,6 @@
         "🔄"
       ],
       "preview": "### 🔄 Migraciones Realizadas"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 361,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→",
-        "✅"
-      ],
-      "preview": "| `icon-pi-*` → `app-icon` / `pi pi-*` | 14 HTML/TS | ✅ Completa |"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 362,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→",
-        "✅"
-      ],
-      "preview": "| Colores hardcodeados → `var(--ds-*)` | ~40 SCSS | ✅ Completa |"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 363,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→",
-        "✅"
-      ],
-      "preview": "| Focus shadows unificados → `var(--ds-shadow-focus*)` | 6 SCSS | ✅ Completa |"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 364,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→",
-        "✅"
-      ],
-      "preview": "| `#ffffff` → `var(--ds-primary-text)` | 8 SCSS | ✅ Completa |"
-    },
-    {
-      "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 365,
-      "category": "docs",
-      "module": "src/styles",
-      "severity": "low",
-      "symbols": [
-        "→",
-        "✅"
-      ],
-      "preview": "| `rgba(0,0,0,0.45)` → `var(--ds-bg-overlay)` | 3 SCSS | ✅ Completa |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -13717,7 +13599,7 @@
         "→",
         "✅"
       ],
-      "preview": "| Toast (28) y alerts (17) hardcodes → DS tokens | 2 SCSS | ✅ Completa |"
+      "preview": "| `icon-pi-*` → `app-icon` / `pi pi-*` | 14 HTML/TS | ✅ Completa |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -13726,9 +13608,10 @@
       "module": "src/styles",
       "severity": "low",
       "symbols": [
+        "→",
         "✅"
       ],
-      "preview": "| `_variables.scss` limpio de duplicados | 1 SCSS | ✅ Completa |"
+      "preview": "| Colores hardcodeados → `var(--ds-*)` | ~40 SCSS | ✅ Completa |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -13740,7 +13623,7 @@
         "→",
         "✅"
       ],
-      "preview": "| **Decisiones de marca** (`$sidebar-bg`, `$success-color`, etc.) → `core/_colors.scss` | 2 SCSS | ✅ **27-jun** |"
+      "preview": "| Focus shadows unificados → `var(--ds-shadow-focus*)` | 6 SCSS | ✅ Completa |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -13749,9 +13632,10 @@
       "module": "src/styles",
       "severity": "low",
       "symbols": [
+        "→",
         "✅"
       ],
-      "preview": "| **`mypreset.ts`** — surfaces/tag/message dark sin hardcodes | 1 TS | ✅ **27-jun** |"
+      "preview": "| `#ffffff` → `var(--ds-primary-text)` | 8 SCSS | ✅ Completa |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -13760,9 +13644,10 @@
       "module": "src/styles",
       "severity": "low",
       "symbols": [
+        "→",
         "✅"
       ],
-      "preview": "| Escala **`$surface-dark-*`** agregada + expuesta | 2 SCSS | ✅ **27-jun** |"
+      "preview": "| `rgba(0,0,0,0.45)` → `var(--ds-bg-overlay)` | 3 SCSS | ✅ Completa |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -13771,9 +13656,10 @@
       "module": "src/styles",
       "severity": "low",
       "symbols": [
+        "→",
         "✅"
       ],
-      "preview": "| **`--secondary-50..950`** expuesto como CSS vars | 1 SCSS | ✅ **27-jun** |"
+      "preview": "| Toast (28) y alerts (17) hardcodes → DS tokens | 2 SCSS | ✅ Completa |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -13784,11 +13670,67 @@
       "symbols": [
         "✅"
       ],
-      "preview": "| **`--success/warning/danger/info-400/500`** expuesto | 2 SCSS | ✅ **27-jun** |"
+      "preview": "| `_variables.scss` limpio de duplicados | 1 SCSS | ✅ Completa |"
+    },
+    {
+      "file": "src/styles/estandar-hoja-estilos.md",
+      "line": 373,
+      "category": "docs",
+      "module": "src/styles",
+      "severity": "low",
+      "symbols": [
+        "→",
+        "✅"
+      ],
+      "preview": "| **Decisiones de marca** (`$sidebar-bg`, `$success-color`, etc.) → `core/_colors.scss` | 2 SCSS | ✅ **27-jun** |"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
       "line": 374,
+      "category": "docs",
+      "module": "src/styles",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **`mypreset.ts`** — surfaces/tag/message dark sin hardcodes | 1 TS | ✅ **27-jun** |"
+    },
+    {
+      "file": "src/styles/estandar-hoja-estilos.md",
+      "line": 375,
+      "category": "docs",
+      "module": "src/styles",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| Escala **`$surface-dark-*`** agregada + expuesta | 2 SCSS | ✅ **27-jun** |"
+    },
+    {
+      "file": "src/styles/estandar-hoja-estilos.md",
+      "line": 376,
+      "category": "docs",
+      "module": "src/styles",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **`--secondary-50..950`** expuesto como CSS vars | 1 SCSS | ✅ **27-jun** |"
+    },
+    {
+      "file": "src/styles/estandar-hoja-estilos.md",
+      "line": 377,
+      "category": "docs",
+      "module": "src/styles",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **`--success/warning/danger/info-400/500`** expuesto | 2 SCSS | ✅ **27-jun** |"
+    },
+    {
+      "file": "src/styles/estandar-hoja-estilos.md",
+      "line": 379,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13799,7 +13741,7 @@
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
-      "line": 386,
+      "line": 391,
       "category": "docs",
       "module": "src/styles",
       "severity": "low",
@@ -13909,7 +13851,7 @@
     },
     {
       "file": "src/styles/styles.scss",
-      "line": 56,
+      "line": 52,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13920,7 +13862,7 @@
     },
     {
       "file": "src/styles/styles.scss",
-      "line": 135,
+      "line": 132,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13977,7 +13919,7 @@
     },
     {
       "file": "src/styles/theme/_variables.scss",
-      "line": 428,
+      "line": 457,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13988,7 +13930,7 @@
     },
     {
       "file": "src/styles/theme/_variables.scss",
-      "line": 638,
+      "line": 694,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13999,7 +13941,7 @@
     },
     {
       "file": "src/styles/web/_buttons.scss",
-      "line": 726,
+      "line": 732,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -14010,7 +13952,7 @@
     },
     {
       "file": "src/styles/web/_buttons.scss",
-      "line": 727,
+      "line": 733,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",

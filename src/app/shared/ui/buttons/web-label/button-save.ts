@@ -11,23 +11,49 @@ import { BaseButton } from "../base/base-button";
   selector: "il-button-save",
 
   imports: [AppIcon],
-  styles: [":host { display: block; width: fit-content; margin-left: auto; }"],
+  styles: [
+    `
+      :host {
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+      }
+      .spinner {
+        display: inline-block;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       [type]="type()"
-      [class]="buttonClasses() + ' gap-2'"
+      [class]="buttonClasses() + ' gap-2 relative'"
       [disabled]="disabled() || submitting()"
       (click)="emitClick($event)"
+      [style.opacity]="submitting() ? 0.9 : 1"
     >
       <app-icon
         [icon]="
-          propertyId()
-            ? 'mdi:content-save-edit-outline'
-            : 'mdi:content-save-outline'
+          submitting()
+            ? 'mdi:loading'
+            : propertyId()
+              ? 'mdi:content-save-edit-outline'
+              : 'mdi:content-save-outline'
         "
+        [class.spinner]="submitting()"
       />
-      <span>{{ finalLabel() }}</span>
+      <span>
+        {{ submitting() ? "Procesando..." : finalLabel() }}
+      </span>
     </button>
   `,
 })

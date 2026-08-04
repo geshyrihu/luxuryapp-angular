@@ -34,6 +34,7 @@ import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FeatureAnnouncementService } from "src/app/core/services/feature-announcement.service";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { MenuService } from "src/app/core/services/menu.service";
+import { RefreshService } from "src/app/core/services/refresh.service";
 import { SearchService } from "src/app/core/services/search.service";
 import { ThemeService } from "src/app/core/services/theme.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
@@ -82,6 +83,7 @@ export class HeaderEmployeeMonitor implements OnInit {
   public hideScroolNavService = inject(HidescrollnavService);
   public location = inject(Location);
   public navService = inject(MenuService);
+  public refreshService = inject(RefreshService);
   public router = inject(Router);
   public searchService = inject(SearchService);
   public themeService = inject(ThemeService);
@@ -319,18 +321,7 @@ export class HeaderEmployeeMonitor implements OnInit {
   };
 
   onRefresh = () => {
-    const currentUrl = this.router.url;
-    const originalShouldReuseRoute =
-      this.router.routeReuseStrategy.shouldReuseRoute.bind(
-        this.router.routeReuseStrategy,
-      );
-
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-
-    void this.router.navigateByUrl(currentUrl).finally(() => {
-      this.router.routeReuseStrategy.shouldReuseRoute =
-        originalShouldReuseRoute;
-    });
+    this.refreshService.forceRouteReload();
   };
 
   onHome = () => {

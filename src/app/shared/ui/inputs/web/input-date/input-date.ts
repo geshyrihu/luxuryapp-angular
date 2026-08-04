@@ -50,6 +50,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [dateFormat]="'Y-m-d'"
         [allowInput]="true"
         fluid
+        class="w-full"
       />
     </base-input-signal>
   `,

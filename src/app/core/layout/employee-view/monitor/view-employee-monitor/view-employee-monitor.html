@@ -24,9 +24,11 @@
       class="main-content-scroll w-full h-full overflow-y-auto overflow-x-hidden surface-ground"
     >
       <!-- Wrapper interno para altura mínima -->
+      @if (refreshService.outletVisible()) {
       <div class="w-full min-h-full pb-8">
         <router-outlet />
       </div>
+      }
     </div>
 
     <!-- App Loader (Overlay localizado) -->

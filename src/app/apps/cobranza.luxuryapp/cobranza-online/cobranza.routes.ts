@@ -62,4 +62,16 @@ export const COBRANZA_ONLINE_ROUTES: Routes = [
       breadcrumb: "Exclusiones",
     },
   },
+  {
+    path: "collections/department-charges",
+    loadComponent: () =>
+      import("./department-charges/department-charges").then(
+        (m) => m.DepartmentCharges,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Cargos por Departamento",
+      breadcrumb: "Cargos por Departamento",
+    },
+  },
 ];
