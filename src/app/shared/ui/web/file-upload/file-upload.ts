@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   ElementRef,
   inject,
   input,
+  OnDestroy,
   output,
   signal,
   viewChild,
@@ -14,6 +16,8 @@ import { ButtonModule } from "primeng/button";
 import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
 import { ProgressBarModule } from "primeng/progressbar";
 import { PlatformService } from "src/app/core/services/platform.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 
 export interface UploadFile {
   name: string;
@@ -43,7 +47,7 @@ export interface UploadFile {
           mode="basic"
           [chooseLabel]="chooseLabel()"
           [accept]="accept()"
-          [maxFileSize]="maxFileSize()"
+          [maxFileSize]="sourceMaxFileSize()"
           [multiple]="multiple()"
           [auto]="true"
           styleClass="w-full"
@@ -192,8 +196,10 @@ export interface UploadFile {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class FileUpload {
+export class FileUpload implements OnDestroy {
   private platform = inject(PlatformService);
+  private imageProcessing = inject(ImageProcessingService);
+  private toast = inject(CustomToastService);
 
   chooseLabel = input("Seleccionar archivos");
   accept = input<string>("");
@@ -209,6 +215,12 @@ export class FileUpload {
   files = signal<UploadFile[]>([]);
   isDragOver = signal(false);
   isMobile = this.platform.isMobile;
+  sourceMaxFileSize = computed(() =>
+    Math.min(
+      50 * 1024 * 1024,
+      Math.max(this.maxFileSize(), this.maxFileSize() * 4),
+    ),
+  );
 
   cameraInput = viewChild.required<ElementRef<HTMLInputElement>>("cameraInput");
   galleryInput =
@@ -226,29 +238,76 @@ export class FileUpload {
     this.isDragOver.set(false);
   }
 
-  onDrop(event: DragEvent): void {
+  async onDrop(event: DragEvent): Promise<void> {
     event.preventDefault();
     event.stopPropagation();
     this.isDragOver.set(false);
     const droppedFiles = event.dataTransfer?.files;
     if (droppedFiles) {
-      this.addFiles(Array.from(droppedFiles));
+      const files = await this.prepareFiles(Array.from(droppedFiles));
+      if (!files.length) return;
+      this.addFiles(files);
+      this.onSelect.emit({ originalEvent: event, files });
     }
   }
 
-  onFilesSelected(event: any): void {
+  async onFilesSelected(event: FileUploadHandlerEvent): Promise<void> {
     if (event.files?.length) {
-      this.addFiles(Array.from(event.files));
-      this.onSelect.emit(event);
+      const files = await this.prepareFiles(Array.from(event.files));
+      if (!files.length) return;
+      this.addFiles(files);
+      this.onSelect.emit({ ...event, files });
     }
   }
 
-  onNativeInput(event: Event): void {
+  async onNativeInput(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     if (input.files?.length) {
-      this.addFiles(Array.from(input.files));
+      const files = await this.prepareFiles(Array.from(input.files));
       input.value = "";
+      if (!files.length) return;
+      this.addFiles(files);
+      const uploadEvent = { originalEvent: event, files };
+      this.onSelect.emit(uploadEvent);
+      if (this.autoUpload()) this.upload.emit(uploadEvent);
     }
+  }
+
+  ngOnDestroy(): void {
+    for (const file of this.files()) {
+      if (file.objectURL) URL.revokeObjectURL(file.objectURL);
+    }
+  }
+
+  private async prepareFiles(files: File[]): Promise<File[]> {
+    const prepared: File[] = [];
+
+    for (const file of files) {
+      try {
+        const processed = await this.imageProcessing.processFileIfImage(file, {
+          maxBytes: this.maxFileSize(),
+        });
+
+        if (processed.size > this.maxFileSize()) {
+          this.toast.showError(
+            "Archivo demasiado grande",
+            `El archivo "${file.name}" excede el tamano maximo permitido.`,
+          );
+          continue;
+        }
+
+        prepared.push(processed);
+      } catch (error) {
+        this.toast.showError(
+          "No se pudo procesar la imagen",
+          error instanceof Error
+            ? error.message
+            : `No se pudo procesar "${file.name}".`,
+        );
+      }
+    }
+
+    return prepared;
   }
 
   private addFiles(newFiles: File[]): void {

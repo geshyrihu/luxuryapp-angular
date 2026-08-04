@@ -14,13 +14,12 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { ImageCompressionService } from "src/app/core/services/image-compression.service";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import { IncidentAttachmentListDTO } from "../interfaces/incident.interfaces";
 
 const MAX_FILE_SIZE_BYTES = 2 * 1024 * 1024;
 const MAX_FILES_PER_INCIDENT = 10;
-const ALLOWED_TYPES = ["image/jpeg", "image/png", "application/pdf"];
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
@@ -45,7 +44,7 @@ export class IncidentAttachmentsComponent {
   readonly MAX_FILES_PER_INCIDENT = MAX_FILES_PER_INCIDENT;
 
   private apiResponseS = inject(ApiResponseService);
-  private imageCompressionS = inject(ImageCompressionService);
+  private imageProcessing = inject(ImageProcessingService);
   private swalS = inject(SwalService);
 
   attachments = signal<IncidentAttachmentListDTO[]>([]);
@@ -53,9 +52,7 @@ export class IncidentAttachmentsComponent {
   uploading = signal(false);
 
   filesControl = new FormControl<File[] | null>(null, [
-    FileUploadValidators.fileSize(MAX_FILE_SIZE_BYTES),
     FileUploadValidators.filesLimit(MAX_FILES_PER_INCIDENT),
-    FileUploadValidators.accept(ALLOWED_TYPES),
   ]);
 
   get selectedFiles(): File[] {
@@ -97,23 +94,38 @@ export class IncidentAttachmentsComponent {
     let uploaded = 0;
 
     for (const file of files) {
-      if (!ALLOWED_TYPES.includes(file.type)) {
+      const isPdf =
+        file.type === "application/pdf" || /\.pdf$/i.test(file.name);
+      const isImage = await this.imageProcessing.isImage(file);
+
+      if (!isPdf && !isImage) {
         this.swalS.fire({
           icon: "warning",
           title: "Tipo no permitido",
-          text: `"${file.name}" no es JPG, PNG ni PDF.`,
+          text: `"${file.name}" no es JPG, PNG, WebP, HEIC ni PDF.`,
         });
         continue;
       }
 
       let fileToUpload = file;
-      if (file.size > MAX_FILE_SIZE_BYTES && file.type.startsWith("image/")) {
+      if (isImage) {
         try {
-          fileToUpload = await this.imageCompressionS.compressImage(file, 2);
+          fileToUpload = await this.imageProcessing.processImage(file, {
+            maxBytes: MAX_FILE_SIZE_BYTES,
+            maxDimension: 1920,
+          });
         } catch {
-          this.swalS.error("Error", `No se pudo comprimir "${file.name}".`);
+          this.swalS.error("Error", `No se pudo procesar "${file.name}".`);
           continue;
         }
+      }
+
+      if (fileToUpload.size > MAX_FILE_SIZE_BYTES) {
+        this.swalS.error(
+          "Archivo demasiado grande",
+          `"${file.name}" excede el limite de 2 MB.`,
+        );
+        continue;
       }
 
       const formData = new FormData();

@@ -10,7 +10,7 @@ import { ClientErrorLoggerService } from "src/app/core/services/client-error-log
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { HeicConverterService } from "src/app/core/services/heic-converter.service";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { vi } from "vitest";
 import { TaskForm } from "./task-form";
@@ -25,7 +25,7 @@ describe("TaskForm", () => {
   let mockDateS: any;
   let mockDialogHandlerS: any;
   let mockEnumSelectS: any;
-  let mockHeicConverter: any;
+  let mockImageProcessing: any;
   let mockClientErrorLogger: any;
   let mockConfig: any;
   let mockRef: any;
@@ -53,10 +53,11 @@ describe("TaskForm", () => {
     mockEnumSelectS = {
       priorityLevel: vi.fn().mockReturnValue(of([{ value: 1, label: "Alta" }])),
     };
-    mockHeicConverter = {
-      isHeic: vi.fn().mockResolvedValue(false),
-      convertHeicToJpeg: vi.fn(),
-      getConversionMethod: vi.fn().mockReturnValue(null),
+    mockImageProcessing = {
+      processImage: vi
+        .fn()
+        .mockImplementation((file: File) => Promise.resolve(file)),
+      getMetadata: vi.fn().mockReturnValue(null),
     };
     mockClientErrorLogger = { logError: vi.fn() };
     Object.defineProperty(URL, "createObjectURL", {
@@ -85,7 +86,7 @@ describe("TaskForm", () => {
         { provide: DateService, useValue: mockDateS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: EnumSelectService, useValue: mockEnumSelectS },
-        { provide: HeicConverterService, useValue: mockHeicConverter },
+        { provide: ImageProcessingService, useValue: mockImageProcessing },
         { provide: ClientErrorLoggerService, useValue: mockClientErrorLogger },
         { provide: DynamicDialogConfig, useValue: mockConfig },
         { provide: DynamicDialogRef, useValue: mockRef },
@@ -96,9 +97,6 @@ describe("TaskForm", () => {
 
     fixture = TestBed.createComponent(TaskForm);
     component = fixture.componentInstance;
-    vi.spyOn(component as any, "compressToMaxSize").mockImplementation(
-      (file: File) => Promise.resolve(file),
-    );
   });
 
   it("should create", () => {
@@ -145,12 +143,17 @@ describe("TaskForm", () => {
     const jpegFile = new File(["jpeg"], "IMG_1234.jpg", {
       type: "image/jpeg",
     });
-    mockHeicConverter.convertHeicToJpeg.mockResolvedValue(jpegFile);
-    mockHeicConverter.getConversionMethod.mockReturnValue("heic-to");
+    mockImageProcessing.processImage.mockResolvedValue(jpegFile);
+    mockImageProcessing.getMetadata.mockReturnValue({
+      conversionMethod: "heic-to",
+    });
 
     await component.onFileChange(heicFile, "beforeWork");
 
-    expect(mockHeicConverter.convertHeicToJpeg).toHaveBeenCalledWith(heicFile);
+    expect(mockImageProcessing.processImage).toHaveBeenCalledWith(heicFile, {
+      maxBytes: 5 * 1024 * 1024,
+      maxDimension: 2560,
+    });
     expect(component.form.controls.beforeWork.value).toBe(jpegFile);
   });
 
@@ -159,8 +162,10 @@ describe("TaskForm", () => {
 
     await component.onFileChange(jpegFile, "afterWork");
 
-    expect(mockHeicConverter.isHeic).not.toHaveBeenCalled();
-    expect(mockHeicConverter.convertHeicToJpeg).not.toHaveBeenCalled();
+    expect(mockImageProcessing.processImage).toHaveBeenCalledWith(jpegFile, {
+      maxBytes: 5 * 1024 * 1024,
+      maxDimension: 2560,
+    });
     expect(component.form.controls.afterWork.value).toBe(jpegFile);
   });
 
@@ -168,14 +173,14 @@ describe("TaskForm", () => {
     const heicFile = new File(["invalid"], "IMG_ERROR.HEIC", {
       type: "image/heic",
     });
-    mockHeicConverter.convertHeicToJpeg.mockRejectedValue(
+    mockImageProcessing.processImage.mockRejectedValue(
       new Error("decoder failed"),
     );
 
     await component.onFileChange(heicFile, "beforeWork");
 
     expect(component.imageProcessingDiagnostic()).toContain(
-      "Etapa: conversión HEIC",
+      "Etapa: procesamiento centralizado",
     );
     expect(component.imageProcessingDiagnostic()).toContain("decoder failed");
     expect(mockClientErrorLogger.logError).toHaveBeenCalled();

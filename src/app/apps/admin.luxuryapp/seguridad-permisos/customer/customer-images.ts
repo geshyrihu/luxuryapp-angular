@@ -12,6 +12,8 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 import { CustomerImageDto } from "./interfaces/customer-image.dto";
 
 @Component({
@@ -23,6 +25,8 @@ import { CustomerImageDto } from "./interfaces/customer-image.dto";
 export class CustomerImages implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private config = inject(DynamicDialogConfig);
+  private imageProcessing = inject(ImageProcessingService);
+  private toast = inject(CustomToastService);
 
   customerId = signal<string>("");
   images = signal<CustomerImageDto[]>([]);
@@ -79,6 +83,7 @@ export class CustomerImages implements OnInit {
     if (input.files && input.files.length > 0) {
       this.uploadFiles(Array.from(input.files));
     }
+    input.value = "";
   }
 
   async uploadFiles(files: File[]) {
@@ -87,21 +92,31 @@ export class CustomerImages implements OnInit {
     }
 
     this.uploading.set(true);
-    const formData = new FormData();
-    formData.append("customerId", this.customerId());
+    try {
+      const processedFiles = await this.imageProcessing.processImages(files, {
+        maxBytes: 5 * 1024 * 1024,
+        maxDimension: 2560,
+      });
+      const formData = new FormData();
+      formData.append("customerId", this.customerId());
 
-    files.forEach((file) => {
-      formData.append("images", file, file.name); // Explicitly pass the file name
-    });
+      processedFiles.forEach((file) => {
+        formData.append("images", file, file.name);
+      });
 
-    const resp = await this.apiResponseS.onPostFile(
-      Endpoints.CustomerImages.createBulk,
-      formData,
-    );
-    if (resp) {
-      this.onLoadData();
+      const resp = await this.apiResponseS.onPostFile(
+        Endpoints.CustomerImages.createBulk,
+        formData,
+      );
+      if (resp) await this.onLoadData();
+    } catch (error) {
+      this.toast.showError(
+        "No se pudieron procesar las imagenes",
+        error instanceof Error ? error.message : "Selecciona imagenes validas.",
+      );
+    } finally {
+      this.uploading.set(false);
     }
-    this.uploading.set(false);
   }
 
   async onDelete(id: string) {

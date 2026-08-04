@@ -1,12 +1,15 @@
 import {
   Component,
+  inject,
   input,
+  OnDestroy,
   output,
   signal,
   ViewEncapsulation,
 } from "@angular/core";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 
 export interface ScannedFile {
   file: File;
@@ -181,8 +184,10 @@ export interface ScannedFile {
   ],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppReceiptScanner {
-  accept = input<string>("image/*,application/pdf");
+export class AppReceiptScanner implements OnDestroy {
+  private readonly imageProcessing = inject(ImageProcessingService);
+
+  accept = input<string>("image/*,.heic,.heif,application/pdf");
   maxMb = input<number>(10);
   mobile = input<boolean>(false);
   multiple = input<boolean>(false);
@@ -199,40 +204,57 @@ export class AppReceiptScanner {
   }
 
   onFileSelect(event: Event): void {
-    const files = (event.target as HTMLInputElement).files;
-    if (files?.[0]) this.processFile(files[0]);
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = "";
+    if (file) void this.processFile(file);
   }
 
   onDrop(event: DragEvent): void {
     event.preventDefault();
     this.dragging = false;
     const file = event.dataTransfer?.files?.[0];
-    if (file) this.processFile(file);
+    if (file) void this.processFile(file);
   }
 
-  processFile(file: File): void {
-    if (file.size > this.maxMb() * 1024 * 1024) {
-      this.error.set(`El archivo excede ${this.maxMb()} MB`);
-      return;
+  async processFile(file: File): Promise<void> {
+    try {
+      const processed = await this.imageProcessing.processFileIfImage(file, {
+        maxBytes: this.maxMb() * 1024 * 1024,
+        maxDimension: 2560,
+      });
+      if (processed.size > this.maxMb() * 1024 * 1024) {
+        this.error.set(`El archivo excede ${this.maxMb()} MB`);
+        return;
+      }
+
+      this.releasePreview();
+      this.error.set("");
+      const previewUrl = processed.type.startsWith("image/")
+        ? URL.createObjectURL(processed)
+        : "";
+      const scannedFile: ScannedFile = {
+        file: processed,
+        previewUrl,
+        name: processed.name,
+        size: processed.size,
+      };
+      this.scanned.set(scannedFile);
+      this.fileSelected.emit(scannedFile);
+    } catch (error) {
+      this.error.set(
+        error instanceof Error
+          ? error.message
+          : "No se pudo procesar la imagen.",
+      );
     }
-    this.error.set("");
-    const previewUrl = file.type.startsWith("image/")
-      ? URL.createObjectURL(file)
-      : "";
-    const sf: ScannedFile = {
-      file,
-      previewUrl,
-      name: file.name,
-      size: file.size,
-    };
-    this.scanned.set(sf);
-    this.fileSelected.emit(sf);
   }
 
   confirm(): void {
     if (this.scanned()) this.confirmed.emit(this.scanned()!);
   }
   retry(): void {
+    this.releasePreview();
     this.scanned.set(null);
     this.error.set("");
   }
@@ -240,5 +262,14 @@ export class AppReceiptScanner {
     return b > 1048576
       ? `${(b / 1048576).toFixed(1)} MB`
       : `${(b / 1024).toFixed(0)} KB`;
+  }
+
+  ngOnDestroy(): void {
+    this.releasePreview();
+  }
+
+  private releasePreview(): void {
+    const previewUrl = this.scanned()?.previewUrl;
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
   }
 }

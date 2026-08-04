@@ -15,6 +15,8 @@ import { ProfielService } from "src/app/core/auth/services/profiel-service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { InfoAccountAuthDto } from "src/app/core/interfaces/auth-user-token.dto";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 
 @Component({
   selector: "app-actualizar-foto-usuario-aplicacion",
@@ -26,6 +28,8 @@ export class UpdateUserPhotoComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   public profielServiceService = inject(ProfielService);
+  private imageProcessing = inject(ImageProcessingService);
+  private toast = inject(CustomToastService);
 
   applicationUserId: string = this.authS.applicationUserId;
   infoEmployeeDTO: InfoAccountAuthDto;
@@ -48,32 +52,38 @@ export class UpdateUserPhotoComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
     input.value = "";
-    if (file) this.changeImg(file);
+    if (file) void this.changeImg(file);
   }
 
-  changeImg(file: File) {
-    this.imgUpload = file;
-    if (!file) {
-      this.imgName = "";
-      return;
+  async changeImg(file: File): Promise<void> {
+    try {
+      const processed = await this.imageProcessing.processImage(file, {
+        maxBytes: 2 * 1024 * 1024,
+        maxDimension: 1920,
+      });
+      this.imgUpload = processed;
+      const reader = new FileReader();
+      reader.readAsDataURL(processed);
+      reader.onloadend = () => {
+        this.imgTemp = reader.result;
+        this.imgName = processed;
+      };
+      this.uploadImg();
+    } catch (error) {
+      this.toast.showError(
+        "No se pudo procesar la imagen",
+        error instanceof Error
+          ? error.message
+          : "Selecciona una imagen valida.",
+      );
     }
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      this.imgTemp = reader.result;
-      this.imgName = file;
-    };
-    this.uploadImg();
   }
 
   uploadImg() {
     const formData = new FormData();
     formData.append("file", this.imgUpload);
     this.apiResponseS
-      .onPut(
-        Endpoints.Users.updateImage(this.applicationUserId),
-        formData,
-      )
+      .onPut(Endpoints.Users.updateImage(this.applicationUserId), formData)
       .then((result: any) => {
         if (result) {
           this.infoEmployeeDTO.photoPath = result.photoPath;

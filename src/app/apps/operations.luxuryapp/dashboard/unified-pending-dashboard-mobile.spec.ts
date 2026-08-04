@@ -10,7 +10,6 @@ import { vi } from "vitest";
 import { UnifiedPendingDashboardMobile } from "./unified-pending-dashboard-mobile";
 
 vi.mock("ng2-pdf-viewer", () => ({ PdfViewerModule: class {} }));
-vi.mock("heic2any", () => ({}));
 
 describe("UnifiedPendingDashboardMobile", () => {
   let component: UnifiedPendingDashboardMobile;

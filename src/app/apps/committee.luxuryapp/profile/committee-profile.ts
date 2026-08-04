@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   inject,
+  OnDestroy,
   signal,
   viewChild,
 } from "@angular/core";
@@ -18,6 +19,8 @@ import { passwordValidation } from "src/app/core/directives/password-validation.
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ChangePassword } from "src/app/core/interfaces/change-password.interface";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 
 @Component({
   selector: "app-committee-profile",
@@ -25,12 +28,15 @@ import { ConsoleLoggerService } from "src/app/core/services/console-logger.servi
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-profile.html",
 })
-export class CommitteeProfile {
+export class CommitteeProfile implements OnDestroy {
   private authS = inject(AuthService);
   private apiResponseS = inject(ApiResponseService);
   private profielServiceService = inject(ProfielService);
   private formB = inject(FormBuilder);
   private logger = inject(ConsoleLoggerService);
+  private imageProcessing = inject(ImageProcessingService);
+  private toast = inject(CustomToastService);
+  private previewObjectUrl: string | null = null;
 
   private info = this.authS.infoUserAuth;
   private applicationUserId: string = this.authS.applicationUserId;
@@ -64,70 +70,33 @@ export class CommitteeProfile {
     const file = input.files?.[0];
     input.value = "";
     if (!file) return;
-    // Preview inmediato del original mientras se procesa/sube.
-    this.photoPreview.set(URL.createObjectURL(file));
-    const processed = await this.compressImage(file);
-    this.uploadImg(processed);
+    try {
+      const processed = await this.imageProcessing.processImage(file, {
+        maxBytes: 1024 * 1024,
+        maxDimension: 1024,
+      });
+      this.clearPreview();
+      this.previewObjectUrl = URL.createObjectURL(processed);
+      this.photoPreview.set(this.previewObjectUrl);
+      await this.uploadImg(processed);
+    } catch (error) {
+      this.toast.showError(
+        "No se pudo procesar la imagen",
+        error instanceof Error
+          ? error.message
+          : "Selecciona una imagen valida.",
+      );
+    }
   }
 
-  /**
-   * Redimensiona (máx 1024px) y comprime a JPEG (≤ ~1MB) en el cliente antes de subir.
-   * Evita que el proxy de producción rechace fotos grandes de teléfono.
-   * Si el archivo no se puede procesar (p. ej. HEIC sin soporte), sube el original.
-   */
-  private async compressImage(
-    file: File,
-    maxBytes = 1024 * 1024,
-    maxDim = 1024,
-  ): Promise<File> {
-    if (!file.type.startsWith("image/")) return file;
-    try {
-      return await new Promise<File>((resolve, reject) => {
-        const img = new Image();
-        const url = URL.createObjectURL(file);
-        img.onload = () => {
-          URL.revokeObjectURL(url);
-          let w = img.naturalWidth;
-          let h = img.naturalHeight;
-          if (w > maxDim || h > maxDim) {
-            const ratio = Math.min(maxDim / w, maxDim / h);
-            w = Math.round(w * ratio);
-            h = Math.round(h * ratio);
-          }
-          const canvas = document.createElement("canvas");
-          canvas.width = w;
-          canvas.height = h;
-          canvas.getContext("2d")!.drawImage(img, 0, 0, w, h);
-          const outName = file.name.replace(/\.[^.]+$/, "") + ".jpg";
+  ngOnDestroy(): void {
+    this.clearPreview();
+  }
 
-          const tryQuality = (quality: number) => {
-            canvas.toBlob(
-              (blob) => {
-                if (!blob) {
-                  reject(new Error("Canvas toBlob failed"));
-                  return;
-                }
-                if (blob.size <= maxBytes || quality <= 0.4) {
-                  resolve(new File([blob], outName, { type: "image/jpeg" }));
-                } else {
-                  tryQuality(+(quality - 0.1).toFixed(1));
-                }
-              },
-              "image/jpeg",
-              quality,
-            );
-          };
-          tryQuality(0.85);
-        };
-        img.onerror = () => {
-          URL.revokeObjectURL(url);
-          reject(new Error("Image load failed"));
-        };
-        img.src = url;
-      });
-    } catch {
-      return file;
-    }
+  private clearPreview(): void {
+    if (!this.previewObjectUrl) return;
+    URL.revokeObjectURL(this.previewObjectUrl);
+    this.previewObjectUrl = null;
   }
 
   private async uploadImg(file: File): Promise<void> {
@@ -150,7 +119,10 @@ export class CommitteeProfile {
       const busted = this.withCacheBust(result.photoPath);
       this.photoPreview.set(busted);
       this.profielServiceService.actualizarImagenPerfil(busted);
-      this.logger.success("[CommitteeProfile] Foto actualizada", result.photoPath);
+      this.logger.success(
+        "[CommitteeProfile] Foto actualizada",
+        result.photoPath,
+      );
     } else {
       // onPut ya mostró el toast de error; dejamos rastro en consola.
       this.logger.error(

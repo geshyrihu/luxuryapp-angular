@@ -2,15 +2,17 @@ import {
   Component,
   computed,
   ElementRef,
+  inject,
   input,
   OnChanges,
   output,
   signal,
   ViewChild,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../base/base-input-signal";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 @Component({
   selector: "web-custom-input-img-signal",
   imports: [ReactiveFormsModule, BaseInputSignal],
@@ -24,9 +26,11 @@ import { BaseInputSignal } from "../base/base-input-signal";
     >
       <div class="image-upload-container" (click)="triggerFileInput()">
         @if (hasImageError()) {
-          <div class="image-placeholder error"
-               [style.height.px]="contentHeight()"
-               [style.width.px]="contentWidth()">
+          <div
+            class="image-placeholder error"
+            [style.height.px]="contentHeight()"
+            [style.width.px]="contentWidth()"
+          >
             <span class="emoji">⚠️</span>
             <span class="placeholder-text">Imagen no disponible</span>
           </div>
@@ -40,9 +44,11 @@ import { BaseInputSignal } from "../base/base-input-signal";
             (error)="onImageError()"
           />
         } @else {
-          <div class="image-placeholder"
-               [style.height.px]="contentHeight()"
-               [style.width.px]="contentWidth()">
+          <div
+            class="image-placeholder"
+            [style.height.px]="contentHeight()"
+            [style.width.px]="contentWidth()"
+          >
             <span class="emoji">📷</span>
             <span class="placeholder-text">{{ chooseLabel() }}</span>
           </div>
@@ -133,6 +139,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
   ],
 })
 export class CustomInputImg implements OnChanges {
+  private readonly imageProcessing = inject(ImageProcessingService);
   control = input<FormControl>(new FormControl());
   id = input<string>(`img-${Math.random().toString(36).substring(2, 9)}`);
   urlImgCurrent = input<string>("");
@@ -215,14 +222,18 @@ export class CustomInputImg implements OnChanges {
     if (!file) return;
 
     try {
-      const processed = file.size > this.compressThreshold()
-        ? await this.compressImage(file)
-        : file;
+      const processed = await this.imageProcessing.processImage(file, {
+        maxBytes: Math.min(this.maxFileSize(), this.compressThreshold()),
+        maxDimension: 1920,
+        quality: this.compressionQuality(),
+      });
 
       if (processed.size > this.maxFileSize()) {
-        this.uploadError.emit(new Error(
-          `El archivo excede el tamaño máximo de ${this.maxFileSize() / 1000000} MB`,
-        ));
+        this.uploadError.emit(
+          new Error(
+            `El archivo excede el tamaño máximo de ${this.maxFileSize() / 1000000} MB`,
+          ),
+        );
         return;
       }
 
@@ -237,47 +248,6 @@ export class CustomInputImg implements OnChanges {
       console.error("Error al procesar imagen:", error);
       this.uploadError.emit(error);
     }
-  }
-
-  private compressImage(file: File): Promise<File> {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      const objectUrl = URL.createObjectURL(file);
-      img.onload = () => {
-        URL.revokeObjectURL(objectUrl);
-        const MAX = 1920;
-        let { width, height } = img;
-        if (width > MAX || height > MAX) {
-          if (width > height) {
-            height = Math.round((height * MAX) / width);
-            width = MAX;
-          } else {
-            width = Math.round((width * MAX) / height);
-            height = MAX;
-          }
-        }
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext("2d")!.drawImage(img, 0, 0, width, height);
-        canvas.toBlob(
-          (blob) => {
-            if (!blob) {
-              reject(new Error("No se pudo comprimir la imagen"));
-              return;
-            }
-            resolve(new File([blob], file.name, { type: "image/jpeg", lastModified: Date.now() }));
-          },
-          "image/jpeg",
-          this.compressionQuality(),
-        );
-      };
-      img.onerror = () => {
-        URL.revokeObjectURL(objectUrl);
-        reject(new Error("No se pudo cargar la imagen para compresión"));
-      };
-      img.src = objectUrl;
-    });
   }
 
   private convertToBase64(file: File): Promise<string> {

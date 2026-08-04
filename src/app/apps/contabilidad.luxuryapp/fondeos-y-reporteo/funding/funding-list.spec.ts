@@ -6,7 +6,6 @@ vi.mock("@ionic/core/components", () => ({}));
 vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
   PdfViewerModal: class {},
 }));
-vi.mock("heic2any", () => ({ default: vi.fn() }));
 
 import { NO_ERRORS_SCHEMA, signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";

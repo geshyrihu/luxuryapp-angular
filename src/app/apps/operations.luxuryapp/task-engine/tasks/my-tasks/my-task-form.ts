@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
+  OnDestroy,
   OnInit,
   signal,
   viewChild,
@@ -14,9 +15,11 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import heic2any from "heic2any";
 import { AvatarModule } from "@ui/web/primeng-avatar/primeng-avatar";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -25,6 +28,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
 import { TaskGroupService } from "../task.service";
 
@@ -45,7 +49,7 @@ import { TaskGroupService } from "../task.service";
     AppIcon,
   ],
 })
-export class MyTaskForm implements OnInit {
+export class MyTaskForm implements OnInit, OnDestroy {
   visionDialog = viewChild.required(ImageAnalysisDialogComponent);
 
   private customerIdS = inject(CustomerIdService);
@@ -58,6 +62,10 @@ export class MyTaskForm implements OnInit {
   private customToastS = inject(CustomToastService);
   // notificationPushService = inject(SignalRService);
   private enumSelectS = inject(EnumSelectService);
+  private imageProcessing = inject(ImageProcessingService);
+  private previewObjectUrls: Partial<
+    Record<"beforeWork" | "afterWork", string>
+  > = {};
   id: string = "";
   submitting = signal(false);
 
@@ -107,6 +115,7 @@ export class MyTaskForm implements OnInit {
   onFilesChange(files: File[], fieldName: "beforeWork" | "afterWork") {
     if (files.length === 0) {
       this.form.get(fieldName)?.setValue(null);
+      this.clearPreview(fieldName);
       if (fieldName === "beforeWork")
         this.form.controls.beforeWorkPreview.setValue("");
       else this.form.controls.afterWorkPreview.setValue("");
@@ -117,25 +126,6 @@ export class MyTaskForm implements OnInit {
     const file: File = event.files[0];
     if (!file) return;
 
-    const allowed = [
-      "image/jpeg",
-      "image/png",
-      "image/webp",
-      "image/heic",
-      "image/heif",
-    ];
-    const isHeic =
-      file.name.toLowerCase().endsWith(".heic") ||
-      file.name.toLowerCase().endsWith(".heif");
-
-    if (!isHeic && !allowed.includes(file.type)) {
-      this.customToastS.showError(
-        "Formato no compatible",
-        `Solo se permiten JPG, PNG, WebP o HEIC. El archivo "${file.name}" no puede cargarse.`,
-      );
-      return;
-    }
-
     const processingSignal =
       fieldName === "beforeWork"
         ? this.processingBeforeWork
@@ -143,51 +133,12 @@ export class MyTaskForm implements OnInit {
     processingSignal.set(true);
 
     try {
-      let fileToProcess = file;
-
-      if (isHeic) {
-        try {
-          const buffer = await file.arrayBuffer();
-          const heicBlob = new Blob([buffer], {
-            type: file.type || "image/heic",
-          });
-
-          const convertedBlob = await heic2any({
-            blob: heicBlob,
-            toType: "image/jpeg",
-            quality: 0.9,
-          });
-          const resultBlob = Array.isArray(convertedBlob)
-            ? convertedBlob[0]
-            : convertedBlob;
-          const newFileName = file.name.replace(/\.(heic|heif)$/i, ".jpg");
-          fileToProcess = new File([resultBlob], newFileName, {
-            type: "image/jpeg",
-          });
-        } catch (heicError) {
-          console.warn(
-            "heic2any falló al analizar el archivo, intentando como fallback nativo...",
-            heicError,
-          );
-        }
-      }
-
-      const processed = await this.compressToMaxSize(
-        fileToProcess,
-        2 * 1024 * 1024,
-      );
+      const processed = await this.imageProcessing.processImage(file, {
+        maxBytes: 2 * 1024 * 1024,
+        maxDimension: 2560,
+      });
       this.form.get(fieldName)?.setValue(processed);
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (fieldName === "beforeWork")
-          this.form.controls.beforeWorkPreview.setValue(
-            reader.result as string,
-          );
-        else
-          this.form.controls.afterWorkPreview.setValue(reader.result as string);
-      };
-      reader.readAsDataURL(processed);
+      this.setPreview(fieldName, processed);
     } catch {
       this.customToastS.showError(
         "Error al procesar imagen",
@@ -198,60 +149,26 @@ export class MyTaskForm implements OnInit {
     }
   }
 
-  private compressToMaxSize(file: File, maxBytes: number): Promise<File> {
-    if (file.size <= maxBytes) return Promise.resolve(file);
+  ngOnDestroy(): void {
+    this.clearPreview("beforeWork");
+    this.clearPreview("afterWork");
+  }
 
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      const url = URL.createObjectURL(file);
+  private setPreview(fieldName: "beforeWork" | "afterWork", file: File): void {
+    this.clearPreview(fieldName);
+    const objectUrl = URL.createObjectURL(file);
+    this.previewObjectUrls[fieldName] = objectUrl;
+    const previewControl =
+      fieldName === "beforeWork"
+        ? this.form.controls.beforeWorkPreview
+        : this.form.controls.afterWorkPreview;
+    previewControl.setValue(objectUrl);
+  }
 
-      img.onload = () => {
-        URL.revokeObjectURL(url);
-        const canvas = document.createElement("canvas");
-        let w = img.naturalWidth;
-        let h = img.naturalHeight;
-
-        const MAX_DIM = 4000;
-        if (w > MAX_DIM || h > MAX_DIM) {
-          const ratio = Math.min(MAX_DIM / w, MAX_DIM / h);
-          w = Math.round(w * ratio);
-          h = Math.round(h * ratio);
-        }
-
-        canvas.width = w;
-        canvas.height = h;
-        canvas.getContext("2d")!.drawImage(img, 0, 0, w, h);
-
-        const baseName = file.name.replace(/\.[^.]+$/, "");
-        const outName = `${baseName}.jpg`;
-
-        const tryQuality = (quality: number) => {
-          canvas.toBlob(
-            (blob) => {
-              if (!blob) {
-                reject(new Error("Canvas toBlob failed"));
-                return;
-              }
-              if (blob.size <= maxBytes || quality <= 0.1) {
-                resolve(new File([blob], outName, { type: "image/jpeg" }));
-              } else {
-                tryQuality(+(quality - 0.1).toFixed(1));
-              }
-            },
-            "image/jpeg",
-            quality,
-          );
-        };
-
-        tryQuality(0.9);
-      };
-
-      img.onerror = () => {
-        URL.revokeObjectURL(url);
-        reject(new Error("Image load failed"));
-      };
-      img.src = url;
-    });
+  private clearPreview(fieldName: "beforeWork" | "afterWork"): void {
+    const objectUrl = this.previewObjectUrls[fieldName];
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    delete this.previewObjectUrls[fieldName];
   }
 
   onLoadData() {

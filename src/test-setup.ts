@@ -62,7 +62,6 @@ vi.mock('ng2-pdf-viewer', () => ({
   PdfViewerModule: { ngModule: class {} } as any,
 }));
 
-// Worker polyfill (heic2any requires Web Workers in jsdom)
 if (typeof globalThis.Worker === 'undefined') {
   (globalThis as any).Worker = class WorkerMock {
     url: string;

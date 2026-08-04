@@ -30,7 +30,11 @@ import { WebInputImg } from "../../web/input-img/input-img";
         [readonly]="readonly()"
         [required]="requiredInput()"
         [urlImgCurrent]="urlImgCurrent()"
+        [maxFileSize]="maxFileSize()"
+        [compressThreshold]="compressThreshold()"
+        [compressionQuality]="compressionQuality()"
         (fileSelected)="fileSelected.emit($event); propagar.emit($event)"
+        (uploadError)="uploadError.emit($event)"
       />
     } @else {
       <web-input-img

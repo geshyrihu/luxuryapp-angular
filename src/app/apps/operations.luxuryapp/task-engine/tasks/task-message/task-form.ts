@@ -66,7 +66,7 @@ type ImageFieldName = "beforeWork" | "afterWork";
 
 import { DateService } from "src/app/core/services/date.service";
 import { ClientErrorLoggerService } from "src/app/core/services/client-error-logger.service";
-import { HeicConverterService } from "src/app/core/services/heic-converter.service";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 
 @Component({
   selector: "app-task-form",
@@ -100,7 +100,7 @@ export class TaskForm implements OnInit, OnDestroy {
   private formB = inject(FormBuilder);
   private dateS = inject(DateService);
   private clientErrorLogger = inject(ClientErrorLoggerService);
-  private heicConverter = inject(HeicConverterService);
+  private imageProcessing = inject(ImageProcessingService);
 
   id: string = "";
   submitting = signal(false);
@@ -307,47 +307,8 @@ export class TaskForm implements OnInit, OnDestroy {
   async onFileChange(file: File, fieldName: ImageFieldName): Promise<void> {
     const MAX_SIZE_MB = 5;
     const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
-    const allowed = ["image/jpeg", "image/png", "image/webp"];
-
-    const hasHeicHint =
-      /\.(heic|heif)$/i.test(file.name) ||
-      file.type === "image/heic" ||
-      file.type === "image/heif";
-    const hasAmbiguousMime =
-      file.type === "" || file.type === "application/octet-stream";
-    const hasSupportedExtension = /\.(jpe?g|png|webp)$/i.test(file.name);
-    let isHeic = hasHeicHint;
-    let processingStage = "validación";
 
     this.imageProcessingDiagnostic.set(null);
-
-    if (!isHeic && hasAmbiguousMime && !hasSupportedExtension) {
-      try {
-        isHeic = await this.heicConverter.isHeic(file);
-      } catch (error) {
-        console.error("[IMAGE_PROCESS] Error al identificar la imagen:", error);
-      }
-    }
-
-    const isSupportedImage =
-      allowed.includes(file.type) ||
-      (hasAmbiguousMime && hasSupportedExtension);
-
-    if (!isHeic && !isSupportedImage) {
-      this.customToastS.showError(
-        "Formato no compatible",
-        `Solo se permiten JPG, PNG, WebP o HEIC. El archivo "${file.name}" no puede cargarse.`,
-      );
-      return;
-    }
-
-    if (file.size > MAX_SIZE_BYTES * 2) {
-      this.customToastS.showError(
-        "Archivo demasiado grande",
-        `La imagen excede ${MAX_SIZE_MB * 2}MB. Usa una imagen más pequeña o de menor resolución.`,
-      );
-      return;
-    }
 
     const processingSignal =
       fieldName === "beforeWork"
@@ -356,50 +317,22 @@ export class TaskForm implements OnInit, OnDestroy {
 
     processingSignal.set(true);
     try {
-      let fileToProcess = file;
-
-      if (isHeic) {
-        processingStage = "conversión HEIC";
-        console.log(`[IMAGE_PROCESS] Detectado HEIC: ${file.name}`);
-        fileToProcess = await this.heicConverter.convertHeicToJpeg(file);
-        console.log(
-          `[IMAGE_PROCESS] HEIC convertido a JPEG: ${fileToProcess.name}`,
-        );
-      }
-
-      processingStage = "normalización y compresión";
-      console.log(
-        `[IMAGE_PROCESS] Iniciando compresión: ${(fileToProcess.size / (1024 * 1024)).toFixed(2)}MB`,
-      );
-
-      const processed = await this.compressToMaxSize(
-        fileToProcess,
-        MAX_SIZE_BYTES,
-      );
-
-      console.log(
-        `[IMAGE_PROCESS] Compresión completada: ${(processed.size / (1024 * 1024)).toFixed(2)}MB`,
-      );
-
-      if (processed.size > MAX_SIZE_BYTES) {
-        this.customToastS.showError(
-          "Imagen aún demasiado grande",
-          `Después de la compresión, la imagen sigue excediendo ${MAX_SIZE_MB}MB. Intenta con una imagen de menor resolución.`,
-        );
-        return;
-      }
+      const processed = await this.imageProcessing.processImage(file, {
+        maxBytes: MAX_SIZE_BYTES,
+        maxDimension: 2560,
+      });
 
       this.form.get(fieldName)?.setValue(processed);
       this.setPreview(fieldName, processed);
-
-      const sizeInMB = (processed.size / (1024 * 1024)).toFixed(2);
-      console.log(
-        `[IMAGE_PROCESS] Imagen lista: ${sizeInMB}MB (máx permitido: ${MAX_SIZE_MB}MB)`,
-      );
     } catch (error) {
       const errorMessage = this.describeError(error);
       console.error("[IMAGE_PROCESS] Error fatal:", errorMessage, error);
-      this.reportImageFailure(processingStage, fieldName, file, error);
+      this.reportImageFailure(
+        "procesamiento centralizado",
+        fieldName,
+        file,
+        error,
+      );
 
       let userMessage = "No se pudo procesar la imagen.";
 
@@ -413,146 +346,12 @@ export class TaskForm implements OnInit, OnDestroy {
       }
 
       this.customToastS.showError(
-        isHeic ? "Error al procesar foto HEIC" : "Error al procesar imagen",
+        "Error al procesar imagen",
         userMessage + ` (${errorMessage})`,
       );
     } finally {
       processingSignal.set(false);
     }
-  }
-
-  private compressToMaxSize(file: File, maxBytes: number): Promise<File> {
-    console.log(
-      `[COMPRESS] Iniciando: ${(file.size / (1024 * 1024)).toFixed(2)}MB → ${(maxBytes / (1024 * 1024)).toFixed(2)}MB`,
-    );
-
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      const url = URL.createObjectURL(file);
-
-      const cleanup = () => {
-        try {
-          URL.revokeObjectURL(url);
-        } catch (e) {
-          console.warn("[COMPRESS] Error al revocar ObjectURL:", e);
-        }
-      };
-
-      img.onload = () => {
-        try {
-          cleanup();
-          const canvas = document.createElement("canvas");
-          let w = img.naturalWidth;
-          let h = img.naturalHeight;
-
-          console.log(`[COMPRESS] Dimensiones originales: ${w}x${h}px`);
-
-          const MAX_DIM = 2560;
-          const requiresResize = w > MAX_DIM || h > MAX_DIM;
-
-          if (!requiresResize && file.size <= maxBytes) {
-            console.log("[COMPRESS] Tamaño y dimensiones dentro del límite");
-            resolve(file);
-            return;
-          }
-
-          if (requiresResize) {
-            const ratio = Math.min(MAX_DIM / w, MAX_DIM / h);
-            w = Math.round(w * ratio);
-            h = Math.round(h * ratio);
-            console.log(`[COMPRESS] Redimensionadas a: ${w}x${h}px`);
-          }
-
-          canvas.width = w;
-          canvas.height = h;
-          const ctx = canvas.getContext("2d");
-          if (!ctx) {
-            throw new Error("No se pudo obtener contexto 2D del canvas");
-          }
-          ctx.drawImage(img, 0, 0, w, h);
-
-          const baseName = file.name.replace(/\.[^.]+$/, "");
-          const outName = `${baseName}.jpg`;
-
-          const tryQuality = (quality: number): void => {
-            try {
-              canvas.toBlob(
-                (blob) => {
-                  if (!blob) {
-                    console.error("[COMPRESS] canvas.toBlob retornó null");
-                    reject(
-                      new Error("canvas.toBlob falló - sin blob generado"),
-                    );
-                    return;
-                  }
-
-                  const sizeInMB = (blob.size / (1024 * 1024)).toFixed(2);
-                  console.log(
-                    `[COMPRESS] Calidad ${quality}: ${sizeInMB}MB (máx: ${(maxBytes / (1024 * 1024)).toFixed(2)}MB)`,
-                  );
-
-                  if (blob.size <= maxBytes) {
-                    console.log(`[COMPRESS] ✓ Exitosa a calidad ${quality}`);
-                    canvas.width = 1;
-                    canvas.height = 1;
-                    resolve(new File([blob], outName, { type: "image/jpeg" }));
-                  } else if (quality <= 0.05) {
-                    console.warn(
-                      `[COMPRESS] ⚠ Calidad mínima alcanzada (${sizeInMB}MB)`,
-                    );
-                    canvas.width = 1;
-                    canvas.height = 1;
-                    resolve(new File([blob], outName, { type: "image/jpeg" }));
-                  } else {
-                    tryQuality(+(quality - 0.05).toFixed(2));
-                  }
-                },
-                "image/jpeg",
-                quality,
-              );
-            } catch (error) {
-              console.error("[COMPRESS] Error en canvas.toBlob:", error);
-              reject(error);
-            }
-          };
-
-          tryQuality(0.9);
-        } catch (error) {
-          cleanup();
-          console.error("[COMPRESS] Error en onload:", error);
-          reject(error);
-        }
-      };
-
-      img.onerror = (event) => {
-        cleanup();
-        console.error(
-          "[COMPRESS] Error al cargar imagen:",
-          event,
-          "Archivo:",
-          file.name,
-        );
-        reject(
-          new Error(
-            `Error al cargar la imagen: ${file.name}. Verifica que sea válida.`,
-          ),
-        );
-      };
-
-      img.onabort = () => {
-        cleanup();
-        console.error("[COMPRESS] Carga de imagen abortada");
-        reject(new Error("Carga de imagen cancelada"));
-      };
-
-      try {
-        img.src = url;
-      } catch (error) {
-        cleanup();
-        console.error("[COMPRESS] Error al asignar src:", error);
-        reject(error);
-      }
-    });
   }
 
   private setPreview(fieldName: ImageFieldName, file: File): void {
@@ -632,7 +431,8 @@ export class TaskForm implements OnInit, OnDestroy {
   private describeSelectedFile(file: File | null): string {
     if (!file) return "sin archivo nuevo";
 
-    const conversionMethod = this.heicConverter.getConversionMethod(file);
+    const conversionMethod =
+      this.imageProcessing.getMetadata(file)?.conversionMethod;
     const conversion = conversionMethod
       ? `, conversión ${conversionMethod}`
       : "";

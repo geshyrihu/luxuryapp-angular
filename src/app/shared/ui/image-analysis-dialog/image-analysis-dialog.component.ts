@@ -1,4 +1,9 @@
-import { Component, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  output,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MessageService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
@@ -7,6 +12,7 @@ import { FileUploadModule } from "primeng/fileupload";
 import { ProgressBarModule } from "primeng/progressbar";
 import { TextareaModule } from "primeng/textarea";
 import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.service";
+import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 
 @Component({
   selector: "app-image-analysis-dialog",
@@ -37,8 +43,8 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
           <p-fileupload
             mode="basic"
             chooseLabel="Seleccionar Foto"
-            accept="image/*"
-            maxFileSize="5000000"
+            accept="image/*,.heic,.heif"
+            maxFileSize="20000000"
             (onSelect)="onFileSelect($event)"
             [auto]="false"
           >
@@ -124,7 +130,7 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
     `,
   ],
 })
-export class ImageAnalysisDialogComponent {
+export class ImageAnalysisDialogComponent implements OnDestroy {
   resultAccepted = output<string>();
 
   visible: boolean = false;
@@ -136,6 +142,7 @@ export class ImageAnalysisDialogComponent {
   constructor(
     private ticketAnalysisService: TicketAnalysisService,
     private messageService: MessageService,
+    private imageProcessing: ImageProcessingService,
   ) {}
 
   show() {
@@ -144,21 +151,44 @@ export class ImageAnalysisDialogComponent {
   }
 
   reset() {
+    if (
+      typeof this.previewUrl === "string" &&
+      this.previewUrl.startsWith("blob:")
+    ) {
+      URL.revokeObjectURL(this.previewUrl);
+    }
     this.selectedFile = null;
     this.previewUrl = null;
     this.analysisResult = null; // Clear previous result
     this.loading = false;
   }
 
-  onFileSelect(event: any) {
+  async onFileSelect(event: any): Promise<void> {
     if (event.files && event.files.length > 0) {
-      this.selectedFile = event.files[0];
-
-      // Generate preview
-      const reader = new FileReader();
-      reader.onload = (e) => (this.previewUrl = e.target?.result);
-      reader.readAsDataURL(this.selectedFile!);
+      try {
+        this.selectedFile = await this.imageProcessing.processImage(
+          event.files[0],
+          { maxBytes: 5 * 1024 * 1024, maxDimension: 2560 },
+        );
+        if (
+          typeof this.previewUrl === "string" &&
+          this.previewUrl.startsWith("blob:")
+        ) {
+          URL.revokeObjectURL(this.previewUrl);
+        }
+        this.previewUrl = URL.createObjectURL(this.selectedFile);
+      } catch (error) {
+        this.messageService.add({
+          severity: "error",
+          summary: "No se pudo procesar la imagen",
+          detail: error instanceof Error ? error.message : "Imagen no valida.",
+        });
+      }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.reset();
   }
 
   async analyze() {
