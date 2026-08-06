@@ -1,0 +1,55 @@
+<div class="md:p-3">
+  <form
+    autocomplete="off"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    aria-label="Procesar alta"
+  >
+    <p class="m-0 pb-2 text-color-secondary">
+      Confirmar el alta del candidato seleccionado.
+    </p>
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <custom-input-date-signal
+          [control]="form.controls['executionDate']"
+          label="Fecha de alta"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-select-signal
+          [control]="form.controls['typeContractRegister']"
+          label="Tipo de contrato"
+          [data]="cb_contracts()"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls['boss']"
+          label="Jefe inmediato"
+          placeholder="Nombre del jefe inmediato..."
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls['customerAddress']"
+          label="Direccion del cliente"
+          placeholder="Direccion..."
+        />
+      </div>
+      <div class="col-12">
+        <custom-input-textarea-signal
+          [control]="form.controls['additionalInformation']"
+          label="Informacion adicional"
+          placeholder="Detalles del alta..."
+          [rows]="3"
+        />
+      </div>
+    </div>
+    <il-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+      class="pb-2"
+    />
+  </form>
+</div>

@@ -84,11 +84,11 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <span [class.text-red-600]="item.isExcluded" class="font-medium">
+          <span [class.text-danger]="item.isExcluded" class="font-medium">
             {{ item.accountNumber }}
           </span>
         </td>
-        <td [class.text-red-600]="item.isExcluded">{{ item.accountName }}</td>
+        <td [class.text-danger]="item.isExcluded">{{ item.accountName }}</td>
         <td>{{ item.accountLevel }}</td>
         <td>
           @if (item.hasPropertyMatch) {
@@ -101,7 +101,7 @@
             }
           </span>
           } @else {
-          <span class="text-red-600 font-medium">Sin match</span>
+          <span class="text-danger font-medium">Sin match</span>
           }
         </td>
         <td>{{ visibleReason(item) }}</td>
@@ -139,7 +139,7 @@
           </p>
           <p
             class="text-xs m-0 mt-1"
-            [class.text-red-600]="!item.hasPropertyMatch"
+            [class.text-danger]="!item.hasPropertyMatch"
           >
             {{ item.hasPropertyMatch ? (item.propertyTower + ' / ' +
             item.propertyDepartment) : "Sin match con Property" }}
@@ -154,7 +154,7 @@
           </p>
         </div>
 
-        <div end class="pr-3 text-red-600 font-medium text-sm">
+        <div end class="pr-3 text-danger font-medium text-sm">
           @if (item.isExcluded) {
             Omitida
           }

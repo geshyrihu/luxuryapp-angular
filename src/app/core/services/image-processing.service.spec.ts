@@ -80,6 +80,41 @@ describe("ImageProcessingService", () => {
     await expect(service.processFiles([pdf])).resolves.toEqual([pdf]);
   });
 
+  it("processes image files inside FormData and preserves other values", async () => {
+    const image = new File(["jpeg"], "photo.jpg", { type: "image/jpeg" });
+    const processedImage = new File(["result"], "photo.jpg", {
+      type: "image/jpeg",
+    });
+    const pdf = new File(["pdf"], "document.pdf", {
+      type: "application/pdf",
+    });
+    const formData = new FormData();
+    formData.append("customerId", "42");
+    formData.append("files", image);
+    formData.append("files", pdf);
+    vi.spyOn(service as any, "resizeAndCompress").mockResolvedValue(
+      processedImage,
+    );
+
+    const result = await service.processFormData(formData);
+
+    expect(result.get("customerId")).toBe("42");
+    expect(result.getAll("files")).toEqual([processedImage, pdf]);
+  });
+
+  it("does not process the same image twice", async () => {
+    const image = new File(["jpeg"], "photo.jpg", { type: "image/jpeg" });
+    const resizeAndCompress = vi
+      .spyOn(service as any, "resizeAndCompress")
+      .mockResolvedValue(image);
+
+    const firstResult = await service.processImage(image);
+    const secondResult = await service.processImage(firstResult);
+
+    expect(secondResult).toBe(firstResult);
+    expect(resizeAndCompress).toHaveBeenCalledTimes(1);
+  });
+
   it("rejects unsupported files when image processing is required", async () => {
     const file = new File(["text"], "notes.txt", { type: "text/plain" });
 

@@ -76,6 +76,18 @@ export const recruitmentRoutes: Routes = [
     },
   },
   {
+    path: "candidates",
+    loadChildren: () =>
+      import(
+        "src/app/apps/reclutamiento.luxuryapp/candidates/candidates.routing"
+      ).then((m) => m.candidatesRoutes),
+    canActivate: [authGuard],
+    data: {
+      title: "Candidatos",
+      breadcrumb: "Candidatos",
+    },
+  },
+  {
     path: "dismissal-requests", // Ruta anterior: 'solicitudes-baja'
     loadComponent: () =>
       import("src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/solicitud-baja-list").then(

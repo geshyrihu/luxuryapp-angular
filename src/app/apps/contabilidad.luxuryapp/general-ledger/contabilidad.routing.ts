@@ -1,6 +1,5 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
-import { COBRANZA_ONLINE_ROUTES } from "src/app/apps/cobranza.luxuryapp/cobranza-online/cobranza.routes";
 
 export const CONTABILIDAD_ROUTES: Routes = [
   // Ruta: /contabilidad
@@ -167,8 +166,6 @@ export const CONTABILIDAD_ROUTES: Routes = [
       breadcrumb: "Presupuesto propuesta",
     },
   },
-
-  ...COBRANZA_ONLINE_ROUTES,
 
   {
     path: "collections/presupuesto-contabilidad",

@@ -1,0 +1,112 @@
+<div class="md:p-3">
+  <form
+    autocomplete="off"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    aria-label="Formulario de candidato"
+  >
+    <custom-input-text-signal
+      [control]="form.controls.id"
+      hidden
+      label="Id"
+      [readonly]="true"
+    />
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.firstName"
+          label="Nombre(s)"
+          placeholder="Nombre(s)"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.lastName"
+          label="Apellidos"
+          placeholder="Apellidos"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-mask-signal
+          [control]="form.controls.phoneNumber"
+          label="Tel. Celular"
+          placeholder="(00) 0000-0000"
+          customMask="(00) 0000-0000"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-email
+          [control]="form.controls.email"
+          label="Correo electronico"
+          placeholder="correo@ejemplo.com"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-number-signal
+          [control]="form.controls.age"
+          label="Edad"
+          placeholder="Edad"
+          [min]="16"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-select-signal
+          [control]="form.controls.recruitmentSource"
+          label="Fuente de reclutamiento"
+          [data]="cb_recruitmentSource()"
+          [filter]="true"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-number-signal
+          [control]="form.controls.salaryExpectation"
+          label="Expectativa salarial"
+          placeholder="0.00"
+          [prefix]="'$ '"
+        />
+      </div>
+      <div class="col-12 md:col-6 flex align-items-end">
+        <custom-input-toggle-switch-signal
+          [control]="form.controls.livesNearWorkplace"
+          label="Vive cerca del lugar de trabajo"
+        />
+      </div>
+      <div class="col-12">
+        <custom-input-text-signal
+          [control]="form.controls.currentAddress"
+          label="Direccion actual"
+          placeholder="Direccion actual"
+        />
+      </div>
+      <div class="col-12">
+        <custom-input-text-signal
+          [control]="form.controls.availability"
+          label="Disponibilidad"
+          placeholder="Ej. Inmediata, 2 semanas, Turno matutino..."
+        />
+      </div>
+      <div class="col-12">
+        <custom-input-textarea-signal
+          [control]="form.controls.experienceSummary"
+          label="Resumen de experiencia"
+          placeholder="Experiencia laboral relevante..."
+          [rows]="3"
+        />
+      </div>
+      <div class="col-12">
+        <custom-input-textarea-signal
+          [control]="form.controls.generalComments"
+          label="Comentarios generales"
+          placeholder="Comentarios adicionales..."
+          [rows]="3"
+        />
+      </div>
+    </div>
+    <il-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+      class="pb-2"
+    />
+  </form>
+</div>

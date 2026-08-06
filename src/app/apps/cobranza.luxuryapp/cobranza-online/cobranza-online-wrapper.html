@@ -1,0 +1,185 @@
+<section class="p-3 md:p-4">
+  <div class="surface-card rounded-xl shadow-sm sticky top-0 z-5 p-2 mb-2">
+    <div class="flex flex-wrap justify-content-end align-items-center gap-2 p-2 mb-2">
+      <div class="flex align-items-center gap-2 mr-2">
+        <label class="text-sm font-medium text-color-secondary mt-2"
+          >Fecha corte:</label
+        >
+        <div style="width: 15rem; min-width: 200px">
+          <custom-input-date-signal
+            [control]="dateControl"
+            [noMargin]="true"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+      <il-button
+        label="Análisis"
+        size="small"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/analysis')"
+      />
+      <il-button
+        label="Listado base"
+        size="small"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/inspection')"
+      />
+      <il-button
+        label="Cargos del mes"
+        size="small"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/department-charges')"
+      />
+      <il-button
+        label="Abonos del mes"
+        size="small"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/department-payments')"
+      />
+      <il-button
+        label="Cuentas omitidas"
+        size="small"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/exclusions')"
+      />
+      <il-button
+        label="Resumen Torres"
+        size="small"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/towers')"
+      />
+      <il-button
+        label="Adelantos"
+        size="small"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/advances')"
+      />
+      <il-button
+        label="Morosidad"
+        size="small"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/debtors')"
+      />
+      <il-button
+        [label]="syncRunning() ? 'Sincronizando...' : 'Refrescar Aspel'"
+        size="small"
+        [loading]="syncRunning()"
+        [disabled]="syncRunning()"
+        (clicked)="onSyncNow()"
+      />
+    </div>
+
+    <div class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4">
+      <div
+        class="flex flex-column xl:flex-row xl:align-items-start xl:justify-content-between gap-3"
+      >
+        <div class="min-w-0">
+          <div class="flex align-items-center gap-2 mb-2">
+            <span
+              class="inline-flex align-items-center justify-content-center rounded-xl"
+            >
+              <app-icon [icon]="'mdi:chart-line'" class="text-sm" />
+            </span>
+            <div>
+              <h2 class="m-0 text-xl font-semibold">Cobranza Online</h2>
+              <div class="text-color-secondary text-sm mt-1">
+                Vista ejecutiva del corte validado de {{ currentMonthName() }}
+                con lectura live de Aspel.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      @if (!hasCustomer()) {
+      <div class="mt-3">
+        <div class="surface-card border-1 surface-border rounded p-2">
+          <div class="font-medium mb-2">Sin cliente activo</div>
+          <div class="text-color-secondary">
+            Selecciona un cliente para consultar el estado actual de Cobranza
+            Online.
+          </div>
+        </div>
+      </div>
+      } @else if (loading()) {
+      <div class="mt-3">
+        <div class="flex-1 flex flex-column justify-content-center">
+          <div class="font-medium">Cargando resumen de cobranza...</div>
+          <div class="text-color-secondary">
+            Consultando Aspel live y preparando el resumen operativo de {{
+            currentMonthName() }}.
+          </div>
+        </div>
+      </div>
+      } @else if (syncStatus()) {
+      <div class="mt-3">
+        <div class="grid">
+          <div class="col-12 xl:col-4 bg-success-light border-1 surface-border rounded p-2">
+            <div class="text-xs uppercase font-bold text-color-secondary tracking-wide mb-1">Resumen de consulta</div>
+            <div class="font-bold text-color">
+              {{ syncStatus()?.syncMessage || "Sin datos de consulta" }}
+            </div>
+          </div>
+          <div class="col-6 md:col-3 xl:col-2 surface-card border-1 surface-border rounded p-2">
+            <div class="text-xs uppercase font-bold text-color-secondary tracking-wide mb-1">Cliente</div>
+            <div class="font-bold text-color">
+              {{ customerName() || "Cliente activo" }}
+            </div>
+          </div>
+          <div class="col-6 md:col-3 xl:col-2 surface-card border-1 surface-border rounded p-2">
+            <div class="text-xs uppercase font-bold text-color-secondary tracking-wide mb-1">Origen</div>
+            <div class="font-bold text-color">{{ syncStatus()?.dataSource }}</div>
+          </div>
+          <div class="col-6 md:col-3 xl:col-2 surface-card border-1 surface-border rounded p-2">
+            <div class="text-xs uppercase font-bold text-color-secondary tracking-wide mb-1">Última actualización</div>
+            <div class="font-bold text-color">{{ formattedLastSync() }}</div>
+          </div>
+          <div class="col-6 md:col-3 xl:col-2 surface-card border-1 surface-border rounded p-2">
+            <div class="text-xs uppercase font-bold text-color-secondary tracking-wide mb-1">Mes consultado</div>
+            <div class="font-bold text-color">
+              {{ currentCutLabel() }} · {{ currentMonthName() }} validado
+            </div>
+          </div>
+        </div>
+
+        @if (lastSyncDiagnostics(); as diagnostics) {
+        <div class="flex flex-wrap gap-2 mt-3">
+          <div class="border-1 border-dashed surface-border rounded p-2">
+            <div class="text-xs uppercase font-bold text-color-secondary tracking-wide">Cuentas 104</div>
+            <div class="font-bold">{{ diagnostics.accounts104 }}</div>
+          </div>
+          <div class="border-1 border-dashed surface-border rounded p-2">
+            <div class="text-xs uppercase font-bold text-color-secondary tracking-wide">Cuentas 401</div>
+            <div class="font-bold">{{ diagnostics.accounts401 }}</div>
+          </div>
+          <div class="border-1 border-dashed surface-border rounded p-2">
+            <div class="text-xs uppercase font-bold text-color-secondary tracking-wide">Saldos 104</div>
+            <div class="font-bold">{{ diagnostics.balances104 }}</div>
+          </div>
+          <div class="border-1 border-dashed surface-border rounded p-2">
+            <div class="text-xs uppercase font-bold text-color-secondary tracking-wide">Auxiliares 104</div>
+            <div class="font-bold">{{
+              diagnostics.auxiliaries104 }}</div>
+          </div>
+        </div>
+        } @if (syncStatus()?.lastError) {
+        <div class="mt-2 text-color-secondary text-sm">
+          Último error relevante: {{ syncStatus()?.lastError }}
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+
+  <router-outlet />
+</section>

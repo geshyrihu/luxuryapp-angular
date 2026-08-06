@@ -1,0 +1,43 @@
+<div class="md:p-3">
+  <form
+    autocomplete="off"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    aria-label="Formulario de postulación"
+  >
+    <custom-input-select-signal
+      [control]="form.controls['candidateId']"
+      label="Candidato"
+      [data]="cb_candidates()"
+      [filter]="true"
+    />
+    <custom-input-select-signal
+      [control]="form.controls['requestPositionId']"
+      label="Vacante"
+      [data]="cb_vacancies()"
+      [filter]="true"
+    />
+    <custom-input-date-signal
+      [control]="form.controls['applicationDate']"
+      label="Fecha de postulación"
+      [horizontal]="false"
+    />
+    <div class="grid align-items-start">
+      <div class="col-12 md:col-8">
+        <app-candidate-cv-upload
+          [fileName]="form.controls['cvFileName'].value"
+          [fileUrl]="currentCvUrl()"
+          (fileSelected)="onCvSelected($event)"
+          (fileEmitted)="onCvFile($event)"
+          label="CV del candidato (PDF)"
+        />
+      </div>
+    </div>
+    <il-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+      class="pb-2"
+    />
+  </form>
+</div>

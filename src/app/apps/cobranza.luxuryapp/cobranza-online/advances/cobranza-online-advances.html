@@ -1,0 +1,149 @@
+<section class="p-3 md:p-4">
+  <div
+    class="flex flex-column md:flex-row align-items-start md:align-items-center justify-content-between gap-3 mb-4"
+  >
+    <div>
+      <h2
+        class="m-0 text-xl font-semibold text-success flex align-items-center gap-2"
+      >
+        <app-icon icon="mdi:cash-plus" class="text-xl" />
+        Adelantos y Saldos a Favor
+      </h2>
+      <p class="mt-2 mb-0 text-color-secondary">
+        Condóminos cuyo saldo final es negativo (tienen pagos anticipados).
+      </p>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      <il-button
+        label="Volver al dashboard"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online')"
+      />
+      <il-button
+        label="Resumen Torres"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/towers')"
+      />
+      <il-button
+        label="Morosidad"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/debtors')"
+      />
+    </div>
+  </div>
+
+  @if (!hasCustomer()) {
+  <div class="border-1 surface-border rounded p-4">
+    <div class="font-medium mb-2">Sin cliente activo</div>
+    <div class="text-color-secondary">
+      Selecciona un cliente para consultar los adelantos y saldos a favor.
+    </div>
+  </div>
+  } @else if (loading()) {
+  <div class="text-color-secondary mb-4">
+    Consultando Aspel y preparando el listado de saldos a favor...
+  </div>
+  } @else if (advances().length) {
+  <div
+    class="surface-card p-3 md:p-4 mb-4 shadow-1 border-round-xl border-1 surface-border"
+  >
+    <p-table
+      #dtAdvances
+      [value]="advances()"
+      [globalFilterFields]="['accountNumber', 'propertyFullName', 'accountName']"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      class="custom-table card hidden md:block"
+      styleClass="p-datatable-sm"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          [dt]="dtAdvances"
+          [showAdd]="false"
+          [showSearch]="true"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="accountNumber">
+            Cuenta
+            <p-sorticon field="accountNumber" />
+          </th>
+          <th pSortableColumn="propertyFullName">
+            Condómino
+            <p-sorticon field="propertyFullName" />
+          </th>
+          <th pSortableColumn="balance" class="text-right text-success">
+            Saldo a Favor
+            <p-sorticon field="balance" />
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td>{{ row.accountNumber }}</td>
+          <td>{{ row.propertyFullName || row.accountName }}</td>
+          <td class="text-right text-success font-bold">
+            {{ (row.balance * -1) | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #footer>
+        <tr>
+          <td colspan="2" class="text-right font-bold text-success">Total:</td>
+          <td class="text-right text-success font-bold">
+            {{ totalAdvances() | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <primeng-custom-table-emptymessage [colspan]="3" />
+      </ng-template>
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="advances()" />
+      </ng-template>
+    </p-table>
+
+    <div class="md:hidden">
+      <app-data-view-mobile
+        [data]="advances()"
+        [globalFilterFields]="['accountNumber', 'propertyFullName', 'accountName']"
+        [showAdd]="false"
+      >
+        <ng-template #listItemTemplate let-row>
+          <ili-list-item class="ion-no-padding">
+            <div
+              start
+              class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+            >
+              <app-icon icon="mdi:cash-plus" />
+            </div>
+            <div class="flex-1 min-w-0 ion-text-wrap">
+              <p class="font-semibold m-0 text-color">
+                {{ row.accountNumber }}
+              </p>
+              <p class="text-xs m-0 mt-1 text-color-secondary">
+                {{ row.propertyFullName || row.accountName }}
+              </p>
+              <p class="text-xs m-0 mt-1 text-success font-bold">
+                Saldo a favor {{ (row.balance * -1) | currency: 'MXN':'symbol':'1.0-0' }}
+              </p>
+            </div>
+          </ili-list-item>
+        </ng-template>
+      </app-data-view-mobile>
+    </div>
+  </div>
+  } @else {
+  <div class="text-color-secondary">No se encontraron saldos a favor.</div>
+  }
+</section>

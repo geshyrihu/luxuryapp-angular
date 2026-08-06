@@ -9,9 +9,10 @@ import {
   untracked,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { ButtonModule } from "primeng/button";
 
+import { Router } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -27,7 +28,8 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { DialogHandlerService, DialogSize } from "src/app/core/services/dialog-handler.service";
+import { AspelCobranzaReglasNegocioComponent } from "./aspel-cobranza-reglas-negocio/aspel-cobranza-reglas-negocio";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { AspelCobranzaHausDebtDetailModal } from "./aspel-cobranza-haus-debt-detail-modal";
 import { AspelCobranzaHausPdfService } from "./aspel-cobranza-haus-pdf.service";
@@ -70,6 +72,7 @@ import {
     LxTag,
     LxCard,
     LxMessage,
+    ButtonModule,
   ],
 })
 export class AspelCobranzaHaus {
@@ -78,6 +81,7 @@ export class AspelCobranzaHaus {
   private readonly dialogHandlerS = inject(DialogHandlerService);
   private readonly cobranzaPdfS = inject(AspelCobranzaHausPdfService);
   private readonly tableScrollHeightS = inject(TableScrollHeightService);
+  private readonly router = inject(Router);
   // private readonly aspelSyncS = inject(AspelSyncService);
 
   readonly endpointOptions: SelectItem<AspelQueryMode>[] = [
@@ -300,14 +304,6 @@ export class AspelCobranzaHaus {
     return !!numCta && !!this.request.fechaInicio && !!this.request.fechaFin;
   }
 
-  canDownloadAccountDocuments(): boolean {
-    const mode = this.mode();
-    const numCta = this.getNormalizedNumCta();
-    if (!this.hasCustomerContext()) return false;
-    if (mode === "accounts" || mode === "deudas-actuales") return false;
-    if (mode === "detalle-cobranza-rango") return !!numCta;
-    return !!numCta && !!this.request.fechaInicio && !!this.request.fechaFin;
-  }
 
   getModeTitle(): string {
     const sourceSuffix = this.dataSource() === "local" ? "Local" : "Live";
@@ -420,7 +416,9 @@ export class AspelCobranzaHaus {
       this.deudasActuales.set(
         result ? this.normalizeDeudasActualesResponse(result) : null,
       );
+      return;
     }
+
   }
 
   private clearResults(): void {
@@ -447,6 +445,9 @@ export class AspelCobranzaHaus {
       this.dialogHandlerS.sizeLg,
     );
   }
+  canDownloadAccountDocuments(): boolean {
+    return !!this.detalleCobranza();
+  }
 
   async downloadAvisoCobroPdf(): Promise<void> {
     if (!this.canDownloadAccountDocuments()) return;
@@ -459,6 +460,15 @@ export class AspelCobranzaHaus {
     } finally {
       this.loading.set(false);
     }
+  }
+
+  async openBusinessRules(): Promise<void> {
+    await this.dialogHandlerS.openDialog(
+      AspelCobranzaReglasNegocioComponent,
+      {},
+      "Reglas de Negocio V2",
+      DialogSize.md
+    );
   }
 
   async downloadAvisoCobroPdfAspel(): Promise<void> {

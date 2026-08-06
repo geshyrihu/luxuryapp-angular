@@ -285,20 +285,11 @@ export const ROUTES = {
     ESTADOS_FINANCIEROS: ["/contabilidad", "financial-statements"],
     RESUMEN_FINANCIERO: ["/contabilidad", "financial-summary"],
     PROPUESTA_PRESUPUESTO: ["/contabilidad", "budget-proposal"],
-    COBRANZA: ["/contabilidad", "collections"],
-    COBRANZA_INSPECCION: ["/contabilidad", "collections", "inspection"],
-    COBRANZA_ANALISIS: ["/contabilidad", "collections", "analysis"],
-    COBRANZA_REPORTE_FINANCIERO: [
-      "/contabilidad",
-      "collections",
-      "reporte-financiero",
-    ],
     COBRANZA_PRESUPUESTO: [
       "/contabilidad",
       "collections",
       "presupuesto-contabilidad",
     ],
-    COBRANZA_EXCLUSIONES: ["/contabilidad", "collections", "exclusions"],
     CUENTAS: ["/contabilidad", "accounts"],
     REPORTES_FINANCIEROS: ["/contabilidad", "financial-statements-reports"],
     ASPEL_COBRANZA: ["/contabilidad", "aspel-cobranza"],
@@ -309,6 +300,17 @@ export const ROUTES = {
     REPORTE_EDITAR: (id: string) => ["/contabilidad", "reportes", "editar", id],
     REPORTE_VER: (id: string) => ["/contabilidad", "reportes", "ver", id],
     REPORTE_GUIA: ["/contabilidad", "reportes", "guia"],
+  },
+
+  // ============================================================
+  // COBRANZA ONLINE
+  // ============================================================
+  COBRANZA: {
+    ONLINE: ["/cobranza", "online"],
+    ONLINE_INSPECCION: ["/cobranza", "online", "inspection"],
+    ONLINE_ANALISIS: ["/cobranza", "online", "analysis"],
+    ONLINE_REPORTE_FINANCIERO: ["/cobranza", "online", "reporte-financiero"],
+    ONLINE_EXCLUSIONES: ["/cobranza", "online", "exclusions"],
   },
 
   // ============================================================

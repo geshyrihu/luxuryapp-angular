@@ -52,6 +52,7 @@ import { providePrimeNG, type PrimeNGConfigType } from "primeng/config";
 import { DialogService } from "primeng/dynamicdialog";
 // Importaciones de Archivos del Proyecto
 import { jwtInterceptor } from "src/app/core/http/interceptors/jwt.interceptor.fn";
+import { imageFormDataInterceptor } from "src/app/core/http/interceptors/image-form-data.interceptor.fn";
 import { offlineInterceptorFn } from "src/app/core/http/interceptors/offline.interceptor.fn";
 import { preloadIconifyIcons } from "src/app/core/services/icon-preload.service";
 import { MessagingService } from "src/app/core/services/notification-messaging.service";
@@ -93,7 +94,11 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(preloadIconifyIcons()),
 
     provideHttpClient(
-      withInterceptors([offlineInterceptorFn, jwtInterceptor]),
+      withInterceptors([
+        imageFormDataInterceptor,
+        offlineInterceptorFn,
+        jwtInterceptor,
+      ]),
       withInterceptorsFromDi(),
       withFetch(),
     ),

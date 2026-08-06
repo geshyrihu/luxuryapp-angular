@@ -1,0 +1,20 @@
+<div class="card p-3 mb-2">
+  <p class="m-0 text-sm text-color-secondary">
+    Esta bandeja solo muestra postulaciones en etapas de entrevista:
+    reclutamiento y operaciones.
+  </p>
+</div>
+
+@if (platformS.isMobile()) {
+  <app-candidate-interview-pending-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (feedback)="onFeedback($event)"
+  />
+} @else {
+  <app-candidate-interview-pending-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (feedback)="onFeedback($event)"
+  />
+}

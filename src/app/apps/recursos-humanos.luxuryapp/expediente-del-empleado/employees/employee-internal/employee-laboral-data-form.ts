@@ -57,7 +57,7 @@ export class EmployeeLaboralDataForm implements OnInit {
   cb_type_contract = signal<SelectItemDto[]>([]);
   cb_education_level = signal<SelectItemDto[]>([]);
   cb_customer = signal<SelectItemDto[]>([]);
-  cb_state: SelectItemDto[] = [
+  cb_state = signal<SelectItemDto[]>([
     {
       label: "Activo",
       value: true,
@@ -66,7 +66,7 @@ export class EmployeeLaboralDataForm implements OnInit {
       label: "Inactivo",
       value: false,
     },
-  ];
+  ]);
 
   submitting = signal(false);
   public AspRole = ApplicationRole;
@@ -129,7 +129,10 @@ export class EmployeeLaboralDataForm implements OnInit {
         Endpoints.EmployeeInternal.laboralData(this.applicationUserId()),
       )
       .then((result: any) => {
-        this.form.patchValue(result);
+        this.form.patchValue({
+          ...result,
+          active: result.active === true || result.active === 'true',
+        });
         if (result.salary) {
           this.form.controls.dailySalary.setValue(result.salary / 30.46);
         }
@@ -153,7 +156,10 @@ export class EmployeeLaboralDataForm implements OnInit {
         payload,
       )
       .then((result: any) => {
-        this.form.patchValue(result);
+        this.form.patchValue({
+          ...result,
+          active: result.active === true || result.active === 'true',
+        });
         this.submitting.set(false);
       });
   }

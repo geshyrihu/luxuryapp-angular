@@ -1,0 +1,81 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '60rem' }"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [dt]="dt"
+      [showAdd]="false"
+      aria-label="Bandeja de entrevistas pendientes"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="candidateName">
+        Candidato
+        <p-sorticon field="candidateName" />
+      </th>
+      <th pSortableColumn="positionName">
+        Vacante
+        <p-sorticon field="positionName" />
+      </th>
+      <th>Cliente</th>
+      <th pSortableColumn="currentStage">
+        Etapa
+        <p-sorticon field="currentStage" />
+      </th>
+      <th pSortableColumn="assignedInterviewerName">
+        Entrevistador
+        <p-sorticon field="assignedInterviewerName" />
+      </th>
+      <th>CV</th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.candidateName }}</td>
+      <td>{{ item.positionName }}</td>
+      <td>{{ item.customerName }}</td>
+      <td>
+        <app-candidate-stage-badge [stage]="item.currentStage" />
+      </td>
+      <td>{{ item.assignedInterviewerName }}</td>
+      <td>
+        @if (item.cvFileName) {
+          <iw-button-view-pdf
+            size="sm"
+            class="btn--circle"
+            [url]="item.cvFileUrl"
+            [fileName]="item.cvFileName"
+            [attr.aria-label]="'Ver CV de ' + item.candidateName"
+          />
+        }
+      </td>
+      <td class="no-print">
+        <iw-button-edit
+          size="sm"
+          class="btn--circle"
+          [attr.aria-label]="'Llenar retroalimentación de ' + item.candidateName"
+          (clicked)="feedback.emit(item.id)"
+        />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="data()" />
+  </ng-template>
+</p-table>

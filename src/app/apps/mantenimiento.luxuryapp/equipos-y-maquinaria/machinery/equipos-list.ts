@@ -8,15 +8,14 @@ import {
   signal,
 } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import {
   addCircleOutline,
@@ -29,14 +28,13 @@ import {
   timeOutline,
   trashOutline,
 } from "ionicons/icons";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { EquipmentInspectionQrPrintService } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-print.service";
 import { EquipmentInspectionService } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspection.service";
 import { EquipmentInspectionsShell } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/equipment-inspections/equipment-inspections-shell";
 import { ActivosForm } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
 import { ActivosDocumentos } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery-document/activos-documentos";
 import { FichaTecnicaActivo } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
+import { MantenimientosDialog } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/mantenimientos-dialog";
 import { ServiceHistoryMachinery } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
 import { BitacoraIndividual } from "src/app/apps/mantenimiento.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { CalendarioMaestroReadonly } from "src/app/apps/mantenimiento.luxuryapp/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-readonly";
@@ -52,7 +50,10 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { CurrencyMexicoPipe } from "src/app/shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
@@ -105,7 +106,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     WebButtonIconItem,
     WebButtonIconEdit,
     WebButtonIconDelete,
-    PrimeNgCustomTableEmptyMessage,
     CommonModule,
     TableModule,
     AppImage,
@@ -117,7 +117,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     SanitizeHtmlPipe,
     CurrencyMexicoPipe,
     DataViewMobile,
-    LxModal,
     LxSidebar,
     LxTag,
     CalendarioMaestroReadonly,
@@ -138,8 +137,6 @@ export class EquiposList {
   data = signal<any[]>([]);
   loading = signal(true);
   stateFilter = signal<number>(0);
-  selectedEquipo = signal<Equipo | null>(null);
-  mantenimientosVisible = signal(false);
   calendarioGuiaVisible = signal(false);
   public AspRole = ApplicationRole;
 
@@ -562,18 +559,30 @@ ${this.htmlPrintS.getStandardCss()}
   }
 
   openMantenimientosDialog(equipo: Equipo) {
-    this.selectedEquipo.set(equipo);
-    this.mantenimientosVisible.set(true);
+    this.dialogHandlerS
+      .openDialog(
+        MantenimientosDialog,
+        equipo,
+        `${equipo.nameMachinery} — Mantenimientos`,
+        this.dialogHandlerS.sizeFull,
+      )
+      .then((result) => {
+        if (result) {
+          this.onLoadData(
+            this.customerIdS.customerId(),
+            this.inventoryCategoryId()!,
+            this.stateFilter(),
+          );
+        }
+      });
   }
 
-  private async refreshSelectedEquipo(machineryId: any) {
+  private async refreshData() {
     await this.onLoadData(
       this.customerIdS.customerId(),
       this.inventoryCategoryId(),
       this.stateFilter(),
     );
-    const updated = this.data().find((e) => e.id === machineryId);
-    if (updated) this.selectedEquipo.set(updated);
   }
 
   async onAddMantenimientoDialog(machineryId: any) {
@@ -583,7 +592,7 @@ ${this.htmlPrintS.getStandardCss()}
       "Nuevo Servicio",
       this.dialogHandlerS.sizeFull,
     );
-    if (result) await this.refreshSelectedEquipo(machineryId);
+    if (result) await this.refreshData();
   }
 
   async onEditMantenimientoDialog(order: any) {
@@ -593,13 +602,13 @@ ${this.htmlPrintS.getStandardCss()}
       "Editar Servicio",
       this.dialogHandlerS.sizeFull,
     );
-    if (result) await this.refreshSelectedEquipo(order.machineryId);
+    if (result) await this.refreshData();
   }
 
   async onDeleteOrderFromDialog(orderId: any, machineryId: any) {
     await this.apiResponseS.onDelete(
       Endpoints.MaintenanceCalendars.delete(orderId),
     );
-    await this.refreshSelectedEquipo(machineryId);
+    await this.refreshData();
   }
 }

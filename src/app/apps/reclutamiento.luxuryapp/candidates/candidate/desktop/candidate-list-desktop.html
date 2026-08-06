@@ -1,0 +1,89 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="add.emit({ id: '', title: 'Nuevo Candidato' })"
+      [dt]="dt"
+      aria-label="Agregar nuevo candidato"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="fullName">
+        Nombre
+        <p-sorticon field="fullName" />
+      </th>
+      <th pSortableColumn="phoneNumber">
+        Telefono
+        <p-sorticon field="phoneNumber" />
+      </th>
+      <th pSortableColumn="email">
+        Correo
+        <p-sorticon field="email" />
+      </th>
+      <th class="text-center">Postulaciones</th>
+      <th pSortableColumn="status">
+        Estado
+        <p-sorticon field="status" />
+      </th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.fullName }}</td>
+      <td>{{ item.phoneNumber }}</td>
+      <td>{{ item.email }}</td>
+      <td class="text-center">{{ item.activeApplicationsCount }}</td>
+      <td>
+        <app-mapped-p-tag
+          [value]="item.status"
+          [options]="candidateStatusOptions"
+        />
+      </td>
+      <td class="no-print">
+        <div class="flex gap-1">
+          <iw-button-edit
+            size="sm"
+            class="btn--circle"
+            [attr.aria-label]="'Editar candidato ' + item.fullName"
+            (clicked)="edit.emit({ id: item.id, title: 'Editar Candidato' })"
+          />
+          <iw-button-item
+            size="sm"
+            class="btn--circle"
+            iconClass="mdi:information"
+            [attr.aria-label]="'Ver detalle candidato ' + item.fullName"
+            (clicked)="detail.emit(item.id)"
+          />
+          @if (item.status === 0) {
+            <iw-button-delete
+              size="sm"
+              class="btn--circle"
+              [attr.aria-label]="'Archivar candidato ' + item.fullName"
+              (confirmed)="archive.emit(item.id)"
+            />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="6" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="data()" />
+  </ng-template>
+</p-table>

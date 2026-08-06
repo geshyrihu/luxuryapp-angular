@@ -25,7 +25,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { CobranzaOnlineService } from "../cobranza-online.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type { CobranzaOnlineAnalysisResponse } from "../interfaces/cobranza-online-analysis.model";
 
 function buildTodayInputValue() {
@@ -55,15 +55,17 @@ function buildTodayInputValue() {
     AppIcon,
     LxMessage,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./cobranza-online-analysis.html",
 })
 export class CobranzaOnlineAnalysis {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
 
   readonly loading = signal(false);
+  // Filtro independiente: usa fecha de corte específica (con day picker),
+  // no comparte cobranzaOnlineFilterState (ver state/cobranza-online-filter.state.ts)
   readonly cutoffDateInput = signal(buildTodayInputValue());
   readonly selectedClassification = signal("TODAS");
   readonly data = signal<CobranzaOnlineAnalysisResponse | null>(null);
@@ -89,11 +91,27 @@ export class CobranzaOnlineAnalysis {
     this.data()?.syncMetadata?.dataSource === "aspel-live" ? "success" : "warn",
   );
 
+  private token(key: string, fallback: string): string {
+    if (typeof document === "undefined") {
+      return fallback;
+    }
+    return (
+      getComputedStyle(document.documentElement)
+        .getPropertyValue(key)
+        .trim() || fallback
+    );
+  }
+
   readonly chartData = computed(() => {
     const analysis = this.data();
     if (!analysis) {
       return null;
     }
+
+    const danger = this.token("--ds-danger", "red");
+    const info = this.token("--ds-info", "blue");
+    const success = this.token("--ds-success", "green");
+    const warning = this.token("--ds-warning", "orange");
 
     if (analysis.cobranzaPerfecta > 0) {
       return {
@@ -105,8 +123,8 @@ export class CobranzaOnlineAnalysis {
               analysis.totalDeudaCorriente,
               analysis.totalCobrado,
             ],
-            backgroundColor: ["#b91c1c", "#2563eb", "#166534"],
-            hoverBackgroundColor: ["#b91c1c", "#2563eb", "#166534"],
+            backgroundColor: [danger, info, success],
+            hoverBackgroundColor: [danger, info, success],
             borderWidth: 0,
           },
         ],
@@ -122,8 +140,8 @@ export class CobranzaOnlineAnalysis {
             analysis.totalMorosos,
             analysis.totalDeudaCorriente,
           ],
-          backgroundColor: ["#b91c1c", "#d97706", "#2563eb"],
-          hoverBackgroundColor: ["#b91c1c", "#d97706", "#2563eb"],
+          backgroundColor: [danger, warning, info],
+          hoverBackgroundColor: [danger, warning, info],
           borderWidth: 0,
         },
       ],
@@ -223,7 +241,14 @@ export class CobranzaOnlineAnalysis {
 
     this.loading.set(true);
     const result =
-      await this.cobranzaOnlineS.getAnalysis(customerId, year, month, day);
+      await this.apiResponseS.onGetItem<CobranzaOnlineAnalysisResponse>(
+        Endpoints.CobranzaOnline.Dashboard.analysis(
+          customerId,
+          year,
+          month,
+          day,
+        ),
+      );
     this.data.set(result ?? null);
     this.loading.set(false);
   }

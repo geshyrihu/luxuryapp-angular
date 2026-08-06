@@ -1,0 +1,178 @@
+<div class="p-4">
+  <div class="mb-4">
+    <h2 class="text-2xl font-bold text-gray-800 m-0 mb-2">Reglas de Negocio - Ecosistema de Cobranza Aspel</h2>
+    <p class="text-gray-600 m-0 line-height-3">
+      Este documento describe detalladamente la lógica contable y de presentación utilizada a través de los distintos módulos de cobranza, garantizando congruencia entre lo capturado en Aspel COI y lo presentado al condómino.
+    </p>
+  </div>
+  
+  <p-accordion [multiple]="true" value="0">
+    
+    <!-- 1. Módulos y sus Propósitos -->
+    <p-accordion-panel value="0">
+      <p-accordion-header>1. Arquitectura de Módulos (Aviso de Cobro, Deudas Actuales, Edo. Cuenta)</p-accordion-header>
+      <p-accordion-content>
+        <div class="line-height-3">
+          <p>El ecosistema cuenta con 3 consultas principales, cada una con un propósito específico y respetando estrictamente la base contable:</p>
+          <ul>
+            <li class="mb-2"><strong>Aviso de Cobro:</strong> Es el documento principal. Extrae los saldos y realiza un desglose automático de los descuentos por pronto pago para que el cliente los vea como un beneficio explícito. Muestra los saldos fusionados tal cual quedan tras la conciliación de Aspel.</li>
+            <li class="mb-2"><strong>Deudas Actuales:</strong> Muestra una fotografía al día de hoy del total adeudado por todos los departamentos. Agrupa todo el historial contable para dar un saldo único por vivienda. No desglosa conceptos, solo muestra el gran total adeudado (saldo deudor) o a favor (saldo acreedor).</li>
+            <li class="mb-2"><strong>Estado de Cuenta:</strong> Es el reporte analítico detallado. Enlista de manera cronológica absolutamente todos los cargos y abonos (pólizas) registrados en el periodo seleccionado. Es la fuente de la verdad para realizar auditorías, ya que no agrupa conceptos, sino que muestra cada movimiento individual con su póliza de origen.</li>
+          </ul>
+        </div>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <!-- 2. Descuentos por Pronto Pago -->
+    <p-accordion-panel value="1">
+      <p-accordion-header>2. Tratamiento de Descuentos por Pronto Pago (Cuenta 002)</p-accordion-header>
+      <p-accordion-content>
+        <div class="line-height-3">
+          <p><strong>Identificación:</strong> Los descuentos se identifican de dos maneras:</p>
+          <ol>
+            <li>Por su cuenta contable terminación <code>-002</code>.</li>
+            <li>Por contener en su concepto las palabras <strong>"DESCUENTO"</strong> o <strong>"PRONTO PAGO"</strong>.</li>
+          </ol>
+          
+          <p><strong>Variabilidad Contable (Cómo se capturan en Aspel):</strong></p>
+          <ul>
+            <li><strong>Como Abono:</strong> A veces se capturan como un Abono (Haber) a la cuenta de mantenimiento (terminación 001).</li>
+            <li><strong>Como Cargo Negativo:</strong> Otras veces se capturan como un Cargo (Debe) por un monto negativo (Ej. -$1,000) dirigido directamente a la cuenta 002.</li>
+          </ul>
+
+          <p><strong>Comportamiento en Aviso de Cobro:</strong></p>
+          <div class="surface-100 p-3 border-round border-1 surface-border mt-3 mb-3">
+            El motor principal intercepta estos movimientos antes de renderizarlos.
+            <br /><br />
+            <strong>Paso 1:</strong> Identifica el descuento exacto correspondiente al <strong>mes consultado</strong> verificando la fecha de la póliza original.<br />
+            <strong>Paso 2:</strong> Extrae el valor absoluto de ese descuento (Ej. $1,000) y lo suma de regreso al cargo más reciente de Mantenimiento para mostrar el <strong>Cargo Bruto</strong>.<br />
+            <strong>Paso 3:</strong> Inyecta un renglón virtual llamado <strong>"DESCUENTO POR PRONTO PAGO"</strong> con el valor del descuento para que el cliente lo vea claramente.
+          </div>
+
+          <!-- Ejemplo Práctico con Tabla -->
+          <h5 class="mt-4 mb-2">Ejemplo Práctico</h5>
+          <p-table [value]="[{concepto: 'CUOTA DE MTTO (001)', aspel: '$12,694.00 (Neto)', vista: '$13,694.00 (Bruto)'}, {concepto: 'DESCUENTO (002)', aspel: '-$1,000.00 (Cargo Negativo) o Abono', vista: '$1,000.00 (Beneficio Visible)'}]" styleClass="p-datatable-sm p-datatable-gridlines mb-4">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Concepto / Cuenta</th>
+                <th>Captura en Aspel</th>
+                <th>Desglose UI</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+              <tr>
+                <td>{{row.concepto}}</td>
+                <td>{{row.aspel}}</td>
+                <td>{{row.vista}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+          <!-- Casos Atípicos y Errores Humanos -->
+          <div class="bg-red-50 text-red-900 p-3 border-round border-1 border-red-200">
+            <strong><i class="pi pi-exclamation-triangle mr-2"></i>Consecuencia de Error Humano (Descuento Positivo)</strong>
+            <p class="mt-2 mb-0 line-height-3">
+              ¿Qué pasa si el contador captura el descuento en la cuenta <code>002</code> con naturaleza de <strong>Cargo (D)</strong> pero con un monto <strong>positivo</strong> (Ej. +$1,000)?
+              <br><br>
+              <strong>Consecuencia Matemática:</strong> El sistema base y Aspel sumarán esos $1,000 a la deuda total del residente en lugar de restarlos. Si la cuota era de $13,694, el total a pagar se inflará a $14,694. 
+              <br>
+              <strong>Comportamiento del Motor:</strong> El motor asume matemáticamente que cualquier cargo positivo a la 002 es un error de captura y <strong>no lo extraerá ni dibujará</strong> como beneficio. El residente verá el cobro indebido, forzando una corrección de póliza en COI.
+            </p>
+          </div>
+        </div>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <!-- 3. Cargos Vencidos y Prioridad FIFO -->
+    <p-accordion-panel value="2">
+      <p-accordion-header>3. Cargos Vencidos y Algoritmo de Conciliación (FIFO)</p-accordion-header>
+      <p-accordion-content>
+        <div class="line-height-3">
+          <p>
+            <strong>Estrategia de Pagos:</strong> El sistema asume una distribución automática basada en <strong>FIFO (First In, First Out)</strong> y prioridades de cuenta.
+          </p>
+          <ul>
+            <li>Cuando entra un "Pago Global" (un abono general a la cuenta raíz 000), el sistema toma ese dinero y empieza a pagar las deudas <strong>más antiguas primero</strong>.</li>
+            <li>Dentro de una misma fecha, paga primero las cuentas de mayor prioridad (establecidas en el código de backend, como Mantenimiento antes que Cuotas Extraordinarias).</li>
+            <li><strong>Agrupación:</strong> En el Aviso de Cobro, los cargos abiertos (Vencidos) se agrupan estrictamente si tienen <strong>la misma Fecha y el mismo Concepto</strong>. Si un cargo tiene fecha 01/07 y otro 01/08, vivirán como dos renglones separados.</li>
+          </ul>
+
+          <h5 class="mt-4 mb-2">Ejemplo Práctico de Pago (FIFO)</h5>
+          <p-table [value]="[{mes: 'Enero 2026', cargo: '$5,000', abono: '$5,000 (Suficiente)', estatus: 'Pagado'}, {mes: 'Febrero 2026', cargo: '$5,000', abono: '$3,000 (Abono Parcial)', estatus: 'Saldo Pendiente $2,000'}, {mes: 'Marzo 2026', cargo: '$5,000', abono: '$0', estatus: 'Vencido $5,000'}]" styleClass="p-datatable-sm p-datatable-gridlines">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Deuda Vigente</th>
+                <th>Monto del Cargo</th>
+                <th>Recepción de Pago Global ($8,000)</th>
+                <th>Estatus (Vencidos)</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+              <tr>
+                <td>{{row.mes}}</td>
+                <td>{{row.cargo}}</td>
+                <td>{{row.abono}}</td>
+                <td><span [ngClass]="{'text-green-600 font-bold': row.estatus === 'Pagado', 'text-red-600 font-bold': row.estatus !== 'Pagado'}">{{row.estatus}}</span></td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <!-- 4. Saldos a Favor y Adelantos -->
+    <p-accordion-panel value="3">
+      <p-accordion-header>4. Saldos a Favor (Adelantos) y Movimientos Negativos</p-accordion-header>
+      <p-accordion-content>
+        <div class="line-height-3">
+          <p>
+            <strong>Regla Principal:</strong> Todo dinero recibido (Abono) que exceda la suma de todos los cargos (Deudas) se clasifica automáticamente como <strong>"Adelanto"</strong>.
+          </p>
+          <p><strong>Comportamiento Visual:</strong></p>
+          <ul>
+            <li>Los Adelantos se guardan en la memoria de cálculo del concepto de mayor prioridad (usualmente Mantenimiento).</li>
+            <li>Cuando hay Adelantos vigentes al inicio de un nuevo periodo, el sistema genera un "Arrastre Inicial" y <strong>consume automáticamente</strong> ese saldo a favor para liquidar los nuevos cargos que vayan surgiendo.</li>
+            <li>Si el Saldo Final Total del departamento resulta ser negativo (Ej. -$1,500), el sistema no le exige pago al residente. Indica que tiene crédito a su favor para el próximo mes.</li>
+          </ul>
+
+          <h5 class="mt-4 mb-2">Ejemplo Práctico (Arrastre de Saldo a Favor)</h5>
+          <p-table [value]="[{evento: 'Corte Enero', monto: '$5,000 (Cargo) / $6,500 (Abono)', calculo: 'Sobran $1,500'}, {evento: 'Corte Febrero', monto: '$5,000 (Nuevo Cargo)', calculo: '$5,000 - $1,500 (Arrastre)'}, {evento: 'Estatus Febrero', monto: 'Total a Pagar', calculo: '$3,500'}]" styleClass="p-datatable-sm p-datatable-gridlines">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Evento Contable</th>
+                <th>Montos</th>
+                <th>Resultado de Conciliación</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+              <tr>
+                <td>{{row.evento}}</td>
+                <td>{{row.monto}}</td>
+                <td class="font-bold">{{row.calculo}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </p-accordion-content>
+    </p-accordion-panel>
+    
+    <!-- 5. Penalizaciones -->
+    <p-accordion-panel value="4">
+      <p-accordion-header>5. Cuotas Extraordinarias, Recargos y Penalizaciones</p-accordion-header>
+      <p-accordion-content>
+        <div class="line-height-3">
+          <p>
+            <strong>Regla Principal:</strong> Los conceptos atípicos se manejan de forma aislada para garantizar transparencia financiera.
+          </p>
+          <p><strong>Comportamiento:</strong></p>
+          <ul>
+            <li>Se identifican a través de sus terminaciones de cuenta (ej. 003, 007) o palabras clave como <code>RECARGO</code>, <code>EXTRAORDINARIA</code>, <code>MULTA</code>, <code>EXCESO DE VELOCIDAD</code>.</li>
+            <li>El sistema de conciliación respeta su saldo independiente. Es decir, un pago se puede abonar a Mantenimiento y dejar intacta la multa si el pago no alcanzó a cubrir el total.</li>
+            <li>Visualmente, se mantienen separados de la "Cuota de Mantenimiento Bruta" para que el desglose sea perfectamente legible para el residente.</li>
+          </ul>
+        </div>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+  </p-accordion>
+</div>

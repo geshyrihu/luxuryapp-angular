@@ -8,7 +8,7 @@
         {{ getModeDescription() }}
       </p>
     </div>
-    <div class="flex flex-wrap gap-2">
+    <div class="flex flex-wrap gap-2 align-items-center">
       <lx-tag
         [value]="customerId()"
         severity="secondary"
@@ -16,6 +16,7 @@
       />
       <!-- <lx-tag [value]="dataSource() === 'local' ? 'Local' : 'Live'" [severity]="dataSource() === 'local' ? 'info' : 'contrast'" /> -->
       <lx-tag value="Live" severity="contrast" />
+      <p-button icon="pi pi-book" label="Reglas de Negocio" styleClass="p-button-sm p-button-text p-button-secondary" (onClick)="openBusinessRules()"></p-button>
     </div>
   </div>
 

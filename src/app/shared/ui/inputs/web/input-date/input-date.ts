@@ -46,7 +46,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [locale]="spanishLocale"
         [altInput]="true"
         [altFormat]="'d/M/Y'"
-        [convertModelValue]="true"
+        [convertModelValue]="false"
         [dateFormat]="'Y-m-d'"
         [allowInput]="true"
         fluid
@@ -70,9 +70,15 @@ export class WebInputDate extends BaseInputSignal {
 
   override writeValue(value: any): void {
     if (value) {
-      if (typeof value === "string" && value.includes("-")) {
-        const [year, month, day] = value.slice(0, 10).split("-").map(Number);
-        super.writeValue(new Date(year, month - 1, day));
+      if (typeof value === "string") {
+        if (value.match(/^\d{4}-\d{2}-\d{2}$/)) {
+          super.writeValue(value);
+        } else if (value.includes("-")) {
+          const [year, month, day] = value.slice(0, 10).split("-").map(Number);
+          super.writeValue(new Date(year, month - 1, day));
+        } else {
+          super.writeValue(new Date(value));
+        }
       } else {
         super.writeValue(new Date(value));
       }

@@ -22,11 +22,13 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CobranzaOnlineService } from "../cobranza-online.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type {
   CobranzaOnlineInspectionResponse,
   CobranzaOnlineInspectionRow,
 } from "../interfaces/cobranza-online-inspection.model";
+import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 import { CobranzaOnlineInspectionHistoryModal } from "./cobranza-online-inspection-history-modal";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -36,7 +38,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-cobranza-online-inspection",
   templateUrl: "./cobranza-online-inspection.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     WebButtonIcon,
@@ -54,12 +56,12 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 export class CobranzaOnlineInspection {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
-  readonly currentYear = signal(new Date().getFullYear());
-  readonly currentMonth = signal(4);
+  readonly currentYear = cobranzaOnlineFilterState.year;
+  readonly currentMonth = cobranzaOnlineFilterState.month;
   readonly loading = signal(true);
   readonly inspection = signal<CobranzaOnlineInspectionResponse | null>(null);
   readonly selectedRow = signal<CobranzaOnlineInspectionRow | null>(null);
@@ -114,11 +116,14 @@ export class CobranzaOnlineInspection {
     if (!customerId) return;
 
     this.loading.set(true);
-    const response = await this.cobranzaOnlineS.getInspection(
-      customerId,
-      this.currentYear(),
-      this.currentMonth(),
-    );
+    const response =
+      await this.apiResponseS.onGetItem<CobranzaOnlineInspectionResponse>(
+        Endpoints.CobranzaOnline.Dashboard.inspection(
+          customerId,
+          this.currentYear(),
+          this.currentMonth(),
+        ),
+      );
 
     const typedResponse = response as CobranzaOnlineInspectionResponse | null;
     this.inspection.set(typedResponse);

@@ -77,6 +77,19 @@ export interface CobranzaOnlineMetric {
     pending: number;
 }
 
+export interface CobranzaOnlineChargeItem {
+  concept: string;
+  amount: number;
+  rawAccount: string;
+}
+
+export interface CobranzaOnlineDepartmentCharges {
+  accountNumber: string;
+  accountName: string;
+  charges: CobranzaOnlineChargeItem[];
+  totalCharges: number;
+}
+
 export interface CobranzaCollectedConcept {
     conceptName: string;
     amount: number;
@@ -100,8 +113,8 @@ export interface CobranzaOnlineDashboardResponse {
   departments: CobranzaOnlineDashboardDepartment[];
   towers: CobranzaOnlineDashboardTower[];
   advances: CobranzaOnlineDashboardDepartment[];
-  departmentCharges?: any[];
-  departmentPayments?: any[];
+  departmentCharges?: CobranzaOnlineDepartmentCharges[];
+  departmentPayments?: CobranzaOnlineDepartmentCharges[];
   categories: CobranzaOnlineDashboardCategory[];
   topDebtors: CobranzaOnlineDashboardDepartment[];
   currentCharges: CobranzaOnlineCurrentCharges;

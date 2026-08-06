@@ -13,13 +13,13 @@
           label="Volver al dashboard"
           severity="secondary"
           variant="outline"
-          (clicked)="navigateTo('/contabilidad/collections')"
+          (clicked)="navigateTo('/cobranza/online')"
         />
         <il-button
           label="Ver listado base"
           severity="secondary"
           variant="outline"
-          (clicked)="navigateTo('/contabilidad/collections/inspection')"
+          (clicked)="navigateTo('/cobranza/online/inspection')"
         />
       </div>
     </div>
@@ -122,11 +122,11 @@
               </td>
             </tr>
             <tr class="surface-ground font-bold">
-              <td class="py-1 text-green-700">Cobrado</td>
-              <td class="text-right font-mono text-green-700">
+              <td class="py-1 text-success">Cobrado</td>
+              <td class="text-right font-mono text-success">
                 {{ d.totalCobrado | number:'1.0-0' }}
               </td>
-              <td class="text-right text-green-700 text-xs">
+              <td class="text-right text-success text-xs">
                 {{ pct(d.totalCobrado, d.cobranzaPerfecta) }}
               </td>
             </tr>
@@ -148,7 +148,7 @@
 
     <div class="col-12 lg:col-6">
       <div class="border-1 surface-border rounded p-4 h-full">
-        <div class="text-lg font-semibold mb-1 text-red-600">
+        <div class="text-lg font-semibold mb-1 text-danger">
           Deuda Condóminos (EF)
         </div>
         <div class="text-color-secondary mb-3">
@@ -206,8 +206,8 @@
               <td></td>
             </tr>
             <tr class="font-bold surface-ground">
-              <td class="py-1 text-blue-700">Saldo según balanza</td>
-              <td class="text-right font-mono text-blue-700">
+              <td class="py-1 text-info">Saldo según balanza</td>
+              <td class="text-right font-mono text-info">
                 {{ d.saldoBalanza | number:'1.0-0' }}
               </td>
               <td></td>
@@ -277,8 +277,8 @@
           <td class="text-sm">{{ row.condomino }}</td>
           <td
             class="text-right font-mono text-sm"
-            [class.text-green-600]="row.saldo < 0"
-            [class.text-red-500]="row.saldo > 0"
+            [class.text-success]="row.saldo < 0"
+            [class.text-danger]="row.saldo > 0"
           >
             {{ row.saldo === 0 ? '—' : (row.saldo | number:'1.0-0') }}
           </td>
@@ -326,8 +326,8 @@
             </p>
             <p class="text-xs m-0 mt-1">
               <span
-                [class.text-green-600]="item.saldo < 0"
-                [class.text-red-500]="item.saldo > 0"
+                [class.text-success]="item.saldo < 0"
+                [class.text-danger]="item.saldo > 0"
               >
                 {{ item.saldo === 0 ? '—' : (item.saldo | number:'1.0-0') }}
               </span>

@@ -1,0 +1,108 @@
+<div class="card mb-2 p-2">
+  <div class="grid">
+    <div class="col-12 md:col-4">
+      <custom-input-select-signal
+        [control]="stageControl"
+        [data]="stages()"
+        [showClear]="true"
+        label="Etapa del pipeline"
+        placeholder="Todas las etapas"
+      />
+    </div>
+    @if (activeStage() !== null) {
+      <div class="col-12 md:col-8 flex align-items-end pb-1">
+        <app-candidate-stage-badge [stage]="activeStage()" />
+      </div>
+    }
+  </div>
+</div>
+
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '60rem' }"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="add.emit({ id: '', title: 'Nueva Postulación' })"
+      [dt]="dt"
+      aria-label="Agregar nueva postulación"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="candidateName">
+        Candidato
+        <p-sorticon field="candidateName" />
+      </th>
+      <th pSortableColumn="positionName">
+        Vacante
+        <p-sorticon field="positionName" />
+      </th>
+      <th>Cliente</th>
+      <th pSortableColumn="currentStage">
+        Etapa
+        <p-sorticon field="currentStage" />
+      </th>
+      <th pSortableColumn="assignedInterviewerName">
+        Entrevistador
+        <p-sorticon field="assignedInterviewerName" />
+      </th>
+      <th>CV</th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.candidateName }}</td>
+      <td>{{ item.positionName }}</td>
+      <td>{{ item.customerName }}</td>
+      <td>
+        <app-candidate-stage-badge [stage]="item.currentStage" />
+      </td>
+      <td>{{ item.assignedInterviewerName }}</td>
+      <td>
+        @if (item.cvFileName) {
+          <iw-button-view-pdf
+            size="sm"
+            class="btn--circle"
+            [url]="item.cvFileUrl"
+            [fileName]="item.cvFileName"
+            [attr.aria-label]="'Ver CV de ' + item.candidateName"
+          />
+        }
+      </td>
+      <td class="no-print">
+        <div class="flex gap-1">
+          <iw-button-tracking
+            size="sm"
+            class="btn--circle"
+            [attr.aria-label]="'Avanzar etapa de postulación ' + item.candidateName"
+            (clickTracking)="advance.emit({ id: item.id, fromStage: item.currentStage, customerId: item.customerId })"
+          />
+          <iw-button-edit
+            size="sm"
+            class="btn--circle"
+            [attr.aria-label]="'Editar postulación ' + item.candidateName"
+            (clicked)="edit.emit({ id: item.id, title: 'Editar Postulación' })"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="7" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="data()" />
+  </ng-template>
+</p-table>

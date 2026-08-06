@@ -17,12 +17,22 @@ export class AspelCobranzaHausPdfService {
     maximumFractionDigits: 2,
   });
 
-  async downloadAvisoCobroAspel(data: AspelCobranzaDetalleResponse, generatedAt: Date): Promise<void> {
-    await this.downloadAvisoCobro(data, generatedAt, { showAspelAccounts: true });
+  async downloadAvisoCobroAspel(
+    data: AspelCobranzaDetalleResponse,
+    generatedAt: Date,
+  ): Promise<void> {
+    await this.downloadAvisoCobro(data, generatedAt, {
+      showAspelAccounts: true,
+    });
   }
 
-  async downloadEstadoCuentaAspel(data: AspelEstadoCuentaResponse, generatedAt: Date): Promise<void> {
-    await this.downloadEstadoCuenta(data, generatedAt, { showAspelAccounts: true });
+  async downloadEstadoCuentaAspel(
+    data: AspelEstadoCuentaResponse,
+    generatedAt: Date,
+  ): Promise<void> {
+    await this.downloadEstadoCuenta(data, generatedAt, {
+      showAspelAccounts: true,
+    });
   }
 
   async downloadAvisoCobro(
@@ -32,8 +42,13 @@ export class AspelCobranzaHausPdfService {
   ): Promise<void> {
     const showAspelAccounts = options?.showAspelAccounts === true;
     const logo = await this.htmlPrintS.getLogoDataUrl();
-    const html = this.buildAvisoCobroHtml(data, generatedAt, logo, showAspelAccounts);
-    
+    const html = this.buildAvisoCobroHtml(
+      data,
+      generatedAt,
+      logo,
+      showAspelAccounts,
+    );
+
     const fileName = `Aviso-Cobro${showAspelAccounts ? "-Aspel" : ""}-${data.numCtaBase || "cuenta"}-${data.fechaFin || "corte"}`;
     this.htmlPrintS.printHtml(html, fileName);
   }
@@ -45,8 +60,13 @@ export class AspelCobranzaHausPdfService {
   ): Promise<void> {
     const showAspelAccounts = options?.showAspelAccounts === true;
     const logo = await this.htmlPrintS.getLogoDataUrl();
-    const html = this.buildEstadoCuentaHtml(data, generatedAt, logo, showAspelAccounts);
-    
+    const html = this.buildEstadoCuentaHtml(
+      data,
+      generatedAt,
+      logo,
+      showAspelAccounts,
+    );
+
     const fileName = `Estado-Cuenta${showAspelAccounts ? "-Aspel" : ""}-${data.numCta || "cuenta"}-${data.fechaFin || "corte"}`;
     this.htmlPrintS.printHtml(html, fileName);
   }
@@ -55,18 +75,32 @@ export class AspelCobranzaHausPdfService {
     data: AspelCobranzaDetalleResponse,
     generatedAt: Date,
     logo: string | null,
-    showAspelAccounts: boolean
+    showAspelAccounts: boolean,
+    docTitle: string = "AVISO DE COBRO",
   ): string {
     const conceptos = this.getVisibleConceptos(data.conceptos || []);
     const vencidos = conceptos
       .filter((item) => item.vencidos.some((v) => v.saldoPendiente > 0))
-      .flatMap((item) => item.vencidos.filter((v) => v.saldoPendiente > 0).map(v => ({ concepto: item.concepto, numCta: item.numCta, ...v })));
+      .flatMap((item) =>
+        item.vencidos
+          .filter((v) => v.saldoPendiente > 0)
+          .map((v) => ({ concepto: item.concepto, numCta: item.numCta, ...v })),
+      );
 
     const totalCargos = conceptos.reduce((sum, item) => sum + item.cargos, 0);
     const totalAbonos = conceptos.reduce((sum, item) => sum + item.abonos, 0);
-    const totalVencido = conceptos.reduce((sum, item) => sum + item.totalVencido, 0);
-    const totalFinal = conceptos.reduce((sum, item) => sum + item.saldoFinal, 0);
-    const totalAdelantos = conceptos.reduce((sum, item) => sum + item.adelanto, 0);
+    const totalVencido = conceptos.reduce(
+      (sum, item) => sum + item.totalVencido,
+      0,
+    );
+    const totalFinal = conceptos.reduce(
+      (sum, item) => sum + item.saldoFinal,
+      0,
+    );
+    const totalAdelantos = conceptos.reduce(
+      (sum, item) => sum + item.adelanto,
+      0,
+    );
 
     return `<!doctype html>
 <html lang="es"><head><meta charset="UTF-8">
@@ -75,7 +109,7 @@ ${this.htmlPrintS.getStandardCss()}
       .titulo { font-size:1.8rem; font-weight:700; color:#2563EB; margin-bottom:4px; }
       .meta { font-size:0.8rem; color:#6b7280; }
       .info-grid { display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem; font-size:0.8rem; margin-top:6px; }
-      
+
       .metric-card { background:#F3F4F6; padding:8px 12px; border-radius:4px; }
       .metric-card.highlight { background:#E0ECFF; }
       .metric-label { font-size:0.75rem; font-weight:700; color:#6b7280; }
@@ -91,10 +125,10 @@ ${this.htmlPrintS.getStandardCss()}
       .data-table th { background:#E8EEF8; font-weight:700; text-align:left; color:#111827; }
       .data-table tbody tr:nth-child(even) { background:#FAFAFA; }
       .data-table tfoot td { background:#F3F4F6; border-top:2px solid #D1D5DB; }
-      
+
       .yellow-table th { background:#FEF3C7; }
       .yellow-table tbody tr:nth-child(even) { background:#FFFBEB; }
-      
+
       .green-table th { background:#DCFCE7; }
       .green-table tbody tr:nth-child(even) { background:#F0FDF4; }
 
@@ -103,20 +137,20 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "AVISO DE COBRO", "COB-ASP-HAUS", generatedAt, "COBRANZA")}
-  
+  ${this.htmlPrintS.buildStandardHeader(logo, docTitle, "COB-ASP-HAUS", generatedAt, "COBRANZA")}
+
   <div class="body-doc">
-    <div class="titulo">AVISO DE COBRO</div>
+    <div class="titulo">${docTitle}</div>
     <div class="meta" style="margin-bottom:12px;">${showAspelAccounts ? "Resumen ejecutivo del adeudo por concepto con cuentas Aspel visibles" : "Resumen ejecutivo del adeudo por concepto"}</div>
-    
+
     <div class="info-grid">
       <span><strong>Propiedad:</strong> ${this.htmlPrintS.esc(data.departamento || "-")}</span>
       <span><strong>Periodo consultado:</strong> ${this.htmlPrintS.esc(data.fechaInicio)} al ${this.htmlPrintS.esc(data.fechaFin)}</span>
       ${showAspelAccounts ? `<span><strong>Cuenta Aspel base:</strong> ${this.htmlPrintS.esc(data.numCtaBase || "-")}</span>` : ""}
     </div>
-    
+
     <div style="border-top: 1px solid #2563EB; margin: 15px 0;"></div>
-    
+
     <div class="summary-cards" style="display:flex; gap:16px; margin-bottom: 24px;">
       <div class="metric-card">
         <div class="metric-label">Cargos</div>
@@ -146,7 +180,9 @@ ${this.htmlPrintS.getStandardCss()}
         </tr>
       </thead>
       <tbody>
-        ${conceptos.map(item => `
+        ${conceptos
+          .map(
+            (item) => `
           <tr>
             <td>
               <div style="font-weight:700; color:#111827;">${this.htmlPrintS.esc(item.concepto || "-")}</div>
@@ -155,10 +191,12 @@ ${this.htmlPrintS.getStandardCss()}
             ${showAspelAccounts ? `<td class="mono">${this.htmlPrintS.esc(item.numCta || "-")}</td>` : ""}
             <td class="text-right mono">${this.formatCurrency(item.cargos)}</td>
             <td class="text-right mono">${this.formatCurrency(item.abonos)}</td>
-            <td class="text-right mono" style="color: ${item.totalVencido > 0 ? '#B45309' : '#6B7280'}">${this.formatCurrency(item.totalVencido)}</td>
-            <td class="text-right" style="font-weight:700; color: ${item.saldoFinal > 0 ? '#B91C1C' : item.saldoFinal < 0 ? '#047857' : '#111827'}">${this.formatCurrency(item.saldoFinal)}</td>
+            <td class="text-right mono" style="color: ${item.totalVencido > 0 ? "#B45309" : "#6B7280"}">${this.formatCurrency(item.totalVencido)}</td>
+            <td class="text-right" style="font-weight:700; color: ${item.saldoFinal > 0 ? "#B91C1C" : item.saldoFinal < 0 ? "#047857" : "#111827"}">${this.formatCurrency(item.saldoFinal)}</td>
           </tr>
-        `).join("")}
+        `,
+          )
+          .join("")}
       </tbody>
       <tfoot>
         <tr>
@@ -174,7 +212,7 @@ ${this.htmlPrintS.getStandardCss()}
 
     ${this.buildVencidosHtml(vencidos, showAspelAccounts)}
     ${totalAdelantos > 0 ? this.buildAdelantosHtml(conceptos, showAspelAccounts) : ""}
-    
+
     <div style="font-size: 0.8rem; color: #6B7280; margin-top: 20px;">El saldo pendiente refleja la composición actual del adeudo en el rango consultado.</div>
   </div>
   ${this.htmlPrintS.buildStandardFooter(generatedAt)}
@@ -186,11 +224,15 @@ ${this.htmlPrintS.getStandardCss()}
     data: AspelEstadoCuentaResponse,
     generatedAt: Date,
     logo: string | null,
-    showAspelAccounts: boolean
+    showAspelAccounts: boolean,
   ): string {
     const movimientos = data.movimientos || [];
-    const totalCargos = movimientos.filter(item => this.isCharge(item)).reduce((sum, item) => sum + (item.monto || 0), 0);
-    const totalAbonos = movimientos.filter(item => !this.isCharge(item)).reduce((sum, item) => sum + (item.monto || 0), 0);
+    const totalCargos = movimientos
+      .filter((item) => this.isCharge(item))
+      .reduce((sum, item) => sum + (item.monto || 0), 0);
+    const totalAbonos = movimientos
+      .filter((item) => !this.isCharge(item))
+      .reduce((sum, item) => sum + (item.monto || 0), 0);
 
     return `<!doctype html>
 <html lang="es"><head><meta charset="UTF-8">
@@ -200,7 +242,7 @@ ${this.htmlPrintS.getStandardCss()}
       .titulo { font-size:1.8rem; font-weight:700; color:#2563EB; margin-bottom:4px; }
       .meta { font-size:0.8rem; color:#6b7280; }
       .info-grid { display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem; font-size:0.8rem; margin-top:6px; }
-      
+
       .metric-card { background:#F3F4F6; padding:8px 12px; border-radius:4px; }
       .metric-card.highlight { background:#E0ECFF; }
       .metric-label { font-size:0.75rem; font-weight:700; color:#6b7280; }
@@ -222,13 +264,13 @@ ${this.htmlPrintS.getStandardCss()}
 </head><body>
 <div class="container">
   ${this.htmlPrintS.buildStandardHeader(logo, "ESTADO DE CUENTA", "CONT-ASP-EST", generatedAt, "CONTABILIDAD")}
-  
+
   <div class="body-doc">
     <div style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div>
         <div class="titulo">ESTADO DE CUENTA</div>
         <div class="meta" style="margin-bottom:12px;">Detalle cronolígico de movimientos, cargos, abonos y saldo progresivo</div>
-        
+
         <div class="info-grid">
           <span><strong>Cuenta:</strong> ${this.htmlPrintS.esc(data.numCta || "-")}</span>
           <span><strong>Propiedad:</strong> ${this.htmlPrintS.esc(data.departamento || "-")}</span>
@@ -238,7 +280,7 @@ ${this.htmlPrintS.getStandardCss()}
           ${showAspelAccounts ? `<span><strong>Cuenta Aspel base:</strong> ${this.htmlPrintS.esc(data.numCta || "-")}</span>` : ""}
         </div>
       </div>
-      
+
       <div style="display:flex; gap:12px; flex-direction:column; width: 300px;">
         <div style="display:flex; gap:8px;">
           <div class="metric-card" style="flex:1;"><div class="metric-label">Saldo inicial</div><div class="metric-value">${this.formatCurrency(data.saldoInicial || 0)}</div></div>
@@ -250,10 +292,10 @@ ${this.htmlPrintS.getStandardCss()}
         </div>
       </div>
     </div>
-    
+
     <div class="section-title" style="margin-top:20px;">Movimientos del periodo</div>
     <div class="section-help">${movimientos.length} movimientos aplicados en el rango consultado.${showAspelAccounts ? " Esta versión muestra la cuenta Aspel base para ejemplificar el origen contable." : ""}</div>
-    
+
     <table class="data-table">
       <thead>
         <tr>
@@ -269,7 +311,9 @@ ${this.htmlPrintS.getStandardCss()}
         </tr>
       </thead>
       <tbody>
-        ${movimientos.map((item, i) => `
+        ${movimientos
+          .map(
+            (item, i) => `
           <tr>
             <td class="mono">${this.formatMovementType(item)}</td>
             <td class="mono">${this.htmlPrintS.esc(this.getMovementNumber(item, i))}</td>
@@ -277,11 +321,13 @@ ${this.htmlPrintS.getStandardCss()}
             <td style="font-size:0.85rem; color:#374151;">${this.htmlPrintS.esc(item.concepto || "-")}</td>
             ${showAspelAccounts ? `<td class="mono">${this.htmlPrintS.esc(item.numCta || "-")}</td>` : ""}
             <td class="text-right mono">${this.formatCurrency(item.saldoAnterior || 0)}</td>
-            <td class="text-right mono" style="color: ${this.isCharge(item) ? '#1D4ED8' : '#111827'}">${this.isCharge(item) ? this.formatCurrency(item.monto || 0) : ""}</td>
-            <td class="text-right mono" style="color: ${!this.isCharge(item) ? '#047857' : '#111827'}">${!this.isCharge(item) ? this.formatCurrency(item.monto || 0) : ""}</td>
-            <td class="text-right" style="font-weight:bold; color: ${(item.saldoPosterior || 0) < 0 ? '#B91C1C' : '#111827'}">${this.formatCurrency(item.saldoPosterior || 0)}</td>
+            <td class="text-right mono" style="color: ${this.isCharge(item) ? "#1D4ED8" : "#111827"}">${this.isCharge(item) ? this.formatCurrency(item.monto || 0) : ""}</td>
+            <td class="text-right mono" style="color: ${!this.isCharge(item) ? "#047857" : "#111827"}">${!this.isCharge(item) ? this.formatCurrency(item.monto || 0) : ""}</td>
+            <td class="text-right" style="font-weight:bold; color: ${(item.saldoPosterior || 0) < 0 ? "#B91C1C" : "#111827"}">${this.formatCurrency(item.saldoPosterior || 0)}</td>
           </tr>
-        `).join("")}
+        `,
+          )
+          .join("")}
       </tbody>
       <tfoot>
         <tr>
@@ -298,19 +344,24 @@ ${this.htmlPrintS.getStandardCss()}
 </body></html>`;
   }
 
-  private buildVencidosHtml(vencidos: any[], showAspelAccounts: boolean): string {
+  private buildVencidosHtml(
+    vencidos: any[],
+    showAspelAccounts: boolean,
+  ): string {
     if (!vencidos.length) return "";
-    
+
     // Agrupar por concepto
     const groups: { [key: string]: any[] } = {};
-    vencidos.forEach(v => {
+    vencidos.forEach((v) => {
       if (!groups[v.concepto]) groups[v.concepto] = [];
       groups[v.concepto].push(v);
     });
 
     return `
       <div class="section-title" style="margin-top:24px;">Saldos vencidos que componen la deuda</div>
-      ${Object.keys(groups).map((concepto) => `
+      ${Object.keys(groups)
+        .map(
+          (concepto) => `
         <div style="font-weight:bold; color:#9A3412; font-size:1.05rem; margin:12px 0 6px 0;">${this.htmlPrintS.esc(concepto)}</div>
         <table class="data-table yellow-table">
           <thead>
@@ -322,22 +373,31 @@ ${this.htmlPrintS.getStandardCss()}
             </tr>
           </thead>
           <tbody>
-            ${groups[concepto].map(item => `
+            ${groups[concepto]
+              .map(
+                (item) => `
               <tr>
                 <td class="mono">${this.htmlPrintS.esc(item.fechaCargo || "-")}</td>
                 ${showAspelAccounts ? `<td class="mono">${this.htmlPrintS.esc(item.numCta || "-")}</td>` : ""}
                 <td>${this.htmlPrintS.esc(item.conceptoDetalle || "-")}</td>
                 <td class="text-right" style="font-weight:bold; color:#B45309;">${this.formatCurrency(item.saldoPendiente)}</td>
               </tr>
-            `).join("")}
+            `,
+              )
+              .join("")}
           </tbody>
         </table>
-      `).join("")}
+      `,
+        )
+        .join("")}
     `;
   }
 
-  private buildAdelantosHtml(conceptos: AspelCobranzaDetalleConcepto[], showAspelAccounts: boolean): string {
-    const adelantos = conceptos.filter(item => item.adelanto > 0);
+  private buildAdelantosHtml(
+    conceptos: AspelCobranzaDetalleConcepto[],
+    showAspelAccounts: boolean,
+  ): string {
+    const adelantos = conceptos.filter((item) => item.adelanto > 0);
     if (!adelantos.length) return "";
 
     return `
@@ -352,22 +412,45 @@ ${this.htmlPrintS.getStandardCss()}
           </tr>
         </thead>
         <tbody>
-          ${adelantos.map(item => `
+          ${adelantos
+            .map(
+              (item) => `
             <tr>
               <td style="font-weight:bold;">${this.htmlPrintS.esc(item.concepto)}</td>
               <td class="mono">${this.htmlPrintS.esc(item.numCta || "-")}</td>
               <td class="text-right" style="font-weight:bold; color:#047857;">${this.formatCurrency(item.adelanto)}</td>
             </tr>
-          `).join("")}
+          `,
+            )
+            .join("")}
         </tbody>
       </table>
     `;
   }
 
-  private getVisibleConceptos(conceptos: AspelCobranzaDetalleConcepto[]): AspelCobranzaDetalleConcepto[] {
+  private getVisibleConceptos(
+    conceptos: AspelCobranzaDetalleConcepto[],
+  ): AspelCobranzaDetalleConcepto[] {
     return conceptos
-      .filter((item) => item.saldoInicial !== 0 || item.cargos !== 0 || item.abonos !== 0 || item.saldoFinal !== 0 || item.totalVencido !== 0 || item.adelanto !== 0 || item.vencidos.some((v) => v.saldoPendiente > 0))
-      .sort((a, b) => b.saldoFinal - a.saldoFinal || a.concepto.localeCompare(b.concepto));
+      .filter(
+        (item) =>
+          item.saldoInicial !== 0 ||
+          item.cargos !== 0 ||
+          item.abonos !== 0 ||
+          item.saldoFinal !== 0 ||
+          item.totalVencido !== 0 ||
+          item.adelanto !== 0 ||
+          item.vencidos.some((v) => v.saldoPendiente > 0),
+      )
+      .sort(
+        (a, b) =>
+          b.saldoFinal - a.saldoFinal || a.concepto.localeCompare(b.concepto),
+      );
+  }
+
+  private formatDateStr(fechaCargo: string | null): string {
+    if (!fechaCargo) return "";
+    return this.htmlPrintS.formatDateTime(new Date(fechaCargo));
   }
 
   private formatCurrency(value: number): string {

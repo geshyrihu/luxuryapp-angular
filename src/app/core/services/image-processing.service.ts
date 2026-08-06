@@ -68,6 +68,8 @@ export class ImageProcessingService {
     file: File,
     options: ImageProcessingOptions = {},
   ): Promise<File> {
+    if (this.metadata.has(file)) return file;
+
     const normalizedOptions = this.normalizeOptions(options);
     const wasHeic = await this.isHeic(file);
 
@@ -130,6 +132,31 @@ export class ImageProcessingService {
       processed.push(await this.processFileIfImage(file, options));
     }
     return processed;
+  }
+
+  /**
+   * Prepara todos los archivos de imagen contenidos en un FormData y conserva
+   * sin cambios sus campos de texto y archivos de otros tipos.
+   *
+   * Se crea una nueva instancia para no mutar el cuerpo original mientras una
+   * solicitud puede estar siendo reintentada o almacenada para sincronizacion.
+   */
+  async processFormData(
+    formData: FormData,
+    options: ImageProcessingOptions = {},
+  ): Promise<FormData> {
+    const processedFormData = new FormData();
+
+    for (const [key, value] of formData.entries()) {
+      if (typeof File !== "undefined" && value instanceof File) {
+        const processedFile = await this.processFileIfImage(value, options);
+        processedFormData.append(key, processedFile, processedFile.name);
+      } else {
+        processedFormData.append(key, value);
+      }
+    }
+
+    return processedFormData;
   }
 
   async isImage(file: File): Promise<boolean> {

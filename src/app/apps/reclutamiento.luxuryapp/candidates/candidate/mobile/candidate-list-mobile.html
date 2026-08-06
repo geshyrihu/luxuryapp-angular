@@ -1,0 +1,44 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Candidato' })"
+  [globalFilterFields]="globalFilterFields()"
+  aria-label="Lista de candidatos"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div class="flex flex-column gap-1">
+        <p class="font-semibold m-0 text-color line-height-2">{{ item.fullName }}</p>
+        <p class="text-xs m-0 text-color-secondary">
+          {{ item.email }} - {{ item.phoneNumber }}
+        </p>
+        <p class="text-xs m-0 text-color-secondary">
+          {{ item.activeApplicationsCount }} postulaciones
+        </p>
+        <app-mapped-p-tag
+          [value]="item.status"
+          [options]="candidateStatusOptions"
+        />
+      </div>
+
+      <ili-action-menu slot="end">
+        <ili-button-item
+          (clicked)="detail.emit(item.id)"
+          label="Ver detalle"
+          [attr.aria-label]="'Ver detalle candidato ' + item.fullName"
+        />
+        <ili-button-edit
+          (clicked)="edit.emit({ id: item.id, title: 'Editar Candidato' })"
+          label="Editar"
+          [attr.aria-label]="'Editar candidato ' + item.fullName"
+        />
+        @if (item.status === candidateStatus.Active) {
+          <ili-button-delete
+            (confirmed)="archive.emit(item.id)"
+            label="Archivar"
+            [attr.aria-label]="'Archivar candidato ' + item.fullName"
+          />
+        }
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

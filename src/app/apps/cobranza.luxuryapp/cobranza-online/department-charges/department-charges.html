@@ -1,5 +1,5 @@
-<section class="p-3 md:p-4 co-shell">
-  <div class="co-panel p-3 md:p-4 mb-3">
+<section class="p-3 md:p-4">
+  <div class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4 mb-3">
     <div
       class="flex flex-column xl:flex-row xl:align-items-start xl:justify-content-between gap-3"
     >
@@ -19,31 +19,32 @@
         </div>
       </div>
 
-      <div class="co-toolbar">
+      <div class="flex flex-wrap justify-content-end align-items-center gap-2 p-2 mb-2">
         <div class="flex align-items-center gap-2 mr-2">
           <label class="text-sm font-medium text-color-secondary"
             >Fecha corte:</label
           >
-          <input
-            type="date"
-            class="p-inputtext p-component p-inputtext-sm"
-            [value]="currentDate()"
-            (change)="onDateChange($any($event.target).value)"
-          />
+          <div style="width: 15rem; min-width: 200px">
+            <custom-input-date-signal
+              [control]="dateControl"
+              [noMargin]="true"
+              [horizontal]="false"
+            />
+          </div>
         </div>
         <il-button
           label="Volver al Dashboard"
           size="small"
           severity="secondary"
           variant="outline"
-          (clicked)="navigateTo('/contabilidad/collections')"
+          (clicked)="navigateTo('/cobranza/online')"
         />
       </div>
     </div>
 
     @if (!hasCustomer()) {
     <div class="mt-3">
-      <div class="co-status-box">
+      <div class="surface-card border-1 surface-border rounded p-2">
         <div class="font-medium mb-2">Sin cliente activo</div>
         <div class="text-color-secondary">
           Selecciona un cliente para consultar el estado de la cobranza.
@@ -65,7 +66,7 @@
         #dt
         [value]="pivotData()" 
         dataKey="accountNumber" 
-        styleClass="p-datatable-sm p-datatable-gridlines custom-table card" 
+        styleClass="p-datatable-sm p-datatable-gridlines custom-table card hidden md:block" 
         [scrollable]="true" 
         [scrollHeight]="scrollHeight()"
         [globalFilterFields]="['accountNumber', 'accountName']"
@@ -111,7 +112,7 @@
                 }
               </td>
             }
-            <td class="text-right font-medium text-blue-600" style="background-color: var(--surface-card);" pFrozenColumn alignFrozen="right">
+            <td class="text-right font-medium text-primary" style="background-color: var(--surface-card);" pFrozenColumn alignFrozen="right">
               {{ row.totalCharges | currency:'MXN':'symbol-narrow':'1.2-2' }}
             </td>
           </tr>
@@ -124,6 +125,39 @@
           </tr>
         </ng-template>
       </p-table>
+
+      <div class="md:hidden">
+        <app-data-view-mobile [data]="pivotData()" [showAdd]="false">
+          <ng-template #listItemTemplate let-row>
+            <ili-list-item class="ion-no-padding">
+              <div
+                start
+                class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg bg-primary-light text-primary"
+              >
+                <app-icon icon="mdi:currency-usd" />
+              </div>
+              <div class="flex-1 min-w-0 ion-text-wrap">
+                <p class="font-semibold m-0 text-color">
+                  {{ row.accountName || row.accountNumber }}
+                </p>
+                <p class="text-xs m-0 mt-1 text-color-secondary">
+                  {{ row.accountNumber }}
+                </p>
+                <p class="text-xs m-0 mt-1 text-primary font-medium">
+                  Total {{ row.totalCharges | currency: 'MXN':'symbol-narrow':'1.2-2' }}
+                </p>
+                @for (concept of concepts; track concept.id) {
+                  @if (row['concept_' + concept.id]) {
+                  <p class="text-xs m-0 mt-1 text-color-secondary">
+                    {{ concept.label }}: {{ row['concept_' + concept.id] | currency: 'MXN':'symbol-narrow':'1.2-2' }}
+                  </p>
+                  }
+                }
+              </div>
+            </ili-list-item>
+          </ng-template>
+        </app-data-view-mobile>
+      </div>
     </div>
     }
   </div>

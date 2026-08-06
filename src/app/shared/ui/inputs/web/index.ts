@@ -30,5 +30,6 @@ export { CustomInputTextSignal } from "./custom-input-text-signal";
 export { CustomInputTextAreaSignal } from "./custom-input-textarea-signal";
 export { CustomInputTime } from "./custom-input-time-signal";
 export { SubirPdf } from "./custom-input-upload-pdf-signal";
+export { CustomInputEmail } from "./custom-input-email-signal";
 export { CustomInputUrl } from "./custom-input-url-signal";
 export { CustomSearchInput } from "./custom-search-input-signal";

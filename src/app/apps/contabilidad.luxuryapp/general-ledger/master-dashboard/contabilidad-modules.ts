@@ -121,6 +121,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       ApplicationRole.Asistente,
       ApplicationRole.Administrador,
       ApplicationRole.GerenteOperaciones,
+      ApplicationRole.Cobranza,
     ],
     cards: [
       {
@@ -156,12 +157,13 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       {
         title: "Cobranza Online",
         description: "Gestión y seguimiento de cuentas por cobrar.",
-        route: "/contabilidad/collections",
+        route: "/cobranza/online",
         icon: "mdi:wallet",
         color: "#047857",
         bgColor: "#d1fae5",
         roles: [
           ApplicationRole.SuperUsuario,
+          ApplicationRole.Cobranza,
           ApplicationRole.Contador,
           ApplicationRole.Asistente,
           ApplicationRole.Administrador,

@@ -15,7 +15,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { CobranzaOnlineService } from "../cobranza-online.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type {
   ReporteFinancieroFila,
   ReporteFinancieroResponse,
@@ -52,14 +52,16 @@ const MESES_OPCIONES: OpcionMes[] = [
     MobileListItem,
     WebButtonLabel,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./cobranza-online-reporte-financiero.html",
 })
 export class CobranzaOnlineReporteFinanciero {
   private customerIdS = inject(CustomerIdService);
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
 
   readonly currentYear = signal(new Date().getFullYear());
+  // Filtro independiente: usa rango de meses (mesInicio/mesFin),
+  // no comparte cobranzaOnlineFilterState (ver state/cobranza-online-filter.state.ts)
   readonly mesInicio = signal(1);
   readonly mesFin = signal(new Date().getMonth() + 1);
   readonly loading = signal(false);
@@ -127,13 +129,16 @@ export class CobranzaOnlineReporteFinanciero {
 
   private async loadData(customerId: string) {
     this.loading.set(true);
-    const result = await this.cobranzaOnlineS.getReporteFinanciero(
-      customerId,
-      this.currentYear(),
-      this.mesInicio(),
-      this.mesFin(),
-    );
-    this.data.set((result as ReporteFinancieroResponse | null) ?? null);
+    const result =
+      await this.apiResponseS.onGetItem<ReporteFinancieroResponse>(
+        Endpoints.CobranzaOnline.ReporteFinanciero.get(
+          customerId,
+          this.currentYear(),
+          this.mesInicio(),
+          this.mesFin(),
+        ),
+      );
+    this.data.set(result ?? null);
     this.loading.set(false);
   }
 

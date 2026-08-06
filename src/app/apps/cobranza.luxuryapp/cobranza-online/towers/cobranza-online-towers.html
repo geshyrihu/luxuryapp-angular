@@ -1,0 +1,137 @@
+<section class="p-3 md:p-4">
+  <div
+    class="flex flex-column md:flex-row align-items-start md:align-items-center justify-content-between gap-3 mb-4"
+  >
+    <div>
+      <h2 class="m-0 text-xl font-semibold">Resumen por Torres</h2>
+      <p class="mt-2 mb-0 text-color-secondary">
+        Agrupación de saldos por nivel 2 (Torre o Bloque).
+      </p>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      <il-button
+        label="Volver al dashboard"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online')"
+      />
+      <il-button
+        label="Adelantos"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/advances')"
+      />
+      <il-button
+        label="Morosidad"
+        severity="secondary"
+        variant="outline"
+        (clicked)="navigateTo('/cobranza/online/debtors')"
+      />
+    </div>
+  </div>
+
+  @if (!hasCustomer()) {
+  <div class="border-1 surface-border rounded p-4">
+    <div class="font-medium mb-2">Sin cliente activo</div>
+    <div class="text-color-secondary">
+      Selecciona un cliente para consultar el resumen por torres.
+    </div>
+  </div>
+  } @else if (loading()) {
+  <div class="text-color-secondary mb-4">
+    Consultando Aspel y agrupando saldos por torre...
+  </div>
+  } @else {
+  <div
+    class="surface-card p-3 md:p-4 mb-4 shadow-1 border-round-xl border-1 surface-border"
+  >
+    <p-table
+      [value]="towers()"
+      styleClass="p-datatable-sm hidden md:block"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Torre</th>
+          <th class="text-right">Deptos.</th>
+          <th class="text-right">Adeudo Mtto.</th>
+          <th class="text-right">Adeudo Ext.</th>
+          <th class="text-right">Multas</th>
+          <th class="text-right">Total Adeudo</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td>{{ row.towerName }}</td>
+          <td class="text-right">{{ row.departmentCount }}</td>
+          <td class="text-right">
+            {{ row.maintenanceBalance | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+          <td class="text-right">
+            {{ row.extraordinaryBalance | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+          <td class="text-right">
+            {{ row.finesBalance | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+          <td class="text-right font-medium">
+            {{ row.totalBalance | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #footer>
+        <tr>
+          <td class="text-right font-bold">Total:</td>
+          <td class="text-right font-bold">
+            {{ totalTowers()?.departmentCount }}
+          </td>
+          <td class="text-right font-bold">
+            {{
+              totalTowers()?.maintenanceBalance | currency: "MXN":"symbol":"1.0-0"
+            }}
+          </td>
+          <td class="text-right font-bold">
+            {{
+              totalTowers()?.extraordinaryBalance
+                | currency: "MXN":"symbol":"1.0-0"
+            }}
+          </td>
+          <td class="text-right font-bold">
+            {{ totalTowers()?.finesBalance | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+          <td class="text-right font-bold">
+            {{ totalTowers()?.totalBalance | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <div class="md:hidden">
+      <app-data-view-mobile [data]="towers()" [showAdd]="false">
+        <ng-template #listItemTemplate let-row>
+          <ili-list-item class="ion-no-padding">
+            <div
+              start
+              class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+            >
+              <app-icon icon="mdi:city" />
+            </div>
+            <div class="flex-1 min-w-0 ion-text-wrap">
+              <p class="font-semibold m-0 text-color">{{ row.towerName }}</p>
+              <p class="text-xs m-0 mt-1 text-color-secondary">
+                {{ row.departmentCount }} departamentos
+              </p>
+              <p class="text-xs m-0 mt-1 text-color-secondary">
+                Mtto {{ row.maintenanceBalance | currency: 'MXN':'symbol':'1.0-0' }} ·
+                Ext {{ row.extraordinaryBalance | currency: 'MXN':'symbol':'1.0-0' }} ·
+                Multas {{ row.finesBalance | currency: 'MXN':'symbol':'1.0-0' }}
+              </p>
+              <p class="text-xs m-0 mt-1 text-primary font-medium">
+                Total {{ row.totalBalance | currency: 'MXN':'symbol':'1.0-0' }}
+              </p>
+            </div>
+          </ili-list-item>
+        </ng-template>
+      </app-data-view-mobile>
+    </div>
+  </div>
+  }
+</section>

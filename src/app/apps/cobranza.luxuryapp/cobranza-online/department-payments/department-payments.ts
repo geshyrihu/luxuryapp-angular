@@ -7,70 +7,28 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { SharedModule } from "primeng/api";
+import { SharedModule } from "@ui/web/primeng-api/primeng-api";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CobranzaOnlineService } from "../cobranza-online.service";
-
-interface ChargeItem {
-  concept: string;
-  amount: number;
-  rawAccount: string;
-}
-
-interface DepartmentChargesData {
-  accountNumber: string;
-  accountName: string;
-  charges: ChargeItem[];
-  totalCharges: number;
-}
-
-export const CONCEPTS_CATALOG = [
-  { id: "001", name: "CUOTA DE MTTO", label: "MTTO" },
-  { id: "002", name: "DESCUENTO POR PRONTO PAGO", label: "DESC. PRONTO PAGO" },
-  { id: "003", name: "CUOTA EXTRAORDINARIA", label: "EXTRAORDINARIA" },
-  { id: "004", name: "INTERESES MORATORIOS", label: "INT. MORATORIOS" },
-  { id: "005", name: "PENA MORATORIA", label: "PENA MORATORIA" },
-  {
-    id: "006",
-    name: "CUOTA EXTRA NORMAS DE CONVIVENCIA",
-    label: "NORMAS CONV.",
-  },
-  { id: "007", name: "MULTAS", label: "MULTAS" },
-  { id: "008", name: "USO DE SALON", label: "SALÓN" },
-  { id: "009", name: "USO DE SALON ROOM", label: "SALÓN ROOM" },
-  { id: "010", name: "USO DE SALON SOCIAL", label: "SALÓN SOCIAL" },
-  { id: "011", name: "USO DE JARDIN", label: "JARDÍN" },
-  { id: "012", name: "USO DE MEZZANINE", label: "MEZZANINE" },
-  { id: "013", name: "USO DE TERRAZA", label: "TERRAZA" },
-  { id: "014", name: "USO DE ASADORES", label: "ASADORES" },
-  { id: "015", name: "CUOTA RESTAURANTE", label: "RESTAURANTE" },
-  { id: "016", name: "CLASES DE PILATES", label: "PILATES" },
-  { id: "017", name: "SNACK BAR", label: "SNACK BAR" },
-  { id: "018", name: "TARJETAS DE ACCESO", label: "TARJETAS" },
-  { id: "019", name: "TAG", label: "TAG" },
-  { id: "020", name: "FONDO DE RESERVA", label: "FONDO RESERVA" },
-  { id: "021", name: "RECUPERACION CONSUMO DE AGUA", label: "REC. AGUA" },
-  {
-    id: "022",
-    name: "RECUPERACION CONSUMO ENERGIA ELECTRICA",
-    label: "REC. LUZ",
-  },
-  { id: "023", name: "CONSUMO DE AGUA", label: "AGUA" },
-  { id: "024", name: "CONSUMO ENERGIA ELECTRICA", label: "LUZ" },
-  { id: "025", name: "DEPOSITO EN GARANTIA", label: "DEPÓSITO GARANTÍA" },
-  { id: "026", name: "CINE", label: "CINE" },
-];
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import type { CobranzaOnlineDashboardResponse } from "../interfaces/cobranza-online-dashboard.model";
+import { CONCEPTS_CATALOG } from "../helpers/cobranza-conceptos";
+import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 
 export interface PivotRow {
   accountNumber: string;
@@ -91,23 +49,26 @@ export interface PivotRow {
     SharedModule,
     WebButtonLabel,
     PrimeNgCustomCaption,
+    CustomInputDateSignal,
+    DataViewMobile,
+    MobileListItem,
   ],
   templateUrl: "./department-payments.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DepartmentPayments {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
   readonly tablePrimeNgRows = tablePrimeNgRows();
   readonly rowsPerPageOptions = rowsPerPageOptions();
 
   readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
-  readonly currentYear = signal(new Date().getFullYear());
-  readonly currentMonth = signal(new Date().getMonth() + 1);
-  readonly currentDay = signal(new Date().getDate());
+  readonly currentYear = cobranzaOnlineFilterState.year;
+  readonly currentMonth = cobranzaOnlineFilterState.month;
+  readonly currentDay = cobranzaOnlineFilterState.day;
 
   readonly currentDate = computed(() => {
     const y = this.currentYear();
@@ -115,6 +76,8 @@ export class DepartmentPayments {
     const d = this.currentDay().toString().padStart(2, "0");
     return `${y}-${m}-${d}`;
   });
+
+  readonly dateControl = new FormControl(this.currentDate());
 
   readonly currentMonthName = computed(() => {
     const date = new Date(this.currentYear(), this.currentMonth() - 1, 1);
@@ -129,6 +92,10 @@ export class DepartmentPayments {
   readonly customerName = computed(() => this.customerIdS.customerName());
 
   constructor() {
+    this.dateControl.valueChanges.subscribe((val) => {
+      if (val) this.onDateChange(val);
+    });
+
     effect(
       () => {
         const cId = this.customerIdS.customerId();
@@ -168,15 +135,12 @@ export class DepartmentPayments {
   async loadData(customerId: string, year: number, month: number, day: number) {
     this.loading.set(true);
     try {
-      const res = await this.cobranzaOnlineS.getDashboard(
-        customerId,
-        year,
-        month,
-        day,
-      );
-      if (res && (res as any).departmentPayments) {
-        const sourceData = (res as any)
-          .departmentPayments as DepartmentChargesData[];
+      const res =
+        await this.apiResponseS.onGetItem<CobranzaOnlineDashboardResponse>(
+          Endpoints.CobranzaOnline.Dashboard.get(customerId, year, month, day),
+        );
+      if (res?.departmentPayments?.length) {
+        const sourceData = res.departmentPayments;
         const mapped = sourceData.map((dept) => {
           const row: PivotRow = {
             accountNumber: dept.accountNumber,
@@ -189,7 +153,7 @@ export class DepartmentPayments {
               charge.concept?.toUpperCase()?.includes(c.name),
             );
             // La cuenta cruda (rawAccount) tiene formato ej. "104-004-072-001"
-            // El concepto siempre es el sLTIMO segmento, no el segundo.
+            // El concepto siempre es el ÚLTIMO segmento, no el segundo.
             const rawParts = charge.rawAccount
               ? charge.rawAccount.split("-")
               : [];
@@ -211,9 +175,8 @@ export class DepartmentPayments {
       } else {
         this.pivotData.set([]);
       }
-    } catch (e) {
-      console.error(e);
-      this.pivotData.set([]);
+    } catch {
+        this.pivotData.set([]);
     } finally {
       this.loading.set(false);
     }

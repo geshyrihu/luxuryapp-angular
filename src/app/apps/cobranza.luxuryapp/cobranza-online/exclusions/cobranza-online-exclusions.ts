@@ -23,7 +23,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { CobranzaOnlineService } from "../cobranza-online.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import type {
   CobranzaOnlineExcludedAccountListResponse,
@@ -34,7 +34,7 @@ import type {
 @Component({
   selector: "app-cobranza-online-exclusions",
   templateUrl: "./cobranza-online-exclusions.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppIcon,
     FormsModule,
@@ -51,10 +51,12 @@ import type {
 })
 export class CobranzaOnlineExclusions {
   private customerIdS = inject(CustomerIdService);
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
   readonly currentYear = signal(new Date().getFullYear());
+  // Filtro independiente: usa solo año (sin mes/día),
+  // no comparte cobranzaOnlineFilterState (ver state/cobranza-online-filter.state.ts)
   readonly loading = signal(true);
   readonly savingAccountNumber = signal<string | null>(null);
   readonly onlyWithoutPropertyMatch = signal(false);
@@ -124,14 +126,14 @@ export class CobranzaOnlineExclusions {
 
     this.loading.set(true);
     const response =
-      await this.cobranzaOnlineS.getExcludedAccounts(
-        customerId,
-        this.currentYear(),
+      await this.apiResponseS.onGetItem<CobranzaOnlineExcludedAccountListResponse>(
+        Endpoints.CobranzaOnline.Dashboard.excludedAccounts(
+          customerId,
+          this.currentYear(),
+        ),
       );
 
-    this.data.set(
-      (response as CobranzaOnlineExcludedAccountListResponse | null) ?? null,
-    );
+    this.data.set(response ?? null);
     this.loading.set(false);
   }
 

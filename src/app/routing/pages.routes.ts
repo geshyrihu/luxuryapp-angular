@@ -143,6 +143,17 @@ export const pagesRoutes: Routes = [
       breadcrumb: "Cobranza Nativa",
     },
   },
+  {
+    path: "cobranza",
+    loadChildren: () =>
+      import("src/app/apps/cobranza.luxuryapp/cobranza.routes").then(
+        (m) => m.COBRANZA_ROUTES,
+      ),
+    data: {
+      title: "Cobranza",
+      breadcrumb: "Cobranza",
+    },
+  },
 
   // REDIRECCIONAMIENTO: accounting -> contabilidad (rutas legacy)
   {

@@ -1,0 +1,23 @@
+@if (platformS.isMobile()) {
+  <app-candidate-application-list-mobile
+    [data]="dataSignal()"
+    [stages]="stages()"
+    [activeStage]="activeStage()"
+    [globalFilterFields]="globalFilterFields()"
+    (stageChange)="onStageChange($event)"
+    (add)="onModalForm({ id: '', title: 'Nueva Postulación' })"
+    (edit)="onModalForm($event)"
+    (advance)="onChangeStageModal($event)"
+  />
+} @else {
+  <app-candidate-application-list-desktop
+    [data]="dataSignal()"
+    [stages]="stages()"
+    [activeStage]="activeStage()"
+    [globalFilterFields]="globalFilterFields()"
+    (stageChange)="onStageChange($event)"
+    (add)="onModalForm({ id: '', title: 'Nueva Postulación' })"
+    (edit)="onModalForm($event)"
+    (advance)="onChangeStageModal($event)"
+  />
+}

@@ -198,12 +198,7 @@ Rutas de empleado que cargan módulos lazy:
 | `/contabilidad/financial-statements`                 | EstadoFinancieroList            |
 | `/contabilidad/financial-summary`                    | FinancialSummary                |
 | `/contabilidad/budget-proposal`                      | PresupuestoPropuesta            |
-| `/contabilidad/collections`                          | CobranzaOnlineDashboard         |
-| `/contabilidad/collections/inspection`               | CobranzaOnlineInspection        |
-| `/contabilidad/collections/analysis`                 | CobranzaOnlineAnalysis          |
-| `/contabilidad/collections/reporte-financiero`       | CobranzaOnlineReporteFinanciero |
 | `/contabilidad/collections/presupuesto-contabilidad` | PresupuestoContabilidad         |
-| `/contabilidad/collections/exclusions`               | CobranzaOnlineExclusions        |
 | `/contabilidad/accounts`                             | AccountingCatalog               |
 | `/contabilidad/financial-statements-reports`         | FinancialReportsWrapper         |
 | `/contabilidad/aspel-cobranza`                       | AspelCobranzaHaus               |
@@ -661,6 +656,21 @@ Rutas de empleado que cargan módulos lazy:
 | `/operations/inventario-productos` | WarehouseStockList      |
 | `/operations/extintores`           | InventarioExtintor      |
 | `/operations/extintores-group`     | InventarioExtintorGroup |
+
+### 3.35 COBRANZA — `cobranza.routes.ts`
+
+| Ruta                                        | Componente                    |
+| ------------------------------------------- | ----------------------------- |
+| `/cobranza/online`                          | CobranzaOnlineWrapper         |
+| `/cobranza/online/inspection`               | CobranzaOnlineInspection      |
+| `/cobranza/online/analysis`                 | CobranzaOnlineAnalysis        |
+| `/cobranza/online/reporte-financiero`       | CobranzaOnlineReporteFinanciero |
+| `/cobranza/online/exclusions`               | CobranzaOnlineExclusions      |
+| `/cobranza/online/department-charges`       | DepartmentCharges             |
+| `/cobranza/online/department-payments`      | DepartmentPayments            |
+| `/cobranza/online/towers`                   | CobranzaOnlineTowers          |
+| `/cobranza/online/advances`                 | CobranzaOnlineAdvances        |
+| `/cobranza/online/debtors`                  | CobranzaOnlineDebtors         |
 
 ---
 

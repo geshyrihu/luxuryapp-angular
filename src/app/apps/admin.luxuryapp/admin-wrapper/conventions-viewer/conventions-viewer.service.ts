@@ -350,7 +350,7 @@ users$ = new BehaviorSubject<UserDto[]>([]);`,
       id: 'frontend-generic-services-first',
       title: 'Antes de crear servicios nuevos, agota el catalogo generico frontend',
       description:
-        'HTTP, paginacion, dialogs, fechas, enums, storage, tablas, PDFs y procesamiento de imagenes ya tienen piezas oficiales. Toda imagen se prepara con ImageProcessingService; no se crean conversiones HEIC ni compresores locales.',
+        'HTTP, paginacion, dialogs, fechas, enums, storage, tablas, PDFs y procesamiento de imagenes ya tienen piezas oficiales. Toda imagen se prepara con ImageProcessingService y imageFormDataInterceptor garantiza la cobertura de cargas multipart; no se crean conversiones HEIC ni compresores locales.',
       severity: 'ALTA',
       domain: 'frontend',
       taskTypes: ['implementacion-frontend', 'auditoria'],

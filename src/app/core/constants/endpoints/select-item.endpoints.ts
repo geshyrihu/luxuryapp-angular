@@ -14,6 +14,7 @@ export const EndpointsSelectItem = {
       `application-users/${customerId}`,
     bank: "banks",
     categories: "categories",
+    candidates: "candidates",
     useCFDI: "cfdi-uses",
     comiteMinuta: (customerId: string, meetingId: string) =>
       `committee-minutes/${customerId}/${meetingId}`,
@@ -37,6 +38,8 @@ export const EndpointsSelectItem = {
       `machineries-all/${customerId}`,
     measurementUnits: "measurement-units",
     nombreCorto: "nombre-corto",
+    operationsInterviewersByCustomer: (customerId: string) =>
+      `operations-interviewers/${customerId}`,
     paymentMethod: "payment-methods",
     wayToPay: "payment-ways",
     properties: (customerId: string) => `properties/${customerId}`,
@@ -44,6 +47,7 @@ export const EndpointsSelectItem = {
       `property-accounts/${customerId}/${year}`,
     propertyMembersByCustomer: (customerId: string) =>
       `property-members/${customerId}`,
+    requestPositionsPending: "request-positions-pending",
     providers: (customerId: string) => `providers/${customerId}`,
     richProducts: (term: string) => `rich-products?term=${term}`,
     rolesForAnnouncements: "roles-for-announcements",

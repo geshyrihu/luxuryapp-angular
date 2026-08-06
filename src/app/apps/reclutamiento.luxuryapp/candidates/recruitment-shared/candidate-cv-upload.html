@@ -1,0 +1,74 @@
+<div class="flex flex-column gap-2">
+  <label class="text-sm text-color-secondary font-medium">{{ label() }}</label>
+
+  @if (fileName() && !replaceMode() && !currentFileName()) {
+    <div class="cv-current-file">
+      <div class="flex flex-column gap-1">
+        <span class="text-sm font-medium text-color">CV actual</span>
+        @if (fileUrl()) {
+          <a
+            class="cv-file-link"
+            [href]="fileUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ fileName() }}
+          </a>
+        } @else {
+          <span class="text-sm text-blue-700">{{ fileName() }}</span>
+        }
+      </div>
+      <button
+        type="button"
+        class="cv-action-button"
+        (click)="enableReplaceMode()"
+      >
+        Reemplazar CV
+      </button>
+    </div>
+  }
+
+  @if (!fileName() || replaceMode() || currentFileName()) {
+  <file-upload
+    class="w-full"
+    [formControl]="cvControl"
+    [animation]="true"
+    accept=".pdf"
+    (change)="onFileChange()"
+  >
+    <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
+      <file-upload-drop-zone>
+        @if (isFileDragDropAvailable) {
+          <b>Arrastrar y soltar el CV</b><br />
+          <span>o haga clic aquí</span>
+        } @else {
+          <b>Haz clic aquí</b> para seleccionar el CV
+        }
+      </file-upload-drop-zone>
+    </ng-template>
+    <ng-template let-i="index" let-file="file" let-control="control" #item>
+      <file-upload-list-item [index]="i" [file]="file" [control]="control">
+        Quitar
+      </file-upload-list-item>
+    </ng-template>
+  </file-upload>
+  }
+
+  @if (currentFileName() || fileName()) {
+    <p class="text-sm m-0 text-blue-700">
+      Archivo: {{ currentFileName() ?? fileName() }}
+    </p>
+  }
+
+  @if (currentFileName()) {
+    <div class="flex justify-content-end">
+      <button
+        type="button"
+        class="cv-action-button cv-action-button--subtle"
+        (click)="clearReplacement()"
+      >
+        Cancelar reemplazo
+      </button>
+    </div>
+  }
+</div>

@@ -79,4 +79,39 @@ export const EndpointsReclutamiento = {
     delete: (id: Id) => `request-employee-register/${id}`,
     exportExcel: "request-employee-register/export-excel",
   },
+  Candidates: {
+    base: "recruitment-candidates",
+    list: "recruitment-candidates",
+    getById: (id: Id) => `recruitment-candidates/${id}`,
+    create: "recruitment-candidates",
+    update: (id: Id) => `recruitment-candidates/${id}`,
+    archive: (id: Id) => `recruitment-candidates/${id}/archive`,
+  },
+  CandidateApplications: {
+    base: "recruitment-candidate-applications",
+    list: "recruitment-candidate-applications",
+    listByStage: (stage: string | number) =>
+      `recruitment-candidate-applications/by-stage/${stage}`,
+    getById: (id: Id) => `recruitment-candidate-applications/${id}`,
+    create: "recruitment-candidate-applications",
+    update: (id: Id) => `recruitment-candidate-applications/${id}`,
+    changeStage: (id: Id) => `recruitment-candidate-applications/${id}/stage`,
+    registerDecision: (id: Id) =>
+      `recruitment-candidate-applications/${id}/decision`,
+    uploadCv: (id: Id) => `recruitment-candidate-applications/${id}/cv`,
+    processHiring: (id: Id) =>
+      `recruitment-candidate-applications/${id}/process-hiring`,
+  },
+  CandidateInterviews: {
+    base: "recruitment-candidate-interviews",
+    submitFeedback: "recruitment-candidate-interviews/feedback",
+    byApplication: (candidateApplicationId: Id) =>
+      `recruitment-candidate-interviews/application/${candidateApplicationId}`,
+  },
+  CandidateDecisionReasons: {
+    base: "recruitment-candidate-decision-reasons",
+    catalog: "recruitment-candidate-decision-reasons",
+    create: "recruitment-candidate-decision-reasons",
+    update: (id: Id) => `recruitment-candidate-decision-reasons/${id}`,
+  },
 } as const;

@@ -82,7 +82,7 @@
                 lxTooltip="Imprimir QR activos de los equipos visibles"
                 tooltipPosition="top"
               />
-              <div class="flex-shrink-0" >
+              <div class="flex-shrink-0">
                 <iw-button-active-desactive
                   [state]="stateFilter() === 0"
                   (stateChange)="onSelectState($event ? 0 : 1)"
@@ -151,7 +151,7 @@
               class="cursor-pointer"
               (click)="openMantenimientosDialog(item)"
               tooltip="Ver Mantenimientos"
-             />
+            />
           </td>
           }
           <td class="no-print">
@@ -217,88 +217,6 @@
     </p-table>
     }
 
-    <!-- Modal: Mantenimientos Calendarizados -->
-    <lx-modal
-      [visible]="mantenimientosVisible()"
-      (visibleChange)="mantenimientosVisible.set($event)"
-      [header]="(selectedEquipo()?.nameMachinery ?? '') + ' — Mantenimientos'"
-    >
-      @if (selectedEquipo(); as equipo) {
-      <div class="flex justify-content-end mb-3">
-        @if (aspRoleS.hasAny([AspRole.JefeMantenimiento, AspRole.Administrador,
-        AspRole.SuperUsuario])) {
-        <il-button
-          label="Agregar"
-          iconClass="mdi:plus"
-          (clicked)="onAddMantenimientoDialog(equipo.id)"
-        />
-        }
-      </div>
-
-      @if (equipo.maintenanceCalendar?.length > 0) {
-      <p-table [value]="equipo.maintenanceCalendar" class="custom-table">
-        <ng-template #header>
-          <tr>
-            <th class="table-col-5"></th>
-            <th>ACTIVIDAD</th>
-            <th>PROVEEDOR</th>
-            <th>RECURRENCIA</th>
-            <th>MES</th>
-            <th>COSTO</th>
-            @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
-            AspRole.Administrador, AspRole.SuperUsuario])) {
-            <th class="table-col-10"></th>
-            }
-          </tr>
-        </ng-template>
-        <ng-template #body let-order>
-          <tr class="animate__fadeIn">
-            <td>
-              <span
-                [innerHTML]="order.hasServiceOrder ? '🛠️' : '⚪'"
-              ></span>
-            </td>
-            <td>
-              <p
-                class="mr-2 text-justify"
-                [innerHTML]="order.activity | sanitizeHtml"
-              ></p>
-            </td>
-            <td>{{ order.nameProvider }}</td>
-            <td>{{ order.recurrence }}</td>
-            <td>{{ order.month }}</td>
-            <td>{{ order.price | CurrencyMexicoPipe }}</td>
-            @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
-            AspRole.Administrador, AspRole.SuperUsuario])) {
-            <td>
-              <div class="flex">
-                <iw-button-item
-                  iconClass="mdi:content-copy"
-                  lxTooltip="Duplicar"
-                  tooltipPosition="top"
-                  variant="text"
-                  (clicked)="showModalMaintenanceCalendar({ id: order.id, task: 'copy', machineryId: order.machineryId, header: 'Duplicar Actividad' })"
-                />
-                <iw-button-edit (clicked)="onEditMantenimientoDialog(order)" />
-                <iw-button-delete
-                  (confirmed)="onDeleteOrderFromDialog(order.id, equipo.id)"
-                  [isLinked]="order.hasServiceOrder"
-                />
-              </div>
-            </td>
-            }
-          </tr>
-        </ng-template>
-        <ng-template #emptymessage>
-          <primeng-custom-table-emptymessage [colspan]="13" />
-        </ng-template>
-      </p-table>
-      } @else {
-      <div class="text-center text-500 p-4 surface-100 rounded italic">
-        Sin servicios de Mantenimiento registrados.
-      </div>
-      } }
-    </lx-modal>
   </div>
 
   <!-- ================================================================== -->
@@ -320,7 +238,9 @@
     <!-- Selector de categorías móvil -->
     <div class="flex overflow-x-auto pb-2 no-scrollbar mb-2">
       @for (category of categories; track category.id) {
-      <div class="p-1 rounded surface-100 mr-2 mb-2 inline-flex align-items-center">
+      <div
+        class="p-1 rounded surface-100 mr-2 mb-2 inline-flex align-items-center"
+      >
         <span class="flex align-items-center">
           <app-icon [icon]="category.emoji" />
           {{ category.name }}
@@ -358,7 +278,9 @@
         </div>
       </ng-template>
       <ng-template #listItemTemplate let-item>
-        <div class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center">
+        <div
+          class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+        >
           <div slot="start" class="mobile-avatar-slot">
             @if (item.photoPath) {
             <img
@@ -367,10 +289,7 @@
               class="mobile-avatar-img"
             />
             } @else {
-            <app-icon
-              icon="mdi:engine-outline"
-              
-            />
+            <app-icon icon="mdi:engine-outline" />
             }
           </div>
           <span class="">
@@ -379,22 +298,40 @@
             <p>{{ item.ubication }}</p>
 
             <div class="flex flex-wrap mt-2">
-              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onDocumentos(item.id)">
+              <button
+                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                (click)="onDocumentos(item.id)"
+              >
                 <app-icon icon="mdi:file-document-outline" slot="icon-only" />
               </button>
-              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onServiceHistory(item.id)">
+              <button
+                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                (click)="onServiceHistory(item.id)"
+              >
                 <app-icon icon="mdi:clock-outline" slot="icon-only" />
               </button>
-              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onBitacoraIndividual(item.id)">
+              <button
+                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                (click)="onBitacoraIndividual(item.id)"
+              >
                 <app-icon icon="mdi:book-open-outline" slot="icon-only" />
               </button>
-              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="showModalFichatecnica(item.id)">
+              <button
+                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                (click)="showModalFichatecnica(item.id)"
+              >
                 <app-icon icon="mdi:clipboard-text-outline" slot="icon-only" />
               </button>
-              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onEquipmentInspections(item)">
+              <button
+                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                (click)="onEquipmentInspections(item)"
+              >
                 <app-icon icon="mdi:clipboard-text-outline" slot="icon-only" />
               </button>
-              <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="item.expanded = !item.expanded">
+              <button
+                class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                (click)="item.expanded = !item.expanded"
+              >
                 <app-icon icon="mdi:hammer-wrench" slot="icon-only" />
               </button>
             </div>
@@ -407,7 +344,10 @@
                 <span class="text-primary font-bold"
                   >Servicios Programados</span
                 >
-                <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="showModalMaintenanceCalendar({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })">
+                <button
+                  class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                  (click)="showModalMaintenanceCalendar({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })"
+                >
                   <app-icon icon="mdi:plus-circle-outline" slot="start" />
                   Agregar
                 </button>
@@ -450,13 +390,22 @@
                   <div
                     class="flex justify-content-end gap-1 mt-2 border-top-1 surface-border pt-1"
                   >
-                    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-secondary" (click)="showModalMaintenanceCalendar({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })">
+                    <button
+                      class="p-button p-button-rounded p-button-text p-button-sm p-button-secondary"
+                      (click)="showModalMaintenanceCalendar({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })"
+                    >
                       <app-icon icon="mdi:content-copy" slot="icon-only" />
                     </button>
-                    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="showModalMaintenanceCalendar({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })">
+                    <button
+                      class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+                      (click)="showModalMaintenanceCalendar({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })"
+                    >
                       <app-icon icon="mdi:pencil-outline" slot="icon-only" />
                     </button>
-                    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-danger" (click)="onDeleteOrder(service.id)">
+                    <button
+                      class="p-button p-button-rounded p-button-text p-button-sm p-button-danger"
+                      (click)="onDeleteOrder(service.id)"
+                    >
                       <app-icon icon="mdi:trash-can-outline" slot="icon-only" />
                     </button>
                   </div>
@@ -465,9 +414,7 @@
                 }
               </div>
               } @else {
-              <div
-                class="text-center text-500 p-2 italic surface-100 rounded"
-              >
+              <div class="text-center text-500 p-2 italic surface-100 rounded">
                 Sin servicios registrados
               </div>
               }
@@ -478,10 +425,16 @@
           <div slot="end" class="flex flex-column gap-1">
             @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
             AspRole.Administrador, AspRole.SuperUsuario])) {
-            <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onModalAddOrEdit({ id: item.id, title: 'Editar' })">
+            <button
+              class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+              (click)="onModalAddOrEdit({ id: item.id, title: 'Editar' })"
+            >
               <app-icon icon="mdi:pencil-outline" slot="icon-only" />
             </button>
-            <button class="p-button p-button-rounded p-button-text p-button-sm p-button-danger" (click)="onDelete(item.id)">
+            <button
+              class="p-button p-button-rounded p-button-text p-button-sm p-button-danger"
+              (click)="onDelete(item.id)"
+            >
               <app-icon icon="mdi:trash-can-outline" slot="icon-only" />
             </button>
             }
