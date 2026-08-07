@@ -4,12 +4,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { PurchaseRequestAddProduct } from "./purchase-request-add-product";
 import { PurchaseRequestAddProductForm } from "./purchase-request-add-product-form";
 import { PurchaseRequestForm } from "./purchase-request-form";

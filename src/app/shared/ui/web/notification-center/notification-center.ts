@@ -4,10 +4,10 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { NotificationCenterBase } from "@ui/base/notification-center.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { BadgeModule } from "primeng/badge";
 import { ButtonModule } from "primeng/button";
 import { PopoverModule } from "primeng/popover";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export { type NotificationItem } from "@ui/base/notification-center.base";
 

@@ -116,26 +116,22 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-        
       >
-        <app-icon
-          icon="mdi:currency-usd"
-          
-        />
+        <app-icon icon="mdi:currency-usd" />
       </div>
-      
-        <h2 class="font-normal m-0">{{ item.periodoDescripcion }}</h2>
-        <p class="text-xs m-0">{{ item.totalEmpleados }} empleados</p>
-        <div class="flex align-items-center gap-2 mt-1">
-          <lx-tag
-            [severity]="getEstadoSeverity(item.estadoValue)"
-            [value]="item.estado"
-          />
-          <span class="font-bold"
-            >{{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}</span
-          >
-        </div>
-      
+
+      <h2 class="font-normal m-0">{{ item.periodoDescripcion }}</h2>
+      <p class="text-xs m-0">{{ item.totalEmpleados }} empleados</p>
+      <div class="flex align-items-center gap-2 mt-1">
+        <lx-tag
+          [severity]="getEstadoSeverity(item.estadoValue)"
+          [value]="item.estado"
+        />
+        <span class="font-bold"
+          >{{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}</span
+        >
+      </div>
+
       <div end>
         <iw-button
           iconClass="mdi:eye-outline"

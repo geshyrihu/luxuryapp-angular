@@ -8,11 +8,11 @@ import {
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { MeetingIndex } from "src/app/core/interfaces/meeting-index.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   AreaDetailsTable,
   DetailEvent,

@@ -63,11 +63,11 @@
 
   <ng-template #header>
     <tr>
-      <th  pSortableColumn="areaResponsable">
+      <th pSortableColumn="areaResponsable">
         AREA
         <p-sorticon field="areaResponsable" />
       </th>
-      <th  pSortableColumn="fechaSolicitudFiltro">
+      <th pSortableColumn="fechaSolicitudFiltro">
         SOLICITUD
         <p-sorticon field="fechaSolicitudFiltro" />
       </th>
@@ -76,20 +76,18 @@
         <p-sorticon field="pendiente" />
       </th>
       <th class="table-col-seguimiento">SEGUIMIENTO</th>
-      <th  class="text-center" pSortableColumn="status">
+      <th class="text-center" pSortableColumn="status">
         ESTATUS
         <p-sorticon field="status" />
       </th>
-      <th  class="no-print"></th>
+      <th class="no-print"></th>
     </tr>
   </ng-template>
 
   <ng-template #body let-item>
     <tr>
-      <td  class="font-medium text-900">
-        {{ item.areaResponsable }}
-      </td>
-      <td  class="table-col-description">
+      <td class="font-medium text-900">{{ item.areaResponsable }}</td>
+      <td class="table-col-description">
         <div class="text-base font-bold text-900 mb-1">
           {{ item.fechaSolicitud }} {{ item.titulo | titlecase }}
         </div>
@@ -109,7 +107,7 @@
         </div>
         }
       </td>
-      <td  class="text-center">
+      <td class="text-center">
         <lx-tag
           [severity]="
             item.status == 0
@@ -128,7 +126,7 @@
           "
         />
       </td>
-      <td  class="no-print">
+      <td class="no-print">
         <app-action-menu>
           <ng-container actions>
             <il-button-item
@@ -212,35 +210,35 @@
           class="text-xl text-primary"
         />
       </div>
-      
-        <h2 class="font-bold">{{ item.areaResponsable }}</h2>
-        <p class="text-sm text-500">
-          {{ item.fechaSolicitud }} {{ item.titulo }}
-        </p>
-        <div
-          class="text-sm text-500 my-1"
-          [innerHTML]="item.pendiente | sanitizeHtml"
-        ></div>
-        <p class="text-sm">
-          <lx-tag
-            [severity]="
+
+      <h2 class="font-bold">{{ item.areaResponsable }}</h2>
+      <p class="text-sm text-500">
+        {{ item.fechaSolicitud }} {{ item.titulo }}
+      </p>
+      <div
+        class="text-sm text-500 my-1"
+        [innerHTML]="item.pendiente | sanitizeHtml"
+      ></div>
+      <p class="text-sm">
+        <lx-tag
+          [severity]="
               item.status == 0
                 ? 'danger'
                 : item.status == 1
                 ? 'success'
                 : 'secondary'
             "
-            [value]="
+          [value]="
               item.status == 0
                 ? 'Pendiente'
                 : item.status == 1
                 ? 'Concluido'
                 : 'Cancelado'
             "
-            class="text-xs"
-           />
-        </p>
-      
+          class="text-xs"
+        />
+      </p>
+
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-item

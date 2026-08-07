@@ -15,10 +15,9 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -31,6 +30,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-user-activity-history",

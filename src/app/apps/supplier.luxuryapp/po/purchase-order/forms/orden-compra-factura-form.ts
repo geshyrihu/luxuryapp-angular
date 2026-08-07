@@ -18,10 +18,13 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip"; // Added
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 export interface IOrdenCompraFacturaForm {
   pdfFile: FormControl<File | null>;
   xmlFile: FormControl<File | null>;
@@ -31,7 +34,7 @@ export interface IOrdenCompraFacturaForm {
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-orden-compra-factura-form",

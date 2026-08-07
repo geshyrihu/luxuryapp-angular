@@ -16,7 +16,6 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxToast } from "@ui/adaptive/toast/toast";
 import { TabItem } from "@ui/base/tabs.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MessageService } from "@ui/web/primeng-api/primeng-api";
 import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -24,6 +23,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   buildOrgChartGraph,
   flattenOrgChartNodes,

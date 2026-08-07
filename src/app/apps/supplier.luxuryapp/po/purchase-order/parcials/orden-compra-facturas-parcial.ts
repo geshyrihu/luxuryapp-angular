@@ -14,12 +14,12 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-orden-compra-facturas-parcial",
   templateUrl: "./orden-compra-facturas-parcial.html",

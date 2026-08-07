@@ -14,12 +14,12 @@ import {
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { passwordValidation } from "src/app/core/directives/password-validation.directive";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ChangePassword } from "src/app/core/interfaces/change-password.interface";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-actualizar-contrasena",
   templateUrl: "./update-password.html",

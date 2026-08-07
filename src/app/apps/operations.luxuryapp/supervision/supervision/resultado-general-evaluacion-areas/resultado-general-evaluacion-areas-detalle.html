@@ -1,76 +1,76 @@
 @if (dataSignal()) {
 <div class="hidden md:block">
-<p-table
-  [globalFilterFields]="globalFilterFields()"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  #dt
-  class="p-datatable-striped p-tag-success"
->
-  <ng-template #caption>
-    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th class="table-col-2 text-sm">#</th>
-      <th class="table-col-7 text-sm" pSortableColumn="customer">
-        Cliente
-        <p-sorticon field="customer" />
-      </th>
-      <th class="table-col-13 text-sm" pSortableColumn="title">
-        Titulo
-        <p-sorticon field="title" />
-      </th>
-      <th class="table-col-20 text-sm" pSortableColumn="requestService">
-        Asunto
-        <p-sorticon field="requestService" />
-      </th>
-      <th class="table-col-7 text-sm" pSortableColumn="status">
-        Estatus
-        <p-sorticon field="status" />
-      </th>
-      <th class="table-col-7 text-sm" pSortableColumn="deliveryDate">
-        Entrega
-        <p-sorticon field="deliveryDate" />
-      </th>
-      <th class="table-col-30 text-sm">Seguimiento</th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-rowIndex="rowIndex" let-detalle>
-    <tr>
-      <td class="text-sm">{{ rowIndex + 1 }}</td>
-      <td class="text-sm">{{ detalle.customer | uppercase }}</td>
-      <td class="text-sm">{{ detalle.title }}</td>
-      <td class="text-sm">
-        <p
-          class="mr-2 text-justify"
-          [innerHTML]="detalle.requestService | sanitizeHtml"
-        ></p>
-      </td>
-      <td class="text-sm text-center">
-        <lx-tag
-          [value]="detalle.status | uppercase"
-          [severity]="detalle.status == 0 ? 'danger' : detalle.status == 1 ? 'success' : 'secondary'"
-          class="p-2 text-sm"
-         />
-      </td>
-      <td class="text-sm">{{ detalle.deliveryDate }}</td>
-      <td class="text-sm">
-        <ol [start]="detalle.seguimientos.length" reversed>
-          @for (item of detalle.seguimientos; track item) {
-          <li>{{ item.fecha }}, {{ item.seguimiento }}</li>
-          }
-        </ol>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template emptymessage>
-    <tr>
-      <td colspan="6">Sin registros.</td>
-    </tr>
-  </ng-template>
-</p-table>
+  <p-table
+    [globalFilterFields]="globalFilterFields()"
+    [value]="dataSignal()"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight"
+    #dt
+    class="p-datatable-striped p-tag-success"
+  >
+    <ng-template #caption>
+      <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th class="table-col-2 text-sm">#</th>
+        <th class="table-col-7 text-sm" pSortableColumn="customer">
+          Cliente
+          <p-sorticon field="customer" />
+        </th>
+        <th class="table-col-13 text-sm" pSortableColumn="title">
+          Titulo
+          <p-sorticon field="title" />
+        </th>
+        <th class="table-col-20 text-sm" pSortableColumn="requestService">
+          Asunto
+          <p-sorticon field="requestService" />
+        </th>
+        <th class="table-col-7 text-sm" pSortableColumn="status">
+          Estatus
+          <p-sorticon field="status" />
+        </th>
+        <th class="table-col-7 text-sm" pSortableColumn="deliveryDate">
+          Entrega
+          <p-sorticon field="deliveryDate" />
+        </th>
+        <th class="table-col-30 text-sm">Seguimiento</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-rowIndex="rowIndex" let-detalle>
+      <tr>
+        <td class="text-sm">{{ rowIndex + 1 }}</td>
+        <td class="text-sm">{{ detalle.customer | uppercase }}</td>
+        <td class="text-sm">{{ detalle.title }}</td>
+        <td class="text-sm">
+          <p
+            class="mr-2 text-justify"
+            [innerHTML]="detalle.requestService | sanitizeHtml"
+          ></p>
+        </td>
+        <td class="text-sm text-center">
+          <lx-tag
+            [value]="detalle.status | uppercase"
+            [severity]="detalle.status == 0 ? 'danger' : detalle.status == 1 ? 'success' : 'secondary'"
+            class="p-2 text-sm"
+          />
+        </td>
+        <td class="text-sm">{{ detalle.deliveryDate }}</td>
+        <td class="text-sm">
+          <ol [start]="detalle.seguimientos.length" reversed>
+            @for (item of detalle.seguimientos; track item) {
+            <li>{{ item.fecha }}, {{ item.seguimiento }}</li>
+            }
+          </ol>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template emptymessage>
+      <tr>
+        <td colspan="6">Sin registros.</td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
 
 <!-- 📱 MOBILE -->
@@ -83,7 +83,9 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <p class="font-semibold m-0 text-color">{{ item.title }}</p>
-      <p class="text-xs m-0 text-color-secondary">{{ item.customer }} · {{ item.status }}</p>
+      <p class="text-xs m-0 text-color-secondary">
+        {{ item.customer }} · {{ item.status }}
+      </p>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

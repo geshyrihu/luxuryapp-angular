@@ -49,6 +49,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [pSize]="size()"
         [invalid]="isInvalid()"
         [attr.list]="list()"
+        [attr.aria-required]="isRequired()"
         (blur)="blur.emit()"
         (keydown.enter)="enter.emit()"
         fluid

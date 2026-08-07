@@ -13,7 +13,6 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { getStatusSeverity as statusSeverityFn } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
 import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/vacation-balance.interface";
@@ -21,6 +20,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface VacationHistoryItemDTO {
   id: string;

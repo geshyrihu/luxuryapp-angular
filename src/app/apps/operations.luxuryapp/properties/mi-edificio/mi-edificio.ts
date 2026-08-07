@@ -5,13 +5,13 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { FichaTecnicaActivo } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { environment } from "src/environments/environment";
 import { MiEdificioMobile } from "./mi-edificio-mobile";
 @Component({
@@ -39,7 +39,9 @@ export class MiEdificio {
     });
   }
   onLoadData() {
-    const urlApi = Endpoints.MiEdificio.caratulaByCustomer(this.customerIdS.customerId());
+    const urlApi = Endpoints.MiEdificio.caratulaByCustomer(
+      this.customerIdS.customerId(),
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data.set(result);
     });

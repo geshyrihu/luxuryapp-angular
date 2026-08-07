@@ -14,8 +14,8 @@ import { IBancosInversionesDto } from "../interfaces/aspel-budget.interface";
 import { reportFilterState } from "../state/financial-report-filter.state";
 
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-bancos-inversiones",

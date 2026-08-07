@@ -12,7 +12,6 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AppImage } from "@ui/web/image/image";
@@ -33,6 +32,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { PrintService } from "src/app/core/services/print.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { InitialsAbbrPipe } from "src/app/shared/pipes/initials-abbr.pipe";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";

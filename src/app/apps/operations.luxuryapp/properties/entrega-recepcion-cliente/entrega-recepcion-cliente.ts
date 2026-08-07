@@ -18,11 +18,9 @@ import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { EntregaRecepcionClienteForm } from "src/app/apps/operations.luxuryapp/properties/entrega-recepcion/entrega-recepcion-cliente-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -36,7 +34,11 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-entrega-recepcion-cliente-lista",

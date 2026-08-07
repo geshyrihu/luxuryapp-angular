@@ -8,12 +8,12 @@ import {
 } from "@angular/core";
 import { LxImage } from "@ui/adaptive/image/image";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CustomerImageDto } from "./interfaces/customer-image.dto";
 
 @Component({

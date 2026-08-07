@@ -7,12 +7,12 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { DatePickerModule } from "primeng/datepicker";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface DataGridColumn {
   field: string;

@@ -2,19 +2,19 @@ import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   effect,
   inject,
   OnInit,
   signal,
-  computed,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({

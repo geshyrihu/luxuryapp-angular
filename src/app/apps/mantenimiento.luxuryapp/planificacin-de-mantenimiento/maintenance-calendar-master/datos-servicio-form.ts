@@ -1,16 +1,22 @@
-import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TarjetaProveedor } from "src/app/apps/supplier.luxuryapp/providers/provider/provider-card";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+} from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-datos-servicio-addoredit",
   templateUrl: "./datos-servicio-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,LxTag],
+  imports: [AppIcon, LxTag],
 })
 export class DatosServicioAddOrEdit implements OnInit {
   config = inject(DynamicDialogConfig);
@@ -32,4 +38,3 @@ export class DatosServicioAddOrEdit implements OnInit {
     );
   }
 }
-

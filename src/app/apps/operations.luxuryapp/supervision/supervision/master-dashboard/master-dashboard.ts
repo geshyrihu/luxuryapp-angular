@@ -1,6 +1,6 @@
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { SupervisionModuleGroup } from "./supervision-module.model";
 import { SUPERVISION_MODULES } from "./supervision-modules";
 

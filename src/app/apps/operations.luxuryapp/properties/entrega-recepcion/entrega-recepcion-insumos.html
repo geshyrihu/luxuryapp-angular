@@ -23,7 +23,7 @@
       <th class="table-col-10 text-sm">Cant.</th>
       <th class="table-col-10 text-sm">Ud.</th>
       <th class="table-col-10 text-sm">Check</th>
-      <th  class="text-sm">Observaciones</th>
+      <th class="text-sm">Observaciones</th>
     </tr>
   </ng-template>
   <ng-template #groupheader let-customer>
@@ -36,9 +36,7 @@
   <ng-template #groupfooter let-customer>
     <tr class="p-rowgroup-footer">
       <td class="text-sm" colspan="7">
-        <div >
-          Total: {{ calcularEquiposTotal(customer.clasificacion) }}
-        </div>
+        <div>Total: {{ calcularEquiposTotal(customer.clasificacion) }}</div>
       </td>
     </tr>
   </ng-template>

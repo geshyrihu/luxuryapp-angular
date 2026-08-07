@@ -142,49 +142,49 @@
     // }
 
     .p-datatable-thead > tr > th.th-selected {
-      background-color: #15803d !important;
-      color: #ffffff !important;
+      background-color: var(--ds-success) !important;
+      color: var(--ds-primary-text) !important;
     }
 
     .p-datatable-thead > tr > th.th-deselected {
-      background-color: #94a3b8 !important;
-      color: #e2e8f0 !important;
+      background-color: var(--ds-on-surface-variant) !important;
+      color: var(--ds-text-secondary) !important;
       opacity: 0.7;
     }
 
     .p-datatable-thead > tr > th.th-col-dark {
-      background-color: #1f2937 !important;
-      color: #ffffff !important;
+      background-color: var(--ds-on-surface) !important;
+      color: var(--ds-primary-text) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-green {
-      background-color: #15803d !important;
-      color: #ffffff !important;
+      background-color: var(--ds-success) !important;
+      color: var(--ds-primary-text) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-orange {
-      background-color: #ea580c !important;
-      color: #ffffff !important;
+      background-color: var(--ds-warning) !important;
+      color: var(--ds-accent-text-warning) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-red {
-      background-color: #b91c1c !important;
-      color: #ffffff !important;
+      background-color: var(--ds-danger) !important;
+      color: var(--ds-primary-text) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-blue-medium {
-      background-color: #1669a3 !important;
-      color: #ffffff !important;
+      background-color: var(--ds-primary-hover) !important;
+      color: var(--ds-primary-text) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-blue-dark {
-      background-color: #0d3b66 !important;
-      color: #ffffff !important;
+      background-color: var(--ds-primary) !important;
+      color: var(--ds-primary-text) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-navy {
-      background: #1e3a8a !important;
-      color: #ffffff !important;
+      background-color: var(--ds-primary-active) !important;
+      color: var(--ds-primary-text) !important;
     }
 
     /* Fix: Remove default PrimeNG caption borders/background LOCALLY for custom-table */

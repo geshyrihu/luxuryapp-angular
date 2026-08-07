@@ -106,13 +106,19 @@ export class MedidorLecturaAdminForm implements OnInit {
 
   onSubmit() {
     if (this.form.controls.lectura.value == 0) return;
+    const endpoint = this.id()
+      ? Endpoints.MeterReadings.update(this.id())
+      : Endpoints.MeterReadings.adminCreate;
+    const method = this.id() ? "PUT" : "POST";
+
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.MeterReadings.adminCreate,
+      endpoint,
       id: this.id(),
       ref: this.ref,
       submitting: this.submitting,
+      method,
       transformPayload: () => ({
         ...this.form.getRawValue(),
         fechaRegistro: this.dateS.getDateFormat(

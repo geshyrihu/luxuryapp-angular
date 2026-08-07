@@ -112,7 +112,7 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-<div
+      <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
@@ -122,18 +122,16 @@
           class="text-xl text-primary"
         />
       </div>
-      
-        <h2 class="font-normal m-0">{{ item.description }}</h2>
-        @if (item.notasEspeciales) {
-        <p class="text-sm text-color-secondary m-0">
-          {{ item.notasEspeciales }}
-        </p>
-        }
-        <p class="text-medium text-500 m-0">{{ item.provider }}</p>
-        <p class="text-sm text-400 mt-1">
-          {{ item.accountNumber }} ó {{ item.creationAt }}
-        </p>
-      
+
+      <h2 class="font-normal m-0">{{ item.description }}</h2>
+      @if (item.notasEspeciales) {
+      <p class="text-sm text-color-secondary m-0">{{ item.notasEspeciales }}</p>
+      }
+      <p class="text-medium text-500 m-0">{{ item.provider }}</p>
+      <p class="text-sm text-400 mt-1">
+        {{ item.accountNumber }} ó {{ item.creationAt }}
+      </p>
+
       <div end class="flex flex-column align-items-end">
         <span class="text-lg font-semibold text-primary">
           {{ item.amount | currency : "MXN" }}
@@ -147,6 +145,6 @@
         />
         }
       </div>
-</ili-list-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

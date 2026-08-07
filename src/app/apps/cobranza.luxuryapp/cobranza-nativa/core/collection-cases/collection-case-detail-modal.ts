@@ -9,11 +9,14 @@ import {
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto";
 
 @Component({
@@ -61,9 +64,7 @@ export default class CollectionCaseDetailModal implements OnInit {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.CobranzaCore.CollectionCases.logActivity(
-          item.id,
-        ),
+        Endpoints.CobranzaCore.CollectionCases.logActivity(item.id),
         { caseId: item.id, notes: this.notesCtrl.value, promisedDate: null },
       );
       if (ok) {
@@ -79,5 +80,3 @@ export default class CollectionCaseDetailModal implements OnInit {
     this.ref.close(false);
   }
 }
-
-

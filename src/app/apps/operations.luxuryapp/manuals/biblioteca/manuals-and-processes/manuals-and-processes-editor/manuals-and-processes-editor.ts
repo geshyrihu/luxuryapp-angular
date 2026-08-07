@@ -35,13 +35,13 @@ import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-butt
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { DiagramPreviewComponent } from "../diagram-preview";
 import {
   IManualAdjuntoSimpleDTO,

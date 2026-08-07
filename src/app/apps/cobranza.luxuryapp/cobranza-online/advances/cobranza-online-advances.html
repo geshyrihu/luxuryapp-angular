@@ -1,50 +1,10 @@
-<section class="p-3 md:p-4">
-  <div
-    class="flex flex-column md:flex-row align-items-start md:align-items-center justify-content-between gap-3 mb-4"
-  >
-    <div>
-      <h2
-        class="m-0 text-xl font-semibold text-success flex align-items-center gap-2"
-      >
-        <app-icon icon="mdi:cash-plus" class="text-xl" />
-        Adelantos y Saldos a Favor
-      </h2>
-      <p class="mt-2 mb-0 text-color-secondary">
-        Condóminos cuyo saldo final es negativo (tienen pagos anticipados).
-      </p>
-    </div>
-    <div class="flex gap-2 flex-wrap">
-      <il-button
-        label="Volver al dashboard"
-        severity="secondary"
-        variant="outline"
-        (clicked)="navigateTo('/cobranza/online')"
-      />
-      <il-button
-        label="Resumen Torres"
-        severity="secondary"
-        variant="outline"
-        (clicked)="navigateTo('/cobranza/online/towers')"
-      />
-      <il-button
-        label="Morosidad"
-        severity="secondary"
-        variant="outline"
-        (clicked)="navigateTo('/cobranza/online/debtors')"
-      />
-    </div>
-  </div>
-
+<section>
   @if (!hasCustomer()) {
   <div class="border-1 surface-border rounded p-4">
     <div class="font-medium mb-2">Sin cliente activo</div>
     <div class="text-color-secondary">
       Selecciona un cliente para consultar los adelantos y saldos a favor.
     </div>
-  </div>
-  } @else if (loading()) {
-  <div class="text-color-secondary mb-4">
-    Consultando Aspel y preparando el listado de saldos a favor...
   </div>
   } @else if (advances().length) {
   <div
@@ -55,7 +15,7 @@
       [value]="advances()"
       [globalFilterFields]="['accountNumber', 'propertyFullName', 'accountName']"
       [paginator]="true"
-      [rows]="tablePrimeNgRows"
+      [rows]="15"
       [rowsPerPageOptions]="rowsPerPageOptions"
       [scrollable]="true"
       [scrollHeight]="scrollHeight"
@@ -82,8 +42,18 @@
             Condómino
             <p-sorticon field="propertyFullName" />
           </th>
+          <th pSortableColumn="maintenanceBalance" class="text-right">
+            Adelanto Mtto (001)
+            <p-sorticon field="maintenanceBalance" />
+          </th>
+          @if (hasExtraAdvances()) {
+          <th pSortableColumn="extraordinaryBalance" class="text-right">
+            Adelanto Extraordinario (003)
+            <p-sorticon field="extraordinaryBalance" />
+          </th>
+          }
           <th pSortableColumn="balance" class="text-right text-success">
-            Saldo a Favor
+            Saldo Total a Favor
             <p-sorticon field="balance" />
           </th>
         </tr>
@@ -92,21 +62,53 @@
         <tr>
           <td>{{ row.accountNumber }}</td>
           <td>{{ row.propertyFullName || row.accountName }}</td>
+          <td class="text-right font-mono">
+            @if ((row.maintenanceBalance || 0) < 0) {
+            <span class="text-success font-bold">
+              {{ (row.maintenanceBalance * -1) | currency:
+              "MXN":"symbol":"1.0-0" }}
+            </span>
+            } @else {
+            <span class="text-color-secondary">—</span>
+            }
+          </td>
+          @if (hasExtraAdvances()) {
+          <td class="text-right font-mono">
+            @if ((row.extraordinaryBalance || 0) < 0) {
+            <span class="text-success font-bold">
+              {{ (row.extraordinaryBalance * -1) | currency:
+              "MXN":"symbol":"1.0-0" }}
+            </span>
+            } @else {
+            <span class="text-color-secondary">—</span>
+            }
+          </td>
+          }
           <td class="text-right text-success font-bold">
             {{ (row.balance * -1) | currency: "MXN":"symbol":"1.0-0" }}
           </td>
         </tr>
       </ng-template>
       <ng-template #footer>
-        <tr>
-          <td colspan="2" class="text-right font-bold text-success">Total:</td>
-          <td class="text-right text-success font-bold">
+        <tr class="font-bold">
+          <td colspan="2" class="text-right text-success">TOTAL:</td>
+          <td class="text-right text-success">
+            {{ totalAdvancesMtto() | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+          @if (hasExtraAdvances()) {
+          <td class="text-right text-success">
+            {{ totalAdvancesExtra() | currency: "MXN":"symbol":"1.0-0" }}
+          </td>
+          }
+          <td class="text-right text-success">
             {{ totalAdvances() | currency: "MXN":"symbol":"1.0-0" }}
           </td>
         </tr>
       </ng-template>
       <ng-template #emptymessage>
-        <primeng-custom-table-emptymessage [colspan]="3" />
+        <primeng-custom-table-emptymessage
+          [colspan]="hasExtraAdvances() ? 5 : 4"
+        />
       </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="advances()" />
@@ -135,7 +137,8 @@
                 {{ row.propertyFullName || row.accountName }}
               </p>
               <p class="text-xs m-0 mt-1 text-success font-bold">
-                Saldo a favor {{ (row.balance * -1) | currency: 'MXN':'symbol':'1.0-0' }}
+                Saldo a favor {{ (row.balance * -1) | currency:
+                'MXN':'symbol':'1.0-0' }}
               </p>
             </div>
           </ili-list-item>

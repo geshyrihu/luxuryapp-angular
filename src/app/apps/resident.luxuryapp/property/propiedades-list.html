@@ -110,8 +110,7 @@
       <td>{{ item.storageUnit }}</td>
       <td class="text-center">
         @if (item.isDelinquent) {
-        <span
-          class="badge bg-red-100 text-red-800 text-xs px-2 py-1 rounded"
+        <span class="badge bg-red-100 text-red-800 text-xs px-2 py-1 rounded"
           >Moroso</span
         >
         }
@@ -161,9 +160,9 @@
 
       <h2 class="font-normal m-0">{{ item.tower }} - {{ item.department }}</h2>
       <p>
-        Cta: {{ formatAccountNumber(item.accountNumber) }} @if (item.floor) { &middot; Piso: {{
-        item.floor }} } @if (item.unitNumber) { &middot; Int: {{ item.unitNumber
-        }} }
+        Cta: {{ formatAccountNumber(item.accountNumber) }} @if (item.floor) {
+        &middot; Piso: {{ item.floor }} } @if (item.unitNumber) { &middot; Int:
+        {{ item.unitNumber }} }
       </p>
       <p>
         @if (item.areaM2) { área: {{ item.areaM2 | number:'1.2-2' }} mí } @if

@@ -7,8 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -23,8 +21,12 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CATALOGO_GASTOS_FIJOS_LIST_MODULES } from "./catalogo-gastos-fijos-list-moduls";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";

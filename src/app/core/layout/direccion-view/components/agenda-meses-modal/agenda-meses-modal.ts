@@ -6,14 +6,14 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type { AgendaSemanalEventDto } from "../agenda-semanal/agenda-semanal.model";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 interface MesGroup {
   label: string;

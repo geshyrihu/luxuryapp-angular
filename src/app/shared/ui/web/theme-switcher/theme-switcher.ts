@@ -3,10 +3,10 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { ButtonModule } from "primeng/button";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
+import { ButtonModule } from "primeng/button";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * AppThemeSwitcher — Toggle que aplica/remueve `body.theme-dark`.

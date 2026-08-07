@@ -69,19 +69,13 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div
-        start
-        
-      >
-        <app-icon
-          icon="mdi:file-outline"
-          
-        />
+      <div start>
+        <app-icon icon="mdi:file-outline" />
       </div>
-      
-        <h3>{{ item.name }}</h3>
-        <p>Folio: {{ item.folio }} é {{ item.createAt }}</p>
-      
+
+      <h3>{{ item.name }}</h3>
+      <p>Folio: {{ item.folio }} é {{ item.createAt }}</p>
+
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit

@@ -6,8 +6,8 @@ import {
   signal,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface KanbanCard {
   id: string;

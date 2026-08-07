@@ -8,11 +8,11 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   IncidentDashboardDTO,
   IncidentDashboardFilterDTO,

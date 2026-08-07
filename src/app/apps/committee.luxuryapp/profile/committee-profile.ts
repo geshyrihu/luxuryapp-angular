@@ -11,7 +11,6 @@ import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { MobileButtonLabelSave } from "@ui/buttons/mobile-label/button-save";
 import { IonInputPassword } from "@ui/inputs/mobile/ion-input-password";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ProfielService } from "src/app/core/auth/services/profiel-service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -21,6 +20,7 @@ import { ChangePassword } from "src/app/core/interfaces/change-password.interfac
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-committee-profile",

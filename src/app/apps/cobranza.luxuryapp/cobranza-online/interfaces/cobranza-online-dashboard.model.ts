@@ -49,6 +49,7 @@ export interface CobranzaOnlineDashboardDepartment {
   currentMonthCharge: number;
   categoryId: string;
   movementCount: number;
+  classification: string;
 }
 
 export interface CobranzaOnlineDashboardKpis {
@@ -90,9 +91,11 @@ export interface CobranzaOnlineDepartmentCharges {
   totalCharges: number;
 }
 
-export interface CobranzaCollectedConcept {
+export interface CobranzaOtroCargo {
     conceptName: string;
-    amount: number;
+    total: number;
+    collected: number;
+    pending: number;
 }
 
 export interface CobranzaOnlineCurrentCharges {
@@ -101,7 +104,8 @@ export interface CobranzaOnlineCurrentCharges {
     monthlyFeeTotal: number;
     totalDepartmentsByProperty: number;
     activeTemplates: CobranzaOnlineCurrentChargeTemplate[];
-    additionalIncomes: CobranzaCollectedConcept[];
+    additionalIncomes?: CobranzaOtroCargo[];  // @deprecated – usar otrosCargos
+    otrosCargos: CobranzaOtroCargo[];
 }
 
 export interface CobranzaOnlineDashboardResponse {

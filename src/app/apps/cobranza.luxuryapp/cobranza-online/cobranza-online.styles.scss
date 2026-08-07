@@ -1,0 +1,258 @@
+// Cobranza Online - Design System Styles
+// Dark mode dashboard with high density (9/10)
+
+// ===== CABECERA: título con ancho fijo =====
+// El bloque de título tiene ancho fijo en escritorio para que una
+// pageDescription larga se acomode en varias líneas dentro de su propia
+// columna en lugar de empujar los accesos de navegación.
+.cobranza-header-title {
+  min-width: 0;
+
+  @media (min-width: 1200px) {
+    flex: 0 0 22rem;
+    width: 22rem;
+  }
+}
+
+// Máximo 2 líneas de descripción; el resto se recorta con elipsis
+.cobranza-header-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ===== NAV CARDS (tokens del catálogo, sin hardcoding) =====
+// Los colores base se declaran aquí (no con utilidades PrimeFlex como
+// surface-card / surface-border / text-color) porque esas llevan !important
+// y ganarían sobre el estado activo.
+.cobranza-nav-card {
+  background: linear-gradient(145deg, var(--ds-surface) 0%, var(--surface-card) 100%);
+  border: 1px solid var(--surface-border);
+  color: var(--text-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  // Efecto sutil de brillo en el borde (micro-interacción)
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  app-icon {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  &:hover:not(.cobranza-nav-card--active) {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.15);
+    transform: translateY(-2px);
+    
+    app-icon {
+      color: var(--primary-color);
+      transform: scale(1.1);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+
+  &--active {
+    background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.2);
+    font-weight: 700;
+    
+    app-icon {
+      color: var(--primary-color);
+      transform: scale(1.15);
+    }
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  /* Dark mode overrides if needed via global dark mode class */
+  :host-context(.layout-theme-dark) &--active {
+    background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.15) 0%, rgba(var(--primary-color-rgb), 0.25) 100%);
+  }
+}
+
+// ===== BOTÓN REFRESCAR (acento danger tenue) =====
+.cobranza-nav-refresh {
+  background: var(--ds-danger-light);
+  border-style: solid;
+  border-color: var(--ds-danger);
+  color: var(--ds-danger);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--ds-danger);
+    border-color: var(--ds-danger-hover);
+    color: var(--ds-on-error);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ds-danger);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+}
+
+:host ::ng-deep {
+  // ===== BUTTON STYLES =====
+  .cobranza-nav-button {
+    @apply flex flex-column align-items-center justify-content-center
+      border-b-4 border-solid no-underline text-color flex-shrink-0
+      bg-slate-800 shadow-sm transition-all duration-200 relative
+      border-transparent rounded-lg;
+
+    &:hover:not(.router-link-active) {
+      @apply text-emerald-500 border-emerald-500 shadow-md bg-slate-700;
+    }
+
+    &.router-link-active {
+      @apply bg-emerald-500 text-slate-950 border-emerald-600
+        shadow-lg font-bold;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: currentColor;
+        border-radius: 2px 2px 0 0;
+      }
+
+      p-icon {
+        color: inherit;
+      }
+    }
+  }
+
+  // ===== COMPACT SPACING =====
+  .cobranza-wrapper {
+    padding: 0.5rem; // p-2
+
+    @media (min-width: 768px) {
+      padding: 0.75rem; // p-3
+    }
+  }
+
+  .cobranza-card-compact {
+    @apply bg-slate-900 border border-slate-700 rounded-lg p-3;
+    gap: 0.5rem; // gap-2
+  }
+
+  .cobranza-status-info {
+    padding: 0.625rem; // p-2.5
+  }
+
+  .cobranza-diagnostic-box {
+    @apply border-1 border-dashed border-slate-700 rounded p-1.5;
+  }
+
+  // ===== TYPOGRAPHY ADJUSTMENTS =====
+  .cobranza-label {
+    @apply text-xs font-bold text-slate-400 uppercase mb-0.5;
+  }
+
+  .cobranza-value {
+    @apply font-semibold text-slate-100 text-sm line-height-3;
+  }
+
+  // ===== ICON ADJUSTMENTS =====
+  app-icon {
+    &.cobranza-icon-sm {
+      font-size: 1.125rem; // 18px
+    }
+
+    &.cobranza-icon-md {
+      font-size: 1.5rem; // 24px
+    }
+  }
+
+  // ===== FOCUS STATES (Accessibility) =====
+  .cobranza-nav-button:focus-visible {
+    @apply ring-2 ring-emerald-500 ring-offset-2;
+  }
+
+  // ===== REDUCED MOTION =====
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  // ===== RESPONSIVE GRID =====
+  .cobranza-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.75rem;
+    auto-rows: 1fr;
+
+    @media (max-width: 1440px) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ===== ASPECT RATIO FIXES =====
+  [class*="aspect-square"] {
+    aspect-ratio: 1 / 1;
+  }
+
+  // ===== DATE BUTTON =====
+  .cobranza-date-button {
+    @apply flex align-items-center gap-2 px-3 py-2 border-1 surface-border
+      border-round-lg bg-slate-800 text-color hover:bg-slate-700
+      transition-colors cursor-pointer font-medium;
+
+    &:focus-visible {
+      @apply ring-2 ring-emerald-500 ring-offset-2;
+    }
+  }
+
+  // ===== COLOR TOKENS =====
+  --cobranza-primary: #0f172a;
+  --cobranza-primary-light: #1e293b;
+  --cobranza-accent: #22c55e;
+  --cobranza-destructive: #ef4444;
+  --cobranza-border: #334155;
+  --cobranza-text: #f8fafc;
+  --cobranza-text-secondary: #cbd5e1;
+}

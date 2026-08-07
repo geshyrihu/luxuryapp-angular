@@ -16,7 +16,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -24,6 +23,7 @@ import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IManualTemplateSimpleDTO } from "./interfaces/manuals-and-processes.dto";
 import { ManualsAndProcessesForm } from "./manuals-and-processes-form";
 

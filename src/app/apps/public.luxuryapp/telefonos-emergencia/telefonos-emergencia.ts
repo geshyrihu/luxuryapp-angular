@@ -11,13 +11,13 @@ import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { TelefonosEmergenciaForm } from "./telefonos-emergencia-form";
 
 @Component({

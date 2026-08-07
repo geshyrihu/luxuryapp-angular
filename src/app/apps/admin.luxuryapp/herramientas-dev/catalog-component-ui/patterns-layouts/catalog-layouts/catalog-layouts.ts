@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-catalog-layouts",

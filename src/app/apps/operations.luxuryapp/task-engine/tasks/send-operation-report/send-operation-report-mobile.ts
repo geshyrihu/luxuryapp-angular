@@ -10,11 +10,11 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelAdd } from "@ui/buttons/mobile-label/button-add";
 import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
 import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import {
   SegmentedControl,
   SegmentItem,
 } from "@ui/shared/segmented-control/segmented-control";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { SendOperationReportBaseService } from "./send-operation-report-base.service";
 
 @Component({

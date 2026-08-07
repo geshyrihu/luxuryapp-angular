@@ -2,35 +2,44 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
   signal,
 } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { Router, RouterModule } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterModule,
+} from "@angular/router";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { filter } from "rxjs/operators";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import type {
-  CobranzaOnlineSyncDiagnostics,
-  CobranzaOnlineSyncMetadata,
-  CobranzaOnlineSyncResponse,
-} from "./interfaces/cobranza-online-sync.model";
+import {
+  DialogHandlerService,
+  DialogSize,
+} from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { CobranzaDatePickerModalComponent } from "./cobranza-date-picker-modal";
 import { cobranzaOnlineFilterState } from "./state/cobranza-online-filter.state";
+import { CobranzaOnlineStoreService } from "./state/cobranza-online-store.service";
 
 @Component({
   selector: "app-cobranza-online-wrapper",
-  imports: [RouterModule, CustomInputDateSignal, AppIcon, WebButtonLabel],
+  imports: [RouterModule, AppIcon, LxDivider],
   templateUrl: "./cobranza-online-wrapper.html",
+  styleUrls: ["./cobranza-online.styles.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CobranzaOnlineWrapper {
   private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
   private customerIdS = inject(CustomerIdService);
-  private apiResponseS = inject(ApiResponseService);
+  private store = inject(CobranzaOnlineStoreService);
+  private dialogS = inject(DialogHandlerService);
+
+  readonly pageTitle = signal("Cobranza Online");
+  readonly pageDescription = signal("");
 
   readonly currentYear = cobranzaOnlineFilterState.year;
   readonly currentMonth = cobranzaOnlineFilterState.month;
@@ -68,21 +77,25 @@ export class CobranzaOnlineWrapper {
     }
   }
 
-  readonly loading = signal(false);
-  readonly syncRunning = signal(false);
+  readonly loading = this.store.isLoading;
+  readonly syncRunning = this.store.isSyncing;
 
   readonly dateControl = new FormControl(this.currentDate());
 
-  readonly syncStatus = signal<CobranzaOnlineSyncMetadata | null>(null);
-  readonly lastSyncDiagnostics = signal<CobranzaOnlineSyncDiagnostics | null>(
-    null,
-  );
+  readonly syncStatus = this.store.syncStatus;
+  readonly lastSyncDiagnostics = this.store.lastSyncDiagnostics;
 
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
   readonly customerName = computed(() => this.customerIdS.customerName());
   readonly currentCutLabel = computed(
     () =>
       `${this.currentMonth().toString().padStart(2, "0")}/${this.currentYear()}`,
+  );
+
+  // Condóminos del mes = KPI del backend (cuentas con cargo de mantenimiento -001
+  // en el corte). No usar departments.length: esa lista solo trae deudores (saldo > 0).
+  readonly totalCondominos = computed(
+    () => this.store.dashboardData()?.kpis?.totalDepartments ?? 0,
   );
 
   readonly formattedLastSync = computed(() => {
@@ -104,52 +117,40 @@ export class CobranzaOnlineWrapper {
       if (val) this.onDateChange(val);
     });
 
-    effect(() => {
-      const customerId = this.customerIdS.customerId();
-      const year = this.currentYear();
-      if (!customerId) {
-        this.lastSyncDiagnostics.set(null);
-        this.syncStatus.set(null);
-        return;
-      }
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        let route = this.activatedRoute;
+        while (route.firstChild) {
+          route = route.firstChild;
+        }
+        const data = route.snapshot.data;
+        this.pageTitle.set(data["title"] || "Cobranza Online");
+        this.pageDescription.set(data["description"] || "");
+      });
 
-      void this.loadSyncStatus(customerId, year);
-    });
+    // Iniciar el polling silencioso de Aspel cada 20 minutos
+    this.store.startSilentPolling();
   }
 
-  private async loadSyncStatus(customerId: string, year: number) {
-    this.loading.set(true);
-
-    const syncStatus =
-      await this.apiResponseS.onGetItem<CobranzaOnlineSyncMetadata>(
-        Endpoints.CobranzaOnline.Dashboard.syncStatus(customerId, year),
-      );
-
-    this.syncStatus.set(syncStatus ?? null);
-    this.loading.set(false);
+  ngOnDestroy() {
+    this.store.stopSilentPolling();
   }
 
   async onSyncNow() {
-    const customerId = this.customerIdS.customerId();
-    if (!customerId || this.syncRunning()) {
-      return;
-    }
+    await this.store.forceSyncWithAspel();
+  }
 
-    this.syncRunning.set(true);
+  async onOpenDatePickerDialog() {
     try {
-      const response =
-        await this.apiResponseS.onPost<CobranzaOnlineSyncResponse>(
-          Endpoints.CobranzaOnline.Sync.cobranza(customerId, this.currentYear()),
-        );
-
-      if (response) {
-        this.lastSyncDiagnostics.set(
-          (response as CobranzaOnlineSyncResponse)?.diagnostics ?? null,
-        );
-        await this.loadSyncStatus(customerId, this.currentYear());
-      }
-    } finally {
-      this.syncRunning.set(false);
+      await this.dialogS.openDialog(
+        CobranzaDatePickerModalComponent,
+        { dateControl: this.dateControl },
+        "Seleccionar Fecha",
+        DialogSize.md,
+      );
+    } catch (error) {
+      console.error("Error opening date picker", error);
     }
   }
 

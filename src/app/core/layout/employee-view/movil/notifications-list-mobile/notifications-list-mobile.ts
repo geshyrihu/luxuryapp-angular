@@ -18,7 +18,7 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-notifications-list-mobile",
   templateUrl: "./notifications-list-mobile.html",
@@ -60,8 +60,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    AppIcon,IonicModule],
+  imports: [AppIcon, IonicModule],
 })
 export class NotificationsListMobile implements OnInit {
   apiResponseS = inject(ApiResponseService);

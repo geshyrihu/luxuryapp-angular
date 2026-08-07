@@ -1,6 +1,6 @@
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { NotificationCenterBase } from "@ui/base/notification-center.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-notification-center",

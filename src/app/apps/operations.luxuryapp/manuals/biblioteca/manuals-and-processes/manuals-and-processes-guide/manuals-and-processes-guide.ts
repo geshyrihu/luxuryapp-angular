@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxPanel } from "@ui/adaptive/panel/panel";

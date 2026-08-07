@@ -1,37 +1,36 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   input,
   signal,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EmployeeInternalService } from "../employee-internal/employee-internal.service";
-import { IEmployeeClinicalData } from "./interfaces/employee-clinical-data.interface";
 import { EmployeeClinicalDataForm } from "./employee-clinical-data-form";
+import { IEmployeeClinicalData } from "./interfaces/employee-clinical-data.interface";
 
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
+import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "employee-clinical-data-list",

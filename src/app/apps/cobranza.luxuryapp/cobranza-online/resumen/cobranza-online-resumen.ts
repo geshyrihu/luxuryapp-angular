@@ -7,13 +7,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PieChart } from "@ui/web/charts/pie-chart";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -25,11 +19,11 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SharedModule } from "../../../../shared/ui/web/primeng-api/primeng-api";
-import { PrimeNgCustomTableEmptyMessage } from "../../../../shared/ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { ChargeTemplateForm } from "../../cobranza-nativa/core/charge-templates/charge-template-form";
 import { clasificarCuenta } from "../helpers/cobranza-clasificacion";
 import type { CobranzaOnlineDashboardResponse } from "../interfaces/cobranza-online-dashboard.model";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
+import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 import {
   CobranzaOnlineClasificacionDetail,
   type ClasificacionDetailData,
@@ -42,29 +36,22 @@ import {
     TableModule,
     SharedModule,
     PieChart,
-    WebButtonIcon,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableEmptyMessage,
-    PrimeNgCustomTableFooter,
-    DataViewMobile,
-    MobileListItem,
-    AppIcon,
   ],
   templateUrl: "./cobranza-online-resumen.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CobranzaOnlineResumen {
   private customerIdS = inject(CustomerIdService);
-  private apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
   private tableScrollHeightS = inject(TableScrollHeightService);
+  private store = inject(CobranzaOnlineStoreService);
 
   readonly currentYear = cobranzaOnlineFilterState.year;
   readonly currentMonth = cobranzaOnlineFilterState.month;
   readonly currentDay = cobranzaOnlineFilterState.day;
 
-  readonly loading = signal(false);
-  readonly dashboard = signal<CobranzaOnlineDashboardResponse | null>(null);
+  readonly loading = this.store.isLoading;
+  readonly dashboard = this.store.dashboardData;
 
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
 
@@ -115,7 +102,7 @@ export class CobranzaOnlineResumen {
       },
       {
         clasificacion: "MOROSOS",
-        description: "Saldo >= 1 cuota o cargos extraordinarios",
+        description: "2+ cuotas vencidas de mtto o 1+ de extraordinaria",
         filterKey: "MOROSOS",
         saldo: saldoMorosos,
         porcentaje: total ? saldoMorosos / total : 0,
@@ -123,7 +110,7 @@ export class CobranzaOnlineResumen {
       },
       {
         clasificacion: "DEUDA CORRIENTE",
-        description: "Saldo > 0 pero < 1 cuota",
+        description: "Saldo > 0 sin alcanzar las cuotas vencidas de moroso",
         filterKey: "DEUDA CORRIENTE",
         saldo: saldoCorriente,
         porcentaje: total ? saldoCorriente / total : 0,
@@ -160,7 +147,7 @@ export class CobranzaOnlineResumen {
     return [
       {
         clasificacion: "COBRANZA JUDICIAL",
-        description: "Saldo >= 3 cuotas mensuales",
+        description: "Más de 5 cuotas vencidas de mtto o 5+ de extraordinaria",
         filterKey: "COBRANZA JUDICIAL",
         saldo: saldoJudicial,
         porcentaje: total ? saldoJudicial / total : 0,
@@ -168,7 +155,7 @@ export class CobranzaOnlineResumen {
       },
       {
         clasificacion: "MOROSOS",
-        description: "Saldo >= 1 cuota o cargos extraordinarios",
+        description: "2+ cuotas vencidas de mtto o 1+ de extraordinaria",
         filterKey: "MOROSOS",
         saldo: saldoMorosos,
         porcentaje: total ? saldoMorosos / total : 0,
@@ -176,7 +163,7 @@ export class CobranzaOnlineResumen {
       },
       {
         clasificacion: "DEUDA CORRIENTE",
-        description: "Saldo > 0 pero < 1 cuota",
+        description: "Saldo > 0 sin alcanzar las cuotas vencidas de moroso",
         filterKey: "DEUDA CORRIENTE",
         saldo: saldoCorriente,
         porcentaje: total ? saldoCorriente / total : 0,
@@ -229,13 +216,6 @@ export class CobranzaOnlineResumen {
     };
   });
 
-  readonly additionalIncomes = computed(() => {
-    return this.dashboard()?.currentCharges?.additionalIncomes ?? [];
-  });
-
-  readonly additionalIncomesTotal = computed(() => {
-    return this.additionalIncomes().reduce((acc, v) => acc + v.amount, 0);
-  });
 
   readonly maintenanceMetrics = computed(() => {
     return this.dashboard()?.currentCharges?.maintenance;
@@ -284,35 +264,7 @@ export class CobranzaOnlineResumen {
     };
   });
 
-  constructor() {
-    effect(() => {
-      const customerId = this.customerIdS.customerId();
-      const year = this.currentYear();
-      const month = this.currentMonth();
-      const day = this.currentDay();
-      if (!customerId) {
-        this.dashboard.set(null);
-        return;
-      }
-
-      void this.loadData(customerId, year, month, day);
-    });
-  }
-
-  private async loadData(
-    customerId: string,
-    year: number,
-    month: number,
-    day: number,
-  ) {
-    this.loading.set(true);
-    const dashboard =
-      await this.apiResponseS.onGetItem<CobranzaOnlineDashboardResponse>(
-        Endpoints.CobranzaOnline.Dashboard.get(customerId, year, month, day),
-      );
-    this.dashboard.set(dashboard ?? null);
-    this.loading.set(false);
-  }
+  constructor() {}
 
   onModalForm(id: string = "") {
     const customerId = this.customerIdS.customerId();
@@ -335,11 +287,12 @@ export class CobranzaOnlineResumen {
       )
       .then((res: boolean) => {
         if (res) {
-          void this.loadData(
+          void this.store.loadLocalData(
             customerId,
             this.currentYear(),
             this.currentMonth(),
             this.currentDay(),
+            true
           );
         }
       });

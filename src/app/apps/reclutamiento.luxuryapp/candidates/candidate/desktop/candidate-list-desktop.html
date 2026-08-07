@@ -69,12 +69,12 @@
             (clicked)="detail.emit(item.id)"
           />
           @if (item.status === 0) {
-            <iw-button-delete
-              size="sm"
-              class="btn--circle"
-              [attr.aria-label]="'Archivar candidato ' + item.fullName"
-              (confirmed)="archive.emit(item.id)"
-            />
+          <iw-button-delete
+            size="sm"
+            class="btn--circle"
+            [attr.aria-label]="'Archivar candidato ' + item.fullName"
+            (confirmed)="archive.emit(item.id)"
+          />
           }
         </div>
       </td>

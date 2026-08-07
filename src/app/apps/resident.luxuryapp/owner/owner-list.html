@@ -118,20 +118,14 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div
-        start
-        
-      >
-        <app-icon
-          icon="mdi:home-outline"
-          
-        />
+      <div start>
+        <app-icon icon="mdi:home-outline" />
       </div>
-      
-        <h3>{{ item.habitant }}</h3>
-        <p>{{ item.property }} é {{ item.phoneNumber }}</p>
-        <p>{{ item.email }}</p>
-      
+
+      <h3>{{ item.habitant }}</h3>
+      <p>{{ item.property }} é {{ item.phoneNumber }}</p>
+      <p>{{ item.email }}</p>
+
       <ili-action-menu slot="end">
         <ili-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

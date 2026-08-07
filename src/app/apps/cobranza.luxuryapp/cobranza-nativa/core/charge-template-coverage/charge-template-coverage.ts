@@ -1,4 +1,4 @@
-import { CurrencyPipe, NgClass } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,13 +8,13 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ECalculationMethod } from "../../interfaces/enums";
 import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
 

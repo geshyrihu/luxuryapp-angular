@@ -1,17 +1,15 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  signal,
-} from "@angular/core";
+import { Component, OnInit, inject, signal } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 
 // Custom Inputs
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
@@ -21,10 +19,10 @@ import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 
 // Services
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   BillingConfigResponseDTO,
   UpsertBillingConfigDTO,
@@ -90,15 +88,11 @@ export default class BillingConfigModal implements OnInit {
     this.isLoading = true;
     const billingConfig =
       await this.apiResponseS.onGetItem<BillingConfigResponseDTO>(
-        Endpoints.CobranzaCore.BillingConfig.customer(
-          this.customerId,
-        ),
+        Endpoints.CobranzaCore.BillingConfig.customer(this.customerId),
       );
     const notificationSettings =
       await this.apiResponseS.onGetItem<NativeCollectionNotificationSettingsResponseDTO>(
-        Endpoints.CobranzaCore.NotificationSettings.byCustomer(
-          this.customerId,
-        ),
+        Endpoints.CobranzaCore.NotificationSettings.byCustomer(this.customerId),
       );
     this.isLoading = false;
 
@@ -172,4 +166,3 @@ export default class BillingConfigModal implements OnInit {
     this.ref.close(false);
   }
 }
-

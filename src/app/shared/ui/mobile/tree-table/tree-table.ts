@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 import { IonButton, IonProgressBar } from "@ionic/angular/standalone";
 import { TreeNodeBase, TreeTableBase } from "@ui/base/tree-table.base";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-tree-table",

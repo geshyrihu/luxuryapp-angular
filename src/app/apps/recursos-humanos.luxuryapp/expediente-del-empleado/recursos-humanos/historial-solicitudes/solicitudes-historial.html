@@ -213,16 +213,16 @@
                 class="text-xl text-primary"
               />
             </div>
-            
-              <h2 class="font-normal m-0">{{ item.employeeFullName }}</h2>
-              <p class="text-color-secondary text-sm m-0">
-                {{ item.solicitud }} | {{ item.startDate | date: "dd/MM/yy" }} -
-                {{ item.endDate | date: "dd/MM/yy" }}
-              </p>
-              <p class="text-color-secondary text-sm m-0">
-                {{ item.daysRequested }}
-              </p>
-            
+
+            <h2 class="font-normal m-0">{{ item.employeeFullName }}</h2>
+            <p class="text-color-secondary text-sm m-0">
+              {{ item.solicitud }} | {{ item.startDate | date: "dd/MM/yy" }} -
+              {{ item.endDate | date: "dd/MM/yy" }}
+            </p>
+            <p class="text-color-secondary text-sm m-0">
+              {{ item.daysRequested }}
+            </p>
+
             <div end class="flex align-items-center">
               <lx-tag
                 [value]="item.status"

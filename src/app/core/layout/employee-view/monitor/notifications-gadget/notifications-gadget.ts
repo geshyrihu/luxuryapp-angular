@@ -10,7 +10,6 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DrawerModule } from "primeng/drawer";
 import { OverlayBadge } from "primeng/overlaybadge";
 import { ScrollPanelModule } from "primeng/scrollpanel";
@@ -19,6 +18,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-notifications-gadget",
   imports: [
@@ -80,8 +80,7 @@ export class NotificationsGadget implements OnInit {
 
   markAsRead(notificationId: string, url: string): void {
     this.drawerVisible.set(false);
-    const urlApi =
-      Endpoints.Notifications.markAsRead(notificationId);
+    const urlApi = Endpoints.Notifications.markAsRead(notificationId);
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadNotification();
       this.router.navigate([url]);

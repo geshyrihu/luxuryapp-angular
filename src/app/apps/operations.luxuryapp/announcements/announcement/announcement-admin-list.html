@@ -198,10 +198,7 @@
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg bg-primary-50 w-3rem h-3rem"
       >
-        <app-icon
-          icon="mdi:bullhorn-outline"
-          class="text-xl text-primary"
-        />
+        <app-icon icon="mdi:bullhorn-outline" class="text-xl text-primary" />
       </div>
 
       <div class="flex justify-content-between align-items-center mb-2">
@@ -242,32 +239,29 @@
       />
 
       <ili-action-menu end>
-          <ng-container actions>
-            <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
+        <ng-container actions>
+          <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
 
-            <ili-button-item
-              (clicked)="onDownloadPdf(item.id)"
-              iconName="document-text-outline"
-              label="Descargar PDF"
-            />
+          <ili-button-item
+            (clicked)="onDownloadPdf(item.id)"
+            iconName="document-text-outline"
+            label="Descargar PDF"
+          />
 
-            <ili-button-item
-              (clicked)="onViewPreview(item.id)"
-              iconName="book-outline"
-              label="Vista previa"
-            />
+          <ili-button-item
+            (clicked)="onViewPreview(item.id)"
+            iconName="book-outline"
+            label="Vista previa"
+          />
 
-            <ili-button-item
-              (clicked)="onViewAnalytics(item.id)"
-              iconName="bar-chart-outline"
-              label="Analóticas"
-            />
-          </ng-container>
-        </ili-action-menu>
+          <ili-button-item
+            (clicked)="onViewAnalytics(item.id)"
+            iconName="bar-chart-outline"
+            label="Analóticas"
+          />
+        </ng-container>
+      </ili-action-menu>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

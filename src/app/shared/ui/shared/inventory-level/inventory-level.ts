@@ -5,7 +5,7 @@ import {
   input,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
 

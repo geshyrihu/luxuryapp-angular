@@ -7,9 +7,9 @@ import {
   signal,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface ScannedFile {
   file: File;

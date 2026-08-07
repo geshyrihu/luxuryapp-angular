@@ -18,7 +18,7 @@ import { DateService } from "src/app/core/services/date.service";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-lista-informe-inspeccion",

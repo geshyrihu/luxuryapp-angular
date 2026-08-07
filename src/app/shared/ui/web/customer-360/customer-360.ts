@@ -5,9 +5,9 @@ import {
   output,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface Customer360Data {
   // Identity

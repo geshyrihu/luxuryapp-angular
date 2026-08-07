@@ -10,15 +10,13 @@ import { Router } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { addIcons } from "ionicons";
-import { cartOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
+import { addIcons } from "ionicons";
+import { cartOutline } from "ionicons/icons";
 import { Subscription } from "rxjs";
 import { OrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/orden-compra";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -31,10 +29,14 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { SolicitudCompraService } from "src/app/core/services/solicitud-compra.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 import { PurchaseLinkManager } from "../../po/purchase-link-manager/purchase-link-manager";
 

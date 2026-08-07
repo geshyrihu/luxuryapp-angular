@@ -9,7 +9,6 @@ import {
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ProfielService } from "src/app/core/auth/services/profiel-service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -17,6 +16,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { InfoAccountAuthDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-actualizar-foto-usuario-aplicacion",

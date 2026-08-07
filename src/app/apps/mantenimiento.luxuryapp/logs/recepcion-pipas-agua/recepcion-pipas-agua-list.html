@@ -62,28 +62,22 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="horaLlegada" >
+      <th pSortableColumn="horaLlegada">
         Llegada <p-sorticon field="horaLlegada" />
       </th>
-      <th >Termino</th>
-      <th pSortableColumn="empresa" >
-        Empresa <p-sorticon field="empresa" />
-      </th>
-      <th pSortableColumn="placasCamion" >
+      <th>Termino</th>
+      <th pSortableColumn="empresa">Empresa <p-sorticon field="empresa" /></th>
+      <th pSortableColumn="placasCamion">
         Placas <p-sorticon field="placasCamion" />
       </th>
-      <th class="text-right" >Cap.(L)</th>
-      <th class="text-center" >
-        Cisterna antes / despues
-      </th>
-      <th class="text-center" >
-        Medidor inicial / final
-      </th>
-      <th class="text-right" >mí</th>
-      <th class="text-right" >Costo mí</th>
-      <th >Colaborador mtto</th>
-      <th >Guardia testigo</th>
-      <th >Fotos</th>
+      <th class="text-right">Cap.(L)</th>
+      <th class="text-center">Cisterna antes / despues</th>
+      <th class="text-center">Medidor inicial / final</th>
+      <th class="text-right">mí</th>
+      <th class="text-right">Costo mí</th>
+      <th>Colaborador mtto</th>
+      <th>Guardia testigo</th>
+      <th>Fotos</th>
       <th class="table-col-5"></th>
     </tr>
   </ng-template>
@@ -256,14 +250,8 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div
-        start
-        
-      >
-        <app-icon
-          icon="mdi:water-outline"
-          
-        />
+      <div start>
+        <app-icon icon="mdi:water-outline" />
       </div>
 
       <h3 class="font-bold">{{ item.placasCamion }}</h3>

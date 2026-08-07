@@ -41,10 +41,10 @@
             height="92"
             priority
           />
-          <h2 class="text-2xl md:text-3xl font-bold mb-2 tracking-tight">
+          <h1 class="text-2xl md:text-3xl font-bold mb-1 tracking-tight text-white">
             Bienvenido de nuevo
-          </h2>
-          <p class="text-base m-0 font-light">Inicia sesión</p>
+          </h1>
+          <p class="text-base m-0 font-light text-300">Inicia sesión para continuar</p>
         </div>
 
         <!-- Formulario -->
@@ -58,7 +58,7 @@
               [control]="loginForm.controls['userName']"
               id="username-global"
               label="Usuario"
-              placeholder="Ej: jperez"
+              placeholder=" "
               [horizontal]="false"
               [noMargin]="true"
               customClass="h-3rem text-lg"
@@ -70,7 +70,7 @@
               [control]="loginForm.controls['password']"
               id="password-global"
               label="Contraseña"
-              placeholder="••••••••"
+              placeholder=" "
               [horizontal]="false"
               [showStrengthIndicator]="false"
               [noMargin]="true"
@@ -84,9 +84,8 @@
               <custom-input-check-signal
                 [control]="loginForm.controls['rememberMe']"
                 id="checkbox-remember-global"
-                placeholder="Recordarme"
+                label="Recordarme"
                 [horizontal]="false"
-                [onlyInput]="true"
                 [noMargin]="true"
               />
             </div>
@@ -128,7 +127,7 @@
 
       <!-- Footer / Copyright -->
       <div
-        class="absolute bottom-0 left-0 w-full text-center pb-4 text-400 text-xs"
+        class="absolute bottom-0 left-0 w-full text-center pb-4 text-600 text-sm"
       >
         &copy; 2026 Luxury Building Group. Todos los derechos reservados.
       </div>

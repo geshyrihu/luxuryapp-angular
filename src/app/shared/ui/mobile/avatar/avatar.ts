@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { AvatarBase } from "@ui/base/avatar.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * MobileAvatar — Wrapper sobre `ion-avatar`. Prioridad image > label > icono.

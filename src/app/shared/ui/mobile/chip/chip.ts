@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonChip, IonLabel } from "@ionic/angular/standalone";
 import { ChipBase } from "@ui/base/chip.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * MobileChip — Chip táctil sobre `ion-chip`. Icono/imagen opcional al inicio,

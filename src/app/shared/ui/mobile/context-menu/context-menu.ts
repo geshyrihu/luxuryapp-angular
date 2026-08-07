@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { ContextMenuBase } from "@ui/base/context-menu.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-context-menu",

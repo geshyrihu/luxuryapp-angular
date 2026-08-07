@@ -30,7 +30,7 @@
         />
       </div>
       <div class="flex flex-column sm:flex-row align-items-center gap-2">
-        <div >
+        <div>
           <app-rango-calendario-yyyymmdd />
         </div>
         <div class="flex-shrink-0">
@@ -150,12 +150,7 @@
   <ng-template #body let-item>
     <tr class="breakPage">
       <td class="ocultar">
-        <img
-          alt="..."
-          [src]="item.photoPath"
-          width="32"
-          
-        />
+        <img alt="..." [src]="item.photoPath" width="32" />
         <span class="image-text"> {{ item.name.label }} </span>
       </td>
       <td>{{ item.fechaSolicitud | date: "dd/MM/yyyy" : "UTC" }}</td>
@@ -207,14 +202,10 @@
 </p-table>
 
 <!-- 📱 MOBILE -->
-<app-data-view-mobile
-  [data]="dataSignal()"
-  [showAdd]="false"
-  [dt]="dt"
->
+<app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">
   <div customFilters>
     <div class="flex flex-column sm:flex-row align-items-center gap-2">
-      <div >
+      <div>
         <app-rango-calendario-yyyymmdd />
       </div>
       <div class="flex-shrink-0">
@@ -233,7 +224,9 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <p class="font-semibold m-0 text-color">{{ item.problema }}</p>
-      <p class="text-xs m-0 text-color-secondary">{{ item.name.label }} · {{ item.estatus }}</p>
+      <p class="text-xs m-0 text-color-secondary">
+        {{ item.name.label }} · {{ item.estatus }}
+      </p>
 
       <ili-action-menu end>
         <ng-container actions>
@@ -243,10 +236,7 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <ili-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
           }
         </ng-container>
       </ili-action-menu>

@@ -16,7 +16,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -32,6 +31,7 @@ import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { PropertyMemberResponseDTO } from "../../interfaces/property-member.dto";
 
 @Component({
@@ -71,7 +71,9 @@ export default class MemberList {
   dataSignal = signal<PropertyMemberResponseDTO[]>([]);
 
   constructor() {
-    this.enumSelectS.memberRole().subscribe((opts) => this.roleOptions.set(opts));
+    this.enumSelectS
+      .memberRole()
+      .subscribe((opts) => this.roleOptions.set(opts));
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) this.onLoadData();
@@ -83,9 +85,7 @@ export default class MemberList {
     if (!customerId) return;
     this.apiResponseS
       .onGetItem<PropertyMemberResponseDTO[]>(
-        Endpoints.CobranzaCore.PropertyMembers.byCustomer(
-          customerId,
-        ),
+        Endpoints.CobranzaCore.PropertyMembers.byCustomer(customerId),
       )
       .then((res) => this.dataSignal.set(res ?? []));
   }
@@ -117,9 +117,7 @@ export default class MemberList {
   async onEndMembership(item: PropertyMemberResponseDTO) {
     const today = this.dateS.getDateFormat(new Date());
     const res = await this.apiResponseS.onPost(
-      Endpoints.CobranzaCore.PropertyMembers.endMembership(
-        item.id,
-      ),
+      Endpoints.CobranzaCore.PropertyMembers.endMembership(item.id),
       { endDate: today ?? "", updatedBy: "operador" },
     );
     if (res) this.onLoadData();
@@ -133,7 +131,7 @@ export default class MemberList {
 
   activeStatusMeta(isActive: boolean) {
     return isActive
-      ? ({ label: "Activo", severity: "success" as const })
-      : ({ label: "Baja", severity: "contrast" as const });
+      ? { label: "Activo", severity: "success" as const }
+      : { label: "Baja", severity: "contrast" as const };
   }
 }

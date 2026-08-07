@@ -1,10 +1,8 @@
-import { inject, Injectable, signal } from "@angular/core";
+import { computed, inject, Injectable, signal } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { CommitteeMorososResponseDto, CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
-import { AspelCobranzaDetalleResponse } from "../../cobranza.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus.models";
-import { firstValueFrom } from "rxjs";
+import { CommitteeMorososResponseDto } from "../interfaces/committee-cobranza.dto";
 
 @Injectable({
   providedIn: "root",
@@ -15,6 +13,45 @@ export class CommitteeCobranzaBaseService {
 
   loading = signal<boolean>(false);
   morososData = signal<CommitteeMorososResponseDto | null>(null);
+
+  /**
+   * Avance de la cobranza del mes. Vive aquí para que web y móvil muestren
+   * exactamente lo mismo sin duplicar el cálculo.
+   */
+  readonly avanceCobranza = computed(() => {
+    const d = this.morososData();
+    if (!d) return null;
+
+    const meta = d.cobranzaPerfecta || 0;
+    const cobrado = d.cobradoDelMes || 0;
+
+    return {
+      meta,
+      cobrado,
+      faltante: meta - cobrado,
+      porcentaje: meta > 0 ? cobrado / meta : 0,
+    };
+  });
+
+  /** Cartera vencida: cuántos deben y cuánto, sobre el total de condóminos. */
+  readonly carteraVencida = computed(() => {
+    const d = this.morososData();
+    if (!d) return null;
+
+    return {
+      total: d.totalDeudaPendiente,
+      condominosConAdeudo: d.totalMorosos,
+      totalCondominos: d.totalDepartamentos,
+    };
+  });
+
+  /** Cobranza judicial: el dato que un comité necesita accionar. */
+  readonly cobranzaJudicial = computed(() => {
+    const d = this.morososData();
+    if (!d) return null;
+
+    return { cantidad: d.cantidadJudicial, deuda: d.deudaJudicial };
+  });
 
   async loadMorosos() {
     const customerId = this.customerIdS.customerId();

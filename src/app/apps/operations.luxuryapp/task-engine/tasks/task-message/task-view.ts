@@ -8,7 +8,6 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { addIcons } from "ionicons";
 import {
@@ -24,13 +23,16 @@ import {
   syncOutline,
   timeOutline,
 } from "ionicons/icons";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+} from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";

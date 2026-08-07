@@ -32,7 +32,7 @@ import {
   IonSearchbar,
 } from "@ionic/angular/standalone";
 import { filter, map, startWith } from "rxjs";
-import { AppIcon } from "../../shared/app-icon/app-icon.component";
+import { AppIcon } from "../../shared/app-icon/app-icon";
 import { MobileEmptyState } from "../empty-state/empty-state";
 
 export interface IMobileBreadcrumbItem {

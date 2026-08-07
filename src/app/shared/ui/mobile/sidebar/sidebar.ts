@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SidebarBase } from "@ui/base/sidebar.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-sidebar",

@@ -1,5 +1,4 @@
 import { CommonModule } from "@angular/common";
-import { toSignal } from "@angular/core/rxjs-interop";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,6 +7,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -16,7 +16,6 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import {
   type SegmentItem,
   SegmentedControl,
@@ -25,6 +24,9 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { addIcons } from "ionicons";
+import { checkmarkCircleOutline } from "ionicons/icons";
+import { startWith } from "rxjs";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -33,10 +35,8 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { addIcons } from "ionicons";
-import { checkmarkCircleOutline } from "ionicons/icons";
-import { startWith } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { HistorialComprasItem } from "./interfaces/historial-compras-item.interface";
 
 const TIPO_COMPRA_OPTIONS: SegmentItem[] = [

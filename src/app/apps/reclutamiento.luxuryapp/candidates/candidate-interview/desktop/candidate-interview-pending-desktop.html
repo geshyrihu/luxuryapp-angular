@@ -53,13 +53,13 @@
       <td>{{ item.assignedInterviewerName }}</td>
       <td>
         @if (item.cvFileName) {
-          <iw-button-view-pdf
-            size="sm"
-            class="btn--circle"
-            [url]="item.cvFileUrl"
-            [fileName]="item.cvFileName"
-            [attr.aria-label]="'Ver CV de ' + item.candidateName"
-          />
+        <iw-button-view-pdf
+          size="sm"
+          class="btn--circle"
+          [url]="item.cvFileUrl"
+          [fileName]="item.cvFileName"
+          [attr.aria-label]="'Ver CV de ' + item.candidateName"
+        />
         }
       </td>
       <td class="no-print">

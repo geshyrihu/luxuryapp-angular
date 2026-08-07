@@ -25,7 +25,7 @@ import { NominaEncabezadoDTO } from "../interfaces/nomina-encabezado.interface";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-evidencias-nomina",
   imports: [

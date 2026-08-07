@@ -31,7 +31,7 @@
             />
           </div>
           <div class="flex flex-column sm:flex-row align-items-center gap-2">
-            <div >
+            <div>
               <custom-input-select-signal
                 [data]="levelOptions"
                 optionLabel="label"
@@ -44,7 +44,7 @@
                 [noMargin]="true"
               />
             </div>
-            <div >
+            <div>
               <custom-input-date-signal
                 [control]="filterDateRangeControl"
                 mode="range"
@@ -80,7 +80,7 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th ></th>
+          <th></th>
           <th pSortableColumn="timestamp">
             Fecha y Hora
             <p-sorticon field="timestamp" />
@@ -129,8 +129,7 @@
             <pre
               class="text-xs surface-card p-3 rounded overflow-auto max-h-200"
             >
-{{ item.properties }}</pre
-            >
+{{ item.properties }}</pre>
           </td>
         </tr>
         <!-- Fila 3: Excepción (solo si está expandido y existe) -->
@@ -146,8 +145,7 @@
             <pre
               class="text-xs surface-card p-3 rounded border-1 border-red-200 overflow-auto max-h-300 text-red-700"
             >
-{{ item.exception }}</pre
-            >
+{{ item.exception }}</pre>
           </td>
         </tr>
       </ng-template>
@@ -174,9 +172,7 @@
             ></lx-tag>
           </div>
           <div class="flex justify-content-between align-items-center mb-1">
-            <h2 class="font-bold m-0 text-base text-wrap">
-              {{ item.level }}
-            </h2>
+            <h2 class="font-bold m-0 text-base text-wrap">{{ item.level }}</h2>
             <p class="text-medium text-500 m-0 text-sm">
               <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" />
               {{ item.timestamp | date: "dd/MM/yyyy h:mm a" }}
@@ -198,8 +194,7 @@
               <app-icon [icon]="'mdi:information'" /> Propiedades:
             </span>
             <pre class="text-xs bg-light p-2 border-radius overflow-auto">
-{{ item.properties }}</pre
-            >
+{{ item.properties }}</pre>
           </div>
           } @if (item.exception) {
           <div>
@@ -211,8 +206,7 @@
             <pre
               class="text-xs bg-danger-subtle p-2 border-radius border border-danger overflow-auto"
             >
-{{ item.exception }}</pre
-            >
+{{ item.exception }}</pre>
           </div>
           }
         </ili-list-item>

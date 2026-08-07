@@ -69,10 +69,7 @@
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
-          icon="mdi:engine-outline"
-          class="text-xl text-primary"
-        />
+        <app-icon icon="mdi:engine-outline" class="text-xl text-primary" />
       </div>
       <div>
         <h2>{{ item.descripcion }}</h2>
@@ -83,10 +80,7 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <ili-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

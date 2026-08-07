@@ -15,7 +15,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
@@ -28,6 +27,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { InvoiceResponseDTO } from "../../interfaces/invoice.dto";
 
 @Component({
@@ -94,7 +94,10 @@ export default class InvoiceList {
   }
 
   statusMeta(status: string) {
-    const map: Record<string, { label: string; severity: "success" | "danger" | "contrast" }> = {
+    const map: Record<
+      string,
+      { label: string; severity: "success" | "danger" | "contrast" }
+    > = {
       Vigente: { label: "Vigente", severity: "success" },
       Cancelado: { label: "Cancelado", severity: "danger" },
     };

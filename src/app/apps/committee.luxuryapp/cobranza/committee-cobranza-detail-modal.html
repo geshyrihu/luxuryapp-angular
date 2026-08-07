@@ -1,80 +1,156 @@
-<div class="h-full flex flex-column">
-  @if (loading()) {
-    <div class="p-4 text-center text-color-secondary">
-      <i class="mdi mdi-loading mdi-spin text-2xl mb-2"></i>
-      <div>Cargando detalle de movimientos...</div>
+<div class="flex flex-column gap-3">
+  <!-- Identificación del condómino -->
+  <div class="flex align-items-center mb-1 gap-3">
+    <div
+      class="bg-primary text-white border-round w-3rem h-3rem flex align-items-center justify-content-center text-xl font-bold flex-shrink-0"
+    >
+      <app-icon icon="mdi:office-building" />
     </div>
-  } @else if (detail(); as data) {
-    <div class="grid mb-4">
-      <div class="col-12 md:col-6">
-        <div class="surface-card p-3 shadow-1 border-round h-full border-1 surface-border">
-          <div class="text-color-secondary text-sm mb-1">Total Cargos</div>
-          <div class="text-xl font-bold">{{ data.totalDebits | currency:'MXN':'symbol':'1.0-0' }}</div>
-        </div>
+    <div class="min-w-0">
+      <div class="text-xl font-bold text-color">
+        {{ row?.departamento || "Sin nombre" }}
       </div>
-      <div class="col-12 md:col-6">
-        <div class="surface-card p-3 shadow-1 border-round h-full border-1 surface-border">
-          <div class="text-color-secondary text-sm mb-1">Total Abonos</div>
-          <div class="text-xl font-bold text-green-600">{{ data.totalCredits | currency:'MXN':'symbol':'1.0-0' }}</div>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="surface-card p-3 shadow-1 border-round h-full border-1 surface-border surface-50">
-          <div class="text-color-secondary text-sm mb-1">Saldo Final ({{ data.year }})</div>
-          <div class="text-2xl font-bold" [ngClass]="getBalanceClass(data.finalBalance)">
-            {{ data.finalBalance | currency:'MXN':'symbol':'1.0-0' }}
-          </div>
-        </div>
-      </div>
+      <div class="text-color-secondary">{{ row?.numCtaBase }}</div>
     </div>
-
-    @if (data.movimientos?.length) {
-      <div class="flex-1 overflow-hidden">
-        <p-table
-          [value]="data.movimientos"
-          [scrollable]="true"
-          scrollHeight="flex"
-          styleClass="p-datatable-sm"
-        >
-          <ng-template #header>
-            <tr>
-              <th class="bg-surface-50 border-bottom-1 surface-border">Fecha</th>
-              <th class="bg-surface-50 border-bottom-1 surface-border">Póliza</th>
-              <th class="bg-surface-50 border-bottom-1 surface-border">Concepto</th>
-              <th class="bg-surface-50 border-bottom-1 surface-border text-right">Cargo</th>
-              <th class="bg-surface-50 border-bottom-1 surface-border text-right">Abono</th>
-            </tr>
-          </ng-template>
-          <ng-template #body let-mov>
-            <tr class="border-bottom-1 surface-border">
-              <td class="white-space-nowrap">{{ mov.fechaPoliza | date:'dd/MM/yyyy' }}</td>
-              <td class="white-space-nowrap text-color-secondary text-sm">
-                {{ mov.tipoPoliza }} {{ mov.numeroPoliza }}
-              </td>
-              <td>
-                <div class="flex align-items-center gap-2">
-                  <span>{{ mov.conceptoPoliza }}</span>
-                  <lx-tag [severity]="getConceptSeverity(mov.conceptoPoliza)" [value]="mov.tipoPoliza" />
-                </div>
-              </td>
-              <td class="text-right text-orange-600 font-medium">
-                {{ mov.montoCargo > 0 ? (mov.montoCargo | currency:'MXN':'symbol':'1.0-0') : '-' }}
-              </td>
-              <td class="text-right text-green-600 font-medium">
-                {{ mov.montoAbono > 0 ? (mov.montoAbono | currency:'MXN':'symbol':'1.0-0') : '-' }}
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
-    } @else {
-      <div class="p-4 text-center text-color-secondary">
-        No se encontraron movimientos registrados en este ejercicio.
-      </div>
-    }
-  }
-
-  <div class="flex justify-content-end mt-4 pt-3 border-top-1 surface-border">
-    <p-button label="Cerrar" (click)="close()" styleClass="p-button-text" />
   </div>
+
+  <!-- Criterio por el que quedó en esta situación -->
+  <div class="mb-3">
+    <div
+      class="text-sm border-round p-3 flex flex-column gap-2"
+      [ngClass]="{
+        'bg-red-50 border-1 border-red-200':
+          row?.clasificacion === 'COBRANZA JUDICIAL',
+        'bg-orange-50 border-1 border-orange-200':
+          row?.clasificacion === 'MOROSOS',
+        'bg-blue-50 border-1 border-blue-200':
+          row?.clasificacion === 'DEUDA CORRIENTE',
+        'surface-ground border-1 surface-border':
+          row?.clasificacion !== 'COBRANZA JUDICIAL' &&
+          row?.clasificacion !== 'MOROSOS' &&
+          row?.clasificacion !== 'DEUDA CORRIENTE'
+      }"
+    >
+      <div class="flex align-items-center gap-2">
+        <app-icon
+          icon="mdi:information-outline"
+          class="text-lg"
+          [ngClass]="{
+            'text-red-500': row?.clasificacion === 'COBRANZA JUDICIAL',
+            'text-orange-500': row?.clasificacion === 'MOROSOS',
+            'text-blue-500': row?.clasificacion === 'DEUDA CORRIENTE'
+          }"
+        />
+        <strong class="text-color">{{ ruleTitle }}</strong>
+      </div>
+      <div class="text-color-secondary line-height-3">{{ ruleDescription }}</div>
+      <div class="text-color-secondary text-sm line-height-3 mt-2">
+        Una cuota vencida es cada vez que la cuota vigente del condómino cabe
+        completa dentro de su saldo. Cuota vigente: la del mes consultado.
+      </div>
+    </div>
+  </div>
+
+  <div class="font-bold text-900 mb-1 text-sm uppercase">
+    Saldos vencidos que componen la deuda
+  </div>
+
+  @if (loading()) {
+  <div class="text-center p-4">
+    <i class="pi pi-spin pi-spinner text-3xl text-primary"></i>
+    <div class="mt-2 text-500">Cargando desglose...</div>
+  </div>
+  } @else if (detail(); as data) {
+  <div class="block">
+    @for (item of data.conceptos; track item.concepto) {
+    <div
+      class="border-1 surface-border rounded-xl surface-card mb-3 overflow-hidden shadow-sm"
+    >
+      <div
+        class="p-3 surface-50 border-bottom-1 surface-border flex justify-content-between align-items-center gap-2"
+      >
+        <lx-tag
+          [value]="item.concepto"
+          [severity]="getConceptSeverity(item.concepto)"
+        />
+        <strong class="text-xl" [ngClass]="getBalanceClass(item.saldoFinal)">
+          {{ item.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}
+        </strong>
+      </div>
+      <div class="p-3">
+        @if (item.vencidos?.length) {
+        <div class="flex flex-column gap-2">
+          @for (v of item.vencidos; track v.fechaCargo + v.conceptoDetalle) {
+          <div
+            class="flex justify-content-between align-items-center gap-3 text-sm border-bottom-1 surface-border pb-2"
+          >
+            <span class="text-800">{{ v.conceptoDetalle }}</span>
+            <span
+              class="font-mono font-semibold white-space-nowrap"
+              [ngClass]="getBalanceClass(v.saldoPendiente)"
+            >
+              {{ v.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
+            </span>
+          </div>
+          }
+        </div>
+        } @else {
+        <div class="text-500 text-sm italic text-center py-2">
+          Sin desglose de periodos vencidos.
+        </div>
+        }
+        <div
+          class="flex justify-content-end gap-2 mt-3 border-top-1 surface-border pt-2"
+        >
+          <span class="font-semibold text-sm text-color-secondary"
+            >Total {{ item.concepto }}:</span
+          >
+          <span
+            class="font-bold text-sm"
+            [ngClass]="getBalanceClass(item.saldoFinal)"
+          >
+            {{ item.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}
+          </span>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="border-top-1 surface-border pt-4 mt-2">
+    <div class="font-bold text-900 mb-3 text-sm uppercase">
+      Resumen total por tipo
+    </div>
+
+    <div class="flex flex-column gap-2">
+      @for (item of data.conceptos; track item.concepto) {
+      <div
+        class="flex justify-content-between gap-3 text-sm py-1 border-bottom-1 surface-border"
+      >
+        <span class="text-600">{{ item.concepto }}</span>
+        <span
+          class="font-mono font-medium white-space-nowrap"
+          [ngClass]="getBalanceClass(item.saldoFinal)"
+        >
+          {{ item.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}
+        </span>
+      </div>
+      }
+    </div>
+
+    <div
+      class="flex justify-content-between gap-3 text-lg font-bold border-top-1 surface-border pt-3 mt-2"
+    >
+      <span class="text-900">Total adeudo</span>
+      <span [ngClass]="getBalanceClass(data.saldoFinalTotal)">
+        {{ data.saldoFinalTotal | currency: "MXN" : "symbol" : "1.2-2" }}
+      </span>
+    </div>
+  </div>
+  } @else {
+  <div class="text-center p-4 text-500">
+    <app-icon icon="mdi:alert-outline" class="text-3xl mb-2" />
+    <div>No se pudo cargar el desglose.</div>
+  </div>
+  }
 </div>

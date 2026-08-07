@@ -11,6 +11,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import {
   add,
@@ -23,7 +24,6 @@ import {
   timeOutline,
   trashOutline,
 } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { SolicitudVacanteForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -59,7 +59,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-work-position-list",

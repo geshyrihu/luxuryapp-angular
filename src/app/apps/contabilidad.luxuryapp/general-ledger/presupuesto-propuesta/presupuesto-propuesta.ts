@@ -36,7 +36,6 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Subscription } from "rxjs";
 import {
@@ -55,6 +54,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 import ProjectedExpensesList from "../espejo-aspel/projected-expenses-list";
 import { PurchaseHistory } from "../presupuesto-web-aspel/purchase-history";

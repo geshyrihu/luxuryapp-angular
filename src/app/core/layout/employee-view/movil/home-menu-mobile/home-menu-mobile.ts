@@ -15,12 +15,12 @@ import {
   IonLabel,
   IonList,
 } from "@ionic/angular/standalone";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MenuItem } from "primeng/api";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { MenuItemDto, SubMenuItem } from "src/app/core/interfaces/menu.interface";
+import { SubMenuItem } from "src/app/core/interfaces/menu.interface";
 import { MenuService } from "src/app/core/services/menu.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-home-menu-mobile",
   templateUrl: "./home-menu-mobile.html",
@@ -70,7 +70,9 @@ export class HomeMenu {
         label: item.label,
         icon: item.icon,
         routerLink: item.routerLink,
-        items: item.items ? ((this.mapSubItemsToMenuItems(item.items) as any[]) as any[]) as any[] : undefined,
+        items: item.items
+          ? (this.mapSubItemsToMenuItems(item.items) as any[] as any[] as any[])
+          : undefined,
       };
       return tempItem;
     });

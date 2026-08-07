@@ -52,6 +52,6 @@ export class MobileProgressBar extends ProgressBarBase {
       warning: "warning",
       danger: "danger",
     };
-    return map[this.color()] ?? "primary";
+    return map[this.resolvedColor()] ?? "primary";
   }
 }

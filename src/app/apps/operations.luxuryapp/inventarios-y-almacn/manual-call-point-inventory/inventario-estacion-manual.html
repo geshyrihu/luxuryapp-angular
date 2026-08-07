@@ -128,24 +128,32 @@
   (add)="onModalForm({ id: '', title: 'Nueva Estación Manual' })"
 >
   <div customFilters class="px-3 pb-2 flex flex-column gap-2">
-    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onOpenScanner()">
+    <button
+      class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+      (click)="onOpenScanner()"
+    >
       <app-icon icon="mdi:qrcode" slot="start" />
       Escanear QR
     </button>
-    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="onViewPeriodos()">
+    <button
+      class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+      (click)="onViewPeriodos()"
+    >
       <app-icon icon="mdi:clock-outline" slot="start" />
       Periodos de Inspección
     </button>
-    <button class="p-button p-button-rounded p-button-text p-button-sm p-button-danger" (click)="onDeleteAll()">
+    <button
+      class="p-button p-button-rounded p-button-text p-button-sm p-button-danger"
+      (click)="onDeleteAll()"
+    >
       Eliminar Todo
     </button>
   </div>
   <ng-template #listItemTemplate let-item>
-    <div class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center">
-      <div
-        slot="start"
-        
-      >
+    <div
+      class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+    >
+      <div slot="start">
         <app-icon
           icon="mdi:alert-circle-outline"
           class="text-xl text-yellow-500"

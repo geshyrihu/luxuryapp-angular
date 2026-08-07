@@ -11,7 +11,6 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppImage } from "@ui/web/image/image";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -19,6 +18,7 @@ import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { PrintService } from "src/app/core/services/print.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { DiagramPreviewComponent } from "./diagram-preview";
 import { IManualTemplateDetalleDTO } from "./interfaces/manuals-and-processes.dto";
 
@@ -162,7 +162,10 @@ export class ManualsAndProcessesDetail implements OnInit {
   async descargarPDF() {
     const data = this.manual();
     if (data) {
-      this.printS.printElement("manual-content", data.folio || "Manual de Proceso");
+      this.printS.printElement(
+        "manual-content",
+        data.folio || "Manual de Proceso",
+      );
     }
   }
 

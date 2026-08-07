@@ -6,7 +6,7 @@ import {
   viewChild,
 } from "@angular/core";
 import { TabsBase } from "@ui/base/tabs.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-tabs",

@@ -8,7 +8,7 @@ import {
 } from "@ionic/angular/standalone";
 import { TableBase } from "@ui/base/table.base";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-table",

@@ -109,18 +109,9 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item
-      class="ion-no-padding"
-      (click)="onDetails(item.id)"
-    >
-      <div
-        start
-        
-      >
-        <app-icon
-          icon="mdi:calculator"
-          
-        />
+    <ili-list-item class="ion-no-padding" (click)="onDetails(item.id)">
+      <div start>
+        <app-icon icon="mdi:calculator" />
       </div>
       <div class="flex-1 min-w-0">
         <h3>{{ item.period }}</h3>

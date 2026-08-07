@@ -118,45 +118,40 @@
           class="text-xl text-yellow-500"
         />
       </div>
-      
-        <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
-        @if (item.observations) {
-        <p>{{ item.observations }}</p>
-        }
-        <div class="flex gap-2 mt-1">
-          <small
-            [class]="item.noObstructions ? 'text-green-600' : 'text-red-600'"
-            >Sin Obstr.</small
-          >
-          <small
-            [class]="item.noContamination ? 'text-green-600' : 'text-red-600'"
-            >Sin Contam.</small
-          >
-          <small
-            [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'"
-            >Sin Daóos</small
-          >
-          <small [class]="item.ledStatusOk ? 'text-green-600' : 'text-red-600'"
-            >LED Ok</small
-          >
-          <small
-            [class]="item.mountingSecure ? 'text-green-600' : 'text-red-600'"
-            >Montaje</small
-          >
-        </div>
-      
+
+      <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
+      @if (item.observations) {
+      <p>{{ item.observations }}</p>
+      }
+      <div class="flex gap-2 mt-1">
+        <small [class]="item.noObstructions ? 'text-green-600' : 'text-red-600'"
+          >Sin Obstr.</small
+        >
+        <small
+          [class]="item.noContamination ? 'text-green-600' : 'text-red-600'"
+          >Sin Contam.</small
+        >
+        <small
+          [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'"
+          >Sin Daóos</small
+        >
+        <small [class]="item.ledStatusOk ? 'text-green-600' : 'text-red-600'"
+          >LED Ok</small
+        >
+        <small [class]="item.mountingSecure ? 'text-green-600' : 'text-red-600'"
+          >Montaje</small
+        >
+      </div>
+
       <ili-action-menu end>
-          <ng-container actions>
-            <ili-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
-              label="Editar"
-            />
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
-          </ng-container>
-        </ili-action-menu>
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

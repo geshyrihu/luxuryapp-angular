@@ -76,12 +76,8 @@
         <div
           start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-          
         >
-          <app-icon
-            icon="mdi:alert-circle-outline"
-            
-          />
+          <app-icon icon="mdi:alert-circle-outline" />
         </div>
 
         <h2 class="text-base font-semibold">{{ item.name }}</h2>
@@ -98,15 +94,15 @@
           }
         </p>
 
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit (clicked)="onEdit(item)" label="Editar" />
-          <ili-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
-        </ng-container>
-      </ili-action-menu>
+        <ili-action-menu slot="end">
+          <ng-container actions>
+            <ili-button-edit (clicked)="onEdit(item)" label="Editar" />
+            <ili-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+            />
+          </ng-container>
+        </ili-action-menu>
       </ili-list-item>
     </ng-template>
   </app-data-view-mobile>

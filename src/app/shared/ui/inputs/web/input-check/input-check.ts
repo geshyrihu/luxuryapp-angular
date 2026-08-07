@@ -38,7 +38,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
           [binary]="true"
           (onChange)="onValueChange($event)"
         />
-        <label [for]="id()" class="checkbox-label">{{ placeholder() }}</label>
+        <label [for]="id()" class="checkbox-label">{{ label() || placeholder() }}</label>
       </div>
     </base-input-signal>
   `,

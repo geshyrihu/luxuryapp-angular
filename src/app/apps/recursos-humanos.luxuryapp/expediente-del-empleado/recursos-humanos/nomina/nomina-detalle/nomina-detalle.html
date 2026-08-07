@@ -1,8 +1,5 @@
 @if (loading()) {
-<div
-  class="flex justify-content-center align-items-center"
-  
->
+<div class="flex justify-content-center align-items-center">
   <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary" />
 </div>
 } @else {
@@ -129,31 +126,26 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-        
       >
-        <app-icon
-          icon="mdi:currency-usd"
-          
-        />
+        <app-icon icon="mdi:currency-usd" />
       </div>
-      
-        <h2 class="font-normal m-0">{{ item.nombreCompleto }}</h2>
-        <p class="text-xs m-0">{{ item.puesto }}</p>
-        <div class="flex gap-3 mt-1">
-          <span class="text-green-600 text-sm"
-            >+ {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.0-0"
-            }}</span
-          >
-          <span class="text-red-500 text-sm"
-            >- {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.0-0"
-            }}</span
-          >
-          <span class="font-bold text-primary text-sm"
-            >= {{ item.netoApagar | currency: "MXN" : "symbol" : "1.0-0"
-            }}</span
-          >
-        </div>
-      
+
+      <h2 class="font-normal m-0">{{ item.nombreCompleto }}</h2>
+      <p class="text-xs m-0">{{ item.puesto }}</p>
+      <div class="flex gap-3 mt-1">
+        <span class="text-green-600 text-sm"
+          >+ {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.0-0"
+          }}</span
+        >
+        <span class="text-red-500 text-sm"
+          >- {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.0-0"
+          }}</span
+        >
+        <span class="font-bold text-primary text-sm"
+          >= {{ item.netoApagar | currency: "MXN" : "symbol" : "1.0-0" }}</span
+        >
+      </div>
+
       <div end class="flex gap-1">
         <il-button-edit (clicked)="openEditar(item)" />
       </div>

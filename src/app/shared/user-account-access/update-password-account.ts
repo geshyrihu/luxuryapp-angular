@@ -8,11 +8,11 @@ import {
 } from "@angular/core";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { UpdatePasswordDto } from "src/app/core/interfaces/user-info.interface";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-update-password-account",

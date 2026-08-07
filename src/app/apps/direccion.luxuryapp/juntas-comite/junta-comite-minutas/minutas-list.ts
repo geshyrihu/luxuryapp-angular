@@ -8,9 +8,9 @@ import {
 import { Router, RouterModule } from "@angular/router";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -28,10 +28,9 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -45,7 +44,10 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { MeetingIndex } from "src/app/core/interfaces/meeting-index.interface";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { ReportService } from "src/app/core/services/report.service";
 import {
   AreaDetailsTable,

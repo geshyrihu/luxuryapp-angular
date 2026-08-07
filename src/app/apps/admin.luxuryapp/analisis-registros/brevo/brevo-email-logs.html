@@ -15,7 +15,6 @@
         [onlyInput]="true"
         [noMargin]="true"
         customClass="w-full"
-        
       />
     </div>
 
@@ -78,16 +77,12 @@
 >
   <ng-template #header>
     <tr>
-      <th pSortableColumn="email" >
-        Destinatario <p-sorticon field="email" />
-      </th>
-      <th >Asunto</th>
-      <th >Estado</th>
-      <th pSortableColumn="date" >
-        Fecha <p-sorticon field="date" />
-      </th>
-      <th >Remitente</th>
-      <th >Plantilla</th>
+      <th pSortableColumn="email">Destinatario <p-sorticon field="email" /></th>
+      <th>Asunto</th>
+      <th>Estado</th>
+      <th pSortableColumn="date">Fecha <p-sorticon field="date" /></th>
+      <th>Remitente</th>
+      <th>Plantilla</th>
     </tr>
   </ng-template>
 
@@ -103,7 +98,6 @@
         <span
           [title]="log.subject"
           class="white-space-nowrap overflow-hidden text-overflow-ellipsis"
-          
         >
           {{ log.subject || '—' }}
         </span>

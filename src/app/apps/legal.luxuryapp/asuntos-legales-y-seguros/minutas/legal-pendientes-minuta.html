@@ -178,49 +178,48 @@
           class="text-xl text-yellow-500"
         />
       </div>
-      
-        <p class="mt-0 mb-0">
-          <strong>Folio:</strong>
-          {{ item.folio }}
-        </p>
-        <p class="mt-0 mb-0">
-          <strong>Cliente:</strong>
-          {{ item.cliente }}
-        </p>
-        <p class="mt-0 mb-0 text-wrap">
-          <strong>Solicitud:</strong>
-          {{ item.fechaSolicitud }} {{ item.titulo | titlecase }}
-        </p>
-        <div
-          class="mt-0 mb-0 text-justify text-wrap"
-          [innerHTML]="item.pendiente | sanitizeHtml"
-        ></div>
-        <p class="mt-0 mb-0 text-wrap">
-          <strong>Seguimiento:</strong>
-          @if (item.seguimientos.length > 0) {
-          <span>
-            {{ item.seguimientos[0].fecha }}, {{
-            item.seguimientos[0].seguimiento }}
-          </span>
+
+      <p class="mt-0 mb-0">
+        <strong>Folio:</strong>
+        {{ item.folio }}
+      </p>
+      <p class="mt-0 mb-0">
+        <strong>Cliente:</strong>
+        {{ item.cliente }}
+      </p>
+      <p class="mt-0 mb-0 text-wrap">
+        <strong>Solicitud:</strong>
+        {{ item.fechaSolicitud }} {{ item.titulo | titlecase }}
+      </p>
+      <div
+        class="mt-0 mb-0 text-justify text-wrap"
+        [innerHTML]="item.pendiente | sanitizeHtml"
+      ></div>
+      <p class="mt-0 mb-0 text-wrap">
+        <strong>Seguimiento:</strong>
+        @if (item.seguimientos.length > 0) {
+        <span>
+          {{ item.seguimientos[0].fecha }}, {{ item.seguimientos[0].seguimiento
+          }}
+        </span>
+        }
+      </p>
+      <p class="mt-1 mb-0 text-center">
+        <span
+          class="badge border-0 p-2"
+          [class.bg-danger]="item.status == 0"
+          [class.bg-success]="item.status == 1"
+          [class.bg-secondary]="item.status == 2"
+        >
+          @if (item.status === 0) {
+          <app-icon [icon]="'mdi:close'" class="icon icon-" />
+          } @if (item.status === 1) {
+          <app-icon [icon]="'mdi:check'" class="icon icon-" />
+          } @if (item.status === 2) {
+          <app-icon [icon]="'mdi:ban'" class="icon icon-" />
           }
-        </p>
-        <p class="mt-1 mb-0 text-center">
-          <span
-            class="badge border-0 p-2"
-            [class.bg-danger]="item.status == 0"
-            [class.bg-success]="item.status == 1"
-            [class.bg-secondary]="item.status == 2"
-          >
-            @if (item.status === 0) {
-            <app-icon [icon]="'mdi:close'" class="icon icon-" />
-            } @if (item.status === 1) {
-            <app-icon [icon]="'mdi:check'" class="icon icon-" />
-            } @if (item.status === 2) {
-            <app-icon [icon]="'mdi:ban'" class="icon icon-" />
-            }
-          </span>
-        </p>
-      
+        </span>
+      </p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

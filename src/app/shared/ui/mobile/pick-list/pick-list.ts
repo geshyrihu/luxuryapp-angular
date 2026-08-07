@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { PickListBase } from "@ui/base/pick-list.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-pick-list",

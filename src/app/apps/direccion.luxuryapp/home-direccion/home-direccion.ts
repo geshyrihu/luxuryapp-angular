@@ -14,7 +14,7 @@ import { ContratosCard } from "src/app/core/layout/direccion-view/components/con
 import { PersonalAusenteCard } from "src/app/core/layout/direccion-view/components/personal-ausente-card/personal-ausente-card";
 import { ReclutamientoCard } from "src/app/core/layout/direccion-view/components/reclutamiento-card/reclutamiento-card";
 import { TareasLegalCard } from "src/app/core/layout/direccion-view/components/tareas-legal-card/tareas-legal-card";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface AreaDireccion {
   key: string;

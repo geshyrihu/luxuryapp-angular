@@ -15,7 +15,6 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -27,6 +26,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { FinancialAuditLogDTO } from "../../interfaces/financial-audit.dto";
 
 @Component({
@@ -101,11 +101,10 @@ export default class FinancialAuditLog {
             propertyId,
             customerId,
           ) + qs
-        : Endpoints.CobranzaCore.FinancialAudit.byCustomer(
-            customerId,
-          ) + qs;
+        : Endpoints.CobranzaCore.FinancialAudit.byCustomer(customerId) + qs;
 
-      const res = await this.apiResponseS.onGetItem<FinancialAuditLogDTO[]>(url);
+      const res =
+        await this.apiResponseS.onGetItem<FinancialAuditLogDTO[]>(url);
       this.dataSignal.set(res ?? []);
     } finally {
       this.loading.set(false);
@@ -114,8 +113,8 @@ export default class FinancialAuditLog {
 
   successMeta(isSuccess: boolean) {
     return isSuccess
-      ? ({ label: "Exitoso", severity: "success" as const })
-      : ({ label: "Fallido", severity: "danger" as const });
+      ? { label: "Exitoso", severity: "success" as const }
+      : { label: "Fallido", severity: "danger" as const };
   }
 
   private getQueryDate(value: Date | string | null): string | null {

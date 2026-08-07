@@ -14,13 +14,11 @@ import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import * as FileSaver from "file-saver";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import * as FileSaver from "file-saver";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -28,7 +26,11 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { MedidorLecturaAdminForm } from "./medidor-lectura-admin-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
 
@@ -104,13 +106,16 @@ export class MedidorLecturaList implements OnInit {
           : "",
         Lectura: item.lectura || 0,
       }));
-      
+
       const workbook = new ExcelJS.Workbook();
       const worksheet = workbook.addWorksheet("data");
-      
+
       if (dataToExport.length > 0) {
-        worksheet.columns = Object.keys(dataToExport[0]).map(key => ({ header: key, key }));
-        dataToExport.forEach(item => worksheet.addRow(item));
+        worksheet.columns = Object.keys(dataToExport[0]).map((key) => ({
+          header: key,
+          key,
+        }));
+        dataToExport.forEach((item) => worksheet.addRow(item));
       }
 
       const buffer = await workbook.xlsx.writeBuffer();

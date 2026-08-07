@@ -6,7 +6,6 @@ import {
   inject,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AvatarModule } from "primeng/avatar";
 import { PopoverModule } from "primeng/popover";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -18,6 +17,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { InfoAccountAuthDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-profile-monitor",

@@ -5,9 +5,9 @@ import {
   input,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export type PreviewMode = "desktop" | "mobile";
 

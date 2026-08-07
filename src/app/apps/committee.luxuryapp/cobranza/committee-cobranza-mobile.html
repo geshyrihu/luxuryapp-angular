@@ -1,84 +1,71 @@
 @if (baseService.morososData(); as data) {
 <div class="committee-cobranza">
-  <!-- KPIs eliminados para simplificar -->
-
-  @if (maintenanceMetrics()) {
-  <div class="px-3 pt-3 flex flex-column gap-3">
-    <!-- Mantenimiento -->
-    <div class="surface-card p-3 shadow-1 border-round-xl">
-      <h3 class="text-sm font-semibold m-0 mb-3 text-color text-center">
-        Mantenimiento Neto del Mes
-      </h3>
-      <div class="flex justify-content-center mb-3">
-        <div class="w-9rem">
-          <app-pie-chart
-            [dataGrafico]="maintenanceChartData()?.data"
-            [colorScheme]="{domain: maintenanceChartData()?.colors}"
-          ></app-pie-chart>
-        </div>
-      </div>
-      <div class="flex justify-content-between text-sm mb-1">
-        <span class="text-color-secondary">A recaudar:</span>
-        <span class="font-bold">{{ maintenanceMetrics().total | currency:"MXN":"symbol":"1.0-0" }}</span>
-      </div>
-      <div class="flex justify-content-between text-sm mb-1">
-        <span class="text-color-secondary">Abonado:</span>
-        <span class="font-bold text-success">{{ maintenanceMetrics().collected | currency:"MXN":"symbol":"1.0-0" }}</span>
-      </div>
-      <div class="flex justify-content-between text-sm">
-        <span class="text-color-secondary">Faltante por cobrar:</span>
-        <span class="font-bold text-warning">{{ maintenanceMetrics().pending | currency:"MXN":"symbol":"1.0-0" }}</span>
+  <!-- Cartera vencida: el dato de portada para el comité -->
+  @if (baseService.carteraVencida(); as cartera) {
+  <div class="px-3 pt-3">
+    <div class="committee-cobranza__hero" style="padding: 1.5rem 1rem">
+      <span class="committee-cobranza__hero-label" style="font-size: 0.8rem"
+        >Cartera vencida</span
+      >
+      <span class="committee-cobranza__hero-amount" style="font-size: 1.8rem">
+        {{ cartera.total | currency: "MXN" : "symbol" : "1.0-0" }}
+      </span>
+      <div class="committee-cobranza__hero-meta">
+        <span>
+          <app-icon icon="mdi:home-city-outline" />
+          {{ cartera.condominosConAdeudo }} de
+          {{ cartera.totalCondominos }} condóminos deben
+        </span>
       </div>
     </div>
+  </div>
+  }
 
-    <!-- Extraordinaria -->
-    @if (extraordinaryChartData()) {
+  <div class="px-3 pt-3 flex flex-column gap-3">
+    <!-- Avance de la cobranza del mes -->
+    @if (baseService.avanceCobranza(); as avance) {
     <div class="surface-card p-3 shadow-1 border-round-xl">
-      <h3 class="text-sm font-semibold m-0 mb-3 text-color text-center">
-        Cuotas Extraordinarias del Mes
-      </h3>
-      <div class="flex justify-content-center mb-3">
-        <div class="w-9rem">
-          <app-pie-chart
-            [dataGrafico]="extraordinaryChartData()?.data"
-            [colorScheme]="{domain: extraordinaryChartData()?.colors}"
-          ></app-pie-chart>
+      <div class="flex align-items-baseline justify-content-between mb-1">
+        <span class="text-sm text-color-secondary">Cobrado del mes</span>
+        <span class="text-sm font-bold text-success">
+          {{ avance.cobrado | currency: "MXN" : "symbol" : "1.0-0" }}
+        </span>
+      </div>
+      <app-progress-bar
+        [value]="avance.porcentaje * 100"
+        [showValue]="true"
+        color="auto"
+      />
+      <div class="flex align-items-baseline justify-content-between mt-2">
+        <span class="text-xs text-color-secondary">Meta del mes</span>
+        <span class="text-xs font-medium">
+          {{ avance.meta | currency: "MXN" : "symbol" : "1.0-0" }}
+        </span>
+      </div>
+    </div>
+    }
+
+    <!-- Cobranza judicial -->
+    @if (baseService.cobranzaJudicial(); as judicial) {
+    <div class="surface-card p-3 shadow-1 border-round-xl">
+      <div class="flex align-items-center gap-3">
+        <app-icon icon="mdi:gavel" class="text-2xl text-danger" />
+        <div class="flex-1">
+          <div class="text-sm text-color-secondary">En cobranza judicial</div>
+          <div class="text-xl font-bold">{{ judicial.cantidad }}</div>
         </div>
-      </div>
-      <div class="flex justify-content-between text-sm mb-1">
-        <span class="text-color-secondary">A recaudar:</span>
-        <span class="font-bold">{{ extraordinaryMetrics().total | currency:"MXN":"symbol":"1.0-0" }}</span>
-      </div>
-      <div class="flex justify-content-between text-sm mb-1">
-        <span class="text-color-secondary">Abonado:</span>
-        <span class="font-bold text-success">{{ extraordinaryMetrics().collected | currency:"MXN":"symbol":"1.0-0" }}</span>
-      </div>
-      <div class="flex justify-content-between text-sm">
-        <span class="text-color-secondary">Faltante por cobrar:</span>
-        <span class="font-bold text-warning">{{ extraordinaryMetrics().pending | currency:"MXN":"symbol":"1.0-0" }}</span>
+        <div class="text-right">
+          <div class="text-sm font-bold text-danger">
+            {{ judicial.deuda | currency: "MXN" : "symbol" : "1.0-0" }}
+          </div>
+          <div class="text-xs text-color-secondary">acumulados</div>
+        </div>
       </div>
     </div>
     }
   </div>
-  }
 
-  <!-- Total Condóminos con Adeudo -->
-  <div class="px-3 pt-3">
-    <div class="committee-cobranza__hero" style="padding: 1.5rem 1rem">
-      <span class="committee-cobranza__hero-label" style="font-size: 0.8rem">Deuda Total Consolidada (Morosos)</span>
-      <span class="committee-cobranza__hero-amount" style="font-size: 1.8rem">
-        {{ data.totalDeudaPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
-      </span>
-      <div class="committee-cobranza__hero-meta">
-        <span>
-          <app-icon icon="mdi:home-city-outline" /> {{ data.totalMorosos }} condóminos con adeudo
-        </span>
-        <span> <app-icon icon="mdi:domain" /> {{ data.totalDepartamentos }} deptos total</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Lista de propiedades morosas (ordenada por saldo desc) -->
+  <!-- Lista de condóminos con adeudo (ordenada por saldo desc) -->
   @if (data.propiedades.length) {
   <div class="committee-doc-list">
     @for (item of data.propiedades; track item.numCtaBase) {
@@ -91,6 +78,10 @@
         <span class="committee-doc-item__title">
           {{ item.departamento || "Sin nombre" }}
         </span>
+        <lx-tag
+          [value]="item.clasificacion"
+          [severity]="clasificacionSeverity(item.clasificacion)"
+        />
       </span>
       <span class="committee-cobranza__amount">
         {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0" }}

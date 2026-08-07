@@ -16,7 +16,12 @@
       />
       <!-- <lx-tag [value]="dataSource() === 'local' ? 'Local' : 'Live'" [severity]="dataSource() === 'local' ? 'info' : 'contrast'" /> -->
       <lx-tag value="Live" severity="contrast" />
-      <p-button icon="pi pi-book" label="Reglas de Negocio" styleClass="p-button-sm p-button-text p-button-secondary" (onClick)="openBusinessRules()"></p-button>
+      <p-button
+        icon="pi pi-book"
+        label="Reglas de Negocio"
+        styleClass="p-button-sm p-button-text p-button-secondary"
+        (onClick)="openBusinessRules()"
+      ></p-button>
     </div>
   </div>
 
@@ -192,11 +197,17 @@
     </ng-template>
   </p-table>
   } @else if (mode() === "estado-cuenta-rango" && estadoCuenta()) {
-  <div class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3">
+  <div
+    class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3"
+  >
     <app-icon icon="mdi:information" class="text-2xl mt-1" />
     <div>
       <strong class="block mb-1">Criterio de conciliación (Método FIFO)</strong>
-      <span class="text-sm">Los pagos y descuentos mostrados en este estado de cuenta se aplican siempre a la <strong>deuda más antigua</strong> pendiente, garantizando que el historial refleje el orden cronológico real de liquidación.</span>
+      <span class="text-sm"
+        >Los pagos y descuentos mostrados en este estado de cuenta se aplican
+        siempre a la <strong>deuda más antigua</strong> pendiente, garantizando
+        que el historial refleje el orden cronológico real de liquidación.</span
+      >
     </div>
   </div>
   <div class="grid">
@@ -330,11 +341,18 @@
     </ng-template>
   </p-table>
   } @else if (mode() === "detalle-cobranza-rango" && detalleCobranza()) {
-  <div class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3">
+  <div
+    class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3"
+  >
     <app-icon icon="mdi:information" class="text-2xl mt-1" />
     <div>
       <strong class="block mb-1">Criterio de conciliación (Método FIFO)</strong>
-      <span class="text-sm">Los abonos y adelantos se aplican siguiendo el estándar FIFO (Primeras entradas, primeras salidas). El saldo final y los vencidos son el resultado de saldar primero las deudas más antiguas, dando prioridad a las Cuotas de Mantenimiento.</span>
+      <span class="text-sm"
+        >Los abonos y adelantos se aplican siguiendo el estándar FIFO (Primeras
+        entradas, primeras salidas). El saldo final y los vencidos son el
+        resultado de saldar primero las deudas más antiguas, dando prioridad a
+        las Cuotas de Mantenimiento.</span
+      >
     </div>
   </div>
   <div class="grid">
@@ -601,11 +619,17 @@
         </ng-template>
       </p-table> -->
   } @else if (mode() === "deudas-actuales" && deudasActuales()) {
-  <div class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3">
+  <div
+    class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3"
+  >
     <app-icon icon="mdi:information" class="text-2xl mt-1" />
     <div>
       <strong class="block mb-1">Cálculo de deuda vigente (Método FIFO)</strong>
-      <span class="text-sm">La deuda actual mostrada es neta. Todos los pagos, descuentos y adelantos en el historial del residente fueron aplicados a sus cargos más antiguos (FIFO) antes de calcular el saldo vigente.</span>
+      <span class="text-sm"
+        >La deuda actual mostrada es neta. Todos los pagos, descuentos y
+        adelantos en el historial del residente fueron aplicados a sus cargos
+        más antiguos (FIFO) antes de calcular el saldo vigente.</span
+      >
     </div>
   </div>
   <div class="grid">

@@ -31,7 +31,7 @@
             />
           </div>
           <div class="flex flex-column sm:flex-row align-items-center gap-2">
-            <div >
+            <div>
               <custom-input-select-signal
                 [data]="customerOptions"
                 optionLabel="label"
@@ -44,7 +44,7 @@
                 [noMargin]="true"
               />
             </div>
-            <div >
+            <div>
               <custom-input-select-signal
                 [data]="userTypeOptions"
                 optionLabel="label"
@@ -57,7 +57,7 @@
                 [noMargin]="true"
               />
             </div>
-            <div >
+            <div>
               <custom-input-date-signal
                 [control]="filterDateRangeControl"
                 mode="range"
@@ -152,14 +152,8 @@
     >
       <ng-template #listItemTemplate let-item>
         <ili-list-item>
-          <div
-            start
-            class="mobile-avatar-slot"
-            
-          >
-            <span 
-              >{{ item.userName.charAt(0).toUpperCase() }}</span
-            >
+          <div start class="mobile-avatar-slot">
+            <span>{{ item.userName.charAt(0).toUpperCase() }}</span>
           </div>
           <div class="flex justify-content-between align-items-center mb-1">
             <h2 class="font-bold m-0 text-base">{{ item.userName }}</h2>

@@ -27,7 +27,7 @@ import { ProgressBarModule } from "primeng/progressbar";
   encapsulation: ViewEncapsulation.None,
 })
 export class AppProgressBar extends ProgressBarBase {
-  /** Color CSS del valor de la barra, mapeado desde el color semántico. */
+  /** Color CSS del valor de la barra, mapeado desde el color semántico ya resuelto. */
   barColor = computed<string>(() => {
     const map: Record<string, string> = {
       primary: "var(--ds-primary, #2563eb)",
@@ -35,6 +35,6 @@ export class AppProgressBar extends ProgressBarBase {
       warning: "var(--ds-warning, #d97706)",
       danger: "var(--ds-danger, #dc2626)",
     };
-    return map[this.color()] ?? "var(--ds-primary, #2563eb)";
+    return map[this.resolvedColor()] ?? "var(--ds-primary, #2563eb)";
   });
 }

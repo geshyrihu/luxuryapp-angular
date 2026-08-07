@@ -15,7 +15,6 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
@@ -29,6 +28,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { EFinancialEventType } from "../../interfaces/enums";
 import { FinancialLedgerEntryDTO } from "../../interfaces/ledger.dto";
 
@@ -116,10 +116,8 @@ export default class LedgerViewer {
       if (to) params = params.set("to", to);
 
       const url =
-        Endpoints.CobranzaCore.Ledger.propertyEntries(
-          propertyId,
-          customerId,
-        ) + (params.toString() ? "?" + params.toString() : "");
+        Endpoints.CobranzaCore.Ledger.propertyEntries(propertyId, customerId) +
+        (params.toString() ? "?" + params.toString() : "");
 
       const res =
         await this.apiResponseS.onGetItem<FinancialLedgerEntryDTO[]>(url);

@@ -104,29 +104,28 @@
           class="text-xl text-primary"
         />
       </div>
-      
-        <div class="flex align-items-center">
-          <span class="text-xl">{{ item.emoji }}</span>
-          <div class="ml-2">
-            <p class="font-semibold m-0 text-color">{{ item.name }}</p>
-            <p class="text-xs m-0 text-color-secondary">{{ item.code }} | {{ item.departament | uppercase }}</p>
-          </div>
-          <div
-            class="w-6 h-6 rounded-md flex-shrink-0 ml-auto"
-            [style.backgroundColor]="item.color"
-          ></div>
+
+      <div class="flex align-items-center">
+        <span class="text-xl">{{ item.emoji }}</span>
+        <div class="ml-2">
+          <p class="font-semibold m-0 text-color">{{ item.name }}</p>
+          <p class="text-xs m-0 text-color-secondary">
+            {{ item.code }} | {{ item.departament | uppercase }}
+          </p>
         </div>
-      
+        <div
+          class="w-6 h-6 rounded-md flex-shrink-0 ml-auto"
+          [style.backgroundColor]="item.color"
+        ></div>
+      </div>
+
       <ili-action-menu end>
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <ili-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

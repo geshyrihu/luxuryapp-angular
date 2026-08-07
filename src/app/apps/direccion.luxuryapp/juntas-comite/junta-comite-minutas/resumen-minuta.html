@@ -6,7 +6,6 @@
     <div class="flex align-items-center gap-3">
       <div
         class="rounded-xl bg-primary shadow flex align-items-center justify-content-center"
-        
       >
         <app-icon
           [icon]="'mdi:clipboard-text-clock-outline'"
@@ -26,7 +25,10 @@
 
   <!-- 📊 CONTENIDO PRINCIPAL -->
   @if (dataSignal()) {
-  <div class="card" class="shadow-sm rounded-xl overflow-hidden p-0 border-none hidden md:block">
+  <div
+    class="card"
+    class="shadow-sm rounded-xl overflow-hidden p-0 border-none hidden md:block"
+  >
     <p-table
       #dt
       [value]="dataSignal()"
@@ -59,22 +61,18 @@
       <!-- CABECERA DE TABLA -->
       <ng-template pTemplate="header">
         <tr class="text-sm uppercase text-700 bg-surface-100">
-          <th pSortableColumn="title"  class="pl-4 py-3">
+          <th pSortableColumn="title" class="pl-4 py-3">
             <div class="flex align-items-center">
               Requerimiento <p-sorticon field="title"></p-sorticon>
             </div>
           </th>
-          <th  class="py-3">
+          <th class="py-3">
             <div class="flex align-items-center">
               <app-icon [icon]="'mdi:history'" class="mr-2" />
               Último Seguimiento
             </div>
           </th>
-          <th
-            pSortableColumn="status"
-            class="text-center pr-4 py-3"
-            
-          >
+          <th pSortableColumn="status" class="text-center pr-4 py-3">
             <div class="flex align-items-center justify-content-center">
               Estatus <p-sorticon field="status"></p-sorticon>
             </div>
@@ -97,7 +95,6 @@
               </span>
               <div
                 class="text-600 text-sm line-height-3 overflow-hidden text-overflow-ellipsis"
-                
                 [innerHTML]="item.requestService | sanitizeHtml"
               ></div>
             </div>
@@ -148,7 +145,7 @@
                 [severity]="getSeverity(item.status)"
                 [rounded]="true"
                 class="px-3 py-1 font-bold text-xs shadow-sm"
-               />
+              />
 
               @if (item.status === 0) {
               <div
@@ -206,11 +203,7 @@
   </div>
 
   <!-- 📱 MOBILE -->
-  <app-data-view-mobile
-    [data]="dataSignal()"
-    [showAdd]="false"
-    [dt]="dt"
-  >
+  <app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">
     <ng-template #listItemTemplate let-item>
       <ili-list-item>
         <p class="font-semibold m-0 text-color">{{ item.title }}</p>
@@ -220,5 +213,3 @@
   </app-data-view-mobile>
   }
 </div>
-
-

@@ -101,7 +101,7 @@
             No Autorizado
             <p-sorticon field="noAutorizado" />
           </th>
-          <th >Acciones</th>
+          <th>Acciones</th>
           <th class="table-col-5"></th>
         </tr>
       </ng-template>
@@ -124,7 +124,6 @@
               (click)="showModalAddOrEditMeetingDetails(item.id, 'Asuntos', 4)"
               [class.opacity-50]="item.issues == 0"
               [class.pointer-events-none]="item.issues == 0"
-              
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
                 <app-icon [icon]="'mdi:chart-bar'" class="text-xs" />
@@ -145,7 +144,6 @@
               "
               [class.opacity-50]="item.concluidos == 0"
               [class.pointer-events-none]="item.concluidos == 0"
-              
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
                 <app-icon [icon]="'mdi:check-circle'" class="text-xs" />
@@ -166,7 +164,6 @@
               "
               [class.opacity-50]="item.pending == 0"
               [class.pointer-events-none]="item.pending == 0"
-              
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
                 <app-icon [icon]="'mdi:clock-outline'" class="text-xs" />
@@ -187,7 +184,6 @@
               "
               [class.opacity-50]="item.noAutorizado == 0"
               [class.pointer-events-none]="item.noAutorizado == 0"
-              
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
                 <app-icon [icon]="'mdi:ban'" class="text-xs" />
@@ -348,14 +344,13 @@
           </div>
           <div class="flex flex-column w-full p-3">
             <div class="flex justify-content-between align-items-center mb-3">
-              
-                <h2 class="font-bold text-900 m-0">
-                  Fecha: {{ item.dateFormat }}
-                </h2>
-                <p class="text-sm text-500 m-0 mt-1">
-                  Total Asuntos: {{ item.issues }}
-                </p>
-              
+              <h2 class="font-bold text-900 m-0">
+                Fecha: {{ item.dateFormat }}
+              </h2>
+              <p class="text-sm text-500 m-0 mt-1">
+                Total Asuntos: {{ item.issues }}
+              </p>
+
               <ili-action-menu slot="end">
                 <ng-container actions>
                   <ili-button-item

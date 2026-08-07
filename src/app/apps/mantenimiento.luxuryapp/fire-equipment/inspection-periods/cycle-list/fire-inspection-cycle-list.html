@@ -62,32 +62,28 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-        
       >
-        <app-icon
-          icon="mdi:fire-alert"
-          
-        />
+        <app-icon icon="mdi:fire-alert" />
       </div>
-      
-        <h3>{{ item.periodName }}</h3>
-        <p>
-          {{ item.periodStart | date:'dd-MMM-yy' }} &mdash; {{ item.periodEnd |
-          date:'dd-MMM-yy' }}
-        </p>
-        <p>
-          <span [class]="statusClass(item.status)">{{ item.status }}</span>
-          &bull; Pendientes: {{ item.pendingItems }}/{{ item.totalItems }}
-        </p>
-      
+
+      <h3>{{ item.periodName }}</h3>
+      <p>
+        {{ item.periodStart | date:'dd-MMM-yy' }} &mdash; {{ item.periodEnd |
+        date:'dd-MMM-yy' }}
+      </p>
+      <p>
+        <span [class]="statusClass(item.status)">{{ item.status }}</span>
+        &bull; Pendientes: {{ item.pendingItems }}/{{ item.totalItems }}
+      </p>
+
       <ili-action-menu end>
-          <ng-container actions>
-            <ili-button-item
-              label="Ver Detalle"
-              (clicked)="onViewDetail(item.id)"
-            />
-          </ng-container>
-        </ili-action-menu>
+        <ng-container actions>
+          <ili-button-item
+            label="Ver Detalle"
+            (clicked)="onViewDetail(item.id)"
+          />
+        </ng-container>
+      </ili-action-menu>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

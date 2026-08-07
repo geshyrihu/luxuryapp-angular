@@ -334,26 +334,23 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-<div
-        start
-        
-      >
+      <div start>
         <app-icon [icon]="'mdi:shopping'" class="text-xl text-yellow-700" />
       </div>
-      
-        <h3>{{ item.equipoOInstalacion }}</h3>
-        <p>{{ item.proveedor }} é Folio: {{ item.folio }}</p>
-        <p>
-          Total: ${{ item.total | number:'1.2-2' }} é {{ item.fechaSolicitud |
-          date:'d MMM yyyy':'UTC' }}
-        </p>
-      
+
+      <h3>{{ item.equipoOInstalacion }}</h3>
+      <p>{{ item.proveedor }} é Folio: {{ item.folio }}</p>
+      <p>
+        Total: ${{ item.total | number:'1.2-2' }} é {{ item.fechaSolicitud |
+        date:'d MMM yyyy':'UTC' }}
+      </p>
+
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit (clicked)="onAddOrEdit(item.id)" label="Editar" />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-</ili-list-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

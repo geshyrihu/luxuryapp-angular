@@ -13,6 +13,20 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/angular/standalone";
+import { MobileCard } from "@ui/mobile/card/card";
+import { IliDivider } from "@ui/mobile/divider/divider";
+import { MobileDock } from "@ui/mobile/dock/dock";
+import { IliFieldset } from "@ui/mobile/fieldset/fieldset";
+import { MobileFluid } from "@ui/mobile/fluid/fluid";
+import { MobileIconField } from "@ui/mobile/iconfield/iconfield";
+import { MobileInfiniteScroll } from "@ui/mobile/infinite-scroll/infinite-scroll";
+import { MobileInplace } from "@ui/mobile/inplace/inplace";
+import { MobileInputGroup } from "@ui/mobile/input-group/input-group";
+import { MobileInputIcon } from "@ui/mobile/inputicon/inputicon";
+import { MobilePanelMenu } from "@ui/mobile/panel-menu/panel-menu";
+import { IliPanel } from "@ui/mobile/panel/panel";
+import { MobileSplitButton } from "@ui/mobile/split-button/split-button";
+import { MobileToolbar } from "@ui/mobile/toolbar/toolbar";
 import { addIcons } from "ionicons";
 import {
   barChartOutline,
@@ -20,21 +34,7 @@ import {
   menuOutline,
   settingsOutline,
 } from "ionicons/icons";
-import { MobileCard } from "@ui/mobile/card/card";
-import { IliPanel } from "@ui/mobile/panel/panel";
-import { IliFieldset } from "@ui/mobile/fieldset/fieldset";
-import { IliDivider } from "@ui/mobile/divider/divider";
-import { MobileToolbar } from "@ui/mobile/toolbar/toolbar";
-import { MobileSplitButton } from "@ui/mobile/split-button/split-button";
-import { MobileDock } from "@ui/mobile/dock/dock";
-import { MobilePanelMenu } from "@ui/mobile/panel-menu/panel-menu";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { MobileIconField } from "@ui/mobile/iconfield/iconfield";
-import { MobileInputGroup } from "@ui/mobile/input-group/input-group";
-import { MobileInputIcon } from "@ui/mobile/inputicon/inputicon";
-import { MobileFluid } from "@ui/mobile/fluid/fluid";
-import { MobileInfiniteScroll } from "@ui/mobile/infinite-scroll/infinite-scroll";
-import { MobileInplace } from "@ui/mobile/inplace/inplace";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-mobile-layout",
@@ -312,16 +312,12 @@ import { MobileInplace } from "@ui/mobile/inplace/inplace";
       <div class="mobile-card-body flex flex-column gap-5">
         <div>
           <div class="font-bold text-sm mb-3">ili-card</div>
-          <ili-card header="Card Header">
-            Card Content
-          </ili-card>
+          <ili-card header="Card Header"> Card Content </ili-card>
         </div>
 
         <div>
           <div class="font-bold text-sm mb-3">ili-panel</div>
-          <ili-panel header="Panel Header">
-            Panel Content
-          </ili-panel>
+          <ili-panel header="Panel Header"> Panel Content </ili-panel>
         </div>
 
         <div>
@@ -346,17 +342,36 @@ import { MobileInplace } from "@ui/mobile/inplace/inplace";
 
         <div>
           <div class="font-bold text-sm mb-3">ili-split-button</div>
-          <ili-split-button label="Save" [model]="[{label:'Update', icon:'mdi:refresh'}, {label:'Delete', icon:'mdi:close'}]"></ili-split-button>
+          <ili-split-button
+            label="Save"
+            [model]="[
+              { label: 'Update', icon: 'mdi:refresh' },
+              { label: 'Delete', icon: 'mdi:close' },
+            ]"
+          ></ili-split-button>
         </div>
 
         <div>
           <div class="font-bold text-sm mb-3">ili-dock</div>
-          <ili-dock [items]="[{label:'Home', icon:'mdi:home'}, {label:'Search', icon:'mdi:magnify'}, {label:'Profile', icon:'mdi:account'}]" position="bottom"></ili-dock>
+          <ili-dock
+            [items]="[
+              { label: 'Home', icon: 'mdi:home' },
+              { label: 'Search', icon: 'mdi:magnify' },
+              { label: 'Profile', icon: 'mdi:account' },
+            ]"
+            position="bottom"
+          ></ili-dock>
         </div>
 
         <div>
           <div class="font-bold text-sm mb-3">ili-panel-menu</div>
-          <ili-panel-menu [model]="[{label:'Dashboard', icon:'mdi:view-dashboard'}, {label:'Reports', icon:'mdi:file-chart'}, {label:'Settings', icon:'mdi:cog'}]"></ili-panel-menu>
+          <ili-panel-menu
+            [model]="[
+              { label: 'Dashboard', icon: 'mdi:view-dashboard' },
+              { label: 'Reports', icon: 'mdi:file-chart' },
+              { label: 'Settings', icon: 'mdi:cog' },
+            ]"
+          ></ili-panel-menu>
         </div>
 
         <div>
@@ -398,7 +413,11 @@ import { MobileInplace } from "@ui/mobile/inplace/inplace";
           <ili-inplace [closable]="true">
             <span inplaceDisplay>Click to edit</span>
             <div inplaceContent>
-              <input type="text" value="Edit me" class="w-full p-2 border rounded" />
+              <input
+                type="text"
+                value="Edit me"
+                class="w-full p-2 border rounded"
+              />
             </div>
           </ili-inplace>
         </div>

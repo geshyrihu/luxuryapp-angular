@@ -71,7 +71,9 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <p class="font-semibold m-0 text-color">{{ item.description }}</p>
-      <p class="text-xs m-0 text-color-secondary">{{ item.provider }} · {{ item.endDate }}</p>
+      <p class="text-xs m-0 text-color-secondary">
+        {{ item.provider }} · {{ item.endDate }}
+      </p>
 
       <ili-action-menu end>
         <ng-container actions>

@@ -12,8 +12,8 @@ import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import FileSaver from "file-saver";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import FileSaver from "file-saver";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -26,8 +26,8 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-recepcion-pipas-agua-reporte",
@@ -316,10 +316,13 @@ ${this.htmlPrintS.getStandardCss()}
 
       const workbook = new ExcelJS.Workbook();
       const worksheet = workbook.addWorksheet("Reporte");
-      
+
       if (rows.length > 0) {
-        worksheet.columns = Object.keys(rows[0]).map(key => ({ header: key, key }));
-        rows.forEach(item => worksheet.addRow(item));
+        worksheet.columns = Object.keys(rows[0]).map((key) => ({
+          header: key,
+          key,
+        }));
+        rows.forEach((item) => worksheet.addRow(item));
       }
 
       const buffer = await workbook.xlsx.writeBuffer();

@@ -48,7 +48,12 @@
       <td>{{ item.tipoSolicitud }}</td>
       <td>{{ item.nombreEmpleado }}</td>
       <td>
-        <lx-tag [value]="item.status" [severity]="getTagSeverity(item.status)" [rounded]="true" class="w-full md:w-auto" />
+        <lx-tag
+          [value]="item.status"
+          [severity]="getTagSeverity(item.status)"
+          [rounded]="true"
+          class="w-full md:w-auto"
+        />
       </td>
       <!-- Opciones -->
       <td>
@@ -118,7 +123,7 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-<div
+      <div
         start
         class="w-3rem h-3rem rounded flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
       >
@@ -127,10 +132,10 @@
           class="text-xl text-purple-600"
         />
       </div>
-      
-        <h3>{{ item.nombreEmpleado }}</h3>
-        <p>{{ item.tipoSolicitud }} · {{ item.folio }}</p>
-        <p>{{ item.fechaSolicitud }} · {{ item.status }}</p>
-</ili-list-item>
+
+      <h3>{{ item.nombreEmpleado }}</h3>
+      <p>{{ item.tipoSolicitud }} · {{ item.folio }}</p>
+      <p>{{ item.fechaSolicitud }} · {{ item.status }}</p>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

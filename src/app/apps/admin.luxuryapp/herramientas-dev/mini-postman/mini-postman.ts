@@ -1,17 +1,23 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { lastValueFrom } from "rxjs";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { environment } from "src/environments/environment";
-import { KeyValuePair } from "./interfaces/key-value-pair.interface";
 import { HistoryEntry } from "./interfaces/history-entry.interface";
+import { KeyValuePair } from "./interfaces/key-value-pair.interface";
 
 @Component({
   selector: "app-mini-postman",
@@ -66,7 +72,7 @@ export class MiniPostman {
 
   readonly resTabs = [
     { id: "body-res", label: "Body" },
-    { id: "headers-res", label: "Headers" }
+    { id: "headers-res", label: "Headers" },
   ];
 
   // --- Response state ---

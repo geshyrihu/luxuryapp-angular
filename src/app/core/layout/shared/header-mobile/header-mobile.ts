@@ -2,12 +2,11 @@ import { Location } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonButtons, IonToolbar } from "@ionic/angular/standalone";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import { chevronBack } from "ionicons/icons";
 import { CustomerHeaderDataMobile } from "src/app/core/layout/shared/customer-header-data-mobile/customer-header-data-mobile";
 import { NavigationService } from "src/app/core/services/navigation.service";
-import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ProfileUserMobile } from "../profile-user-mobile/profile-user";
 @Component({
   selector: "app-header-mobile",
@@ -36,7 +35,7 @@ export class HeaderMobile {
     if (canGoBack) {
       this.location.back();
     } else {
-      this.router.navigate(['/dashboard/default']);
+      this.router.navigate(["/dashboard/default"]);
     }
   }
 }

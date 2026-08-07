@@ -5,9 +5,9 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CommentThreadBase } from "@ui/base/comment-thread.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { TextareaModule } from "primeng/textarea";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export { type Comment } from "@ui/base/comment-thread.base";
 

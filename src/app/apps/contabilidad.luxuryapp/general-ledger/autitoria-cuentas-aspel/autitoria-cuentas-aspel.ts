@@ -12,10 +12,10 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ReportFilterService } from "../espejo-aspel-full/financial-report-filter.service";
 import { AutitoriaCuentasAspelExportService } from "./autitoria-cuentas-aspel-export.service";
 import {

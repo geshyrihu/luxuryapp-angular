@@ -13,7 +13,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -25,14 +24,17 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ProductosForm } from "./productos-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-productos-list",
@@ -102,7 +104,13 @@ export class ProductosList implements OnInit {
 
   onLoadMobile() {
     this.mobilePage.set(1);
-    const params = { page: 1, recordsNumber: this.MOBILE_PAGE_SIZE, sortField: "", sortOrder: 1, filter: "" };
+    const params = {
+      page: 1,
+      recordsNumber: this.MOBILE_PAGE_SIZE,
+      sortField: "",
+      sortOrder: 1,
+      filter: "",
+    };
     return this.apiResponseS
       .onGetListNotLoading<any>(Endpoints.Products.getAllPaged, params)
       .then((result: any) => {
@@ -135,7 +143,13 @@ export class ProductosList implements OnInit {
 
   loadNextPage(event: any) {
     const nextPage = this.mobilePage() + 1;
-    const params = { page: nextPage, recordsNumber: this.MOBILE_PAGE_SIZE, sortField: "", sortOrder: 1, filter: "" };
+    const params = {
+      page: nextPage,
+      recordsNumber: this.MOBILE_PAGE_SIZE,
+      sortField: "",
+      sortOrder: 1,
+      filter: "",
+    };
     this.apiResponseS
       .onGetListNotLoading<any>(Endpoints.Products.getAllPaged, params)
       .then((result: any) => {

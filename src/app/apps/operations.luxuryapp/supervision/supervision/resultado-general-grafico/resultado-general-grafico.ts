@@ -1,8 +1,13 @@
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 import { ResultadoGeneralService } from "src/app/core/services/resultado-general.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-grafico-resultado-general",
   templateUrl: "./resultado-general-grafico.html",
@@ -126,12 +131,3 @@ export class ResultadoGeneralGrafico implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-

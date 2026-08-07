@@ -13,14 +13,13 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { SolicitudAltaForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-requests/solicitud-alta-form";
 import { SolicitudBajaForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/solicitud-modificacion-salario-form";
@@ -38,6 +37,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-solicitudes-cliente-list",

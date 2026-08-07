@@ -70,19 +70,16 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-<div
+      <div
         start
         class="w-3rem h-3rem rounded-md bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon
-          icon="mdi:store-outline"
-          class="text-xl text-green-500"
-        />
+        <app-icon icon="mdi:store-outline" class="text-xl text-green-500" />
       </div>
-      
-        <h3>{{ item.nameComercial }}</h3>
-        <p>{{ item.service }}</p>
-      
+
+      <h3>{{ item.nameComercial }}</h3>
+      <p>{{ item.service }}</p>
+
       <ili-action-menu slot="end">
         <ili-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -90,6 +87,6 @@
         />
         <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
       </ili-action-menu>
-</ili-list-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

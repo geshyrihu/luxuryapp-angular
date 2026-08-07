@@ -10,11 +10,11 @@ import {
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DataGrid, DataGridColumn } from "@ui/web/data-grid/data-grid";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IAnnouncementAnalyticsDTO } from "./announcement.model";
 @Component({
   selector: "app-announcement-analytics",
@@ -50,16 +50,28 @@ export default class AnnouncementAnalytics implements OnInit {
   announcementId: string = "";
 
   tableColumns: DataGridColumn[] = [
-    { field: 'userName', header: 'Usuario', sortable: true },
-    { field: 'userEmail', header: 'Email', sortable: true },
-    { field: 'customerName', header: 'Cliente', sortable: true },
-    { field: 'role', header: 'Rol', sortable: true },
-    { field: 'viewDate', header: 'Fecha de Visualización', sortable: true, format: (val) => {
-        if (!val) return '';
+    { field: "userName", header: "Usuario", sortable: true },
+    { field: "userEmail", header: "Email", sortable: true },
+    { field: "customerName", header: "Cliente", sortable: true },
+    { field: "role", header: "Rol", sortable: true },
+    {
+      field: "viewDate",
+      header: "Fecha de Visualización",
+      sortable: true,
+      format: (val) => {
+        if (!val) return "";
         const d = new Date(val);
-        return d.toLocaleDateString('es-MX', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + d.toLocaleTimeString('es-MX', { hour: 'numeric', minute: '2-digit' });
-      }
-    }
+        return (
+          d.toLocaleDateString("es-MX", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          }) +
+          " " +
+          d.toLocaleTimeString("es-MX", { hour: "numeric", minute: "2-digit" })
+        );
+      },
+    },
   ];
 
   ngOnInit(): void {

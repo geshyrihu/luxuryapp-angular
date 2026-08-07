@@ -19,14 +19,14 @@ import {
   Router,
   RouterModule,
 } from "@angular/router";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { MenuModule } from "primeng/menu";
 import { ToolbarModule } from "primeng/toolbar";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { filter, map, startWith } from "rxjs";
+import { PanicButton } from "src/app/apps/operations.luxuryapp/panic-alert/panic-button/panic-button";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -38,9 +38,9 @@ import { RefreshService } from "src/app/core/services/refresh.service";
 import { SearchService } from "src/app/core/services/search.service";
 import { ThemeService } from "src/app/core/services/theme.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { ProfileMonitor } from "../profile-monitor/profile-monitor";
-import { PanicButton } from "src/app/apps/operations.luxuryapp/panic-alert/panic-button/panic-button";
 
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import * as htmlToImage from "html-to-image";

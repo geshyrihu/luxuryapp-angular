@@ -9,13 +9,13 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { BadgeModule } from "primeng/badge";
 import { ScrollPanelModule } from "primeng/scrollpanel";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-notifications-list-web",

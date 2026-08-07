@@ -21,15 +21,18 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { RippleModule } from "@ui/web/primeng-ripple/primeng-ripple";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IAvailableAccountDTO } from "./interfaces/IAvailableAccountDto";
 
 interface ISearchForm {

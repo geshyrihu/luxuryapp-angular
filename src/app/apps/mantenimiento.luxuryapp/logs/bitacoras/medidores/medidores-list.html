@@ -1,4 +1,4 @@
-<!-- Vista de Escritorio -->
+<!-- Vista de escritorio -->
 <div class="hidden md:block">
   <div class="grid">
     <div class="col-9"></div>
@@ -10,82 +10,73 @@
     </div>
     <div class="col-12 text-right mb-2"></div>
     @for (item of dataSignal(); track item) {
-    <div class="p-2 col-12 md:col-2">
-      <!-- DIV Contenedor para aplicar el borde de forma segura -->
+    <div class="p-2 col-12 md:col-6 lg:col-4 xl:col-3">
       <div
         class="h-full rounded-lg border-left-3"
-        [class.border-yellow-500]="item.medidorCategoriaId == '019c6c01-bbcf-76a2-a863-43569af55a55'"
-        [class.border-green-500]="item.medidorCategoriaId == '019c6c01-bbdd-7698-9f76-db06f3c6ef0c'"
-        [class.border-blue-500]="item.medidorCategoriaId == '019c6c01-bbde-703d-85dd-a4e88651e0d3'"
+        [class.border-yellow-500]="item.medidorCategoriaId === '019c6c01-bbcf-76a2-a863-43569af55a55'"
+        [class.border-green-500]="item.medidorCategoriaId === '019c6c01-bbdd-7698-9f76-db06f3c6ef0c'"
+        [class.border-blue-500]="item.medidorCategoriaId === '019c6c01-bbde-703d-85dd-a4e88651e0d3'"
       >
-        <div class="card" class="h-full surface-100">
-          <!-- Añadido surface-100 para fondo -->
-          
-            <div
-              class="text-center pointer"
-              (click)="modalMedidorLecturaAddEdit(item)"
-            >
-              <h5 class="mb-2">
-                {{ item.medidorCategoria.nombreMedidorCategoria }}
-              </h5>
-              <!-- Iconos Corregidos: Usando "icon" y "mdi:account-details" -->
-              @if (item.medidorCategoriaId ===
-              '019c6c01-bbcf-76a2-a863-43569af55a55') {
-              <!-- Gas -> Sol (Calor) -->
-              <app-icon
-                [icon]="'mdi:weather-sunny'"
-                class="text-yellow-500 text-6xl"
-              />
-              } @if (item.medidorCategoriaId ===
-              '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
-              <!-- Agua -> Filtro (Liquido) -->
-              <app-icon [icon]="'mdi:filter'" class="text-blue-500 text-6xl" />
-              } @if (item.medidorCategoriaId ===
-              '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
-              <!-- Luz -> Rayo -->
-              <app-icon
-                [icon]="'mdi:lightning-bolt'"
-                class="text-green-500 text-6xl"
-              />
-              }
-              <hr class="my-3" />
-              <h6 class="mb-2 text-color-secondary">
-                {{ item.numeroMedidor }}
-              </h6>
-              <p>{{ item.descripcion }}</p>
-              <p>Consumo Máx: {{ item.consumoDiarioMaximo }}</p>
-            </div>
-          
-          <div class="mt-3 flex justify-content-end gap-2">
-            <div class="flex justify-content-center">
+        <div class="card h-full surface-100 flex flex-column">
+          <div
+            class="text-center pointer flex-1"
+            (click)="modalMedidorLecturaAddEdit(item)"
+          >
+            <h5 class="mb-2">
+              {{ item.medidorCategoria.nombreMedidorCategoria }}
+            </h5>
+            @if (item.medidorCategoriaId ===
+            '019c6c01-bbcf-76a2-a863-43569af55a55') {
+            <app-icon
+              [icon]="'mdi:weather-sunny'"
+              class="text-yellow-500 text-6xl"
+            />
+            } @if (item.medidorCategoriaId ===
+            '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
+            <app-icon [icon]="'mdi:filter'" class="text-blue-500 text-6xl" />
+            } @if (item.medidorCategoriaId ===
+            '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
+            <app-icon
+              [icon]="'mdi:lightning-bolt'"
+              class="text-green-500 text-6xl"
+            />
+            }
+            <hr class="my-3" />
+            <h6 class="mb-2 text-color-secondary">
+              {{ item.numeroMedidor }}
+            </h6>
+            <p>{{ item.descripcion }}</p>
+            <p>Consumo Máx: {{ item.consumoDiarioMaximo }}</p>
+          </div>
+
+          <div
+            class="mt-3 pt-3 border-top-1 surface-border flex justify-content-end"
+          >
+            <app-action-menu>
               <il-button-edit
-                class="text-xl"
+                label="Editar"
                 (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
               />
               <il-button-delete
-                class="text-xl"
+                label="Eliminar"
                 (confirmed)="onDelete(item.id)"
               />
               <il-button-item
                 iconClass="mdi:content-save"
                 label="Lecturas"
-                class="text-xl"
                 (clicked)="onGoToLecturas(item.id)"
               />
               <il-button-item
                 iconClass="mdi:chart-line"
                 label="Gráfica"
-                class="text-xl"
                 (clicked)="onGoToGrafico(item.id)"
               />
-              <il-button-item
-                iconClass="mdi:chart-bar"
+              <il-button-download
                 label="Exportar a Excel"
-                class="text-xl"
-                (clicked)="exportExcel(item.id)"
                 severity="success"
+                (clicked)="exportExcel(item.id)"
               />
-            </div>
+            </app-action-menu>
           </div>
         </div>
       </div>
@@ -94,7 +85,7 @@
   </div>
 </div>
 
-<!-- Vista Móvil Corregida -->
+<!-- Vista móvil -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="modalAddEdit({ id: 0, title: 'Agregar Registro' })"
@@ -104,12 +95,12 @@
   <ng-template #listItemTemplate let-item>
     <div
       class="surface-card shadow-sm rounded-lg mb-3 border-left-3 overflow-hidden"
-      [class.border-yellow-500]="item.medidorCategoriaId == 1"
-      [class.border-green-500]="item.medidorCategoriaId == 2"
-      [class.border-blue-500]="item.medidorCategoriaId == 3"
+      [class.border-yellow-500]="item.medidorCategoriaId === '019c6c01-bbcf-76a2-a863-43569af55a55'"
+      [class.border-green-500]="item.medidorCategoriaId === '019c6c01-bbdd-7698-9f76-db06f3c6ef0c'"
+      [class.border-blue-500]="item.medidorCategoriaId === '019c6c01-bbde-703d-85dd-a4e88651e0d3'"
     >
       <div class="p-3">
-        <!-- Header: Categoroa y Meno de Acciones -->
+        <!-- Header: categoría y menú de acciones -->
         <div class="flex justify-content-between align-items-start mb-1">
           <div>
             <h2 class="font-bold m-0 text-lg text-900">
@@ -119,7 +110,7 @@
               >{{ item.numeroMedidor }}</span
             >
           </div>
-            <ili-action-menu slot="end">
+          <ili-action-menu slot="end">
             <ng-container actions>
               <ili-button-edit
                 (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
@@ -153,20 +144,20 @@
           {{ item.descripcion }}
         </p>
 
-        <!-- Footer: Icono, Consumo y Botón Registrar -->
+        <!-- Footer: icono, consumo y botón registrar -->
         <div
           class="flex align-items-center justify-content-between pt-3 border-top-1 surface-border"
         >
           <div class="flex align-items-center">
-            @if (item.medidorCategoriaId === 1) {
+            @if (item.medidorCategoriaId === '019c6c01-bbcf-76a2-a863-43569af55a55') {
             <app-icon
               icon="mdi:white-balance-sunny"
               color="warning"
               class="text-2xl mr-2"
             />
-            } @if (item.medidorCategoriaId === 3) {
+            } @if (item.medidorCategoriaId === '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
             <app-icon icon="mdi:filter" color="primary" class="text-2xl mr-2" />
-            } @if (item.medidorCategoriaId === 2) {
+            } @if (item.medidorCategoriaId === '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
             <app-icon icon="mdi:flash" color="success" class="text-2xl mr-2" />
             }
             <div class="flex flex-column">
@@ -177,13 +168,15 @@
             </div>
           </div>
 
-          <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary" (click)="modalMedidorLecturaAddEdit(item)">
+          <button
+            class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
+            (click)="modalMedidorLecturaAddEdit(item)"
+          >
             <app-icon icon="mdi:plus-circle-outline" slot="start" />
             Registrar
           </button>
         </div>
       </div>
-      </div>
-    </ng-template>
-  </app-data-view-mobile>
-
+    </div>
+  </ng-template>
+</app-data-view-mobile>

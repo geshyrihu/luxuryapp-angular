@@ -7,10 +7,10 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
 
 @Component({

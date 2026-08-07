@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonButton, IonTextarea } from "@ionic/angular/standalone";
 import { CommentThreadBase } from "@ui/base/comment-thread.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-comment-thread",

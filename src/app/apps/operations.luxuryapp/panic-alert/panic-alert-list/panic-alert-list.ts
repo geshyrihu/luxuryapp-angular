@@ -5,9 +5,9 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { PanicAlertResolveDto } from "../interfaces/panic-alert-resolve.dto";
 import { PanicAlertDto } from "../interfaces/panic-alert.dto";
 

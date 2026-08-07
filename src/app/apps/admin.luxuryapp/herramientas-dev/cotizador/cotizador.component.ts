@@ -8,7 +8,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { CustomInputCheckSignal } from "src/app/shared/ui/inputs/web/custom-input-check-signal";
 import { CustomInputNumberSignal } from "src/app/shared/ui/inputs/web/custom-input-number-signal";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ModuleQuote } from "./interfaces/module-quote.interface";
 
 @Component({

@@ -21,15 +21,15 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   NativeCollectionRealTimeUpdateDto,
   SignalRService,
 } from "src/app/core/services/signalr.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   NativeStatementResponseDTO,
   SendNativeStatementBatchResponseDTO,
@@ -293,6 +293,6 @@ export class NativeStatement implements OnInit {
   }
 
   entryTypeSeverity(type: string) {
-    return type === "Cargo" ? "danger" as const : "success" as const;
+    return type === "Cargo" ? ("danger" as const) : ("success" as const);
   }
 }

@@ -1,6 +1,6 @@
-import { Component, input, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { environment } from "src/environments/environment";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-mi-edificio-mobile",

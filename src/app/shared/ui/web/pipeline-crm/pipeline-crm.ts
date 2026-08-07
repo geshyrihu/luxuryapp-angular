@@ -6,10 +6,10 @@ import {
   output,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface PipelineDeal {
   id: string;

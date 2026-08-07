@@ -11,13 +11,12 @@ import type { TabItem } from "@ui/base/tabs.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { CobranzaOnlineResumen } from "src/app/apps/cobranza.luxuryapp/cobranza-online/resumen/cobranza-online-resumen";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { AiAgentContabilidadOnlineComponent } from "./ai-agent-contabilidad-online/ai-agent-contabilidad-online";
 import { AiAgentExplicadorContabilidadOnlineComponent } from "./ai-agent-explicador-contabilidad-online/ai-agent-explicador-contabilidad-online";
 import { AiAgentComponent } from "./ai-agent/ai-agent";
-import { reportFilterState } from "./state/financial-report-filter.state";
 import { BancosInversionesComponent } from "./bancos-inversiones/bancos-inversiones";
 import { CedulaExtraordinaria } from "./cedula-extraordinaria/cedula-extraordinaria";
 import { CedulaPresupuestal } from "./cedula-presupuestal/cedula-presupuestal";
@@ -29,6 +28,7 @@ import { FondoReservaComponent } from "./fondo-reserva/fondo-reserva";
 import { PresupuestoContabilidad } from "./presupuesto-contabilidad/presupuesto-contabilidad";
 import { ProyectosAprobadosComponent } from "./proyectos-aprobados/proyectos-aprobados";
 import { ReporteFinanciero } from "./reporte-financiero/reporte-financiero";
+import { reportFilterState } from "./state/financial-report-filter.state";
 
 const REPORT_META = [
   {

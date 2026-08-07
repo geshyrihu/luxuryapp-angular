@@ -11,8 +11,11 @@ import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import {
+  ConfirmationService,
+  MessageService,
+} from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { ConfirmationService, MessageService } from "@ui/web/primeng-api/primeng-api";
 import { DynamicDialogModule } from "@ui/web/primeng-dynamicdialog/primeng-dynamicdialog";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -29,8 +32,8 @@ import { AdminVacacionesEditModalComponent } from "./modal-admin-vacaciones-edit
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { VacationBalanceAdminViewDto } from "../interfaces/vacation-balance-admin-view.interface";
 @Component({
   selector: "app-admin-vacaciones-balance",

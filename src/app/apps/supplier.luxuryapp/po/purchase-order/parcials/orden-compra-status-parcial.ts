@@ -4,8 +4,8 @@ import {
   input,
   output,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";

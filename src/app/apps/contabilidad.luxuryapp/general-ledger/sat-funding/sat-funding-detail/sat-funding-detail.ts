@@ -22,7 +22,6 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
@@ -33,6 +32,7 @@ import {
 } from "src/app/apps/contabilidad.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-form";
 
 @Component({
@@ -99,7 +99,9 @@ export class SatFundingDetailComponent implements OnInit {
 
   onLoadData() {
     this.apiResponseService
-      .onGetItem<SatFundingDetailDto>(Endpoints.SatFunding.details(this.fundingId))
+      .onGetItem<SatFundingDetailDto>(
+        Endpoints.SatFunding.details(this.fundingId),
+      )
       .then((result) => {
         if (result) {
           this.data.set(result);
@@ -167,10 +169,7 @@ export class SatFundingDetailComponent implements OnInit {
     };
 
     this.apiResponseService
-      .onPut(
-        Endpoints.SatFunding.bulkUpdateTipoGasto,
-        request,
-      )
+      .onPut(Endpoints.SatFunding.bulkUpdateTipoGasto, request)
       .then(() => {
         this.onLoadData();
         this.selection = [];

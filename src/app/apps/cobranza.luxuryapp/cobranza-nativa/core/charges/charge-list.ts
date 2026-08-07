@@ -8,8 +8,8 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -18,7 +18,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -35,6 +34,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   ChargeResponseDTO,
   PropertyInitialBalanceDTO,
@@ -186,9 +186,9 @@ export default class ChargeList {
       return;
     }
 
-    const properties = await this.apiResponseS.onGetItem<PropertyInitialBalanceDTO[]>(
-      Endpoints.CobranzaCore.Charges.initialBalanceStatus(customerId),
-    );
+    const properties = await this.apiResponseS.onGetItem<
+      PropertyInitialBalanceDTO[]
+    >(Endpoints.CobranzaCore.Charges.initialBalanceStatus(customerId));
 
     if (!properties?.length) {
       this.toastS.showWarn(

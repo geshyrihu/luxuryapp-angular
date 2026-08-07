@@ -31,7 +31,7 @@
 
           <!-- Parte Derecha: Filtros adicionales -->
           <div class="flex flex-column sm:flex-row align-items-center gap-2">
-            <div >
+            <div>
               <custom-input-select-signal
                 [data]="selectCustomerSignal()"
                 optionLabel="label"
@@ -43,7 +43,7 @@
                 [filter]="true"
               />
             </div>
-            <div >
+            <div>
               <custom-input-select-signal
                 [data]="cbTypePersonSignal()"
                 optionLabel="label"
@@ -56,7 +56,7 @@
                 [filter]="true"
               />
             </div>
-            <div >
+            <div>
               <il-button-active-desactive
                 [state]="applicationUserState"
                 (stateChange)="onSelectActive($event)"
@@ -206,17 +206,12 @@
           class="mobile-avatar-img"
         />
         } @else {
-        <app-icon
-          icon="mdi:account-circle-outline"
-          
-        />
+        <app-icon icon="mdi:account-circle-outline" />
         }
       </div>
       <p class="font-semibold m-0 text-color">{{ item.fullName }}</p>
       <p class="text-xs m-0 mt-1">
-        <span  class="font-medium"
-          >{{ item.userName }}</span
-        >
+        <span class="font-medium">{{ item.userName }}</span>
         <span class="mx-1 text-color-secondary">é</span>
         <span class="text-color-secondary uppercase">{{ item.role }}</span>
       </p>

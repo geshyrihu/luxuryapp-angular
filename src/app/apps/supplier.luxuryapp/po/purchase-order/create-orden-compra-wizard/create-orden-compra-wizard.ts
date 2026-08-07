@@ -19,7 +19,10 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 // PrimeNG Modules
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { MenuItem } from "@ui/web/primeng-api/primeng-api";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service"; // Added DynamicDialogConfig
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service"; // Added DynamicDialogConfig
 // Added
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 // Added
@@ -80,8 +83,8 @@ interface IStep3Form {
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-create-orden-compra-wizard",

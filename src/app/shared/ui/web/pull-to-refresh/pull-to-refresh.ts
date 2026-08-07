@@ -1,6 +1,6 @@
 import { Component, HostListener, ViewEncapsulation } from "@angular/core";
 import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-pull-to-refresh",

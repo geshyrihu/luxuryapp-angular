@@ -9,12 +9,11 @@ import {
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -24,6 +23,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { EFineStatus } from "../../interfaces/enums";
 import { PropertyFineResponseDTO } from "../../interfaces/property-fine.dto";
 import { IssueFineChargeForm } from "./issue-fine-charge-form";
@@ -84,9 +84,7 @@ export default class PropertyFineList {
     const customerId = this.customerIdS.customerId();
     if (!customerId) return;
     const result = await this.apiResponseS.onGetItem<PropertyFineResponseDTO[]>(
-      Endpoints.CobranzaCore.PropertyFines.byCustomer(
-        customerId,
-      ),
+      Endpoints.CobranzaCore.PropertyFines.byCustomer(customerId),
     );
     this.dataSignal.set(result ?? []);
   }
@@ -126,12 +124,7 @@ export default class PropertyFineList {
   async onVoid(item: PropertyFineResponseDTO) {
     const reason = "Anulada por el administrador";
     this.apiResponseS
-      .onDelete(
-        Endpoints.CobranzaCore.PropertyFines.void(
-          item.id,
-          reason,
-        ),
-      )
+      .onDelete(Endpoints.CobranzaCore.PropertyFines.void(item.id, reason))
       .then((res) => {
         if (res) this.onLoadData();
       });
@@ -179,5 +172,3 @@ export default class PropertyFineList {
     return status !== EFineStatus.Pagada && status !== EFineStatus.Anulada;
   }
 }
-
-

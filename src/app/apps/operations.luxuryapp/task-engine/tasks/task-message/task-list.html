@@ -112,33 +112,25 @@
         <span
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
-          <span
-            
-          ></span>
+          <span></span>
           No iniciado
         </span>
         <span
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
-          <span
-            
-          ></span>
+          <span></span>
           En proceso
         </span>
         <span
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
-          <span
-            
-          ></span>
+          <span></span>
           Completado
         </span>
         <span
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
-          <span
-            
-          ></span>
+          <span></span>
           Reabierto
         </span>
 
@@ -153,7 +145,7 @@
         />
 
         <lx-popover #helpPopover styleClass="shadow">
-          <div >
+          <div>
             <p
               class="m-0 mb-3 font-semibold text-900 text-sm border-bottom-1 surface-border pb-2"
             >
@@ -166,13 +158,8 @@
               <div class="flex align-items-start gap-2">
                 <span
                   class="flex-shrink-0 border-circle bg-primary-100 flex align-items-center justify-content-center"
-                  
                 >
-                  <app-icon
-                    [icon]="'mdi:menu'"
-                    class="text-primary"
-                    
-                  />
+                  <app-icon [icon]="'mdi:menu'" class="text-primary" />
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -191,13 +178,8 @@
               <div class="flex align-items-start gap-2">
                 <span
                   class="flex-shrink-0 border-circle bg-purple-100 flex align-items-center justify-content-center"
-                  
                 >
-                  <app-icon
-                    [icon]="'mdi:link'"
-                    class="text-purple-600"
-                    
-                  />
+                  <app-icon [icon]="'mdi:link'" class="text-purple-600" />
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -220,13 +202,8 @@
               <div class="flex align-items-start gap-2">
                 <span
                   class="flex-shrink-0 border-circle bg-orange-100 flex align-items-center justify-content-center"
-                  
                 >
-                  <app-icon
-                    [icon]="'mdi:sitemap'"
-                    class="text-orange-600"
-                    
-                  />
+                  <app-icon [icon]="'mdi:sitemap'" class="text-orange-600" />
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -234,17 +211,9 @@
                   </p>
                   <p class="m-0 text-xs text-600 mt-1 line-height-3">
                     Las tareas con el icono
-                    <app-icon
-                      [icon]="'mdi:sitemap'"
-                      class="text-primary"
-                      
-                    />
+                    <app-icon [icon]="'mdi:sitemap'" class="text-primary" />
                     tienen subtareas. Las tareas con
-                    <app-icon
-                      [icon]="'mdi:arrow-down-bold'"
-                      class="text-400"
-                      
-                    />
+                    <app-icon [icon]="'mdi:arrow-down-bold'" class="text-400" />
                     son hijas de otra. Al crear o editar una tarea puedes
                     asignarle una tarea padre.
                   </p>
@@ -259,25 +228,25 @@
 
   <ng-template #header>
     <tr>
-      <th ></th>
-      <th  pSortableColumn="createdAtFilter">
+      <th></th>
+      <th pSortableColumn="createdAtFilter">
         SOLICITUD <p-sorticon field="createdAtFilter" />
       </th>
-      <th  pSortableColumn="responsableNombre">
+      <th pSortableColumn="responsableNombre">
         RESP. <p-sorticon field="responsableNombre" />
       </th>
-      <th  pSortableColumn="scheduledAtFilter">
+      <th pSortableColumn="scheduledAtFilter">
         FECHAS <p-sorticon field="scheduledAtFilter" />
       </th>
-      <th >EVIDENCIAS</th>
-      <th  pSortableColumn="daysDifference">
+      <th>EVIDENCIAS</th>
+      <th pSortableColumn="daysDifference">
         DIAS <p-sorticon field="daysDifference" />
       </th>
-      <th  pSortableColumn="isRelevant">
+      <th pSortableColumn="isRelevant">
         REPORTE <p-sorticon field="isRelevant" />
       </th>
-      <th >ULTIMO SEGUIMIENTO</th>
-      <th  class="no-print"></th>
+      <th>ULTIMO SEGUIMIENTO</th>
+      <th class="no-print"></th>
     </tr>
   </ng-template>
 
@@ -302,14 +271,12 @@
             [icon]="'mdi:menu'"
             class="cursor-move text-400"
             pReorderableRowHandle
-            
           />
           <app-icon
             [icon]="'mdi:link'"
             class="text-300 cursor-grab"
             draggable="true"
             [class.text-purple-500]="linkDragSourceId() === item.id"
-            
             (dragstart)="onLinkDragStart($event, item.id)"
             (dragend)="onLinkDragEnd()"
             lxTooltip="Arrastra sobre otra tarea para asignar predecesora"
@@ -326,7 +293,6 @@
           <app-icon
             [icon]="'mdi:arrow-down-bold'"
             class="text-400 flex-shrink-0 mr-1"
-            
             lxTooltip="Tarea hija"
             tooltipPosition="top"
           />
@@ -334,7 +300,6 @@
           <app-icon
             [icon]="'mdi:sitemap'"
             class="text-primary flex-shrink-0 mr-1"
-            
             lxTooltip="Tiene subtareas"
             tooltipPosition="top"
           />
@@ -386,7 +351,6 @@
                 [icon]="'mdi:star-outline'"
                 class="text-primary cursor-pointer"
                 (click)="onUpdatePriority(item.id)"
-                
                 lxTooltip="Alta prioridad - click para cambiar"
               />
               } @if (item.priority === 'Low') {
@@ -394,17 +358,11 @@
                 [icon]="'mdi:alert'"
                 class="text-red-500 cursor-pointer"
                 (click)="onUpdatePriority(item.id)"
-                
                 lxTooltip="Baja prioridad - click para cambiar"
               />
               } {{ item.title }}
             </p>
-            <p
-              class="m-0 text-xs text-700"
-              
-            >
-              {{ item.description }}
-            </p>
+            <p class="m-0 text-xs text-700">{{ item.description }}</p>
           </div>
         </div>
       </td>
@@ -475,19 +433,12 @@
         />
       </td>
 
-      <td
-        
-      >
+      <td>
         @if (item.lastFollowUp) {
         <span class="text-xs text-400 font-medium block mb-1"
           >{{ item.lastFollowUpDate }}</span
         >
-        <p
-          class="m-0 text-xs text-700"
-          
-        >
-          {{ item.lastFollowUp }}
-        </p>
+        <p class="m-0 text-xs text-700">{{ item.lastFollowUp }}</p>
         }
       </td>
 
@@ -598,44 +549,28 @@
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
           (click)="onPendingBoard()"
         >
-          <app-icon
-            icon="mdi:view-grid-outline"
-            
-            class="mr-1"
-          />
+          <app-icon icon="mdi:view-grid-outline" class="mr-1" />
           Tablero
         </button>
         <button
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
           (click)="onPreviewClickedWorkPlan()"
         >
-          <app-icon
-            icon="mdi:clipboard-text-outline"
-            
-            class="mr-1"
-          />
+          <app-icon icon="mdi:clipboard-text-outline" class="mr-1" />
           Plan
         </button>
         <button
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
           (click)="onPreviewWeeklyReport()"
         >
-          <app-icon
-            icon="mdi:eye-outline"
-            
-            class="mr-1"
-          />
+          <app-icon icon="mdi:eye-outline" class="mr-1" />
           Previa
         </button>
         <button
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
           (click)="onSendWeeklyReport()"
         >
-          <app-icon
-            icon="mdi:send-outline"
-            
-            class="mr-1"
-          />
+          <app-icon icon="mdi:send-outline" class="mr-1" />
           Reporte
         </button>
       </div>
@@ -807,27 +742,9 @@
   </div>
 
   <div class="print-legend">
-    <span
-      ><span
-        class="print-legend-dot"
-        
-      ></span>
-      No iniciado</span
-    >
-    <span
-      ><span
-        class="print-legend-dot"
-        
-      ></span>
-      En proceso</span
-    >
-    <span
-      ><span
-        class="print-legend-dot"
-        
-      ></span>
-      Reabierto</span
-    >
+    <span><span class="print-legend-dot"></span> No iniciado</span>
+    <span><span class="print-legend-dot"></span> En proceso</span>
+    <span><span class="print-legend-dot"></span> Reabierto</span>
   </div>
 
   <table class="print-task-table">
@@ -848,20 +765,15 @@
         <th class="col-resp">Responsable</th>
         <th class="col-fecha">Programado</th>
         <th class="col-estado">Estado</th>
-        <th class="col-dias" >Dias</th>
-        <th class="col-evid" >Evidencias</th>
+        <th class="col-dias">Dias</th>
+        <th class="col-evid">Evidencias</th>
         <th class="col-seg">Ultimo seguimiento</th>
       </tr>
     </thead>
     <tbody>
       @for (item of pendingItems(); track item.id; let idx = $index) {
       <tr>
-        <td
-          [class]="statusTdClass(item.status)"
-          
-        >
-          {{ idx + 1 }}
-        </td>
+        <td [class]="statusTdClass(item.status)">{{ idx + 1 }}</td>
         <td>
           <div class="print-folio">
             {{ item.folio }} | {{ item.createdAtDate }}
@@ -871,33 +783,21 @@
           <div class="print-desc">{{ item.description }}</div>
           }
         </td>
-        <td >{{ item.assignee || 'é' }}</td>
-        <td >
-          {{ item.scheduledAt || 'é' }}
-        </td>
+        <td>{{ item.assignee || 'é' }}</td>
+        <td>{{ item.scheduledAt || 'é' }}</td>
         <td>
-          <span
-            class="print-status-pill"
-            
-          >
+          <span class="print-status-pill">
             {{ statusLabel(item.status) }}
           </span>
         </td>
-        <td >
-          {{ item.daysDifference }}
-        </td>
-        <td >
-          @if (item.beforeWork || item.afterWork) { ? } @else { é }
-        </td>
+        <td>{{ item.daysDifference }}</td>
+        <td>@if (item.beforeWork || item.afterWork) { ? } @else { é }</td>
         <td>
           @if (item.lastFollowUp) {
-          <span
-            
-            >{{ item.lastFollowUpDate }}</span
-          >
+          <span>{{ item.lastFollowUpDate }}</span>
           <p class="print-followup">{{ item.lastFollowUp }}</p>
           } @else {
-          <span >é</span>
+          <span>é</span>
           }
         </td>
       </tr>
@@ -912,4 +812,3 @@
 </div>
 
 }
-

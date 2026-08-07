@@ -12,22 +12,30 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-budget-forecast-dialog",
   templateUrl: "./budget-forecast-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,CommonModule, WebButtonLabel, TableModule, FormsModule],
+  imports: [AppIcon, CommonModule, WebButtonLabel, TableModule, FormsModule],
 })
 export class BudgetForecastDialog implements OnInit {
   private ref = inject(DynamicDialogRef);

@@ -2,7 +2,7 @@
   <!-- Download Form Card -->
   <div class="col-12">
     <lx-card>
-<form [formGroup]="form" (ngSubmit)="onSubmitDownload()">
+      <form [formGroup]="form" (ngSubmit)="onSubmitDownload()">
         <div class="grid">
           <div class="col-12 md:col-4">
             <custom-input-date-signal
@@ -29,13 +29,13 @@
           ></il-button-save>
         </div>
       </form>
-</lx-card>
+    </lx-card>
   </div>
 
   <!-- Invoices Table -->
   <div class="col-12">
     <lx-card>
-<p-table
+      <p-table
         #dtInvoices
         [value]="invoices()"
         [rows]="10"
@@ -69,7 +69,8 @@
                 [disabled]="!selection || selection.length === 0"
               />
               <iw-button-confirm
-                lxTooltip="Aplicar" tooltipPosition="top"
+                lxTooltip="Aplicar"
+                tooltipPosition="top"
                 (clicked)="onBulkUpdate(bulkTipoGasto())"
                 [disabled]="!selection || selection.length === 0"
               ></iw-button-confirm>
@@ -153,6 +154,6 @@
           </tr>
         </ng-template>
       </p-table>
-</lx-card>
+    </lx-card>
   </div>
 </div>

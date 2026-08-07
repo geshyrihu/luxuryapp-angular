@@ -5,7 +5,7 @@ import {
   input,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * AppStatCard — KPI card con sparkline SVG inline.
@@ -17,32 +17,32 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
   imports: [AppIcon],
   template: `
-    <div class="stat-card">
-      <!-- Top row: icon + trend badge -->
-      <div class="stat-top">
-        @if (icon()) {
-          <div class="stat-icon-wrap" [style.background]="iconBg()">
-            <app-icon
-              [icon]="icon()"
-              [style.color]="iconColor()"
-              class="stat-icon"
-            />
-          </div>
-        }
-        @if (trend() !== undefined) {
-          <span
-            class="stat-trend"
-            [class.stat-trend-up]="trend()! >= 0"
-            [class.stat-trend-down]="trend()! < 0"
-          >
-            <app-icon
-              [icon]="trend()! >= 0 ? 'mdi:trending-up' : 'mdi:trending-down'"
-              class="text-xs"
-            />
-            {{ absTrend() }}%
-          </span>
-        }
-      </div>
+    <div
+      class="stat-card"
+      [class.stat-card-horizontal]="orientation() === 'horizontal'"
+    >
+      @if (icon()) {
+        <div class="stat-icon-wrap" [style.background]="iconBg()">
+          <app-icon
+            [icon]="icon()"
+            [style.color]="iconColor()"
+            class="stat-icon"
+          />
+        </div>
+      }
+      @if (trend() !== undefined) {
+        <span
+          class="stat-trend"
+          [class.stat-trend-up]="trend()! >= 0"
+          [class.stat-trend-down]="trend()! < 0"
+        >
+          <app-icon
+            [icon]="trend()! >= 0 ? 'mdi:trending-up' : 'mdi:trending-down'"
+            class="text-xs"
+          />
+          {{ absTrend() }}%
+        </span>
+      }
 
       <!-- Value + Label -->
       <div class="stat-value">
@@ -97,20 +97,59 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
   `,
   styles: [
     `
+      /* Vertical (default): icono y tendencia arriba, luego valor, label y pie.
+         Horizontal: icono a la izquierda, ocupando el alto del contenido. */
       .stat-card {
         background: var(--ds-bg-surface, #fff);
         border: 1px solid var(--ds-border, #e2e8f0);
         border-radius: var(--ds-radius-lg, 8px);
         padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+          "icon trend"
+          "value value"
+          "label label"
+          "spark spark"
+          "sub sub";
+        align-content: start;
+        row-gap: 0.25rem;
+        column-gap: 0.75rem;
       }
-      .stat-top {
-        display: flex;
+      .stat-card-horizontal {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        grid-template-areas:
+          "icon value trend"
+          "icon label label"
+          "icon spark spark"
+          "icon sub sub";
         align-items: center;
-        justify-content: space-between;
-        margin-bottom: 0.25rem;
+        align-content: center;
+      }
+      .stat-card-horizontal .stat-icon-wrap {
+        grid-row: 1 / -1;
+        align-self: center;
+      }
+
+      .stat-card > .stat-icon-wrap {
+        grid-area: icon;
+      }
+      .stat-card > .stat-trend {
+        grid-area: trend;
+        justify-self: end;
+        align-self: center;
+      }
+      .stat-card > .stat-value {
+        grid-area: value;
+      }
+      .stat-card > .stat-label {
+        grid-area: label;
+      }
+      .stat-card > .stat-sparkline {
+        grid-area: spark;
+      }
+      .stat-card > .stat-subtitle {
+        grid-area: sub;
       }
       .stat-icon-wrap {
         width: 36px;
@@ -131,6 +170,7 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
         font-weight: 600;
         border-radius: var(--ds-radius-full, 9999px);
         padding: 0.15rem 0.5rem;
+        white-space: nowrap;
       }
       .stat-trend-up {
         background: #d1fae5;
@@ -173,6 +213,12 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 export class AppStatCard {
   label = input.required<string>();
   value = input.required<number>();
+  /**
+   * `vertical` (default): icono arriba, datos debajo.
+   * `horizontal`: icono a la izquierda alineado con los datos — ocupa menos alto,
+   * útil en filas de KPIs sobre dashboards densos.
+   */
+  orientation = input<"vertical" | "horizontal">("vertical");
   sparkline = input<number[]>([]);
   icon = input<string>("");
   iconColor = input<string>("var(--ds-primary)");

@@ -9,13 +9,13 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 import { SwalService } from "src/app/core/services/swal.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IncidentAttachmentListDTO } from "../interfaces/incident.interfaces";
 
 const MAX_FILE_SIZE_BYTES = 2 * 1024 * 1024;

@@ -5,8 +5,8 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AccordionBase } from "@ui/base/accordion.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AccordionModule } from "primeng/accordion";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * AppAccordion — Wrapper sobre p-accordion. PrimeNG 22 reemplazo la API por

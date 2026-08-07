@@ -12,7 +12,6 @@ import {
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import saveAs from "file-saver";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -20,6 +19,7 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { DateService } from "src/app/core/services/date.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   IncidentPendingDTO,
   IncidentStatsDTO,

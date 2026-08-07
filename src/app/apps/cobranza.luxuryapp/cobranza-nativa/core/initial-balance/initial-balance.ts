@@ -13,7 +13,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
@@ -21,6 +20,7 @@ import { walletOutline } from "ionicons/icons";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   BulkSetInitialBalanceDTO,
   PropertyInitialBalanceDTO,
@@ -80,9 +80,7 @@ export default class InitialBalance {
     this.loading.set(true);
     const customerId = this.customerIdS.customerId();
     const res = await this.apiS.onGetItem<PropertyInitialBalanceDTO[]>(
-      Endpoints.CobranzaCore.Charges.initialBalanceStatus(
-        customerId,
-      ),
+      Endpoints.CobranzaCore.Charges.initialBalanceStatus(customerId),
     );
     if (res) {
       this.rows.set(

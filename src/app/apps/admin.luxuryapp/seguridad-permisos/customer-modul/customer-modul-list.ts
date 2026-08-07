@@ -10,12 +10,11 @@ import { RouterModule } from "@angular/router";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,
@@ -25,6 +24,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CustomerModulEdit } from "./customer-modul-edit";
 
 import { LxTag } from "@ui/adaptive/tag/tag";

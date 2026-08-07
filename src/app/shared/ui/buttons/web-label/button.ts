@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { AppIcon } from "../../shared/app-icon/app-icon.component";
+import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 
 @Component({

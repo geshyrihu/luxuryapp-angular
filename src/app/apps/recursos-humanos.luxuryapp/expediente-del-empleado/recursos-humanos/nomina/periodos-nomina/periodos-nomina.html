@@ -95,29 +95,25 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-        
       >
-        <app-icon
-          icon="mdi:currency-usd"
-          
-        />
+        <app-icon icon="mdi:currency-usd" />
       </div>
-      
-        <h2 class="font-normal m-0">
-          {{ item.quincenaDisplay }} {{ item.anio }}
-        </h2>
-        <p class="text-xs m-0">
-          {{ item.fechaInicio | date: "dd/MM/yyyy" : "UTC" }} - {{ item.fechaFin
-          | date: "dd/MM/yyyy" : "UTC" }}
-        </p>
-        <div class="flex align-items-center gap-2 mt-1">
-          <lx-tag
-            [severity]="getEstadoSeverity(item.estado)"
-            [value]="item.estado"
-          />
-          <span class="text-xs">{{ item.diasHabiles }} dias habiles</span>
-        </div>
-      
+
+      <h2 class="font-normal m-0">
+        {{ item.quincenaDisplay }} {{ item.anio }}
+      </h2>
+      <p class="text-xs m-0">
+        {{ item.fechaInicio | date: "dd/MM/yyyy" : "UTC" }} - {{ item.fechaFin |
+        date: "dd/MM/yyyy" : "UTC" }}
+      </p>
+      <div class="flex align-items-center gap-2 mt-1">
+        <lx-tag
+          [severity]="getEstadoSeverity(item.estado)"
+          [value]="item.estado"
+        />
+        <span class="text-xs">{{ item.diasHabiles }} dias habiles</span>
+      </div>
+
       <div end class="flex align-items-center gap-1">
         <il-button-edit (clicked)="openEdit(item)" />
         <il-button-delete (clicked)="onDelete(item)" />

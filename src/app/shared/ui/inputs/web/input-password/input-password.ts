@@ -35,6 +35,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [strongLabel]="strongLabel()"
         [inputStyleClass]="inputStyleClass()"
         [invalid]="isInvalid()"
+        [attr.aria-required]="isRequired()"
         fluid
       />
     </base-input-signal>

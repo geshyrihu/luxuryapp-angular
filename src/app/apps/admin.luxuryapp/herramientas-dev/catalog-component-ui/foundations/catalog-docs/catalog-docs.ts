@@ -2,10 +2,10 @@ import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TipoDocumento } from "./interfaces/tipo-documento.interface";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { AccesoRol } from "./interfaces/acceso-rol.interface";
 import { NomenclaturaCampo } from "./interfaces/nomenclatura-campo.interface";
+import { TipoDocumento } from "./interfaces/tipo-documento.interface";
 
 @Component({
   selector: "app-catalog-docs",
@@ -60,92 +60,96 @@ import { NomenclaturaCampo } from "./interfaces/nomenclatura-campo.interface";
 
         <div class="col-12 lg:col-6 mt-4">
           <div class="card">
-            <div class="card-header"><span class="card-title">Nomenclatura Inteligente</span></div>
-            <div class="card-body">
-            <div class="bg-primary text-white border-round-lg p-3 mb-3">
-              <small class="text-yellow-500 font-bold block mb-1"
-                >FORMATO OBLIGATORIO</small
-              >
-              <code class="text-sm md:text-base"
-                >[TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf</code
-              >
+            <div class="card-header">
+              <span class="card-title">Nomenclatura Inteligente</span>
             </div>
-            <p-table [value]="camposNomenclatura" class="p-datatable-sm">
-              <ng-template #header
-                ><tr>
-                  <th>Campo</th>
-                  <th>Valores</th>
-                </tr></ng-template
-              >
-              <ng-template #body let-row
-                ><tr>
-                  <td>
-                    <code>{{ row.campo }}</code>
-                  </td>
-                  <td class="text-xs">{{ row.valores }}</td>
-                </tr></ng-template
-              >
-            </p-table>
+            <div class="card-body">
+              <div class="bg-primary text-white border-round-lg p-3 mb-3">
+                <small class="text-yellow-500 font-bold block mb-1"
+                  >FORMATO OBLIGATORIO</small
+                >
+                <code class="text-sm md:text-base"
+                  >[TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf</code
+                >
+              </div>
+              <p-table [value]="camposNomenclatura" class="p-datatable-sm">
+                <ng-template #header
+                  ><tr>
+                    <th>Campo</th>
+                    <th>Valores</th>
+                  </tr></ng-template
+                >
+                <ng-template #body let-row
+                  ><tr>
+                    <td>
+                      <code>{{ row.campo }}</code>
+                    </td>
+                    <td class="text-xs">{{ row.valores }}</td>
+                  </tr></ng-template
+                >
+              </p-table>
             </div>
           </div>
         </div>
 
         <div class="col-12 lg:col-6 mt-4">
           <div class="card">
-            <div class="card-header"><span class="card-title">Matriz de Acceso por Rol</span></div>
+            <div class="card-header">
+              <span class="card-title">Matriz de Acceso por Rol</span>
+            </div>
             <div class="card-body">
-            <p-table
-              [value]="matrizAcceso"
-              [scrollable]="true"
-              scrollHeight="300px"
-              class="p-datatable-sm"
-            >
-              <ng-template #header>
-                <tr>
-                  <th>Documento</th>
-                  <th>Super Usuario</th>
-                  <th>Dirección</th>
-                  <th>Staff</th>
-                  <th>Condomino</th>
-                  <th>Proveedor</th>
-                </tr>
-              </ng-template>
-              <ng-template #body let-row>
-                <tr>
-                  <td class="text-xs font-bold">{{ row.documento }}</td>
-                  <td>
-                    <p-tag
-                      [value]="row.superUsuario"
-                      [severity]="getColorAcceso(row.superUsuario)"
-                    />
-                  </td>
-                  <td>
-                    <p-tag
-                      [value]="row.direccion"
-                      [severity]="getColorAcceso(row.direccion)"
-                    />
-                  </td>
-                  <td>
-                    <p-tag
-                      [value]="row.staff"
-                      [severity]="getColorAcceso(row.staff)"
-                    />
-                  </td>
-                  <td>
-                    <p-tag
-                      [value]="row.condomino"
-                      [severity]="getColorAcceso(row.condomino)"
-                    />
-                  </td>
-                  <td>
-                    <p-tag
-                      [value]="row.proveedor"
-                      [severity]="getColorAcceso(row.proveedor)"
-                    />
-                  </td>
-                </tr>
-              </ng-template>
-            </p-table>
+              <p-table
+                [value]="matrizAcceso"
+                [scrollable]="true"
+                scrollHeight="300px"
+                class="p-datatable-sm"
+              >
+                <ng-template #header>
+                  <tr>
+                    <th>Documento</th>
+                    <th>Super Usuario</th>
+                    <th>Dirección</th>
+                    <th>Staff</th>
+                    <th>Condomino</th>
+                    <th>Proveedor</th>
+                  </tr>
+                </ng-template>
+                <ng-template #body let-row>
+                  <tr>
+                    <td class="text-xs font-bold">{{ row.documento }}</td>
+                    <td>
+                      <p-tag
+                        [value]="row.superUsuario"
+                        [severity]="getColorAcceso(row.superUsuario)"
+                      />
+                    </td>
+                    <td>
+                      <p-tag
+                        [value]="row.direccion"
+                        [severity]="getColorAcceso(row.direccion)"
+                      />
+                    </td>
+                    <td>
+                      <p-tag
+                        [value]="row.staff"
+                        [severity]="getColorAcceso(row.staff)"
+                      />
+                    </td>
+                    <td>
+                      <p-tag
+                        [value]="row.condomino"
+                        [severity]="getColorAcceso(row.condomino)"
+                      />
+                    </td>
+                    <td>
+                      <p-tag
+                        [value]="row.proveedor"
+                        [severity]="getColorAcceso(row.proveedor)"
+                      />
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
             </div>
           </div>
         </div>

@@ -15,11 +15,9 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { SelectModule } from "@ui/web/primeng-select/primeng-select";
 import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -29,7 +27,11 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CustomerDataCompanyForm } from "./customer-data-company-form";
 import { CustomerDataCompanyDto } from "./customer-data-company.dto";
 

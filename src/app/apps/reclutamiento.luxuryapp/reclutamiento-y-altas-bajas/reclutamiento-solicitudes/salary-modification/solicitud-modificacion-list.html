@@ -13,18 +13,16 @@
 >
   <ng-template #header>
     <tr>
-      <th >FOLIO</th>
-      <th >SOLICITUD</th>
-      <th >CLIENTE</th>
-      <th >COLABORADOR</th>
-      <th >PUESTO ACTUAL</th>
-      <th >SUELDO ACTUAL</th>
-      <th >PUESTO NUEVO</th>
-      <th >SUELDO NUEVO</th>
-      <th pSortableColumn="status" >
-        ESTATUS <p-sorticon field="status" />
-      </th>
-      <th ></th>
+      <th>FOLIO</th>
+      <th>SOLICITUD</th>
+      <th>CLIENTE</th>
+      <th>COLABORADOR</th>
+      <th>PUESTO ACTUAL</th>
+      <th>SUELDO ACTUAL</th>
+      <th>PUESTO NUEVO</th>
+      <th>SUELDO NUEVO</th>
+      <th pSortableColumn="status">ESTATUS <p-sorticon field="status" /></th>
+      <th></th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
@@ -58,7 +56,10 @@
       </td>
       <td class="text-right">{{ item.finalSalary }}</td>
       <td class="text-center">
-        <lx-tag [value]="item.status" [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'" />
+        <lx-tag
+          [value]="item.status"
+          [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'"
+        />
       </td>
       <td class="no-print">
         <div class="flex gap-1">
@@ -85,19 +86,19 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-<div
+      <div
         start
         class="w-3rem h-3rem rounded flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
       >
         <app-icon icon="mdi:trending-up" class="text-xl text-yellow-600" />
       </div>
-      
-        <h3>{{ item.employee }}</h3>
-        <p>{{ item.applicationRoleCurrent }} ? {{ item.applicationRoleNew }}</p>
-        <p>
-          {{ item.currentSalary }} ? {{ item.finalSalary }} é {{ item.status }}
-        </p>
-      
+
+      <h3>{{ item.employee }}</h3>
+      <p>{{ item.applicationRoleCurrent }} ? {{ item.applicationRoleNew }}</p>
+      <p>
+        {{ item.currentSalary }} ? {{ item.finalSalary }} é {{ item.status }}
+      </p>
+
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
@@ -107,6 +108,6 @@
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-</ili-list-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

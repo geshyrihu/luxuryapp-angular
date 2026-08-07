@@ -9,7 +9,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -20,10 +19,11 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-reporte-envio-financieros",
   templateUrl: "./reporte-envio-financieros.html",
@@ -87,9 +87,7 @@ export class ReporteEnvioFinancieros implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.FinancialReports.annualShippingReport(
-          this.selectedYear,
-        ),
+        Endpoints.FinancialReports.annualShippingReport(this.selectedYear),
       )
       .then((result: any) => {
         this.dataSignal.set(result);

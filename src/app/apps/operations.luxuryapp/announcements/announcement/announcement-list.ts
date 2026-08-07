@@ -9,9 +9,9 @@ import {
 } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IAnnouncementList } from "./announcement.model";
 @Component({
   selector: "app-announcement-list",

@@ -1,14 +1,14 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
   OnDestroy,
   ViewEncapsulation,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { InfiniteScrollBase } from "@ui/base/infinite-scroll.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-infinite-scroll",

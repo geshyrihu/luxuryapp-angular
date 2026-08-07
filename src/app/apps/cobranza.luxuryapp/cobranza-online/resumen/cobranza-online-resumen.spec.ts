@@ -145,7 +145,7 @@ describe("CobranzaOnlineResumen", () => {
     const groups = component.tableDeudaCondominos();
     expect(groups.length).toBe(4);
     expect(groups.map((g) => g.clasificacion)).toEqual([
-      "COBRANZA JUDICIAL",
+      "COBRANZA EXTRAJUDICIAL",
       "MOROSOS",
       "DEUDA CORRIENTE",
       "TOTAL DEUDA",

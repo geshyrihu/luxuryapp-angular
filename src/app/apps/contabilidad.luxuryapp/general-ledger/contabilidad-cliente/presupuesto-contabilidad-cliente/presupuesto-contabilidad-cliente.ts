@@ -8,13 +8,13 @@ import {
   input,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
 } from "src/app/apps/cobranza.luxuryapp/cobranza-online/interfaces/presupuesto-contabilidad.model";
 import { PurchaseHistory } from "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-web-aspel/purchase-history";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 
 @Component({

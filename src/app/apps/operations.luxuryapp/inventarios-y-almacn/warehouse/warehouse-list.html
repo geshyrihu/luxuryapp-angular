@@ -87,37 +87,31 @@
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
-          icon="mdi:warehouse"
-          class="text-xl text-primary"
-        />
+        <app-icon icon="mdi:warehouse" class="text-xl text-primary" />
       </div>
 
       <p class="mt-0 mb-0 font-bold">{{ item.nombre }}</p>
       <p class="text-color-secondary text-sm mt-0 mb-0">{{ item.ubicacion }}</p>
 
       <ili-action-menu end>
-          <ng-container actions>
-            <ili-button-item
-              (clicked)="onViewProducts(item.id)"
-              label="Ver Productos"
-              iconName="cube-outline"
-            />
-            <ili-button-item
-              (clicked)="onDownloadInventory(item.id, item.nombre)"
-              label="Descargar Inventario"
-              iconName="document-text-outline"
-            />
-            <ili-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              label="Editar"
-            />
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
-          </ng-container>
-        </ili-action-menu>
+        <ng-container actions>
+          <ili-button-item
+            (clicked)="onViewProducts(item.id)"
+            label="Ver Productos"
+            iconName="cube-outline"
+          />
+          <ili-button-item
+            (clicked)="onDownloadInventory(item.id, item.nombre)"
+            label="Descargar Inventario"
+            iconName="document-text-outline"
+          />
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

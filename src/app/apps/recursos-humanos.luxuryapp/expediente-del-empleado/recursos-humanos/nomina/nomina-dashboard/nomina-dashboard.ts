@@ -1,7 +1,12 @@
-import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export type NominaRole =
   | "SuperUsuario"
@@ -557,12 +562,7 @@ const GROUPS: NominaGroup[] = [
 ];
 
 type TagSeverity =
-  | "success"
-  | "info"
-  | "warn"
-  | "danger"
-  | "secondary"
-  | "contrast";
+  "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
 
 interface HeroMetric {
   label: string;
@@ -572,13 +572,12 @@ interface HeroMetric {
   tone: string;
 }
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-nomina-dashboard",
-  imports: [
-    WebButtonIcon,WebButtonLabel, LxTag, AppIcon],
+  imports: [WebButtonIcon, WebButtonLabel, LxTag, AppIcon],
   templateUrl: "./nomina-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./nomina-dashboard.scss"],

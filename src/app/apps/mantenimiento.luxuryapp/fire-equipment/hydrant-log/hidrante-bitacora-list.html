@@ -129,48 +129,40 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-        
       >
-        <app-icon
-          icon="mdi:pipe"
-          
-        />
+        <app-icon icon="mdi:pipe" />
       </div>
-      
-        <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
-        <p>{{ item.cabinetState }}</p>
-        <div class="flex gap-2 mt-1">
-          <small [class]="item.labelPresent ? 'text-green-600' : 'text-red-600'"
-            >Etiqueta</small
-          >
-          <small [class]="item.glassIntact ? 'text-green-600' : 'text-red-600'"
-            >Cristal</small
-          >
-          <small
-            [class]="item.wrenchPresent ? 'text-green-600' : 'text-red-600'"
-            >Llave</small
-          >
-          <small [class]="item.hoseOk ? 'text-green-600' : 'text-red-600'"
-            >Manguera</small
-          >
-          <small
-            [class]="item.valveOperational ? 'text-green-600' : 'text-red-600'"
-            >Vólvula</small
-          >
-        </div>
-      
+
+      <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
+      <p>{{ item.cabinetState }}</p>
+      <div class="flex gap-2 mt-1">
+        <small [class]="item.labelPresent ? 'text-green-600' : 'text-red-600'"
+          >Etiqueta</small
+        >
+        <small [class]="item.glassIntact ? 'text-green-600' : 'text-red-600'"
+          >Cristal</small
+        >
+        <small [class]="item.wrenchPresent ? 'text-green-600' : 'text-red-600'"
+          >Llave</small
+        >
+        <small [class]="item.hoseOk ? 'text-green-600' : 'text-red-600'"
+          >Manguera</small
+        >
+        <small
+          [class]="item.valveOperational ? 'text-green-600' : 'text-red-600'"
+          >Vólvula</small
+        >
+      </div>
+
       <ili-action-menu end>
-          <ng-container actions>
-            <ili-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
-              label="Editar"
-            />
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
-          </ng-container>
-        </ili-action-menu>
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

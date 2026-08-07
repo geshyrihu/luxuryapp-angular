@@ -1,6 +1,11 @@
-import { ChangeDetectionStrategy, Component, input, inject } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from "@angular/core";
 import { DebugConsoleService } from "src/app/core/services/debug-console.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 interface LogEntry {
   level: "log" | "error" | "warn" | "info";
@@ -22,7 +27,9 @@ interface LogEntry {
       class="fixed bottom-4 right-4 w-96 max-w-[calc(100vw-2rem)] h-96 bg-gray-900 rounded-lg shadow-2xl z-50 flex flex-col border border-gray-700"
     >
       <!-- Header -->
-      <div class="flex justify-between items-center p-3 border-b border-gray-700 bg-gray-800">
+      <div
+        class="flex justify-between items-center p-3 border-b border-gray-700 bg-gray-800"
+      >
         <span class="text-white font-bold text-sm">🐛 Debug Console</span>
         <div class="flex gap-2">
           <button
@@ -43,26 +50,29 @@ interface LogEntry {
       <!-- Logs -->
       <div class="flex-1 overflow-y-auto p-2 font-mono text-xs space-y-1">
         @if (logs().length === 0) {
-        <div class="text-gray-500 text-center py-8">No logs yet...</div>
-        } @else { @for (log of logs(); track log.timestamp) {
-        <div
-          [class]="
-            'px-2 py-1 rounded break-words ' +
-            getLogColor(log.level)
-          "
-        >
-          <span class="text-gray-400">{{ log.timestamp }}</span>
-          <span class="text-gray-500">[{{ log.level.toUpperCase() }}]</span>
-          <span class="text-white">{{ log.message }}</span>
-          @if (log.details) {
-          <div class="text-gray-400 ml-4 mt-1">{{ log.details }}</div>
+          <div class="text-gray-500 text-center py-8">No logs yet...</div>
+        } @else {
+          @for (log of logs(); track log.timestamp) {
+            <div
+              [class]="
+                'px-2 py-1 rounded break-words ' + getLogColor(log.level)
+              "
+            >
+              <span class="text-gray-400">{{ log.timestamp }}</span>
+              <span class="text-gray-500">[{{ log.level.toUpperCase() }}]</span>
+              <span class="text-white">{{ log.message }}</span>
+              @if (log.details) {
+                <div class="text-gray-400 ml-4 mt-1">{{ log.details }}</div>
+              }
+            </div>
           }
-        </div>
-        } }
+        }
       </div>
 
       <!-- Stats -->
-      <div class="border-t border-gray-700 p-2 bg-gray-800 text-xs text-gray-400">
+      <div
+        class="border-t border-gray-700 p-2 bg-gray-800 text-xs text-gray-400"
+      >
         {{ logs().length }} logs
       </div>
     </div>

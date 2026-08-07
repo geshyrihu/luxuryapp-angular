@@ -10,8 +10,6 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -20,7 +18,12 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-activos-documentos",
 

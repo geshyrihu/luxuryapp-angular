@@ -3,30 +3,25 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
-  signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { SharedModule } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { SharedModule } from "@ui/web/primeng-api/primeng-api";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import type { CobranzaOnlineDashboardResponse } from "../interfaces/cobranza-online-dashboard.model";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
+import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 
 @Component({
   selector: "app-cobranza-online-advances",
@@ -35,7 +30,6 @@ import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state
     RouterModule,
     TableModule,
     SharedModule,
-    WebButtonLabel,
     AppIcon,
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
@@ -49,15 +43,15 @@ import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state
 export class CobranzaOnlineAdvances {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
-  private apiResponseS = inject(ApiResponseService);
   private tableScrollHeightS = inject(TableScrollHeightService);
+  private store = inject(CobranzaOnlineStoreService);
 
   readonly currentYear = cobranzaOnlineFilterState.year;
   readonly currentMonth = cobranzaOnlineFilterState.month;
   readonly currentDay = cobranzaOnlineFilterState.day;
 
-  readonly loading = signal(false);
-  readonly dashboard = signal<CobranzaOnlineDashboardResponse | null>(null);
+  readonly loading = this.store.isLoading;
+  readonly dashboard = this.store.dashboardData;
 
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
 
@@ -71,34 +65,30 @@ export class CobranzaOnlineAdvances {
     this.advances().reduce((acc, curr) => acc + curr.balance * -1, 0),
   );
 
-  constructor() {
-    effect(() => {
-      const customerId = this.customerIdS.customerId();
-      if (!customerId) {
-        this.dashboard.set(null);
-        return;
-      }
+  /** Total de adelantos exclusivamente de cuota Mtto (001) */
+  readonly totalAdvancesMtto = computed(() =>
+    this.advances().reduce(
+      (acc, curr) => acc + Math.abs(curr.maintenanceBalance || 0),
+      0,
+    ),
+  );
 
-      void this.loadData(customerId);
-    });
-  }
+  /** Total de adelantos de cuota Extraordinaria (003) */
+  readonly totalAdvancesExtra = computed(() =>
+    this.advances().reduce(
+      (acc, curr) => acc + Math.abs(curr.extraordinaryBalance || 0),
+      0,
+    ),
+  );
 
-  private async loadData(customerId: string) {
-    this.loading.set(true);
-    const dashboard =
-      await this.apiResponseS.onGetItem<CobranzaOnlineDashboardResponse>(
-        Endpoints.CobranzaOnline.Dashboard.get(
-          customerId,
-          this.currentYear(),
-          this.currentMonth(),
-          this.currentDay(),
-        ),
-      );
-    this.dashboard.set(dashboard ?? null);
-    this.loading.set(false);
-  }
+  /** Hay adelantos extraordinarios (para mostrar/ocultar la columna) */
+  readonly hasExtraAdvances = computed(() =>
+    this.advances().some((a) => (a.extraordinaryBalance || 0) < 0),
+  );
 
-  navigateTo(route: string) {
-    if (route) this.router.navigateByUrl(route);
-  }
+  constructor() {}
+
+  // navigateTo(route: string) {
+  //   if (route) this.router.navigateByUrl(route);
+  // }
 }

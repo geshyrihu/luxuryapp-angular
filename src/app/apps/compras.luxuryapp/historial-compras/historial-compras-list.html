@@ -46,13 +46,13 @@
 
             <div class="flex flex-wrap gap-2">
               @for (preset of dateRangePresets; track preset.label) {
-                <button
-                  type="button"
-                  class="border-1 surface-border bg-white border-round-md px-2 py-1 text-xs font-medium text-primary cursor-pointer"
-                  (click)="applyDatePreset(preset.mode, preset.days ?? 0)"
-                >
-                  {{ preset.label }}
-                </button>
+              <button
+                type="button"
+                class="border-1 surface-border bg-white border-round-md px-2 py-1 text-xs font-medium text-primary cursor-pointer"
+                (click)="applyDatePreset(preset.mode, preset.days ?? 0)"
+              >
+                {{ preset.label }}
+              </button>
               }
             </div>
           </div>
@@ -213,8 +213,8 @@
       <p>Folio: {{ item.folio }} | {{ item.tipoOrdenLabel }}</p>
       <p>Factura: {{ item.factura }}</p>
       <p>
-        Total: {{ item.total | number:'1.2-2' }} |
-        {{ item.fechaSolicitud | date:'dd/MM/yyyy':'UTC' }}
+        Total: {{ item.total | number:'1.2-2' }} | {{ item.fechaSolicitud |
+        date:'dd/MM/yyyy':'UTC' }}
       </p>
       <ili-action-menu slot="end">
         <ng-container actions>

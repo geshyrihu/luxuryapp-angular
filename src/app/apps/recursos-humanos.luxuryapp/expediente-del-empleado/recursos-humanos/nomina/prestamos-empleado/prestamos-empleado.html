@@ -44,16 +44,12 @@
       <td class="text-right font-bold">
         {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
-      <td >
+      <td>
         <div class="flex align-items-center gap-2">
-          <div
-            class="rounded overflow-hidden flex-1"
-            
-          >
+          <div class="rounded overflow-hidden flex-1">
             <div
               class="rounded bg-primary"
               [style.width.%]="getProgreso(item)"
-              
             ></div>
           </div>
           <span class="text-xs"
@@ -100,39 +96,31 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-        
       >
-        <app-icon
-          icon="mdi:currency-usd"
-          
+        <app-icon icon="mdi:currency-usd" />
+      </div>
+
+      <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
+      <p class="text-xs m-0">{{ item.motivo }}</p>
+      <div class="flex align-items-center gap-2 mt-1">
+        <span class="font-bold"
+          >{{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0"
+          }}</span
+        >
+        <lx-tag
+          [severity]="getEstadoSeverity(item.estado)"
+          [value]="item.estado"
         />
       </div>
-      
-        <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
-        <p class="text-xs m-0">{{ item.motivo }}</p>
-        <div class="flex align-items-center gap-2 mt-1">
-          <span class="font-bold"
-            >{{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0"
-            }}</span
-          >
-          <lx-tag
-            [severity]="getEstadoSeverity(item.estado)"
-            [value]="item.estado"
-          />
-        </div>
-        <div class="mt-1">
+      <div class="mt-1">
+        <div class="rounded overflow-hidden">
           <div
-            class="rounded overflow-hidden"
-            
-          >
-            <div
-              class="rounded bg-primary"
-              [style.width.%]="getProgreso(item)"
-              
-            ></div>
-          </div>
+            class="rounded bg-primary"
+            [style.width.%]="getProgreso(item)"
+          ></div>
         </div>
-      
+      </div>
+
       <div end>
         <iw-button
           iconClass="mdi:eye-outline"

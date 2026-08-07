@@ -144,13 +144,19 @@ export class MedidorLecturaForm implements OnInit {
 
   onSubmit() {
     if (this.form.value.lectura == 0) return;
+    const endpoint = this.id
+      ? Endpoints.MeterReadings.update(this.id)
+      : Endpoints.MeterReadings.create;
+    const method = this.id ? "PUT" : "POST";
+
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.MeterReadings.create,
+      endpoint,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
+      method,
       transformPayload: () => ({
         ...this.form.getRawValue(),
         fechaRegistro: this.form.controls.fechaRegistro.value

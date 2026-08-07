@@ -21,22 +21,18 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="sortOrder" >
+      <th pSortableColumn="sortOrder">
         Orden <p-sorticon field="sortOrder" />
       </th>
-      <th pSortableColumn="name" >
-        Nombre Interno <p-sorticon field="name" />
-      </th>
-      <th pSortableColumn="displayName" >
+      <th pSortableColumn="name">Nombre Interno <p-sorticon field="name" /></th>
+      <th pSortableColumn="displayName">
         Nombre para Mostrar <p-sorticon field="displayName" />
       </th>
-      <th pSortableColumn="departament" >
+      <th pSortableColumn="departament">
         Departamento <p-sorticon field="departament" />
       </th>
-      <th pSortableColumn="isActive" >
-        Activo <p-sorticon field="isActive" />
-      </th>
-      <th >Acciones</th>
+      <th pSortableColumn="isActive">Activo <p-sorticon field="isActive" /></th>
+      <th>Acciones</th>
     </tr>
   </ng-template>
   <ng-template #groupheader let-item>

@@ -10,10 +10,10 @@ import {
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LxRating } from "@ui/adaptive/rating/rating";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -51,7 +51,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-provider-list",
@@ -236,11 +236,13 @@ export class ListProvider implements OnInit {
   // Autoriza un proveedor
   onAutorizarProvider(providerId: any) {
     const urlApi = Endpoints.Providers.authorize(providerId);
-    this.apiResponseS.onPut(urlApi, {
-      customerId: this.customerIdS.customerId(),
-    }).then(() => {
-      this.onLoadData();
-    });
+    this.apiResponseS
+      .onPut(urlApi, {
+        customerId: this.customerIdS.customerId(),
+      })
+      .then(() => {
+        this.onLoadData();
+      });
   }
 
   // Muestra la tarjeta del proveedor
@@ -299,13 +301,7 @@ export class ListProvider implements OnInit {
   // Cambia el estado (activo/inactivo) del proveedor
   onActivateProvider(data: any) {
     this.apiResponseS
-      .onPut(
-        Endpoints.Providers.changeState(
-          data.providerId,
-          data.state,
-        ),
-        null,
-      )
+      .onPut(Endpoints.Providers.changeState(data.providerId, data.state), null)
       .then(() => {
         this.onLoadData();
       });

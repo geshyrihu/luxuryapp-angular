@@ -19,7 +19,6 @@ import {
 import { RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
@@ -27,6 +26,7 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 
 interface IRecoverPasswordForm {

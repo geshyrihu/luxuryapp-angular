@@ -3,9 +3,9 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { TagBase } from "@ui/base/tag.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { TagBase } from "@ui/base/tag.base";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-tag",

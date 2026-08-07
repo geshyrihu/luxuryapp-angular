@@ -7,7 +7,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
@@ -17,6 +16,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { reportFilterState } from "../state/financial-report-filter.state";
 
 @Component({

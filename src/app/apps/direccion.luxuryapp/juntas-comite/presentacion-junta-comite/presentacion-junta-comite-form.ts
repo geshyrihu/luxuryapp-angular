@@ -14,10 +14,13 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputFile } from "@ui/inputs/adaptive/input-file/input-file";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 
 interface IPresentacionJuntaComiteForm {
   id: FormControl<string | null>;
@@ -26,7 +29,7 @@ interface IPresentacionJuntaComiteForm {
 }
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-presentacion-junta-comite-form",

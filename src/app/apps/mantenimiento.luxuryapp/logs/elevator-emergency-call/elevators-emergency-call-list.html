@@ -134,17 +134,14 @@
       </div>
 
       <ili-action-menu end>
-          <ng-container actions>
-            <ili-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              label="Editar"
-            />
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
-          </ng-container>
-        </ili-action-menu>
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

@@ -2,121 +2,75 @@
   <div>
     <h1 class="m-0 text-2xl font-bold text-900">Reporte de Morosidad</h1>
     <p class="m-0 mt-1 text-600">
-      Propiedades con deudas pendientes · Corte
-      {{ baseService.morososData()?.fechaCorte }}
+      Propiedades con deudas pendientes · Corte {{
+      baseService.morososData()?.fechaCorte }}
     </p>
   </div>
 
-  @if (maintenanceMetrics()) {
-  <div class="grid mb-3">
-    <!-- Mantenimiento -->
-    <div
-      class="col-12"
-      [ngClass]="extraordinaryChartData() ? 'xl:col-6' : 'xl:col-8'"
-    >
-      <div
-        class="surface-card p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4 bg-white"
-      >
-        <div class="flex-1 w-full">
-          <h3 class="text-md font-semibold text-color m-0 mb-3">
-            Mantenimiento Neto del Mes
-          </h3>
-          <div class="flex justify-content-between mb-2">
-            <span class="text-color-secondary">A recaudar:</span>
-            <span class="font-bold"
-              >{{ maintenanceMetrics().total | currency:
-              "MXN":"symbol":"1.0-0" }}</span
-            >
-          </div>
-          <div class="flex justify-content-between mb-2">
-            <span class="text-color-secondary">Abonado:</span>
-            <span class="font-bold text-success"
-              >{{ maintenanceMetrics().collected | currency:
-              "MXN":"symbol":"1.0-0" }}</span
-            >
-          </div>
-          <div class="flex justify-content-between mb-2">
-            <span class="text-color-secondary">Faltante por cobrar:</span>
-            <span class="font-bold text-warning"
-              >{{ maintenanceMetrics().pending | currency:
-              "MXN":"symbol":"1.0-0" }}</span
-            >
-          </div>
-        </div>
-        <div class="w-12rem flex-shrink-0">
-          <app-pie-chart
-            [dataGrafico]="maintenanceChartData()?.data"
-            [colorScheme]="{domain: maintenanceChartData()?.colors}"
-          ></app-pie-chart>
-        </div>
-      </div>
-    </div>
-
-    <!-- Extraordinaria -->
-    @if (extraordinaryChartData()) {
-    <div class="col-12 xl:col-6">
-      <div
-        class="surface-card p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4 bg-white"
-      >
-        <div class="flex-1 w-full">
-          <h3 class="text-md font-semibold text-color m-0 mb-3">
-            Cuotas Extraordinarias del Mes
-          </h3>
-          <div class="flex justify-content-between mb-2">
-            <span class="text-color-secondary">A recaudar:</span>
-            <span class="font-bold"
-              >{{ extraordinaryMetrics().total | currency:
-              "MXN":"symbol":"1.0-0" }}</span
-            >
-          </div>
-          <div class="flex justify-content-between mb-2">
-            <span class="text-color-secondary">Abonado:</span>
-            <span class="font-bold text-success"
-              >{{ extraordinaryMetrics().collected | currency:
-              "MXN":"symbol":"1.0-0" }}</span
-            >
-          </div>
-          <div class="flex justify-content-between mb-2">
-            <span class="text-color-secondary">Faltante por cobrar:</span>
-            <span class="font-bold text-warning"
-              >{{ extraordinaryMetrics().pending | currency:
-              "MXN":"symbol":"1.0-0" }}</span
-            >
-          </div>
-        </div>
-        <div class="w-12rem flex-shrink-0">
-          <app-pie-chart
-            [dataGrafico]="extraordinaryChartData()?.data"
-            [colorScheme]="{domain: extraordinaryChartData()?.colors}"
-          ></app-pie-chart>
-        </div>
+  <div class="grid">
+    <!-- 1. Avance de la cobranza del mes -->
+    @if (baseService.avanceCobranza(); as avance) {
+    <div class="col-12 md:col-4">
+      <app-stat-card
+        orientation="horizontal"
+        label="Cobrado del mes"
+        [value]="avance.cobrado"
+        format="currency"
+        icon="mdi:cash-check"
+        iconColor="var(--ds-success)"
+        iconBg="var(--ds-success-light)"
+        [subtitle]="
+          'de ' + (avance.meta | currency: 'MXN':'symbol':'1.0-0') + ' a recaudar'
+        "
+      />
+      <div class="px-3 pb-3 -mt-2">
+        <app-progress-bar
+          [value]="avance.porcentaje * 100"
+          [showValue]="true"
+          color="auto"
+        />
       </div>
     </div>
     }
-  </div>
-  }
 
-
-
-  <div class="flex justify-content-between align-items-center mt-2">
-    <div class="flex align-items-center gap-2">
-      <div class="committee-stat committee-stat--danger border-1 surface-border shadow-1 mb-0 py-2">
-        <span class="committee-stat__label text-sm">
-          <app-icon icon="mdi:cash-multiple" /> Deuda total consolidada (Condóminos con adeudo)
-        </span>
-        <span class="committee-stat__value text-lg">
-          {{ baseService.morososData()?.totalDeudaPendiente ?? 0 | currency: "MXN" : "symbol" : "1.0-0" }}
-        </span>
-      </div>
+    <!-- 2. Cartera vencida -->
+    @if (baseService.carteraVencida(); as cartera) {
+    <div class="col-12 md:col-4">
+      <app-stat-card
+        orientation="horizontal"
+        label="Cartera vencida"
+        [value]="cartera.total"
+        format="currency"
+        icon="mdi:cash-multiple"
+        iconColor="var(--ds-warning)"
+        iconBg="var(--ds-warning-light)"
+        [subtitle]="
+          cartera.condominosConAdeudo +
+          ' de ' +
+          cartera.totalCondominos +
+          ' condóminos deben'
+        "
+      />
     </div>
-    <div class="text-right">
-      <span class="committee-stat__label">
-        <app-icon icon="mdi:home-city-outline" /> Condóminos con adeudo
-      </span>
-      <span class="committee-stat__value block text-xl font-bold mt-1">
-        {{ baseService.morososData()?.totalMorosos ?? 0 }}
-      </span>
+    }
+
+    <!-- 3. Cobranza judicial -->
+    @if (baseService.cobranzaJudicial(); as judicial) {
+    <div class="col-12 md:col-4">
+      <app-stat-card
+        orientation="horizontal"
+        label="En cobranza judicial"
+        [value]="judicial.cantidad"
+        format="number"
+        icon="mdi:gavel"
+        iconColor="var(--ds-danger)"
+        iconBg="var(--ds-danger-light)"
+        [subtitle]="
+          (judicial.deuda | currency: 'MXN':'symbol':'1.0-0') + ' acumulados'
+        "
+      />
     </div>
+    }
   </div>
 
   <p-table
@@ -135,29 +89,28 @@
     #dt
   >
     <ng-template #caption>
-      <primeng-custom-caption
-        [dt]="dt"
-        [showAdd]="false"
-        label="Morosos"
-      />
+      <primeng-custom-caption [dt]="dt" [showAdd]="false" label="Morosos" />
     </ng-template>
 
     <ng-template #header>
       <tr>
         <th pSortableColumn="departamento">
-          Propiedad <p-sortIcon field="departamento"></p-sortIcon>
+          Propiedad <p-sorticon field="departamento"></p-sorticon>
+        </th>
+        <th pSortableColumn="clasificacion">
+          Situación <p-sorticon field="clasificacion"></p-sorticon>
         </th>
         <th pSortableColumn="saldoMantenimiento" class="text-right">
-          Mtto. <p-sortIcon field="saldoMantenimiento"></p-sortIcon>
+          Mtto. <p-sorticon field="saldoMantenimiento"></p-sorticon>
         </th>
         <th pSortableColumn="saldoExtraordinario" class="text-right">
-          Extra. <p-sortIcon field="saldoExtraordinario"></p-sortIcon>
+          Extra. <p-sorticon field="saldoExtraordinario"></p-sorticon>
         </th>
         <th pSortableColumn="saldoMultas" class="text-right">
-          Multas <p-sortIcon field="saldoMultas"></p-sortIcon>
+          Multas <p-sorticon field="saldoMultas"></p-sorticon>
         </th>
         <th pSortableColumn="saldoPendiente" class="text-right">
-          Deuda Total <p-sortIcon field="saldoPendiente"></p-sortIcon>
+          Deuda Total <p-sorticon field="saldoPendiente"></p-sorticon>
         </th>
         <th style="width: 3rem"></th>
       </tr>
@@ -165,7 +118,15 @@
 
     <ng-template #body let-item>
       <tr>
-        <td class="font-medium text-900">{{ item.departamento || "Sin nombre" }}</td>
+        <td class="font-medium text-900">
+          {{ item.departamento || "Sin nombre" }}
+        </td>
+        <td>
+          <lx-tag
+            [value]="item.clasificacion"
+            [severity]="clasificacionSeverity(item.clasificacion)"
+          />
+        </td>
         <td class="text-right font-mono text-700">
           {{ item.saldoMantenimiento | currency: "MXN" : "symbol" : "1.0-0" }}
         </td>
@@ -179,15 +140,24 @@
           {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
         </td>
         <td>
-          <p-button type="button" pRipple (click)="openDetailModal(item)" [text]="true" [rounded]="true" [plain]="true" icon="pi pi-eye" pTooltip="Ver Detalle" />
+          <p-button
+            type="button"
+            pRipple
+            (click)="openDetailModal(item)"
+            [text]="true"
+            [rounded]="true"
+            [plain]="true"
+            icon="pi pi-eye"
+            pTooltip="Ver Detalle"
+          />
         </td>
       </tr>
     </ng-template>
 
     <ng-template #empty>
-      <primeng-custom-table-emptymessage 
-        title="Sin morosos" 
-        message="No se encontraron propiedades con deuda." 
+      <primeng-custom-table-emptymessage
+        title="Sin morosos"
+        message="No se encontraron propiedades con deuda."
       />
     </ng-template>
   </p-table>

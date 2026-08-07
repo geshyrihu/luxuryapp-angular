@@ -5,7 +5,6 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -14,12 +13,13 @@ import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "src/app/core/services/dialog-handler.service";
-import { ChargeForm } from "../charges/charge-form";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   CobranzaPaymentAllocationDetailDTO,
   CobranzaPaymentResponseDTO,
 } from "../../interfaces/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
+import { ChargeForm } from "../charges/charge-form";
 
 @Component({
   selector: "app-payment-detail-modal",

@@ -8,9 +8,9 @@ import {
 import { RouterModule } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { SettingsMenuItem } from "src/app/core/interfaces/menu.interface";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   normalizePrimeIconClass,
   resolvePrimeIcon,

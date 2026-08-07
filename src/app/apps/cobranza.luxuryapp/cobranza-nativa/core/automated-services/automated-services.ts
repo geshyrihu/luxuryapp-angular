@@ -6,17 +6,17 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LxCard } from "@ui/adaptive/card/card";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 interface JobResult {
   jobName: string;
@@ -91,9 +91,7 @@ export default class AutomatedServices {
     this.running.set("latefees");
     try {
       const count = await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaCore.Automation.calculateLateFees(
-          customerId,
-        ),
+        Endpoints.CobranzaCore.Automation.calculateLateFees(customerId),
         {},
       );
       this.addResult(
@@ -112,9 +110,7 @@ export default class AutomatedServices {
     this.running.set("escalate");
     try {
       const count = await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaCore.Automation.evaluateCollectionCases(
-          customerId,
-        ),
+        Endpoints.CobranzaCore.Automation.evaluateCollectionCases(customerId),
         {},
       );
       this.addResult(
@@ -161,4 +157,3 @@ export default class AutomatedServices {
     return this.monthOptions().find((o) => o.value === m)?.label ?? String(m);
   }
 }
-

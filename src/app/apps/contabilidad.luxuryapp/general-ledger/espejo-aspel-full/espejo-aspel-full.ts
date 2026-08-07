@@ -11,12 +11,12 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { SharedModule } from "@ui/web/primeng-api/primeng-api";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ReportFilterService } from "./financial-report-filter.service";
 import {
   IEspejoAspelFullResponseDTO,

@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
@@ -16,14 +15,14 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import type {
   CobranzaOnlineInspectionResponse,
   CobranzaOnlineInspectionRow,
@@ -33,7 +32,7 @@ import { CobranzaOnlineInspectionHistoryModal } from "./cobranza-online-inspecti
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-cobranza-online-inspection",
@@ -50,7 +49,6 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     MobileListItem,
-    WebButtonLabel,
   ],
 })
 export class CobranzaOnlineInspection {
@@ -176,9 +174,5 @@ export class CobranzaOnlineInspection {
     const month = parsedDate.toLocaleDateString("es-MX", { month: "short" });
     const year = parsedDate.getFullYear().toString().slice(-2);
     return `${day}-${month}-${year}`;
-  }
-
-  navigateTo(route: string) {
-    if (route) this.router.navigateByUrl(route);
   }
 }

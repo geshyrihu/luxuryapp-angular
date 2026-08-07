@@ -76,19 +76,13 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div
-        start
-        
-      >
-        <app-icon
-          icon="mdi:file-outline"
-          
-        />
+      <div start>
+        <app-icon icon="mdi:file-outline" />
       </div>
-      
-        <h3>{{ item.name | uppercase }}</h3>
-        <p>Folio: {{ item.folio }}</p>
-      
+
+      <h3>{{ item.name | uppercase }}</h3>
+      <p>Folio: {{ item.folio }}</p>
+
       <ili-action-menu slot="end">
         <ili-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

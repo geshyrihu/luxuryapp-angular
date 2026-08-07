@@ -200,47 +200,43 @@
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
-          icon="mdi:calendar-outline"
-          class="text-xl text-primary"
-        />
+        <app-icon icon="mdi:calendar-outline" class="text-xl text-primary" />
       </div>
-      
-        <h2 class="text-base font-bold mb-1">{{ item.nombre }}</h2>
 
-        <div
-          class="mb-2 text-sm text-700"
-          [innerHTML]="item.actividad | sanitizeHtml"
-        ></div>
+      <h2 class="text-base font-bold mb-1">{{ item.nombre }}</h2>
 
-        <div class="grid mt-1">
-          <div class="p-0 text-xs">
-            <p class="mb-0 text-color-secondary">Proveedor</p>
-            <p class="mb-1 font-semibold">{{ item.provider }}</p>
-          </div>
-          <div class="p-0 text-xs">
-            <p class="mb-0 text-color-secondary">Recurrencia</p>
-            <p class="mb-1 font-semibold">{{ item.recurrencia }}</p>
-          </div>
-          <div class="p-0 text-xs">
-            <p class="mb-0 text-color-secondary">Fecha</p>
-            <p class="mb-1 font-semibold">{{ item.fechaServicio }}</p>
-          </div>
-          <div class="p-0 text-xs">
-            <p class="mb-0 text-color-secondary">Costo</p>
-            <p class="mb-1 font-semibold">
-              {{ item.precio | CurrencyMexicoPipe }}
-            </p>
-          </div>
+      <div
+        class="mb-2 text-sm text-700"
+        [innerHTML]="item.actividad | sanitizeHtml"
+      ></div>
+
+      <div class="grid mt-1">
+        <div class="p-0 text-xs">
+          <p class="mb-0 text-color-secondary">Proveedor</p>
+          <p class="mb-1 font-semibold">{{ item.provider }}</p>
         </div>
-      
+        <div class="p-0 text-xs">
+          <p class="mb-0 text-color-secondary">Recurrencia</p>
+          <p class="mb-1 font-semibold">{{ item.recurrencia }}</p>
+        </div>
+        <div class="p-0 text-xs">
+          <p class="mb-0 text-color-secondary">Fecha</p>
+          <p class="mb-1 font-semibold">{{ item.fechaServicio }}</p>
+        </div>
+        <div class="p-0 text-xs">
+          <p class="mb-0 text-color-secondary">Costo</p>
+          <p class="mb-1 font-semibold">
+            {{ item.precio | CurrencyMexicoPipe }}
+          </p>
+        </div>
+      </div>
 
       @if (aspRoleS.hasAny([AspRole.JefeMantenimiento, AspRole.Administrador,
       AspRole.SuperUsuario])) {
       <ili-action-menu end>
-          <ng-container actions>
-            <ili-button-edit
-              (clicked)="
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="
                   onModalForm({
                     idnombre: item.id,
                     id: item.id,
@@ -248,10 +244,10 @@
                     header: 'Editar registro ' + item.id,
                   })
                 "
-              label="Editar"
-            />
-            <ili-button-item
-              (clicked)="
+            label="Editar"
+          />
+          <ili-button-item
+            (clicked)="
                   onModalForm({
                     idnombre: item.id,
                     id: item.id,
@@ -259,16 +255,16 @@
                     header: 'Duplicar servicio',
                   })
                 "
-              label="Duplicar"
-              iconName="document-text-outline"
-            />
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              [isLinked]="item.hasServiceOrder"
-              label="Eliminar"
-            />
-          </ng-container>
-        </ili-action-menu>
+            label="Duplicar"
+            iconName="document-text-outline"
+          />
+          <ili-button-delete
+            (confirmed)="onDelete(item.id)"
+            [isLinked]="item.hasServiceOrder"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
       }
     </ili-list-item>
   </ng-template>

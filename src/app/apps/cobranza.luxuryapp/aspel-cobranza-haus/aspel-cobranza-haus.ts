@@ -17,7 +17,6 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -28,9 +27,12 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService, DialogSize } from "src/app/core/services/dialog-handler.service";
-import { AspelCobranzaReglasNegocioComponent } from "./aspel-cobranza-reglas-negocio/aspel-cobranza-reglas-negocio";
+import {
+  DialogHandlerService,
+  DialogSize,
+} from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { AspelCobranzaHausDebtDetailModal } from "./aspel-cobranza-haus-debt-detail-modal";
 import { AspelCobranzaHausPdfService } from "./aspel-cobranza-haus-pdf.service";
 import { AspelCobranzaHausQueryPanel } from "./aspel-cobranza-haus-query-panel";
@@ -53,6 +55,7 @@ import {
   AspelQueryRequest,
   SelectItem,
 } from "./aspel-cobranza-haus.models";
+import { AspelCobranzaReglasNegocioComponent } from "./aspel-cobranza-reglas-negocio/aspel-cobranza-reglas-negocio";
 
 @Component({
   selector: "app-aspel-cobranza-haus",
@@ -304,7 +307,6 @@ export class AspelCobranzaHaus {
     return !!numCta && !!this.request.fechaInicio && !!this.request.fechaFin;
   }
 
-
   getModeTitle(): string {
     const sourceSuffix = this.dataSource() === "local" ? "Local" : "Live";
 
@@ -418,7 +420,6 @@ export class AspelCobranzaHaus {
       );
       return;
     }
-
   }
 
   private clearResults(): void {
@@ -467,7 +468,7 @@ export class AspelCobranzaHaus {
       AspelCobranzaReglasNegocioComponent,
       {},
       "Reglas de Negocio V2",
-      DialogSize.md
+      DialogSize.md,
     );
   }
 

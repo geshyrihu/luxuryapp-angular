@@ -11,7 +11,6 @@ import { ActivatedRoute } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -26,6 +25,7 @@ import { DateService } from "src/app/core/services/date.service";
 import { ReportService } from "src/app/core/services/report.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-resumen-minuta",

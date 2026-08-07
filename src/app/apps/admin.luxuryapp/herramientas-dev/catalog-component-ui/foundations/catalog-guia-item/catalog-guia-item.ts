@@ -1,23 +1,23 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   inject,
   signal,
   ViewEncapsulation,
-  ChangeDetectionStrategy,
 } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { FormsModule } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
+import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
+import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { InputTextarea } from "@ui/inputs/adaptive/input-textarea/input-textarea";
-import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
-import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
@@ -27,7 +27,7 @@ import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { ToolbarModule } from "@ui/web/primeng-toolbar/primeng-toolbar";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ButtonCatalog } from "./button-catalog/button-catalog";
 
 type TagSeverity =
@@ -98,7 +98,9 @@ const GUIA_LABELS: Record<string, string> = {
           <div class="grid mb-5">
             @for (s of businessScenarios; track s.title) {
               <div class="col-12 lg:col-4">
-                <div class="card h-full border-top-3 border-primary surface-card">
+                <div
+                  class="card h-full border-top-3 border-primary surface-card"
+                >
                   <div class="flex align-items-center gap-3 mb-3">
                     <app-icon [icon]="s.icon" class="text-primary text-2xl" />
                     <strong class="text-xl">{{ s.title }}</strong>
@@ -127,7 +129,8 @@ const GUIA_LABELS: Record<string, string> = {
               <div class="col-12 lg:col-4">
                 <div
                   class="h-full border-left-3 border-primary surface-card shadow-1"
-                 class="card">
+                  class="card"
+                >
                   <div class="flex align-items-start gap-3">
                     <app-icon [icon]="p.icon" class="text-primary text-2xl" />
                     <div>

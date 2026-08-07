@@ -9,11 +9,11 @@ import {
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   CeldaGuardarDTO,
   CeldaHojaDTO,

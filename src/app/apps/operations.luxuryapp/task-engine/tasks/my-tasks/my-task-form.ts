@@ -14,12 +14,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AvatarModule } from "@ui/web/primeng-avatar/primeng-avatar";
-import {
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -27,9 +22,14 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { TaskGroupService } from "../task.service";
 
 @Component({

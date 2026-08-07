@@ -7,10 +7,10 @@ import {
   output,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TreeNode } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { TreeTableModule } from "primeng/treetable";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface TreeTableColumn {
   field: string;

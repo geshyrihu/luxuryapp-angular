@@ -9,7 +9,6 @@ import {
 import { Router } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import {
   alertCircleOutline,
@@ -33,6 +32,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { AiService } from "src/app/core/services/ai.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 

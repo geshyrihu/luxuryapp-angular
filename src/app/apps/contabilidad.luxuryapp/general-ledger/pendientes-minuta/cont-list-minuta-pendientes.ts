@@ -17,14 +17,13 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { MessageService } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
-import { MessageService } from "@ui/web/primeng-api/primeng-api";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { MeetingSeguimientoEdit } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -38,6 +37,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
 @Component({
   selector: "app-cont-list-minuta-pendientes",

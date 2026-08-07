@@ -1,9 +1,9 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { addIcons } from "ionicons";
 import { ellipsisVertical } from "ionicons/icons";
 import { ButtonModule } from "primeng/button";
 import { Popover, PopoverModule } from "primeng/popover";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * 🍔 ACTION MENU
@@ -42,27 +42,29 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  styles: [`
-    .menu-container {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      padding: 0.375rem;
-      min-width: 180px;
-    }
-    .menu-container ::ng-deep button {
-      width: 100%;
-      justify-content: flex-start;
-    }
-    /* Mobile: items más grandes para touch */
-    @media (max-width: 767px) {
+  styles: [
+    `
       .menu-container {
-        min-width: 200px;
-        gap: 0.125rem;
-        padding: 0.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 0.375rem;
+        min-width: 180px;
       }
-    }
-  `],
+      .menu-container ::ng-deep button {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      /* Mobile: items más grandes para touch */
+      @media (max-width: 767px) {
+        .menu-container {
+          min-width: 200px;
+          gap: 0.125rem;
+          padding: 0.25rem;
+        }
+      }
+    `,
+  ],
 })
 export class ActionMenu {
   constructor() {

@@ -12,10 +12,10 @@ import {
 import { LxBadge } from "@ui/adaptive/badge/badge";
 import { LxTree } from "@ui/adaptive/tree/tree";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TreeNode } from "@ui/web/primeng-api/primeng-api";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IAccountTreeNode } from "../interfaces/report-definition.interface";
 import { livePreviewState } from "../state/live-preview.state";
 

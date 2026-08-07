@@ -120,49 +120,42 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-        
       >
-        <app-icon
-          icon="mdi:alarm-light-outline"
-          
-        />
+        <app-icon icon="mdi:alarm-light-outline" />
       </div>
-      
-        <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
-        @if (item.observations) {
-        <p>{{ item.observations }}</p>
-        }
-        <div class="flex gap-2 mt-1">
-          <small
-            [class]="item.accessibleAndVisible ? 'text-green-600' : 'text-red-600'"
-            >Accesible</small
-          >
-          <small [class]="item.housingOk ? 'text-green-600' : 'text-red-600'"
-            >Carcasa</small
-          >
-          <small [class]="item.leverOk ? 'text-green-600' : 'text-red-600'"
-            >Palanca</small
-          >
-          <small [class]="item.glassIntact ? 'text-green-600' : 'text-red-600'"
-            >Cristal</small
-          >
-          <small [class]="item.signageOk ? 'text-green-600' : 'text-red-600'"
-            >Seóalización</small
-          >
-        </div>
-      
+
+      <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
+      @if (item.observations) {
+      <p>{{ item.observations }}</p>
+      }
+      <div class="flex gap-2 mt-1">
+        <small
+          [class]="item.accessibleAndVisible ? 'text-green-600' : 'text-red-600'"
+          >Accesible</small
+        >
+        <small [class]="item.housingOk ? 'text-green-600' : 'text-red-600'"
+          >Carcasa</small
+        >
+        <small [class]="item.leverOk ? 'text-green-600' : 'text-red-600'"
+          >Palanca</small
+        >
+        <small [class]="item.glassIntact ? 'text-green-600' : 'text-red-600'"
+          >Cristal</small
+        >
+        <small [class]="item.signageOk ? 'text-green-600' : 'text-red-600'"
+          >Seóalización</small
+        >
+      </div>
+
       <ili-action-menu end>
-          <ng-container actions>
-            <ili-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
-              label="Editar"
-            />
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
-          </ng-container>
-        </ili-action-menu>
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

@@ -22,7 +22,6 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { PdfGenerationService } from "src/app/apps/supplier.luxuryapp/po/generator-pdf/pdf-generation.service";
 import { CreateOrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/create-orden-compra";
@@ -41,6 +40,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { FundingExcelExportService } from "../../general-ledger/funding-excel-export.service";
 import { CreateOrdenCompraFueraFondeo } from "./create-orden-compra-fuera-fondeo/create-orden-compra-fuera-fondeo";
 // import { SatReconciliationDialog } from "../sat-funding/sat-reconciliation-dialog/sat-reconciliation-dialog";

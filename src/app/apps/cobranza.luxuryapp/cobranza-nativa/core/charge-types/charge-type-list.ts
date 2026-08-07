@@ -1,4 +1,3 @@
-import { NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +13,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -29,6 +27,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ChargeTypeCatalogResponseDTO } from "../../interfaces/charge-type-catalog.dto";
 import { ChargeTypeForm } from "./charge-type-form";
 

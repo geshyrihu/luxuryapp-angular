@@ -89,31 +89,24 @@
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
-          icon="mdi:gauge"
-          class="text-xl text-primary"
-        />
+        <app-icon icon="mdi:gauge" class="text-xl text-primary" />
       </div>
-      
-        <h2 class="font-bold m-0 text-base">{{ item.lectura }}</h2>
-        <p class="text-sm text-500 m-0 mt-1">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" /> {{
-          item.fechaRegistro | date: "dd-MMM-yyyy" : "UTC" }}
-        </p>
-      
+
+      <h2 class="font-bold m-0 text-base">{{ item.lectura }}</h2>
+      <p class="text-sm text-500 m-0 mt-1">
+        <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" /> {{
+        item.fechaRegistro | date: "dd-MMM-yyyy" : "UTC" }}
+      </p>
 
       <ili-action-menu end>
-          <ng-container actions>
-            <ili-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              label="Editar"
-            />
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
-          </ng-container>
-        </ili-action-menu>
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

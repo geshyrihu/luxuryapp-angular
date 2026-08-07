@@ -4,7 +4,7 @@ import {
   input,
   output,
 } from "@angular/core";
-import { AppIcon } from "../../shared/app-icon/app-icon.component";
+import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 
 @Component({
@@ -19,9 +19,7 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="toggleState()"
     >
-      <app-icon
-        [icon]="state() ? 'mdi:lock' : 'mdi:lock-open'"
-      />
+      <app-icon [icon]="state() ? 'mdi:lock' : 'mdi:lock-open'" />
     </button>
   `,
 })

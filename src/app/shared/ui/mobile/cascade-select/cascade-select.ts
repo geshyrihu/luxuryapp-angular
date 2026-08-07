@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { CascadeSelectBase } from "@ui/base/cascade-select.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 interface FlatOption {
   label: string;

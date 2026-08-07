@@ -227,7 +227,9 @@
       <!-- Category Filters (Chips) -->
       <div class="flex overflow-x-auto pb-2 mb-2 px-1">
         @for (filtro of filtroEquipos; track filtro.id) {
-        <div class="p-1 rounded surface-100 mr-2 mb-2 inline-flex align-items-center">
+        <div
+          class="p-1 rounded surface-100 mr-2 mb-2 inline-flex align-items-center"
+        >
           <app-icon [icon]="getFiltroIconClass(filtro.emoji)" class="mr-1" />
           <span class="">{{ filtro.nombre | titlecase }}</span>
         </div>
@@ -251,7 +253,9 @@
         </div>
 
         @for (item of group.items; track item.id) {
-        <div class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center">
+        <div
+          class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+        >
           <!-- Icon based on system type could be cool here, but we don't have mapping easily available. Using generic check. -->
           <app-icon
             icon="mdi:checkbox-marked-outline"
@@ -284,5 +288,3 @@
     </div>
   </ng-container>
 </ng-container>
-
-

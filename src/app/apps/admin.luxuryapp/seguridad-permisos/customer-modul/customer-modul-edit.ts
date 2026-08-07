@@ -14,14 +14,17 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { IonInputToggle } from "@ui/inputs/mobile/ion-input-toggle";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import { checkmarkOutline, closeOutline } from "ionicons/icons";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CustomerModulGroup } from "./interfaces/customer-modul-group.interface";
 
 @Component({

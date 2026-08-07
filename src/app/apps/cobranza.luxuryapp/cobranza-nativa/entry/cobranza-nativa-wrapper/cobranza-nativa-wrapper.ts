@@ -5,18 +5,18 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { TabItem } from "@ui/base/tabs.base";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { TabItem } from "@ui/base/tabs.base";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import BillingConfigModal from "../../configuration/billing-config/billing-config-modal";
 import {
   CobranzaCard,

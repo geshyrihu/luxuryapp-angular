@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { SwipeActionsBase } from "@ui/base/swipe-actions.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export type { SwipeAction } from "@ui/base/swipe-actions.base";
 

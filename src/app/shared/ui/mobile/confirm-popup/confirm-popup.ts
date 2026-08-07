@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { ConfirmPopupBase } from "@ui/base/confirm-popup.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-confirm-popup",

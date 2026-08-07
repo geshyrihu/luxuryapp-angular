@@ -1,9 +1,12 @@
 import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -14,9 +17,9 @@ import { ReconciledItemDTO } from "../interfaces/sat-reconciliation.dtos";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-sat-reconciliation-dialog",

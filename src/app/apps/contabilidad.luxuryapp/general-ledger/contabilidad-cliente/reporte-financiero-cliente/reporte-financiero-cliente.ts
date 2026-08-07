@@ -1,18 +1,18 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   input,
   signal,
-  ChangeDetectionStrategy,
 } from "@angular/core";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type {
   IReporteFinancieroDto,
   IReporteFinancieroFilaDto,
 } from "../../contabilidad-online/interfaces/aspel-budget.interface";
 import { ContabilidadClienteService } from "../contabilidad-cliente.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-reporte-financiero-cliente",

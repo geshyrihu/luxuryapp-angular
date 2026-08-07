@@ -11,11 +11,11 @@ import {
   IonToolbar,
 } from "@ionic/angular/standalone";
 import { LxLoader } from "@ui/adaptive/loader/loader";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import { chevronBack } from "ionicons/icons";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { NavigationService } from "src/app/core/services/navigation.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CustomerHeaderDataCommittee } from "./monitor/client-data";
 import { CommitteeMobileNav } from "./monitor/mobile-nav";
 import { ProfileCommitteeMonitor } from "./monitor/profile";

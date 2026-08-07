@@ -74,14 +74,14 @@
           class="text-xl text-yellow-600"
         />
       </div>
-      
-        <h3>{{ item.name }}</h3>
-        <p>{{ item.description }}</p>
-        <p>
-          {{ item.isActive ? 'Activa' : 'Inactiva' }} é {{ item.categoryCount }}
-          categoróas é {{ item.questionCount }} preguntas
-        </p>
-      
+
+      <h3>{{ item.name }}</h3>
+      <p>{{ item.description }}</p>
+      <p>
+        {{ item.isActive ? 'Activa' : 'Inactiva' }} é {{ item.categoryCount }}
+        categoróas é {{ item.questionCount }} preguntas
+      </p>
+
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit (clicked)="onEdit(item.id)" label="Editar" />

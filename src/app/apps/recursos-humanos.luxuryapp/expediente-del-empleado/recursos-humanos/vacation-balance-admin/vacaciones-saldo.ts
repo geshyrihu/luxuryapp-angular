@@ -16,10 +16,10 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 // Alias para evitar colisión de nombres con el mótodo de instancia onGetSeverity.
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { getStatusSeverity as statusSeverityFn } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
 import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/vacation-balance.interface";
 import { VacationRequestMyDTO as VacationRequestHistoryDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/vacation-request.interface";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * DTO local para representar una solicitud de vacaciones del empleado.

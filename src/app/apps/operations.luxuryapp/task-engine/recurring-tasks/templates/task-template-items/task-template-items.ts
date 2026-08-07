@@ -11,17 +11,17 @@ import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskTemplateItem } from "src/app/core/interfaces/recurring-tasks/task-template-item.interface";
 import { TaskTemplate } from "src/app/core/interfaces/recurring-tasks/task-template.interface";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { TaskTemplateItemForm } from "../task-template-item-form/task-template-item-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -110,12 +110,9 @@ export class TaskTemplateItems implements OnInit {
     // The 'items' signal already holds the reordered array
     const itemIdsInOrder = this.items().map((item) => item.id);
     this.apiResponseS
-      .onPut(
-        Endpoints.RecurringTasks.Templates.reorderItems(this.templateId),
-        {
-          itemIdsInOrder,
-        },
-      )
+      .onPut(Endpoints.RecurringTasks.Templates.reorderItems(this.templateId), {
+        itemIdsInOrder,
+      })
       .then((result) => {
         if (result) {
           // Success toast handled by ApiResponseService

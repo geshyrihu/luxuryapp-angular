@@ -1,20 +1,27 @@
 import { CommonModule, CurrencyPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject, computed } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from "@angular/core";
+import type { TagSeverity } from "@ui/base/tag.base";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { PieChart } from "@ui/web/charts/pie-chart";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service";
+import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal";
 
 @Component({
   selector: "app-committee-cobranza-web",
@@ -29,8 +36,9 @@ import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service"
     ButtonModule,
     RippleModule,
     TooltipModule,
-    AppIcon,
-    PieChart,
+    AppStatCard,
+    AppProgressBar,
+    LxTag,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-cobranza-web.html",
@@ -52,46 +60,19 @@ export class CommitteeCobranzaWeb {
     });
   }
 
-  readonly maintenanceMetrics = computed(() => {
-    return this.baseService.morososData()?.currentCharges?.maintenance;
-  });
-
-  readonly extraordinaryMetrics = computed(() => {
-    return this.baseService.morososData()?.currentCharges?.extraordinary;
-  });
-
-  readonly maintenanceChartData = computed(() => {
-    const m = this.maintenanceMetrics();
-    if (!m || m.total <= 0) {
-      return {
-        data: [{ name: "Sin Mantenimiento", value: 1 }],
-        colors: ["#e2e8f0"],
-      };
+  /** Color de la etiqueta de situación. Ver docs/aspel/ASPEL_API_GUIDE.md. */
+  clasificacionSeverity(clasificacion: string): TagSeverity {
+    switch (clasificacion) {
+      case "COBRANZA JUDICIAL":
+        return "danger";
+      case "MOROSOS":
+        return "warn";
+      case "DEUDA CORRIENTE":
+        return "info";
+      default:
+        return "secondary";
     }
-
-    return {
-      data: [
-        { name: "Cobrado", value: m.collected },
-        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 },
-      ],
-      colors: ["#22c55e", "#f59e0b"],
-    };
-  });
-
-  readonly extraordinaryChartData = computed(() => {
-    const m = this.extraordinaryMetrics();
-    if (!m || m.total <= 0) {
-      return null;
-    }
-
-    return {
-      data: [
-        { name: "Cobrado", value: m.collected },
-        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 },
-      ],
-      colors: ["#22c55e", "#f59e0b"],
-    };
-  });
+  }
 
   getBalanceClass(amount: number): string {
     if (amount > 0) return "text-orange-600";

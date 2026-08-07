@@ -10,8 +10,6 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { LxCard } from "@ui/adaptive/card/card";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import {
   FormControl,
   FormGroup,
@@ -19,8 +17,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -29,6 +36,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   ApplyPaymentToChargesDTO,
   PendingChargeDTO,
@@ -38,14 +46,6 @@ import {
   CreateCobranzaPaymentDTO,
 } from "../../interfaces/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface IPaymentForm {
   propertyId: FormControl<string>;
@@ -130,7 +130,10 @@ export class Payments implements OnInit {
   });
 
   paymentMethods = [
-    { label: "Transferencia Electrónica", value: EPaymentMethod.ElectronicTransfer },
+    {
+      label: "Transferencia Electrónica",
+      value: EPaymentMethod.ElectronicTransfer,
+    },
     { label: "Depósito / Efectivo", value: EPaymentMethod.Cash },
     { label: "Tarjeta de Crédito", value: EPaymentMethod.CreditCard },
     { label: "Tarjeta de Débito", value: EPaymentMethod.DebitCard },
@@ -145,9 +148,10 @@ export class Payments implements OnInit {
   }
 
   getChargeTypeMeta(charge: PendingChargeDTO): string {
-    const parts = [charge.chargeTypeAccountNumber, charge.chargeTypeCode].filter(
-      (value): value is string => !!value,
-    );
+    const parts = [
+      charge.chargeTypeAccountNumber,
+      charge.chargeTypeCode,
+    ].filter((value): value is string => !!value);
     return parts.join(" · ");
   }
 
@@ -296,7 +300,8 @@ export class Payments implements OnInit {
         customerId: this.customerId(),
         propertyId: this.form.controls.propertyId.value,
         amount: this.form.controls.amount.value,
-        paymentDate: this.dateS.getDateFormat(this.form.controls.paymentDate.value) ?? "",
+        paymentDate:
+          this.dateS.getDateFormat(this.form.controls.paymentDate.value) ?? "",
         method: this.form.controls.method.value,
         reference: this.form.controls.reference.value,
         status: EPaymentStatus.Registrado,

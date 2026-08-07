@@ -14,11 +14,9 @@ import { WebButtonIconSendEmail } from "@ui/buttons/web-icon/button-send-email";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -27,10 +25,14 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { EmailDataForm } from "./email-data-form";
 import { EmailDataFormDto } from "src/app/core/interfaces/email-data-form.interface";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { EmailDataForm } from "./email-data-form";
 @Component({
   selector: "app-email-data-list",
   templateUrl: "./email-data-list.html",
@@ -85,6 +87,9 @@ export class EmailDataList {
   }
 
   onSendTestEmail(id: string) {
-    this.apiResponseS.onPost(Endpoints.Catalogs.EmailData.sendTestEmail(id), null);
+    this.apiResponseS.onPost(
+      Endpoints.Catalogs.EmailData.sendTestEmail(id),
+      null,
+    );
   }
 }

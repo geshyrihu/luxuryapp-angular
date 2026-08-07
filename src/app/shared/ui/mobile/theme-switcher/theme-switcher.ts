@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonToggle } from "@ionic/angular/standalone";
 import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-theme-switcher",

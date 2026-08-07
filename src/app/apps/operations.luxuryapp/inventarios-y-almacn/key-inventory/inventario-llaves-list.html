@@ -68,28 +68,21 @@
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
-  <div customFilters >
+  <div customFilters>
     <ili-button-download (clicked)="onDownloadPdf()" />
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <div
-        start
-        
-      >
-        <app-icon
-          icon="mdi:key-outline"
-          class="text-xl text-yellow-500"
-        />
+      <div start>
+        <app-icon icon="mdi:key-outline" class="text-xl text-yellow-500" />
       </div>
-      
-        <h3>{{ item.descripcion }}</h3>
-        <p>
-          {{ item.marca }} | Né {{ item.numeroLlave }} | Cant: {{ item.cantidad
-          }}
-        </p>
-        <p>{{ item.equipoClasificacion }}</p>
-      
+
+      <h3>{{ item.descripcion }}</h3>
+      <p>
+        {{ item.marca }} | Né {{ item.numeroLlave }} | Cant: {{ item.cantidad }}
+      </p>
+      <p>{{ item.equipoClasificacion }}</p>
+
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit

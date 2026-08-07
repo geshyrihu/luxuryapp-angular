@@ -10,15 +10,15 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface CobranzaMetricasResponseDTO {
   totalFacturado: number;
@@ -51,7 +51,14 @@ export interface TendenciaMensualDTO {
 
 @Component({
   selector: "app-cobranza-dashboard",
-  imports: [CommonModule, DecimalPipe, WebButtonLabel, LxCard, LxProgressBar, AppIcon],
+  imports: [
+    CommonModule,
+    DecimalPipe,
+    WebButtonLabel,
+    LxCard,
+    LxProgressBar,
+    AppIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cobranza-dashboard.html",
 })

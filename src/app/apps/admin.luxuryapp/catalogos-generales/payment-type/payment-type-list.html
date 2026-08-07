@@ -91,10 +91,7 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
-          <ili-button-delete
-            (confirmed)="onDelete(item.id)"
-            label="Eliminar"
-          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

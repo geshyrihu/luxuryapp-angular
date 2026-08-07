@@ -14,7 +14,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
@@ -28,6 +27,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ELateFeeType } from "../../interfaces/enums";
 import { LateFeePolicyResponseDTO } from "../../interfaces/late-fee-policy.dto";
 import { LateFeePolicyForm } from "./late-fee-policy-form";
@@ -80,11 +80,7 @@ export default class LateFeePolicyList {
 
     const result = await this.apiResponseS.onGetItem<
       LateFeePolicyResponseDTO[]
-    >(
-      Endpoints.CobranzaCore.LateFeePolicies.customer(
-        customerId,
-      ),
-    );
+    >(Endpoints.CobranzaCore.LateFeePolicies.customer(customerId));
     if (result) {
       this.dataSignal.set(result);
     } else {
@@ -112,11 +108,7 @@ export default class LateFeePolicyList {
 
   async onDelete(item: LateFeePolicyResponseDTO) {
     this.apiResponseS
-      .onDelete(
-        Endpoints.CobranzaCore.LateFeePolicies.delete(
-          item.id,
-        ),
-      )
+      .onDelete(Endpoints.CobranzaCore.LateFeePolicies.delete(item.id))
       .then((res) => {
         if (res) this.onLoadData();
       });

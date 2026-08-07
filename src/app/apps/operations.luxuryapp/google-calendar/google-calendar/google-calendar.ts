@@ -16,7 +16,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -35,6 +34,7 @@ import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { GoogleCalendarDetail } from "./google-calendar-detail";
 import { GoogleCalendarForm } from "./google-calendar-form";
 
@@ -75,67 +75,70 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
   selector: "app-google-calendar",
   templateUrl: "./google-calendar.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  styles: [`
-    :host ::ng-deep .fc-theme-standard td, :host ::ng-deep .fc-theme-standard th {
-      border-color: var(--surface-border);
-    }
-    :host ::ng-deep .fc-header-toolbar {
-      padding: 1rem;
-      background: var(--surface-section);
-      border-radius: 16px 16px 0 0;
-      margin-bottom: 0 !important;
-      border: 1px solid var(--surface-border);
-      border-bottom: none;
-    }
-    :host ::ng-deep .fc-view-harness {
-      border: 1px solid var(--surface-border);
-      border-top: none;
-      border-radius: 0 0 16px 16px;
-      overflow: hidden;
-    }
-    :host ::ng-deep .fc-daygrid-day-number {
-      font-weight: 600;
-      color: var(--text-color);
-      padding: 0.5rem;
-    }
-    :host ::ng-deep .fc-event {
-      border-radius: 6px;
-      border: none;
-      padding: 3px 6px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-      margin: 1px 4px;
-    }
-    :host ::ng-deep .fc-day-today {
-      background: var(--primary-50) !important;
-    }
-    @media screen and (max-width: 768px) {
+  styles: [
+    `
+      :host ::ng-deep .fc-theme-standard td,
+      :host ::ng-deep .fc-theme-standard th {
+        border-color: var(--surface-border);
+      }
       :host ::ng-deep .fc-header-toolbar {
-        flex-direction: column !important;
-        gap: 0.75rem;
-        align-items: stretch !important;
-        padding: 1rem 0.5rem;
+        padding: 1rem;
+        background: var(--surface-section);
+        border-radius: 16px 16px 0 0;
+        margin-bottom: 0 !important;
+        border: 1px solid var(--surface-border);
+        border-bottom: none;
       }
-      :host ::ng-deep .fc-toolbar-chunk {
-        display: flex;
-        justify-content: center;
-        width: 100%;
+      :host ::ng-deep .fc-view-harness {
+        border: 1px solid var(--surface-border);
+        border-top: none;
+        border-radius: 0 0 16px 16px;
+        overflow: hidden;
       }
-      :host ::ng-deep .fc-toolbar-chunk:nth-child(2) {
-        order: -1;
-        margin-bottom: 0.5rem;
+      :host ::ng-deep .fc-daygrid-day-number {
+        font-weight: 600;
+        color: var(--text-color);
+        padding: 0.5rem;
       }
-      :host ::ng-deep .fc-toolbar-title {
-        font-size: 1.25rem !important;
-        text-align: center;
+      :host ::ng-deep .fc-event {
+        border-radius: 6px;
+        border: none;
+        padding: 3px 6px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        margin: 1px 4px;
       }
-      :host ::ng-deep .fc-button {
-        padding: 0.4rem 0.6rem !important;
-        font-size: 0.85rem !important;
+      :host ::ng-deep .fc-day-today {
+        background: var(--primary-50) !important;
       }
-    }
-  `],
+      @media screen and (max-width: 768px) {
+        :host ::ng-deep .fc-header-toolbar {
+          flex-direction: column !important;
+          gap: 0.75rem;
+          align-items: stretch !important;
+          padding: 1rem 0.5rem;
+        }
+        :host ::ng-deep .fc-toolbar-chunk {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+        :host ::ng-deep .fc-toolbar-chunk:nth-child(2) {
+          order: -1;
+          margin-bottom: 0.5rem;
+        }
+        :host ::ng-deep .fc-toolbar-title {
+          font-size: 1.25rem !important;
+          text-align: center;
+        }
+        :host ::ng-deep .fc-button {
+          padding: 0.4rem 0.6rem !important;
+          font-size: 0.85rem !important;
+        }
+      }
+    `,
+  ],
   imports: [
     WebButtonLabel,
     WebButtonIcon,
@@ -404,7 +407,20 @@ export class GoogleCalendar {
   getMonth(value: string | Date | null | undefined): string {
     const parsed = this.parseBusinessDateTime(value);
     if (!parsed) return "---";
-    const months = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+    const months = [
+      "ENE",
+      "FEB",
+      "MAR",
+      "ABR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AGO",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DIC",
+    ];
     return months[parsed.getMonth()];
   }
 
@@ -419,11 +435,16 @@ export class GoogleCalendar {
   getSubjectTypeClass(item: IGoogleCalendarEventListItem): string {
     // SubjectType values: 0: JCM, 1: Asamblea, 2: Junta Lujo, 3: Junta Interna
     switch (item.subjectType) {
-      case 0: return "bg-blue-100 text-blue-800";
-      case 1: return "bg-purple-100 text-purple-800";
-      case 2: return "bg-orange-100 text-orange-800";
-      case 3: return "bg-teal-100 text-teal-800";
-      default: return "bg-gray-100 text-gray-800";
+      case 0:
+        return "bg-blue-100 text-blue-800";
+      case 1:
+        return "bg-purple-100 text-purple-800";
+      case 2:
+        return "bg-orange-100 text-orange-800";
+      case 3:
+        return "bg-teal-100 text-teal-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   }
 

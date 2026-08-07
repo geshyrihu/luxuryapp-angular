@@ -1,21 +1,21 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   input,
   signal,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type {
   IBaseAccountDto,
   IFinancialStatementDto,
 } from "../../contabilidad-online/interfaces/aspel-budget.interface";
 import { AccountingNumberPipe } from "../../contabilidad-online/pipes/accounting-number.pipe";
 import { ContabilidadClienteService } from "../contabilidad-cliente.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 const MONTH_NAMES = [
   "Enero",

@@ -21,6 +21,8 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [showValue]="showValue()"
         [unit]="unit()"
         [color]="color()"
+        [colorThresholds]="colorThresholds()"
+        [decimals]="decimals()"
       />
     } @else {
       <app-progress-bar
@@ -29,6 +31,8 @@ import { PlatformService } from "src/app/core/services/platform.service";
         [showValue]="showValue()"
         [unit]="unit()"
         [color]="color()"
+        [colorThresholds]="colorThresholds()"
+        [decimals]="decimals()"
       />
     }
   `,

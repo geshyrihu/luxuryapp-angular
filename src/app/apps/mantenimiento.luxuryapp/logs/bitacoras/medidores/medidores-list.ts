@@ -12,11 +12,13 @@ import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import {
@@ -30,8 +32,6 @@ import {
   sunny,
   trashOutline,
 } from "ionicons/icons";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -39,8 +39,12 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { Medidor } from "src/app/core/interfaces/medidor.interface";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { MedidorForm } from "./medidor-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
 
@@ -49,7 +53,9 @@ import { MedidorLecturaForm } from "./medidor-lectura-form";
   templateUrl: "./medidores-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    ActionMenu,
     WebButtonLabelDelete,
+    WebButtonLabelDownload,
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
@@ -155,10 +161,13 @@ export class MedidoresList {
     import("exceljs").then(async (ExcelJS) => {
       const workbook = new ExcelJS.Workbook();
       const worksheet = workbook.addWorksheet("data");
-      
+
       if (this.datosExcel && this.datosExcel.length > 0) {
-        worksheet.columns = Object.keys(this.datosExcel[0]).map(key => ({ header: key, key }));
-        this.datosExcel.forEach(item => worksheet.addRow(item));
+        worksheet.columns = Object.keys(this.datosExcel[0]).map((key) => ({
+          header: key,
+          key,
+        }));
+        this.datosExcel.forEach((item) => worksheet.addRow(item));
       }
 
       const excelBuffer = await workbook.xlsx.writeBuffer();

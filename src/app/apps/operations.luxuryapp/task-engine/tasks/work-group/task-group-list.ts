@@ -11,6 +11,8 @@ import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewModule } from "@ui/web/primeng-dataview/primeng-dataview";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import {
   chatbubblesOutline,
@@ -19,8 +21,6 @@ import {
   mailOutline,
   peopleOutline,
 } from "ionicons/icons";
-import { DataViewModule } from "@ui/web/primeng-dataview/primeng-dataview";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TaskGroupParticipant } from "src/app/apps/operations.luxuryapp/task-engine/tasks/participants/task-group-participant";
 import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -54,9 +54,9 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-task-group-list",

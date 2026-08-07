@@ -8,7 +8,6 @@ import {
 import { FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { AppTabBar } from "@ui/mobile/tab-bar/tab-bar";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import type { SegmentItem } from "@ui/shared/segmented-control/segmented-control";
 import { SegmentedControl } from "@ui/shared/segmented-control/segmented-control";
 import { AppBarcodeScanner } from "@ui/web/barcode-scanner/barcode-scanner";
@@ -78,6 +77,7 @@ import { AppTreeSelect } from "@ui/web/tree-select/tree-select";
 import { Tree } from "@ui/web/tree/tree";
 import { AppVirtualScroller } from "@ui/web/virtual-scroller/virtual-scroller";
 import { MegaMenuItem, MenuItem, TreeNode } from "primeng/api";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { WhatsNew } from "src/app/shared/ui/web/whats-new/whats-new";
 
 const EXTRAS_LABELS: Record<string, string> = {

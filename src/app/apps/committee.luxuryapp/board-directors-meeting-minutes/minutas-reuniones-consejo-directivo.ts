@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, readerOutline } from "ionicons/icons";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -19,6 +18,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo",
   imports: [RouterModule, AppIcon],

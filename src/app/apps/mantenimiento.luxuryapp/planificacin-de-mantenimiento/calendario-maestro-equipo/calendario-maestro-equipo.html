@@ -70,11 +70,15 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <p class="font-semibold m-0 text-color">{{ item.nombreEquipo }}</p>
-      <p class="text-xs m-0 text-color-secondary">{{ item.equipoClasificacion }}</p>
+      <p class="text-xs m-0 text-color-secondary">
+        {{ item.equipoClasificacion }}
+      </p>
 
       <ili-action-menu end>
         <ng-container actions>
-          <ili-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
           <ili-button-delete (confirmed)="onDelete(item.id)" />
         </ng-container>
       </ili-action-menu>

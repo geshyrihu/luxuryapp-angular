@@ -7,11 +7,11 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { AgendaSemanal } from "../agenda-semanal/agenda-semanal";
 import type { AgendaSemanalEventDto } from "../agenda-semanal/agenda-semanal.model";
 

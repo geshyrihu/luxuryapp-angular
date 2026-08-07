@@ -11,12 +11,12 @@ import {
   signal,
   viewChild,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { GeolocationService } from "src/app/core/services/geolocation.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { PanicAlertCreateDto } from "../interfaces/panic-alert-create.dto";
 import { PanicAlertDto } from "../interfaces/panic-alert.dto";
 
@@ -66,51 +66,51 @@ const COUNTDOWN_SECONDS = 5;
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (visible()) {
-    <button
-      type="button"
-      class="panic-btn"
-      [class.panic-btn--sending]="isSending()"
-      [class.panic-btn--hold]="isHolding()"
-      (mousedown)="onHoldStart()"
-      (mouseup)="onHoldEnd()"
-      (mouseleave)="onHoldCancel()"
-      (touchstart)="onHoldStart()"
-      (touchend)="onHoldEnd()"
-      (touchcancel)="onHoldCancel()"
-      [disabled]="isSending()"
-      title="Mantén presionado para activar alerta de pánico"
-    >
-      <div class="panic-btn__ring" [style.--progress]="holdProgress() + '%'">
-        <app-icon icon="mdi:alert-circle" class="panic-btn__icon" />
-      </div>
-      @if (isSending()) {
-      <span class="panic-btn__label">Enviando...</span>
-      }
-    </button>
+      <button
+        type="button"
+        class="panic-btn"
+        [class.panic-btn--sending]="isSending()"
+        [class.panic-btn--hold]="isHolding()"
+        (mousedown)="onHoldStart()"
+        (mouseup)="onHoldEnd()"
+        (mouseleave)="onHoldCancel()"
+        (touchstart)="onHoldStart()"
+        (touchend)="onHoldEnd()"
+        (touchcancel)="onHoldCancel()"
+        [disabled]="isSending()"
+        title="Mantén presionado para activar alerta de pánico"
+      >
+        <div class="panic-btn__ring" [style.--progress]="holdProgress() + '%'">
+          <app-icon icon="mdi:alert-circle" class="panic-btn__icon" />
+        </div>
+        @if (isSending()) {
+          <span class="panic-btn__label">Enviando...</span>
+        }
+      </button>
 
-    <!-- Ventana de cancelación: la alerta sale solo al llegar a 0.
+      <!-- Ventana de cancelación: la alerta sale solo al llegar a 0.
          <dialog>.showModal() renderiza en el top layer del navegador:
          inmune a transforms/z-index de ancestros (fix overlay tras router-outlet) -->
-    @if (isCountingDown()) {
-    <dialog
-      #countdownDialog
-      class="panic-countdown-dialog"
-      (cancel)="onCancelCountdown()"
-    >
-      <div class="panic-countdown">
-        <app-icon icon="mdi:alert-circle" class="panic-countdown__icon" />
-        <p class="panic-countdown__title">Enviando alerta de pánico en</p>
-        <p class="panic-countdown__seconds">{{ countdownSeconds() }}</p>
-        <button
-          type="button"
-          class="panic-countdown__cancel"
-          (click)="onCancelCountdown()"
+      @if (isCountingDown()) {
+        <dialog
+          #countdownDialog
+          class="panic-countdown-dialog"
+          (cancel)="onCancelCountdown()"
         >
-          Cancelar
-        </button>
-      </div>
-    </dialog>
-    }
+          <div class="panic-countdown">
+            <app-icon icon="mdi:alert-circle" class="panic-countdown__icon" />
+            <p class="panic-countdown__title">Enviando alerta de pánico en</p>
+            <p class="panic-countdown__seconds">{{ countdownSeconds() }}</p>
+            <button
+              type="button"
+              class="panic-countdown__cancel"
+              (click)="onCancelCountdown()"
+            >
+              Cancelar
+            </button>
+          </div>
+        </dialog>
+      }
     }
   `,
   styles: `
@@ -186,8 +186,13 @@ const COUNTDOWN_SECONDS = 5;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
     }
 
     /* Mobile variant */

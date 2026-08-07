@@ -20,7 +20,10 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
   <ng-template #caption>
     <div class="grid align-items-center">
       <div class="col-12 md:col-3">
-        <lx-tag severity="danger" [value]="'Total a cubrir: ' + (ordenCompraService.totalPorCubrir() | number: '1.2-2')" />
+        <lx-tag
+          severity="danger"
+          [value]="'Total a cubrir: ' + (ordenCompraService.totalPorCubrir() | number: '1.2-2')"
+        />
       </div>
       <div class="col-12 md:col-7">
         <primeng-custom-caption

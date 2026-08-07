@@ -30,7 +30,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-prestamos-empleado",
@@ -79,7 +79,9 @@ export default class PrestamosEmpleado {
   onLoadData(customerId: string): void {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList<PrestamoEmpleadoDTO[]>(Endpoints.HR.Nomina.Prestamos.list(customerId))
+      .onGetList<PrestamoEmpleadoDTO[]>(
+        Endpoints.HR.Nomina.Prestamos.list(customerId),
+      )
       .then((resp: any) => {
         this.data.set(resp ?? []);
         this.loading.set(false);

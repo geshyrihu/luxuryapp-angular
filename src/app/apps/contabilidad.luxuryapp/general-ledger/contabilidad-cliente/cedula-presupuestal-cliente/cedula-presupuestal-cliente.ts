@@ -1,19 +1,19 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   input,
   signal,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type {
   IBaseAccountDto,
   IFinancialStatementDto,
 } from "../../contabilidad-online/interfaces/aspel-budget.interface";
 import { ContabilidadClienteService } from "../contabilidad-cliente.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 
 const MONTH_NAMES = [
   "ENE",

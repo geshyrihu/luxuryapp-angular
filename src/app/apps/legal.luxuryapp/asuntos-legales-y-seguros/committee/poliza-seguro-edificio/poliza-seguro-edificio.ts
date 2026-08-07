@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
 import {
@@ -16,6 +15,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-poliza-seguro-edificio",
   imports: [CommonModule, WebButtonLabelViewPdf, AppIcon],
@@ -45,9 +45,7 @@ export class PolizaSeguroEdificio {
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
     this.apiResponseS
-      .onGetItem(
-        Endpoints.PolicyContracts.buildingInsurance(customerId),
-      )
+      .onGetItem(Endpoints.PolicyContracts.buildingInsurance(customerId))
       .then((result) => {
         this.data.set(result);
       });

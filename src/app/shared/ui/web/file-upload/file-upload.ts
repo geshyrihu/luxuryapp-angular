@@ -11,13 +11,13 @@ import {
   viewChild,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
 import { ProgressBarModule } from "primeng/progressbar";
-import { PlatformService } from "src/app/core/services/platform.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
+import { PlatformService } from "src/app/core/services/platform.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface UploadFile {
   name: string;

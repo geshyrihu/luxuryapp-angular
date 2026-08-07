@@ -16,7 +16,6 @@ import {
   ActivityEntry,
   ActivityLog,
 } from "@ui/shared/activity-log/activity-log";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Gauge } from "@ui/shared/gauge/gauge";
 import { Tour, TourStep } from "@ui/shared/tour/tour";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
@@ -49,6 +48,7 @@ import { SplitPane } from "@ui/web/split-pane/split-pane";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TreeTable, TreeTableColumn } from "@ui/web/tree-table/tree-table";
 import { Wizard, WizardStep } from "@ui/web/wizard/wizard";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 // 13.3.3 demos de prioridad baja
 import {
   ApprovalNode,

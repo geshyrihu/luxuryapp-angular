@@ -1,12 +1,12 @@
 import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
 import { BloqueVisual } from "./interfaces/bloque-visual.interface";
 import { ItemChecklist } from "./interfaces/item-checklist.interface";

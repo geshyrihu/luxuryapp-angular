@@ -93,12 +93,8 @@
       <div
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-        
       >
-        <app-icon
-          icon="mdi:package-up"
-          
-        />
+        <app-icon icon="mdi:package-up" />
       </div>
 
       <div class="flex flex-column">
@@ -114,22 +110,19 @@
 
       @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
       <ili-action-menu end>
-          <ng-container actions>
-            <ili-button-edit
-              (clicked)="onAddEntrada({
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onAddEntrada({
                       id: item.id,
                       idProducto: item.productoId,
                       nombreProducto: item.nombreProducto,
                       almacenId: item.almacenId
                     })"
-              label="Editar"
-            />
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
-          </ng-container>
-        </ili-action-menu>
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
       }
     </ili-list-item>
   </ng-template>

@@ -3,38 +3,25 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
-
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import {
+  AppBreakdownList,
+  type BreakdownItem,
+} from "@ui/shared/breakdown-list/breakdown-list";
+import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import type { CobranzaOnlineAnalysisResponse } from "../interfaces/cobranza-online-analysis.model";
-
-function buildTodayInputValue() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = `${now.getMonth() + 1}`.padStart(2, "0");
-  const day = `${now.getDate()}`.padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
+import {
+  DialogHandlerService,
+  DialogSize,
+} from "src/app/core/services/dialog-handler.service";
+import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
+import { CobranzaOnlineComposicionReportesModal } from "./cobranza-online-composicion-reportes-modal";
 
 @Component({
   selector: "app-cobranza-online-analysis",
@@ -43,17 +30,9 @@ function buildTodayInputValue() {
     FormsModule,
     RouterModule,
     ButtonModule,
-    CustomInputSelectSignal,
-    TableModule,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
-    DataViewMobile,
-    MobileListItem,
-    WebButtonLabel,
     ChartWrapper,
-    LxTag,
-    AppIcon,
-    LxMessage,
+    AppStatCard,
+    AppBreakdownList,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./cobranza-online-analysis.html",
@@ -61,20 +40,31 @@ function buildTodayInputValue() {
 export class CobranzaOnlineAnalysis {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
-  private apiResponseS = inject(ApiResponseService);
+  private store = inject(CobranzaOnlineStoreService);
+  private dialogS = inject(DialogHandlerService);
 
-  readonly loading = signal(false);
-  // Filtro independiente: usa fecha de corte específica (con day picker),
-  // no comparte cobranzaOnlineFilterState (ver state/cobranza-online-filter.state.ts)
-  readonly cutoffDateInput = signal(buildTodayInputValue());
+  async onOpenComposicionReportes() {
+    try {
+      await this.dialogS.openDialog(
+        CobranzaOnlineComposicionReportesModal,
+        {},
+        "Cómo se compone cada reporte",
+        DialogSize.lg,
+      );
+    } catch (error) {
+      console.error("Error opening composition dialog", error);
+    }
+  }
+
+  readonly loading = this.store.isLoading;
   readonly selectedClassification = signal("TODAS");
-  readonly data = signal<CobranzaOnlineAnalysisResponse | null>(null);
+  readonly data = this.store.analysisData;
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
   readonly customerName = computed(() => this.customerIdS.customerName());
 
   readonly classificationOptions = [
     "TODAS",
-    "COBRANZA JUDICIAL",
+    "COBRANZA EXTRAJUDICIAL",
     "MOROSOS",
     "DEUDA CORRIENTE",
     "SIN ADEUDO",
@@ -91,14 +81,118 @@ export class CobranzaOnlineAnalysis {
     this.data()?.syncMetadata?.dataSource === "aspel-live" ? "success" : "warn",
   );
 
+  /** Cuota promedio del mes, como referencia bajo el KPI de mantenimiento. */
+  readonly cuotaPromedioSubtitulo = computed(() => {
+    const d = this.data();
+    if (!d?.totalCondominios) return "";
+
+    const promedio = d.cuotaMttoVigente / d.totalCondominios;
+    const formateado = new Intl.NumberFormat("es-MX", {
+      style: "currency",
+      currency: "MXN",
+      maximumFractionDigits: 0,
+    }).format(promedio);
+
+    return `Promedio ${formateado} por condómino`;
+  });
+
+  /** Bloque histórico del Excel: el "Cobrado" es residual, no flujo de caja. */
+  readonly filasAnalisisMensual = computed<BreakdownItem[]>(() => {
+    const d = this.data();
+    if (!d) return [];
+
+    return [
+      {
+        label: "Morosos",
+        value: d.totalMorosos,
+        color: "var(--ds-danger)",
+        description: "2+ cuotas vencidas de mtto o 1+ de extraordinaria",
+      },
+      {
+        label: "Deuda corriente",
+        value: d.totalDeudaCorriente,
+        color: "var(--ds-info)",
+        description: "Debe sin alcanzar los umbrales de moroso",
+      },
+      {
+        label: "Cobrado",
+        value: d.totalCobrado,
+        color: "var(--ds-success)",
+        description: "Residual: perfecta − morosos − corriente",
+      },
+      { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true },
+    ];
+  });
+
+  /** Flujo real del periodo: lo abonado contra la cuota del mes. */
+  readonly filasCobranzaMes = computed<BreakdownItem[]>(() => {
+    const d = this.data();
+    if (!d) return [];
+
+    const filas: BreakdownItem[] = [
+      {
+        label: "Cobrado",
+        value: d.cobradoMes,
+        color: "var(--ds-success)",
+        description: d.cobradoExtraordinariaMes
+          ? `Mantenimiento ${this.moneda(d.cobradoMttoMes)} · extraordinaria ${this.moneda(d.cobradoExtraordinariaMes)}`
+          : "Abonos aplicados en el mes",
+      },
+      {
+        label: "Faltante por cobrar",
+        value: d.faltanteMes,
+        color: "var(--ds-warning)",
+        description: "Cobranza perfecta − cobrado",
+      },
+      { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true },
+    ];
+
+    return filas;
+  });
+
+  /** Cartera acumulada al corte; aquí sí entra la cobranza judicial. */
+  readonly filasDeudaCondominos = computed<BreakdownItem[]>(() => {
+    const d = this.data();
+    if (!d) return [];
+
+    return [
+      {
+        label: "Cobranza judicial",
+        value: d.totalJudicial,
+        color: "var(--ds-danger)",
+        description: "Más de 5 cuotas vencidas de mtto o 5+ de extraordinaria",
+      },
+      {
+        label: "Morosos",
+        value: d.totalMorosos,
+        color: "var(--ds-warning)",
+        description: "2+ cuotas vencidas de mtto o 1+ de extraordinaria",
+      },
+      {
+        label: "Deuda corriente",
+        value: d.totalDeudaCorriente,
+        color: "var(--ds-info)",
+        description: "Debe sin alcanzar los umbrales de moroso",
+      },
+      { label: "Total deuda", value: d.totalDeuda, isTotal: true },
+    ];
+  });
+
+  private moneda(value: number): string {
+    return new Intl.NumberFormat("es-MX", {
+      style: "currency",
+      currency: "MXN",
+      maximumFractionDigits: 0,
+    }).format(value);
+  }
+
   private token(key: string, fallback: string): string {
     if (typeof document === "undefined") {
       return fallback;
     }
     return (
-      getComputedStyle(document.documentElement)
-        .getPropertyValue(key)
-        .trim() || fallback
+      getComputedStyle(document.documentElement).getPropertyValue(key).trim() ||
+      fallback
     );
   }
 
@@ -108,51 +202,67 @@ export class CobranzaOnlineAnalysis {
       return null;
     }
 
-    const danger = this.token("--ds-danger", "red");
-    const info = this.token("--ds-info", "blue");
-    const success = this.token("--ds-success", "green");
-    const warning = this.token("--ds-warning", "orange");
+    const danger = this.token("--ds-danger", "#c0392b");
+    const info = this.token("--ds-info", "#2980b9");
+    const success = this.token("--ds-success", "#27ae60");
+    const warning = this.token("--ds-warning", "#f39c12");
 
-    if (analysis.cobranzaPerfecta > 0) {
+    // Si hay cobranza perfecta (meta mensual 001+003), mostramos la distribución
+    // del mes: Morosos, Deuda Corriente y lo Cobrado.
+    const morosos = analysis.totalMorosos ?? 0;
+    const corriente = analysis.totalDeudaCorriente ?? 0;
+    const cobrado = analysis.totalCobrado ?? 0;
+    const judicial = analysis.totalJudicial ?? 0;
+
+    const hayDeudaActiva =
+      morosos > 0 || corriente > 0 || cobrado > 0 || judicial > 0;
+    if (!hayDeudaActiva) {
+      return null;
+    }
+
+    if ((analysis.cobranzaPerfecta ?? 0) > 0) {
+      // Mostrar siempre Morosos, Deuda Corriente y Cobrado.
+      // Si Cobrado es 0, el gráfico muestra sólo los segmentos con valor.
+      const datos = [
+        { label: "MOROSOS", value: morosos, color: danger },
+        { label: "DEUDA CORRIENTE", value: corriente, color: info },
+        { label: "COBRADO", value: cobrado, color: success },
+      ].filter((d) => d.value > 0);
+
       return {
-        labels: ["Morosos", "Deuda Corriente", "Cobrado"],
+        labels: datos.map((d) => d.label),
         datasets: [
           {
-            data: [
-              analysis.totalMorosos,
-              analysis.totalDeudaCorriente,
-              analysis.totalCobrado,
-            ],
-            backgroundColor: [danger, info, success],
-            hoverBackgroundColor: [danger, info, success],
-            borderWidth: 0,
+            data: datos.map((d) => d.value),
+            backgroundColor: datos.map((d) => d.color),
+            hoverBackgroundColor: datos.map((d) => d.color),
+            borderWidth: 2,
+            borderColor: "transparent",
           },
         ],
       };
     }
 
+    // Fallback: sin cobranza perfecta, mostramos la deuda activa
+    const datos = [
+      { label: "COBRANZA JUDICIAL", value: judicial, color: danger },
+      { label: "MOROSOS", value: morosos, color: warning },
+      { label: "DEUDA CORRIENTE", value: corriente, color: info },
+    ].filter((d) => d.value > 0);
+
     return {
-      labels: ["Cobranza Judicial", "Morosos", "Deuda Corriente"],
+      labels: datos.map((d) => d.label),
       datasets: [
         {
-          data: [
-            analysis.totalJudicial,
-            analysis.totalMorosos,
-            analysis.totalDeudaCorriente,
-          ],
-          backgroundColor: [danger, warning, info],
-          hoverBackgroundColor: [danger, warning, info],
-          borderWidth: 0,
+          data: datos.map((d) => d.value),
+          backgroundColor: datos.map((d) => d.color),
+          hoverBackgroundColor: datos.map((d) => d.color),
+          borderWidth: 2,
+          borderColor: "transparent",
         },
       ],
     };
   });
-
-  readonly chartOptions = {
-    plugins: { legend: { position: "bottom" } },
-    responsive: true,
-    maintainAspectRatio: false,
-  };
 
   readonly filteredRows = computed(() => {
     const analysis = this.data();
@@ -161,7 +271,7 @@ export class CobranzaOnlineAnalysis {
     }
 
     switch (this.selectedClassification()) {
-      case "COBRANZA JUDICIAL":
+      case "COBRANZA EXTRAJUDICIAL":
         return analysis.cobranzaJudicial;
       case "MOROSOS":
         return analysis.morosos;
@@ -182,38 +292,11 @@ export class CobranzaOnlineAnalysis {
     }
   });
 
-  constructor() {
-    effect(() => {
-      const customerId = this.customerIdS.customerId();
-      if (!customerId) {
-        this.data.set(null);
-        return;
-      }
-
-      void this.loadData(customerId, this.cutoffDateInput());
-    });
-  }
-
-  async onReload() {
-    const customerId = this.customerIdS.customerId();
-    if (!customerId) {
-      return;
-    }
-
-    await this.loadData(customerId, this.cutoffDateInput());
-  }
-
-  pct(value: number, total: number) {
-    if (!total) {
-      return "0%";
-    }
-
-    return `${((value / total) * 100).toFixed(1)}%`;
-  }
+  constructor() {}
 
   getSeverity(clasificacion: string) {
     switch (clasificacion) {
-      case "COBRANZA JUDICIAL":
+      case "COBRANZA EXTRAJUDICIAL":
         return "danger";
       case "MOROSOS":
         return "warn";
@@ -226,34 +309,5 @@ export class CobranzaOnlineAnalysis {
       default:
         return "secondary";
     }
-  }
-
-  private async loadData(customerId: string, cutoffDateInput: string) {
-    const cutoffDate = new Date(`${cutoffDateInput}T12:00:00`);
-    if (Number.isNaN(cutoffDate.getTime())) {
-      this.data.set(null);
-      return;
-    }
-
-    const year = cutoffDate.getFullYear();
-    const month = cutoffDate.getMonth() + 1;
-    const day = cutoffDate.getDate();
-
-    this.loading.set(true);
-    const result =
-      await this.apiResponseS.onGetItem<CobranzaOnlineAnalysisResponse>(
-        Endpoints.CobranzaOnline.Dashboard.analysis(
-          customerId,
-          year,
-          month,
-          day,
-        ),
-      );
-    this.data.set(result ?? null);
-    this.loading.set(false);
-  }
-
-  navigateTo(route: string) {
-    if (route) this.router.navigateByUrl(route);
   }
 }

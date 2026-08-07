@@ -2,9 +2,9 @@ import { Routes } from "@angular/router";
 
 export const COBRANZA_ROUTES: Routes = [
   {
-    path: "online",
+    path: "aspel-online",
     loadChildren: () =>
-      import("./cobranza-online/cobranza-online.routes").then(
+      import("./cobranza-online/aspel-cobranza-online.routes").then(
         (m) => m.COBRANZA_ONLINE_ROUTES,
       ),
     data: {

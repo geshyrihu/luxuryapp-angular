@@ -7,7 +7,6 @@ import {
 } from "@angular/core";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { MessageService } from "@ui/web/primeng-api/primeng-api";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -21,6 +20,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-ordenes-servicio-reporte-proveedor",

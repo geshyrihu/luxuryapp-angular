@@ -6,7 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
 import { documentTextOutline, folderOpenOutline } from "ionicons/icons";
@@ -20,6 +19,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-informes-financieros-consejo-directivo",
   imports: [AppIcon],
@@ -67,9 +67,8 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
     }
 
     // Construimos la URL del endpoint que creamos en el backend
-    const urlApi = Endpoints.Committee.BoardDirectors.financialReportsByCustomer(
-      customerId,
-    );
+    const urlApi =
+      Endpoints.Committee.BoardDirectors.financialReportsByCustomer(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

@@ -13,23 +13,19 @@
 >
   <ng-template #header>
     <tr>
-      <th pSortableColumn="folio" >
-        FOLIO <p-sorticon field="folio" />
-      </th>
-      <th pSortableColumn="requestDateFilter" >
+      <th pSortableColumn="folio">FOLIO <p-sorticon field="folio" /></th>
+      <th pSortableColumn="requestDateFilter">
         SOLICITUD <p-sorticon field="requestDateFilter" />
       </th>
-      <th >CLIENTE</th>
-      <th pSortableColumn="applicationRoleName" >
+      <th>CLIENTE</th>
+      <th pSortableColumn="applicationRoleName">
         PUESTO <p-sorticon field="applicationRoleName" />
       </th>
-      <th >SUELDO</th>
-      <th >DIAS</th>
-      <th pSortableColumn="status" >
-        ESTATUS <p-sorticon field="status" />
-      </th>
-      <th >CANDIDATO</th>
-      <th ></th>
+      <th>SUELDO</th>
+      <th>DIAS</th>
+      <th pSortableColumn="status">ESTATUS <p-sorticon field="status" /></th>
+      <th>CANDIDATO</th>
+      <th></th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
@@ -53,7 +49,10 @@
       </td>
       <td class="text-center">{{ item.daysPassed }}</td>
       <td class="text-center">
-        <lx-tag [value]="item.status" [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'" />
+        <lx-tag
+          [value]="item.status"
+          [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'"
+        />
       </td>
       <td
         class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
@@ -90,17 +89,17 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-<div
+      <div
         start
         class="w-3rem h-3rem rounded flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
       >
         <app-icon icon="mdi:briefcase-outline" class="text-xl text-green-600" />
       </div>
-      
-        <h3>{{ item.applicationRoleName }}</h3>
-        <p>{{ item.customer }} é {{ item.requestDate }}</p>
-        <p>{{ item.status }}</p>
-      
+
+      <h3>{{ item.applicationRoleName }}</h3>
+      <p>{{ item.customer }} é {{ item.requestDate }}</p>
+      <p>{{ item.status }}</p>
+
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
@@ -110,6 +109,6 @@
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
-</ili-list-item>
+    </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

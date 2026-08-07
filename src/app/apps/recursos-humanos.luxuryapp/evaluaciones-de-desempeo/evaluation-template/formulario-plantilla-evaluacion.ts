@@ -30,13 +30,13 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { InputGroupModule } from "@ui/web/primeng-inputgroup/primeng-inputgroup";
 import { InputGroupAddonModule } from "@ui/web/primeng-inputgroupaddon/primeng-inputgroupaddon";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 interface IQuestionForm {
   id: FormControl<string | null>;
@@ -228,10 +228,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     } else {
       // Editar existente
       this.apiResponseS
-        .onPut(
-          Endpoints.TemplateEvaluation.update(this.id),
-          formValue,
-        )
+        .onPut(Endpoints.TemplateEvaluation.update(this.id), formValue)
         .then(() => {
           this.submitting.set(false);
         });

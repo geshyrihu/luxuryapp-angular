@@ -12,7 +12,7 @@ import {
   input,
   viewChild,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * 🍔 ILI ACTION MENU (móvil)
@@ -81,7 +81,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
         border-radius: 9999px;
         font-size: 1.25rem;
         cursor: pointer;
-        transition: background-color 150ms ease, color 150ms ease;
+        transition:
+          background-color 150ms ease,
+          color 150ms ease;
 
         &:hover {
           background-color: var(--ds-bg-sunken);

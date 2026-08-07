@@ -5,7 +5,7 @@ import {
 } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { EmptyStateBase } from "@ui/base/empty-state.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-empty-state",

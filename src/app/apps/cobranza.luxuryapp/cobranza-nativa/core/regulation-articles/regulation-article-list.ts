@@ -14,7 +14,6 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -27,6 +26,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { RegulationArticleResponseDTO } from "../../interfaces/property-fine.dto";
 import { RegulationArticleForm } from "./regulation-article-form";
 
@@ -73,11 +73,7 @@ export default class RegulationArticleList {
     if (!customerId) return;
     const result = await this.apiResponseS.onGetItem<
       RegulationArticleResponseDTO[]
-    >(
-      Endpoints.CobranzaCore.RegulationArticles.byCustomer(
-        customerId,
-      ),
-    );
+    >(Endpoints.CobranzaCore.RegulationArticles.byCustomer(customerId));
     this.dataSignal.set(result ?? []);
   }
 
@@ -101,15 +97,9 @@ export default class RegulationArticleList {
 
   async onDelete(item: RegulationArticleResponseDTO) {
     this.apiResponseS
-      .onDelete(
-        Endpoints.CobranzaCore.RegulationArticles.delete(
-          item.id,
-        ),
-      )
+      .onDelete(Endpoints.CobranzaCore.RegulationArticles.delete(item.id))
       .then((res) => {
         if (res) this.onLoadData();
       });
   }
 }
-
-

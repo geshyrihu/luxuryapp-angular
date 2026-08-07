@@ -15,9 +15,9 @@ import {
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { AspelSyncService } from "./aspel-sync.service";
 
 interface IAspelSyncForm {

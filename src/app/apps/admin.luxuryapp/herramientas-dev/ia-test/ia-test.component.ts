@@ -5,11 +5,11 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { LxCard } from "@ui/adaptive/card/card";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IaTestService } from "./ia-test.service";
 import { AiTestResultDto } from "./interfaces/ai-test-result.interface";
 

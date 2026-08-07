@@ -10,11 +10,11 @@ import { Router } from "@angular/router";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import {
   alertCircleOutline,
@@ -23,7 +23,6 @@ import {
   qrCodeOutline,
   timeOutline,
 } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
@@ -36,6 +35,7 @@ import { AccountingCatalogExcelService } from "src/app/core/services/accounting-
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { InventarioEstacionManualForm } from "./inventario-estacion-manual-form";
 import { InventarioEstacionManualQrService } from "./inventario-estacion-manual-qr.service";
 

@@ -29,7 +29,7 @@
           [noMargin]="true"
         />
       </div>
-      <div class="flex-shrink-0" >
+      <div class="flex-shrink-0">
         <custom-input-select-signal
           [data]="groupingOptions"
           optionLabel="label"
@@ -66,22 +66,20 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="customer" >
+      <th pSortableColumn="customer">
         CLIENTE <p-sorticon field="customer" />
       </th>
-      <th pSortableColumn="applicationRoleName" >
+      <th pSortableColumn="applicationRoleName">
         ROL <p-sorticon field="applicationRoleName" />
       </th>
-      <th pSortableColumn="applicationUser" >
+      <th pSortableColumn="applicationUser">
         USUARIO <p-sorticon field="applicationUser" />
       </th>
-      <th pSortableColumn="email" >
-        EMAIL <p-sorticon field="email" />
-      </th>
-      <th pSortableColumn="phoneNumber" >
+      <th pSortableColumn="email">EMAIL <p-sorticon field="email" /></th>
+      <th pSortableColumn="phoneNumber">
         TELóFONO <p-sorticon field="phoneNumber" />
       </th>
-      <th ></th>
+      <th></th>
     </tr>
   </ng-template>
 

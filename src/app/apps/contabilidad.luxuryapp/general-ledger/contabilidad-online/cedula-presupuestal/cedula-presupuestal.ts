@@ -9,10 +9,10 @@ import {
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   IBaseAccountDto,
   IFinancialStatementDto,

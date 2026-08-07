@@ -9,13 +9,12 @@ import {
 import { ReactiveFormsModule } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -30,6 +29,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto";
 
 @Component({
@@ -76,9 +76,7 @@ export default class CollectionCaseList {
 
   async onLoadData(customerId: string) {
     const res = await this.apiResponseS.onGetItem<CollectionCaseResponseDTO[]>(
-      Endpoints.CobranzaCore.CollectionCases.byCustomer(
-        customerId,
-      ),
+      Endpoints.CobranzaCore.CollectionCases.byCustomer(customerId),
     );
     this.dataSignal.set(res ?? []);
   }
@@ -89,9 +87,7 @@ export default class CollectionCaseList {
     this.escalating.set(true);
     try {
       const res = await this.apiResponseS.onPost<number>(
-        Endpoints.CobranzaCore.CollectionCases.evaluateAndEscalate(
-          customerId,
-        ),
+        Endpoints.CobranzaCore.CollectionCases.evaluateAndEscalate(customerId),
         {},
       );
       if (res !== null) await this.onLoadData(customerId);
@@ -129,7 +125,10 @@ export default class CollectionCaseList {
   }
 
   statusMeta(status: string) {
-    const map: Record<string, { label: string; severity: "danger" | "success" | "warning" | "contrast" }> = {
+    const map: Record<
+      string,
+      { label: string; severity: "danger" | "success" | "warning" | "contrast" }
+    > = {
       Activo: { label: "Activo", severity: "danger" },
       Resuelto: { label: "Resuelto", severity: "success" },
       Pausado: { label: "Pausado", severity: "warning" },

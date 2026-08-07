@@ -1,16 +1,23 @@
-import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  input,
+  signal,
+} from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
-import { ContabilidadClienteService } from '../contabilidad-cliente.service';
-import { IProyectosAprobadosDTO } from '../../contabilidad-online/interfaces/aspel-budget.interface';
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { IProyectosAprobadosDTO } from "../../contabilidad-online/interfaces/aspel-budget.interface";
+import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 
 @Component({
-  selector: 'app-proyectos-aprobados-cliente',
+  selector: "app-proyectos-aprobados-cliente",
   imports: [CommonModule, LxSkeleton, TableModule, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: './proyectos-aprobados-cliente.html',
+  templateUrl: "./proyectos-aprobados-cliente.html",
 })
 export class ProyectosAprobadosClienteComponent {
   private svc = inject(ContabilidadClienteService);
@@ -23,8 +30,18 @@ export class ProyectosAprobadosClienteComponent {
   loading = signal<boolean>(false);
 
   public mesesNombres = [
-    "Ene", "Feb", "Mar", "Abr", "May", "Jun",
-    "Jul", "Ago", "Sep", "Oct", "Nov", "Dic",
+    "Ene",
+    "Feb",
+    "Mar",
+    "Abr",
+    "May",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dic",
   ];
 
   constructor() {
@@ -37,7 +54,7 @@ export class ProyectosAprobadosClienteComponent {
           this.loadData(cid, yr);
         }
       },
-      { allowSignalWrites: true }
+      { allowSignalWrites: true },
     );
   }
 
@@ -49,8 +66,7 @@ export class ProyectosAprobadosClienteComponent {
     if (result) {
       this.data.set(result);
     }
-    
+
     this.loading.set(false);
   }
 }
-

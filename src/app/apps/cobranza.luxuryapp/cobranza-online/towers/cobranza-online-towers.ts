@@ -3,21 +3,16 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
-  signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import type { CobranzaOnlineDashboardResponse } from "../interfaces/cobranza-online-dashboard.model";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
+import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 
 @Component({
   selector: "app-cobranza-online-towers",
@@ -25,7 +20,6 @@ import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state
     CommonModule,
     RouterModule,
     TableModule,
-    WebButtonLabel,
     DataViewMobile,
     MobileListItem,
     AppIcon,
@@ -36,14 +30,14 @@ import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state
 export class CobranzaOnlineTowers {
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
-  private apiResponseS = inject(ApiResponseService);
+  private store = inject(CobranzaOnlineStoreService);
 
   readonly currentYear = cobranzaOnlineFilterState.year;
   readonly currentMonth = cobranzaOnlineFilterState.month;
   readonly currentDay = cobranzaOnlineFilterState.day;
 
-  readonly loading = signal(false);
-  readonly dashboard = signal<CobranzaOnlineDashboardResponse | null>(null);
+  readonly loading = this.store.isLoading;
+  readonly dashboard = this.store.dashboardData;
 
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
 
@@ -68,35 +62,4 @@ export class CobranzaOnlineTowers {
       },
     );
   });
-
-  constructor() {
-    effect(() => {
-      const customerId = this.customerIdS.customerId();
-      if (!customerId) {
-        this.dashboard.set(null);
-        return;
-      }
-
-      void this.loadData(customerId);
-    });
-  }
-
-  private async loadData(customerId: string) {
-    this.loading.set(true);
-    const dashboard =
-      await this.apiResponseS.onGetItem<CobranzaOnlineDashboardResponse>(
-        Endpoints.CobranzaOnline.Dashboard.get(
-          customerId,
-          this.currentYear(),
-          this.currentMonth(),
-          this.currentDay(),
-        ),
-      );
-    this.dashboard.set(dashboard ?? null);
-    this.loading.set(false);
-  }
-
-  navigateTo(route: string) {
-    if (route) this.router.navigateByUrl(route);
-  }
 }

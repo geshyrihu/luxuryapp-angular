@@ -383,8 +383,20 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  max-width: 860px;
+  // Se usa como contenedor raíz en todas las pantallas del comité, sin wrapper
+  // que aporte gutter: sin este padding las tarjetas quedan pegadas al borde
+  // de la pantalla en móvil. 1rem = mismo gutter que los bloques con `px-3`.
+  padding-inline: var(--ds-space-lg, 1rem);
+  // El max-width se amplía por el padding para conservar 860px de contenido.
+  max-width: calc(860px + (2 * var(--ds-space-lg, 1rem)));
   margin-inline: auto;
+
+  // Dentro de .committee-cobranza el gutter ya lo ponen los bloques hermanos
+  // (`px-3`); aquí solo se replica para que la lista alinee con ellos, sin
+  // rebasar el ancho del contenedor.
+  .committee-cobranza & {
+    max-width: 100%;
+  }
 }
 
 .committee-doc-title {
@@ -401,6 +413,9 @@
   align-items: center;
   gap: 0.9rem;
   width: 100%;
+  // Contiene el acento lateral y cualquier contenido que no encoja,
+  // para que nada escape del borde redondeado de la tarjeta.
+  overflow: hidden;
   padding: 0.85rem 1rem;
   text-align: left;
   text-decoration: none;
@@ -473,13 +488,24 @@
 
   &__content {
     flex: 1 1 auto;
+    // `min-width: 0` habilita el ellipsis del título; sin él, el texto largo
+    // expande la fila y empuja fuera al monto y al chevron.
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    // `flex-start` evita que un hijo con ancho propio (una etiqueta de estado,
+    // por ejemplo) se estire y fije el ancho mínimo de la columna.
+    align-items: flex-start;
+    gap: 4px;
+
+    // Cualquier contenido proyectado (tags, badges) queda contenido en la fila.
+    > * {
+      max-width: 100%;
+    }
   }
 
   &__title {
+    max-width: 100%;
     font-size: var(--ds-font-size-card-title);
     font-weight: var(--ds-font-weight-semibold);
     color: var(--ds-text-primary);

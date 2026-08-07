@@ -10,11 +10,11 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { TabItem } from "@ui/base/tabs.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   EmployeeFileBankDataDTO,
   EmployeeFileClinicalDataDTO,

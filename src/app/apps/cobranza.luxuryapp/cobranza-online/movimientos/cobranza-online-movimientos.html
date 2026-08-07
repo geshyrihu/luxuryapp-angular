@@ -1,0 +1,172 @@
+<section>
+  @if (!hasCustomer()) {
+  <div class="mt-3">
+    <div class="surface-card border-1 surface-border rounded p-2">
+      <div class="font-medium mb-2">Sin cliente activo</div>
+      <div class="text-color-secondary">
+        Selecciona un cliente para consultar los movimientos.
+      </div>
+    </div>
+  </div>
+  } @else {
+  <div class="mt-4">
+    <p-table
+      #dt
+      [value]="pivotData()"
+      dataKey="accountNumber"
+      styleClass="p-datatable-sm p-datatable-gridlines custom-table card hidden md:block"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      [globalFilterFields]="['accountNumber', 'accountName']"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption [dt]="dt" [showAdd]="false" />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th
+            style="min-width: 250px"
+            pFrozenColumn
+            class="bg-surface-50 border-bottom-1 surface-border"
+            pSortableColumn="accountName"
+          >
+            Cuenta / Depto <p-sorticon field="accountName" />
+          </th>
+          @for (concept of activeConcepts(); track concept.id) {
+          <th
+            class="text-center text-xs bg-surface-50 border-bottom-1 surface-border"
+            style="min-width: 140px"
+          >
+            {{ concept.label }}
+          </th>
+          }
+          <th
+            class="text-right font-bold bg-surface-50 border-bottom-1 surface-border"
+            style="min-width: 120px"
+            pFrozenColumn
+            alignFrozen="right"
+          >
+            Totales Mensuales
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td pFrozenColumn class="bg-surface-50">
+            <div class="font-bold text-sm">{{ row.accountName }}</div>
+            <div class="text-xs text-color-secondary">
+              {{ row.accountNumber }}
+            </div>
+          </td>
+          @for (concept of activeConcepts(); track concept.id) {
+          <td class="text-center align-middle">
+            @if (getCell(row, concept.id); as cell) {
+            <div class="flex flex-column gap-1 align-items-center">
+              @if (cell.cargo > 0) {
+              <lx-tag
+                [value]="'+' + (cell.cargo | currency:'MXN':'symbol':'1.0-0')"
+                severity="danger"
+                class="text-xs font-mono"
+              />
+              } @if (cell.abono > 0) {
+              <lx-tag
+                [value]="'-' + (cell.abono | currency:'MXN':'symbol':'1.0-0')"
+                severity="success"
+                class="text-xs font-mono"
+              />
+              }
+            </div>
+            } @else {
+            <span class="text-color-secondary">—</span>
+            }
+          </td>
+          }
+          <td
+            class="text-right align-middle"
+            pFrozenColumn
+            alignFrozen="right"
+            class="bg-surface-50"
+          >
+            <div class="flex flex-column gap-1 align-items-end">
+              @if (row.totalCargos > 0) {
+              <div class="text-xs text-danger font-bold font-mono">
+                +{{ row.totalCargos | currency:'MXN':'symbol':'1.0-0' }}
+              </div>
+              } @if (row.totalAbonos > 0) {
+              <div class="text-xs text-success font-bold font-mono">
+                -{{ row.totalAbonos | currency:'MXN':'symbol':'1.0-0' }}
+              </div>
+              } @if (row.totalCargos === 0 && row.totalAbonos === 0) {
+              <span class="text-color-secondary">—</span>
+              }
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <tr>
+          <td
+            [attr.colspan]="activeConcepts().length + 2"
+            class="text-center p-4 text-color-secondary"
+          >
+            No hay movimientos registrados en el mes consultado.
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #paginatorleft>
+        <div class="text-sm text-color-secondary">
+          Cargos en <span class="text-danger font-bold">rojo</span> (+) | Abonos
+          en <span class="text-success font-bold">verde</span> (-)
+        </div>
+      </ng-template>
+    </p-table>
+
+    <div class="md:hidden">
+      <app-data-view-mobile
+        [data]="pivotData()"
+        [globalFilterFields]="['accountNumber', 'accountName']"
+        [showAdd]="false"
+      >
+        <ng-template #listItemTemplate let-row>
+          <ili-list-item class="ion-no-padding">
+            <div
+              start
+              class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+            >
+              <app-icon icon="mdi:swap-horizontal" />
+            </div>
+            <div class="flex-1 min-w-0 ion-text-wrap py-2">
+              <p class="font-semibold m-0 text-color">{{ row.accountName }}</p>
+              <p class="text-xs m-0 mt-1 text-color-secondary">
+                {{ row.accountNumber }}
+              </p>
+              <div class="flex gap-3 mt-2">
+                @if (row.totalCargos > 0) {
+                <div>
+                  <div class="text-xs text-color-secondary">Cargos</div>
+                  <div class="text-sm font-bold text-danger">
+                    +{{ row.totalCargos | currency:'MXN':'symbol':'1.0-0' }}
+                  </div>
+                </div>
+                } @if (row.totalAbonos > 0) {
+                <div>
+                  <div class="text-xs text-color-secondary">Abonos</div>
+                  <div class="text-sm font-bold text-success">
+                    -{{ row.totalAbonos | currency:'MXN':'symbol':'1.0-0' }}
+                  </div>
+                </div>
+                }
+              </div>
+            </div>
+          </ili-list-item>
+        </ng-template>
+      </app-data-view-mobile>
+    </div>
+  </div>
+  }
+</section>

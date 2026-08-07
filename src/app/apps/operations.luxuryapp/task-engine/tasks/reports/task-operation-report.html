@@ -152,11 +152,7 @@
 </p-table>
 
 <!-- 📱 MOBILE -->
-<app-data-view-mobile
-  [data]="dataSignal()"
-  [showAdd]="false"
-  [dt]="dt"
->
+<app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">
   <div customFilters>
     <app-task-status (statusChange)="onChangeStatus($event)" />
     <app-task-report-actions
@@ -170,7 +166,9 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <p class="font-semibold m-0 text-color">{{ item.folio }}</p>
-      <p class="text-xs m-0 text-color-secondary">{{ item.responsibleArea }} · {{ item.dateFinished }}</p>
+      <p class="text-xs m-0 text-color-secondary">
+        {{ item.responsibleArea }} · {{ item.dateFinished }}
+      </p>
 
       <ili-action-menu end>
         <ng-container actions>

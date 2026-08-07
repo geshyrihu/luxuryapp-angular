@@ -10,9 +10,9 @@
       />
     </div>
     @if (activeStage() !== null) {
-      <div class="col-12 md:col-8 flex align-items-end pb-1">
-        <app-candidate-stage-badge [stage]="activeStage()" />
-      </div>
+    <div class="col-12 md:col-8 flex align-items-end pb-1">
+      <app-candidate-stage-badge [stage]="activeStage()" />
+    </div>
     }
   </div>
 </div>
@@ -72,13 +72,13 @@
       <td>{{ item.assignedInterviewerName }}</td>
       <td>
         @if (item.cvFileName) {
-          <iw-button-view-pdf
-            size="sm"
-            class="btn--circle"
-            [url]="item.cvFileUrl"
-            [fileName]="item.cvFileName"
-            [attr.aria-label]="'Ver CV de ' + item.candidateName"
-          />
+        <iw-button-view-pdf
+          size="sm"
+          class="btn--circle"
+          [url]="item.cvFileUrl"
+          [fileName]="item.cvFileName"
+          [attr.aria-label]="'Ver CV de ' + item.candidateName"
+        />
         }
       </td>
       <td class="no-print">

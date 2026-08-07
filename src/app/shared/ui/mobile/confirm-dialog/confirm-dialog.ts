@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-confirm-dialog",
@@ -21,7 +21,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
           <div class="ili-confirm-actions">
             <ion-button
               expand="block"
-              [color]="config().severity === 'warn' ? 'warning' : config().severity"
+              [color]="
+                config().severity === 'warn' ? 'warning' : config().severity
+              "
               (click)="onConfirm()"
             >
               {{ confirmLabel() }}

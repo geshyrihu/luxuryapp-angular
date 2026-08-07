@@ -109,7 +109,6 @@
           [icon]="'mdi:menu'"
           class="cursor-move text-400"
           pReorderableRowHandle
-          
         />
       </td>
       <td class="text-center">
@@ -162,7 +161,6 @@
           />
           <span
             class="mdi:close cursor-pointer text-red-500 hover:text-red-700 ml-1"
-            
             (click)="$event.stopPropagation(); onUnlinkPurchaseOrder(orden.id)"
             title="Desvincular Orden de Compra"
           ></span>
@@ -194,11 +192,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       @if (isPendingView()) {
-      <div
-        start
-        class="flex align-items-center justify-content-center"
-        
-      >
+      <div start class="flex align-items-center justify-content-center">
         <input
           type="checkbox"
           [checked]="isSelected(item.id)"
@@ -206,14 +200,8 @@
         />
       </div>
       }
-      <div
-        start
-        
-      >
-        <app-icon
-          icon="mdi:cart-outline"
-          class="text-xl text-yellow-500"
-        />
+      <div start>
+        <app-icon icon="mdi:cart-outline" class="text-xl text-yellow-500" />
       </div>
 
       <h3>{{ item.equipoOInstalacion }}</h3>

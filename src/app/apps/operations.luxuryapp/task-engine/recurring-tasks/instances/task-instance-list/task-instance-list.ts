@@ -22,8 +22,8 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskInstance } from "src/app/core/interfaces/recurring-tasks/task-instance.interface";
 import { DateService } from "src/app/core/services/date.service";
@@ -35,7 +35,7 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-task-instance-list",

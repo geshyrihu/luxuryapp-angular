@@ -1,30 +1,4 @@
-<section class="p-3 md:p-4">
-  <div class="mb-4">
-    <div class="flex justify-content-between align-items-start gap-3 flex-wrap">
-      <div>
-        <h2 class="m-0 text-xl font-semibold">Análisis de Cobranza</h2>
-        <p class="mt-2 mb-0 text-color-secondary">
-          Vista adicional para replicar el reporte de cartera al corte, usando
-          saldos Aspel y cuotas vigentes definidas en ChargeTemplate.
-        </p>
-      </div>
-      <div class="flex gap-2 flex-wrap">
-        <il-button
-          label="Volver al dashboard"
-          severity="secondary"
-          variant="outline"
-          (clicked)="navigateTo('/cobranza/online')"
-        />
-        <il-button
-          label="Ver listado base"
-          severity="secondary"
-          variant="outline"
-          (clicked)="navigateTo('/cobranza/online/inspection')"
-        />
-      </div>
-    </div>
-  </div>
-
+<section>
   @if (!hasCustomer()) {
   <div class="mb-4 border-1 surface-border rounded p-4">
     <div class="font-medium mb-2">Sin cliente activo</div>
@@ -32,121 +6,120 @@
       Selecciona un cliente para consultar el análisis de cobranza.
     </div>
   </div>
-  } @else if (loading()) {
-  <div class="text-color-secondary mb-4">
-    Consultando Aspel y armando el análisis de cobranza...
-  </div>
   } @else if (data(); as d) {
-  <lx-message class="block mb-4" [severity]="messageSeverity()" [text]="d.syncMetadata.syncMessage" />
-
   <div class="grid mb-4">
     <div class="col-12 md:col-6 xl:col-3">
-      <div class="border-1 surface-border rounded p-3 h-full">
-        <div class="text-color-secondary mb-2">Departamentos</div>
-        <div class="text-xl font-semibold">
-          {{ d.totalCondominios | number:'1.0-0' }}
-        </div>
-        <div class="text-color-secondary text-sm mt-2">Fuente: Properties</div>
-      </div>
+      <app-stat-card
+        orientation="horizontal"
+        label="Condóminos"
+        [value]="d.totalCondominios"
+        format="number"
+        icon="mdi:account-group-outline"
+        iconColor="var(--ds-primary)"
+        iconBg="var(--ds-primary-light)"
+        subtitle="Con cuota de mantenimiento en el mes"
+      />
     </div>
     <div class="col-12 md:col-6 xl:col-3">
-      <div class="border-1 surface-border rounded p-3 h-full">
-        <div class="text-color-secondary mb-2">Total mtto mensual</div>
-        <div class="text-xl font-semibold">
-          {{ d.cuotaMttoVigente | number:'1.2-2' }}
-        </div>
-      </div>
+      <app-stat-card
+        orientation="horizontal"
+        label="Mantenimiento del mes"
+        [value]="d.cuotaMttoVigente"
+        format="currency"
+        icon="mdi:home-city-outline"
+        iconColor="var(--ds-info)"
+        iconBg="var(--ds-info-light)"
+        [subtitle]="cuotaPromedioSubtitulo()"
+      />
     </div>
     <div class="col-12 md:col-6 xl:col-3">
-      <div class="border-1 surface-border rounded p-3 h-full">
-        <div class="text-color-secondary mb-2">
-          Total extraordinaria mensual
-        </div>
-        <div class="text-xl font-semibold">
-          {{ d.cuotaExtraordinariaVigente | number:'1.2-2' }}
-        </div>
-      </div>
+      <app-stat-card
+        orientation="horizontal"
+        label="Extraordinaria del mes"
+        [value]="d.cuotaExtraordinariaVigente"
+        format="currency"
+        icon="mdi:cash-plus"
+        iconColor="var(--ds-warning)"
+        iconBg="var(--ds-warning-light)"
+        [subtitle]="
+          d.cuotaExtraordinariaVigente
+            ? 'Cargos aplicados en el corte'
+            : 'Sin cuota vigente este mes'
+        "
+      />
     </div>
     <div class="col-12 md:col-6 xl:col-3">
-      <div class="border-1 surface-border rounded p-3 h-full">
-        <div class="text-color-secondary mb-2">Total a recaudar mensual</div>
-        <div class="text-xl font-semibold">
-          {{ d.cuotaMensualTotal | number:'1.2-2' }}
-        </div>
-      </div>
+      <app-stat-card
+        orientation="horizontal"
+        label="Cobranza perfecta"
+        [value]="d.cobranzaPerfecta"
+        format="currency"
+        icon="mdi:target"
+        iconColor="var(--ds-success)"
+        iconBg="var(--ds-success-light)"
+        subtitle="Meta a recaudar del mes"
+      />
     </div>
   </div>
 
   <div class="grid mb-4">
-    <div class="col-12 lg:col-6">
+    <div class="col-12 xl:col-4">
       <div class="border-1 surface-border rounded p-4 h-full">
-        <div class="text-lg font-semibold mb-1">
-          Análisis de Cobranza Mensual
+        <div class="flex align-items-start justify-content-between gap-2 mb-1">
+          <div class="text-lg font-semibold">Análisis de Cobranza Mensual</div>
+          <button
+            type="button"
+            (click)="onOpenComposicionReportes()"
+            title="Cómo se compone cada reporte"
+            class="border-0 bg-transparent p-0 text-sm text-primary cursor-pointer underline flex-shrink-0"
+          >
+            ¿Cómo se compone?
+          </button>
         </div>
         <div class="text-color-secondary mb-3">
           {{ customerName() || "Cliente activo" }} · {{ d.periodo }}
         </div>
 
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-bottom-1 surface-border">
-              <th class="text-left pb-2">Clasificación</th>
-              <th class="text-right pb-2">Saldo</th>
-              <th class="text-right pb-2">%</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="font-bold">
-              <td class="py-1">Cobranza perfecta</td>
-              <td class="text-right font-mono">
-                {{ d.cobranzaPerfecta | number:'1.0-0' }}
-              </td>
-              <td class="text-right">100%</td>
-            </tr>
-            <tr>
-              <td class="py-1">Morosos</td>
-              <td class="text-right font-mono">
-                {{ d.totalMorosos | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-500 text-xs">
-                {{ pct(d.totalMorosos, d.cobranzaPerfecta) }}
-              </td>
-            </tr>
-            <tr>
-              <td class="py-1">Deuda corriente</td>
-              <td class="text-right font-mono">
-                {{ d.totalDeudaCorriente | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-500 text-xs">
-                {{ pct(d.totalDeudaCorriente, d.cobranzaPerfecta) }}
-              </td>
-            </tr>
-            <tr class="surface-ground font-bold">
-              <td class="py-1 text-success">Cobrado</td>
-              <td class="text-right font-mono text-success">
-                {{ d.totalCobrado | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-success text-xs">
-                {{ pct(d.totalCobrado, d.cobranzaPerfecta) }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <app-breakdown-list
+          [items]="filasAnalisisMensual()"
+          [total]="d.cobranzaPerfecta"
+          format="currency"
+        />
 
-        <div class="mt-4">
-          <div >
-            <app-chart-wrapper
-              type="pie"
-              [data]="chartData()!"
-              [options]="chartOptions"
-              
-            />
+        <div class="text-color-secondary text-xs mt-3 line-height-3">
+          Cobrado = Cobranza perfecta − Morosos − Deuda corriente. Es un residual,
+          no dinero cobrado: descuenta saldos acumulados de una meta del mes.
+        </div>
+
+        <!-- Bloque de flujo real, para contrastar con el residual de arriba -->
+        <div class="border-top-1 surface-border mt-4 pt-4">
+          <div class="text-lg font-semibold mb-1">Cobranza del Mes</div>
+          <div class="text-color-secondary mb-3">Flujo real del periodo</div>
+
+          <app-breakdown-list
+            [items]="filasCobranzaMes()"
+            [total]="d.cobranzaPerfecta"
+            format="currency"
+          />
+
+          <div class="text-color-secondary text-xs mt-3 line-height-3">
+            Cobrado = abonos aplicados en el mes a las cuentas de cuota. Cuadra
+            contra banco y es el mismo dato que “Abonado” en Resumen.
           </div>
+
+          @if (d.faltanteMes < 0) {
+          <div
+            class="border-left-3 border-orange-500 surface-ground p-2 mt-2 text-xs line-height-3"
+          >
+            Se cobró más de lo facturado en el mes: hay pagos aplicados a cartera de
+            periodos anteriores. El faltante negativo no es un error.
+          </div>
+          }
         </div>
       </div>
     </div>
 
-    <div class="col-12 lg:col-6">
+    <div class="col-12 xl:col-4">
       <div class="border-1 surface-border rounded p-4 h-full">
         <div class="text-lg font-semibold mb-1 text-danger">
           Deuda Condóminos (EF)
@@ -155,188 +128,58 @@
           Clasificación del saldo final por cuenta 104 al corte consultado.
         </div>
 
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-bottom-1 surface-border">
-              <th class="text-left pb-2">Clasificación</th>
-              <th class="text-right pb-2">Saldo</th>
-              <th class="text-right pb-2">%</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="py-1">Cobranza judicial</td>
-              <td class="text-right font-mono">
-                {{ d.totalJudicial | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-500 text-xs">
-                {{ pct(d.totalJudicial, d.totalDeuda) }}
-              </td>
-            </tr>
-            <tr>
-              <td class="py-1">Morosos</td>
-              <td class="text-right font-mono">
-                {{ d.totalMorosos | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-500 text-xs">
-                {{ pct(d.totalMorosos, d.totalDeuda) }}
-              </td>
-            </tr>
-            <tr>
-              <td class="py-1">Deuda corriente</td>
-              <td class="text-right font-mono">
-                {{ d.totalDeudaCorriente | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-500 text-xs">
-                {{ pct(d.totalDeudaCorriente, d.totalDeuda) }}
-              </td>
-            </tr>
-            <tr class="font-bold border-top-1 surface-border">
-              <td class="pt-2">Total deuda</td>
-              <td class="text-right font-mono pt-2">
-                {{ d.totalDeuda | number:'1.0-0' }}
-              </td>
-              <td class="text-right pt-2">100%</td>
-            </tr>
-            <tr class="text-500 text-xs">
-              <td class="py-1">Cuotas anticipadas</td>
-              <td class="text-right font-mono">
-                {{ d.totalAnticipos | number:'1.0-0' }}
-              </td>
-              <td></td>
-            </tr>
-            <tr class="font-bold surface-ground">
-              <td class="py-1 text-info">Saldo según balanza</td>
-              <td class="text-right font-mono text-info">
-                {{ d.saldoBalanza | number:'1.0-0' }}
-              </td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <app-breakdown-list
+          [items]="filasDeudaCondominos()"
+          [total]="d.totalDeuda"
+          format="currency"
+        />
 
-        <div class="mt-4 text-sm text-color-secondary">
-          Fórmula Excel replicada:
-          <strong
-            >Cobrado = Cobranza Perfecta - Morosos - Deuda Corriente</strong
-          >
+        <div
+          class="flex align-items-baseline justify-content-between gap-3 mt-3 pt-3 border-top-1 surface-border"
+        >
+          <span class="text-sm text-color-secondary">Cuotas anticipadas</span>
+          <span class="text-sm font-medium">
+            {{ d.totalAnticipos | currency: "MXN":"symbol":"1.0-0" }}
+          </span>
+        </div>
+        <div
+          class="flex align-items-baseline justify-content-between gap-3 mt-2"
+        >
+          <span class="font-semibold text-info">Saldo según balanza</span>
+          <span class="font-bold text-info text-lg">
+            {{ d.saldoBalanza | currency: "MXN":"symbol":"1.0-0" }}
+          </span>
+        </div>
+
+        <div class="mt-4 text-xs text-color-secondary line-height-3">
+          Cartera acumulada al corte, no del mes. Aquí sí entra la cobranza
+          judicial. Saldo según balanza = Total deuda + Cuotas anticipadas.
         </div>
         <div class="mt-2 text-sm text-color-secondary">
           Corte exacto consultado: <strong>{{ d.periodo }}</strong>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="border-1 surface-border rounded p-4">
-    <div
-      class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2"
-    >
-      <div>
-        <div class="text-lg font-semibold">Detalle por condómino</div>
-        <div class="text-color-secondary text-sm">
-          Tabla base para auditar cómo se clasifica cada cuenta 104 al corte.
+    <div class="col-12 xl:col-4">
+      <div class="border-1 surface-border rounded p-4 h-full flex flex-column">
+        <div class="text-lg font-semibold mb-1">
+          Composici&oacute;n de Cobranza
+        </div>
+        <div class="text-color-secondary mb-3">
+          Distribuci&oacute;n de la cartera
+        </div>
+        <div
+          class="flex-grow-1 flex align-items-center justify-content-center w-full"
+        >
+          <app-chart-wrapper
+            class="w-full block"
+            type="pie"
+            [data]="chartData()!"
+          />
         </div>
       </div>
-      <custom-input-select-signal
-        [data]="classificationOptions"
-        [ngModel]="selectedClassification()"
-        (ngModelChange)="selectedClassification.set($event)"
-      />
     </div>
-
-    <p-table
-      #dt
-      [value]="filteredRows()"
-      [globalFilterFields]="globalFilterFields()"
-      class="custom-table card p-datatable-sm p-datatable-gridlines hidden md:block"
-      [tableStyle]="{ 'min-width': '700px' }"
-      [paginator]="true"
-      [rows]="50"
-      [rowsPerPageOptions]="[25, 50, 100, 250]"
-      [showCurrentPageReport]="true"
-      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    >
-      <ng-template #caption>
-        <primeng-custom-caption
-          [showAdd]="false"
-          [dt]="dt"
-        />
-      </ng-template>
-      <ng-template #header>
-        <tr>
-          <th class="table-col-160px">Cuenta</th>
-          <th>Condómino</th>
-          <th class="text-right table-col-130px">Saldo</th>
-          <th class="table-col-180px">Clasificación</th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-row>
-        <tr>
-          <td class="font-mono text-xs">{{ row.numeroCuenta }}</td>
-          <td class="text-sm">{{ row.condomino }}</td>
-          <td
-            class="text-right font-mono text-sm"
-            [class.text-success]="row.saldo < 0"
-            [class.text-danger]="row.saldo > 0"
-          >
-            {{ row.saldo === 0 ? '—' : (row.saldo | number:'1.0-0') }}
-          </td>
-          <td>
-            <lx-tag [value]="row.clasificacion" [severity]="getSeverity(row.clasificacion)" class="text-xs" />
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #emptymessage>
-        <tr>
-          <td colspan="4" class="text-center py-4 text-color-secondary">
-            Sin condóminos en esta clasificación.
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #paginatorleft>
-        <primeng-custom-table-footer [data]="filteredRows()" />
-      </ng-template>
-    </p-table>
-
-    <app-data-view-mobile
-      [data]="filteredRows()"
-      [globalFilterFields]="globalFilterFields()"
-      [dt]="dt"
-      [showAdd]="false"
-    >
-      <ng-template #listItemTemplate let-item>
-        <ili-list-item>
-          <div
-            start
-            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-            
-          >
-            <app-icon
-              icon="mdi:bank-transfer"
-              
-            />
-          </div>
-          <div class="flex-1 min-w-0 ion-text-wrap">
-            <p class="font-semibold m-0 text-color">
-              {{ item.numeroCuenta }}
-            </p>
-            <p class="text-xs m-0 mt-1 text-color-secondary">
-              {{ item.condomino }}
-            </p>
-            <p class="text-xs m-0 mt-1">
-              <span
-                [class.text-success]="item.saldo < 0"
-                [class.text-danger]="item.saldo > 0"
-              >
-                {{ item.saldo === 0 ? '—' : (item.saldo | number:'1.0-0') }}
-              </span>
-              · {{ item.clasificacion }}
-            </p>
-          </div>
-        </ili-list-item>
-      </ng-template>
-    </app-data-view-mobile>
   </div>
   }
 </section>

@@ -7,11 +7,11 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { RoleType } from "src/app/core/enums/role-type.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { Roles } from "src/app/core/interfaces/roles.interface";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { GroupedRole } from "./interfaces/grouped-role.interface";
 
 const roleTypeNames: { [key in RoleType]: string } = {

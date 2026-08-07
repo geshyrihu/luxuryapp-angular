@@ -76,15 +76,14 @@
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
-          icon="mdi:view-module-outline"
-          class="text-xl text-primary"
-        />
+        <app-icon icon="mdi:view-module-outline" class="text-xl text-primary" />
       </div>
       <h2
         class="font-normal m-0"
         (click)="onModalForm({ roleId: item.roleId, roleName: item.roleName, title: 'Asignar Módulos' })"
-      >{{ item.roleName }}</h2>
+      >
+        {{ item.roleName }}
+      </h2>
       <span end class="text-sm mr-2">{{ item.modules }} Módulos</span>
     </ili-list-item>
   </ng-template>

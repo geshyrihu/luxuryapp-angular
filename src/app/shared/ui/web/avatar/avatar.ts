@@ -4,8 +4,8 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AvatarBase } from "@ui/base/avatar.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AvatarModule } from "primeng/avatar";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * AppAvatar — Wrapper sobre p-avatar. Prioridad image > label > icono (`app-icon`).

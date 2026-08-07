@@ -1,18 +1,18 @@
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
   input,
   output,
   Signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
+import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
-import { LxMessage } from "@ui/adaptive/message/message";
 @Component({
   selector: "app-orden-compra-datos-auth-parcial",
   templateUrl: "./orden-compra-datos-auth-parcial.html",
@@ -97,12 +97,3 @@ export class OrdenCompraDatosAuthParcial {
   // REFACTOR: Los getters `hayMontoParaPagar` y `totalParaCubrir` se han eliminado.
   // Su lígica ahora vive dentro de la `computed signal` `isAuthorizationDisabled`.
 }
-
-
-
-
-
-
-
-
-

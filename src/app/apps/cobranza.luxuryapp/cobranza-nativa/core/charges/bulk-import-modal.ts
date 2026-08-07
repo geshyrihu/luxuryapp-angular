@@ -4,15 +4,18 @@ import {
   OnInit,
   inject,
 } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 
+import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { PropertyInitialBalanceDTO } from "../../interfaces/charge.dto";
 import { downloadInitialBalanceTemplate } from "./initial-balance-template.helper";
 
@@ -79,9 +82,9 @@ export default class BulkImportModal implements OnInit {
       return;
     }
 
-    const properties = await this.apiResponseS.onGetItem<PropertyInitialBalanceDTO[]>(
-      Endpoints.CobranzaCore.Charges.initialBalanceStatus(this.customerId),
-    );
+    const properties = await this.apiResponseS.onGetItem<
+      PropertyInitialBalanceDTO[]
+    >(Endpoints.CobranzaCore.Charges.initialBalanceStatus(this.customerId));
 
     if (!properties?.length) {
       this.toastS.showWarn(

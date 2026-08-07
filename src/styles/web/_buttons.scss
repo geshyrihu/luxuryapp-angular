@@ -154,12 +154,22 @@
 .btn-warning {
   @extend .btn;
   background-color: var(--ds-warning);
-  color: var(--ds-primary-text);
+  color: var(--ds-accent-text-warning);
   border-color: var(--ds-warning);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
     background-color: var(--ds-warning-hover);
     border-color: var(--ds-warning-hover);
+  }
+
+  &:active:not(:disabled):not(.is-disabled) {
+    background-color: var(--ds-warning-hover);
+    border-color: var(--ds-warning-hover);
+  }
+
+  &.is-loading::after {
+    border-color: rgba(122, 94, 21, 0.3);
+    border-top-color: var(--ds-accent-text-warning);
   }
 }
 

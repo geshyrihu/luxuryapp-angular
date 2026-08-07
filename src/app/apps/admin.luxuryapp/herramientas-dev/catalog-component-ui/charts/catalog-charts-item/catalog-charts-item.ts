@@ -1,13 +1,13 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   inject,
   signal,
   ViewEncapsulation,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ChartBar } from "../catalog-charts/chart-bar/chart-bar";
 import { ChartPie } from "../catalog-charts/chart-pie/chart-pie";
 
@@ -27,7 +27,8 @@ const CHARTS_LABELS: Record<string, string> = {
       <div class="section-header mb-4">
         <h2 class="text-3xl font-bold m-0">{{ label }}</h2>
         <p class="text-sm text-secondary mt-1 m-0">
-          <span class="badge-web">Web</span> + <span class="badge-mobile">Mobile</span>
+          <span class="badge-web">Web</span> +
+          <span class="badge-mobile">Mobile</span>
         </p>
       </div>
       <div class="unified-split">
@@ -71,10 +72,20 @@ const CHARTS_LABELS: Record<string, string> = {
           <div class="phone-card">
             <div class="phone-dynamic-island"></div>
             <div class="phone-screen">
-              <div class="flex flex-column align-items-center justify-content-center h-full text-secondary text-sm p-3 gap-3">
-                <app-icon icon="mdi:chart-timeline-variant" class="text-4xl text-gray-400" />
-                <span class="text-center font-medium">Gráficos no disponibles en versión mobile</span>
-                <span class="text-center text-xs">Los gráficos se renderizan solo en web (ECharts / ngx-charts)</span>
+              <div
+                class="flex flex-column align-items-center justify-content-center h-full text-secondary text-sm p-3 gap-3"
+              >
+                <app-icon
+                  icon="mdi:chart-timeline-variant"
+                  class="text-4xl text-gray-400"
+                />
+                <span class="text-center font-medium"
+                  >Gráficos no disponibles en versión mobile</span
+                >
+                <span class="text-center text-xs"
+                  >Los gráficos se renderizan solo en web (ECharts /
+                  ngx-charts)</span
+                >
               </div>
             </div>
             <div class="phone-home-bar"></div>
@@ -121,7 +132,8 @@ const CHARTS_LABELS: Record<string, string> = {
         background: #1a1a2e;
         border-radius: 40px;
         padding: 12px 8px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.4),
           inset 0 0 0 1px rgba(255, 255, 255, 0.08);
         position: relative;
       }

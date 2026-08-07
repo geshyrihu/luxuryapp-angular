@@ -10,11 +10,11 @@ import { Router } from "@angular/router";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AppImage } from "@ui/web/image/image";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import {
   cloudOutline,
@@ -23,7 +23,6 @@ import {
   qrCodeOutline,
   timeOutline,
 } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   globalFilterFields,
@@ -36,6 +35,7 @@ import { AccountingCatalogExcelService } from "src/app/core/services/accounting-
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { InventarioDetectorHumoForm } from "./inventario-detector-humo-form";
 import { InventarioDetectorHumoQrService } from "./inventario-detector-humo-qr.service";
 
@@ -171,9 +171,7 @@ export class InventarioDetectorHumo {
     const formData = new FormData();
     formData.append("file", file);
     const result = await this.apiResponseS.onPost<number>(
-      Endpoints.SmokeDetectors.importByCustomer(
-        this.customerIdS.customerId(),
-      ),
+      Endpoints.SmokeDetectors.importByCustomer(this.customerIdS.customerId()),
       formData,
     );
     if (result !== false) this.onLoadData();
@@ -183,9 +181,7 @@ export class InventarioDetectorHumo {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        Endpoints.SmokeDetectors.listByCustomer(
-          this.customerIdS.customerId(),
-        ),
+        Endpoints.SmokeDetectors.listByCustomer(this.customerIdS.customerId()),
       )
       .then((result: any) => this.dataSignal.set(result));
   }

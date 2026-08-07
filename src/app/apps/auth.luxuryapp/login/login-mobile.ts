@@ -68,8 +68,8 @@ import { ROUTES } from "src/app/routing/route-paths";
 
           <!-- Bottom Sheet Card -->
           <div class="lm-card shadow-lg fadeinup animation-duration-500">
-            <h2 class="lm-title">Bienvenido</h2>
-            <p class="lm-subtitle">Ingresa a tu cuenta</p>
+            <h2 class="lm-title">Bienvenido de nuevo</h2>
+            <p class="lm-subtitle">Inicia sesión para continuar</p>
 
             <form
               [formGroup]="loginForm"
@@ -79,13 +79,13 @@ import { ROUTES } from "src/app/routing/route-paths";
               <ion-input-text
                 [control]="loginForm.controls['userName']"
                 label="Usuario"
-                placeholder="Ej: jperez"
+                placeholder=" "
               />
 
               <ion-input-password
                 [control]="loginForm.controls['password']"
                 label="Contraseña"
-                placeholder="••••••••"
+                placeholder=" "
               />
 
               @if (errorMessage()) {

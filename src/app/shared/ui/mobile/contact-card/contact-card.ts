@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { ContactCardBase, ContactSeverity } from "@ui/base/contact-card.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
   success: { bg: "var(--ds-success-light)", text: "var(--ds-success)" },

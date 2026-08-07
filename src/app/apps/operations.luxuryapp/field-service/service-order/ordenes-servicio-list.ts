@@ -15,10 +15,8 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Importar WebBu
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -27,9 +25,13 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { ReporteOrdenesServicioService } from "src/app/core/services/reporte-ordenes-servicio.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { OrdenesServicioFotos } from "./ordenes-servicio-fotos";
 import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.service";
 import { OrdenesServicioReporteProveedor } from "./ordenes-servicio-reporte-proveedor";

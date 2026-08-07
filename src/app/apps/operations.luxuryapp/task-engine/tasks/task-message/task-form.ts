@@ -23,11 +23,6 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import {
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -37,8 +32,13 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 
 interface ITaskMessageForm {
@@ -64,8 +64,8 @@ interface ITaskMessageForm {
 
 type ImageFieldName = "beforeWork" | "afterWork";
 
-import { DateService } from "src/app/core/services/date.service";
 import { ClientErrorLoggerService } from "src/app/core/services/client-error-logger.service";
+import { DateService } from "src/app/core/services/date.service";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 
 @Component({

@@ -1,10 +1,10 @@
-import { Component, input, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
 import { Table } from "primeng/table";
-import { AppIcon } from "../../shared/app-icon/app-icon.component";
+import { AppIcon } from "../../shared/app-icon/app-icon";
 
 /**
  * 🔍 GLOBAL FILTER
@@ -49,4 +49,3 @@ export class PrimeNgCustomGlobalFilter {
     }
   }
 }
-

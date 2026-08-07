@@ -7,7 +7,7 @@ import {
 import { IconFieldModule } from "primeng/iconfield";
 import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
-import { AppIcon } from "../../../shared/app-icon/app-icon.component";
+import { AppIcon } from "../../../shared/app-icon/app-icon";
 
 @Component({
   selector: "web-input-search",

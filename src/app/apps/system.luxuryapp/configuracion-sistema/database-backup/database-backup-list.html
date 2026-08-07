@@ -61,9 +61,9 @@
       <td>{{ item.name }}</td>
       <td>
         @if (item.destinationType === 'GraphApi') {
-          <span class="badge bg-info">OneDrive</span>
+        <span class="badge bg-info">OneDrive</span>
         } @else {
-          <span class="badge bg-secondary">Local</span>
+        <span class="badge bg-secondary">Local</span>
         }
       </td>
       <td><code>{{ item.cronExpression }}</code></td>
@@ -71,27 +71,29 @@
       <td>{{ item.lastRunAt | date: "dd-MMM-yy HH:mm" }}</td>
       <td>
         @if (item.lastRunStatus) {
-          <span class="badge {{ statusBadge(item.lastRunStatus) }}">{{ item.lastRunStatus }}</span>
+        <span class="badge {{ statusBadge(item.lastRunStatus) }}"
+          >{{ item.lastRunStatus }}</span
+        >
         } @else {
-          <span class="text-color-secondary">Nunca</span>
+        <span class="text-color-secondary">Nunca</span>
         }
       </td>
       <td>
         @if (item.isActive) {
-          <span class="badge bg-success">Si</span>
+        <span class="badge bg-success">Si</span>
         } @else {
-          <span class="badge bg-danger">No</span>
+        <span class="badge bg-danger">No</span>
         }
       </td>
       <td class="no-print">
         <div class="flex gap-1">
           <iw-button-edit (clicked)="onModalEditForm(item)" />
           @if (item.destinationType === 'GraphApi') {
-            <iw-button
-              iconClass="mdi:cloud-check"
-              severity="info"
-              (clicked)="onTestConnection(item.id)"
-            />
+          <iw-button
+            iconClass="mdi:cloud-check"
+            severity="info"
+            (clicked)="onTestConnection(item.id)"
+          />
           }
           <il-button
             label="Ejecutar"
@@ -130,9 +132,9 @@
 
       <p class="mt-0 mb-0 font-semibold">{{ item.name }}</p>
       <p class="text-color-secondary font-size-12 mt-0 mb-0">
-        {{ destinationLabel(item.destinationType) }} &bull; {{ item.cronExpression }}
-        @if (item.lastRunStatus) {
-          &nbsp;&bull;&nbsp;<span>{{ item.lastRunStatus }}</span>
+        {{ destinationLabel(item.destinationType) }} &bull; {{
+        item.cronExpression }} @if (item.lastRunStatus) {
+        &nbsp;&bull;&nbsp;<span>{{ item.lastRunStatus }}</span>
         }
       </p>
 
@@ -145,7 +147,10 @@
             severity="success"
             (clicked)="onExecuteBackup(item.id)"
           />
-          <ili-button-delete (confirmed)="onDeleteConfig(item.id)" label="Eliminar" />
+          <ili-button-delete
+            (confirmed)="onDeleteConfig(item.id)"
+            label="Eliminar"
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

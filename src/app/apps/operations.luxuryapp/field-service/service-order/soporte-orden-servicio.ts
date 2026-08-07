@@ -7,12 +7,12 @@ import {
   OnInit,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-soporte-orden-servicio",
   templateUrl: "./soporte-orden-servicio.html",

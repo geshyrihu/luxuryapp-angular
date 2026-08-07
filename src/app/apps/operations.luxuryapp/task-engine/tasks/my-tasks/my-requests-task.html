@@ -168,45 +168,58 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item alignTop="true" class="w-full">
-      <div slot="start" class="flex align-items-center justify-content-center flex-shrink-0 rounded-lg mt-1" class="w-3rem h-3rem bg-primary-50">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 rounded-lg mt-1"
+        class="w-3rem h-3rem bg-primary-50"
+      >
         <app-icon
           icon="mdi:clipboard-list-outline"
           class="text-xl text-primary"
         />
       </div>
-      
+
       <div class="flex flex-column w-full gap-1">
         <div class="flex justify-content-between align-items-start mt-1">
-          <small class="text-color-secondary text-xs">{{ item.folio }} | {{ item.createdAtDate }}</small>
-          <span class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-xs font-bold">{{ item.daysDifference }} d</span>
+          <small class="text-color-secondary text-xs"
+            >{{ item.folio }} | {{ item.createdAtDate }}</small
+          >
+          <span
+            class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-xs font-bold"
+            >{{ item.daysDifference }} d</span
+          >
         </div>
-        <p class="font-semibold m-0 text-color line-height-2 text-sm ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap">
+        <p
+          class="font-semibold m-0 text-color line-height-2 text-sm ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap"
+        >
           {{ item.title }}
         </p>
-        <p class="text-xs m-0 text-color-secondary ticket-description two-lines">
+        <p
+          class="text-xs m-0 text-color-secondary ticket-description two-lines"
+        >
           {{ item.description }}
         </p>
 
         @if (item.beforeWork || item.afterWork) {
-          <div class="flex align-items-center mt-1">
-            @if (item.beforeWork) {
-            <app-image
-              [src]="item.beforeWork"
-              alt="Evidencia inicial"
-              width="30"
-              [preview]="true"
-              styleClass="mr-2 border border-danger"
-            />
-            } @if (item.afterWork) {
-            <app-image
-              [src]="item.afterWork"
-              alt="Evidencia final"
-              width="30"
-              [preview]="true"
-              styleClass="border border-success"
-            />
-            }
-          </div>
+        <div class="flex align-items-center mt-1">
+          @if (item.beforeWork) {
+          <app-image
+            [src]="item.beforeWork"
+            alt="Evidencia inicial"
+            width="30"
+            [preview]="true"
+            styleClass="mr-2 border border-danger"
+          />
+          } @if (item.afterWork) {
+          <app-image
+            [src]="item.afterWork"
+            alt="Evidencia final"
+            width="30"
+            [preview]="true"
+            styleClass="border border-success"
+          />
+          }
+        </div>
         }
         <div class="flex justify-content-end text-right">
           <p class="m-0 text-xs text-color-secondary">
@@ -214,7 +227,7 @@
           </p>
         </div>
       </div>
-      
+
       <ili-action-menu slot="end">
         <ili-button-edit
           (clicked)="onModalForm({

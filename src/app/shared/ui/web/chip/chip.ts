@@ -2,11 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
-  computed
+  computed,
 } from "@angular/core";
 import { ChipBase } from "@ui/base/chip.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ChipModule } from "primeng/chip";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * AppChip — Wrapper sobre p-chip. Renderiza icono (`app-icon`), etiqueta e

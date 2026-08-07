@@ -1,0 +1,243 @@
+<section>
+  @if (!hasCustomer()) {
+  <div class="mt-3">
+    <div class="surface-card border-1 surface-border rounded p-2">
+      <div class="font-medium mb-2">Sin cliente activo</div>
+      <div class="text-color-secondary">
+        Selecciona un cliente para consultar el detalle de condóminos.
+      </div>
+    </div>
+  </div>
+  } @else {
+
+  <div
+    class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2 mt-3"
+  ></div>
+
+  <div
+    class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2 mt-3"
+  ></div>
+
+  <p-table
+    #dt
+    [value]="filteredRows()"
+    [globalFilterFields]="globalFilterFields"
+    class="custom-table card p-datatable-sm p-datatable-gridlines hidden md:block"
+    [tableStyle]="{ 'min-width': '700px' }"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollHeight]="scrollHeight"
+    [scrollable]="true"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  >
+    <ng-template #caption>
+      <div
+        class="flex flex-column xl:flex-row align-items-center justify-content-between gap-3 w-full"
+      >
+        <primeng-custom-caption
+          [showAdd]="false"
+          [dt]="dt"
+          class="w-full xl:w-auto"
+        />
+
+        <div class="flex gap-2 overflow-auto max-w-full pb-2 xl:pb-0">
+          <div
+            class="border-round p-2 text-center cursor-pointer transition-all transition-duration-200 flex-shrink-0"
+            style="min-width: 100px"
+            [ngClass]="isActive('COBRANZA EXTRAJUDICIAL') ? 'surface-card shadow-2 border-2 border-primary' : 'surface-ground border-1 surface-border'"
+            (click)="toggleClassification('COBRANZA EXTRAJUDICIAL')"
+          >
+            <div
+              class="text-color-secondary text-xs uppercase font-bold tracking-wide mb-1"
+            >
+              Judicial
+            </div>
+            <div
+              class="text-lg font-bold"
+              [ngClass]="isActive('COBRANZA EXTRAJUDICIAL') ? 'text-primary' : 'text-danger'"
+            >
+              {{ counts()?.judicial || 0 }}
+            </div>
+          </div>
+
+          <div
+            class="border-round p-2 text-center cursor-pointer transition-all transition-duration-200 flex-shrink-0"
+            style="min-width: 100px"
+            [ngClass]="isActive('MOROSOS') ? 'surface-card shadow-2 border-2 border-primary' : 'surface-ground border-1 surface-border'"
+            (click)="toggleClassification('MOROSOS')"
+          >
+            <div
+              class="text-color-secondary text-xs uppercase font-bold tracking-wide mb-1"
+            >
+              Morosos
+            </div>
+            <div
+              class="text-lg font-bold"
+              [ngClass]="isActive('MOROSOS') ? 'text-primary' : 'text-warning'"
+            >
+              {{ counts()?.morosos || 0 }}
+            </div>
+          </div>
+
+          <div
+            class="border-round p-2 text-center cursor-pointer transition-all transition-duration-200 flex-shrink-0"
+            style="min-width: 100px"
+            [ngClass]="isActive('DEUDA CORRIENTE') ? 'surface-card shadow-2 border-2 border-primary' : 'surface-ground border-1 surface-border'"
+            (click)="toggleClassification('DEUDA CORRIENTE')"
+          >
+            <div
+              class="text-color-secondary text-xs uppercase font-bold tracking-wide mb-1"
+            >
+              Corriente
+            </div>
+            <div
+              class="text-lg font-bold"
+              [ngClass]="isActive('DEUDA CORRIENTE') ? 'text-primary' : 'text-info'"
+            >
+              {{ counts()?.corriente || 0 }}
+            </div>
+          </div>
+
+          <div
+            class="border-round p-2 text-center cursor-pointer transition-all transition-duration-200 flex-shrink-0"
+            style="min-width: 100px"
+            [ngClass]="isActive('SIN ADEUDO') ? 'surface-card shadow-2 border-2 border-primary' : 'surface-ground border-1 surface-border'"
+            (click)="toggleClassification('SIN ADEUDO')"
+          >
+            <div
+              class="text-color-secondary text-xs uppercase font-bold tracking-wide mb-1"
+            >
+              Sin Adeudo
+            </div>
+            <div
+              class="text-lg font-bold"
+              [ngClass]="isActive('SIN ADEUDO') ? 'text-primary' : 'text-success'"
+            >
+              {{ counts()?.sinAdeudo || 0 }}
+            </div>
+          </div>
+
+          <div
+            class="border-round p-2 text-center cursor-pointer transition-all transition-duration-200 flex-shrink-0"
+            style="min-width: 100px"
+            [ngClass]="isActive('ANTICIPOS') ? 'surface-card shadow-2 border-2 border-primary' : 'surface-ground border-1 surface-border'"
+            (click)="toggleClassification('ANTICIPOS')"
+          >
+            <div
+              class="text-color-secondary text-xs uppercase font-bold tracking-wide mb-1"
+            >
+              Anticipos
+            </div>
+            <div
+              class="text-lg font-bold"
+              [ngClass]="isActive('ANTICIPOS') ? 'text-primary' : 'text-color'"
+            >
+              {{ counts()?.anticipos || 0 }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th class="table-col-160px" pSortableColumn="accountNumber">
+          Cuenta <p-sorticon field="accountNumber" />
+        </th>
+        <th pSortableColumn="propertyFullName">
+          Condómino <p-sorticon field="propertyFullName" />
+        </th>
+        <th
+          class="table-col-180px text-center"
+          pSortableColumn="classification"
+        >
+          Clasificación <p-sorticon field="classification" />
+        </th>
+        <th class="text-right table-col-150px" pSortableColumn="balance">
+          Saldo Total <p-sorticon field="balance" />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-row>
+      <tr>
+        <td class="font-mono text-xs">{{ row.numeroCuenta }}</td>
+        <td class="text-sm font-medium">{{ row.condomino }}</td>
+        <td class="text-center">
+          <lx-tag
+            [value]="row.clasificacion"
+            [severity]="getSeverity(row.clasificacion)"
+            class="text-xs"
+          />
+        </td>
+        <td
+          class="text-right font-mono font-bold"
+          [class.text-success]="row.saldo < 0"
+          [class.text-danger]="row.saldo > 0"
+        >
+          {{ row.saldo === 0 ? '—' : (row.saldo |
+          currency:'MXN':'symbol':'1.0-0') }}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #footer>
+      <tr class="font-bold border-top-2 surface-border">
+        <td colspan="3" class="text-right">TOTAL (Clasificación Actual):</td>
+        <td
+          class="text-right"
+          [class.text-danger]="totales().total > 0"
+          [class.text-success]="totales().total < 0"
+        >
+          {{ totales().total | currency:'MXN':'symbol':'1.0-0' }}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <primeng-custom-table-emptymessage [colspan]="4" />
+    </ng-template>
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="filteredRows()" />
+    </ng-template>
+  </p-table>
+
+  <app-data-view-mobile
+    [data]="filteredRows()"
+    [globalFilterFields]="globalFilterFields"
+    [dt]="dt"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ili-list-item>
+        <div
+          start
+          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        >
+          <app-icon icon="mdi:account" />
+        </div>
+        <div class="flex-1 min-w-0 ion-text-wrap p-2">
+          <p class="font-semibold m-0 text-color">{{ item.condomino }}</p>
+          <p class="text-xs m-0 mt-1 text-color-secondary">
+            {{ item.numeroCuenta }}
+          </p>
+          <div class="flex justify-content-between align-items-center mt-2">
+            <lx-tag
+              [value]="item.clasificacion"
+              [severity]="getSeverity(item.clasificacion)"
+              class="text-xs"
+            />
+            <span
+              class="font-bold font-mono"
+              [class.text-success]="item.saldo < 0"
+              [class.text-danger]="item.saldo > 0"
+            >
+              {{ item.saldo === 0 ? '—' : (item.saldo |
+              currency:'MXN':'symbol':'1.0-0') }}
+            </span>
+          </div>
+        </div>
+      </ili-list-item>
+    </ng-template>
+  </app-data-view-mobile>
+
+  }
+</section>

@@ -6,7 +6,7 @@ import {
   output,
 } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
-import { AppIcon } from "../../shared/app-icon/app-icon.component";
+import { AppIcon } from "../../shared/app-icon/app-icon";
 import { MobileButtonBase } from "../mobile-button-base";
 import { ConfirmService } from "../shared/confirm.service";
 

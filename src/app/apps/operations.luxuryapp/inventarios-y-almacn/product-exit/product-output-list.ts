@@ -11,9 +11,9 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 // import { Subscription } from "rxjs"; // Removed
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
@@ -43,7 +43,7 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-product-output-list",

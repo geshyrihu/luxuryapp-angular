@@ -1,42 +1,10 @@
-<section class="p-3 md:p-4">
-  <div
-    class="flex flex-column md:flex-row md:justify-content-between md:align-items-start gap-3 mb-4"
-  >
-    <div>
-      <h2 class="m-0 text-xl font-semibold">Inspección de cobranza</h2>
-      <p class="mt-2 mb-0 text-color-secondary">
-        Listado base por cuenta 104 para revisar qué cargos entran, qué pagos
-        restan y con qué contexto 401 se relacionan.
-      </p>
-    </div>
-
-    <div class="flex gap-2">
-      <il-button
-        label="Volver al dashboard"
-        severity="secondary"
-        variant="outline"
-        (clicked)="navigateTo('/cobranza/online')"
-      />
-      <il-button
-        label="Actualizar listado"
-        severity="secondary"
-        (clicked)="onLoadData()"
-      />
-    </div>
-  </div>
+<section>
 
   @if (!hasCustomer()) {
   <div class="mb-4 border-1 surface-border rounded p-4">
     <div class="font-medium mb-2">Sin cliente activo</div>
     <div class="text-color-secondary">
       Selecciona un cliente para revisar el listado de inspección.
-    </div>
-  </div>
-  } @else if (loading()) {
-  <div class="mb-4 border-1 surface-border rounded p-4">
-    <div class="font-medium mb-2">Cargando listado...</div>
-    <div class="text-color-secondary">
-      Preparando la unión de cuentas, movimientos y pólizas del mes consultado.
     </div>
   </div>
   } @else if (inspection(); as data) {
@@ -161,19 +129,12 @@
     [showAdd]="false"
   >
     <ng-template #listItemTemplate let-item>
-      <ili-list-item
-        class="ion-no-padding"
-        (click)="onSelectRow(item)"
-      >
+      <ili-list-item class="ion-no-padding" (click)="onSelectRow(item)">
         <div
           start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
-          
         >
-          <app-icon
-            icon="mdi:bank-transfer"
-            
-          />
+          <app-icon icon="mdi:bank-transfer" />
         </div>
         <div class="flex-1 min-w-0 ion-text-wrap">
           <p class="font-semibold m-0 text-color">

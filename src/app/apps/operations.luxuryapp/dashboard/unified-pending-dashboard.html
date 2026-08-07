@@ -1,13 +1,13 @@
 <div class="flex flex-column mb-4">
   <div class="hidden md:block">
-  <p-table
-    #dt
-    [value]="data()"
-    [rows]="tablePrimeNgRows"
-    [rowsPerPageOptions]="rowsPerPageOptions"
-    [paginator]="true"
-    [loading]="loading()"
-    [globalFilterFields]="[
+    <p-table
+      #dt
+      [value]="data()"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [paginator]="true"
+      [loading]="loading()"
+      [globalFilterFields]="[
       'title',
       'description',
       'module',
@@ -15,283 +15,279 @@
       'status',
       'formattedDate',
     ]"
-    class="p-datatable-sm p-datatable-gridlines font-sm"
-    [rowHover]="true"
-    size="small"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="{first}-{last} de {totalRecords}"
-    [scrollable]="true"
-    [scrollHeight]="scrollHeight()"
-  >
-    <ng-template #caption>
-      <div
-        class="flex flex-column lg:flex-row justify-content-between align-items-start lg:align-items-center"
-      >
-        <!-- Legend & Filters Wrapper -->
-        <div class="flex flex-column w-full">
-          <!-- Filters & Actions Bar -->
-          <div class="flex flex-wrap align-items-center w-full">
-            <!-- Module Filters -->
-            @if (uniqueModules().length > 0) {
-            <div class="flex overflow-x-auto align-items-center pb-1">
-              <div
-                class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
-                [class.border-primary]="selectedModule() === null"
-                [class.bg-primary-50]="selectedModule() === null"
-                (click)="onModuleFilterChange(null)"
-              >
-                <app-icon [icon]="'mdi:grid'" class="text-primary" />
-                <span class="font-bold text-sm">Todos</span>
-                <lx-tag
-                  [value]="allData.length"
-                  severity="secondary"
-                  class="text-xs py-0"
-                 />
-              </div>
-
-              @for (mod of uniqueModules(); track mod.name) {
-              <div
-                class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
-                [class.border-primary]="selectedModule() === mod.name"
-                [class.bg-primary-50]="selectedModule() === mod.name"
-                (click)="onModuleFilterChange(mod.name)"
-              >
-                <span>{{ mod.emoji }}</span>
-                <span class="font-medium text-sm">{{ mod.name }}</span>
-                <span
-                  class="text-xs text-500 font-bold bg-surface-200 px-1 rounded"
-                  >{{ mod.count }}</span
+      class="p-datatable-sm p-datatable-gridlines font-sm"
+      [rowHover]="true"
+      size="small"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="{first}-{last} de {totalRecords}"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
+    >
+      <ng-template #caption>
+        <div
+          class="flex flex-column lg:flex-row justify-content-between align-items-start lg:align-items-center"
+        >
+          <!-- Legend & Filters Wrapper -->
+          <div class="flex flex-column w-full">
+            <!-- Filters & Actions Bar -->
+            <div class="flex flex-wrap align-items-center w-full">
+              <!-- Module Filters -->
+              @if (uniqueModules().length > 0) {
+              <div class="flex overflow-x-auto align-items-center pb-1">
+                <div
+                  class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+                  [class.border-primary]="selectedModule() === null"
+                  [class.bg-primary-50]="selectedModule() === null"
+                  (click)="onModuleFilterChange(null)"
                 >
+                  <app-icon [icon]="'mdi:grid'" class="text-primary" />
+                  <span class="font-bold text-sm">Todos</span>
+                  <lx-tag
+                    [value]="allData.length"
+                    severity="secondary"
+                    class="text-xs py-0"
+                  />
+                </div>
+
+                @for (mod of uniqueModules(); track mod.name) {
+                <div
+                  class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+                  [class.border-primary]="selectedModule() === mod.name"
+                  [class.bg-primary-50]="selectedModule() === mod.name"
+                  (click)="onModuleFilterChange(mod.name)"
+                >
+                  <span>{{ mod.emoji }}</span>
+                  <span class="font-medium text-sm">{{ mod.name }}</span>
+                  <span
+                    class="text-xs text-500 font-bold bg-surface-200 px-1 rounded"
+                    >{{ mod.count }}</span
+                  >
+                </div>
+                }
               </div>
               }
+
+              <div class="flex-flex-grow-1-1"></div>
+
+              <!-- Action Icons Group -->
+              <app-action-icons-group>
+                <iw-button
+                  iconClass="mdi:camera"
+                  severity="secondary"
+                  variant="ghost-text"
+                  size="sm"
+                  (clicked)="openVision()"
+                />
+                <iw-button
+                  iconClass="mdi:sparkles"
+                  severity="help"
+                  variant="ghost-text"
+                  size="sm"
+                  (clicked)="generateDailyReport()"
+                />
+                @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+                <div class="border-left-1 surface-border h-1rem mx-1"></div>
+                <iw-button
+                  iconClass="mdi:email-outline"
+                  severity="danger"
+                  variant="ghost-text"
+                  size="sm"
+                  (clicked)="sendExecutiveReport()"
+                />
+                }
+              </app-action-icons-group>
+
+              <!-- Search -->
+              <primeng-custom-caption [showAdd]="false" [dt]="dt" />
             </div>
-            }
 
-            <div class="flex-flex-grow-1-1"></div>
-
-            <!-- Action Icons Group -->
-            <app-action-icons-group>
-              <iw-button
-                iconClass="mdi:camera"
-                severity="secondary"
-                variant="ghost-text"
-                size="sm"
-                (clicked)="openVision()"
-              />
-              <iw-button
-                iconClass="mdi:sparkles"
-                severity="help"
-                variant="ghost-text"
-                size="sm"
-                (clicked)="generateDailyReport()"
-              />
-              @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-              <div class="border-left-1 surface-border h-1rem mx-1"></div>
-              <iw-button
-                iconClass="mdi:email-outline"
-                severity="danger"
-                variant="ghost-text"
-                size="sm"
-                (clicked)="sendExecutiveReport()"
-              />
-              }
-            </app-action-icons-group>
-
-            <!-- Search -->
-            <primeng-custom-caption [showAdd]="false" [dt]="dt" />
-          </div>
-
-          <!-- Contextual Legend (Small) -->
-          <div class="flex align-items-center text-xs text-600 px-1">
-            <app-icon [icon]="'mdi:information'" class="text-primary" />
-            <div class="flex align-items-center gap-1">
-              <span
-                class="w-1rem h-0_5rem bg-red-100 border-1 border-red-300 rounded"
-              ></span>
-              Critico (>8d)
-            </div>
-            <div class="flex align-items-center gap-1">
-              <span
-                class="w-1rem h-0_5rem bg-yellow-100 border-1 border-yellow-300 rounded"
-              ></span>
-              Alerta (7-8d)
+            <!-- Contextual Legend (Small) -->
+            <div class="flex align-items-center text-xs text-600 px-1">
+              <app-icon [icon]="'mdi:information'" class="text-primary" />
+              <div class="flex align-items-center gap-1">
+                <span
+                  class="w-1rem h-0_5rem bg-red-100 border-1 border-red-300 rounded"
+                ></span>
+                Critico (>8d)
+              </div>
+              <div class="flex align-items-center gap-1">
+                <span
+                  class="w-1rem h-0_5rem bg-yellow-100 border-1 border-yellow-300 rounded"
+                ></span>
+                Alerta (7-8d)
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </ng-template>
+      </ng-template>
 
-    <ng-template #header>
-      <tr class="text-sm uppercase text-600 bg-surface-50">
-        <th
-          pSortableColumn="module"
-          class="white-space-nowrap pl-3 table-col-8"
+      <ng-template #header>
+        <tr class="text-sm uppercase text-600 bg-surface-50">
+          <th
+            pSortableColumn="module"
+            class="white-space-nowrap pl-3 table-col-8"
+          >
+            Módulo <p-sorticon field="module"></p-sorticon>
+          </th>
+          <th
+            pSortableColumn="date"
+            class="white-space-nowrap text-center table-col-10"
+          >
+            Fecha <p-sorticon field="date"></p-sorticon>
+          </th>
+          <th pSortableColumn="title" class="table-col-32">
+            Actividad / Asunto <p-sorticon field="title"></p-sorticon>
+          </th>
+          <th pSortableColumn="responsible" class="table-col-15">
+            Responsable <p-sorticon field="responsible"></p-sorticon>
+          </th>
+          <th class="table-col-20">último Seguimiento</th>
+          <th pSortableColumn="status" class="text-center table-col-10">
+            Estatus <p-sorticon field="status"></p-sorticon>
+          </th>
+          <th pSortableColumn="daysOpen" class="text-center pr-3 table-col-5">
+            Días <p-sorticon field="daysOpen"></p-sorticon>
+          </th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-item>
+        <tr
+          [class.bg-red-50]="isSevere(item)"
+          [class.bg-yellow-50]="isWarning(item)"
+          class="cursor-pointer transition-duration-100 text-sm border-bottom-1 surface-border"
+          (click)="onNavigate(item)"
         >
-          Módulo <p-sorticon field="module"></p-sorticon>
-        </th>
-        <th
-          pSortableColumn="date"
-          class="white-space-nowrap text-center table-col-10"
-        >
-          Fecha <p-sorticon field="date"></p-sorticon>
-        </th>
-        <th pSortableColumn="title" class="table-col-32">
-          Actividad / Asunto <p-sorticon field="title"></p-sorticon>
-        </th>
-        <th pSortableColumn="responsible" class="table-col-15">
-          Responsable <p-sorticon field="responsible"></p-sorticon>
-        </th>
-        <th class="table-col-20">último Seguimiento</th>
-        <th pSortableColumn="status" class="text-center table-col-10">
-          Estatus <p-sorticon field="status"></p-sorticon>
-        </th>
-        <th pSortableColumn="daysOpen" class="text-center pr-3 table-col-5">
-          Días <p-sorticon field="daysOpen"></p-sorticon>
-        </th>
-      </tr>
-    </ng-template>
+          <!-- Module -->
+          <td class="pl-3 vertical-align-middle">
+            <lx-tag
+              [value]="item.module"
+              [severity]="getModuleSeverity(item.module)"
+              class="text-xs uppercase font-bold px-2 py-1"
+            />
+          </td>
 
-    <ng-template #body let-item>
-      <tr
-        [class.bg-red-50]="isSevere(item)"
-        [class.bg-yellow-50]="isWarning(item)"
-        class="cursor-pointer transition-duration-100 text-sm border-bottom-1 surface-border"
-        (click)="onNavigate(item)"
-      >
-        <!-- Module -->
-        <td class="pl-3 vertical-align-middle">
-          <lx-tag
-            [value]="item.module"
-            [severity]="getModuleSeverity(item.module)"
-            class="text-xs uppercase font-bold px-2 py-1"
-           />
-        </td>
-
-        <!-- Date -->
-        <td class="text-center vertical-align-middle">
-          <div class="flex flex-column align-items-center">
-            <span class="font-bold text-800 text-base mb-1"
-              >{{ item.date | date: 'dd MMM' : 'UTC' }}</span
-            >
-            <span class="text-500 text-xs flex align-items-center gap-1"
-              ><app-icon [icon]="'mdi:clock-outline'" class="text-xs" /> {{
-              item.date | date: 'HH:mm' : 'UTC' }}</span
-            >
-          </div>
-        </td>
-
-        <!-- Activity -->
-        <td class="vertical-align-middle py-3">
-          <div class="flex flex-column gap-1">
-            <span class="font-bold text-900 text-base line-height-2"
-              >{{ item.title }}</span
-            >
-            <span
-              class="text-600 text-sm line-height-2 overflow-hidden text-overflow-ellipsis line-clamp-2"
-            >
-              {{ item.description }}
-            </span>
-          </div>
-        </td>
-
-        <!-- Responsible -->
-        <td class="vertical-align-middle">
-          <div class="flex align-items-center">
-            <app-avatar
-              label="{{item.responsible.charAt(0)}}"
-              [styleClass]="'mr-1 ' + (isSevere(item) ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700')"
-              size="normal"
-              shape="circle"
-            ></app-avatar>
-            <div class="flex flex-column">
-              <span class="text-800 font-medium text-sm"
-                >{{ item.responsible }}</span
+          <!-- Date -->
+          <td class="text-center vertical-align-middle">
+            <div class="flex flex-column align-items-center">
+              <span class="font-bold text-800 text-base mb-1"
+                >{{ item.date | date: 'dd MMM' : 'UTC' }}</span
               >
-              <span class="text-500 text-xs">Asignado</span>
+              <span class="text-500 text-xs flex align-items-center gap-1"
+                ><app-icon [icon]="'mdi:clock-outline'" class="text-xs" /> {{
+                item.date | date: 'HH:mm' : 'UTC' }}</span
+              >
             </div>
-          </div>
-        </td>
+          </td>
 
-        <!-- Followup -->
-        <td class="vertical-align-middle">
-          @if (item.lastFollowup && item.lastFollowup !== 'Sin seguimiento') {
-          <div class="flex align-items-start p-2 surface-50 rounded">
-            <app-icon [icon]="'mdi:comment'" class="text-primary mt-1" />
-            <span
-              class="text-600 text-xs line-height-2 line-clamp-2"
-              [lxTooltip]="item.lastFollowup"
-              tooltipPosition="top"
-              >{{ item.lastFollowup }}</span
-            >
-          </div>
-          } @else {
-          <span class="text-400 text-xs italic pl-2">-- Sin info --</span>
-          }
-        </td>
-
-        <!-- Status -->
-        <td class="text-center vertical-align-middle">
-          <lx-tag
-            [value]="item.status"
-            [severity]="getSeverity(item.status)"
-            [rounded]="true"
-            class="text-xs font-bold px-2"
-           />
-        </td>
-
-        <!-- Days -->
-        <td class="text-center vertical-align-middle pr-3">
-          @if (item.daysOpen >= 0) {
-          <div class="flex flex-column align-items-center">
-            <span
-              class="font-bold text-lg"
-              [class.text-red-600]="isSevere(item)"
-              [class.text-orange-500]="isWarning(item)"
-              [class.text-700]="!isSevere(item) && !isWarning(item)"
-              >{{ item.daysOpen }}</span
-            >
-            <span class="text-xs text-500">días</span>
-          </div>
-          } @else {
-          <span class="text-400">-</span>
-          }
-        </td>
-      </tr>
-    </ng-template>
-
-    <!-- Empty and Paginator templates remain similar but cleaner if needed -->
-    <ng-template #emptymessage>
-      <tr>
-        <td colspan="7" class="text-center p-6 surface-50">
-          <div class="flex flex-column align-items-center opacity-60">
-            <div
-              class="border-circle bg-surface-200 p-4 flex align-items-center justify-content-center"
-            >
-              <app-icon [icon]="'mdi:check'" class="text-4xl text-500" />
+          <!-- Activity -->
+          <td class="vertical-align-middle py-3">
+            <div class="flex flex-column gap-1">
+              <span class="font-bold text-900 text-base line-height-2"
+                >{{ item.title }}</span
+              >
+              <span
+                class="text-600 text-sm line-height-2 overflow-hidden text-overflow-ellipsis line-clamp-2"
+              >
+                {{ item.description }}
+              </span>
             </div>
-            <span class="font-medium text-xl text-700"
-              >Bien Bandeja Limpia!</span
-            >
-            <span class="text-600"
-              >No tienes actividades pendientes por atender.</span
-            >
-          </div>
-        </td>
-      </tr>
-    </ng-template>
+          </td>
 
-    <ng-template #paginatorleft>
-      <primeng-custom-table-footer [data]="data()" />
-    </ng-template>
-  </p-table>
+          <!-- Responsible -->
+          <td class="vertical-align-middle">
+            <div class="flex align-items-center">
+              <app-avatar
+                label="{{item.responsible.charAt(0)}}"
+                [styleClass]="'mr-1 ' + (isSevere(item) ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700')"
+                size="normal"
+                shape="circle"
+              ></app-avatar>
+              <div class="flex flex-column">
+                <span class="text-800 font-medium text-sm"
+                  >{{ item.responsible }}</span
+                >
+                <span class="text-500 text-xs">Asignado</span>
+              </div>
+            </div>
+          </td>
+
+          <!-- Followup -->
+          <td class="vertical-align-middle">
+            @if (item.lastFollowup && item.lastFollowup !== 'Sin seguimiento') {
+            <div class="flex align-items-start p-2 surface-50 rounded">
+              <app-icon [icon]="'mdi:comment'" class="text-primary mt-1" />
+              <span
+                class="text-600 text-xs line-height-2 line-clamp-2"
+                [lxTooltip]="item.lastFollowup"
+                tooltipPosition="top"
+                >{{ item.lastFollowup }}</span
+              >
+            </div>
+            } @else {
+            <span class="text-400 text-xs italic pl-2">-- Sin info --</span>
+            }
+          </td>
+
+          <!-- Status -->
+          <td class="text-center vertical-align-middle">
+            <lx-tag
+              [value]="item.status"
+              [severity]="getSeverity(item.status)"
+              [rounded]="true"
+              class="text-xs font-bold px-2"
+            />
+          </td>
+
+          <!-- Days -->
+          <td class="text-center vertical-align-middle pr-3">
+            @if (item.daysOpen >= 0) {
+            <div class="flex flex-column align-items-center">
+              <span
+                class="font-bold text-lg"
+                [class.text-red-600]="isSevere(item)"
+                [class.text-orange-500]="isWarning(item)"
+                [class.text-700]="!isSevere(item) && !isWarning(item)"
+                >{{ item.daysOpen }}</span
+              >
+              <span class="text-xs text-500">días</span>
+            </div>
+            } @else {
+            <span class="text-400">-</span>
+            }
+          </td>
+        </tr>
+      </ng-template>
+
+      <!-- Empty and Paginator templates remain similar but cleaner if needed -->
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="7" class="text-center p-6 surface-50">
+            <div class="flex flex-column align-items-center opacity-60">
+              <div
+                class="border-circle bg-surface-200 p-4 flex align-items-center justify-content-center"
+              >
+                <app-icon [icon]="'mdi:check'" class="text-4xl text-500" />
+              </div>
+              <span class="font-medium text-xl text-700"
+                >Bien Bandeja Limpia!</span
+              >
+              <span class="text-600"
+                >No tienes actividades pendientes por atender.</span
+              >
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="data()" />
+      </ng-template>
+    </p-table>
   </div>
 
   <!-- 📱 MOBILE -->
-  <app-data-view-mobile
-    [data]="data()"
-    [showAdd]="false"
-    [dt]="dt"
-  >
+  <app-data-view-mobile [data]="data()" [showAdd]="false" [dt]="dt">
     <div customFilters>
       <!-- Module Filters -->
       @if (uniqueModules().length > 0) {
@@ -308,7 +304,7 @@
             [value]="allData.length"
             severity="secondary"
             class="text-xs py-0"
-           />
+          />
         </div>
 
         @for (mod of uniqueModules(); track mod.name) {
@@ -320,8 +316,7 @@
         >
           <span>{{ mod.emoji }}</span>
           <span class="font-medium text-sm">{{ mod.name }}</span>
-          <span
-            class="text-xs text-500 font-bold bg-surface-200 px-1 rounded"
+          <span class="text-xs text-500 font-bold bg-surface-200 px-1 rounded"
             >{{ mod.count }}</span
           >
         </div>
@@ -332,7 +327,9 @@
     <ng-template #listItemTemplate let-item>
       <ili-list-item (click)="onNavigate(item)">
         <p class="font-semibold m-0 text-color">{{ item.title }}</p>
-        <p class="text-xs m-0 text-color-secondary">{{ item.module }} · {{ item.responsible }}</p>
+        <p class="text-xs m-0 text-color-secondary">
+          {{ item.module }} · {{ item.responsible }}
+        </p>
       </ili-list-item>
     </ng-template>
   </app-data-view-mobile>

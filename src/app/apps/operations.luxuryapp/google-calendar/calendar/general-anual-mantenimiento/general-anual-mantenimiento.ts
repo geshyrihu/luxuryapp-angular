@@ -8,12 +8,12 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-general-anual-mantenimiento",
   templateUrl: "./general-anual-mantenimiento.html",

@@ -5,9 +5,9 @@ import {
 } from "@angular/core";
 import type { StepperStep } from "@ui/base/stepper.base";
 import { StepperBase } from "@ui/base/stepper.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { StepperModule } from "primeng/stepper";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export type WizardStep = StepperStep;
 

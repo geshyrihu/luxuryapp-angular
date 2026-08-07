@@ -207,8 +207,9 @@ export class ApiResponseService {
     urlApi: string,
     data: unknown = null,
     onRequestError?: ApiRequestErrorHandler,
+    showLoader: boolean = true
   ): Promise<T | false> {
-    this.loaderS.show();
+    if (showLoader) this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
         this.dataConnectorS.post<ApiResponseDto<T>>(urlApi, data),
@@ -227,7 +228,7 @@ export class ApiResponseService {
       this.consoleLogger.error(`API Error: POST: ${urlApi}`, error);
       return false;
     } finally {
-      this.loaderS.hide();
+      if (showLoader) this.loaderS.hide();
     }
   }
 

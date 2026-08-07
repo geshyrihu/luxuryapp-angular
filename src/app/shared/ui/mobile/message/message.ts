@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { MessageBase } from "@ui/base/message.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-message",

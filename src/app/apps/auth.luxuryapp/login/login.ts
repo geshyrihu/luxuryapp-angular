@@ -34,7 +34,7 @@ import { ConsoleLoggerService } from "src/app/core/services/console-logger.servi
 import { LoaderService } from "src/app/core/services/loader.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-login",

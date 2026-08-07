@@ -4,9 +4,9 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export type { ConfirmType } from "@ui/base/confirm-dialog.base";
 

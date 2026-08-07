@@ -1,0 +1,203 @@
+<section>
+  @if (!hasCustomer()) {
+  <div
+    class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4"
+  >
+    <div class="font-medium mb-2">Sin cliente activo</div>
+    <div class="text-color-secondary">
+      Selecciona un cliente para consultar los cargos adicionales.
+    </div>
+  </div>
+  } @else {
+
+  <div
+    class="surface-card border-1 surface-border border-round-xl shadow-1 p-3 md:p-4 mb-3"
+  >
+    @if (otrosCargos().length === 0) {
+    <div class="text-center p-4 text-color-secondary">
+      No se encontraron cargos adicionales para el mes consultado.
+    </div>
+    } @else {
+
+    <!-- Tabla desktop -->
+    <p-table
+      #dt
+      [value]="otrosCargos()"
+      [globalFilterFields]="['conceptName']"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '600px' }"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      class="custom-table card hidden md:block"
+      styleClass="p-datatable-sm"
+    >
+      <ng-template #caption>
+        <div
+          class="flex flex-column xl:flex-row align-items-center justify-content-between gap-3 w-full"
+        >
+          <primeng-custom-caption
+            [dt]="dt"
+            [showAdd]="false"
+            [showSearch]="true"
+            class="w-full xl:w-auto"
+          />
+
+          <div class="flex gap-2 overflow-auto max-w-full pb-2 xl:pb-0">
+            <div
+              class="border-round p-2 text-center flex-shrink-0 surface-ground border-1 surface-border"
+              style="min-width: 120px"
+            >
+              <div
+                class="text-color-secondary text-xs uppercase font-bold tracking-wide mb-1"
+              >
+                Total Cargado
+              </div>
+              <div class="text-lg font-bold text-color">
+                {{ totales().total | currency: 'MXN':'symbol':'1.0-0' }}
+              </div>
+            </div>
+
+            <div
+              class="border-round p-2 text-center flex-shrink-0 surface-ground border-1 surface-border"
+              style="min-width: 120px"
+            >
+              <div
+                class="text-color-secondary text-xs uppercase font-bold tracking-wide mb-1"
+              >
+                Total Abonado
+              </div>
+              <div class="text-lg font-bold text-success">
+                {{ totales().collected | currency: 'MXN':'symbol':'1.0-0' }}
+              </div>
+            </div>
+
+            <div
+              class="border-round p-2 text-center flex-shrink-0 surface-ground border-1 surface-border"
+              style="min-width: 120px"
+            >
+              <div
+                class="text-color-secondary text-xs uppercase font-bold tracking-wide mb-1"
+              >
+                Por Cobrar
+              </div>
+              <div
+                class="text-lg font-bold"
+                [class.text-warning]="totales().pending > 0"
+                [class.text-success]="totales().pending <= 0"
+              >
+                {{ totales().pending | currency: 'MXN':'symbol':'1.0-0' }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="conceptName">
+            CONCEPTO
+            <p-sorticon field="conceptName" />
+          </th>
+          <th pSortableColumn="total" class="text-right">
+            CARGOS DEL MES
+            <p-sorticon field="total" />
+          </th>
+          <th pSortableColumn="collected" class="text-right">
+            ABONADO
+            <p-sorticon field="collected" />
+          </th>
+          <th pSortableColumn="pending" class="text-right">
+            POR COBRAR
+            <p-sorticon field="pending" />
+          </th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-row>
+        <tr class="border-bottom-1 surface-border">
+          <td class="font-medium">{{ row.conceptName }}</td>
+          <td class="text-right font-mono">
+            {{ row.total | currency: 'MXN':'symbol':'1.0-0' }}
+          </td>
+          <td class="text-right font-mono text-success">
+            {{ row.collected | currency: 'MXN':'symbol':'1.0-0' }}
+          </td>
+          <td
+            class="text-right font-mono font-semibold"
+            [class.text-warning]="row.pending > 0"
+            [class.text-success]="row.pending <= 0"
+          >
+            {{ row.pending | currency: 'MXN':'symbol':'1.0-0' }}
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #emptymessage>
+        <primeng-custom-table-emptymessage [colspan]="4" />
+      </ng-template>
+
+      <ng-template #paginatorleft>
+        <div class="flex gap-4 text-sm font-semibold">
+          <span
+            >Cargos:
+            <span class="text-color"
+              >{{ totales().total | currency: 'MXN':'symbol':'1.0-0' }}</span
+            ></span
+          >
+          <span
+            >Abonado:
+            <span class="text-success"
+              >{{ totales().collected | currency: 'MXN':'symbol':'1.0-0'
+              }}</span
+            ></span
+          >
+          <span
+            >Por cobrar:
+            <span
+              [class.text-warning]="totales().pending > 0"
+              [class.text-success]="totales().pending <= 0"
+              >{{ totales().pending | currency: 'MXN':'symbol':'1.0-0' }}</span
+            ></span
+          >
+        </div>
+      </ng-template>
+    </p-table>
+
+    <!-- Mobile -->
+    <app-data-view-mobile
+      [data]="otrosCargos()"
+      [globalFilterFields]="['conceptName']"
+      [dt]="dt"
+      [showAdd]="false"
+    >
+      <ng-template #listItemTemplate let-item>
+        <ili-list-item>
+          <div class="flex-1 min-w-0 ion-text-wrap p-2">
+            <p class="font-semibold m-0 text-color">{{ item.conceptName }}</p>
+            <p class="text-xs m-0 mt-1 text-color-secondary">
+              Cargos: {{ item.total | currency: 'MXN':'symbol':'1.0-0' }}
+            </p>
+            <p class="text-xs m-0 mt-1 text-success">
+              Abonado: {{ item.collected | currency: 'MXN':'symbol':'1.0-0' }}
+            </p>
+            <p
+              class="text-xs m-0 mt-1 font-semibold"
+              [class.text-warning]="item.pending > 0"
+              [class.text-success]="item.pending <= 0"
+            >
+              Por cobrar: {{ item.pending | currency: 'MXN':'symbol':'1.0-0' }}
+            </p>
+          </div>
+        </ili-list-item>
+      </ng-template>
+    </app-data-view-mobile>
+
+    }
+  </div>
+
+  }
+</section>

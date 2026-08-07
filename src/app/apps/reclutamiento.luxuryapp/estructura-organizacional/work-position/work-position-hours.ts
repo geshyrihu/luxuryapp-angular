@@ -7,10 +7,13 @@ import {
 } from "@angular/core";
 
 import { LxCard } from "@ui/adaptive/card/card";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { IWorkPositionHours } from './interfaces/work-position.model';
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { IWorkPositionHours } from "./interfaces/work-position.model";
 
 @Component({
   selector: "app-work-position-hours",

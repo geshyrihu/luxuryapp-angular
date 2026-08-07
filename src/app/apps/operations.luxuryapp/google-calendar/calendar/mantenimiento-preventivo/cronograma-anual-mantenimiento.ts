@@ -11,13 +11,11 @@ import {
 import { FormsModule } from "@angular/forms";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import { checkboxOutline, createOutline } from "ionicons/icons";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement.enum";
@@ -28,8 +26,12 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CronogramaMantenimientoService } from "src/app/core/services/cronograma-mantenimiento.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   resolveIconifyIcon,
   resolvePrimeIcon,
@@ -249,10 +251,13 @@ export class CronogramaAnualMantenimiento {
         import("exceljs").then(async (ExcelJS) => {
           const workbook = new ExcelJS.Workbook();
           const worksheet = workbook.addWorksheet("Cronograma");
-          
+
           if (dataToExport && dataToExport.length > 0) {
-            worksheet.columns = Object.keys(dataToExport[0]).map(key => ({ header: key, key }));
-            dataToExport.forEach(item => worksheet.addRow(item));
+            worksheet.columns = Object.keys(dataToExport[0]).map((key) => ({
+              header: key,
+              key,
+            }));
+            dataToExport.forEach((item) => worksheet.addRow(item));
           }
 
           const excelBuffer = await workbook.xlsx.writeBuffer();

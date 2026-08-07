@@ -6,11 +6,11 @@ import {
   signal,
 } from "@angular/core";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppSpinner } from "@ui/web/spinner/spinner";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { AppSpinner } from "@ui/web/spinner/spinner";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 // Definimos una interfaz para la respuesta de la API.
 // Esto es opcional pero MUY RECOMENDADO para tener un código mós seguro y autocompletado.
 interface PendingMinutesResponse {
@@ -21,9 +21,7 @@ interface PendingMinutesResponse {
 
 @Component({
   selector: "app-pending-minutes",
-  imports: [
-    AppSpinner,
-    AppIcon,TableModule, ],
+  imports: [AppSpinner, AppIcon, TableModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./pending-minutes.html",
 })

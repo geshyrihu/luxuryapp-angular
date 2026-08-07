@@ -19,13 +19,13 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
 @Component({
   selector: "app-budget-audit-dialog",

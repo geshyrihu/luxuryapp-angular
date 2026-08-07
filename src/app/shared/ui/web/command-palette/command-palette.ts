@@ -12,8 +12,8 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { DialogModule } from "primeng/dialog";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface PaletteCommand {
   id: string;

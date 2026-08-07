@@ -1,9 +1,9 @@
-1 tolpbar , con las opciones para refrescar aspel, dashboard, cargos apliacdos en el mes, abonos aplicados en el mes, cuentas omitidad , resumen de deuda y abono x torres, cuotas anticipadas, Reporte de Morosidad, Analisis de bobranza
+1 tolpbar , con las opciones para refrescar aspel, dashboard,Analisis de cobranza, cargos apliacdos en el mes, abonos aplicados en el mes, cuentas omitidas , resumen de deuda y abono x torres, cuotas anticipadas, Reporte de Morosidad detalle,
 
 1 Dashboard con metricas claras cobrado /pendiente unico para CUota de Mtto 001 representando el total de dinero a Cobrar en el mes en el que se envia el filtro de fecha, el total es la suma de todos los cargos aplicados a la cuenta 001 (Mtto),
 1 Dashboard con metricas claras cobrado /pendiente Cuota Extraordinaria 002 representando el total de dinero a Cobrar en el mes en el que se envia el filtro de fecha, el total es la suma de todos los cargos aplicados a la cuenta 003 (Cuota Extraordinaria),
 
-Aplicar regla una cuenta es morosa si tiene vencidas 2 cuotas de mtto (001) o una vencida extraordinaria (003)
+Aplicar regla una cuenta es morosa solo si tiene vencidas 2 cuotas de mtto (001) o una vencida extraordinaria (003)
 Aplicar Relga , para que una cuenta aparte de ser moroso entre a cobranza extrajudicial debe deber tener vencidas mas de 5 cuotas de mtto (001)mo vencidas 5 o mas cuotas extraordinarias (003)
 Aplicar rEGLA, DEUDA CORRIENTE es igual al cargo que esta corriendo sinque hayan vencido en la cuenta mtto 001 2 meses y en extraordinario sinque haya vencido 1 mes
 COMPONENTES / PAGES O VISTAS

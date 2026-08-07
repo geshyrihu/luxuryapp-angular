@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { TimelineBase } from "@ui/base/timeline.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "ili-timeline",

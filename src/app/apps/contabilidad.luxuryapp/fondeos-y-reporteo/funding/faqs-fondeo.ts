@@ -4,8 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { HighlightPipe } from "src/app/shared/pipes/highlight.pipe";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-faqs-fondeo",
   imports: [

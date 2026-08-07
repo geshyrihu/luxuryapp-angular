@@ -10,7 +10,6 @@ import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -18,6 +17,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { EFinancialApprovalOperationType } from "../../interfaces/enums";
 import { FinancialApprovalResponseDTO } from "../../interfaces/financial-approval.dto";
 
@@ -71,9 +71,7 @@ export default class ApprovalDetailModal implements OnInit {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.CobranzaCore.FinancialApprovals.approve(
-          item.id,
-        ),
+        Endpoints.CobranzaCore.FinancialApprovals.approve(item.id),
         {
           reviewedBy: this.reviewerName,
           reviewNotes: this.reviewNotesCtrl.value || null,
@@ -95,9 +93,7 @@ export default class ApprovalDetailModal implements OnInit {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.CobranzaCore.FinancialApprovals.reject(
-          item.id,
-        ),
+        Endpoints.CobranzaCore.FinancialApprovals.reject(item.id),
         {
           reviewedBy: this.reviewerName,
           reviewNotes: this.reviewNotesCtrl.value,

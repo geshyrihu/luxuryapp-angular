@@ -6,9 +6,9 @@ import {
   signal,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import QRCode from "qrcode";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * AppQrCode — Genera y muestra un código QR desde cualquier string.

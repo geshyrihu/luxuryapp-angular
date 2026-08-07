@@ -7,13 +7,13 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { PanicAlertRealTimeDto } from "../interfaces/panic-alert-real-time.dto";
 
 const RECIPIENT_ROLES: ApplicationRole[] = [

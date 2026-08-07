@@ -1,9 +1,9 @@
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { DividerModule } from "primeng/divider";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { DividerModule } from "primeng/divider";
 import { ROUTES } from "src/app/routing/route-paths";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-unauthorized",
   imports: [DividerModule, AppIcon, WebButtonLabel],

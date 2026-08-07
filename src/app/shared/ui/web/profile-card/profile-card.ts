@@ -3,11 +3,11 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ProfileCardBase } from "@ui/base/profile-card.base";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { ButtonModule } from "primeng/button";
 import { TagModule } from "primeng/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export { type ProfileAction } from "@ui/base/profile-card.base";
 

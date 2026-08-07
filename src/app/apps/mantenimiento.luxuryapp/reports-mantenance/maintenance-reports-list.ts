@@ -11,20 +11,20 @@ import { RouterModule } from "@angular/router";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { StorageService } from "src/app/core/services/storage.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { MenuReportMaintenance } from "./menu-report-maintenance";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 @Component({
   selector: "app-maintenance-reports",
   templateUrl: "./maintenance-reports-list.html",

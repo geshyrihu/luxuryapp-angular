@@ -5,7 +5,7 @@ import {
   output,
 } from "@angular/core";
 import { OverlayBadgeModule } from "primeng/overlaybadge";
-import { AppIcon } from "../../shared/app-icon/app-icon.component";
+import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
 import { TrackingEvent } from "../shared/tracking";
 

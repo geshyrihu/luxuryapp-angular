@@ -7,8 +7,8 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { resolveToIconify } from "src/app/shared/utils/icon-mapping";
 
 const AUDIT_LABELS: Record<string, string> = {

@@ -11,10 +11,10 @@ import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { IWorkPositionForm } from "src/app/apps/reclutamiento.luxuryapp/estructura-organizacional/work-position/interfaces/work-position.model";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 interface IJobDescription {
   summary: string;

@@ -1,15 +1,22 @@
-import { Component, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  input,
+  signal,
+} from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppIcon } from '@ui/shared/app-icon/app-icon.component';
-import { ContabilidadClienteService } from '../contabilidad-cliente.service';
-import { IFondoReservaDTO } from '../../contabilidad-online/interfaces/aspel-budget.interface';
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { IFondoReservaDTO } from "../../contabilidad-online/interfaces/aspel-budget.interface";
+import { ContabilidadClienteService } from "../contabilidad-cliente.service";
 
 @Component({
-  selector: 'app-fondo-reserva-cliente',
+  selector: "app-fondo-reserva-cliente",
   imports: [CommonModule, LxSkeleton, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
-  templateUrl: './fondo-reserva-cliente.html',
+  templateUrl: "./fondo-reserva-cliente.html",
 })
 export class FondoReservaClienteComponent {
   private svc = inject(ContabilidadClienteService);
@@ -32,7 +39,7 @@ export class FondoReservaClienteComponent {
           this.loadData(cid, yr, m);
         }
       },
-      { allowSignalWrites: true }
+      { allowSignalWrites: true },
     );
   }
 
@@ -44,16 +51,18 @@ export class FondoReservaClienteComponent {
     if (result) {
       this.data.set(result);
     }
-    
+
     this.loading.set(false);
   }
 
   cleanName(name: string): string {
-    if (!name) return '';
+    if (!name) return "";
     // Elimina la palabra CTA., No. y cualquier numero para limpiar la cuenta
-    let cleaned = name.replace(/CTA\.?\s*No\.?/gi, '').replace(/[0-9-]/g, '').trim();
-    if (cleaned.length === 0) return 'CUENTA BANCARIA';
+    let cleaned = name
+      .replace(/CTA\.?\s*No\.?/gi, "")
+      .replace(/[0-9-]/g, "")
+      .trim();
+    if (cleaned.length === 0) return "CUENTA BANCARIA";
     return cleaned;
   }
 }
-

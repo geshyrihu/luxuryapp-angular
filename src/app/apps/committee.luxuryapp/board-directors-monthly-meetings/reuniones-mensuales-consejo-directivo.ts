@@ -6,7 +6,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, videocamOutline } from "ionicons/icons";
@@ -20,6 +19,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-reuniones-mensuales-consejo-directivo",
   imports: [AppIcon],
@@ -63,9 +63,8 @@ export class ReunionesMensualesConsejoDirectivo implements OnInit {
     }
 
     // Usamos el endpoint específico para las juntas mensuales que creamos en el backend
-    const urlApi = Endpoints.Committee.BoardDirectors.monthlyMeetingsByCustomer(
-      customerId,
-    );
+    const urlApi =
+      Endpoints.Committee.BoardDirectors.monthlyMeetingsByCustomer(customerId);
 
     this.apiResponseS
       .onGetList(urlApi)

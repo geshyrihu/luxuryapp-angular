@@ -11,12 +11,11 @@ import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { shieldCheckmarkOutline } from "ionicons/icons";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -26,6 +25,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   EFinancialApprovalOperationType,
   EFinancialApprovalStatus,
@@ -82,11 +82,7 @@ export default class ApprovalInbox {
     if (!customerId) return;
     const res = await this.apiResponseS.onGetItem<
       FinancialApprovalResponseDTO[]
-    >(
-      Endpoints.CobranzaCore.FinancialApprovals.pending(
-        customerId,
-      ),
-    );
+    >(Endpoints.CobranzaCore.FinancialApprovals.pending(customerId));
     this.dataSignal.set(res ?? []);
   }
 
@@ -152,5 +148,3 @@ export default class ApprovalInbox {
     }
   }
 }
-
-

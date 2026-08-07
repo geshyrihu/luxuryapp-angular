@@ -104,10 +104,7 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item
-      class="ion-no-padding"
-      (click)="onDetails(item.id)"
-    >
+    <ili-list-item class="ion-no-padding" (click)="onDetails(item.id)">
       <div
         start
         class="w-2rem h-2rem rounded bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"

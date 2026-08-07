@@ -7,7 +7,8 @@
         <div class="flex align-items-center gap-2">
           <iw-button-add
             (clicked)="onAddDetail()"
-            [lxTooltip]="title() | uppercase" tooltipPosition="top"
+            [lxTooltip]="title() | uppercase"
+            tooltipPosition="top"
             size="sm"
             [ngbTooltip]="'Agregar pendiente a ' + title()"
           />
@@ -15,7 +16,8 @@
           <iw-button-confirm
             swalTitle="Confirmar"
             [swalText]="'Enviar Email a ' + title()"
-            [lxTooltip]="'Enviar Email a ' + title()" tooltipPosition="top"
+            [lxTooltip]="'Enviar Email a ' + title()"
+            tooltipPosition="top"
             [ngbTooltip]="'Enviar Email a ' + title()"
             classButton="btn btn-sm btn-light"
             swalConfirmButtonText="Sí, enviar"
@@ -28,13 +30,13 @@
     <!-- Columnas de la tabla -->
     @if (details() && details().length > 0) {
     <tr class="bg-surface-50">
-      <th  class="text-center font-bold text-900">#</th>
-      <th  pSortableColumn="title" class="font-bold text-900">
+      <th class="text-center font-bold text-900">#</th>
+      <th pSortableColumn="title" class="font-bold text-900">
         Asunto
         <p-sorticon field="title" />
       </th>
-      <th  class="font-bold text-900">Seguimiento</th>
-      <th ></th>
+      <th class="font-bold text-900">Seguimiento</th>
+      <th></th>
     </tr>
     }
   </ng-template>
@@ -47,7 +49,7 @@
             <lx-tag
               [severity]="getStatusSeverity(detail.status)"
               [value]="getStatusEmoji(detail.status)"
-             />
+            />
             <span>{{ detail.title }}</span>
           </div>
         </div>

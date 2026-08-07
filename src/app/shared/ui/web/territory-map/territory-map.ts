@@ -1,7 +1,7 @@
 import { Component, input, output, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/shared/app-icon/app-icon.component";
-import { TagModule } from "primeng/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { TagModule } from "primeng/tag";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 export interface Territory {
   id: string;

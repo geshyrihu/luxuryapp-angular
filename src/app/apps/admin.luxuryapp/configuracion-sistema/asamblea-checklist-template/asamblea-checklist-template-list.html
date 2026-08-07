@@ -61,7 +61,7 @@
         <lx-tag
           [severity]="severity(item.isActive)"
           [value]="item.isActive ? 'Activo' : 'Inactivo'"
-         />
+        />
       </td>
       <td class="no-print">
         <div class="flex">
@@ -102,22 +102,21 @@
           class="text-xl text-primary"
         />
       </div>
-      
-        <p class="font-semibold m-0 text-color">{{ item.title }}</p>
-        <p class="text-xs m-0 mt-1 text-color-secondary">
-          {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
-          }}
-        </p>
-        <p class="text-xs m-0 mt-1 text-color-secondary">
-          Orden {{ item.sortOrder }} | Dia {{ item.offsetDaysFromMeeting }} |
-          V{{ item.version }}
-        </p>
-        <p class="text-xs m-0 mt-1">
-          <span [class]="item.isActive ? 'text-green-600' : 'text-red-500'">
-            {{ item.isActive ? "Activo" : "Inactivo" }}
-          </span>
-        </p>
-      
+
+      <p class="font-semibold m-0 text-color">{{ item.title }}</p>
+      <p class="text-xs m-0 mt-1 text-color-secondary">
+        {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
+        }}
+      </p>
+      <p class="text-xs m-0 mt-1 text-color-secondary">
+        Orden {{ item.sortOrder }} | Dia {{ item.offsetDaysFromMeeting }} | V{{
+        item.version }}
+      </p>
+      <p class="text-xs m-0 mt-1">
+        <span [class]="item.isActive ? 'text-green-600' : 'text-red-500'">
+          {{ item.isActive ? "Activo" : "Inactivo" }}
+        </span>
+      </p>
 
       <ili-action-menu slot="end">
         <ng-container actions>
