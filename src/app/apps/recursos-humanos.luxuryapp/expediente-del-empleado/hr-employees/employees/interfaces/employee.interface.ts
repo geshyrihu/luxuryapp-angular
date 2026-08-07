@@ -9,6 +9,7 @@ export interface IEmployee {
   workPositionFolio: string;
   workPositionName: string;
   departament: number | null;
+  sueldoBase?: number;
 }
 
 

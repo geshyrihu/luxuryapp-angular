@@ -40,6 +40,13 @@
         />
         }
         <il-button
+          (clicked)="onExportExcel()"
+          iconClass="mdi:file-excel"
+          label="Exportar Excel"
+          severity="info"
+          variant="outlined"
+        />
+        <il-button
           (clicked)="onOpenInactivos()"
           iconClass="mdi:package"
           label="Inactivos"

@@ -32,6 +32,7 @@ export class AspelCobranzaHausPdfService {
   ): Promise<void> {
     await this.downloadEstadoCuenta(data, generatedAt, {
       showAspelAccounts: true,
+      orientation: "landscape",
     });
   }
 
@@ -56,15 +57,20 @@ export class AspelCobranzaHausPdfService {
   async downloadEstadoCuenta(
     data: AspelEstadoCuentaResponse,
     generatedAt: Date,
-    options?: { showAspelAccounts?: boolean },
+    options?: {
+      showAspelAccounts?: boolean;
+      orientation?: "portrait" | "landscape";
+    },
   ): Promise<void> {
     const showAspelAccounts = options?.showAspelAccounts === true;
+    const orientation = options?.orientation ?? "portrait";
     const logo = await this.htmlPrintS.getLogoDataUrl();
     const html = this.buildEstadoCuentaHtml(
       data,
       generatedAt,
       logo,
       showAspelAccounts,
+      orientation,
     );
 
     const fileName = `Estado-Cuenta${showAspelAccounts ? "-Aspel" : ""}-${data.numCta || "cuenta"}-${data.fechaFin || "corte"}`;
@@ -225,6 +231,7 @@ ${this.htmlPrintS.getStandardCss()}
     generatedAt: Date,
     logo: string | null,
     showAspelAccounts: boolean,
+    orientation: "portrait" | "landscape",
   ): string {
     const movimientos = data.movimientos || [];
     const totalCargos = movimientos
@@ -233,12 +240,14 @@ ${this.htmlPrintS.getStandardCss()}
     const totalAbonos = movimientos
       .filter((item) => !this.isCharge(item))
       .reduce((sum, item) => sum + (item.monto || 0), 0);
+    const pageSize = orientation === "landscape" ? "landscape" : "portrait";
+    const containerMaxWidth = orientation === "landscape" ? "1300px" : "1020px";
 
     return `<!doctype html>
 <html lang="es"><head><meta charset="UTF-8">
 ${this.htmlPrintS.getStandardCss()}
 <style>
-@page { size: landscape; margin: 10mm; } .container { max-width:1300px; }
+@page { size: ${pageSize}; margin: 10mm; } .container { max-width:${containerMaxWidth}; }
       .titulo { font-size:1.8rem; font-weight:700; color:#2563EB; margin-bottom:4px; }
       .meta { font-size:0.8rem; color:#6b7280; }
       .info-grid { display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem; font-size:0.8rem; margin-top:6px; }

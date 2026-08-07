@@ -447,7 +447,15 @@ export class AspelCobranzaHaus {
     );
   }
   canDownloadAccountDocuments(): boolean {
-    return !!this.detalleCobranza();
+    if (this.mode() === "detalle-cobranza-rango") {
+      return !!this.detalleCobranza();
+    }
+
+    if (this.mode() === "estado-cuenta-rango") {
+      return !!this.estadoCuenta();
+    }
+
+    return false;
   }
 
   async downloadAvisoCobroPdf(): Promise<void> {
@@ -620,7 +628,7 @@ export class AspelCobranzaHaus {
       return new Date().getFullYear();
     }
 
-    return this.request.fechaInicio?.getFullYear() ?? null;
+    return this.toDate(this.request.fechaInicio)?.getFullYear() ?? null;
   }
 
   private getSyncYear(): number {
@@ -808,10 +816,25 @@ export class AspelCobranzaHaus {
     };
   }
 
-  private formatDate(date: Date): string {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
+  private toDate(value: Date | string | null | undefined): Date | null {
+    if (value == null) return null;
+    if (typeof value === "string") {
+      if (value.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        const [year, month, day] = value.split("-").map(Number);
+        return new Date(year, month - 1, day);
+      }
+      const parsed = new Date(value);
+      return isNaN(parsed.getTime()) ? null : parsed;
+    }
+    return value;
+  }
+
+  private formatDate(date: Date | string | null): string {
+    const d = this.toDate(date);
+    if (!d) return "";
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   }
 

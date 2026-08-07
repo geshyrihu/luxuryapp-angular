@@ -22,6 +22,22 @@
   overflow: hidden;
 }
 
+// ===== CONTENIDO DURANTE LA CARGA =====
+// El overlay de "Consultando Aspel" es translúcido, así que el componente hijo
+// se veía por debajo: encabezados de tabla, el vacío "Sin registros", la fila de
+// totales en $0 y el paginador. Se oculta el contenido mientras carga en lugar de
+// taparlo. Se usa opacity (no display:none ni @if sobre el router-outlet) para no
+// destruir el componente ni perder su estado, y para que no colapse el alto.
+.cobranza-outlet {
+  transition: opacity var(--ds-transition-duration, 200ms)
+    var(--ds-transition-easing, ease);
+}
+
+.cobranza-outlet--loading {
+  opacity: 0;
+  pointer-events: none;
+}
+
 // ===== NAV CARDS (tokens del catálogo, sin hardcoding) =====
 // Los colores base se declaran aquí (no con utilidades PrimeFlex como
 // surface-card / surface-border / text-color) porque esas llevan !important

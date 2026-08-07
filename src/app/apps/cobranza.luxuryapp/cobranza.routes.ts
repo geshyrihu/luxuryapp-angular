@@ -8,8 +8,14 @@ export const COBRANZA_ROUTES: Routes = [
         (m) => m.COBRANZA_ONLINE_ROUTES,
       ),
     data: {
-      title: "Cobranza Online",
-      breadcrumb: "Cobranza Online",
+      title: "Aspel Online",
+      breadcrumb: "Aspel Online",
     },
+  },
+  // Ruta legacy: `online` se renombró a `aspel-online`. Se conserva el redirect para
+  // no romper deeplinks, favoritos ni enlaces guardados en correos previos.
+  {
+    path: "online",
+    redirectTo: "aspel-online",
   },
 ];

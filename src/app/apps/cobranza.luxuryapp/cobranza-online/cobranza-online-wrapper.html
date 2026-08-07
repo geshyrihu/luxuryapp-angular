@@ -21,7 +21,7 @@
 
         <div class="flex gap-3 flex-wrap xl:justify-content-end flex-shrink-0">
           <a
-            routerLink="/cobranza/online"
+            routerLink="/cobranza/aspel-online"
             [routerLinkActiveOptions]="{ exact: true }"
             routerLinkActive="cobranza-nav-card--active"
             class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
@@ -36,7 +36,7 @@
             >
           </a>
           <a
-            routerLink="/cobranza/online/analysis"
+            routerLink="/cobranza/aspel-online/analysis"
             routerLinkActive="cobranza-nav-card--active"
             class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
             style="width: 96px; height: 96px"
@@ -47,7 +47,7 @@
             >
           </a>
           <a
-            routerLink="/cobranza/online/detalle-condominos"
+            routerLink="/cobranza/aspel-online/detalle-condominos"
             routerLinkActive="cobranza-nav-card--active"
             class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
             style="width: 96px; height: 96px"
@@ -61,7 +61,7 @@
             >
           </a>
           <a
-            routerLink="/cobranza/online/morosidad"
+            routerLink="/cobranza/aspel-online/morosidad"
             routerLinkActive="cobranza-nav-card--active"
             class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
             style="width: 96px; height: 96px"
@@ -75,7 +75,7 @@
             >
           </a>
           <a
-            routerLink="/cobranza/online/otros-cargos"
+            routerLink="/cobranza/aspel-online/otros-cargos"
             routerLinkActive="cobranza-nav-card--active"
             class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
             style="width: 96px; height: 96px"
@@ -86,7 +86,7 @@
             >
           </a>
           <a
-            routerLink="/cobranza/online/movimientos"
+            routerLink="/cobranza/aspel-online/movimientos"
             routerLinkActive="cobranza-nav-card--active"
             class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
             style="width: 96px; height: 96px"
@@ -97,7 +97,7 @@
             >
           </a>
           <a
-            routerLink="/cobranza/online/advances"
+            routerLink="/cobranza/aspel-online/advances"
             routerLinkActive="cobranza-nav-card--active"
             class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
             style="width: 96px; height: 96px"
@@ -108,7 +108,7 @@
             >
           </a>
           <a
-            routerLink="/cobranza/online/towers"
+            routerLink="/cobranza/aspel-online/towers"
             routerLinkActive="cobranza-nav-card--active"
             class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
             style="width: 96px; height: 96px"
@@ -122,7 +122,7 @@
             >
           </a>
           <a
-            routerLink="/cobranza/online/exclusions"
+            routerLink="/cobranza/aspel-online/exclusions"
             routerLinkActive="cobranza-nav-card--active"
             class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
             style="width: 96px; height: 96px"
@@ -136,7 +136,7 @@
             >
           </a>
           <a
-            routerLink="/cobranza/online/inspection"
+            routerLink="/cobranza/aspel-online/inspection"
             routerLinkActive="cobranza-nav-card--active"
             class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
             style="width: 96px; height: 96px"
@@ -252,7 +252,9 @@
         <span class="text-xs font-bold text-color-secondary uppercase"
           >Condóminos</span
         >
-        <span class="text-sm font-bold text-primary">{{ totalCondominos() }}</span>
+        <span class="text-sm font-bold text-primary"
+          >{{ totalCondominos() }}</span
+        >
       </div>
     </div>
     }
@@ -260,17 +262,38 @@
 
   <div class="relative min-h-screen">
     @if (hasCustomer() && (loading() || syncRunning())) {
-    <div class="absolute top-0 left-0 w-full h-full z-1 fadein flex flex-column align-items-center pt-8" style="background: rgba(var(--surface-ground-rgb, 248, 249, 250), 0.5); backdrop-filter: blur(4px);">
-      <div class="surface-card p-4 shadow-4 border-round-xl flex flex-column align-items-center" style="min-width: 300px;">
-        <i class="pi pi-spin pi-spinner text-primary" style="font-size: 3rem"></i>
-        <div class="mt-4 text-xl font-medium text-color text-center">Consultando Aspel</div>
+    <div
+      class="absolute top-0 left-0 w-full h-full z-1 fadein flex flex-column align-items-center pt-8"
+      style="
+        background: rgba(var(--surface-ground-rgb, 248, 249, 250), 0.5);
+        backdrop-filter: blur(4px);
+      "
+    >
+      <div
+        class="surface-card p-4 shadow-4 border-round-xl flex flex-column align-items-center"
+        style="min-width: 300px"
+      >
+        <i
+          class="pi pi-spin pi-spinner text-primary"
+          style="font-size: 3rem"
+        ></i>
+        <div class="mt-4 text-xl font-medium text-color text-center">
+          Consultando Aspel
+        </div>
         <div class="text-color-secondary mt-2 text-center text-sm">
           Preparando los datos operativos de {{ currentMonthName() }}
         </div>
       </div>
     </div>
     }
-    
-    <router-outlet />
+
+    <div
+      class="cobranza-outlet"
+      [class.cobranza-outlet--loading]="
+        hasCustomer() && (loading() || syncRunning())
+      "
+    >
+      <router-outlet />
+    </div>
   </div>
 </section>

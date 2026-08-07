@@ -44,6 +44,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IEmployee } from "../employees/models/employee.interface";
 import { CardEmployee } from "../employees/pages/card-employee";
+import { ExcelExportService, ExcelColumn } from "src/app/core/services/excel-export.service";
 
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
@@ -86,6 +87,7 @@ export class StaffBoard {
   readonly dialogHandlerS = inject(DialogHandlerService);
   readonly aspRoleS = inject(AspRoleService);
   readonly router = inject(Router);
+  private excelService = inject(ExcelExportService);
 
   readonly AspRole = ApplicationRole;
   readonly rowsPerPageOptions = getRowsPerPageOptions();
@@ -398,5 +400,34 @@ export class StaffBoard {
   /** Muestra el botón si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
   shouldShowVacancyRequest(item: any): boolean {
     return !item.positionRequest;
+  }
+
+  onExportExcel(): void {
+    const columns: ExcelColumn[] = [
+      { header: 'Departamento', key: 'departamento', width: 25 },
+      { header: 'Folio Vacante', key: 'workPositionFolio', width: 15 },
+      { header: 'Nombre Vacante', key: 'workPositionName', width: 35 },
+      { header: 'Colaborador', key: 'fullName', width: 45 },
+      { header: 'Sueldo Base', key: 'sueldoBase', width: 15 }
+    ];
+
+    const data = [...this.positions()].sort((a, b) => {
+      const depA = this.getDepartamentLabel(a.departament);
+      const depB = this.getDepartamentLabel(b.departament);
+      return depA.localeCompare(depB);
+    }).map(item => ({
+      departamento: this.getDepartamentLabel(item.departament),
+      workPositionFolio: item.folio,
+      workPositionName: item.applicationRoleName,
+      fullName: item.applicationUser || 'VACANTE',
+      sueldoBase: item.sueldoBase ?? ''
+    }));
+
+    this.excelService.exportToExcel(
+      data,
+      columns,
+      'Plantilla',
+      'Plantilla_y_Personal'
+    );
   }
 }

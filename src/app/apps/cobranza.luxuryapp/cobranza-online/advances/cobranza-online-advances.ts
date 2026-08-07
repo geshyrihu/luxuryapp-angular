@@ -1,94 +1,137 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   inject,
 } from "@angular/core";
-import { Router, RouterModule } from "@angular/router";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { SharedModule } from "@ui/web/primeng-api/primeng-api";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import {
+  AppRankedList,
+  RankedListItem,
+} from "@ui/shared/ranked-list/ranked-list";
+import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
-  rowsPerPageOptions,
-  tablePrimeNgRows,
-} from "src/app/core/helpers/table-primeng-option";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
+  DialogHandlerService,
+  DialogSize,
+} from "src/app/core/services/dialog-handler.service";
+import { CobranzaOnlineAnalysisCondomino } from "../interfaces/cobranza-online-analysis.model";
+import { CobranzaOnlineMorosidadDetailModalComponent } from "../morosidad/cobranza-online-morosidad-detail-modal";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
+
+/**
+ * Adelantos y saldos a favor: condóminos con saldo negativo al corte.
+ *
+ * Lee de `analysisData.anticipos`, la misma fuente que Detalle por Condómino y
+ * Morosidad. Antes leía `dashboardData.advances`, calculado aparte en el backend.
+ *
+ * Los importes se muestran en positivo: para el condómino un saldo de -49,252 es
+ * un haber de 49,252, y presentarlo en negativo se lee como deuda.
+ */
+import { formatCurrency, registerLocaleData } from "@angular/common";
+import localeMx from "@angular/common/locales/es-MX";
+
+registerLocaleData(localeMx, "es-MX");
+
+const formatMxn = (val: number) => formatCurrency(val, "es-MX", "$", "MXN");
 
 @Component({
   selector: "app-cobranza-online-advances",
-  imports: [
-    CommonModule,
-    RouterModule,
-    TableModule,
-    SharedModule,
-    AppIcon,
-    PrimeNgCustomCaption,
-    PrimeNgCustomTableEmptyMessage,
-    PrimeNgCustomTableFooter,
-    DataViewMobile,
-    MobileListItem,
-  ],
+  imports: [AppRankedList, AppStatCard],
   templateUrl: "./cobranza-online-advances.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CobranzaOnlineAdvances {
-  private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
   private store = inject(CobranzaOnlineStoreService);
-
-  readonly currentYear = cobranzaOnlineFilterState.year;
-  readonly currentMonth = cobranzaOnlineFilterState.month;
-  readonly currentDay = cobranzaOnlineFilterState.day;
+  private dialogS = inject(DialogHandlerService);
 
   readonly loading = this.store.isLoading;
-  readonly dashboard = this.store.dashboardData;
-
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
 
-  readonly tablePrimeNgRows: number = tablePrimeNgRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-  readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
+  private readonly analysis = this.store.analysisData;
 
-  readonly advances = computed(() => this.dashboard()?.advances ?? []);
+  private readonly anticipos = computed(() => this.analysis()?.anticipos ?? []);
 
-  readonly totalAdvances = computed(() =>
-    this.advances().reduce((acc, curr) => acc + curr.balance * -1, 0),
+  private readonly byAccount = computed(() => {
+    const index = new Map<string, CobranzaOnlineAnalysisCondomino>();
+    for (const item of this.anticipos()) index.set(item.numeroCuenta, item);
+    return index;
+  });
+
+  /** Mayor saldo a favor primero. */
+  readonly items = computed<RankedListItem[]>(() =>
+    [...this.anticipos()]
+      .sort((a, b) => a.saldo - b.saldo)
+      .map((item) => ({
+        id: item.numeroCuenta,
+        title: item.condomino || item.numeroCuenta,
+        subtitle: item.numeroCuenta,
+        amount: Math.abs(item.saldo),
+      })),
   );
 
-  /** Total de adelantos exclusivamente de cuota Mtto (001) */
-  readonly totalAdvancesMtto = computed(() =>
-    this.advances().reduce(
-      (acc, curr) => acc + Math.abs(curr.maintenanceBalance || 0),
-      0,
-    ),
+  /** `totalAnticipos` llega negativo desde el backend; aquí se muestra el haber. */
+  readonly totalAFavor = computed(() =>
+    Math.abs(this.analysis()?.totalAnticipos ?? 0),
   );
 
-  /** Total de adelantos de cuota Extraordinaria (003) */
-  readonly totalAdvancesExtra = computed(() =>
-    this.advances().reduce(
-      (acc, curr) => acc + Math.abs(curr.extraordinaryBalance || 0),
-      0,
-    ),
-  );
+  readonly condominosConSaldo = computed(() => this.anticipos().length);
 
-  /** Hay adelantos extraordinarios (para mostrar/ocultar la columna) */
-  readonly hasExtraAdvances = computed(() =>
-    this.advances().some((a) => (a.extraordinaryBalance || 0) < 0),
-  );
+  readonly promedio = computed(() => {
+    const count = this.condominosConSaldo();
+    return count === 0 ? 0 : this.totalAFavor() / count;
+  });
 
-  constructor() {}
+  /** Suma de saldos a favor de una subcuenta concreta, leyendo el desglose. */
+  private sumaPorSubcuenta(sufijo: string): number {
+    let total = 0;
+    for (const condomino of this.anticipos()) {
+      for (const fila of condomino.desglose ?? []) {
+        if (fila.cuenta?.endsWith(sufijo) && fila.saldoFinal < 0) {
+          total += Math.abs(fila.saldoFinal);
+        }
+      }
+    }
+    return total;
+  }
 
-  // navigateTo(route: string) {
-  //   if (route) this.router.navigateByUrl(route);
-  // }
+  readonly totalMtto = computed(() => this.sumaPorSubcuenta("-001"));
+  readonly totalExtraordinaria = computed(() => this.sumaPorSubcuenta("-003"));
+
+  readonly subtituloMtto = computed(() => {
+    const extraordinaria = this.totalExtraordinaria();
+    return extraordinaria > 0
+      ? `Extraordinaria: ${formatMxn(extraordinaria)}`
+      : "Sin saldos a favor en extraordinaria";
+  });
+
+  async showDetails(selected: RankedListItem) {
+    const condomino = this.byAccount().get(selected.id);
+    if (!condomino) return;
+
+    try {
+      await this.dialogS.openDialog(
+        CobranzaOnlineMorosidadDetailModalComponent,
+        {
+          row: {
+            accountNumber: toLevel3(condomino.numeroCuenta),
+            accountName: condomino.condomino,
+            propertyFullName: condomino.condomino,
+            classification: condomino.clasificacion,
+          },
+          customerId: this.analysis()?.customerId,
+          year: this.analysis()?.year,
+        },
+        "Detalle de Saldo a Favor",
+        DialogSize.md,
+      );
+    } catch (error) {
+      console.error("Dialog closed", error);
+    }
+  }
+}
+
+/** Ver nota en cobranza-online-morosidad.ts: tres segmentos, nunca replace de "-000". */
+function toLevel3(accountNumber: string): string {
+  return accountNumber.split("-").slice(0, 3).join("-");
 }

@@ -157,7 +157,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       {
         title: "Cobranza Online",
         description: "Gestión y seguimiento de cuentas por cobrar.",
-        route: "/cobranza/online",
+        route: "/cobranza/aspel-online",
         icon: "mdi:wallet",
         color: "#047857",
         bgColor: "#d1fae5",

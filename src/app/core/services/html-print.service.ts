@@ -95,23 +95,37 @@ ${this.getStandardCss()}
     iframe.style.width = "0";
     iframe.style.height = "0";
     iframe.style.border = "0";
-    document.body.appendChild(iframe);
-
-    iframe.contentWindow!.document.open();
-    iframe.contentWindow!.document.write(html);
-    iframe.contentWindow!.document.close();
-
     const originalTitle = document.title;
     document.title = documentTitle;
+    let handled = false;
 
-    iframe.onload = () => {
+    const cleanup = () => {
+      document.title = originalTitle;
       setTimeout(() => {
-        iframe.contentWindow!.focus();
-        iframe.contentWindow!.print();
-        document.title = originalTitle;
-        setTimeout(() => document.body.removeChild(iframe), 1000);
+        if (iframe.parentNode) {
+          document.body.removeChild(iframe);
+        }
+      }, 1000);
+    };
+
+    const triggerPrint = () => {
+      if (handled) return;
+      handled = true;
+
+      setTimeout(() => {
+        iframe.contentWindow?.focus();
+        iframe.contentWindow?.print();
+        cleanup();
       }, 500);
     };
+
+    iframe.onload = triggerPrint;
+    document.body.appendChild(iframe);
+    iframe.srcdoc = html;
+
+    setTimeout(() => {
+      triggerPrint();
+    }, 1500);
   }
 
   buildStandardHeader(

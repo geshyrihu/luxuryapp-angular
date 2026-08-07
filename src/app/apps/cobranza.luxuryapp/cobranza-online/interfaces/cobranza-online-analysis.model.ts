@@ -1,10 +1,26 @@
 import type { CobranzaOnlineSyncMetadata } from "./cobranza-online-sync.model";
 
+/** Una subcuenta del condómino (-001 mtto, -002 descuento, -003 extraordinaria...). */
+export interface CobranzaOnlineAnalysisCondominoDetalle {
+  cuenta: string;
+  concepto: string;
+  saldoAnterior: number;
+  cargosMes: number;
+  abonosMes: number;
+  saldoFinal: number;
+}
+
 export interface CobranzaOnlineAnalysisCondomino {
   numeroCuenta: string;
   condomino: string;
+  /** Saldo al cierre del mes anterior. */
+  saldoAnterior: number;
+  cargosMes: number;
+  abonosMes: number;
   saldo: number;
   clasificacion: string;
+  /** Desglose por subcuenta; permite derivar mtto/extraordinaria/multas sin otra petición. */
+  desglose: CobranzaOnlineAnalysisCondominoDetalle[];
 }
 
 export interface CobranzaOnlineAnalysisResponse {
