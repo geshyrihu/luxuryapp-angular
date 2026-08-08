@@ -1,0 +1,486 @@
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ROUTES } from "src/app/routing/route-paths";
+import { AdminModuleGroup } from "./admin-module.model";
+
+export const ADMIN_MODULES: AdminModuleGroup[] = [
+  // -------------------------------------------------------------
+  // SEGURIDAD Y PERMISOS
+  // -------------------------------------------------------------
+  {
+    label: "Seguridad y Permisos",
+    icon: "mdi:shield-lock",
+    roles: [ApplicationRole.SuperUsuario],
+    cards: [
+      {
+        title: "Clientes",
+        description: "Gestión de clientes y condominios del sistema.",
+        route: "/admin/customers",
+        icon: "mdi:office-building",
+        color: "#1d4ed8",
+        bgColor: "#dbeafe",
+      },
+      {
+        title: "Usuarios",
+        description: "Administración de cuentas de usuario y accesos.",
+        route: "/admin/user-accounts",
+        icon: "mdi:account",
+        color: "#1d4ed8",
+        bgColor: "#dbeafe",
+      },
+      {
+        title: "Roles",
+        description: "Configuración de roles y permisos del sistema.",
+        route: "/admin/roles",
+        icon: "mdi:shield",
+        color: "#1d4ed8",
+        bgColor: "#dbeafe",
+      },
+      {
+        title: "Módulos",
+        description: "Gestión de módulos disponibles en la aplicación.",
+        route: "/admin/module-app",
+        icon: "mdi:grid",
+        color: "#1d4ed8",
+        bgColor: "#dbeafe",
+      },
+      {
+        title: "Módulos | Clientes",
+        description: "Asignación de módulos por cliente.",
+        route: "/admin/customer-module",
+        icon: "mdi:grid",
+        color: "#1d4ed8",
+        bgColor: "#dbeafe",
+      },
+      {
+        title: "Módulos | Roles",
+        description: "Permisos de módulos por rol.",
+        route: "/admin/module-app-role",
+        icon: "mdi:key",
+        color: "#1d4ed8",
+        bgColor: "#dbeafe",
+      },
+      {
+        title: "Jerarquía de Aprobación",
+        description: "Reglas de aprobación por niveles.",
+        route: "/admin/approval-rules",
+        icon: "mdi:sitemap",
+        color: "#1d4ed8",
+        bgColor: "#dbeafe",
+      },
+    ],
+  },
+  // -------------------------------------------------------------
+  // CATÁLOGOS GENERALES
+  // -------------------------------------------------------------
+  {
+    label: "Catálogos Generales",
+    icon: "mdi:database-outline",
+    roles: [ApplicationRole.SuperUsuario],
+    cards: [
+      {
+        title: "Bancos",
+        description: "Catálogo de instituciones bancarias.",
+        route: "/admin/banks",
+        icon: "mdi:bank",
+        color: "#0e7490",
+        bgColor: "#cffafe",
+      },
+      {
+        title: "Forma de Pago",
+        description: "Catálogo de formas de pago SAT.",
+        route: "/admin/payment-method",
+        icon: "mdi:credit-card",
+        color: "#0e7490",
+        bgColor: "#cffafe",
+      },
+      {
+        title: "Método de Pago",
+        description: "Catálogo de métodos de pago SAT.",
+        route: "/admin/payment-type",
+        icon: "mdi:wallet",
+        color: "#0e7490",
+        bgColor: "#cffafe",
+      },
+      {
+        title: "Uso de CFDI",
+        description: "Catálogo de usos de CFDI SAT.",
+        route: "/admin/cfdi-use",
+        icon: "mdi:receipt",
+        color: "#0e7490",
+        bgColor: "#cffafe",
+      },
+      {
+        title: "Unidades de Medida",
+        description: "Catálogo de unidades de medida SAT.",
+        route: "/admin/units-of-measurement",
+        icon: "mdi:tune",
+        color: "#0e7490",
+        bgColor: "#cffafe",
+      },
+    ],
+  },
+  // -------------------------------------------------------------
+  // CATÁLOGOS DE TICKETS Y MANTENIMIENTO
+  // -------------------------------------------------------------
+  {
+    label: "Catálogos de Tickets y Mantenimiento",
+    icon: "mdi:toolbox-outline",
+    roles: [ApplicationRole.SuperUsuario],
+    cards: [
+      {
+        title: "Categorías Ticket",
+        description: "Categorías para clasificación de tickets.",
+        route: "/admin/ticket-group-category",
+        icon: "mdi:tag",
+        color: "#c2410c",
+        bgColor: "#ffedd5",
+      },
+      {
+        title: "Categoría Medidor",
+        description: "Tipos de medidores para lecturas.",
+        route: "/admin/meter-category",
+        icon: "mdi:stopwatch",
+        color: "#c2410c",
+        bgColor: "#ffedd5",
+      },
+      {
+        title: "Categoría Productos",
+        description: "Clasificación de productos de inventario.",
+        route: "/admin/product-category",
+        icon: "mdi:shopping",
+        color: "#c2410c",
+        bgColor: "#ffedd5",
+      },
+      {
+        title: "Clasificación Equipos",
+        description: "Clasificación de maquinaria y equipos.",
+        route: "/admin/machinery-classification",
+        icon: "mdi:cog",
+        color: "#c2410c",
+        bgColor: "#ffedd5",
+      },
+      {
+        title: "Entrega Recepción",
+        description: "Catálogo de entrega y recepción.",
+        route: "/admin/client-delivery-reception",
+        icon: "mdi:account-group",
+        color: "#c2410c",
+        bgColor: "#ffedd5",
+      },
+      {
+        title: "Calendario Maestro Mtto",
+        description: "Planificación maestra de mantenimiento.",
+        route: "/calendars/maintenance-master",
+        icon: "mdi:calendar",
+        color: "#c2410c",
+        bgColor: "#ffedd5",
+      },
+      {
+        title: "Calendario Maestro Clasificación",
+        description: "Calendario por clasificación de equipos.",
+        route: "/calendars/team-master-calendar",
+        icon: "mdi:calendar",
+        color: "#c2410c",
+        bgColor: "#ffedd5",
+      },
+      {
+        title: "Catálogo de Amenidades",
+        description: "Gestión de amenidades del condominio.",
+        route: "/admin/catalog-asset",
+        icon: "mdi:star-outline",
+        color: "#c2410c",
+        bgColor: "#ffedd5",
+      },
+      {
+        title: "Catálogo de Inspecciones",
+        description: "Tipos de inspecciones disponibles.",
+        route: "/admin/inspection-reviews-catalog",
+        icon: "mdi:magnify",
+        color: "#c2410c",
+        bgColor: "#ffedd5",
+      },
+      {
+        title: "Catálogo de Tareas",
+        description: "Tareas recurrentes programadas.",
+        route: "/recurring-tasks",
+        icon: "mdi:clipboard-text",
+        color: "#c2410c",
+        bgColor: "#ffedd5",
+      },
+    ],
+  },
+  // -------------------------------------------------------------
+  // CONFIGURACIÓN DE SISTEMA
+  // -------------------------------------------------------------
+  {
+    label: "Configuración de Sistema",
+    icon: "mdi:cog-outline",
+    roles: [ApplicationRole.SuperUsuario],
+    cards: [
+      {
+        title: "Base de Conocimiento IA",
+        description: "Gestión de conocimientos para asistente IA.",
+        route: "/admin/ai-knowledge-base",
+        icon: "mdi:sparkles",
+        color: "#4338ca",
+        bgColor: "#e0e7ff",
+      },
+      {
+        title: "Configuración Aspel",
+        description: "Parámetros de integración con Aspel COI.",
+        route: "/accounting/aspel-customer-empresa",
+        icon: "mdi:cog",
+        color: "#4338ca",
+        bgColor: "#e0e7ff",
+      },
+      {
+        title: "Sincronización Aspel",
+        description: "Procesos de sincronización con Aspel.",
+        route: "/accounting/aspel-sync",
+        icon: "mdi:sync",
+        color: "#4338ca",
+        bgColor: "#e0e7ff",
+      },
+      {
+        title: "Conciliación Juntas Mensuales",
+        description: "Conciliación de actas de junta.",
+        route: "/admin/monthly-meetings-reconciliation",
+        icon: "mdi:link",
+        color: "#4338ca",
+        bgColor: "#e0e7ff",
+      },
+      {
+        title: "Checklist Asamblea",
+        description: "Plantillas de checklist para asambleas.",
+        route: "/admin/assembly-checklist-catalog",
+        icon: "mdi:format-list-checks",
+        color: "#4338ca",
+        bgColor: "#e0e7ff",
+      },
+      {
+        title: "Vault de Secretos",
+        description: "Gestión segura de secretos y credenciales.",
+        route: "/admin/vault-secrets",
+        icon: "mdi:shield-key",
+        color: "#4338ca",
+        bgColor: "#e0e7ff",
+      },
+      {
+        title: "Respaldo de BD",
+        description: "Configuración de backups de base de datos.",
+        route: "/admin/database-backup",
+        icon: "mdi:database-export",
+        color: "#4338ca",
+        bgColor: "#e0e7ff",
+      },
+      {
+        title: "Jobs",
+        description: "Gestión de trabajos programados.",
+        route: "/admin/jobs",
+        icon: "mdi:briefcase",
+        color: "#4338ca",
+        bgColor: "#e0e7ff",
+      },
+      {
+        title: "Configuración ElevenLabs",
+        description: "Parámetros de síntesis de voz IA.",
+        route: "/admin/eleven-labs",
+        icon: "mdi:microphone",
+        color: "#4338ca",
+        bgColor: "#e0e7ff",
+      },
+    ],
+  },
+  // -------------------------------------------------------------
+  // CONFIGURACIÓN DE CORREO ELECTRÓNICO
+  // -------------------------------------------------------------
+  {
+    label: "Configuración de Correo Electrónico",
+    icon: "mdi:email-outline",
+    roles: [ApplicationRole.SuperUsuario],
+    cards: [
+      {
+        title: "Emails Corporativos",
+        description: "Cuentas de correo por cliente.",
+        route: "/admin/customer-data-company",
+        icon: "mdi:email-outline",
+        color: "#be185d",
+        bgColor: "#fce7f3",
+      },
+      {
+        title: "Datos de Email",
+        description: "Plantillas y configuración de envíos.",
+        route: "/admin/email-data",
+        icon: "mdi:email-outline",
+        color: "#be185d",
+        bgColor: "#fce7f3",
+      },
+    ],
+  },
+  // -------------------------------------------------------------
+  // RECURSOS HUMANOS
+  // -------------------------------------------------------------
+  {
+    label: "Recursos Humanos",
+    icon: "mdi:account-tie",
+    roles: [ApplicationRole.SuperUsuario],
+    cards: [
+      {
+        title: "Tipos de Incidencia",
+        description: "Catálogo de tipos de incidencias laborales.",
+        route: "/admin/incident-types",
+        icon: "mdi:alert",
+        color: "#0f766e",
+        bgColor: "#ccfbf1",
+      },
+      {
+        title: "Tipos de Sanción",
+        description: "Catálogo de sanciones disciplinarias.",
+        route: "/admin/sanction-types",
+        icon: "mdi:clipboard-text",
+        color: "#0f766e",
+        bgColor: "#ccfbf1",
+      },
+      {
+        title: "Ajuste Balance Vacaciones",
+        description: "Ajuste de saldos de vacaciones.",
+        route: "/recursos-humanos/admin-balances-vacaciones",
+        icon: "mdi:calculator",
+        color: "#0f766e",
+        bgColor: "#ccfbf1",
+      },
+    ],
+  },
+  // -------------------------------------------------------------
+  // ANÁLISIS Y REGISTROS
+  // -------------------------------------------------------------
+  {
+    label: "Análisis y Registros",
+    icon: "mdi:chart-line",
+    roles: [ApplicationRole.SuperUsuario],
+    cards: [
+      {
+        title: "Auditoría de Cambios",
+        description: "Historial de modificaciones en el sistema.",
+        route: "/admin/audit-entries",
+        icon: "mdi:file-document-edit",
+        color: "#a16207",
+        bgColor: "#fef9c3",
+      },
+      {
+        title: "Actividad de Usuarios",
+        description: "Registro de actividad y navegación.",
+        route: "/admin/user-activity-history",
+        icon: "mdi:chart-line",
+        color: "#a16207",
+        bgColor: "#fef9c3",
+      },
+      {
+        title: "Historial de Ingresos",
+        description: "Control de accesos al sistema.",
+        route: "/report/access-history",
+        icon: "mdi:history",
+        color: "#a16207",
+        bgColor: "#fef9c3",
+      },
+      {
+        title: "Loggers API",
+        description: "Logs de peticiones a la API.",
+        route: "/admin/log-api-report",
+        icon: "mdi:file-edit",
+        color: "#a16207",
+        bgColor: "#fef9c3",
+      },
+      {
+        title: "Logs de Brevo",
+        description: "Registros de envíos de email (Brevo).",
+        route: "/admin/brevo-logs",
+        icon: "mdi:email-outline",
+        color: "#a16207",
+        bgColor: "#fef9c3",
+      },
+    ],
+  },
+  // -------------------------------------------------------------
+  // HERRAMIENTAS DE DESARROLLO / PRUEBA
+  // -------------------------------------------------------------
+  {
+    label: "Herramientas de Desarrollo/Prueba",
+    icon: "mdi:flask-outline",
+    roles: [ApplicationRole.SuperUsuario],
+    cards: [
+      {
+        title: "Mini Postman",
+        description: "Cliente HTTP para testing de endpoints.",
+        route: "/admin/mini-postman",
+        icon: "mdi:send",
+        color: "#15803d",
+        bgColor: "#dcfce7",
+      },
+      {
+        title: "Reporte Datos Empleados",
+        description: "Reporte de implementación por empleado.",
+        route: "/admin/app-implementation-report",
+        icon: "mdi:account-group",
+        color: "#15803d",
+        bgColor: "#dcfce7",
+      },
+      {
+        title: "Design System & Guide",
+        description: "Catálogo de componentes UI y guías.",
+        route: "/admin/ui-catalog",
+        icon: "mdi:compass",
+        color: "#15803d",
+        bgColor: "#dcfce7",
+      },
+      {
+        title: "Depuración",
+        description: "Herramientas de debugging y diagnóstico.",
+        route: "/admin/depuration",
+        icon: "mdi:cog",
+        color: "#15803d",
+        bgColor: "#dcfce7",
+      },
+      {
+        title: "Test SignalR",
+        description: "Pruebas de conectividad en tiempo real.",
+        route: "/admin/testsignalr",
+        icon: "mdi:lightning-bolt",
+        color: "#15803d",
+        bgColor: "#dcfce7",
+      },
+      {
+        title: "Test Email",
+        description: "Envío de correos de prueba.",
+        route: "/admin/test-email",
+        icon: "mdi:email-outline",
+        color: "#15803d",
+        bgColor: "#dcfce7",
+      },
+      {
+        title: "Prueba de IA",
+        description: "Testing de modelos de inteligencia artificial.",
+        route: "/admin/ai-test",
+        icon: "mdi:lightning-bolt",
+        color: "#15803d",
+        bgColor: "#dcfce7",
+      },
+      {
+        title: "Cotizador",
+        description: "Calculadora de precios y cotizaciones.",
+        route: "/admin/pricing-calculator",
+        icon: "mdi:calculator",
+        color: "#15803d",
+        bgColor: "#dcfce7",
+      },
+      {
+        title: "Conventions Guide",
+        description: "Guía de convenciones del proyecto.",
+        route: "/admin/conventions-guide",
+        icon: "mdi:book-open-variant",
+        color: "#15803d",
+        bgColor: "#dcfce7",
+      },
+    ],
+  },
+];
