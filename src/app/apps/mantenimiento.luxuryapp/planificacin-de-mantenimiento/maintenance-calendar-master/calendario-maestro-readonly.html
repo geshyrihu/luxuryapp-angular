@@ -1,5 +1,5 @@
 <div class="grid">
-  @for (item of data(); track item.eMonth) {
+  @for (item of data(); track item.month + '_' + $index) {
   <div class="col-12 md:col-3">
     <!-- Cabecera del mes -->
     <div

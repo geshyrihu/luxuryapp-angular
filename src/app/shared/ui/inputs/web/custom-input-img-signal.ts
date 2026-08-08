@@ -187,7 +187,8 @@ export class CustomInputImg implements OnChanges {
     return "";
   });
 
-  private isNullUrl(url: string): boolean {
+  private isNullUrl(url: any): boolean {
+    if (typeof url !== 'string') return true;
     return url.endsWith("/null") || url === "null";
   }
 

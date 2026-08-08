@@ -13,6 +13,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { Roles } from "src/app/core/interfaces/roles.interface";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { GroupedRole } from "./interfaces/grouped-role.interface";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 
 const roleTypeNames: { [key in RoleType]: string } = {
   [RoleType.System]: "Sistema",
@@ -31,6 +32,7 @@ const roleTypeNames: { [key in RoleType]: string } = {
 })
 export class UpdateRole implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  authS = inject(AuthService);
   email: string = "";
   phoneNumber: string = "";
   userName: string = "";
@@ -39,9 +41,17 @@ export class UpdateRole implements OnInit {
   roleType = input<RoleType | null>(null);
 
   groupedRolesSignal = signal<GroupedRole[]>([]);
+  isSelfProfile = signal<boolean>(false);
 
   ngOnInit(): void {
     this.onLoadData();
+    this.checkSelfProfile();
+  }
+
+  checkSelfProfile(): void {
+    const currentUserId = this.authS.applicationUserId;
+    const targetUserId = this.applicationUserId();
+    this.isSelfProfile.set(currentUserId === targetUserId);
   }
 
   onLoadData() {

@@ -1,19 +1,45 @@
 <div class="flex flex-column gap-3">
-  <div class="surface-card p-3 rounded border-1 surface-border flex align-items-center gap-3">
-    <div class="w-3rem h-3rem rounded bg-primary-50 flex align-items-center justify-content-center text-primary">
+  <div
+    class="surface-card p-3 rounded border-1 surface-border flex align-items-center gap-3"
+  >
+    <div
+      class="w-3rem h-3rem rounded bg-primary-50 flex align-items-center justify-content-center text-primary"
+    >
       <app-icon [icon]="'mdi:shield'" class="text-xl" />
     </div>
     <div class="flex flex-column">
-      <span class="text-900 font-bold uppercase tracking-wider text-sm">Gestion de Permisos</span>
-      <span class="text-xs text-500">Asigna o remueve roles de acceso para este usuario</span>
+      <span class="text-900 font-bold uppercase tracking-wider text-sm"
+        >Gestion de Permisos</span
+      >
+      <span class="text-xs text-500"
+        >Asigna o remueve roles de acceso para este usuario</span
+      >
     </div>
   </div>
+
+  @if (isSelfProfile()) {
+  <div class="p-3 rounded border-1 bg-yellow-50 border-yellow-200">
+    <div class="flex align-items-start gap-3">
+      <app-icon [icon]="'mdi:alert-circle-outline'" class="text-yellow-600 text-xl mt-0.5" />
+      <div class="flex-1">
+        <span class="text-yellow-800 font-semibold text-sm">Acceso restringido</span>
+        <p class="text-yellow-700 text-sm mt-1 mb-0">
+          No puedes autoadministrar tus propios roles. Para cambios en tus permisos,
+          contacta al <strong>Administrador del Condominio</strong> o al
+          <strong>Administrador del Sistema</strong>.
+        </p>
+      </div>
+    </div>
+  </div>
+  }
 
   <div class="flex flex-column gap-4">
     @for (group of groupedRolesSignal(); track group.groupName) {
     <div class="flex flex-column gap-2">
       <div class="flex align-items-center justify-content-between px-1">
-        <h5 class="m-0 font-bold text-primary uppercase text-xs tracking-widest">
+        <h5
+          class="m-0 font-bold text-primary uppercase text-xs tracking-widest"
+        >
           {{ group.groupName }}
         </h5>
         <span class="text-xs font-medium text-500 bg-100 px-2 py-1 rounded">
@@ -25,11 +51,14 @@
         @for (item of group.roles; track item.roleId) {
         <div class="col-12 sm:col-6 lg:col-4">
           <div
-            class="flex align-items-center justify-content-between p-3 rounded-lg border-1 surface-border cursor-pointer hover:surface-100 transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
+            class="flex align-items-center justify-content-between p-3 rounded-lg border-1 surface-border transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
+            [class.cursor-pointer]="!isSelfProfile()"
+            [class.hover:surface-100]="!isSelfProfile()"
+            [class.opacity-60]="isSelfProfile()"
             [class.surface-50]="item.isSelected"
             [class.border-primary]="item.isSelected"
             [class.shadow-sm]="item.isSelected"
-            (click)="selectRole(item)"
+            (click)="!isSelfProfile() && selectRole(item)"
           >
             <div class="flex align-items-center min-w-0 gap-3 w-full">
               <span
@@ -47,13 +76,18 @@
                 />
               </span>
               <div class="flex flex-column min-w-0 flex-1">
-                <span class="font-bold text-sm text-900 truncate" [title]="item.displayName">
+                <span
+                  class="font-bold text-sm text-900 truncate"
+                  [title]="item.displayName"
+                >
                   {{ item.displayName | uppercase }}
                 </span>
                 <div class="flex align-items-center justify-content-between">
-                  <span class="text-xs text-500">Orden: {{ item.sortOrder }}</span>
+                  <span class="text-xs text-500"
+                    >Orden: {{ item.sortOrder }}</span
+                  >
                   @if (item.isSelected) {
-                    <span class="text-xs font-bold text-green-600">Activo</span>
+                  <span class="text-xs font-bold text-green-600">Activo</span>
                   }
                 </div>
               </div>

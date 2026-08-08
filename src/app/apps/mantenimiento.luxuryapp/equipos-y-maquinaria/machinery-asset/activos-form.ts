@@ -76,12 +76,12 @@ export class ActivosForm implements OnInit {
   machineryDTO: any;
   photoFileUpdate: boolean = false;
   category: any;
-  cb_equipoClasificacion: SelectItemDto[] = [];
+  cb_equipoClasificacion = signal<SelectItemDto[]>([]);
 
   form: FormGroup<IActivosFormGroup>;
 
-  cb_inventoryCategory: SelectItemDto[] = [];
-  optionActive: SelectItemDto[] = [];
+  cb_inventoryCategory = signal<SelectItemDto[]>([]);
+  optionActive = signal<SelectItemDto[]>([]);
   ngOnInit() {
     this.onLoadEquipoClasificacion();
     this.onLoadEnum();
@@ -165,10 +165,8 @@ export class ActivosForm implements OnInit {
     );
     const states = await firstValueFrom(this.enumSelectS.state());
 
-    setTimeout(() => {
-      this.cb_inventoryCategory = categories;
-      this.optionActive = states;
-    }, 0);
+    this.cb_inventoryCategory.set(categories);
+    this.optionActive.set(states);
   }
 
   async onSubmit() {
@@ -222,9 +220,7 @@ export class ActivosForm implements OnInit {
     this.apiResponseS
       .onGetSelectItem<SelectItemDto[]>(urlApi)
       .then((result: any) => {
-        setTimeout(() => {
-          this.cb_equipoClasificacion = result;
-        }, 0);
+        this.cb_equipoClasificacion.set(result);
       });
   }
 }

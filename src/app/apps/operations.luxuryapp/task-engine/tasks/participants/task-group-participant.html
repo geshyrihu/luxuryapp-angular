@@ -1,37 +1,34 @@
-<div class="card">
-  
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="flex flex-column">
-        <div class="w-full">
-          <custom-input-autocomplete-signal
-            (propagar)="onSelectUser($event)"
-            [control]="form.controls.applicationUser"
-            [data]="cb_application_user()"
-            label="Colaborador"
-            placeholder="Escribe para buscar colaborador"
-            [horizontal]="false"
-          />
-        </div>
-        <div class="w-full">
-          <custom-input-select-signal
-            [control]="form.controls.isAdmin"
-            label="Rol"
-            [data]="cb_eLuxury_group_rol"
-            [horizontal]="false"
-            [filter]="true"
-          />
-        </div>
-        <div class="w-full flex justify-content-end">
-          <il-button-save
-            [propertyId]="id"
-            [disabled]="form.invalid"
-            [submitting]="submitting()"
-          />
-        </div>
-      </div>
-    </form>
-  
-</div>
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="flex flex-column">
+    <div class="w-full">
+      <custom-input-autocomplete-signal
+        (propagar)="onSelectUser($event)"
+        [control]="form.controls.applicationUser"
+        [data]="cb_application_user()"
+        label="Colaborador"
+        placeholder="Escribe para buscar colaborador"
+        [horizontal]="false"
+      />
+    </div>
+    <div class="w-full">
+      <custom-input-select-signal
+        [control]="form.controls.isAdmin"
+        label="Rol"
+        [data]="cb_eLuxury_group_rol"
+        [horizontal]="false"
+        [filter]="true"
+      />
+    </div>
+    <div class="w-full flex justify-content-end">
+      <il-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </div>
+  </div>
+</form>
+
 @if (loading_existing_participant()) {
 <div class="flex justify-content-center mt-3">
   <app-spinner />
@@ -65,11 +62,10 @@
 
     <div class="flex flex-column gap-1">
       <p class="font-semibold m-0 text-color line-height-2 text-sm">
-        {{ item.isAdmin === 'Administrador' ? 'Administrador' : 'Participante' }}
+        {{ item.isAdmin === 'Administrador' ? 'Administrador' : 'Participante'
+        }}
       </p>
-      <p class="text-xs m-0 text-color-secondary">
-        {{ item.applicationUser }}
-      </p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.applicationUser }}</p>
     </div>
 
     <!-- Lado derecho: acciones -->
