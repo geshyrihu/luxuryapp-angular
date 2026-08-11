@@ -702,3 +702,209 @@ Capacidades entregadas:
 - Card lateral con datos principales del candidato y acceso directo al CV.
 - Filtros de `Pendientes`, `Historico`, `Vencidas`, `Con feedback` y `Todo`.
 - Navegacion directa a `Responder entrevista` y a la bandeja de seguimiento de postulaciones.
+
+---
+
+## Fase 1 - Reestructuracion: Inventario Tecnico de Modelo Legacy
+
+Fecha: `2026-08-10`
+Fuente: `docs/modulos-nuevos/reestructuracion-reclutamiento-candidates/06-execution-handoff.md` (Fase 1)
+Plan: `docs/modulos-nuevos/reestructuracion-reclutamiento-candidates/04-implementation-plan.md`
+
+### Objetivo
+
+Mapear cada punto de lectura/escritura del modelo legacy antes de introducir
+`CandidateInterview`, `CandidateInterviewResult`, `CandidateWorkExperience`,
+`InterviewerMatrix` y `RequestEmployeeRegisterFile`. Esta fase solo congela e
+inventaria; NO elimina ni migra.
+
+### Columnas / entidades legacy monitoreadas
+
+| Legacy | Entidad | Estado objetivo |
+|--------|---------|-----------------|
+| `RecruitmentInterviewAt` | `CandidateApplication` | Reemplazada por `CandidateInterview.ScheduledAt` |
+| `OperationsInterviewAt` | `CandidateApplication` | Reemplazada por `CandidateInterview.ScheduledAt` |
+| `OperationsInterviewAssignedToUserId` | `CandidateApplication` | Reemplazada por `CandidateInterview.InterviewerUserId` |
+| `CandidateInterviewFeedback` (tabla `RecruitmentCandidateInterviewFeedback`) | `CandidateInterviewFeedback` | Reemplazada por `CandidateInterviewResult` |
+| `ExperienceSummary` | `Candidate` | Reemplazada por `CandidateWorkExperience` (deprecada, fuente transitoria) |
+
+### Usos de columnas legacy (Backend)
+
+**Entidad y contexto EF**
+- `CandidateApplication.cs:61,67,73` - declaracion de `RecruitmentInterviewAt`,
+  `OperationsInterviewAt`, `OperationsInterviewAssignedToUserId`.
+- `CandidateApplication.cs:119` - coleccion `InterviewFeedbacks` (legacy feedback).
+- `ApplicationDbContext.cs:774` - `DbSet<CandidateInterviewFeedback>`.
+- `ApplicationDbContext.cs:1124-1125` - indice
+  `IX_RecruitmentCandidateApplications_OperationsInterviewAssignedToUserId`.
+- `ApplicationDbContext.cs:1143` - configuracion de `CandidateInterviewFeedback`.
+- `Candidate.cs:77` - `ExperienceSummary`.
+
+**`CandidateApplicationAppService.cs` (lectura/escritura intensiva)**
+- `GetRecruitmentAgendaAsync` (`CandidateApplicationAppService.cs:103-155`):
+  ordena por `RecruitmentInterviewAt`/`OperationsInterviewAt` (132-133), selecciona
+  `OperationsInterviewAssignedToUserId` (138), construye item via
+  `BuildRecruitmentAgendaItem` (444-446).
+- `GetRecruitmentInterviewBoardAsync` (`CandidateApplicationAppService.cs:158-254`):
+  usa `OperationsInterviewAssignedToUserId` (218), `BuildRecruitmentBoardVacancy`.
+- `ScheduleRecruitmentInterviewAsync` (`CandidateApplicationAppService.cs:256+`):
+  escribe `RecruitmentInterviewAt`/`OperationsInterviewAt`/
+  `OperationsInterviewAssignedToUserId` (279-289).
+- `CreateAsync`/`UpdateAsync`: mapean y limpian `RecruitmentInterviewAt`,
+  `OperationsInterviewAt`, `OperationsInterviewAssignedToUserId` (718-734, 796-866).
+- `GetKpisAsync`: desglose de Entrevistas Ops con
+  `OperationsInterviewAssignedToUserId`, `OperationsInterviewAt`,
+  `InterviewFeedbacks` (`CandidateApplicationAppService.cs:530-551`).
+- `GetInterviewerViewAsync`/`ExecuteInterviewerActionAsync`: permiso por
+  `OperationsInterviewAssignedToUserId` (1291-1492).
+- `GetInterviewResponseAsync` y cola entrevistador: leen feedback legacy (462,
+  1359, 1550-1570, 2044).
+
+**`CandidateAutomationService.cs` (vencidas/escalacion)**
+- `CandidateAutomationService.cs:34-66`: detecta overdue con
+  `OperationsInterviewAssignedToUserId` y `OperationsInterviewAt`.
+
+**`CandidateNotificationCoordinatorService.cs` (emails/SignalR)**
+- `CandidateNotificationCoordinatorService.cs:135-271, 349-537`: textos y DTO con
+  `OperationsInterviewAt`, `OperationsInterviewAssignedToUserId`; envio de email
+  legacy `SendCandidateInterviewFeedbackEmailAsync` (349-350).
+
+**`CandidateInterviewAppService.cs` (camino legacy de feedback)**
+- `CandidateInterviewAppService.cs:15-106`: `SubmitFeedbackAsync` y
+  `GetByApplicationAsync` escriben/leen `CandidateInterviewFeedback`.
+- `CandidateInterviewMapping.cs:10`: mapeo `CandidateInterviewFeedback`.
+- `CandidateInterviewEndPoint.cs:14-21`: `POST feedback`, `GET application/{id}`.
+- `RecruitmentEmailService.cs:219-226`, `IRecruitmentEmailService.cs:67-68`,
+  `EmailTemplates.cs:37`, `RecruitmentCandidateInterviewFeedbackEmailDTO.cs`,
+  template `.cshtml`: email legacy de feedback.
+- DTOs: `CandidateInterviewFeedbackItemDto.cs`, `CandidateInterviewFeedbackCreateDto.cs`.
+
+### Endpoints afectados
+
+**`CandidateApplicationEndPoint.cs`**
+- `GET recruitment-agenda` (`CandidateApplicationEndPoint.cs:24`) - legacy fields.
+- `GET recruitment-interview-board` (`:29`) - legacy fields.
+- `GET kpis` (`:34`) - legacy fields en desglose Ops.
+- `POST {id}/recruitment-schedule` (`:102`) - escribe `RecruitmentInterviewAt`.
+- `POST {id}/cancel-recruitment-schedule` (`:108`) - escribe `RecruitmentInterviewAt`.
+- `GET interviewer-view` (`:86`) - permiso por `OperationsInterviewAssignedToUserId`.
+- `POST interviewer-action` (`:91`) - acciones sobre pipeline (no escribe legacy,
+  pero depende del modelo actual).
+- `GET interviewer-queue` (`:97`) - ordena por fechas legacy.
+- `GET {id}/interview-response` (`:114`) - camino de feedback legacy.
+- `POST run-automation` (`:39`) - vencidas/escalacion legacy.
+
+**`CandidateInterviewEndPoint.cs`**
+- `POST feedback` (`:14`) - escribe `CandidateInterviewFeedback`.
+- `GET application/{id}` (`:19`) - lee `CandidateInterviewFeedback`.
+
+**Constantes frontend** `reclutamiento.endpoints.ts`
+- `CandidateApplications.recruitmentAgenda`, `recruitmentInterviewBoard`,
+  `kpis`, `scheduleRecruitmentInterview`, `cancelRecruitmentSchedule`,
+  `interviewerView`, `interviewerQueue`, `interviewerAction`, `interviewResponse`.
+- `CandidateInterviews.submitFeedback`, `byApplication` (feedback legacy).
+
+### Componentes afectados (Frontend)
+
+- `candidate-application/candidate-application-form.ts:122,150-155` - lee/escribe
+  `recruitmentInterviewAt` / `RecruitmentInterviewAt` (campo en FormData).
+- `candidate-application/interfaces/candidate-application.ts` - `CandidateRecruitmentAgendaItem`
+  y tipos de board/kpis superficie campos legacy.
+- `recruitment-agenda-list.ts` / `.html` - consumen `recruitment-agenda` (legacy).
+- `candidate-recruitment-interviews.ts` / `.html` - consumen `recruitment-interview-board`.
+- `candidate-interview/candidate-interview-feedback-form.ts` + `interfaces/candidate-interview.ts`
+  - `CandidateInterviewFeedbackCreate`/`Item`/`Response` (camino legacy).
+- `candidate-interview/candidate-interview-pending-list.ts`,
+  `candidate-interview/candidate-interview-response.ts` - consumen feedback legacy.
+- `candidate-interviewer-queue/candidate-interviewer-queue.ts` - importa
+  `CandidateInterviewFeedbackForm`; consume `interviewer-queue`.
+- `candidates.routing.ts:51` - ruta `interviews/respond` (feedback legacy).
+- `candidate-application-kpis.ts` - graficos de estado Ops derivados de legacy.
+
+### Orden recomendado de migracion
+
+1. **Fase 2 - Modelo de datos:** crear entidades nuevas
+   (`CandidateInterview`, `CandidateInterviewResult`, `CandidateWorkExperience`,
+   `InterviewerMatrix`, `RequestEmployeeRegisterFile`), agregar flags de talent
+   pool en `Candidate`, mantener columnas legacy intactas, generar migracion.
+2. **Fase 3 - Backend nuevo:** AppServices/DTOs/endpoints de
+   `CandidateInterview`, `CandidateInterviewResult`, `InterviewerMatrix`;
+   matriz de entrevistador por customer+rol.
+3. **Fase 4 - Migracion operativa:** reescribir `GetRecruitmentAgendaAsync`,
+   `GetRecruitmentInterviewBoardAsync`, `GetInterviewerQueueAsync`,
+   `GetInterviewResponseAsync`, automatizacion y notificaciones para leer/escribir
+   el modelo nuevo. Mantener legacy solo como lectura transitoria hasta backfill.
+4. **Fase 5/6 - Frontend:** reconvertir `candidate-application-form` en
+   "Agregar candidato y entrevista", detalle por puesto, y separar cola del
+   entrevistador sobre `CandidateInterview`/`CandidateInterviewResult`.
+5. **Fase 8 - Retiro:** solo tras backfill y validacion, remover
+   `RecruitmentInterviewAt`, `OperationsInterviewAt`,
+   `OperationsInterviewAssignedToUserId`, `CandidateInterviewFeedback`,
+   `ExperienceSummary` como fuente activa.
+
+### Precondiciones de no-ruptura (Fase 1)
+
+- No eliminar columnas legacy en esta fase.
+- No mover shared sin analisis de impacto.
+- Mantener endpoints legacy funcionando hasta Fase 4 (dual-read transitorio).
+- No inventar roles fuera del catalogo (`Application Roles Catalog`).
+
+### Criterio de aceptacion Fase 1 (cumplido)
+
+- ✅ Inventario explicito de lecturas/escrituras legacy (esta seccion).
+- ✅ Endpoints y componentes afectados mapeados.
+- ✅ Orden de migracion recomendado documentado.
+
+---
+
+## Ejecucion Fase 2 - Nuevo Modelo de Datos
+
+Fecha: `2026-08-11`
+Fuente: `06-execution-handoff.md` (Fase 2)
+
+### Entidades nuevas creadas
+
+| Entidad | Tabla | Archivo |
+|---------|-------|---------|
+| `CandidateWorkExperience` | `RecruitmentCandidateWorkExperiences` | `Recruitment/ReclutamientoyAltasBajas/CandidateWorkExperience.cs` |
+| `CandidateInterview` | `RecruitmentCandidateInterviews` | `Recruitment/ReclutamientoyAltasBajas/CandidateInterview.cs` |
+| `CandidateInterviewResult` | `RecruitmentCandidateInterviewResults` | `Recruitment/ReclutamientoyAltasBajas/CandidateInterviewResult.cs` |
+| `InterviewerMatrix` | `RecruitmentInterviewerMatrix` | `Recruitment/ReclutamientoyAltasBajas/InterviewerMatrix.cs` |
+| `RequestEmployeeRegisterFile` | `RecruitmentRequestEmployeeRegisterFiles` | `Recruitment/ReclutamientoyAltasBajas/RequestEmployeeRegisterFile.cs` |
+
+### Enums nuevos (LuxuryApp.Shared/Enums)
+
+- `CandidateInterviewType` (Reclutamiento, Operaciones)
+- `CandidateInterviewStatus` (Pendiente, Confirmada, Realizada, Cancelada, NoAsistio)
+- `CandidateInterviewScheduleStatus` (Pendiente, Propuesta, Confirmada, Cancelada)
+
+### Modificaciones
+
+- `Candidate.cs`: + `IsInTalentPool`, + `TalentPoolNotes`, + coleccion `WorkExperiences`.
+  `ExperienceSummary` se mantiene como fuente transitoria (no se elimina).
+- `CandidateApplication.cs`: columnas legacy (`RecruitmentInterviewAt`,
+  `OperationsInterviewAt`, `OperationsInterviewAssignedToUserId`) se mantienen
+  intactas en esta fase (retiro en Fase 8).
+- `ApplicationDbContext.cs`: + 5 `DbSet`, configuracion de relaciones, e indice
+  compuesto `CandidateId, RequestPositionId` relajado de UNICO a NO UNICO.
+
+### Migracion
+
+- `20260811014505_ReclutamientoNuevoModeloEntrevistas`
+  - Crea 5 tablas nuevas con FKs y indices.
+  - Agrega `IsInTalentPool`, `TalentPoolNotes` a `RecruitmentCandidates`.
+  - Recrea `IX_RecruitmentCandidateApplications_CandidateId_RequestPositionId`
+    sin `unique: true`.
+
+### Validaciones
+
+- ✅ `dotnet build` de `LuxuryApp.Infrastructure.Data` y `LuxuryApp.Application` (0 errores).
+- ✅ Migracion generada con `ApplicationDbContextFactory` (host API bloqueado por
+  proceso en ejecucion; se uso el design-time factory del proyecto de datos).
+- ✅ Frontend no modificado en esta fase (sin ruptura).
+
+### Criterios de aceptacion Fase 2 (cumplidos)
+
+- ✅ Compila backend.
+- ✅ Migracion generada.
+- ✅ No se rompio frontend.

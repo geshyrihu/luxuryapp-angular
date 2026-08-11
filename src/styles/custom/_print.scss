@@ -3,6 +3,46 @@
    Activado via window.print() desde task-list
    ========================================================================== */
 
+/* ══════════════════════════════════════════════════════════════════════════
+   CAPA DE TOKENS CON ALCANCE — Impresión (--pr-*)   [RN-DS-041]
+   ══════════════════════════════════════════════════════════════════════════
+   Imprimir es un medio distinto: tinta sobre papel, no color en pantalla.
+   Los grises de aquí son una escala de DENSIDAD DE TINTA, no una escala de
+   superficie, y por eso no derivan de --ds-*: el papel siempre es blanco,
+   así que esta capa es invariante al tema por definición.
+
+   Los valores se conservan exactos (2026-08-10): tokenización sin cambio
+   visual, igual que en _financial-tables.scss.
+
+   DUPLICACIÓN CONOCIDA: --pr-navy (#203453) es el mismo valor que --rf-head
+   de la capa de tablas contables. No se unificó porque el dueño natural
+   sería --ds-primary (#003152) y esa alineación tiene ΔE 5.2 — visible.
+   Entra en la misma decisión pendiente de alineación cromática.
+   ══════════════════════════════════════════════════════════════════════════ */
+:root {
+  /* Papel y velo */
+  --pr-paper: #fff;
+  --pr-overlay: rgba(255, 255, 255, 0.97);
+  --pr-band: #f8fafc;
+
+  /* Escala de densidad de tinta: de más oscura a más clara */
+  --pr-ink-900: #111;
+  --pr-ink-800: #1a1a1a;
+  --pr-ink-700: #222;
+  --pr-ink-600: #444;
+  --pr-ink-500: #555;
+  --pr-ink-400: #777;
+  --pr-ink-300: #888;
+
+  /* Azules institucionales del documento */
+  --pr-navy: #203453;
+  --pr-navy-heading: #1b3a6b;
+  --pr-rule: #e5e7eb;      /* filete de fila */
+  --pr-rule-strong: #d1d5db; /* filete de sección */
+  --pr-navy-fade: #64748b;   /* extremo claro del degradado de cabecera */
+  --pr-on-navy: #fff;
+}
+
 .print-task-report {
   display: none;
 }
@@ -15,7 +55,7 @@
 .print-preparing-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.97);
+  background: var(--pr-overlay);
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -58,6 +98,47 @@
     color-adjust: exact;
   }
 
+  /* ══════════════════════════════════════════════════════════════════════
+     EL TEMA OSCURO NO SE IMPRIME (2026-08-10)
+     ══════════════════════════════════════════════════════════════════════
+     La regla de arriba obliga al navegador a mandar fondos y colores tal
+     como se ven en pantalla. Sin este bloque, imprimir con el tema oscuro
+     activo enviaba a la impresora páginas de fondo navy con texto claro:
+     tóner desperdiciado y documentos ilegibles.
+
+     El papel es blanco siempre, así que al imprimir se restauran los
+     valores de tema claro de los tokens de superficie y texto. Todo lo que
+     use tokens se corrige solo; no hace falta tocar cada componente.
+     ══════════════════════════════════════════════════════════════════════ */
+  html.theme-dark,
+  body.theme-dark {
+    --ds-bg-page: var(--pr-paper);
+    --ds-bg-surface: var(--pr-paper);
+    --ds-bg-elevated: var(--pr-paper);
+    --ds-bg-sunken: var(--pr-band);
+
+    --ds-surface: var(--pr-paper);
+    --ds-surface-container-lowest: var(--pr-paper);
+    --ds-surface-container-low: var(--pr-paper);
+    --ds-surface-container: var(--pr-band);
+    --ds-surface-container-high: var(--pr-band);
+
+    --ds-text-primary: var(--pr-ink-800);
+    --ds-text-secondary: var(--pr-ink-600);
+    --ds-text-muted: var(--pr-ink-500);
+    --ds-on-surface: var(--pr-ink-800);
+    --ds-on-surface-variant: var(--pr-ink-600);
+
+    --ds-border: var(--pr-rule);
+    --ds-border-strong: var(--pr-rule-strong);
+  }
+
+  html.theme-dark body,
+  body.theme-dark {
+    background: var(--pr-paper) !important;
+    color: var(--pr-ink-800) !important;
+  }
+
   /* Evitar saltos de pagina dentro de componentes clave */
   .card, .table-row, .chart-container, .report-section {
     break-inside: avoid;
@@ -96,11 +177,11 @@
 
   .print-task-report {
     position: relative;
-    background: #fff;
+    background: var(--pr-paper);
     display: block;
     font-family: var(--ds-font-family-document);
     font-size: 10pt;
-    color: #1a1a1a;
+    color: var(--pr-ink-800);
     padding: 0;
     margin: 0;
     height: auto;
@@ -112,7 +193,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border-bottom: 2.5px solid #1b3a6b;
+    border-bottom: 2.5px solid var(--pr-navy-heading);
     padding-bottom: 8px;
     margin-bottom: 10px;
   }
@@ -121,7 +202,7 @@
     margin: 0 0 2px 0;
     font-size: 15pt;
     font-weight: 700;
-    color: #1b3a6b;
+    color: var(--pr-navy-heading);
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
@@ -129,7 +210,7 @@
   .print-report-header-left p {
     margin: 0;
     font-size: 10pt;
-    color: #444;
+    color: var(--pr-ink-600);
   }
 
   .print-report-header-right {
@@ -139,12 +220,12 @@
   .print-report-header-right p {
     margin: 0;
     font-size: 9.5pt;
-    color: #555;
+    color: var(--pr-ink-500);
     line-height: 1.5;
   }
 
   .print-report-header-right strong {
-    color: #1b3a6b;
+    color: var(--pr-navy-heading);
   }
 
   /* ---- Legend ---- */
@@ -160,7 +241,7 @@
     align-items: center;
     gap: 4px;
     font-size: 9pt;
-    color: #555;
+    color: var(--pr-ink-500);
   }
 
   .print-legend-dot {
@@ -180,8 +261,8 @@
   }
 
   .print-task-table thead tr {
-    background-color: #1b3a6b;
-    color: #fff;
+    background-color: var(--pr-navy-heading);
+    color: var(--pr-on-navy);
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -192,7 +273,7 @@
     font-weight: 600;
     font-size: 9pt;
     white-space: nowrap;
-    color: #fff;
+    color: var(--pr-on-navy);
   }
 
   /* Column widths */
@@ -206,13 +287,13 @@
   .col-seg   { width: 27%; }
 
   .print-task-table tbody tr {
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--pr-rule);
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
   .print-task-table tbody tr:nth-child(even) {
-    background-color: #f8fafc;
+    background-color: var(--pr-band);
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -220,38 +301,38 @@
   .print-task-table tbody td {
     padding: 4px 6px;
     vertical-align: top;
-    color: #1a1a1a;
+    color: var(--pr-ink-800);
   }
 
   /* Status bar on first cell */
   .print-task-table tbody td.td-status-not-started {
-    border-left: 5px solid var(--task-not-started, #dc2626);
+    border-left: 5px solid var(--task-not-started);
   }
   .print-task-table tbody td.td-status-in-progress {
-    border-left: 5px solid var(--task-in-progress, #ea580c);
+    border-left: 5px solid var(--task-in-progress);
   }
   .print-task-table tbody td.td-status-reopened {
-    border-left: 5px solid var(--task-reopened, #dc2626);
+    border-left: 5px solid var(--task-reopened);
   }
 
   /* Text styles */
   .print-folio {
     font-size: 8.5pt;
-    color: #777;
+    color: var(--pr-ink-400);
     white-space: nowrap;
   }
 
   .print-title {
     font-weight: 600;
     font-size: 9.5pt;
-    color: #111;
+    color: var(--pr-ink-900);
     line-height: 1.3;
     word-break: break-word;
   }
 
   .print-desc {
     font-size: 9pt;
-    color: #444;
+    color: var(--pr-ink-600);
     line-height: 1.3;
     margin-top: 2px;
     word-break: break-word;
@@ -269,7 +350,7 @@
 
   .print-followup {
     font-size: 9pt;
-    color: #222;
+    color: var(--pr-ink-700);
     line-height: 1.4;
     word-break: break-word;
   }
@@ -277,12 +358,12 @@
   /* ---- Footer ---- */
   .print-report-footer {
     margin-top: 10px;
-    border-top: 1px solid #d1d5db;
+    border-top: 1px solid var(--pr-rule-strong);
     padding-top: 5px;
     display: flex;
     justify-content: space-between;
     font-size: 8.5pt;
-    color: #888;
+    color: var(--pr-ink-300);
   }
 
   /* ================================================================
@@ -348,7 +429,7 @@
   /* 5. Section del reporte: block (NO flex) para que page-break funcione en Chrome */
   .print-financial-report {
     display: block;
-    background: #fff;
+    background: var(--pr-paper);
     padding: 0;
     gap: 0;
     min-height: auto;
@@ -365,12 +446,12 @@
     min-height: 100vh;
     page-break-after: always;
     break-after: page;
-    background: #fff;
+    background: var(--pr-paper);
   }
 
   .print-portada-bar-top {
     height: 10px;
-    background: #203453;
+    background: var(--pr-navy);
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -397,7 +478,7 @@
     font-size: 2.2rem;
     font-weight: 300;
     letter-spacing: 0.18em;
-    color: #111;
+    color: var(--pr-ink-900);
     margin: 0;
     line-height: 1.3;
   }
@@ -406,13 +487,13 @@
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.12em;
-    color: #555;
+    color: var(--pr-ink-500);
     margin: 0;
   }
 
   .print-portada-bar-bottom {
     height: 28px;
-    background: linear-gradient(to right, #203453, #64748b);
+    background: linear-gradient(to right, var(--pr-navy), var(--pr-navy-fade));
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -432,7 +513,7 @@
 
   /* Cabecera de seccion */
   .print-section-header {
-    border-bottom: 2px solid #203453;
+    border-bottom: 2px solid var(--pr-navy);
     padding-bottom: 0.4rem;
     margin-bottom: 1rem;
     -webkit-print-color-adjust: exact;
@@ -442,7 +523,7 @@
   .print-section-header span {
     font-size: 0.8rem;
     font-weight: 800;
-    color: #203453;
+    color: var(--pr-navy);
     letter-spacing: 0.07em;
     text-transform: uppercase;
   }

@@ -9,6 +9,25 @@
 @use "../core/borders" as b;
 @use "../core/colors" as c;
 
+/* ══════════════════════════════════════════════════════════════════════════
+   CAPA CON ALCANCE — variantes de botón sin equivalente en el DS  [RN-DS-041]
+   ══════════════════════════════════════════════════════════════════════════
+   Estos dos colores divergen del Design System y NO se alinearon porque el
+   cambio sería visible (medido 2026-08-10):
+
+     --btn-shell-warning-ink  #92400e  vs --ds-accent-text-warning #7a5e15  ΔE 28.3
+     --btn-shell-help-ink     #7c3aed  vs --ds-help               #3678c2  ΔE 70.0
+
+   El caso de "help" no es un matiz: el botón es violeta y el token del DS es
+   cian, porque --ds-help está aliaseado a info. Es una divergencia de diseño
+   real, no un descuido de implementación, y necesita decisión de diseño.
+   ══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --btn-shell-warning-ink: #92400e;
+  --btn-shell-help-ink: #7c3aed;
+}
+
+
 // ── BASE DEL BOTÓN ────────────────────────────────────────────
 // Todos los botones heredan de .btn
 .btn {
@@ -97,7 +116,7 @@
   }
 
   &.is-loading::after {
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: color-mix(in srgb, var(--ds-primary-text) 30%, transparent);
     border-top-color: var(--ds-primary-text);
   }
 }
@@ -132,7 +151,7 @@
   }
 
   &.is-loading::after {
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: color-mix(in srgb, var(--ds-primary-text) 30%, transparent);
     border-top-color: var(--ds-primary-text);
   }
 }
@@ -168,7 +187,7 @@
   }
 
   &.is-loading::after {
-    border-color: rgba(122, 94, 21, 0.3);
+    border-color: color-mix(in srgb, var(--ds-accent-text-warning) 30%, transparent);
     border-top-color: var(--ds-accent-text-warning);
   }
 }
@@ -690,7 +709,7 @@
 }
 
 .btn-icon-shell--inverse {
-  background-color: rgba(255, 255, 255, 0.16);
+  background-color: color-mix(in srgb, var(--ds-on-dark) 16%, transparent);
   color: inherit;
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.18),
@@ -719,7 +738,7 @@
 
 .btn-icon-shell--warning {
   --btn-icon-shell-bg: var(--ds-warning-light);
-  --btn-icon-shell-color: #92400e;
+  --btn-icon-shell-color: var(--btn-shell-warning-ink);
 }
 
 .btn-icon-shell--danger {
@@ -729,7 +748,7 @@
 
 .btn-icon-shell--help {
   --btn-icon-shell-bg: rgba(124, 58, 237, 0.14);
-  --btn-icon-shell-color: #7c3aed;
+  --btn-icon-shell-color: var(--btn-shell-help-ink);
 }
 
 .btn-icon-shell--contrast {

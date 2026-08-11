@@ -97,9 +97,9 @@
 
   // ── Filas con estado semántico
   .tr--selected { background-color: var(--ds-bg-sunken) !important; }
-  .tr--success  { background-color: rgba(34, 197, 94, 0.1) !important; }
-  .tr--warning  { background-color: rgba(234, 179, 8, 0.1) !important; }
-  .tr--danger   { background-color: rgba(239, 68, 68, 0.1) !important; }
+  .tr--success  { background-color: color-mix(in srgb, var(--ds-success) 10%, transparent) !important; }
+  .tr--warning  { background-color: color-mix(in srgb, var(--ds-warning) 10%, transparent) !important; }
+  .tr--danger   { background-color: color-mix(in srgb, var(--ds-danger) 10%, transparent) !important; }
   .tr--disabled { opacity: 0.5; pointer-events: none; }
 
   // ── Celda numérica

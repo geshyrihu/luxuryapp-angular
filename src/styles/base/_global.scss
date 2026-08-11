@@ -1,3 +1,7 @@
+:root {
+  --gl-placeholder-invalid: rgba(153, 27, 27, 0.6);
+}
+
 /* =======================================
    GLOBAL STYLES & RESETS
    ======================================== */
@@ -226,7 +230,9 @@ i,
 
 /* Feedback visual adicional para el placeholder (opcional) */
 .p-inputtext.ng-invalid.ng-dirty::placeholder {
-  color: rgba(153, 27, 27, 0.6);
+  /* Sin equivalente en el DS: ΔE 5.3 frente a --ds-on-error-container
+     y 7.5 frente a --ds-accent-text-danger. Alinear sería visible. */
+  color: var(--gl-placeholder-invalid);
 }
 
 /* ============================================================

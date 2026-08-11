@@ -499,6 +499,7 @@
   // sobre navy hay que invertirlo o el hover desaparece.
   --ds-state-hover: rgba(0, 0, 0, 0.06);
   --ds-state-active: rgba(0, 0, 0, 0.1);
+  --ds-state-ripple: rgba(0, 0, 0, 0.05); // ondas táctiles (Ionic)
 
   // Bordes
   --ds-border: #{c.$secondary-200}; // divisor decorativo — exento WCAG 1.4.11
@@ -655,6 +656,7 @@ body.theme-dark {
   // son invariantes por diseño (ver :root).
   --ds-state-hover: rgba(255, 255, 255, 0.1);
   --ds-state-active: rgba(255, 255, 255, 0.15);
+  --ds-state-ripple: rgba(255, 255, 255, 0.05);
 
   --ds-border: #{c.$primary-400}; // divisor decorativo — exento WCAG 1.4.11
   --ds-border-strong: #{c.$primary-300};

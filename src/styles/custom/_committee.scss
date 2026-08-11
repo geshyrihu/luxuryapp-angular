@@ -316,7 +316,7 @@
     margin: 0;
     padding: 0.75rem 0.9rem;
     padding-left: 1.1rem;
-    color: #fff;
+    color: var(--ds-on-dark);
     font-size: var(--ds-font-size-card-title);
     font-weight: var(--ds-font-weight-semibold);
     line-height: var(--ds-line-height-tight);
@@ -1216,7 +1216,7 @@
     overflow: hidden;
     padding: 1.5rem 1.35rem;
     border-radius: var(--ds-radius-lg);
-    color: #fff;
+    color: var(--ds-on-dark);
     background: linear-gradient(
       135deg,
       var(--ds-primary) 0%,

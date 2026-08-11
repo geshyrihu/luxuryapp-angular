@@ -36,6 +36,21 @@ const COLOR_SOURCE_ALLOWLIST = [
     scope: 'root-block',
     why: 'Capa --rf-* con alcance de módulo, documentada (RN-DS-041, Sprint 4).',
   },
+  {
+    file: 'src/styles/custom/_print.scss',
+    scope: 'root-block',
+    why: 'Capa --pr-*: densidad de tinta sobre papel, otro medio (RN-DS-041).',
+  },
+  {
+    file: 'src/styles/web/_buttons.scss',
+    scope: 'root-block',
+    why: 'Capa --btn-shell-*: dos variantes sin equivalente en el DS (ΔE 28 y 70).',
+  },
+  {
+    file: 'src/styles/base/_global.scss',
+    scope: 'root-block',
+    why: 'Capa --gl-*: placeholder de campo inválido sin equivalente (ΔE 5.3).',
+  },
 ];
 
 const norm = (f) => f.replace(/\\/g, '/');
@@ -124,6 +139,7 @@ async function runAudit() {
 
   let totalErrors = 0;
   const stylesFindings = [];
+  const outOfScope = [];
 
   for (const file of files) {
     // Skip ignored files
@@ -160,6 +176,9 @@ async function runAudit() {
         // `rgba(var(--token), .4)` ya usa un token; solo le aplica opacidad.
         // No es un color hardcodeado y no debe reportarse (falso positivo).
         if (/rgba?\(\s*var\(--/.test(line)) continue;
+        // `rgba($color, .08)` dentro de un mixin: `$color` es un parámetro,
+        // no un valor. El color real lo aporta quien invoca el mixin.
+        if (/rgba?\(\s*\$/.test(line)) continue;
         // Dentro del bloque :root autorizado de una capa con alcance
         if (rootRange && lineNo >= rootRange.from && lineNo <= rootRange.to) continue;
 
@@ -169,12 +188,19 @@ async function runAudit() {
         while ((match = HARDCODED_COLOR_REGEX.exec(line)) !== null) {
           if (isStyles) {
             stylesFindings.push({ file: norm(file), line: lineNo, text: line.trim() });
-          } else {
+            totalErrors++;
+          } else if (DS_LIB_SCOPE.test(norm(file))) {
+            // `shared/ui`: la librería del DS. Bloquea.
             console.error(`❌ [Token Violation] Color hardcodeado encontrado en ${file}:${lineNo}`);
             console.error(`   > ${line.trim()}`);
             console.error(`   💡 Recomendación: Usa var(--ds-*) o una variable de PrimeNG.`);
+            totalErrors++;
+          } else {
+            // `apps/**`: módulos de negocio, fuera del alcance declarado.
+            // Se reporta como señal, no bloquea (RN-DS-026: acotar el gate,
+            // nunca ampliar la superficie del DS para silenciarlo).
+            outOfScope.push({ file: norm(file), line: lineNo, text: line.trim() });
           }
-          totalErrors++;
         }
       }
     }
@@ -221,8 +247,17 @@ async function runAudit() {
     }
   }
 
+  // ── Fuera de alcance: señal, no bloqueo (RN-DS-026) ──────────────────────
+  if (outOfScope.length > 0) {
+    const files = new Set(outOfScope.map((f) => f.file));
+    console.warn(
+      `\nℹ️  ${outOfScope.length} colores hardcodeados en ${files.size} archivo(s) de src/app/apps/** — FUERA del alcance declarado (§2 del plan maestro).`,
+    );
+    console.warn(`   Se reportan como deuda; no bloquean el sello. Ticket aparte.`);
+  }
+
   if (totalErrors > 0) {
-    console.error(`\n🚨 Auditoría fallida: Se encontraron ${totalErrors} violaciones a los tokens de diseño.`);
+    console.error(`\n🚨 Auditoría fallida: ${totalErrors} violaciones DENTRO del alcance (src/styles + shared/ui).`);
     console.error(`Por favor, reemplaza los valores hardcodeados por variables del Design System o agrega '// ds-ignore' al final de la línea si es intencional.`);
     process.exit(1);
   } else {

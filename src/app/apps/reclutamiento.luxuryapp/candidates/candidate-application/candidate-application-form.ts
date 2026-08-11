@@ -11,26 +11,24 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
+  DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
-  DialogHandlerService,
 } from "src/app/core/services/dialog-handler.service";
 import { CandidateForm } from "../candidate/candidate-form";
-import {
-  CandidateApplicationDetail,
-} from "./interfaces/candidate-application";
+import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
+import { CandidateApplicationDetail } from "./interfaces/candidate-application";
 
 @Component({
   selector: "app-candidate-application-form",
@@ -55,8 +53,7 @@ export class CandidateApplicationForm implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
 
   id: string = "";
-  readonly lockRequestPosition =
-    Boolean(this.config.data?.lockRequestPosition);
+  readonly lockRequestPosition = Boolean(this.config.data?.lockRequestPosition);
   readonly allowCreateCandidate =
     this.config.data?.allowCreateCandidate !== false;
   submitting = signal(false);
@@ -68,11 +65,11 @@ export class CandidateApplicationForm implements OnInit {
   form: FormGroup = new FormGroup({
     id: new FormControl({ value: "", disabled: true }),
     candidateId: new FormControl<string | null>(null, Validators.required),
-    requestPositionId: new FormControl<string | null>(null, Validators.required),
-    cvFileName: new FormControl<string | null>(
+    requestPositionId: new FormControl<string | null>(
       null,
       Validators.required,
     ),
+    cvFileName: new FormControl<string | null>(null, Validators.required),
     applicationDate: new FormControl<string | null>(null),
     recruitmentInterviewAt: new FormControl<string | null>(null),
     initialComment: new FormControl<string | null>(null),
@@ -133,10 +130,7 @@ export class CandidateApplicationForm implements OnInit {
 
     try {
       const formData = new FormData();
-      formData.append(
-        "CandidateId",
-        this.form.controls["candidateId"].value,
-      );
+      formData.append("CandidateId", this.form.controls["candidateId"].value);
       formData.append(
         "RequestPositionId",
         this.form.controls["requestPositionId"].value,
@@ -147,7 +141,8 @@ export class CandidateApplicationForm implements OnInit {
       if (applicationDate) {
         formData.append("ApplicationDate", applicationDate);
       }
-      const recruitmentInterviewAt = this.form.controls["recruitmentInterviewAt"].value;
+      const recruitmentInterviewAt =
+        this.form.controls["recruitmentInterviewAt"].value;
       if (recruitmentInterviewAt) {
         formData.append(
           "RecruitmentInterviewAt",
@@ -211,7 +206,9 @@ export class CandidateApplicationForm implements OnInit {
       return [
         {
           value: result.id,
-          label: result.fullName ?? `${result.firstName ?? ""} ${result.lastName ?? ""}`.trim(),
+          label:
+            result.fullName ??
+            `${result.firstName ?? ""} ${result.lastName ?? ""}`.trim(),
         },
         ...current,
       ];
@@ -225,8 +222,7 @@ export class CandidateApplicationForm implements OnInit {
     }
 
     const requestPositionId = this.config.data?.requestPositionId as
-      | string
-      | undefined;
+      string | undefined;
     if (!requestPositionId) return;
 
     this.ensureDialogVacancyOption(
@@ -248,7 +244,11 @@ export class CandidateApplicationForm implements OnInit {
 
     if (exists) return;
 
-    const label = [result.vacancyFolio, result.positionName, result.customerName]
+    const label = [
+      result.vacancyFolio,
+      result.positionName,
+      result.customerName,
+    ]
       .filter(Boolean)
       .join(" - ");
 
@@ -283,7 +283,9 @@ export class CandidateApplicationForm implements OnInit {
     requestPositionLabel?: string,
   ) {
     const currentOptions = this.cb_vacancies();
-    const exists = currentOptions.some((item) => item.value === requestPositionId);
+    const exists = currentOptions.some(
+      (item) => item.value === requestPositionId,
+    );
 
     if (exists || !requestPositionLabel) return;
 

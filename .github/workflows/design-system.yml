@@ -1,0 +1,93 @@
+name: Design System Gates
+
+# Por qué este archivo vive aquí y no en la raíz del monorepo:
+#   `d:\repos\luxuryapp-api` NO es un repositorio: es un contenedor de tres
+#   repos independientes (api, client/angular, client/flutter). Un workflow
+#   colocado en la raíz nunca se ejecuta, porque GitHub Actions solo corre
+#   desde dentro de un repositorio. `.github/workflows/encoding-gate.yml` de
+#   la raíz está en esa situación (detectado 2026-08-10).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  design-system:
+    name: Tokens, contraste y compilación
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      # ── Compilación ────────────────────────────────────────────────────
+      # Compila TODOS los puntos de entrada declarados en angular.json.
+      # Existe porque una verificación que solo compilaba `styles.scss` no
+      # detectó un archivo roto que entraba por `ds-entry.scss`.
+      - name: SCSS compila (todos los puntos de entrada)
+        run: npm run audit:scss-build
+
+      # ── Tokens ─────────────────────────────────────────────────────────
+      # Bloquea sobre `src/styles` y `src/app/shared/ui`, que es el alcance
+      # declarado. Lo de `src/app/apps/**` se reporta como deuda y no falla
+      # el sello (RN-DS-026: se acota el gate, no se amplía el DS).
+      - name: Sin colores hardcodeados en el alcance
+        run: npm run audit:tokens
+
+      # ── Contraste ──────────────────────────────────────────────────────
+      # Compila los tokens reales y evalúa los pares contra WCAG AA.
+      # No usa tabla hardcodeada (RN-DS-023).
+      - name: Contraste WCAG AA sobre tokens reales
+        run: npm run audit:contrast
+
+      # ── Referencias ────────────────────────────────────────────────────
+      # Cero `var(--ds-*)` sin definir y cero fallbacks en shared/ui.
+      - name: Referencias de tokens
+        run: npm run audit:token-refs
+
+  # ── Accesibilidad ─────────────────────────────────────────────────────
+  # Separado porque necesita levantar la aplicación y una sesión. Hoy en
+  # MODO REPORTE: publica el resultado y nunca bloquea. Pasa a bloqueante
+  # cuando el barrido de ARIA (Fase E) cubra las categorías del plan.
+  a11y:
+    name: Accesibilidad (informativo)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Instalar navegador
+        run: npx playwright install --with-deps chromium
+
+      - name: axe-core sobre rutas públicas
+        # Sin backend en CI solo se alcanzan las rutas anónimas. La cobertura
+        # queda declarada en el propio JSON; no se simula sesión.
+        run: npm run audit:a11y
+
+      - name: Publicar resultado
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-report
+          path: |
+            docs/analisis/a11y-last-run.json
+            docs/analisis/20260809-a11y-baseline-referencia.json
+          if-no-files-found: ignore
