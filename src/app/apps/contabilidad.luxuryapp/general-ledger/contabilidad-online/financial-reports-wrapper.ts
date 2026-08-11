@@ -11,7 +11,8 @@ import type { TabItem } from "@ui/base/tabs.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CobranzaOnlineResumen } from "src/app/apps/cobranza.luxuryapp/cobranza-online/resumen/cobranza-online-resumen";
+import { AnalisisCobranza } from "./analisis-cobranza/analisis-cobranza";
+import { CobranzaOnlineStoreService } from "src/app/apps/cobranza.luxuryapp/cobranza-online/state/cobranza-online-store.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { AiAgentContabilidadOnlineComponent } from "./ai-agent-contabilidad-online/ai-agent-contabilidad-online";
@@ -102,7 +103,7 @@ const REPORT_META = [
     ReporteFinanciero,
     FlujoEfectivo,
     WebButtonLabel,
-    CobranzaOnlineResumen,
+    AnalisisCobranza,
     PresupuestoContabilidad,
     BancosInversionesComponent,
     FondoReservaComponent,
@@ -112,6 +113,7 @@ const REPORT_META = [
     AiAgentExplicadorContabilidadOnlineComponent,
     AppIcon,
   ],
+  providers: [CobranzaOnlineStoreService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./financial-reports-wrapper.html",
 })
@@ -245,3 +247,4 @@ export default class FinancialReportsWrapper {
     this.reportIndex.set(Number(tab.id));
   }
 }
+

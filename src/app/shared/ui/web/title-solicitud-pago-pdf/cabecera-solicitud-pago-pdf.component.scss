@@ -16,15 +16,15 @@
 }
 
 .invoice-title {
-  background: rgba(245, 247, 250, 0.85);
+  background: color-mix(in srgb, white 85%, transparent);
   border-radius: 1rem;
   margin-bottom: 0.5rem;
   box-shadow: 0 2px 8px 0 rgba(44, 62, 80, 0.05);
 }
 
 .invoice-title img {
-  border: 2px solid var(--ds-border, var(--ds-border));
-  background: var(--ds-bg-surface, var(--ds-surface));
+  border: 2px solid var(--ds-border);
+  background: var(--ds-bg-surface);
 }
 
 @media (max-width: 768px) {
@@ -77,7 +77,7 @@
 
   /* Estilo para la línea horizontal */
   hr {
-    border-top: 1px solid var(--ds-border, var(--ds-outline)); /* Asegurar que la línea sea visible */
+    border-top: 1px solid var(--ds-border); /* Asegurar que la línea sea visible */
     margin-top: 1rem;
     margin-bottom: 1rem;
   }

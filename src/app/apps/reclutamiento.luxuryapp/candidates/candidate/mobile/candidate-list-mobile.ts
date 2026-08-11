@@ -19,6 +19,7 @@ import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
   selector: "app-candidate-list-mobile",
   templateUrl: "./candidate-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [
     DataViewMobile,
     MobileActionMenu,

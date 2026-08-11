@@ -31,8 +31,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         border-radius: 50%;
         background: linear-gradient(
           135deg,
-          #6366f1 0%,
-          #a855f7 100%
+          var(--ds-ai-gradient-from) 0%,
+          var(--ds-ai-gradient-to) 100%
         ); /* Indigo to Purple */
         box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
         display: flex;
@@ -55,7 +55,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         width: 380px;
         height: 600px;
         max-height: 80vh;
-        background: white;
+        background: var(--ds-bg-surface);
         border-radius: 16px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         display: flex;
@@ -67,7 +67,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         flex: 1;
         overflow-y: auto;
         padding: 1rem;
-        background-color: #f8fafc;
+        background-color: var(--ds-bg-surface);
       }
       .message {
         display: flex;
@@ -87,14 +87,14 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         line-height: 1.4;
       }
       .message.user .bubble {
-        background-color: #6366f1;
-        color: white;
+        background-color: var(--ds-ai-gradient-from);
+        color: var(--ds-on-primary);
         border-bottom-right-radius: 2px;
       }
       .message.assistant .bubble {
-        background-color: white;
-        color: #1e293b;
-        border: 1px solid #e2e8f0;
+        background-color: var(--ds-bg-surface);
+        color: var(--ds-text-primary);
+        border: 1px solid var(--ds-border);
         border-bottom-left-radius: 2px;
       }
       @keyframes slideIn {
@@ -111,7 +111,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         display: inline-block;
         width: 6px;
         height: 6px;
-        background-color: #94a3b8;
+        background-color: var(--ds-text-muted);
         border-radius: 50%;
         animation: bounce 1.4s infinite ease-in-out both;
         margin: 0 2px;

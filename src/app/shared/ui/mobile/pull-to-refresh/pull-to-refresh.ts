@@ -46,9 +46,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         justify-content: center;
         gap: 0.25rem;
         width: 100%;
-        background: var(--ds-bg-elevated, #f4f5f8);
+        background: var(--ds-bg-elevated);
         color: var(--ds-text-muted);
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         transition: height 0.2s;
         overflow: hidden;
       }

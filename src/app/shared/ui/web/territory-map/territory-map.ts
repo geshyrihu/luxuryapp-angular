@@ -155,7 +155,7 @@ export interface Territory {
         gap: 0.5rem;
       }
       .tm-title {
-        font-size: var(--ds-font-size-section-title, 1.25rem);
+        font-size: var(--ds-font-size-section-title);
         font-weight: 600;
         color: var(--ds-text-primary);
         margin: 0;
@@ -168,7 +168,7 @@ export interface Territory {
         display: flex;
         align-items: center;
         gap: 0.25rem;
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-secondary);
       }
       /* Region */
@@ -181,7 +181,7 @@ export interface Territory {
         display: flex;
         align-items: center;
         gap: 0.375rem;
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-secondary);
         text-transform: uppercase;
@@ -195,10 +195,10 @@ export interface Territory {
       }
       /* Card */
       .tm-card {
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
         border-left: 4px solid var(--ds-primary);
-        border-radius: var(--ds-radius-md, 6px);
+        border-radius: var(--ds-radius-md);
         padding: 0.75rem;
         cursor: pointer;
         transition: box-shadow 0.15s;
@@ -226,7 +226,7 @@ export interface Territory {
         flex-wrap: wrap;
       }
       .tm-territory-name {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-primary);
       }
@@ -241,7 +241,7 @@ export interface Territory {
         justify-content: center;
         font-size: 0.625rem;
         font-weight: 700;
-        color: #fff;
+        color: var(--ds-on-primary);
         cursor: default;
       }
       /* Metrics */
@@ -260,7 +260,7 @@ export interface Territory {
       }
       .tm-metric-val {
         display: block;
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 700;
         color: var(--ds-text-primary);
       }
@@ -270,15 +270,15 @@ export interface Territory {
         text-transform: uppercase;
       }
       .tm-on-target {
-        color: var(--ds-success, #006837);
+        color: var(--ds-success);
       }
       .tm-off-target {
-        color: var(--ds-warning, #b45309);
+        color: var(--ds-accent-text-warning);
       }
       /* Progress */
       .tm-progress-bar {
         height: 4px;
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
         border-radius: 2px;
         overflow: hidden;
       }
@@ -320,14 +320,14 @@ export class AppTerritoryMap {
   }
 
   avatarBg(t: Territory): string {
-    if (!t.owner) return "#737685";
+    if (!t.owner) return "var(--ds-bg-muted)";
     const colors = [
-      "#003d9b",
-      "#006477",
-      "#006837",
-      "#b45309",
-      "#7c3aed",
-      "#ba1a1a",
+      "var(--ds-cat-1)",
+      "var(--ds-cat-8)",
+      "var(--ds-cat-7)",
+      "var(--ds-cat-5)",
+      "var(--ds-cat-2)",
+      "var(--ds-cat-4)",
     ];
     let h = 0;
     for (const c of t.owner) h = c.charCodeAt(0) + ((h << 5) - h);

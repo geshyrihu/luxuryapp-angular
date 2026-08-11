@@ -72,23 +72,23 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
-        border: 2px solid var(--ds-bg-surface, #fff);
-        box-shadow: 0 0 0 2px var(--ds-border, #e2e8f0);
+        color: var(--ds-on-primary);
+        border: 2px solid var(--ds-bg-surface);
+        box-shadow: 0 0 0 2px var(--ds-border);
       }
       .ili-tl-line {
         flex: 1;
         width: 2px;
         min-height: 1rem;
-        background: var(--ds-border, #e2e8f0);
+        background: var(--ds-border);
         margin: 2px 0;
       }
       .ili-tl-card {
         flex: 1;
         margin-bottom: 1.25rem;
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         padding: 0.75rem 1rem;
       }
       .ili-tl-head {

@@ -19,147 +19,108 @@
           </div>
         </div>
 
-        <div class="flex gap-3 flex-wrap xl:justify-content-end flex-shrink-0">
+        <!-- Mobile Tabs Navigation -->
+        <div class="flex overflow-x-auto flex-nowrap w-full pb-0 mt-3 xl:mt-0" style="border-bottom: 2px solid var(--ds-border); scrollbar-width: none;">
           <a
             routerLink="/cobranza/aspel-online"
             [routerLinkActiveOptions]="{ exact: true }"
-            routerLinkActive="cobranza-nav-card--active"
-            class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
-            style="width: 96px; height: 96px"
+            routerLinkActive="!text-primary !border-primary"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
+            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon
-              icon="mdi:view-dashboard-outline"
-              class="text-2xl"
-            ></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >Resumen</span
-            >
+            <app-icon icon="mdi:view-dashboard-outline" class="text-base"></app-icon>
+            <span class="text-sm">Resumen</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/analysis"
-            routerLinkActive="cobranza-nav-card--active"
-            class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
-            style="width: 96px; height: 96px"
+            routerLinkActive="!text-primary !border-primary"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
+            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon icon="mdi:chart-pie" class="text-2xl"></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >Análisis</span
-            >
+            <app-icon icon="mdi:chart-pie" class="text-base"></app-icon>
+            <span class="text-sm">Análisis</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/detalle-condominos"
-            routerLinkActive="cobranza-nav-card--active"
-            class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
-            style="width: 96px; height: 96px"
+            routerLinkActive="!text-primary !border-primary"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
+            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon
-              icon="mdi:account-group-outline"
-              class="text-2xl"
-            ></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >Detalle Condóminos</span
-            >
+            <app-icon icon="mdi:account-group-outline" class="text-base"></app-icon>
+            <span class="text-sm">Detalle Condóminos</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/morosidad"
-            routerLinkActive="cobranza-nav-card--active"
-            class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
-            style="width: 96px; height: 96px"
+            routerLinkActive="!text-primary !border-primary"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
+            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon
-              icon="mdi:alert-decagram-outline"
-              class="text-2xl"
-            ></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >Morosidad</span
-            >
+            <app-icon icon="mdi:alert-decagram-outline" class="text-base"></app-icon>
+            <span class="text-sm">Morosidad</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/otros-cargos"
-            routerLinkActive="cobranza-nav-card--active"
-            class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
-            style="width: 96px; height: 96px"
+            routerLinkActive="!text-primary !border-primary"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
+            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon icon="mdi:cash-plus" class="text-2xl"></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >Otros Cargos</span
-            >
+            <app-icon icon="mdi:cash-plus" class="text-base"></app-icon>
+            <span class="text-sm">Otros Cargos</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/movimientos"
-            routerLinkActive="cobranza-nav-card--active"
-            class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
-            style="width: 96px; height: 96px"
+            routerLinkActive="!text-primary !border-primary"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
+            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon icon="mdi:swap-horizontal" class="text-2xl"></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >Movimientos del Mes</span
-            >
+            <app-icon icon="mdi:swap-horizontal" class="text-base"></app-icon>
+            <span class="text-sm">Movimientos del Mes</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/advances"
-            routerLinkActive="cobranza-nav-card--active"
-            class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
-            style="width: 96px; height: 96px"
+            routerLinkActive="!text-primary !border-primary"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
+            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon icon="mdi:cash-fast" class="text-2xl"></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >Adelantos</span
-            >
+            <app-icon icon="mdi:cash-fast" class="text-base"></app-icon>
+            <span class="text-sm">Adelantos</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/towers"
-            routerLinkActive="cobranza-nav-card--active"
-            class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
-            style="width: 96px; height: 96px"
+            routerLinkActive="!text-primary !border-primary"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
+            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon
-              icon="mdi:office-building-outline"
-              class="text-2xl"
-            ></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >Torres</span
-            >
+            <app-icon icon="mdi:office-building-outline" class="text-base"></app-icon>
+            <span class="text-sm">Torres</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/exclusions"
-            routerLinkActive="cobranza-nav-card--active"
-            class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
-            style="width: 96px; height: 96px"
+            routerLinkActive="!text-primary !border-primary"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
+            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon
-              icon="mdi:account-off-outline"
-              class="text-2xl"
-            ></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >Cuentas omitidas</span
-            >
+            <app-icon icon="mdi:account-off-outline" class="text-base"></app-icon>
+            <span class="text-sm">Cuentas omitidas</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/inspection"
-            routerLinkActive="cobranza-nav-card--active"
-            class="cobranza-nav-card flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg no-underline flex-shrink-0 shadow-1 p-3"
-            style="width: 96px; height: 96px"
+            routerLinkActive="!text-primary !border-primary"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
+            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon
-              icon="mdi:format-list-bulleted"
-              class="text-2xl"
-            ></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >Listado Base</span
-            >
+            <app-icon icon="mdi:format-list-bulleted" class="text-base"></app-icon>
+            <span class="text-sm">Listado Base</span>
           </a>
           <button
             type="button"
             (click)="onSyncNow()"
             [disabled]="syncRunning()"
-            class="cobranza-nav-refresh flex flex-column align-items-center justify-content-center gap-2 border-1 border-round-lg flex-shrink-0 shadow-1 cursor-pointer p-3"
-            style="width: 96px; height: 96px"
+            class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0 bg-transparent cursor-pointer"
+            style="border: none; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
           >
-            <app-icon icon="mdi:refresh" class="text-2xl"></app-icon>
-            <span class="text-xs font-semibold text-center line-height-2"
-              >{{ syncRunning() ? "Sync..." : "Refrescar" }}</span
-            >
+            <app-icon icon="mdi:refresh" class="text-base"></app-icon>
+            <span class="text-sm">{{ syncRunning() ? "Sync..." : "Refrescar" }}</span>
           </button>
         </div>
       </div>
@@ -178,83 +139,39 @@
       </div>
       }
     </div>
-
-    <!-- Datos de contexto en línea, separados por divisores verticales -->
+    
+    <!-- Datos de contexto (Compact Mobile Accordion) -->
     @if (hasCustomer() && syncStatus()) {
-    <div
-      class="flex flex-wrap align-items-center gap-2 px-4 md:px-5 py-2 border-top-1 surface-border"
-    >
-      <div class="flex align-items-center gap-2 min-w-0">
-        <app-icon
-          icon="mdi:domain"
-          class="text-sm text-color-secondary"
-        ></app-icon>
-        <span class="text-xs font-bold text-color-secondary uppercase"
-          >Cliente</span
-        >
-        <span class="text-sm font-bold"
-          >{{ customerName() || "Cliente activo" }}</span
-        >
-      </div>
-
-      <lx-divider layout="vertical" class="flex" style="height: 1.5rem" />
-
-      <div class="flex align-items-center gap-2 min-w-0">
-        <app-icon
-          icon="mdi:database"
-          class="text-sm text-color-secondary"
-        ></app-icon>
-        <span class="text-xs font-bold text-color-secondary uppercase"
-          >Origen</span
-        >
-        <span class="text-sm font-bold">{{ syncStatus()?.dataSource }}</span>
-      </div>
-
-      <lx-divider layout="vertical" class="flex" style="height: 1.5rem" />
-
-      <div class="flex align-items-center gap-2 min-w-0">
-        <app-icon
-          icon="mdi:clock-outline"
-          class="text-sm text-color-secondary"
-        ></app-icon>
-        <span class="text-xs font-bold text-color-secondary uppercase"
-          >Última Act.</span
-        >
-        <span class="text-sm font-bold">{{ formattedLastSync() }}</span>
-      </div>
-
-      <lx-divider layout="vertical" class="flex" style="height: 1.5rem" />
-
-      <div class="flex align-items-center gap-2 min-w-0">
-        <app-icon
-          icon="mdi:calendar"
-          class="text-sm text-color-secondary"
-        ></app-icon>
-        <span class="text-xs font-bold text-color-secondary uppercase"
-          >Periodo</span
-        >
+    <div class="border-top-1 surface-border p-3 md:p-4">
+      <ili-accordion [items]="contextAccordionItems()">
+        <div accordion="context">
+          <ili-list-item [noPadding]="true">
+            <app-icon start icon="mdi:database" class="text-lg text-color-secondary" />
+            <span class="font-medium text-sm">Origen</span>
+            <span end class="text-xs text-color-secondary font-mono">{{ syncStatus()?.dataSource }}</span>
+          </ili-list-item>
+          <ili-list-item [noPadding]="true">
+            <app-icon start icon="mdi:clock-outline" class="text-lg text-color-secondary" />
+            <span class="font-medium text-sm">Última Act.</span>
+            <span end class="text-xs text-color-secondary font-mono">{{ formattedLastSync() }}</span>
+          </ili-list-item>
+          <ili-list-item [noPadding]="true" [divider]="false">
+            <app-icon start icon="mdi:account-group-outline" class="text-lg text-color-secondary" />
+            <span class="font-medium text-sm">Condóminos</span>
+            <span end class="text-xs text-color-secondary font-mono">{{ totalCondominos() }}</span>
+          </ili-list-item>
+        </div>
+      </ili-accordion>
+      
+      <div class="mt-4 flex justify-content-end">
         <button
           type="button"
           (click)="onOpenDatePickerDialog()"
-          title="Cambiar periodo"
-          class="border-0 bg-transparent p-0 text-sm font-bold text-color cursor-pointer hover:text-emerald-500 transition-colors"
+          class="border-round-md bg-primary text-primary-contrast px-3 py-2 text-sm font-semibold cursor-pointer border-none shadow-1 flex align-items-center gap-2"
         >
-          {{ currentCutLabel() }}
+          <app-icon icon="mdi:calendar" />
+          Cambiar Periodo
         </button>
-      </div>
-      <lx-divider layout="vertical" class="flex" style="height: 1.5rem" />
-
-      <div class="flex align-items-center gap-2 min-w-0">
-        <app-icon
-          icon="mdi:account-group-outline"
-          class="text-sm text-color-secondary"
-        ></app-icon>
-        <span class="text-xs font-bold text-color-secondary uppercase"
-          >Condóminos</span
-        >
-        <span class="text-sm font-bold text-primary"
-          >{{ totalCondominos() }}</span
-        >
       </div>
     </div>
     }

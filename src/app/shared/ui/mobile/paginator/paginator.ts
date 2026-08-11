@@ -89,7 +89,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.5rem;
         padding: 0.75rem 0.5rem;
         font-size: 0.8125rem;
-        color: var(--ds-text-secondary, #64748b);
+        color: var(--ds-text-secondary);
       }
       .ili-paginator-info {
         white-space: nowrap;

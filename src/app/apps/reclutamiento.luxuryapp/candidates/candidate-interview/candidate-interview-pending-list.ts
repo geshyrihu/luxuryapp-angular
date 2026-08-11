@@ -6,8 +6,10 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { ActivatedRoute, RouterLink } from "@angular/router";
 import { addIcons } from "ionicons";
 import { chatbubblesOutline } from "ionicons/icons";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -24,12 +26,18 @@ import { CandidateInterviewPendingMobile } from "./mobile/candidate-interview-pe
   standalone: true,
   templateUrl: "./candidate-interview-pending-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CandidateInterviewPendingDesktop, CandidateInterviewPendingMobile],
+  imports: [
+    CandidateInterviewPendingDesktop,
+    CandidateInterviewPendingMobile,
+    RouterLink,
+  ],
 })
 export class CandidateInterviewPendingList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  route = inject(ActivatedRoute);
+  authS = inject(AuthService);
 
   dataSignal = signal<CandidateApplicationListItem[]>([]);
 
@@ -37,6 +45,31 @@ export class CandidateInterviewPendingList implements OnInit {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
+  });
+
+  // Detectar si estamos en modo "mis pendientes" o "responder"
+  readonly isMyPendingMode = computed(
+    () => this.route.snapshot.queryParamMap.get("myPending") === "true",
+  );
+  readonly respondApplicationId = computed(
+    () => this.route.snapshot.queryParamMap.get("applicationId") ?? "",
+  );
+  readonly isRespondMode = computed(
+    () => this.route.snapshot.queryParamMap.get("action") === "respond",
+  );
+
+  // Usuario actual
+  readonly currentUserId = computed(() => this.authS.applicationUserId ?? "");
+
+  // Filtrar datos para el entrevistador actual
+  readonly filteredData = computed(() => {
+    const data = this.dataSignal();
+    if (this.isMyPendingMode()) {
+      return data.filter(
+        (item) => item.assignedInterviewerUserId === this.currentUserId(),
+      );
+    }
+    return data;
   });
 
   constructor() {

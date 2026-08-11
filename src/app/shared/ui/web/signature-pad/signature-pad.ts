@@ -82,16 +82,16 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.5rem;
       }
       .sig-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         font-weight: 500;
       }
       .sig-canvas-wrap {
         position: relative;
-        border: 1.5px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        border: 1.5px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         overflow: hidden;
-        background: var(--ds-bg-surface, #fff);
+        background: var(--ds-bg-surface);
         cursor: crosshair;
       }
       .sig-disabled {
@@ -111,7 +111,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         justify-content: center;
         gap: 0.5rem;
         color: var(--ds-text-muted);
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         pointer-events: none;
       }
       .sig-actions {
@@ -119,7 +119,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.5rem;
       }
       .sig-hint {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
     `,
@@ -136,7 +136,7 @@ export class AppSignaturePad implements AfterViewInit, OnDestroy {
   width = input<number>(400);
   height = input<number>(160);
   lineWidth = input<number>(2);
-  lineColor = input<string>("#041b3c");
+  lineColor = input<string>("var(--ds-text-primary)");
   disabled = input<boolean>(false);
 
   signed = output<string>();

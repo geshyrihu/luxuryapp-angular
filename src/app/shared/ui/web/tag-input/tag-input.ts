@@ -50,12 +50,12 @@ import { AutoCompleteModule } from "primeng/autocomplete";
         gap: 0.35rem;
       }
       .app-tag-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         font-weight: 500;
       }
       .app-tag-hint {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
       /* Override PrimeNG autocomplete chips style */
@@ -64,23 +64,23 @@ import { AutoCompleteModule } from "primeng/autocomplete";
         flex-wrap: wrap;
         gap: 0.25rem;
         padding: 0.375rem 0.5rem;
-        border: 1.5px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
-        background: var(--ds-bg-surface, #fff);
+        border: 1.5px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
+        background: var(--ds-bg-surface);
         min-height: 2.5rem;
         align-items: center;
       }
       .app-tag-autocomplete .p-autocomplete-multiple-container:focus-within {
-        border-color: var(--ds-primary, #003d9b);
-        box-shadow: 0 0 0 3px var(--ds-primary-200, #b2c5ff);
+        border-color: var(--ds-primary);
+        box-shadow: 0 0 0 3px var(--primary-200);
       }
       .app-tag-autocomplete .p-autocomplete-chip {
-        background: var(--ds-primary-100, #dae2ff);
-        color: var(--ds-primary-700, #003079);
+        background: var(--primary-100);
+        color: var(--primary-700);
         border: none;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         padding: 0.2rem 0.65rem;
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         font-weight: 500;
         display: flex;
         align-items: center;
@@ -98,7 +98,7 @@ import { AutoCompleteModule } from "primeng/autocomplete";
         border: none;
         outline: none;
         background: transparent;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
         min-width: 120px;
         flex: 1;

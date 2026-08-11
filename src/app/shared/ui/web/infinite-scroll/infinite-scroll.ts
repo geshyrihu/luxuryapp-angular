@@ -37,7 +37,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         align-items: center;
         gap: 0.5rem;
         color: var(--ds-text-muted);
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
       }
       .infinite-scroll-spinner {
         animation: spin 1s linear infinite;

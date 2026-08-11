@@ -6,7 +6,8 @@
   </div>
   } @if (!loading() && !data()) {
   <p class="text-color-secondary m-0">
-    No hay datos de gastos para este periodo.
+    No hay datos de gastos para este cliente. Verifique que tenga configurado
+    <strong>EjercicioFiscal</strong> en Aspel.
   </p>
   } @if (!loading() && data(); as reporte) {
   <div class="rf-card">

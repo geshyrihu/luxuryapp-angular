@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import type { ECharts, EChartsCoreOption } from "echarts/core";
 import { NgxEchartsDirective } from "ngx-echarts";
-import { ChartJsData, chartJsToRadarOption } from "./echarts-adapters";
+import { ChartJsData, chartJsToRadarOption, resolveDsColor, trackChartTheme } from "./echarts-adapters";
 
 /**
  * PrimengRadarChart — radar / araña. Motor: ECharts (ngx-echarts).
@@ -30,6 +30,10 @@ import { ChartJsData, chartJsToRadarOption } from "./echarts-adapters";
   `,
 })
 export class PrimengRadarChart {
+  constructor() {
+    trackChartTheme();
+  }
+
   chartData = input<ChartJsData>({
     labels: [],
     datasets: [{ data: [], label: "Cargando..." }],
@@ -53,7 +57,7 @@ export class PrimengRadarChart {
     return this.instance?.getDataURL({
       type: "png",
       pixelRatio: 2,
-      backgroundColor: "#ffffff",
+      backgroundColor: resolveDsColor("--ds-bg-surface"),
     });
   }
 

@@ -1,13 +1,13 @@
 ---
 name: ERP Premium · Deep Navy
 colors:
-  # ─── PRIMARIO (Azul Profundo) ───
-  primary: "#1B365D"
+  # ─── PRIMARIO (Azul Profundo) — ancla única #003152 (slot 700) ───
+  primary: "#003152"
   on-primary: "#FFFFFF"
-  primary-dark: "#12243D"
-  primary-light: "#2A4D7C"
-  primary-container: "#E8EEF6"
-  on-primary-container: "#1B365D"
+  primary-dark: "#00253D"
+  primary-light: "#00568F"
+  primary-container: "#DDEAF4"
+  on-primary-container: "#003152"
 
   # ─── SECUNDARIO (Acentos) ───
   secondary-gold: "#D4A74A"
@@ -47,7 +47,7 @@ colors:
   on-info-container: "#1B365D"
 
   # ─── SOMBRAS ───
-  shadow: "rgba(27, 54, 93, 0.15)"
+  shadow: "rgba(0, 49, 82, 0.15)"
 
 typography:
   font-family: "Outfit, -apple-system, BlinkMacSystemFont, sans-serif"
@@ -157,7 +157,7 @@ The aesthetic leans into **Minimalism** with a **Corporate Modern** execution. I
 
 ### Brand Pillars
 
-- **Trust** — Deep navy (`#1B365D`) conveys stability, security, and institutional authority.
+- **Trust** — Deep navy (`#003152`) conveys stability, security, and institutional authority.
 - **Precision** — Every spacing, type size, and color is mathematically grounded in an 8px grid.
 - **Clarity** — High contrast ratios (WCAG AA+ minimum) ensure legibility for all users.
 - **Efficiency** — Designed for dense data interfaces where information density is balanced with readability.
@@ -166,21 +166,21 @@ The aesthetic leans into **Minimalism** with a **Corporate Modern** execution. I
 
 ## Colors
 
-This design system utilizes a **single authoritative primary palette** anchored by `#1B365D` (Deep Navy), supported by a curated set of accent colors for interaction and feedback.
+This design system utilizes a **single authoritative primary palette** anchored by `#003152` (Deep Navy), supported by a curated set of accent colors for interaction and feedback.
 
 ### Primary Palette (Deep Navy)
 
-The primary color is used for navigation bars, primary buttons, headers, and key UI anchors. Its dark value provides excellent contrast against white and light surfaces.
+The primary color is used for navigation bars, primary buttons, headers, and key UI anchors. Its dark value provides excellent contrast against white and light surfaces. Rampa monocroma H=204 con ancla única en el slot 700 (`#003152`).
 
 | Token               | Hex       | Usage                                                     |
 | :------------------ | :-------- | :-------------------------------------------------------- |
-| `primary`           | `#1B365D` | Primary buttons, headers, tab bars, active states         |
-| `primary-dark`      | `#12243D` | Pressed states, deep shadows, dark mode surfaces          |
-| `primary-light`     | `#2A4D7C` | Hover states, active borders, progress indicators         |
-| `primary-container` | `#E8EEF6` | Selected cell backgrounds, subtle badges, tinted surfaces |
+| `primary`           | `#003152` | Primary buttons, headers, tab bars, active states (ancla)|
+| `primary-dark`      | `#00253D` | Pressed states, deep shadows, dark mode surfaces          |
+| `primary-light`     | `#00568F` | Hover states, active borders, progress indicators         |
+| `primary-container` | `#DDEAF4` | Selected cell backgrounds, subtle badges, tinted surfaces |
 | `on-primary`        | `#FFFFFF` | All text and icons on primary backgrounds                 |
 
-**Contrast:** White text on `#1B365D` achieves a **12.12:1** contrast ratio (AAA).
+**Contrast:** White text on `#003152` achieves a **13.45:1** contrast ratio (AAA).
 
 ---
 
@@ -195,7 +195,7 @@ Accent colors are used sparingly to draw attention to specific actions or status
 | `secondary-crimson` | `#D34B4B` | Danger states, "Delete" / "Reject" actions, critical errors      |
 | `secondary-cyan`    | `#4A90E2` | Informational links, help icons, non-critical notifications      |
 
-**Gold on Navy:** The gold accent (`#D4A74A`) on `#1B365D` achieves a **5.44:1** contrast ratio and is the signature "premium" combination (AA for large text).
+**Gold on Navy:** The gold accent (`#D4A74A`) on `#003152` achieves a **6.05:1** contrast ratio and is the signature "premium" combination (AA for large text).
 
 ---
 

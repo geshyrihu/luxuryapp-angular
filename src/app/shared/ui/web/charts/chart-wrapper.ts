@@ -12,6 +12,8 @@ import {
   chartJsToCartesianOption,
   chartJsToPieOption,
   chartJsToRadarOption,
+  dsThemeTick,
+  trackChartTheme,
 } from "./echarts-adapters";
 
 export type ChartType =
@@ -41,14 +43,14 @@ export type ChartType =
   styles: [
     `
       .chart-wrapper-root {
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         padding: 1rem;
       }
       .chart-wrapper-title {
         display: block;
-        font-size: var(--ds-font-size-card-title, 1rem);
+        font-size: var(--ds-font-size-card-title);
         color: var(--ds-text-primary);
         margin-bottom: 0.75rem;
       }
@@ -58,9 +60,29 @@ export type ChartType =
   encapsulation: ViewEncapsulation.None,
 })
 export class ChartWrapper {
+  constructor() {
+    trackChartTheme();
+  }
+
   type = input<ChartType>("bar");
   data = input.required<ChartJsData>();
+  /**
+   * Opciones ECharts ya construidas. ESCAPE HATCH **NO** reactivo al tema:
+   * ChartWrapper no puede devolver la reactividad de tema a un valor que ya
+   * llegó resuelto (RN-DS-040). Si pasas `[options]` construidas una sola vez,
+   * el chart se congela en el tema en que se pintó por primera vez. Para
+   * opciones que deban repintar al cambiar el tema, usa `optionsFactory`.
+   */
   options = input<EChartsCoreOption | null>(null);
+
+  /**
+   * Fábrica de options que se RE-INVOCA en cada cambio de tema (RN-DS-040).
+   * Debe producir las options llamando a los resolutores de tokens
+   * (`resolveDsColor`/`cssVar`) en su cuerpo, de modo que el `computed` de
+   * ChartWrapper re-ejecute la fábrica al cambiar el tema y repinta. Es la vía
+   * reactiva; preferirla sobre `options` cuando el color dependa de tokens.
+   */
+  optionsFactory = input<(() => EChartsCoreOption) | null>(null);
   title = input<string>("");
   height = input<string>("300px");
   width = input<string>("100%");
@@ -68,6 +90,9 @@ export class ChartWrapper {
   showGrid = input<boolean>(true);
 
   option = computed<EChartsCoreOption>(() => {
+    dsThemeTick(); // dependencia de tema en TODAS las ramas (RN-DS-015)
+    const f = this.optionsFactory();
+    if (f) return f(); // se re-invoca al cambiar el tema
     if (this.options()) return this.options() as EChartsCoreOption;
     const t = this.type();
     const legendGrid = {

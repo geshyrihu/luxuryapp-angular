@@ -102,10 +102,10 @@ export interface BreakdownItem {
         display: flex;
         width: 100%;
         height: 8px;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         overflow: hidden;
-        background: var(--ds-surface-container, #eef1f5);
-        margin-bottom: var(--ds-space-lg, 1rem);
+        background: var(--ds-surface-container);
+        margin-bottom: var(--ds-space-lg);
       }
       .breakdown-summary-segment {
         display: block;
@@ -119,7 +119,7 @@ export interface BreakdownItem {
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: var(--ds-space-md, 0.75rem);
+        gap: var(--ds-space-md);
       }
       .breakdown-row {
         display: flex;
@@ -127,8 +127,8 @@ export interface BreakdownItem {
         gap: 0.25rem;
       }
       .breakdown-row-total {
-        border-top: 1px solid var(--ds-border, #d7dbe3);
-        padding-top: var(--ds-space-md, 0.75rem);
+        border-top: 1px solid var(--ds-border);
+        padding-top: var(--ds-space-md);
         margin-top: 0.25rem;
       }
 
@@ -136,13 +136,13 @@ export interface BreakdownItem {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        gap: var(--ds-space-md, 0.75rem);
+        gap: var(--ds-space-md);
       }
       .breakdown-label {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         color: var(--ds-text-primary);
         min-width: 0;
       }
@@ -153,7 +153,7 @@ export interface BreakdownItem {
       .breakdown-dot {
         width: 8px;
         height: 8px;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         flex-shrink: 0;
       }
       .breakdown-value {
@@ -165,8 +165,8 @@ export interface BreakdownItem {
 
       .breakdown-track {
         height: 6px;
-        border-radius: var(--ds-radius-full, 9999px);
-        background: var(--ds-surface-container, #eef1f5);
+        border-radius: var(--ds-radius-full);
+        background: var(--ds-surface-container);
         overflow: hidden;
       }
       .breakdown-fill {
@@ -180,8 +180,8 @@ export interface BreakdownItem {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        gap: var(--ds-space-md, 0.75rem);
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        gap: var(--ds-space-md);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       .breakdown-description {

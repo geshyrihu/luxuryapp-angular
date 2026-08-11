@@ -1,0 +1,394 @@
+<div class="card p-3 mb-4">
+  <div
+    class="flex flex-column lg:flex-row lg:align-items-start lg:justify-content-between gap-3"
+  >
+    <div>
+      <h2 class="m-0 font-semibold text-xl">Detalle del puesto y candidatos</h2>
+      <p class="m-0 text-sm text-color-secondary">
+        Vista operativa de Reclutamiento por puesto de trabajo para revisar
+        candidatos activos, entrevistas e historico.
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <il-button
+        label="Volver al tablero"
+        iconClass="mdi:arrow-left"
+        severity="secondary"
+        variant="outlined"
+        (clicked)="goBackToBoard()"
+      />
+      <il-button
+        label="Actualizar"
+        iconClass="mdi:refresh"
+        severity="secondary"
+        (clicked)="onLoadData()"
+      />
+    </div>
+  </div>
+</div>
+
+@if (focusedRequestPositionId()) {
+<div class="card p-3 mb-4 border-left-3 border-primary">
+  <div class="font-semibold mb-1">Seguimiento directo desde correo o notificacion</div>
+  <div class="text-sm text-color-secondary">
+    Este detalle se abrio con la vacante y el candidato priorizados para dar
+    continuidad puntual al puesto.
+  </div>
+</div>
+}
+
+<div class="card p-3 mb-4">
+  <div class="grid">
+    <div class="col-12 lg:col-6">
+      <small class="text-color-secondary block mb-1">Puesto</small>
+      <div class="text-xl font-semibold">{{ positionName() }}</div>
+      <div class="text-sm text-color-secondary">{{ customerName() }}</div>
+    </div>
+    <div class="col-12 lg:col-6">
+      <div class="grid text-sm">
+        <div class="col-12 md:col-6">
+          <small class="text-color-secondary block">Turno</small>
+          <div class="font-medium">
+            {{ workPositionDetail()?.shiftName || "Sin dato" }}
+          </div>
+        </div>
+        <div class="col-12 md:col-6">
+          <small class="text-color-secondary block">Codigo</small>
+          <div class="font-medium">
+            {{ workPositionDetail()?.code || "Sin dato" }}
+          </div>
+        </div>
+        <div class="col-12 md:col-6">
+          <small class="text-color-secondary block">Sueldo previo</small>
+          <div class="font-medium">
+            @if (workPositionDetail()?.beforeSalary) {
+            {{ workPositionDetail()?.beforeSalary | currency: "MXN" : "symbol" : "1.0-0" }}
+            } @else {
+            <span class="text-color-secondary">Sin dato</span>
+            }
+          </div>
+        </div>
+        <div class="col-12 md:col-6">
+          <small class="text-color-secondary block">Sueldo actual</small>
+          <div class="font-medium">
+            @if (workPositionDetail()?.salary) {
+            {{ workPositionDetail()?.salary | currency: "MXN" : "symbol" : "1.0-0" }}
+            } @else {
+            <span class="text-color-secondary">Sin dato</span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid mb-4">
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Vacantes</small>
+      <div class="text-2xl font-semibold">{{ totalVacancies() }}</div>
+      <small class="text-color-secondary">Ligadas a este puesto</small>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Candidatos activos</small>
+      <div class="text-2xl font-semibold text-blue-500">
+        {{ totalActiveCandidates() }}
+      </div>
+      <small class="text-color-secondary">En seguimiento actual</small>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Agendadas</small>
+      <div class="text-2xl font-semibold text-green-500">
+        {{ totalScheduled() }}
+      </div>
+      <small class="text-color-secondary">Con cita o feedback</small>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Vencidas</small>
+      <div class="text-2xl font-semibold text-red-500">
+        {{ totalOverdue() }}
+      </div>
+      <small class="text-color-secondary">Requieren accion</small>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Historico</small>
+      <div class="text-2xl font-semibold text-600">
+        {{ totalHistoricalCandidates() }}
+      </div>
+      <small class="text-color-secondary">Procesos cerrados</small>
+    </div>
+  </div>
+</div>
+
+@if (loading()) {
+<div class="card p-4 text-center text-color-secondary">
+  Cargando detalle del puesto y candidatos...
+</div>
+} @else if (filteredVacancies().length === 0) {
+<div class="card p-4 text-center">
+  <div class="text-lg font-semibold mb-2">Sin candidatos para este puesto</div>
+  <div class="text-color-secondary">
+    Aun no hay vacantes o candidatos asociados al puesto seleccionado.
+  </div>
+</div>
+} @else {
+<div class="flex flex-column gap-3">
+  @for (vacancy of filteredVacancies(); track vacancy.requestPositionId) {
+  <div class="card p-3">
+    <div
+      class="flex flex-column lg:flex-row lg:align-items-start lg:justify-content-between gap-3 mb-3"
+    >
+      <div>
+        <div class="flex flex-wrap align-items-center gap-2 mb-2">
+          <span class="text-lg font-semibold">{{ vacancy.vacancyFolio }}</span>
+          <span class="text-sm text-color-secondary">{{ vacancy.positionName }}</span>
+          <span class="badge badge-info">{{ vacancy.customerName }}</span>
+          <span class="badge badge-secondary">{{ vacancy.vacancyStatus }}</span>
+          @if (vacancy.isFocused) {
+          <span class="badge badge-primary">Vacante priorizada</span>
+          }
+        </div>
+        <div class="flex flex-wrap gap-2 text-sm text-color-secondary">
+          <span>Activos: {{ vacancy.activeCandidates.length }}</span>
+          <span>Historico: {{ vacancy.historicalCandidates.length }}</span>
+          <span>Agendadas: {{ vacancy.scheduledCount }}</span>
+          <span>Vencidas: {{ vacancy.overdueCount }}</span>
+          @if (vacancy.nextInterviewAt) {
+          <span>Proxima cita: {{ vacancy.nextInterviewAt | date: "dd/MM/yyyy HH:mm" }}</span>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="font-semibold mb-2">Candidatos activos</div>
+      @if (vacancy.activeCandidates.length === 0) {
+      <div class="border-1 surface-border border-round p-3 text-sm text-color-secondary">
+        Esta vacante no tiene candidatos activos en seguimiento.
+      </div>
+      } @else {
+      <div class="flex flex-column gap-2">
+        @for (candidate of vacancy.activeCandidates; track candidate.candidateApplicationId) {
+        <div
+          class="border-1 surface-border border-round p-3"
+          [class.border-orange-300]="candidate.agendaStatusCode === 'postulada'"
+          [class.border-red-300]="candidate.agendaStatusCode === 'overdue'"
+          [class.border-blue-300]="candidate.agendaStatusCode === 'scheduled'"
+          [class.border-green-300]="candidate.agendaStatusCode === 'feedback'"
+        >
+          <div
+            class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3"
+          >
+            <div class="flex-grow-1">
+              <div class="flex flex-wrap align-items-center gap-2 mb-2">
+                <span class="font-semibold">{{ candidate.candidateName }}</span>
+                <app-candidate-stage-badge [stage]="candidate.currentStage" />
+                <app-mapped-p-tag
+                  [value]="candidate.agendaStatusCode"
+                  [options]="agendaStatusOptions"
+                />
+                @if (candidate.candidateApplicationId === focusedCandidateApplicationId()) {
+                <span class="badge badge-primary">Candidato priorizado</span>
+                }
+              </div>
+
+              <div class="grid text-sm">
+                <div class="col-12 md:col-6 xl:col-2">
+                  <small class="text-color-secondary block">Registro</small>
+                  <div class="font-medium">
+                    @if (candidate.applicationDate) {
+                    {{ candidate.applicationDate | date: "dd/MM/yyyy" }}
+                    } @else {
+                    <span class="text-color-secondary">Sin fecha</span>
+                    }
+                  </div>
+                </div>
+                <div class="col-12 md:col-6 xl:col-3">
+                  <small class="text-color-secondary block">Entrevista RH</small>
+                  <div class="font-medium">
+                    @if (candidate.recruitmentInterviewAt) {
+                    {{ candidate.recruitmentInterviewAt | date: "dd/MM/yyyy HH:mm" }}
+                    } @else {
+                    <span class="text-color-secondary">Sin fecha</span>
+                    }
+                  </div>
+                </div>
+                <div class="col-12 md:col-6 xl:col-3">
+                  <small class="text-color-secondary block">Entrevista operaciones</small>
+                  <div class="font-medium">
+                    @if (candidate.operationsInterviewAt) {
+                    {{ candidate.operationsInterviewAt | date: "dd/MM/yyyy HH:mm" }}
+                    } @else {
+                    <span class="text-color-secondary">Sin fecha</span>
+                    }
+                  </div>
+                </div>
+                <div class="col-12 md:col-6 xl:col-2">
+                  <small class="text-color-secondary block">Entrevistador</small>
+                  <div class="font-medium">
+                    {{ candidate.assignedInterviewerName || "Sin entrevistador" }}
+                  </div>
+                </div>
+                <div class="col-12 md:col-6 xl:col-2">
+                  <small class="text-color-secondary block">CV</small>
+                  @if (candidate.cvFileName) {
+                  <iw-button-view-pdf
+                    size="sm"
+                    class="btn--circle"
+                    [url]="candidate.cvFileUrl"
+                    [fileName]="candidate.cvFileName"
+                    [attr.aria-label]="'Ver CV de ' + candidate.candidateName"
+                  />
+                  } @else {
+                  <span class="text-color-secondary">Sin CV</span>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 lg:justify-content-end">
+              @if (candidate.canSendToInterview) {
+              <il-button
+                label="Enviar a entrevista"
+                iconClass="mdi:send"
+                severity="primary"
+                size="small"
+                (clicked)="onAction(vacancy, candidate, 'send')"
+              />
+              }
+              @if (candidate.canSchedule) {
+              <il-button
+                label="Agendar cita"
+                iconClass="mdi:calendar-plus"
+                severity="info"
+                size="small"
+                (clicked)="onAction(vacancy, candidate, 'schedule')"
+              />
+              }
+              @if (candidate.canReschedule) {
+              <il-button
+                label="Reagendar"
+                iconClass="mdi:calendar-sync"
+                severity="info"
+                size="small"
+                variant="outlined"
+                (clicked)="onAction(vacancy, candidate, 'reschedule')"
+              />
+              }
+              @if (candidate.canSchedule || candidate.canReschedule) {
+              <il-button
+                label="Asignar entrevistador"
+                iconClass="mdi:account-plus"
+                severity="warn"
+                size="small"
+                variant="outlined"
+                (clicked)="onAction(vacancy, candidate, 'assign')"
+              />
+              }
+              <il-button
+                label="Ver historial"
+                iconClass="mdi:history"
+                severity="secondary"
+                size="small"
+                variant="outlined"
+                (clicked)="navigateToApplicationDetail(candidate.candidateApplicationId)"
+              />
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    @if (vacancy.historicalCandidates.length > 0) {
+    <div>
+      <div class="font-semibold mb-2">Historico</div>
+      <div class="flex flex-column gap-2">
+        @for (candidate of vacancy.historicalCandidates; track candidate.candidateApplicationId) {
+        <div class="border-1 surface-border border-round p-3 surface-50">
+          <div
+            class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3"
+          >
+            <div class="flex-grow-1">
+              <div class="flex flex-wrap align-items-center gap-2 mb-2">
+                <span class="font-semibold">{{ candidate.candidateName }}</span>
+                <app-candidate-stage-badge [stage]="candidate.currentStage" />
+                <app-mapped-p-tag
+                  [value]="candidate.agendaStatusCode"
+                  [options]="agendaStatusOptions"
+                />
+              </div>
+              <div class="grid text-sm">
+                <div class="col-12 md:col-6 lg:col-3">
+                  <small class="text-color-secondary block">Registro</small>
+                  <div class="font-medium">
+                    @if (candidate.applicationDate) {
+                    {{ candidate.applicationDate | date: "dd/MM/yyyy" }}
+                    } @else {
+                    <span class="text-color-secondary">Sin fecha</span>
+                    }
+                  </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                  <small class="text-color-secondary block">Ultima entrevista</small>
+                  <div class="font-medium">
+                    @if (candidate.operationsInterviewAt || candidate.recruitmentInterviewAt) {
+                    {{ (candidate.operationsInterviewAt || candidate.recruitmentInterviewAt) | date: "dd/MM/yyyy HH:mm" }}
+                    } @else {
+                    <span class="text-color-secondary">Sin fecha</span>
+                    }
+                  </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                  <small class="text-color-secondary block">Entrevistador</small>
+                  <div class="font-medium">
+                    {{ candidate.assignedInterviewerName || "Sin entrevistador" }}
+                  </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                  <small class="text-color-secondary block">CV</small>
+                  @if (candidate.cvFileName) {
+                  <iw-button-view-pdf
+                    size="sm"
+                    class="btn--circle"
+                    [url]="candidate.cvFileUrl"
+                    [fileName]="candidate.cvFileName"
+                    [attr.aria-label]="'Ver CV de ' + candidate.candidateName"
+                  />
+                  } @else {
+                  <span class="text-color-secondary">Sin CV</span>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 lg:justify-content-end">
+              <il-button
+                label="Ver historial"
+                iconClass="mdi:history"
+                severity="secondary"
+                size="small"
+                variant="outlined"
+                (clicked)="navigateToApplicationDetail(candidate.candidateApplicationId)"
+              />
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+  }
+</div>
+}

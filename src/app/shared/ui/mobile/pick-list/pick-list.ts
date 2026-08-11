@@ -65,17 +65,17 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         flex: 1;
         display: flex;
         flex-direction: column;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 8px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         overflow: hidden;
       }
       .ili-pick-list-header {
         padding: 0.625rem 0.75rem;
-        font-size: var(--ds-font-size-small, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         font-weight: 600;
         color: var(--ds-text-primary);
-        background: var(--ds-bg-muted, #f1f5f9);
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-muted);
+        border-bottom: 1px solid var(--ds-border);
       }
       .ili-pick-list-items {
         display: flex;
@@ -89,14 +89,14 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         align-items: center;
         gap: 0.375rem;
         padding: 0.5rem 0.625rem;
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
       }
       .ili-pick-list-item:last-child {
         border-bottom: none;
       }
       .ili-pick-list-label {
         flex: 1;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
       }
       .ili-pick-list-move {
@@ -105,21 +105,21 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         justify-content: center;
         width: 1.75rem;
         height: 1.75rem;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-sm, 4px);
-        background: var(--ds-bg-primary, #ffffff);
-        color: var(--ds-primary, #003d9b);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-sm);
+        background: var(--ds-bg-primary);
+        color: var(--ds-primary);
         cursor: pointer;
         padding: 0;
         font-size: 1rem;
       }
       .ili-pick-list-move:active {
-        background: var(--ds-bg-muted, #f1f5f9);
+        background: var(--ds-bg-muted);
       }
       .ili-pick-list-empty {
         padding: 1.5rem 0.75rem;
         text-align: center;
-        font-size: var(--ds-font-size-small, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
     `,

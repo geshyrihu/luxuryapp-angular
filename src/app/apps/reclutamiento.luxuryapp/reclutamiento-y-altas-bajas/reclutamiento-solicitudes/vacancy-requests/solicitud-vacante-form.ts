@@ -17,6 +17,30 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
+interface WorkPositionDetailDTO {
+  id?: string;
+  applicationRoleName: string;
+  sueldo: string;
+  sueldoBase: string;
+  turnoTrabajo: number | null;
+  lunesEntrada?: string;
+  lunesSalida?: string;
+  martesEntrada?: string;
+  martesSalida?: string;
+  miercolesEntrada?: string;
+  miercolesSalida?: string;
+  juevesEntrada?: string;
+  juevesSalida?: string;
+  viernesEntrada?: string;
+  viernesSalida?: string;
+  sabadoEntrada?: string;
+  sabadoSalida?: string;
+  domingoEntrada?: string;
+  domingoSalida?: string;
+  observationsWorkShift?: string;
+  additionalInformation?: string;
+}
+
 @Component({
   selector: "app-solicitud-vacante",
   templateUrl: "./solicitud-vacante-form.html",
@@ -30,9 +54,9 @@ export class SolicitudVacanteForm implements OnInit {
   private ref = inject(DynamicDialogRef);
   private authS = inject(AuthService);
   private enumSelectS = inject(EnumSelectService);
-  workPositionId: any = this.config.data.workPositionId;
+  workPositionId: string = this.config.data.workPositionId;
 
-  data: any;
+  data: WorkPositionDetailDTO | null = null;
   submitting = signal(false);
 
   id: string = "";
@@ -73,7 +97,7 @@ export class SolicitudVacanteForm implements OnInit {
     const urlApi = Endpoints.WorkPositions.getById(
       this.workPositionId,
     );
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+    this.apiResponseS.onGetItem<WorkPositionDetailDTO>(urlApi).then((result) => {
       this.data = result;
       this.form.patchValue(result);
     });

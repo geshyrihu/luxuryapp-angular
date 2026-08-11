@@ -47,15 +47,15 @@ interface FlatOption {
         justify-content: space-between;
         width: 100%;
         padding: 0.625rem 0.75rem;
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
-        color: var(--ds-text-primary, #1e293b);
-        font-size: var(--ds-font-size-body, 0.875rem);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
+        color: var(--ds-text-primary);
+        font-size: var(--ds-font-size-body);
         cursor: pointer;
       }
       .ili-cascade-select-label {
-        color: var(--ds-text-muted, #94a3b8);
+        color: var(--ds-text-muted);
       }
       .ili-cascade-select-dropdown {
         position: absolute;
@@ -63,10 +63,10 @@ interface FlatOption {
         left: 0;
         right: 0;
         z-index: 100;
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
-        box-shadow: var(--ds-shadow-md, 0 4px 6px rgba(0, 0, 0, 0.07));
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
+        box-shadow: var(--ds-shadow-md);
         max-height: 240px;
         overflow-y: auto;
       }
@@ -76,11 +76,11 @@ interface FlatOption {
         justify-content: space-between;
         padding: 0.625rem 0.75rem;
         cursor: pointer;
-        font-size: var(--ds-font-size-body, 0.875rem);
-        color: var(--ds-text-primary, #1e293b);
+        font-size: var(--ds-font-size-body);
+        color: var(--ds-text-primary);
       }
       .ili-cascade-select-option:hover {
-        background: var(--ds-bg-hover, #f1f5f9);
+        background: var(--ds-bg-hover);
       }
     `,
   ],

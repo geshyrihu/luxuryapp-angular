@@ -82,8 +82,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       }
       .ili-table-card {
         margin: 0;
-        border-radius: var(--ds-radius-lg, 12px);
-        box-shadow: var(--ds-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+        border-radius: var(--ds-radius-lg);
+        box-shadow: var(--ds-shadow-sm);
       }
       .ili-table-card-header {
         padding: 0.75rem 1rem 0.25rem;
@@ -107,14 +107,14 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         justify-content: space-between;
         align-items: center;
         padding: 0.35rem 0;
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
       }
       .ili-table-field:last-child {
         border-bottom: none;
       }
       .ili-table-field-label {
         font-size: 0.8125rem;
-        color: var(--ds-text-secondary, #64748b);
+        color: var(--ds-text-secondary);
       }
       .ili-table-field-value {
         font-size: 0.875rem;

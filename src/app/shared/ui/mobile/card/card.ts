@@ -53,9 +53,9 @@ import { CardBase } from "@ui/base/card.base";
       }
       .ili-card {
         display: block;
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #d7dbe3);
-        border-radius: var(--ds-radius-lg, 12px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         overflow: hidden;
       }
       .ili-card-elevated {
@@ -67,13 +67,13 @@ import { CardBase } from "@ui/base/card.base";
       .ili-card-title {
         font-size: 0.98rem;
         font-weight: 700;
-        color: var(--ds-text-primary, #1f2937);
+        color: var(--ds-text-primary);
         line-height: 1.3;
       }
       .ili-card-subtitle {
         margin-top: 0.25rem;
         font-size: 0.8125rem;
-        color: var(--ds-text-secondary, #4d5562);
+        color: var(--ds-text-secondary);
         line-height: 1.4;
       }
       .ili-card-body {

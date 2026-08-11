@@ -61,7 +61,7 @@ import { RatingModule } from "primeng/rating";
         gap: 0.35rem;
       }
       .app-rating-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         font-weight: 500;
       }
@@ -79,7 +79,7 @@ import { RatingModule } from "primeng/rating";
         width: 18px;
         height: 18px;
         border-radius: 50%;
-        border: 1px solid var(--ds-border-strong, #cbd5e1);
+        border: 1px solid var(--ds-border-strong);
         background: none;
         font-size: 0.625rem;
         color: var(--ds-text-muted);
@@ -90,17 +90,17 @@ import { RatingModule } from "primeng/rating";
         transition: all 0.15s;
       }
       .app-rating-clear:hover {
-        background: var(--ds-danger-light, #ffdad6);
-        border-color: var(--ds-danger, #ba1a1a);
-        color: var(--ds-danger, #ba1a1a);
+        background: var(--ds-danger-light);
+        border-color: var(--ds-danger);
+        color: var(--ds-danger);
       }
       .app-rating-text {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-primary);
         font-weight: 600;
       }
       .app-rating-hint {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
     `,

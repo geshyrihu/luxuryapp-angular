@@ -34,7 +34,7 @@
 
   &--primary {
     background: color-mix(in srgb, var(--primary-500) 12%, var(--surface-card));
-    color: var(--primary-color, var(--primary-600));
+    color: var(--ds-primary, var(--primary-600));
   }
 
   &--success {

@@ -39,6 +39,19 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
+interface SolicitudBajaListItem {
+  id: string;
+  title?: string;
+  folio: string;
+  requestDate: string;
+  nameCustomer: string;
+  nameEmployee: string;
+  applicationRole: string;
+  executionDate: string;
+  tipoBaja: string;
+  status: string;
+}
+
 @Component({
   selector: "app-solicitud-baja-list",
   templateUrl: "./solicitud-baja-list.html",
@@ -65,7 +78,7 @@ export class SolicitudBajaList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  dataSignal = signal<any[]>([]);
+  dataSignal = signal<SolicitudBajaListItem[]>([]);
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -100,11 +113,13 @@ export class SolicitudBajaList implements OnInit {
   onLoadData() {
     const urlApi = EndpointsReclutamiento.RequestDismissal.list;
     const params = this.filterRequestsService.getParams();
-    this.apiResponseS.onGetList(urlApi, params).then((result: any) => {
+    this.apiResponseS
+      .onGetList<SolicitudBajaListItem[]>(urlApi, params)
+      .then((result) => {
       this.dataSignal.set(result);
     });
   }
-  onModalForm(data: any) {
+  onModalForm(data: SolicitudBajaListItem) {
     this.dialogHandlerS
       .openDialog(
         SolicitudBajaUpdateStatus,
@@ -120,7 +135,7 @@ export class SolicitudBajaList implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  onDelete(id: string) {
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestDismissal.delete(id))
       .then((result: boolean) => {

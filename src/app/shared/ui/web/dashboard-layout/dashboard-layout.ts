@@ -45,9 +45,9 @@ export interface DashboardWidget {
         grid-auto-rows: minmax(200px, auto);
       }
       .dashboard-widget {
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -57,9 +57,9 @@ export interface DashboardWidget {
         align-items: center;
         justify-content: space-between;
         padding: 0.625rem 1rem;
-        background: var(--ds-bg-elevated, #f4f5f8);
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        background: var(--ds-bg-elevated);
+        border-bottom: 1px solid var(--ds-border);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
       }
       .dashboard-widget-body {

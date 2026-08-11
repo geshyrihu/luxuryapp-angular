@@ -55,9 +55,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--ds-bg-sunken, #f1f5f9);
+        background-color: var(--ds-bg-sunken);
         border-radius: inherit;
-        border: 1px solid var(--ds-border, #e2e8f0);
+        border: 1px solid var(--ds-border);
       }
     `,
   ],
@@ -77,7 +77,7 @@ export class AppImageFallback {
 
   fallbackIcon = input<string>("mdi:image-off-outline");
   fallbackIconSize = input<string>("1.5rem");
-  fallbackIconColor = input<string>("var(--ds-text-muted, #94a3b8)");
+  fallbackIconColor = input<string>("var(--ds-text-muted)");
   fallbackClass = input<string>("");
   fallbackStyle = input<Record<string, string> | string>("");
 

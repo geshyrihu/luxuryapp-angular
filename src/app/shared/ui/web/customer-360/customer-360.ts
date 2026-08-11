@@ -217,9 +217,9 @@ export interface Customer360Data {
   styles: [
     `
       .c360-root {
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-xl, 12px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-xl);
         overflow: hidden;
       }
       /* Header */
@@ -239,7 +239,7 @@ export interface Customer360Data {
         justify-content: center;
         font-size: 1.375rem;
         font-weight: 700;
-        color: #fff;
+        color: var(--ds-on-primary);
         overflow: hidden;
       }
       .c360-avatar-img {
@@ -255,17 +255,17 @@ export interface Customer360Data {
         gap: 0.2rem;
       }
       .c360-name {
-        font-size: var(--ds-font-size-section-title, 1.25rem);
+        font-size: var(--ds-font-size-section-title);
         font-weight: 700;
         color: var(--ds-text-primary);
         margin: 0;
       }
       .c360-role {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
       }
       .c360-company {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-muted);
         display: flex;
         align-items: center;
@@ -281,8 +281,8 @@ export interface Customer360Data {
         display: flex;
         align-items: center;
         gap: 0.25rem;
-        font-size: var(--ds-font-size-help, 0.8125rem);
-        color: var(--ds-primary, #003d9b);
+        font-size: var(--ds-font-size-help);
+        color: var(--ds-primary);
         text-decoration: none;
       }
       .c360-link:hover {
@@ -302,8 +302,8 @@ export interface Customer360Data {
       .c360-action {
         width: 32px;
         height: 32px;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         background: none;
         cursor: pointer;
         color: var(--ds-text-muted);
@@ -333,26 +333,26 @@ export interface Customer360Data {
         align-items: center;
         gap: 0.15rem;
         padding: 0.5rem;
-        border-right: 1px solid var(--ds-border, #e2e8f0);
+        border-right: 1px solid var(--ds-border);
       }
       .c360-metric:last-child {
         border-right: none;
       }
       .c360-metric-value {
-        font-size: var(--ds-font-size-card-title, 1rem);
+        font-size: var(--ds-font-size-card-title);
         font-weight: 700;
         color: var(--ds-text-primary);
       }
       .c360-metric-label {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
         text-align: center;
       }
       .c360-nps-good {
-        color: var(--ds-success, #006837);
+        color: var(--ds-success);
       }
       .c360-nps-bad {
-        color: var(--ds-danger, #ba1a1a);
+        color: var(--ds-danger);
       }
       /* Body */
       .c360-body {
@@ -367,7 +367,7 @@ export interface Customer360Data {
       }
       .c360-section {
         padding: 1rem 1.25rem;
-        border-right: 1px solid var(--ds-border, #e2e8f0);
+        border-right: 1px solid var(--ds-border);
       }
       .c360-section:last-child {
         border-right: none;
@@ -376,7 +376,7 @@ export interface Customer360Data {
         display: flex;
         align-items: center;
         gap: 0.375rem;
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-secondary);
         margin: 0 0 0.75rem;
@@ -412,11 +412,11 @@ export interface Customer360Data {
         gap: 0.1rem;
       }
       .c360-activity-text {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-primary);
       }
       .c360-activity-time {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       /* Deals */
@@ -430,7 +430,7 @@ export interface Customer360Data {
         justify-content: space-between;
         align-items: center;
         padding: 0.5rem 0.625rem;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         cursor: pointer;
         transition: background 0.15s;
       }
@@ -439,17 +439,17 @@ export interface Customer360Data {
       }
       .c360-deal-title {
         display: block;
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         font-weight: 600;
         color: var(--ds-text-primary);
       }
       .c360-deal-stage {
         display: block;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       .c360-deal-value {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-primary);
         white-space: nowrap;
       }
@@ -463,7 +463,13 @@ export class AppCustomer360 {
   action = output<string>();
 
   avatarBg(): string {
-    const colors = ["#003d9b", "#006477", "#006837", "#b45309", "#7c3aed"];
+    const colors = [
+      "var(--ds-cat-1)",
+      "var(--ds-cat-8)",
+      "var(--ds-cat-7)",
+      "var(--ds-cat-5)",
+      "var(--ds-cat-2)",
+    ];
     let h = 0;
     for (const c of this.data().name) h = c.charCodeAt(0) + ((h << 5) - h);
     return colors[Math.abs(h) % colors.length];

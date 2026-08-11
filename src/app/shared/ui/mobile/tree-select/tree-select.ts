@@ -85,15 +85,15 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         justify-content: space-between;
         width: 100%;
         padding: 0.625rem 0.75rem;
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
-        color: var(--ds-text-primary, #1e293b);
-        font-size: var(--ds-font-size-body, 0.875rem);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
+        color: var(--ds-text-primary);
+        font-size: var(--ds-font-size-body);
         cursor: pointer;
       }
       .ili-tree-select-label {
-        color: var(--ds-text-muted, #94a3b8);
+        color: var(--ds-text-muted);
       }
       .ili-tree-select-overlay {
         position: absolute;
@@ -101,16 +101,16 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         left: 0;
         right: 0;
         z-index: 100;
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
-        box-shadow: var(--ds-shadow-lg, 0 10px 15px rgba(0, 0, 0, 0.1));
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
+        box-shadow: var(--ds-shadow-lg);
         max-height: 300px;
         overflow-y: auto;
       }
       .ili-tree-select-header {
         padding: 0.5rem;
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
         display: flex;
         justify-content: flex-end;
       }
@@ -123,17 +123,17 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         justify-content: space-between;
         padding: 0.5rem 0.75rem;
         cursor: pointer;
-        font-size: var(--ds-font-size-body, 0.875rem);
-        color: var(--ds-text-primary, #1e293b);
+        font-size: var(--ds-font-size-body);
+        color: var(--ds-text-primary);
       }
       .ili-tree-select-node-item:hover {
-        background: var(--ds-bg-hover, #f1f5f9);
+        background: var(--ds-bg-hover);
       }
       .ili-tree-select-child {
         padding-left: 1.5rem;
       }
       .ili-tree-select-children {
-        border-left: 1px solid var(--ds-border, #e2e8f0);
+        border-left: 1px solid var(--ds-border);
         margin-left: 0.75rem;
       }
       .ili-tree-select-checkbox-row {
@@ -142,11 +142,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.5rem;
         padding: 0.5rem 0.75rem;
         cursor: pointer;
-        font-size: var(--ds-font-size-body, 0.875rem);
-        color: var(--ds-text-primary, #1e293b);
+        font-size: var(--ds-font-size-body);
+        color: var(--ds-text-primary);
       }
       .ili-tree-select-checkbox-row input[type="checkbox"] {
-        accent-color: var(--ds-primary, #003d9b);
+        accent-color: var(--ds-primary);
       }
     `,
   ],

@@ -1,0 +1,67 @@
+<div class="md:p-3">
+  <div class="font-semibold mb-3">{{ title() }}</div>
+  <form
+    autocomplete="off"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    [attr.aria-label]="title()"
+  >
+    <div class="grid">
+      @if (action === 'send' || action === 'schedule' || action === 'reschedule') {
+        <div class="col-12">
+          <custom-input-date-signal
+            [control]="form.controls['recruitmentInterviewAt']"
+            label="Fecha entrevista de reclutamiento"
+          />
+        </div>
+      }
+      @if (action === 'reschedule') {
+        <div class="col-12">
+          <custom-input-date-signal
+            [control]="form.controls['operationsInterviewAt']"
+            label="Fecha entrevista de operaciones"
+          />
+        </div>
+      }
+      @if (action === 'assign') {
+        <div class="col-12">
+          <custom-input-select-signal
+            [control]="form.controls['operationsInterviewAssignedToUserId']"
+            label="Entrevistador asignado"
+            placeholder="Selecciona al entrevistador"
+            [data]="cb_interviewers()"
+            [loading]="loadingInterviewers()"
+            [filter]="true"
+          />
+        </div>
+      }
+      <div class="col-12">
+        <custom-input-textarea-signal
+          [control]="form.controls['comment']"
+          label="Comentario"
+          placeholder="Comentario de contexto..."
+          [rows]="2"
+        />
+      </div>
+    </div>
+    <div class="flex justify-content-between align-items-center gap-2 pb-2">
+      <div>
+        @if (canCancelInterview()) {
+        <il-button
+          type="button"
+          label="Cancelar cita"
+          iconClass="mdi:calendar-remove"
+          severity="danger"
+          variant="outlined"
+          [disabled]="submitting()"
+          (clicked)="onCancelInterview()"
+        />
+        }
+      </div>
+      <il-button-save
+        [submitting]="submitting()"
+        [label]="submitLabel()"
+      />
+    </div>
+  </form>
+</div>

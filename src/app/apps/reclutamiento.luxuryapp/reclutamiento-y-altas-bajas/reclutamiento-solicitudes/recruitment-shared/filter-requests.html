@@ -3,9 +3,9 @@
   <!-- Menú de navegación -->
   @for (item of menu; track item) {
     <a
-      [routerLink]="['/recruitment/requests/', item.path]"
+      [routerLink]="item.route"
       class="btn btn-secondary btn-sm mb-0"
-      [class.btn-outline]="isActive(item.path)"
+      [class.btn-outline]="isActive(item.activePath)"
     >{{ item.label }}</a>
   }
 

@@ -57,7 +57,7 @@ export { DEFAULT_LANGUAGES, type Language } from "@ui/base/lang-selector.base";
         gap: 0.35rem;
       }
       .lang-selector-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         font-weight: 500;
       }
@@ -65,7 +65,7 @@ export { DEFAULT_LANGUAGES, type Language } from "@ui/base/lang-selector.base";
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
       }
       .lang-flag {
         font-size: 1.125rem;

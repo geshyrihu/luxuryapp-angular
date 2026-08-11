@@ -48,17 +48,17 @@ import { InputOtpModule } from "primeng/inputotp";
         gap: 0.5rem;
       }
       .app-otp-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         font-weight: 500;
       }
       .app-otp-hint {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
       .app-otp-error {
-        font-size: var(--ds-font-size-help, 0.8125rem);
-        color: var(--ds-danger, #ba1a1a);
+        font-size: var(--ds-font-size-help);
+        color: var(--ds-danger);
       }
       .app-otp-disabled {
         opacity: 0.55;
@@ -70,19 +70,19 @@ import { InputOtpModule } from "primeng/inputotp";
         width: 2.75rem;
         height: 2.75rem;
         text-align: center;
-        font-size: var(--ds-font-size-card-title, 1rem);
+        font-size: var(--ds-font-size-card-title);
         font-weight: 600;
-        border: 1.5px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
-        background: var(--ds-bg-surface, #fff);
+        border: 1.5px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
+        background: var(--ds-bg-surface);
         color: var(--ds-text-primary);
         transition:
           border-color 0.15s,
           box-shadow 0.15s;
       }
       .p-inputotp-input:focus {
-        border-color: var(--ds-primary, #003d9b);
-        box-shadow: 0 0 0 3px var(--ds-primary-200, #b2c5ff);
+        border-color: var(--ds-primary);
+        box-shadow: 0 0 0 3px var(--primary-200);
         outline: none;
       }
     `,

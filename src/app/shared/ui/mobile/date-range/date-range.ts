@@ -92,7 +92,7 @@ import { DateRangeBase } from "@ui/base/date-range.base";
         padding-bottom: 0.6rem;
       }
       .ili-date-error {
-        color: var(--ds-danger, #ba1a1a);
+        color: var(--ds-danger);
         font-size: 0.8125rem;
       }
     `,

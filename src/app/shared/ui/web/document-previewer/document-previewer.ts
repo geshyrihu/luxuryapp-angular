@@ -59,8 +59,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         flex-direction: column;
         height: 100%;
         min-height: 400px;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         overflow: hidden;
       }
       .doc-previewer-toolbar {
@@ -68,11 +68,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         align-items: center;
         justify-content: space-between;
         padding: 0.5rem 0.75rem;
-        background: var(--ds-bg-elevated, #f4f5f8);
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-elevated);
+        border-bottom: 1px solid var(--ds-border);
       }
       .doc-previewer-filename {
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
       }
       .doc-previewer-actions {
@@ -86,12 +86,12 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         background: none;
         cursor: pointer;
         color: var(--ds-text-secondary);
-        border-radius: var(--ds-radius-md, 6px);
+        border-radius: var(--ds-radius-md);
         font-size: 1.125rem;
         transition: background 0.1s;
       }
       .doc-previewer-btn:hover {
-        background: var(--ds-bg-hover, #f0f4ff);
+        background: var(--ds-bg-hover);
       }
       .doc-previewer-viewport {
         flex: 1;

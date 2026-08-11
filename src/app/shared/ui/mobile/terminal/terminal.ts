@@ -33,20 +33,20 @@ import { TerminalBase } from "@ui/base/terminal.base";
     `
       .ili-terminal {
         display: block;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 8px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         overflow: hidden;
         font-family: monospace;
-        background: var(--ds-bg-terminal, #1e1e2e);
-        color: var(--ds-text-terminal, #cdd6f4);
+        background: var(--ds-bg-terminal);
+        color: var(--ds-text-terminal);
       }
       .ili-terminal-header {
         padding: 0.5rem 0.75rem;
-        font-size: var(--ds-font-size-caption, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         font-weight: 600;
-        background: var(--ds-bg-elevated, #181825);
-        border-bottom: 1px solid var(--ds-border, #313244);
-        color: var(--ds-text-muted, #6c7086);
+        background: var(--ds-bg-elevated);
+        border-bottom: 1px solid var(--ds-border);
+        color: var(--ds-text-muted);
       }
       .ili-terminal-body {
         padding: 0.75rem;
@@ -54,7 +54,7 @@ import { TerminalBase } from "@ui/base/terminal.base";
       .ili-terminal-output {
         min-height: 4rem;
         margin-bottom: 0.5rem;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         white-space: pre-wrap;
       }
       .ili-terminal-input-line {
@@ -63,7 +63,7 @@ import { TerminalBase } from "@ui/base/terminal.base";
         gap: 0.25rem;
       }
       .ili-terminal-prompt {
-        color: var(--ds-primary, #89b4fa);
+        color: var(--ds-primary);
         font-weight: 600;
       }
       .ili-terminal-input {
@@ -76,7 +76,7 @@ import { TerminalBase } from "@ui/base/terminal.base";
         font-size: inherit;
       }
       .ili-terminal-input::placeholder {
-        color: var(--ds-text-muted, #6c7086);
+        color: var(--ds-text-muted);
       }
     `,
   ],

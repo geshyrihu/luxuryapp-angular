@@ -59,9 +59,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   styles: [
     `
       .kpi-card {
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -83,7 +83,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         font-size: 1.25rem;
       }
       .kpi-label {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-secondary);
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -94,7 +94,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.5rem;
       }
       .kpi-value {
-        font-size: var(--ds-font-size-metric, 1.5rem);
+        font-size: var(--ds-font-size-metric);
         color: var(--ds-text-primary);
         line-height: 1.2;
       }
@@ -108,17 +108,17 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         display: flex;
         align-items: center;
         gap: 0.2rem;
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         font-weight: 500;
       }
       .kpi-trend-up {
-        color: var(--ds-success, #006837);
+        color: var(--ds-success);
       }
       .kpi-trend-down {
-        color: var(--ds-danger, #ba1a1a);
+        color: var(--ds-danger);
       }
       .kpi-subtitle {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
     `,

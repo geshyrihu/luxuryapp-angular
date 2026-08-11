@@ -53,9 +53,9 @@ import { CardBase } from "@ui/base/card.base";
       }
       .app-card {
         display: block;
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #d7dbe3);
-        border-radius: var(--ds-radius-lg, 12px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         overflow: hidden;
         transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -72,13 +72,13 @@ import { CardBase } from "@ui/base/card.base";
       .app-card-title {
         font-size: 1rem;
         font-weight: 700;
-        color: var(--ds-text-primary, #1f2937);
+        color: var(--ds-text-primary);
         line-height: 1.3;
       }
       .app-card-subtitle {
         margin-top: 0.25rem;
         font-size: 0.875rem;
-        color: var(--ds-text-secondary, #4d5562);
+        color: var(--ds-text-secondary);
         line-height: 1.4;
       }
       .app-card-body {

@@ -67,17 +67,17 @@ import { ColorPickerBase } from "@ui/base/color-picker.base";
         width: 44px;
         height: 44px;
         padding: 0;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         background: none;
         cursor: pointer;
       }
       .ili-cp-hex {
-        font-family: var(--ds-font-family-mono, monospace);
+        font-family: var(--ds-font-family-mono);
         font-size: 0.8125rem;
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
         padding: 0.2rem 0.5rem;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         color: var(--ds-text-primary);
       }
       .ili-cp-clear {

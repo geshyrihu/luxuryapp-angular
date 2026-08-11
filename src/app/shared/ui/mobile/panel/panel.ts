@@ -21,16 +21,16 @@ import { PanelBase } from "@ui/base/panel.base";
   styles: [
     `
       .ili-panel {
-        border: 1px solid var(--ds-border, #d7dbe3);
-        border-radius: var(--ds-radius-md, 8px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         overflow: hidden;
       }
       .ili-panel-header {
         padding: 0.75rem 1rem;
         font-weight: 700;
         font-size: 1rem;
-        background: var(--ds-bg-sunken, #f4f5f8);
-        border-bottom: 1px solid var(--ds-border, #d7dbe3);
+        background: var(--ds-bg-sunken);
+        border-bottom: 1px solid var(--ds-border);
       }
       .ili-panel-content {
         padding: 1rem;

@@ -10,21 +10,24 @@ import {
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+} from "src/app/core/services/dialog-handler.service";
 import { CandidateApplicationForm } from "../candidate-application/candidate-application-form";
 import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
 import { CandidateApplicationListItem } from "../candidate-application/interfaces/candidate-application";
 import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
 import { CandidateDetail as CandidateDetailDto } from "./interfaces/candidate.dto";
 
 @Component({
   selector: "app-candidate-detail",
   templateUrl: "./candidate-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: true,
   imports: [CommonModule, LxTabs, LxDivider, CandidateStageBadge, WebButtonLabel],
 })
 export class CandidateDetail implements OnInit {
@@ -74,8 +77,13 @@ export class CandidateDetail implements OnInit {
     this.dialogHandlerS
       .openDialog(
         CandidateApplicationForm,
-        { id: "", title: "Nueva Postulación", candidateId: this.config.data?.id },
-        "Nueva Postulación",
+        {
+          id: "",
+          title: "Asignar vacante y entrevista",
+          candidateId: this.config.data?.id,
+          allowCreateCandidate: false,
+        },
+        "Asignar vacante y entrevista",
         this.dialogHandlerS.sizeLg,
       )
       .then((created: boolean) => {

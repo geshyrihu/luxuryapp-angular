@@ -908,6 +908,81 @@ public record ReportFilterDTO { ... }     // ← PROHIBIDO
       importance:
         'Detecta brechas entre lo planeado y lo implementado. Garantiza que codigo cumple reglas de negocio.',
     },
+    {
+      id: 'audit-framework-exhaustive-2026-08-10',
+      title: 'Framework de Auditoria Exhaustiva (CRÍTICA)',
+      description:
+        'Use el framework de auditoria completo de 2026-08-10: AUDIT_PROMPT_COMPREHENSIVE.md (template), AUDIT_CHECKLIST_COMPLETO.md (checklist interactivo), EJEMPLO_AUDITORIA_CANDIDATES.md (aplicacion real). Audite 4 niveles de RN y busque 6 tipos de errores de lógica.',
+      severity: 'CRÍTICA',
+      domain: 'audit',
+      taskTypes: ['auditoria', 'documentacion'],
+      technologies: ['Documentacion'],
+      examples: {},
+      sourceDocuments: [
+        'docs/audit/AUDIT_PROMPT_COMPREHENSIVE.md',
+        'docs/audit/AUDIT_CHECKLIST_COMPLETO.md',
+        'docs/audit/EJEMPLO_AUDITORIA_CANDIDATES.md',
+        'docs/audit/20260810-auditoria-conventions-md.md',
+      ],
+      importance:
+        'Estandariza auditoria exhaustiva. Busca: estructura (entidades, DTOs), validaciones, permisos, flujos, errores lógica, inconsistencias front/back.',
+    },
+    {
+      id: 'documentation-module-structure-six-documents',
+      title: 'Documentacion de Modulo Existente: 6 documentos obligatorios (§4.7)',
+      description:
+        'Todo modulo documentado tiene estructura de 6 documentos: Backend README (Nivel 1) + Técnica (Nivel 2), Frontend README + Setup + Decisiones, y Auditoria ejecutada. Esta estructura es obligatoria segun CONVENTIONS.md §4.5 y §4.7.',
+      severity: 'CRÍTICA',
+      domain: 'operations',
+      taskTypes: ['documentacion', 'auditoria'],
+      technologies: ['Documentacion', '.NET', 'Angular'],
+      examples: {
+        dotnet: {
+          code: `Backend Nivel 1: api/Moduls/[Module]/README.md
+          - Propósito, endpoints (tabla), actores, dependencias, RNs
+
+Backend Nivel 2: api/Moduls/[Module]/Docs/documentacion-[modulo].md
+          - Técnico: entidades, validaciones, flujos, servicios, BD, performance`,
+          description: 'Backend requiere 2 documentos con roles diferenciados.',
+        },
+        angular: {
+          code: `Frontend README: client/angular/.../[modulo]/docs/README.md
+          - Rutas, componentes, servicios, data flow, debug tips
+
+Frontend Setup: client/angular/.../[modulo]/docs/setup.md
+          - Onboarding 30 min para dev nuevo, primer cambio
+
+Frontend Decisiones: client/angular/.../[modulo]/docs/decisiones.md
+          - Matriz: "¿Dónde pongo feature X?" con ejemplos`,
+          description: 'Frontend requiere 3 documentos: operativo, onboarding, matriz.',
+        },
+      },
+      sourceDocuments: [
+        'CONVENTIONS.md §4.5',
+        'CONVENTIONS.md §4.7',
+        'docs/conventions/operations/module-documentation-instructions.md',
+        'docs/guides/GUIA_DELEGACION_DOCUMENTACION_MODULOS.md',
+      ],
+      importance:
+        'Asegura consistencia en documentacion de modulos. Centraliza: operativo, onboarding, matriz decisiones, auditoria en ubicaciones predecibles.',
+    },
+    {
+      id: 'documentation-precedence-module-docs',
+      title: 'Precedencia Documental: [module]/docs/ es nivel 4 oficial',
+      description:
+        'En jerarquia de precedencia (CONVENTIONS.md §2), documentacion descentralizada en [module]/docs/ (backend y frontend) es nivel 4 oficial, ENTRE documentos especializados (nivel 3) y documentacion tecnica de apoyo (nivel 5).',
+      severity: 'ALTA',
+      domain: 'operations',
+      taskTypes: ['documentacion', 'auditoria', 'operacion-transversal'],
+      technologies: ['Documentacion'],
+      examples: {},
+      sourceDocuments: [
+        'CONVENTIONS.md §2 (Precedencia Documental)',
+        'CONVENTIONS.md §4.7 (Documentacion de Modulo Existente)',
+      ],
+      importance:
+        'Resuelve ambigüedad sobre autoridad de documentos. Si hay conflicto entre docs/architecture y [module]/docs, documentacion de modulo es fuente de verdad operativa (vivo), arquitectura es permanente (decisiones).',
+    },
   ];
 
   getConventions(): Observable<ConventionRule[]> {

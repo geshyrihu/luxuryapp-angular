@@ -39,6 +39,19 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
+interface SolicitudModificacionListItem {
+  id: string;
+  folio: string;
+  requestDate: string;
+  customer: string;
+  employee: string;
+  applicationRoleCurrent: string;
+  currentSalary: number | string;
+  applicationRoleNew: string;
+  finalSalary: number | string;
+  status: string;
+}
+
 @Component({
   selector: "app-solicitud-modificacion-list",
   templateUrl: "./solicitud-modificacion-list.html",
@@ -65,7 +78,7 @@ export class SolicitudModificacionList implements OnInit {
   statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  dataSignal = signal<any[]>([]);
+  dataSignal = signal<SolicitudModificacionListItem[]>([]);
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -99,13 +112,16 @@ export class SolicitudModificacionList implements OnInit {
   onLoadData() {
     const urlApi = EndpointsReclutamiento.RequestSalaryModification.list;
     this.apiResponseS
-      .onGetList(urlApi, this.filterRequestsService.getParams())
-      .then((result: any) => {
+      .onGetList<SolicitudModificacionListItem[]>(
+        urlApi,
+        this.filterRequestsService.getParams(),
+      )
+      .then((result) => {
         this.dataSignal.set(result);
       });
   }
 
-  onDelete(id: any) {
+  onDelete(id: string) {
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestSalaryModification.delete(id))
       .then((result: boolean) => {
@@ -117,7 +133,7 @@ export class SolicitudModificacionList implements OnInit {
       });
   }
 
-  onModalForm(data: any) {
+  onModalForm(data: Pick<SolicitudModificacionListItem, "id">) {
     this.dialogHandlerS
       .openDialog(
         ModificacionSalarioForm,

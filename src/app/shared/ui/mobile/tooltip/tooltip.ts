@@ -29,13 +29,13 @@ import { TooltipBase } from "@ui/base/tooltip.base";
         position: absolute;
         z-index: 9999;
         padding: 0.35rem 0.65rem;
-        border-radius: var(--ds-radius-sm, 6px);
-        background: var(--ds-bg-inverse, #1e293b);
-        color: var(--ds-text-inverse, #fff);
+        border-radius: var(--ds-radius-sm);
+        background: var(--ds-bg-inverse);
+        color: var(--ds-text-inverse);
         font-size: 0.75rem;
         white-space: nowrap;
         pointer-events: none;
-        box-shadow: var(--ds-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.15));
+        box-shadow: var(--ds-shadow-sm);
       }
       .ili-tooltip-top {
         bottom: calc(100% + 6px);

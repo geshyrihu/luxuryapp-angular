@@ -1,7 +1,10 @@
 import type { Preview } from "@storybook/angular-vite";
-import { setCompodocJson } from "@storybook/addon-docs/angular";
-import docJson from "../documentation.json";
-setCompodocJson(docJson);
+// Compodoc desactivado temporalmente para arranque rápido de verificación (se revierte).
+// import { setCompodocJson } from "@storybook/addon-docs/angular";
+// import docJson from "../documentation.json";
+// setCompodocJson(docJson);
+// TEMP: cargar tokens DS globales en el preview para poder verificar el repintado (se revierte).
+import "../src/styles/ds-entry.scss";
 
 const preview: Preview = {
   parameters: {

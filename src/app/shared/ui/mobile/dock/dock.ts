@@ -32,8 +32,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         justify-content: center;
         gap: 0.5rem;
         padding: 0.5rem 1rem;
-        background: var(--ds-bg-surface, #ffffff);
-        border-top: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-surface);
+        border-top: 1px solid var(--ds-border);
         overflow-x: auto;
         scrollbar-width: none;
       }
@@ -42,7 +42,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       }
       .ili-dock-top {
         border-top: none;
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
       }
       .ili-dock-item {
         display: flex;
@@ -52,7 +52,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         padding: 0.5rem;
         background: none;
         border: none;
-        border-radius: var(--ds-radius-md, 6px);
+        border-radius: var(--ds-radius-md);
         cursor: pointer;
         color: var(--ds-text-secondary);
         transition:
@@ -62,8 +62,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         min-width: 48px;
       }
       .ili-dock-item:active {
-        background: var(--ds-bg-elevated, #f1f3ff);
-        color: var(--ds-primary, #003d9b);
+        background: var(--ds-bg-elevated);
+        color: var(--ds-primary);
       }
       .ili-dock-icon {
         font-size: 1.375rem;

@@ -4,17 +4,18 @@ import {
   Component,
   computed,
   inject,
+  input,
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import {
   AppBreakdownList,
   type BreakdownItem,
 } from "@ui/shared/breakdown-list/breakdown-list";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
+import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   DialogHandlerService,
@@ -38,6 +39,8 @@ import { CobranzaOnlineComposicionReportesModal } from "./cobranza-online-compos
   templateUrl: "./cobranza-online-analysis.html",
 })
 export class CobranzaOnlineAnalysis {
+  readonly showTopKpis = input(true);
+  readonly showFlujoReal = input(true);
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
   private store = inject(CobranzaOnlineStoreService);
@@ -118,7 +121,7 @@ export class CobranzaOnlineAnalysis {
         label: "Cobrado",
         value: d.totalCobrado,
         color: "var(--ds-success)",
-        description: "Residual: perfecta − morosos − corriente",
+        description: "Residual: perfecta - morosos - corriente",
       },
       { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true },
     ];
@@ -134,15 +137,18 @@ export class CobranzaOnlineAnalysis {
         label: "Cobrado",
         value: d.cobradoMes,
         color: "var(--ds-success)",
-        description: d.cobradoExtraordinariaMes
-          ? `Mantenimiento ${this.moneda(d.cobradoMttoMes)} · extraordinaria ${this.moneda(d.cobradoExtraordinariaMes)}`
-          : "Abonos aplicados en el mes",
+        description: (() => {
+          const parts = [`Mtto ${this.moneda(d.cobradoMttoMes)}`];
+          if (d.cobradoExtraordinariaMes) parts.push(`extraordinaria ${this.moneda(d.cobradoExtraordinariaMes)}`);
+          if (d.cobradoRestaurantMes) parts.push(`restaurante ${this.moneda(d.cobradoRestaurantMes)}`);
+          return parts.length > 1 ? parts.join(' - ') : "Abonos aplicados en el mes";
+        })(),
       },
       {
         label: "Faltante por cobrar",
         value: d.faltanteMes,
         color: "var(--ds-warning)",
-        description: "Cobranza perfecta − cobrado",
+        description: "Cobranza perfecta - cobrado",
       },
       { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true },
     ];
@@ -160,13 +166,13 @@ export class CobranzaOnlineAnalysis {
         label: "Cobranza judicial",
         value: d.totalJudicial,
         color: "var(--ds-danger)",
-        description: "Más de 5 cuotas vencidas de mtto o 5+ de extraordinaria",
+        description: "Más de 5 cuotas vencidas de mtto o 5+ de extraordinaria o restaurante",
       },
       {
         label: "Morosos",
         value: d.totalMorosos,
         color: "var(--ds-warning)",
-        description: "2+ cuotas vencidas de mtto o 1+ de extraordinaria",
+        description: "2+ cuotas vencidas de mtto o 1+ de ext. o restaurante",
       },
       {
         label: "Deuda corriente",

@@ -27,6 +27,26 @@
       <th>CANDIDATO</th>
       <th></th>
     </tr>
+    <tr>
+      <td colspan="9" class="p-3 border-top-1 surface-border">
+        <div class="flex justify-content-end gap-2">
+          <il-button
+            label="Gestionar Candidatos"
+            iconClass="mdi:account-group"
+            severity="info"
+            size="small"
+            (clicked)="goToCandidates()"
+          />
+          <il-button
+            label="Ver Agenda Reclutamiento"
+            iconClass="mdi:calendar-clock"
+            severity="secondary"
+            size="small"
+            (clicked)="goToAgenda()"
+          />
+        </div>
+      </td>
+    </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
@@ -54,11 +74,13 @@
           [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'"
         />
       </td>
-      <td
-        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
-        [title]="item.nameCandidate"
-      >
-        {{ item.nameCandidate }}
+      <td class="text-center">
+        <iw-button-item
+          iconClass="mdi:account-group-outline"
+          lxTooltip="Ver candidatos de la vacante"
+          tooltipPosition="top"
+          (clicked)="goToVacancyCandidates(item.workPositionId, item.id)"
+        />
       </td>
       <td class="no-print">
         <div class="flex gap-1">
@@ -97,7 +119,7 @@
       </div>
 
       <h3>{{ item.applicationRoleName }}</h3>
-      <p>{{ item.customer }} é {{ item.requestDate }}</p>
+      <p>{{ item.customer }} - {{ item.requestDate }}</p>
       <p>{{ item.status }}</p>
 
       <ili-action-menu slot="end">

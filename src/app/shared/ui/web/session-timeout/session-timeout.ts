@@ -41,7 +41,7 @@ import { Subject, Subscription, interval, takeWhile, tap } from "rxjs";
   styles: [
     `
       .session-timeout-msg {
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-secondary);
         margin: 0.5rem 0 1.25rem;
       }

@@ -65,7 +65,7 @@ import { ColorPickerModule } from "primeng/colorpicker";
         pointer-events: none;
       }
       .cp-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         font-weight: 500;
       }
@@ -76,11 +76,11 @@ import { ColorPickerModule } from "primeng/colorpicker";
         flex-wrap: wrap;
       }
       .cp-hex-display {
-        font-family: var(--ds-font-family-mono, monospace);
-        font-size: var(--ds-font-size-help, 0.8125rem);
-        background: var(--ds-bg-elevated, #f1f3ff);
+        font-family: var(--ds-font-family-mono);
+        font-size: var(--ds-font-size-help);
+        background: var(--ds-bg-elevated);
         padding: 0.2rem 0.5rem;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         color: var(--ds-text-primary);
       }
       .cp-clear {
@@ -97,12 +97,12 @@ import { ColorPickerModule } from "primeng/colorpicker";
         justify-content: center;
       }
       .cp-clear:hover {
-        background: var(--ds-danger-light, #ffdad6);
+        background: var(--ds-danger-light);
         color: var(--ds-danger);
         border-color: var(--ds-danger);
       }
       .cp-hint {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
     `,

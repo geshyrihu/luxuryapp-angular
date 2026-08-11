@@ -1,0 +1,358 @@
+<div class="card p-3 mb-4">
+  <div class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3">
+    <div>
+      <h2 class="m-0 font-semibold text-xl">Cola de entrevistas y seguimiento</h2>
+      <p class="m-0 text-sm text-color-secondary">
+        Vacantes del customer en contexto con candidatos pendientes e historico de seguimiento.
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <il-button
+        label="Actualizar"
+        iconClass="mdi:refresh"
+        severity="secondary"
+        (clicked)="onLoadData()"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="grid mb-4">
+  <div class="col-12 md:col-6 xl:col-3">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Vacantes</small>
+      <div class="text-2xl font-semibold">{{ totalVacancies() }}</div>
+      <small class="text-color-secondary">{{ totalCandidates() }} candidatos relacionados</small>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col-3">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Pendientes</small>
+      <div class="text-2xl font-semibold text-orange-500">{{ pendingCount() }}</div>
+      <small class="text-color-secondary">Entrevistas activas por responder</small>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col-3">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Vencidas</small>
+      <div class="text-2xl font-semibold text-red-500">{{ overdueCount() }}</div>
+      <small class="text-color-secondary">Requieren respuesta inmediata</small>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col-3">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Historico</small>
+      <div class="text-2xl font-semibold text-bluegray-700">{{ historyCount() }}</div>
+      <small class="text-color-secondary">{{ feedbackCount() }} con retroalimentacion</small>
+    </div>
+  </div>
+</div>
+
+<div class="card p-3 mb-4">
+  <div class="flex flex-column lg:flex-row lg:align-items-center gap-3">
+    <div class="flex flex-wrap gap-2">
+      <il-button
+        label="Pendientes"
+        iconClass="mdi:clock-alert-outline"
+        [severity]="mode() === 'pending' ? 'primary' : 'secondary'"
+        [variant]="mode() === 'pending' ? 'solid' : 'outlined'"
+        (clicked)="setMode('pending')"
+      />
+      <il-button
+        label="Historico"
+        iconClass="mdi:history"
+        [severity]="mode() === 'history' ? 'primary' : 'secondary'"
+        [variant]="mode() === 'history' ? 'solid' : 'outlined'"
+        (clicked)="setMode('history')"
+      />
+      <il-button
+        label="Vencidas"
+        iconClass="mdi:alert-circle-outline"
+        [severity]="mode() === 'overdue' ? 'danger' : 'secondary'"
+        [variant]="mode() === 'overdue' ? 'solid' : 'outlined'"
+        (clicked)="setMode('overdue')"
+      />
+      <il-button
+        label="Con feedback"
+        iconClass="mdi:comment-check-outline"
+        [severity]="mode() === 'feedback' ? 'success' : 'secondary'"
+        [variant]="mode() === 'feedback' ? 'solid' : 'outlined'"
+        (clicked)="setMode('feedback')"
+      />
+      <il-button
+        label="Todo"
+        iconClass="mdi:view-list-outline"
+        [severity]="mode() === 'all' ? 'info' : 'secondary'"
+        [variant]="mode() === 'all' ? 'solid' : 'outlined'"
+        (clicked)="setMode('all')"
+      />
+    </div>
+
+    <div class="flex-grow-1">
+      <input
+        type="text"
+        class="w-full p-inputtext p-component"
+        placeholder="Buscar por vacante, candidato, cliente, entrevistador..."
+        [value]="searchTerm()"
+        (input)="onSearchInput($event)"
+      />
+    </div>
+  </div>
+</div>
+
+@if (loading()) {
+<div class="card p-4 text-center text-color-secondary">
+  Cargando entrevistas y seguimientos...
+</div>
+} @else if (filteredVacancies().length === 0) {
+<div class="card p-4 text-center">
+  <div class="text-lg font-semibold mb-2">Sin resultados</div>
+  <div class="text-color-secondary">
+    No se encontraron vacantes o candidatos con los filtros aplicados.
+  </div>
+</div>
+} @else {
+<div class="grid align-items-start">
+  <div class="col-12 xl:col-8">
+    <div class="flex flex-column gap-3">
+      @for (vacancy of filteredVacancies(); track vacancy.requestPositionId) {
+      <div class="card p-3">
+        <div class="flex flex-column lg:flex-row lg:align-items-start lg:justify-content-between gap-3 mb-3">
+          <div>
+            <div class="flex flex-wrap align-items-center gap-2 mb-2">
+              <span class="text-lg font-semibold">{{ vacancy.vacancyFolio }}</span>
+              <span class="text-sm text-color-secondary">{{ vacancy.positionName }}</span>
+              <span class="badge badge-info">{{ vacancy.customerName }}</span>
+              <span class="badge badge-secondary">{{ vacancy.vacancyStatus }}</span>
+            </div>
+            <div class="flex flex-wrap gap-2 text-sm text-color-secondary">
+              <span>{{ vacancy.filteredCandidates.length }} candidato(s)</span>
+              <span>Pendientes: {{ vacancy.pendingCandidatesCount }}</span>
+              <span>Vencidas: {{ vacancy.overdueCandidatesCount }}</span>
+              @if (vacancy.nextInterviewAt) {
+              <span>
+                Proxima cita: {{ vacancy.nextInterviewAt | date:'dd/MM/yyyy HH:mm' }}
+              </span>
+              }
+            </div>
+          </div>
+        </div>
+
+        @if (vacancy.filteredCandidates.length === 0) {
+        <div class="border-1 border-dashed surface-border border-round p-4 bg-surface-50">
+          <div class="font-semibold mb-2">Sin candidatos postulados</div>
+          <div class="text-sm text-color-secondary">
+            Esta vacante sigue activa para el customer en contexto, pero todavia no tiene candidatos visibles en seguimiento.
+          </div>
+        </div>
+        } @else {
+        <div class="flex flex-column gap-2">
+          @for (candidate of vacancy.filteredCandidates; track candidate.candidateApplicationId) {
+          <div
+            class="border-1 surface-border border-round p-3 cursor-pointer"
+            [class.bg-orange-50]="!candidate.isHistorical"
+            [class.bg-bluegray-50]="candidate.isHistorical"
+            [class.border-red-300]="candidate.agendaStatusCode === 'overdue'"
+            [class.border-green-300]="candidate.agendaStatusCode === 'feedback'"
+            (click)="selectCandidate(candidate)"
+          >
+            <div class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3">
+              <div class="flex-grow-1">
+                <div class="flex flex-wrap align-items-center gap-2 mb-2">
+                  <span class="font-semibold">{{ candidate.candidateName }}</span>
+                  <app-candidate-stage-badge [stage]="candidate.currentStage" />
+                  <app-mapped-p-tag
+                    [value]="candidate.agendaStatusCode"
+                    [options]="agendaStatusOptions()"
+                  />
+                </div>
+
+                <div class="grid text-sm">
+                  <div class="col-12 md:col-6">
+                    <small class="text-color-secondary block">Junta</small>
+                    <div class="font-medium">
+                      {{ candidate.operationsInterviewAt ? (candidate.operationsInterviewAt | date:'dd/MM/yyyy HH:mm') : 'Sin fecha programada' }}
+                    </div>
+                  </div>
+                  <div class="col-12 md:col-6">
+                    <small class="text-color-secondary block">Entrevistador</small>
+                    <div class="font-medium">
+                      {{ candidate.assignedInterviewerName || 'Sin entrevistador asignado' }}
+                    </div>
+                  </div>
+                  <div class="col-12 md:col-6">
+                    <small class="text-color-secondary block">Tipo</small>
+                    <div class="font-medium">{{ candidate.interviewTypeLabel }}</div>
+                  </div>
+                  <div class="col-12 md:col-6">
+                    <small class="text-color-secondary block">Proxima accion</small>
+                    <div class="font-medium">{{ candidate.pendingAction }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-2 lg:justify-content-end" (click)="$event.stopPropagation()">
+                <iw-button-view-pdf
+                  [url]="candidate.cvFileUrl"
+                  [fileName]="candidate.cvFileName"
+                  severity="danger"
+                  variant="outline"
+                />
+                <il-button
+                  label="Ver card"
+                  iconClass="mdi:card-account-details-outline"
+                  severity="secondary"
+                  size="small"
+                  (clicked)="selectCandidate(candidate)"
+                />
+                <il-button
+                  label="Seguimiento"
+                  iconClass="mdi:timeline-text-outline"
+                  severity="secondary"
+                  size="small"
+                  (clicked)="navigateToApplicationDetail(candidate.candidateApplicationId)"
+                />
+                @if (!candidate.isHistorical) {
+                <il-button
+                  label="Responder entrevista"
+                  iconClass="mdi:comment-processing-outline"
+                  severity="primary"
+                  size="small"
+                  (clicked)="navigateToQueueResponse(candidate.candidateApplicationId)"
+                />
+                }
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="col-12 xl:col-4">
+    <div class="card p-3 xl:sticky" style="top: 1rem;">
+      @if (selectedCandidate()) {
+      <div class="flex align-items-start justify-content-between gap-2 mb-3">
+        <div>
+          <div class="text-xl font-semibold">{{ selectedCandidate()?.candidateName }}</div>
+          <div class="text-sm text-color-secondary">
+            {{ selectedCandidate()?.vacancyFolio }} - {{ selectedCandidate()?.positionName }}
+          </div>
+        </div>
+        <app-candidate-stage-badge [stage]="selectedCandidate()?.currentStage" />
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-3">
+        <app-mapped-p-tag
+          [value]="selectedCandidate()?.agendaStatusCode"
+          [options]="agendaStatusOptions()"
+        />
+        @if (selectedCandidate()?.lastDecision !== undefined && selectedCandidate()?.lastDecision !== null) {
+        <span class="badge badge-secondary">
+          {{ decisionLabel(selectedCandidate()?.lastDecision) }}
+        </span>
+        }
+      </div>
+
+      <div class="grid text-sm mb-3">
+        <div class="col-12">
+          <small class="text-color-secondary block">Cliente</small>
+          <div class="font-medium">{{ selectedCandidate()?.customerName }}</div>
+        </div>
+        <div class="col-12">
+          <small class="text-color-secondary block">Fecha y hora de junta</small>
+          <div class="font-medium">
+            {{ selectedCandidate()?.operationsInterviewAt ? (selectedCandidate()?.operationsInterviewAt | date:'dd/MM/yyyy HH:mm') : 'Pendiente de programacion' }}
+          </div>
+        </div>
+        <div class="col-12">
+          <small class="text-color-secondary block">Entrevistador</small>
+          <div class="font-medium">
+            {{ selectedCandidate()?.assignedInterviewerName || 'Sin entrevistador asignado' }}
+          </div>
+        </div>
+        <div class="col-12">
+          <small class="text-color-secondary block">Tipo de seguimiento</small>
+          <div class="font-medium">{{ selectedCandidate()?.interviewTypeLabel }}</div>
+        </div>
+        <div class="col-12">
+          <small class="text-color-secondary block">Ultimo comentario</small>
+          <div class="font-medium">
+            {{ selectedCandidate()?.lastComment || 'Sin comentarios registrados' }}
+          </div>
+        </div>
+        <div class="col-12">
+          <small class="text-color-secondary block">Ultima retroalimentacion</small>
+          <div class="font-medium">
+            {{ selectedCandidate()?.lastFeedbackAt ? (selectedCandidate()?.lastFeedbackAt | date:'dd/MM/yyyy HH:mm') : 'Sin retroalimentacion' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        <iw-button-view-pdf
+          [url]="selectedCandidate()?.cvFileUrl ?? ''"
+          [fileName]="selectedCandidate()?.cvFileName ?? ''"
+          severity="danger"
+          variant="outline"
+        />
+        <il-button
+          label="Ver seguimiento"
+          iconClass="mdi:timeline-text-outline"
+          severity="secondary"
+          (clicked)="navigateToApplicationDetail(selectedCandidate()!.candidateApplicationId)"
+        />
+      </div>
+
+      @if (!selectedCandidate()?.isHistorical) {
+      <div class="mt-4 pt-3 border-top-1 surface-border">
+        <div class="font-semibold mb-2">Acciones del entrevistador</div>
+        <div class="flex flex-wrap gap-2">
+          <il-button
+            label="Responder"
+            iconClass="mdi:comment-processing-outline"
+            severity="primary"
+            (clicked)="navigateToQueueResponse(selectedCandidate()!.candidateApplicationId)"
+          />
+          @if (selectedCandidate()?.canSubmitFeedback) {
+          <il-button
+            label="Feedback"
+            iconClass="mdi:comment-check-outline"
+            severity="info"
+            (clicked)="onFeedback(selectedCandidate()!)"
+          />
+          }
+          @if (selectedCandidate()?.canMarkNoShow) {
+          <il-button
+            label="No asistio"
+            iconClass="mdi:account-off-outline"
+            severity="warn"
+            (clicked)="onMarkNoShow(selectedCandidate()!)"
+          />
+          }
+          @if (selectedCandidate()?.canApprove) {
+          <il-button
+            label="Aprobar"
+            iconClass="mdi:check-circle-outline"
+            severity="success"
+            (clicked)="onApprove(selectedCandidate()!)"
+          />
+          }
+        </div>
+      </div>
+      }
+      } @else {
+      <div class="text-center py-6">
+        <div class="text-lg font-semibold mb-2">Selecciona un candidato</div>
+        <div class="text-color-secondary">
+          Cuando la vacante tenga candidatos visibles en seguimiento, aqui podras revisar su junta, CV y acciones disponibles.
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+}

@@ -4,7 +4,7 @@
   (tabChange)="onTabChange($event)"
 />
 
-@if (activeTab() === 'datos') {
+@if (activeTab() === "datos") {
   <div class="px-3 py-2">
     @if (detail(); as d) {
       <div class="grid">
@@ -22,12 +22,12 @@
         </div>
         <div class="col-12 md:col-6">
           <p class="text-sm m-0 text-color-secondary">Edad</p>
-          <p class="m-0 text-color">{{ d.age ?? 'N/D' }}</p>
+          <p class="m-0 text-color">{{ d.age ?? "N/D" }}</p>
         </div>
         <div class="col-12 md:col-6">
           <p class="text-sm m-0 text-color-secondary">Vive cerca</p>
           <p class="m-0 text-color">
-            {{ d.livesNearWorkplace ? 'Si' : d.livesNearWorkplace === false ? 'No' : 'N/D' }}
+            {{ d.livesNearWorkplace ? "Si" : d.livesNearWorkplace === false ? "No" : "N/D" }}
           </p>
         </div>
         <div class="col-12 md:col-6">
@@ -52,7 +52,7 @@
         <div class="col-12 flex justify-content-end">
           <il-button
             iconClass="pi pi-user-plus"
-            label="Agregar postulación"
+            label="Agregar vacante / entrevista"
             customClass="p-button-outlined p-button-sm"
             (clicked)="onAddApplication()"
           />
@@ -62,10 +62,10 @@
   </div>
 }
 
-@if (activeTab() === 'postulaciones') {
+@if (activeTab() === "postulaciones") {
   <div class="px-3 py-2">
     @if (applications().length === 0) {
-      <p class="text-center text-color-secondary m-0 py-3">Sin postulaciones</p>
+      <p class="text-center text-color-secondary m-0 py-3">Sin vacantes ligadas</p>
     } @else {
       <div class="flex flex-column gap-2">
         @for (app of applications(); track app.id) {

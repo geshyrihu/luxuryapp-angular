@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import type { EChartsCoreOption } from "echarts/core";
 import { NgxEchartsDirective } from "ngx-echarts";
-import { ChartJsData, chartJsToCartesianOption } from "./echarts-adapters";
+import { ChartJsData, chartJsToCartesianOption, dsThemeTick, trackChartTheme } from "./echarts-adapters";
 
 /**
  * MultiAxisChart — barras con doble eje Y. Motor: ECharts (ngx-echarts).
@@ -25,10 +25,15 @@ import { ChartJsData, chartJsToCartesianOption } from "./echarts-adapters";
   `,
 })
 export class MultiAxisChart {
+  constructor() {
+    trackChartTheme();
+  }
+
   dataSignal = input<ChartJsData | null>(null, { alias: "data" });
   optionsSignal = input<EChartsCoreOption | null>(null, { alias: "options" });
 
   option = computed<EChartsCoreOption>(() => {
+    dsThemeTick(); // dependencia de tema en TODAS las ramas (RN-DS-015)
     if (this.optionsSignal()) return this.optionsSignal() as EChartsCoreOption;
     return chartJsToCartesianOption(this.dataSignal(), "bar", {
       dualAxis: true,

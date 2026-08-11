@@ -100,9 +100,9 @@ export interface PivotValue {
   styles: [
     `
       .pivot-root {
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         overflow: hidden;
       }
       .pivot-header {
@@ -110,13 +110,13 @@ export interface PivotValue {
         align-items: center;
         justify-content: space-between;
         padding: 0.75rem 1rem;
-        background: var(--ds-bg-elevated, #f4f5f8);
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        background: var(--ds-bg-elevated);
+        border-bottom: 1px solid var(--ds-border);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
       }
       .pivot-summary {
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         color: var(--ds-text-muted);
       }
       .pivot-table-wrapper {
@@ -125,28 +125,28 @@ export interface PivotValue {
       .pivot-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
       }
       .pivot-table th,
       .pivot-table td {
         padding: 0.5rem 0.75rem;
-        border: 1px solid var(--ds-border, #e2e8f0);
+        border: 1px solid var(--ds-border);
         text-align: right;
         white-space: nowrap;
       }
       .pivot-corner {
-        background: var(--ds-bg-elevated, #f4f5f8);
+        background: var(--ds-bg-elevated);
         min-width: 160px;
       }
       .pivot-col-header {
-        background: var(--ds-bg-elevated, #f4f5f8);
-        font-weight: var(--ds-font-weight-semibold, 600);
+        background: var(--ds-bg-elevated);
+        font-weight: var(--ds-font-weight-semibold);
         color: var(--ds-text-primary);
         text-align: center;
       }
       .pivot-row-header {
         text-align: left;
-        font-weight: var(--ds-font-weight-medium, 500);
+        font-weight: var(--ds-font-weight-medium);
         color: var(--ds-text-primary);
         cursor: pointer;
         display: flex;
@@ -164,7 +164,7 @@ export interface PivotValue {
         flex: 1;
       }
       .pivot-row-level-1 {
-        background: var(--ds-bg-elevated, #f4f5f8);
+        background: var(--ds-bg-elevated);
       }
       .pivot-row-level-1 .pivot-row-header {
         padding-left: 0.5rem;
@@ -173,18 +173,18 @@ export interface PivotValue {
         color: var(--ds-text-primary);
       }
       .pivot-cell-total {
-        font-weight: var(--ds-font-weight-semibold, 600);
-        background: var(--ds-bg-sunken, #e8edff);
+        font-weight: var(--ds-font-weight-semibold);
+        background: var(--ds-bg-sunken);
       }
       .pivot-total-col,
       .pivot-total-cell {
-        font-weight: var(--ds-font-weight-bold, 700);
-        background: var(--ds-bg-elevated, #f4f5f8);
+        font-weight: var(--ds-font-weight-bold);
+        background: var(--ds-bg-elevated);
       }
       .pivot-footer .pivot-cell,
       .pivot-footer .pivot-total-cell {
-        font-weight: var(--ds-font-weight-bold, 700);
-        border-top: 2px solid var(--ds-border-strong, #cbd5e1);
+        font-weight: var(--ds-font-weight-bold);
+        border-top: 2px solid var(--ds-border-strong);
       }
       .pivot-row-expanded {
         background: color-mix(in srgb, var(--ds-primary) 5%, transparent);

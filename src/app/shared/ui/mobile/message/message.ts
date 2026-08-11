@@ -49,7 +49,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         align-items: flex-start;
         gap: 0.625rem;
         padding: 0.75rem 0.875rem;
-        border-radius: var(--ds-radius-md, 8px);
+        border-radius: var(--ds-radius-md);
         border: 1px solid transparent;
       }
       .ili-message-icon {

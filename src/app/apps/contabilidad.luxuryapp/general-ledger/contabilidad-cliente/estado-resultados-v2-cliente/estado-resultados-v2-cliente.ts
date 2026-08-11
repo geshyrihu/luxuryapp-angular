@@ -8,6 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type {
@@ -61,7 +62,7 @@ type ClientRow =
 
 @Component({
   selector: "app-estado-resultados-v2-cliente",
-  imports: [AppIcon, TableModule, LxSkeleton, AccountingNumberPipe],
+  imports: [AppIcon, TableModule, LxSkeleton, AccountingNumberPipe, DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados-v2-cliente.html",
 })

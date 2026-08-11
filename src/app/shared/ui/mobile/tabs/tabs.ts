@@ -45,8 +45,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       .ili-tabs {
         display: flex;
         align-items: stretch;
-        border-bottom: 2px solid var(--ds-border, #e2e8f0);
-        background: var(--ds-bg-surface, #ffffff);
+        border-bottom: 2px solid var(--ds-border);
+        background: var(--ds-bg-surface);
         overflow-x: auto;
         scrollbar-width: none;
       }
@@ -63,7 +63,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         border-bottom: 2px solid transparent;
         margin-bottom: -2px;
         cursor: pointer;
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 500;
         color: var(--ds-text-muted);
         white-space: nowrap;
@@ -76,8 +76,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         color: var(--ds-text-primary);
       }
       .ili-tab-active {
-        color: var(--ds-primary, #003d9b) !important;
-        border-bottom-color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary) !important;
+        border-bottom-color: var(--ds-primary);
         font-weight: 600;
       }
       .ili-tab-disabled {
@@ -88,11 +88,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         font-size: 1rem;
       }
       .ili-tab-badge {
-        background: var(--ds-danger, #ba1a1a);
-        color: #ffffff;
+        background: var(--ds-danger);
+        color: var(--ds-on-primary);
         font-size: 0.625rem;
         font-weight: 700;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         padding: 0.1rem 0.35rem;
         min-width: 16px;
         text-align: center;

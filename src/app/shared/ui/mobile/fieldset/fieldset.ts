@@ -19,8 +19,8 @@ import { FieldsetBase } from "@ui/base/fieldset.base";
   styles: [
     `
       .ili-fieldset {
-        border: 1px solid var(--ds-border, #d7dbe3);
-        border-radius: var(--ds-radius-md, 8px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         padding: 1rem;
         margin: 0;
       }
@@ -28,7 +28,7 @@ import { FieldsetBase } from "@ui/base/fieldset.base";
         font-weight: 700;
         font-size: 0.875rem;
         padding: 0 0.5rem;
-        color: var(--ds-text-primary, #1f2937);
+        color: var(--ds-text-primary);
       }
     `,
   ],

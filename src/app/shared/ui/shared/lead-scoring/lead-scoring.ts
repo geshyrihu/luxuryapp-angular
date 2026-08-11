@@ -57,9 +57,9 @@ export interface LeadScoreCategory {
         display: flex;
         flex-direction: column;
         gap: 0.75rem;
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         padding: 1rem;
       }
       .lead-scoring-total {
@@ -67,27 +67,27 @@ export interface LeadScoreCategory {
         flex-direction: column;
         gap: 0.25rem;
         padding-bottom: 0.75rem;
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
       }
       .lead-scoring-total-label {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
       .lead-scoring-total-value {
-        font-size: var(--ds-font-size-metric, 1.5rem);
+        font-size: var(--ds-font-size-metric);
         color: var(--ds-text-primary);
       }
       .lead-scoring-total-bar {
         height: 8px;
-        background: var(--ds-bg-elevated, #f4f5f8);
-        border-radius: var(--ds-radius-pill, 999px);
+        background: var(--ds-bg-elevated);
+        border-radius: var(--ds-radius-full);
         overflow: hidden;
       }
       .lead-scoring-total-fill {
         height: 100%;
-        border-radius: var(--ds-radius-pill, 999px);
+        border-radius: var(--ds-radius-full);
         transition: width 0.4s ease;
       }
       .lead-scoring-category-header {
@@ -96,22 +96,22 @@ export interface LeadScoreCategory {
         margin-bottom: 0.25rem;
       }
       .lead-scoring-category-label {
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         color: var(--ds-text-primary);
       }
       .lead-scoring-category-score {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
       .lead-scoring-bar {
         height: 6px;
-        background: var(--ds-bg-elevated, #f4f5f8);
-        border-radius: var(--ds-radius-pill, 999px);
+        background: var(--ds-bg-elevated);
+        border-radius: var(--ds-radius-full);
         overflow: hidden;
       }
       .lead-scoring-bar-fill {
         height: 100%;
-        border-radius: var(--ds-radius-pill, 999px);
+        border-radius: var(--ds-radius-full);
         transition: width 0.4s ease;
       }
     `,
@@ -135,8 +135,8 @@ export class LeadScoring {
 
   totalColor = computed(() => {
     const pct = this.totalPercent();
-    if (pct < 33) return "var(--ds-danger, #ba1a1a)";
-    if (pct < 66) return "var(--ds-warning, #f5a623)";
-    return "var(--ds-success, #006837)";
+    if (pct < 33) return "var(--ds-danger)";
+    if (pct < 66) return "var(--ds-warning)";
+    return "var(--ds-success)";
   });
 }

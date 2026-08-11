@@ -122,7 +122,7 @@ export interface PaletteCommand {
         position: relative;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
         padding: 0.75rem;
       }
       .palette-search-icon {
@@ -161,7 +161,7 @@ export interface PaletteCommand {
       }
       .palette-category {
         padding: 0.5rem 0.75rem 0.25rem;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.08em;
@@ -178,12 +178,12 @@ export interface PaletteCommand {
         cursor: pointer;
         text-align: left;
         color: var(--ds-text-primary);
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         transition: background 0.1s;
       }
       .palette-item:hover,
       .palette-item-active {
-        background: var(--ds-bg-hover, #f0f4ff);
+        background: var(--ds-bg-hover);
       }
       .palette-item-icon {
         font-size: 1.125rem;
@@ -204,7 +204,7 @@ export interface PaletteCommand {
       }
       .palette-item-desc {
         display: block;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
         margin-top: 0.125rem;
       }
@@ -215,8 +215,8 @@ export interface PaletteCommand {
         display: flex;
         gap: 0.75rem;
         padding: 0.5rem 0.75rem;
-        border-top: 1px solid var(--ds-border, #e2e8f0);
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        border-top: 1px solid var(--ds-border);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       .palette-footer kbd,
@@ -227,8 +227,8 @@ export interface PaletteCommand {
         min-width: 20px;
         height: 20px;
         padding: 0 4px;
-        background: var(--ds-bg-elevated, #f4f5f8);
-        border: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-elevated);
+        border: 1px solid var(--ds-border);
         border-radius: 4px;
         font-size: 0.75rem;
         font-family: inherit;

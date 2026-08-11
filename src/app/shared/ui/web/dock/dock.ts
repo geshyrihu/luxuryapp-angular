@@ -50,10 +50,10 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
         position: relative;
       }
       .app-dock-inner .p-dock-list {
-        background: rgba(255, 255, 255, 0.85);
+        background: color-mix(in srgb, white 85%, transparent);
         backdrop-filter: blur(12px);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-xl, 12px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-xl);
         padding: 0.5rem;
         box-shadow: var(--ds-shadow-lg);
       }
@@ -63,12 +63,12 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
         justify-content: center;
         width: 48px;
         height: 48px;
-        border-radius: var(--ds-radius-md, 6px);
+        border-radius: var(--ds-radius-md);
         cursor: pointer;
         transition: background 0.15s;
       }
       .app-dock-item:hover {
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
       }
       .app-dock-img {
         width: 32px;

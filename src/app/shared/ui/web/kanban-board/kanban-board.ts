@@ -183,8 +183,8 @@ const PRIORITY_COLORS: Record<string, string> = {
         flex: 1;
         min-width: 280px;
         max-width: 360px;
-        background: var(--ds-bg-elevated, #f1f3ff);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-elevated);
+        border-radius: var(--ds-radius-lg);
         border-top: 3px solid;
         display: flex;
         flex-direction: column;
@@ -193,7 +193,7 @@ const PRIORITY_COLORS: Record<string, string> = {
         display: flex;
         align-items: center;
         padding: 0.75rem;
-        border-radius: var(--ds-radius-lg, 8px) var(--ds-radius-lg, 8px) 0 0;
+        border-radius: var(--ds-radius-lg) var(--ds-radius-lg) 0 0;
       }
       .kanban-stage-dot {
         width: 8px;
@@ -202,15 +202,15 @@ const PRIORITY_COLORS: Record<string, string> = {
         flex-shrink: 0;
       }
       .kanban-stage-title {
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         color: var(--ds-text-primary);
       }
       .kanban-card-count {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
         background: var(--ds-bg-surface);
         padding: 0.1rem 0.4rem;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         min-width: 1.2rem;
         text-align: center;
       }
@@ -224,13 +224,13 @@ const PRIORITY_COLORS: Record<string, string> = {
         transition: background 0.15s;
       }
       .kanban-drop-target {
-        background: var(--ds-bg-sunken, #e8edff);
-        border-radius: var(--ds-radius-sm, 4px);
+        background: var(--ds-bg-sunken);
+        border-radius: var(--ds-radius-sm);
       }
       .kanban-card {
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         padding: 0.75rem;
         cursor: pointer;
         transition:
@@ -252,7 +252,7 @@ const PRIORITY_COLORS: Record<string, string> = {
         gap: 0.5rem;
       }
       .kanban-card-title {
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         color: var(--ds-text-primary);
         line-height: 1.3;
       }
@@ -261,7 +261,7 @@ const PRIORITY_COLORS: Record<string, string> = {
         flex-shrink: 0;
       }
       .kanban-card-desc {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-secondary);
         margin: 0.25rem 0;
         display: -webkit-box;
@@ -270,11 +270,11 @@ const PRIORITY_COLORS: Record<string, string> = {
         overflow: hidden;
       }
       .kanban-tag {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         padding: 0.1rem 0.4rem;
-        background: var(--ds-primary-50, #edf1ff);
+        background: var(--primary-50);
         color: var(--ds-primary);
-        border-radius: var(--ds-radius-xs, 2px);
+        border-radius: var(--ds-radius-xs);
       }
       .kanban-card-footer {
         display: flex;
@@ -283,7 +283,7 @@ const PRIORITY_COLORS: Record<string, string> = {
         margin-top: 0.5rem;
       }
       .kanban-value {
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         font-weight: 600;
         color: var(--ds-text-primary);
       }
@@ -305,14 +305,14 @@ const PRIORITY_COLORS: Record<string, string> = {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         font-weight: 600;
       }
       .kanban-duedate {
         display: flex;
         align-items: center;
         gap: 0.25rem;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
         margin-top: 0.25rem;
       }

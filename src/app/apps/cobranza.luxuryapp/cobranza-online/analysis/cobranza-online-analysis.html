@@ -1,12 +1,13 @@
 <section>
   @if (!hasCustomer()) {
-  <div class="mb-4 border-1 surface-border rounded p-4">
+  <div class="mb-4 border-1 surface-border rounded p-3 md:p-4">
     <div class="font-medium mb-2">Sin cliente activo</div>
     <div class="text-color-secondary">
       Selecciona un cliente para consultar el análisis de cobranza.
     </div>
   </div>
   } @else if (data(); as d) {
+  @if (showTopKpis()) {
   <div class="grid mb-4">
     <div class="col-12 md:col-6 xl:col-3">
       <app-stat-card
@@ -24,7 +25,7 @@
       <app-stat-card
         orientation="horizontal"
         label="Mantenimiento del mes"
-        [value]="d.cuotaMttoVigente"
+        [value]="d.totalMaintenanceGross"
         format="currency"
         icon="mdi:home-city-outline"
         iconColor="var(--ds-info)"
@@ -32,22 +33,34 @@
         [subtitle]="cuotaPromedioSubtitulo()"
       />
     </div>
+    @if (d.totalExtraordinaryGross > 0) {
     <div class="col-12 md:col-6 xl:col-3">
       <app-stat-card
         orientation="horizontal"
         label="Extraordinaria del mes"
-        [value]="d.cuotaExtraordinariaVigente"
+        [value]="d.totalExtraordinaryGross"
         format="currency"
         icon="mdi:cash-plus"
         iconColor="var(--ds-warning)"
         iconBg="var(--ds-warning-light)"
-        [subtitle]="
-          d.cuotaExtraordinariaVigente
-            ? 'Cargos aplicados en el corte'
-            : 'Sin cuota vigente este mes'
-        "
+        subtitle="Cargos aplicados en el corte"
       />
     </div>
+    }
+    @if (d.totalRestaurantGross && d.totalRestaurantGross > 0) {
+    <div class="col-12 md:col-6 xl:col-3">
+      <app-stat-card
+        orientation="horizontal"
+        label="Restaurante del mes"
+        [value]="d.totalRestaurantGross"
+        format="currency"
+        icon="mdi:silverware-fork-knife"
+        iconColor="var(--ds-purple)"
+        iconBg="var(--ds-purple-light)"
+        subtitle="Cargos aplicados en el corte"
+      />
+    </div>
+    }
     <div class="col-12 md:col-6 xl:col-3">
       <app-stat-card
         orientation="horizontal"
@@ -61,10 +74,11 @@
       />
     </div>
   </div>
+  }
 
   <div class="grid mb-4">
     <div class="col-12 xl:col-4">
-      <div class="border-1 surface-border rounded p-4 h-full">
+      <div class="border-1 surface-border rounded p-3 md:p-4 h-full">
         <div class="flex align-items-start justify-content-between gap-2 mb-1">
           <div class="text-lg font-semibold">Análisis de Cobranza Mensual</div>
           <button
@@ -91,6 +105,7 @@
           no dinero cobrado: descuenta saldos acumulados de una meta del mes.
         </div>
 
+        @if (showFlujoReal()) {
         <!-- Bloque de flujo real, para contrastar con el residual de arriba -->
         <div class="border-top-1 surface-border mt-4 pt-4">
           <div class="text-lg font-semibold mb-1">Cobranza del Mes</div>
@@ -116,11 +131,12 @@
           </div>
           }
         </div>
+        }
       </div>
     </div>
 
     <div class="col-12 xl:col-4">
-      <div class="border-1 surface-border rounded p-4 h-full">
+      <div class="border-1 surface-border rounded p-3 md:p-4 h-full">
         <div class="text-lg font-semibold mb-1 text-danger">
           Deuda Condóminos (EF)
         </div>
@@ -162,7 +178,7 @@
     </div>
 
     <div class="col-12 xl:col-4">
-      <div class="border-1 surface-border rounded p-4 h-full flex flex-column">
+      <div class="border-1 surface-border rounded p-3 md:p-4 h-full flex flex-column">
         <div class="text-lg font-semibold mb-1">
           Composici&oacute;n de Cobranza
         </div>
@@ -183,3 +199,5 @@
   </div>
   }
 </section>
+
+

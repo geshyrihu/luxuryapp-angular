@@ -1,4 +1,11 @@
-<div class="rf-shell fadein">
+<div class="rf-shell fadein flex flex-column">
+  @if (showEspejo()) {
   <!-- Reutilizamos el componente exacto del módulo de Presupuestos, pero como vista cliente -->
-  <app-espejo-aspel-extraordinarios [isClientView]="true" />
+  <app-espejo-aspel-extraordinarios [isClientView]="true" class="flex-1 flex flex-column w-full h-full" />
+  } @else {
+  <div class="rf-card p-4">
+    <lx-skeleton height="2rem" styleClass="mb-2" />
+    <lx-skeleton height="10rem" />
+  </div>
+  }
 </div>

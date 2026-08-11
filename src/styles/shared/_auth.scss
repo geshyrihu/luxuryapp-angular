@@ -15,14 +15,14 @@
   border: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
-  color: #ffffff;
+  color: var(--ds-on-dark);
 
   /* Vista Escritorio: Efecto de cristal flotante */
   @media screen and (min-width: 768px) {
-    background: rgba(15, 15, 18, 0.75) !important;
+    background: var(--ds-surface-glass) !important;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid var(--ds-border-on-dark) !important;
     box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.5) !important;
     border-radius: 1rem !important;
   }
@@ -31,32 +31,32 @@
 /* Texto blanco solo en elementos tipográficos, no en controles de formulario */
 .glass-auth-card h4,
 .glass-auth-card p {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: var(--ds-on-dark-default) !important;
 }
 
 .glass-auth-card .text-600 {
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: var(--ds-on-dark-soft) !important;
 }
 
 .glass-auth-card .text-900 {
-  color: #ffffff !important;
+  color: var(--ds-on-dark) !important;
 }
 
 /* Labels de campo en blanco para contraste sobre el fondo oscuro */
 .glass-auth-card .field-label {
-  color: rgba(255, 255, 255, 0.85) !important;
+  color: var(--ds-on-dark-label) !important;
 }
 
 /* Inputs y textareas: texto oscuro sobre fondo blanco del control */
 .glass-auth-card input,
 .glass-auth-card textarea {
-  color: var(--ds-text-primary, #1c1c1e) !important;
+  color: var(--ds-text-primary) !important;
 }
 
 // ── AUTH DARK PANEL (login, reset-password, recover-password) ─────────────
 .auth-dark-panel {
   background: rgba(var(--ds-bg-auth-panel-rgb), 0.4);
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--ds-on-dark-strong);
 }
 
 .auth-dark-panel label,
@@ -65,50 +65,50 @@
 .auth-dark-panel .text-900,
 .auth-dark-panel .text-700,
 .auth-dark-panel .text-600 {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: var(--ds-on-dark-default) !important;
 }
 
 // Inputs: fondo semi-transparente más visible sobre el panel oscuro
 .auth-dark-panel input,
 .auth-dark-panel .p-select,
 .auth-dark-panel .p-inputtext {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border-color: rgba(255, 255, 255, 0.35) !important;
-  color: #ffffff !important;
+  background: var(--ds-border-on-dark) !important;
+  border-color: var(--ds-border-on-dark-strong) !important;
+  color: var(--ds-on-dark) !important;
 }
 
 .auth-dark-panel input::placeholder,
 .auth-dark-panel .p-select-label.p-placeholder {
-  color: rgba(255, 255, 255, 0.45) !important;
+  color: var(--ds-on-dark-subtle) !important;
 }
 
 // FloatLabel: label blanca sobre el panel oscuro (variant="on")
 .auth-dark-panel .p-floatlabel label {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: var(--ds-on-dark-muted) !important;
   background: transparent !important;
 }
 
 // FloatLabel: cuando el campo tiene valor o está enfocado, label sube al borde
 .auth-dark-panel .p-floatlabel:has(input:not(:placeholder-shown)) label,
 .auth-dark-panel .p-floatlabel:has(input:focus) label {
-  color: rgba(255, 255, 255, 0.95) !important;
+  color: var(--ds-on-dark-strong) !important;
 }
 
 // Password: icono de mostrar/ocultar (PrimeNG 21 usa button, no <i> directo)
 .auth-dark-panel .p-password button,
 .auth-dark-panel .p-password-mask-toggle-button {
-  color: rgba(255, 255, 255, 0.75) !important;
-  &:hover { color: #ffffff !important; }
+  color: var(--ds-on-dark-muted) !important;
+  &:hover { color: var(--ds-on-dark) !important; }
 }
 
 // Fallback para versiones anteriores de PrimeNG con <i>
 .auth-dark-panel .p-password i,
 .auth-dark-panel .p-password .p-icon {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: var(--ds-on-dark-muted) !important;
 }
 
 .auth-dark-panel .p-password-meter {
-  background: rgba(255, 255, 255, 0.2) !important;
+  background: var(--ds-surface-dark-emphasis) !important;
 }
 
 // Bordes en foco: primary ligero sobre fondo oscuro

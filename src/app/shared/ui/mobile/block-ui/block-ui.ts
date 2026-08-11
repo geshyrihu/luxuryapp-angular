@@ -32,7 +32,7 @@ import { BlockUIBase } from "@ui/base/block-ui.base";
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--ds-bg-overlay, rgba(0, 0, 0, 0.35));
+        background: var(--ds-bg-overlay);
         z-index: 100;
         border-radius: inherit;
       }
@@ -50,14 +50,14 @@ import { BlockUIBase } from "@ui/base/block-ui.base";
       .ili-block-ui-spinner-ring {
         width: 32px;
         height: 32px;
-        border: 3px solid var(--ds-border, #e2e8f0);
-        border-top-color: var(--ds-primary, #003d9b);
+        border: 3px solid var(--ds-border);
+        border-top-color: var(--ds-primary);
         border-radius: 50%;
         animation: ili-spin 0.6s linear infinite;
       }
       .ili-block-ui-spinner-text {
-        font-size: var(--ds-font-size-label, 0.875rem);
-        color: var(--ds-bg-surface, #fff);
+        font-size: var(--ds-font-size-label);
+        color: var(--ds-bg-surface);
         font-weight: 500;
       }
       @keyframes ili-spin {

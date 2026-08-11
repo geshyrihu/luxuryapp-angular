@@ -68,7 +68,7 @@
             [attr.aria-label]="'Ver detalle candidato ' + item.fullName"
             (clicked)="detail.emit(item.id)"
           />
-          @if (item.status === 0) {
+          @if (item.status === candidateStatus.Active) {
           <iw-button-delete
             size="sm"
             class="btn--circle"

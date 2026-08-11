@@ -85,15 +85,15 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         opacity: 1;
       }
       .ili-stepper-active .ili-stepper-indicator {
-        background: var(--ds-primary, #003d9b);
-        color: #ffffff;
+        background: var(--ds-primary);
+        color: var(--ds-on-primary);
       }
       .ili-stepper-completed {
         opacity: 0.8;
       }
       .ili-stepper-completed .ili-stepper-indicator {
-        background: var(--ds-success, #2e7d32);
-        color: #ffffff;
+        background: var(--ds-success);
+        color: var(--ds-on-primary);
       }
       .ili-stepper-indicator {
         display: flex;
@@ -101,8 +101,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         justify-content: center;
         width: 28px;
         height: 28px;
-        border-radius: var(--ds-radius-full, 9999px);
-        background: var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-full);
+        background: var(--ds-border);
         color: var(--ds-text-secondary);
         font-size: 0.75rem;
         font-weight: 700;

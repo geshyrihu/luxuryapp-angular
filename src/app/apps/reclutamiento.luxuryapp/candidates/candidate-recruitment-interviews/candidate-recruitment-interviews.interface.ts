@@ -1,0 +1,46 @@
+import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
+
+export type RecruitmentBoardAction = "send" | "schedule" | "reschedule" | "assign";
+
+export interface CandidateRecruitmentInterviewBoard {
+  requestPositionId: string;
+  workPositionId: string;
+  vacancyFolio: string;
+  positionName: string;
+  customerName: string;
+  customerId: string;
+  vacancyStatus: string;
+  candidatesCount: number;
+  pendingInterviewCount: number;
+  scheduledCount: number;
+  overdueCount: number;
+  nextInterviewAt?: string | null;
+  candidates: CandidateRecruitmentInterviewBoardItem[];
+}
+
+export interface CandidateRecruitmentInterviewBoardItem {
+  candidateApplicationId: string;
+  candidateId: string;
+  candidateName: string;
+  currentStage: CandidateApplicationStage;
+  applicationDate?: string | null;
+  recruitmentInterviewAt?: string | null;
+  operationsInterviewAt?: string | null;
+  assignedInterviewerUserId: string;
+  assignedInterviewerName: string;
+  agendaStatusCode: string;
+  agendaStatusLabel: string;
+  cvFileUrl: string;
+  cvFileName: string;
+  canSendToInterview: boolean;
+  canSchedule: boolean;
+  canReschedule: boolean;
+}
+
+export interface ScheduleRecruitmentInterviewRequest {
+  recruitmentInterviewAt?: string | null;
+  operationsInterviewAt?: string | null;
+  operationsInterviewAssignedToUserId?: string | null;
+  comment?: string | null;
+  cancelInterview?: boolean;
+}

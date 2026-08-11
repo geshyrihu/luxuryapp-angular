@@ -120,9 +120,9 @@ export type SkeletonPresetType =
   styles: [
     `
       .sk-card {
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         padding: 1rem;
       }
       .sk-table,

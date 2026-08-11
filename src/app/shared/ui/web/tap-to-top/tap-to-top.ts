@@ -10,7 +10,7 @@ import { ScrollTopModule } from "primeng/scrolltop";
     <p-scrolltop
       [threshold]="600"
       [icon]="'pi pi-arrow-up'"
-      [style]="{ background: 'var(--ds-primary)', color: '#fff' }"
+      [style]="{ background: 'var(--ds-primary)', color: 'var(--ds-on-primary)' }"
     />
   `,
   styles: [

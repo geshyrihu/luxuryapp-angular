@@ -39,7 +39,7 @@ import { LoaderBase } from "../../base/loader.base";
         position: absolute;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.4);
+        background: color-mix(in srgb, white 40%, transparent);
         backdrop-filter: blur(8px) saturate(180%);
         -webkit-backdrop-filter: blur(8px) saturate(180%);
       }
@@ -66,17 +66,17 @@ import { LoaderBase } from "../../base/loader.base";
         background: conic-gradient(
           from 0deg,
           transparent 30%,
-          var(--primary-500, #0b3164)
+          var(--primary-500)
         );
         -webkit-mask: radial-gradient(
           farthest-side,
           transparent calc(100% - 6px),
-          #000 0
+          var(--ds-text-primary) 0
         );
         mask: radial-gradient(
           farthest-side,
           transparent calc(100% - 6px),
-          #000 0
+          var(--ds-text-primary) 0
         );
         animation: spin 1s linear infinite;
       }
@@ -85,8 +85,8 @@ import { LoaderBase } from "../../base/loader.base";
         width: 60%;
         height: 60%;
         border-radius: 50%;
-        border: 2px solid var(--primary-100, rgba(11, 49, 100, 0.1));
-        border-top-color: var(--primary-500, #0b3164);
+        border: 2px solid var(--primary-100);
+        border-top-color: var(--primary-500);
         animation: spin 1.5s reverse linear infinite;
         opacity: 0.5;
       }
@@ -94,7 +94,7 @@ import { LoaderBase } from "../../base/loader.base";
         font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         font-size: 0.9rem;
         font-weight: 500;
-        color: var(--primary-700, #072042);
+        color: var(--primary-700);
         letter-spacing: 0.1em;
         text-transform: uppercase;
         animation: pulse 2s ease-in-out infinite;

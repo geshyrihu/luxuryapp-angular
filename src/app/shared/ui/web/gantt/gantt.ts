@@ -149,7 +149,7 @@ export interface GanttTask {
         gap: 0.5rem;
       }
       .gantt-title {
-        font-size: var(--ds-font-size-section-title, 1.25rem);
+        font-size: var(--ds-font-size-section-title);
         font-weight: 600;
         color: var(--ds-text-primary);
         margin: 0;
@@ -178,7 +178,7 @@ export interface GanttTask {
         color: var(--ds-primary);
       }
       .gantt-nav-range {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         font-weight: 600;
         color: var(--ds-text-primary);
         white-space: nowrap;
@@ -186,21 +186,21 @@ export interface GanttTask {
       /* Body */
       .gantt-body {
         display: flex;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         overflow: hidden;
       }
       /* Labels */
       .gantt-labels {
         width: 200px;
         flex-shrink: 0;
-        border-right: 1px solid var(--ds-border, #e2e8f0);
-        background: var(--ds-bg-surface, #fff);
+        border-right: 1px solid var(--ds-border);
+        background: var(--ds-bg-surface);
       }
       .gantt-labels-header {
         height: 36px;
         border-bottom: 1px solid var(--ds-border);
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
       }
       .gantt-row-label {
         height: 40px;
@@ -211,7 +211,7 @@ export interface GanttTask {
         border-bottom: 1px solid var(--ds-border);
       }
       .gantt-task-name {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         font-weight: 600;
         color: var(--ds-text-primary);
         white-space: nowrap;
@@ -219,7 +219,7 @@ export interface GanttTask {
         text-overflow: ellipsis;
       }
       .gantt-task-assignee {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       /* Timeline */
@@ -232,7 +232,7 @@ export interface GanttTask {
       .gantt-day-headers {
         display: flex;
         height: 36px;
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
         border-bottom: 1px solid var(--ds-border);
         position: sticky;
         top: 0;
@@ -250,12 +250,12 @@ export interface GanttTask {
         color: var(--ds-text-muted);
       }
       .gantt-day-today {
-        background: var(--ds-primary-100, #dae2ff);
-        color: var(--ds-primary, #003d9b);
+        background: var(--primary-100);
+        color: var(--ds-primary);
         font-weight: 700;
       }
       .gantt-day-weekend {
-        background: var(--ds-bg-sunken, #e8edff);
+        background: var(--ds-bg-sunken);
       }
       .gantt-day-num {
         font-weight: 600;
@@ -284,17 +284,17 @@ export interface GanttTask {
         border-right: 1px solid var(--ds-border);
       }
       .gantt-cell-today {
-        background: rgba(0, 61, 155, 0.04);
+        background: color-mix(in srgb, var(--ds-primary) 4%, transparent);
       }
       .gantt-cell-weekend {
-        background: var(--ds-bg-sunken, #e8edff);
+        background: var(--ds-bg-sunken);
       }
       /* Bar */
       .gantt-bar {
         position: absolute;
         top: 6px;
         height: 28px;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         display: flex;
         align-items: center;
         padding: 0 6px;
@@ -311,13 +311,13 @@ export interface GanttTask {
       .gantt-bar-progress {
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.2);
+        background: color-mix(in srgb, black 20%, transparent);
         border-radius: inherit;
       }
       .gantt-bar-label {
         font-size: 0.65rem;
         font-weight: 600;
-        color: #fff;
+        color: var(--ds-on-primary);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -326,7 +326,7 @@ export interface GanttTask {
       }
       .gantt-bar-pct {
         font-size: 0.6rem;
-        color: rgba(255, 255, 255, 0.8);
+        color: color-mix(in srgb, white 80%, transparent);
         position: relative;
         z-index: 1;
         flex-shrink: 0;

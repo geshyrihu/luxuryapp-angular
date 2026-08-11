@@ -8,12 +8,13 @@ import {
   untracked,
 } from "@angular/core";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { EspejoAspelExtraordinarios } from "../../presupuesto-web-aspel/espejo-aspel-extraordinarios";
 import { PresupuestoWebAspelService } from "../../presupuesto-web-aspel/presupuesto-web-aspel.service";
 
 @Component({
   selector: "app-cedula-extraordinaria-cliente",
-  imports: [EspejoAspelExtraordinarios],
+  imports: [EspejoAspelExtraordinarios, LxSkeleton],
   providers: [PresupuestoWebAspelService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-extraordinaria-cliente.html",

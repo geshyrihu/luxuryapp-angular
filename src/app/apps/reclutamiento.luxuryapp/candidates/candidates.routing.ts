@@ -43,4 +43,77 @@ export const candidatesRoutes: Routes = [
       breadcrumb: "Entrevistas Pendientes",
     },
   },
+  {
+    path: "interviews/respond",
+    loadComponent: () =>
+      import(
+        "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/candidate-interview-response"
+      ).then((m) => m.CandidateInterviewResponse),
+    canActivate: [authGuard],
+    data: {
+      title: "Responder Entrevista",
+      breadcrumb: "Responder Entrevista",
+    },
+  },
+  {
+    path: "interviewer-queue",
+    loadComponent: () =>
+      import(
+        "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interviewer-queue/candidate-interviewer-queue"
+      ).then((m) => m.CandidateInterviewerQueue),
+    canActivate: [authGuard],
+    data: {
+      title: "Entrevistas y Seguimiento",
+      breadcrumb: "Entrevistas y Seguimiento",
+    },
+  },
+  {
+    path: "recruitment-agenda",
+    loadComponent: () =>
+      import(
+        "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-agenda-list"
+      ).then((m) => m.RecruitmentAgendaList),
+    canActivate: [authGuard],
+    data: {
+      title: "Agenda Reclutamiento",
+      breadcrumb: "Agenda Reclutamiento",
+    },
+  },
+  {
+    path: "work-position/:workPositionId/candidates",
+    loadComponent: () =>
+      import(
+        "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-work-position-candidates/candidate-work-position-candidates"
+      ).then((m) => m.CandidateWorkPositionCandidates),
+    canActivate: [authGuard],
+    data: {
+      title: "Detalle del Puesto y Candidatos",
+      breadcrumb: "Detalle del Puesto",
+    },
+  },
+  {
+    path: "kpis",
+    loadComponent: () =>
+      import(
+        "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-application/candidate-application-kpis"
+      ).then((m) => m.CandidateApplicationKpis),
+    canActivate: [authGuard],
+    data: {
+      title: "Indicadores Reclutamiento",
+      breadcrumb: "Indicadores",
+    },
+  },
+  {
+    // Entrada operativa principal de Reclutamiento para gestionar entrevistas.
+    path: "recruitment-interviews",
+    loadComponent: () =>
+      import(
+        "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-recruitment-interviews/candidate-recruitment-interviews"
+      ).then((m) => m.CandidateRecruitmentInterviews),
+    canActivate: [authGuard],
+    data: {
+      title: "Entrevistas Reclutamiento",
+      breadcrumb: "Entrevistas Reclutamiento",
+    },
+  },
 ];

@@ -77,7 +77,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         padding: 0.25rem;
         font-size: 1.6rem;
         line-height: 1;
-        color: var(--ds-warning, #f59e0b);
+        color: var(--ds-accent-text-warning);
         cursor: pointer;
         display: inline-flex;
       }
@@ -86,7 +86,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         height: 24px;
         margin-left: 0.25rem;
         border-radius: 50%;
-        border: 1px solid var(--ds-border-strong, #cbd5e1);
+        border: 1px solid var(--ds-border-strong);
         background: none;
         font-size: 0.7rem;
         color: var(--ds-text-muted);

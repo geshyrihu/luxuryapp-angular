@@ -1,3 +1,4 @@
+@if (dataSignal()) {
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -44,9 +45,9 @@
       </td>
       <td
         class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
-        [title]="item.applicationRole"
+        [title]="item.profession || item.applicationRole || ''"
       >
-        {{ item.applicationRole }}
+        {{ item.profession || item.applicationRole }}
       </td>
       <td class="text-center">
         <lx-tag
@@ -69,6 +70,7 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
+}
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -88,8 +90,8 @@
       </div>
 
       <h3>{{ item.nameEmployee }}</h3>
-      <p>{{ item.nameCustomer }} é {{ item.applicationRole }}</p>
-      <p>{{ item.executionDate }} é {{ item.status }}</p>
+      <p>{{ item.nameCustomer }} - {{ item.profession || item.applicationRole }}</p>
+      <p>{{ item.executionDate }} - {{ item.status }}</p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

@@ -24,7 +24,7 @@ import { MegaMenuModule } from "primeng/megamenu";
         > .p-menuitem-content
         .p-menuitem-link {
         padding: 0.625rem 1rem;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
       }
       app-mega-menu
@@ -35,9 +35,9 @@ import { MegaMenuModule } from "primeng/megamenu";
         color: var(--ds-primary);
       }
       app-mega-menu .p-megamenu-panel {
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         box-shadow: var(--ds-shadow-lg);
       }
     `,

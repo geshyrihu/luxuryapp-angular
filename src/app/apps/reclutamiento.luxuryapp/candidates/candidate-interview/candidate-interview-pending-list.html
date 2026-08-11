@@ -1,19 +1,24 @@
 <div class="card p-3 mb-2">
-  <p class="m-0 text-sm text-color-secondary">
-    Esta bandeja solo muestra postulaciones en etapas de entrevista:
-    reclutamiento y operaciones.
-  </p>
+  <div class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-2">
+    <p class="m-0 text-sm text-color-secondary">
+      Esta bandeja solo muestra postulaciones en etapas de entrevista:
+      reclutamiento y operaciones.
+    </p>
+    <a routerLink="/recruitment/candidates/recruitment-agenda" class="btn btn-secondary btn-sm w-fit">
+      Ver agenda de reclutamiento
+    </a>
+  </div>
 </div>
 
 @if (platformS.isMobile()) {
   <app-candidate-interview-pending-mobile
-    [data]="dataSignal()"
+    [data]="filteredData()"
     [globalFilterFields]="globalFilterFields()"
     (feedback)="onFeedback($event)"
   />
 } @else {
   <app-candidate-interview-pending-desktop
-    [data]="dataSignal()"
+    [data]="filteredData()"
     [globalFilterFields]="globalFilterFields()"
     (feedback)="onFeedback($event)"
   />

@@ -5,24 +5,109 @@
 //        presupuesto-web-aspel, presupuesto-propuesta.
 // ============================================================
 
-// ── VARIABLES CSS — Reporte Financiero ────────────────────
+// ════════════════════════════════════════════════════════════
+// CAPA DE TOKENS CON ALCANCE — Reporte Financiero (--rf-*)
+// ════════════════════════════════════════════════════════════
+// Sprint 4 del plan de unificación de color (2026-08-10).
+//
+// ANTES: 103 valores hex dispersos por las 780 líneas del archivo, más
+// 11 tokens --rf-* con valores propios sin relación con el Design System.
+//
+// AHORA: ningún hex fuera de este bloque. Todo color del archivo se
+// referencia como var(--rf-*), y este bloque es su única fuente.
+//
+// POR QUÉ SIGUE HABIENDO LITERALES AQUÍ:
+// Se midió la distancia perceptual (ΔE76) de cada color contra su
+// candidato del Design System. Solo 3 de 16 resultaron imperceptibles
+// (ΔE < 2.5); el resto va de ΔE 5 a 13, es decir, cambios VISIBLES en
+// pantallas contables. Migrarlos habría cambiado la apariencia, que es
+// justo lo que este sprint tenía prohibido hacer sin verificación visual.
+//
+// Estos valores NO pertenecen a la paleta global: solo los usa este
+// módulo. Por eso viven aquí con alcance propio y no en core/_colors.scss
+// (ver docs/conventions/operations/plan-agent-instructions.md §3.6.2).
+//
+// PENDIENTE DE DECISIÓN — alineación cromática con la marca:
+// alinear estos colores a los tokens --ds-* es deseable pero es un cambio
+// visible que requiere visto bueno del área contable. Al estar todo
+// centralizado aquí, esa migración pasó de 103 ediciones a ~20 líneas.
+// Tabla de equivalencias y deltas en el reporte de Sprint 4.
+// ════════════════════════════════════════════════════════════
 :root {
-  --rf-ink: #0f172a;
-  --rf-muted: #64748b;
-  --rf-line: #d7dfeb;
+  // ── Superficies ──
+  // NO derivar estos de --ds-document-* aunque el rol coincida: esos tokens
+  // cambian de valor en tema oscuro, y los otros 45 de esta capa no. Mezclar
+  // ambos dejaría texto oscuro sobre fondo oscuro en dark mode. La capa --rf-*
+  // es INVARIANTE AL TEMA, igual que lo era este archivo antes de Sprint 4
+  // (nunca tuvo bloque .theme-dark). Ver "pendiente de decisión" arriba.
+  --rf-surface: #ffffff;
   --rf-soft: #f5f7fb;
-  --rf-head: #203453;
-  --rf-accent: #1e3a5f;
-  --rf-total: color-mix(
-    in srgb,
-    var(--ds-document-neutral, #6b7280) 20%,
-    white
-  ); /* tinte claro del neutral */
-  --rf-total-ink: var(--rf-head); /* texto sobre fondo total */
-  --rf-result: #111827;
+  --rf-row-alt: #f1f5f9;
+  --rf-row-group: #f8fafc;
+  --rf-total: color-mix(in srgb, var(--ds-document-neutral) 20%, white);
+
+  // ── Tinta y líneas ──
+  --rf-ink: #0f172a; // ΔE 5.3 vs --ds-document-ink
+  --rf-muted: #64748b; // ΔE 6.3 vs --ds-text-secondary
+  --rf-muted-2: #6c757d; // gris de tipografía compacta
+  --rf-muted-3: #9ca3af; // gris de tipografía extra pequeña
+  --rf-line: #d7dfeb; // ΔE 3.9 vs --ds-border
+  --rf-total-ink: var(--rf-head);
+
+  // ── Navy institucional del reporte ──
+  --rf-head: #203453; // ΔE 5.2 vs --ds-primary (#003152)
+  --rf-accent: #1e3a5f; // ΔE 13.1 vs --primary-800
+  --rf-navy: #1e3a8a; // cabecera del espejo y filas nivel 1
+  --rf-navy-soft: #dbeafe; // agrupadoras nivel 2
+  --rf-grad-from: #294575; // degradado de thead
+  --rf-grad-to: #182946;
+  --rf-blue-medium: #1669a3;
+  --rf-blue-dark: #0d3b66;
+
+  // ── Resultado (superficie inversa) ──
+  --rf-result: #111827; // ΔE 10.1 vs --ds-inverse-surface
   --rf-result-ink: #ffffff;
-  --rf-fondo-bg: #f0f4f8;
+
+  // ── Neutros oscuros de cabecera densa ──
+  --rf-thead-dense-bg: #18181b;
+  --rf-thead-dense-border: #27272a;
+  --rf-col-dark: #1f2937;
+  --rf-section-bg: #334155;
+  --rf-on-dark: #ffffff;
+
+  // ── Estado de selección de mes ──
+  --rf-selected-bg: #15803d;
+  --rf-deselected-bg: #94a3b8;
+  --rf-deselected-ink: #e2e8f0;
+
+  // ── Semánticos contables ──
+  --rf-green: #16a34a;
+  --rf-green-soft: #ecfdf5;
+  --rf-orange: #ea580c;
+  --rf-red: #b91c1c;
+  --rf-neg: #c62828;
+  --rf-dot-cargo: #1d4ed8;
+  --rf-dot-abono: #dc2626;
+
+  // ── Bloque "fondo" ──
+  // --rf-fondo-bg eliminado: definido en el original y nunca referenciado.
+  --rf-fondo-row: #dbe3ef;
+  --rf-fondo-total: #b0c4de;
   --rf-header-bg: #c8d8ea;
+
+  // ── Secciones del balance mensual ──
+  --rf-activo-bg: #e3f2fd;
+  --rf-activo-ink: #0d47a1;
+  --rf-pasivo-bg: #fbe9e7;
+  --rf-pasivo-ink: #b71c1c;
+  --rf-capital-bg: #f1f8e9;
+  --rf-capital-ink: #1b5e20;
+
+  // ── Tintes y sombras (translúcidos) ──
+  --rf-shadow-card: 0 8px 22px rgba(15, 23, 42, 0.05);
+  --rf-sum-tint: rgba(32, 52, 83, 0.05);
+  --rf-deficit-tint: rgba(239, 68, 68, 0.08);
+  --rf-alerta-tint: rgba(245, 158, 11, 0.08);
 }
 
 // ── LAYOUT — contenedores presupuestales ──────────────────
@@ -53,9 +138,9 @@
   &.p-datatable,
   .p-datatable {
     .p-datatable-thead > tr > th {
-      background-color: #18181b !important;
-      color: #ffffff !important;
-      border-color: #27272a !important;
+      background-color: var(--rf-thead-dense-bg) !important;
+      color: var(--rf-on-dark) !important;
+      border-color: var(--rf-thead-dense-border) !important;
       font-weight: 600;
       font-size: 0.75rem;
       padding: 0.4rem 0.5rem;
@@ -70,11 +155,11 @@
     }
 
     .p-sortable-column-icon {
-      color: #ffffff !important;
+      color: var(--rf-on-dark) !important;
     }
 
     .p-sortable-column:hover {
-      background-color: var(--primary-600, #092953) !important;
+      background-color: var(--primary-600) !important;
     }
   }
 }
@@ -92,8 +177,8 @@
     }
 
     .p-datatable-tfoot > tr > td {
-      background-color: var(--ds-bg-sunken, #f8fafc);
-      border-top: 2px solid var(--ds-border, #e2e8f0);
+      background-color: var(--ds-bg-sunken);
+      border-top: 2px solid var(--ds-border);
       font-weight: 700;
       font-size: 0.8rem;
       padding: 0.4rem 0.5rem;
@@ -109,13 +194,13 @@
 }
 
 .th-selected {
-  background-color: #15803d !important;
-  color: #ffffff !important;
+  background-color: var(--rf-selected-bg) !important;
+  color: var(--rf-on-dark) !important;
 }
 
 .th-deselected {
-  background-color: #94a3b8 !important;
-  color: #e2e8f0 !important;
+  background-color: var(--rf-deselected-bg) !important;
+  color: var(--rf-deselected-ink) !important;
   opacity: 0.7;
 }
 
@@ -133,12 +218,12 @@
 // ── TIPOGRAFÍA COMPACTA ───────────────────────────────────
 .font-small-gray {
   font-size: 0.75rem;
-  color: #6c757d;
+  color: var(--rf-muted-2);
 }
 
 .font-xsmall-gray {
   font-size: 0.68rem;
-  color: #9ca3af;
+  color: var(--rf-muted-3);
   line-height: 1.4;
 }
 
@@ -159,51 +244,51 @@
 // ── CABECERAS DE COLUMNA CON COLOR SEMÁNTICO ──────────────
 // Para tablas con headers multicolor (ej. cedula-presupuestal).
 .th-col-dark {
-  background-color: #1f2937 !important;
-  color: #ffffff !important;
+  background-color: var(--rf-col-dark) !important;
+  color: var(--rf-on-dark) !important;
 }
 
 .th-col-green {
-  background-color: #15803d !important;
-  color: #ffffff !important;
+  background-color: var(--rf-selected-bg) !important;
+  color: var(--rf-on-dark) !important;
 }
 
 .th-col-orange {
-  background-color: #ea580c !important;
-  color: #ffffff !important;
+  background-color: var(--rf-orange) !important;
+  color: var(--rf-on-dark) !important;
 }
 
 .th-col-red {
-  background-color: #b91c1c !important;
-  color: #ffffff !important;
+  background-color: var(--rf-red) !important;
+  color: var(--rf-on-dark) !important;
 }
 
 .th-col-blue-medium {
-  background-color: #1669a3 !important;
-  color: #ffffff !important;
+  background-color: var(--rf-blue-medium) !important;
+  color: var(--rf-on-dark) !important;
 }
 
 .th-col-blue-dark {
-  background-color: #0d3b66 !important;
-  color: #ffffff !important;
+  background-color: var(--rf-blue-dark) !important;
+  color: var(--rf-on-dark) !important;
 }
 
 // ── FILAS DE SECCIÓN / TOTAL ──────────────────────────────
 // Para filas de encabezado de sección dentro de tablas nativas.
 .tr-section > td {
-  background-color: #334155 !important;
-  color: #ffffff !important;
+  background-color: var(--rf-section-bg) !important;
+  color: var(--rf-on-dark) !important;
 }
 
 .tr-total-green > td {
-  background-color: #ecfdf5 !important;
-  border-top: 2px solid #16a34a !important;
+  background-color: var(--rf-green-soft) !important;
+  border-top: 2px solid var(--rf-green) !important;
 }
 
 // ── FILAS JERÁRQUICAS — presupuesto-web-aspel / presupuesto-propuesta ──
 .fila-nivel-1 > td {
-  background-color: #1e3a8a !important;
-  color: #ffffff !important;
+  background-color: var(--rf-navy) !important;
+  color: var(--rf-on-dark) !important;
   font-weight: 700;
   height: 2.25rem !important;
   max-height: 2.25rem !important;
@@ -216,8 +301,8 @@
 }
 
 .fila-nivel-2-agrupadora > td {
-  background-color: #dbeafe !important;
-  color: #1e3a8a !important;
+  background-color: var(--rf-navy-soft) !important;
+  color: var(--rf-navy) !important;
   font-weight: 600;
   height: 2.25rem !important;
   max-height: 2.25rem !important;
@@ -230,13 +315,13 @@
 }
 
 .fila-nivel-2-hoja > td {
-  background-color: #f1f5f9;
+  background-color: var(--rf-row-alt);
   max-height: 3.5rem !important;
   overflow: hidden;
 }
 
 .fila-nivel-3-hoja > td {
-  background-color: #ffffff;
+  background-color: var(--rf-surface);
   max-height: 3.5rem !important;
   overflow: hidden;
 }
@@ -244,8 +329,8 @@
 // ── ESPEJO ASPEL FULL — utilidades específicas ────────────
 // Cabecera navy del espejo (azul oscuro distinto del sidebar-bg).
 .th-col-navy {
-  background: #1e3a8a !important;
-  color: #ffffff !important;
+  background: var(--rf-navy) !important;
+  color: var(--rf-on-dark) !important;
 }
 
 // Celda de dato mensual: padding compacto.
@@ -269,13 +354,13 @@
   flex-shrink: 0;
 }
 .legend-dot-cargo {
-  background: #1d4ed8;
+  background: var(--rf-dot-cargo);
 }
 .legend-dot-abono {
-  background: #dc2626;
+  background: var(--rf-dot-abono);
 }
 .legend-dot-presupuesto {
-  background: #16a34a;
+  background: var(--rf-green);
 }
 
 // ── FILAS JERÁRQUICAS — espejo-aspel-full ────────────────
@@ -293,12 +378,12 @@
 }
 
 .fila-nivel2 > td {
-  background: #f8fafc !important;
+  background: var(--rf-row-group) !important;
   color: var(--rf-ink) !important;
 }
 
 .fila-nivel3 > td {
-  background-color: #ffffff !important;
+  background-color: var(--rf-surface) !important;
   color: var(--rf-ink) !important;
 }
 
@@ -311,11 +396,11 @@
 }
 
 .rf-card {
-  background: #ffffff;
+  background: var(--rf-surface);
   border: 1px solid var(--rf-line);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--rf-shadow-card);
 }
 
 .rf-wrap,
@@ -357,8 +442,8 @@
   }
 
   thead th {
-    background: linear-gradient(180deg, #294575 0%, #182946 100%);
-    color: #ffffff;
+    background: linear-gradient(180deg, var(--rf-grad-from) 0%, var(--rf-grad-to) 100%);
+    color: var(--rf-on-dark);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -373,7 +458,7 @@
 }
 
 .rf-row-concepto td {
-  background: #ffffff;
+  background: var(--rf-surface);
 }
 
 .rf-row-total td {
@@ -390,7 +475,7 @@
 }
 
 .rf-row-fondo td {
-  background: #dbe3ef;
+  background: var(--rf-fondo-row);
   color: var(--rf-head);
   font-weight: 800;
   text-transform: uppercase;
@@ -406,24 +491,24 @@
 }
 
 .rf-row-fondo-total td {
-  background: #b0c4de;
+  background: var(--rf-fondo-total);
   font-weight: 800;
 }
 
 .rf-row-spacer td {
   height: 0.9rem;
-  background: #ffffff;
+  background: var(--rf-surface);
   border-left: none;
   border-right: none;
 }
 
 .rf-sum {
-  background: rgba(32, 52, 83, 0.05);
+  background: var(--rf-sum-tint);
   font-weight: 800;
 }
 
 .rf-neg {
-  color: #c62828;
+  color: var(--rf-neg);
 }
 
 .rf-toolbar {
@@ -465,8 +550,8 @@
     }
 
     .p-datatable-thead > tr > th {
-      background: linear-gradient(180deg, #294575 0%, #182946 100%) !important;
-      color: #ffffff !important;
+      background: linear-gradient(180deg, var(--rf-grad-from) 0%, var(--rf-grad-to) 100%) !important;
+      color: var(--rf-on-dark) !important;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -479,13 +564,13 @@
       padding: 0.55rem 0.9rem;
       border: 1px solid var(--rf-line) !important;
       white-space: nowrap;
-      background: #ffffff;
+      background: var(--rf-surface);
     }
   }
 }
 
 // Overrides de filas semánticas dentro de rf-prime-table.
-// Necesario porque .rf-prime-table aplica background:#ffffff a todos los td
+// Necesario porque .rf-prime-table aplica background:var(--rf-surface) a todos los td
 // con especificidad suficiente para tapar las clases rf-row-*.
 .rf-prime-table {
   &.p-datatable,
@@ -511,14 +596,14 @@
     }
 
     .p-datatable-tbody > tr.rf-row-fondo > td {
-      background: #dbe3ef !important;
+      background: var(--rf-fondo-row) !important;
       color: var(--rf-head) !important;
       font-weight: 800 !important;
       text-transform: uppercase;
     }
 
     .p-datatable-tbody > tr.rf-row-group > td {
-      background: #f8fafc !important;
+      background: var(--rf-row-group) !important;
       color: var(--rf-head) !important;
       font-weight: 800 !important;
     }
@@ -545,7 +630,7 @@
     }
 
     .p-datatable-tfoot > tr.rf-row-concepto > td {
-      background: #ffffff !important;
+      background: var(--rf-surface) !important;
       color: var(--rf-ink) !important;
     }
   }
@@ -557,55 +642,55 @@
   &.p-datatable,
   .p-datatable {
     .p-datatable-thead > tr > th.th-selected {
-      background-color: #15803d !important;
-      color: #ffffff !important;
+      background-color: var(--rf-selected-bg) !important;
+      color: var(--rf-on-dark) !important;
     }
 
     .p-datatable-thead > tr > th.th-deselected {
-      background-color: #94a3b8 !important;
-      color: #e2e8f0 !important;
+      background-color: var(--rf-deselected-bg) !important;
+      color: var(--rf-deselected-ink) !important;
       opacity: 0.7;
     }
 
     .p-datatable-thead > tr > th.th-col-dark {
-      background-color: #1f2937 !important;
-      color: #ffffff !important;
+      background-color: var(--rf-col-dark) !important;
+      color: var(--rf-on-dark) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-green {
-      background-color: #15803d !important;
-      color: #ffffff !important;
+      background-color: var(--rf-selected-bg) !important;
+      color: var(--rf-on-dark) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-orange {
-      background-color: #ea580c !important;
-      color: #ffffff !important;
+      background-color: var(--rf-orange) !important;
+      color: var(--rf-on-dark) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-red {
-      background-color: #b91c1c !important;
-      color: #ffffff !important;
+      background-color: var(--rf-red) !important;
+      color: var(--rf-on-dark) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-blue-medium {
-      background-color: #1669a3 !important;
-      color: #ffffff !important;
+      background-color: var(--rf-blue-medium) !important;
+      color: var(--rf-on-dark) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-blue-dark {
-      background-color: #0d3b66 !important;
-      color: #ffffff !important;
+      background-color: var(--rf-blue-dark) !important;
+      color: var(--rf-on-dark) !important;
     }
 
     .p-datatable-thead > tr > th.th-col-navy {
-      background: #1e3a8a !important;
-      color: #ffffff !important;
+      background: var(--rf-navy) !important;
+      color: var(--rf-on-dark) !important;
     }
   }
 }
 
 .rf-row-group td {
-  background: #f8fafc !important;
+  background: var(--rf-row-group) !important;
   color: var(--rf-head) !important;
   font-weight: 800 !important;
 }
@@ -615,7 +700,7 @@
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     monospace;
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--rf-muted);
 }
 
 .rf-td-descripcion {
@@ -671,16 +756,16 @@
   &.p-datatable,
   .p-datatable {
     .p-datatable-tbody > tr.rf-row-section--activo > td {
-      background-color: #e3f2fd !important;
-      color: #0d47a1 !important;
+      background-color: var(--rf-activo-bg) !important;
+      color: var(--rf-activo-ink) !important;
     }
     .p-datatable-tbody > tr.rf-row-section--pasivo > td {
-      background-color: #fbe9e7 !important;
-      color: #b71c1c !important;
+      background-color: var(--rf-pasivo-bg) !important;
+      color: var(--rf-pasivo-ink) !important;
     }
     .p-datatable-tbody > tr.rf-row-section--capital > td {
-      background-color: #f1f8e9 !important;
-      color: #1b5e20 !important;
+      background-color: var(--rf-capital-bg) !important;
+      color: var(--rf-capital-ink) !important;
     }
   }
 }
@@ -693,8 +778,8 @@
 }
 
 .rf-panel-title {
-  background: linear-gradient(180deg, #294575 0%, #182946 100%);
-  color: #ffffff;
+  background: linear-gradient(180deg, var(--rf-grad-from) 0%, var(--rf-grad-to) 100%);
+  color: var(--rf-on-dark);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -709,7 +794,7 @@
   border: 1px solid var(--rf-line);
   border-radius: 12px;
   overflow: hidden;
-  background: #ffffff;
+  background: var(--rf-surface);
 }
 
 .rf-panel-row {
@@ -719,7 +804,7 @@
   gap: 1rem;
   padding: 0.75rem 0.9rem;
   border-bottom: 1px solid var(--rf-line);
-  background: #ffffff;
+  background: var(--rf-surface);
 }
 
 .rf-panel-row:last-child {
@@ -756,25 +841,15 @@
 // ── ALERTAS FINANCIERAS (Forecast) ────────────────────────
 // Clases de utilidad para resaltar filas completas en base a cálculos
 .fila-deficit > td {
-  background-color: rgba(
-    239,
-    68,
-    68,
-    0.08
-  ) !important; /* Tinte muy sutil rojo */
+  background-color: var(--rf-deficit-tint) !important; /* Tinte muy sutil rojo */
 }
 .fila-deficit > td:first-child {
-  box-shadow: inset 4px 0 0 0 var(--ds-danger, #ef4444) !important; /* Borde izquierdo indicador */
+  box-shadow: inset 4px 0 0 0 var(--ds-danger) !important; /* Borde izquierdo indicador */
 }
 
 .fila-alerta-incremento > td {
-  background-color: rgba(
-    245,
-    158,
-    11,
-    0.08
-  ) !important; /* Tinte muy sutil naranja/amarillo */
+  background-color: var(--rf-alerta-tint) !important; /* Tinte muy sutil naranja/amarillo */
 }
 .fila-alerta-incremento > td:first-child {
-  box-shadow: inset 4px 0 0 0 var(--ds-warning, #f59e0b) !important; /* Borde izquierdo indicador */
+  box-shadow: inset 4px 0 0 0 var(--ds-warning) !important; /* Borde izquierdo indicador */
 }

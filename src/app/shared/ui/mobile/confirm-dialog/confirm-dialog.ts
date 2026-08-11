@@ -50,7 +50,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        background: var(--ds-bg-overlay, rgba(0, 0, 0, 0.4));
+        background: var(--ds-bg-overlay);
         backdrop-filter: blur(2px);
       }
       .ili-confirm-sheet {
@@ -62,8 +62,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         text-align: center;
         gap: 0.75rem;
         padding: 1.5rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
-        background: var(--ds-bg-surface, #fff);
-        border-radius: var(--ds-radius-modal, 12px) var(--ds-radius-modal, 12px)
+        background: var(--ds-bg-surface);
+        border-radius: var(--ds-radius-modal) var(--ds-radius-modal)
           0 0;
         box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
       }

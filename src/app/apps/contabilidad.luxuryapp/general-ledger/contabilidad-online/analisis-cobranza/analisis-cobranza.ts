@@ -1,226 +1,112 @@
-import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
-
+import { CommonModule, formatCurrency } from "@angular/common";
+import { Component, computed, effect, inject } from "@angular/core";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import {
-  IAnalisisCobranzaOnlineDto,
-  ICobranzaOnlineAnalysisCondominoDto,
-} from "../interfaces/aspel-budget.interface";
-import { AccountingNumberPipe } from "../pipes/accounting-number.pipe";
 import { reportFilterState } from "../state/financial-report-filter.state";
+import { CobranzaOnlineStoreService } from "src/app/apps/cobranza.luxuryapp/cobranza-online/state/cobranza-online-store.service";
+import { cobranzaOnlineFilterState } from "src/app/apps/cobranza.luxuryapp/cobranza-online/state/cobranza-online-filter.state";
+import { CobranzaOnlineMorosidad } from "src/app/apps/cobranza.luxuryapp/cobranza-online/morosidad/cobranza-online-morosidad";
+import { CobranzaOnlineTowers } from "src/app/apps/cobranza.luxuryapp/cobranza-online/towers/cobranza-online-towers";
+import { CobranzaOnlineAdvances } from "src/app/apps/cobranza.luxuryapp/cobranza-online/advances/cobranza-online-advances";
+import { CobranzaOnlineAnalysis } from "src/app/apps/cobranza.luxuryapp/cobranza-online/analysis/cobranza-online-analysis";
+import { SkeletonModule } from "primeng/skeleton";
+import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 
 @Component({
   selector: "app-analisis-cobranza",
   imports: [
     CommonModule,
-    FormsModule,
-    ChartWrapper,
-    CustomInputSelectSignal,
-    TableModule,
-    TagModule,
-    AccountingNumberPipe,
+    CobranzaOnlineMorosidad,
+    CobranzaOnlineTowers,
+    CobranzaOnlineAdvances,
+    CobranzaOnlineAnalysis,
+    SkeletonModule,
+    AppStatCard
   ],
+  providers: [CobranzaOnlineStoreService],
   templateUrl: "./analisis-cobranza.html",
 })
 export class AnalisisCobranza {
-  private readonly apiS = inject(ApiResponseService);
   private readonly customerIdS = inject(CustomerIdService);
-  readonly filterS = reportFilterState;
-
-  readonly loading = signal(false);
-  readonly selectedClassification = signal("TODAS");
-  readonly data = signal<IAnalisisCobranzaOnlineDto | null>(null);
-  readonly cutoffDateInput = signal("");
-
-  readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
-
-  readonly classificationOptions = [
-    { label: "TODAS", value: "TODAS" },
-    { label: "COBRANZA JUDICIAL", value: "COBRANZA JUDICIAL" },
-    { label: "MOROSOS", value: "MOROSOS" },
-    { label: "DEUDA CORRIENTE", value: "DEUDA CORRIENTE" },
-    { label: "SIN ADEUDO", value: "SIN ADEUDO" },
-  ];
-
-  readonly chartData = computed(() => {
-    const analysis = this.data();
-    if (!analysis) return null;
-
-    return {
-      labels: ["Morosos", "Deuda Corriente", "Cobrado"],
-      datasets: [
-        {
-          data: [
-            analysis.totalMorosos,
-            analysis.totalDeudaCorriente,
-            analysis.totalCobrado,
-          ],
-          backgroundColor: ["#dc2626", "#f59e0b", "#22c55e"],
-          hoverBackgroundColor: ["#dc2626", "#f59e0b", "#22c55e"],
-          borderWidth: 0,
-        },
-      ],
-    };
-  });
-
-  readonly chartOptions = {
-    plugins: { legend: { position: "bottom" } },
-    responsive: true,
-    maintainAspectRatio: false,
-  };
-
-  readonly filteredRows = computed<ICobranzaOnlineAnalysisCondominoDto[]>(
-    () => {
-      const analysis = this.data();
-      if (!analysis) {
-        return [];
-      }
-
-      switch (this.selectedClassification()) {
-        case "COBRANZA JUDICIAL":
-          return analysis.cobranzaJudicial;
-        case "MOROSOS":
-          return analysis.morosos;
-        case "DEUDA CORRIENTE":
-          return analysis.deudaCorriente;
-        case "SIN ADEUDO":
-          return analysis.sinAdeudo;
-        default:
-          return [
-            ...analysis.cobranzaJudicial,
-            ...analysis.morosos,
-            ...analysis.deudaCorriente,
-          ];
-      }
-    },
-  );
+  public readonly store = inject(CobranzaOnlineStoreService);
+  public readonly filterS = reportFilterState;
 
   constructor() {
+    effect(
+      () => {
+        const customerId = this.customerIdS.customerId();
+        const year = this.filterS.year();
+        const month = this.filterS.mesIdx() + 1;
+        this.filterS.refreshTick();
+
+        if (!customerId) {
+          return;
+        }
+
+        const day = new Date(year, month, 0).getDate();
+
+        cobranzaOnlineFilterState.year.set(year);
+        cobranzaOnlineFilterState.month.set(month);
+        cobranzaOnlineFilterState.day.set(day);
+      },
+      { allowSignalWrites: true }
+    );
+
     effect(() => {
-      const customerId = this.customerIdS.customerId();
-      const year = this.filterS.year();
-      const month = this.filterS.mesIdx() + 1;
-      this.filterS.refreshTick();
-
-      if (!customerId) {
-        this.data.set(null);
-        return;
+      const data = this.store.dashboardData();
+      if (data) {
+        this.filterS.currentReportName.set("Dashboard Unificado de Cobranza");
+        this.filterS.currentReportContext.set(JSON.stringify(data));
       }
-
-      const day = this.getLastDayOfMonth(year, month);
-      this.cutoffDateInput.set(
-        `${year}-${`${month}`.padStart(2, "0")}-${`${day}`.padStart(2, "0")}`,
-      );
-      void this.loadData(customerId, this.cutoffDateInput());
     });
   }
 
-  pct(value: number, total: number) {
-    if (!total) {
-      return "0%";
+  readonly formatMoneda = (val: number) => {
+    return formatCurrency(val, "en-US", "$", "USD", "1.0-0");
+  };
+
+  readonly kpis = computed(() => {
+    const dash = this.store.dashboardData();
+    if (!dash) return [];
+
+    const m = dash.currentCharges?.maintenance;
+    const e = dash.currentCharges?.extraordinary;
+    const r = dash.currentCharges?.restaurant;
+
+    const cards = [];
+
+    if (m && m.total > 0) {
+      cards.push({
+        label: "Mantenimiento Neto",
+        value: m.total,
+        subtitle: 'Abonado: ' + this.formatMoneda(m.collected) + ' · Faltante: ' + this.formatMoneda(m.pending),
+        icon: "mdi:home-city-outline",
+        iconColor: "var(--ds-info)",
+        iconBg: "var(--ds-info-light)"
+      });
     }
 
-    return `${((value / total) * 100).toFixed(1)}%`;
-  }
-
-  getSeverity(clasificacion: string) {
-    switch (clasificacion) {
-      case "COBRANZA JUDICIAL":
-        return "danger";
-      case "MOROSOS":
-        return "danger";
-      case "DEUDA CORRIENTE":
-        return "warning";
-      case "SIN ADEUDO":
-        return "success";
-      case "ANTICIPOS":
-        return "info";
-      default:
-        return "secondary";
+    if (e && e.total > 0) {
+      cards.push({
+        label: "Cuotas Extraordinarias",
+        value: e.total,
+        subtitle: 'Abonado: ' + this.formatMoneda(e.collected) + ' · Faltante: ' + this.formatMoneda(e.pending),
+        icon: "mdi:cash-plus",
+        iconColor: "var(--ds-warning)",
+        iconBg: "var(--ds-warning-light)"
+      });
     }
-  }
 
-  readonly uniqueConcepts = computed(() => {
-    const rows = this.filteredRows();
-    const concepts = new Set<string>();
-    for (const row of rows) {
-      if (row.desglose) {
-        for (const item of row.desglose) {
-          concepts.add(item.concepto);
-        }
-      }
+    if (r && r.total > 0) {
+      cards.push({
+        label: "Cuotas de Restaurante",
+        value: r.total,
+        subtitle: 'Abonado: ' + this.formatMoneda(r.collected) + ' · Faltante: ' + this.formatMoneda(r.pending),
+        icon: "mdi:silverware-fork-knife",
+        iconColor: "var(--ds-success)",
+        iconBg: "var(--ds-success-light)"
+      });
     }
-    return Array.from(concepts).sort();
+
+    return cards;
   });
-
-  get summaryRows() {
-    return [...this.filteredRows()].sort((a, b) => b.saldo - a.saldo);
-  }
-
-  getConceptBalance(
-    row: ICobranzaOnlineAnalysisCondominoDto,
-    concepto: string,
-  ) {
-    if (!row.desglose) return 0;
-    const item = row.desglose.find((d) => d.concepto === concepto);
-    return item ? item.saldoFinal : 0;
-  }
-
-  getTotalConceptBalance(concepto: string) {
-    let total = 0;
-    const rows = this.filteredRows();
-    for (const row of rows) {
-      total += this.getConceptBalance(row, concepto);
-    }
-    return total;
-  }
-
-  get totalFilteredSaldo() {
-    return this.filteredRows().reduce((acc, curr) => acc + curr.saldo, 0);
-  }
-
-  private getLastDayOfMonth(year: number, month: number) {
-    return new Date(year, month, 0).getDate();
-  }
-
-  private async loadData(customerId: string, cutoffDateInput: string) {
-    const cutoffDate = new Date(`${cutoffDateInput}T12:00:00`);
-
-    if (Number.isNaN(cutoffDate.getTime())) {
-      this.data.set(null);
-      return;
-    }
-
-    const year = cutoffDate.getFullYear();
-    const month = cutoffDate.getMonth() + 1;
-    const day = cutoffDate.getDate();
-
-    this.loading.set(true);
-    const result = await this.apiS.onGetItem<IAnalisisCobranzaOnlineDto>(
-      Endpoints.ContabilidadOnline.FinancialStatements.collectionAnalysisOnline(
-        customerId,
-        year,
-        month,
-        day,
-      ),
-      false,
-    );
-
-    if (result) {
-      this.data.set(result);
-      this.filterS.currentReportName.set("Análisis de Cobranza");
-      this.filterS.currentReportContext.set(JSON.stringify(result));
-    } else {
-      this.data.set(null);
-    }
-
-    this.loading.set(false);
-  }
 }

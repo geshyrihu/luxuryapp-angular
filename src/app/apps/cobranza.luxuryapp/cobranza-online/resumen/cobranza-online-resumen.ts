@@ -264,6 +264,28 @@ export class CobranzaOnlineResumen {
     };
   });
 
+  readonly restaurantMetrics = computed(() => {
+    return this.dashboard()?.currentCharges?.restaurant;
+  });
+
+  readonly restaurantChartData = computed(() => {
+    const m = this.restaurantMetrics();
+    if (!m || m.total <= 0) {
+      return null;
+    }
+
+    return {
+      data: [
+        { name: "Cobrado", value: m.collected },
+        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 },
+      ],
+      colors: [
+        this.token("--ds-success", "green"),
+        this.token("--ds-warning", "orange"),
+      ],
+    };
+  });
+
   constructor() {}
 
   onModalForm(id: string = "") {

@@ -40,6 +40,20 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
+interface SolicitudAltaListItem {
+  id: string;
+  folio: string;
+  folioVacante: string;
+  requestDate: string;
+  nameCustomer: string;
+  nameEmployee: string;
+  personActual?: string;
+  applicationRole?: string;
+  profession?: string;
+  status: string;
+  executionDate: string;
+}
+
 @Component({
   selector: "app-solicitud-alta-list",
   templateUrl: "./solicitud-alta-list.html",
@@ -67,7 +81,7 @@ export class SolicitudAltaList implements OnInit {
   public statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  dataSignal = signal<any[]>([]);
+  dataSignal = signal<SolicitudAltaListItem[]>([]);
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -101,16 +115,16 @@ export class SolicitudAltaList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(
+      .onGetList<SolicitudAltaListItem[]>(
         EndpointsReclutamiento.RequestEmployeeRegister.list,
         this.filterRequestsService.getParams(),
       )
-      .then((result: any) => {
+      .then((result) => {
         this.dataSignal.set(result);
       });
   }
 
-  onModalForm(data: any) {
+  onModalForm(data: SolicitudAltaListItem) {
     this.dialogHandlerS
       .openDialog(
         SolicitudAltaStatusForm,
@@ -126,7 +140,7 @@ export class SolicitudAltaList implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  onDelete(id: string) {
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestEmployeeRegister.delete(id))
       .then((result: boolean) => {

@@ -28,12 +28,12 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         width: 2.5rem;
         height: 2.5rem;
         border-radius: 50%;
-        background: var(--ds-primary, #003d9b);
-        color: #fff;
+        background: var(--ds-primary);
+        color: var(--ds-on-primary);
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: var(--ds-shadow-lg, 0 4px 12px rgba(0, 0, 0, 0.15));
+        box-shadow: var(--ds-shadow-lg);
         transition:
           opacity 0.2s,
           transform 0.2s;

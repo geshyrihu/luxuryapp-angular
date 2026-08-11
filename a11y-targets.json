@@ -1,0 +1,27 @@
+{
+  "baseUrl": "http://localhost:4200",
+  "label": "LuxuryApp Angular — baseline de accesibilidad (axe-core AA)",
+  "mode": "regression",
+  "axeOptions": {
+    "runOnly": {
+      "type": "tag",
+      "values": ["wcag2a", "wcag2aa"]
+    },
+    "resultTypes": ["violations"]
+  },
+  "pageOptions": {
+    "waitUntil": "load",
+    "timeoutMs": 30000,
+    "waitSelector": "app-root",
+    "settleMs": 2500
+  },
+  "targets": [
+    { "path": "/login", "label": "login (público)", "auth": "anonymous", "priority": 1 },
+    { "path": "/recovery-password", "label": "recuperación de contraseña (pública)", "auth": "anonymous", "priority": 2 },
+    { "path": "/dashboard", "label": "dashboard", "auth": "session", "priority": 1 },
+    { "path": "/home", "label": "home", "auth": "session", "priority": 2 },
+    { "path": "/operations", "label": "listado con tabla (operations)", "auth": "session", "priority": 1 },
+    { "path": "/admin", "label": "panel admin", "auth": "session", "priority": 3 },
+    { "path": "/cobranza", "label": "cobranza", "auth": "session", "priority": 3 }
+  ]
+}

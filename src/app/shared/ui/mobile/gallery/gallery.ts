@@ -86,8 +86,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       }
       .ili-gallery-viewport {
         overflow: hidden;
-        border-radius: var(--ds-radius-md, 8px);
-        background: var(--ds-bg-muted, #f1f5f9);
+        border-radius: var(--ds-radius-md);
+        background: var(--ds-bg-muted);
       }
       .ili-gallery-track {
         display: flex;
@@ -123,8 +123,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         width: 2.25rem;
         height: 2.25rem;
         border-radius: 50%;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        background: var(--ds-bg-primary, #ffffff);
+        border: 1px solid var(--ds-border);
+        background: var(--ds-bg-primary);
         color: var(--ds-text-primary);
         cursor: pointer;
         font-size: 1.25rem;
@@ -135,10 +135,10 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         cursor: default;
       }
       .ili-gallery-nav:not(:disabled):active {
-        background: var(--ds-bg-muted, #f1f5f9);
+        background: var(--ds-bg-muted);
       }
       .ili-gallery-counter {
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-secondary);
         min-width: 4rem;
         text-align: center;
@@ -156,7 +156,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         flex-shrink: 0;
         width: 3.5rem;
         height: 3.5rem;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         border: 2px solid transparent;
         overflow: hidden;
         cursor: pointer;
@@ -170,7 +170,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         object-fit: cover;
       }
       .ili-gallery-thumb-active {
-        border-color: var(--ds-primary, #003d9b);
+        border-color: var(--ds-primary);
       }
     `,
   ],

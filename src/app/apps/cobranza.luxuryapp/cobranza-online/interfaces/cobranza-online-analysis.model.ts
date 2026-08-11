@@ -42,6 +42,10 @@ export interface CobranzaOnlineAnalysisResponse {
   totalSinAdeudo: number;
   totalAnticipos: number;
   totalDeuda: number;
+  totalAbonosMes: number;
+  totalMaintenanceGross: number;
+  totalExtraordinaryGross: number;
+  totalRestaurantGross?: number;
   /** Residual histórico del Excel: cobranzaPerfecta - morosos - deudaCorriente. */
   totalCobrado: number;
   /** Flujo de caja: abonos del mes a las subcuentas -001 y -003. */
@@ -50,6 +54,8 @@ export interface CobranzaOnlineAnalysisResponse {
   cobradoMttoMes: number;
   /** Abonos del mes a extraordinaria (-003); puede haberlos sin cuota vigente. */
   cobradoExtraordinariaMes: number;
+  /** Abonos del mes a restaurante (-015). */
+  cobradoRestaurantMes?: number;
   /** cobranzaPerfecta - cobradoMes. */
   faltanteMes: number;
   saldoBalanza: number;

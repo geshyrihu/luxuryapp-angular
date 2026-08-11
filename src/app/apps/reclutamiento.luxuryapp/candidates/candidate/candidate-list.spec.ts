@@ -1,30 +1,30 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { of } from "rxjs";
 import { vi } from "vitest";
-import { CandidateList } from "./candidate-list";
-import { CandidateListItem } from "./interfaces/candidate.dto";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { CandidateStatus } from "src/app/core/enums/candidate-status";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { CandidateList } from "./candidate-list";
+import { CandidateListItem } from "./interfaces/candidate.dto";
 
 const mockCandidateList: CandidateListItem[] = [
   {
     id: "1",
-    fullName: "Juan Pérez",
+    fullName: "Juan Perez",
     phoneNumber: "555-1234",
     email: "juan@example.com",
-    status: 0,
+    status: CandidateStatus.Active,
     activeApplicationsCount: 2,
     lastUpdatedAt: "2026-01-15T10:00:00Z",
   },
   {
     id: "2",
-    fullName: "María García",
+    fullName: "Maria Garcia",
     phoneNumber: "555-5678",
     email: "maria@example.com",
-    status: 1,
+    status: CandidateStatus.Archived,
     activeApplicationsCount: 0,
     lastUpdatedAt: "2026-01-14T10:00:00Z",
   },
@@ -82,7 +82,7 @@ describe("CandidateList", () => {
     await fixture.whenStable();
     expect(apiResponseService.onGetList).toHaveBeenCalledWith(
       EndpointsReclutamiento.Candidates.list,
-      { page: 1, recordsNumber: 200 }
+      { page: 1, recordsNumber: 200 },
     );
     expect(component.dataSignal()).toEqual(mockCandidateList);
   });
@@ -101,10 +101,10 @@ describe("CandidateList", () => {
 
     expect(apiResponseService.onPatch).toHaveBeenCalledWith(
       EndpointsReclutamiento.Candidates.archive("1"),
-      {}
+      {},
     );
-    const archivedCandidate = component.dataSignal().find(c => c.id === "1");
-    expect(archivedCandidate?.status).toBe(1);
+    const archivedCandidate = component.dataSignal().find((c) => c.id === "1");
+    expect(archivedCandidate?.status).toBe(CandidateStatus.Archived);
   });
 
   it("should open form modal for edit", async () => {
@@ -113,7 +113,7 @@ describe("CandidateList", () => {
     await fixture.whenStable();
 
     expect(dialogHandlerService.openDialog).toHaveBeenCalled();
-    expect(apiResponseService.onGetList).toHaveBeenCalledTimes(2); // initial + reload
+    expect(apiResponseService.onGetList).toHaveBeenCalledTimes(2);
   });
 
   it("should open detail dialog", () => {
@@ -122,7 +122,7 @@ describe("CandidateList", () => {
       expect.any(Function),
       { id: "1" },
       "Detalle del candidato",
-      "lg"
+      "lg",
     );
   });
 });

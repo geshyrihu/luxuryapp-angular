@@ -12,7 +12,7 @@ import { MeterGroupBase } from "@ui/base/meter-group.base";
           <div
             class="ili-meter-group-segment"
             [style.width.%]="segmentWidth(item)"
-            [style.background]="item.color || 'var(--ds-primary, #003d9b)'"
+            [style.background]="item.color || 'var(--ds-primary)'"
             [title]="item.label || ''"
           ></div>
         }
@@ -22,7 +22,7 @@ import { MeterGroupBase } from "@ui/base/meter-group.base";
           <div class="ili-meter-group-legend-item">
             <span
               class="ili-meter-group-legend-dot"
-              [style.background]="item.color || 'var(--ds-primary, #003d9b)'"
+              [style.background]="item.color || 'var(--ds-primary)'"
             ></span>
             <span class="ili-meter-group-legend-label">{{
               item.label || ""
@@ -43,20 +43,20 @@ import { MeterGroupBase } from "@ui/base/meter-group.base";
       .ili-meter-group-bar {
         display: flex;
         height: 12px;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         overflow: hidden;
-        background: var(--ds-border, #e2e8f0);
+        background: var(--ds-border);
       }
       .ili-meter-group-segment {
         transition: width 0.3s ease;
       }
       .ili-meter-group-segment:first-child {
-        border-radius: var(--ds-radius-full, 9999px) 0 0
-          var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full) 0 0
+          var(--ds-radius-full);
       }
       .ili-meter-group-segment:last-child {
-        border-radius: 0 var(--ds-radius-full, 9999px)
-          var(--ds-radius-full, 9999px) 0;
+        border-radius: 0 var(--ds-radius-full)
+          var(--ds-radius-full) 0;
       }
       .ili-meter-group-legend {
         display: flex;
@@ -67,8 +67,8 @@ import { MeterGroupBase } from "@ui/base/meter-group.base";
         display: flex;
         align-items: center;
         gap: 0.375rem;
-        font-size: var(--ds-font-size-micro, 0.75rem);
-        color: var(--ds-text-secondary, #475569);
+        font-size: var(--ds-font-size-micro);
+        color: var(--ds-text-secondary);
       }
       .ili-meter-group-legend-dot {
         width: 8px;
@@ -78,7 +78,7 @@ import { MeterGroupBase } from "@ui/base/meter-group.base";
       }
       .ili-meter-group-legend-value {
         font-weight: 600;
-        color: var(--ds-text-primary, #1e293b);
+        color: var(--ds-text-primary);
       }
     `,
   ],

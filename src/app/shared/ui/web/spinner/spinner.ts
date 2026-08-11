@@ -26,27 +26,27 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
       app-spinner
         .p-progressspinner.app-spinner-primary
         .p-progressspinner-circle {
-        stroke: var(--ds-primary, #2563eb);
+        stroke: var(--ds-primary);
       }
       app-spinner
         .p-progressspinner.app-spinner-success
         .p-progressspinner-circle {
-        stroke: var(--ds-success, #16a34a);
+        stroke: var(--ds-success);
       }
       app-spinner
         .p-progressspinner.app-spinner-warning
         .p-progressspinner-circle {
-        stroke: var(--ds-warning, #d97706);
+        stroke: var(--ds-warning);
       }
       app-spinner
         .p-progressspinner.app-spinner-danger
         .p-progressspinner-circle {
-        stroke: var(--ds-danger, #dc2626);
+        stroke: var(--ds-danger);
       }
       app-spinner
         .p-progressspinner.app-spinner-neutral
         .p-progressspinner-circle {
-        stroke: var(--ds-text-secondary, #64748b);
+        stroke: var(--ds-text-secondary);
       }
       /* PrimeNG cicla el stroke con la keyframe p-progressspinner-color; la quitamos
        (dejando solo el dash) para respetar el color semántico fijo. El giro vive en

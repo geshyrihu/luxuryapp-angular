@@ -19,6 +19,25 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+
+interface RequestSalaryModificationStatusFormDTO {
+  id: string;
+  employeeId: string;
+  workPositionId: string;
+  requestDate: Date | string | null;
+  soport?: string | null;
+  applicationRoleCurrentId: number;
+  applicationRoleNewId: number;
+  currentSalary: number;
+  finalSalary: number;
+  executionDate: Date | string | null;
+  folio: string;
+  retroactive: boolean;
+  status: number;
+  applicationUserId: string;
+  confirmationFinish: boolean;
+}
+
 @Component({
   selector: "app-status-request-salary-modification-form",
   templateUrl: "./status-request-salary-modification-form.html",
@@ -44,6 +63,11 @@ export class StatusRequestSalaryModificationForm implements OnInit {
 
   cb_applicationRole = signal<SelectItemDto[]>([]);
   cb_si_no = signal<SelectItemDto[]>([]);
+
+  private toDate(value: string | Date | null): Date | null {
+    if (!value) return null;
+    return value instanceof Date ? value : new Date(value);
+  }
 
   form = this.formB.nonNullable.group({
     id: [{ value: this.config.data.id, disabled: true }],
@@ -74,9 +98,15 @@ export class StatusRequestSalaryModificationForm implements OnInit {
     const urlApi = EndpointsReclutamiento.RequestSalaryModification.getById(
       this.id,
     );
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem<RequestSalaryModificationStatusFormDTO>(urlApi)
+      .then((result) => {
+        this.form.patchValue({
+          ...result,
+          requestDate: this.toDate(result.requestDate),
+          executionDate: this.toDate(result.executionDate),
+        });
+      });
   }
   onSubmit() {
     FormHelper.submitCrud({
@@ -94,7 +124,7 @@ export class StatusRequestSalaryModificationForm implements OnInit {
       .onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.applicationRolesToAdministrator,
       )
-      .then((response: any) => {
+      .then((response) => {
         this.cb_applicationRole.set(response);
       });
   }

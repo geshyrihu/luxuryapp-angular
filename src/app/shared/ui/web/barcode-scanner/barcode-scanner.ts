@@ -83,14 +83,14 @@ export interface ScanResult {
         gap: 0.625rem;
       }
       .bs-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-primary);
         margin: 0;
       }
       .bs-idle {
-        border: 2px dashed var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        border: 2px dashed var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         padding: 2rem;
         display: flex;
         flex-direction: column;
@@ -115,17 +115,17 @@ export interface ScanResult {
         justify-content: center;
       }
       .bs-idle-title {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
       }
       .bs-idle-sub {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
       }
       .bs-scanning-wrap {
         position: relative;
-        border-radius: var(--ds-radius-lg, 8px);
+        border-radius: var(--ds-radius-lg);
         overflow: hidden;
-        background: #000;
+        background: var(--ds-text-primary);
       }
       .bs-video {
         width: 100%;
@@ -145,7 +145,7 @@ export interface ScanResult {
       .bs-viewfinder {
         width: 200px;
         height: 200px;
-        border: 2px solid #fff;
+        border: 2px solid var(--ds-on-primary);
         border-radius: 8px;
         box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.4);
         position: relative;
@@ -156,7 +156,7 @@ export interface ScanResult {
         position: absolute;
         width: 24px;
         height: 24px;
-        border-color: var(--ds-primary, #003d9b);
+        border-color: var(--ds-primary);
         border-style: solid;
       }
       .bs-viewfinder::before {
@@ -172,8 +172,8 @@ export interface ScanResult {
         border-radius: 0 0 4px 0;
       }
       .bs-scan-hint {
-        color: #fff;
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        color: var(--ds-on-primary);
+        font-size: var(--ds-font-size-help);
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
       }
       .bs-cancel-btn {
@@ -187,27 +187,27 @@ export interface ScanResult {
         align-items: center;
         gap: 0.5rem;
         padding: 0.625rem;
-        background: #d1fae5;
-        border-radius: var(--ds-radius-md, 6px);
+        background: var(--ds-success-light);
+        border-radius: var(--ds-radius-md);
       }
       .bs-result-value {
         display: block;
-        font-family: var(--ds-font-family-mono, monospace);
+        font-family: var(--ds-font-family-mono);
         font-weight: 700;
         color: var(--ds-text-primary);
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
       }
       .bs-result-format {
         display: block;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       .bs-error {
         display: flex;
         align-items: center;
         gap: 0.375rem;
-        font-size: var(--ds-font-size-help, 0.8125rem);
-        color: var(--ds-danger, #ba1a1a);
+        font-size: var(--ds-font-size-help);
+        color: var(--ds-danger);
       }
     `,
   ],

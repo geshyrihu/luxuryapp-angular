@@ -66,12 +66,12 @@ import {
         gap: 0.125rem;
       }
       .gauge-value {
-        font-size: var(--ds-font-size-metric, 1.5rem);
+        font-size: var(--ds-font-size-metric);
         color: var(--ds-text-primary);
         line-height: 1;
       }
       .gauge-label {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
     `,
@@ -89,10 +89,10 @@ export class Gauge {
   suffix = input<string>("");
   label = input<string>("");
   format = input<"number" | "percent">("number");
-  colorLow = input<string>("var(--ds-danger, #ba1a1a)");
-  colorMid = input<string>("var(--ds-warning, #f5a623)");
-  colorHigh = input<string>("var(--ds-success, #006837)");
-  trackColor = input<string>("var(--ds-border, #e2e8f0)");
+  colorLow = input<string>("var(--ds-danger)");
+  colorMid = input<string>("var(--ds-warning)");
+  colorHigh = input<string>("var(--ds-success)");
+  trackColor = input<string>("var(--ds-border)");
 
   center = computed(() => this.size() / 2);
   radius = computed(() => this.center() - this.thickness() / 2 - 2);

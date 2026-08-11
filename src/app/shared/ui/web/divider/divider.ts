@@ -39,7 +39,7 @@ import { DividerBase } from "@ui/base/divider.base";
         content: "";
         flex: 1;
         height: 1px;
-        background: var(--ds-border, #d7dbe3);
+        background: var(--ds-border);
       }
       .app-divider-content {
         padding: 0 0.5rem;
@@ -54,7 +54,7 @@ import { DividerBase } from "@ui/base/divider.base";
       .app-divider-vertical::after {
         width: 1px;
         flex: 1;
-        background: var(--ds-border, #d7dbe3);
+        background: var(--ds-border);
       }
     `,
   ],

@@ -95,11 +95,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.25rem;
         padding: 0.375rem 0.5rem;
         cursor: pointer;
-        border-radius: var(--ds-radius-md, 8px);
+        border-radius: var(--ds-radius-md);
         transition: background 0.15s;
       }
       .ili-tree-node-row:hover {
-        background: var(--ds-bg-muted, #f1f5f9);
+        background: var(--ds-bg-muted);
       }
       .ili-tree-node-toggle {
         display: flex;
@@ -122,7 +122,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         background: none;
         cursor: pointer;
         padding: 0;
-        color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary);
         font-size: 1.125rem;
       }
       .ili-tree-node-icon {
@@ -130,16 +130,16 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         color: var(--ds-text-secondary);
       }
       .ili-tree-node-label {
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
         flex: 1;
       }
       .ili-tree-node-selected {
         font-weight: 600;
-        color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary);
       }
       .ili-tree-node-children {
-        border-left: 1px solid var(--ds-border, #e2e8f0);
+        border-left: 1px solid var(--ds-border);
         margin-left: 0.75rem;
         padding-left: 0.5rem;
       }

@@ -169,7 +169,7 @@ export interface PipelineStage {
         gap: 0.5rem;
       }
       .pipeline-title {
-        font-size: var(--ds-font-size-section-title, 1.25rem);
+        font-size: var(--ds-font-size-section-title);
         font-weight: 600;
         color: var(--ds-text-primary);
         margin: 0;
@@ -182,7 +182,7 @@ export interface PipelineStage {
         display: flex;
         align-items: center;
         gap: 0.25rem;
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
       }
       /* Stages scrollable row */
@@ -207,7 +207,7 @@ export interface PipelineStage {
         gap: 0.15rem;
       }
       .pipeline-stage-name {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-primary);
       }
@@ -217,15 +217,15 @@ export interface PipelineStage {
         gap: 0.5rem;
       }
       .pipeline-stage-count {
-        font-size: var(--ds-font-size-micro, 0.75rem);
-        background: var(--ds-bg-elevated, #f1f3ff);
+        font-size: var(--ds-font-size-micro);
+        background: var(--ds-bg-elevated);
         color: var(--ds-text-secondary);
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         padding: 0.1rem 0.45rem;
         font-weight: 600;
       }
       .pipeline-stage-value {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       /* Deals column */
@@ -237,9 +237,9 @@ export interface PipelineStage {
       }
       /* Deal card */
       .pipeline-deal-card {
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         padding: 0.625rem;
         cursor: pointer;
         transition:
@@ -251,13 +251,13 @@ export interface PipelineStage {
       }
       .pipeline-deal-card:hover {
         box-shadow: var(--ds-shadow-sm);
-        border-color: var(--ds-primary, #003d9b);
+        border-color: var(--ds-primary);
       }
       .pipeline-deal-priority-high {
-        border-left: 3px solid var(--ds-danger, #ba1a1a);
+        border-left: 3px solid var(--ds-danger);
       }
       .pipeline-deal-priority-medium {
-        border-left: 3px solid var(--ds-warning, #b45309);
+        border-left: 3px solid var(--ds-warning);
       }
       .pipeline-deal-header {
         display: flex;
@@ -266,7 +266,7 @@ export interface PipelineStage {
         gap: 0.25rem;
       }
       .pipeline-deal-title {
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         font-weight: 600;
         color: var(--ds-text-primary);
         line-height: 1.3;
@@ -275,7 +275,7 @@ export interface PipelineStage {
         display: flex;
         align-items: center;
         gap: 0.2rem;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       .pipeline-deal-footer {
@@ -285,25 +285,25 @@ export interface PipelineStage {
         margin-top: 0.25rem;
       }
       .pipeline-deal-value {
-        font-size: var(--ds-font-size-table, 0.875rem);
-        color: var(--ds-primary, #003d9b);
+        font-size: var(--ds-font-size-table);
+        color: var(--ds-primary);
       }
       .pipeline-deal-days {
         display: flex;
         align-items: center;
         gap: 0.15rem;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       .pipeline-deal-days-warn {
-        color: var(--ds-warning, #b45309);
+        color: var(--ds-accent-text-warning);
       }
       .pipeline-deal-owner {
         width: 22px;
         height: 22px;
         border-radius: 50%;
-        background: var(--ds-primary, #003d9b);
-        color: #fff;
+        background: var(--ds-primary);
+        color: var(--ds-on-primary);
         font-size: 0.625rem;
         font-weight: 700;
         display: flex;
@@ -317,10 +317,10 @@ export interface PipelineStage {
         align-items: center;
         gap: 0.25rem;
         background: none;
-        border: 1px dashed var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        border: 1px dashed var(--ds-border);
+        border-radius: var(--ds-radius-md);
         padding: 0.5rem;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
         cursor: pointer;
         width: 100%;
@@ -330,8 +330,8 @@ export interface PipelineStage {
           color 0.15s;
       }
       .pipeline-add-deal:hover {
-        border-color: var(--ds-primary, #003d9b);
-        color: var(--ds-primary, #003d9b);
+        border-color: var(--ds-primary);
+        color: var(--ds-primary);
       }
     `,
   ],

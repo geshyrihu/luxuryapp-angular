@@ -19,6 +19,7 @@ import { FilterRequestsService } from "src/app/core/http/services/filter-request
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
+
 @Component({
   selector: "app-filter-requests",
   templateUrl: "./filter-requests.html",
@@ -45,16 +46,32 @@ export class FilterRequests {
   router = inject(Router);
   filterRequestsService = inject(FilterRequestsService);
   customToastService = inject(CustomToastService);
+
   menu = [
-    { label: "?? Vacantes", path: "vacancies" },
-    { label: "? Altas", path: "hirings" },
-    { label: "🚪 Bajas", path: "dismissals" },
-    { label: "💰 Modificación de salario", path: "salary-increase" },
+    {
+      label: "Vacantes",
+      route: ["/recruitment/requests/vacancies"],
+      activePath: "/recruitment/requests/vacancies",
+    },
+    {
+      label: "Altas",
+      route: ["/recruitment/requests/hirings"],
+      activePath: "/recruitment/requests/hirings",
+    },
+    {
+      label: "Bajas",
+      route: ["/recruitment/requests/dismissals"],
+      activePath: "/recruitment/requests/dismissals",
+    },
+    {
+      label: "Modificacion de salario",
+      route: ["/recruitment/requests/salary-increase"],
+      activePath: "/recruitment/requests/salary-increase",
+    },
   ];
 
   fechaInicial = new Date(new Date().getFullYear(), 0, 1);
   fechaFormateadaControl = new FormControl<Date>(this.fechaInicial);
-
   statusRequestControl = new FormControl<string>("Pendiente");
 
   noCandidates = input<number>(0);
@@ -63,7 +80,7 @@ export class FilterRequests {
     { value: "Pendiente", label: "Pendiente" },
     { value: "Proceso", label: "Proceso" },
     { value: "Concluido", label: "Concluido" },
-    { value: "Cancelado", label: "Cancelada" },
+    { value: "Cancelado", label: "Cancelado" },
   ];
 
   apiUrl = input.required<string>();
@@ -83,33 +100,29 @@ export class FilterRequests {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (resp: Blob) => {
-          console.log("File received in next callback.");
           const blob = new Blob([resp], {
             type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
           });
           saveAs(blob, this.nameFile());
-          console.log("File saved successfully.");
         },
         error: (error) => {
           console.error("Error in exportToExcel:", error);
           this.customToastService.showError(
             "Error al crear",
-            "No se pudo completar la operación.",
+            "No se pudo completar la operacion.",
           );
         },
       });
   }
 
   onSendReportVacants() {
-    const urlApi =
-      Endpoints.RecruitmentRequests.sendReportVacants;
+    const urlApi = Endpoints.RecruitmentRequests.sendReportVacants;
     this.apiResponseS.onPost(urlApi).then(() => {
       this.onLoadData();
     });
   }
 
   onLoadData() {
-    // ? Convierte la fecha a string en formato yyyy-MM
     const fechaString = this.formatDateToYearMonth(
       this.fechaFormateadaControl.value,
     );
@@ -120,10 +133,8 @@ export class FilterRequests {
     );
   }
 
-  // ? Método helper para convertir Date a string "yyyy-MM"
   private formatDateToYearMonth(date: Date): string {
     if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-      // Si la fecha no es vólida, usa la fecha actual
       date = new Date();
     }
 
@@ -140,6 +151,6 @@ export class FilterRequests {
 
   isActive(path: string): boolean {
     const currentPath = this.router.url;
-    return currentPath.includes("/recruitment/requests/" + path);
+    return currentPath.includes(path);
   }
 }

@@ -22,6 +22,13 @@
         <primeng-custom-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
       </div>
       <div class="flex flex-wrap gap-2 align-items-end pb-2">
+        <il-button
+          (clicked)="onGoToMyPendingInterviews()"
+          iconClass="mdi:calendar-clock"
+          [label]="interviewerPendingCount() > 0 ? 'Entrevistas y seguimiento (' + interviewerPendingCount() + ')' : 'Entrevistas y seguimiento'"
+          severity="primary"
+          variant="outlined"
+        />
         @if (aspRoleS.hasAny([ AspRole.Administrador, AspRole.SuperUsuario,
         AspRole.Reclutamiento ])) {
         <il-button
@@ -293,9 +300,23 @@
             class="badge badge-info text-xs text-center block py-2"
             lxTooltip="Solicitud de alta enviada é en proceso de reclutamiento"
           >
-            🔵 VA-{{ item.positionRequest.folio }} é Alta en proceso
+            🔵 VA-{{ item.positionRequest.folio }} Alta en proceso
           </span>
           } }
+
+          @if (hasQueueForPosition(item)) {
+          <div class="mt-2 p-2 border-round bg-surface-100 border-1 surface-border">
+            <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+              <div class="flex align-items-center gap-2">
+                <app-icon icon="mdi:account-search-outline" class="text-primary" />
+                <span class="font-semibold text-sm">Seguimiento de candidatos</span>
+              </div>
+              <span class="badge badge-info">
+                {{ getQueueCountForPosition(item) }} candidato(s)
+              </span>
+            </div>
+          </div>
+          }
         </div>
       </td>
     </tr>

@@ -1,0 +1,275 @@
+<div class="card p-3 mb-3" *ngIf="loading()">
+  <div class="flex align-items-center justify-content-center py-5">
+    <i class="pi pi-spin pi-spinner text-3xl text-primary"></i>
+    <span class="ml-3 text-color-secondary">Calculando indicadores...</span>
+  </div>
+</div>
+
+@if (!loading() && kpis()) {
+  <!-- Tarjetas KPIs principales -->
+  <div class="grid mb-4">
+    @for (card of kpiCards(); track card.title) {
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="card p-3 h-full">
+          <div class="flex align-items-start gap-3">
+            <div
+              class="flex align-items-center justify-content-center rounded-xl"
+              [ngClass]="{
+                'bg-red-100 text-red-600': card.severity === 'danger',
+                'bg-yellow-100 text-yellow-600': card.severity === 'warn',
+                'bg-green-100 text-green-600': card.severity === 'success',
+                'bg-blue-100 text-blue-600': card.severity === 'info',
+                'bg-purple-100 text-purple-600': card.severity === 'primary',
+              }"
+              style="width: 48px; height: 48px;"
+            >
+              <app-icon [icon]="card.icon" class="text-2xl" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-3xl font-bold text-color-primary">{{ card.value }}</div>
+              <div class="text-sm text-color-secondary mt-1">{{ card.title }}</div>
+              <div class="text-xs text-color-secondary mt-1">{{ card.subtitle }}</div>
+            </div>
+          </div>
+          @if (card.route) {
+            <il-button
+              label="Ver detalle"
+              iconClass="mdi:chevron-right"
+              severity="secondary"
+              size="small"
+              class="mt-2 w-full"
+              (clicked)="navigate(card.route)"
+            />
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Pipeline por etapas -->
+  <div class="card p-3 mb-4">
+    <div class="font-semibold mb-3">Pipeline por etapas</div>
+    <div class="flex flex-wrap gap-2">
+      @for (stage of pipelineStages(); track stage.label) {
+        <div class="flex align-items-center gap-2 px-3 py-2 rounded border surface-border bg-surface-50"
+             [ngClass]="{
+               'border-left-3 border-red-500': stage.color === 'danger',
+               'border-left-3 border-yellow-500': stage.color === 'warn',
+               'border-left-3 border-green-500': stage.color === 'success',
+               'border-left-3 border-blue-500': stage.color === 'info',
+               'border-left-3 border-primary-500': stage.color === 'primary',
+             }">
+          <span class="font-medium text-sm">{{ stage.label }}</span>
+          <span class="text-xl font-bold text-color-primary">{{ stage.value }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Desglose Agenda Entrevista Operaciones -->
+  @if (agendaBreakdown().length > 0) {
+    <div class="card p-3 mb-4">
+      <div class="font-semibold mb-3">Desglose Entrevista Operaciones ({{ kpis()?.postulacionesEnEntrevistaOperaciones }} total)</div>
+      <div class="flex flex-wrap gap-2">
+        @for (item of agendaBreakdown(); track item.label) {
+          <div class="flex align-items-center gap-2 px-3 py-2 rounded border surface-border bg-surface-50"
+               [ngClass]="{
+                 'border-left-3 border-red-500': item.severity === 'danger',
+                 'border-left-3 border-yellow-500': item.severity === 'warn',
+                 'border-left-3 border-green-500': item.severity === 'success',
+                 'border-left-3 border-blue-500': item.severity === 'info',
+                 'border-left-3 border-gray-500': item.severity === 'contrast',
+               }">
+            <span class="font-medium text-sm">{{ item.label }}</span>
+            <span class="text-xl font-bold text-color-primary">{{ item.value }}</span>
+            <span class="text-sm text-color-secondary">({{ item.pct }}%)</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Promedios y métricas de tiempo -->
+  <div class="grid mb-4">
+    <div class="col-12 md:col-4">
+      <div class="card p-3 h-full">
+        <div class="text-sm text-color-secondary mb-1">Promedio días en etapa actual</div>
+        <div class="text-3xl font-bold text-color-primary">{{ kpis()?.promedioDiasEnEtapaActual | number:'1.1-1' }}</div>
+        <small class="text-color-secondary">Postulaciones activas</small>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="card p-3 h-full">
+        <div class="text-sm text-color-secondary mb-1">Promedio días hasta Entrevista Ops.</div>
+        <div class="text-3xl font-bold text-color-primary">{{ kpis()?.promedioDiasHastaEntrevistaOperaciones ?? 'N/A' }}</div>
+        <small class="text-color-secondary">Solo con fecha programada</small>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="card p-3 h-full">
+        <div class="text-sm text-color-secondary mb-1">Postulaciones sin feedback en entrevista</div>
+        <div class="text-3xl font-bold" [class.text-red-500]="(kpis()?.postulacionesSinFeedbackEnEntrevista ?? 0) > 0" [class.text-green-600]="(kpis()?.postulacionesSinFeedbackEnEntrevista ?? 0) === 0">{{ kpis()?.postulacionesSinFeedbackEnEntrevista }}</div>
+        <small class="text-color-secondary">Etapas Entrevista Reclut. / Ops.</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla por Fuente -->
+  @if (fuenteTable().length > 0) {
+    <div class="card p-3 mb-4">
+      <div class="font-semibold mb-3">Tasa de conversión por Fuente (últimos 30 días)</div>
+      <p-table
+        [value]="fuenteTable()"
+        [paginator]="false"
+        [scrollable]="true"
+        [tableStyle]="{ 'min-width': '40rem' }"
+        class="custom-table card"
+      >
+        <ng-template #header>
+          <tr>
+            <th>Fuente</th>
+            <th>Postulaciones</th>
+            <th>Contratados</th>
+            <th>Tasa conversión</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-item>
+          <tr>
+            <td>{{ item.fuente }}</td>
+            <td class="text-center">{{ item.totalPostulaciones }}</td>
+            <td class="text-center">{{ item.contratados }}</td>
+            <td class="text-center">
+              <app-mapped-p-tag
+                [value]="item.tasaConversion >= 30 ? 'good' : item.tasaConversion >= 15 ? 'warning' : 'critical'"
+                [options]="[
+                  { value: 'good', label: '{{ item.tasaConversion }}%', severity: 'success' },
+                  { value: 'warning', label: '{{ item.tasaConversion }}%', severity: 'warn' },
+                  { value: 'critical', label: '{{ item.tasaConversion }}%', severity: 'danger' }
+                ]"
+              />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  }
+
+  <!-- Botón ejecutar automatización -->
+  <div class="card p-3 mb-4">
+    <div class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-3">
+      <div>
+        <div class="font-semibold mb-1">Automatización diaria de seguimiento</div>
+        <p class="m-0 text-sm text-color-secondary">
+          Ejecuta las reglas de notificación: postulación estancada, agenda pendiente, recordatorios, vencidas.
+        </p>
+      </div>
+      <il-button
+        label="Ejecutar ahora"
+        iconClass="mdi:play-circle"
+        severity="primary"
+        (clicked)="runAutomation()"
+      />
+    </div>
+  </div>
+
+  <!-- ===== GRÁFICOS ===== -->
+  
+  <!-- 1. Pipeline por etapas - Bar horizontal -->
+  <div class="card p-3 mb-4">
+    <div class="font-semibold mb-3">Pipeline por etapas</div>
+    @if (pipelineChartData()) {
+      <app-chart-wrapper
+        type="bar"
+        [data]="pipelineChartData()"
+        [height]="'350px'"
+        [showLegend]="false"
+        [showGrid]="true"
+      />
+    }
+  </div>
+
+  <!-- 2. Estado de Entrevistas Operaciones - Doughnut -->
+  <div class="card p-3 mb-4">
+    <div class="font-semibold mb-3">Estado de Entrevistas Operaciones</div>
+    @if (interviewStatusChartData()) {
+      <app-chart-wrapper
+        type="doughnut"
+        [data]="interviewStatusChartData()"
+        [height]="'350px'"
+        [showLegend]="true"
+      />
+    } @else {
+      <div class="text-center text-color-secondary py-4">Sin datos de Entrevista Operaciones</div>
+    }
+  </div>
+
+  <!-- 3. Tiempo Vacante -> Primera Postulacion - Bar con SLA -->
+  <div class="card p-3 mb-4">
+    <div class="font-semibold mb-3">Tiempo Vacante → 1ª Postulación (Días)</div>
+    @if (timeToFirstChartData()) {
+      <app-chart-wrapper
+        type="bar"
+        [data]="timeToFirstChartData()"
+        [height]="'300px'"
+        [showLegend]="false"
+        [showGrid]="true"
+      />
+      <p class="text-xs text-color-secondary mt-2">
+        SLA objetivo: ≤ 7 días | Verde = dentro SLA, Ámbar = 1-2x SLA, Rojo = >2x SLA
+      </p>
+    } @else {
+      <div class="text-center text-color-secondary py-4">Sin datos de primera postulación</div>
+    }
+  </div>
+
+  <!-- 4. Fuente de Reclutamiento - Bar dual axis -->
+  <div class="card p-3 mb-4">
+    <div class="font-semibold mb-3">Fuente de Reclutamiento (Postulaciones + Conversión)</div>
+    @if (sourceChartData()) {
+      <app-chart-wrapper
+        type="bar"
+        [data]="sourceChartData()"
+        [height]="'350px'"
+        [showLegend]="true"
+        [showGrid]="true"
+        [options]="{ dualAxis: true }"
+      />
+    } @else {
+      <div class="text-center text-color-secondary py-4">Sin datos por fuente</div>
+    }
+  </div>
+
+  <!-- 5. Actividad Reciente - Bar comparativo -->
+  <div class="card p-3 mb-4">
+    <div class="font-semibold mb-3">Actividad Reciente (7 vs 30 días)</div>
+    @if (activityChartData()) {
+      <app-chart-wrapper
+        type="bar"
+        [data]="activityChartData()"
+        [height]="'300px'"
+        [showLegend]="true"
+        [showGrid]="true"
+      />
+    } @else {
+      <div class="text-center text-color-secondary py-4">Sin datos de actividad</div>
+    }
+  </div>
+
+  <!-- Botón ejecutar automatización -->
+  <div class="card p-3 mb-4">
+    <div class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-3">
+      <div>
+        <div class="font-semibold mb-1">Automatización diaria de seguimiento</div>
+        <p class="m-0 text-sm text-color-secondary">
+          Ejecuta las reglas de notificación: postulación estancada, agenda pendiente, recordatorios, vencidas.
+        </p>
+      </div>
+      <il-button
+        label="Ejecutar ahora"
+        iconClass="mdi:play-circle"
+        severity="primary"
+        (clicked)="runAutomation()"
+      />
+    </div>
+  </div>
+}

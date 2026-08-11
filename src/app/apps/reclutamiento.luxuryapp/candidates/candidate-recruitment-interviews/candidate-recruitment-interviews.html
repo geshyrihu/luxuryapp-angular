@@ -1,0 +1,312 @@
+<div class="card p-3 mb-4">
+  <div
+    class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3"
+  >
+    <div>
+      <h2 class="m-0 font-semibold text-xl">Entrevistas de Reclutamiento</h2>
+      <p class="m-0 text-sm text-color-secondary">
+        Tablero operativo exclusivo de Reclutamiento. Gestiona vacantes y
+        candidatos ligados sin depender del rol entrevistador.
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <il-button
+        label="Actualizar"
+        iconClass="mdi:refresh"
+        severity="secondary"
+        (clicked)="onLoadData()"
+      />
+    </div>
+  </div>
+</div>
+
+@if (focusedRequestPositionId()) {
+<div class="card p-3 mb-4 border-left-3 border-primary">
+  <div class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-2">
+    <div>
+      <div class="font-semibold">Seguimiento filtrado por vacante</div>
+      <div class="text-sm text-color-secondary">
+        Estás viendo el detalle de candidatos e entrevistas de la vacante seleccionada desde correo o notificación.
+      </div>
+    </div>
+    <il-button
+      label="Ver todas las vacantes"
+      iconClass="mdi:filter-off-outline"
+      severity="secondary"
+      variant="outlined"
+      (clicked)="clearVacancyFocus()"
+    />
+  </div>
+</div>
+}
+
+<div class="grid mb-4">
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Vacantes</small>
+      <div class="text-2xl font-semibold">{{ totalVacancies() }}</div>
+      <small class="text-color-secondary"
+        >{{ totalCandidates() }} candidatos ligados</small
+      >
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1"
+        >Pendientes de enviar</small
+      >
+      <div class="text-2xl font-semibold text-orange-500">
+        {{ pendingSend() }}
+      </div>
+      <small class="text-color-secondary">Por enviar a entrevista</small>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Agendadas</small>
+      <div class="text-2xl font-semibold text-blue-500">{{ scheduled() }}</div>
+      <small class="text-color-secondary">Con cita programada</small>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-1">Vencidas</small>
+      <div class="text-2xl font-semibold text-red-500">{{ overdue() }}</div>
+      <small class="text-color-secondary">Sin seguimiento</small>
+    </div>
+  </div>
+</div>
+
+<div class="card p-3 mb-4">
+  <div class="flex flex-column lg:flex-row lg:align-items-center gap-3">
+    <div class="flex flex-wrap gap-2">
+      <button
+        type="button"
+        class="btn btn-sm"
+        [class.btn-primary]="statusFilter() === 'postulada'"
+        [class.btn-outline]="statusFilter() !== 'postulada'"
+        (click)="setStatusFilter('postulada')"
+      >
+        Postulada
+      </button>
+      <button
+        type="button"
+        class="btn btn-sm"
+        [class.btn-primary]="statusFilter() === 'pending_schedule'"
+        [class.btn-outline]="statusFilter() !== 'pending_schedule'"
+        (click)="setStatusFilter('pending_schedule')"
+      >
+        Pendiente de agenda
+      </button>
+      <button
+        type="button"
+        class="btn btn-sm"
+        [class.btn-primary]="statusFilter() === 'scheduled'"
+        [class.btn-outline]="statusFilter() !== 'scheduled'"
+        (click)="setStatusFilter('scheduled')"
+      >
+        Agendada
+      </button>
+      <button
+        type="button"
+        class="btn btn-sm"
+        [class.btn-primary]="statusFilter() === 'overdue'"
+        [class.btn-outline]="statusFilter() !== 'overdue'"
+        (click)="setStatusFilter('overdue')"
+      >
+        Vencida
+      </button>
+      <button
+        type="button"
+        class="btn btn-sm"
+        [class.btn-primary]="statusFilter() === 'feedback'"
+        [class.btn-outline]="statusFilter() !== 'feedback'"
+        (click)="setStatusFilter('feedback')"
+      >
+        Con feedback
+      </button>
+      <button
+        type="button"
+        class="btn btn-sm"
+        [class.btn-primary]="statusFilter() === 'closed'"
+        [class.btn-outline]="statusFilter() !== 'closed'"
+        (click)="setStatusFilter('closed')"
+      >
+        Cerrada/Historica
+      </button>
+    </div>
+
+    <div class="flex-grow-1">
+      <input
+        type="text"
+        class="w-full p-inputtext p-component"
+        placeholder="Buscar por candidato o entrevistador..."
+        [value]="searchTerm()"
+        (input)="onSearchInput($event)"
+      />
+    </div>
+  </div>
+</div>
+
+@if (loading()) {
+<div class="card p-4 text-center text-color-secondary">
+  Cargando tablero de entrevistas de Reclutamiento...
+</div>
+} @else if (filteredVacancies().length === 0) {
+<div class="card p-4 text-center">
+  <div class="text-lg font-semibold mb-2">Sin resultados</div>
+  <div class="text-color-secondary">
+    No se encontraron vacantes o candidatos con los filtros aplicados.
+  </div>
+</div>
+} @else {
+<div class="flex flex-column gap-3">
+  @for (vacancy of filteredVacancies(); track vacancy.requestPositionId) {
+  <div class="card p-3">
+    <div
+      class="flex flex-column lg:flex-row lg:align-items-start lg:justify-content-between gap-3 mb-3"
+    >
+      <div>
+        <div class="flex flex-wrap align-items-center gap-2 mb-2">
+          <span class="text-lg font-semibold">{{ vacancy.vacancyFolio }}</span>
+          <span class="text-sm text-color-secondary"
+            >{{ vacancy.positionName }}</span
+          >
+          <span class="badge badge-info">{{ vacancy.customerName }}</span>
+          <span class="badge badge-secondary">{{ vacancy.vacancyStatus }}</span>
+        </div>
+        <div class="flex flex-wrap gap-2 text-sm text-color-secondary">
+          <span>{{ vacancy.filteredCandidates.length }} candidato(s)</span>
+          <span>Pendientes enviar: {{ vacancy.pendingInterviewCount }}</span>
+          <span>Agendadas: {{ vacancy.scheduledCount }}</span>
+          <span>Vencidas: {{ vacancy.overdueCount }}</span>
+          @if (vacancy.nextInterviewAt) {
+          <span
+            >Proxima cita: {{ vacancy.nextInterviewAt | date: "dd/MM/yyyy HH:mm"
+            }}</span
+          >
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-column gap-2">
+      @for (candidate of vacancy.filteredCandidates; track
+      candidate.candidateApplicationId) {
+      <div
+        class="border-1 surface-border border-round p-3"
+        [class.border-orange-300]="candidate.agendaStatusCode === 'postulada'"
+        [class.border-red-300]="candidate.agendaStatusCode === 'overdue'"
+        [class.border-blue-300]="candidate.agendaStatusCode === 'scheduled'"
+        [class.border-green-300]="candidate.agendaStatusCode === 'feedback'"
+      >
+        <div
+          class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3"
+        >
+          <div class="flex-grow-1">
+            <div class="flex flex-wrap align-items-center gap-2 mb-2">
+              <span class="font-semibold">{{ candidate.candidateName }}</span>
+              <app-candidate-stage-badge [stage]="candidate.currentStage" />
+              <app-mapped-p-tag
+                [value]="candidate.agendaStatusCode"
+                [options]="agendaStatusOptions"
+              />
+            </div>
+
+            <div class="grid text-sm">
+              <div class="col-12 md:col-6 lg:col-3">
+                <small class="text-color-secondary block"
+                  >Fecha postulacion</small
+                >
+                <div class="font-medium">
+                  @if (candidate.applicationDate) { {{ candidate.applicationDate
+                  | date: "dd/MM/yyyy" }} } @else {
+                  <span class="text-color-secondary">Sin fecha</span>
+                  }
+                </div>
+              </div>
+              <div class="col-12 md:col-6 lg:col-3">
+                <small class="text-color-secondary block">Cita</small>
+                <div class="font-medium">
+                  @if (interviewDate(candidate)) { {{ interviewDate(candidate) |
+                  date: "dd/MM/yyyy HH:mm" }} } @else {
+                  <span class="text-color-secondary">Sin fecha</span>
+                  }
+                </div>
+              </div>
+              <div class="col-12 md:col-6 lg:col-3">
+                <small class="text-color-secondary block">Entrevistador</small>
+                <div class="font-medium">
+                  {{ candidate.assignedInterviewerName || "Sin entrevistador" }}
+                </div>
+              </div>
+              <div class="col-12 md:col-6 lg:col-3">
+                <small class="text-color-secondary block">CV</small>
+                @if (candidate.cvFileName) {
+                <iw-button-view-pdf
+                  size="sm"
+                  class="btn--circle"
+                  [url]="candidate.cvFileUrl"
+                  [fileName]="candidate.cvFileName"
+                  [attr.aria-label]="'Ver CV de ' + candidate.candidateName"
+                />
+                } @else {
+                <span class="text-color-secondary">Sin CV</span>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 lg:justify-content-end">
+            @if (candidate.canSendToInterview) {
+            <il-button
+              label="Enviar a entrevista"
+              iconClass="mdi:send"
+              severity="primary"
+              size="small"
+              (clicked)="onAction(vacancy, candidate, 'send')"
+            />
+            } @if (candidate.canSchedule) {
+            <il-button
+              label="Agendar cita"
+              iconClass="mdi:calendar-plus"
+              severity="info"
+              size="small"
+              (clicked)="onAction(vacancy, candidate, 'schedule')"
+            />
+            } @if (candidate.canReschedule) {
+            <il-button
+              label="Reagendar"
+              iconClass="mdi:calendar-sync"
+              severity="info"
+              size="small"
+              variant="outlined"
+              (clicked)="onAction(vacancy, candidate, 'reschedule')"
+            />
+            } @if (candidate.canSchedule || candidate.canReschedule) {
+            <il-button
+              label="Asignar entrevistador"
+              iconClass="mdi:account-plus"
+              severity="warn"
+              size="small"
+              variant="outlined"
+              (clicked)="onAction(vacancy, candidate, 'assign')"
+            />
+            }
+            <il-button
+              label="Ver historial"
+              iconClass="mdi:history"
+              severity="secondary"
+              size="small"
+              variant="outlined"
+              (clicked)="navigateToApplicationDetail(candidate.candidateApplicationId)"
+            />
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>
+}

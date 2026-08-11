@@ -18,6 +18,17 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+
+interface RequestEmployeeRegisterDefaultsDTO {
+  boss: string;
+  candidateName: string;
+  customerAddress: string;
+  employeeId: string;
+  typeContractRegister: number;
+  additionalInformation?: string | null;
+  positionRequestId?: string | null;
+}
+
 @Component({
   selector: "app-solicitud-alta",
   templateUrl: "./solicitud-alta-form.html",
@@ -39,17 +50,17 @@ export class SolicitudAltaForm implements OnInit {
   private ref = inject(DynamicDialogRef);
   private enumSelectS = inject(EnumSelectService);
   requestPositionCandidateId: string = "";
-  data: any;
+  data: RequestEmployeeRegisterDefaultsDTO | null = null;
   submitting = signal(false);
 
   cb_typeContractRegister = signal<SelectItemDto[]>([]);
   cb_vacantes = signal<SelectItemDto[]>([]);
 
-  employeeId = this.config.data.employeeId;
-  customerId = this.config.data.customerId;
+  employeeId: string = this.config.data.employeeId;
+  customerId: string = this.config.data.customerId;
 
   form = this.formB.nonNullable.group({
-    positionRequestId: [null as number | null, Validators.required],
+    positionRequestId: [null as string | null, Validators.required],
     boss: ["", Validators.required],
     candidateName: ["", Validators.required],
     customerAddress: ["", Validators.required],
@@ -72,22 +83,23 @@ export class SolicitudAltaForm implements OnInit {
         this.employeeId,
         this.customerId,
       );
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.data = result;
-      this.form.patchValue(result);
-      // Override specific fields
-      this.form.patchValue({
-        employeeId: this.config.data.employeeId,
-        positionRequestId: null, // Was "" in original, but control is number | null
+    this.apiResponseS
+      .onGetItem<RequestEmployeeRegisterDefaultsDTO>(urlApi)
+      .then((result) => {
+        this.data = result;
+        this.form.patchValue({
+          ...result,
+          employeeId: this.config.data.employeeId,
+          positionRequestId: null,
+        });
       });
-    });
   }
 
   onLoadDataVacante() {
     const urlApi = EndpointsReclutamiento.RequestEmployeeRegister.getVacantes(
       this.customerId,
     );
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+    this.apiResponseS.onGetList<SelectItemDto[]>(urlApi).then((result) => {
       this.cb_vacantes.set(result);
     });
   }

@@ -25,6 +25,11 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { PhoneFormatPipe } from "src/app/shared/pipes/phone-format.pipe";
 import { StatusRequestDismissalDiscountForm } from "../../request-dismissal-discount/status-request-dismissal-discount-form";
 
+interface RequestDismissalStatusDetail {
+  id: string;
+  title?: string;
+}
+
 @Component({
   selector: "app-status-request-dismissal",
   templateUrl: "./status-request-dismissal.html",
@@ -49,7 +54,7 @@ export class StatusRequestDismissal implements OnInit {
   workPositionId = this.statusSolicitudVacanteService.getworkPositionId();
   ref: DynamicDialogRef;
 
-  dataSignal = signal<any>(null);
+  dataSignal = signal<RequestDismissalStatusDetail | null>(null);
   noCandidates: boolean = true;
   applicationUserId: string = this.authS.infoUserAuth.applicationUserId;
   public AspRole = ApplicationRole;
@@ -65,7 +70,9 @@ export class StatusRequestDismissal implements OnInit {
     const urlApi = EndpointsReclutamiento.RequestDismissal.sendEmail(
       this.workPositionId,
     );
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+    this.apiResponseS
+      .onGetItem<RequestDismissalStatusDetail>(urlApi)
+      .then((result) => {
       this.dataSignal.set(result);
     });
   }
@@ -87,7 +94,7 @@ export class StatusRequestDismissal implements OnInit {
   }
 
   //Editar solicitud de baja
-  onModalForm(data: any) {
+  onModalForm(data: RequestDismissalStatusDetail) {
     this.dialogHandlerS
       .openDialog(
         SolicitudBajaForm,
@@ -102,7 +109,7 @@ export class StatusRequestDismissal implements OnInit {
       });
   }
   //Eliminar solicitud de baja
-  onDelete(id: any) {
+  onDelete(id: string) {
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestDismissal.delete(id))
       .then((result: boolean) => {
@@ -124,7 +131,7 @@ export class StatusRequestDismissal implements OnInit {
     });
   }
   //Editar solicitud de Discounts
-  onModalFormDiscounts(data: any) {
+  onModalFormDiscounts(data: RequestDismissalStatusDetail) {
     this.dialogHandlerS
       .openDialog(
         StatusRequestDismissalDiscountForm,
@@ -139,7 +146,7 @@ export class StatusRequestDismissal implements OnInit {
       });
   }
   //Eliminar solicitud de baja
-  onDeleteDiscounts(id: any) {
+  onDeleteDiscounts(id: string) {
     const urlApi = EndpointsReclutamiento.RequestDismissalDiscount.delete(id);
     this.apiResponseS.onDelete(urlApi).then(() => {
       this.onLoadData();

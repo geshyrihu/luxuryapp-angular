@@ -116,7 +116,7 @@ export interface RankedListItem {
         flex-direction: column;
         background: var(--ds-surface);
         border: 1px solid var(--ds-border);
-        border-radius: var(--ds-radius-lg, 0.75rem);
+        border-radius: var(--ds-radius-lg);
         overflow: hidden;
       }
 
@@ -124,8 +124,8 @@ export interface RankedListItem {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: var(--ds-space-sm, 0.5rem);
-        padding: var(--ds-space-md, 0.75rem) var(--ds-space-lg, 1rem);
+        gap: var(--ds-space-sm);
+        padding: var(--ds-space-md) var(--ds-space-lg);
         border-bottom: 1px solid var(--ds-border);
         background: var(--ds-surface-container);
       }
@@ -133,13 +133,13 @@ export interface RankedListItem {
       .ranked-list-heading-group {
         display: flex;
         align-items: center;
-        gap: var(--ds-space-sm, 0.5rem);
+        gap: var(--ds-space-sm);
         min-width: 0;
       }
 
       .ranked-list-heading {
-        font-size: var(--ds-font-size-label, 0.8125rem);
-        font-weight: var(--ds-font-weight-bold, 700);
+        font-size: var(--ds-font-size-label);
+        font-weight: var(--ds-font-weight-bold);
         text-transform: uppercase;
         letter-spacing: 0.04em;
         color: var(--ds-text-secondary);
@@ -152,18 +152,18 @@ export interface RankedListItem {
         flex-shrink: 0;
         min-width: 1.5rem;
         padding: 0 0.4rem;
-        border-radius: var(--ds-radius-full, 999px);
+        border-radius: var(--ds-radius-full);
         background: var(--ds-bg-sunken);
         color: var(--ds-text-primary);
-        font-size: var(--ds-font-size-micro, 0.6875rem);
-        font-weight: var(--ds-font-weight-semibold, 600);
+        font-size: var(--ds-font-size-micro);
+        font-weight: var(--ds-font-weight-semibold);
         text-align: center;
       }
 
       .ranked-list-total {
         flex-shrink: 0;
-        font-size: var(--ds-font-size-body, 0.875rem);
-        font-weight: var(--ds-font-weight-bold, 700);
+        font-size: var(--ds-font-size-body);
+        font-weight: var(--ds-font-weight-bold);
         font-variant-numeric: tabular-nums;
       }
 
@@ -177,9 +177,9 @@ export interface RankedListItem {
       .ranked-list-row {
         display: flex;
         align-items: center;
-        gap: var(--ds-space-md, 0.75rem);
+        gap: var(--ds-space-md);
         width: 100%;
-        padding: var(--ds-space-sm, 0.5rem) var(--ds-space-lg, 1rem);
+        padding: var(--ds-space-sm) var(--ds-space-lg);
         border: 0;
         border-bottom: 1px solid var(--ds-border);
         background: transparent;
@@ -194,8 +194,8 @@ export interface RankedListItem {
 
       .ranked-list-row-interactive {
         cursor: pointer;
-        transition: background var(--ds-motion-duration-fast, 120ms)
-          var(--ds-motion-easing-standard, ease);
+        transition: background var(--ds-motion-duration-fast)
+          var(--ds-motion-easing-standard);
       }
 
       .ranked-list-row-interactive:hover {
@@ -211,7 +211,7 @@ export interface RankedListItem {
         flex-shrink: 0;
         width: 1.5rem;
         color: var(--ds-text-secondary);
-        font-size: var(--ds-font-size-micro, 0.6875rem);
+        font-size: var(--ds-font-size-micro);
         font-variant-numeric: tabular-nums;
         text-align: right;
       }
@@ -227,8 +227,8 @@ export interface RankedListItem {
       }
 
       .ranked-list-title {
-        font-size: var(--ds-font-size-body, 0.875rem);
-        font-weight: var(--ds-font-weight-medium, 500);
+        font-size: var(--ds-font-size-body);
+        font-weight: var(--ds-font-weight-medium);
         color: var(--ds-text-primary);
         overflow: hidden;
         text-overflow: ellipsis;
@@ -236,7 +236,7 @@ export interface RankedListItem {
       }
 
       .ranked-list-subtitle {
-        font-size: var(--ds-font-size-micro, 0.6875rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-secondary);
         font-variant-numeric: tabular-nums;
       }
@@ -244,7 +244,7 @@ export interface RankedListItem {
       .ranked-list-bar-track {
         height: 3px;
         margin-top: 2px;
-        border-radius: var(--ds-radius-full, 999px);
+        border-radius: var(--ds-radius-full);
         background: var(--ds-bg-sunken);
         overflow: hidden;
       }
@@ -257,17 +257,17 @@ export interface RankedListItem {
 
       .ranked-list-amount {
         flex-shrink: 0;
-        font-size: var(--ds-font-size-body, 0.875rem);
-        font-weight: var(--ds-font-weight-semibold, 600);
+        font-size: var(--ds-font-size-body);
+        font-weight: var(--ds-font-weight-semibold);
         color: var(--ds-text-primary);
         font-variant-numeric: tabular-nums;
       }
 
       .ranked-list-empty {
         margin: 0;
-        padding: var(--ds-space-xl, 1.5rem) var(--ds-space-lg, 1rem);
+        padding: var(--ds-space-xl) var(--ds-space-lg);
         color: var(--ds-text-secondary);
-        font-size: var(--ds-font-size-body, 0.875rem);
+        font-size: var(--ds-font-size-body);
         text-align: center;
       }
     `,

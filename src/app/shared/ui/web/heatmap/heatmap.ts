@@ -5,6 +5,7 @@ import {
   input,
   ViewEncapsulation,
 } from "@angular/core";
+import { resolveDsColor, trackChartTheme } from "../charts/echarts-adapters";
 
 export interface HeatmapCell {
   row: string;
@@ -83,7 +84,7 @@ export interface HeatmapCell {
         gap: 0.75rem;
       }
       .hm-title {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-primary);
         margin: 0;
@@ -99,7 +100,7 @@ export interface HeatmapCell {
         width: 60px;
       }
       .hm-col-header {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         font-weight: 600;
         color: var(--ds-text-secondary);
         padding: 0 4px 4px;
@@ -107,7 +108,7 @@ export interface HeatmapCell {
         min-width: 32px;
       }
       .hm-row-header {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         font-weight: 600;
         color: var(--ds-text-secondary);
         padding: 2px 8px 2px 0;
@@ -124,7 +125,7 @@ export interface HeatmapCell {
       }
       .hm-cell:hover {
         opacity: 0.85;
-        outline: 2px solid var(--ds-primary, #003d9b);
+        outline: 2px solid var(--ds-primary);
       }
       .hm-value {
         font-size: 0.6rem;
@@ -141,14 +142,14 @@ export interface HeatmapCell {
         gap: 0.5rem;
       }
       .hm-legend-label {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       .hm-legend-bar {
         flex: 1;
         height: 10px;
         border-radius: 5px;
-        background: linear-gradient(to right, #edf1ff, #003d9b);
+        background: linear-gradient(to right, color-mix(in srgb, var(--ds-cat-1), white 85%), var(--ds-cat-1));
         max-width: 180px;
       }
     `,
@@ -157,13 +158,17 @@ export interface HeatmapCell {
   encapsulation: ViewEncapsulation.None,
 })
 export class AppHeatmap {
+  constructor() {
+    trackChartTheme();
+  }
+
   data = input<HeatmapCell[]>([]);
   title = input<string>("");
   showValues = input<boolean>(false);
   minLabel = input<string>("Bajo");
   maxLabel = input<string>("Alto");
-  colorLow = input<string>("#edf1ff");
-  colorHigh = input<string>("#003d9b");
+  colorLow = input<string>("--ds-cat-8");
+  colorHigh = input<string>("var(--ds-cat-1)");
 
   rows = computed(() => [...new Set(this.data().map((d) => d.row))]);
   cols = computed(() => [...new Set(this.data().map((d) => d.col))]);
@@ -190,13 +195,13 @@ export class AppHeatmap {
   cellColor(row: string, col: string): string {
     const { min, max } = this.minMax();
     const t = (this.cellValue(row, col) - min) / (max - min || 1);
-    return this.lerp(this.colorLow(), this.colorHigh(), t);
+    return this.lerp(resolveDsColor(this.colorLow()), resolveDsColor(this.colorHigh()), t);
   }
 
   cellTextColor(row: string, col: string): string {
     const { min, max } = this.minMax();
     const t = (this.cellValue(row, col) - min) / (max - min || 1);
-    return t > 0.55 ? "#fff" : "#041b3c";
+    return t > 0.55 ? "var(--ds-on-primary)" : "var(--ds-text-primary)";
   }
 
   private lerp(c1: string, c2: string, t: number): string {

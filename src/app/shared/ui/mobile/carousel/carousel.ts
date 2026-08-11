@@ -71,7 +71,7 @@ import { CarouselBase } from "@ui/base/carousel.base";
         height: 0.5rem;
         border-radius: 50%;
         border: none;
-        background: var(--ds-border, #e2e8f0);
+        background: var(--ds-border);
         cursor: pointer;
         padding: 0;
         transition:
@@ -79,7 +79,7 @@ import { CarouselBase } from "@ui/base/carousel.base";
           transform 0.2s;
       }
       .ili-carousel-dot-active {
-        background: var(--ds-primary, #003d9b);
+        background: var(--ds-primary);
         transform: scale(1.3);
       }
       .ili-carousel-dot-inner {

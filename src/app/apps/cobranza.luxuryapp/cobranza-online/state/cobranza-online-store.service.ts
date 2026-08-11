@@ -53,8 +53,10 @@ export class CobranzaOnlineStoreService {
       // y mostramos el loader bloqueante para dar feedback visual correcto.
       this.clearStore();
       void this.loadLocalData(cId, y, m, d, true);
-    }, { allowSignalWrites: true });
+    });
   }
+
+  private currentRequestId = 0;
 
   /**
    * Carga los datos desde nuestra API (base de datos local) sin tocar Aspel directo
@@ -62,6 +64,7 @@ export class CobranzaOnlineStoreService {
    *                   Si es false, lo hace silenciosamente.
    */
   async loadLocalData(customerId: string, year: number, month: number, day: number, showLoader = false) {
+    const reqId = ++this.currentRequestId;
     if (showLoader) {
       this.isLoading.set(true);
     }
@@ -80,13 +83,17 @@ export class CobranzaOnlineStoreService {
         )
       ]);
 
+      if (this.currentRequestId !== reqId) {
+        return;
+      }
+
       this.dashboardData.set(dashboard ?? null);
       this.analysisData.set(analysis ?? null);
       this.syncStatus.set(status ?? null);
     } catch (error) {
       console.error("Error cargando store de cobranza:", error);
     } finally {
-      if (showLoader) {
+      if (this.currentRequestId === reqId && showLoader) {
         this.isLoading.set(false);
       }
     }

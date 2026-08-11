@@ -100,9 +100,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       /* Vertical (default): icono y tendencia arriba, luego valor, label y pie.
          Horizontal: icono a la izquierda, ocupando el alto del contenido. */
       .stat-card {
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         padding: 1rem;
         display: grid;
         grid-template-columns: auto 1fr;
@@ -154,7 +154,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       .stat-icon-wrap {
         width: 36px;
         height: 36px;
-        border-radius: var(--ds-radius-md, 6px);
+        border-radius: var(--ds-radius-md);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -166,28 +166,28 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         display: flex;
         align-items: center;
         gap: 0.15rem;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         font-weight: 600;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         padding: 0.15rem 0.5rem;
         white-space: nowrap;
       }
       .stat-trend-up {
-        background: #d1fae5;
-        color: #006837;
+        background: var(--ds-success-light);
+        color: var(--ds-accent-text-success);
       }
       .stat-trend-down {
-        background: #ffdad6;
-        color: #ba1a1a;
+        background: var(--ds-danger-light);
+        color: var(--ds-accent-text-danger);
       }
       .stat-value {
-        font-size: var(--ds-font-size-metric, 1.5rem);
+        font-size: var(--ds-font-size-metric);
         font-weight: 700;
         color: var(--ds-text-primary);
         line-height: 1.2;
       }
       .stat-label {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-secondary);
         text-transform: uppercase;
         letter-spacing: 0.04em;
@@ -201,7 +201,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         width: 100%;
       }
       .stat-subtitle {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
         margin-top: 0.125rem;
       }
@@ -222,7 +222,7 @@ export class AppStatCard {
   sparkline = input<number[]>([]);
   icon = input<string>("");
   iconColor = input<string>("var(--ds-primary)");
-  iconBg = input<string>("var(--ds-primary-100, #dae2ff)");
+  iconBg = input<string>("var(--primary-100)");
   prefix = input<string>("");
   suffix = input<string>("");
   subtitle = input<string>("");
@@ -238,7 +238,7 @@ export class AppStatCard {
   );
 
   sparklineColor = computed(() =>
-    (this.trend() ?? 0) >= 0 ? "#006837" : "#ba1a1a",
+    (this.trend() ?? 0) >= 0 ? "var(--ds-accent-text-success)" : "var(--ds-accent-text-danger)",
   );
 
   absTrend = computed(() => Math.abs(this.trend() ?? 0));

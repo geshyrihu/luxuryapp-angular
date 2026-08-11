@@ -57,14 +57,14 @@ export { type TimelineEvent } from "@ui/base/timeline.base";
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
-        border: 2px solid var(--ds-bg-surface, #ffffff);
-        box-shadow: 0 0 0 2px var(--ds-border, #e2e8f0);
+        color: var(--ds-on-primary);
+        border: 2px solid var(--ds-bg-surface);
+        box-shadow: 0 0 0 2px var(--ds-border);
       }
       .timeline-card {
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         padding: 0.75rem 1rem;
         box-shadow: var(--ds-shadow-sm);
       }
@@ -74,24 +74,24 @@ export { type TimelineEvent } from "@ui/base/timeline.base";
         justify-content: space-between;
         gap: 0.5rem;
         color: var(--ds-text-primary);
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
       }
       .timeline-date {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
         white-space: nowrap;
       }
       .timeline-desc {
         margin: 0.25rem 0 0;
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         color: var(--ds-text-secondary);
       }
       .timeline-badge {
         display: inline-block;
         margin-top: 0.5rem;
         padding: 0.125rem 0.5rem;
-        border-radius: var(--ds-radius-pill, 999px);
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        border-radius: var(--ds-radius-full);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-primary);
         font-weight: 500;
       }

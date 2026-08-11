@@ -19,6 +19,7 @@ import {
   DialogHandlerService,
   DialogSize,
 } from "src/app/core/services/dialog-handler.service";
+import { AccordionItem } from "src/app/shared/ui/base/accordion.base";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CobranzaDatePickerModalComponent } from "./cobranza-date-picker-modal";
 import { cobranzaOnlineFilterState } from "./state/cobranza-online-filter.state";
@@ -40,6 +41,18 @@ export class CobranzaOnlineWrapper {
 
   readonly pageTitle = signal("Cobranza Online");
   readonly pageDescription = signal("");
+
+  readonly contextAccordionItems = computed<AccordionItem[]>(() => {
+    const customer = this.customerName() || "Sin Cliente";
+    const period = this.currentCutLabel();
+    return [
+      {
+        id: "context",
+        title: `Cliente: ${customer} · ${period}`,
+        icon: "mdi:office-building-outline",
+      },
+    ];
+  });
 
   readonly currentYear = cobranzaOnlineFilterState.year;
   readonly currentMonth = cobranzaOnlineFilterState.month;

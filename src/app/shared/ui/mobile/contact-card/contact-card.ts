@@ -91,13 +91,13 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
         align-items: center;
         gap: 0.75rem;
         padding: 0.75rem 0.875rem;
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
       }
       .ili-contact-selected {
-        border-color: var(--ds-primary, #003d9b);
-        background: var(--ds-bg-elevated, #f1f3ff);
+        border-color: var(--ds-primary);
+        background: var(--ds-bg-elevated);
       }
       .ili-contact-avatar {
         flex-shrink: 0;
@@ -109,7 +109,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
         justify-content: center;
         font-size: 0.8rem;
         font-weight: 700;
-        color: #fff;
+        color: var(--ds-on-primary);
         overflow: hidden;
       }
       .ili-contact-avatar-img {
@@ -168,16 +168,16 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         border: none;
-        background: var(--ds-bg-sunken, #f1f5f9);
+        background: var(--ds-bg-sunken);
         color: var(--ds-text-secondary);
         text-decoration: none;
         font-size: 1.15rem;
       }
       .ili-contact-action:active {
-        background: var(--ds-bg-elevated, #f1f3ff);
-        color: var(--ds-primary, #003d9b);
+        background: var(--ds-bg-elevated);
+        color: var(--ds-primary);
       }
     `,
   ],

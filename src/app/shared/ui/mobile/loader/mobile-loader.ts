@@ -36,7 +36,7 @@ import { LoaderBase } from "../../base/loader.base";
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        background: rgba(0, 0, 0, 0.8);
+        background: color-mix(in srgb, black 80%, transparent);
         color: white;
         padding: 0.6rem 1.2rem;
         border-radius: 50px;

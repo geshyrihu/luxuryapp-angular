@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import type { EChartsCoreOption } from "echarts/core";
 import { NgxEchartsDirective } from "ngx-echarts";
-import { NgxChartsDatum, ngxToPieOption } from "./echarts-adapters";
+import { NgxChartsDatum, ngxToPieOption, trackChartTheme } from "./echarts-adapters";
 
 /**
  * PieChart — pastel / dona. Motor: ECharts (ngx-echarts).
@@ -24,13 +24,17 @@ import { NgxChartsDatum, ngxToPieOption } from "./echarts-adapters";
   ></div>`,
 })
 export class PieChart {
+  constructor() {
+    trackChartTheme();
+  }
+
   dataGrafico = input<NgxChartsDatum[]>([
     { name: "Germany", value: 8940000 },
     { name: "USA", value: 5000000 },
   ]);
 
   colorScheme = input<{ domain?: string[] }>({
-    domain: ["#5AA454", "#A10A28"],
+    domain: ["--ds-cat-7", "--ds-cat-4"],
   });
 
   view = input<[number, number] | undefined>(undefined);

@@ -17,6 +17,25 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+
+interface RequestSalaryModificationEditDTO {
+  id: string;
+  applicationUserId: string;
+  confirmationFinish: boolean;
+  currentSalary: number;
+  employeeId: string;
+  executionDate: Date | string | null;
+  finalSalary: number;
+  folio: string;
+  applicationRoleCurrentId: string;
+  applicationRoleNewId: string;
+  requestDate: Date | string | null;
+  retroactive: boolean;
+  soport?: string | null;
+  status: number;
+  workPositionId: string;
+}
+
 @Component({
   selector: "app-modificacion-salario-form",
   templateUrl: "./modificacion-salario-form.html",
@@ -41,22 +60,27 @@ export class ModificacionSalarioForm implements OnInit {
   cb_si_no = signal<SelectItemDto[]>([]);
   id: string = "";
 
+  private toDate(value: string | Date | null): Date | null {
+    if (!value) return null;
+    return value instanceof Date ? value : new Date(value);
+  }
+
   form = this.formB.nonNullable.group({
     id: [{ value: this.id, disabled: true }],
     applicationUserId: ["", Validators.required],
     confirmationFinish: [false, Validators.required],
-    currentSalary: [0, Validators.required], // Assumed number
-    employeeId: [0, Validators.required],
+    currentSalary: [0, Validators.required],
+    employeeId: ["", Validators.required],
     executionDate: [null as Date | null, Validators.required],
     finalSalary: [0, Validators.required],
     folio: ["", Validators.required],
-    applicationRoleCurrentId: [0, Validators.required],
-    applicationRoleNewId: [0, Validators.required],
+    applicationRoleCurrentId: ["", Validators.required],
+    applicationRoleNewId: ["", Validators.required],
     requestDate: [null as Date | null, Validators.required],
     retroactive: [false, Validators.required],
     soport: [""],
     status: [null as number | null, Validators.required],
-    workPositionId: [0, Validators.required],
+    workPositionId: ["", Validators.required],
   });
 
   async ngOnInit() {
@@ -73,9 +97,15 @@ export class ModificacionSalarioForm implements OnInit {
     const urlApi = EndpointsReclutamiento.RequestSalaryModification.getById(
       this.id,
     );
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem<RequestSalaryModificationEditDTO>(urlApi)
+      .then((result) => {
+        this.form.patchValue({
+          ...result,
+          executionDate: this.toDate(result.executionDate),
+          requestDate: this.toDate(result.requestDate),
+        });
+      });
   }
 
   onSubmit() {

@@ -36,6 +36,7 @@ import { CandidateFormGroup } from "./interfaces/candidate-form.interface";
   selector: "app-candidate-form",
   templateUrl: "./candidate-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
@@ -81,7 +82,7 @@ export class CandidateForm implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    this.id = this.config.data.id;
+    this.id = this.config.data?.id ?? "";
     await this.onLoadSelectItems();
     if (this.id) this.onLoadData();
   }
@@ -101,14 +102,18 @@ export class CandidateForm implements OnInit {
       });
   }
 
-  onSubmit() {
-    FormHelper.submitCrud({
+  async onSubmit() {
+    const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
       endpoint: EndpointsReclutamiento.Candidates.base,
       id: this.id,
-      ref: this.ref,
+      ref: undefined,
       submitting: this.submitting,
     });
+
+    if (result !== false) {
+      this.ref.close(result);
+    }
   }
 }

@@ -12,6 +12,7 @@
           (click)="sidebarToggle()"
           lxTooltip="Menú"
           tooltipPosition="bottom"
+          aria-label="Abrir o cerrar el menú lateral"
         >
           <app-icon icon="fluent-color:text-bullet-list-square-24" />
         </button>
@@ -25,6 +26,8 @@
         >
           <img
             [src]="customerPhotoPath()"
+            alt=""
+            aria-hidden="true"
             style="width: 24px; height: 24px; object-fit: contain"
           />
           <span>{{ customerName() }}</span>
@@ -40,6 +43,8 @@
             <div class="flex align-items-center gap-2 px-3 py-2 cursor-pointer">
               <img
                 [src]="item.data.image"
+                alt=""
+                aria-hidden="true"
                 style="width: 22px; height: 22px; object-fit: contain"
               />
               <span [class.font-bold]="item.styleClass === 'font-bold'"
@@ -52,6 +57,8 @@
         <div class="flex align-items-center gap-3">
           <img
             [src]="customerPhotoPath()"
+            alt=""
+            aria-hidden="true"
             style="width: 38px; height: 38px; object-fit: contain"
           />
           <span class="font-bold text-xl customer-name"
@@ -84,6 +91,7 @@
           class="toolbar-icon-btn"
           (click)="navIcon.action()"
           [lxTooltip]="navIcon.ngbTooltip"
+          [attr.aria-label]="navIcon.ngbTooltip || navIcon.label || navIcon.iconClass"
           tooltipPosition="bottom"
         >
           <app-icon
@@ -100,6 +108,7 @@
           (click)="toggleTheme()"
           lxTooltip="Cambiar Tema"
           tooltipPosition="bottom"
+          aria-label="Cambiar tema claro u oscuro"
         >
           <app-icon [icon]="getThemeIcon()" />
         </button>
@@ -130,15 +139,17 @@
 >
   <ng-template #header>
     <div class="flex align-items-center gap-3">
-      <img
-        [src]="customerPhotoPath()"
-        style="
-          width: 40px;
-          height: 40px;
-          object-fit: contain;
-          border-radius: 8px;
-        "
-      />
+          <img
+            [src]="customerPhotoPath()"
+            alt=""
+            aria-hidden="true"
+            style="
+              width: 40px;
+              height: 40px;
+              object-fit: contain;
+              border-radius: 8px;
+            "
+          />
       <div>
         <span class="font-bold text-xl block text-purple-700">
           <app-icon

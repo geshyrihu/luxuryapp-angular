@@ -19,20 +19,20 @@ import { EditorModule } from "primeng/editor";
   styles: [
     `
       app-rich-text-editor .p-editor-container {
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         overflow: hidden;
       }
       app-rich-text-editor .p-editor-toolbar {
-        background: var(--ds-bg-elevated, #f4f5f8);
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-elevated);
+        border-bottom: 1px solid var(--ds-border);
         padding: 0.5rem;
       }
       app-rich-text-editor .p-editor-content {
         min-height: 200px;
       }
       app-rich-text-editor .ql-editor {
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
       }
     `,

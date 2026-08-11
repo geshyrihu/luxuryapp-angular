@@ -30,11 +30,11 @@ export class AppProgressBar extends ProgressBarBase {
   /** Color CSS del valor de la barra, mapeado desde el color semántico ya resuelto. */
   barColor = computed<string>(() => {
     const map: Record<string, string> = {
-      primary: "var(--ds-primary, #2563eb)",
-      success: "var(--ds-success, #16a34a)",
-      warning: "var(--ds-warning, #d97706)",
-      danger: "var(--ds-danger, #dc2626)",
+      primary: "var(--ds-primary)",
+      success: "var(--ds-success)",
+      warning: "var(--ds-warning)",
+      danger: "var(--ds-danger)",
     };
-    return map[this.resolvedColor()] ?? "var(--ds-primary, #2563eb)";
+    return map[this.resolvedColor()] ?? "var(--ds-primary)";
   });
 }

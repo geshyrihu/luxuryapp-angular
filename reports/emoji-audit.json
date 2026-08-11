@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-02T00:57:26.388Z",
-  "totalMatches": 1260,
-  "userFacingMatches": 324,
+  "generatedAt": "2026-08-09T20:15:40.606Z",
+  "totalMatches": 1287,
+  "userFacingMatches": 333,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/apps",
-      "count": 584
+      "count": 591
     },
     {
       "key": "app/shared",
-      "count": 228
+      "count": 244
     },
     {
       "key": "src/styles",
@@ -22,7 +22,7 @@
     },
     {
       "key": "app/core",
-      "count": 116
+      "count": 120
     },
     {
       "key": "app/root",
@@ -40,11 +40,11 @@
   "byUserFacingModule": [
     {
       "key": "app/apps",
-      "count": 225
+      "count": 230
     },
     {
       "key": "app/core",
-      "count": 59
+      "count": 63
     },
     {
       "key": "app/shared",
@@ -62,15 +62,15 @@
   "byCategory": [
     {
       "key": "docs",
-      "count": 481
+      "count": 495
     },
     {
       "key": "code_string",
-      "count": 199
+      "count": 209
     },
     {
       "key": "code_comment",
-      "count": 192
+      "count": 195
     },
     {
       "key": "template_comment",
@@ -78,7 +78,7 @@
     },
     {
       "key": "template_text",
-      "count": 119
+      "count": 118
     },
     {
       "key": "style_comment",
@@ -86,7 +86,7 @@
     },
     {
       "key": "code_misc",
-      "count": 21
+      "count": 22
     },
     {
       "key": "style_content",
@@ -2204,7 +2204,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/configuracion-correo/customer-data-company/customer-data-company-list.html",
-      "line": 114,
+      "line": 112,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -2314,7 +2314,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/seguridad-permisos/application-role/roles-list.html",
-      "line": 78,
+      "line": 74,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -2520,6 +2520,28 @@
         "🔐"
       ],
       "preview": "\"🔐 Cuenta de acceso\","
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/detalle-condominos/cobranza-online-detalle-condominos.ts",
+      "line": 90,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "/** Todos los condóminos ordenados mayor→menor deuda */"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-online/morosidad/cobranza-online-morosidad.ts",
+      "line": 112,
+      "category": "code_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "* \"104-002-099-000\" → \"104-002-099\". Se toman los tres primeros segmentos en vez"
     },
     {
       "file": "src/app/apps/contabilidad.luxuryapp/ar/aspel-customer-empresa/aspel-customer-empresa-list.html",
@@ -3530,7 +3552,7 @@
     },
     {
       "file": "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minutas-list.html",
-      "line": 266,
+      "line": 262,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -3552,7 +3574,7 @@
     },
     {
       "file": "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/resumen-minuta.html",
-      "line": 27,
+      "line": 26,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -3563,7 +3585,7 @@
     },
     {
       "file": "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/resumen-minuta.html",
-      "line": 208,
+      "line": 205,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -3783,19 +3805,7 @@
     },
     {
       "file": "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/equipos-list.html",
-      "line": 258,
-      "category": "template_text",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "🛠",
-        "⚪"
-      ],
-      "preview": "[innerHTML]=\"order.hasServiceOrder ? '🛠️' : '⚪'\""
-    },
-    {
-      "file": "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/equipos-list.html",
-      "line": 426,
+      "line": 365,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
@@ -3804,6 +3814,18 @@
         "⚪"
       ],
       "preview": "[innerHTML]=\"service.hasServiceOrder ? '🛠️' : '⚪'\""
+    },
+    {
+      "file": "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/mantenimientos-dialog.ts",
+      "line": 79,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🛠",
+        "⚪"
+      ],
+      "preview": "<span [innerHTML]=\"order.hasServiceOrder ? '🛠️' : '⚪'\"></span>"
     },
     {
       "file": "src/app/apps/mantenimiento.luxuryapp/inspection/bitacora/mis-inspecciones-ejecutar.html",
@@ -4390,7 +4412,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/dashboard/unified-pending-dashboard.ts",
-      "line": 548,
+      "line": 545,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -4544,7 +4566,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-anual-mantenimiento.ts",
-      "line": 88,
+      "line": 90,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -4555,7 +4577,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-anual-mantenimiento.ts",
-      "line": 89,
+      "line": 91,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -4566,7 +4588,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-anual-mantenimiento.ts",
-      "line": 90,
+      "line": 92,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -4577,7 +4599,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-anual-mantenimiento.ts",
-      "line": 91,
+      "line": 93,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -4588,7 +4610,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-anual-mantenimiento.ts",
-      "line": 92,
+      "line": 94,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -4599,7 +4621,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-anual-mantenimiento.ts",
-      "line": 94,
+      "line": 96,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -4610,7 +4632,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/cronograma-anual-mantenimiento.ts",
-      "line": 95,
+      "line": 97,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -4731,7 +4753,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/manuals/biblioteca/manuals-and-processes/manuals-and-processes-detail.ts",
-      "line": 224,
+      "line": 227,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -4742,7 +4764,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/manuals/biblioteca/manuals-and-processes/manuals-and-processes-detail.ts",
-      "line": 226,
+      "line": 229,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -5139,7 +5161,7 @@
     },
     {
       "file": "src/app/apps/operations.luxuryapp/supervision/supervision/agenda-supervision/agenda-supervision.html",
-      "line": 209,
+      "line": 204,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -5391,26 +5413,15 @@
       "preview": "<!-- 📱 MOBILE -->"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-shared/filter-requests.ts",
-      "line": 51,
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-stage-timeline.ts",
+      "line": 26,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
       "symbols": [
-        "🚪"
+        "→"
       ],
-      "preview": "{ label: \"🚪 Bajas\", path: \"dismissals\" },"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-shared/filter-requests.ts",
-      "line": 52,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "💰"
-      ],
-      "preview": "{ label: \"💰 Modificación de salario\", path: \"salary-increase\" },"
+      "preview": "title: `${this.stageLabel(h.fromStage)} → ${this.stageLabel(h.toStage)}`,"
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/recruitment-client-requests/solicitudes-cliente-list.html",
@@ -5513,7 +5524,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board.html",
-      "line": 61,
+      "line": 68,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -5524,7 +5535,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board.html",
-      "line": 78,
+      "line": 85,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -5535,7 +5546,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board.html",
-      "line": 282,
+      "line": 289,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
@@ -5546,14 +5557,14 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board.html",
-      "line": 289,
+      "line": 296,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
       "symbols": [
         "🔵"
       ],
-      "preview": "🔵 VA-{{ item.positionRequest.folio }} é Alta en proceso"
+      "preview": "🔵 VA-{{ item.positionRequest.folio }} Alta en proceso"
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/employees/employee-list.html",
@@ -5590,7 +5601,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/staff-board/staff-board.html",
-      "line": 61,
+      "line": 68,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -5601,7 +5612,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/staff-board/staff-board.html",
-      "line": 78,
+      "line": 85,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -5612,7 +5623,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/staff-board/staff-board.html",
-      "line": 282,
+      "line": 289,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
@@ -5623,14 +5634,14 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/staff-board/staff-board.html",
-      "line": 289,
+      "line": 296,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
       "symbols": [
         "🔵"
       ],
-      "preview": "🔵 VA-{{ item.positionRequest.folio }} é Alta en proceso"
+      "preview": "🔵 VA-{{ item.positionRequest.folio }} Alta en proceso"
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/admin-vacaciones-balance/admin-vacaciones-balance.html",
@@ -5653,6 +5664,72 @@
         "📲"
       ],
       "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+    },
+    {
+      "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/calendario-vacaciones-permisos/calendario-vacaciones-permisos.ts",
+      "line": 178,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔷"
+      ],
+      "preview": "console.log('🔷 calendarEvents computed - rawEvents:', events);"
+    },
+    {
+      "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/calendario-vacaciones-permisos/calendario-vacaciones-permisos.ts",
+      "line": 190,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔷"
+      ],
+      "preview": "console.log('🔷 calendarEvents mapped result:', mapped);"
+    },
+    {
+      "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/calendario-vacaciones-permisos/calendario-vacaciones-permisos.ts",
+      "line": 238,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔶"
+      ],
+      "preview": "console.log('🔶 loadEvents called - customerId:', customerId, 'year:', year, 'month:', month);"
+    },
+    {
+      "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/calendario-vacaciones-permisos/calendario-vacaciones-permisos.ts",
+      "line": 254,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔶"
+      ],
+      "preview": "console.log('🔶 API response - eventsData:', eventsData, 'holidaysData:', holidaysData);"
+    },
+    {
+      "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/calendario-vacaciones-permisos/calendario-vacaciones-permisos.ts",
+      "line": 264,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔶"
+      ],
+      "preview": "console.log('🔶 Transformed events:', transformedEvents, 'holidays:', transformedHolidays);"
+    },
+    {
+      "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/calendario-vacaciones-permisos/calendario-vacaciones-permisos.ts",
+      "line": 267,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔶"
+      ],
+      "preview": "console.log('🔶 Setting rawEvents to:', finalEvents);"
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/dashboard/hr-dashboard.html",
@@ -5843,7 +5920,7 @@
     },
     {
       "file": "src/app/apps/resident.luxuryapp/property/propiedades-list.ts",
-      "line": 55,
+      "line": 57,
       "category": "code_comment",
       "module": "app/apps",
       "severity": "low",
@@ -5975,7 +6052,7 @@
     },
     {
       "file": "src/app/apps/system.luxuryapp/configuracion-sistema/knowledge-base/ai-knowledge-base-list.html",
-      "line": 81,
+      "line": 79,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -7622,6 +7699,50 @@
         "→"
       ],
       "preview": "// Animaciones desactivadas → render síncrono antes de capturar."
+    },
+    {
+      "file": "src/app/core/services/client-error-logger.service.ts",
+      "line": 87,
+      "category": "code_string",
+      "module": "app/core",
+      "severity": "medium",
+      "symbols": [
+        "✓"
+      ],
+      "preview": "console.log(\"[ClientErrorLogger] ✓ Log enviado al servidor\", response);"
+    },
+    {
+      "file": "src/app/core/services/client-error-logger.service.ts",
+      "line": 90,
+      "category": "code_string",
+      "module": "app/core",
+      "severity": "medium",
+      "symbols": [
+        "✗"
+      ],
+      "preview": "console.warn(\"[ClientErrorLogger] ✗ No se pudo enviar log:\", err);"
+    },
+    {
+      "file": "src/app/core/services/client-error-logger.service.ts",
+      "line": 95,
+      "category": "code_string",
+      "module": "app/core",
+      "severity": "medium",
+      "symbols": [
+        "✓"
+      ],
+      "preview": "console.log(\"[ClientErrorLogger] ✓ Log enviado en reintento\");"
+    },
+    {
+      "file": "src/app/core/services/client-error-logger.service.ts",
+      "line": 98,
+      "category": "code_string",
+      "module": "app/core",
+      "severity": "medium",
+      "symbols": [
+        "✗"
+      ],
+      "preview": "console.warn(\"[ClientErrorLogger] ✗ Reintento fallido\");"
     },
     {
       "file": "src/app/core/services/console-logger.service.ts",
@@ -9564,7 +9685,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 673,
+      "line": 683,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9575,7 +9696,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 674,
+      "line": 684,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9586,7 +9707,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 675,
+      "line": 685,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9597,7 +9718,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 676,
+      "line": 686,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9608,7 +9729,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 680,
+      "line": 690,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9619,7 +9740,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 681,
+      "line": 691,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9630,7 +9751,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 682,
+      "line": 692,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9641,7 +9762,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 683,
+      "line": 693,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9652,7 +9773,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 684,
+      "line": 694,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9663,7 +9784,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 685,
+      "line": 695,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9674,7 +9795,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 686,
+      "line": 696,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9685,7 +9806,7 @@
     },
     {
       "file": "src/app/routing/refactor-inventaio-rutas.md",
-      "line": 687,
+      "line": 697,
       "category": "docs",
       "module": "app/routing",
       "severity": "low",
@@ -9759,6 +9880,171 @@
         "→"
       ],
       "preview": "| Slash inicial añadido | 1 | diagram → /diagram |"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/debug-console/debug-console.ts",
+      "line": 33,
+      "category": "code_misc",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "🐛"
+      ],
+      "preview": "<span class=\"text-white font-bold text-sm\">🐛 Debug Console</span>"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/debug-console/README.md",
+      "line": 67,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Captura automática de `console.log/error/warn/info`"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/debug-console/README.md",
+      "line": 68,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Timestamps en cada log"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/debug-console/README.md",
+      "line": 69,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Código de colores por nivel (error=rojo, warn=amarillo, etc.)"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/debug-console/README.md",
+      "line": 70,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Muestra últimos 100 logs"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/debug-console/README.md",
+      "line": 71,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Botón para limpiar logs"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/debug-console/README.md",
+      "line": 72,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Toggle show/hide"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/debug-console/README.md",
+      "line": 73,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ Responsive (se adapta a mobile)"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/debug-console/README.md",
+      "line": 74,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ No afecta performance"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/debug-console/README.md",
+      "line": 91,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "[10:15:45] [LOG] [IMAGE_PROCESS] Iniciando compresión: 6.70MB → 5.00MB"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/processing-overlay/README.md",
+      "line": 46,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Responsivo**: Se adapta automáticamente a mobile y desktop"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/processing-overlay/README.md",
+      "line": 47,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Barra de progreso**: Visual feedback en tiempo real (0-100%)"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/processing-overlay/README.md",
+      "line": 48,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Spinner animado**: Icono de carga giratorio"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/processing-overlay/README.md",
+      "line": 49,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Mensajes flexibles**: Mensajes principal y secundario personalizables"
+    },
+    {
+      "file": "src/app/shared/ui/adaptive/processing-overlay/README.md",
+      "line": 50,
+      "category": "docs",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "- ✅ **Backdrop oscuro**: Desactiva interacción con el fondo"
     },
     {
       "file": "src/app/shared/ui/arquitectura-shared-ui.md",
@@ -10694,7 +10980,7 @@
     },
     {
       "file": "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component.ts",
-      "line": 23,
+      "line": 29,
       "category": "code_string",
       "module": "app/shared",
       "severity": "medium",
@@ -11075,6 +11361,17 @@
       "preview": "* 🔢 CUSTOM INPUT DECIMAL"
     },
     {
+      "file": "src/app/shared/ui/inputs/web/custom-input-email-signal.ts",
+      "line": 7,
+      "category": "code_comment",
+      "module": "app/shared",
+      "severity": "low",
+      "symbols": [
+        "📧"
+      ],
+      "preview": "* 📧 CUSTOM INPUT EMAIL"
+    },
+    {
       "file": "src/app/shared/ui/inputs/web/custom-input-hour-signal.ts",
       "line": 9,
       "category": "code_comment",
@@ -11098,7 +11395,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-img-signal.ts",
-      "line": 30,
+      "line": 34,
       "category": "code_misc",
       "module": "app/shared",
       "severity": "low",
@@ -11109,7 +11406,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-img-signal.ts",
-      "line": 46,
+      "line": 52,
       "category": "code_misc",
       "module": "app/shared",
       "severity": "low",
@@ -11120,7 +11417,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-img-signal.ts",
-      "line": 199,
+      "line": 207,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -11131,7 +11428,7 @@
     },
     {
       "file": "src/app/shared/ui/inputs/web/custom-input-img-signal.ts",
-      "line": 204,
+      "line": 212,
       "category": "code_comment",
       "module": "app/shared",
       "severity": "low",
@@ -12532,14 +12829,14 @@
     },
     {
       "file": "src/styles/core/_colors.scss",
-      "line": 250,
+      "line": 266,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
       "symbols": [
         "→"
       ],
-      "preview": "// (0 = texto más claro/más alto → 950 = fondo más oscuro/más bajo)."
+      "preview": "// sin escalones duplicados (RN-DS-014). 0 = texto → 950 = form-field."
     },
     {
       "file": "src/styles/core/_functions.scss",
@@ -12708,7 +13005,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 522,
+      "line": 548,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -12719,7 +13016,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 779,
+      "line": 805,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -12730,7 +13027,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 1078,
+      "line": 1104,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -12741,7 +13038,7 @@
     },
     {
       "file": "src/styles/custom/_committee.scss",
-      "line": 1178,
+      "line": 1204,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -12970,7 +13267,7 @@
       "symbols": [
         "🧩"
       ],
-      "preview": "C -->|\"var(--primary-*)\"| D[\"🧩 PrimeNG\"]"
+      "preview": "C -->|\"var(--primary-*), var(--surface-dark-*)\"| D[\"🧩 PrimeNG\"]"
     },
     {
       "file": "src/styles/estandar-hoja-estilos.md",
@@ -13919,7 +14216,7 @@
     },
     {
       "file": "src/styles/theme/_variables.scss",
-      "line": 457,
+      "line": 489,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13930,7 +14227,7 @@
     },
     {
       "file": "src/styles/theme/_variables.scss",
-      "line": 694,
+      "line": 746,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13941,7 +14238,7 @@
     },
     {
       "file": "src/styles/web/_buttons.scss",
-      "line": 732,
+      "line": 742,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13952,7 +14249,7 @@
     },
     {
       "file": "src/styles/web/_buttons.scss",
-      "line": 733,
+      "line": 743,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -14029,7 +14326,7 @@
     },
     {
       "file": "src/test-setup.ts",
-      "line": 80,
+      "line": 79,
       "category": "code_comment",
       "module": "src/root",
       "severity": "low",
@@ -14040,7 +14337,7 @@
     },
     {
       "file": "src/test-setup.ts",
-      "line": 83,
+      "line": 82,
       "category": "code_comment",
       "module": "src/root",
       "severity": "low",

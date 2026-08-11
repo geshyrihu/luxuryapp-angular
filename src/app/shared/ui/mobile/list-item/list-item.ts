@@ -61,8 +61,8 @@ import {
         gap: 0.75rem;
         min-height: 4.25rem;
         padding: 0.75rem;
-        background: var(--ds-bg-surface, #ffffff);
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-surface);
+        border-bottom: 1px solid var(--ds-border);
       }
 
       .ili-list-item-no-padding {

@@ -34,7 +34,7 @@ import { KnobBase } from "@ui/base/knob.base";
         appearance: none;
         height: 6px;
         border-radius: 3px;
-        background: var(--ds-border, #e2e8f0);
+        background: var(--ds-border);
         outline: none;
       }
       .ili-knob-input::-webkit-slider-thumb {
@@ -43,8 +43,8 @@ import { KnobBase } from "@ui/base/knob.base";
         width: 24px;
         height: 24px;
         border-radius: 50%;
-        background: var(--ds-primary, #003d9b);
-        border: 2px solid var(--ds-bg-surface, #fff);
+        background: var(--ds-primary);
+        border: 2px solid var(--ds-bg-surface);
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         cursor: pointer;
       }
@@ -52,14 +52,14 @@ import { KnobBase } from "@ui/base/knob.base";
         width: 24px;
         height: 24px;
         border-radius: 50%;
-        background: var(--ds-primary, #003d9b);
-        border: 2px solid var(--ds-bg-surface, #fff);
+        background: var(--ds-primary);
+        border: 2px solid var(--ds-bg-surface);
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         cursor: pointer;
       }
       .ili-knob-value {
-        font-size: var(--ds-font-size-label, 0.875rem);
-        color: var(--ds-text-primary, #1e293b);
+        font-size: var(--ds-font-size-label);
+        color: var(--ds-text-primary);
         font-weight: 600;
       }
     `,

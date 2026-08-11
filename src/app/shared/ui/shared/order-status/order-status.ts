@@ -96,18 +96,18 @@ export interface OrderStatusStep {
         z-index: 1;
       }
       .order-step-done {
-        background: var(--ds-success, #006837);
-        color: #fff;
+        background: var(--ds-success);
+        color: var(--ds-on-primary);
       }
       .order-step-current {
         background: var(--ds-primary);
-        color: #fff;
+        color: var(--ds-on-primary);
       }
       .order-step-pulse {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: #fff;
+        background: var(--ds-bg-surface);
         animation: pulse 1.5s infinite;
       }
       @keyframes pulse {
@@ -122,22 +122,22 @@ export interface OrderStatusStep {
         }
       }
       .order-step-pending {
-        background: var(--ds-bg-elevated, #f4f5f8);
-        border: 2px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-elevated);
+        border: 2px solid var(--ds-border);
       }
       .order-step-line {
         width: 60px;
         height: 2px;
-        background: var(--ds-border, #e2e8f0);
+        background: var(--ds-border);
         margin: 0 0.25rem;
       }
       .order-step-line-filled {
-        background: var(--ds-success, #006837);
+        background: var(--ds-success);
       }
       .order-step-vline {
         width: 2px;
         height: 24px;
-        background: var(--ds-border, #e2e8f0);
+        background: var(--ds-border);
         margin-left: 13px;
       }
       .order-step-content {
@@ -150,11 +150,11 @@ export interface OrderStatusStep {
         margin-left: 0.5rem;
       }
       .order-step-label {
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         color: var(--ds-text-primary);
       }
       .order-step-date {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
     `,

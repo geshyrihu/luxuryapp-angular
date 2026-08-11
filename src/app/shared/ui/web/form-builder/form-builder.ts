@@ -252,7 +252,7 @@ export type FormValues = Record<string, unknown>;
         gap: 1rem;
       }
       .fb-title {
-        font-size: var(--ds-font-size-section-title, 1.25rem);
+        font-size: var(--ds-font-size-section-title);
         font-weight: 600;
         color: var(--ds-text-primary);
         margin: 0;
@@ -281,16 +281,16 @@ export type FormValues = Record<string, unknown>;
         }
       }
       .fb-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         font-weight: 500;
       }
       .fb-required {
-        color: var(--ds-danger, #ba1a1a);
+        color: var(--ds-danger);
         margin-left: 2px;
       }
       .fb-hint {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       .fb-checkbox-row,
@@ -302,7 +302,7 @@ export type FormValues = Record<string, unknown>;
       }
       .fb-checkbox-label,
       .fb-switch-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-primary);
         cursor: pointer;
       }
@@ -311,7 +311,7 @@ export type FormValues = Record<string, unknown>;
         justify-content: flex-end;
         gap: 0.5rem;
         padding-top: 0.5rem;
-        border-top: 1px solid var(--ds-border, #e2e8f0);
+        border-top: 1px solid var(--ds-border);
       }
       .w-full {
         width: 100%;

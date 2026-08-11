@@ -40,6 +40,49 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
+interface DiscountDescriptionFormValue {
+  description: string;
+  price: string | number;
+}
+
+interface RequestDismissalDraftDTO {
+  applicationRoleId: string;
+  employeeId: string;
+  employee: string;
+  phoneEmployee: string;
+  profession?: string | null;
+  applicationRoleName?: string | null;
+  professionKey?: string | null;
+  executionDate?: string | Date | null;
+  lastdayofwork?: string | Date | null;
+  typeOfDeparture?: number | null;
+  reasonForLeaving?: string | null;
+  lawyerAssistance?: boolean;
+  employeeInformed?: boolean;
+  discountDescriptions?: DiscountDescriptionFormValue[];
+}
+
+interface EvaluationHistoryItem {
+  id?: string;
+}
+
+interface SolicitudBajaFormValue {
+  files: File[] | null;
+  applicationRole: string;
+  applicationRoleId: string;
+  applicationRoleKey: string;
+  employee: string;
+  employeeId: string;
+  phoneEmployee: string;
+  reasonForLeaving: string;
+  lawyerAssistance: boolean;
+  employeeInformed: boolean;
+  typeOfDeparture: number | null;
+  executionDate: Date | null;
+  lastdayofwork: Date | null;
+  discountDescriptions: DiscountDescriptionFormValue[];
+}
+
 @Component({
   selector: "app-solicitud-baja",
   templateUrl: "./solicitud-baja-form.html",
@@ -121,11 +164,11 @@ export class SolicitudBajaForm implements OnInit {
   private enumSelectS = inject(EnumSelectService);
   private dateS = inject(DateService);
   private router = inject(Router);
-  data: any;
+  data: RequestDismissalDraftDTO | null = null;
   id: string = "";
   submitting = signal(false);
 
-  employeeId: any = this.config.data.employeeId;
+  employeeId: string = this.config.data.employeeId;
 
   cb_type_departure = signal<SelectItemDto[]>([]);
   cb_si_no = signal<SelectItemDto[]>([]);
@@ -184,6 +227,11 @@ export class SolicitudBajaForm implements OnInit {
 
   private destroyRef = inject(DestroyRef);
 
+  private toDate(value: string | Date | null | undefined): Date | null {
+    if (!value) return null;
+    return value instanceof Date ? value : new Date(value);
+  }
+
   async ngOnInit() {
     this.cb_si_no.set(await firstValueFrom(this.enumSelectS.boolYesNo()));
     this.cb_type_departure.set(
@@ -202,10 +250,12 @@ export class SolicitudBajaForm implements OnInit {
     const urlApi = EndpointsReclutamiento.RequestDismissal.getRequestDismissal(
       this.employeeId,
     );
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+    this.apiResponseS.onGetItem<RequestDismissalDraftDTO>(urlApi).then((result) => {
       if (result) {
         this.form.patchValue({
           ...result,
+          executionDate: this.toDate(result.executionDate),
+          lastdayofwork: this.toDate(result.lastdayofwork),
           applicationRole:
             result.profession || result.applicationRoleName || "",
           applicationRoleKey: result.professionKey || "",
@@ -214,7 +264,7 @@ export class SolicitudBajaForm implements OnInit {
     });
   }
 
-  handleValueChange(newValue: any) {
+  handleValueChange(newValue: number | null) {
     // 0: Renuncia, 1: Abandono, 2: Despido, 3: Evaluacion, 4: Faltas
     this.filesControl.clearValidators();
     if (newValue == 0 || newValue == 2 || newValue == 4) {
@@ -270,7 +320,7 @@ export class SolicitudBajaForm implements OnInit {
     const urlApi = Endpoints.PerformanceEvaluations.historyByEmployee(
       this.employeeId,
     );
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+    this.apiResponseS.onGetItem<EvaluationHistoryItem[]>(urlApi).then((result) => {
       this.hasEvaluations =
         result && Array.isArray(result) && result.length > 0;
     });
@@ -291,7 +341,12 @@ export class SolicitudBajaForm implements OnInit {
     )
       return;
 
-    var model = this.createFormData(this.form.getRawValue());
+    const rawValue = this.form.getRawValue();
+    const model = this.createFormData({
+      ...rawValue,
+      discountDescriptions:
+        rawValue.discountDescriptions as DiscountDescriptionFormValue[],
+    });
 
     this.submitting.set(true);
 
@@ -309,7 +364,7 @@ export class SolicitudBajaForm implements OnInit {
       });
   }
 
-  createFormData(formValue: any) {
+  createFormData(formValue: SolicitudBajaFormValue) {
     const formData = new FormData();
 
     if (formValue.files != null) {

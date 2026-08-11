@@ -38,7 +38,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         position: fixed;
         inset: 0;
         z-index: 990;
-        background: var(--ds-bg-overlay, rgba(0, 0, 0, 0.4));
+        background: var(--ds-bg-overlay);
         backdrop-filter: blur(2px);
       }
       .ili-sidebar-panel {
@@ -50,7 +50,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         width: min(85vw, 320px);
         display: flex;
         flex-direction: column;
-        background: var(--ds-bg-surface, #ffffff);
+        background: var(--ds-bg-surface);
         box-shadow: var(--ds-shadow-xl);
         animation: ili-slide-left 0.25s ease-out;
       }
@@ -80,7 +80,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         align-items: center;
         justify-content: space-between;
         padding: 1rem;
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
       }
       .ili-sidebar-title {
         font-size: 1.05rem;
@@ -98,10 +98,10 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         font-size: 1.25rem;
         color: var(--ds-text-secondary);
         cursor: pointer;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
       }
       .ili-sidebar-close:active {
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
       }
       .ili-sidebar-body {
         flex: 1;

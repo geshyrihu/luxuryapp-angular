@@ -57,9 +57,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         position: fixed;
         z-index: 991;
         min-width: 180px;
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         box-shadow: var(--ds-shadow-lg);
         padding: 0.375rem 0;
       }
@@ -71,13 +71,13 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         padding: 0.5rem 0.875rem;
         background: none;
         border: none;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
         cursor: pointer;
         text-align: left;
       }
       .ili-ctx-item:active {
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
       }
       .ili-ctx-item-disabled {
         opacity: 0.4;
@@ -90,7 +90,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       .ili-ctx-separator {
         margin: 0.25rem 0;
         border: none;
-        border-top: 1px solid var(--ds-border, #e2e8f0);
+        border-top: 1px solid var(--ds-border);
       }
     `,
   ],

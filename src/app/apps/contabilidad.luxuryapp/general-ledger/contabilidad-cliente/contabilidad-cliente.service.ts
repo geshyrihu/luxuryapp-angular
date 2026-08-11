@@ -13,6 +13,8 @@ import type {
   IProyectosAprobadosDTO,
   IReporteFinancieroDto,
 } from "../contabilidad-online/interfaces/aspel-budget.interface";
+import type { CobranzaOnlineDashboardResponse } from "src/app/apps/cobranza.luxuryapp/cobranza-online/interfaces/cobranza-online-dashboard.model";
+import type { CobranzaOnlineAnalysisResponse } from "src/app/apps/cobranza.luxuryapp/cobranza-online/interfaces/cobranza-online-analysis.model";
 
 @Injectable({ providedIn: "root" })
 export class ContabilidadClienteService {
@@ -101,6 +103,20 @@ export class ContabilidadClienteService {
         day,
       ),
       false,
+    );
+  }
+
+  getDashboardCobranza(customerId: string, year: number, month: number, day: number) {
+    return this.api.onGetItem<CobranzaOnlineDashboardResponse>(
+      Endpoints.CobranzaOnline.Dashboard.get(customerId, year, month, day),
+      false
+    );
+  }
+
+  getDashboardAnalysis(customerId: string, year: number, month: number, day: number) {
+    return this.api.onGetItem<CobranzaOnlineAnalysisResponse>(
+      Endpoints.CobranzaOnline.Dashboard.analysis(customerId, year, month, day),
+      false
     );
   }
 

@@ -26,9 +26,9 @@ import { ScrollerModule } from "primeng/scroller";
     `
       .app-virtual-scroller-item {
         padding: 0.75rem 1rem;
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
-        color: var(--ds-text-primary, #1e293b);
-        font-size: var(--ds-font-size-body, 0.875rem);
+        border-bottom: 1px solid var(--ds-border);
+        color: var(--ds-text-primary);
+        font-size: var(--ds-font-size-body);
       }
       .app-virtual-scroller-item:last-child {
         border-bottom: none;

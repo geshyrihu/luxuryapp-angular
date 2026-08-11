@@ -107,8 +107,8 @@ export type PreviewMode = "desktop" | "mobile";
         display: flex;
         flex-direction: column;
         gap: 0;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         overflow: hidden;
       }
       /* Toolbar */
@@ -117,11 +117,11 @@ export type PreviewMode = "desktop" | "mobile";
         align-items: center;
         justify-content: space-between;
         padding: 0.5rem 0.875rem;
-        background: var(--ds-bg-elevated, #f1f3ff);
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-elevated);
+        border-bottom: 1px solid var(--ds-border);
       }
       .ep-toolbar-title {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         font-weight: 600;
         color: var(--ds-text-secondary);
       }
@@ -136,7 +136,7 @@ export type PreviewMode = "desktop" | "mobile";
         align-items: center;
         justify-content: center;
         border: 1px solid transparent;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         background: none;
         cursor: pointer;
         color: var(--ds-text-muted);
@@ -154,7 +154,7 @@ export type PreviewMode = "desktop" | "mobile";
       }
       /* Frame */
       .ep-frame {
-        background: var(--ds-bg-surface, #fff);
+        background: var(--ds-bg-surface);
         transition: max-width 0.3s ease;
         margin: 0 auto;
         width: 100%;
@@ -167,7 +167,7 @@ export type PreviewMode = "desktop" | "mobile";
       /* Email header */
       .ep-email-header {
         padding: 1rem;
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
         display: flex;
         flex-direction: column;
         gap: 0.3rem;
@@ -184,17 +184,17 @@ export type PreviewMode = "desktop" | "mobile";
         margin-top: 0.25rem;
       }
       .ep-field-label {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
         width: 42px;
         flex-shrink: 0;
       }
       .ep-field-value {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-primary);
       }
       .ep-subject .ep-field-value {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
       }
       .ep-tags {
         display: flex;
@@ -214,7 +214,7 @@ export type PreviewMode = "desktop" | "mobile";
       }
       .ep-plain-text {
         padding: 1rem;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
         white-space: pre-wrap;
         line-height: 1.6;
@@ -226,7 +226,7 @@ export type PreviewMode = "desktop" | "mobile";
         gap: 0.5rem;
         padding: 3rem;
         color: var(--ds-text-muted);
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
       }
     `,
   ],
@@ -247,6 +247,6 @@ export class AppEmailPreview {
   safeHtml = computed(() => {
     const html = this.htmlContent();
     if (!html) return "";
-    return `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:Arial,sans-serif;font-size:14px;color:#1a1a1a;margin:0;padding:16px;}</style></head><body>${html}</body></html>`;
+    return `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:Arial,sans-serif;font-size:14px;color:black;margin:0;padding:16px;}</style></head><body>${html}</body></html>`;
   });
 }

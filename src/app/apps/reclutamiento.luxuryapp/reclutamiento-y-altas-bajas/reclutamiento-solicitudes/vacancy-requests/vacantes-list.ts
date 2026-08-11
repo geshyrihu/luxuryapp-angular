@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { Router } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -45,6 +45,20 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
+interface VacanteListItem {
+  id: string;
+  folio: string;
+  requestDate: string;
+  customer: string;
+  applicationRoleName: string;
+  sueldoMensualLibre: number;
+  daysPassed: number;
+  status: string;
+  nameCandidate?: string;
+  workPositionId: string;
+}
 
 @Component({
   selector: "app-vacantes-list",
@@ -66,6 +80,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     LxTag,
     MobileListItem,
     AppIcon,
+    RouterModule,
+    WebButtonLabel,
   ],
 })
 export class VacantesList implements OnInit {
@@ -77,7 +93,7 @@ export class VacantesList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  dataSignal = signal<any[]>([]);
+  dataSignal = signal<VacanteListItem[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
@@ -104,14 +120,14 @@ export class VacantesList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(
+      .onGetList<VacanteListItem[]>(
         EndpointsReclutamiento.RequestPosition.list,
         this.filterRequestsService.getParams(),
       )
-      .then((result: any) => this.dataSignal.set(result));
+      .then((result) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  onDelete(id: string) {
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestPosition.delete(id))
       .then((result: boolean) => {
@@ -122,7 +138,7 @@ export class VacantesList implements OnInit {
       });
   }
 
-  onModalForm(data: any) {
+  onModalForm(data: Pick<VacanteListItem, "id">) {
     this.dialogHandlerS
       .openDialog(
         VacanteForm,
@@ -142,5 +158,23 @@ export class VacantesList implements OnInit {
       "Detalle del puesto",
       this.dialogHandlerS.sizeLg,
     );
+  }
+
+  goToVacancyCandidates(workPositionId: string, requestPositionId: string) {
+    this.router.navigate([
+      "/recruitment/candidates/work-position",
+      workPositionId,
+      "candidates",
+    ], {
+      queryParams: { requestPositionId },
+    });
+  }
+
+  goToCandidates() {
+    this.router.navigate(["/recruitment/candidates/candidates"]);
+  }
+
+  goToAgenda() {
+    this.router.navigate(["/recruitment/candidates/recruitment-agenda"]);
   }
 }

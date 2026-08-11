@@ -3,25 +3,69 @@
     autocomplete="off"
     (ngSubmit)="onSubmit()"
     [formGroup]="form"
-    aria-label="Formulario de postulación"
+    aria-label="Formulario de candidato y entrevista"
   >
-    <custom-input-select-signal
-      [control]="form.controls['candidateId']"
-      label="Candidato"
-      [data]="cb_candidates()"
-      [filter]="true"
-    />
-    <custom-input-select-signal
-      [control]="form.controls['requestPositionId']"
-      label="Vacante"
-      [data]="cb_vacancies()"
-      [filter]="true"
-    />
-    <custom-input-date-signal
-      [control]="form.controls['applicationDate']"
-      label="Fecha de postulación"
-      [horizontal]="false"
-    />
+    <div class="mb-3 p-3 border-1 surface-border border-round surface-50">
+      <div class="font-medium text-color mb-1">Registrar candidato para vacante</div>
+      <small class="block text-color-secondary">
+        Selecciona un candidato existente o registra uno nuevo, carga su CV y
+        deja programada la cita de entrevista desde este mismo flujo.
+      </small>
+    </div>
+
+    <div class="grid">
+      <div class="col-12 md:col-8">
+        <custom-input-select-signal
+          [control]="form.controls['candidateId']"
+          label="Candidato"
+          [data]="cb_candidates()"
+          [filter]="true"
+        />
+      </div>
+      @if (allowCreateCandidate) {
+        <div class="col-12 md:col-4 flex align-items-end">
+          <button
+            type="button"
+            class="btn btn-secondary w-full"
+            (click)="onCreateCandidate()"
+          >
+            Registrar nuevo candidato
+          </button>
+        </div>
+      }
+
+      <div class="col-12">
+        <custom-input-select-signal
+          [control]="form.controls['requestPositionId']"
+          label="Vacante"
+          [data]="cb_vacancies()"
+          [filter]="true"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-date-signal
+          [control]="form.controls['applicationDate']"
+          label="Fecha de registro"
+          [readonly]="true"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <web-custom-input-date-time-signal
+          [control]="form.controls['recruitmentInterviewAt']"
+          label="Fecha y hora de entrevista"
+          placeholder="Selecciona fecha y hora"
+        />
+      </div>
+      <div class="col-12">
+        <custom-input-textarea-signal
+          [control]="form.controls['initialComment']"
+          label="Notas iniciales de reclutamiento"
+          placeholder="Motivo de la entrevista, observaciones o contexto relevante..."
+          [rows]="3"
+        />
+      </div>
+    </div>
+
     <div class="grid align-items-start">
       <div class="col-12 md:col-8">
         <app-candidate-cv-upload
@@ -33,6 +77,7 @@
         />
       </div>
     </div>
+
     <il-button-save
       [propertyId]="id"
       [disabled]="form.invalid"

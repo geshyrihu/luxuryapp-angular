@@ -30,6 +30,40 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
+interface RequestSalaryModificationSeedDTO {
+  customerId?: string | null;
+  employeeId: string;
+  employeeName: string;
+  sueldoActual: number;
+  workPositionId: string;
+  applicationRoleCurrent?: string | null;
+  applicationRoleCurrentId?: string | { value: string } | null;
+  applicationRoleNewId?: string | null;
+  applicationRoleNew?: string | null;
+  finalSalary?: number | null;
+  executionDate?: Date | string | null;
+  retroactive?: boolean;
+  additionalInformation?: string | null;
+  vacancyId?: string | null;
+}
+
+interface SolicitudModificacionSalarioFormValue {
+  files: File[] | null;
+  employeeId: string;
+  employeeName: string;
+  workPositionId: string | null;
+  applicationRoleCurrent: string | null;
+  applicationRoleCurrentId: string | null;
+  applicationRoleNewId: string | null;
+  applicationRoleNew: string | null;
+  currentSalary: number;
+  finalSalary: number | null;
+  executionDate: Date | null;
+  retroactive: boolean;
+  additionalInformation: string;
+  vacancyId: string | null;
+}
+
 @Component({
   selector: "app-solicitud-modificacion-salario",
   templateUrl: "./solicitud-modificacion-salario-form.html",
@@ -55,22 +89,27 @@ export class SolicitudModificacionSalarioForm implements OnInit {
   private ref = inject(DynamicDialogRef);
   private authS = inject(AuthService);
   private enumSelectS = inject(EnumSelectService);
-  workPositionId: any = this.config.data.workPositionId;
+  workPositionId: string = this.config.data.workPositionId;
   submitting = signal(false);
   maxSizeExceeded = signal(false);
 
   // Signals para ComboBoxes
   cb_applicationRole = signal<SelectItemDto[]>([]);
   cb_si_no = signal<SelectItemDto[]>([]);
-  cb_vacantes = signal<SelectItemDto[]>([]);
+  cb_vacantes = signal<SelectItemDto<string>[]>([]);
+
+  private toDate(value: string | Date | null | undefined): Date | null {
+    if (!value) return null;
+    return value instanceof Date ? value : new Date(value);
+  }
 
   form = this.formB.group({
     employeeId: ["", Validators.required],
     employeeName: ["", Validators.required],
-    workPositionId: [null as any],
-    applicationRoleCurrentId: [null as any],
+    workPositionId: [null as string | null],
+    applicationRoleCurrentId: [null as string | null],
     applicationRoleCurrent: [null as string | null],
-    applicationRoleNewId: [null as any],
+    applicationRoleNewId: [null as string | null],
     applicationRoleNew: [null as string | null],
     currentSalary: [0],
     finalSalary: [null as number | null],
@@ -133,24 +172,26 @@ export class SolicitudModificacionSalarioForm implements OnInit {
     this.cb_vacantes.set(vacantes || []);
   }
 
-  async onLoadData(): Promise<any> {
-    const result: any = await this.apiResponseS.onGetItem(
+  async onLoadData(): Promise<RequestSalaryModificationSeedDTO | null> {
+    const result = await this.apiResponseS.onGetItem<RequestSalaryModificationSeedDTO>(
       EndpointsReclutamiento.RequestSalaryModification.getData(
         this.workPositionId,
       ),
     );
 
+    if (!result) return null;
+
     // Extraer applicationRoleCurrentId
-    let applicationRoleCurrentId = null;
+    let applicationRoleCurrentId: string | null = null;
     if (
       result.applicationRoleCurrentId !== null &&
       result.applicationRoleCurrentId !== undefined
     ) {
-      applicationRoleCurrentId =
-        typeof result.applicationRoleCurrentId === "object" &&
-        result.applicationRoleCurrentId !== null
-          ? (result.applicationRoleCurrentId as any).value
-          : result.applicationRoleCurrentId;
+      if (typeof result.applicationRoleCurrentId === "object") {
+        applicationRoleCurrentId = result.applicationRoleCurrentId.value;
+      } else {
+        applicationRoleCurrentId = result.applicationRoleCurrentId;
+      }
     }
 
     // Buscar el ApplicationRole completo
@@ -161,17 +202,26 @@ export class SolicitudModificacionSalarioForm implements OnInit {
       : null;
 
     this.form.patchValue({
-      ...result,
+      employeeId: result.employeeId,
+      employeeName: result.employeeName,
+      workPositionId: result.workPositionId,
       currentSalary: result.sueldoActual,
+      finalSalary: result.finalSalary ?? null,
+      executionDate: this.toDate(result.executionDate),
+      retroactive: result.retroactive ?? false,
+      additionalInformation: result.additionalInformation ?? "",
+      vacancyId: result.vacancyId ?? null,
       applicationRoleCurrentId,
       applicationRoleCurrent:
         result.applicationRoleCurrent || selectedApplicationRole?.label || null,
+      applicationRoleNewId: result.applicationRoleNewId ?? null,
+      applicationRoleNew: result.applicationRoleNew ?? null,
     });
 
     return result;
   }
 
-  onSaveApplicationRoleIDTOAccount = (item: SelectItemDto) => {
+  onSaveApplicationRoleIDTOAccount = (item: SelectItemDto<string>) => {
     this.form.patchValue({
       applicationRoleNewId: item?.value,
       applicationRoleNew: item?.label,
@@ -220,14 +270,16 @@ export class SolicitudModificacionSalarioForm implements OnInit {
       });
   }
 
-  private createFormData(formValue: any): FormData {
+  private createFormData(
+    formValue: SolicitudModificacionSalarioFormValue,
+  ): FormData {
     const formData = new FormData();
 
     // Agregar archivos
     const files = formValue.files;
     if (files != null) {
       for (let i = 0; i < files.length; i++) {
-        formData.append("soport", files[i]);
+        formData.append("supportFiles", files[i]);
       }
     }
 

@@ -78,6 +78,7 @@ const COUNTDOWN_SECONDS = 5;
         (touchend)="onHoldEnd()"
         (touchcancel)="onHoldCancel()"
         [disabled]="isSending()"
+        aria-label="Alerta de pánico: mantén presionado para activar"
         title="Mantén presionado para activar alerta de pánico"
       >
         <div class="panic-btn__ring" [style.--progress]="holdProgress() + '%'">

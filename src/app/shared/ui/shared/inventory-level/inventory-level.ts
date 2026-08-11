@@ -91,9 +91,9 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
         flex-direction: column;
         gap: 0.625rem;
         padding: 0.75rem;
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
       }
       .inv-header {
         display: flex;
@@ -111,12 +111,12 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
       }
       .inv-name {
         display: block;
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-primary);
       }
       .inv-sku {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       /* Badge */
@@ -125,29 +125,29 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
         align-items: center;
         gap: 0.2rem;
         padding: 0.15rem 0.5rem;
-        border-radius: var(--ds-radius-full, 9999px);
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        border-radius: var(--ds-radius-full);
+        font-size: var(--ds-font-size-micro);
         font-weight: 600;
       }
       .inv-badge-critical {
-        background: #ffdad6;
-        color: #ba1a1a;
+        background: var(--ds-danger-light);
+        color: var(--ds-accent-text-danger);
       }
       .inv-badge-low {
-        background: #fef3c7;
-        color: #b45309;
+        background: var(--ds-warning-light);
+        color: var(--ds-accent-text-warning);
       }
       .inv-badge-medium {
-        background: #dae2ff;
-        color: #003d9b;
+        background: var(--ds-info-light);
+        color: var(--ds-accent-text-info);
       }
       .inv-badge-high {
-        background: #d1fae5;
-        color: #006837;
+        background: var(--ds-success-light);
+        color: var(--ds-accent-text-success);
       }
       .inv-badge-overstock {
-        background: #e8edff;
-        color: #737685;
+        background: var(--ds-bg-muted);
+        color: var(--ds-text-muted);
       }
       /* Bar */
       .inv-bar-wrap {
@@ -158,8 +158,8 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
       .inv-bar-bg {
         position: relative;
         height: 14px;
-        background: var(--ds-bg-elevated, #f1f3ff);
-        border-radius: var(--ds-radius-full, 9999px);
+        background: var(--ds-bg-elevated);
+        border-radius: var(--ds-radius-full);
         overflow: visible;
       }
       .inv-zone-marker {
@@ -167,30 +167,30 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
         top: -3px;
         bottom: -3px;
         width: 2px;
-        background: var(--ds-bg-surface, #fff);
+        background: var(--ds-bg-surface);
         opacity: 0.8;
         border-radius: 1px;
         z-index: 1;
       }
       .inv-bar-fill {
         height: 100%;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         transition: width 0.4s ease;
       }
       .inv-fill-critical {
-        background: var(--ds-danger, #ba1a1a);
+        background: var(--ds-danger);
       }
       .inv-fill-low {
-        background: var(--ds-warning, #b45309);
+        background: var(--ds-warning);
       }
       .inv-fill-medium {
-        background: var(--ds-primary, #003d9b);
+        background: var(--ds-primary);
       }
       .inv-fill-high {
-        background: var(--ds-success, #006837);
+        background: var(--ds-success);
       }
       .inv-fill-overstock {
-        background: var(--ds-text-muted, #737685);
+        background: var(--ds-text-muted);
       }
       .inv-bar-labels {
         display: flex;
@@ -214,7 +214,7 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
       }
       .inv-metric-value {
         display: block;
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 700;
         color: var(--ds-text-primary);
       }

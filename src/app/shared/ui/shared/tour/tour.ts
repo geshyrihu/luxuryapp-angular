@@ -85,15 +85,15 @@ export interface TourStep {
       .tour-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.45);
+        background: color-mix(in srgb, black 45%, transparent);
         z-index: 9000;
       }
       .tour-popup {
         position: fixed;
         z-index: 9001;
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-xl, 12px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-xl);
         box-shadow: var(--ds-shadow-xl);
         padding: 1rem 1.25rem;
         max-width: 380px;
@@ -115,12 +115,12 @@ export interface TourStep {
         color: var(--ds-primary);
       }
       .tour-step-title {
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
       }
       .tour-step-desc {
         margin: 0 0 0.75rem;
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         color: var(--ds-text-secondary);
         line-height: 1.5;
       }
@@ -137,7 +137,7 @@ export interface TourStep {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: var(--ds-border, #e2e8f0);
+        background: var(--ds-border);
         transition: background 0.2s;
       }
       .tour-dot-active {
@@ -153,8 +153,8 @@ export interface TourStep {
         align-items: center;
         gap: 0.25rem;
         padding: 0.375rem 0.75rem;
-        border-radius: var(--ds-radius-md, 6px);
-        font-size: var(--ds-font-size-table, 0.875rem);
+        border-radius: var(--ds-radius-md);
+        font-size: var(--ds-font-size-table);
         cursor: pointer;
         transition: all 0.12s;
         border: none;
@@ -164,11 +164,11 @@ export interface TourStep {
         color: var(--ds-text-secondary);
       }
       .tour-btn-ghost:hover {
-        background: var(--ds-bg-hover, #f0f4ff);
+        background: var(--ds-bg-hover);
       }
       .tour-btn-primary {
         background: var(--ds-primary);
-        color: #fff;
+        color: var(--ds-on-primary);
       }
       .tour-btn-primary:hover {
         filter: brightness(1.08);
@@ -177,7 +177,7 @@ export interface TourStep {
         position: fixed;
         z-index: 9000;
         pointer-events: none;
-        border-radius: var(--ds-radius-lg, 8px);
+        border-radius: var(--ds-radius-lg);
         box-shadow:
           0 0 0 4px var(--ds-primary),
           0 0 0 9999px rgba(0, 0, 0, 0.45);

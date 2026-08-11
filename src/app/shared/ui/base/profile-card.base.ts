@@ -1,4 +1,5 @@
 import { Directive, input, output } from "@angular/core";
+import { avatarBackground } from "./avatar-palette";
 
 export interface ProfileAction {
   icon: string;
@@ -35,10 +36,7 @@ export abstract class ProfileCardBase {
   actionClick = output<string>();
 
   avatarBg(): string {
-    const colors = ["#003d9b", "#006477", "#006837", "#b45309", "#7c3aed", "#ba1a1a"];
-    let hash = 0;
-    for (const c of this.name()) hash = c.charCodeAt(0) + ((hash << 5) - hash);
-    return colors[Math.abs(hash) % colors.length];
+    return avatarBackground(this.name());
   }
 
   initials(): string {

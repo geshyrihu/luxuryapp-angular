@@ -96,7 +96,7 @@ import { Carousel } from "@ui/web/primeng-carousel/primeng-carousel";
         height: 0.45rem;
         background: linear-gradient(
           90deg,
-          var(--primary-color) 0%,
+          var(--ds-primary) 0%,
           #0ea5e9 100%
         );
       }

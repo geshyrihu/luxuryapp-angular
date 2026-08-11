@@ -1,4 +1,5 @@
 import { Directive, input, output, signal } from "@angular/core";
+import { avatarBackground } from "./avatar-palette";
 
 export interface Comment {
   id: string;
@@ -38,10 +39,7 @@ export abstract class CommentThreadBase {
   }
 
   avatarBg(c: Comment): string {
-    const colors = ["#003d9b", "#006477", "#006837", "#b45309", "#7c3aed", "#ba1a1a"];
-    let h = 0;
-    for (const ch of c.authorName) h = ch.charCodeAt(0) + ((h << 5) - h);
-    return colors[Math.abs(h) % colors.length];
+    return avatarBackground(c.authorName);
   }
 
   initials(name: string): string {

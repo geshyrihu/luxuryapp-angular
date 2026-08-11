@@ -1,6 +1,9 @@
 <!-- Trigger: avatar + chevron -->
 <div
   class="flex align-items-center cursor-pointer p-1 rounded-lg hover:bg-white-alpha-10 transition-colors"
+  role="button"
+  aria-haspopup="menu"
+  aria-label="Abrir menú de usuario"
   (click)="profilePopover.toggle($event)"
 >
   <p-avatar

@@ -95,9 +95,9 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
         align-items: center;
         gap: 0.75rem;
         padding: 0.625rem 0.875rem;
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         cursor: pointer;
         transition:
           box-shadow 0.15s,
@@ -105,11 +105,11 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
       }
       .contact-card:hover,
       .contact-card-selected {
-        border-color: var(--ds-primary, #003d9b);
+        border-color: var(--ds-primary);
         box-shadow: var(--ds-shadow-sm);
       }
       .contact-card-selected {
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
       }
       /* Avatar */
       .contact-avatar {
@@ -122,7 +122,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
         justify-content: center;
         font-size: 0.75rem;
         font-weight: 700;
-        color: #fff;
+        color: var(--ds-on-primary);
         overflow: hidden;
       }
       .contact-avatar-img {
@@ -144,7 +144,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
         gap: 0.4rem;
       }
       .contact-name {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-primary);
         white-space: nowrap;
@@ -152,11 +152,11 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
         text-overflow: ellipsis;
       }
       .contact-role {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-secondary);
       }
       .contact-company {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
         display: flex;
         align-items: center;
@@ -174,7 +174,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         border: 1px solid transparent;
         background: none;
         color: var(--ds-text-muted);
@@ -186,8 +186,8 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
           color 0.15s;
       }
       .contact-action-btn:hover {
-        background: var(--ds-bg-elevated, #f1f3ff);
-        color: var(--ds-primary, #003d9b);
+        background: var(--ds-bg-elevated);
+        color: var(--ds-primary);
       }
     `,
   ],

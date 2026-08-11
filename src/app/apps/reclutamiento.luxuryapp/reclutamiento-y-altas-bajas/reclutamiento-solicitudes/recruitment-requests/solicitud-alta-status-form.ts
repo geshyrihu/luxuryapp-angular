@@ -63,11 +63,12 @@ export class SolicitudAltaStatusForm implements OnInit {
         EndpointsReclutamiento.RequestEmployeeRegister.getBasicInfo(this.id),
       )
       .then((result) => {
-        // Exclude folio from direct patch because types differ (number vs string)
-        const { folio, ...rest } = result;
-        this.form.patchValue(rest as any);
         this.form.patchValue({
-          folio: `ALT${folio.toString().padStart(5, "0")}`,
+          id: this.id,
+          employeeName: result.employeeName,
+          status: result.status,
+          confirmationFinish: result.confirmationFinish,
+          folio: `ALT${result.folio.toString().padStart(5, "0")}`,
         });
       });
   }

@@ -27,16 +27,16 @@ import { MenubarModule } from "primeng/menubar";
         > .p-menuitem-content
         .p-menuitem-link {
         padding: 0.625rem 1rem;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
       }
       app-menubar .p-menubar .p-menuitem-text {
         color: var(--ds-text-primary);
       }
       app-menubar .p-menubar .p-submenu-list {
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         box-shadow: var(--ds-shadow-lg);
       }
     `,

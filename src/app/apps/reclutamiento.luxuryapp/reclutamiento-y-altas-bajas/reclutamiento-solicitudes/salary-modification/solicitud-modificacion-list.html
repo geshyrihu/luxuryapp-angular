@@ -94,10 +94,8 @@
       </div>
 
       <h3>{{ item.employee }}</h3>
-      <p>{{ item.applicationRoleCurrent }} ? {{ item.applicationRoleNew }}</p>
-      <p>
-        {{ item.currentSalary }} ? {{ item.finalSalary }} é {{ item.status }}
-      </p>
+      <p>{{ item.applicationRoleCurrent }} -> {{ item.applicationRoleNew }}</p>
+      <p>{{ item.currentSalary }} -> {{ item.finalSalary }} - {{ item.status }}</p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

@@ -508,7 +508,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         font-size: 0.65rem;
       }
       .active-item {
-        background: var(--ds-primary-50, #edf1ff);
+        background: var(--primary-50, #edf1ff);
         color: var(--ds-primary);
         font-weight: 700;
       }
@@ -599,7 +599,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         color: var(--ds-text-secondary);
       }
       .sim-active {
-        background: var(--ds-primary-50, #edf1ff);
+        background: var(--primary-50, #edf1ff);
         color: var(--ds-primary);
         font-weight: 700;
       }

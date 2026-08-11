@@ -87,9 +87,20 @@ export const EndpointsReclutamiento = {
     update: (id: Id) => `recruitment-candidates/${id}`,
     archive: (id: Id) => `recruitment-candidates/${id}/archive`,
   },
-  CandidateApplications: {
+CandidateApplications: {
     base: "recruitment-candidate-applications",
     list: "recruitment-candidate-applications",
+    recruitmentAgenda: "recruitment-candidate-applications/recruitment-agenda",
+    recruitmentInterviewBoard: "recruitment-candidate-applications/recruitment-interview-board",
+    recruitmentSchedule: (id: Id) =>
+      `recruitment-candidate-applications/${id}/recruitment-schedule`,
+    cancelRecruitmentSchedule: (id: Id) =>
+      `recruitment-candidate-applications/${id}/cancel-recruitment-schedule`,
+    kpis: "recruitment-candidate-applications/kpis",
+    runAutomation: "recruitment-candidate-applications/run-automation",
+    interviewerView: "recruitment-candidate-applications/interviewer-view",
+    interviewerQueue: "recruitment-candidate-applications/interviewer-queue",
+    interviewerAction: "recruitment-candidate-applications/interviewer-action",
     listByStage: (stage: string | number) =>
       `recruitment-candidate-applications/by-stage/${stage}`,
     getById: (id: Id) => `recruitment-candidate-applications/${id}`,

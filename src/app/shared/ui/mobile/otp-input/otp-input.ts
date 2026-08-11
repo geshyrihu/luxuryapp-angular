@@ -68,22 +68,22 @@ import { OtpInputBase } from "@ui/base/otp-input.base";
         text-align: center;
         font-size: 1.25rem;
         font-weight: 600;
-        border: 1.5px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
-        background: var(--ds-bg-surface, #fff);
+        border: 1.5px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
+        background: var(--ds-bg-surface);
         color: var(--ds-text-primary);
         transition:
           border-color 0.15s,
           box-shadow 0.15s;
       }
       .ili-otp-box:focus {
-        border-color: var(--ds-primary, #003d9b);
-        box-shadow: 0 0 0 3px var(--ds-primary-200, #b2c5ff);
+        border-color: var(--ds-primary);
+        box-shadow: 0 0 0 3px var(--primary-200);
         outline: none;
       }
       .ili-otp-error {
         font-size: 0.8125rem;
-        color: var(--ds-danger, #ba1a1a);
+        color: var(--ds-danger);
       }
       .ili-otp-hint {
         font-size: 0.8125rem;

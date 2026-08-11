@@ -53,28 +53,28 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       }
       /* Colores semánticos */
       app-chip .p-chip.app-chip-primary {
-        background: var(--ds-primary-light, #dbeafe);
-        color: var(--ds-primary, #2563eb);
+        background: var(--ds-primary-light);
+        color: var(--ds-primary);
       }
       app-chip .p-chip.app-chip-secondary {
-        background: var(--ds-secondary-light, #ede9fe);
-        color: var(--ds-secondary, #7c3aed);
+        background: var(--ds-secondary-light);
+        color: var(--ds-accent-text-warning);
       }
       app-chip .p-chip.app-chip-success {
-        background: var(--ds-success-light, #dcfce7);
-        color: var(--ds-success, #16a34a);
+        background: var(--ds-success-light);
+        color: var(--ds-success);
       }
       app-chip .p-chip.app-chip-warning {
-        background: var(--ds-warning-light, #fef3c7);
-        color: var(--ds-warning, #d97706);
+        background: var(--ds-warning-light);
+        color: var(--ds-accent-text-warning);
       }
       app-chip .p-chip.app-chip-danger {
-        background: var(--ds-danger-light, #fee2e2);
-        color: var(--ds-danger, #dc2626);
+        background: var(--ds-danger-light);
+        color: var(--ds-danger);
       }
       app-chip .p-chip.app-chip-neutral {
-        background: var(--ds-bg-muted, #f1f5f9);
-        color: var(--ds-text-secondary, #475569);
+        background: var(--ds-bg-muted);
+        color: var(--ds-text-secondary);
       }
     `,
   ],

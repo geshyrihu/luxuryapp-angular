@@ -321,7 +321,7 @@ import {
                   class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
                   [style.background]="
                     ev.own
-                      ? 'var(--ds-primary-50,#edf1ff)'
+                      ? 'var(--primary-50,#edf1ff)'
                       : 'var(--ds-bg-elevated,#f4f5f8)'
                   "
                   style="width:38px;height:38px;"
@@ -366,7 +366,7 @@ import {
             <ion-row>
               <ion-col size="6">
                 <div
-                  style="background:var(--ds-primary-50,#edf1ff);border-radius:8px;padding:0.5rem;text-align:center;"
+                  style="background:var(--primary-50,#edf1ff);border-radius:8px;padding:0.5rem;text-align:center;"
                 >
                   <div
                     class="text-xs font-bold"
@@ -379,7 +379,7 @@ import {
               </ion-col>
               <ion-col size="6">
                 <div
-                  style="background:var(--ds-primary-50,#edf1ff);border-radius:8px;padding:0.5rem;text-align:center;"
+                  style="background:var(--primary-50,#edf1ff);border-radius:8px;padding:0.5rem;text-align:center;"
                 >
                   <div
                     class="text-xs font-bold"
@@ -692,7 +692,7 @@ import {
         font-size: 0.85rem;
       }
       .ds-avatar-initials--primary {
-        background: var(--ds-primary-50, #f2f0f2);
+        background: var(--primary-50, #f2f0f2);
         color: var(--ds-primary);
       }
       .ds-avatar-stack {
@@ -714,11 +714,11 @@ import {
         margin-left: 0;
       }
       .ds-avatar-stack__item--primary {
-        background: var(--ds-primary-50, #f2f0f2);
+        background: var(--primary-50, #f2f0f2);
         color: var(--ds-primary);
       }
       .ds-avatar-stack__item--secondary {
-        background: var(--ds-primary-100, #b5c8e3);
+        background: var(--primary-100, #b5c8e3);
         color: var(--ds-primary-dark, var(--ds-primary));
       }
       .ds-avatar-stack__more {
@@ -744,11 +744,11 @@ import {
         margin-left: 0;
       }
       .ds-avatar-mini--primary {
-        background: var(--ds-primary-100, #bad7ff);
+        background: var(--primary-100, #bad7ff);
         color: var(--ds-on-primary);
       }
       .ds-avatar-mini--secondary {
-        background: var(--ds-primary-100, #b5c8e3);
+        background: var(--primary-100, #b5c8e3);
         color: var(--ds-primary-dark, var(--ds-primary));
       }
       .ds-avatar-mini--more {

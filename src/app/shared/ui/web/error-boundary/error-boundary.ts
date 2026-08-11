@@ -47,9 +47,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         align-items: center;
         min-height: 200px;
         padding: 2rem;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
-        background: var(--ds-bg-surface, #ffffff);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
+        background: var(--ds-bg-surface);
       }
       .error-boundary-content {
         display: flex;
@@ -61,15 +61,15 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       }
       .error-boundary-icon {
         font-size: 2.5rem;
-        color: var(--ds-danger, #ba1a1a);
+        color: var(--ds-danger);
       }
       .error-boundary-title {
-        font-size: var(--ds-font-size-card-title, 1rem);
-        color: var(--ds-text-primary, #041b3c);
+        font-size: var(--ds-font-size-card-title);
+        color: var(--ds-text-primary);
       }
       .error-boundary-message {
-        font-size: var(--ds-font-size-body, 0.9375rem);
-        color: var(--ds-text-secondary, #434654);
+        font-size: var(--ds-font-size-body);
+        color: var(--ds-text-secondary);
         margin: 0;
       }
       .error-boundary-details {
@@ -79,14 +79,14 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       }
       .error-boundary-details summary {
         cursor: pointer;
-        font-size: var(--ds-font-size-help, 0.8125rem);
-        color: var(--ds-text-muted, #737685);
+        font-size: var(--ds-font-size-help);
+        color: var(--ds-text-muted);
       }
       .error-boundary-details pre {
-        font-size: var(--ds-font-size-micro, 0.75rem);
-        background: var(--ds-bg-sunken, #e8edff);
+        font-size: var(--ds-font-size-micro);
+        background: var(--ds-bg-sunken);
         padding: 0.75rem;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         overflow-x: auto;
         white-space: pre-wrap;
         word-break: break-all;

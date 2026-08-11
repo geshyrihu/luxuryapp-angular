@@ -9,123 +9,128 @@
     No hay datos para el periodo seleccionado.
   </p>
   } @if (!loading() && rows().length) {
-  <div class="rf-card">
-    <div class="rf-wrap">
-      <table class="rf-table">
-        <thead>
-          <tr>
-            <th>DESCRIPCIÓN</th>
-            <th>PSPTO MENSUAL</th>
-            <th>{{ monthHeaders()[0] }}</th>
-            <th>{{ monthHeaders()[1] }}</th>
-            <th>{{ monthHeaders()[2] }}</th>
-            <th>ACUMULADO</th>
-            <th>PSPTO ANUAL</th>
-            <th>RESTANTE</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (fila of rows(); track $index) { @if (fila.tipo === 'header') {
-          <tr class="rf-row-section">
-            <td colspan="8">{{ fila.descripcion }}</td>
-          </tr>
-          } @if (fila.tipo === 'item') {
-          <tr>
-            <td class="rf-td-descripcion--item">{{ fila.descripcion }}</td>
-            <td class="rf-td-number" [class.rf-neg]="isNeg(fila.presupMes)">
-              {{ fmt(fila.presupMes) }}
-            </td>
-            <td class="rf-td-number" [class.rf-neg]="isNeg(fila.oct)">
-              {{ fmt(fila.oct) }}
-            </td>
-            <td class="rf-td-number" [class.rf-neg]="isNeg(fila.nov)">
-              {{ fmt(fila.nov) }}
-            </td>
-            <td class="rf-td-number" [class.rf-neg]="isNeg(fila.mes)">
-              {{ fmt(fila.mes) }}
-            </td>
-            <td class="rf-td-number" [class.rf-neg]="isNeg(fila.acum)">
-              {{ fmt(fila.acum) }}
-            </td>
-            <td class="rf-td-number" [class.rf-neg]="isNeg(fila.presupAnual)">
-              {{ fmt(fila.presupAnual) }}
-            </td>
-            <td class="rf-td-number" [class.rf-neg]="isNeg(fila.restante)">
-              {{ fmt(fila.restante) }}
-            </td>
-          </tr>
-          } @if (fila.tipo === 'gran-total') {
-          <tr class="rf-row-result">
-            <td class="rf-td-descripcion">{{ fila.descripcion }}</td>
-            <td
-              class="rf-td-number--total"
-              [class.rf-neg]="isNeg(fila.presupMes)"
-            >
-              {{ fmt(fila.presupMes) }}
-            </td>
-            <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.oct)">
-              {{ fmt(fila.oct) }}
-            </td>
-            <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.nov)">
-              {{ fmt(fila.nov) }}
-            </td>
-            <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.mes)">
-              {{ fmt(fila.mes) }}
-            </td>
-            <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.acum)">
-              {{ fmt(fila.acum) }}
-            </td>
-            <td
-              class="rf-td-number--total"
-              [class.rf-neg]="isNeg(fila.presupAnual)"
-            >
-              {{ fmt(fila.presupAnual) }}
-            </td>
-            <td
-              class="rf-td-number--total"
-              [class.rf-neg]="isNeg(fila.restante)"
-            >
-              {{ fmt(fila.restante) }}
-            </td>
-          </tr>
-          } @if (fila.tipo === 'total-extra') {
-          <tr class="rf-row-total">
-            <td class="rf-td-descripcion">{{ fila.descripcion }}</td>
-            <td
-              class="rf-td-number--total"
-              [class.rf-neg]="isNeg(fila.presupMes)"
-            >
-              {{ fmt(fila.presupMes) }}
-            </td>
-            <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.oct)">
-              {{ fmt(fila.oct) }}
-            </td>
-            <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.nov)">
-              {{ fmt(fila.nov) }}
-            </td>
-            <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.mes)">
-              {{ fmt(fila.mes) }}
-            </td>
-            <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.acum)">
-              {{ fmt(fila.acum) }}
-            </td>
-            <td
-              class="rf-td-number--total"
-              [class.rf-neg]="isNeg(fila.presupAnual)"
-            >
-              {{ fmt(fila.presupAnual) }}
-            </td>
-            <td
-              class="rf-td-number--total"
-              [class.rf-neg]="isNeg(fila.restante)"
-            >
-              {{ fmt(fila.restante) }}
-            </td>
-          </tr>
-          } }
-        </tbody>
-      </table>
-    </div>
+  <div class="rf-card rf-wrap">
+    <p-table
+      [value]="rows()"
+      class="rf-prime-table p-datatable-sm"
+      [tableStyle]="{ 'min-width': '1000px' }"
+    >
+      <ng-template #header>
+        <tr class="font-bold text-sm text-center">
+          <th class="th-col-dark">DESCRIPCIÓN</th>
+          <th class="th-col-green">PRESUP. MENSUAL APROBADO</th>
+          <th class="th-col-dark">{{ monthHeaders()[0] }}</th>
+          <th class="th-col-dark">{{ monthHeaders()[1] }}</th>
+          <th class="th-col-dark">{{ monthHeaders()[2] }}</th>
+          <th class="th-col-orange">ACUMULADO ENE-{{ monthHeaders()[2] }}</th>
+          <th class="th-col-green">PRESUPUESTO ANUAL APROBADO</th>
+          <th class="th-col-red">PRESUPUESTO RESTANTE</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-fila>
+        @if (fila.tipo === 'header') {
+        <tr class="rf-row-section">
+          <td colspan="8" class="font-bold text-base py-2 px-3">
+            {{ fila.descripcion }}
+          </td>
+        </tr>
+        } @if (fila.tipo === 'item') {
+        <tr class="rf-row-concepto">
+          <td class="rf-td-descripcion--item">{{ fila.descripcion }}</td>
+          <td class="rf-td-number" [class.rf-neg]="isNeg(fila.presupMes)">
+            {{ fmt(fila.presupMes) }}
+          </td>
+          <td class="rf-td-number" [class.rf-neg]="isNeg(fila.oct)">
+            {{ fmt(fila.oct) }}
+          </td>
+          <td class="rf-td-number" [class.rf-neg]="isNeg(fila.nov)">
+            {{ fmt(fila.nov) }}
+          </td>
+          <td class="rf-td-number" [class.rf-neg]="isNeg(fila.mes)">
+            {{ fmt(fila.mes) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.acum)">
+            {{ fmt(fila.acum) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.presupAnual)">
+            {{ fmt(fila.presupAnual) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.restante)">
+            {{ fmt(fila.restante) }}
+          </td>
+        </tr>
+        } @if (fila.tipo === 'gran-total') {
+        <tr class="rf-row-result">
+          <td class="rf-td-descripcion">{{ fila.descripcion }}</td>
+          <td
+            class="rf-td-number--total"
+            [class.rf-neg]="isNeg(fila.presupMes)"
+          >
+            {{ fmt(fila.presupMes) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.oct)">
+            {{ fmt(fila.oct) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.nov)">
+            {{ fmt(fila.nov) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.mes)">
+            {{ fmt(fila.mes) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.acum)">
+            {{ fmt(fila.acum) }}
+          </td>
+          <td
+            class="rf-td-number--total"
+            [class.rf-neg]="isNeg(fila.presupAnual)"
+          >
+            {{ fmt(fila.presupAnual) }}
+          </td>
+          <td
+            class="rf-td-number--total"
+            [class.rf-neg]="isNeg(fila.restante)"
+          >
+            {{ fmt(fila.restante) }}
+          </td>
+        </tr>
+        } @if (fila.tipo === 'total-extra') {
+        <tr class="rf-row-total">
+          <td class="rf-td-descripcion">{{ fila.descripcion }}</td>
+          <td
+            class="rf-td-number--total"
+            [class.rf-neg]="isNeg(fila.presupMes)"
+          >
+            {{ fmt(fila.presupMes) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.oct)">
+            {{ fmt(fila.oct) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.nov)">
+            {{ fmt(fila.nov) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.mes)">
+            {{ fmt(fila.mes) }}
+          </td>
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.acum)">
+            {{ fmt(fila.acum) }}
+          </td>
+          <td
+            class="rf-td-number--total"
+            [class.rf-neg]="isNeg(fila.presupAnual)"
+          >
+            {{ fmt(fila.presupAnual) }}
+          </td>
+          <td
+            class="rf-td-number--total"
+            [class.rf-neg]="isNeg(fila.restante)"
+          >
+            {{ fmt(fila.restante) }}
+          </td>
+        </tr>
+        }
+      </ng-template>
+    </p-table>
   </div>
   }
 </div>

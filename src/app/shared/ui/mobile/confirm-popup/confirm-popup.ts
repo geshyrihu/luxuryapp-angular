@@ -44,7 +44,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--ds-bg-overlay, rgba(0, 0, 0, 0.4));
+        background: var(--ds-bg-overlay);
         backdrop-filter: blur(2px);
       }
       .ili-cp-sheet {
@@ -55,9 +55,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         align-items: center;
         gap: 0.75rem;
         padding: 1.5rem;
-        background: var(--ds-bg-surface, #fff);
-        border-radius: var(--ds-radius-modal, 12px);
-        box-shadow: var(--ds-shadow-lg, 0 4px 24px rgba(0, 0, 0, 0.15));
+        background: var(--ds-bg-surface);
+        border-radius: var(--ds-radius-modal);
+        box-shadow: var(--ds-shadow-lg);
         text-align: center;
       }
       .ili-cp-icon {
@@ -78,7 +78,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       }
       .ili-cp-btn {
         padding: 0.7rem;
-        border-radius: var(--ds-radius-md, 8px);
+        border-radius: var(--ds-radius-md);
         font-size: 0.9rem;
         font-weight: 600;
         border: none;
@@ -86,11 +86,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         transition: opacity 0.15s;
       }
       .ili-cp-btn-accept {
-        background: var(--btn-color, var(--ds-primary));
-        color: #fff;
+        background: var(--btn-color);
+        color: var(--ds-on-primary);
       }
       .ili-cp-btn-reject {
-        background: var(--ds-bg-muted, #f1f5f9);
+        background: var(--ds-bg-muted);
         color: var(--ds-text-secondary);
       }
       .ili-cp-btn:active {

@@ -26,12 +26,12 @@ import { BadgeSeverity, BadgeSize } from "primeng/types/badge";
   styles: [
     `
       app-badge .p-badge.app-badge-primary {
-        background: var(--ds-primary, #2563eb);
-        color: #fff;
+        background: var(--ds-primary);
+        color: var(--ds-on-primary);
       }
       app-badge .p-badge.app-badge-neutral {
-        background: var(--ds-bg-muted, #64748b);
-        color: #fff;
+        background: var(--ds-bg-muted);
+        color: var(--ds-on-primary);
       }
     `,
   ],

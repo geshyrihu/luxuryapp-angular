@@ -1,0 +1,209 @@
+@if (!loading() && interviewData()) {
+<div class="card p-3 mb-4">
+  <div
+    class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-3 mb-3"
+  >
+    <div class="flex align-items-center gap-3">
+      <il-button
+        label="Volver a entrevistas"
+        iconClass="mdi:arrow-left"
+        severity="secondary"
+        size="small"
+        (clicked)="goBack()"
+      />
+      <div>
+        <h2 class="font-semibold text-xl m-0">
+          {{ interviewData()?.candidateName }}
+        </h2>
+        <span class="text-sm text-color-secondary"
+          >{{ interviewData()?.vacancyFolio }} - {{
+          interviewData()?.positionName }}</span
+        >
+      </div>
+    </div>
+    <div class="flex gap-2 ml-auto">
+      <app-candidate-stage-badge [stage]="interviewData()?.currentStage" />
+    </div>
+  </div>
+
+  <!-- Info de la entrevista -->
+  <div class="grid mb-4">
+    <div class="col-12 md:col-4">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Candidato</small>
+        <div class="font-semibold">{{ interviewData()?.candidateName }}</div>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Vacante</small>
+        <div class="font-semibold">{{ interviewData()?.vacancyFolio }}</div>
+        <small class="text-color-secondary"
+          >{{ interviewData()?.positionName }}</small
+        >
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Cliente</small>
+        <div class="font-semibold">{{ interviewData()?.customerName }}</div>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1"
+          >Entrevista programada</small
+        >
+        <div class="font-semibold">
+          {{ interviewData()?.operationsInterviewAt | date:'dd/MM/yyyy HH:mm' }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1"
+          >Entrevistador asignado</small
+        >
+        <div class="font-semibold">
+          {{ interviewData()?.assignedInterviewerName }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Estatus agenda</small>
+        <app-mapped-p-tag
+          [value]="interviewData()?.agendaStatusCode"
+          [options]="agendaStatusOptions()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- CV -->
+  <div class="card p-3 mb-4">
+    <div class="font-semibold mb-3">CV del candidato</div>
+    @if (interviewData()?.cvFileName) {
+    <iw-button-view-pdf
+      [url]="interviewData()?.cvFileUrl"
+      [fileName]="interviewData()?.cvFileName"
+      size="sm"
+      class="w-full md:w-auto"
+    />
+    } @else {
+    <span class="text-color-secondary">Sin CV disponible</span>
+    }
+  </div>
+
+  <!-- Acciones principales -->
+  <div class="card p-3 mb-4">
+    <div class="font-semibold mb-3">Acciones de respuesta</div>
+    <div class="flex flex-wrap gap-2">
+      <il-button
+        label="Registrar retroalimentación"
+        iconClass="mdi:comment-processing-outline"
+        severity="info"
+        (clicked)="openFeedbackModal()"
+      />
+      <il-button
+        label="Marcar no asistió"
+        iconClass="mdi:account-off"
+        severity="warn"
+        (clicked)="onMarkNoShow()"
+      />
+      <il-button
+        label="Rechazar"
+        iconClass="mdi:close-circle"
+        severity="danger"
+        (clicked)="onReject()"
+      />
+      <il-button
+        label="Aprobar / Continuar"
+        iconClass="mdi:check-circle"
+        severity="success"
+        (clicked)="onApprove()"
+      />
+    </div>
+  </div>
+
+  <!-- Timeline de la entrevista -->
+  @if (interviewData()?.timeline?.length) {
+  <div class="card p-3 mb-4">
+    <div class="font-semibold mb-3">Seguimiento</div>
+    <p-table
+      [value]="interviewData()?.timeline"
+      [paginator]="false"
+      [scrollable]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      class="custom-table card"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Fecha</th>
+          <th>Acción</th>
+          <th>Usuario</th>
+          <th>Comentario</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>
+            <app-candidate-stage-badge [stage]="item.toStage" />
+          </td>
+          <td>{{ item.changedByUserName }}</td>
+          <td>{{ item.comment }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+</div>
+}
+
+<!-- Modal de selección de motivo -->
+@if (showReasonModal()) {
+<div class="dialog-mask" (click)="closeReasonModal()">
+  <div class="dialog-container card p-4" style="max-width: 500px; min-width: 320px;" (click)="$event.stopPropagation()">
+    <div class="flex justify-content-between align-items-center mb-3">
+      <h3 class="m-0">
+        @switch (pendingAction()) {
+          @case ("markNoShow") { Marcar no asistencia }
+          @case ("reject") { Rechazar candidato }
+          @case ("approve") { Aprobar / Continuar }
+        }
+      </h3>
+      <button class="p-2 hover:bg-gray-100 border-round" (click)="closeReasonModal()">
+        <i class="mdi mdi-close text-xl"></i>
+      </button>
+    </div>
+
+    @if (pendingAction() === "reject" || pendingAction() === "markNoShow") {
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-2">Motivo *</label>
+      <custom-input-select-signal
+        [options]="reasonOptions()"
+        optionValue="id"
+        optionLabel="name"
+        [(ngModel)]="selectedReasonId"
+        placeholder="Seleccione un motivo"
+      />
+    </div>
+    }
+
+    <div class="flex justify-content-end gap-2">
+      <il-button
+        label="Cancelar"
+        severity="secondary"
+        (clicked)="closeReasonModal()"
+      />
+      <il-button
+        [label]="actionLoading() ? 'Procesando...' : 'Confirmar'"
+        [severity]="pendingAction() === 'approve' ? 'success' : 'danger'"
+        [loading]="actionLoading()"
+        (clicked)="confirmAction()"
+      />
+    </div>
+  </div>
+</div>
+}

@@ -102,16 +102,16 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        background: var(--ds-bg-overlay, rgba(0, 0, 0, 0.4));
+        background: var(--ds-bg-overlay);
       }
       .ili-am-sheet {
         width: 100%;
         max-width: 480px;
-        background: var(--ds-bg-surface, #fff);
-        border-radius: var(--ds-m-radius-sheet, 16px)
-          var(--ds-m-radius-sheet, 16px) 0 0;
+        background: var(--ds-bg-surface);
+        border-radius: var(--ds-m-radius-sheet)
+          var(--ds-m-radius-sheet) 0 0;
         padding: 0.5rem 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
-        box-shadow: var(--ds-shadow-2xl, 0 -4px 24px rgba(0, 0, 0, 0.15));
+        box-shadow: var(--ds-shadow-2xl);
         animation: ili-am-slide-up 0.22s cubic-bezier(0.32, 0.72, 0, 1);
       }
       @keyframes ili-am-slide-up {
@@ -126,7 +126,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         width: 36px;
         height: 4px;
         border-radius: 9999px;
-        background: var(--ds-border-strong, #cbd5e1);
+        background: var(--ds-border-strong);
         margin: 0.25rem auto 0.5rem;
       }
       .ili-am-title {

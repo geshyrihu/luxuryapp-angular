@@ -29,38 +29,38 @@ export abstract class TagBase {
   colors = computed<{ bg: string; text: string; border: string }>(() => {
     const map: Record<TagSeverity, { bg: string; text: string; border: string }> = {
       success: {
-        bg: "var(--ds-success-light, #d8f8e1)",
-        text: "var(--ds-success, #006837)",
+        bg: "var(--ds-success-light)",
+        text: "var(--ds-success)",
         border: "transparent",
       },
       info: {
-        bg: "var(--ds-info-light, #dff3ff)",
-        text: "var(--ds-info, #0b63a5)",
+        bg: "var(--ds-info-light)",
+        text: "var(--ds-info)",
         border: "transparent",
       },
       warn: {
-        bg: "var(--ds-warning-light, #fff4d6)",
-        text: "var(--ds-warning, #8a5a00)",
+        bg: "var(--ds-warning-light)",
+        text: "var(--ds-warning)",
         border: "transparent",
       },
       danger: {
-        bg: "var(--ds-danger-light, #ffdad6)",
-        text: "var(--ds-danger, #ba1a1a)",
+        bg: "var(--ds-danger-light)",
+        text: "var(--ds-danger)",
         border: "transparent",
       },
       secondary: {
-        bg: "var(--ds-bg-sunken, #f4f5f8)",
-        text: "var(--ds-text-secondary, #4d5562)",
-        border: "var(--ds-border, #d7dbe3)",
+        bg: "var(--ds-bg-sunken)",
+        text: "var(--ds-text-secondary)",
+        border: "var(--ds-border)",
       },
       contrast: {
-        bg: "var(--ds-bg-page, #ffffff)",
-        text: "var(--ds-text-primary, #1f2937)",
-        border: "var(--ds-border-strong, #aeb6c2)",
+        bg: "var(--ds-bg-page)",
+        text: "var(--ds-text-primary)",
+        border: "var(--ds-border-strong)",
       },
       warning: {
-        bg: "var(--ds-warning-light, #fff4d6)",
-        text: "var(--ds-warning, #8a5a00)",
+        bg: "var(--ds-warning-light)",
+        text: "var(--ds-warning)",
         border: "transparent",
       },
     };

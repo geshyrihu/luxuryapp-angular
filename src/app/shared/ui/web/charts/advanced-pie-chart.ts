@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import type { EChartsCoreOption } from "echarts/core";
 import { NgxEchartsDirective } from "ngx-echarts";
-import { NgxChartsDatum, ngxToPieOption } from "./echarts-adapters";
+import { NgxChartsDatum, ngxToPieOption, trackChartTheme } from "./echarts-adapters";
 
 /**
  * AdvancedPieChart — pastel con leyenda/detalle. Motor: ECharts (ngx-echarts).
@@ -20,9 +20,13 @@ import { NgxChartsDatum, ngxToPieOption } from "./echarts-adapters";
   template: `<div echarts [options]="option()" style="height: 400px"></div>`,
 })
 export class AdvancedPieChart {
+  constructor() {
+    trackChartTheme();
+  }
+
   dataGrafico = input<NgxChartsDatum[]>([]);
   colorScheme = input<{ domain?: string[] }>({
-    domain: ["#5AA454", "#A10A28", "#C7B42C"],
+    domain: ["--ds-cat-7", "--ds-cat-4", "--ds-cat-5"],
   });
 
   option = computed<EChartsCoreOption>(() =>

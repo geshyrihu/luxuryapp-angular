@@ -1,4 +1,5 @@
 import { Directive, input, output } from "@angular/core";
+import { avatarBackground } from "./avatar-palette";
 
 export type ContactStatus = "active" | "inactive" | "prospect" | "vip";
 
@@ -43,10 +44,7 @@ export abstract class ContactCardBase {
   }
 
   avatarBg(): string {
-    const colors = ["#003d9b", "#006477", "#006837", "#b45309", "#7c3aed", "#ba1a1a"];
-    let h = 0;
-    for (const c of this.name()) h = c.charCodeAt(0) + ((h << 5) - h);
-    return colors[Math.abs(h) % colors.length];
+    return avatarBackground(this.name());
   }
 
   initials(): string {

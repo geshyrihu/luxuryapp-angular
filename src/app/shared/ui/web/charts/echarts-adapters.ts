@@ -1,10 +1,38 @@
 import type { EChartsCoreOption } from "echarts/core";
+import { effect, inject, signal } from "@angular/core";
+import { ThemeService } from "../../../../core/services/theme.service";
 
 /**
  * Adaptadores para convertir los formatos de datos existentes (Chart.js y
  * ngx-charts) a opciones de ECharts, preservando la API pública de los
  * componentes de charts. Los colores se leen de los tokens del Design System.
  */
+
+/**
+ * Contador de "versión de tema" compartido. Los motores de canvas/SVG
+ * (ECharts, Chart.js, ngx-charts) resuelven `var(--ds-*)` a un color concreto
+ * en el momento del pintado y PIERDEN la reactividad que `var()` da gratis en
+ * CSS. Cualquier función que resuelva un token en JS lee `dsThemeTick` para
+ * registrarse como dependencia; cuando el tema cambia, `trackChartTheme()`
+ * incrementa el contador y los `computed`/plantillas que dependen de él se
+ * reevalúan y repintan. (RN-DS-015, RN-DS-040)
+ */
+export const dsThemeTick = signal(0);
+
+/**
+ * Registra la dependencia de tema de un componente que pinta en canvas/SVG.
+ * Llamar UNA vez desde el constructor del componente. Crea un `effect()` que
+ * lee `themeMode()` (quedando registrado como dependencia) e incrementa
+ * `dsThemeTick`, forzando el repintado de las opciones del chart.
+ * No usar `untracked()` sobre `themeMode()`. (RN-DS-040)
+ */
+export function trackChartTheme(): void {
+  const theme = inject(ThemeService);
+  effect(() => {
+    theme.themeMode();
+    dsThemeTick.update((n) => n + 1);
+  });
+}
 
 export interface ChartJsDataset {
   label?: string;
@@ -32,36 +60,59 @@ export interface NgxChartsDatum {
   value: number;
 }
 
-const DS_PALETTE = [
-  "#003d9b",
-  "#006477",
-  "#006837",
-  "#b45309",
-  "#7c3aed",
-  "#ba1a1a",
-  "#0891b2",
-  "#c2410c",
+const DS_PALETTE_TOKENS = [
+  "--ds-cat-1",
+  "--ds-cat-2",
+  "--ds-cat-3",
+  "--ds-cat-4",
+  "--ds-cat-5",
+  "--ds-cat-6",
+  "--ds-cat-7",
+  "--ds-cat-8",
 ];
 
 function cssVar(name: string, fallback: string): string {
+  // Registra la dependencia de tema: al cambiar, los computed/plantillas que
+  // llaman a esta función se reevalúan y repintan (RN-DS-040).
+  dsThemeTick();
   if (typeof document === "undefined") return fallback;
   const v = getComputedStyle(document.documentElement).getPropertyValue(name);
+  console.log("CSSVAR", name, "=>", JSON.stringify(v), "tick", dsThemeTick());
   return v?.trim() || fallback;
+}
+
+/**
+ * Resuelve un color para motores de canvas/SVG (ECharts, Chart.js, ngx-charts)
+ * que NO resuelven `var()`. Si `color` es un token (`--x` o `var(--x)`) devuelve
+ * su valor computado; si ya es un color concreto lo devuelve igual. (RN-DS-036)
+ */
+export function resolveDsColor(color: string): string {
+  if (!color) return color;
+  let name = color;
+  if (color.startsWith("var(")) {
+    const m = color.match(/var\(\s*(--[\w-]+)/);
+    if (!m) return color;
+    name = m[1];
+  } else if (!color.startsWith("--")) {
+    return color;
+  }
+  return cssVar(name, color);
 }
 
 /** Colores base (texto/ejes/grid) desde los tokens del DS. */
 export function dsChartTheme() {
   return {
-    textColor: cssVar("--ds-text-secondary", "#434654"),
-    textMuted: cssVar("--ds-text-muted", "#737685"),
-    borderColor: cssVar("--ds-border", "#e2e8f0"),
-    surface: cssVar("--ds-bg-surface", "#ffffff"),
+    textColor: cssVar("--ds-text-secondary", "CanvasText"),
+    textMuted: cssVar("--ds-text-muted", "GrayText"),
+    borderColor: cssVar("--ds-border", "ButtonBorder"),
+    surface: cssVar("--ds-bg-surface", "Canvas"),
   };
 }
 
 function firstColor(bg: string | string[] | undefined, i: number): string {
-  if (Array.isArray(bg)) return bg[0] || DS_PALETTE[i % DS_PALETTE.length];
-  return bg || DS_PALETTE[i % DS_PALETTE.length];
+  const fb = resolveDsColor(DS_PALETTE_TOKENS[i % DS_PALETTE_TOKENS.length]);
+  if (Array.isArray(bg)) return resolveDsColor(bg[0]) || fb;
+  return resolveDsColor(bg) || fb;
 }
 
 /** bar / line / area → opción ECharts cartesiana (soporta doble eje Y). */
@@ -136,7 +187,7 @@ export function chartJsToPieOption(
   const items = labels.map((name, i) => ({
     name: String(name),
     value: values[i],
-    itemStyle: { color: Array.isArray(bg) ? bg[i] : DS_PALETTE[i % DS_PALETTE.length] },
+    itemStyle: { color: resolveDsColor(Array.isArray(bg) ? bg[i] : DS_PALETTE_TOKENS[i % DS_PALETTE_TOKENS.length]) },
   }));
   return pieOptionFromItems(items, t, opts?.doughnut, opts?.showLegend);
 }
@@ -148,11 +199,11 @@ export function ngxToPieOption(
   opts?: { doughnut?: boolean; showLegend?: boolean },
 ): EChartsCoreOption {
   const t = dsChartTheme();
-  const domain = scheme?.domain ?? DS_PALETTE;
+  const domain = scheme?.domain ?? DS_PALETTE_TOKENS;
   const items = (results ?? []).map((r, i) => ({
     name: r.name,
     value: r.value,
-    itemStyle: { color: domain[i % domain.length] },
+    itemStyle: { color: resolveDsColor(domain[i % domain.length]) },
   }));
   return pieOptionFromItems(items, t, opts?.doughnut, opts?.showLegend);
 }

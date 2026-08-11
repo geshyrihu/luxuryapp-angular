@@ -349,53 +349,38 @@ body.theme-dark .p-panelmenu {
 /* =======================================
    MONITOR HEADER STYLES
    ======================================= */
+/* Header de escritorio y móvil.
+   NOTA (2026-08-10): este header fue oscuro en su origen ("dark glass") y se
+   rediseñó a fondo claro, pero la migración quedó a medias: los iconos y el
+   breadcrumb se corrigieron y el resto del texto siguió en blanco sobre blanco.
+   Se completó la migración; el contenido va sobre --header-bg, no sobre oscuro. */
 .hidden.md\:block .p-toolbar,
 .mobile-header-toolbar {
   border-radius: 0 !important;
   height: 70px;
   border: none !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  background: #ffffff;
+  border-bottom: 1px solid var(--ds-border) !important;
+  background: var(--header-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
-  /* PrimeNG 21 breadcrumb design tokens (cascadan al componente hijo) */
+  /* PrimeNG 21 breadcrumb design tokens (cascadan al componente hijo).
+     El color de los ítems lo fija `nav.header-breadcrumb *` más abajo. */
   --p-breadcrumb-background: transparent;
   --p-breadcrumb-border-color: transparent;
-  --p-breadcrumb-item-color: rgba(255, 255, 255, 0.85);
-  --p-breadcrumb-item-hover-color: #ffffff;
-  --p-breadcrumb-item-active-color: #ffffff;
-  --p-breadcrumb-item-icon-color: rgba(255, 255, 255, 0.85);
-  --p-breadcrumb-item-icon-hover-color: #ffffff;
-  --p-breadcrumb-separator-color: rgba(255, 255, 255, 0.5);
 
   .customer-name {
-    color: rgba(255, 255, 255, 0.95) !important;
+    color: var(--ds-text-primary) !important;
   }
 
   /* Button icons visibility */
   .p-button-text,
   .monitor-toolbar-button {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--ds-text-primary) !important;
 
     &:hover {
-      color: rgba(255, 255, 255, 1) !important;
-      background: rgba(255, 255, 255, 0.12) !important;
-    }
-  }
-
-  /* Condominium select (dark glass style) */
-  .p-select {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: rgba(255, 255, 255, 0.9) !important;
-
-    .p-select-label {
-      color: rgba(255, 255, 255, 0.9) !important;
-    }
-
-    .p-select-dropdown {
-      color: rgba(255, 255, 255, 0.7) !important;
+      color: var(--ds-primary) !important;
+      background: var(--ds-bg-sunken) !important;
     }
   }
 }
@@ -411,9 +396,10 @@ app-header-employee-monitor .toolbar-icon-btn {
   background: transparent;
   border: none;
   border-radius: 999px;
-  /* El header (.mobile-header-toolbar) es blanco fijo, por eso el icono va
-     oscuro. Los iconos fluent-color multicolor ignoran este color. */
-  color: #334155;
+  /* El header sigue --header-bg (claro en light, navy en dark), así que el
+     icono usa el token de texto correspondiente. Los iconos fluent-color
+     multicolor ignoran este color. */
+  color: var(--ds-text-primary);
   cursor: pointer;
   transition:
     background-color 150ms ease,
@@ -421,13 +407,13 @@ app-header-employee-monitor .toolbar-icon-btn {
   flex-shrink: 0;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.06);
-    color: var(--primary-color, #0b3164);
+    background: var(--ds-state-hover);
+    color: var(--ds-primary, #0b3164);
   }
 
   &:active {
     transform: scale(0.92);
-    background: rgba(0, 0, 0, 0.1);
+    background: var(--ds-state-active);
   }
 }
 
@@ -438,9 +424,12 @@ app-header-employee-monitor iw-button app-icon {
   font-size: 1.4rem;
 }
 
-/* Customer name in header */
+/* Nombre del condominio en el header.
+   Se renderiza solo cuando el usuario tiene UN condominio asignado (rama @else
+   de header-employee-monitor.html): con varios se muestra el selector. Por eso
+   el blanco-sobre-blanco anterior era invisible sin que nadie lo reportara. */
 app-header-employee-monitor .customer-name {
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--ds-text-primary);
 }
 
 /* Breadcrumb oscuro en header blanco */
@@ -549,21 +538,21 @@ app-header-employee-monitor .p-toolbar p-button {
 
 /* Select dropdown overlay (teleported to body) */
 .p-select-overlay {
-  background: rgba(11, 49, 100, 0.95) !important;
+  background: rgba(var(--ds-bg-auth-panel-rgb), 0.95) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid var(--ds-surface-dark-active) !important;
 
   .p-select-option {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--ds-on-dark-label) !important;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.1) !important;
+      background: var(--ds-surface-dark-hover) !important;
     }
 
     &.p-select-option-selected {
-      background: rgba(255, 255, 255, 0.15) !important;
-      color: #ffffff !important;
+      background: var(--ds-surface-dark-active) !important;
+      color: var(--ds-on-dark) !important;
     }
   }
 }

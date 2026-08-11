@@ -65,7 +65,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.25rem;
       }
       .ili-megamenu-category {
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
       }
       .ili-megamenu-trigger {
         display: flex;
@@ -75,7 +75,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         padding: 0.75rem 1rem;
         background: none;
         border: none;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         font-weight: 600;
         color: var(--ds-text-primary);
         cursor: pointer;
@@ -83,11 +83,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         -webkit-tap-highlight-color: transparent;
       }
       .ili-megamenu-trigger:active {
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
       }
       .ili-megamenu-cat-icon {
         font-size: 1.125rem;
-        color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary);
       }
       .ili-megamenu-chevron {
         margin-left: auto;
@@ -117,15 +117,15 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         padding: 0.5rem 0.75rem;
         background: none;
         border: none;
-        border-radius: var(--ds-radius-sm, 4px);
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        border-radius: var(--ds-radius-sm);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-secondary);
         cursor: pointer;
         text-align: left;
         transition: background 0.15s;
       }
       .ili-megamenu-item:active {
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
       }
       .ili-megamenu-item-icon {
         font-size: 1rem;

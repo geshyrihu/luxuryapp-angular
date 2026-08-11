@@ -111,8 +111,8 @@ export interface ScannedFile {
         display: none;
       }
       .rs-dropzone {
-        border: 2px dashed var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        border: 2px dashed var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         padding: 2rem 1rem;
         display: flex;
         flex-direction: column;
@@ -127,19 +127,19 @@ export interface ScannedFile {
       .rs-dropzone:hover,
       .rs-dragging {
         border-color: var(--ds-primary);
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
         color: var(--ds-primary);
       }
       .rs-drop-title {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
       }
       .rs-drop-sub {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
       }
       .rs-preview {
         border: 1px solid var(--ds-border);
-        border-radius: var(--ds-radius-md, 6px);
+        border-radius: var(--ds-radius-md);
         overflow: hidden;
       }
       .rs-preview-img {
@@ -162,23 +162,23 @@ export interface ScannedFile {
         gap: 0.15rem;
       }
       .rs-file-name {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         font-weight: 600;
         color: var(--ds-text-primary);
       }
       .rs-file-size {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       .rs-preview-actions {
         display: flex;
         gap: 0.5rem;
         padding: 0.5rem 0.875rem;
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
       }
       .rs-error {
-        font-size: var(--ds-font-size-help, 0.8125rem);
-        color: var(--ds-danger, #ba1a1a);
+        font-size: var(--ds-font-size-help);
+        color: var(--ds-danger);
       }
     `,
   ],

@@ -56,8 +56,8 @@ export interface TabBarItem {
       .tab-bar {
         display: flex;
         align-items: stretch;
-        border-bottom: 2px solid var(--ds-border, #e2e8f0);
-        background: var(--ds-bg-surface, #fff);
+        border-bottom: 2px solid var(--ds-border);
+        background: var(--ds-bg-surface);
         overflow-x: auto;
         scrollbar-width: none;
       }
@@ -77,7 +77,7 @@ export interface TabBarItem {
         border-bottom: 2px solid transparent;
         margin-bottom: -2px;
         cursor: pointer;
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 500;
         color: var(--ds-text-muted);
         white-space: nowrap;
@@ -89,8 +89,8 @@ export interface TabBarItem {
         color: var(--ds-text-primary);
       }
       .tab-bar-active {
-        color: var(--ds-primary, #003d9b) !important;
-        border-bottom-color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary) !important;
+        border-bottom-color: var(--ds-primary);
         font-weight: 600;
       }
       .tab-bar-disabled {
@@ -101,11 +101,11 @@ export interface TabBarItem {
         font-size: 1rem;
       }
       .tab-bar-badge {
-        background: var(--ds-danger, #ba1a1a);
-        color: #fff;
+        background: var(--ds-danger);
+        color: var(--ds-on-primary);
         font-size: 0.625rem;
         font-weight: 700;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         padding: 0.1rem 0.35rem;
         min-width: 16px;
         text-align: center;

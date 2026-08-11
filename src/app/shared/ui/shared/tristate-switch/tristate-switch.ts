@@ -69,7 +69,7 @@ export type TriState = true | false | null;
         pointer-events: none;
       }
       .tri-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         font-weight: 500;
       }
@@ -79,16 +79,16 @@ export type TriState = true | false | null;
         gap: 0.625rem;
       }
       .tri-hint {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
 
       .tri-track {
         width: 48px;
         height: 26px;
-        border-radius: var(--ds-radius-full, 9999px);
-        border: 1.5px solid var(--ds-border, #e2e8f0);
-        background: var(--ds-bg-sunken, #e8edff);
+        border-radius: var(--ds-radius-full);
+        border: 1.5px solid var(--ds-border);
+        background: var(--ds-bg-sunken);
         cursor: pointer;
         padding: 2px;
         display: flex;
@@ -101,20 +101,20 @@ export type TriState = true | false | null;
 
       /* ON state */
       .tri-track:has(.tri-thumb-on) {
-        background: var(--ds-primary, #003d9b);
-        border-color: var(--ds-primary, #003d9b);
+        background: var(--ds-primary);
+        border-color: var(--ds-primary);
       }
       /* Indeterminate state */
       .tri-track:has(.tri-thumb-indeterminate) {
-        background: var(--ds-warning, #b45309);
-        border-color: var(--ds-warning, #b45309);
+        background: var(--ds-warning);
+        border-color: transparent;
       }
 
       .tri-thumb {
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background: #fff;
+        background: var(--ds-bg-surface);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -137,17 +137,17 @@ export type TriState = true | false | null;
         line-height: 1;
       }
       .tri-icon-dash {
-        color: var(--ds-warning, #b45309);
+        color: var(--ds-accent-text-warning);
       }
       .tri-icon-off {
         color: var(--ds-text-muted);
       }
       .tri-thumb-on .tri-icon {
-        color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary);
       }
 
       .tri-state-label {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-secondary);
       }
     `,

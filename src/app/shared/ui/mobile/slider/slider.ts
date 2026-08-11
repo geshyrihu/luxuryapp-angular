@@ -58,7 +58,7 @@ import { SliderBase } from "@ui/base/slider.base";
       }
       .ili-slider-value {
         font-size: 0.875rem;
-        color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary);
         font-weight: 600;
       }
       .ili-slider-bound {
@@ -66,9 +66,9 @@ import { SliderBase } from "@ui/base/slider.base";
         color: var(--ds-text-muted);
       }
       ion-range {
-        --bar-background: var(--ds-border, #e2e8f0);
-        --bar-background-active: var(--ds-primary, #003d9b);
-        --knob-background: var(--ds-primary, #003d9b);
+        --bar-background: var(--ds-border);
+        --bar-background-active: var(--ds-primary);
+        --knob-background: var(--ds-primary);
         padding-inline: 0.25rem;
       }
     `,

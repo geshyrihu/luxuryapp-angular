@@ -28,7 +28,7 @@ import { KnobModule } from "primeng/knob";
         outline: none;
       }
       .p-knob:focus-visible {
-        box-shadow: var(--ds-shadow-focus, 0 0 0 3px rgba(37, 99, 235, 0.3));
+        box-shadow: var(--ds-shadow-focus);
         border-radius: 50%;
       }
     `,
@@ -38,6 +38,6 @@ import { KnobModule } from "primeng/knob";
 })
 export class AppKnob extends KnobBase {
   rangeColor(): string {
-    return "var(--ds-border, #e2e8f0)";
+    return "var(--ds-border)";
   }
 }

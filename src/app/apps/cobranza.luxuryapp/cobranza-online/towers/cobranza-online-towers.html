@@ -7,9 +7,11 @@
     </div>
   </div>
   } @else {
-  <div
-    class="surface-card p-3 md:p-4 mb-4 shadow-1 border-round-xl border-1 surface-border"
-  >
+  <div class="mb-2 mt-1">
+    <div class="text-lg font-semibold text-color">Resumen por Torres</div>
+    <div class="text-sm text-color-secondary">Agrupacin de la deuda por cada torre del condominio.</div>
+  </div>
+  <div class="mb-4">
     <p-table [value]="towers()" styleClass="p-datatable-sm hidden md:block">
       <ng-template #header>
         <tr>

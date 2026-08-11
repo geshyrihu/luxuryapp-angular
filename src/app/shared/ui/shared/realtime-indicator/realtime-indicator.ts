@@ -46,10 +46,10 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
         align-items: center;
         gap: 0.375rem;
         padding: 0.2rem 0.625rem;
-        border-radius: var(--ds-radius-full, 9999px);
-        background: var(--ds-bg-elevated, #f1f3ff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        border-radius: var(--ds-radius-full);
+        background: var(--ds-bg-elevated);
+        border: 1px solid var(--ds-border);
+        font-size: var(--ds-font-size-micro);
       }
       /* Dot */
       .rt-dot {
@@ -63,16 +63,16 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
         flex-shrink: 0;
       }
       .rt-dot-live {
-        background: var(--ds-success, #006837);
+        background: var(--ds-success);
       }
       .rt-dot-paused {
-        background: var(--ds-warning, #b45309);
+        background: var(--ds-warning);
       }
       .rt-dot-error {
-        background: var(--ds-danger, #ba1a1a);
+        background: var(--ds-danger);
       }
       .rt-dot-connecting {
-        background: var(--ds-info, #006477);
+        background: var(--ds-info);
         animation: rt-blink 1s ease infinite;
       }
       /* Pulse ring */
@@ -81,7 +81,7 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        background: var(--ds-success, #006837);
+        background: var(--ds-success);
         opacity: 0.4;
         animation: rt-pulse 1.5s ease-out infinite;
       }
@@ -114,7 +114,7 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
       .rt-latency {
         color: var(--ds-text-muted);
         padding-left: 0.25rem;
-        border-left: 1px solid var(--ds-border, #e2e8f0);
+        border-left: 1px solid var(--ds-border);
       }
     `,
   ],

@@ -88,8 +88,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         height: 16px;
         padding: 0 4px;
         border-radius: 9999px;
-        background: var(--ds-danger, #ba1a1a);
-        color: #fff;
+        background: var(--ds-danger);
+        color: var(--ds-on-primary);
         font-size: 0.65rem;
         font-weight: 700;
         display: inline-flex;
@@ -102,15 +102,15 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         z-index: 1000;
         display: flex;
         align-items: flex-end;
-        background: var(--ds-bg-overlay, rgba(0, 0, 0, 0.4));
+        background: var(--ds-bg-overlay);
       }
       .ili-nc-sheet {
         width: 100%;
         max-height: 75vh;
         display: flex;
         flex-direction: column;
-        background: var(--ds-bg-surface, #fff);
-        border-radius: var(--ds-radius-modal, 12px) var(--ds-radius-modal, 12px)
+        background: var(--ds-bg-surface);
+        border-radius: var(--ds-radius-modal) var(--ds-radius-modal)
           0 0;
         padding-bottom: env(safe-area-inset-bottom);
       }
@@ -124,7 +124,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       .ili-nc-markall {
         border: none;
         background: none;
-        color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary);
         font-size: 0.8125rem;
         font-weight: 600;
       }

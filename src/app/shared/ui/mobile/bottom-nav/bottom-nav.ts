@@ -44,8 +44,8 @@ export type { BottomNavItem } from "@ui/base/bottom-nav.base";
       .bottom-nav {
         display: flex;
         align-items: stretch;
-        background: var(--ds-bg-surface, #fff);
-        border-top: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-surface);
+        border-top: 1px solid var(--ds-border);
         height: 60px;
         width: 100%;
         padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -69,7 +69,7 @@ export type { BottomNavItem } from "@ui/base/bottom-nav.base";
         transform: scale(0.92);
       }
       .bottom-nav-active {
-        color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary);
       }
       .bottom-nav-icon-wrap {
         position: relative;
@@ -84,11 +84,11 @@ export type { BottomNavItem } from "@ui/base/bottom-nav.base";
         position: absolute;
         top: -5px;
         right: -7px;
-        background: var(--ds-danger, #ba1a1a);
-        color: #fff;
+        background: var(--ds-danger);
+        color: var(--ds-on-primary);
         font-size: 0.6rem;
         font-weight: 700;
-        border-radius: var(--ds-radius-full, 9999px);
+        border-radius: var(--ds-radius-full);
         padding: 0.1rem 0.3rem;
         min-width: 16px;
         text-align: center;

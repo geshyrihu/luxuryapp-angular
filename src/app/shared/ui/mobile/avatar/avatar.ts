@@ -32,8 +32,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: var(--ds-bg-muted, #e2e8f0);
-        color: var(--ds-text-secondary, #475569);
+        background: var(--ds-bg-muted);
+        color: var(--ds-text-secondary);
         overflow: hidden;
       }
       .ili-avatar-square {

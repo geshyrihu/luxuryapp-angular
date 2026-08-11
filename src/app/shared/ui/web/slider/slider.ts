@@ -61,41 +61,41 @@ import { SliderModule } from "primeng/slider";
         align-items: center;
       }
       .app-slider-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         font-weight: 500;
       }
       .app-slider-value {
-        font-size: var(--ds-font-size-label, 0.875rem);
-        color: var(--ds-primary, #003d9b);
+        font-size: var(--ds-font-size-label);
+        color: var(--ds-primary);
         font-weight: 600;
       }
       .app-slider-bounds {
         display: flex;
         justify-content: space-between;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       /* PrimeNG slider DS overrides */
       .p-slider {
-        background: var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-full, 9999px);
+        background: var(--ds-border);
+        border-radius: var(--ds-radius-full);
         height: 4px;
       }
       .p-slider .p-slider-range {
-        background: var(--ds-primary, #003d9b);
-        border-radius: var(--ds-radius-full, 9999px);
+        background: var(--ds-primary);
+        border-radius: var(--ds-radius-full);
       }
       .p-slider .p-slider-handle {
-        background: var(--ds-bg-surface, #fff);
-        border: 2px solid var(--ds-primary, #003d9b);
+        background: var(--ds-bg-surface);
+        border: 2px solid var(--ds-primary);
         width: 18px;
         height: 18px;
         border-radius: 50%;
         transition: box-shadow 0.15s;
       }
       .p-slider .p-slider-handle:focus {
-        box-shadow: 0 0 0 3px var(--ds-primary-200, #b2c5ff);
+        box-shadow: 0 0 0 3px var(--primary-200);
       }
       .app-slider-disabled {
         opacity: 0.5;

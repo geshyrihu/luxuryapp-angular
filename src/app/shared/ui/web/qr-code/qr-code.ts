@@ -68,15 +68,15 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.625rem;
       }
       .qr-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-primary);
         margin: 0;
       }
       .qr-container {
-        background: #fff;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -109,12 +109,12 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         }
       }
       .qr-data {
-        font-family: var(--ds-font-family-mono, monospace);
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-family: var(--ds-font-family-mono);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
         padding: 0.2rem 0.5rem;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -151,7 +151,7 @@ export class AppQrCode implements OnChanges {
       width: this.size() * 2,
       margin: 1,
       errorCorrectionLevel: this.errorLevel(),
-      color: { dark: "#041b3c", light: "#ffffff" },
+      color: { dark: "black", light: "white" },
     })
       .then((url: string) => {
         this.qrUrl.set(url);

@@ -130,7 +130,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
       }
       .activity-log-title {
         display: block;
-        font-size: var(--ds-font-size-section-title, 1.25rem);
+        font-size: var(--ds-font-size-section-title);
         margin-bottom: 1rem;
         color: var(--ds-text-primary);
       }
@@ -139,7 +139,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
       }
       .activity-date-header {
         display: block;
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         font-weight: 600;
         color: var(--ds-text-muted);
         margin-bottom: 0.5rem;
@@ -171,7 +171,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
         top: 16px;
         bottom: -1rem;
         width: 2px;
-        background: var(--ds-border, #e2e8f0);
+        background: var(--ds-border);
       }
       .activity-group:last-child .activity-entry:last-child .activity-line {
         display: none;
@@ -179,7 +179,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
       .activity-card {
         flex: 1;
         padding: 0.5rem 0.75rem;
-        border-radius: var(--ds-radius-md, 6px);
+        border-radius: var(--ds-radius-md);
         transition: background 0.15s;
         margin-bottom: 0.25rem;
       }
@@ -194,17 +194,17 @@ const ACTIVITY_COLORS: Record<string, string> = {
       }
       .activity-entry-title {
         flex: 1;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
       }
       .activity-time {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
         white-space: nowrap;
       }
       .activity-description {
         margin: 0.25rem 0 0 1.6rem;
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         color: var(--ds-text-secondary);
       }
       .activity-footer {
@@ -214,15 +214,15 @@ const ACTIVITY_COLORS: Record<string, string> = {
         margin-left: 1.6rem;
       }
       .activity-user {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
       .activity-meta {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-disabled);
         background: var(--ds-bg-elevated);
         padding: 0.1rem 0.4rem;
-        border-radius: var(--ds-radius-xs, 2px);
+        border-radius: var(--ds-radius-xs);
       }
       .activity-empty {
         display: flex;

@@ -1,38 +1,18 @@
-import { FormGroup } from '@angular/forms';
+﻿import { FormControl, FormGroup } from '@angular/forms';
 import { CustomerLocationAddOrEditDTO } from './customer-location-add-or-edit.dto';
 
 export interface CustomerLocationForm extends FormGroup<{
-  id: FormGroup<{
-    value: string | null;
-  }>;
-  customerId: FormGroup<{
-    value: string | null;
-  }>;
-  name: FormGroup<{
-    value: string | null;
-  }>;
-  locationType: FormGroup<{
-    value: string | null;
-  }>;
-  phoneOne: FormGroup<{
-    value: string | null;
-  }>;
-  phoneTwo: FormGroup<{
-    value: string | null;
-  }>;
-  contactName: FormGroup<{
-    value: string | null;
-  }>;
-  notes: FormGroup<{
-    value: string | null;
-  }>;
-  sortOrder: FormGroup<{
-    value: number | null;
-  }>;
-  isActive: FormGroup<{
-    value: boolean | null;
-  }>;
+  id: FormControl<string | null>;
+  customerId: FormControl<string | null>;
+  name: FormControl<string | null>;
+  locationType: FormControl<string | null>;
+  phoneOne: FormControl<string | null>;
+  phoneTwo: FormControl<string | null>;
+  contactName: FormControl<string | null>;
+  notes: FormControl<string | null>;
+  sortOrder: FormControl<number | null>;
+  isActive: FormControl<boolean | null>;
 }> {
-  value: CustomerLocationAddOrEditDTO;
+  value: Partial<CustomerLocationAddOrEditDTO>;
   rawValue: CustomerLocationAddOrEditDTO;
 }

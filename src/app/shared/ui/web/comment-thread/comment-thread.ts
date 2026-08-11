@@ -124,7 +124,7 @@ export { type Comment } from "@ui/base/comment-thread.base";
         display: flex;
         align-items: center;
         gap: 0.4rem;
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-secondary);
         text-transform: uppercase;
@@ -138,9 +138,9 @@ export { type Comment } from "@ui/base/comment-thread.base";
         gap: 0.5rem;
         padding: 1.5rem;
         color: var(--ds-text-muted);
-        font-size: var(--ds-font-size-help, 0.8125rem);
-        background: var(--ds-bg-elevated, #f1f3ff);
-        border-radius: var(--ds-radius-md, 6px);
+        font-size: var(--ds-font-size-help);
+        background: var(--ds-bg-elevated);
+        border-radius: var(--ds-radius-md);
       }
       .comment-list {
         display: flex;
@@ -163,7 +163,7 @@ export { type Comment } from "@ui/base/comment-thread.base";
         justify-content: center;
         font-size: 0.625rem;
         font-weight: 700;
-        color: #fff;
+        color: var(--ds-on-primary);
         overflow: hidden;
       }
       .comment-avatar-img {
@@ -174,9 +174,9 @@ export { type Comment } from "@ui/base/comment-thread.base";
       /* Bubble */
       .comment-bubble {
         flex: 1;
-        background: var(--ds-bg-elevated, #f1f3ff);
-        border-radius: 0 var(--ds-radius-md, 6px) var(--ds-radius-md, 6px)
-          var(--ds-radius-md, 6px);
+        background: var(--ds-bg-elevated);
+        border-radius: 0 var(--ds-radius-md) var(--ds-radius-md)
+          var(--ds-radius-md);
         padding: 0.625rem 0.875rem;
       }
       .comment-meta {
@@ -186,20 +186,20 @@ export { type Comment } from "@ui/base/comment-thread.base";
         margin-bottom: 0.25rem;
       }
       .comment-author {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-primary);
       }
       .comment-time {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
       .comment-edited {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
         font-style: italic;
       }
       .comment-text {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-primary);
         margin: 0;
         white-space: pre-wrap;
@@ -212,11 +212,11 @@ export { type Comment } from "@ui/base/comment-thread.base";
         margin-top: 0.375rem;
       }
       .comment-reaction-btn {
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-full, 9999px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-full);
         padding: 0.15rem 0.5rem;
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         cursor: pointer;
         transition: border-color 0.15s;
       }
@@ -232,19 +232,19 @@ export { type Comment } from "@ui/base/comment-thread.base";
       .comment-textarea {
         width: 100%;
         resize: vertical;
-        border: 1.5px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        border: 1.5px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         padding: 0.5rem 0.75rem;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         font-family: var(--ds-font-family-base);
         color: var(--ds-text-primary);
-        background: var(--ds-bg-surface, #fff);
+        background: var(--ds-bg-surface);
         transition: border-color 0.15s;
       }
       .comment-textarea:focus {
         outline: none;
-        border-color: var(--ds-primary, #003d9b);
-        box-shadow: 0 0 0 3px var(--ds-primary-200, #b2c5ff);
+        border-color: var(--ds-primary);
+        box-shadow: 0 0 0 3px var(--primary-200);
       }
       .comment-form-actions {
         display: flex;
@@ -252,7 +252,7 @@ export { type Comment } from "@ui/base/comment-thread.base";
         align-items: center;
       }
       .comment-form-hint {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
     `,

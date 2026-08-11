@@ -15,7 +15,32 @@ export interface CandidateApplicationListItem {
   cvFileUrl: string;
   operationsInterviewAt?: string;
   assignedInterviewerName: string;
+  assignedInterviewerUserId: string;
   lastDecision?: CandidateDecision;
+}
+
+export interface CandidateRecruitmentAgendaItem {
+  id: string;
+  candidateId: string;
+  candidateName: string;
+  requestPositionId: string;
+  vacancyFolio: string;
+  positionName: string;
+  customerName: string;
+  customerId: string;
+  currentStage: CandidateApplicationStage;
+  scheduledInterviewAt?: string;
+  assignedInterviewerUserId: string;
+  assignedInterviewerName: string;
+  receptionConfirmedAt?: string;
+  feedbackSentAt?: string;
+  agendaStatusCode: string;
+  agendaStatusLabel: string;
+  pendingAction: string;
+  daysInStage: number;
+  isOverdue: boolean;
+  cvFileName: string;
+  cvFileUrl: string;
 }
 
 export interface CandidateApplicationDetail extends CandidateApplicationListItem {
@@ -45,6 +70,8 @@ export interface CandidateApplicationAddOrEdit {
   requestPositionId: string;
   cvFileName: string;
   applicationDate?: string;
+  recruitmentInterviewAt?: string;
+  initialComment?: string;
 }
 
 export interface ChangeStageApplicationRequest {
@@ -59,4 +86,46 @@ export interface CandidateDecisionRequest {
   decision: CandidateDecision;
   reasonId?: string;
   comment?: string;
+}
+
+export interface CandidateApplicationKpisDto {
+  vacantesAbiertas: number;
+  vacantesSinPostulacion: number;
+  porcentajeVacantesConPostulacion: number;
+  postulacionesActivas: number;
+  postulacionesEnNuevo: number;
+  postulacionesEnPreFiltro: number;
+  postulacionesEnEspera: number;
+  postulacionesEnEntrevistaReclutamiento: number;
+  postulacionesEnEntrevistaOperaciones: number;
+  postulacionesSeleccionadas: number;
+  postulacionesAltaEnProceso: number;
+  postulacionesContratadas: number;
+  postulacionesRechazadasONoPresentadas: number;
+  entrevistasOperacionesSinEntrevistador: number;
+  entrevistasOperacionesPendientesAgenda: number;
+  entrevistasOperacionesVencidas: number;
+  entrevistasOperacionesAgendadas: number;
+  entrevistasOperacionesConFeedback: number;
+  postulacionesSinFeedbackEnEntrevista: number;
+  promedioDiasHastaEntrevistaOperaciones: number | null;
+  promedioDiasEnEtapaActual: number;
+  tasaSeleccion: number;
+  porFuente: FuenteKpiItem[];
+  postulacionesUltimos7Dias: number;
+  postulacionesUltimos30Dias: number;
+  // V2-F2: Tiempo Vacante -> Primera Postulacion
+  promedioDiasVacanteAPrimeraPostulacion: number | null;
+  medianaDiasVacanteAPrimeraPostulacion: number | null;
+  percentil90DiasVacanteAPrimeraPostulacion: number | null;
+  vacantesConPostulacionEnSla: number;
+  vacantesConPostulacion: number;
+  porcentajeVacantesEnSla: number;
+}
+
+export interface FuenteKpiItem {
+  fuente: string;
+  totalPostulaciones: number;
+  contratados: number;
+  tasaConversion: number;
 }

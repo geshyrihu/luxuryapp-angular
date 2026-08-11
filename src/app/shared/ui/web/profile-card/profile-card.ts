@@ -94,9 +94,9 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
         align-items: flex-start;
         gap: 1rem;
         padding: 1rem;
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         transition: box-shadow 0.15s;
       }
       .profile-card:hover {
@@ -127,7 +127,7 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
       .profile-avatar-initials {
         font-size: 1.125rem;
         font-weight: 700;
-        color: #fff;
+        color: var(--ds-on-primary);
         text-transform: uppercase;
         line-height: 1;
       }
@@ -138,13 +138,13 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        border: 2px solid var(--ds-bg-surface, #fff);
+        border: 2px solid var(--ds-bg-surface);
       }
       .profile-status-online {
-        background: var(--ds-success, #006837);
+        background: var(--ds-success);
       }
       .profile-status-offline {
-        background: var(--ds-text-muted, #737685);
+        background: var(--ds-text-muted);
       }
       /* Info */
       .profile-info {
@@ -161,14 +161,14 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
         flex-wrap: wrap;
       }
       .profile-name {
-        font-size: var(--ds-font-size-card-title, 1rem);
+        font-size: var(--ds-font-size-card-title);
         color: var(--ds-text-primary);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
       .profile-role {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-secondary);
       }
       .profile-email,
@@ -177,7 +177,7 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
         display: flex;
         align-items: center;
         gap: 0.3rem;
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
         text-decoration: none;
         overflow: hidden;
@@ -186,7 +186,7 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
       }
       .profile-email:hover,
       .profile-phone:hover {
-        color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary);
         text-decoration: underline;
       }
       /* Actions */

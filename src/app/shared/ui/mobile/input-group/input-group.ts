@@ -32,25 +32,25 @@ import { InputGroupBase } from "@ui/base/input-group.base";
         display: flex;
         align-items: stretch;
         width: 100%;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 8px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         overflow: hidden;
-        background: var(--ds-bg-input, #ffffff);
+        background: var(--ds-bg-input);
       }
       .ili-input-group-addon {
         display: flex;
         align-items: center;
         padding: 0.5rem 0.75rem;
-        font-size: var(--ds-font-size-body, 0.9375rem);
-        color: var(--ds-text-secondary, #64748b);
-        background: var(--ds-bg-elevated, #f8fafc);
+        font-size: var(--ds-font-size-body);
+        color: var(--ds-text-secondary);
+        background: var(--ds-bg-elevated);
         white-space: nowrap;
       }
       .ili-input-group-addon-before {
-        border-right: 1px solid var(--ds-border, #e2e8f0);
+        border-right: 1px solid var(--ds-border);
       }
       .ili-input-group-addon-after {
-        border-left: 1px solid var(--ds-border, #e2e8f0);
+        border-left: 1px solid var(--ds-border);
       }
       .ili-input-group-content {
         flex: 1;

@@ -29,14 +29,14 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         justify-content: center;
         gap: 0.5rem;
         padding: 0.5rem 1rem;
-        background: var(--ds-danger, #ba1a1a);
-        color: #fff;
-        font-size: var(--ds-font-size-table, 0.875rem);
+        background: var(--ds-danger);
+        color: var(--ds-on-primary);
+        font-size: var(--ds-font-size-table);
         z-index: 9999;
         transition: transform 0.3s;
       }
       .offline-banner-online {
-        background: var(--ds-success, #006837);
+        background: var(--ds-success);
       }
       .offline-icon {
         font-size: 1rem;

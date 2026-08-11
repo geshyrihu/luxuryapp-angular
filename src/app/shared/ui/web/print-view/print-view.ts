@@ -61,10 +61,10 @@ import { ButtonModule } from "primeng/button";
         align-items: center;
         justify-content: space-between;
         padding: 0.5rem 0;
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
       }
       .print-toolbar-title {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         font-weight: 600;
         color: var(--ds-text-secondary);
       }
@@ -73,25 +73,25 @@ import { ButtonModule } from "primeng/button";
         gap: 0.5rem;
       }
       .print-area {
-        background: var(--ds-bg-surface, #fff);
+        background: var(--ds-bg-surface);
         min-height: 200px;
       }
       .print-area-bordered {
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         padding: 1.5rem;
       }
       .print-only {
         display: none;
       }
       .print-title {
-        font-size: var(--ds-font-size-page-title, 1.75rem);
+        font-size: var(--ds-font-size-page-title);
         font-weight: 700;
         color: var(--ds-text-primary);
         margin: 0 0 0.25rem;
       }
       .print-subtitle {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         margin: 0 0 1rem;
       }

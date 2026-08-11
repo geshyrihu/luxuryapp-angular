@@ -55,14 +55,40 @@
         placeholder="fecha de ingreso"
       />
 
-      <custom-input-select-signal
-        [control]="form.controls.candidateEmployeeId"
-        label="Candidato"
-        [data]="cb_candidate()"
-        [filter]="true"
-        [showClear]="false"
-        placeholder="--Selecciona un candidato--"
-      />
+      <div class="grid mb-4 align-items-start">
+        <label class="col-12 sm:col-3 mb-2 md:mb-0 flex align-items-center">
+          Candidato
+        </label>
+        <div class="col-12 sm:col-9">
+          <div class="p-3 border-1 surface-border border-round surface-50">
+            <div class="font-medium mb-2">
+              {{ currentCandidateName() || "Sin candidato vinculado" }}
+            </div>
+            <small class="block text-color-secondary mb-3">
+              Desde esta vacante puedes registrar o seleccionar al candidato,
+              cargar su CV y dejar lista la cita de entrevista sin salir del
+              flujo de Reclutamiento.
+            </small>
+            <div class="flex flex-wrap gap-2">
+              <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                [disabled]="!id"
+                (click)="manageCandidateApplication()"
+              >
+                {{ currentApplicationId() ? "Editar candidato / entrevista" : "Agregar candidato / entrevista" }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                (click)="goToCandidates()"
+              >
+                Ir a Candidates
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <custom-input-textarea-signal
         [control]="form.controls.observations"

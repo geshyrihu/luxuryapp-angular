@@ -43,12 +43,12 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       .ili-accordion {
         display: flex;
         flex-direction: column;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 8px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
         overflow: hidden;
       }
       .ili-accordion-item {
-        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        border-bottom: 1px solid var(--ds-border);
       }
       .ili-accordion-item:last-child {
         border-bottom: none;
@@ -64,7 +64,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         padding: 0.75rem 1rem;
         background: none;
         border: none;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         font-weight: 600;
         color: var(--ds-text-primary);
         cursor: pointer;
@@ -73,11 +73,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         transition: background 0.15s;
       }
       .ili-accordion-header:active {
-        background: var(--ds-bg-elevated, #f1f3ff);
+        background: var(--ds-bg-elevated);
       }
       .ili-accordion-header-icon {
         font-size: 1.125rem;
-        color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary);
       }
       .ili-accordion-header-title {
         flex: 1;
@@ -89,7 +89,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       }
       .ili-accordion-body {
         padding: 0 1rem 0.75rem;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-secondary);
       }
     `,

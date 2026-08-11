@@ -19,10 +19,11 @@
 
   <!-- 3. MAIN CONTENT (Abajo Derecha) -->
   <div class="main-content-wrapper relative h-full overflow-hidden">
-    <div
-      id="main-content-scroll"
-      class="main-content-scroll w-full h-full overflow-y-auto overflow-x-hidden surface-ground"
-    >
+      <div
+        id="main-content-scroll"
+        class="main-content-scroll w-full h-full overflow-y-auto overflow-x-hidden surface-ground"
+        tabindex="0"
+      >
       <!-- Wrapper interno para altura mínima -->
       @if (refreshService.outletVisible()) {
       <div class="w-full min-h-full pb-8">

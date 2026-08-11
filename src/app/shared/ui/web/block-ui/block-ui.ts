@@ -24,7 +24,7 @@ import { BlockUIModule } from "primeng/blockui";
         position: relative;
       }
       .p-blockui {
-        background: var(--ds-bg-overlay, rgba(0, 0, 0, 0.35));
+        background: var(--ds-bg-overlay);
         border-radius: inherit;
       }
     `,

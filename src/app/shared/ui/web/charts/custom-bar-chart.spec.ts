@@ -36,7 +36,7 @@ describe("CustomBarChart", () => {
   it("should build a cartesian ECharts option from Chart.js data", () => {
     const testData = {
       labels: ["A", "B"],
-      datasets: [{ label: "Test", data: [1, 2], borderColor: "#000" }],
+      datasets: [{ label: "Test", data: [1, 2], borderColor: "var(--ds-text-primary)" }],
     };
     fixture.componentRef.setInput("data", testData);
     fixture.detectChanges();

@@ -70,11 +70,11 @@ import { InplaceBase } from "@ui/base/inplace.base";
         gap: 0.5rem;
         cursor: pointer;
         padding: 0.25rem 0.5rem;
-        border-radius: var(--ds-radius-sm, 4px);
+        border-radius: var(--ds-radius-sm);
         transition: background 0.15s;
       }
       .ili-inplace-display:active {
-        background: var(--ds-bg-elevated, #f1f5f9);
+        background: var(--ds-bg-elevated);
       }
       .ili-inplace-edit-btn {
         display: inline-flex;
@@ -83,7 +83,7 @@ import { InplaceBase } from "@ui/base/inplace.base";
         border: none;
         background: none;
         cursor: pointer;
-        color: var(--ds-primary, #003d9b);
+        color: var(--ds-primary);
         padding: 0.25rem;
       }
       .ili-inplace-content {
@@ -93,11 +93,11 @@ import { InplaceBase } from "@ui/base/inplace.base";
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid var(--ds-border, #e2e8f0);
-        background: var(--ds-bg-input, #ffffff);
+        border: 1px solid var(--ds-border);
+        background: var(--ds-bg-input);
         cursor: pointer;
-        color: var(--ds-text-secondary, #64748b);
-        border-radius: var(--ds-radius-sm, 4px);
+        color: var(--ds-text-secondary);
+        border-radius: var(--ds-radius-sm);
         padding: 0.375rem;
         margin-top: 0.5rem;
       }

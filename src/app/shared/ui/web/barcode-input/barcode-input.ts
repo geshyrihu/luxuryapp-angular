@@ -86,7 +86,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
         gap: 0.35rem;
       }
       .bi-label {
-        font-size: var(--ds-font-size-label, 0.875rem);
+        font-size: var(--ds-font-size-label);
         color: var(--ds-text-secondary);
         font-weight: 500;
       }
@@ -96,7 +96,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
       }
       .bi-input {
         flex: 1;
-        font-family: var(--ds-font-family-mono, monospace);
+        font-family: var(--ds-font-family-mono);
         letter-spacing: 0.05em;
       }
       .bi-scan-btn,
@@ -107,11 +107,11 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
         display: none;
       }
       .bi-error {
-        font-size: var(--ds-font-size-help, 0.8125rem);
-        color: var(--ds-danger, #ba1a1a);
+        font-size: var(--ds-font-size-help);
+        color: var(--ds-danger);
       }
       .bi-hint {
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
     `,

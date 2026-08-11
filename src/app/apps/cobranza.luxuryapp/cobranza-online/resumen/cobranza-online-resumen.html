@@ -29,7 +29,7 @@
         [ngClass]="extraordinaryChartData() ? 'xl:col-6' : 'xl:col-8'"
       >
         <div
-          class="surface-card p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4"
+          class="surface-card p-3 md:p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4"
         >
           <div class="flex-1 w-full">
             <h3 class="text-md font-semibold text-color m-0 mb-3">
@@ -70,7 +70,7 @@
       @if (extraordinaryChartData()) {
       <div class="col-12 xl:col-6">
         <div
-          class="surface-card p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4"
+          class="surface-card p-3 md:p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4"
         >
           <div class="flex-1 w-full">
             <h3 class="text-md font-semibold text-color m-0 mb-3">
@@ -108,6 +108,48 @@
       </div>
       }
 
+      <!-- Restaurante -->
+      @if (restaurantChartData()) {
+      <div class="col-12 xl:col-6">
+        <div
+          class="surface-card p-3 md:p-4 shadow-1 border-round-xl border-1 surface-border h-full flex flex-column md:flex-row align-items-center gap-4"
+        >
+          <div class="flex-1 w-full">
+            <h3 class="text-md font-semibold text-color m-0 mb-3">
+              Cuotas de Restaurante del Mes
+            </h3>
+            <div class="flex justify-content-between mb-2">
+              <span class="text-color-secondary">A recaudar:</span>
+              <span class="font-bold"
+                >{{ currentCharges.restaurant.total | currency:
+                "MXN":"symbol":"1.0-0" }}</span
+              >
+            </div>
+            <div class="flex justify-content-between mb-2">
+              <span class="text-color-secondary">Abonado:</span>
+              <span class="font-bold text-success"
+                >{{ currentCharges.restaurant.collected | currency:
+                "MXN":"symbol":"1.0-0" }}</span
+              >
+            </div>
+            <div class="flex justify-content-between mb-2">
+              <span class="text-color-secondary">Faltante por cobrar:</span>
+              <span class="font-bold text-warning"
+                >{{ currentCharges.restaurant.pending | currency:
+                "MXN":"symbol":"1.0-0" }}</span
+              >
+            </div>
+          </div>
+          <div class="w-12rem flex-shrink-0">
+            <app-pie-chart
+              [dataGrafico]="restaurantChartData()?.data"
+              [colorScheme]="{domain: restaurantChartData()?.colors}"
+            ></app-pie-chart>
+          </div>
+        </div>
+      </div>
+      }
+
       <!-- Summary Chips -->
       <div
         class="col-12"
@@ -126,7 +168,8 @@
               </div>
               <div class="text-2xl font-bold text-color">
                 {{ (currentCharges.maintenance.total +
-                currentCharges.extraordinary.total) | currency:
+                currentCharges.extraordinary.total +
+                currentCharges.restaurant.total) | currency:
                 "MXN":"symbol":"1.0-0" }}
               </div>
             </div>

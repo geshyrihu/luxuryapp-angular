@@ -23,6 +23,11 @@ import { StatusSolicitudVacanteService } from "src/app/core/services/status-soli
 import { ROUTES } from "src/app/routing/route-paths";
 import { StatusRequestSalaryModificationForm } from "./status-request-salary-modification-form";
 
+interface RequestSalaryModificationStatusDetail {
+  id: string;
+  title?: string;
+}
+
 @Component({
   selector: "app-status-request-salary-modification",
   templateUrl: "./status-request-salary-modification.html",
@@ -46,7 +51,7 @@ export class StatusRequestSalaryModification implements OnInit {
   employeeId = this.statusSolicitudVacanteService.getemployeeId();
   ref: DynamicDialogRef;
 
-  dataSignal = signal<any>(null);
+  dataSignal = signal<RequestSalaryModificationStatusDetail | null>(null);
   noCandidates: boolean = true;
   applicationUserId: string = this.authS.infoUserAuth.applicationUserId;
   public AspRole = ApplicationRole;
@@ -64,8 +69,8 @@ export class StatusRequestSalaryModification implements OnInit {
       this.employeeId,
     );
     this.apiResponseS
-      .onGetList(urlApi)
-      .then((result: any) => this.dataSignal.set(result));
+      .onGetList<RequestSalaryModificationStatusDetail>(urlApi)
+      .then((result) => this.dataSignal.set(result));
   }
 
   //Ver tarjeta de Colaborador
@@ -81,7 +86,7 @@ export class StatusRequestSalaryModification implements OnInit {
   }
 
   //Editar solicitud de baja
-  onModalForm(data: any) {
+  onModalForm(data: RequestSalaryModificationStatusDetail) {
     this.dialogHandlerS
       .openDialog(
         StatusRequestSalaryModificationForm,
@@ -97,7 +102,7 @@ export class StatusRequestSalaryModification implements OnInit {
   }
 
   //Eliminar solicitud de baja
-  onDelete(id: any) {
+  onDelete(id: string) {
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestSalaryModification.delete(id))
       .then((result: boolean) => {

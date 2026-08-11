@@ -1,14 +1,14 @@
 export interface RequestEmployeeRegisterAddOrEditDTO {
-  id: any;
+  id: string;
   folio: number;
-  positionRequestId: any;
+  positionRequestId: string;
   requestDate: string;
   executionDate: string;
   typeContractRegister: number;
   status: number;
   applicationUserId: string;
   confirmationFinish: boolean;
-  employeeId: any;
+  employeeId: string;
 }
 
 

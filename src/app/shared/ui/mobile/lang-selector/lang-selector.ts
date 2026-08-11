@@ -38,8 +38,8 @@ import { LangSelectorBase } from "@ui/base/lang-selector.base";
         font-weight: 500;
       }
       ion-select {
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-input, 3px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-input);
         padding: 0.5rem 0.75rem;
         --placeholder-color: var(--ds-text-muted);
       }

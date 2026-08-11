@@ -1,0 +1,204 @@
+<div class="grid mb-3">
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-2">Pendientes de agenda</small>
+      <div class="text-2xl font-semibold">{{ summary().pendingSchedule }}</div>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-2">Agendadas</small>
+      <div class="text-2xl font-semibold">{{ summary().scheduled }}</div>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-2">Vencidas</small>
+      <div class="text-2xl font-semibold text-red-500">{{ summary().overdue }}</div>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-2">Sin entrevistador</small>
+      <div class="text-2xl font-semibold text-orange-500">{{ summary().missingInterviewer }}</div>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-3 h-full">
+      <small class="text-color-secondary block mb-2">Con retroalimentacion</small>
+      <div class="text-2xl font-semibold text-green-500">{{ summary().withFeedback }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="card p-3 mb-2 flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-2">
+  <div>
+    <div class="font-semibold mb-1">Agenda operativa de Reclutamiento</div>
+    <p class="m-0 text-sm text-color-secondary">
+      Seguimiento de entrevistas de reclutamiento y operaciones en un solo tablero.
+    </p>
+  </div>
+  <div class="flex flex-wrap gap-2">
+    <il-button
+      label="Ver bandeja de entrevistas"
+      iconClass="mdi:calendar-clock"
+      severity="secondary"
+      size="small"
+      (clicked)="navigateToInterviews()"
+    />
+    <il-button
+      label="Actualizar"
+      iconClass="mdi:refresh"
+      severity="secondary"
+      size="small"
+      (clicked)="onLoadData()"
+    />
+  </div>
+</div>
+
+<!-- Filtro rapido por estado -->
+<div class="flex flex-wrap gap-2 mb-3">
+  <span class="text-sm text-color-secondary align-self-center">Filtrar por estado:</span>
+  @for (opt of agendaStatusOptions; track opt.value) {
+    <button
+      type="button"
+      class="btn btn-sm"
+      [class.btn-primary]="statusFilter() === opt.value"
+      [class.btn-outline]="statusFilter() !== opt.value"
+      (click)="statusFilter.set(statusFilter() === opt.value ? '' : opt.value)"
+      [attr.aria-pressed]="statusFilter() === opt.value"
+    >
+      {{ opt.label }}
+    </button>
+  }
+  <button
+    type="button"
+    class="btn btn-sm btn-outline"
+    [class.btn-primary]="statusFilter() === ''"
+    (click)="statusFilter.set('')"
+  >
+    Todos
+  </button>
+</div>
+
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '82rem' }"
+  [value]="filteredData()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+  [rowTrackBy]="trackById"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [dt]="dt"
+      [showAdd]="false"
+      aria-label="Agenda operativa de reclutamiento"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="candidateName">Candidato <p-sorticon field="candidateName" /></th>
+      <th pSortableColumn="vacancyFolio">Vacante <p-sorticon field="vacancyFolio" /></th>
+      <th pSortableColumn="customerName">Cliente <p-sorticon field="customerName" /></th>
+      <th>Estatus agenda</th>
+      <th pSortableColumn="scheduledInterviewAt">Fecha entrevista <p-sorticon field="scheduledInterviewAt" /></th>
+      <th pSortableColumn="assignedInterviewerName">Entrevistador <p-sorticon field="assignedInterviewerName" /></th>
+      <th pSortableColumn="daysInStage">Dias en etapa <p-sorticon field="daysInStage" /></th>
+      <th>Proxima accion</th>
+      <th>CV</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr
+      [class]="getRowClass(item)"
+      [style.cursor]="'pointer'"
+      (click)="navigateToApplication(item.id)"
+    >
+      <td>
+        <div class="font-medium">{{ item.candidateName }}</div>
+      </td>
+      <td>
+        <div class="font-medium">{{ item.vacancyFolio }}</div>
+        <small class="text-color-secondary">{{ item.positionName }}</small>
+      </td>
+      <td>{{ item.customerName }}</td>
+      <td>
+        <app-mapped-p-tag [value]="item.agendaStatusCode" [options]="agendaStatusOptions" />
+      </td>
+      <td>
+        @if (item.scheduledInterviewAt) {
+          {{ item.scheduledInterviewAt | date: "dd/MM/yyyy HH:mm" }}
+        } @else {
+          <span class="text-color-secondary">Sin fecha</span>
+        }
+      </td>
+      <td>
+        @if (item.assignedInterviewerName) {
+          {{ item.assignedInterviewerName }}
+        } @else {
+          <span class="text-color-secondary">Sin asignar</span>
+        }
+      </td>
+      <td>
+        <div>{{ item.daysInStage }}</div>
+        <small class="text-color-secondary">
+          <app-candidate-stage-badge [stage]="item.currentStage" />
+        </small>
+      </td>
+      <td>
+        <span class="font-medium">{{ item.pendingAction }}</span>
+      </td>
+      <td>
+        @if (item.cvFileName) {
+          <iw-button-view-pdf
+            size="sm"
+            class="btn--circle"
+            [url]="item.cvFileUrl"
+            [fileName]="item.cvFileName"
+            [attr.aria-label]="'Ver CV de ' + item.candidateName"
+          />
+        } @else {
+          <span class="text-color-secondary">Sin CV</span>
+        }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="9" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="filteredData()" />
+  </ng-template>
+</p-table>
+
+<style>
+  .row-overdue {
+    background-color: rgba(var(--ds-danger-rgb), 0.08);
+  }
+  .row-overdue:hover {
+    background-color: rgba(var(--ds-danger-rgb), 0.12);
+  }
+  .row-missing-interviewer {
+    background-color: rgba(var(--ds-warn-rgb), 0.08);
+  }
+  .row-missing-interviewer:hover {
+    background-color: rgba(var(--ds-warn-rgb), 0.12);
+  }
+  .row-pending-schedule {
+    background-color: rgba(var(--ds-contrast-rgb), 0.06);
+  }
+  .row-pending-schedule:hover {
+    background-color: rgba(var(--ds-contrast-rgb), 0.1);
+  }
+  tr[style*="cursor"]:hover td {
+    background-color: inherit;
+  }
+</style>

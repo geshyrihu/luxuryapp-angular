@@ -49,7 +49,7 @@ export interface AvatarItem {
         width: 28px;
         height: 28px;
         border-radius: 50%;
-        border: 2px solid var(--ds-bg-surface, #ffffff);
+        border: 2px solid var(--ds-bg-surface);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -66,17 +66,17 @@ export interface AvatarItem {
         object-fit: cover;
       }
       .avatar-initials {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         font-weight: 600;
-        color: var(--ds-text-inverse, #ffffff);
+        color: var(--ds-text-inverse);
         line-height: 1;
       }
       .avatar-overflow {
-        background: var(--ds-bg-elevated, #f1f3ff) !important;
-        border-color: var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-elevated) !important;
+        border-color: var(--ds-border);
       }
       .avatar-overflow .avatar-initials {
-        color: var(--ds-text-muted, #737685);
+        color: var(--ds-text-muted);
       }
     `,
   ],

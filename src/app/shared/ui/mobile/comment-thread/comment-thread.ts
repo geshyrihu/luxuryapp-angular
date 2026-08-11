@@ -119,8 +119,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         padding: 1.5rem;
         color: var(--ds-text-muted);
         font-size: 0.8125rem;
-        background: var(--ds-bg-elevated, #f1f3ff);
-        border-radius: var(--ds-radius-md, 6px);
+        background: var(--ds-bg-elevated);
+        border-radius: var(--ds-radius-md);
       }
       .ili-ct-list {
         display: flex;
@@ -142,7 +142,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         justify-content: center;
         font-size: 0.65rem;
         font-weight: 700;
-        color: #fff;
+        color: var(--ds-on-primary);
         overflow: hidden;
       }
       .ili-ct-avatar-img {
@@ -152,9 +152,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       }
       .ili-ct-bubble {
         flex: 1;
-        background: var(--ds-bg-elevated, #f1f3ff);
-        border-radius: 0 var(--ds-radius-md, 6px) var(--ds-radius-md, 6px)
-          var(--ds-radius-md, 6px);
+        background: var(--ds-bg-elevated);
+        border-radius: 0 var(--ds-radius-md) var(--ds-radius-md)
+          var(--ds-radius-md);
         padding: 0.625rem 0.875rem;
       }
       .ili-ct-meta {
@@ -187,8 +187,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         margin-top: 0.375rem;
       }
       .ili-ct-reaction {
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
         border-radius: 9999px;
         padding: 0.2rem 0.55rem;
         font-size: 0.75rem;

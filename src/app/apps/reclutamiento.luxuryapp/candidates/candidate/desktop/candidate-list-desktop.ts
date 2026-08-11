@@ -13,6 +13,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { CandidateStatus } from "src/app/core/enums/candidate-status";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import {
   rowsPerPageOptions,
@@ -26,6 +27,7 @@ import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
   selector: "app-candidate-list-desktop",
   templateUrl: "./candidate-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
@@ -53,5 +55,6 @@ export class CandidateListDesktop {
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
+  protected readonly candidateStatus = CandidateStatus;
   protected readonly candidateStatusOptions = CANDIDATE_STATUS_TAG_OPTIONS;
 }

@@ -87,37 +87,37 @@ export interface ApprovalNode {
         z-index: 1;
       }
       .approval-dot-approved {
-        background: var(--ds-success, #006837);
-        color: #fff;
+        background: var(--ds-success);
+        color: var(--ds-on-primary);
       }
       .approval-dot-rejected {
-        background: var(--ds-danger, #ba1a1a);
-        color: #fff;
+        background: var(--ds-danger);
+        color: var(--ds-on-primary);
       }
       .approval-dot-pending {
-        background: var(--ds-bg-elevated, #f4f5f8);
-        border: 2px solid var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-elevated);
+        border: 2px solid var(--ds-border);
         color: var(--ds-text-muted);
       }
       .approval-dot-skip {
-        background: var(--ds-bg-elevated, #f4f5f8);
-        border: 2px dashed var(--ds-border, #e2e8f0);
+        background: var(--ds-bg-elevated);
+        border: 2px dashed var(--ds-border);
         color: var(--ds-text-muted);
       }
       .approval-connector {
         width: 2px;
         flex: 1;
         min-height: 16px;
-        background: var(--ds-border, #e2e8f0);
+        background: var(--ds-border);
       }
       .approval-connector-done {
-        background: var(--ds-success, #006837);
+        background: var(--ds-success);
       }
       .approval-node-card {
         flex: 1;
-        background: var(--ds-bg-surface, #ffffff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
         padding: 0.625rem 0.75rem;
         margin-bottom: 0.75rem;
       }
@@ -126,13 +126,13 @@ export interface ApprovalNode {
         align-items: center;
         justify-content: space-between;
         gap: 0.5rem;
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
       }
       .approval-badge {
-        font-size: var(--ds-font-size-micro, 0.75rem);
+        font-size: var(--ds-font-size-micro);
         padding: 0.125rem 0.5rem;
-        border-radius: var(--ds-radius-pill, 999px);
+        border-radius: var(--ds-radius-full);
         font-weight: 500;
         text-transform: capitalize;
       }
@@ -146,22 +146,22 @@ export interface ApprovalNode {
       }
       .approval-badge-pending {
         background: color-mix(in srgb, var(--ds-warning) 15%, transparent);
-        color: var(--ds-warning);
+        color: var(--ds-accent-text-warning);
       }
       .approval-badge-skip {
-        background: var(--ds-bg-elevated, #f4f5f8);
+        background: var(--ds-bg-elevated);
         color: var(--ds-text-muted);
       }
       .approval-assignee,
       .approval-date {
         display: block;
-        font-size: var(--ds-font-size-help, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
         margin-top: 0.125rem;
       }
       .approval-comment {
         margin: 0.25rem 0 0;
-        font-size: var(--ds-font-size-table, 0.875rem);
+        font-size: var(--ds-font-size-table);
         color: var(--ds-text-secondary);
         font-style: italic;
       }

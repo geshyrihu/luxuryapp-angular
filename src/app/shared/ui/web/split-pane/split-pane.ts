@@ -37,8 +37,8 @@ import { SplitterModule } from "primeng/splitter";
         overflow: auto;
       }
       .p-splitter {
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-lg, 8px);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-lg);
       }
     `,
   ],

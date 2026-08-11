@@ -101,6 +101,7 @@ export interface CobranzaOtroCargo {
 export interface CobranzaOnlineCurrentCharges {
     maintenance: CobranzaOnlineMetric;
     extraordinary: CobranzaOnlineMetric;
+    restaurant: CobranzaOnlineMetric;
     monthlyFeeTotal: number;
     totalDepartmentsByProperty: number;
     activeTemplates: CobranzaOnlineCurrentChargeTemplate[];

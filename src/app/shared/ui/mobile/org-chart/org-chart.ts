@@ -75,20 +75,20 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         align-items: center;
         gap: 0.375rem;
         padding: 0.625rem 0.75rem;
-        border-radius: var(--ds-radius-md, 8px);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        background: var(--ds-bg-primary, #ffffff);
+        border-radius: var(--ds-radius-md);
+        border: 1px solid var(--ds-border);
+        background: var(--ds-bg-primary);
         cursor: pointer;
         transition:
           background 0.15s,
           border-color 0.15s;
       }
       .ili-org-node-row:active {
-        background: var(--ds-bg-muted, #f1f5f9);
+        background: var(--ds-bg-muted);
       }
       .ili-org-node-selected {
-        border-color: var(--ds-primary, #003d9b);
-        background: var(--ds-bg-elevated, #f1f3ff);
+        border-color: var(--ds-primary);
+        background: var(--ds-bg-elevated);
       }
       .ili-org-node-toggle {
         display: flex;
@@ -110,16 +110,16 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.125rem;
       }
       .ili-org-node-label {
-        font-size: var(--ds-font-size-body, 0.9375rem);
+        font-size: var(--ds-font-size-body);
         font-weight: 500;
         color: var(--ds-text-primary);
       }
       .ili-org-node-type {
-        font-size: var(--ds-font-size-small, 0.8125rem);
+        font-size: var(--ds-font-size-help);
         color: var(--ds-text-secondary);
       }
       .ili-org-node-children {
-        border-left: 1px solid var(--ds-border, #e2e8f0);
+        border-left: 1px solid var(--ds-border);
         margin-left: 0.75rem;
         padding-left: 1rem;
       }

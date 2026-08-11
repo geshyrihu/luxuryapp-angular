@@ -20,18 +20,19 @@
 // ── PALETA BASE (ERP Premium · Deep Navy) ──────────────────────────────
 // Escala completa 50-950 para cada color
 
-// Primario (Azul Profundo #003152)
-$primary-50:   #e8f0fa !default;
-$primary-100:  #cbdbf3 !default; // primary-container
-$primary-200:  #99b9e7 !default;
-$primary-300:  #6696db !default;
-$primary-400:  #3374cf !default;
-$primary-500:  #0052c3 !default;
-$primary-600:  #00429c !default; // primary-light
-$primary-700:  #003152 !default; // primary
-$primary-800:  #002138 !default; // primary-dark
-$primary-900:  #00151f !default;
-$primary-950:  #000a10 !default;
+// Primario (Azul Profundo #003152) — rampa monocroma H=204, ancla en 700
+// (Plan de Unificación de Color — Ancla única #003152, 2026-08-09)
+$primary-50:   #f0f6f9 !default;
+$primary-100:  #ddeaf4 !default; // primary-container
+$primary-200:  #b6d6ec !default;
+$primary-300:  #80bde5 !default;
+$primary-400:  #37a0e6 !default;
+$primary-500:  #097fce !default;
+$primary-600:  #00568f !default; // primary-light
+$primary-700:  #003152 !default; // primary · ANCLA DE MARCA
+$primary-800:  #00253d !default; // primary-dark
+$primary-900:  #001829 !default;
+$primary-950:  #000c14 !default;
 
 // Secundario (Neutros fríos)
 $secondary-50:   #f8f9fc !default; // surface
@@ -224,8 +225,8 @@ $color-contrast-text:      $neutral-0     !default;
 // Layout
 $sidebar-bg:          #ffffff !default;
 $header-bg:           #ffffff !default;
-$sidebar-bg-dark:     $primary-800 !default; // #002138
-$header-bg-dark:      $primary-800 !default; // #002138
+$sidebar-bg-dark:     $primary-800 !default;
+$header-bg-dark:      $primary-800 !default;
 
 // Semánticos de estado (brand-level, no escala)
 $color-success-brand: $success-600 !default;
@@ -234,6 +235,20 @@ $color-warning-brand: $warning-600 !default;
 $color-warning-bg:    $warning-100 !default;
 $color-danger-brand:  $danger-600 !default;
 $color-danger-bg:     $danger-100 !default;
+
+// ── TOKENS NUEVOS (Sprint 2 · T2.1) ──────────────────────────
+// Fondos de superficie e identidad de consola embebida.
+$ds-bg-muted:        $secondary-100 !default;
+$ds-bg-hover:        $secondary-50 !default;
+$ds-bg-input:        $neutral-0 !default;
+$ds-bg-primary:      $neutral-0 !default;
+$ds-bg-inverse:      $secondary-800 !default;
+$ds-secondary-light: $warning-100 !default;
+// Consola embebida (mobile/terminal): identidad fuera de paleta — excepción
+// documentada (RN-DS-007 / T2.1). Light usa la escala neutra; dark usa los
+// literales de la identidad de la terminal (Catppuccin-like).
+$ds-bg-terminal:     $secondary-900 !default;
+$ds-text-terminal:   $secondary-100 !default;
 
 
 // Auth panel (login/recovery/reset) — fondo azul semitransparente
@@ -246,40 +261,41 @@ $color-budget-bg-dark:  #78350f !default;
 $color-budget-text-dark: #ffffff !default;
 
 // ── SUPERFICIES DARK MODE (PrimeNG) ─────────────────────────
-// Escala navy DS para dark surfaces de PrimeNG, orientación Aura
-// (0 = texto más claro/más alto → 950 = fondo más oscuro/más bajo).
-// Excluida de la escala neutral porque solo aplica en dark mode.
-$surface-dark-0:   $primary-100 !default; // #cbdbf3 · on-surface / text
-$surface-dark-50:  $primary-200 !default; // #99b9e7
-$surface-dark-100: $primary-300 !default; // #6696db · on-surface-variant
-$surface-dark-200: $primary-400 !default; // #3374cf · outline
-$surface-dark-300: $primary-500 !default; // #0052c3 · outline-strong
-$surface-dark-400: $secondary-300 !default; // #c5d0db · muted text
-$surface-dark-500: $primary-600 !default; // #00429c
-$surface-dark-600: $primary-700 !default; // #003152
-$surface-dark-700: $primary-900 !default; // #00151f · surface-container-low
-$surface-dark-800: $primary-900 !default; // #00151f · content-hover
-$surface-dark-900: $primary-950 !default; // #000a10 · content / bg
-$surface-dark-950: $primary-950 !default; // #000a10 · form-field
+// Escala navy DS para dark surfaces de PrimeNG, orientación Aura.
+// Rampa monocroma H=204, estrictamente monótona (decreciente en luminancia),
+// sin escalones duplicados (RN-DS-014). 0 = texto → 950 = form-field.
+// (Plan de Unificación de Color — Ancla única #003152, 2026-08-09)
+$surface-dark-0:   #eaeef0 !default; // on-surface / texto
+$surface-dark-50:  #ced8de !default;
+$surface-dark-100: #a8bbc7 !default; // on-surface-variant
+$surface-dark-200: #7a99ae !default; // outline
+$surface-dark-300: #557991 !default; // outline-strong
+$surface-dark-400: #3e5c6f !default; // muted
+$surface-dark-500: #2b475a !default;
+$surface-dark-600: #1b3546 !default;
+$surface-dark-700: #0e2839 !default; // surface-container-low
+$surface-dark-800: #081d2b !default; // content-hover
+$surface-dark-900: #02131f !default; // content / bg
+$surface-dark-950: #000b12 !default; // form-field
 
 // ── SUPERFICIES M3 (ERP Premium) ──────────────────────
 $m3-surface:                    #ffffff !default;
-$m3-surface-dim:                $primary-100 !default; // #cbdbf3
+$m3-surface-dim:                $primary-100 !default;
 $m3-surface-bright:             #ffffff !default;
 $m3-surface-container-lowest:   #ffffff !default;
 $m3-surface-container-low:      #ffffff !default;
-$m3-surface-container:          $primary-100 !default; // #cbdbf3
-$m3-surface-container-high:     $secondary-200 !default; // #e2e8f0
-$m3-surface-container-highest:  $secondary-300 !default; // #c5d0db
-$m3-on-surface:                 $secondary-800 !default; // #1a2634
-$m3-on-surface-variant:         $secondary-600 !default; // #5a6878
-$m3-inverse-surface:            $primary-800 !default; // #002138
-$m3-inverse-on-surface:         $primary-50 !default; // #e8f0fa
-$m3-outline:                    $secondary-200 !default; // #e2e8f0
-$m3-outline-variant:            $secondary-300 !default; // #c5d0db
-$m3-surface-variant:            $primary-100 !default; // #cbdbf3
-$m3-background:                 $primary-50 !default; // #e8f0fa
-$m3-on-background:              $secondary-800 !default; // #1a2634
+$m3-surface-container:          $primary-100 !default;
+$m3-surface-container-high:     $secondary-200 !default;
+$m3-surface-container-highest:  $secondary-300 !default;
+$m3-on-surface:                 $secondary-800 !default;
+$m3-on-surface-variant:         $secondary-600 !default;
+$m3-inverse-surface:            $primary-800 !default;
+$m3-inverse-on-surface:         $primary-50 !default;
+$m3-outline:                    $secondary-200 !default;
+$m3-outline-variant:            $secondary-300 !default;
+$m3-surface-variant:            $primary-100 !default;
+$m3-background:                 $primary-50 !default;
+$m3-on-background:              $secondary-800 !default;
 
 
 

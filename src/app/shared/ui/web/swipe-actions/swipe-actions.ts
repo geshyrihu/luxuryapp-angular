@@ -61,8 +61,8 @@ export type { SwipeAction } from "@ui/base/swipe-actions.base";
         width: 64px;
         border: none;
         cursor: pointer;
-        font-size: var(--ds-font-size-micro, 0.75rem);
-        color: #fff;
+        font-size: var(--ds-font-size-micro);
+        color: var(--ds-on-primary);
         transition: opacity 0.1s;
         padding: 0.25rem;
       }
@@ -72,7 +72,7 @@ export type { SwipeAction } from "@ui/base/swipe-actions.base";
       .swipe-content {
         position: relative;
         z-index: 1;
-        background: var(--ds-bg-surface, #ffffff);
+        background: var(--ds-bg-surface);
         transition: transform 0.2s ease;
       }
     `,

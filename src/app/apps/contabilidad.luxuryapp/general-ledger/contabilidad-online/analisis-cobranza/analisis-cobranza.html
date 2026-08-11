@@ -1,351 +1,53 @@
-<div class="rf-shell px-3 md:px-4 pb-3 md:pb-4 pt-0">
-  <div class="mb-3 flex justify-content-end">
-    <input
-      type="date"
-      class="p-inputtext p-component"
-      [ngModel]="cutoffDateInput()"
-      (ngModelChange)="cutoffDateInput.set($event)"
-    />
-  </div>
-
-  <div class="rf-card mb-4 p-4" *ngIf="!hasCustomer()">
-    <div class="font-medium mb-2">Sin cliente activo</div>
-    <div class="text-color-secondary">
-      Selecciona un cliente para consultar el análisis de cobranza.
+@if (store.isLoading()) {
+  <div class="flex flex-column gap-4 p-4">
+    <p-skeleton width="100%" height="300px" borderRadius="12px" />
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <p-skeleton width="100%" height="400px" borderRadius="12px" />
+      </div>
+      <div class="col-12 md:col-6">
+        <p-skeleton width="100%" height="400px" borderRadius="12px" />
+      </div>
     </div>
   </div>
-
-  <div *ngIf="loading()" class="rf-card p-4 text-color-secondary mb-4">
-    Consultando análisis de cobranza en Aspel...
-  </div>
-
-  <div *ngIf="!loading() && data() as d">
-    <div class="grid mb-3">
-      <div class="col-12 md:col-6 xl:col-2">
-        <div class="rf-card p-3 h-full">
-          <div class="text-color-secondary mb-2">Departamentos</div>
-          <div class="text-xl font-semibold">
-            {{ d.totalCondominios | number:'1.0-0' }}
-          </div>
+} @else {
+  <div class="flex flex-column gap-4">
+    <!-- Top KPIs replacing the pie charts -->
+    <div class="grid">
+      @for (kpi of kpis(); track kpi.label) {
+        <div class="col-12 md:col-4 xl:col-4">
+          <app-stat-card
+            orientation="horizontal"
+            [label]="kpi.label"
+            [value]="kpi.value"
+            format="currency"
+            [icon]="kpi.icon"
+            [iconColor]="kpi.iconColor"
+            [iconBg]="kpi.iconBg"
+            [subtitle]="kpi.subtitle"
+          />
         </div>
-      </div>
-      <div class="col-12 md:col-6 xl:col-2">
-        <div class="rf-card p-3 h-full">
-          <div class="text-color-secondary mb-2">Total mtto mensual</div>
-          <div class="text-xl font-semibold">
-            {{ d.cuotaMttoVigente | accountingNumber:'1.2-2' }}
-          </div>
-        </div>
-      </div>
-      <div class="col-12 md:col-6 xl:col-2">
-        <div class="rf-card p-3 h-full">
-          <div class="text-color-secondary mb-2">
-            Total extraordinaria mensual
-          </div>
-          <div class="text-xl font-semibold">
-            {{ d.cuotaExtraordinariaVigente | accountingNumber:'1.2-2' }}
-          </div>
-        </div>
-      </div>
-      <div class="col-12 md:col-6 xl:col-2">
-        <div class="rf-card p-3 h-full">
-          <div class="text-color-secondary mb-2">Total a recaudar mensual</div>
-          <div class="text-xl font-semibold">
-            {{ d.cuotaMensualTotal | accountingNumber:'1.2-2' }}
-          </div>
-        </div>
-      </div>
-      <div class="col-12 md:col-6 xl:col-2">
-        <div class="rf-card p-3 h-full">
-          <div class="text-color-secondary mb-2 text-red-600">
-            Arrastre de deuda
-          </div>
-          <div class="text-xl font-semibold text-red-600">
-            {{ d.totalSaldoAnterior | accountingNumber:'1.2-2' }}
-          </div>
-        </div>
-      </div>
+      }
     </div>
 
-    <div class="grid mb-3">
-      <div class="col-12 lg:col-6">
-        <div class="rf-card p-4 h-full">
-          <div class="text-color-secondary mb-3">{{ d.periodo }}</div>
-
-          <table class="rf-table">
-            <thead>
-              <tr class="border-bottom-1 surface-border">
-                <th class="text-left pb-2">Clasificación</th>
-                <th class="text-right pb-2">Saldo</th>
-                <th class="text-right pb-2">%</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="font-bold">
-                <td class="py-1">Cobranza perfecta (Mantenimiento)</td>
-                <td class="text-right font-mono">
-                  {{ d.cuotaMttoVigente | accountingNumber:'1.0-0' }}
-                </td>
-                <td class="text-right"></td>
-              </tr>
-              <tr class="font-bold">
-                <td class="py-1">Cobranza perfecta (Extraordinaria)</td>
-                <td class="text-right font-mono">
-                  {{ d.cuotaExtraordinariaVigente | accountingNumber:'1.0-0' }}
-                </td>
-                <td class="text-right"></td>
-              </tr>
-              <tr class="font-bold border-top-1 surface-border text-primary">
-                <td class="py-1">Total Cobranza Perfecta</td>
-                <td class="text-right font-mono text-primary">
-                  {{ d.cobranzaPerfecta | accountingNumber:'1.0-0' }}
-                </td>
-                <td class="text-right">100%</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="mt-4">
-            <div >
-              <app-chart-wrapper
-                type="pie"
-                [data]="chartData()!"
-                [options]="chartOptions"
-                
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 lg:col-6">
-        <div class="rf-card p-4 h-full">
-          <div class="text-lg font-semibold mb-1 text-red-600">
-            Deuda Condóminos (EF)
-          </div>
-          <div class="text-color-secondary mb-3">
-            Clasificación del saldo final por cuenta 104 al corte consultado.
-          </div>
-
-          <table class="rf-table">
-            <thead>
-              <tr class="border-bottom-1 surface-border">
-                <th class="text-left pb-2">Clasificación</th>
-                <th class="text-right pb-2">Saldo</th>
-                <th class="text-right pb-2">%</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="py-1">Cobranza judicial</td>
-                <td class="text-right font-mono">
-                  {{ d.totalJudicial | accountingNumber:'1.0-0' }}
-                </td>
-                <td class="text-right text-500 text-xs">
-                  {{ pct(d.totalJudicial, d.totalDeuda) }}
-                </td>
-              </tr>
-              <tr>
-                <td class="py-1">Morosos</td>
-                <td class="text-right font-mono">
-                  {{ d.totalMorosos | accountingNumber:'1.0-0' }}
-                </td>
-                <td class="text-right text-500 text-xs">
-                  {{ pct(d.totalMorosos, d.totalDeuda) }}
-                </td>
-              </tr>
-              <tr>
-                <td class="py-1">Deuda corriente</td>
-                <td class="text-right font-mono">
-                  {{ d.totalDeudaCorriente | accountingNumber:'1.0-0' }}
-                </td>
-                <td class="text-right text-500 text-xs">
-                  {{ pct(d.totalDeudaCorriente, d.totalDeuda) }}
-                </td>
-              </tr>
-              <tr class="font-bold border-top-1 surface-border">
-                <td class="pt-2">Total deuda</td>
-                <td class="text-right font-mono pt-2">
-                  {{ d.totalDeuda | accountingNumber:'1.0-0' }}
-                </td>
-                <td class="text-right pt-2">100%</td>
-              </tr>
-              <tr class="font-bold surface-ground">
-                <td class="py-1 text-blue-700">Saldo según balanza</td>
-                <td class="text-right font-mono text-blue-700">
-                  {{ d.saldoBalanza | accountingNumber:'1.0-0' }}
-                </td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="mt-2 text-sm text-color-secondary">
-            Corte exacto consultado: <strong>{{ d.periodo }}</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="rf-card p-4 mb-4">
-      <div class="text-lg font-semibold mb-3">
-        Resumen de deuda por condómino
-      </div>
-      <p-table
-        [value]="summaryRows"
-        class="rf-prime-table p-datatable-sm p-datatable-striped"
-        [tableStyle]="{ 'width': '100%' }"
-        [paginator]="true"
-        [rows]="25"
-        [rowsPerPageOptions]="[25, 50, 100]"
-        dataKey="numeroCuenta"
-      >
-        <ng-template #header>
-          <tr>
-            <th >Condómino</th>
-            <th class="text-right" >Total Deuda</th>
-          </tr>
-        </ng-template>
-        <ng-template #body let-row>
-          <tr>
-            <td>
-              <div class="text-xs text-500 font-mono">
-                {{ row.numeroCuenta }}
-              </div>
-              <div class="font-bold">{{ row.condomino }}</div>
-            </td>
-            <td
-              class="rf-td-number font-bold text-lg"
-              [class.rf-neg]="row.saldo < 0"
-            >
-              {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2')
-              }}
-            </td>
-          </tr>
-        </ng-template>
-        <ng-template #footer>
-          <tr>
-            <td class="text-right font-bold py-2">Total:</td>
-            <td
-              class="rf-td-number font-bold border-top-1 surface-border text-primary text-xl py-2"
-            >
-              {{ totalFilteredSaldo | accountingNumber:'1.2-2' }}
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-
-    <div class="rf-card p-4">
-      <div
-        class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2"
-      >
-        <div>
-          <div class="text-lg font-semibold">Detalle por condómino</div>
-          <div class="text-color-secondary text-sm">
-            Tabla base para auditar cómo se clasifica cada cuenta 104 al corte.
-          </div>
-        </div>
-        <custom-input-select-signal
-          [data]="classificationOptions"
-          [ngModel]="selectedClassification()"
-          (ngModelChange)="selectedClassification.set($event)"
-          [showClear]="false"
-          [onlyInput]="true"
-          [noMargin]="true"
-          customClass="w-14rem"
-        />
-      </div>
-
-      <p-table
-        [value]="filteredRows()"
-        class="rf-prime-table p-datatable-sm p-datatable-striped"
-        [tableStyle]="{ 'min-width': '1000px' }"
-        [paginator]="true"
-        [rows]="50"
-        [rowsPerPageOptions]="[25, 50, 100, 250]"
-        dataKey="numeroCuenta"
-      >
-        <ng-template #header>
-          <tr>
-            <th >Condómino</th>
-            @for (col of uniqueConcepts(); track col) {
-            <th
-              class="text-right"
-              
-            >
-              {{ col }}
-            </th>
-            }
-            <th
-              class="text-right text-primary font-bold"
-              
-            >
-              Saldo Final
-            </th>
-          </tr>
-        </ng-template>
-        <ng-template #body let-row>
-          <tr>
-            <td class="rf-td-descripcion--item">
-              <div class="text-xs text-500 font-mono">
-                {{ row.numeroCuenta }}
-              </div>
-              <div class="font-bold">{{ row.condomino }}</div>
-            </td>
-            @for (col of uniqueConcepts(); track col) {
-            <td class="rf-td-number" >
-              {{ getConceptBalance(row, col) === 0 ? '—' :
-              (getConceptBalance(row, col) | accountingNumber) }}
-            </td>
-            }
-            <td
-              class="rf-td-number font-bold"
-              
-              [class.rf-neg]="row.saldo < 0"
-            >
-              {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2')
-              }}
-            </td>
-          </tr>
-        </ng-template>
-        <ng-template #footer>
-          <tr>
-            <td class="text-right font-bold py-2">Totales:</td>
-            @for (col of uniqueConcepts(); track col) {
-            <td
-              class="rf-td-number font-bold border-top-1 surface-border py-2 text-primary"
-              
-            >
-              {{ getTotalConceptBalance(col) === 0 ? '—' :
-              (getTotalConceptBalance(col) | accountingNumber) }}
-            </td>
-            }
-            <td
-              class="rf-td-number font-bold border-top-1 surface-border text-primary text-lg py-2"
-              
-            >
-              {{ totalFilteredSaldo | accountingNumber:'1.2-2' }}
-            </td>
-          </tr>
-        </ng-template>
-        <ng-template #emptymessage>
-          <tr>
-            <td colspan="10" class="text-center py-4 text-color-secondary">
-              No hay condóminos en esta clasificación.
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-  </div>
-
-  <!-- Debugger solicitado por el usuario -->
-  <div
-    class="card mt-4 bg-gray-50 p-3 overflow-auto text-xs"
+    <!-- The red-box components from analysis -->
+    <app-cobranza-online-analysis [showTopKpis]="false" [showFlujoReal]="false" />
     
-  >
-    <h3 class="font-bold mb-2">DEBUG: Raw Data del Reporte (data() | json)</h3>
-    <pre>{{ data() | json }}</pre>
+    <!-- Morosidad and Towers from Resumen -->
+    <div class="grid mt-2">
+      <div class="col-12 xl:col-6">
+        <app-cobranza-online-morosidad />
+      </div>
+      <div class="col-12 xl:col-6">
+        <app-cobranza-online-towers />
+      </div>
+    </div>
+    
+    <div class="grid mt-2">
+      <div class="col-12">
+        <app-cobranza-online-advances />
+      </div>
+    </div>
   </div>
-</div>
+}
+

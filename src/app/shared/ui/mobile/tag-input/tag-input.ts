@@ -69,12 +69,12 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         align-items: center;
         padding: 0.5rem;
         min-height: 2.75rem;
-        border: 1.5px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
-        background: var(--ds-bg-surface, #fff);
+        border: 1.5px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
+        background: var(--ds-bg-surface);
       }
       .ili-tag-field:focus-within {
-        border-color: var(--ds-primary, #003d9b);
+        border-color: var(--ds-primary);
       }
       .ili-tag-disabled {
         opacity: 0.55;
@@ -84,8 +84,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         display: inline-flex;
         align-items: center;
         gap: 0.3rem;
-        background: var(--ds-primary-100, #dae2ff);
-        color: var(--ds-primary-700, #003079);
+        background: var(--primary-100);
+        color: var(--primary-700);
         border-radius: 9999px;
         padding: 0.25rem 0.5rem 0.25rem 0.7rem;
         font-size: 0.8125rem;
@@ -116,8 +116,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.35rem;
       }
       .ili-tag-suggestion {
-        border: 1px solid var(--ds-border, #e2e8f0);
-        background: var(--ds-bg-sunken, #f1f5f9);
+        border: 1px solid var(--ds-border);
+        background: var(--ds-bg-sunken);
         color: var(--ds-text-secondary);
         border-radius: 9999px;
         padding: 0.2rem 0.65rem;
