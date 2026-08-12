@@ -6,7 +6,7 @@ describe("AppChip (render)", () => {
     TestBed.configureTestingModule({ imports: [AppChip] });
     const fixture = TestBed.createComponent(AppChip);
     fixture.componentRef.setInput("label", "Etiqueta");
-    fixture.componentRef.setInput("icon", "mdi:tag");
+    fixture.componentRef.setInput("icon", "material-symbols-light:label");
     fixture.componentRef.setInput("removable", true);
     fixture.componentRef.setInput("color", "success");
     fixture.detectChanges();

@@ -1,13 +1,19 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppSplitButton } from "@ui/web/split-button/split-button";
 import { ActionIconsGroupComponent } from "@ui/shared/action-icons-group/action-icons-group.component";
+import { AppSplitButton } from "@ui/web/split-button/split-button";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
 
 @Component({
   selector: "app-buttons-showcase",
-  imports: [WebButtonLabel, WebButtonIcon, AppSplitButton, ActionIconsGroupComponent, AppToolbar],
+  imports: [
+    WebButtonLabel,
+    WebButtonIcon,
+    AppSplitButton,
+    ActionIconsGroupComponent,
+    AppToolbar,
+  ],
   template: `
     <div class="p-4 fadein">
       <h2 class="text-2xl font-bold mb-4">Buttons & Actions</h2>
@@ -36,12 +42,12 @@ import { AppToolbar } from "@ui/web/toolbar/toolbar";
           <il-button
             label="Outlined Primary"
             severity="primary"
-            variant="outlined"
+            variant="outline"
           />
           <il-button
             label="Outlined Secondary"
             severity="secondary"
-            variant="outlined"
+            variant="outline"
           />
         </div>
         <div class="flex flex-wrap gap-4 align-items-center">
@@ -58,15 +64,27 @@ import { AppToolbar } from "@ui/web/toolbar/toolbar";
       <section class="mb-8">
         <h3 class="section-header">Icon Buttons</h3>
         <div class="flex flex-wrap gap-4 align-items-center">
-          <iw-button icon="mdi:plus" severity="primary" [rounded]="true" />
-          <iw-button icon="mdi:pencil" severity="secondary" [rounded]="true" />
           <iw-button
-            icon="mdi:trash-can"
+            icon="material-symbols-light:add"
+            severity="primary"
+            [rounded]="true"
+          />
+          <iw-button
+            icon="material-symbols-light:edit"
+            severity="secondary"
+            [rounded]="true"
+          />
+          <iw-button
+            icon="material-symbols-light:delete"
             severity="danger"
             [rounded]="true"
-            variant="outlined"
+            variant="outline"
           />
-          <iw-button icon="mdi:magnify" severity="primary" variant="text" />
+          <iw-button
+            icon="material-symbols-light:search"
+            severity="primary"
+            variant="text"
+          />
         </div>
       </section>
 
@@ -81,22 +99,42 @@ import { AppToolbar } from "@ui/web/toolbar/toolbar";
       <!-- Action Groups & Toolbars -->
       <section class="mb-8">
         <h3 class="section-header">Action Groups & Toolbars</h3>
-        
+
         <h4 class="text-sm text-secondary mb-2">Action Icons Group</h4>
         <app-action-icons-group class="inline-block mb-4">
-          <iw-button icon="mdi:pencil" severity="secondary" variant="text" />
-          <iw-button icon="mdi:content-copy" severity="secondary" variant="text" />
-          <iw-button icon="mdi:trash-can" severity="danger" variant="text" />
+          <iw-button
+            icon="material-symbols-light:edit"
+            severity="secondary"
+            variant="text"
+          />
+          <iw-button
+            icon="material-symbols-light:content-copy"
+            severity="secondary"
+            variant="text"
+          />
+          <iw-button
+            icon="material-symbols-light:delete"
+            severity="danger"
+            variant="text"
+          />
         </app-action-icons-group>
 
         <h4 class="text-sm text-secondary mb-2 mt-4">Toolbar</h4>
         <app-toolbar>
           <div class="p-toolbar-group-start">
-            <il-button label="Nuevo" icon="mdi:plus" />
-            <il-button label="Upload" icon="mdi:upload" severity="secondary" class="ml-2" />
+            <il-button label="Nuevo" icon="material-symbols-light:add" />
+            <il-button
+              label="Upload"
+              icon="material-symbols-light:upload"
+              severity="secondary"
+              class="ml-2"
+            />
           </div>
           <div class="p-toolbar-group-end">
-            <iw-button icon="mdi:magnify" severity="secondary" />
+            <iw-button
+              icon="material-symbols-light:search"
+              severity="secondary"
+            />
           </div>
         </app-toolbar>
       </section>
@@ -106,7 +144,15 @@ import { AppToolbar } from "@ui/web/toolbar/toolbar";
 })
 export class ButtonsShowcaseComponent {
   splitItems = [
-    { label: "Actualizar", icon: "mdi:refresh", command: () => {} },
-    { label: "Eliminar", icon: "mdi:trash-can", command: () => {} },
+    {
+      label: "Actualizar",
+      icon: "material-symbols-light:refresh",
+      command: () => {},
+    },
+    {
+      label: "Eliminar",
+      icon: "material-symbols-light:delete",
+      command: () => {},
+    },
   ];
 }

@@ -16,7 +16,7 @@ interface FlatOption {
     <div class="ili-cascade-select-root">
       <button class="ili-cascade-select-trigger" (click)="toggleOpen()">
         <span class="ili-cascade-select-label">{{ displayText() }}</span>
-        <app-icon icon="mdi:chevron-down" />
+        <app-icon icon="material-symbols-light:keyboard-arrow-down" />
       </button>
       @if (isOpen()) {
         <div class="ili-cascade-select-dropdown">
@@ -27,7 +27,7 @@ interface FlatOption {
             >
               <span>{{ option[optionLabel()] }}</span>
               @if (hasChildren(option)) {
-                <app-icon icon="mdi:chevron-right" />
+                <app-icon icon="material-symbols-light:chevron-right" />
               }
             </div>
           }

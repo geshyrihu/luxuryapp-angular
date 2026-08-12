@@ -1,6 +1,6 @@
 <div class="p-3">
   <div class="flex align-items-center gap-2 mb-3">
-    <iw-button iconClass="pi pi-arrow-left" variant="text" (clicked)="location.back()" />
+    <iw-button iconClass="material-symbols-light:arrow-back" variant="text" (clicked)="location.back()" />
     <h2 class="m-0">{{ period()?.name ?? 'Periodo de Extintores' }}</h2>
     @if (period()?.isActive) {
       <lx-tag value="Activo" severity="success"  />
@@ -30,7 +30,7 @@
         <p class="text-600 m-0">Sin ciclo de inspección activo.</p>
         <il-button
           label="Generar Ciclo"
-          iconClass="pi pi-play"
+          iconClass="material-symbols-light:play-arrow"
           size="small"
           (clicked)="onGenerateCycle()"
         />
@@ -44,13 +44,13 @@
       <div class="flex gap-2">
         <il-button
           label="Escanear QR"
-          iconClass="pi pi-qrcode"
+          iconClass="material-symbols-light:qr-code-scanner"
           variant="outline"
           (clicked)="scanning() ? stopScan() : startScan()"
         />
         <il-button
           [label]="showAddForm() ? 'Cancelar' : 'Agregar Extintor'"
-          [iconClass]="showAddForm() ? 'pi pi-times' : 'pi pi-plus'"
+          [iconClass]="showAddForm() ? 'material-symbols-light:close' : 'material-symbols-light:add'"
           variant="outline"
           (clicked)="showAddForm.set(!showAddForm())"
         />
@@ -65,7 +65,7 @@
             <option [value]="e.id">{{ e.localCode ? e.localCode + ' — ' : '' }}{{ e.location }}</option>
           }
         </select>
-        <il-button label="Agregar" iconClass="pi pi-check" (clicked)="onAddItem()" [disabled]="!selectedEquipmentId" />
+        <il-button label="Agregar" iconClass="material-symbols-light:check" (clicked)="onAddItem()" [disabled]="!selectedEquipmentId" />
       </div>
     }
 
@@ -101,13 +101,13 @@
                 <div class="flex gap-1 justify-content-end">
                   <il-button
                     label="Inspeccionar"
-                    iconClass="pi pi-check-circle"
+                    iconClass="material-symbols-light:check-circle"
                     size="small"
                     [outlined]="true"
                     (clicked)="openChecklist(item)"
                   />
                   <iw-button
-                    iconClass="pi pi-trash"
+                    iconClass="material-symbols-light:delete"
                     severity="danger"
                     size="small"
                     [text]="true"

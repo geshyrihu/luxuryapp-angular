@@ -8,9 +8,9 @@
     <div class="text-center mb-5">
       <div class="mb-4">
         <span class="text-900 font-black text-9xl">5</span>
-        <app-icon [icon]="'mdi:server'" class="pi text-primary text-8xl mx-3" />
+        <app-icon [icon]="'material-symbols-light:dns'" class="pi text-primary text-8xl mx-3" />
         <span class="text-900 font-black text-9xl">0</span>
-        <app-icon [icon]="'mdi:alert'" class="pi text-primary text-8xl mx-3" />
+        <app-icon [icon]="'material-symbols-light:warning'" class="pi text-primary text-8xl mx-3" />
         <span class="text-900 font-black text-9xl">0</span>
       </div>
 
@@ -29,7 +29,7 @@
       >
         <il-button
           label="Volver al Inicio"
-          iconClass="mdi:home"
+          iconClass="material-symbols-light:home"
           rounded
           customClass="px-5"
           (clicked)="goHome()"
@@ -37,7 +37,7 @@
 
         <il-button
           label="Reintentar"
-          iconClass="mdi:refresh"
+          iconClass="material-symbols-light:refresh"
           variant="outline"
           rounded
           customClass="px-5"
@@ -57,7 +57,7 @@
             class="flex align-items-center gap-2 text-primary hover:text-primary-600 cursor-pointer no-underline"
             href="/"
           >
-            <app-icon [icon]="'mdi:arrow-left'" class="pi" />
+            <app-icon [icon]="'material-symbols-light:arrow-back'" class="pi" />
             <span>Regresar</span>
           </a>
           <span class="text-300">|</span>
@@ -65,7 +65,7 @@
             class="flex align-items-center gap-2 text-primary hover:text-primary-600 cursor-pointer no-underline"
             href="#"
           >
-            <app-icon [icon]="'mdi:information'" class="pi" />
+            <app-icon [icon]="'material-symbols-light:info'" class="pi" />
             <span>Estado del Sistema</span>
           </a>
         </div>

@@ -6,8 +6,8 @@ describe("LxDock (render)", () => {
     TestBed.configureTestingModule({ imports: [LxDock] });
     const fixture = TestBed.createComponent(LxDock);
     fixture.componentRef.setInput("items", [
-      { label: "Inicio", icon: "mdi:home" },
-      { label: "Ajustes", icon: "mdi:cog" },
+      { label: "Inicio", icon: "material-symbols-light:home" },
+      { label: "Ajustes", icon: "material-symbols-light:settings" },
     ]);
     fixture.detectChanges();
     expect(fixture.componentInstance).toBeTruthy();

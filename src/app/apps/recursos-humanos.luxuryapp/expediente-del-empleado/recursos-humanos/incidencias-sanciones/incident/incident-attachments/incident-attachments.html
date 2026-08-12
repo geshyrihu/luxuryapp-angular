@@ -1,7 +1,7 @@
 <div class="grid">
   <!-- Header -->
   <div class="col-12 flex align-items-center mb-2">
-    <app-icon [icon]="'mdi:paperclip'" class="text-xl text-primary mr-2" />
+    <app-icon [icon]="'material-symbols-light:attach-file'" class="text-xl text-primary mr-2" />
     <h3 class="text-base font-semibold text-color m-0">Evidencias Adjuntas</h3>
     <span class="text-sm text-color-secondary ml-2">
       ({{ attachments().length }}/{{ MAX_FILES_PER_INCIDENT }})
@@ -43,7 +43,7 @@
   @if (selectedFiles.length > 0) {
   <div class="col-12 flex justify-content-end">
     <il-button
-      iconClass="mdi:upload"
+      iconClass="material-symbols-light:upload"
       label="Subir archivos"
       [loading]="uploading()"
       (clicked)="uploadFiles()"
@@ -54,13 +54,13 @@
   <!-- Lista de adjuntos -->
   @if (loading()) {
   <div class="col-12 flex justify-content-center p-4 text-color-secondary">
-    <app-icon [icon]="'mdi:loading'" class="mr-2" />Cargando...
+    <app-icon [icon]="'material-symbols-light:progress-activity'" class="mr-2" />Cargando...
   </div>
   } @else if (attachments().length === 0) {
   <div
     class="col-12 text-center p-6 text-color-secondary bg-bluegray-50 rounded"
   >
-    <app-icon [icon]="'mdi:inbox'" class="text-4xl text-300" />
+    <app-icon [icon]="'material-symbols-light:move-to-inbox'" class="text-4xl text-300" />
     <p class="mt-3 m-0 font-medium">No hay archivos adjuntos</p>
   </div>
   } @else {

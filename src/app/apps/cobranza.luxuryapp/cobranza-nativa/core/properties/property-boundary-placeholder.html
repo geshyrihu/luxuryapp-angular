@@ -2,7 +2,10 @@
   <lx-card class="card card--elevated">
     <div class="flex flex-column gap-4">
       <div class="flex align-items-center gap-3">
-        <app-icon icon="mdi:home-switch-outline" class="text-2xl text-primary" />
+        <app-icon
+          icon="material-symbols-light:home"
+          class="text-2xl text-primary"
+        />
         <div class="flex flex-column gap-1">
           <h1 class="ds-heading text-xl md:text-2xl m-0">
             Propiedades en Transicion
@@ -32,23 +35,28 @@
         <div class="font-semibold text-color">Estado actual</div>
         <ul class="m-0 pl-3 line-height-3 text-color-secondary">
           <li>El bounded context ya no navega a otra app.</li>
-          <li>La card de propiedades queda visible como capacidad pendiente.</li>
-          <li>La siguiente remediacion debe decidir feature propia o adaptador formal.</li>
+          <li>
+            La card de propiedades queda visible como capacidad pendiente.
+          </li>
+          <li>
+            La siguiente remediacion debe decidir feature propia o adaptador
+            formal.
+          </li>
         </ul>
       </div>
 
       <div class="flex flex-wrap gap-2">
         <il-button
           label="Ir a Miembros"
-          iconClass="mdi:card-account-details"
+          iconClass="material-symbols-light:badge"
           severity="primary"
           (clicked)="navigateTo('/cobranza-nativa/members')"
         />
         <il-button
           label="Ver Plan"
-          iconClass="mdi:file-document-outline"
+          iconClass="material-symbols-light:description"
           severity="secondary"
-          variant="outlined"
+          variant="outline"
           (clicked)="navigateTo('/cobranza-nativa/system-overview')"
         />
       </div>

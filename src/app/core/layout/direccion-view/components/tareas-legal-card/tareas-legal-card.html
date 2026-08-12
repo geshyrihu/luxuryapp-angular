@@ -1,11 +1,11 @@
 @if (cargando()) {
 <div class="flex align-items-center gap-2 py-3">
-  <app-icon icon="mdi:loading" class="ner text-primary ds-animate-spin" />
+  <app-icon icon="material-symbols-light:progress-activity" class="ner text-primary ds-animate-spin" />
   <span class="text-sm text-500">Cargando tareas...</span>
 </div>
 } @else if (!resumen() || resumen()!.total === 0) {
 <div class="flex align-items-center gap-2 py-2 text-400">
-  <app-icon icon="mdi:check-circle" />
+  <app-icon icon="material-symbols-light:check-circle" />
   <span class="text-sm">Sin tareas activas en Legal</span>
 </div>
 } @else {
@@ -45,7 +45,7 @@
           <div class="flex align-items-center gap-2 min-w-0 flex-auto">
             @if (tarea.esAltaPrioridad) {
             <app-icon
-              icon="mdi:flag"
+              icon="material-symbols-light:flag"
               class="text-xs text-ds-danger flex-none"
               lxTooltip="Alta prioridad"
             />
@@ -79,7 +79,7 @@
         <!-- Asignado a -->
         @if (tarea.assigneeName) {
         <span class="text-xs pl-4 text-color-secondary">
-          <app-icon icon="mdi:account-outline" class="mr-1" />{{
+          <app-icon icon="material-symbols-light:person-outline" class="mr-1" />{{
           tarea.assigneeName }}
         </span>
         }
@@ -88,7 +88,7 @@
         @if (tarea.ultimoSeguimiento) {
         <div class="flex align-items-start gap-1 pl-4">
           <app-icon
-            icon="mdi:comment-outline"
+            icon="material-symbols-light:comment-outline"
             class="text-xs mt-1 text-color-secondary flex-none"
           />
           <span

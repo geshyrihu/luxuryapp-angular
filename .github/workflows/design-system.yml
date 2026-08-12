@@ -54,6 +54,14 @@ jobs:
       - name: Referencias de tokens
         run: npm run audit:token-refs
 
+      # ── Iconos ─────────────────────────────────────────────────────────
+      # Todo `material-symbols-light:*` del código debe existir en el
+      # catálogo. Un nombre inexistente no falla en ejecución: el icono
+      # simplemente no se dibuja. Añadido tras 606 iconos en blanco que
+      # ningún control detectó (2026-08-11).
+      - name: Nombres de icono existentes
+        run: npm run audit:icon-names
+
   # ── Accesibilidad ─────────────────────────────────────────────────────
   # Separado porque necesita levantar la aplicación y una sesión. Hoy en
   # MODO REPORTE: publica el resultado y nunca bloquea. Pasa a bloqueante

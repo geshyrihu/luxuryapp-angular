@@ -36,13 +36,13 @@
             <lx-tag
               [value]="evento.frequency"
               severity="info"
-              icon="mdi:clock-outline"
+              icon="material-symbols-light:schedule"
               class="text-xs"
              />
             }
           </div>
           <app-icon
-            [icon]="'mdi:chevron-right'"
+            [icon]="'material-symbols-light:chevron-right'"
             class="text-400 flex-shrink-0 mt-1"
           />
         </div>
@@ -56,7 +56,7 @@
   </div>
   } @empty {
   <div class="col-12 text-center text-400 p-5">
-    <app-icon [icon]="'mdi:calendar'" class="text-4xl mb-3 block" />
+    <app-icon [icon]="'material-symbols-light:calendar-today'" class="text-4xl mb-3 block" />
     <span>Sin datos en el calendario</span>
   </div>
   }

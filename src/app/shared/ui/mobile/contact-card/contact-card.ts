@@ -49,7 +49,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
         }
         @if (company()) {
           <span class="ili-contact-company">
-            <app-icon icon="mdi:office-building-outline" class="text-xs" />
+            <app-icon icon="material-symbols-light:apartment" class="text-xs" />
             {{ company() }}
           </span>
         }
@@ -62,7 +62,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
             class="ili-contact-action"
             (click)="$event.stopPropagation()"
           >
-            <app-icon icon="mdi:email-outline" />
+            <app-icon icon="material-symbols-light:mail-outline" />
           </a>
         }
         @if (phone()) {
@@ -71,7 +71,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
             class="ili-contact-action"
             (click)="$event.stopPropagation()"
           >
-            <app-icon icon="mdi:phone-outline" />
+            <app-icon icon="material-symbols-light:call-outline" />
           </a>
         }
         <button
@@ -79,7 +79,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
           class="ili-contact-action"
           (click)="$event.stopPropagation(); meetingClick.emit()"
         >
-          <app-icon icon="mdi:calendar-plus-outline" />
+          <app-icon icon="material-symbols-light:event-note" />
         </button>
       </div>
     </div>

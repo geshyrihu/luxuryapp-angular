@@ -12,7 +12,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     <div class="ili-ct">
       @if (title()) {
         <h4 class="ili-ct-title">
-          <app-icon icon="mdi:comment-multiple-outline" />
+          <app-icon icon="material-symbols-light:forum-outline" />
           {{ title() }}
           @if (comments().length > 0) {
             ({{ comments().length }})
@@ -22,7 +22,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
       @if (comments().length === 0) {
         <div class="ili-ct-empty">
-          <app-icon icon="mdi:comment-outline" class="text-2xl" />
+          <app-icon icon="material-symbols-light:comment-outline" class="text-2xl" />
           <span>Sin comentarios aún. Sé el primero.</span>
         </div>
       } @else {
@@ -86,7 +86,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             [disabled]="!newText.trim() || submitting()"
             (click)="submitComment()"
           >
-            <app-icon icon="mdi:send" slot="start" />
+            <app-icon icon="material-symbols-light:send" slot="start" />
             Comentar
           </ion-button>
         </div>

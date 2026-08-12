@@ -13,17 +13,17 @@
 
         <div class="flex gap-2 flex-wrap">
           <il-button
-            icon="mdi:calendar"
+            icon="material-symbols-light:calendar-today"
             label="Agenda"
             (clicked)="onOpenAgenda()"
           />
           <il-button
-            icon="mdi:image-multiple"
+            icon="material-symbols-light:photo-library"
             label="Presentaciones"
             (clicked)="onOpenPresentations()"
           />
           <il-button
-            icon="mdi:file-edit"
+            icon="material-symbols-light:note-alt"
             label="Minutas"
             (clicked)="onOpenMinutes()"
           />
@@ -126,25 +126,25 @@
       <div class="flex gap-2 flex-wrap mt-3">
         @if (canCreateMeeting(detail)) {
         <il-button
-          icon="mdi:file-plus"
+          icon="material-symbols-light:note-add"
           label="Generar minuta"
           (clicked)="onCreateMeeting()"
         />
         } @if (canReschedule(detail)) {
         <il-button
-          icon="mdi:calendar-plus"
+          icon="material-symbols-light:calendar-add-on"
           label="Reprogramar"
           (clicked)="onOpenReschedule()"
         />
         } @if (hasAssemblyChecklist(detail)) {
         <il-button
-          icon="mdi:format-list-checks"
+          icon="material-symbols-light:fact-check"
           label="Checklist asamblea"
           (clicked)="onOpenAssemblyChecklist()"
         />
         } @if (detail.meetingId) {
         <il-button
-          icon="mdi:external-link"
+          icon="material-symbols-light:open-in-new"
           label="Abrir minuta"
           (clicked)="onOpenMinutes()"
         />

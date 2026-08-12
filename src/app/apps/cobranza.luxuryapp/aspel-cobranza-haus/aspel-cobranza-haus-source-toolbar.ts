@@ -45,7 +45,7 @@ import {
             <div class="flex flex-wrap gap-2">
               <il-button
                 label="Sync cobranza"
-                iconClass="mdi:database-sync-outline"
+                iconClass="material-symbols-light:database-outline"
                 [loading]="syncing"
                 [disabled]="syncing || !customerId"
                 customClass="p-button-secondary"
@@ -53,7 +53,7 @@ import {
               />
               <il-button
                 label="Sync completa"
-                iconClass="mdi:sync"
+                iconClass="material-symbols-light:sync"
                 [loading]="syncing"
                 [disabled]="syncing || !customerId"
                 customClass="p-button-secondary"
@@ -61,7 +61,7 @@ import {
               />
               <il-button
                 label="Status local"
-                iconClass="mdi:server-outline"
+                iconClass="material-symbols-light:dns"
                 [loading]="statusLoading"
                 [disabled]="statusLoading || !customerId"
                 customClass="p-button-secondary"

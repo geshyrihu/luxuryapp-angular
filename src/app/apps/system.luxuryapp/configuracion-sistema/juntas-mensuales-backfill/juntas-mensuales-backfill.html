@@ -36,7 +36,7 @@
 
           <il-button
             label="Actualizar vista previa"
-            icon="mdi:refresh"
+            icon="material-symbols-light:refresh"
             [loading]="loading()"
             (clicked)="onLoadData()"
           />
@@ -183,7 +183,7 @@
 
                 <iw-button-confirm
                   lxTooltip="Aplicar sugerencias" tooltipPosition="top"
-                  icon="mdi:link"
+                  icon="material-symbols-light:link"
                   [disabled]="!hasSomethingToApply(item) || isApplying(item.juntaMensualSessionId)"
                   swalTitle="Aplicar conciliacion"
                   swalText="Se vincularan los registros seleccionados a la sesion mensual. Esta accion no elimina historico existente."

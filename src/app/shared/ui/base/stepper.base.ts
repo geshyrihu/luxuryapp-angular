@@ -1,9 +1,10 @@
 import { Directive, input, model, output, computed } from "@angular/core";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export interface StepperStep {
   value: number;
   label: string;
-  icon?: string;
+  icon?: AppIconName;
 }
 
 @Directive()

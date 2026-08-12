@@ -78,7 +78,7 @@
 
         <div class="flex justify-content-center mt-3">
           <iw-button
-            [iconClass]="isListening() ? 'mdi:stop' : 'mdi:microphone'"
+            [iconClass]="isListening() ? 'material-symbols-light:stop' : 'material-symbols-light:mic'"
             [class]="isListening() ? 'mic-button shadow-sm listening' : 'mic-button shadow-sm'"
             title="Presiona para dictar"
             (clicked)="toggleListing()"
@@ -98,7 +98,7 @@
   <div class="flex justify-content-between pt-3 border-top-1 border-200">
     <il-button
       label="Atrós"
-      iconClass="mdi:arrow-left"
+      iconClass="material-symbols-light:arrow-back"
       variant="ghost-text"
       (clicked)="prevStep()"
       [disabled]="currentStep() === 1"
@@ -107,14 +107,14 @@
     @if (currentStep() < 4) {
     <il-button
       label="Siguiente"
-      iconClass="mdi:arrow-right"
+      iconClass="material-symbols-light:arrow-forward"
       (clicked)="nextStep()"
       [disabled]="!canProceed()"
     />
     } @else {
     <il-button
       label="Generar Imagen"
-      iconClass="mdi:sparkles"
+      iconClass="material-symbols-light:auto-awesome-motion"
       severity="help"
       [loading]="generating()"
       (clicked)="generate()"

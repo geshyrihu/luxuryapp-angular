@@ -33,6 +33,7 @@ import { AiService } from "src/app/core/services/ai.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import Swal from "sweetalert2";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
@@ -327,22 +328,22 @@ export class UnifiedPendingDashboardMobile {
     // Create logic if needed
   }
 
-  getModuleIcon(module: string): string {
+  getModuleIcon(module: string): AppIconName {
     switch (module.toLowerCase()) {
       case "tickets":
-        return "ticket-outline";
+        return "material-symbols-light:confirmation-number";
       case "minutas":
-        return "document-text-outline";
+        return "material-symbols-light:description-outline";
       case "mantenimiento":
-        return "build-outline";
+        return "material-symbols-light:construction";
       case "legal":
-        return "briefcase-outline";
+        return "material-symbols-light:work-outline";
       case "polizas":
-        return "clipboard-outline";
+        return "material-symbols-light:fact-check";
       case "reclutamiento":
-        return "people-outline";
+        return "material-symbols-light:group-outline";
       default:
-        return "hammer-outline";
+        return "material-symbols-light:construction";
     }
   }
 

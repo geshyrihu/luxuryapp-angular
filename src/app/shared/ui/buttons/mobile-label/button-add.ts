@@ -18,7 +18,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       [class]="styleClass()"
       (click)="onClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:plus'" slot="start" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:add'" slot="start" />
       {{ label() || "Agregar" }}
     </ion-button>
   `,

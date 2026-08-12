@@ -32,7 +32,7 @@ export type PreviewMode = "desktop" | "mobile";
             (click)="mode = 'desktop'"
             title="Vista escritorio"
           >
-            <app-icon icon="mdi:monitor" />
+            <app-icon icon="material-symbols-light:desktop-windows" />
           </button>
           <button
             class="ep-mode-btn"
@@ -40,7 +40,7 @@ export type PreviewMode = "desktop" | "mobile";
             (click)="mode = 'mobile'"
             title="Vista móvil"
           >
-            <app-icon icon="mdi:cellphone" />
+            <app-icon icon="material-symbols-light:devices-other" />
           </button>
         </div>
       </div>
@@ -93,7 +93,7 @@ export type PreviewMode = "desktop" | "mobile";
             <div class="ep-plain-text">{{ plainText() }}</div>
           } @else {
             <div class="ep-empty">
-              <app-icon icon="mdi:email-outline" class="text-3xl" />
+              <app-icon icon="material-symbols-light:mail-outline" class="text-3xl" />
               <span>Sin contenido de email</span>
             </div>
           }

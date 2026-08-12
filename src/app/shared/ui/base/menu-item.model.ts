@@ -1,3 +1,4 @@
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 /**
  * Modelo de item de menú neutral (sin dependencia de PrimeNG ni Ionic), usado por
  * la familia de menús/navegación multiplataforma: Menubar, MegaMenu, ContextMenu,
@@ -9,7 +10,7 @@ export interface LxMenuItem {
   id?: string;
   label?: string;
   /** Nombre de icono `app-icon` (Iconify). */
-  icon?: string;
+  icon?: AppIconName;
   /** Ruta de navegación (Angular Router). */
   routerLink?: string | unknown[];
   url?: string;

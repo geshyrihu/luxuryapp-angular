@@ -8,7 +8,7 @@
         class="flex align-items-center justify-content-center bg-primary-50 rounded-lg"
         
       >
-        <app-icon [icon]="'mdi:sitemap'" class="text-primary-600" />
+        <app-icon [icon]="'material-symbols-light:account-tree'" class="text-primary-600" />
       </div>
       <div>
         <p class="font-bold text-900 m-0 line-height-1">
@@ -35,7 +35,7 @@
 
     <div class="flex align-items-center gap-1" >
       <iw-button
-        iconClass="mdi:chevron-left"
+        iconClass="material-symbols-light:chevron-left"
         variant="text"
         severity="secondary"
         size="small"
@@ -48,7 +48,7 @@
         {{ filterS.year() }}
       </span>
       <iw-button
-        iconClass="mdi:chevron-right"
+        iconClass="material-symbols-light:chevron-right"
         variant="text"
         severity="secondary"
         size="small"
@@ -135,7 +135,7 @@
 <div class="surface-card border-1 surface-border rounded-xl p-3">
   <div class="flex align-items-center justify-content-between gap-3 mb-3">
     <div class="flex align-items-center gap-2">
-      <app-icon [icon]="'mdi:table'" class="text-primary-600" />
+      <app-icon [icon]="'material-symbols-light:table'" class="text-primary-600" />
       <h2 class="text-lg font-bold text-900 m-0">
         Catalogo general comparativo
       </h2>
@@ -143,34 +143,34 @@
     <div class="flex align-items-center gap-2 flex-wrap justify-content-end">
       <il-button-download
         label="Excel"
-        iconClass="mdi:file-excel"
+        iconClass="material-symbols-light:table-view"
         severity="success"
         (clicked)="exportExcel()"
       />
       <il-button-download
         label="PDF"
-        iconClass="mdi:file-pdf-box"
+        iconClass="material-symbols-light:picture-as-pdf"
         severity="danger"
         (clicked)="exportPdf()"
       />
       <div class="text-xs text-500">
         <span class="mr-3"
           ><app-icon
-            [icon]="'mdi:check'"
+            [icon]="'material-symbols-light:check'"
             class="mr-1"
             
           />Existe</span
         >
         <span class="mr-3"
           ><app-icon
-            [icon]="'mdi:close'"
+            [icon]="'material-symbols-light:close'"
             class="mr-1"
             
           />No existe</span
         >
         <span
           ><app-icon
-            [icon]="'mdi:alert'"
+            [icon]="'material-symbols-light:warning'"
             class="mr-1"
             
           />Estructura distinta</span
@@ -267,7 +267,7 @@
 <div
   class="flex flex-column align-items-center justify-content-center py-8 text-500"
 >
-  <app-icon [icon]="'mdi:sitemap'" class="text-4xl mb-3" />
+  <app-icon [icon]="'material-symbols-light:account-tree'" class="text-4xl mb-3" />
   <p class="m-0">No fue posible cargar la auditoria de cuentas Aspel.</p>
 </div>
 }

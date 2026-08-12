@@ -1,4 +1,6 @@
 import { Directive, computed, input } from "@angular/core";
+import type { AppIconName } from "../shared/app-icon/app-icon.catalog";
+import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
 import { BaseIonicButton } from "./base/base-ionic-button";
 
 export type IliButtonVariant =
@@ -54,5 +56,23 @@ export abstract class MobileButtonBase extends BaseIonicButton {
   protected resolvedColor = computed<string>(() => {
     const mapped = this.variantMap[this.variant() as IliButtonVariant];
     return mapped ? mapped.color : this.color();
+  });
+
+  /**
+   * Icono normalizado a identificador de Iconify para `<app-icon>`.
+   *
+   * `iconClass`/`icon` aceptan formatos heredados (`"add"`, `"pi pi-plus"`,
+   * `"material-symbols-light:add"`), así que hay que pasarlos por el resolutor.
+   * Devuelve `null` cuando no hay icono: las plantillas dependen de eso para
+   * aplicar su propio valor por defecto (`resolvedIconClass() || '…'`).
+   *
+   * El aserto de tipo es deliberado: `resolveIconifyIcon` garantiza un
+   * identificador de Iconify bien formado, no que pertenezca al catálogo.
+   * Los nombres heredados que no estén mapeados pasan tal cual.
+   */
+  protected resolvedIconClass = computed<AppIconName | null>(() => {
+    const raw = this.iconClass() || this.icon();
+    if (!raw) return null;
+    return resolveIconifyIcon(raw) as AppIconName;
   });
 }

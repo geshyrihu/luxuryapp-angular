@@ -17,11 +17,14 @@
       <!-- <lx-tag [value]="dataSource() === 'local' ? 'Local' : 'Live'" [severity]="dataSource() === 'local' ? 'info' : 'contrast'" /> -->
       <lx-tag value="Live" severity="contrast" />
       <p-button
-        icon="pi pi-book"
         label="Reglas de Negocio"
         styleClass="p-button-sm p-button-text p-button-secondary"
         (onClick)="openBusinessRules()"
-      ></p-button>
+      >
+        <ng-template #icon>
+          <app-icon icon="material-symbols-light:book" />
+        </ng-template>
+      </p-button>
     </div>
   </div>
 
@@ -67,26 +70,26 @@
     @if (mode() === 'detalle-cobranza-rango') {
     <il-button-download
       label="Aviso de cobro"
-      iconClass="mdi:file-pdf-box"
+      iconClass="material-symbols-light:picture-as-pdf"
       severity="danger"
       (clicked)="downloadAvisoCobroPdf()"
     />
     <il-button-download
       label="Aviso de cobro Aspel"
-      iconClass="mdi:file-pdf-box"
+      iconClass="material-symbols-light:picture-as-pdf"
       severity="contrast"
       (clicked)="downloadAvisoCobroPdfAspel()"
     />
     } @if (mode() === 'estado-cuenta-rango') {
     <il-button-download
       label="Estado de cuenta"
-      iconClass="mdi:file-pdf-box"
+      iconClass="material-symbols-light:picture-as-pdf"
       severity="info"
       (clicked)="downloadEstadoCuentaPdf()"
     />
     <il-button-download
       label="Estado de cuenta Aspel"
-      iconClass="mdi:file-pdf-box"
+      iconClass="material-symbols-light:picture-as-pdf"
       severity="contrast"
       (clicked)="downloadEstadoCuentaPdfAspel()"
     />
@@ -97,7 +100,7 @@
     <div
       class="flex align-items-center justify-content-center gap-3 min-h-6rem text-600"
     >
-      <app-icon [icon]="'mdi:loading'" class="text-2xl" />
+      <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-2xl" />
       <span class="text-lg">
         Consultando informacion en {{ dataSource() === "local" ? "snapshot
         local" : "Aspel live" }}...
@@ -200,7 +203,7 @@
   <div
     class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3"
   >
-    <app-icon icon="mdi:information" class="text-2xl mt-1" />
+    <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
       <strong class="block mb-1">Criterio de conciliación (Método FIFO)</strong>
       <span class="text-sm"
@@ -344,7 +347,7 @@
   <div
     class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3"
   >
-    <app-icon icon="mdi:information" class="text-2xl mt-1" />
+    <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
       <strong class="block mb-1">Criterio de conciliación (Método FIFO)</strong>
       <span class="text-sm"
@@ -622,7 +625,7 @@
   <div
     class="p-3 mb-4 border-round-xl border-1 surface-border bg-blue-50 text-blue-800 flex align-items-start gap-3"
   >
-    <app-icon icon="mdi:information" class="text-2xl mt-1" />
+    <app-icon icon="material-symbols-light:info" class="text-2xl mt-1" />
     <div>
       <strong class="block mb-1">Cálculo de deuda vigente (Método FIFO)</strong>
       <span class="text-sm"

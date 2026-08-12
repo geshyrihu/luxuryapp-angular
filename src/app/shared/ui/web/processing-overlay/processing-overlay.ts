@@ -21,7 +21,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         >
           <!-- Spinner -->
           <div class="animate-spin mb-4 inline-block">
-            <app-icon icon="mdi:loading" class="text-3xl text-primary-500" />
+            <app-icon icon="material-symbols-light:progress-activity" class="text-3xl text-primary-500" />
           </div>
 
           <!-- Mensaje principal -->

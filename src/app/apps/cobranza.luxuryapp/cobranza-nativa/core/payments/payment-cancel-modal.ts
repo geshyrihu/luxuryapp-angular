@@ -24,7 +24,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       <div class="surface-50 rounded-lg p-3 border-1 border-200">
         <div class="flex align-items-start gap-3">
           <app-icon
-            icon="mdi:alert-circle-outline"
+            icon="material-symbols-light:error-outline"
             class="text-2xl text-orange-500 mt-1"
           />
           <div>
@@ -49,14 +49,14 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       <div class="flex justify-content-end gap-2">
         <il-button
           label="Cerrar"
-          iconClass="mdi:close"
+          iconClass="material-symbols-light:close"
           variant="ghost-text"
           severity="secondary"
           (clicked)="onClose()"
         />
         <il-button-save
           label="Confirmar Cancelacion"
-          iconClass="mdi:cancel"
+          iconClass="material-symbols-light:cancel"
           [disabled]="reasonCtrl.invalid"
           (clicked)="onSubmit()"
         />

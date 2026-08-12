@@ -153,9 +153,9 @@ export class AutitoriaCuentasAspel {
   }
 
   getPresenceIcon(presencia?: IAutitoriaCuentaAspelPresenciaDTO): string {
-    if (!presencia || !presencia.presente) return "mdi:close";
-    if (!presencia.estructuraValida) return "mdi:alert";
-    return "mdi:check";
+    if (!presencia || !presencia.presente) return "material-symbols-light:close";
+    if (!presencia.estructuraValida) return "material-symbols-light:warning";
+    return "material-symbols-light:check";
   }
 
   getPresenceColor(presencia?: IAutitoriaCuentaAspelPresenciaDTO): string {

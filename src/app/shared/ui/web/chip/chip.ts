@@ -30,7 +30,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       }
       <!-- Icono de remoción vía app-icon (evita el primeicon TimesCircle) -->
       <ng-template #removeicon>
-        <app-icon icon="mdi:close" />
+        <app-icon icon="material-symbols-light:close" />
       </ng-template>
     </p-chip>
   `,

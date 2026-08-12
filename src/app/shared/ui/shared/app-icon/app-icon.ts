@@ -5,6 +5,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   input,
 } from "@angular/core";
+import type { AppIconName } from "./app-icon.catalog";
 import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
 
 @Component({
@@ -31,7 +32,9 @@ import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppIcon {
-  icon = input<string | null | undefined>();
+  icon = input<AppIconName | null | undefined>();
 
   protected resolvedIcon = computed(() => resolveIconifyIcon(this.icon()));
 }
+
+export type { AppIconName } from "./app-icon.catalog";

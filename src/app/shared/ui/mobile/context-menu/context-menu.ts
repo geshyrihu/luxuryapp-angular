@@ -33,7 +33,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               (click)="onItemClick(item)"
             >
               @if (item.icon) {
-                <app-icon [icon]="item.icon" class="ili-ctx-item-icon" />
+                <app-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="ili-ctx-item-icon" />
               }
               <span>{{ item.label }}</span>
             </button>

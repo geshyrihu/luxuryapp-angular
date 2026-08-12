@@ -22,8 +22,8 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     </h4>
     <il-button
       severity="secondary"
-      variant="outlined"
-      iconClass="mdi:printer"
+      variant="outline"
+      iconClass="material-symbols-light:print"
       label="Imprimir"
       (clicked)="onPrint()"
       customClass="no-print"
@@ -109,19 +109,31 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           >Estado General</label
         >
         <p>
-          <lx-tag class="text-base" [severity]="data().statusOrdenCompra === 'Autorizada' ? 'success' : data().statusOrdenCompra === 'Pendiente' ? 'warning' : data().statusOrdenCompra === 'Rechazada' ? 'danger' : data().statusOrdenCompra === 'Pagada' ? 'info' : 'secondary'" [value]="data().statusOrdenCompra" />
+          <lx-tag
+            class="text-base"
+            [severity]="data().statusOrdenCompra === 'Autorizada' ? 'success' : data().statusOrdenCompra === 'Pendiente' ? 'warning' : data().statusOrdenCompra === 'Rechazada' ? 'danger' : data().statusOrdenCompra === 'Pagada' ? 'info' : 'secondary'"
+            [value]="data().statusOrdenCompra"
+          />
         </p>
       </div>
       <div class="col-12 md:col-3">
         <label class="block text-color-secondary font-medium">Recibido</label>
         <p>
-          <lx-tag class="text-base" [severity]="data().seRecibio ? 'success' : 'secondary'" [value]="data().seRecibio ? 'Só' : 'No'" />
+          <lx-tag
+            class="text-base"
+            [severity]="data().seRecibio ? 'success' : 'secondary'"
+            [value]="data().seRecibio ? 'Só' : 'No'"
+          />
         </p>
       </div>
       <div class="col-12 md:col-3">
         <label class="block text-color-secondary font-medium">Pagado</label>
         <p>
-          <lx-tag class="text-base" [severity]="data().sePago ? 'success' : 'secondary'" [value]="data().sePago ? 'Só' : 'No'" />
+          <lx-tag
+            class="text-base"
+            [severity]="data().sePago ? 'success' : 'secondary'"
+            [value]="data().sePago ? 'Só' : 'No'"
+          />
         </p>
       </div>
       <div class="col-12 md:col-3">
@@ -129,7 +141,11 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
           >Trómite de Pago</label
         >
         <p>
-          <lx-tag class="text-base" [severity]="data().tramitarPago ? 'info' : 'secondary'" [value]="data().tramitarPago ? 'Solicitado' : 'No Solicitado'" />
+          <lx-tag
+            class="text-base"
+            [severity]="data().tramitarPago ? 'info' : 'secondary'"
+            [value]="data().tramitarPago ? 'Solicitado' : 'No Solicitado'"
+          />
         </p>
       </div>
       <div class="col-12 md:col-6">

@@ -18,7 +18,7 @@
         class="px-3 py-2 rounded-3xl flex align-items-center gap-1 cursor-pointer shadow-sm transition-colors bg-primary text-white"
         (click)="generateDailyReport()"
       >
-        <app-icon icon="mdi:creation" class="text-white" />
+        <app-icon icon="material-symbols-light:add" class="text-white" />
         <span class="font-bold text-sm">Informe IA</span>
       </div>
 
@@ -70,7 +70,7 @@
         <div class="flex justify-content-between align-items-center w-full">
           <div class="flex align-items-center gap-1">
             <app-icon
-              [icon]="'mdi:' + getModuleIcon(item.module)"
+              [icon]="getModuleIcon(item.module)"
               [class.text-primary]="getModuleColor(item.module) === 'primary'"
               [class.text-warning]="getModuleColor(item.module) === 'warning'"
               [class.text-success]="getModuleColor(item.module) === 'success'"
@@ -99,7 +99,7 @@
         <div class="flex justify-content-between align-items-center text-xs mt-2 border-top-1 surface-border pt-2">
           @if (item.responsible) {
           <div class="flex align-items-center gap-1 text-500 bg-surface-50 px-2 py-1 rounded-2xl">
-            <app-icon icon="mdi:account-circle-outline" />
+            <app-icon icon="material-symbols-light:account-circle-outline" />
             <span class="font-medium">{{ item.responsible?.split(' ')[0] }}</span>
           </div>
           } @else {
@@ -113,7 +113,7 @@
             [class.text-orange-500]="item.daysOpen > 6 && item.daysOpen <= 8"
             [class.text-500]="item.daysOpen <= 6"
           >
-            @if(item.daysOpen > 6) { <app-icon icon="mdi:alert-circle-outline" /> }
+            @if(item.daysOpen > 6) { <app-icon icon="material-symbols-light:error-outline" /> }
             <span>{{ item.daysOpen }} días</span>
           </div>
           }
@@ -122,7 +122,7 @@
 
       <!-- Chevron Right -->
       <div class="flex align-items-center h-full pl-2">
-        <app-icon icon="mdi:chevron-right" class="text-400 text-xl" />
+        <app-icon icon="material-symbols-light:chevron-right" class="text-400 text-xl" />
       </div>
     </div>
   </ng-template>

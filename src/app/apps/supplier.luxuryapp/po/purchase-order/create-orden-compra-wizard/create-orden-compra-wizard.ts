@@ -85,6 +85,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-create-orden-compra-wizard",
@@ -490,10 +491,10 @@ export class CreateOrdenCompraWizard implements OnInit {
     this.uploadedFiles.set([]);
   }
 
-  getActionIcon(fileName: string): string {
-    if (fileName.endsWith(".pdf")) return "mdi:file-pdf-box";
-    if (fileName.endsWith(".xml")) return "mdi:file-code";
-    return "mdi:file-document-outline";
+  getActionIcon(fileName: string): AppIconName {
+    if (fileName.endsWith(".pdf")) return "material-symbols-light:picture-as-pdf";
+    if (fileName.endsWith(".xml")) return "material-symbols-light:data-object";
+    return "material-symbols-light:description";
   }
 
   getActionIconClass(fileName: string): string {

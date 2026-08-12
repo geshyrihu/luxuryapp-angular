@@ -1,7 +1,7 @@
 <div class="rf-shell">
   @if (loading()) {
   <div class="flex align-items-center text-color-secondary mb-4">
-    <app-icon [icon]="'mdi:loading'" class="mr-2" />
+    <app-icon [icon]="'material-symbols-light:progress-activity'" class="mr-2" />
     <span>Generando reporte financiero...</span>
   </div>
   } @if (!loading() && !hasData()) {

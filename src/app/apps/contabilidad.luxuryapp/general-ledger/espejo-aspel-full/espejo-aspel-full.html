@@ -1,42 +1,27 @@
 <div class="rf-shell">
   <!-- Barra superior fija -->
-  <div
-    class="rf-card border-bottom-1 surface-border"
-    
-  >
+  <div class="rf-card border-bottom-1 surface-border">
     <div class="flex align-items-center gap-3">
       <!-- Icono + Titulo -->
-      <div class="flex align-items-center gap-2" >
+      <div class="flex align-items-center gap-2">
         <div
           class="flex align-items-center justify-content-center bg-primary-50 rounded-lg"
-          
         >
           <app-icon
-            [icon]="'mdi:table'"
+            [icon]="'material-symbols-light:table'"
             class="text-primary-600"
-            
           />
         </div>
-        <div >
-          <p
-            class="font-bold text-900 m-0 line-height-1"
-            
-          >
-            Espejo Aspel Full
-          </p>
-          <p class="text-500 m-0" >
-            Plan de cuentas con movimientos mensuales
-          </p>
+        <div>
+          <p class="font-bold text-900 m-0 line-height-1">Espejo Aspel Full</p>
+          <p class="text-500 m-0">Plan de cuentas con movimientos mensuales</p>
         </div>
       </div>
 
-      <span
-        class="border-left-1 surface-border"
-        
-      ></span>
+      <span class="border-left-1 surface-border"></span>
 
       <!-- Empresa -->
-      <div >
+      <div>
         <custom-input-select-button-signal
           [options]="empresaOptions"
           [ngModel]="empresaSeleccionada()"
@@ -47,22 +32,17 @@
       </div>
 
       <!-- Ejercicio -->
-      <div class="flex align-items-center gap-1" >
+      <div class="flex align-items-center gap-1">
         <iw-button
-          iconClass="mdi:chevron-left"
+          iconClass="material-symbols-light:chevron-left"
           variant="text"
           severity="secondary"
           size="small"
           (clicked)="filterS.year.set(filterS.year() - 1)"
         />
-        <span
-          class="font-bold text-900 px-1"
-          
-        >
-          {{ filterS.year() }}
-        </span>
+        <span class="font-bold text-900 px-1"> {{ filterS.year() }} </span>
         <iw-button
-          iconClass="mdi:chevron-right"
+          iconClass="material-symbols-light:chevron-right"
           variant="text"
           severity="secondary"
           size="small"
@@ -71,63 +51,47 @@
       </div>
 
       @if (loading()) {
-      <lx-spinner [size]="16" [strokeWidth]="4"  />
+      <lx-spinner [size]="16" [strokeWidth]="4" />
       } @if (!loading() && rawData()) {
-      <span
-        class="border-left-1 surface-border"
-        
-      ></span>
+      <span class="border-left-1 surface-border"></span>
 
       <!-- Navegacion rapida -->
-      <span
-        class="text-xs font-semibold text-500 uppercase"
-        
-        >Ir a:</span
-      >
+      <span class="text-xs font-semibold text-500 uppercase">Ir a:</span>
       @for (grupo of grupos(); track grupo.codigo) {
       <il-button
         [label]="grupo.nombre"
-        variant="outlined"
+        variant="outline"
         severity="secondary"
         size="small"
-        
         (clicked)="irAGrupo(grupo.codigo)"
       />
       }
 
-      <span
-        class="border-left-1 surface-border"
-        
-      ></span>
+      <span class="border-left-1 surface-border"></span>
 
       <!-- Filtros de filas -->
       <il-button
         label="Mostrar todo"
-        iconClass="mdi:eye-outline"
+        iconClass="material-symbols-light:visibility-outline"
         size="small"
         [severity]="!ocultarSinDatos() ? 'primary' : 'secondary'"
         [variant]="!ocultarSinDatos() ? null : 'outlined'"
-        
         (clicked)="ocultarSinDatos.set(false)"
       />
       <il-button
         label="Ocultar sin datos"
-        iconClass="mdi:eye-off"
+        iconClass="material-symbols-light:visibility-off"
         size="small"
         [severity]="ocultarSinDatos() ? 'primary' : 'secondary'"
         [variant]="ocultarSinDatos() ? null : 'outlined'"
-        
         (clicked)="ocultarSinDatos.set(true)"
       />
       }
 
-      <span
-        class="border-left-1 surface-border"
-        
-      ></span>
+      <span class="border-left-1 surface-border"></span>
 
       <!-- Leyenda -->
-      <div class="flex align-items-center gap-3" >
+      <div class="flex align-items-center gap-3">
         <span class="flex align-items-center gap-1 text-xs text-500">
           <span class="legend-dot legend-dot-cargo"></span>
           C=Cargo
@@ -152,13 +116,16 @@
     class="flex align-items-center gap-2 mb-3 mt-5"
     [id]="'grupo-' + grupo.codigo"
   >
-    <app-icon [icon]="'mdi:chart-bar'" class="text-xl text-primary-600" />
+    <app-icon
+      [icon]="'material-symbols-light:bar-chart'"
+      class="text-xl text-primary-600"
+    />
     <h2 class="text-base font-bold text-900 m-0 uppercase">
       {{ grupo.nombre }}
     </h2>
     <div class="flex-grow-1 border-bottom-1 surface-border ml-2"></div>
     <!-- Nivel visible -->
-    <div class="flex align-items-center gap-1" >
+    <div class="flex align-items-center gap-1">
       @for (n of getNivelesDisponibles(grupo.codigo); track n) {
       <il-button
         [label]="'N' + n"
@@ -169,12 +136,9 @@
       />
       }
     </div>
-    <span
-      class="border-left-1 surface-border"
-      
-    ></span>
+    <span class="border-left-1 surface-border"></span>
     <!-- Busqueda -->
-    <div >
+    <div>
       <custom-search-input-signal
         placeholder="Buscar cuenta..."
         (searchChange)="setBusqueda(grupo.codigo, $event)"
@@ -193,24 +157,13 @@
       >
         <ng-template #header>
           <tr>
-            <th >
-              No. Cuenta
-            </th>
-            <th
-              
-            >
-              Descripcion
-            </th>
-            <th
-              class="text-center"
-              
-            >
-              Saldo Ini.
-            </th>
+            <th>No. Cuenta</th>
+            <th>Descripcion</th>
+            <th class="text-center">Saldo Ini.</th>
             @for (mes of meses; track mes) {
-            <th class="text-center" >{{ mes }}</th>
+            <th class="text-center">{{ mes }}</th>
             }
-            <th class="text-center" >Resultado</th>
+            <th class="text-center">Resultado</th>
           </tr>
         </ng-template>
 
@@ -219,7 +172,6 @@
             <!-- No. Cuenta -->
             <td
               class="rf-td-cuenta numeric-column"
-              
               [style.color]="fila.nivel === 'grupo' ? 'white' : '#1e293b'"
             >
               @if (fila.nivel !== 'grupo') { {{ fila.numCta }} }
@@ -228,7 +180,6 @@
             <!-- Descripcion -->
             <td
               class="rf-td-descripcion--item"
-              
               [style.color]="fila.nivel === 'grupo' ? 'white' : '#1e293b'"
               [style.paddingLeft]="fila.nivel === 2 ? '1.5rem' : fila.nivel === 3 ? '2.5rem' : fila.nivel === 4 ? '3.5rem' : '0.75rem'"
             >
@@ -243,7 +194,6 @@
             <!-- Saldo Inicial -->
             <td
               class="rf-td-number numeric-column"
-              
               [style.color]="fila.nivel === 'grupo' ? '#bfdbfe' : '#374151'"
               [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
             >
@@ -258,7 +208,6 @@
                 class="text-right"
                 [style.color]="fila.nivel === 'grupo' ? '#86efac' : '#16a34a'"
                 [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
-                
               >
                 {{ formatMoney(fila.presupuesto[i]) }}
               </div>
@@ -267,7 +216,6 @@
                 class="text-right"
                 [style.color]="fila.nivel === 'grupo' ? '#93c5fd' : '#1d4ed8'"
                 [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
-                
               >
                 {{ formatMoney(fila.cargos[i]) }}
               </div>
@@ -275,7 +223,6 @@
                 class="text-right"
                 [style.color]="fila.nivel === 'grupo' ? '#fca5a5' : '#dc2626'"
                 [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
-                
               >
                 {{ formatMoney(fila.abonos[i]) }}
               </div>
@@ -288,7 +235,6 @@
                 class="text-right"
                 [style.color]="fila.nivel === 'grupo' ? '#93c5fd' : '#1d4ed8'"
                 [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
-                
               >
                 {{ formatMoney(totalCargo(fila)) }}
               </div>
@@ -296,7 +242,6 @@
                 class="text-right"
                 [style.color]="fila.nivel === 'grupo' ? '#fca5a5' : '#dc2626'"
                 [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
-                
               >
                 {{ formatMoney(totalAbono(fila)) }}
               </div>
@@ -305,7 +250,6 @@
                 [style.color]="resultado(fila) >= 0
                   ? (fila.nivel === 'grupo' ? '#86efac' : '#16a34a')
                   : (fila.nivel === 'grupo' ? '#fca5a5' : '#dc2626')"
-                
               >
                 {{ formatMoney(resultado(fila)) }}
               </div>
@@ -319,7 +263,7 @@
   <div
     class="rf-card rf-empty flex flex-column align-items-center justify-content-center"
   >
-    <app-icon [icon]="'mdi:table'" class="text-4xl mb-3" />
+    <app-icon [icon]="'material-symbols-light:table'" class="text-4xl mb-3" />
     <p class="m-0">
       Selecciona un cliente y ejercicio para cargar el espejo Aspel.
     </p>

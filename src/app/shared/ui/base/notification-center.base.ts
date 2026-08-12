@@ -1,8 +1,9 @@
 import { Directive, input, output } from "@angular/core";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export interface NotificationItem {
   id: string;
-  icon: string;
+  icon: AppIconName;
   title: string;
   description: string;
   time: string;

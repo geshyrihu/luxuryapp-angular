@@ -1,11 +1,11 @@
 @if (cargando()) {
 <div class="flex align-items-center gap-2 py-3">
-  <app-icon icon="mdi:loading" class="ner text-primary ds-animate-spin" />
+  <app-icon icon="material-symbols-light:progress-activity" class="ner text-primary ds-animate-spin" />
   <span class="text-sm text-500">Cargando...</span>
 </div>
 } @else if (total() === 0) {
 <div class="flex align-items-center gap-2 py-2 text-400">
-  <app-icon icon="mdi:check-circle" />
+  <app-icon icon="material-symbols-light:check-circle" />
   <span class="text-sm">Sin ausencias hoy</span>
 </div>
 } @else {

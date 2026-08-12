@@ -20,7 +20,7 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="handleClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:file-pdf-box'" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:picture-as-pdf'" />
       <span>{{ label() || "Ver archivo" }}</span>
     </button>
   `,

@@ -283,7 +283,7 @@
               >Invitado {{ index + 1 }}</span
             >
             <iw-button
-              [iconClass]="invitee.controls.isImplicit.value ? 'mdi:lock' : 'mdi:delete'"
+              [iconClass]="invitee.controls.isImplicit.value ? 'material-symbols-light:lock' : 'material-symbols-light:delete'"
               [severity]="invitee.controls.isImplicit.value ? 'secondary' : 'danger'"
               type="button"
               (clicked)="removeAssemblyInvitee(index)"
@@ -455,7 +455,7 @@
 
           <div class="flex-none flex align-items-center h-full">
             <iw-button
-              iconClass="mdi:delete"
+              iconClass="material-symbols-light:delete"
               severity="danger"
               type="button"
               (clicked)="removeGuest(index)"

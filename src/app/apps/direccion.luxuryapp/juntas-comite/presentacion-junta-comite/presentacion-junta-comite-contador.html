@@ -10,7 +10,7 @@
         <div
           class="p-3 rounded-circle bg-cyan-50 text-cyan-600 flex align-items-center justify-content-center"
         >
-          <app-icon icon="mdi:calculator-variant" class="text-2xl" />
+          <app-icon icon="material-symbols-light:calculate" class="text-2xl" />
         </div>
         <div>
           <h5 class="m-0 font-bold text-900">
@@ -27,7 +27,7 @@
     <div
       class="p-3 rounded-lg bg-cyan-50 text-cyan-800 text-sm flex align-items-center gap-2"
     >
-      <app-icon icon="mdi:information-outline" class="text-xl" />
+      <app-icon icon="material-symbols-light:info" class="text-xl" />
       <span
         >Como contador, su responsabilidad es cargar el reporte financiero antes
         de la validación final.</span
@@ -59,7 +59,7 @@
                 >Fecha de Junta</span
               >
               <div class="flex align-items-center gap-2 text-700">
-                <app-icon icon="mdi:calendar" class="text-cyan-500" />
+                <app-icon icon="material-symbols-light:calendar-today" class="text-cyan-500" />
                 <span class="font-medium">{{ item.fechaJunta }}</span>
               </div>
             </div>
@@ -79,7 +79,7 @@
           <div
             class="flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg font-bold border-1 border-green-100"
           >
-            <app-icon icon="mdi:lock" />
+            <app-icon icon="material-symbols-light:lock" />
             <span>SESIóN FINALIZADA</span>
           </div>
           }
@@ -94,7 +94,7 @@
                 <div
                   class="p-4 rounded-xl bg-cyan-50 text-cyan-600 flex align-items-center justify-content-center"
                 >
-                  <app-icon icon="mdi:chart-bar" class="text-4xl" />
+                  <app-icon icon="material-symbols-light:bar-chart" class="text-4xl" />
                 </div>
 
                 <div class="flex-grow-1 flex flex-column gap-2">
@@ -146,7 +146,7 @@
                   <div class="flex align-items-center gap-3">
                     <il-button
                       label="CARGAR REPORTE AHORA"
-                      iconClass="mdi:upload"
+                      iconClass="material-symbols-light:upload"
                       severity="info"
                       customClass="justify-content-start px-3"
                       (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
@@ -157,7 +157,7 @@
                   <div
                     class="p-3 rounded bg-gray-100 text-center text-600"
                   >
-                    <app-icon icon="mdi:lock-outline" class="text-xl mb-1" />
+                    <app-icon icon="material-symbols-light:lock-outline" class="text-xl mb-1" />
                     <p class="m-0 text-sm font-medium">
                       No se admiten cambios en sesiones finalizadas
                     </p>
@@ -180,7 +180,7 @@
                 >
                   <div class="flex align-items-center gap-2">
                     <app-icon
-                      icon="mdi:image-filter-frames"
+                      icon="material-symbols-light:filter-frames"
                       class="text-blue-500"
                     />
                     <span class="text-sm font-medium text-700"
@@ -199,7 +199,7 @@
                   class="flex align-items-center justify-content-between p-2 rounded bg-gray-50 border-1 border-gray-100"
                 >
                   <div class="flex align-items-center gap-2">
-                    <app-icon icon="mdi:cog-sync" class="text-orange-500" />
+                    <app-icon icon="material-symbols-light:settings-overscan" class="text-orange-500" />
                     <span class="text-sm font-medium text-700"
                       >Reporte de Operaciones</span
                     >
@@ -233,7 +233,7 @@
       <div
         class="card p-8 shadow-sm rounded-xl surface-card flex flex-column align-items-center justify-content-center text-center gap-3"
       >
-        <app-icon icon="mdi:file-clock-outline" class="text-6xl text-300" />
+        <app-icon icon="material-symbols-light:timer" class="text-6xl text-300" />
         <div>
           <h6 class="m-0 font-bold text-900">Sin sesiones pendientes</h6>
           <p class="text-600">
@@ -306,7 +306,7 @@
               {
               <il-button
                 label="Cargar archivo"
-                iconClass="mdi:upload"
+                iconClass="material-symbols-light:upload"
                 size="sm"
                 [fluid]="true"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
@@ -347,7 +347,7 @@
               AspRole.SuperUsuario])() ) {
               <il-button
                 label="Cargar archivo"
-                iconClass="mdi:upload"
+                iconClass="material-symbols-light:upload"
                 size="sm"
                 [fluid]="true"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
@@ -393,7 +393,7 @@
               AspRole.SuperUsuario])() ) {
               <il-button
                 label="Cargar archivo"
-                iconClass="mdi:upload"
+                iconClass="material-symbols-light:upload"
                 size="sm"
                 [fluid]="true"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
@@ -434,7 +434,7 @@
               {
               <div class="flex flex-column gap-2">
                 <il-button-confirm
-                  icon="mdi:send"
+                  icon="material-symbols-light:send"
                   label="Validar y enviar a comite"
                   swalTitle="óEnviar presentación?"
                   swalText="La presentación seré enviada al Comité."
@@ -444,7 +444,7 @@
                   customClass="w-full"
                 />
                 <il-button-confirm
-                  icon="mdi:check-circle"
+                  icon="material-symbols-light:check-circle"
                   label="Solo validar"
                   swalTitle="óValidar presentación?"
                   swalText="Confirmo que la presentación es correcta y se crearé versión final."

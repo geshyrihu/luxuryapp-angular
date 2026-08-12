@@ -24,7 +24,7 @@ import { TrackingEvent } from "../shared/tracking";
       [class]="styleClass()"
       (click)="onTrackingClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:bell-outline'" slot="start" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:notifications-outline'" slot="start" />
       {{ label() || "Seguimiento" }}
       @if (badgeCount() && badgeCount()! > 0) {
         <ion-badge color="danger" slot="end">

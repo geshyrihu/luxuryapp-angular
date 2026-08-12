@@ -1,6 +1,6 @@
 @if (cargando()) {
 <div class="flex align-items-center gap-2 py-3">
-  <app-icon icon="mdi:loading" class="pi-spin text-primary" />
+  <app-icon icon="material-symbols-light:progress-activity" class="pi-spin text-primary" />
   <span class="text-sm text-500">Cargando contratos...</span>
 </div>
 } @else {
@@ -17,7 +17,7 @@
       === 1 ? '' : 'n' }} en menos de 2 meses
     </span>
     } @else {
-    <app-icon icon="mdi:check-circle" class="text-ds-success" />
+    <app-icon icon="material-symbols-light:check-circle" class="text-ds-success" />
     <span class="text-sm text-color-secondary"
       >Sin contratos proximos a vencer</span
     >
@@ -25,7 +25,7 @@
   </div>
   <il-button
     label="Ver vigentes"
-    icon="mdi:file-document-edit"
+    icon="material-symbols-light:note-alt"
     size="sm"
     variant="outline"
     (clicked)="abrirVigentes()"

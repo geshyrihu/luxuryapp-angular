@@ -21,6 +21,7 @@ import {
   MappedTagOption,
 } from "../recruitment-shared/mapped-p-tag";
 import { CandidateApplicationKpisDto } from "./interfaces/candidate-application";
+import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
 
 @Component({
   selector: "app-candidate-application-kpis",
@@ -35,6 +36,7 @@ import { CandidateApplicationKpisDto } from "./interfaces/candidate-application"
     MappedPTag,
     ChartWrapper,
     AppIcon,
+    LxSpinner,
   ],
 })
 export class CandidateApplicationKpis implements OnInit {
@@ -60,7 +62,7 @@ export class CandidateApplicationKpis implements OnInit {
         title: "Vacantes abiertas",
         value: k.vacantesAbiertas,
         subtitle: `${k.porcentajeVacantesConPostulacion}% con postulación`,
-        icon: "mdi:briefcase-outline",
+        icon: "material-symbols-light:work-outline",
         severity:
           k.vacantesSinPostulacion > k.vacantesAbiertas * 0.5
             ? "danger"
@@ -76,7 +78,7 @@ export class CandidateApplicationKpis implements OnInit {
           k.vacantesSinPostulacion > 0
             ? "Requieren atención"
             : "Todas cubiertas",
-        icon: "mdi:briefcase-remove",
+        icon: "material-symbols-light:work-history",
         severity: k.vacantesSinPostulacion > 0 ? "danger" : "success",
         route: "/recruitment/requests/vacancies",
       },
@@ -84,7 +86,7 @@ export class CandidateApplicationKpis implements OnInit {
         title: "Postulaciones activas",
         value: k.postulacionesActivas,
         subtitle: `Últimos 7 días: ${k.postulacionesUltimos7Dias}`,
-        icon: "mdi:file-document-outline",
+        icon: "material-symbols-light:description",
         severity: "info",
         route: "/recruitment/candidates/applications",
       },
@@ -92,7 +94,7 @@ export class CandidateApplicationKpis implements OnInit {
         title: "En Entrevista Operaciones",
         value: k.postulacionesEnEntrevistaOperaciones,
         subtitle: `Sin entrevistador: ${k.entrevistasOperacionesSinEntrevistador} | Pend. agenda: ${k.entrevistasOperacionesPendientesAgenda}`,
-        icon: "mdi:account-voice",
+        icon: "material-symbols-light:record-voice-over",
         severity:
           k.entrevistasOperacionesSinEntrevistador > 0 ||
           k.entrevistasOperacionesPendientesAgenda > 0
@@ -107,7 +109,7 @@ export class CandidateApplicationKpis implements OnInit {
           k.entrevistasOperacionesVencidas > 0
             ? "Acción inmediata"
             : "Sin vencidas",
-        icon: "mdi:alert-circle-outline",
+        icon: "material-symbols-light:error-outline",
         severity: k.entrevistasOperacionesVencidas > 0 ? "danger" : "success",
         route: "/recruitment/candidates/recruitment-agenda",
       },
@@ -115,7 +117,7 @@ export class CandidateApplicationKpis implements OnInit {
         title: "Tasa de selección",
         value: `${k.tasaSeleccion}%`,
         subtitle: `${k.postulacionesContratadas} contratados de ${k.postulacionesContratadas + k.postulacionesRechazadasONoPresentadas} cerradas`,
-        icon: "mdi:check-circle-outline",
+        icon: "material-symbols-light:check-circle-outline",
         severity:
           k.tasaSeleccion >= 30
             ? "success"
@@ -132,7 +134,7 @@ export class CandidateApplicationKpis implements OnInit {
             ? `${k.promedioDiasVacanteAPrimeraPostulacion} días`
             : "N/A",
         subtitle: `Mediana: ${k.medianaDiasVacanteAPrimeraPostulacion ?? "N/A"} | P90: ${k.percentil90DiasVacanteAPrimeraPostulacion ?? "N/A"} | SLA ≤7d: ${k.porcentajeVacantesEnSla}%`,
-        icon: "mdi:timer-outline",
+        icon: "material-symbols-light:timer-outline",
         severity:
           k.porcentajeVacantesEnSla >= 80
             ? "success"
@@ -145,7 +147,7 @@ export class CandidateApplicationKpis implements OnInit {
         title: "Vacantes en SLA (≤7 días)",
         value: `${k.vacantesConPostulacionEnSla} / ${k.vacantesConPostulacion}`,
         subtitle: `${k.porcentajeVacantesEnSla}% de vacantes con postulación`,
-        icon: "mdi:target-account",
+        icon: "material-symbols-light:track-changes",
         severity:
           k.porcentajeVacantesEnSla >= 80
             ? "success"

@@ -6,11 +6,12 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface TabBarItem {
   id: string;
   label: string;
-  icon?: string;
+  icon?: AppIconName;
   badge?: number;
   disabled?: boolean;
 }

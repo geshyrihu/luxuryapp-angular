@@ -1,6 +1,6 @@
 # Candidates Frontend Decision Guide
 
-Ultima revision: `2026-08-09`
+Ultima revision: `2026-08-11`
 Uso: decidir donde cae un cambio dentro del feature actual
 
 ## Regla base
@@ -126,6 +126,7 @@ Ubicacion:
 - no crear carpetas nuevas por intuicion
 - no modificar shared global sin analisis de impacto
 - no mover logica de postulaciones dentro de `candidate/`
+- `Fuente de reclutamiento` no forma parte del formulario maestro vigente
 
 ## Senales de que debes pausar y alinear
 
@@ -146,6 +147,13 @@ Cuando dudes, revisa en este orden:
 3. `reclutamiento.endpoints.ts`
 4. interfaces locales del submodulo
 5. README backend del modulo
+
+## Aclaraciones vigentes del modulo
+
+- `Fuente de reclutamiento` se retiro del formulario maestro y del contrato
+  activo de candidato.
+- `SuperUsuario` debe poder entrar a vistas de Reclutamiento y a vistas
+  operativas de entrevistador cuando el backend use politicas del modulo.
 
 ## Decision: Separacion de capa Demanda (Solicitudes) vs Pipeline (Candidates)
 
@@ -908,3 +916,273 @@ Fuente: `06-execution-handoff.md` (Fase 2)
 - ✅ Compila backend.
 - ✅ Migracion generada.
 - ✅ No se rompio frontend.
+
+---
+
+## Ejecucion Fase 3 - Contratos Backend Nuevos
+
+Fecha: `2026-08-11`
+Fuente: `06-execution-handoff.md` (Fase 3)
+
+### Grupos logicos nuevos (sin depender de columnas legacy)
+
+**`CandidateWorkExperience`** (`Candidates/CandidateWorkExperience/`)
+- `ICandidateWorkExperienceAppService` / `CandidateWorkExperienceAppService`
+- Endpoints `api/recruitment-candidate-work-experiences`:
+  `POST ""`, `PUT {id}`, `DELETE {id}`, `GET candidate/{candidateId}`
+- DTOs (1 por archivo): `CandidateWorkExperienceCreateOrUpdateDto`,
+  `CandidateWorkExperienceItemDto`
+- Mapping `CandidateWorkExperienceMapping`
+
+**`CandidateInterview`** (extendido en `Candidates/CandidateInterview/`)
+- Nuevos metodos en `ICandidateInterviewAppService`:
+  `CreateInterviewAsync`, `RescheduleInterviewAsync`, `ConfirmInterviewAsync`,
+  `CancelInterviewAsync`, `CloseInterviewAsync`, `GetInterviewsByApplicationAsync`,
+  `GetInterviewsByWorkPositionAsync`, `GetInterviewsByInterviewerAsync`.
+- Endpoints nuevos en `CandidateInterviewEndPoint`
+  (`api/recruitment-candidate-interviews`):
+  `POST ""`, `POST {id}/reschedule`, `POST {id}/confirm`,
+  `POST {id}/cancel`, `POST {id}/close`,
+  `GET by-application/{candidateApplicationId}`,
+  `GET by-work-position/{workPositionId}`,
+  `GET by-interviewer/{interviewerUserId}`
+- DTOs (1 por archivo): `CandidateInterviewCreateDto`,
+  `CandidateInterviewRescheduleDto`, `CandidateInterviewCloseDto`,
+  `CandidateInterviewItemDto`
+- Enum nuevo `CandidateInterviewOutcome` (Realizada, NoAsistio, Cancelada)
+- Mapping ampliado en `CandidateInterviewMapping`
+
+**`CandidateInterviewResult`** (`Candidates/CandidateInterviewResult/`)
+- `ICandidateInterviewResultAppService` / `CandidateInterviewResultAppService`
+- Endpoints `api/recruitment-candidate-interview-results`:
+  `POST ""`, `GET interview/{interviewId}`
+- DTOs: `CandidateInterviewResultCreateDto`, `CandidateInterviewResultItemDto`
+- Mapping `CandidateInterviewResultMapping`
+- `RegisterResultAsync` cierra la cita (Status=Realizada, ClosedAt) y valida
+  motivo vs decision.
+
+**`InterviewerMatrix`** (`Candidates/InterviewerMatrix/`)
+- `IInterviewerMatrixAppService` / `InterviewerMatrixAppService`
+- Endpoints `api/recruitment-interviewer-matrix`:
+  `POST ""`, `PUT {id}`, `DELETE {id}`, `GET customer/{customerId}`,
+  `GET resolve/{customerId}/{workPositionRole}`
+- DTOs: `InterviewerMatrixCreateOrUpdateDto`, `InterviewerMatrixItemDto`
+- Mapping `InterviewerMatrixMapping`
+
+### Reglas aplicadas
+- 1 DTO por archivo (cumple regla critica de DTOs).
+- Endpoints separados por feature (no se toco `CandidateApplicationAppService`
+  para agendar).
+- La creacion de citas (`CreateInterviewAsync`) escribe `CandidateInterview`,
+  NO las columnas legacy `RecruitmentInterviewAt`/`OperationsInterviewAt`.
+- El feedback legacy (`SubmitFeedbackAsync`) se conserva intacto; se retira en
+  Fase 8.
+
+### Validaciones
+- ✅ `dotnet build` de `LuxuryApp.Application` (0 errores).
+- ✅ API de entrevistas funcional sin columnas legacy para crear citas.
+- ⚠️ `LuxuryApp.Api` no se reconstruye localmente: bin bloqueado por proceso
+  en ejecucion (pid 6272). El host descubre los endpoints via `IEndPointsModule`.
+
+### Criterio de aceptacion Fase 3 (cumplido)
+- ✅ Existe API de entrevistas sin depender de columnas legacy para crear
+  nuevas citas.
+
+---
+
+## Correccion de Hallazgos de Fase 3 (previo a Fase 4)
+
+Fecha: `2026-08-10`
+Fuente: `kilocode-prompt.md`
+
+### Hallazgo 1 - Creacion de entrevista no debe confiar en cliente
+- `CandidateInterviewAppService.CreateInterviewAsync` ahora:
+  - Resuelve el rol entrevistador desde `InterviewerMatrix` (customer +
+    rol del puesto de la postulacion). Error `INTERVIEWER_MATRIX_RULE_NOT_FOUND`
+    si no hay regla activa.
+  - Resuelve usuarios elegibles via `IUserRoleService.GetUsersInRoleAsync(rol,
+    customerId)`. Error `NO_ELIGIBLE_INTERVIEWERS` si vacio.
+  - `dto.InterviewerUserId` Solo se acepta si esta en el conjunto elegible
+    (`INTERVIEWER_NOT_ELIGIBLE`); si no se envia, fallback controlado al primer
+    usuario elegible.
+  - `InterviewerRole` se sobreescribe con el valor de la matriz (no se usa el
+    del cliente). `dto.InterviewerRole` queda ignorado.
+- Helper `ResolveRoleEnum` mapea `ApplicationRole` (Name/DisplayName) a
+  `ApplicationRoleEnum`.
+
+### Hallazgo 2 - Seguridad en endpoints nuevos
+- `InterviewerMatrixEndPoint`: grupo completo bajo
+  `RequireAuthorization("SoloSuperUsuario")`.
+- `CandidateInterviewResultEndPoint`: `RequireAuthorization("RequireRecruitmentRole")`.
+- `CandidateInterviewEndPoint`: endpoints de gestion de cita
+  (create/reschedule/confirm/cancel/close/by-application/by-work-position/
+  by-interviewer) en grupo `RequireAuthorization("RequireRecruitmentRole")`.
+  Los endpoints legacy de feedback conservan `RequireAuthorization()` para no
+  romper el flujo actual del entrevistador (se retiran en Fase 8).
+
+### Hallazgo 3 - Cardinalidad 1:1 en resultado
+- `CandidateInterviewResultAppService.RegisterResultAsync` rechaza con
+  `INTERVIEW_ALREADY_EXISTS` si la entrevista ya tiene resultado.
+- `ApplicationDbContext`: indice unico
+  `IX_RecruitmentCandidateInterviewResults_InterviewId_Unique` sobre
+  `InterviewId`.
+- Migracion `ReclutamientoResultadoUnico` generada.
+
+---
+
+## Ejecucion Fase 4 - Matriz configurable desde Admin
+
+Fecha: `2026-08-10`
+Fuente: `kilocode-prompt.md` (Nueva Fase 4)
+
+### Backend
+- `InterviewerMatrix` ya exponia CRUD por customer. Se refuerza seguridad con
+  `SoloSuperUsuario` (ver Hallazgo 2).
+- `CandidateInterview` consume `InterviewerMatrix` como fuente de verdad al crear
+  citas (ver Hallazgo 1). No se migra aun la logica operativa legacy
+  (`GetRecruitmentAgendaAsync`, `GetRecruitmentInterviewBoardAsync`,
+  `GetInterviewerQueueAsync`).
+
+### Frontend Admin (`admin.luxuryapp`)
+Feature nueva `seguridad-permisos/interviewer-matrix`:
+- `interviewer-matrix.ts` / `.html` / `.scss` - lista por cliente (p-table),
+  alta/edicion (selects de rol del puesto y rol entrevistador + activo),
+  eliminar.
+- `interviewer-matrix.service.ts` - consume endpoints de matriz y select-items
+  (`customers-active`, `application-roles`).
+- `interfaces/interviewer-matrix.dto.ts` - DTOs tipados.
+- Endpoints agregados en `reclutamiento.endpoints.ts`:
+  `EndpointsReclutamiento.InterviewerMatrix.{base,byCustomer,resolve}`.
+- Ruta `admin.routes.ts`: `/admin/interviewer-matrix` con `superUsuarioGuard`.
+- Menu: entrada en `admin-wrapper-menu.ts` y tarjeta en `admin-modules.ts`.
+
+### Ajuste: roles desde API (sin hardcode)
+- Backend: `SelectItemEnumEndPoints` expone `ApplicationRoleEnum` en ruta
+  `application-roles` (`api/select-item-enum/application-roles`) reusando
+  `GetEnumSelectList<TEnum>`.
+- Frontend: `interviewer-matrix.service.getRoles()` consume
+  `EndpointsSelectItem.SelectItems.applicationRoles` via
+  `onGetEnumSelectItem` (hub `select-item-enum`).
+- `interviewer-matrix.ts`: se elimino la interfaz `RoleOption` y el array
+  hardcodeado; `roles` es `signal<SelectItemDto[]>()` cargado en `ngOnInit`
+  junto con `customers` (Promise.all). `roleLabel()` resuelve contra el
+  catalogo; `openCreate()` usa el primer rol disponible; el alta se bloquea
+  hasta que carguen los roles (sin fallback hardcodeado).
+- Se reuso `SelectItemDto` existente (`core/interfaces/select-item.dto.ts`)
+  en lugar de crear interfaz nueva.
+
+### Cierre de hallazgos y Fase 4 (validado)
+- ✅ `dotnet build` `LuxuryApp.Application` = 0 errores.
+- ✅ `npx tsc --noEmit` `client/angular` = 0 errores (EXIT 0).
+- ✅ Escaneo de mojibake en feature = 0.
+- ✅ Roles de la matriz consumidos desde `api/select-item-enum/application-roles`
+  (sin hardcode, sin fallback local).
+- ✅ Backend de entrevistas ya consume `InterviewerMatrix` como fuente de verdad
+  al crear citas (Finding 1), listo para la siguiente fase de migracion
+  operativa. Lo pendiente por instruccion: migrar `GetRecruitmentAgendaAsync`,
+  `GetRecruitmentInterviewBoardAsync`, `GetInterviewerQueueAsync` y retiro de
+  legacy (Fase 5+).
+
+### Validaciones
+- ✅ `dotnet build` de `LuxuryApp.Application` (0 errores).
+- ✅ `npx tsc --noEmit` de `client/angular` (0 errores).
+- ✅ Migracion `ReclutamientoResultadoUnico` generada.
+
+### Decisiones tomadas
+- Roles de la matriz en frontend usan lista local curada de `ApplicationRoleEnum`
+  (numericos estables) para garantizar el valor enviado al backend.
+- Selects nativos en el formulario admin para minimizar dependencia de APIs de
+  componentes desconocidos; se puede migrar a `CustomInputSelectButton` despues.
+- Cliente/roles se cargan desde select-items existentes.
+
+---
+
+## Avance API - CandidateProcess como fuente operativa
+
+Fecha: `2026-08-11`
+Fuente: ejecucion directa Codex
+
+### Alcance
+- Solo backend/API.
+- Sin migracion adicional en este corte.
+- Sin retirar aun entidades legacy.
+
+### Cambios aplicados
+- `CandidateProcessAppService` ya concentra las lecturas operativas de:
+  - agenda de reclutamiento;
+  - board de entrevistas;
+  - interviewer queue.
+- `CandidateApplicationAppService` conserva contratos legacy, pero esas
+  lecturas ya delegan a `CandidateProcessAppService`.
+- `CandidateNotificationCoordinatorService` deja de cargar
+  `CandidateApplication` para eventos operativos y ahora carga
+  `CandidateProcess`.
+- `CandidateAutomationService` deja de evaluar:
+  - `ApplicationDate`;
+  - `OperationsInterviewAt`;
+  - `OperationsInterviewAssignedToUserId`;
+  - `InterviewFeedbacks`;
+  y ahora usa:
+  - `RegisterDate`;
+  - `ScheduledAt`;
+  - `InterviewerUserId`;
+  - `Decision`.
+
+### Decision tecnica
+- Se mantiene el nombre de parametro `candidateApplicationId` en firmas
+  publicas de notificacion por compatibilidad temporal, pero el valor real ya
+  se resuelve contra `CandidateProcess.Id`.
+- El CV adjunto para correos operativos sale del candidato maestro
+  (`Candidate.CvFileName`) usando la ruta
+  `RecruitmentMasterCandidateCvDirectory(candidateId)`.
+
+### Validacion
+- ✅ `dotnet build` de `LuxuryApp.Application` con `0 errores`.
+- ✅ Queue, agenda, board, notificaciones y automatizacion ya leen
+  `CandidateProcess`.
+
+### Pendiente siguiente
+- Fase de limpieza legacy:
+  - retirar `CandidateInterviewFeedback`;
+  - retirar `CandidateInterviewResult`;
+  - sacar `CandidateApplication` y `CandidateInterview` del flujo operativo;
+  - dejar lista la migracion unica final.
+
+## Avance API - puente legacy controlado
+
+Fecha: `2026-08-11`
+Fuente: ejecucion directa Codex
+
+### Que se ajusto
+- `CandidateApplicationAppService.ScheduleRecruitmentInterviewAsync()` ya no
+  deja la agenda solo en columnas legacy:
+  - busca el `CandidateProcess` activo equivalente;
+  - agenda primero en `CandidateProcess`;
+  - luego sincroniza la sombra legacy para compatibilidad temporal.
+- `CandidateApplicationAppService.CancelRecruitmentInterviewAsync()` sigue la
+  misma estrategia.
+- `CandidateApplicationAppService.ChangeStageAsync()` ya delega el cambio al
+  nucleo `CandidateProcess` cuando existe proceso nuevo.
+- `CandidateApplicationAppService.RegisterDecisionAsync()` ya delega la
+  decision al nucleo `CandidateProcess` cuando existe proceso nuevo.
+- la notificacion de envio a entrevista de operaciones usa `CandidateProcess.Id`
+  cuando ya existe proceso nuevo.
+- `CandidateApplicationAppService.ExecuteInterviewerActionAsync()` ya delega en
+  `CandidateProcess` las acciones del entrevistador cuando existe proceso
+  nuevo, y deja de crear `CandidateInterviewFeedback` como fuente operativa.
+- `CandidateProcess.RegisterDecisionAsync()` fue corregido para respetar la
+  transicion:
+  - `EntrevistaReclutamiento + Aprobado -> EntrevistaOperaciones`
+  - `EntrevistaOperaciones + Aprobado -> Seleccionado`
+  - `EnEspera` no cierra el proceso.
+
+### Que se marco como deuda aislada
+- `CandidateInterviewAppService` e
+  `ICandidateInterviewAppService` quedan marcados con `Obsolete`.
+- `CandidateInterviewResultAppService` e
+  `ICandidateInterviewResultAppService` quedan marcados con `Obsolete`.
+
+### Lectura de la decision
+- `CandidateProcess` ya es la fuente operativa a la que debe migrar el flujo.
+- `CandidateInterview*` sigue existiendo solo para no romper compatibilidad
+  mientras se prepara la limpieza final y la migracion unica.

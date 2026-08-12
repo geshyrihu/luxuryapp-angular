@@ -10,7 +10,7 @@
         <div
           class="p-3 rounded-circle bg-blue-50 text-blue-600 flex align-items-center justify-content-center"
         >
-          <app-icon icon="mdi:presentation" class="text-2xl" />
+          <app-icon icon="material-symbols-light:co-present" class="text-2xl" />
         </div>
         <div>
           <h5 class="m-0 font-bold text-900">Presentaciones de Junta</h5>
@@ -21,8 +21,8 @@
       </div>
       <div class="flex gap-2">
         <il-button
-          variant="outlined"
-          iconClass="mdi:plus"
+          variant="outline"
+          iconClass="material-symbols-light:add"
           label="NUEVA PRESENTACIóN"
           size="sm"
           (clicked)="showModalAdd({ id: 0, titulo: 'Nuevo Registro' })"
@@ -55,7 +55,10 @@
                 >Fecha de Junta</span
               >
               <div class="flex align-items-center gap-2 text-700">
-                <app-icon icon="mdi:calendar-clock" class="text-blue-500" />
+                <app-icon
+                  icon="material-symbols-light:calendar-clock"
+                  class="text-blue-500"
+                />
                 <span class="font-medium"
                   >{{ item.fechaJunta }} {{ item.horaJunta }}</span
                 >
@@ -70,9 +73,12 @@
                   [value]="item.enviadoComite ? 'Sí' : 'NO'"
                   [severity]="item.enviadoComite ? 'success' : 'warning'"
                   class="text-xs"
-                 />
+                />
                 @if (item.enviadoComite) {
-                <app-icon icon="mdi:check-circle" class="text-green-500" />
+                <app-icon
+                  icon="material-symbols-light:check-circle"
+                  class="text-green-500"
+                />
                 }
               </div>
             </div>
@@ -83,7 +89,7 @@
             <div
               class="flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg font-bold border-1 border-green-100"
             >
-              <app-icon icon="mdi:lock" />
+              <app-icon icon="material-symbols-light:lock" />
               <span>VERSIóN FINAL</span>
             </div>
             } @if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador,
@@ -111,7 +117,10 @@
             <div class="col-12 md:col-3 border-right-1 surface-border">
               <div class="flex align-items-center gap-3">
                 <div class="p-2 rounded bg-blue-50 text-blue-500">
-                  <app-icon icon="mdi:image-filter-frames" class="text-2xl" />
+                  <app-icon
+                    icon="material-symbols-light:filter-frames"
+                    class="text-2xl"
+                  />
                 </div>
                 <div class="flex flex-column flex-grow-1">
                   <span class="font-bold text-700 text-sm">PORTADA</span>
@@ -137,9 +146,9 @@
                   aspRoleS.anyOf([AspRole.Administrador,
                   AspRole.SuperUsuario])()) {
                   <il-button
-                    iconClass="mdi:upload"
+                    iconClass="material-symbols-light:upload"
                     label="Cargar"
-                    variant="outlined"
+                    variant="outline"
                     size="sm"
                     (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
                   />
@@ -163,7 +172,10 @@
             <div class="col-12 md:col-3 border-right-1 surface-border px-4">
               <div class="flex align-items-center gap-3">
                 <div class="p-2 rounded bg-cyan-50 text-cyan-500">
-                  <app-icon icon="mdi:chart-areaspline" class="text-2xl" />
+                  <app-icon
+                    icon="material-symbols-light:area-chart"
+                    class="text-2xl"
+                  />
                 </div>
                 <div class="flex flex-column flex-grow-1">
                   <span class="font-bold text-700 text-sm">CONTABILIDAD</span>
@@ -189,9 +201,9 @@
                   } @else if (!item.archivoFinal &&
                   aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()) {
                   <il-button
-                    iconClass="mdi:upload"
+                    iconClass="material-symbols-light:upload"
                     label="Cargar"
-                    variant="outlined"
+                    variant="outline"
                     severity="info"
                     size="sm"
                     (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
@@ -215,7 +227,10 @@
             <div class="col-12 md:col-3 border-right-1 surface-border px-4">
               <div class="flex align-items-center gap-3">
                 <div class="p-2 rounded bg-orange-50 text-orange-500">
-                  <app-icon icon="mdi:cog-sync" class="text-2xl" />
+                  <app-icon
+                    icon="material-symbols-light:settings-overscan"
+                    class="text-2xl"
+                  />
                 </div>
                 <div class="flex flex-column flex-grow-1">
                   <span class="font-bold text-700 text-sm">OPERACIONES</span>
@@ -240,9 +255,9 @@
                   aspRoleS.anyOf([AspRole.Administrador,
                   AspRole.SuperUsuario])()) {
                   <il-button
-                    iconClass="mdi:upload"
+                    iconClass="material-symbols-light:upload"
                     label="Cargar"
-                    variant="outlined"
+                    variant="outline"
                     severity="warning"
                     size="sm"
                     (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
@@ -273,7 +288,7 @@
                   label="DESCARGAR FINAL"
                   severity="success"
                   [fluid]="true"
-                  iconClass="mdi:file-certificate"
+                  iconClass="material-symbols-light:workspace-premium"
                   customClass="justify-content-start px-3"
                 />
                 <div
@@ -301,7 +316,7 @@
               item.archivoContable && item.archivoJunta) {
               <div class="flex flex-column gap-2">
                 <il-button-confirm
-                  iconClass="mdi:email-send"
+                  iconClass="material-symbols-light:send"
                   label="ENVIAR COMITé"
                   [fluid]="true"
                   swalTitle="óEnviar presentación?"
@@ -311,7 +326,7 @@
                   (confirmed)="onValidarPresentacion(item.id)"
                 />
                 <il-button-confirm
-                  iconClass="mdi:check-bold"
+                  iconClass="material-symbols-light:check"
                   label="VALIDAR"
                   [fluid]="true"
                   severity="secondary"
@@ -338,7 +353,10 @@
       <div
         class="card p-8 shadow-sm rounded-xl surface-card flex flex-column align-items-center justify-content-center text-center gap-3"
       >
-        <app-icon icon="mdi:file-search-outline" class="text-6xl text-300" />
+        <app-icon
+          icon="material-symbols-light:manage-search"
+          class="text-6xl text-300"
+        />
         <div>
           <h6 class="m-0 font-bold text-900">
             No hay presentaciones registradas
@@ -365,9 +383,7 @@
     [globalFilterFields]="globalFilterFields"
   >
     <ng-template #listItemTemplate let-item>
-      <div
-        class="card p-3 mb-2 border-1 surface-border shadow-sm rounded-xl"
-      >
+      <div class="card p-3 mb-2 border-1 surface-border shadow-sm rounded-xl">
         <!-- Header -->
         <div class="border-bottom-1 surface-border pb-2 mb-2">
           <div class="flex justify-content-between align-items-center mb-2">
@@ -394,7 +410,7 @@
             [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
             [severity]="item.enviadoComite ? 'success' : 'warning'"
             class="text-xs"
-           />
+          />
         </div>
 
         <!-- Body -->
@@ -412,7 +428,7 @@
               {
               <il-button
                 label="Cargar archivo"
-                iconClass="mdi:upload"
+                iconClass="material-symbols-light:upload"
                 size="sm"
                 [fluid]="true"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
@@ -453,7 +469,7 @@
               AspRole.SuperUsuario])() ) {
               <il-button
                 label="Cargar archivo"
-                iconClass="mdi:upload"
+                iconClass="material-symbols-light:upload"
                 size="sm"
                 [fluid]="true"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
@@ -499,7 +515,7 @@
               AspRole.SuperUsuario])() ) {
               <il-button
                 label="Cargar archivo"
-                iconClass="mdi:upload"
+                iconClass="material-symbols-light:upload"
                 size="sm"
                 [fluid]="true"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
@@ -540,7 +556,7 @@
               {
               <div class="flex flex-column gap-2">
                 <il-button-confirm
-                  icon="mdi:send"
+                  icon="material-symbols-light:send"
                   label="Validar y enviar a comite"
                   swalTitle="óEnviar presentación?"
                   swalText="La presentación seré enviada al Comité."
@@ -550,7 +566,7 @@
                   customClass="w-full"
                 />
                 <il-button-confirm
-                  icon="mdi:check-circle"
+                  icon="material-symbols-light:check-circle"
                   label="Solo validar"
                   swalTitle="óValidar presentación?"
                   swalText="Confirmo que la presentación es correcta y se crearé versión final."

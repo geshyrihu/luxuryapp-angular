@@ -20,7 +20,7 @@
       @if (!cameraOn()) {
       <il-button
         label="Escanear con cámara"
-        iconClass="mdi:camera"
+        iconClass="material-symbols-light:photo-camera"
         (clicked)="startCamera()"
       />
       } @else {
@@ -28,7 +28,7 @@
         label="Detener cámara"
         severity="secondary"
         variant="text"
-        iconClass="mdi:camera-off"
+        iconClass="material-symbols-light:no-photography"
         (clicked)="stopCamera()"
       />
       }
@@ -44,7 +44,7 @@
 
     <il-button
       label="Validar acceso"
-      iconClass="mdi:qrcode-scan"
+      iconClass="material-symbols-light:qr-code-scanner"
       type="submit"
       [loading]="submitting()"
       [disabled]="form.invalid"

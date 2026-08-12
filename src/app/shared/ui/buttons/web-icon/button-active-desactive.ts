@@ -19,7 +19,7 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="toggleState()"
     >
-      <app-icon [icon]="state() ? 'mdi:lock' : 'mdi:lock-open'" />
+      <app-icon [icon]="state() ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'" />
     </button>
   `,
 })

@@ -23,6 +23,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { TipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 // Definición de un ótem de factura analizada extendido para el frontend
 interface AnalyzedInvoiceItem {
@@ -66,6 +67,7 @@ type ModalStatus =
     CustomInputSelectSignal,
     CustomInputTextSignal,
     WebButtonLabel,
+    AppIcon,
   ],
   templateUrl: "./funding-upload-invoices-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,

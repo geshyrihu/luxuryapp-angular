@@ -24,11 +24,12 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-budget-execution-details-modal",
   templateUrl: "./budget-execution-details-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, TableModule, TagModule],
+  imports: [CommonModule, TableModule, TagModule, AppIcon],
 })
 export class BudgetExecutionDetailsModal implements OnInit {
   apiResponseS = inject(ApiResponseService);

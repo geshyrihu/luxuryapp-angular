@@ -18,7 +18,7 @@
       <il-button
         (clicked)="onDownloadAll()"
         label="Descargar Todas"
-        icon="mdi:download"
+        icon="material-symbols-light:download"
       />
     </div>
   </ng-template>
@@ -67,13 +67,13 @@
             (clicked)="onDetail(item.id)"
             lxTooltip="Detalle"
             tooltipPosition="top"
-            [iconClass]="'mdi:receipt'"
+            [iconClass]="'material-symbols-light:receipt'"
           />
           <iw-button-item
             (clicked)="onDownloadIndividual(item.id, item.employeeName)"
             lxTooltip="Descargar"
             tooltipPosition="top"
-            icon="mdi:download"
+            icon="material-symbols-light:download"
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -104,7 +104,7 @@
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
-          icon="mdi:clipboard-check-outline"
+          icon="material-symbols-light:task-alt"
           class="text-xl text-primary"
         />
       </div>

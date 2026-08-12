@@ -23,7 +23,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
       @if (nodes().length === 0 && !loading()) {
         <ili-empty-state
-          icon="mdi:file-tree-outline"
+          icon="material-symbols-light:account-tree"
           [title]="'Sin datos'"
           [message]="emptyMessage()"
         />
@@ -51,7 +51,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               >
                 <app-icon
                   [icon]="
-                    node.expanded ? 'mdi:chevron-down' : 'mdi:chevron-right'
+                    node.expanded ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'
                   "
                 />
               </ion-button>

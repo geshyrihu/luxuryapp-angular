@@ -16,7 +16,7 @@
 
     <il-button
       label="Descargar ({{ selectedFiles().length }})"
-      [iconClass]="'mdi:upload'"
+      [iconClass]="'material-symbols-light:upload'"
       severity="success"
       [disabled]="selectedFiles().length === 0"
       (clicked)="downloadSelectedFiles()"
@@ -24,7 +24,7 @@
     </il-button>
     <il-button
       label="Descargar Todo"
-      iconClass="mdi:package"
+      iconClass="material-symbols-light:package"
       severity="help"
       (clicked)="downloadAllFiles()"
     >
@@ -53,12 +53,12 @@
             <div class="mb-3">
               @if (file.type === "pdf") {
               <app-icon
-                [icon]="'mdi:file-pdf-box'"
+                [icon]="'material-symbols-light:picture-as-pdf'"
                 class="text-red-500 text-6xl"
               />
               } @else {
               <app-icon
-                [icon]="'mdi:code-tags'"
+                [icon]="'material-symbols-light:code'"
                 class="text-blue-500 text-6xl"
               />
               }
@@ -109,25 +109,25 @@
           <td>
             @if (file.type === "pdf") {
             <app-icon
-              [icon]="'mdi:file-pdf-box'"
+              [icon]="'material-symbols-light:picture-as-pdf'"
               class="text-red-500 text-xl"
             />
             } @else {
-            <app-icon [icon]="'mdi:code-tags'" class="text-blue-500 text-xl" />
+            <app-icon [icon]="'material-symbols-light:code'" class="text-blue-500 text-xl" />
             }
           </td>
           <td>{{ file.displayName }}</td>
           <td>{{ file.folioOrden }}</td>
           <td class="text-center">
             <iw-button-item
-              iconClass="mdi:eye-outline"
+              iconClass="material-symbols-light:visibility-outline"
               lxTooltip="ver"
               tooltipPosition="top"
               [rounded]="true"
               (clicked)="viewPdf(file.url, file.displayName)"
             />
             <iw-button-item
-              [iconClass]="'mdi:upload'"
+              [iconClass]="'material-symbols-light:upload'"
               lxTooltip="descargar"
               tooltipPosition="top"
               [rounded]="true"
@@ -140,7 +140,7 @@
     </p-table>
     } @if (selectedGroupFiles().length === 0) {
     <div class="text-center p-6">
-      <app-icon [icon]="'mdi:folder-open'" class="text-6xl text-300 mb-3" />
+      <app-icon [icon]="'material-symbols-light:folder-open'" class="text-6xl text-300 mb-3" />
       <div class="text-500 text-xl font-medium">
         No se encontraron archivos en este grupo de gasto.
       </div>

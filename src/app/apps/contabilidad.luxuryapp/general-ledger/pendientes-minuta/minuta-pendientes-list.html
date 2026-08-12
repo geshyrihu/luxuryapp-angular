@@ -50,8 +50,8 @@
         <div class="flex-shrink-0">
           <il-button
             label="?? Descargar PDF"
-            iconClass="mdi:download"
-            variant="outlined"
+            iconClass="material-symbols-light:download"
+            variant="outline"
             (clicked)="onDownloadPdf()"
           />
         </div>
@@ -138,13 +138,13 @@
       <td class="no-print">
         <div class="flex">
           <iw-button-item
-            iconClass="mdi:comment"
+            iconClass="material-symbols-light:comment"
             lxTooltip="Seguimientos"
             tooltipPosition="top"
             (clicked)="onModalTodosSeguimientos(item.id)"
           />
           <iw-button-item
-            [iconClass]="'mdi:plus'"
+            [iconClass]="'material-symbols-light:add'"
             lxTooltip="Agregar seguimiento"
             tooltipPosition="top"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
@@ -178,7 +178,7 @@
         class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
-          icon="mdi:alert-circle-outline"
+          icon="material-symbols-light:error-outline"
           class="text-orange-600 text-xl"
         />
       </div>

@@ -105,7 +105,7 @@ export class EmployeeForm implements OnInit {
       // Sin restricción de rol - visible para cualquier usuario autorizado
       {
         label: "Datos principales",
-        icon: "mdi:account",
+        icon: "material-symbols-light:person",
         section: "principal",
         roles: [
           ApplicationRole.SuperUsuario,
@@ -116,7 +116,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Foto de perfil",
-        icon: "mdi:image",
+        icon: "material-symbols-light:photo",
         section: "avatar",
         roles: [
           ApplicationRole.SuperUsuario,
@@ -127,7 +127,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Datos personales",
-        icon: "mdi:card-account-details",
+        icon: "material-symbols-light:badge",
         section: "personal",
         roles: [
           ApplicationRole.SuperUsuario,
@@ -138,7 +138,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Dirección",
-        icon: "mdi:map-marker",
+        icon: "material-symbols-light:location-on",
         section: "address",
         roles: [
           ApplicationRole.SuperUsuario,
@@ -149,7 +149,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Contactos",
-        icon: "mdi:phone",
+        icon: "material-symbols-light:call",
         section: "contacts",
         roles: [
           ApplicationRole.SuperUsuario,
@@ -160,7 +160,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Datos bancarios y beneficiario",
-        icon: "mdi:credit-card",
+        icon: "material-symbols-light:credit-card",
         section: "bank-data",
         roles: [
           ApplicationRole.SuperUsuario,
@@ -171,7 +171,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Datos clinicos",
-        icon: "mdi:heart-outline",
+        icon: "material-symbols-light:favorite-outline",
         section: "clinical-data",
         roles: [
           ApplicationRole.SuperUsuario,
@@ -184,7 +184,7 @@ export class EmployeeForm implements OnInit {
       // Solo gestión interna RR.HH.
       {
         label: "Datos laborales",
-        icon: "mdi:briefcase",
+        icon: "material-symbols-light:work",
         section: "laboral",
         roles: [
           ApplicationRole.SuperUsuario,
@@ -197,7 +197,7 @@ export class EmployeeForm implements OnInit {
       // Solo quienes gestionan reclutamiento
       {
         label: "Reclutamiento",
-        icon: "mdi:format-list-bulleted",
+        icon: "material-symbols-light:format-list-bulleted",
         section: "recruitment",
         roles: [
           ApplicationRole.SuperUsuario,
@@ -210,7 +210,7 @@ export class EmployeeForm implements OnInit {
       // Solo quienes pueden ver / registrar incidencias
       {
         label: "Incidencias Administrativas",
-        icon: "mdi:alert",
+        icon: "material-symbols-light:warning",
         section: "incidents",
         roles: [
           ApplicationRole.SuperUsuario,
@@ -223,7 +223,7 @@ export class EmployeeForm implements OnInit {
       // Solo acceso túcnico / sistemas
       {
         label: "Usuario app",
-        icon: "mdi:key",
+        icon: "material-symbols-light:key",
         section: "user",
         roles: [
           ApplicationRole.SuperUsuario,

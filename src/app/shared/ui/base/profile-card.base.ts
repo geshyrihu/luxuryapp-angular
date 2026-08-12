@@ -1,17 +1,18 @@
 import { Directive, input, output } from "@angular/core";
 import { avatarBackground } from "./avatar-palette";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export interface ProfileAction {
-  icon: string;
+  icon: AppIconName;
   label: string;
   action: string;
   severity?: "primary" | "secondary" | "success" | "danger" | "warn";
 }
 
 const DEFAULT_ACTIONS: ProfileAction[] = [
-  { icon: "mdi:phone-outline", label: "Llamar", action: "call", severity: "secondary" },
-  { icon: "mdi:email-outline", label: "Email", action: "email", severity: "secondary" },
-  { icon: "mdi:calendar-plus-outline", label: "Reunión", action: "meeting", severity: "secondary" },
+  { icon: "material-symbols-light:call-outline", label: "Llamar", action: "call", severity: "secondary" },
+  { icon: "material-symbols-light:mail-outline", label: "Email", action: "email", severity: "secondary" },
+  { icon: "material-symbols-light:event-note", label: "Reunión", action: "meeting", severity: "secondary" },
 ];
 
 /**

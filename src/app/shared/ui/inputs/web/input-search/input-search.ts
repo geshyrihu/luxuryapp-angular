@@ -17,7 +17,7 @@ import { AppIcon } from "../../../shared/app-icon/app-icon";
   template: `
     <p-iconfield iconPosition="left" fluid>
       <p-inputicon>
-        <app-icon icon="mdi:magnify" />
+        <app-icon icon="material-symbols-light:search" />
       </p-inputicon>
 
       <input

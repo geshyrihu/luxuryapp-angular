@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="flex align-items-center mb-5">
       <iw-button
-        iconClass="mdi:arrow-left"
+        iconClass="material-symbols-light:arrow-back"
         [text]="true"
         severity="secondary"
         size="large"
@@ -32,7 +32,7 @@
           >
             <div class="card-header">
               <div class="flex align-items-center gap-2 px-2 text-blue-900">
-                <app-icon [icon]="'mdi:pencil'" />
+                <app-icon [icon]="'material-symbols-light:edit'" />
                 <span class="font-bold">La "Plantilla"</span>
               </div>
             </div>
@@ -51,7 +51,7 @@
           >
             <div class="card-header">
               <div class="flex align-items-center gap-2 px-2 text-green-900">
-                <app-icon [icon]="'mdi:file-pdf-box'" />
+                <app-icon [icon]="'material-symbols-light:picture-as-pdf'" />
                 <span class="font-bold">La "Instancia"</span>
               </div>
             </div>
@@ -80,7 +80,7 @@
           <div class="card" class="mb-3 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
               <app-icon
-                [icon]="'mdi:sitemap'"
+                [icon]="'material-symbols-light:account-tree'"
                 class="text-3xl text-primary mr-3 mt-1"
               />
               <div>
@@ -100,7 +100,7 @@
           <div class="card" class="mb-3 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
               <app-icon
-                [icon]="'mdi:table'"
+                [icon]="'material-symbols-light:table'"
                 class="text-3xl text-orange-500 mr-3 mt-1"
               />
               <div>
@@ -117,7 +117,7 @@
           <div class="card" class="mb-0 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
               <app-icon
-                [icon]="'mdi:paperclip'"
+                [icon]="'material-symbols-light:attach-file'"
                 class="text-3xl text-teal-500 mr-3 mt-1"
               />
               <div>
@@ -210,7 +210,7 @@
                   severity="success"
                   [rounded]="true"
                   class="w-2rem h-2rem text-lg"
-                  icon="mdi:check"
+                  icon="material-symbols-light:check"
                 />
               </div>
               <div>
@@ -296,7 +296,7 @@
       <div class="mt-4 flex justify-content-end">
         <il-button
           label="Ver Estándar Documental Completo"
-          iconClass="mdi:external-link"
+          iconClass="material-symbols-light:open-in-new"
           severity="help"
           [text]="true"
           routerLink="/admin/ui-catalog"

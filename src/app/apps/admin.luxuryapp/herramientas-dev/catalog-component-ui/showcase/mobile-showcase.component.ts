@@ -40,21 +40,21 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           style="max-width: 400px; border-radius: 8px;"
         >
           <ili-list-item>
-            <app-icon icon="mdi:account" start />
+            <app-icon icon="material-symbols-light:person" start />
             <div>
               <div class="font-bold">Perfil del Usuario</div>
               <div class="text-sm text-secondary">Ajustes de cuenta</div>
             </div>
           </ili-list-item>
           <ili-list-item>
-            <app-icon icon="mdi:bell" start />
+            <app-icon icon="material-symbols-light:notifications" start />
             <div>
               <div class="font-bold">Notificaciones</div>
               <div class="text-sm text-secondary">Control de alertas</div>
             </div>
           </ili-list-item>
           <ili-list-item [divider]="false">
-            <app-icon icon="mdi:shield" start />
+            <app-icon icon="material-symbols-light:security" start />
             <div>
               <div class="font-bold">Seguridad</div>
               <div class="text-sm text-secondary">Contraseñas y biometría</div>
@@ -90,22 +90,22 @@ export class MobileShowcaseComponent {
   navItems: BottomNavItem[] = [
     {
       id: "home",
-      icon: "mdi:home-outline",
-      activeIcon: "mdi:home",
+      icon: "material-symbols-light:home-outline",
+      activeIcon: "material-symbols-light:home",
       label: "Inicio",
     },
-    { id: "search", icon: "mdi:magnify", label: "Buscar" },
+    { id: "search", icon: "material-symbols-light:search", label: "Buscar" },
     {
       id: "notifications",
-      icon: "mdi:bell-outline",
-      activeIcon: "mdi:bell",
+      icon: "material-symbols-light:notifications-outline",
+      activeIcon: "material-symbols-light:notifications",
       label: "Alertas",
       badge: 3,
     },
     {
       id: "profile",
-      icon: "mdi:account-outline",
-      activeIcon: "mdi:account",
+      icon: "material-symbols-light:person-outline",
+      activeIcon: "material-symbols-light:person",
       label: "Perfil",
     },
   ];

@@ -33,7 +33,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           (click)="onClose()"
           aria-label="Cerrar"
         >
-          <app-icon icon="mdi:close" />
+          <app-icon icon="material-symbols-light:close" />
         </button>
       }
     </div>

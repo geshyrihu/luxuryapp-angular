@@ -24,7 +24,7 @@
       />
       <il-button
         label="Enviar"
-        iconClass="mdi:send"
+        iconClass="material-symbols-light:send"
         [loading]="loading()"
         [disabled]="!url()"
         (clicked)="send()"
@@ -87,7 +87,7 @@
                   customClass="flex-1"
                 />
                 <iw-button
-                  iconClass="mdi:close"
+                  iconClass="material-symbols-light:close"
                   severity="danger"
                   variant="text"
                   size="small"
@@ -97,7 +97,7 @@
               }
               <il-button
                 label="Agregar param"
-                iconClass="mdi:plus"
+                iconClass="material-symbols-light:add"
                 variant="text"
                 size="small"
                 (clicked)="addParam()"
@@ -133,7 +133,7 @@
                   customClass="flex-1"
                 />
                 <iw-button
-                  iconClass="mdi:close"
+                  iconClass="material-symbols-light:close"
                   severity="danger"
                   variant="text"
                   size="small"
@@ -143,7 +143,7 @@
               }
               <il-button
                 label="Agregar header"
-                iconClass="mdi:plus"
+                iconClass="material-symbols-light:add"
                 variant="text"
                 size="small"
                 (clicked)="addHeader()"
@@ -186,7 +186,7 @@
         </span>
         <span class="text-500 text-xs">{{ durationMs() }} ms</span>
         <iw-button
-          iconClass="mdi:content-copy"
+          iconClass="material-symbols-light:content-copy"
           variant="text"
           size="small"
           (clicked)="copyToClipboard(prettyResponse())"
@@ -194,7 +194,7 @@
         />
         } @if (loading()) {
         <app-icon
-          [icon]="'mdi:loading'"
+          [icon]="'material-symbols-light:progress-activity'"
           class="ds-animate-spin text-primary ml-auto"
         />
         }
@@ -254,7 +254,7 @@
       <span class="font-semibold text-sm text-700">Historial reciente</span>
       <il-button
         label="Limpiar"
-        iconClass="mdi:trash-can"
+        iconClass="material-symbols-light:delete"
         severity="danger"
         variant="text"
         size="small"

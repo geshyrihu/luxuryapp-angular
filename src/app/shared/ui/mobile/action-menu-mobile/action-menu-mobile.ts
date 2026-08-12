@@ -44,7 +44,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       (click)="openSheet()"
       aria-label="Opciones"
     >
-      <app-icon icon="mdi:dots-vertical" />
+      <app-icon icon="material-symbols-light:more-vert" />
     </button>
 
     <ng-template #sheetTpl>

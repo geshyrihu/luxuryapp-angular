@@ -23,7 +23,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       (click)="toggleState()"
     >
       <app-icon
-        [icon]="state() ? 'mdi:lock-outline' : 'mdi:lock-open-variant-outline'"
+        [icon]="state() ? 'material-symbols-light:lock-open-outline' : 'material-symbols-light:lock-open-outline'"
         slot="icon-only"
       />
     </ion-button>

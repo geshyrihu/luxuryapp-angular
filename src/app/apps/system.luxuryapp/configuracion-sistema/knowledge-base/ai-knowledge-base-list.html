@@ -51,7 +51,7 @@
       <td><code>{{ item.route }}</code></td>
       <td>
         <app-icon
-          [icon]="item.isActive ? 'mdi:check-circle' : 'mdi:close-circle'"
+          [icon]="item.isActive ? 'material-symbols-light:cancel' : 'material-symbols-light:cancel'"
           [class]="item.isActive ? 'text-green-500' : 'text-red-500'"
         />
       </td>
@@ -90,7 +90,7 @@
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="mdi:brain" class="text-xl text-primary" />
+        <app-icon icon="material-symbols-light:psychology" class="text-xl text-primary" />
       </div>
       <h2 class="font-bold">{{ item.topic }}</h2>
       <p class="text-sm">

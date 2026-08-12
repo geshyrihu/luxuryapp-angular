@@ -20,7 +20,7 @@ import { confirmAction } from "../shared/confirm";
       [disabled]="disabled() || loading()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="iconClass() || 'mdi:email-outline'" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:mail-outline'" />
       <span>{{ label() || "Enviar correo" }}</span>
     </button>
   `,

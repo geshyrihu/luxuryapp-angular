@@ -106,7 +106,7 @@
         <div class="budget-nav-divider"></div>
 
         <!-- Tabs de navegación usando p-selectButton -->
-        <div class="flex align-items-center" >
+        <div class="flex align-items-center">
           <custom-input-select-button-signal
             [options]="[
               { label: 'Presupuesto', value: 'presupuesto' },
@@ -133,7 +133,7 @@
         <div class="flex align-items-center gap-1" role="toolbar">
           @if (activeTabValue() === 'presupuesto') {
           <iw-button
-            iconClass="mdi:cog"
+            iconClass="material-symbols-light:settings"
             [outlined]="true"
             severity="secondary"
             lxTooltip="Gestionar Reglas de Cuentas"
@@ -142,45 +142,45 @@
           />
           } @if (sharedS.allMonths()) {
           <il-button
-            iconClass="mdi:close"
+            iconClass="material-symbols-light:close"
             label="Ninguno"
             ngbTooltip="Ningún mes"
             (clicked)="sharedS.ocultarTodosLosMeses()"
-            variant="outlined"
+            variant="outline"
             severity="info"
           />
           } @else {
           <il-button
-            iconClass="mdi:check"
+            iconClass="material-symbols-light:check"
             label="Todos"
             ngbTooltip="Todos los meses"
             (clicked)="sharedS.mostrarTodosLosMeses()"
-            variant="outlined"
+            variant="outline"
             severity="info"
           />
           } @if (activeTabValue() === 'presupuesto') {
           <il-button
-            iconClass="mdi:magnify"
+            iconClass="material-symbols-light:search"
             label="Full"
             ngbTooltip="Ver todo!!"
             (clicked)="onApelFull()"
-            variant="outlined"
+            variant="outline"
             severity="info"
           />
           <il-button
-            iconClass="mdi:sparkles"
+            iconClass="material-symbols-light:auto-awesome-motion"
             label="IA"
             ngbTooltip="Analizar con IA"
-            variant="outlined"
+            variant="outline"
             severity="help"
             (clicked)="analyzeFinancialData()"
           />
           } @if (sharedS.budgetData()) {
           <il-button
-            iconClass="mdi:microsoft-excel"
+            iconClass="material-symbols-light:table-view"
             label="Excel"
             ngbTooltip="Descargar reporte Excel con indicadores"
-            variant="outlined"
+            variant="outline"
             severity="success"
             (clicked)="exportExcel()"
           />
@@ -192,7 +192,11 @@
 
     <!-- Mensaje de error -->
     @if (sharedS.errorMensaje()) {
-    <lx-message severity="error" [text]="sharedS.errorMensaje()!" class="w-full" />
+    <lx-message
+      severity="error"
+      [text]="sharedS.errorMensaje()!"
+      class="w-full"
+    />
     }
 
     <!-- Contenido del tab activo -->
@@ -209,9 +213,7 @@
        VISTA MÓVIL
        ========================= -->
   <div class="block md:hidden">
-    <div
-      class="flex align-items-center gap-2 p-2 surface-card rounded mb-2"
-    >
+    <div class="flex align-items-center gap-2 p-2 surface-card rounded mb-2">
       <custom-input-select-signal
         id="yearSelectorMobile"
         label="Año Fiscal"

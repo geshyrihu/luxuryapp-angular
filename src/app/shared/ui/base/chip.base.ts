@@ -1,4 +1,5 @@
 import { Directive, input, output } from "@angular/core";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 /**
  * Base compartida de Chip (API + lógica de remoción/click).
@@ -13,7 +14,7 @@ import { Directive, input, output } from "@angular/core";
 export abstract class ChipBase {
   label = input<string>("");
   /** Nombre de icono `app-icon` (Iconify) opcional al inicio del chip. */
-  icon = input<string>("");
+  icon = input<AppIconName>();
   /** URL de imagen opcional (avatar) al inicio del chip. */
   image = input<string>("");
   removable = input<boolean>(false);

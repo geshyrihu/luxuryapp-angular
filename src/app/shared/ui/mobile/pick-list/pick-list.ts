@@ -21,7 +21,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 (click)="moveToTarget($index)"
                 title="Mover a destino"
               >
-                <app-icon icon="mdi:chevron-right" />
+                <app-icon icon="material-symbols-light:chevron-right" />
               </button>
             </div>
           }
@@ -40,7 +40,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 (click)="moveToSource($index)"
                 title="Mover a origen"
               >
-                <app-icon icon="mdi:chevron-left" />
+                <app-icon icon="material-symbols-light:chevron-left" />
               </button>
               <span class="ili-pick-list-label">{{
                 item.label || item.name || item

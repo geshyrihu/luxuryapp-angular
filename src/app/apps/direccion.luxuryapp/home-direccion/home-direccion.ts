@@ -15,12 +15,12 @@ import { PersonalAusenteCard } from "src/app/core/layout/direccion-view/componen
 import { ReclutamientoCard } from "src/app/core/layout/direccion-view/components/reclutamiento-card/reclutamiento-card";
 import { TareasLegalCard } from "src/app/core/layout/direccion-view/components/tareas-legal-card/tareas-legal-card";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface AreaDireccion {
   key: string;
   label: string;
-  iconPi: string;
-  iconIon: string;
+  iconPi: AppIconName;
   color: string;
   metricas: string[];
 }
@@ -43,56 +43,49 @@ export class HomeDireccion {
     {
       key: "juntas-comite",
       label: "Juntas con Comite",
-      iconPi: "mdi:comment-multiple",
-      iconIon: "chatbubbles-outline",
+      iconPi: "material-symbols-light:forum",
       color: "#0ea5e9",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
     },
     {
       key: "contabilidad",
       label: "Contabilidad",
-      iconPi: "mdi:calculator",
-      iconIon: "calculator-outline",
+      iconPi: "material-symbols-light:calculate",
       color: "#22c55e",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
     },
     {
       key: "legal",
       label: "Legal",
-      iconPi: "mdi:briefcase",
-      iconIon: "briefcase-outline",
+      iconPi: "material-symbols-light:work",
       color: "#3b82f6",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
     },
     {
       key: "recursos-humanos",
       label: "Recursos Humanos",
-      iconPi: "mdi:account-group",
-      iconIon: "people-outline",
+      iconPi: "material-symbols-light:group",
       color: "#f97316",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
     },
     {
       key: "reclutamiento",
       label: "Reclutamiento",
-      iconPi: "mdi:account-plus",
-      iconIon: "person-add-outline",
+      iconPi: "material-symbols-light:person-add",
       color: "#a855f7",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
     },
     {
       key: "operaciones",
       label: "Operaciones",
-      iconPi: "mdi:cog",
-      iconIon: "settings-outline",
+      iconPi: "material-symbols-light:settings",
       color: "#ef4444",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
     },
     {
       key: "mantenimiento",
       label: "Mantenimiento",
-      iconPi: "mdi:wrench",
-      iconIon: "construct-outline",
+      iconPi: "material-symbols-light:build",
       color: "#8b5cf6",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
     },

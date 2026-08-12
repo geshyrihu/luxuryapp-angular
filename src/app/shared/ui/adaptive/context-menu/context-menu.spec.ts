@@ -6,8 +6,8 @@ describe("LxContextMenu (render)", () => {
     TestBed.configureTestingModule({ imports: [LxContextMenu] });
     const fixture = TestBed.createComponent(LxContextMenu);
     fixture.componentRef.setInput("items", [
-      { label: "Copiar", icon: "mdi:content-copy" },
-      { label: "Eliminar", icon: "mdi:delete" },
+      { label: "Copiar", icon: "material-symbols-light:content-copy" },
+      { label: "Eliminar", icon: "material-symbols-light:delete" },
     ]);
     fixture.detectChanges();
     expect(fixture.componentInstance).toBeTruthy();

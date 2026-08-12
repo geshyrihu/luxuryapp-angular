@@ -29,7 +29,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             >
               <app-icon
                 [icon]="
-                  isExpanded(node) ? 'mdi:chevron-down' : 'mdi:chevron-right'
+                  isExpanded(node) ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'
                 "
               />
             </button>
@@ -45,10 +45,10 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               <app-icon
                 [icon]="
                   isChecked(node)
-                    ? 'mdi:checkbox-marked'
+                    ? 'material-symbols-light:check-box'
                     : isPartialChecked(node)
-                      ? 'mdi:minus-box'
-                      : 'mdi:checkbox-blank-outline'
+                      ? 'material-symbols-light:remove'
+                      : 'material-symbols-light:check-box-outline-blank'
                 "
               />
             </button>

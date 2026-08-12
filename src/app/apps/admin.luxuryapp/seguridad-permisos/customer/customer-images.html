@@ -10,14 +10,14 @@
   >
     @if (uploading()) {
     <app-icon
-      [icon]="'mdi:loading'"
+      [icon]="'material-symbols-light:progress-activity'"
       class="ds-animate-spin text-primary mb-2"
       
     />
     <p class="text-700 font-medium m-0">Subiendo imágenes...</p>
     } @else {
     <app-icon
-      [icon]="'mdi:cloud-upload'"
+      [icon]="'material-symbols-light:cloud-upload'"
       class="mb-2"
       
     />
@@ -52,7 +52,7 @@
   @if (loading()) {
   <div class="flex justify-content-center align-items-center py-8">
     <app-icon
-      [icon]="'mdi:loading'"
+      [icon]="'material-symbols-light:progress-activity'"
       class="ds-animate-spin text-primary"
       
     />
@@ -73,7 +73,7 @@
         />
         <div class="absolute top-0 right-0 p-2">
           <iw-button
-            iconClass="mdi:delete"
+            iconClass="material-symbols-light:delete"
             [rounded]="true"
             variant="text"
             severity="danger"
@@ -90,7 +90,7 @@
     class="flex flex-column align-items-center justify-content-center py-6 text-center"
   >
     <app-icon
-      [icon]="'mdi:image-multiple'"
+      [icon]="'material-symbols-light:photo'"
       class="text-300 mb-2"
       
     />

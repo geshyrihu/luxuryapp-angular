@@ -86,7 +86,7 @@
             >
               {{ item.open + item.inProgress + item.reopened }}
             </span>
-            <app-icon [icon]="'mdi:inbox'" class="text-500" />
+            <app-icon [icon]="'material-symbols-light:move-to-inbox'" class="text-500" />
           </div>
         </td>
         <td class="no-print">
@@ -94,7 +94,7 @@
             @if (item.customerId === customerIdS.customerId()) {
             <iw-button-item
               (clicked)="onModalParticipants(item)"
-              iconClass="mdi:account-group"
+              iconClass="material-symbols-light:group"
               lxTooltip="Integrantes"
               tooltipPosition="top"
               variant="text"
@@ -102,7 +102,7 @@
             } @if (hasSuperUsuario()) {
             <iw-button-item
               (clicked)="SendReportPendingTicketGroupAsync(item)"
-              iconClass="mdi:email-outline"
+              iconClass="material-symbols-light:mail-outline"
               lxTooltip="Reporte"
               tooltipPosition="top"
               variant="text"
@@ -112,7 +112,7 @@
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
             <iw-button
-              [iconClass]="item.active ? 'mdi:lock' : 'mdi:lock-open'"
+              [iconClass]="item.active ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
               (click)="onToggleStatus(item.id)"
               [ngbTooltip]="item.active ? 'Bloquear' : 'Desbloquear'"
               variant="text"
@@ -181,7 +181,7 @@
             <span class="font-semibold text-sm">
               {{ item.open + item.inProgress + item.reopened }}
             </span>
-            <app-icon icon="mdi:forum-outline" class="text-base" />
+            <app-icon icon="material-symbols-light:forum-outline" class="text-base" />
           </div>
 
           <ili-action-menu slot="end">

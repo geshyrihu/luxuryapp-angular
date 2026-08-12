@@ -1,5 +1,4 @@
 import { CandidateStatus } from "src/app/core/enums/candidate-status";
-import { FuenteReclutamiento } from "src/app/core/enums/fuente-reclutamiento";
 import {
   CandidateApplicationListItem,
   CandidateStageHistoryItem,
@@ -22,18 +21,41 @@ export interface CandidateAddOrEdit {
   email?: string;
   age?: number;
   currentAddress?: string;
-  livesNearWorkplace?: boolean;
   availability?: string;
   salaryExpectation?: number;
   experienceSummary?: string;
-  recruitmentSource?: FuenteReclutamiento;
   generalComments?: string;
 }
 
 export interface CandidateDetail extends CandidateAddOrEdit {
   id: string;
   fullName: string;
+  cvFileName: string;
+  cvFileUrl: string;
   status: CandidateStatus;
   applications: CandidateApplicationListItem[];
   stageHistory: CandidateStageHistoryItem[];
+  workExperiences?: CandidateWorkExperienceItem[];
+}
+
+export interface CandidateWorkExperienceItem {
+  id: string;
+  candidateId: string;
+  companyName: string;
+  jobPosition: string;
+  startDate: string;
+  endDate?: string;
+  monthlyNetSalary?: number;
+  departureReason?: string;
+}
+
+export interface CandidateWorkExperienceAddOrEdit {
+  id?: string;
+  candidateId?: string;
+  companyName: string;
+  jobPosition: string;
+  startDate: string;
+  endDate?: string | null;
+  monthlyNetSalary?: number | null;
+  departureReason?: string | null;
 }

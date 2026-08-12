@@ -1,3 +1,5 @@
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+
 export type ProposedRole =
   | "SuperUsuario"
   | "Administrador"
@@ -19,7 +21,7 @@ export interface CobranzaCard {
   title: string;
   description: string;
   route: string;
-  icon: string;
+  icon: AppIconName;
   bgColor: string;
   color?: string;
   roles: ProposedRole[];
@@ -32,7 +34,7 @@ export interface CobranzaCard {
 
 export interface CobranzaGroup {
   label: string;
-  icon: string;
+  icon: AppIconName;
   description: string;
   cards: CobranzaCard[];
 }
@@ -49,6 +51,6 @@ export interface HeroMetric {
   label: string;
   value: string;
   detail: string;
-  icon: string;
+  icon: AppIconName;
   tone: string;
 }

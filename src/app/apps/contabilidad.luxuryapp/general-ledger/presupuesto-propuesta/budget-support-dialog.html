@@ -49,7 +49,7 @@
           <lx-tag value="{{ file.name }}" severity="info" />
           }
           <app-icon
-            [icon]="'mdi:close-circle'"
+            [icon]="'material-symbols-light:cancel'"
             class="text-danger text-xl cursor-pointer"
             (click)="removeFile()"
             lxTooltip="Limpiar selección"
@@ -63,7 +63,7 @@
           [label]="budgetProposalItem()?.id ? 'Actualizar Soporte' : 'Agregar Soporte'"
           [loading]="loading()"
           [disabled]="loading()"
-          iconClass="mdi:content-save"
+          iconClass="material-symbols-light:save"
           severity="primary"
         />
       </div>
@@ -86,19 +86,19 @@
     <ng-template let-file #item>
       <div class="flex justify-content-between align-items-center w-full py-1">
         <div class="flex align-items-center gap-2 overflow-hidden">
-          <app-icon [icon]="'mdi:file-pdf-box'" class="text-danger text-xl" />
+          <app-icon [icon]="'material-symbols-light:picture-as-pdf'" class="text-danger text-xl" />
           <span class="text-sm font-medium truncate">{{ file.fileName }}</span>
         </div>
         <div class="flex gap-2">
           <il-button
-            iconClass="mdi:eye-outline"
+            iconClass="material-symbols-light:visibility-outline"
             (clicked)="viewPdf(file.fileUrl, file.fileName)"
             label="Ver"
             variant="text"
             severity="info"
           />
           <il-button
-            iconClass="mdi:delete"
+            iconClass="material-symbols-light:delete"
             (clicked)="onDeleteFile(file.id)"
             label="Eliminar"
             variant="text"
@@ -111,7 +111,7 @@
 </lx-card>
 } @else if (budgetProposalItem()) {
 <div class="surface-50 rounded p-4 text-center mt-3">
-  <app-icon [icon]="'mdi:information'" class="text-4xl text-info mb-2" />
+  <app-icon [icon]="'material-symbols-light:info'" class="text-4xl text-info mb-2" />
   <p class="text-500 italic">No hay archivos adjuntos para esta partida.</p>
 </div>
 } }

@@ -18,7 +18,7 @@
     <lx-message [severity]="isLocked() ? 'warn' : 'info'" class="mt-1 p-0 w-full">{{ oc.lockReason }}</lx-message>
 
     @if (oc.folioSolicitudCompra && !oc.solicitudCompraId) {
-    <lx-message severity="warn" icon="mdi:alert" class="mt-2 p-0 w-full"><div class="flex align-items-center">
+    <lx-message severity="warn" icon="material-symbols-light:warning" class="mt-2 p-0 w-full"><div class="flex align-items-center">
         <span
           >Esta orden tiene un folio de solicitud escrito
           ({{oc.folioSolicitudCompra}}) pero no estó vinculada
@@ -90,7 +90,7 @@
 <div class="flex justify-content-end mb-2">
   <il-button
     label="Administrar Facturas"
-    iconClass="mdi:cog"
+    iconClass="material-symbols-light:settings"
     severity="secondary"
     size="small"
     (clicked)="onManageInvoices()"
@@ -181,7 +181,7 @@
 <div class="flex flex-column">
         @if (solicitudCompraId() > 0) {
         <il-button-item
-          iconClass="mdi:dollar"
+          iconClass="material-symbols-light:attach-money"
           label="Cuadro Comparativo"
           [routerLink]="['//purchases/cuadro-comparativo/', solicitudCompraId()]"
           variant="text"
@@ -189,7 +189,7 @@
         />
         } @if (isAuthorized()) {
         <il-button-item
-          iconClass="mdi:cart"
+          iconClass="material-symbols-light:shopping-cart"
           label="Orden de Compra"
           (click)="onDownloadOrdenCompraPdf()"
           variant="text"
@@ -197,7 +197,7 @@
         />
 
         <il-button-item
-          iconClass="mdi:wallet"
+          iconClass="material-symbols-light:wallet"
           label="Solicitud de Pago"
           (click)="onDownloadSolicitudPagoPdf()"
           variant="text"
@@ -240,7 +240,7 @@
             class="pointer ml-1 text-primary font-bold"
           >
             AGREGAR
-            <app-icon [icon]="'mdi:plus'" class="icon ml-1" />
+            <app-icon [icon]="'material-symbols-light:add'" class="icon ml-1" />
           </span>
           }
         </div>

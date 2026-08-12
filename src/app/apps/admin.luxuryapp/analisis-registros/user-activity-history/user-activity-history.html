@@ -74,7 +74,7 @@
               >
                 <il-button
                   label="Buscar"
-                  iconClass="mdi:magnify"
+                  iconClass="material-symbols-light:search"
                   (clicked)="onLoadData(true)"
                   [disabled]="isSearchDisabled"
                 />
@@ -161,7 +161,7 @@
           </div>
 
           <p class="text-medium text-500 m-0 text-sm mb-1">
-            <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" /> {{
+            <app-icon [icon]="'material-symbols-light:schedule'" class="mr-1 text-xs" /> {{
             item.timestamp | date: "dd/MM/yyyy h:mm a" }}
           </p>
 

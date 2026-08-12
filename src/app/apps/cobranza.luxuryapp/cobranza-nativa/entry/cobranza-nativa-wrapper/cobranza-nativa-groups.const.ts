@@ -20,7 +20,7 @@ const processNotificationsPath = pathOf(
 export const COBRANZA_GROUPS: CobranzaGroup[] = [
   {
     label: "Core Nativo - Base Maestra",
-    icon: "mdi:domain",
+    icon: "material-symbols-light:domain",
     description:
       "Catalogos y reglas base para definir quien paga, que se cobra y bajo que politicas opera el modulo.",
     cards: [
@@ -29,7 +29,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Capacidad en transicion: el catalogo de unidades sigue siendo dependencia externa mientras se define feature propia o adaptador formal.",
         route: "/cobranza-nativa/properties",
-        icon: "mdi:home",
+        icon: "material-symbols-light:home",
         bgColor: "#dbeafe",
         pending: true,
         roles: ["Administrador"],
@@ -71,7 +71,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Registro de propietarios, copropietarios, residentes e inquilinos. Aqui se define el responsable financiero activo.",
         route: "/cobranza-nativa/members",
-        icon: "mdi:card-account-details",
+        icon: "material-symbols-light:badge",
         bgColor: "#ede9fe",
         roles: ["Administrador"],
         actions: [
@@ -128,7 +128,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Catalogo central de conceptos financieros que define nombre, codigo y cuenta contable para cargos manuales, recurrentes y automaticos.",
         route: "/cobranza-nativa/charge-types",
-        icon: "mdi:shape-outline",
+        icon: "material-symbols-light:category",
         bgColor: "#d1fae5",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -171,7 +171,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Configuracion de cuotas recurrentes, mantenimiento y cargos extraordinarios con monto fijo o calculo por indiviso.",
         route: "/cobranza-nativa/charge-templates",
-        icon: "mdi:file-edit",
+        icon: "material-symbols-light:note-alt",
         bgColor: "#dcfce7",
         roles: ["Administrador"],
         actions: [
@@ -210,7 +210,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Matriz que muestra que cuota aplica a cada propiedad y en que periodos esta vigente.",
         route: "/cobranza-nativa/charge-template-coverage",
-        icon: "mdi:table",
+        icon: "material-symbols-light:table",
         bgColor: "#e0f2fe",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -233,7 +233,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Reglas de recargos por atraso: dias de gracia, tasa, topes y comportamiento de calculo.",
         route: "/cobranza-nativa/late-fee-policies",
-        icon: "mdi:percent",
+        icon: "material-symbols-light:percent",
         bgColor: "#fed7aa",
         roles: ["Administrador"],
         actions: [
@@ -273,7 +273,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Core Nativo - Operacion y Cobro",
-    icon: "mdi:cash-multiple",
+    icon: "material-symbols-light:payments",
     description:
       "Pantallas de trabajo diario para emitir cargos, registrar pagos y consultar el saldo vivo del condominio.",
     cards: [
@@ -282,7 +282,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "KPIs operativos del periodo: porcentaje de cobro, cartera vencida, ingresos y top deudores.",
         route: "/cobranza-nativa/dashboard",
-        icon: "mdi:chart-bar",
+        icon: "material-symbols-light:bar-chart",
         bgColor: "#ccfbf1",
         roles: ["Administrador", "Cobranza", "Contador"],
         actions: [
@@ -303,7 +303,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Gestion individual de cargos emitidos a propiedades. Aqui nacen cargos manuales y se administran cargos activos.",
         route: "/cobranza-nativa/charges",
-        icon: "mdi:cash-plus",
+        icon: "material-symbols-light:add-card",
         bgColor: "#bbf7d0",
         roles: ["Administrador", "Cobranza"],
         actions: [
@@ -359,7 +359,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Captura o actualizacion de deuda historica para arrancar el modulo con una posicion inicial correcta.",
         route: "/cobranza-nativa/initial-balance",
-        icon: "mdi:wallet",
+        icon: "material-symbols-light:wallet",
         bgColor: "#fef9c3",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -388,7 +388,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Captura de pagos con aplicacion automatica FIFO a cargos pendientes y manejo de cancelaciones.",
         route: "/cobranza-nativa/payments",
-        icon: "mdi:credit-card",
+        icon: "material-symbols-light:credit-card",
         bgColor: "#a7f3d0",
         roles: ["Administrador", "Cobranza"],
         actions: [
@@ -438,7 +438,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Kardex ledger-based por propiedad con saldo acumulado, aging, PDF y envio manual por email.",
         route: "/cobranza-nativa/estado-cuenta",
-        icon: "mdi:file-document-outline",
+        icon: "material-symbols-light:description",
         bgColor: "#cffafe",
         roles: ["Administrador", "Cobranza", "Contador"],
         actions: [
@@ -468,7 +468,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Core Nativo - Control Financiero",
-    icon: "mdi:shield-check",
+    icon: "material-symbols-light:verified",
     description:
       "Capas de control, conciliacion y trazabilidad para validar integridad operativa y contable.",
     cards: [
@@ -477,7 +477,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Registro inmutable de eventos financieros. Es la fuente de verdad para saldo, trazabilidad y auditoria.",
         route: "/cobranza-nativa/ledger",
-        icon: "mdi:format-list-bulleted",
+        icon: "material-symbols-light:format-list-bulleted",
         bgColor: "#e0e7ff",
         roles: ["Contador", "SuperUsuario"],
         actions: [
@@ -532,7 +532,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Bolsa de pagos no aplicados y motor para reconciliarlos contra cargos pendientes.",
         route: "/cobranza-nativa/reconciliation",
-        icon: "mdi:sync",
+        icon: "material-symbols-light:sync",
         bgColor: "#fff7ed",
         roles: ["Contador"],
         actions: [
@@ -557,7 +557,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Bandeja maker-checker para operaciones sensibles que requieren un segundo revisor.",
         route: "/cobranza-nativa/approvals",
-        icon: "mdi:checkbox-marked",
+        icon: "material-symbols-light:check-box",
         bgColor: "#f3e8ff",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -598,7 +598,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Control mensual para bloquear movimientos en periodos cerrados y reabrirlos solo por flujo autorizado.",
         route: "/cobranza-nativa/period-closures",
-        icon: "mdi:lock",
+        icon: "material-symbols-light:lock",
         bgColor: "#fce7f3",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -655,7 +655,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Bitacora operacional para saber quien hizo que, cuando y sobre que propiedad o proceso.",
         route: "/cobranza-nativa/audit",
-        icon: "mdi:eye-outline",
+        icon: "material-symbols-light:visibility-outline",
         bgColor: "#f5f3ff",
         roles: ["SuperUsuario", "Contador"],
         actions: [
@@ -689,7 +689,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Cobranza Extendida",
-    icon: "mdi:briefcase-outline",
+    icon: "material-symbols-light:work-outline",
     description:
       "Procesos complementarios que salen de la cobranza base: multas, expedientes, reglamento y CFDI.",
     cards: [
@@ -698,7 +698,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Expedientes de gestion y cobranza legal para propiedades con morosidad grave o seguimiento especial.",
         route: "/cobranza-nativa/collection-cases",
-        icon: "mdi:briefcase",
+        icon: "material-symbols-light:work",
         bgColor: "#fee2e2",
         roles: ["Administrador", "Cobranza", "Legal"],
         actions: [
@@ -742,7 +742,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Catalogo de articulos y montos base para multas y expedientes normativos.",
         route: "/cobranza-nativa/regulation-articles",
-        icon: "mdi:book",
+        icon: "material-symbols-light:book",
         bgColor: "#ede9fe",
         roles: ["Administrador"],
         actions: [
@@ -786,7 +786,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Expedientes de infraccion con evidencia y capacidad de generar cargo financiero asociado.",
         route: "/cobranza-nativa/property-fines",
-        icon: "mdi:ban",
+        icon: "material-symbols-light:block",
         bgColor: "#fce7f3",
         roles: ["Administrador"],
         actions: [
@@ -846,7 +846,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Emision y cancelacion de CFDI asociados a cargos, con almacenamiento de XML y PDF.",
         route: "/cobranza-nativa/invoices",
-        icon: "mdi:file-pdf-box",
+        icon: "material-symbols-light:picture-as-pdf",
         bgColor: "#fef9c3",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -880,7 +880,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Automatizacion",
-    icon: "mdi:robot-outline",
+    icon: "material-symbols-light:smart-toy-outline",
     description:
       "Una sola puerta para jobs y procesos programados del modulo, en lugar de multiples cards que duplican la misma pantalla.",
     cards: [
@@ -889,7 +889,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Centro operativo para disparar y monitorear generacion de cargos, recargos, escalamiento y auto-conciliacion.",
         route: "/cobranza-nativa/automated-services",
-        icon: "mdi:cog-play",
+        icon: "material-symbols-light:settings",
         bgColor: "#dcfce7",
         roles: ["Administrador"],
         actions: [
@@ -947,7 +947,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Onboarding del Modulo",
-    icon: "mdi:sitemap",
+    icon: "material-symbols-light:badge",
     description:
       "Material de orientacion para UI, negocio y QA. Estas pantallas explican el bounded context y como se conecta el flujo del modulo.",
     cards: [
@@ -956,7 +956,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Vista narrativa para entender fases, entidades y reglas del modulo de extremo a extremo.",
         route: "/cobranza-nativa/system-overview",
-        icon: "mdi:book-open-page-variant",
+        icon: "material-symbols-light:menu-book",
         bgColor: "#e0f2fe",
         roles: ["Administrador", "Cobranza", "Contador", "SuperUsuario"],
         actions: [
@@ -970,7 +970,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Diagrama visual para ver entradas maestras, eventos operativos, controles y salidas del sistema.",
         route: "/cobranza-nativa/flow-map",
-        icon: "mdi:transit-connection-variant",
+        icon: "material-symbols-light:route",
         bgColor: "#cffafe",
         roles: ["Administrador", "Cobranza", "Contador", "SuperUsuario"],
         actions: [

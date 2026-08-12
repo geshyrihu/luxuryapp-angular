@@ -8,7 +8,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
   // -------------------------------------------------------------
   {
     label: "Contabilidad General",
-    icon: "mdi:chart-bar",
+    icon: "material-symbols-light:bar-chart",
     roles: [
       ApplicationRole.Contador,
       ApplicationRole.SuperUsuario,
@@ -22,7 +22,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         title: "Catálogo Contable",
         description: "Gestión de cuentas contables y catálogo de cuentas COI.",
         route: "/contabilidad/accounting-catalog",
-        icon: "mdi:book",
+        icon: "material-symbols-light:book",
         color: "#1e40af",
         bgColor: "#dbeafe",
         roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
@@ -32,7 +32,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         description:
           "Consulta pendientes por concepto de cobranza Haus desde Aspel COI.",
         route: "/contabilidad/aspel-cobranza",
-        icon: "mdi:wallet",
+        icon: "material-symbols-light:wallet",
         color: "#0f766e",
         bgColor: "#ccfbf1",
         roles: [
@@ -49,7 +49,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         title: "Reporte General de envío Edos. Financieros",
         description: "Configuración de envío de reportes a financieros.",
         route: "/contabilidad/financial-report-sending",
-        icon: "mdi:email-outline",
+        icon: "material-symbols-light:mail-outline",
         color: "#0284c7",
         bgColor: "#e0f2fe",
         roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
@@ -58,7 +58,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         title: "Envío Edos. Financieros",
         description: "Configuración de envío de reportes a financieros.",
         route: "/contabilidad/financial-statements",
-        icon: "mdi:email-outline",
+        icon: "material-symbols-light:mail-outline",
         color: "#0284c7",
         bgColor: "#e0f2fe",
         roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
@@ -67,7 +67,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         title: "Pendientes de Minutas",
         description: "Seguimiento a pendientes de juntas y minutas.",
         route: "/contabilidad/minutes-pendings",
-        icon: "mdi:history",
+        icon: "material-symbols-light:history",
         color: "#92400e",
         bgColor: "#fef3c7",
         roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
@@ -76,7 +76,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         title: "Estados Financieros Online",
         description: "Reportes y estados financieros.",
         route: "/contabilidad/financial-statements-reports",
-        icon: "mdi:chart-line",
+        icon: "material-symbols-light:monitoring",
         color: "#0891b2",
         bgColor: "#cffafe",
         roles: [
@@ -92,7 +92,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         description:
           "Configuración y visor de reportes financieros personalizados.",
         route: "/contabilidad/reportes",
-        icon: "mdi:cog",
+        icon: "material-symbols-light:settings",
         color: "#7c3aed",
         bgColor: "#f5f3ff",
         roles: [ApplicationRole.SuperUsuario],
@@ -102,7 +102,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         description:
           "Gestión y visualización de presentaciones para juntas de comité.",
         route: "/committee-meetings/presentations-contador",
-        icon: "mdi:presentation",
+        icon: "material-symbols-light:co-present",
         color: "#c026d3",
         bgColor: "#fae8ff",
         roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
@@ -114,7 +114,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
   // -------------------------------------------------------------
   {
     label: "Espejo Contabilidad Presupuestal",
-    icon: "mdi:chart-bar",
+    icon: "material-symbols-light:bar-chart",
     roles: [
       ApplicationRole.Contador,
       ApplicationRole.SuperUsuario,
@@ -128,7 +128,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         title: "Propuesta Presupuesto Nuevo",
         description: "Elaboración y gestión de propuestas presupuestales.",
         route: "/contabilidad/budget-proposal",
-        icon: "mdi:file-edit",
+        icon: "material-symbols-light:note-alt",
         color: "#3730a3",
         bgColor: "#e0e7ff",
         roles: [
@@ -143,7 +143,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         title: "Presupuesto Espejo Aspel",
         description: "Ejercicio fiscal y presupuesto en Aspel.",
         route: "/contabilidad/budget",
-        icon: "mdi:briefcase",
+        icon: "material-symbols-light:work",
         color: "#1e3a8a",
         bgColor: "#dbeafe",
         roles: [
@@ -158,7 +158,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         title: "Cobranza Online",
         description: "Gestión y seguimiento de cuentas por cobrar.",
         route: "/cobranza/aspel-online",
-        icon: "mdi:wallet",
+        icon: "material-symbols-light:wallet",
         color: "#047857",
         bgColor: "#d1fae5",
         roles: [
@@ -175,7 +175,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         description:
           "Catalogo completo de cuentas Aspel con cargos, abonos y presupuesto mensual por grupo.",
         route: "/contabilidad/espejo-aspel-full",
-        icon: "mdi:table",
+        icon: "material-symbols-light:table",
         color: "#0f172a",
         bgColor: "#f1f5f9",
         roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
@@ -185,7 +185,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         description:
           "Comparativa estructural de cuentas contables entre todos los customers activos con mapeo Aspel.",
         route: "/contabilidad/autitoria-cuentas-aspel",
-        icon: "mdi:sitemap",
+        icon: "material-symbols-light:account-tree",
         color: "#7c2d12",
         bgColor: "#ffedd5",
         roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
@@ -198,7 +198,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
   // -------------------------------------------------------------
   {
     label: "Cobranza",
-    icon: "mdi:wallet",
+    icon: "material-symbols-light:wallet",
     roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
     cards: [
       {
@@ -206,7 +206,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         description:
           "Registro de cuotas vigentes y plantillas de cargos recurrentes.",
         route: ROUTES.COBRANZA_NATIVA.COBERTURA_PLANTILLA.join("/"),
-        icon: "mdi:pencil-box-multiple",
+        icon: "material-symbols-light:edit-note",
         color: "#15803d",
         bgColor: "#dcfce7",
         roles: [

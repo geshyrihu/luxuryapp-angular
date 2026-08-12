@@ -55,6 +55,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import Swal from "sweetalert2";
 import ProjectedExpensesList from "../espejo-aspel/projected-expenses-list";
 import { PurchaseHistory } from "../presupuesto-web-aspel/purchase-history";
@@ -287,10 +288,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   // --------------------------------------------------------------------------------
 
   // Propiedades computadas para los botones de visibilidad de columnas
-  get baseBudgetMonthlyButtonIcon(): string {
+  get baseBudgetMonthlyButtonIcon(): AppIconName {
     return this.showBaseBudgetMonthlyColumn()
-      ? "mdi:eye-outline"
-      : "mdi:eye-off-outline";
+      ? "material-symbols-light:visibility-outline"
+      : "material-symbols-light:visibility-off";
   }
   get baseBudgetMonthlyButtonLabel(): string {
     return this.showBaseBudgetMonthlyColumn()
@@ -298,10 +299,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       : `Mostrar Mensual ${this.baseBudgetYear}`;
   }
 
-  get baseBudgetAnnualButtonIcon(): string {
+  get baseBudgetAnnualButtonIcon(): AppIconName {
     return this.showBaseBudgetAnnualColumn()
-      ? "mdi:eye-outline"
-      : "mdi:eye-off-outline";
+      ? "material-symbols-light:visibility-outline"
+      : "material-symbols-light:visibility-off";
   }
   get baseBudgetAnnualButtonLabel(): string {
     return this.showBaseBudgetAnnualColumn()
@@ -309,10 +310,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       : `Mostrar Anual ${this.baseBudgetYear}`;
   }
 
-  get fiscalYearAnnualButtonIcon(): string {
+  get fiscalYearAnnualButtonIcon(): AppIconName {
     return this.showFiscalYearAnnualColumn()
-      ? "mdi:eye-outline"
-      : "mdi:eye-off-outline";
+      ? "material-symbols-light:visibility-outline"
+      : "material-symbols-light:visibility-off";
   }
   get fiscalYearAnnualButtonLabel(): string {
     return this.showFiscalYearAnnualColumn()
@@ -320,10 +321,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       : `Mostrar Anual ${this.fiscalYear}`;
   }
 
-  get projectedExpensesButtonIcon(): string {
+  get projectedExpensesButtonIcon(): AppIconName {
     return this.showProjectedExpenses()
-      ? "mdi:eye-outline"
-      : "mdi:eye-off-outline";
+      ? "material-symbols-light:visibility-outline"
+      : "material-symbols-light:visibility-off";
   }
   get projectedExpensesButtonLabel(): string {
     return this.showProjectedExpenses()

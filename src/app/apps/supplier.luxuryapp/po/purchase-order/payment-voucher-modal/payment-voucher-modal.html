@@ -16,7 +16,7 @@
         <td class="text-center">
           <div class="flex justify-content-center">
             <iw-button
-              iconClass="mdi:eye-outline"
+              iconClass="material-symbols-light:visibility-outline"
               [rounded]="true"
               [text]="true"
               (clicked)="viewFile(item.filePath, item.fileName)"
@@ -44,13 +44,13 @@
   <div class="flex justify-content-end mt-3">
     <il-button
       label="Cerrar"
-      iconClass="mdi:close"
+      iconClass="material-symbols-light:close"
       severity="secondary"
       (clicked)="close()"
     />
     <il-button
       label="Subir"
-      iconClass="mdi:upload"
+      iconClass="material-symbols-light:upload"
       severity="primary"
       (clicked)="onAdd()"
       [disabled]="!file || submitting()"

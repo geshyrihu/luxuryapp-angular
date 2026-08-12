@@ -5,14 +5,14 @@
   <div class="committee-card-panel">
     <div class="committee-card-panel__header">
       <span class="committee-card-panel__icon">
-        <app-icon icon="mdi:gavel" />
+        <app-icon icon="material-symbols-light:gavel" />
       </span>
       <div class="committee-card-panel__titles">
         <h3 class="committee-card-panel__title">
           Minuta de Junta con Mesa Directiva
         </h3>
         <p class="committee-card-panel__subtitle">
-          <app-icon icon="mdi:calendar" /> {{ meeting.date }}
+          <app-icon icon="material-symbols-light:calendar-today" /> {{ meeting.date }}
         </p>
       </div>
     </div>
@@ -21,7 +21,7 @@
   <!-- Administración -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon icon="mdi:account-tie" class="committee-section__icon" />
+      <app-icon icon="material-symbols-light:badge" class="committee-section__icon" />
       <h4 class="committee-section__title">Administración</h4>
       <span class="committee-section__count"
         >{{ meeting.administracion?.length || 0 }}</span
@@ -33,7 +33,7 @@
         @for (admin of meeting.administracion; track admin) {
         <div class="committee-person">
           <span class="committee-person__avatar">
-            <app-icon icon="mdi:account" />
+            <app-icon icon="material-symbols-light:person" />
           </span>
           <span class="committee-person__info">
             <span class="committee-person__name">{{ admin.applicationUser }}</span>
@@ -51,7 +51,7 @@
   <!-- Comité -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon icon="mdi:account-group" class="committee-section__icon" />
+      <app-icon icon="material-symbols-light:group" class="committee-section__icon" />
       <h4 class="committee-section__title">Comité</h4>
       <span class="committee-section__count"
         >{{ meeting.comite?.length || 0 }}</span
@@ -63,7 +63,7 @@
         @for (member of meeting.comite; track member) {
         <div class="committee-person">
           <span class="committee-person__avatar">
-            <app-icon icon="mdi:account-group" />
+            <app-icon icon="material-symbols-light:group" />
           </span>
           <span class="committee-person__info">
             <span class="committee-person__name">{{ member.applicationUser }}</span>
@@ -81,7 +81,7 @@
   <!-- Invitados Externos -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon icon="mdi:account-plus" class="committee-section__icon" />
+      <app-icon icon="material-symbols-light:person-add" class="committee-section__icon" />
       <h4 class="committee-section__title">Invitados Externos</h4>
       <span class="committee-section__count"
         >{{ meeting.externos?.length || 0 }}</span
@@ -93,7 +93,7 @@
         @for (guest of meeting.externos; track guest) {
         <div class="committee-person">
           <span class="committee-person__avatar">
-            <app-icon icon="mdi:account-plus" />
+            <app-icon icon="material-symbols-light:person-add" />
           </span>
           <span class="committee-person__info">
             <span class="committee-person__name">{{ guest.invitado }}</span>
@@ -110,7 +110,7 @@
   <!-- Acuerdos y Asuntos Tratados -->
   <div class="committee-section">
     <div class="committee-section__header">
-      <app-icon icon="mdi:clipboard-text" class="committee-section__icon" />
+      <app-icon icon="material-symbols-light:article" class="committee-section__icon" />
       <h4 class="committee-section__title">Acuerdos y Asuntos Tratados</h4>
     </div>
     <div class="committee-section__body">
@@ -153,7 +153,7 @@
   } @else if (!loading() && !data()) {
   <div class="committee-doc-empty">
     <app-icon
-      icon="mdi:alert-circle-outline"
+      icon="material-symbols-light:error-outline"
       class="committee-doc-empty__icon"
     />
     <p class="committee-doc-empty__text">

@@ -1,9 +1,10 @@
 import { Directive, input, model } from "@angular/core";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export interface AccordionItem {
   id: string;
   title: string;
-  icon?: string;
+  icon?: AppIconName;
   disabled?: boolean;
 }
 

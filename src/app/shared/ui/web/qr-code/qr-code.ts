@@ -34,11 +34,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           <img [src]="qrUrl()" [alt]="'QR: ' + data()" class="qr-img" />
         } @else if (loading()) {
           <div class="qr-loading">
-            <app-icon icon="mdi:loading" class="text-2xl qr-spin" />
+            <app-icon icon="material-symbols-light:progress-activity" class="text-2xl qr-spin" />
           </div>
         } @else {
           <div class="qr-empty">
-            <app-icon icon="mdi:qrcode" class="text-4xl" />
+            <app-icon icon="material-symbols-light:qr-code" class="text-4xl" />
           </div>
         }
       </div>
@@ -50,12 +50,15 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       @if (qrUrl() && allowDownload()) {
         <p-button
           label="Descargar QR"
-          icon="mdi:download"
           severity="secondary"
           [outlined]="true"
           size="small"
           (onClick)="download()"
-        />
+        >
+          <ng-template #icon>
+            <app-icon icon="material-symbols-light:download" />
+          </ng-template>
+        </p-button>
       }
     </div>
   `,

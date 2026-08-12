@@ -215,15 +215,15 @@ ${this.htmlPrintS.getStandardCss()}
   <div class="body-doc">
     <div style="border-top: 2px solid #f59e0b; margin-bottom: 10px;"></div>
 
-    <div class="kmdi:grid">
-      <div class="kmdi:cards">
-        <div class="kmdi:card">
-          <div class="kmdi:format-title">Total recepciones</div>
-          <div class="kmdi:percent">${this.totalRecepciones()}</div>
+    <div class="kmaterial-symbols-light:grid-view">
+      <div class="kmaterial-symbols-light:style">
+        <div class="kmaterial-symbols-light:credit-card">
+          <div class="kmaterial-symbols-light:title">Total recepciones</div>
+          <div class="kmaterial-symbols-light:percent">${this.totalRecepciones()}</div>
         </div>
-        <div class="kmdi:card">
-          <div class="kmdi:format-title">Total mí descargados</div>
-          <div class="kmdi:percent blue">${Math.round(this.totalM3())}</div>
+        <div class="kmaterial-symbols-light:credit-card">
+          <div class="kmaterial-symbols-light:title">Total mí descargados</div>
+          <div class="kmaterial-symbols-light:percent blue">${Math.round(this.totalM3())}</div>
         </div>
       </div>
       <div>

@@ -1,4 +1,5 @@
 import { Directive, input, output } from "@angular/core";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export enum EStatus {
   Pendiente = 0,
@@ -18,20 +19,20 @@ export interface StatusClickEvent {
   status: any;
 }
 
-export const STATUS_ICONS: Record<string, string> = {
-  PENDIENTE: "mdi:clock-outline",
-  CONCLUIDO: "mdi:check-circle",
-  PROCESO: "mdi:progress-check",
-  CANCELADO: "mdi:cancel",
-  "NO AUTORIZADO": "mdi:block-helper",
-  COBRANZA: "mdi:bank",
-  GASTOS: "mdi:cash",
-  INTERNO: "mdi:lock",
-  EXTERNO: "mdi:earth",
-  PÚBLICO: "mdi:eye",
-  CONDÓMINO: "mdi:account-group",
-  CONDOMINOS: "mdi:account-group",
-  DESCONOCIDO: "mdi:help-circle",
+export const STATUS_ICONS: Record<string, AppIconName> = {
+  PENDIENTE: "material-symbols-light:schedule",
+  CONCLUIDO: "material-symbols-light:help",
+  PROCESO: "material-symbols-light:task-alt",
+  CANCELADO: "material-symbols-light:cancel",
+  "NO AUTORIZADO": "material-symbols-light:block",
+  COBRANZA: "material-symbols-light:account-balance",
+  GASTOS: "material-symbols-light:paid",
+  INTERNO: "material-symbols-light:lock",
+  EXTERNO: "material-symbols-light:public",
+  PÚBLICO: "material-symbols-light:visibility",
+  CONDÓMINO: "material-symbols-light:group",
+  CONDOMINOS: "material-symbols-light:group",
+  DESCONOCIDO: "material-symbols-light:help",
 };
 
 export const STATUS_SEVERITY_STYLES: Record<
@@ -115,7 +116,7 @@ export abstract class StatusBadgeBase {
     return config[this.status() as number]?.text || "DESCONOCIDO";
   }
 
-  getIcon(): string {
+  getIcon(): AppIconName {
     return STATUS_ICONS[this.getStatusText()] || STATUS_ICONS["DESCONOCIDO"];
   }
 

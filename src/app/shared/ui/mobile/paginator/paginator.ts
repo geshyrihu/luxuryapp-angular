@@ -25,7 +25,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             [disabled]="isFirstPage()"
             (click)="onPageChange(0)"
           >
-            <app-icon icon="mdi:page-first" />
+            <app-icon icon="material-symbols-light:first-page" />
           </ion-button>
         }
 
@@ -35,7 +35,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           [disabled]="isFirstPage()"
           (click)="onPageChange(page() - 1)"
         >
-          <app-icon icon="mdi:chevron-left" />
+          <app-icon icon="material-symbols-light:chevron-left" />
         </ion-button>
 
         <span class="ili-paginator-current"
@@ -48,7 +48,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           [disabled]="isLastPage()"
           (click)="onPageChange(page() + 1)"
         >
-          <app-icon icon="mdi:chevron-right" />
+          <app-icon icon="material-symbols-light:chevron-right" />
         </ion-button>
 
         @if (showFirstLast()) {
@@ -58,7 +58,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             [disabled]="isLastPage()"
             (click)="onPageChange(totalPages() - 1)"
           >
-            <app-icon icon="mdi:page-last" />
+            <app-icon icon="material-symbols-light:last-page" />
           </ion-button>
         }
       </div>

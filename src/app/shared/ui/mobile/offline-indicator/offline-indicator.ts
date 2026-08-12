@@ -10,7 +10,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     @if (showBanner()) {
       <div class="offline-banner" [class.offline-banner-online]="online()">
         <app-icon
-          [icon]="online() ? 'mdi:wifi' : 'mdi:wifi-off'"
+          [icon]="online() ? 'material-symbols-light:wifi' : 'material-symbols-light:wifi-off'"
           class="offline-icon"
         />
         <span>{{ online() ? "Conexión restaurada" : "Sin conexión" }}</span>

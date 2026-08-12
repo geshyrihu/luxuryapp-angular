@@ -6,10 +6,13 @@
     aria-label="Formulario de candidato y entrevista"
   >
     <div class="mb-3 p-3 border-1 surface-border border-round surface-50">
-      <div class="font-medium text-color mb-1">Registrar candidato para vacante</div>
+      <div class="font-medium text-color mb-1">
+        Registrar candidato para vacante
+      </div>
       <small class="block text-color-secondary">
-        Selecciona un candidato existente o registra uno nuevo, carga su CV y
-        deja programada la cita de entrevista desde este mismo flujo.
+        Selecciona un candidato existente o captura uno nuevo aqui mismo. El CV
+        pertenece a la ficha del candidato y desde aqui puedes registrarlo o
+        actualizarlo mientras agendas la entrevista.
       </small>
     </div>
 
@@ -20,18 +23,229 @@
           label="Candidato"
           [data]="cb_candidates()"
           [filter]="true"
+          [readonly]="isCreatingCandidate()"
         />
       </div>
       @if (allowCreateCandidate) {
-        <div class="col-12 md:col-4 flex align-items-end">
-          <button
-            type="button"
-            class="btn btn-secondary w-full"
-            (click)="onCreateCandidate()"
-          >
-            Registrar nuevo candidato
-          </button>
+      <div class="col-12 md:col-4 flex align-items-end">
+        @if (!isCreatingCandidate()) {
+        <button
+          type="button"
+          class="btn btn-secondary w-full"
+          (click)="onCreateCandidate()"
+        >
+          Capturar candidato nuevo aqui
+        </button>
+        } @else {
+        <button
+          type="button"
+          class="btn btn-outline-secondary w-full"
+          (click)="onCancelCreateCandidate()"
+        >
+          Cancelar captura inline
+        </button>
+        }
+      </div>
+      } @if (!isCreatingCandidate() && form.controls['candidateId'].value) {
+      <div class="col-12 md:col-4 md:col-offset-8 flex align-items-start">
+        <button
+          type="button"
+          class="btn btn-outline-primary w-full"
+          (click)="onEditSelectedCandidate()"
+        >
+          Actualizar candidato seleccionado
+        </button>
+      </div>
+      } @if (isCreatingCandidate()) {
+      <div class="col-12">
+        <div class="border-1 surface-border border-round p-3 surface-50">
+          <div class="flex flex-column gap-1 mb-3">
+            <div class="font-semibold">Nuevo candidato</div>
+            <div class="text-sm text-color-secondary">
+              Esta captura pertenece al flujo de Reclutamiento para esta
+              vacante.
+            </div>
+          </div>
+
+          <div class="grid" [formGroup]="candidateForm">
+            <div class="col-12 md:col-6">
+              <custom-input-text-signal
+                [control]="$any(candidateForm.controls['firstName'])"
+                label="Nombre(s)"
+                placeholder="Nombre(s)"
+              />
+            </div>
+            <div class="col-12 md:col-6">
+              <custom-input-text-signal
+                [control]="$any(candidateForm.controls['lastName'])"
+                label="Apellidos"
+                placeholder="Apellidos"
+              />
+            </div>
+            <div class="col-12 md:col-6">
+              <custom-input-mask-signal
+                [control]="$any(candidateForm.controls['phoneNumber'])"
+                label="Tel. Celular"
+                placeholder="(00) 0000-0000"
+                customMask="(00) 0000-0000"
+              />
+            </div>
+            <div class="col-12 md:col-6">
+              <custom-input-email
+                [control]="$any(candidateForm.controls['email'])"
+                label="Correo electronico"
+                placeholder="correo@ejemplo.com"
+              />
+            </div>
+            <div class="col-12 md:col-6">
+              <custom-input-number-signal
+                [control]="$any(candidateForm.controls['age'])"
+                label="Edad"
+                placeholder="Edad"
+                [min]="16"
+              />
+            </div>
+            <div class="col-12 md:col-6">
+              <custom-input-number-signal
+                [control]="$any(candidateForm.controls['salaryExpectation'])"
+                label="Expectativa salarial"
+                placeholder="0.00"
+                [prefix]="'$ '"
+              />
+            </div>
+            <div class="col-12">
+              <custom-input-text-signal
+                [control]="$any(candidateForm.controls['currentAddress'])"
+                label="Direccion actual"
+                placeholder="Direccion actual"
+              />
+            </div>
+            <div class="col-12">
+              <custom-input-text-signal
+                [control]="$any(candidateForm.controls['availability'])"
+                label="Disponibilidad"
+                placeholder="Ej. Inmediata, 2 semanas, Turno matutino..."
+              />
+            </div>
+            <div class="col-12">
+              <custom-input-textarea-signal
+                [control]="$any(candidateForm.controls['experienceSummary'])"
+                label="Resumen de experiencia"
+                placeholder="Experiencia laboral relevante..."
+                [rows]="3"
+              />
+            </div>
+            <div class="col-12">
+              <custom-input-textarea-signal
+                [control]="$any(candidateForm.controls['generalComments'])"
+                label="Comentarios generales"
+                placeholder="Comentarios adicionales..."
+                [rows]="3"
+              />
+            </div>
+
+            <div class="col-12">
+              <div
+                class="border-1 surface-border border-round p-3 surface-card"
+              >
+                <div
+                  class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-2 mb-3"
+                >
+                  <div>
+                    <div class="font-semibold">Experiencia laboral</div>
+                    <div class="text-sm text-color-secondary">
+                      Registra el historial laboral del candidato sin salir de
+                      esta cita.
+                    </div>
+                  </div>
+                  <il-button
+                    label="Agregar experiencia"
+                    iconClass="material-symbols-light:add"
+                    severity="secondary"
+                    variant="outline"
+                    size="small"
+                    (clicked)="addCandidateWorkExperience()"
+                  />
+                </div>
+
+                @if (candidateWorkExperienceControls.length === 0) {
+                <div class="text-sm text-color-secondary">
+                  Sin experiencias registradas.
+                </div>
+                } @else {
+                <div class="flex flex-column gap-3">
+                  @for (experience of candidateWorkExperienceControls; track
+                  $index) {
+                  <div class="border-1 surface-border border-round p-3">
+                    <div
+                      class="flex justify-content-between align-items-center mb-3"
+                    >
+                      <div class="font-medium">
+                        Experiencia {{ $index + 1 }}
+                      </div>
+                      <il-button
+                        label="Eliminar"
+                        iconClass="material-symbols-light:delete-outline"
+                        severity="danger"
+                        variant="text"
+                        size="small"
+                        (clicked)="removeCandidateWorkExperience($index)"
+                      />
+                    </div>
+
+                    <div class="grid" [formGroup]="experience">
+                      <div class="col-12 md:col-6">
+                        <custom-input-text-signal
+                          [control]="$any(experience.controls['companyName'])"
+                          label="Empresa"
+                          placeholder="Nombre de la empresa"
+                        />
+                      </div>
+                      <div class="col-12 md:col-6">
+                        <custom-input-text-signal
+                          [control]="$any(experience.controls['jobPosition'])"
+                          label="Puesto"
+                          placeholder="Puesto desempenado"
+                        />
+                      </div>
+                      <div class="col-12 md:col-6">
+                        <custom-input-date-signal
+                          [control]="$any(experience.controls['startDate'])"
+                          label="Fecha de inicio"
+                        />
+                      </div>
+                      <div class="col-12 md:col-6">
+                        <custom-input-date-signal
+                          [control]="$any(experience.controls['endDate'])"
+                          label="Fecha de termino"
+                        />
+                      </div>
+                      <div class="col-12 md:col-6">
+                        <custom-input-number-signal
+                          [control]="$any(experience.controls['monthlyNetSalary'])"
+                          label="Salario neto mensual"
+                          placeholder="0.00"
+                          [prefix]="'$ '"
+                        />
+                      </div>
+                      <div class="col-12">
+                        <custom-input-textarea-signal
+                          [control]="$any(experience.controls['departureReason'])"
+                          label="Motivo de salida"
+                          placeholder="Motivo de salida"
+                          [rows]="2"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  }
+                </div>
+                }
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
       }
 
       <div class="col-12">
@@ -73,14 +287,14 @@
           [fileUrl]="currentCvUrl()"
           (fileSelected)="onCvSelected($event)"
           (fileEmitted)="onCvFile($event)"
-          label="CV del candidato (PDF)"
+          label="CV maestro del candidato (PDF)"
         />
       </div>
     </div>
 
     <il-button-save
       [propertyId]="id"
-      [disabled]="form.invalid"
+      [disabled]="isSubmitDisabled()"
       [submitting]="submitting()"
       class="pb-2"
     />

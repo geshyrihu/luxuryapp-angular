@@ -23,7 +23,7 @@ import { MobileButtonBase } from "../mobile-button-base";
         <ion-spinner name="crescent" />
       } @else {
         @if (iconClass()) {
-          <app-icon [icon]="iconClass()" slot="start" />
+          <app-icon [icon]="resolvedIconClass()" slot="start" />
         }
         {{ label() || "Continuar" }}
       }

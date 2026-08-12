@@ -11,6 +11,7 @@ import { TreeNode } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { TreeTableModule } from "primeng/treetable";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface TreeTableColumn {
   field: string;
@@ -20,7 +21,7 @@ export interface TreeTableColumn {
   width?: string;
   minWidth?: string;
   styleClass?: string;
-  icon?: string;
+  icon?: AppIconName;
 }
 
 @Component({
@@ -81,7 +82,7 @@ export interface TreeTableColumn {
 
         <ng-template #emptymessage>
           <div class="p-4 text-center text-color-secondary">
-            <app-icon icon="mdi:file-tree-outline" class="text-2xl mb-2" />
+            <app-icon icon="material-symbols-light:account-tree" class="text-2xl mb-2" />
             <p class="text-sm m-0">{{ emptyMessage() }}</p>
           </div>
         </ng-template>
@@ -161,7 +162,7 @@ export class TreeTable {
   nodesWithIcon = computed<TreeNode[]>(() =>
     this.nodes().map((node) => ({
       ...node,
-      icon: node.icon || "mdi:folder-outline",
+      icon: node.icon || "material-symbols-light:folder-outline",
     })),
   );
 }

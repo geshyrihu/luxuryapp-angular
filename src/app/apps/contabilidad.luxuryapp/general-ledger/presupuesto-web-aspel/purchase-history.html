@@ -51,7 +51,7 @@
         class="text-center pointer"
         (click)="onShowPurchaseDetails(item.ordenCompraId)"
       >
-        <app-icon [icon]="'mdi:pencil'" class="text-color-secondary" />
+        <app-icon [icon]="'material-symbols-light:edit'" class="text-color-secondary" />
       </td>
       <td>{{ item.creationAt }}</td>
       <td>
@@ -74,7 +74,7 @@
       <td class="text-center">
         @if (item.invoiceUrl) {
         <iw-button
-          iconClass="mdi:download"
+          iconClass="material-symbols-light:download"
           variant="ghost-text"
           size="sm"
           (clicked)="viewPdf(item.invoiceUrl, item.provider)"
@@ -118,7 +118,7 @@
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
-          icon="mdi:format-list-bulleted"
+          icon="material-symbols-light:format-list-bulleted"
           class="text-xl text-primary"
         />
       </div>
@@ -138,7 +138,7 @@
         </span>
         @if (item.invoiceUrl) {
         <iw-button
-          iconClass="mdi:download"
+          iconClass="material-symbols-light:download"
           variant="ghost-text"
           size="sm"
           (clicked)="viewPdf(item.invoiceUrl, item.provider)"

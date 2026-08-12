@@ -12,14 +12,14 @@
     <div class="flex flex-wrap gap-2">
       <il-button
         label="Volver al tablero"
-        iconClass="mdi:arrow-left"
+        iconClass="material-symbols-light:arrow-back"
         severity="secondary"
-        variant="outlined"
+        variant="outline"
         (clicked)="goBackToBoard()"
       />
       <il-button
         label="Actualizar"
-        iconClass="mdi:refresh"
+        iconClass="material-symbols-light:refresh"
         severity="secondary"
         (clicked)="onLoadData()"
       />
@@ -29,7 +29,9 @@
 
 @if (focusedRequestPositionId()) {
 <div class="card p-3 mb-4 border-left-3 border-primary">
-  <div class="font-semibold mb-1">Seguimiento directo desde correo o notificacion</div>
+  <div class="font-semibold mb-1">
+    Seguimiento directo desde correo o notificacion
+  </div>
   <div class="text-sm text-color-secondary">
     Este detalle se abrio con la vacante y el candidato priorizados para dar
     continuidad puntual al puesto.
@@ -61,9 +63,9 @@
         <div class="col-12 md:col-6">
           <small class="text-color-secondary block">Sueldo previo</small>
           <div class="font-medium">
-            @if (workPositionDetail()?.beforeSalary) {
-            {{ workPositionDetail()?.beforeSalary | currency: "MXN" : "symbol" : "1.0-0" }}
-            } @else {
+            @if (workPositionDetail()?.beforeSalary) { {{
+            workPositionDetail()?.beforeSalary | currency: "MXN" : "symbol" :
+            "1.0-0" }} } @else {
             <span class="text-color-secondary">Sin dato</span>
             }
           </div>
@@ -71,9 +73,8 @@
         <div class="col-12 md:col-6">
           <small class="text-color-secondary block">Sueldo actual</small>
           <div class="font-medium">
-            @if (workPositionDetail()?.salary) {
-            {{ workPositionDetail()?.salary | currency: "MXN" : "symbol" : "1.0-0" }}
-            } @else {
+            @if (workPositionDetail()?.salary) { {{ workPositionDetail()?.salary
+            | currency: "MXN" : "symbol" : "1.0-0" }} } @else {
             <span class="text-color-secondary">Sin dato</span>
             }
           </div>
@@ -150,7 +151,9 @@
       <div>
         <div class="flex flex-wrap align-items-center gap-2 mb-2">
           <span class="text-lg font-semibold">{{ vacancy.vacancyFolio }}</span>
-          <span class="text-sm text-color-secondary">{{ vacancy.positionName }}</span>
+          <span class="text-sm text-color-secondary"
+            >{{ vacancy.positionName }}</span
+          >
           <span class="badge badge-info">{{ vacancy.customerName }}</span>
           <span class="badge badge-secondary">{{ vacancy.vacancyStatus }}</span>
           @if (vacancy.isFocused) {
@@ -163,7 +166,10 @@
           <span>Agendadas: {{ vacancy.scheduledCount }}</span>
           <span>Vencidas: {{ vacancy.overdueCount }}</span>
           @if (vacancy.nextInterviewAt) {
-          <span>Proxima cita: {{ vacancy.nextInterviewAt | date: "dd/MM/yyyy HH:mm" }}</span>
+          <span
+            >Proxima cita: {{ vacancy.nextInterviewAt | date: "dd/MM/yyyy HH:mm"
+            }}</span
+          >
           }
         </div>
       </div>
@@ -172,12 +178,15 @@
     <div class="mb-3">
       <div class="font-semibold mb-2">Candidatos activos</div>
       @if (vacancy.activeCandidates.length === 0) {
-      <div class="border-1 surface-border border-round p-3 text-sm text-color-secondary">
+      <div
+        class="border-1 surface-border border-round p-3 text-sm text-color-secondary"
+      >
         Esta vacante no tiene candidatos activos en seguimiento.
       </div>
       } @else {
       <div class="flex flex-column gap-2">
-        @for (candidate of vacancy.activeCandidates; track candidate.candidateApplicationId) {
+        @for (candidate of vacancy.activeCandidates; track
+        candidate.candidateApplicationId) {
         <div
           class="border-1 surface-border border-round p-3"
           [class.border-orange-300]="candidate.agendaStatusCode === 'postulada'"
@@ -196,7 +205,8 @@
                   [value]="candidate.agendaStatusCode"
                   [options]="agendaStatusOptions"
                 />
-                @if (candidate.candidateApplicationId === focusedCandidateApplicationId()) {
+                @if (candidate.candidateApplicationId ===
+                focusedCandidateApplicationId()) {
                 <span class="badge badge-primary">Candidato priorizado</span>
                 }
               </div>
@@ -205,37 +215,43 @@
                 <div class="col-12 md:col-6 xl:col-2">
                   <small class="text-color-secondary block">Registro</small>
                   <div class="font-medium">
-                    @if (candidate.applicationDate) {
-                    {{ candidate.applicationDate | date: "dd/MM/yyyy" }}
-                    } @else {
+                    @if (candidate.applicationDate) { {{
+                    candidate.applicationDate | date: "dd/MM/yyyy" }} } @else {
                     <span class="text-color-secondary">Sin fecha</span>
                     }
                   </div>
                 </div>
                 <div class="col-12 md:col-6 xl:col-3">
-                  <small class="text-color-secondary block">Entrevista RH</small>
+                  <small class="text-color-secondary block"
+                    >Entrevista RH</small
+                  >
                   <div class="font-medium">
-                    @if (candidate.recruitmentInterviewAt) {
-                    {{ candidate.recruitmentInterviewAt | date: "dd/MM/yyyy HH:mm" }}
-                    } @else {
+                    @if (candidate.recruitmentInterviewAt) { {{
+                    candidate.recruitmentInterviewAt | date: "dd/MM/yyyy HH:mm"
+                    }} } @else {
                     <span class="text-color-secondary">Sin fecha</span>
                     }
                   </div>
                 </div>
                 <div class="col-12 md:col-6 xl:col-3">
-                  <small class="text-color-secondary block">Entrevista operaciones</small>
+                  <small class="text-color-secondary block"
+                    >Entrevista operaciones</small
+                  >
                   <div class="font-medium">
-                    @if (candidate.operationsInterviewAt) {
-                    {{ candidate.operationsInterviewAt | date: "dd/MM/yyyy HH:mm" }}
-                    } @else {
+                    @if (candidate.operationsInterviewAt) { {{
+                    candidate.operationsInterviewAt | date: "dd/MM/yyyy HH:mm"
+                    }} } @else {
                     <span class="text-color-secondary">Sin fecha</span>
                     }
                   </div>
                 </div>
                 <div class="col-12 md:col-6 xl:col-2">
-                  <small class="text-color-secondary block">Entrevistador</small>
+                  <small class="text-color-secondary block"
+                    >Entrevistador</small
+                  >
                   <div class="font-medium">
-                    {{ candidate.assignedInterviewerName || "Sin entrevistador" }}
+                    {{ candidate.assignedInterviewerName || "Sin entrevistador"
+                    }}
                   </div>
                 </div>
                 <div class="col-12 md:col-6 xl:col-2">
@@ -259,47 +275,44 @@
               @if (candidate.canSendToInterview) {
               <il-button
                 label="Enviar a entrevista"
-                iconClass="mdi:send"
+                iconClass="material-symbols-light:send"
                 severity="primary"
                 size="small"
                 (clicked)="onAction(vacancy, candidate, 'send')"
               />
-              }
-              @if (candidate.canSchedule) {
+              } @if (candidate.canSchedule) {
               <il-button
                 label="Agendar cita"
-                iconClass="mdi:calendar-plus"
+                iconClass="material-symbols-light:calendar-add-on"
                 severity="info"
                 size="small"
                 (clicked)="onAction(vacancy, candidate, 'schedule')"
               />
-              }
-              @if (candidate.canReschedule) {
+              } @if (candidate.canReschedule) {
               <il-button
                 label="Reagendar"
-                iconClass="mdi:calendar-sync"
+                iconClass="material-symbols-light:event-repeat"
                 severity="info"
                 size="small"
-                variant="outlined"
+                variant="outline"
                 (clicked)="onAction(vacancy, candidate, 'reschedule')"
               />
-              }
-              @if (candidate.canSchedule || candidate.canReschedule) {
+              } @if (candidate.canSchedule || candidate.canReschedule) {
               <il-button
                 label="Asignar entrevistador"
-                iconClass="mdi:account-plus"
+                iconClass="material-symbols-light:person-add"
                 severity="warn"
                 size="small"
-                variant="outlined"
+                variant="outline"
                 (clicked)="onAction(vacancy, candidate, 'assign')"
               />
               }
               <il-button
                 label="Ver historial"
-                iconClass="mdi:history"
+                iconClass="material-symbols-light:history"
                 severity="secondary"
                 size="small"
-                variant="outlined"
+                variant="outline"
                 (clicked)="navigateToApplicationDetail(candidate.candidateApplicationId)"
               />
             </div>
@@ -314,7 +327,8 @@
     <div>
       <div class="font-semibold mb-2">Historico</div>
       <div class="flex flex-column gap-2">
-        @for (candidate of vacancy.historicalCandidates; track candidate.candidateApplicationId) {
+        @for (candidate of vacancy.historicalCandidates; track
+        candidate.candidateApplicationId) {
         <div class="border-1 surface-border border-round p-3 surface-50">
           <div
             class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3"
@@ -332,27 +346,33 @@
                 <div class="col-12 md:col-6 lg:col-3">
                   <small class="text-color-secondary block">Registro</small>
                   <div class="font-medium">
-                    @if (candidate.applicationDate) {
-                    {{ candidate.applicationDate | date: "dd/MM/yyyy" }}
-                    } @else {
+                    @if (candidate.applicationDate) { {{
+                    candidate.applicationDate | date: "dd/MM/yyyy" }} } @else {
                     <span class="text-color-secondary">Sin fecha</span>
                     }
                   </div>
                 </div>
                 <div class="col-12 md:col-6 lg:col-3">
-                  <small class="text-color-secondary block">Ultima entrevista</small>
+                  <small class="text-color-secondary block"
+                    >Ultima entrevista</small
+                  >
                   <div class="font-medium">
-                    @if (candidate.operationsInterviewAt || candidate.recruitmentInterviewAt) {
-                    {{ (candidate.operationsInterviewAt || candidate.recruitmentInterviewAt) | date: "dd/MM/yyyy HH:mm" }}
-                    } @else {
+                    @if (candidate.operationsInterviewAt ||
+                    candidate.recruitmentInterviewAt) { {{
+                    (candidate.operationsInterviewAt ||
+                    candidate.recruitmentInterviewAt) | date: "dd/MM/yyyy HH:mm"
+                    }} } @else {
                     <span class="text-color-secondary">Sin fecha</span>
                     }
                   </div>
                 </div>
                 <div class="col-12 md:col-6 lg:col-3">
-                  <small class="text-color-secondary block">Entrevistador</small>
+                  <small class="text-color-secondary block"
+                    >Entrevistador</small
+                  >
                   <div class="font-medium">
-                    {{ candidate.assignedInterviewerName || "Sin entrevistador" }}
+                    {{ candidate.assignedInterviewerName || "Sin entrevistador"
+                    }}
                   </div>
                 </div>
                 <div class="col-12 md:col-6 lg:col-3">
@@ -375,10 +395,10 @@
             <div class="flex flex-wrap gap-2 lg:justify-content-end">
               <il-button
                 label="Ver historial"
-                iconClass="mdi:history"
+                iconClass="material-symbols-light:history"
                 severity="secondary"
                 size="small"
-                variant="outlined"
+                variant="outline"
                 (clicked)="navigateToApplicationDetail(candidate.candidateApplicationId)"
               />
             </div>

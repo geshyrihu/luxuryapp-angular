@@ -1,6 +1,6 @@
 # Candidates Frontend Docs
 
-Ultima revision: `2026-08-09`
+Ultima revision: `2026-08-11`
 Scope: `client/angular/src/app/apps/reclutamiento.luxuryapp/candidates`
 Estado: `Vigente y alineado al codigo actual`
 
@@ -28,6 +28,7 @@ Rutas disponibles hoy:
 - `http://localhost:4200/recruitment/candidates/candidates`
 - `http://localhost:4200/recruitment/candidates/applications`
 - `http://localhost:4200/recruitment/candidates/interviews`
+- `http://localhost:4200/recruitment/candidates/recruitment-agenda`
 
 No existen en este feature rutas locales documentadas como:
 
@@ -89,6 +90,7 @@ Nota:
 - `candidate/candidate-form.ts`
   - usa `FormGroup` tipado
   - crea o edita contra `EndpointsReclutamiento.Candidates`
+  - ya no incluye `Fuente de reclutamiento` en el formulario maestro
 - `candidate/candidate-detail.ts`
   - muestra ficha del candidato y sus postulaciones
 
@@ -152,6 +154,7 @@ Endpoints del modulo:
 - `recruitment-candidate-applications/{id}/decision`
 - `recruitment-candidate-applications/{id}/cv`
 - `recruitment-candidate-applications/{id}/process-hiring`
+- `recruitment-candidate-applications/recruitment-agenda`
 - `recruitment-candidate-interviews/feedback`
 - `recruitment-candidate-interviews/application/{candidateApplicationId}`
 
@@ -206,6 +209,18 @@ internos estados alternos como `AwaitingInterview`, `Interviewed` u
 2. abrir `Retroalimentacion`
 3. capturar decision, motivo y comentarios
 4. guardar y refrescar listado
+
+### 3.1 Agenda de reclutamiento
+
+1. entrar a `recruitment/candidates/recruitment-agenda`
+2. revisar entrevistas pendientes, agendadas o vencidas
+3. abrir CV o navegar al detalle operativo
+
+Acceso esperado:
+
+- `Reclutamiento`
+- `Administrador`
+- `SuperUsuario`
 
 ### 4. Proceso de alta
 

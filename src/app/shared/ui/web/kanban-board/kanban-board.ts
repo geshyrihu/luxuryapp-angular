@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface KanbanCard {
   id: string;
@@ -31,11 +32,11 @@ export interface KanbanStage {
   cards: KanbanCard[];
 }
 
-const PRIORITY_ICONS: Record<string, string> = {
-  low: "mdi:arrow-down-circle-outline",
-  medium: "mdi:circle-outline",
-  high: "mdi:arrow-up-circle-outline",
-  critical: "mdi:alert-circle-outline",
+const PRIORITY_ICONS: Record<string, AppIconName> = {
+  low: "material-symbols-light:arrow-circle-down",
+  medium: "material-symbols-light:circle-outline",
+  high: "material-symbols-light:arrow-circle-up",
+  critical: "material-symbols-light:error-outline",
 };
 
 const PRIORITY_COLORS: Record<string, string> = {
@@ -74,7 +75,7 @@ const PRIORITY_COLORS: Record<string, string> = {
                   severity="secondary"
                   (onClick)="addCard.emit(stage.id)"
                 >
-                  <app-icon icon="mdi:plus" />
+                  <app-icon icon="material-symbols-light:add" />
                 </p-button>
               }
             </div>
@@ -147,7 +148,7 @@ const PRIORITY_COLORS: Record<string, string> = {
                       class="kanban-duedate"
                       [class.kanban-overdue]="isOverdue(card.dueDate)"
                     >
-                      <app-icon icon="mdi:calendar-clock" class="text-xs" />
+                      <app-icon icon="material-symbols-light:calendar-clock" class="text-xs" />
                       {{ formatDate(card.dueDate) }}
                     </div>
                   }
@@ -155,7 +156,7 @@ const PRIORITY_COLORS: Record<string, string> = {
               } @empty {
                 <div class="kanban-empty">
                   <app-icon
-                    icon="mdi:inbox-outline"
+                    icon="material-symbols-light:move-to-inbox-outline"
                     class="text-xl text-color-muted"
                   />
                   <span class="text-xs text-color-muted">Sin elementos</span>
@@ -395,8 +396,8 @@ export class KanbanBoard {
     this.cardClicked.emit(card);
   }
 
-  getPriorityIcon(priority: string): string {
-    return PRIORITY_ICONS[priority] || "mdi:circle-outline";
+  getPriorityIcon(priority: string): AppIconName {
+    return PRIORITY_ICONS[priority] || "material-symbols-light:circle-outline";
   }
 
   getPriorityColor(priority: string): string {

@@ -9,7 +9,7 @@
     <div class="flex flex-wrap gap-2">
       <il-button
         label="Actualizar"
-        iconClass="mdi:refresh"
+        iconClass="material-symbols-light:refresh"
         severity="secondary"
         (clicked)="onLoadData()"
       />
@@ -53,35 +53,35 @@
     <div class="flex flex-wrap gap-2">
       <il-button
         label="Pendientes"
-        iconClass="mdi:clock-alert-outline"
+        iconClass="material-symbols-light:schedule"
         [severity]="mode() === 'pending' ? 'primary' : 'secondary'"
         [variant]="mode() === 'pending' ? 'solid' : 'outlined'"
         (clicked)="setMode('pending')"
       />
       <il-button
         label="Historico"
-        iconClass="mdi:history"
+        iconClass="material-symbols-light:history"
         [severity]="mode() === 'history' ? 'primary' : 'secondary'"
         [variant]="mode() === 'history' ? 'solid' : 'outlined'"
         (clicked)="setMode('history')"
       />
       <il-button
         label="Vencidas"
-        iconClass="mdi:alert-circle-outline"
+        iconClass="material-symbols-light:error-outline"
         [severity]="mode() === 'overdue' ? 'danger' : 'secondary'"
         [variant]="mode() === 'overdue' ? 'solid' : 'outlined'"
         (clicked)="setMode('overdue')"
       />
       <il-button
         label="Con feedback"
-        iconClass="mdi:comment-check-outline"
+        iconClass="material-symbols-light:fact-check"
         [severity]="mode() === 'feedback' ? 'success' : 'secondary'"
         [variant]="mode() === 'feedback' ? 'solid' : 'outlined'"
         (clicked)="setMode('feedback')"
       />
       <il-button
         label="Todo"
-        iconClass="mdi:view-list-outline"
+        iconClass="material-symbols-light:view-list"
         [severity]="mode() === 'all' ? 'info' : 'secondary'"
         [variant]="mode() === 'all' ? 'solid' : 'outlined'"
         (clicked)="setMode('all')"
@@ -200,14 +200,14 @@
                 />
                 <il-button
                   label="Ver card"
-                  iconClass="mdi:card-account-details-outline"
+                  iconClass="material-symbols-light:badge-outline"
                   severity="secondary"
                   size="small"
                   (clicked)="selectCandidate(candidate)"
                 />
                 <il-button
                   label="Seguimiento"
-                  iconClass="mdi:timeline-text-outline"
+                  iconClass="material-symbols-light:timeline"
                   severity="secondary"
                   size="small"
                   (clicked)="navigateToApplicationDetail(candidate.candidateApplicationId)"
@@ -215,7 +215,7 @@
                 @if (!candidate.isHistorical) {
                 <il-button
                   label="Responder entrevista"
-                  iconClass="mdi:comment-processing-outline"
+                  iconClass="material-symbols-light:more"
                   severity="primary"
                   size="small"
                   (clicked)="navigateToQueueResponse(candidate.candidateApplicationId)"
@@ -301,7 +301,7 @@
         />
         <il-button
           label="Ver seguimiento"
-          iconClass="mdi:timeline-text-outline"
+          iconClass="material-symbols-light:timeline"
           severity="secondary"
           (clicked)="navigateToApplicationDetail(selectedCandidate()!.candidateApplicationId)"
         />
@@ -313,14 +313,14 @@
         <div class="flex flex-wrap gap-2">
           <il-button
             label="Responder"
-            iconClass="mdi:comment-processing-outline"
+            iconClass="material-symbols-light:more"
             severity="primary"
             (clicked)="navigateToQueueResponse(selectedCandidate()!.candidateApplicationId)"
           />
           @if (selectedCandidate()?.canSubmitFeedback) {
           <il-button
             label="Feedback"
-            iconClass="mdi:comment-check-outline"
+            iconClass="material-symbols-light:fact-check"
             severity="info"
             (clicked)="onFeedback(selectedCandidate()!)"
           />
@@ -328,7 +328,7 @@
           @if (selectedCandidate()?.canMarkNoShow) {
           <il-button
             label="No asistio"
-            iconClass="mdi:account-off-outline"
+            iconClass="material-symbols-light:person-off"
             severity="warn"
             (clicked)="onMarkNoShow(selectedCandidate()!)"
           />
@@ -336,7 +336,7 @@
           @if (selectedCandidate()?.canApprove) {
           <il-button
             label="Aprobar"
-            iconClass="mdi:check-circle-outline"
+            iconClass="material-symbols-light:check-circle-outline"
             severity="success"
             (clicked)="onApprove(selectedCandidate()!)"
           />

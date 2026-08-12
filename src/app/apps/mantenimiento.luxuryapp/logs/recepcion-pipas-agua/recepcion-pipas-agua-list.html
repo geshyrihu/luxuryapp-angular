@@ -28,7 +28,7 @@
             [routerLinkActiveOptions]="{ exact: true }"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-1" />
+            <app-icon [icon]="'material-symbols-light:format-list-bulleted'" class="mr-1" />
             Registros
           </a>
           <a
@@ -36,14 +36,14 @@
             routerLinkActive="p-button-primary"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon [icon]="'mdi:table'" class="mr-1" /> Reporte
+            <app-icon [icon]="'material-symbols-light:table'" class="mr-1" /> Reporte
           </a>
           <a
             routerLink="/logbook/water-truck-reception/analisis"
             routerLinkActive="p-button-primary"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon [icon]="'mdi:chart-bar'" class="mr-1" /> Analisis
+            <app-icon [icon]="'material-symbols-light:bar-chart'" class="mr-1" /> Analisis
           </a>
         </div>
       </div>
@@ -195,7 +195,7 @@
       <td>
         <div class="flex">
           <iw-button-item
-            iconClass="mdi:file-pdf-box"
+            iconClass="material-symbols-light:picture-as-pdf"
             tooltip="Descargar soporte PDF"
             (clicked)="onDownloadPdf(item)"
           />
@@ -229,7 +229,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-1" />
+        <app-icon [icon]="'material-symbols-light:format-list-bulleted'" class="mr-1" />
         Registros
       </a>
       <a
@@ -237,21 +237,21 @@
         routerLinkActive="p-button-primary"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'mdi:table'" class="mr-1" /> Reporte
+        <app-icon [icon]="'material-symbols-light:table'" class="mr-1" /> Reporte
       </a>
       <a
         routerLink="/logbook/water-truck-reception/analisis"
         routerLinkActive="p-button-primary"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'mdi:chart-bar'" class="mr-1" /> Analisis
+        <app-icon [icon]="'material-symbols-light:bar-chart'" class="mr-1" /> Analisis
       </a>
     </div>
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="mdi:water-outline" />
+        <app-icon icon="material-symbols-light:water" />
       </div>
 
       <h3 class="font-bold">{{ item.placasCamion }}</h3>

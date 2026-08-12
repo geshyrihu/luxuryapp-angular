@@ -14,7 +14,7 @@
           tooltipPosition="bottom"
           aria-label="Abrir o cerrar el menú lateral"
         >
-          <app-icon icon="fluent-color:text-bullet-list-square-24" />
+          <app-icon icon="material-symbols-light:format-list-bulleted" />
         </button>
 
         <!-- Selector de Condominio -->
@@ -31,7 +31,7 @@
             style="width: 24px; height: 24px; object-fit: contain"
           />
           <span>{{ customerName() }}</span>
-          <app-icon icon="mdi:chevron-down" class="text-sm" />
+          <app-icon icon="material-symbols-light:keyboard-arrow-down" class="text-sm" />
         </button>
         <p-menu
           #customerMenu
@@ -68,10 +68,31 @@
         }
 
         <div class="flex-none" style="min-width: 300px">
+          <!-- El icono va por plantilla: el `icon` de un MenuItem lo pinta
+               PrimeNG como CLASE CSS, y aquí se usa Material Symbols, que no
+               es una clase. Por eso el icono de inicio salía vacío. -->
           <p-breadcrumb
             [model]="breadcrumbItems"
             styleClass="header-breadcrumb"
-          ></p-breadcrumb>
+          >
+            <ng-template #item let-item>
+              <a
+                class="p-breadcrumb-item-link"
+                [routerLink]="item.routerLink"
+                [attr.aria-label]="item.label || 'Inicio'"
+              >
+                @if (item.icon) {
+                  <app-icon
+                    [icon]="item.icon"
+                    class="p-breadcrumb-item-icon"
+                  />
+                }
+                @if (item.label) {
+                  <span class="p-breadcrumb-item-label">{{ item.label }}</span>
+                }
+              </a>
+            </ng-template>
+          </p-breadcrumb>
         </div>
       </div>
     </ng-template>
@@ -153,7 +174,7 @@
       <div>
         <span class="font-bold text-xl block text-purple-700">
           <app-icon
-            icon="mdi:sparkles"
+            icon="material-symbols-light:auto-awesome-motion"
             class="text-purple-500 mr-2 text-xl"
           ></app-icon
           >Asistente Ejecutivo IA
@@ -250,7 +271,7 @@
                 [style.color]="'white'"
               >
                 <app-icon
-                  [icon]="['mdi:information', 'mdi:shield-outline', 'mdi:account-group', 'mdi:check-circle'][i % 4]"
+                  [icon]="getPosterPointIcon(i)"
                   class="text-xl"
                 />
               </div>
@@ -417,14 +438,14 @@
         </div>
         <div class="flex gap-2">
           <il-button
-            icon="mdi:content-copy"
+            icon="material-symbols-light:content-copy"
             [label]="currentMode() === 'poster' ? 'Copiar Póster' : 'Copiar como Imagen'"
             severity="contrast"
             size="sm"
             (clicked)="copyAsImage()"
           />
           <il-button
-            icon="mdi:file-pdf"
+            icon="material-symbols-light:picture-as-pdf"
             [label]="currentMode() === 'poster' ? 'Descargar PDF' : 'Exportar a PDF'"
             severity="contrast"
             size="sm"
@@ -443,35 +464,38 @@
       @if (aiAnnouncementResult()) {
       <il-button
         label="Nueva Idea"
-        icon="mdi:refresh"
+        icon="material-symbols-light:refresh"
         severity="contrast"
         variant="text"
         (clicked)="userIdeaControl.reset(''); aiAnnouncementResult.set(null); aiAnnouncementImageResult.set(null)"
       />
       <il-button
         label="Cerrar"
-        icon="mdi:close"
+        icon="material-symbols-light:close"
         (clicked)="displayAiModal.set(false)"
       />
       } @else {
       <il-button
         label="Cancelar"
-        icon="mdi:close"
+        icon="material-symbols-light:close"
         severity="contrast"
         variant="text"
         (clicked)="displayAiModal.set(false)"
       />
       <il-button
         label="Comunicado (Texto + Emojis)"
-        icon="mdi:face-smile"
+        icon="material-symbols-light:sentiment-satisfied"
         severity="contrast"
         (clicked)="generateOfficialAnnouncement('text')"
         [disabled]="!(userIdeaControl.value || '').trim() || isGeneratingAnnouncement()"
       />
       <!-- <p-button
         label="Póster Visual"
-        icon="pi pi-image"
-      /> -->
+      >
+        <ng-template #icon>
+          <app-icon icon="material-symbols-light:photo" />
+        </ng-template>
+      </p-button> -->
       }
     </div>
   </ng-template>

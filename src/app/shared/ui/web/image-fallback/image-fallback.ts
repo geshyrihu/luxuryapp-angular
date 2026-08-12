@@ -1,3 +1,4 @@
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -75,7 +76,7 @@ export class AppImageFallback {
   imageClass = input<string>("");
   imageStyle = input<Record<string, string> | string>("");
 
-  fallbackIcon = input<string>("mdi:image-off-outline");
+  fallbackIcon = input<AppIconName>("material-symbols-light:broken-image");
   fallbackIconSize = input<string>("1.5rem");
   fallbackIconColor = input<string>("var(--ds-text-muted)");
   fallbackClass = input<string>("");

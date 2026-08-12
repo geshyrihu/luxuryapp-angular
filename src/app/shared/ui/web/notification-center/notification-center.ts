@@ -26,7 +26,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
         (onClick)="op.toggle($event)"
       >
         <div class="flex align-items-center gap-1">
-          <app-icon icon="mdi:bell-outline" class="text-xl" />
+          <app-icon icon="material-symbols-light:notifications-outline" class="text-xl" />
           @if (unreadCount() > 0) {
             <p-badge [value]="unreadCount()" severity="danger" />
           }
@@ -84,7 +84,7 @@ export { type NotificationItem } from "@ui/base/notification-center.base";
               <div
                 class="flex flex-column align-items-center gap-2 py-4 text-color-secondary"
               >
-                <app-icon icon="mdi:bell-off-outline" class="text-3xl" />
+                <app-icon icon="material-symbols-light:notifications-off-outline" class="text-3xl" />
                 <span class="text-sm">Sin notificaciones</span>
               </div>
             }

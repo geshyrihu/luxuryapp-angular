@@ -15,7 +15,7 @@
     [class.text-500]="step() !== 1"
     >Datos del usuario</span
   >
-  <app-icon [icon]="'mdi:chevron-right'" class="text-300 text-xs" />
+  <app-icon [icon]="'material-symbols-light:chevron-right'" class="text-300 text-xs" />
   <div
     class="flex align-items-center justify-content-center w-2rem h-2rem rounded-full text-sm font-bold"
     [class.bg-primary]="step() >= 2"
@@ -57,7 +57,7 @@
   <div class="flex justify-content-end mt-3">
     <il-button
       label="Siguiente"
-      iconClass="mdi:arrow-right"
+      iconClass="material-symbols-light:arrow-forward"
       [disabled]="submitting()"
       (clicked)="onNextStep()"
     />

@@ -36,11 +36,11 @@
         <td class="text-center">
           @if (item.isActive) {
           <app-icon
-            [icon]="'mdi:check-circle'"
+            [icon]="'material-symbols-light:check-circle'"
             class="text-green-500 text-lg"
           />
           } @else {
-          <app-icon [icon]="'mdi:close-circle'" class="text-red-500 text-lg" />
+          <app-icon [icon]="'material-symbols-light:cancel'" class="text-red-500 text-lg" />
           }
         </td>
         <td>
@@ -115,7 +115,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:receipt" class="text-purple-600 text-xl" />
+        <app-icon icon="material-symbols-light:receipt" class="text-purple-600 text-xl" />
       </div>
       <div class="flex-1 min-w-0">
         <h3>{{ item.name }}</h3>

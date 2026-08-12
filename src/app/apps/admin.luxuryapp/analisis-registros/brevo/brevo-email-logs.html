@@ -39,16 +39,16 @@
     <!-- Botones -->
     <il-button
       label="Buscar"
-      iconClass="mdi:magnify"
+      iconClass="material-symbols-light:search"
       size="sm"
       (clicked)="aplicarFiltros()"
     />
     <il-button
       label="Limpiar"
-      iconClass="mdi:close"
+      iconClass="material-symbols-light:close"
       severity="secondary"
       size="sm"
-      variant="outlined"
+      variant="outline"
       (clicked)="limpiarFiltros()"
     />
   </div>
@@ -138,7 +138,10 @@
   <ng-template #emptymessage>
     <tr>
       <td colspan="6" class="text-center py-6 text-color-secondary">
-        <app-icon [icon]="'mdi:inbox'" class="text-3xl mb-2 block" />
+        <app-icon
+          [icon]="'material-symbols-light:move-to-inbox'"
+          class="text-3xl mb-2 block"
+        />
         No se encontraron logs con los filtros seleccionados.
       </td>
     </tr>

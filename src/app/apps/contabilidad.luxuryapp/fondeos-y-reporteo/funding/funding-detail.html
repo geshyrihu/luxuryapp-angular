@@ -11,7 +11,8 @@
           {{ customerName() }}
         </h1>
         <span class="text-sm text-500 font-medium flex align-items-center gap-1"
-          ><app-icon [icon]="'mdi:calendar'" /> {{ periodo() }}</span
+          ><app-icon [icon]="'material-symbols-light:calendar-today'" /> {{
+          periodo() }}</span
         >
       </div>
     </div>
@@ -26,10 +27,10 @@
       <div class="flex gap-1 border-right-1 surface-border pr-2 mr-1">
         <il-button
           label="Revertir confirmacion"
-          iconClass="mdi:replay"
+          iconClass="material-symbols-light:replay"
           severity="danger"
           size="sm"
-          variant="outlined"
+          variant="outline"
           (clicked)="onRevokeConfirmation()"
         />
       </div>
@@ -38,7 +39,7 @@
         @if (!isVerified()) {
         <il-button
           label="Validar"
-          iconClass="mdi:check-circle"
+          iconClass="material-symbols-light:check-circle"
           severity="help"
           size="sm"
           (clicked)="onValidate()"
@@ -46,7 +47,7 @@
         } @if (isVerified() && !isAuthorized()) {
         <il-button
           label="Revertir verificacion"
-          iconClass="mdi:undo"
+          iconClass="material-symbols-light:undo"
           severity="secondary"
           size="sm"
           variant="ghost-text"
@@ -56,7 +57,7 @@
         isRolSuperUsuario())) {
         <il-button
           label="Autorizar"
-          iconClass="mdi:verified"
+          iconClass="material-symbols-light:verified"
           severity="success"
           size="sm"
           (clicked)="onAuthorize()"
@@ -65,17 +66,17 @@
         isRolSuperUsuario())) {
         <il-button
           label="Desautorizar"
-          iconClass="mdi:lock-open"
+          iconClass="material-symbols-light:lock-open"
           severity="danger"
           size="sm"
-          variant="outlined"
+          variant="outline"
           (clicked)="onUnauthorize()"
         />
         } @if (isAuthorized() && !isConfirmed() && (isRolContador() ||
         isRolSuperUsuario())) {
         <il-button
           label="Confirmar recepcion"
-          iconClass="mdi:checkbox-marked"
+          iconClass="material-symbols-light:check-box"
           severity="help"
           size="sm"
           (clicked)="onConfirm()"
@@ -102,7 +103,7 @@
             class="flex align-items-center gap-1 border-1 surface-border rounded-3xl px-2 py-1 bg-surface-0"
           >
             <iw-button
-              iconClass="mdi:file-excel"
+              iconClass="material-symbols-light:table-view"
               lxTooltip="Excel"
               tooltipPosition="bottom"
               severity="success"
@@ -116,11 +117,11 @@
               class="btn btn-secondary btn-sm"
               lxTooltip="Catálogo de Gastos Fijos — generar OC automáticas"
               tooltipPosition="bottom"
-              ><app-icon [icon]="'mdi:format-list-bulleted'"
+              ><app-icon [icon]="'material-symbols-light:format-list-bulleted'"
             /></a>
             } @if (dataSignal().length > 0) {
             <iw-button
-              iconClass="mdi:printer"
+              iconClass="material-symbols-light:print"
               lxTooltip="Solicitudes"
               tooltipPosition="bottom"
               severity="warn"
@@ -130,7 +131,7 @@
             />
             }
             <iw-button
-              iconClass="mdi:upload"
+              iconClass="material-symbols-light:upload"
               lxTooltip="Cargar XMLs"
               tooltipPosition="bottom"
               severity="danger"
@@ -153,60 +154,88 @@
   >
     <div class="flex align-items-center gap-1 text-sm">
       @if (isVerified()) {
-      <app-icon [icon]="'mdi:check-circle'" class="text-green-500" />
+      <app-icon
+        [icon]="'material-symbols-light:check-circle'"
+        class="text-green-500"
+      />
       <span class="text-green-700 font-medium">Verificado</span>
       } @else {
-      <app-icon [icon]="'mdi:circle'" class="text-orange-400" />
+      <app-icon
+        [icon]="'material-symbols-light:circle'"
+        class="text-orange-400"
+      />
       <span class="text-orange-600 font-medium"
         >Pendiente — debe verificarse</span
       >
       }
     </div>
-    <app-icon [icon]="'mdi:chevron-right'" class="text-300 text-xs" />
+    <app-icon
+      [icon]="'material-symbols-light:chevron-right'"
+      class="text-300 text-xs"
+    />
     <div class="flex align-items-center gap-1 text-sm">
       @if (isAuthorized()) {
-      <app-icon [icon]="'mdi:check-circle'" class="text-green-500" />
+      <app-icon
+        [icon]="'material-symbols-light:check-circle'"
+        class="text-green-500"
+      />
       <span class="text-green-700 font-medium">Autorizado</span>
       } @else if (isVerified()) {
-      <app-icon [icon]="'mdi:circle'" class="text-orange-400" />
+      <app-icon
+        [icon]="'material-symbols-light:circle'"
+        class="text-orange-400"
+      />
       <span class="text-orange-600 font-medium"
         >Pendiente — debe autorizarse</span
       >
       } @else {
-      <app-icon [icon]="'mdi:lock'" class="text-400" />
+      <app-icon [icon]="'material-symbols-light:lock'" class="text-400" />
       <span class="text-400">Autorizar (requiere verificacion)</span>
       }
     </div>
-    <app-icon [icon]="'mdi:chevron-right'" class="text-300 text-xs" />
+    <app-icon
+      [icon]="'material-symbols-light:chevron-right'"
+      class="text-300 text-xs"
+    />
     <div class="flex align-items-center gap-1 text-sm">
       @if (isConfirmed()) {
-      <app-icon [icon]="'mdi:check-circle'" class="text-green-500" />
+      <app-icon
+        [icon]="'material-symbols-light:check-circle'"
+        class="text-green-500"
+      />
       <span class="text-green-700 font-medium"
         >Confirmado por Contabilidad</span
       >
       } @else if (isAuthorized()) {
-      <app-icon [icon]="'mdi:circle'" class="text-orange-400" />
+      <app-icon
+        [icon]="'material-symbols-light:circle'"
+        class="text-orange-400"
+      />
       <span class="text-orange-600 font-medium"
         >Pendiente — debe confirmar Contabilidad</span
       >
       } @else {
-      <app-icon [icon]="'mdi:lock'" class="text-400" />
+      <app-icon [icon]="'material-symbols-light:lock'" class="text-400" />
       <span class="text-400">Confirmar (requiere autorizacion)</span>
       }
     </div>
   </div>
 
   @if (isVerified() && !isAuthorized() && !isConfirmed()) {
-  <lx-message severity="warn" class="mt-2 w-full">Fondeo verificado — las OC vinculadas no se pueden modificar. Para
-    habilitar cambios, revierte la verificacion.</lx-message>
+  <lx-message severity="warn" class="mt-2 w-full"
+    >Fondeo verificado — las OC vinculadas no se pueden modificar. Para
+    habilitar cambios, revierte la verificacion.</lx-message
+  >
   } @if (isAuthorized() && !isConfirmed()) {
-  <lx-message severity="warn" class="mt-2 w-full">Fondeo autorizado — las OC vinculadas no se pueden modificar. Para
-    habilitar cambios, revierte la autorizacion primero.</lx-message>
+  <lx-message severity="warn" class="mt-2 w-full"
+    >Fondeo autorizado — las OC vinculadas no se pueden modificar. Para
+    habilitar cambios, revierte la autorizacion primero.</lx-message
+  >
   } @if (isConfirmed()) {
   <div
     class="w-full bg-green-50 border-green-200 border-1 rounded p-3 mt-2 flex align-items-center gap-2 text-green-700"
   >
-    <app-icon [icon]="'mdi:verified'" class="text-xl" />
+    <app-icon [icon]="'material-symbols-light:verified'" class="text-xl" />
     <span class="font-bold"
       >Este fondeo ha sido procesado por contabilidad. No se pueden realizar
       cambios.</span
@@ -217,7 +246,10 @@
     class="flex flex-column align-items-center justify-content-center p-6 border-1 surface-border rounded-xl bg-surface-0 text-center shadow-sm"
   >
     <div class="bg-surface-100 border-circle p-3 mb-3">
-      <app-icon [icon]="'mdi:folder-open'" class="text-4xl text-500" />
+      <app-icon
+        [icon]="'material-symbols-light:folder-open'"
+        class="text-4xl text-500"
+      />
     </div>
     <span class="text-xl font-medium text-900">Sin órdenes de Compra</span>
     <span class="text-500 mt-1"
@@ -247,7 +279,7 @@
           >{{ grupo.totalGrupo | number: "1.2-2" }}</span
         >
         <iw-button
-          iconClass="mdi:folder"
+          iconClass="material-symbols-light:folder"
           variant="ghost-text"
           severity="secondary"
           size="sm"
@@ -303,10 +335,7 @@
           >
             Estado
           </th>
-          <th
-            class="text-center p-2 bg-surface-0 text-600 font-medium"
-            
-          >
+          <th class="text-center p-2 bg-surface-0 text-600 font-medium">
             Acciones
           </th>
         </tr>
@@ -317,7 +346,7 @@
           <!-- Index -->
           <td class="text-center p-1 text-500 relative bg-surface-0">
             <app-icon
-              [icon]="'mdi:dots-vertical'"
+              [icon]="'material-symbols-light:more-vert'"
               class="text-300 absolute left-0 top-50 mt--2 ml-1 cursor-move hidden md:block"
               pReorderableRowHandle
             />
@@ -331,8 +360,7 @@
                 >{{ orden.justificacionGasto | uppercase }}</span
               >
               <span class="text-xs text-500 flex align-items-center gap-1">
-                <span
-                  class="bg-blue-50 text-blue-700 px-1 rounded font-medium"
+                <span class="bg-blue-50 text-blue-700 px-1 rounded font-medium"
                   >{{ orden.codigoCuenta }}</span
                 >
                 {{ orden.accountName }}
@@ -350,11 +378,31 @@
               <!-- Invoice Tags -->
               <div class="flex flex-wrap gap-1 align-items-center">
                 @if (orden.listadoFacturas?.length > 1) {
-                <lx-tag severity="warning" [value]="orden.listadoFacturas.length + ' Docs'" class="cursor-pointer hover:surface-hover transition-duration-200" (click)="showInvoices(orden)" class="text-xs px-2 py-0 rounded-md" />
+                <lx-tag
+                  severity="warning"
+                  [value]="orden.listadoFacturas.length + ' Docs'"
+                  class="cursor-pointer hover:surface-hover transition-duration-200"
+                  (click)="showInvoices(orden)"
+                  class="text-xs px-2 py-0 rounded-md"
+                />
                 } @else if (orden.pdfFile || orden.factura) {
-                <lx-tag severity="secondary" value="PDF" icon="mdi:file-pdf-box" class="cursor-pointer hover:surface-hover transition-duration-200" (click)="viewPdf(orden.pdfFile,'Factura')" class="text-xs px-2 py-0 bg-surface-200 text-700 rounded-md" />
+                <lx-tag
+                  severity="secondary"
+                  value="PDF"
+                  icon="material-symbols-light:picture-as-pdf"
+                  class="cursor-pointer hover:surface-hover transition-duration-200"
+                  (click)="viewPdf(orden.pdfFile,'Factura')"
+                  class="text-xs px-2 py-0 bg-surface-200 text-700 rounded-md"
+                />
                 } @if (orden.comprobantesPago?.length > 0) {
-                <lx-tag severity="success" value="Pago" icon="mdi:check" class="cursor-pointer hover:surface-hover transition-duration-200" (click)="viewPdf(orden.comprobantesPago[0].filePath, 'Comprobante')" class="text-xs px-2 py-0 rounded-md" />
+                <lx-tag
+                  severity="success"
+                  value="Pago"
+                  icon="material-symbols-light:check"
+                  class="cursor-pointer hover:surface-hover transition-duration-200"
+                  (click)="viewPdf(orden.comprobantesPago[0].filePath, 'Comprobante')"
+                  class="text-xs px-2 py-0 rounded-md"
+                />
                 }
               </div>
             </div>
@@ -392,19 +440,19 @@
               <!-- XML Validation -->
               @if (orden.validationStatus === true) {
               <app-icon
-                [icon]="'mdi:check-circle'"
+                [icon]="'material-symbols-light:check-circle'"
                 class="text-green-500 text-lg"
                 lxTooltip="{{ orden.validationMessage }}"
               />
               } @else if (orden.validationStatus === false) {
               <app-icon
-                [icon]="'mdi:close-circle'"
+                [icon]="'material-symbols-light:cancel'"
                 class="text-red-500 text-lg"
                 lxTooltip="{{ orden.validationMessage }}"
               />
               } @else {
               <app-icon
-                [icon]="'mdi:circle'"
+                [icon]="'material-symbols-light:circle'"
                 class="text-300 text-lg"
                 lxTooltip="Sin validar"
               />
@@ -426,7 +474,7 @@
             <div class="flex justify-content-center align-items-center gap-1">
               <!-- Start Solo lo ve el contador -->
               <iw-button
-                iconClass="mdi:wallet"
+                iconClass="material-symbols-light:wallet"
                 variant="ghost-text"
                 severity="success"
                 size="sm"
@@ -435,7 +483,7 @@
               />
               <!-- Start Solo lo ve el contador -->
               <iw-button
-                iconClass="mdi:pencil"
+                iconClass="material-symbols-light:edit"
                 variant="ghost-text"
                 severity="info"
                 size="sm"
@@ -465,7 +513,10 @@
       class="flex justify-content-between align-items-center bg-orange-50 px-3 py-2 border-bottom-1 border-orange-200"
     >
       <div class="flex align-items-center gap-2">
-        <app-icon [icon]="'mdi:lightning-bolt'" class="text-orange-500" />
+        <app-icon
+          [icon]="'material-symbols-light:bolt'"
+          class="text-orange-500"
+        />
         <span class="font-bold text-orange-800 text-base"
           >ÓRDENES FUERA DE PROCESO DE FONDEO</span
         >
@@ -478,10 +529,10 @@
       @if (isRolAdministrador() || isRolSuperUsuario()) {
       <il-button
         label="Agregar OC fuera de proceso"
-        iconClass="mdi:plus"
+        iconClass="material-symbols-light:add"
         severity="warn"
         size="sm"
-        variant="outlined"
+        variant="outline"
         (clicked)="onAddFueraFondeo()"
       />
       }
@@ -489,7 +540,7 @@
 
     @if (ordenesFueraProceso().length === 0) {
     <div class="flex align-items-center gap-2 p-3 text-500 text-sm">
-      <app-icon [icon]="'mdi:information'" />
+      <app-icon [icon]="'material-symbols-light:info'" />
       <span>No hay órdenes fuera de proceso para este fondeo.</span>
     </div>
     } @else {
@@ -521,7 +572,7 @@
           <td class="text-center">
             <div class="flex gap-1 justify-content-center">
               <iw-button
-                iconClass="mdi:eye-outline"
+                iconClass="material-symbols-light:visibility-outline"
                 variant="text"
                 size="sm"
                 lxTooltip="Ver orden de compra"
@@ -543,13 +594,17 @@
     }
   </div>
 
-  <lx-modal header="Generando Solicitudes" [(visible)]="isDownloading" [closable]="false">
-<div class="flex flex-column align-items-center justify-content-center p-4">
+  <lx-modal
+    header="Generando Solicitudes"
+    [(visible)]="isDownloading"
+    [closable]="false"
+  >
+    <div class="flex flex-column align-items-center justify-content-center p-4">
       <lx-progress-bar [value]="downloadProgress()" class="mb-3" />
       <span class="text-700 font-medium">{{ downloadStatusText() }}</span>
       <span class="text-500 text-sm mt-2"
         >Por favor no cierre esta ventana.</span
       >
     </div>
-</lx-modal>
+  </lx-modal>
 </div>

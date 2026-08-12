@@ -17,11 +17,7 @@ import { BaseButton } from "../base/base-button";
       @if (emoji()) {
         <span>{{ emoji() }}</span>
       } @else if (iconClass()) {
-        @if (isPrimeIcon(iconClass())) {
-          <i [class]="iconClass()"></i>
-        } @else {
-          <app-icon [icon]="iconClass()" />
-        }
+        <app-icon [icon]="resolvedIconClass()" />
       }
       <span>{{ label() || "Accion" }}</span>
     </button>

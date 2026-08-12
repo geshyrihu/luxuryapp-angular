@@ -69,14 +69,14 @@
         <div class="flex gap-2 flex-shrink-0">
           <il-button
             label="Filtrar"
-            iconClass="pi pi-filter"
+            iconClass="material-symbols-light:filter"
             severity="primary"
             size="small"
             (clicked)="onAplicarFiltros()"
           />
           <il-button
             label="Limpiar"
-            iconClass="pi pi-times"
+            iconClass="material-symbols-light:close"
             severity="secondary"
             variant="outline"
             size="small"
@@ -184,14 +184,14 @@
         {
         <div class="flex gap-1 justify-content-center">
           <iw-button
-            iconClass="pi pi-check"
+            iconClass="material-symbols-light:check"
             severity="success"
             size="small"
             variant="text"
             (clicked)="onAprobar(item)"
           />
           <iw-button
-            iconClass="pi pi-times"
+            iconClass="material-symbols-light:close"
             severity="danger"
             size="small"
             variant="text"
@@ -251,7 +251,7 @@
       <div class="flex gap-2">
         <il-button
           label="Filtrar"
-          iconClass="pi pi-filter"
+          iconClass="material-symbols-light:filter"
           severity="primary"
           size="small"
           [fluid]="true"
@@ -259,7 +259,7 @@
         />
         <il-button
           label="Limpiar"
-          iconClass="pi pi-times"
+          iconClass="material-symbols-light:close"
           severity="secondary"
           variant="outline"
           size="small"
@@ -307,14 +307,14 @@
         @if (item.estadoAnomalia === 'Pendiente de revisión') {
         <div class="flex gap-1">
           <iw-button
-            iconClass="pi pi-check"
+            iconClass="material-symbols-light:check"
             severity="success"
             size="small"
             variant="text"
             (clicked)="onAprobar(item)"
           />
           <iw-button
-            iconClass="pi pi-times"
+            iconClass="material-symbols-light:close"
             severity="danger"
             size="small"
             variant="text"

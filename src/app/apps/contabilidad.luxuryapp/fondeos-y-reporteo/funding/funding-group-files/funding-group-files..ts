@@ -17,6 +17,7 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-funding-group-files",
   imports: [
@@ -27,6 +28,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     LxTooltipDirective,
     WebButtonLabel,
     WebButtonIconItem,
+    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-group-files.html",
@@ -37,8 +39,8 @@ export class FundingGroupFiles implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   selectedGroupFiles = signal<any[]>([]);
   viewOptions: any[] = [
-    { icon: "mdi:grid", value: "grid" },
-    { icon: "mdi:format-list-bulleted", value: "list" },
+    { icon: "material-symbols-light:grid-view", value: "grid" },
+    { icon: "material-symbols-light:format-list-bulleted", value: "list" },
   ];
   viewMode = signal("grid");
   selectedFiles = signal<any[]>([]);

@@ -6,12 +6,3 @@ export interface SelectItemDto<T = any> {
   sortOrder?: number;
   image?: string;
 }
-
-
-
-
-
-
-
-
-

@@ -58,9 +58,9 @@ cb_departamento; track item) {
           [class.bg-success]="item.estatus === 1"
         >
           @if (item.estatus === 0) {
-          <app-icon [icon]="'mdi:close'" class="icon icon-" />
+          <app-icon [icon]="'material-symbols-light:close'" class="icon icon-" />
           } @if (item.estatus === 1) {
-          <app-icon [icon]="'mdi:check'" class="icon icon-" />
+          <app-icon [icon]="'material-symbols-light:check'" class="icon icon-" />
           }
         </span>
       </td>
@@ -97,13 +97,13 @@ cb_departamento; track item) {
             />
             @if (item.archivo && item.superviso === "") {
             <il-button-item
-              iconClass="mdi:check"
+              iconClass="material-symbols-light:check"
               label="Validar"
               (clicked)="onValidarDocument(item.id)"
             />
             } @if (item.archivo && item.superviso !== "") {
             <il-button-item
-              iconClass="mdi:arrow-left"
+              iconClass="material-symbols-light:arrow-back"
               label="Revocar"
               (clicked)="onInvalidarDocument(item.id)"
             />
@@ -137,7 +137,7 @@ cb_departamento; track item) {
     <div class="flex flex-wrap gap-1 p-2">
       @for (item of cb_departamento; track item) {
       <ili-button-item
-        [iconClass]="item.value == departamento() ? 'mdi:check' : ''"
+        [iconClass]="item.value == departamento() ? 'material-symbols-light:check' : ''"
         [label]="item.value"
         (clicked)="onChangeDepartamento(item.value)"
       />
@@ -158,14 +158,14 @@ cb_departamento; track item) {
           />
           @if (item.archivo && item.superviso === '') {
           <ili-button-item
-            iconClass="mdi:check"
+            iconClass="material-symbols-light:check"
             label="Validar"
             (clicked)="onValidarDocument(item.id)"
           />
           }
           @if (item.archivo && item.superviso !== '') {
           <ili-button-item
-            iconClass="mdi:arrow-left"
+            iconClass="material-symbols-light:arrow-back"
             label="Revocar"
             (clicked)="onInvalidarDocument(item.id)"
           />

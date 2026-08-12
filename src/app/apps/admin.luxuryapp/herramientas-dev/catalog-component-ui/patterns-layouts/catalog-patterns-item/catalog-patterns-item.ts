@@ -15,6 +15,7 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TabsModule } from "@ui/web/primeng-tabs/primeng-tabs";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 const PATTERNS_LABELS: Record<string, string> = {
   complexcard: "Complex Card",
@@ -55,7 +56,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                 <h3 class="m-0">Medidor Elóctrico A1</h3>
                 <div class="flex align-items-center gap-2 mb-3 mt-2">
                   <app-icon
-                    icon="icon.flash-outline"
+                    icon="material-symbols-light:flash-on"
                     class="text-xl text-primary"
                   />
                   <span class="text-xl font-bold">120 kWh</span>
@@ -199,7 +200,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                           />
                         </div>
                         <app-icon
-                          icon="icon.arrow-up-right"
+                          icon="material-symbols-light:north-east"
                           class="text-400 text-lg"
                         />
                       </div>
@@ -237,7 +238,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                           <code>app-icon</code> con
                           <code>[style.color]="card.color"</code>
                         </li>
-                        <li>Flecha <code>mdi:arrow-up-right</code> en gris</li>
+                        <li>Flecha <code>material-symbols-light:north-east</code> en gris</li>
                         <li>
                           Label en <code>font-bold text-900 text-sm</code>
                         </li>
@@ -344,62 +345,72 @@ interface DashboardGroup {
   cards:  DashboardCard[];
 }`;
 
-  readonly navHubDemo = [
+  readonly navHubDemo: {
+    title: string;
+    icon: AppIconName;
+    bgColor: string;
+    color: string;
+    description: string;
+  }[] = [
     {
       title: "Clientes",
-      icon: "icon.domain",
+      icon: "material-symbols-light:domain",
       bgColor: "#dbeafe",
       color: "#1d4ed8",
       description: "Gestión de clientes.",
     },
     {
       title: "Roles",
-      icon: "icon.shield-account-outline",
+      icon: "material-symbols-light:shield-person",
       bgColor: "#e0e7ff",
       color: "#4338ca",
       description: "",
     },
     {
       title: "Cargos",
-      icon: "icon.cash-remove",
+      icon: "material-symbols-light:paid",
       bgColor: "#ffdad6",
       color: "#b91c1c",
       description: "Emisión de cargos.",
     },
     {
       title: "Pagos",
-      icon: "icon.cash-check",
+      icon: "material-symbols-light:paid",
       bgColor: "#d1fae5",
       color: "#15803d",
       description: "",
     },
     {
       title: "Reportes",
-      icon: "icon.chart-bar",
+      icon: "material-symbols-light:bar-chart",
       bgColor: "#fef9c3",
       color: "#a16207",
       description: "Reportes contables.",
     },
     {
       title: "Configuración",
-      icon: "icon.cog-outline",
+      icon: "material-symbols-light:settings-outline",
       bgColor: "#f3e8ff",
       color: "#7c3aed",
       description: "",
     },
   ];
 
-  readonly navHubImplementations = [
+  readonly navHubImplementations: {
+    label: string;
+    icon: AppIconName;
+    route: string;
+  }[] = [
     {
       label: "Configuración del Sistema",
-      icon: "icon.cog",
+      icon: "material-symbols-light:settings",
       route: "/admin",
     },
     {
       label: "Contabilidad (Master)",
-      icon: "icon.wallet",
+      icon: "material-symbols-light:wallet",
       route: "/contabilidad",
     },
-    { label: "Cobranza Nativa", icon: "icon.cash", route: "/cobranza-nativa" },
+    { label: "Cobranza Nativa", icon: "material-symbols-light:paid", route: "/cobranza-nativa" },
   ];
 }

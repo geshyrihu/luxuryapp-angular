@@ -13,7 +13,7 @@
 -->
 @if (loading()) {
 <div class="flex align-items-center justify-content-center p-4">
-  <app-icon [icon]="'mdi:loading'" class="text-4xl mr-3" />
+  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl mr-3" />
   <div class="text-lg">
     Analizando patrones de gasto de los {{selectedMonthsForAvg().length}} meses
     seleccionados y calculando inflación ({{inflationRate()}}%)...
@@ -83,13 +83,13 @@
   </div>
   <div>
     <il-button
-      iconClass="mdi:close"
+      iconClass="material-symbols-light:close"
       (clicked)="close()"
       label="Cancelar"
       variant="text"
     />
     <il-button
-      iconClass="mdi:check"
+      iconClass="material-symbols-light:check"
       (clicked)="apply()"
       label="Aplicar {{selectedForecastItems().length}} Cambios"
       [disabled]="selectedForecastItems().length === 0"

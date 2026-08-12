@@ -472,7 +472,7 @@ import {
           <ili-table
             [data]="[{ id: 1, name: 'Product A', price: '$10' }]"
             [columns]="[
-              { field: 'name', header: 'Name', icon: 'mdi:box' },
+              { field: 'name', header: 'Name', icon: 'material-symbols-light:package' },
               { field: 'price', header: 'Price' },
             ]"
             dataKey="id"

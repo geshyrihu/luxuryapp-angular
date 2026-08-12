@@ -29,7 +29,7 @@
         [type]="service.ButtonTypeSubmit"
         label="Agregar Correo"
         [disabled]="service.form.invalid"
-        [iconClass]="service.form.invalid ? 'mdi:close' : 'mdi:check'"
+        [iconClass]="service.form.invalid ? 'material-symbols-light:close' : 'material-symbols-light:check'"
         customClass=""
       />
     </div>
@@ -64,7 +64,7 @@
         class="absolute top-0 right-0 -mt-2 -mr-2 p-badge p-badge-success p-badge-rounded"
       >
         <app-icon
-          [icon]="'mdi:close'"
+          [icon]="'material-symbols-light:close'"
           class="cursor-pointer"
           tooltip="Descartar correo"
           placement="top"

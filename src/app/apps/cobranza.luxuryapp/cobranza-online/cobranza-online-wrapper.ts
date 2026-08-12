@@ -24,10 +24,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CobranzaDatePickerModalComponent } from "./cobranza-date-picker-modal";
 import { cobranzaOnlineFilterState } from "./state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "./state/cobranza-online-store.service";
+import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
 
 @Component({
   selector: "app-cobranza-online-wrapper",
-  imports: [RouterModule, AppIcon, LxDivider],
+  imports: [RouterModule, AppIcon, LxDivider, LxSpinner],
   templateUrl: "./cobranza-online-wrapper.html",
   styleUrls: ["./cobranza-online.styles.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -49,7 +50,7 @@ export class CobranzaOnlineWrapper {
       {
         id: "context",
         title: `Cliente: ${customer} · ${period}`,
-        icon: "mdi:office-building-outline",
+        icon: "material-symbols-light:apartment",
       },
     ];
   });

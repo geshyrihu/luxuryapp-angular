@@ -11,7 +11,7 @@
       >
         <primeng-custom-caption [dt]="dt" (add)="onCreate()" />
         <iw-button-item
-          iconClass="mdi:printer-outline"
+          iconClass="material-symbols-light:print-outline"
           lxTooltip="Imprimir activas"
           tooltipPosition="top"
           (clicked)="onPrintAll()"
@@ -48,13 +48,13 @@
       <td>
         <div class="flex justify-content-end gap-1">
           <iw-button-item
-            iconClass="mdi:printer-outline"
+            iconClass="material-symbols-light:print-outline"
             lxTooltip="Imprimir"
             tooltipPosition="top"
             (clicked)="onPrint(item.id)"
           />
           <iw-button-item
-            iconClass="mdi:refresh"
+            iconClass="material-symbols-light:refresh"
             lxTooltip="Regenerar"
             tooltipPosition="top"
             (clicked)="onRegenerate(item.id)"
@@ -88,11 +88,11 @@
       <ili-action-menu end>
         <ng-container actions>
           <ili-button-item
-            iconClass="mdi:printer-outline"
+            iconClass="material-symbols-light:print-outline"
             (clicked)="onPrint(item.id)"
           />
           <ili-button-item
-            iconClass="mdi:refresh"
+            iconClass="material-symbols-light:refresh"
             (clicked)="onRegenerate(item.id)"
           />
         </ng-container>

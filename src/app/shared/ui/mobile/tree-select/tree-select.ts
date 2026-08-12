@@ -10,12 +10,12 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     <div class="ili-tree-select-root">
       <button class="ili-tree-select-trigger" (click)="toggleOpen()">
         <span class="ili-tree-select-label">{{ displayText() }}</span>
-        <app-icon icon="mdi:chevron-down" />
+        <app-icon icon="material-symbols-light:keyboard-arrow-down" />
       </button>
       @if (isOpen()) {
         <div class="ili-tree-select-overlay">
           <div class="ili-tree-select-header">
-            <app-icon icon="mdi:close" (click)="close()" />
+            <app-icon icon="material-symbols-light:close" (click)="close()" />
           </div>
           <div class="ili-tree-select-tree">
             @for (node of options(); track $index) {
@@ -51,7 +51,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 >
                   <span>{{ getLabel(node) }}</span>
                   @if (node.children) {
-                    <app-icon icon="mdi:chevron-right" />
+                    <app-icon icon="material-symbols-light:chevron-right" />
                   }
                 </div>
                 @if (node.children && expandedNode() === node) {

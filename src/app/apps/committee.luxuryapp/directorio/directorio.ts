@@ -19,12 +19,13 @@ import { AppRealtimeIndicator } from "@ui/shared/realtime-indicator/realtime-ind
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { DirectorioContactDetail } from "./contact-detail/directorio-contact-detail";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-committee-directorio",
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./directorio.html",
-  imports: [AppImageFallback, SegmentedControl, AppRealtimeIndicator],
+  imports: [AppImageFallback, SegmentedControl, AppRealtimeIndicator, AppIcon],
 })
 export class CommitteeDirectorio implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -36,8 +37,8 @@ export class CommitteeDirectorio implements OnInit {
   view = signal("personal");
 
   readonly segments: SegmentItem[] = [
-    { value: "personal", label: "Personal", icon: "mdi:account-group" },
-    { value: "casetas", label: "Casetas", icon: "mdi:office-building-marker" },
+    { value: "personal", label: "Personal", icon: "material-symbols-light:group" },
+    { value: "casetas", label: "Casetas", icon: "material-symbols-light:location-city" },
   ];
 
   /** Personal de administración: entradas sin grupo. */

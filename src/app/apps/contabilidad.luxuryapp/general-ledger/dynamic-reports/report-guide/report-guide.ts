@@ -3,6 +3,7 @@ import { RouterModule } from "@angular/router";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { AccordionItem } from "src/app/shared/ui/base/accordion.base";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 interface RouteEntry {
@@ -29,11 +30,11 @@ interface FrontendRoute {
 export class ReportGuide {
   activeSection = signal<string>("intro");
 
-  technicalAccordion = [
+  technicalAccordion: AccordionItem[] = [
     {
       id: "technical",
       title: "Detalles Técnicos y Tipos de Datos (Solo Expertos)",
-      icon: "mdi:cog",
+      icon: "material-symbols-light:settings",
     },
   ];
 

@@ -34,7 +34,8 @@
     "storybook": "ng run luxury-app:storybook",
     "build-storybook": "ng run luxury-app:build-storybook",
     "audit:scss-build": "node scripts/audit-scss-build.mjs",
-    "audit:ds": "npm run audit:scss-build && npm run audit:tokens && npm run audit:contrast && npm run audit:token-refs"
+    "audit:icon-names": "node scripts/audit-icon-names.mjs",
+    "audit:ds": "npm run audit:scss-build && npm run audit:tokens && npm run audit:contrast && npm run audit:token-refs && npm run audit:icon-names"
   },
   "private": true,
   "dependencies": {

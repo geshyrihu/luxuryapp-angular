@@ -45,7 +45,7 @@
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
         <app-icon
-          [icon]="item.accessibleAndVisible ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.accessibleAndVisible ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.accessibleAndVisible"
           [class.text-red-600]="!item.accessibleAndVisible"
@@ -53,7 +53,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.housingOk ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.housingOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.housingOk"
           [class.text-red-600]="!item.housingOk"
@@ -61,7 +61,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.leverOk ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.leverOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.leverOk"
           [class.text-red-600]="!item.leverOk"
@@ -69,7 +69,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.glassIntact ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.glassIntact ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.glassIntact"
           [class.text-red-600]="!item.glassIntact"
@@ -77,7 +77,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.mountingSecure ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.mountingSecure ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.mountingSecure"
           [class.text-red-600]="!item.mountingSecure"
@@ -85,7 +85,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.signageOk ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.signageOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.signageOk"
           [class.text-red-600]="!item.signageOk"
@@ -121,7 +121,7 @@
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
       >
-        <app-icon icon="mdi:alarm-light-outline" />
+        <app-icon icon="material-symbols-light:alarm" />
       </div>
 
       <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>

@@ -51,15 +51,15 @@ const tipoGastoTitles: { [key: number]: string } = {
 };
 
 const tipoGastoIcons: { [key: number]: string } = {
-  [TipoGasto.Fijo]: "mdi:briefcase",
-  [TipoGasto.Variable]: "mdi:sync",
-  [TipoGasto.CajaChica]: "mdi:wallet",
-  [TipoGasto.Extraordinario]: "mdi:lightning-bolt",
-  [TipoGasto.Devoluciones]: "mdi:replay",
-  [TipoGasto.TarjetaDebito]: "mdi:credit-card",
-  [TipoGasto.Proyectos]: "mdi:folder-open",
-  [TipoGasto.Nomina]: "mdi:account-group",
-  [TipoGasto.Impuestos]: "mdi:receipt",
+  [TipoGasto.Fijo]: "material-symbols-light:work",
+  [TipoGasto.Variable]: "material-symbols-light:sync",
+  [TipoGasto.CajaChica]: "material-symbols-light:wallet",
+  [TipoGasto.Extraordinario]: "material-symbols-light:bolt",
+  [TipoGasto.Devoluciones]: "material-symbols-light:replay",
+  [TipoGasto.TarjetaDebito]: "material-symbols-light:credit-card",
+  [TipoGasto.Proyectos]: "material-symbols-light:folder-open",
+  [TipoGasto.Nomina]: "material-symbols-light:group",
+  [TipoGasto.Impuestos]: "material-symbols-light:receipt",
 };
 
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -203,7 +203,7 @@ export class OrdenCompraList {
       return {
         id,
         label: tipoGastoTitles[id] || key.replace(/([A-Z])/g, " $1").trim(),
-        iconClass: tipoGastoIcons[id] || "mdi:tag",
+        iconClass: tipoGastoIcons[id] || "material-symbols-light:label",
       };
     });
 

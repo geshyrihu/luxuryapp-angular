@@ -20,7 +20,7 @@
         <div class="flex justify-content-between">
           <primeng-custom-caption [showAdd]="false" [dt]="dt" />
           <il-button
-            iconClass="mdi:download"
+            iconClass="material-symbols-light:download"
             label="Exportar"
             (clicked)="exportData()"
             severity="success"
@@ -63,7 +63,7 @@
       <ng-template emptymessage>
         <tr>
           <td colspan="2" class="text-center py-4">
-            <app-icon [icon]="'mdi:information'" class="mr-2" />
+            <app-icon [icon]="'material-symbols-light:info'" class="mr-2" />
             No hay cuentas para mostrar.
           </td>
         </tr>
@@ -92,7 +92,7 @@
             class="w-3rem h-3rem bg-primary-50"
           >
             <app-icon
-              icon="mdi:format-list-bulleted"
+              icon="material-symbols-light:format-list-bulleted"
               class="text-xl text-primary"
             />
           </div>

@@ -36,9 +36,9 @@
               [noMargin]="true"
             />
             <il-button
-              iconClass="mdi:printer"
+              iconClass="material-symbols-light:print"
               label="Imprimir pendientes"
-              variant="outlined"
+              variant="outline"
               severity="secondary"
               size="small"
               (clicked)="printReport()"
@@ -48,17 +48,17 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th >FOLIO</th>
-          <th  class="hidden md:table-cell">SOLICITA</th>
-          <th >FECHA SOL.</th>
-          <th >SOLICITUD</th>
-          <th  class="hidden md:table-cell">EVIDENCIA</th>
-          <th >RESP.</th>
-          <th >PROGRAMADO</th>
-          <th  class="hidden md:table-cell">CIERRE</th>
-          <th >DIAS</th>
-          <th >ULTIMO SEGUIMIENTO</th>
-          <th ></th>
+          <th>FOLIO</th>
+          <th class="hidden md:table-cell">SOLICITA</th>
+          <th>FECHA SOL.</th>
+          <th>SOLICITUD</th>
+          <th class="hidden md:table-cell">EVIDENCIA</th>
+          <th>RESP.</th>
+          <th>PROGRAMADO</th>
+          <th class="hidden md:table-cell">CIERRE</th>
+          <th>DIAS</th>
+          <th>ULTIMO SEGUIMIENTO</th>
+          <th></th>
         </tr>
       </ng-template>
       <ng-template #body let-item>
@@ -87,12 +87,7 @@
           <td class="text-xs text-600">{{ item.createdAtDate }}</td>
           <td>
             <p class="m-0 font-semibold text-xs text-900">{{ item.title }}</p>
-            <p
-              class="m-0 text-xs text-700"
-              
-            >
-              {{ item.description }}
-            </p>
+            <p class="m-0 text-xs text-700">{{ item.description }}</p>
           </td>
           <td class="text-center hidden md:table-cell">
             @if (item.beforeWork) {
@@ -114,19 +109,12 @@
           <td class="text-center">
             <strong class="text-xs">{{ item.daysDifference }}</strong>
           </td>
-          <td
-            
-          >
+          <td>
             @if (item.lastFollowUp) {
             <span class="text-xs text-400 font-medium block mb-1"
               >{{ item.lastFollowUpDate }}</span
             >
-            <p
-              class="m-0 text-xs text-700"
-              
-            >
-              {{ item.lastFollowUp }}
-            </p>
+            <p class="m-0 text-xs text-700">{{ item.lastFollowUp }}</p>
             }
           </td>
           <td class="text-center no-print">
@@ -138,7 +126,7 @@
                 tooltipPosition="top"
               >
                 <app-icon
-                  [icon]="'mdi:comment-multiple'"
+                  [icon]="'material-symbols-light:forum'"
                   class="text-blue-500"
                 />
                 <span class="badge bg-info px-2 py-1 text-xs font-semibold"
@@ -149,20 +137,20 @@
                 <ng-container actions>
                   @if (item.status !== "Completed") {
                   <il-button-item
-                    iconClass="mdi:calendar"
+                    iconClass="material-symbols-light:calendar-today"
                     label="Programar"
                     (clicked)="onProgram(item.id)"
                   />
 
                   } @if (item.status !== "Completed") {
                   <il-button-item
-                    iconClass="mdi:lock"
+                    iconClass="material-symbols-light:lock"
                     label="Cerrar"
                     (clicked)="onClosed(item.id)"
                   />
                   } @if (item.status === "Completed") {
                   <il-button-item
-                    iconClass="mdi:lock-open"
+                    iconClass="material-symbols-light:lock-open"
                     label="Re abrir"
                     (clicked)="onReopen(item.id)"
                   />
@@ -202,10 +190,7 @@
       </div>
 
       <ng-template #listItemTemplate let-item>
-        <ili-list-item
-          alignTop="true"
-          class="w-full"
-        >
+        <ili-list-item alignTop="true" class="w-full">
           <div slot="start">
             <app-avatar
               [image]="item.beforeWork ? item.beforeWork : 'assets/images/default-avatar.jpg'"
@@ -217,13 +202,22 @@
 
           <div class="flex flex-column gap-1">
             <div class="flex justify-content-between align-items-center mt-1">
-              <small class="text-color-secondary text-xs">{{ item.folio }} | {{ item.createdAtDate }}</small>
-              <span class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-xs font-bold">{{ item.daysDifference }} d</span>
+              <small class="text-color-secondary text-xs"
+                >{{ item.folio }} | {{ item.createdAtDate }}</small
+              >
+              <span
+                class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-xs font-bold"
+                >{{ item.daysDifference }} d</span
+              >
             </div>
-            <p class="font-semibold m-0 text-color line-height-2 text-sm ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap">
+            <p
+              class="font-semibold m-0 text-color line-height-2 text-sm ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap"
+            >
               {{ item.title }}
             </p>
-            <p class="text-xs m-0 text-color-secondary ticket-description two-lines">
+            <p
+              class="text-xs m-0 text-color-secondary ticket-description two-lines"
+            >
               {{ item.description }}
             </p>
           </div>
@@ -284,27 +278,9 @@
     </div>
 
     <div class="print-legend">
-      <span
-        ><span
-          class="print-legend-dot"
-          
-        ></span>
-        No iniciado</span
-      >
-      <span
-        ><span
-          class="print-legend-dot"
-          
-        ></span>
-        En proceso</span
-      >
-      <span
-        ><span
-          class="print-legend-dot"
-          
-        ></span>
-        Reabierto</span
-      >
+      <span><span class="print-legend-dot"></span> No iniciado</span>
+      <span><span class="print-legend-dot"></span> En proceso</span>
+      <span><span class="print-legend-dot"></span> Reabierto</span>
     </div>
 
     <table class="print-task-table">
@@ -325,20 +301,15 @@
           <th class="col-resp">Responsable</th>
           <th class="col-fecha">Programado</th>
           <th class="col-estado">Estado</th>
-          <th class="col-dias" >Dias</th>
-          <th class="col-evid" >Evidencias</th>
+          <th class="col-dias">Dias</th>
+          <th class="col-evid">Evidencias</th>
           <th class="col-seg">Ultimo seguimiento</th>
         </tr>
       </thead>
       <tbody>
         @for (item of pendingItems(); track item.id; let idx = $index) {
         <tr>
-          <td
-            [class]="statusTdClass(item.status)"
-            
-          >
-            {{ idx + 1 }}
-          </td>
+          <td [class]="statusTdClass(item.status)">{{ idx + 1 }}</td>
           <td>
             <div class="print-folio">
               {{ item.folio }} | {{ item.createdAtDate }}
@@ -348,33 +319,21 @@
             <div class="print-desc">{{ item.description }}</div>
             }
           </td>
-          <td >{{ item.creator || 'é' }}</td>
-          <td >
-            {{ item.scheduledAt || 'é' }}
-          </td>
+          <td>{{ item.creator || 'é' }}</td>
+          <td>{{ item.scheduledAt || 'é' }}</td>
           <td>
-            <span
-              class="print-status-pill"
-              
-            >
+            <span class="print-status-pill">
               {{ statusLabel(item.status) }}
             </span>
           </td>
-          <td >
-            {{ item.daysDifference }}
-          </td>
-          <td >
-            @if (item.beforeWork || item.afterWork) { ? } @else { é }
-          </td>
+          <td>{{ item.daysDifference }}</td>
+          <td>@if (item.beforeWork || item.afterWork) { ? } @else { é }</td>
           <td>
             @if (item.lastFollowUp) {
-            <span
-              
-              >{{ item.lastFollowUpDate }}</span
-            >
+            <span>{{ item.lastFollowUpDate }}</span>
             <p class="print-followup">{{ item.lastFollowUp }}</p>
             } @else {
-            <span >é</span>
+            <span>é</span>
             }
           </td>
         </tr>

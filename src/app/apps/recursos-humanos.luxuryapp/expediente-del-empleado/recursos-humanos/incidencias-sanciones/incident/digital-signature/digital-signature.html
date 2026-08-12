@@ -21,14 +21,14 @@
     <il-button
       label="Limpiar"
       severity="secondary"
-      variant="outlined"
-      iconClass="mdi:delete"
+      variant="outline"
+      iconClass="material-symbols-light:delete"
       (clicked)="clearSignature()"
     />
 
     <il-button
       label="Guardar Firma"
-      iconClass="mdi:content-save"
+      iconClass="material-symbols-light:save"
       [disabled]="!hasSignature()"
       (clicked)="saveSignature()"
     />
@@ -36,8 +36,10 @@
 
   @if (hasSignature()) {
   <small class="text-green-600 mt-2 block font-medium">
-    <app-icon [icon]="'mdi:check-circle'" class="mr-1" />Firma capturada
-    correctamente
+    <app-icon
+      [icon]="'material-symbols-light:check-circle'"
+      class="mr-1"
+    />Firma capturada correctamente
   </small>
   } @else {
   <small class="text-color-secondary mt-2 block italic">

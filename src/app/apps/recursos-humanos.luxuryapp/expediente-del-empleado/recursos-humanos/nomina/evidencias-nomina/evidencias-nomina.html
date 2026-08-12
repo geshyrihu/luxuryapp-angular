@@ -41,7 +41,7 @@
     <div class="col-12 md:col-1 flex align-items-end">
       <il-button-save
         label="Subir"
-        iconClass="mdi:upload"
+        iconClass="material-symbols-light:upload"
         (clicked)="onSubir()"
         [submitting]="uploading()"
         [disabled]="!archivoSeleccionado()"
@@ -53,12 +53,12 @@
 <!-- Galeria por tipo -->
 @if (loading()) {
 <div class="flex justify-content-center my-4">
-  <app-icon [icon]="'mdi:loading'" class="text-3xl text-primary" />
+  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl text-primary" />
 </div>
 } @else if (evidencias().length === 0) {
 <div class="flex justify-content-center align-items-center py-6 text-500">
   <div class="text-center">
-    <app-icon [icon]="'mdi:file-document-outline'" class="text-4xl mb-2" />
+    <app-icon [icon]="'material-symbols-light:description'" class="text-4xl mb-2" />
     <p>Sin evidencias cargadas para esta nomina.</p>
   </div>
 </div>
@@ -75,7 +75,7 @@
     >
       <div class="flex flex-column align-items-center gap-2">
         <app-icon
-          [icon]="ev.contentType === 'application/pdf' ? 'mdi:file-pdf-box' : ev.contentType?.startsWith('image') ? 'mdi:image' : 'mdi:file-document-outline'"
+          [icon]="ev.contentType === 'application/pdf' ? 'material-symbols-light:photo' : ev.contentType?.startsWith('image') ? 'material-symbols-light:photo' : 'material-symbols-light:description'"
           class="text-3xl"
         />
         <p
@@ -92,14 +92,14 @@
         </p>
         <div class="flex gap-2">
           <iw-button
-            iconClass="mdi:external-link"
+            iconClass="material-symbols-light:open-in-new"
             severity="info"
             variant="ghost-text"
             lxTooltip="Abrir"
             (clicked)="abrirEvidencia(ev.filePath)"
           />
           <iw-button
-            iconClass="mdi:delete"
+            iconClass="material-symbols-light:delete"
             severity="danger"
             variant="ghost-text"
             lxTooltip="Eliminar"

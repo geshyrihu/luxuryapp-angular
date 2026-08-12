@@ -46,7 +46,7 @@
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
         <app-icon
-          [icon]="item.labelPresent ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.labelPresent ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.labelPresent"
           [class.text-red-600]="!item.labelPresent"
@@ -54,7 +54,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.glassIntact ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.glassIntact ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.glassIntact"
           [class.text-red-600]="!item.glassIntact"
@@ -62,7 +62,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.wrenchPresent ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.wrenchPresent ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.wrenchPresent"
           [class.text-red-600]="!item.wrenchPresent"
@@ -70,7 +70,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.hoseOk ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.hoseOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.hoseOk"
           [class.text-red-600]="!item.hoseOk"
@@ -78,7 +78,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.nozzlePresent ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.nozzlePresent ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.nozzlePresent"
           [class.text-red-600]="!item.nozzlePresent"
@@ -86,7 +86,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.valveOperational ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.valveOperational ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.valveOperational"
           [class.text-red-600]="!item.valveOperational"
@@ -94,7 +94,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.lockOk ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.lockOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.lockOk"
           [class.text-red-600]="!item.lockOk"
@@ -130,7 +130,7 @@
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
       >
-        <app-icon icon="mdi:pipe" />
+        <app-icon icon="material-symbols-light:precision-manufacturing" />
       </div>
 
       <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>

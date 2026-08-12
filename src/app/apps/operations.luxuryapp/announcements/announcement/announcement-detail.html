@@ -7,7 +7,7 @@
           (click)="navigateBack()"
           class="btn btn-secondary btn-sm cursor-pointer"
         >
-          <app-icon [icon]="'mdi:arrow-left'" class="mr-1" /> Volver al listado
+          <app-icon [icon]="'material-symbols-light:arrow-back'" class="mr-1" /> Volver al listado
         </a>
       </div>
 
@@ -25,7 +25,7 @@
           <h1 class="text-3xl font-bold mb-2">{{ announcement().title }}</h1>
           <div class="text-sm text-color-secondary mb-4">
             <span
-              ><app-icon [icon]="'mdi:calendar'" class="mr-2" />Publicado: {{
+              ><app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-2" />Publicado: {{
               announcement().publishedAt | date: 'fullDate' }}</span
             >
           </div>
@@ -43,7 +43,7 @@
               [href]="announcement().externalLink"
               target="_blank"
               class="btn btn-secondary btn-sm"
-              ><app-icon [icon]="'mdi:external-link'" class="mr-1" /> Visitar
+              ><app-icon [icon]="'material-symbols-light:open-in-new'" class="mr-1" /> Visitar
               Enlace</a
             >
           </div>
@@ -62,7 +62,7 @@
                 target="_blank"
                 class="p-2 surface-100 rounded text-color hover:surface-200 transition-colors transition-duration-200 flex align-items-center"
               >
-                <app-icon [icon]="'mdi:download'" class="mr-2" />
+                <app-icon [icon]="'material-symbols-light:download'" class="mr-2" />
                 <span>{{ item.fileName }}</span>
               </a>
               }
@@ -79,7 +79,7 @@
 <div class="block md:hidden pb-5">
   <div class="p-2">
     <button class="p-button p-button-rounded p-button-text p-button-sm p-button-secondary" (click)="navigateBack()">
-      <app-icon icon="mdi:arrow-left" slot="start" />
+      <app-icon icon="material-symbols-light:arrow-back" slot="start" />
       Volver
     </button>
 
@@ -107,7 +107,7 @@
         @if (announcement().externalLink) {
         <div class="ion-margin-top">
           <button class="p-button p-button-rounded p-button-text p-button-sm p-button-primary">
-            Visitar Enlace <app-icon icon="mdi:open-in-new" slot="end" />
+            Visitar Enlace <app-icon icon="material-symbols-light:open-in-new" slot="end" />
           </button>
         </div>
         } @if (announcement().attachments && announcement().attachments.length > 0)
@@ -118,9 +118,9 @@
           </div>
           @for (item of announcement().attachments; track item.id) {
           <div class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center">
-            <app-icon icon="mdi:file-document-outline" slot="start" />
+            <app-icon icon="material-symbols-light:description" slot="start" />
             <span class="">{{ item.fileName }}</span>
-            <app-icon icon="mdi:download-outline" slot="end" color="primary" />
+            <app-icon icon="material-symbols-light:download" slot="end" color="primary" />
           </div>
           }
         </div>

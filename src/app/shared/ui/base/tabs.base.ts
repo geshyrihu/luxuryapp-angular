@@ -1,9 +1,10 @@
 import { Directive, input, model, output } from "@angular/core";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export interface TabItem {
   id: string;
   label: string;
-  icon?: string;
+  icon?: AppIconName;
   badge?: number;
   disabled?: boolean;
 }

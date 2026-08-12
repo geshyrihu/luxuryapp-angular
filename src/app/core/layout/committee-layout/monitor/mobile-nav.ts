@@ -19,10 +19,10 @@ export class CommitteeMobileNav {
   public activeId = signal("inicio");
 
   public items: BottomNavItem[] = [
-    { id: "inicio", icon: "mdi:home-variant", label: "Inicio" },
-    { id: "directorio", icon: "mdi:card-account-details-outline", label: "Directorio" },
-    { id: "perfil", icon: "mdi:account-cog", label: "Perfil" },
-    { id: "salir", icon: "mdi:logout", label: "Salir" },
+    { id: "inicio", icon: "material-symbols-light:home", label: "Inicio" },
+    { id: "directorio", icon: "material-symbols-light:badge-outline", label: "Directorio" },
+    { id: "perfil", icon: "material-symbols-light:manage-accounts", label: "Perfil" },
+    { id: "salir", icon: "material-symbols-light:logout", label: "Salir" },
   ];
 
   onNav(id: string): void {

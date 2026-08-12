@@ -44,7 +44,7 @@
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
         <app-icon
-          [icon]="item.noObstructions ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.noObstructions ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noObstructions"
           [class.text-red-600]="!item.noObstructions"
@@ -52,7 +52,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.noContamination ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.noContamination ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noContamination"
           [class.text-red-600]="!item.noContamination"
@@ -60,7 +60,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.noPhysicalDamage ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.noPhysicalDamage ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noPhysicalDamage"
           [class.text-red-600]="!item.noPhysicalDamage"
@@ -68,7 +68,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.ledStatusOk ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.ledStatusOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.ledStatusOk"
           [class.text-red-600]="!item.ledStatusOk"
@@ -76,7 +76,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.mountingSecure ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.mountingSecure ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.mountingSecure"
           [class.text-red-600]="!item.mountingSecure"
@@ -114,7 +114,7 @@
         class="w-3rem h-3rem bg-yellow-100"
       >
         <app-icon
-          icon="mdi:smoke-detector-outline"
+          icon="material-symbols-light:detector-alarm"
           class="text-xl text-yellow-500"
         />
       </div>

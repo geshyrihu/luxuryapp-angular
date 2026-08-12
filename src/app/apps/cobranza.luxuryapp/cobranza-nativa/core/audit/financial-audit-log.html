@@ -1,7 +1,7 @@
 <div class="card p-0 md:p-4">
   <lx-card class="card card--elevated mb-3">
     <div class="flex gap-2 align-items-start">
-      <app-icon [icon]="'mdi:shield'" class="text-primary mt-1" />
+      <app-icon [icon]="'material-symbols-light:shield'" class="text-primary mt-1" />
       <div class="text-sm text-700">
         <strong>Bitácora de Auditoría Financiera.</strong> Registro inmutable de
         todas las acciones de negocio relevantes: quién hizo qué, cuándo y con
@@ -30,7 +30,7 @@
       <div class="field col-12 md:col-2 flex align-items-end">
         <il-button
           label="Consultar"
-          iconClass="mdi:magnify"
+          iconClass="material-symbols-light:search"
           severity="primary"
           [disabled]="loading()"
           (clicked)="onSearch()"
@@ -106,7 +106,7 @@
           [class]="log.isSuccess ? 'bg-green-100' : 'bg-red-100'"
         >
           <app-icon
-            icon="mdi:file-document-outline"
+            icon="material-symbols-light:description"
             [class]="log.isSuccess ? 'text-green-600 text-xl' : 'text-red-600 text-xl'"
           />
         </div>

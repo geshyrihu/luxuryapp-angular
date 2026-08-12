@@ -11,10 +11,10 @@
     <!-- Mostrar nombre del archivo seleccionado -->
     @if (selectedFileName()) {
     <div class="mt-2 p-2 rounded surface-ground">
-      <app-icon [icon]="'mdi:file-pdf-box'" class="mr-2" />
+      <app-icon [icon]="'material-symbols-light:picture-as-pdf'" class="mr-2" />
       <span class="text-sm">{{ selectedFileName() }}</span>
       <iw-button
-        iconClass="mdi:close"
+        iconClass="material-symbols-light:close"
         (clicked)="clearFile()"
         severity="danger"
         [text]="true"

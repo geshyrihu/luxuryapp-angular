@@ -97,9 +97,9 @@
             @if (!user.hasAccessToCurrentCustomer) {
             <il-button
               label="Dar Acceso"
-              iconClass="mdi:account-plus"
+              iconClass="material-symbols-light:person-add"
               size="small"
-              variant="outlined"
+              variant="outline"
               (clicked)="addAccessCustomer(user.applicationUserId)"
             />
             } @else {
@@ -114,10 +114,7 @@
 
     <!-- Botón Guardar -->
     <div class="col-12 flex justify-content-end mt-4">
-      <il-button-save
-        [disabled]="form.invalid"
-        [submitting]="submitting()"
-      />
+      <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
     </div>
   </div>
 </form>

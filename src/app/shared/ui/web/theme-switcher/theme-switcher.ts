@@ -33,7 +33,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       [attr.aria-pressed]="theme() === 'dark'"
     >
       <app-icon
-        [icon]="theme() === 'dark' ? 'mdi:weather-sunny' : 'mdi:weather-night'"
+        [icon]="theme() === 'dark' ? 'material-symbols-light:nightlight' : 'material-symbols-light:nightlight'"
         class="text-xl"
       />
     </p-button>

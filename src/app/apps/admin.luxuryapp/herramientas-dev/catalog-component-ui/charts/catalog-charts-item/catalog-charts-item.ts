@@ -76,7 +76,7 @@ const CHARTS_LABELS: Record<string, string> = {
                 class="flex flex-column align-items-center justify-content-center h-full text-secondary text-sm p-3 gap-3"
               >
                 <app-icon
-                  icon="mdi:chart-timeline-variant"
+                  icon="material-symbols-light:timeline"
                   class="text-4xl text-gray-400"
                 />
                 <span class="text-center font-medium"

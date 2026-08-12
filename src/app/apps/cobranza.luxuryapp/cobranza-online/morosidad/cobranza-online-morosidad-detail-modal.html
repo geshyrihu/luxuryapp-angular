@@ -2,7 +2,7 @@
   <!-- Header con info básica -->
   <div class="flex align-items-center mb-1 gap-3">
     <div class="bg-primary text-white border-round w-3rem h-3rem flex align-items-center justify-content-center text-xl font-bold flex-shrink-0">
-      <i class="pi pi-building"></i>
+      <app-icon icon="material-symbols-light:apartment" />
     </div>
     <div>
       <div class="text-xl font-bold text-color">{{ data.propertyFullName || data.accountName }}</div>
@@ -21,14 +21,13 @@
            'surface-ground border-1 surface-border': data.classification === 'ANTICIPOS'
          }">
       <div class="flex align-items-center gap-2">
-        <i class="pi pi-info-circle text-lg"
-           [ngClass]="{
+        <app-icon icon="material-symbols-light:info" class="text-lg" [ngClass]="{
              'text-red-500': data.classification === 'COBRANZA JUDICIAL',
              'text-orange-500': data.classification === 'MOROSOS',
              'text-blue-500': data.classification === 'DEUDA CORRIENTE',
              'text-green-500': data.classification === 'SIN ADEUDO',
              'text-color-secondary': data.classification === 'ANTICIPOS'
-           }"></i>
+           }" />
         <strong class="text-color">{{ ruleTitle }}</strong>
       </div>
       <div class="text-color-secondary line-height-3">
@@ -47,7 +46,7 @@
 
   @if (isLoading()) {
     <div class="text-center p-4">
-      <i class="pi pi-spin pi-spinner text-3xl text-primary"></i>
+      <lx-spinner [size]="40" />
       <div class="mt-2 text-500">Cargando desglose...</div>
     </div>
   } @else if (detail()) {
@@ -113,7 +112,7 @@
     </div>
   } @else {
     <div class="text-center p-4 text-500">
-      <i class="pi pi-exclamation-triangle text-3xl mb-2"></i>
+      <app-icon icon="material-symbols-light:warning" class="text-3xl mb-2" />
       <div>No se pudo cargar el desglose.</div>
     </div>
   }

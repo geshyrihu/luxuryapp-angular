@@ -297,9 +297,9 @@ const CORE_LABELS: Record<string, string> = {
 
             <div class="card-body">
               <div class="flex gap-3 text-2xl text-primary">
-                <app-icon icon="mdi:account" />
-                <app-icon icon="mdi:cog" />
-                <app-icon icon="mdi:bell" />
+                <app-icon icon="material-symbols-light:person" />
+                <app-icon icon="material-symbols-light:settings" />
+                <app-icon icon="material-symbols-light:notifications" />
               </div>
             </div>
           </div>
@@ -405,11 +405,11 @@ const CORE_LABELS: Record<string, string> = {
 
             <div class="card-body">
               <app-empty-state
-                icon="mdi:inbox-outline"
+                icon="material-symbols-light:move-to-inbox-outline"
                 title="Sin resultados"
                 message="No se encontraron registros."
                 actionLabel="Nuevo registro"
-                actionIcon="mdi:plus"
+                actionIcon="material-symbols-light:add"
               />
             </div>
           </div>
@@ -489,7 +489,7 @@ const CORE_LABELS: Record<string, string> = {
                 format="currency"
                 prefix="$"
                 [trend]="12.4"
-                icon="mdi:trending-up"
+                icon="material-symbols-light:trending-up"
               />
             </div>
             <div class="col-12 md:col-6 lg:col-3">
@@ -497,7 +497,7 @@ const CORE_LABELS: Record<string, string> = {
                 label="Clientes"
                 [value]="348"
                 [trend]="-3.1"
-                icon="mdi:account-group"
+                icon="material-symbols-light:group"
               />
             </div>
             <div class="col-12 md:col-6 lg:col-3">
@@ -507,7 +507,7 @@ const CORE_LABELS: Record<string, string> = {
                 format="percent"
                 suffix="%"
                 [trend]="5.2"
-                icon="mdi:percent"
+                icon="material-symbols-light:percent"
               />
             </div>
             <div class="col-12 md:col-6 lg:col-3">
@@ -515,7 +515,7 @@ const CORE_LABELS: Record<string, string> = {
                 label="Tickets"
                 [value]="12"
                 [trend]="0"
-                icon="mdi:ticket-outline"
+                icon="material-symbols-light:confirmation-number"
                 subtitle="sin tendencia"
               />
             </div>
@@ -671,7 +671,7 @@ const CORE_LABELS: Record<string, string> = {
                 [value]="84320"
                 format="currency"
                 prefix="$"
-                icon="mdi:cash-multiple"
+                icon="material-symbols-light:payments"
                 [sparkline]="[30, 55, 40, 65, 60, 80, 84]"
                 [trend]="8.3"
               />
@@ -680,7 +680,7 @@ const CORE_LABELS: Record<string, string> = {
               <app-stat-card
                 label="Nuevos clientes"
                 [value]="47"
-                icon="mdi:account-plus"
+                icon="material-symbols-light:person-add"
                 [sparkline]="[10, 14, 12, 18, 15, 20, 47]"
                 [trend]="-2.1"
               />
@@ -841,9 +841,12 @@ const CORE_LABELS: Record<string, string> = {
                 </p>
                 <p-button
                   label="Abrir Command Palette (Ctrl+K)"
-                  icon="mdi:magnify"
                   (onClick)="cmdPaletteVisible.set(true)"
-                />
+                >
+                  <ng-template #icon>
+                    <app-icon icon="material-symbols-light:search" />
+                  </ng-template>
+                </p-button>
                 <p class="text-xs text-secondary m-0">
                   Tambin puedes presionar <kbd>Ctrl+K</kbd> cuando el dilogo est
                   registrado.
@@ -869,9 +872,12 @@ const CORE_LABELS: Record<string, string> = {
                 </p>
                 <p-button
                   label="Iniciar Tour"
-                  icon="mdi:map-marker-path"
                   (onClick)="tourVisible.set(true)"
-                />
+                >
+                  <ng-template #icon>
+                    <app-icon icon="material-symbols-light:route" />
+                  </ng-template>
+                </p-button>
               </div>
               <app-tour [(visible)]="tourVisible" [steps]="tourSteps" />
             </div>
@@ -1456,7 +1462,7 @@ export class CatalogCoreItem {
   readonly sampleNotifications: NotificationItem[] = [
     {
       id: "1",
-      icon: "mdi:file-document",
+      icon: "material-symbols-light:description",
       title: "Documento aprobado",
       description: "Aprobado.",
       time: "Hace 5 min",
@@ -1466,9 +1472,9 @@ export class CatalogCoreItem {
   ];
 
   readonly wizardSteps: WizardStep[] = [
-    { value: 1, label: "Datos", icon: "mdi:file-document-outline" },
-    { value: 2, label: "Revisin", icon: "mdi:eye-outline" },
-    { value: 3, label: "Confirmar", icon: "mdi:check-circle-outline" },
+    { value: 1, label: "Datos", icon: "material-symbols-light:description" },
+    { value: 2, label: "Revisin", icon: "material-symbols-light:visibility-outline" },
+    { value: 3, label: "Confirmar", icon: "material-symbols-light:check-circle-outline" },
   ];
 
   // Fase 6-10 demo data
@@ -1548,7 +1554,7 @@ export class CatalogCoreItem {
       title: "Solicitud recibida",
       description: "El cliente envié la solicitud de compra.",
       date: "10 Jun 2026",
-      icon: "mdi:inbox-arrow-down",
+      icon: "material-symbols-light:move-to-inbox",
       color: "var(--ds-primary)",
       badge: "Inicio",
       badgeColor: "primary",
@@ -1557,7 +1563,7 @@ export class CatalogCoreItem {
       title: "Revisión de cródito",
       description: "Validación aprobada por el área financiera.",
       date: "12 Jun 2026",
-      icon: "mdi:shield-check",
+      icon: "material-symbols-light:verified",
       color: "var(--ds-success)",
       badge: "OK",
       badgeColor: "success",
@@ -1566,7 +1572,7 @@ export class CatalogCoreItem {
       title: "Orden generada",
       description: "PO-2026-0892 creada en el sistema ERP.",
       date: "13 Jun 2026",
-      icon: "mdi:file-document-edit",
+      icon: "material-symbols-light:note-alt",
       color: "var(--ds-warning)",
       badge: "En proceso",
       badgeColor: "warning",
@@ -1575,7 +1581,7 @@ export class CatalogCoreItem {
       title: "Entrega programada",
       description: "Entrega estimada para el 20 de junio.",
       date: "20 Jun 2026",
-      icon: "mdi:truck-delivery",
+      icon: "material-symbols-light:local-shipping",
       color: "var(--ds-text-muted)",
     },
   ];
@@ -1732,27 +1738,27 @@ export class CatalogCoreItem {
       date: "10 Jun 2026",
       completed: true,
       active: false,
-      icon: "mdi:file-document",
+      icon: "material-symbols-light:description",
     },
     {
       label: "Aprobado",
       date: "11 Jun 2026",
       completed: true,
       active: false,
-      icon: "mdi:check-circle",
+      icon: "material-symbols-light:check-circle",
     },
     {
       label: "En trónsito",
       date: "13 Jun 2026",
       completed: false,
       active: true,
-      icon: "mdi:truck-delivery",
+      icon: "material-symbols-light:local-shipping",
     },
     {
       label: "Entregado",
       completed: false,
       active: false,
-      icon: "mdi:home-alert",
+      icon: "material-symbols-light:add-home",
     },
   ];
 
@@ -1879,17 +1885,17 @@ export class CatalogCoreItem {
     nps: 87,
     recentActivity: [
       {
-        icon: "mdi:phone",
+        icon: "material-symbols-light:call",
         text: "Llamada de seguimiento Q3",
         time: "Hace 2 dóas",
       },
       {
-        icon: "mdi:email",
+        icon: "material-symbols-light:mail",
         text: "Propuesta enviada por email",
         time: "Hace 5 dóas",
       },
       {
-        icon: "mdi:calendar",
+        icon: "material-symbols-light:calendar-today",
         text: "Reunión de revisión anual",
         time: "Hace 2 sem.",
       },
@@ -1906,11 +1912,11 @@ export class CatalogCoreItem {
   };
 
   readonly dockItems: MenuItem[] = [
-    { label: "Dashboard", icon: "mdi:view-dashboard", command: () => {} },
-    { label: "CRM", icon: "mdi:account-group", command: () => {} },
-    { label: "Reportes", icon: "mdi:chart-bar", command: () => {} },
-    { label: "Inventario", icon: "mdi:package-variant", command: () => {} },
-    { label: "Config", icon: "mdi:cog", command: () => {} },
+    { label: "Dashboard", icon: "material-symbols-light:dashboard", command: () => {} },
+    { label: "CRM", icon: "material-symbols-light:group", command: () => {} },
+    { label: "Reportes", icon: "material-symbols-light:bar-chart", command: () => {} },
+    { label: "Inventario", icon: "material-symbols-light:package", command: () => {} },
+    { label: "Config", icon: "material-symbols-light:settings", command: () => {} },
   ];
 
   readonly heatmapData: HeatmapCell[] = [
@@ -2214,12 +2220,12 @@ export class CatalogCoreItem {
   ];
 
   readonly contextMenuItems: MenuItem[] = [
-    { label: "Editar", icon: "mdi:pencil" },
-    { label: "Duplicar", icon: "mdi:content-copy" },
+    { label: "Editar", icon: "material-symbols-light:edit" },
+    { label: "Duplicar", icon: "material-symbols-light:content-copy" },
     { separator: true },
-    { label: "Exportar PDF", icon: "mdi:file-pdf-box" },
+    { label: "Exportar PDF", icon: "material-symbols-light:picture-as-pdf" },
     { separator: true },
-    { label: "Eliminar", icon: "mdi:delete", class: "text-danger" },
+    { label: "Eliminar", icon: "material-symbols-light:delete", class: "text-danger" },
   ];
 
   cmdPaletteVisible = signal(false);
@@ -2228,7 +2234,7 @@ export class CatalogCoreItem {
       id: "new-order",
       label: "Nueva Orden de Compra",
       description: "Crear una nueva OC en el sistema",
-      icon: "mdi:plus-circle",
+      icon: "material-symbols-light:add-circle",
       category: "Crear",
       action: () => {},
     },
@@ -2236,7 +2242,7 @@ export class CatalogCoreItem {
       id: "clients",
       label: "Ver Clientes",
       description: "Ir al listado de clientes",
-      icon: "mdi:account-group",
+      icon: "material-symbols-light:group",
       category: "Navegar",
       action: () => {},
     },
@@ -2244,7 +2250,7 @@ export class CatalogCoreItem {
       id: "reports",
       label: "Generar Reporte",
       description: "Generar reporte del mes actual",
-      icon: "mdi:chart-bar",
+      icon: "material-symbols-light:bar-chart",
       category: "Reportes",
       action: () => {},
     },
@@ -2252,7 +2258,7 @@ export class CatalogCoreItem {
       id: "settings",
       label: "Configuración",
       description: "Abrir preferencias del sistema",
-      icon: "mdi:cog",
+      icon: "material-symbols-light:settings",
       category: "Sistema",
       shortcut: "Ctrl+,",
       action: () => {},
@@ -2265,28 +2271,28 @@ export class CatalogCoreItem {
       title: "óBienvenido al sistema!",
       description:
         "Este tour te guiaré por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
-      icon: "mdi:hand-wave",
+      icon: "material-symbols-light:waving-hand",
       position: "center",
     },
     {
       title: "Mené lateral",
       description:
         "Aqué encontrarós todos los módulos del ERP organizados por área.",
-      icon: "mdi:menu",
+      icon: "material-symbols-light:menu",
       position: "center",
     },
     {
       title: "Design System",
       description:
         "El católogo de componentes esté disponible para SuperUsuarios en el mené lateral.",
-      icon: "mdi:palette",
+      icon: "material-symbols-light:palette",
       position: "center",
     },
     {
       title: "óListo!",
       description:
         "Ya conoces lo bósico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
-      icon: "mdi:check-circle",
+      icon: "material-symbols-light:check-circle",
       position: "center",
     },
   ];

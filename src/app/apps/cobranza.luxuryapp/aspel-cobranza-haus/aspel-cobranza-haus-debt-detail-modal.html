@@ -16,7 +16,7 @@
       <il-button
         label="Cerrar"
         severity="secondary"
-        variant="outlined"
+        variant="outline"
         (clicked)="close()"
       />
     </div>
@@ -42,45 +42,45 @@
         <strong class="text-xl">{{ detail()?.totalConceptos }}</strong>
       </div>
     </div>
-    
+
     @if (!isCommitteeMode) {
-      <div class="col-12 md:col-6 lg:col">
-        <div
-          class="border-1 surface-border rounded-xl p-3 bg-white h-full flex flex-column justify-content-center"
+    <div class="col-12 md:col-6 lg:col">
+      <div
+        class="border-1 surface-border rounded-xl p-3 bg-white h-full flex flex-column justify-content-center"
+      >
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+          >Saldo inicial</span
         >
-          <span class="block mb-1 text-xs uppercase font-semibold text-500"
-            >Saldo inicial</span
-          >
-          <strong class="text-xl"
-            >{{ totalSaldoInicial() | currency: "MXN" : "symbol" : "1.2-2"
-            }}</strong
-          >
-        </div>
-      </div>
-      <div class="col-12 md:col-6 lg:col">
-        <div
-          class="border-1 surface-border rounded-xl p-3 bg-white h-full flex flex-column justify-content-center"
+        <strong class="text-xl"
+          >{{ totalSaldoInicial() | currency: "MXN" : "symbol" : "1.2-2"
+          }}</strong
         >
-          <span class="block mb-1 text-xs uppercase font-semibold text-500"
-            >Cargos</span
-          >
-          <strong class="text-xl text-orange-600"
-            >{{ totalCargos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong
-          >
-        </div>
       </div>
-      <div class="col-12 md:col-6 lg:col">
-        <div
-          class="border-1 surface-border rounded-xl p-3 bg-white h-full flex flex-column justify-content-center"
+    </div>
+    <div class="col-12 md:col-6 lg:col">
+      <div
+        class="border-1 surface-border rounded-xl p-3 bg-white h-full flex flex-column justify-content-center"
+      >
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+          >Cargos</span
         >
-          <span class="block mb-1 text-xs uppercase font-semibold text-500"
-            >Abonos</span
-          >
-          <strong class="text-xl text-green-600"
-            >{{ totalAbonos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong
-          >
-        </div>
+        <strong class="text-xl text-orange-600"
+          >{{ totalCargos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong
+        >
       </div>
+    </div>
+    <div class="col-12 md:col-6 lg:col">
+      <div
+        class="border-1 surface-border rounded-xl p-3 bg-white h-full flex flex-column justify-content-center"
+      >
+        <span class="block mb-1 text-xs uppercase font-semibold text-500"
+          >Abonos</span
+        >
+        <strong class="text-xl text-green-600"
+          >{{ totalAbonos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong
+        >
+      </div>
+    </div>
     }
 
     <div class="col-12 md:col-6 lg:col">
@@ -91,7 +91,8 @@
           >Saldo pendiente</span
         >
         <strong class="text-xl" [ngClass]="getBalanceClass(totalPendiente())">
-          {{ totalPendiente() | currency: "MXN" : "symbol" : (isCommitteeMode ? '1.0-0' : '1.2-2') }}
+          {{ totalPendiente() | currency: "MXN" : "symbol" : (isCommitteeMode ?
+          '1.0-0' : '1.2-2') }}
         </strong>
       </div>
     </div>
@@ -103,44 +104,67 @@
 
   <div class="mt-3 block" [ngClass]="{ 'md:hidden': !isCommitteeMode }">
     @for (item of detail()?.conceptos; track item.concepto) {
-      <div class="border-1 surface-border rounded-xl bg-white mb-3 overflow-hidden shadow-sm">
-        <div class="p-3 surface-50 border-bottom-1 surface-border flex flex-column gap-2">
-          <div class="flex justify-content-between align-items-center">
-            <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
-            <strong class="text-xl" [ngClass]="getBalanceClass(item.saldoFinal)">
-              {{ item.saldoFinal | currency: "MXN" : "symbol" : (isCommitteeMode ? '1.0-0' : '1.2-2') }}
-            </strong>
-          </div>
-          @if (!isCommitteeMode) {
-            <div class="flex justify-content-between text-xs text-500 font-mono">
-              <span>Inicial: {{ item.saldoInicial | currency: 'MXN':'symbol':'1.0-0' }}</span>
-              <span class="text-orange-600">Cargos: {{ item.cargos | currency: 'MXN':'symbol':'1.0-0' }}</span>
-              <span class="text-green-600">Abonos: {{ item.abonos | currency: 'MXN':'symbol':'1.0-0' }}</span>
-            </div>
-          }
+    <div
+      class="border-1 surface-border rounded-xl bg-white mb-3 overflow-hidden shadow-sm"
+    >
+      <div
+        class="p-3 surface-50 border-bottom-1 surface-border flex flex-column gap-2"
+      >
+        <div class="flex justify-content-between align-items-center">
+          <lx-tag
+            [value]="item.concepto"
+            [severity]="getConceptSeverity(item.concepto)"
+          />
+          <strong class="text-xl" [ngClass]="getBalanceClass(item.saldoFinal)">
+            {{ item.saldoFinal | currency: "MXN" : "symbol" : (isCommitteeMode ?
+            '1.0-0' : '1.2-2') }}
+          </strong>
         </div>
-        <div class="p-3">
-          @if (item.vencidos?.length) {
-            <div class="flex flex-column gap-2">
-              @for (v of item.vencidos; track v.fechaCargo + v.conceptoDetalle) {
-                <div class="flex justify-content-between align-items-center text-sm border-bottom-1 surface-border pb-2 last-none">
-                  <div class="flex flex-column">
-                    @if (!isCommitteeMode) {
-                      <span class="text-600 font-mono text-xs">{{ v.fechaCargo }}</span>
-                    }
-                    <span class="text-800">{{ v.conceptoDetalle }}</span>
-                  </div>
-                  <span class="font-mono font-semibold" [ngClass]="getBalanceClass(v.saldoPendiente)">
-                    {{ v.saldoPendiente | currency: 'MXN':'symbol': (isCommitteeMode ? '1.0-0' : '1.2-2') }}
-                  </span>
-                </div>
-              }
-            </div>
-          } @else {
-            <div class="text-500 text-sm italic text-center py-2">Sin desglose de periodos vencidos.</div>
-          }
+        @if (!isCommitteeMode) {
+        <div class="flex justify-content-between text-xs text-500 font-mono">
+          <span
+            >Inicial: {{ item.saldoInicial | currency: 'MXN':'symbol':'1.0-0'
+            }}</span
+          >
+          <span class="text-orange-600"
+            >Cargos: {{ item.cargos | currency: 'MXN':'symbol':'1.0-0' }}</span
+          >
+          <span class="text-green-600"
+            >Abonos: {{ item.abonos | currency: 'MXN':'symbol':'1.0-0' }}</span
+          >
         </div>
+        }
       </div>
+      <div class="p-3">
+        @if (item.vencidos?.length) {
+        <div class="flex flex-column gap-2">
+          @for (v of item.vencidos; track v.fechaCargo + v.conceptoDetalle) {
+          <div
+            class="flex justify-content-between align-items-center text-sm border-bottom-1 surface-border pb-2 last-none"
+          >
+            <div class="flex flex-column">
+              @if (!isCommitteeMode) {
+              <span class="text-600 font-mono text-xs">{{ v.fechaCargo }}</span>
+              }
+              <span class="text-800">{{ v.conceptoDetalle }}</span>
+            </div>
+            <span
+              class="font-mono font-semibold"
+              [ngClass]="getBalanceClass(v.saldoPendiente)"
+            >
+              {{ v.saldoPendiente | currency: 'MXN':'symbol': (isCommitteeMode ?
+              '1.0-0' : '1.2-2') }}
+            </span>
+          </div>
+          }
+        </div>
+        } @else {
+        <div class="text-500 text-sm italic text-center py-2">
+          Sin desglose de periodos vencidos.
+        </div>
+        }
+      </div>
+    </div>
     }
   </div>
 
@@ -175,11 +199,11 @@
       <tr>
         <th>Concepto</th>
         @if (!isCommitteeMode) {
-          <th>Cuenta</th>
-          <th>Nombre cuenta</th>
-          <th class="text-right">Saldo inicial</th>
-          <th class="text-right">Cargos</th>
-          <th class="text-right">Abonos</th>
+        <th>Cuenta</th>
+        <th>Nombre cuenta</th>
+        <th class="text-right">Saldo inicial</th>
+        <th class="text-right">Cargos</th>
+        <th class="text-right">Abonos</th>
         }
         <th class="text-right">Saldo pendiente</th>
       </tr>
@@ -189,32 +213,48 @@
       <tr>
         <td>
           <div class="flex align-items-center">
-            <p-button type="button" pRipple [pRowToggler]="item" [text]="true" [rounded]="true" [plain]="true" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" class="mr-2" />
-            <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
+            <p-button
+              type="button"
+              pRipple
+              [pRowToggler]="item"
+              [text]="true"
+              [rounded]="true"
+              [plain]="true"
+              class="mr-2"
+            >
+              <ng-template #icon>
+                <app-icon [icon]="expanded ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'" />
+              </ng-template>
+            </p-button>
+            <lx-tag
+              [value]="item.concepto"
+              [severity]="getConceptSeverity(item.concepto)"
+            />
           </div>
         </td>
         @if (!isCommitteeMode) {
-          <td>
-            <code class="text-sm px-2 py-1 rounded surface-100 font-mono"
-              >{{ item.numCta }}</code
-            >
-          </td>
-          <td>{{ item.nombreCuenta }}</td>
-          <td class="text-right font-mono">
-            {{ item.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}
-          </td>
-          <td class="text-right font-mono text-orange-600">
-            {{ item.cargos | currency: "MXN" : "symbol" : "1.2-2" }}
-          </td>
-          <td class="text-right font-mono text-green-600">
-            {{ item.abonos | currency: "MXN" : "symbol" : "1.2-2" }}
-          </td>
+        <td>
+          <code class="text-sm px-2 py-1 rounded surface-100 font-mono"
+            >{{ item.numCta }}</code
+          >
+        </td>
+        <td>{{ item.nombreCuenta }}</td>
+        <td class="text-right font-mono">
+          {{ item.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}
+        </td>
+        <td class="text-right font-mono text-orange-600">
+          {{ item.cargos | currency: "MXN" : "symbol" : "1.2-2" }}
+        </td>
+        <td class="text-right font-mono text-green-600">
+          {{ item.abonos | currency: "MXN" : "symbol" : "1.2-2" }}
+        </td>
         }
         <td
           class="text-right font-mono font-semibold"
           [ngClass]="getBalanceClass(item.saldoFinal)"
         >
-          {{ item.saldoFinal | currency: "MXN" : "symbol" : (isCommitteeMode ? '1.0-0' : '1.2-2') }}
+          {{ item.saldoFinal | currency: "MXN" : "symbol" : (isCommitteeMode ?
+          '1.0-0' : '1.2-2') }}
         </td>
       </tr>
     </ng-template>
@@ -224,38 +264,49 @@
         <td [attr.colspan]="isCommitteeMode ? 2 : 7">
           <div class="p-3 surface-50 rounded">
             @if (item.vencidos?.length) {
-              <p-table [value]="item.vencidos" [tableStyle]="{ 'min-width': isCommitteeMode ? '100%' : '40rem' }">
-                <ng-template #header>
-                  <tr>
-                    @if (!isCommitteeMode) {
-                      <th>Fecha</th>
-                    }
-                    <th>Detalle</th>
-                    <th class="text-right">Pendiente</th>
-                  </tr>
-                </ng-template>
-                <ng-template #body let-v>
-                  <tr>
-                    @if (!isCommitteeMode) {
-                      <td class="font-mono text-sm">{{ v.fechaCargo }}</td>
-                    }
-                    <td class="text-sm">{{ v.conceptoDetalle }}</td>
-                    <td class="text-right font-mono font-medium" [ngClass]="getBalanceClass(v.saldoPendiente)">
-                      {{ v.saldoPendiente | currency: 'MXN':'symbol': (isCommitteeMode ? '1.0-0' : '1.2-2') }}
-                    </td>
-                  </tr>
-                </ng-template>
-              </p-table>
+            <p-table
+              [value]="item.vencidos"
+              [tableStyle]="{ 'min-width': isCommitteeMode ? '100%' : '40rem' }"
+            >
+              <ng-template #header>
+                <tr>
+                  @if (!isCommitteeMode) {
+                  <th>Fecha</th>
+                  }
+                  <th>Detalle</th>
+                  <th class="text-right">Pendiente</th>
+                </tr>
+              </ng-template>
+              <ng-template #body let-v>
+                <tr>
+                  @if (!isCommitteeMode) {
+                  <td class="font-mono text-sm">{{ v.fechaCargo }}</td>
+                  }
+                  <td class="text-sm">{{ v.conceptoDetalle }}</td>
+                  <td
+                    class="text-right font-mono font-medium"
+                    [ngClass]="getBalanceClass(v.saldoPendiente)"
+                  >
+                    {{ v.saldoPendiente | currency: 'MXN':'symbol':
+                    (isCommitteeMode ? '1.0-0' : '1.2-2') }}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
             } @else {
-              <div class="text-500 text-sm text-center p-3">Sin desglose de periodos vencidos.</div>
+            <div class="text-500 text-sm text-center p-3">
+              Sin desglose de periodos vencidos.
+            </div>
             }
           </div>
         </td>
       </tr>
     </ng-template>
   </p-table>
-  }
-  } @else {
-  <lx-message severity="info" text="No fue posible obtener el detalle de la deuda para esta propiedad." />
+  } } @else {
+  <lx-message
+    severity="info"
+    text="No fue posible obtener el detalle de la deuda para esta propiedad."
+  />
   }
 </section>

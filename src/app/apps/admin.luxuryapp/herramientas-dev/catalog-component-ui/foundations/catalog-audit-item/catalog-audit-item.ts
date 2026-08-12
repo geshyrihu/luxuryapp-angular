@@ -9,6 +9,7 @@ import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { resolveToIconify } from "src/app/shared/utils/icon-mapping";
 
 const AUDIT_LABELS: Record<string, string> = {
@@ -81,15 +82,19 @@ export class CatalogAuditItem {
     this.route.paramMap.subscribe((p) => this.item.set(p.get("item") ?? ""));
   }
 
-  readonly bloques = [
+  readonly bloques: {
+    titulo: string;
+    icono: AppIconName;
+    descripcion: string;
+  }[] = [
     {
       titulo: "Advertencia",
-      icono: "icon.alert",
+      icono: "material-symbols-light:warning",
       descripcion: "Riesgo fósico, legal o económico.",
     },
     {
       titulo: "Nota",
-      icono: "icon.information",
+      icono: "material-symbols-light:info",
       descripcion: "Información complementaria.",
     },
   ];
@@ -107,7 +112,7 @@ export class CatalogAuditItem {
     );
   }
 
-  iconifyIcon(cls: string): string {
-    return resolveToIconify(cls, "icon.cog");
+  iconifyIcon(cls: string): AppIconName {
+    return resolveToIconify(cls, "material-symbols-light:settings") as AppIconName;
   }
 }

@@ -1,6 +1,6 @@
 <div class="card p-3 mb-3" *ngIf="loading()">
   <div class="flex align-items-center justify-content-center py-5">
-    <i class="pi pi-spin pi-spinner text-3xl text-primary"></i>
+    <lx-spinner [size]="40" />
     <span class="ml-3 text-color-secondary">Calculando indicadores...</span>
   </div>
 </div>
@@ -34,7 +34,7 @@
           @if (card.route) {
             <il-button
               label="Ver detalle"
-              iconClass="mdi:chevron-right"
+              iconClass="material-symbols-light:chevron-right"
               severity="secondary"
               size="small"
               class="mt-2 w-full"
@@ -165,7 +165,7 @@
       </div>
       <il-button
         label="Ejecutar ahora"
-        iconClass="mdi:play-circle"
+        iconClass="material-symbols-light:play-circle"
         severity="primary"
         (clicked)="runAutomation()"
       />
@@ -266,7 +266,7 @@
       </div>
       <il-button
         label="Ejecutar ahora"
-        iconClass="mdi:play-circle"
+        iconClass="material-symbols-light:play-circle"
         severity="primary"
         (clicked)="runAutomation()"
       />

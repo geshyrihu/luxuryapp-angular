@@ -329,7 +329,7 @@ import { MobileTooltip } from "@ui/mobile/tooltip/tooltip";
 
         <div>
           <div class="font-bold text-sm mb-3">ili-empty-state</div>
-          <ili-empty-state title="No Data" message="There is no data to show" icon="mdi:alert" actionLabel="Retry"></ili-empty-state>
+          <ili-empty-state title="No Data" message="There is no data to show" icon="material-symbols-light:warning" actionLabel="Retry"></ili-empty-state>
         </div>
 
         <!-- ili-loader -->
@@ -453,9 +453,9 @@ export class MobileFeedback {
     { label: 'Free', value: 10, color: '#e2e8f0' },
   ]);
   notifData = signal([
-    { id: '1', icon: 'mdi:email', title: 'New message', description: 'You have a new message from the team', time: '2m ago', read: false },
-    { id: '2', icon: 'mdi:alert', title: 'Warning', description: 'Storage is almost full', time: '1h ago', read: true, severity: 'warn' },
-    { id: '3', icon: 'mdi:check-circle', title: 'Update complete', description: 'System update finished successfully', time: '3h ago', read: true, severity: 'success' },
+    { id: '1', icon: 'material-symbols-light:mail', title: 'New message', description: 'You have a new message from the team', time: '2m ago', read: false },
+    { id: '2', icon: 'material-symbols-light:warning', title: 'Warning', description: 'Storage is almost full', time: '1h ago', read: true, severity: 'warn' },
+    { id: '3', icon: 'material-symbols-light:check-circle', title: 'Update complete', description: 'System update finished successfully', time: '3h ago', read: true, severity: 'success' },
   ]);
   notifUnreadCount = signal(1);
 

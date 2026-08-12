@@ -3,7 +3,7 @@
 >
   @if (loading) {
   <div class="text-center">
-    <app-icon [icon]="'mdi:loading'" class="text-4xl" />
+    <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl" />
     <p>Cargando detalle...</p>
   </div>
   } @else if (data) {
@@ -52,7 +52,7 @@
     <div class="col-4 font-bold">Archivo Adjunto</div>
     <div class="col-8">
       <il-button
-        iconClass="mdi:download"
+        iconClass="material-symbols-light:download"
         label="Descargar"
         (clicked)="onDownloadAttachment()"
         size="small"
@@ -90,7 +90,7 @@
   <div class="mt-4 flex gap-2">
     @if (data.canEdit) {
     <il-button
-      iconClass="mdi:pencil"
+      iconClass="material-symbols-light:edit"
       label="Editar"
       (clicked)="onEdit()"
       size="small"
@@ -98,7 +98,7 @@
     />
     } @if (data.canDelete) {
     <il-button
-      iconClass="mdi:delete"
+      iconClass="material-symbols-light:delete"
       label="Eliminar"
       (clicked)="onDelete()"
       size="small"

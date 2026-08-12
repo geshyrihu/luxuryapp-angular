@@ -1,9 +1,10 @@
 import { Directive, input, model } from "@angular/core";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export interface TreeNode {
   label: string;
   data?: any;
-  icon?: string;
+  icon?: AppIconName;
   expandedIcon?: string;
   collapsedIcon?: string;
   children?: TreeNode[];

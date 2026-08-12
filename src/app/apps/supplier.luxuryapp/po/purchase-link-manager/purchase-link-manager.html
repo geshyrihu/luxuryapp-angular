@@ -8,7 +8,7 @@
   >
     <div class="flex align-items-center">
       <div class="bg-primary-100 p-2 rounded">
-        <app-icon [icon]="'mdi:link'" class="text-primary text-2xl" />
+        <app-icon [icon]="'material-symbols-light:link'" class="text-primary text-2xl" />
       </div>
       <div>
         <h2 class="text-2xl font-bold m-0 text-900 uppercase tracking-wider">
@@ -21,13 +21,13 @@
     </div>
     <div class="flex">
       <il-button
-        iconClass="mdi:refresh"
+        iconClass="material-symbols-light:refresh"
         label="Refrescar"
         severity="info"
         (clicked)="onLoadSolicitudes(); onLoadOrdenes()"
       />
       <il-button
-        iconClass="mdi:close"
+        iconClass="material-symbols-light:close"
         label="Finalizar"
         severity="secondary"
         (clicked)="onClose()"
@@ -52,7 +52,7 @@
           <div class="flex align-items-center justify-content-between mb-3">
             <h3 class="m-0 text-green-700 font-bold">
               <app-icon
-                [icon]="'mdi:file-document-outline'"
+                [icon]="'material-symbols-light:description'"
                 class="mr-2"
               />SOLICITUDES
             </h3>
@@ -105,7 +105,7 @@
                     <span
                       class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
                     >
-                      <app-icon [icon]="'mdi:calendar-minus'" class="mr-1" />{{
+                      <app-icon [icon]="'material-symbols-light:event-busy'" class="mr-1" />{{
                       sc.fechaSolicitud | date:'dd-MMM-yy':'UTC' }}
                     </span>
                   </div>
@@ -117,7 +117,7 @@
                   cdkDragHandle
                   class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
                 >
-                  <app-icon [icon]="'mdi:menu'" class="text-600" />
+                  <app-icon [icon]="'material-symbols-light:menu'" class="text-600" />
                 </div>
               </div>
 
@@ -134,10 +134,10 @@
                 >
                 @for (orden of sc.ordenesRelacionadas; track orden.id) {
                 <lx-tag severity="warning" [rounded]="true" class="px-3 py-1 shadow-sm border-1 border-orange-200"><div class="flex align-items-center">
-                    <app-icon [icon]="'mdi:cart'" class="text-xs" />
+                    <app-icon [icon]="'material-symbols-light:shopping-cart'" class="text-xs" />
                     <span class="text-xs font-bold">{{ orden.folio }}</span>
                     <app-icon
-                      [icon]="'mdi:close-circle'"
+                      [icon]="'material-symbols-light:cancel'"
                       class="cursor-pointer hover:text-red-500 scalein transition-all transition-duration-200"
                       (click)="onUnlink(orden.id)"
                       lxTooltip="Desvincular Orden"
@@ -155,7 +155,7 @@
           <div
             class="text-center p-5 surface-50 rounded-xl text-500 border-dashed border-2"
           >
-            <app-icon [icon]="'mdi:magnify'" class="text-4xl mb-3 block" />
+            <app-icon [icon]="'material-symbols-light:search'" class="text-4xl mb-3 block" />
             No se encontraron solicitudes con estos criterios.
           </div>
           }
@@ -174,7 +174,7 @@
         >
           <div class="flex align-items-center justify-content-between mb-3">
             <h3 class="m-0 text-orange-700 font-bold">
-              <app-icon [icon]="'mdi:shopping'" class="mr-2" />ÓRDENES
+              <app-icon [icon]="'material-symbols-light:shopping-bag'" class="mr-2" />ÓRDENES
             </h3>
             <custom-input-select-button-signal
               [options]="statusOptions"
@@ -229,7 +229,7 @@
                     <span
                       class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
                     >
-                      <app-icon [icon]="'mdi:calendar'" class="mr-1" />{{
+                      <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1" />{{
                       oc.fechaSolicitud | date:'dd-MMM-yy':'UTC' }}
                     </span>
                   </div>
@@ -241,7 +241,7 @@
                   cdkDragHandle
                   class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
                 >
-                  <app-icon [icon]="'mdi:menu'" class="text-600" />
+                  <app-icon [icon]="'material-symbols-light:menu'" class="text-600" />
                 </div>
               </div>
 
@@ -257,14 +257,14 @@
                 @if (oc.solicitudCompraId) {
                 <lx-tag severity="success" [rounded]="true" class="px-3 py-1 shadow-sm border-1 border-green-200"><div class="flex align-items-center">
                     <app-icon
-                      [icon]="'mdi:file-document-outline'"
+                      [icon]="'material-symbols-light:description'"
                       class="text-xs"
                     />
                     <span class="text-xs font-bold uppercase"
                       >{{ oc.folioSolicitudCompra }}</span
                     >
                     <app-icon
-                      [icon]="'mdi:close-circle'"
+                      [icon]="'material-symbols-light:cancel'"
                       class="cursor-pointer hover:text-red-500 transition-all"
                       (click)="onUnlink(oc.id)"
                       lxTooltip="Eliminar vínculo"
@@ -282,7 +282,7 @@
           <div
             class="text-center p-5 surface-50 rounded-xl text-500 border-dashed border-2"
           >
-            <app-icon [icon]="'mdi:shopping'" class="text-4xl mb-3 block" />
+            <app-icon [icon]="'material-symbols-light:shopping-bag'" class="text-4xl mb-3 block" />
             No hay órdenes disponibles para este estado.
           </div>
           }

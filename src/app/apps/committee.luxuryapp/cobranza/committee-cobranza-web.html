@@ -16,7 +16,7 @@
         label="Cobrado del mes"
         [value]="avance.cobrado"
         format="currency"
-        icon="mdi:cash-check"
+        icon="material-symbols-light:paid"
         iconColor="var(--ds-success)"
         iconBg="var(--ds-success-light)"
         [subtitle]="
@@ -41,7 +41,7 @@
         label="Cartera vencida"
         [value]="cartera.total"
         format="currency"
-        icon="mdi:cash-multiple"
+        icon="material-symbols-light:payments"
         iconColor="var(--ds-warning)"
         iconBg="var(--ds-warning-light)"
         [subtitle]="
@@ -62,7 +62,7 @@
         label="En cobranza judicial"
         [value]="judicial.cantidad"
         format="number"
-        icon="mdi:gavel"
+        icon="material-symbols-light:gavel"
         iconColor="var(--ds-danger)"
         iconBg="var(--ds-danger-light)"
         [subtitle]="
@@ -147,9 +147,12 @@
             [text]="true"
             [rounded]="true"
             [plain]="true"
-            icon="pi pi-eye"
             pTooltip="Ver Detalle"
-          />
+          >
+            <ng-template #icon>
+              <app-icon icon="material-symbols-light:visibility-outline" />
+            </ng-template>
+          </p-button>
         </td>
       </tr>
     </ng-template>

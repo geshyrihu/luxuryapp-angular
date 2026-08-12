@@ -32,7 +32,7 @@ import { TrackingEvent } from "../shared/tracking";
         }"
         [badgeDisabled]="badgeCount() === 0"
       >
-        <app-icon [icon]="iconClass() || 'fluent-color:alert-24'" />
+        <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:warning'" />
       </p-overlaybadge>
     </button>
   `,

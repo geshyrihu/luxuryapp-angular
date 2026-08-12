@@ -67,41 +67,41 @@
 
       <div class="flex align-items-center gap-2">
         <il-button
-          iconClass="mdi:grid"
+          iconClass="material-symbols-light:grid-view"
           label="Tablero"
-          variant="outlined"
+          variant="outline"
           severity="secondary"
           size="small"
           (clicked)="onPendingBoard()"
         />
         <il-button
-          iconClass="mdi:clipboard-text"
+          iconClass="material-symbols-light:article"
           label="Plan de trabajo"
-          variant="outlined"
+          variant="outline"
           severity="secondary"
           size="small"
           (clicked)="onPreviewClickedWorkPlan()"
         />
         <il-button
-          iconClass="mdi:eye-outline"
+          iconClass="material-symbols-light:visibility-outline"
           label="Vista previa"
-          variant="outlined"
+          variant="outline"
           severity="secondary"
           size="small"
           (clicked)="onPreviewWeeklyReport()"
         />
         <il-button
-          iconClass="mdi:send"
+          iconClass="material-symbols-light:send"
           label="Enviar reporte"
-          variant="outlined"
+          variant="outline"
           size="small"
           [disabled]="wekklyIsNullOrEmpty()"
           (clicked)="onSendWeeklyReport()"
         />
         <il-button
-          iconClass="mdi:printer"
+          iconClass="material-symbols-light:print"
           label="Imprimir pendientes"
-          variant="outlined"
+          variant="outline"
           severity="secondary"
           size="small"
           (clicked)="printReport()"
@@ -149,7 +149,10 @@
             <p
               class="m-0 mb-3 font-semibold text-900 text-sm border-bottom-1 surface-border pb-2"
             >
-              <app-icon [icon]="'mdi:information'" class="text-primary mr-1" />
+              <app-icon
+                [icon]="'material-symbols-light:info'"
+                class="text-primary mr-1"
+              />
               Como interactuar con las tareas
             </p>
 
@@ -159,7 +162,10 @@
                 <span
                   class="flex-shrink-0 border-circle bg-primary-100 flex align-items-center justify-content-center"
                 >
-                  <app-icon [icon]="'mdi:menu'" class="text-primary" />
+                  <app-icon
+                    [icon]="'material-symbols-light:menu'"
+                    class="text-primary"
+                  />
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -179,7 +185,10 @@
                 <span
                   class="flex-shrink-0 border-circle bg-purple-100 flex align-items-center justify-content-center"
                 >
-                  <app-icon [icon]="'mdi:link'" class="text-purple-600" />
+                  <app-icon
+                    [icon]="'material-symbols-light:link'"
+                    class="text-purple-600"
+                  />
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -203,7 +212,10 @@
                 <span
                   class="flex-shrink-0 border-circle bg-orange-100 flex align-items-center justify-content-center"
                 >
-                  <app-icon [icon]="'mdi:sitemap'" class="text-orange-600" />
+                  <app-icon
+                    [icon]="'material-symbols-light:account-tree'"
+                    class="text-orange-600"
+                  />
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -211,9 +223,15 @@
                   </p>
                   <p class="m-0 text-xs text-600 mt-1 line-height-3">
                     Las tareas con el icono
-                    <app-icon [icon]="'mdi:sitemap'" class="text-primary" />
+                    <app-icon
+                      [icon]="'material-symbols-light:account-tree'"
+                      class="text-primary"
+                    />
                     tienen subtareas. Las tareas con
-                    <app-icon [icon]="'mdi:arrow-down-bold'" class="text-400" />
+                    <app-icon
+                      [icon]="'material-symbols-light:keyboard-double-arrow-down'"
+                      class="text-400"
+                    />
                     son hijas de otra. Al crear o editar una tarea puedes
                     asignarle una tarea padre.
                   </p>
@@ -268,12 +286,12 @@
       <td class="text-center">
         <div class="flex align-items-center justify-content-center gap-1">
           <app-icon
-            [icon]="'mdi:menu'"
+            [icon]="'material-symbols-light:menu'"
             class="cursor-move text-400"
             pReorderableRowHandle
           />
           <app-icon
-            [icon]="'mdi:link'"
+            [icon]="'material-symbols-light:link'"
             class="text-300 cursor-grab"
             draggable="true"
             [class.text-purple-500]="linkDragSourceId() === item.id"
@@ -291,14 +309,14 @@
         >
           @if (item.parentTaskId) {
           <app-icon
-            [icon]="'mdi:arrow-down-bold'"
+            [icon]="'material-symbols-light:keyboard-double-arrow-down'"
             class="text-400 flex-shrink-0 mr-1"
             lxTooltip="Tarea hija"
             tooltipPosition="top"
           />
           } @if (item.hasSubTasks) {
           <app-icon
-            [icon]="'mdi:sitemap'"
+            [icon]="'material-symbols-light:account-tree'"
             class="text-primary flex-shrink-0 mr-1"
             lxTooltip="Tiene subtareas"
             tooltipPosition="top"
@@ -332,7 +350,10 @@
                 (click)="onClearDependency(item.id)"
                 lxTooltip="Despues de: {{ item.dependsOnTaskFolio }} | Click para quitar"
               >
-                <app-icon [icon]="'mdi:arrow-right'" class="text-xs" />
+                <app-icon
+                  [icon]="'material-symbols-light:arrow-forward'"
+                  class="text-xs"
+                />
                 {{ item.dependsOnTaskFolio }}
               </span>
               }
@@ -342,20 +363,20 @@
             >
               @if (item.daysDifference > 15 && !item.scheduledAt) {
               <app-icon
-                [icon]="'mdi:clock-outline'"
+                [icon]="'material-symbols-light:schedule'"
                 class="text-orange-600"
                 lxTooltip="Urgente: Mís de 15 días sin programar"
               />
               } @if (item.priority === 'High') {
               <app-icon
-                [icon]="'mdi:star-outline'"
+                [icon]="'material-symbols-light:star-outline'"
                 class="text-primary cursor-pointer"
                 (click)="onUpdatePriority(item.id)"
                 lxTooltip="Alta prioridad - click para cambiar"
               />
               } @if (item.priority === 'Low') {
               <app-icon
-                [icon]="'mdi:alert'"
+                [icon]="'material-symbols-light:warning'"
                 class="text-red-500 cursor-pointer"
                 (click)="onUpdatePriority(item.id)"
                 lxTooltip="Baja prioridad - click para cambiar"
@@ -387,12 +408,15 @@
 
       <td>
         <p class="m-0 text-xs text-color-secondary">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1" />{{ item.scheduledAt
-          }}
+          <app-icon
+            [icon]="'material-symbols-light:calendar-today'"
+            class="mr-1"
+          />{{ item.scheduledAt }}
         </p>
         @if (item.closedAtDate) {
         <p class="m-0 text-xs text-color-secondary mt-1">
-          <app-icon [icon]="'mdi:lock'" class="mr-1" />{{ item.closedAtDate }}
+          <app-icon [icon]="'material-symbols-light:lock'" class="mr-1" />{{
+          item.closedAtDate }}
         </p>
         }
       </td>
@@ -449,7 +473,10 @@
             class="cursor-pointer flex align-items-center gap-1 text-decoration-none"
             lxTooltip="Seguimientos"
           >
-            <app-icon [icon]="'mdi:comment-multiple'" class="text-blue-500" />
+            <app-icon
+              [icon]="'material-symbols-light:forum'"
+              class="text-blue-500"
+            />
             <span class="badge bg-info px-2 py-1 text-xs font-semibold">
               {{ item.ticketMessageFollowUp }}
             </span>
@@ -457,25 +484,25 @@
           <app-action-menu>
             <ng-container actions>
               <il-button-item
-                iconClass="mdi:calendar"
+                iconClass="material-symbols-light:calendar-today"
                 label="Programar"
                 (clicked)="onProgram(item.id)"
               />
               @if (item.status !== 'Completed') {
               <il-button-item
-                iconClass="mdi:lock"
+                iconClass="material-symbols-light:lock"
                 label="Cerrar"
                 (clicked)="onClosed(item.id)"
               />
               } @if (item.status !== 'InProgress') {
               <il-button-item
-                iconClass="mdi:sync"
+                iconClass="material-symbols-light:sync"
                 label="En proceso"
                 (clicked)="onProgress(item.id)"
               />
               } @if (item.status === 'Completed') {
               <il-button-item
-                iconClass="mdi:lock-open"
+                iconClass="material-symbols-light:lock-open"
                 label="Reabrir"
                 (clicked)="onReopen(item.id)"
               />
@@ -549,28 +576,37 @@
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
           (click)="onPendingBoard()"
         >
-          <app-icon icon="mdi:view-grid-outline" class="mr-1" />
+          <app-icon
+            icon="material-symbols-light:grid-view-outline"
+            class="mr-1"
+          />
           Tablero
         </button>
         <button
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
           (click)="onPreviewClickedWorkPlan()"
         >
-          <app-icon icon="mdi:clipboard-text-outline" class="mr-1" />
+          <app-icon
+            icon="material-symbols-light:article-outline"
+            class="mr-1"
+          />
           Plan
         </button>
         <button
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
           (click)="onPreviewWeeklyReport()"
         >
-          <app-icon icon="mdi:eye-outline" class="mr-1" />
+          <app-icon
+            icon="material-symbols-light:visibility-outline"
+            class="mr-1"
+          />
           Previa
         </button>
         <button
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
           (click)="onSendWeeklyReport()"
         >
-          <app-icon icon="mdi:send-outline" class="mr-1" />
+          <app-icon icon="material-symbols-light:send-outline" class="mr-1" />
           Reporte
         </button>
       </div>
@@ -619,30 +655,30 @@
             <ili-action-menu slot="end">
               <ng-container actions>
                 <ili-button-item
-                  iconClass="mdi:chat-processing-outline"
+                  iconClass="material-symbols-light:chat"
                   [label]="'Seguimiento (' + item.ticketMessageFollowUp + ')'"
                   (clicked)="onFollowUp(item.id)"
                 />
                 <ili-button-item
-                  iconClass="mdi:calendar"
+                  iconClass="material-symbols-light:calendar-today"
                   label="Programar"
                   (clicked)="onProgram(item.id)"
                 />
                 @if (item.status !== 'Completed') {
                 <ili-button-item
-                  iconClass="mdi:lock"
+                  iconClass="material-symbols-light:lock"
                   label="Cerrar"
                   (clicked)="onClosed(item.id)"
                 />
                 } @if (item.status !== 'InProgress') {
                 <ili-button-item
-                  iconClass="mdi:sync"
+                  iconClass="material-symbols-light:sync"
                   label="En proceso"
                   (clicked)="onProgress(item.id)"
                 />
                 } @if (item.status === 'Completed') {
                 <ili-button-item
-                  iconClass="mdi:lock-open"
+                  iconClass="material-symbols-light:lock-open"
                   label="Reabrir"
                   (clicked)="onReopen(item.id)"
                 />
@@ -673,8 +709,8 @@
             class="text-purple-500 text-xs cursor-pointer py-1"
             (click)="onClearDependency(item.id)"
           >
-            <app-icon [icon]="'mdi:arrow-right'" /> {{ item.dependsOnTaskFolio
-            }}
+            <app-icon [icon]="'material-symbols-light:arrow-forward'" /> {{
+            item.dependsOnTaskFolio }}
           </span>
           }
         </div>
@@ -682,7 +718,10 @@
         <!-- Cuerpo: Título, Descripción, Imágenes -->
         <h6 class="text-sm font-semibold m-0 text-wrap text-color">
           @if (item.daysDifference > 15 && !item.scheduledAt) {
-          <app-icon [icon]="'mdi:clock-outline'" class="text-orange-600 mr-1" />
+          <app-icon
+            [icon]="'material-symbols-light:schedule'"
+            class="text-orange-600 mr-1"
+          />
           } {{ item.title }}
         </h6>
         <p class="text-xs text-color-secondary m-0 text-wrap truncate">

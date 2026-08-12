@@ -15,11 +15,13 @@ import { EndpointsCobranza } from "src/app/core/constants/endpoints/cobranza.end
 import { AspelCobranzaDetalleResponse } from "../../aspel-cobranza-haus/aspel-cobranza-haus.models";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { NgClass } from "@angular/common";
+import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-cobranza-online-morosidad-detail-modal",
   standalone: true,
-  imports: [CommonModule, SharedModule, LxTag, NgClass],
+  imports: [CommonModule, SharedModule, LxTag, NgClass, LxSpinner, AppIcon],
   templateUrl: "./cobranza-online-morosidad-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

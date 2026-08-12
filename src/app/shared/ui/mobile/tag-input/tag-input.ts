@@ -21,7 +21,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               class="ili-tag-chip-x"
               (click)="removeTag(tag)"
             >
-              <app-icon icon="mdi:close" />
+              <app-icon icon="material-symbols-light:close" />
             </button>
           </span>
         }

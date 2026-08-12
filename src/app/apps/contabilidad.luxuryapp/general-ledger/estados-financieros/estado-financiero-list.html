@@ -52,7 +52,7 @@
         <iw-button
           lxTooltip="Cargar Informe"
           tooltipPosition="top"
-          iconClass="mdi:upload"
+          iconClass="material-symbols-light:upload"
           [loading]="isProcessingUpload(item.id)"
           (clicked)="onUploadFile({ id: item.id, title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS' })"
           [fluid]="true"
@@ -66,7 +66,7 @@
             </div>
           </div>
           <iw-button
-            iconClass="mdi:download"
+            iconClass="material-symbols-light:download"
             variant="ghost-text"
             severity="secondary"
             ngbTooltip="Descargar"
@@ -74,7 +74,7 @@
           />
           @if (item.personWhoAuthorized === "" && item.personWhoSend === "") {
           <iw-button
-            iconClass="mdi:replay"
+            iconClass="material-symbols-light:replay"
             variant="ghost-text"
             severity="warn"
             ngbTooltip="Actualizar Informe"
@@ -91,7 +91,7 @@
         <iw-button
           lxTooltip="Autorizar"
           tooltipPosition="top"
-          iconClass="mdi:checkbox-marked"
+          iconClass="material-symbols-light:check-box"
           severity="success"
           [loading]="isProcessingAuthorize(item.id)"
           (clicked)="onAuthorize(item.id)"
@@ -107,7 +107,7 @@
           </div>
           @if (item.personWhoSend === "") {
           <iw-button
-            iconClass="mdi:replay"
+            iconClass="material-symbols-light:replay"
             variant="ghost-text"
             severity="warn"
             ngbTooltip="Deshacer autorización"
@@ -122,7 +122,7 @@
         @if ( item.nameFileEstadoFinanciero !== null && item.personWhoAuthorized
         !== "" ) { @if (item.personWhoSend === "") {
         <iw-button-confirm
-          icon="mdi:send"
+          icon="material-symbols-light:send"
           lxTooltip="ENVIAR PDF"
           tooltipPosition="top"
           class="p-button-primary w-full mb-2"
@@ -172,7 +172,7 @@
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
-          icon="mdi:chart-line"
+          icon="material-symbols-light:monitoring"
           class="text-xl text-primary"
         />
       </div>
@@ -291,7 +291,7 @@
           @if (item.nameFileEstadoFinanciero && item.personWhoAuthorized &&
           !item.personWhoSend) {
           <ili-button-confirm
-            icon="mdi:send"
+            icon="material-symbols-light:send"
             label="ENVIAR"
             class="p-button-text w-full text-left"
             swalTitle="óEnviar estados financieros?"

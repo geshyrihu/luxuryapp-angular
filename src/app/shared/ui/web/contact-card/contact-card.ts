@@ -47,7 +47,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
         }
         @if (company()) {
           <span class="contact-company">
-            <app-icon icon="mdi:office-building-outline" class="text-xs" />
+            <app-icon icon="material-symbols-light:apartment" class="text-xs" />
             {{ company() }}
           </span>
         }
@@ -63,7 +63,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
             class="contact-action-btn"
             (click)="$event.stopPropagation()"
           >
-            <app-icon icon="mdi:email-outline" />
+            <app-icon icon="material-symbols-light:mail-outline" />
           </a>
         }
         @if (phone()) {
@@ -74,7 +74,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
             class="contact-action-btn"
             (click)="$event.stopPropagation()"
           >
-            <app-icon icon="mdi:phone-outline" />
+            <app-icon icon="material-symbols-light:call-outline" />
           </a>
         }
         <button
@@ -83,7 +83,7 @@ export { type ContactStatus } from "@ui/base/contact-card.base";
           class="contact-action-btn"
           (click)="$event.stopPropagation(); meetingClick.emit()"
         >
-          <app-icon icon="mdi:calendar-plus-outline" />
+          <app-icon icon="material-symbols-light:event-note" />
         </button>
       </div>
     </div>

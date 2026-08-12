@@ -1,7 +1,7 @@
 <div class="text-right">
   <il-button
     [customClass]="'btn-outline-primary'"
-    iconClass="mdi:plus"
+    iconClass="material-symbols-light:add"
     label="Nuevo Servicio"
     (clicked)="
       showModalMaintenanceCalendar({
@@ -57,7 +57,7 @@
         <div class="flex justify-content-center">
           <!-- Duplicar Servicio -->
           <iw-button
-            iconClass="mdi:content-copy"
+            iconClass="material-symbols-light:content-copy"
             lxTooltip="Duplicar Servicio"
             tooltipPosition="top"
             (clicked)="
@@ -75,7 +75,7 @@
           <!-- Duplicar Servicio -->
           <!-- Editar  -->
           <iw-button
-            iconClass="mdi:edit"
+            iconClass="material-symbols-light:edit"
             (clicked)="
                   showModalMaintenanceCalendar({
                     id: item.id,
@@ -87,7 +87,7 @@
           />
           <!-- Borrar -->
           <iw-button
-            iconClass="mdi:delete"
+            iconClass="material-symbols-light:delete"
             lxTooltip="Eliminar"
             tooltipPosition="top"
             (clicked)="confirm($event, item.id)"

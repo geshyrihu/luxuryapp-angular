@@ -62,13 +62,13 @@
           AspRole.Administrador, AspRole.SuperUsuario, ]) ) {
           <div class="flex justify-content-end gap-1">
             <iw-button-item
-              iconClass="mdi:play-circle-outline"
+              iconClass="material-symbols-light:play-circle-outline"
               lxTooltip="Iniciar"
               tooltipPosition="top"
               (clicked)="onStartManual(item.id)"
             />
             <iw-button-item
-              iconClass="mdi:power"
+              iconClass="material-symbols-light:power-settings-new"
               [lxTooltip]="item.isActive ? 'Desactivar' : 'Activar'"
               tooltipPosition="top"
               (clicked)="onToggleActive(item)"
@@ -105,11 +105,11 @@
           @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
           AspRole.Administrador, AspRole.SuperUsuario, ]) ) {
           <ili-button-item
-            iconClass="mdi:play-circle-outline"
+            iconClass="material-symbols-light:play-circle-outline"
             (clicked)="onStartManual(item.id)"
           />
           <ili-button-item
-            iconClass="mdi:power"
+            iconClass="material-symbols-light:power-settings-new"
             (clicked)="onToggleActive(item)"
           />
           <ili-button-edit (clicked)="onAddOrEdit(item.id)" />

@@ -20,16 +20,16 @@
           class="flex-grow-1"
         />
         <il-button
-          iconClass="mdi:download"
+          iconClass="material-symbols-light:download"
           label="Descargar Plantilla"
-          variant="outlined"
+          variant="outline"
           severity="secondary"
           size="small"
           (clicked)="downloadBulkImportTemplate()"
           customClass="ml-3"
         />
         <il-button
-          iconClass="mdi:upload"
+          iconClass="material-symbols-light:upload"
           label="Importar Saldos Iniciales"
           severity="warn"
           size="small"
@@ -71,7 +71,7 @@
         <td class="text-center">
           @if (item.generatedAutomatically) {
           <app-icon
-            [icon]="'mdi:lightning-bolt'"
+            [icon]="'material-symbols-light:bolt'"
             class="text-purple-600"
             title="Generado por sistema"
           />
@@ -88,9 +88,9 @@
             <iw-button-edit (clicked)="onModalForm(item.id)" />
             @if (item.status !== EChargeStatus.Cancelado) {
             <iw-button
-              iconClass="mdi:close-circle"
+              iconClass="material-symbols-light:cancel"
               severity="warning"
-              variant="outlined"
+              variant="outline"
               size="small"
               lxTooltip="Cancelar cargo"
               tooltipPosition="top"
@@ -120,7 +120,7 @@
         class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
-          icon="mdi:credit-card-outline"
+          icon="material-symbols-light:credit-card-outline"
           class="text-orange-600 text-xl"
         />
       </div>
@@ -128,8 +128,8 @@
         <h3>{{ item.propertyFullName || "N/A" }}</h3>
         <p>{{ item.chargeTypeName || "Sin tipo" }} · {{ item.concept }}</p>
         <p>
-          {{ item.amount | number:"1.2-2" }} ·
-          {{ item.chargeTypeAccountNumber }}
+          {{ item.amount | number:"1.2-2" }} · {{ item.chargeTypeAccountNumber
+          }}
         </p>
         <p>Venc: {{ item.dueDate | date:"dd/MM/yyyy":"UTC" }}</p>
       </div>
@@ -139,9 +139,9 @@
           @if (item.status !== EChargeStatus.Cancelado) {
           <il-button
             label="Cancelar"
-            iconClass="mdi:close-circle"
+            iconClass="material-symbols-light:cancel"
             severity="warning"
-            variant="outlined"
+            variant="outline"
             size="small"
             (clicked)="onCancel(item)"
           />

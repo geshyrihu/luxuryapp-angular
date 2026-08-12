@@ -10,14 +10,16 @@
 
 <app-data-view-mobile
   [data]="data()"
-  (add)="add.emit({ id: '', title: 'Nueva Postulación' })"
+  (add)="add.emit({ id: '', title: 'Nuevo proceso de candidato' })"
   [globalFilterFields]="globalFilterFields()"
-  aria-label="Bandeja de postulaciones"
+  aria-label="Bandeja de procesos de candidatos"
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div class="flex flex-column gap-1">
-        <p class="font-semibold m-0 text-color line-height-2">{{ item.candidateName }}</p>
+        <p class="font-semibold m-0 text-color line-height-2">
+          {{ item.candidateName }}
+        </p>
         <p class="text-xs m-0 text-color-secondary">
           {{ item.positionName }} - {{ item.customerName }}
         </p>
@@ -38,12 +40,12 @@
         <ili-button-tracking
           (clickTracking)="advance.emit({ id: item.id, fromStage: item.currentStage, customerId: item.customerId })"
           label="Avanzar etapa"
-          [attr.aria-label]="'Avanzar etapa de postulación ' + item.candidateName"
+          [attr.aria-label]="'Avanzar etapa del proceso de ' + item.candidateName"
         />
         <ili-button-edit
-          (clicked)="edit.emit({ id: item.id, title: 'Editar Postulación' })"
+          (clicked)="edit.emit({ id: item.id, title: 'Editar proceso de candidato' })"
           label="Editar"
-          [attr.aria-label]="'Editar postulación ' + item.candidateName"
+          [attr.aria-label]="'Editar proceso de ' + item.candidateName"
         />
       </ili-action-menu>
     </ili-list-item>

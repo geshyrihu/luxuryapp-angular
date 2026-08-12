@@ -28,7 +28,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
           <h2 class="m-0">Galeróa de Diagramas</h2>
           <il-button
             label="Gestión"
-            iconClass="mdi:format-list-bulleted"
+            iconClass="material-symbols-light:format-list-bulleted"
             (clicked)="onOpenList()"
             severity="secondary"
             variant="text"
@@ -60,7 +60,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                 class="card-body flex flex-column align-items-center justify-content-center py-4 bg-gray-50 rounded mb-3 min-h-10rem"
               >
                 <app-icon
-                  [icon]="'mdi:image-multiple'"
+                  [icon]="'material-symbols-light:photo'"
                   class="text-6xl text-primary-400"
                 />
               </div>
@@ -68,7 +68,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                 <div class="flex ">
                   <il-button
                     label="Visualizar"
-                    iconClass="mdi:eye-outline"
+                    iconClass="material-symbols-light:visibility-outline"
                     severity="success"
                     customClass="w-full"
                     (clicked)="onView(diagram.id)"
@@ -83,14 +83,14 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
       @if (diagrams().length > pageSize()) {
         <div class="flex justify-content-center align-items-center mt-3 gap-2">
           <il-button
-            iconClass="mdi:chevron-left"
+            iconClass="material-symbols-light:chevron-left"
             variant="text"
             (clicked)="currentPage.set(currentPage() - 1)"
             [disabled]="currentPage() === 1"
           />
           <span>Página {{ currentPage() }} de {{ totalPages() }}</span>
           <il-button
-            iconClass="mdi:chevron-right"
+            iconClass="material-symbols-light:chevron-right"
             variant="text"
             (clicked)="currentPage.set(currentPage() + 1)"
             [disabled]="currentPage() === totalPages()"

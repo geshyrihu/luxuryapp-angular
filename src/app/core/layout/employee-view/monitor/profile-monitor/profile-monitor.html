@@ -13,7 +13,7 @@
     size="large"
     styleClass="rounded-lg shadow-sm"
   />
-  <app-icon icon="mdi:chevron-down" class="text-white opacity-60" />
+  <app-icon icon="material-symbols-light:keyboard-arrow-down" class="text-white opacity-60" />
 </div>
 
 <p-popover #profilePopover appendTo="body">
@@ -22,7 +22,7 @@
       class="profile-popup-item"
       (click)="navigateToProfile(); profilePopover.hide()"
     >
-      <i class="pi pi-key"></i>
+      <app-icon icon="material-symbols-light:key" />
       <span>Cambiar contraseña</span>
     </button>
 
@@ -30,7 +30,7 @@
       class="profile-popup-item"
       (click)="navigateToPasswordManager(); profilePopover.hide()"
     >
-      <i class="pi pi-lock"></i>
+      <app-icon icon="material-symbols-light:lock" />
       <span>Credenciales de servicios</span>
     </button>
 
@@ -39,7 +39,7 @@
       class="profile-popup-item"
       (click)="onUpdateClick(); profilePopover.hide()"
     >
-      <i class="pi pi-sync"></i>
+      <app-icon icon="material-symbols-light:sync" />
       <span>Actualizar Aplicación</span>
     </button>
     }
@@ -50,7 +50,7 @@
       class="profile-popup-item profile-popup-item--danger"
       (click)="logOut()"
     >
-      <i class="pi pi-sign-out"></i>
+      <app-icon icon="material-symbols-light:logout" />
       <span>Cerrar sesión</span>
     </button>
   </div>

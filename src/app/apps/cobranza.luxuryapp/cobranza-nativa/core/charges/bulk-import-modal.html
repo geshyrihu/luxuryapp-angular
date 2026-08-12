@@ -2,13 +2,17 @@
   @if (!result) {
   <!-- Upload View -->
   <div class="mb-4">
-    <lx-message severity="info" text="El archivo debe ser formato CSV. Las primeras 4 columnas requeridas son: PropertyId (Guid), Monto (Decimal), FechaVencimiento (YYYY-MM-DD) y Concepto (Opcional). La plantilla agrega ReferenciaCuenta y ReferenciaPropiedad solo como apoyo visual." class="mb-3 w-full" />
+    <lx-message
+      severity="info"
+      text="El archivo debe ser formato CSV. Las primeras 4 columnas requeridas son: PropertyId (Guid), Monto (Decimal), FechaVencimiento (YYYY-MM-DD) y Concepto (Opcional). La plantilla agrega ReferenciaCuenta y ReferenciaPropiedad solo como apoyo visual."
+      class="mb-3 w-full"
+    />
 
     <div class="flex justify-content-end mb-3">
       <il-button
-        iconClass="mdi:download"
+        iconClass="material-symbols-light:download"
         label="Descargar Plantilla CSV"
-        variant="outlined"
+        variant="outline"
         severity="secondary"
         size="small"
         (clicked)="downloadTemplate()"
@@ -18,7 +22,10 @@
     <div
       class="border-2 border-dashed border-300 rounded p-5 text-center surface-50 flex flex-column align-items-center"
     >
-      <app-icon [icon]="'mdi:cloud-upload'" class="text-5xl text-400 mb-3" />
+      <app-icon
+        [icon]="'material-symbols-light:cloud-upload'"
+        class="text-5xl text-400 mb-3"
+      />
       <h3 class="mt-0 text-700">Seleccionar archivo CSV</h3>
       <custom-input-file-signal
         accept=".csv"
@@ -33,7 +40,7 @@
   <div class="flex justify-content-end mt-4">
     <il-button
       label="Cancelar"
-      iconClass="mdi:close"
+      iconClass="material-symbols-light:close"
       variant="ghost-text"
       severity="secondary"
       (clicked)="onClose()"
@@ -41,7 +48,7 @@
     />
     <il-button
       label="Importar Cargos"
-      iconClass="mdi:check"
+      iconClass="material-symbols-light:check"
       [disabled]="!selectedFile"
       [loading]="isLoading"
       (clicked)="uploadFile()"
@@ -53,12 +60,15 @@
   <div class="text-center py-4">
     @if (result.failedCount === 0) {
     <app-icon
-      [icon]="'mdi:check-circle'"
+      [icon]="'material-symbols-light:check-circle'"
       class="text-green-500 text-6xl mb-3"
     />
     <h2 class="text-green-700 m-0">¡Importación Exitosa!</h2>
     } @else {
-    <app-icon [icon]="'mdi:alert'" class="text-orange-500 text-6xl mb-3" />
+    <app-icon
+      [icon]="'material-symbols-light:warning'"
+      class="text-orange-500 text-6xl mb-3"
+    />
     <h2 class="text-orange-700 m-0">Importación Finalizada con Errores</h2>
     }
 
@@ -86,13 +96,12 @@
     </div>
 
     @if (result.errors && result.errors.length > 0) {
-    <div
-      class="text-left mt-5 surface-50 p-3 rounded border-1 border-red-200"
-      
-    >
+    <div class="text-left mt-5 surface-50 p-3 rounded border-1 border-red-200">
       <h4 class="text-red-700 mt-0 mb-2">
-        <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2" />Detalle de
-        errores
+        <app-icon
+          [icon]="'material-symbols-light:format-list-bulleted'"
+          class="mr-2"
+        />Detalle de errores
       </h4>
       <ul class="m-0 pl-3 text-sm text-red-600">
         @for (err of result.errors; track $index) {
@@ -105,7 +114,7 @@
     <div class="flex justify-content-center mt-5">
       <il-button
         label="Cerrar y Actualizar"
-        iconClass="mdi:check"
+        iconClass="material-symbols-light:check"
         (clicked)="onClose()"
       />
     </div>

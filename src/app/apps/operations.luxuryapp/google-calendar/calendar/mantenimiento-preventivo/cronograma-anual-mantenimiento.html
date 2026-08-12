@@ -107,7 +107,10 @@
                 <div class="logo-sub-luxury">Mantenimiento Preventivo</div>
               </div>
               <div class="badge-doc-luxury">
-                <app-icon [icon]="'mdi:tag'" class="mr-1" />
+                <app-icon
+                  [icon]="'material-symbols-light:label'"
+                  class="mr-1"
+                />
                 {{ filtroEquiposValue | titlecase }}
               </div>
             </div>
@@ -115,7 +118,7 @@
             <div class="flex align-items-center gap-2">
               <il-button
                 label="Exportar Excel"
-                iconClass="mdi:file-excel"
+                iconClass="material-symbols-light:table-view"
                 class="btn-luxury-excel"
                 title="Exportar a Excel"
                 (clicked)="exportExcel()"
@@ -123,7 +126,7 @@
 
               <il-button
                 label="Exportar PDF"
-                iconClass="mdi:file-pdf-box"
+                iconClass="material-symbols-light:picture-as-pdf"
                 class="btn-luxury-pdf"
                 title="Exportar a PDF"
                 (clicked)="exportPdf()"
@@ -136,7 +139,7 @@
                   [iconClass]="getFiltroIconClass(filtro.emoji)"
                   [tooltip]="'Ver ' + filtro.nombre"
                   tooltipPosition="bottom"
-                  variant="outlined"
+                  variant="outline"
                   severity="secondary"
                   [customClass]="
                     filtroEquiposValue === filtro.nombre ? 'text-warning' : ''
@@ -195,7 +198,7 @@
                 class="cursor-pointer"
               >
                 <app-icon
-                  [icon]="'mdi:checkbox-marked'"
+                  [icon]="'material-symbols-light:check-box'"
                   class="text-primary text-xl"
                 />
               </div>
@@ -212,13 +215,13 @@
       <div class="px-2 mb-3 flex flex-column gap-2">
         <il-button
           label="Exportar a Excel"
-          iconClass="mdi:file-excel"
+          iconClass="material-symbols-light:table-view"
           class="btn-luxury-excel w-full justify-content-center py-3"
           (clicked)="exportExcel()"
         />
         <il-button
           label="Exportar a PDF"
-          iconClass="mdi:file-pdf-box"
+          iconClass="material-symbols-light:picture-as-pdf"
           class="btn-luxury-pdf w-full justify-content-center py-3"
           (clicked)="exportPdf()"
         />
@@ -258,7 +261,7 @@
         >
           <!-- Icon based on system type could be cool here, but we don't have mapping easily available. Using generic check. -->
           <app-icon
-            icon="mdi:checkbox-marked-outline"
+            icon="material-symbols-light:check-box-outline"
             slot="start"
             color="success"
             class="text-xl"
@@ -267,14 +270,18 @@
             <h3 class="text-base font-semibold">{{ item.nameMachinery }}</h3>
             <p class="text-xs text-color-secondary">Mantenimiento Preventivo</p>
           </span>
-          <app-icon icon="mdi:pencil-outline" slot="end" color="medium" />
+          <app-icon
+            icon="material-symbols-light:edit-outline"
+            slot="end"
+            color="medium"
+          />
         </div>
         } } @empty {
         <div
           class="flex flex-column align-items-center justify-content-center p-5 text-center opacity-60"
         >
           <app-icon
-            [icon]="'mdi:calendar-remove'"
+            [icon]="'material-symbols-light:event-busy'"
             class="text-6xl mb-3 text-color-secondary"
           />
           <h3 class="text-lg m-0 text-color-secondary">Sin Actividades</h3>

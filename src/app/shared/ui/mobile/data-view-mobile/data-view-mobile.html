@@ -35,7 +35,7 @@
             {{ item.label }}
           </span>
           } @if (!last) {
-          <app-icon icon="mdi:chevron-right" class="text-300 text-xs mx-1" />
+          <app-icon icon="material-symbols-light:chevron-right" class="text-300 text-xs mx-1" />
           }
         </div>
         }
@@ -58,7 +58,7 @@
       <!-- Inline Add Button -->
       @if (showAdd()) {
       <ion-button fill="clear" (click)="onAdd($event)" class="ion-button-touch-target">
-        <app-icon icon="mdi:plus-circle" slot="icon-only" class="text-4xl" />
+        <app-icon icon="material-symbols-light:add-circle" slot="icon-only" class="text-4xl" />
       </ion-button>
       }
     </div>
@@ -121,13 +121,13 @@
     </ion-list>
     } @else if (filterValue() && !loading()) {
     <ili-empty-state
-      icon="mdi:magnify"
+      icon="material-symbols-light:search"
       title="Sin resultados"
       [message]="'No se encontraron resultados para &quot;' + filterValue() + '&quot;'"
     />
     } @else if (!loading() && filteredData().length === 0) {
     <ili-empty-state
-      icon="mdi:inbox-outline"
+      icon="material-symbols-light:move-to-inbox-outline"
       title="Sin registros"
       message="No hay registros disponibles."
     />

@@ -15,6 +15,7 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -42,6 +43,7 @@ import { ChangeStageApplicationRequest } from "../candidate-application/interfac
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     CustomInputDateSignal,
+    CustomInputDateTimeSignal,
     WebButtonLabel,
     WebButtonLabelSave,
   ],
@@ -156,13 +158,15 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   async onCancelInterview(): Promise<void> {
     this.submitting.set(true);
     try {
-      const ok = await this.boardS.cancelSchedule(
-        this.item.candidateApplicationId,
-        {
-          comment: this.form.controls["comment"].value ?? "",
-          cancelInterview: true,
-        },
-      );
+      const ok = this.item.interviewId
+        ? await this.boardS.cancelInterview(this.item.interviewId)
+        : await this.boardS.cancelSchedule(
+            this.item.candidateApplicationId,
+            {
+              comment: this.form.controls["comment"].value ?? "",
+              cancelInterview: true,
+            },
+          );
       if (ok) {
         this.ref.close(true);
       }
@@ -185,6 +189,21 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
         ),
       };
       return this.boardS.sendToInterview(this.item.candidateApplicationId, payload);
+    }
+
+    if (this.action === "reschedule" && this.item.interviewId) {
+      const proposedDate =
+        this.form.controls["operationsInterviewAt"].value ??
+        this.form.controls["recruitmentInterviewAt"].value;
+
+      if (!proposedDate) {
+        return false;
+      }
+
+      return this.boardS.rescheduleInterview(this.item.interviewId, {
+        proposedRescheduleAt: this.toIso(proposedDate) ?? "",
+        rescheduleComment: comment,
+      });
     }
 
     const schedulePayload = {

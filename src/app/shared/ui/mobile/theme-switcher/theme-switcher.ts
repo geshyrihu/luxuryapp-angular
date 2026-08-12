@@ -10,7 +10,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   template: `
     <div class="ili-theme">
       <app-icon
-        [icon]="theme() === 'dark' ? 'mdi:weather-night' : 'mdi:weather-sunny'"
+        [icon]="theme() === 'dark' ? 'material-symbols-light:nightlight' : 'material-symbols-light:sunny'"
         class="text-xl"
       />
       <span class="ili-theme-label">Modo oscuro</span>

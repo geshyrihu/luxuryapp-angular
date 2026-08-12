@@ -23,6 +23,7 @@ export interface CandidateRecruitmentAgendaItem {
   id: string;
   candidateId: string;
   candidateName: string;
+  workPositionId: string;
   requestPositionId: string;
   vacancyFolio: string;
   positionName: string;

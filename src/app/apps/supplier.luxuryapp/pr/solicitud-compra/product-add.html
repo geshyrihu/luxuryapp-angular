@@ -32,7 +32,6 @@
                 width="120"
                 height="120"
                 class="rounded object-cover flex-shrink-0"
-                
               />
               <div class="min-w-0">
                 <div class="font-medium line-height-3">{{ item.producto }}</div>
@@ -69,11 +68,7 @@
       </div>
 
       <div class="col-12 md:col-1 flex flex-column justify-content-end">
-        <div
-          aria-hidden="true"
-          class="block mb-2"
-          
-        ></div>
+        <div aria-hidden="true" class="block mb-2"></div>
         <il-button-save
           size=""
           [disabled]="form.invalid"
@@ -82,17 +77,13 @@
       </div>
 
       <div class="col-12 md:col-1 flex flex-column justify-content-end">
-        <div
-          aria-hidden="true"
-          class="block mb-2"
-          
-        ></div>
+        <div aria-hidden="true" class="block mb-2"></div>
         <il-button
-          iconClass="mdi:magnify"
+          iconClass="material-symbols-light:search"
           label="Avanzada"
           (clicked)="ProductModaladd()"
           severity="info"
-          variant="outlined"
+          variant="outline"
           customClass="w-full"
         />
       </div>

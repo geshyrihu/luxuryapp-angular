@@ -10,19 +10,19 @@
     class="flex justify-content-end align-items-center gap-2 px-2 md:px-3 mb-2"
   >
     <iw-button
-      iconClass="mdi:chevron-left"
+      iconClass="material-symbols-light:chevron-left"
       (clicked)="previousSlide()"
       severity="secondary"
-      variant="outlined"
+      variant="outline"
       size="small"
       [disabled]="currentPage() === 0"
       tooltip="Solicitud anterior"
     />
     <iw-button
-      iconClass="mdi:chevron-right"
+      iconClass="material-symbols-light:chevron-right"
       (clicked)="nextSlide()"
       severity="secondary"
-      variant="outlined"
+      variant="outline"
       size="small"
       [disabled]="currentPage() >= presentationSlides().length - 1"
       tooltip="Siguiente solicitud"
@@ -85,15 +85,11 @@
           >
             <ng-template #header>
               <tr>
-                <th >N°</th>
-                <th >DESCRIPCION</th>
-                <th class="text-right" >
-                  COSTO TOTAL CON IVA
-                </th>
-                <th >PARTIDA PRESUPUESTAL</th>
-                <th class="text-right" >
-                  DINERO DISPONIBLE
-                </th>
+                <th>N°</th>
+                <th>DESCRIPCION</th>
+                <th class="text-right">COSTO TOTAL CON IVA</th>
+                <th>PARTIDA PRESUPUESTAL</th>
+                <th class="text-right">DINERO DISPONIBLE</th>
               </tr>
             </ng-template>
             <ng-template #body let-row>
@@ -170,20 +166,20 @@
           <div class="flex flex-wrap justify-content-end gap-2 mb-3">
             @if (canOptimizeProducts(solicitud)) {
             <il-button
-              [iconClass]="isOptimized(solicitud.id) ? 'mdi:view-list' : 'mdi:table-eye-off'"
+              [iconClass]="isOptimized(solicitud.id) ? 'material-symbols-light:view-list' : 'material-symbols-light:table'"
               [label]="isOptimized(solicitud.id) ? 'Ver detalle' : 'Optimizar items'"
               (clicked)="toggleOptimizeProducts(solicitud.id)"
               severity="info"
-              variant="outlined"
+              variant="outline"
               size="small"
             />
             }
             <il-button
-              [iconClass]="isAuthorized(solicitud) ? 'mdi:close' : (isDenied(solicitud) ? 'mdi:cancel' : 'mdi:check')"
+              [iconClass]="isAuthorized(solicitud) ? 'material-symbols-light:close' : (isDenied(solicitud) ? 'material-symbols-light:cancel' : 'material-symbols-light:check')"
               [label]="isAuthorized(solicitud) ? 'Desautorizar' : (isDenied(solicitud) ? 'Resolver' : 'Autorizar')"
               (clicked)="onOpenAutorizarModal(solicitud)"
               [severity]="isAuthorized(solicitud) ? 'danger' : (isDenied(solicitud) ? 'warning' : 'success')"
-              variant="outlined"
+              variant="outline"
               size="small"
             />
           </div>
@@ -253,8 +249,8 @@
                       [url]="provider.filePath"
                       [fileName]="'Cotizacion ' + provider.nameProvider"
                       label="Cotizacion"
-                      iconClass="mdi:file-document-outline"
-                      variant="outlined"
+                      iconClass="material-symbols-light:description"
+                      variant="outline"
                       size="small"
                     />
                     }
@@ -315,9 +311,9 @@
             >
               <ng-template #header>
                 <tr>
-                  <th >DESCRIPCION</th>
-                  <th class="text-right" >CANTIDAD</th>
-                  <th >UNIDAD</th>
+                  <th>DESCRIPCION</th>
+                  <th class="text-right">CANTIDAD</th>
+                  <th>UNIDAD</th>
                   @if (solicitud.providerSummaries.length >= 1) {
                   <th
                     class="text-right"
@@ -394,13 +390,13 @@
             >
               <ng-template #header>
                 <tr>
-                  <th >CUENTA</th>
-                  <th class="text-right" >PRE-MEN</th>
-                  <th class="text-right" >ACUMULADO</th>
-                  <th class="text-right" >%</th>
-                  <th class="text-right" >PRE-TOTAL</th>
-                  <th class="text-right" >RESTANTE</th>
-                  <th class="text-right" >MONTO A USAR</th>
+                  <th>CUENTA</th>
+                  <th class="text-right">PRE-MEN</th>
+                  <th class="text-right">ACUMULADO</th>
+                  <th class="text-right">%</th>
+                  <th class="text-right">PRE-TOTAL</th>
+                  <th class="text-right">RESTANTE</th>
+                  <th class="text-right">MONTO A USAR</th>
                 </tr>
               </ng-template>
               <ng-template #body let-budget>

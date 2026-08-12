@@ -6,7 +6,7 @@
 >
   <div class="flex align-items-center gap-2 mb-3">
     <app-icon
-      [icon]="'mdi:comment-multiple'"
+      [icon]="'material-symbols-light:forum'"
       class="text-primary text-2xl font-bold"
     />
     <div class="flex flex-column">
@@ -34,11 +34,11 @@
                   class="flex align-items-center justify-content-between gap-2 mb-2"
                 >
                   <app-icon
-                    [icon]="msg.role === 'user' ? 'mdi:account' : 'mdi:comment-multiple'"
+                    [icon]="msg.role === 'user' ? 'material-symbols-light:forum' : 'material-symbols-light:forum'"
                   />
                   @if (msg.role === 'assistant') {
                   <iw-button
-                    iconClass="mdi:volume-high"
+                    iconClass="material-symbols-light:volume-up"
                     size="small"
                     variant="text"
                     (clicked)="replayMessage(msg)"
@@ -71,7 +71,7 @@
               <div
                 class="p-3 surface-100 rounded-xl border-1 border-primary flex align-items-center gap-2"
               >
-                <app-icon [icon]="'mdi:volume-high'" class="text-primary" />
+                <app-icon [icon]="'material-symbols-light:volume-up'" class="text-primary" />
                 <span class="text-sm"
                   >Reproduciendo explicación con ElevenLabs...</span
                 >
@@ -97,7 +97,7 @@
                 variant="outline"
                 severity="secondary"
                 class="text-xs justify-content-start w-full"
-                iconClass="mdi:help-circle"
+                iconClass="material-symbols-light:help"
               />
               }
             </div>
@@ -109,7 +109,7 @@
             </div>
             <div class="flex flex-column gap-2">
               <il-button
-                iconClass="mdi:volume-high"
+                iconClass="material-symbols-light:volume-up"
                 label="Releer última respuesta"
                 size="small"
                 variant="text"
@@ -118,7 +118,7 @@
                 (clicked)="replayMessage(messages()[messages().length - 1])"
               />
               <il-button
-                iconClass="mdi:stop"
+                iconClass="material-symbols-light:stop"
                 label="Detener audio"
                 size="small"
                 variant="text"
@@ -146,7 +146,7 @@
             customClass="w-full rounded-left-3xl pl-4"
           />
           <iw-button
-            iconClass="mdi:send"
+            iconClass="material-symbols-light:send"
             (clicked)="sendQuery()"
             [disabled]="loading() || !currentQuery()"
             class="rounded-right-3xl px-4"

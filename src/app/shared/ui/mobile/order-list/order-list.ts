@@ -17,7 +17,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               [disabled]="$index === 0"
               title="Mover arriba"
             >
-              <app-icon icon="mdi:chevron-up" />
+              <app-icon icon="material-symbols-light:keyboard-arrow-up" />
             </button>
             <div class="ili-order-list-content">
               <ng-content [select]="'[orderListItem]'" />
@@ -28,7 +28,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               [disabled]="$index === value().length - 1"
               title="Mover abajo"
             >
-              <app-icon icon="mdi:chevron-down" />
+              <app-icon icon="material-symbols-light:keyboard-arrow-down" />
             </button>
           </div>
         }

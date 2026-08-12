@@ -35,14 +35,14 @@
     >
       <div class="flex align-items-center gap-2">
         <app-icon
-          [icon]="'mdi:format-list-bulleted'"
+          [icon]="'material-symbols-light:format-list-bulleted'"
           class="text-primary text-xl"
         />
         <h2 class="text-xl font-semibold m-0">Categorías y Preguntas</h2>
       </div>
       <div class="flex gap-2">
         <il-button
-          iconClass="mdi:plus"
+          iconClass="material-symbols-light:add"
           size="small"
           (clicked)="addCategory()"
           label="Nueva Categoría"
@@ -74,7 +74,7 @@
               class="cursor-move text-500 hover:text-primary transition-colors"
               lxTooltip="Reordenar categoría"
             >
-              <app-icon [icon]="'mdi:menu'" />
+              <app-icon [icon]="'material-symbols-light:menu'" />
             </div>
 
             <span class="font-bold text-lg text-primary">{{ i + 1 }}.</span>
@@ -89,7 +89,7 @@
 
             <div class="flex gap-2">
               <il-button
-                iconClass="mdi:plus-circle"
+                iconClass="material-symbols-light:add-circle"
                 [size]="'small'"
                 (clicked)="addQuestion(i)"
                 label="Pregunta"
@@ -120,7 +120,7 @@
               class="cursor-move text-400 hover:text-primary px-2"
               lxTooltip="Reordenar pregunta"
             >
-              <app-icon [icon]="'mdi:dots-vertical'" />
+              <app-icon [icon]="'material-symbols-light:more-vert'" />
             </div>
 
             <span class="text-600 font-medium w-2rem">{{ j + 1 }}.</span>
@@ -139,7 +139,7 @@
           <div
             class="text-center p-4 border-2 border-dashed surface-border rounded text-500"
           >
-            <app-icon [icon]="'mdi:information'" class="mr-2" />
+            <app-icon [icon]="'material-symbols-light:info'" class="mr-2" />
             No hay preguntas en esta categoría. Haga clic en "Pregunta" para
             agregar una.
           </div>
@@ -151,7 +151,7 @@
         class="text-center p-8 border-2 border-dashed surface-border rounded bg-white"
       >
         <app-icon
-          [icon]="'mdi:folder-open'"
+          [icon]="'material-symbols-light:folder-open'"
           class="text-6xl text-200 mb-3 block"
         />
         <span class="text-xl text-500 font-medium"
@@ -162,7 +162,7 @@
           evaluación.
         </p>
         <il-button
-          iconClass="mdi:plus"
+          iconClass="material-symbols-light:add"
           (clicked)="addCategory()"
           label="Agregar Primera Categoría"
           customClass="mt-4"

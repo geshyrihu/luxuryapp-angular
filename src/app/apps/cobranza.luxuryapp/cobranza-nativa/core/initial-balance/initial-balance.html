@@ -11,7 +11,7 @@
     </div>
     <il-button
       label="Guardar Cambios"
-      iconClass="mdi:content-save"
+      iconClass="material-symbols-light:save"
       severity="primary"
       [disabled]="saving() || !hasPendingChanges()"
       [loading]="saving()"
@@ -21,7 +21,7 @@
 
   @if (loading()) {
   <div class="flex justify-content-center p-5">
-    <app-icon [icon]="'mdi:loading'" class="text-3xl text-primary" />
+    <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl text-primary" />
   </div>
   } @else {
   @if (rows().length > 0) {
@@ -64,7 +64,7 @@
         <th class="w-9rem text-center">Estado</th>
         <th class="w-16rem">
           <div class="flex align-items-center gap-1">
-            <app-icon [icon]="'mdi:pencil'" class="text-xs text-500" />
+            <app-icon [icon]="'material-symbols-light:edit'" class="text-xs text-500" />
             Monto ($) editable
           </div>
         </th>
@@ -115,7 +115,7 @@
           start
           class="w-2rem h-2rem rounded-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
-          <app-icon icon="mdi:wallet-outline" class="text-yellow-600 text-xl" />
+          <app-icon icon="material-symbols-light:wallet" class="text-yellow-600 text-xl" />
         </div>
         <div class="flex-1 min-w-0">
           <h3>{{ row.propertyFullName }}</h3>

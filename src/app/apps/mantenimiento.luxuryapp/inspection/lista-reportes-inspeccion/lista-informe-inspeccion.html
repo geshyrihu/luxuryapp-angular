@@ -36,7 +36,7 @@
     <iw-button
       label="Descargar PDF"
       severity="danger"
-      iconClass="mdi:file-pdf-box"
+      iconClass="material-symbols-light:picture-as-pdf"
       lxTooltip="Descargar reporte en PDF"
       (clicked)="onExportPDF()"
     />
@@ -75,12 +75,12 @@
         <h6 class="text-title-md text-on-surface m-0">{{ item.inspectionDescription }}</h6>
         @if (item.state) {
         <app-icon
-          icon="mdi:check-circle"
+          icon="material-symbols-light:check-circle"
           class="text-2xl text-success-600"
         />
         } @else {
         <app-icon
-          icon="mdi:alert-circle-outline"
+          icon="material-symbols-light:error-outline"
           class="text-2xl text-danger-600"
         />
         }

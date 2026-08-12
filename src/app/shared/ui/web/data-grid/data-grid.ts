@@ -63,11 +63,14 @@ export interface DataGridColumn {
           @if (showActions()) {
             <p-button
               [label]="'Agregar'"
-              icon="mdi:plus"
               severity="primary"
               size="small"
               (onClick)="addRow.emit()"
-            />
+            >
+              <ng-template #icon>
+                <app-icon icon="material-symbols-light:add" />
+              </ng-template>
+            </p-button>
           }
         </div>
       }
@@ -182,7 +185,7 @@ export interface DataGridColumn {
                   } @else if (col.type === "boolean") {
                     <app-icon
                       [icon]="
-                        row[col.field] ? 'mdi:check-circle' : 'mdi:close-circle'
+                        row[col.field] ? 'material-symbols-light:check-circle' : 'material-symbols-light:cancel'
                       "
                       [style.color]="
                         row[col.field]
@@ -208,7 +211,7 @@ export interface DataGridColumn {
                     severity="info"
                     (onClick)="editRow.emit(row)"
                   >
-                    <app-icon icon="mdi:pencil" />
+                    <app-icon icon="material-symbols-light:edit" />
                   </p-button>
                   <p-button
                     [rounded]="true"
@@ -217,7 +220,7 @@ export interface DataGridColumn {
                     severity="danger"
                     (onClick)="deleteRow.emit(row)"
                   >
-                    <app-icon icon="mdi:delete" />
+                    <app-icon icon="material-symbols-light:delete" />
                   </p-button>
                 </div>
               </td>
@@ -227,7 +230,7 @@ export interface DataGridColumn {
 
         <ng-template #emptymessage>
           <div class="p-4 text-center text-color-secondary">
-            <app-icon icon="mdi:table-off" class="text-2xl mb-2" />
+            <app-icon icon="material-symbols-light:table-view" class="text-2xl mb-2" />
             <p class="text-sm m-0">{{ emptyMessage() }}</p>
           </div>
         </ng-template>

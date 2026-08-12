@@ -43,7 +43,7 @@
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
         <app-icon
-          [icon]="item.adequatePressure ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.adequatePressure ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.adequatePressure"
           [class.text-red-600]="!item.adequatePressure"
@@ -51,7 +51,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.safetyPinOk ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.safetyPinOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.safetyPinOk"
           [class.text-red-600]="!item.safetyPinOk"
@@ -59,7 +59,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.labelsOk ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.labelsOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.labelsOk"
           [class.text-red-600]="!item.labelsOk"
@@ -67,7 +67,7 @@
       </td>
       <td class="text-center">
         <app-icon
-          [icon]="item.noPhysicalDamage ? 'mdi:check' : 'mdi:close'"
+          [icon]="item.noPhysicalDamage ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noPhysicalDamage"
           [class.text-red-600]="!item.noPhysicalDamage"
@@ -103,7 +103,7 @@
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
       >
-        <app-icon icon="mdi:fire-extinguisher" />
+        <app-icon icon="material-symbols-light:fire-extinguisher" />
       </div>
 
       <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>

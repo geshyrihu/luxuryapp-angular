@@ -14,6 +14,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { AspelCobranzaDetalleResponse } from "../../cobranza.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus.models";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
+import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
 
 /**
  * Desglose de la deuda de un condómino para el comité: criterio por el que quedó
@@ -27,7 +28,7 @@ import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
   selector: "app-committee-cobranza-detail-modal",
   templateUrl: "./committee-cobranza-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, CurrencyPipe, LxTag, AppIcon],
+  imports: [CommonModule, CurrencyPipe, LxTag, AppIcon, LxSpinner],
 })
 export class CommitteeCobranzaDetailModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);

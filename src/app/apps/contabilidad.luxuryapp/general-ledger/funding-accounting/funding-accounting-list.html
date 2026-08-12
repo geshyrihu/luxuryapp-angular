@@ -14,7 +14,7 @@
 
     <iw-button-item
       (clicked)="onFaqsFondeo()"
-      iconClass="mdi:help-circle"
+      iconClass="material-symbols-light:help"
       lxTooltip="Ayuda"
       tooltipPosition="top"
     />
@@ -81,7 +81,7 @@
 
       <td class="no-print">
         <app-icon
-          [icon]="'mdi:arrow-right'"
+          [icon]="'material-symbols-light:arrow-forward'"
           class="icon icon- icon-xl pointer"
           (click)="onDetails(item.id)"
         />
@@ -111,7 +111,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item class="ion-no-padding" (click)="onDetails(item.id)">
       <div start>
-        <app-icon icon="mdi:calculator" />
+        <app-icon icon="material-symbols-light:calculate" />
       </div>
       <div class="flex-1 min-w-0">
         <h3>{{ item.period }}</h3>

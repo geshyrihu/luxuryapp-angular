@@ -3,9 +3,9 @@
 <!-- Floating Bubble -->
 <div class="chat-bubble" (click)="toggleChat()">
   @if (!isOpen()) {
-  <app-icon [icon]="'mdi:sparkles'" class="pi text-2xl text-white" />
+  <app-icon [icon]="'material-symbols-light:auto-awesome-motion'" class="pi text-2xl text-white" />
   } @if (isOpen()) {
-  <app-icon [icon]="'mdi:close'" class="pi text-xl text-white" />
+  <app-icon [icon]="'material-symbols-light:close'" class="pi text-xl text-white" />
   }
 </div>
 <!-- Chat Window -->
@@ -19,7 +19,7 @@
       <div
         class="rounded-circle surface-100 p-2 flex align-items-center justify-content-center w-2rem h-2rem"
       >
-        <app-icon [icon]="'mdi:sparkles'" class="pi text-primary-500" />
+        <app-icon [icon]="'material-symbols-light:auto-awesome-motion'" class="pi text-primary-500" />
       </div>
       <div>
         <h3 class="m-0 text-color font-semibold text-sm">Luxury Assistant</h3>
@@ -35,7 +35,7 @@
       class="w-6rem h-6rem rounded-circle surface-100 flex align-items-center justify-content-center mb-4 relative overflow-hidden"
     >
       <app-icon
-        [icon]="'mdi:sparkles'"
+        [icon]="'material-symbols-light:auto-awesome-motion'"
         class="pi text-6xl text-primary-500 relative z-1"
       />
       <div

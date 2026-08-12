@@ -1,0 +1,172 @@
+<div class="matrix-page">
+  <lx-card
+    header="Matriz de Entrevistadores"
+    subheader="Relaciona cada rol entrevistador con los puestos que puede evaluar por cliente."
+  >
+    <div class="matrix-topbar">
+      <section class="matrix-toolbar">
+        <div class="matrix-toolbar__field">
+          <div class="matrix-toolbar__field-copy">
+            <span class="matrix-toolbar__eyebrow">Configuración por cliente</span>
+            <h3 class="matrix-toolbar__title">Selecciona la empresa a configurar</h3>
+            <p class="matrix-toolbar__subtitle">
+              La matriz define qué entrevistador puede evaluar cada tipo de puesto.
+            </p>
+          </div>
+
+          <web-input-select
+            label="Cliente"
+            placeholder="Selecciona un cliente"
+            [data]="customers()"
+            [ngModel]="selectedCustomerId()"
+            (ngModelChange)="onCustomerChange($event)"
+            [showClear]="false"
+            [filter]="true"
+          />
+        </div>
+
+        <div class="matrix-toolbar__summary">
+          <div class="matrix-summary-card">
+            <span class="matrix-summary-card__icon">
+              <app-icon icon="material-symbols-light:rule-settings-outline" />
+            </span>
+            <div class="matrix-summary-card__content">
+              <span class="matrix-summary-card__label">Reglas activas</span>
+              <strong class="matrix-summary-card__value">{{ activeRulesCount() }}</strong>
+            </div>
+          </div>
+
+          <div class="matrix-summary-card">
+            <span class="matrix-summary-card__icon">
+              <app-icon icon="material-symbols-light:group-outline" />
+            </span>
+            <div class="matrix-summary-card__content">
+              <span class="matrix-summary-card__label">Entrevistadores</span>
+              <strong class="matrix-summary-card__value">{{ activeRowsCount() }}</strong>
+            </div>
+          </div>
+
+          <div class="matrix-summary-card">
+            <span class="matrix-summary-card__icon">
+              <app-icon icon="material-symbols-light:work-outline" />
+            </span>
+            <div class="matrix-summary-card__content">
+              <span class="matrix-summary-card__label">Puestos cubiertos</span>
+              <strong class="matrix-summary-card__value">{{ activeColumnsCount() }}</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      @if (!loading() && selectedCustomerId() && roles().length > 0) {
+        <section class="matrix-helper">
+          <div class="matrix-helper__copy">
+            <h3 class="matrix-helper__title">Cruza entrevistadores contra puestos</h3>
+            <p class="matrix-helper__text">
+              Haz clic en una celda para activar o desactivar la relación.
+            </p>
+          </div>
+
+          <div class="matrix-helper__legend">
+            <app-tag value="Asignado" icon="material-symbols-light:check-circle" />
+            <app-tag value="Disponible" icon="material-symbols-light:add-circle-outline" />
+            <app-tag value="Click para alternar" icon="material-symbols-light:touch-app" />
+          </div>
+        </section>
+      }
+    </div>
+
+    @if (loading()) {
+      <lx-skeleton />
+    } @else if (roles().length === 0) {
+      <div class="matrix-state">
+        <h3>Sin catalogo de roles</h3>
+        <p>No hay roles disponibles para construir la matriz.</p>
+      </div>
+    } @else if (!selectedCustomerId()) {
+      <div class="matrix-state">
+        <h3>Selecciona un cliente</h3>
+        <p>La matriz se construye por cliente; elige uno para empezar.</p>
+      </div>
+    } @else {
+      <div class="matrix-board">
+        <div class="matrix-board__caption">
+          <div>
+            <span class="matrix-board__eyebrow">Vista matricial</span>
+            <strong class="matrix-board__title">Entrevistadores vs puestos operativos</strong>
+          </div>
+
+          @if (activeRulesCount() === 0) {
+            <app-tag value="Sin reglas aun" icon="material-symbols-light:auto-fix-high" />
+          }
+        </div>
+
+        <table class="matrix-table" aria-label="Matriz de entrevistadores y puestos de trabajo">
+          <thead>
+            <tr>
+              <th class="matrix-table__corner">
+                <span class="matrix-table__corner-title">Entrevistador</span>
+                <span class="matrix-table__corner-subtitle">Puesto evaluado</span>
+              </th>
+              @for (role of roles(); track role.value) {
+                <th class="matrix-table__column-header">
+                  <div class="matrix-table__column-card">
+                    <span class="matrix-table__column-count">
+                      {{ getActiveColumnCount(toRoleValue(role.value)) }}
+                    </span>
+                    <span class="matrix-table__column-text">{{ role.label }}</span>
+                  </div>
+                </th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (interviewerRole of roles(); track interviewerRole.value) {
+              <tr>
+                <th class="matrix-table__row-header">
+                  <div class="matrix-table__row-header-content">
+                    <span class="matrix-table__row-title">
+                      {{ interviewerRole.label }}
+                    </span>
+                    <span class="matrix-table__row-count">
+                      {{ getActiveRowCount(toRoleValue(interviewerRole.value)) }}
+                    </span>
+                  </div>
+                </th>
+
+                @for (workRole of roles(); track workRole.value) {
+                  <td class="matrix-table__cell">
+                    <button
+                      type="button"
+                      class="matrix-cell"
+                      [class.matrix-cell--active]="getCellState(toRoleValue(interviewerRole.value), toRoleValue(workRole.value)) === 'active'"
+                      [class.matrix-cell--saving]="isSavingCell(toRoleValue(interviewerRole.value), toRoleValue(workRole.value))"
+                      [attr.aria-label]="'Asignar ' + interviewerRole.label + ' a ' + workRole.label"
+                      [attr.aria-pressed]="getCellState(toRoleValue(interviewerRole.value), toRoleValue(workRole.value)) === 'active'"
+                      [disabled]="isSavingCell(toRoleValue(interviewerRole.value), toRoleValue(workRole.value))"
+                      (click)="toggleCell(toRoleValue(interviewerRole.value), toRoleValue(workRole.value))"
+                    >
+                      @if (isSavingCell(toRoleValue(interviewerRole.value), toRoleValue(workRole.value))) {
+                        <span class="matrix-cell__spinner"></span>
+                      } @else if (getCellState(toRoleValue(interviewerRole.value), toRoleValue(workRole.value)) === 'active') {
+                        <app-icon
+                          icon="material-symbols-light:check-small"
+                          class="matrix-cell__check"
+                        />
+                      } @else {
+                        <app-icon
+                          icon="material-symbols-light:add"
+                          class="matrix-cell__plus"
+                        />
+                      }
+                    </button>
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </lx-card>
+</div>

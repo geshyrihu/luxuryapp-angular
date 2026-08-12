@@ -13,14 +13,14 @@
           <lx-tag
             [value]="'Ultima ejecucion: ' + lastResult() + ' pagos conciliados'"
             severity="success"
-            icon="mdi:check-circle"
+            icon="material-symbols-light:check-circle"
           />
         </div>
         }
       </div>
       <il-button
         label="Ejecutar Auto-Conciliacion"
-        iconClass="mdi:refresh"
+        iconClass="material-symbols-light:refresh"
         severity="primary"
         [disabled]="reconciling() || dataSignal().length === 0"
         (clicked)="onAutoReconcile()"
@@ -92,7 +92,7 @@
           start
           class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
-          <app-icon icon="mdi:source-merge" class="text-orange-600 text-xl" />
+          <app-icon icon="material-symbols-light:call-merge" class="text-orange-600 text-xl" />
         </div>
         <div class="flex-1 min-w-0">
           <h3>{{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</h3>

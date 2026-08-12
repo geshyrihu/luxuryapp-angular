@@ -1,4 +1,5 @@
 import { Directive, input, model, output } from "@angular/core";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export interface TreeTableColumn {
   field: string;
@@ -8,7 +9,7 @@ export interface TreeTableColumn {
   width?: string;
   minWidth?: string;
   styleClass?: string;
-  icon?: string;
+  icon?: AppIconName;
 }
 
 export interface TreeNodeBase {

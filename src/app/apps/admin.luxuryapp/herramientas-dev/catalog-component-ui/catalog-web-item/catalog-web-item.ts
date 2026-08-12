@@ -317,7 +317,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       { label: 'Catálogos' },
                       { label: 'Proveedores' },
                     ]"
-                    [home]="{ icon: 'mdi:home' }"
+                    [home]="{ label: 'Inicio' }"
                   />
                 </div>
               </div>
@@ -415,16 +415,16 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <!-- Ejemplo visual -->
                     <div class="flex align-items-center gap-3 mb-4">
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="mdi:menu" class="text-xl" />
+                        <app-icon icon="material-symbols-light:menu" class="text-xl" />
                       </button>
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="mdi:bell" class="text-xl" />
+                        <app-icon icon="material-symbols-light:notifications" class="text-xl" />
                       </button>
                       <button type="button" class="ds-icon-btn">
-                        <app-icon icon="mdi:magnify" class="text-xl" />
+                        <app-icon icon="material-symbols-light:search" class="text-xl" />
                       </button>
                       <button type="button" class="ds-icon-btn" disabled>
-                        <app-icon icon="mdi:cog" class="text-xl" />
+                        <app-icon icon="material-symbols-light:settings" class="text-xl" />
                       </button>
                     </div>
 
@@ -852,10 +852,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                         <td><p-tag [value]="row.status" severity="info" /></td>
                         <td>
                           <p-button
-                            icon="mdi:eye"
                             [rounded]="true"
                             [text]="true"
-                          />
+                          >
+                            <ng-template #icon>
+                              <app-icon icon="material-symbols-light:visibility" />
+                            </ng-template>
+                          </p-button>
                         </td>
                       </tr>
                     </ng-template>
@@ -968,7 +971,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     >
                     <ng-template #end>
                       <div class="flex gap-2">
-                        <p-button label="Nuevo" icon="mdi:plus" size="small" />
+                        <p-button label="Nuevo" size="small"
+                        >
+                          <ng-template #icon>
+                            <app-icon icon="material-symbols-light:add" />
+                          </ng-template>
+                        </p-button>
                         <p-button
                           label="Exportar"
                           severity="secondary"
@@ -1379,7 +1387,7 @@ export class CatalogWebItem {
 
   // Icon button demo
   readonly iconBtnHtml = `<button type="button" class="ds-icon-btn" (click)="accion()">
-  <app-icon icon="mdi:menu" class="text-xl" />
+  <app-icon icon="material-symbols-light:menu" class="text-xl" />
 </button>`;
 
   readonly iconBtnScss = `.mi-clase-boton {

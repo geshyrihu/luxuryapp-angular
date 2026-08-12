@@ -16,6 +16,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { IncidentAttachmentListDTO } from "../interfaces/incident.interfaces";
 
 const MAX_FILE_SIZE_BYTES = 2 * 1024 * 1024;
@@ -170,10 +171,10 @@ export class IncidentAttachmentsComponent {
     return (sizeKB / 1024).toFixed(1) + " MB";
   }
 
-  getFileIcon(mimeType: string): string {
-    if (mimeType.startsWith("image/")) return "mdi:image";
-    if (mimeType === "application/pdf") return "mdi:file-pdf-box";
-    return "mdi:file-document-outline";
+  getFileIcon(mimeType: string): AppIconName {
+    if (mimeType.startsWith("image/")) return "material-symbols-light:photo";
+    if (mimeType === "application/pdf") return "material-symbols-light:picture-as-pdf";
+    return "material-symbols-light:description";
   }
 
   getFileIconClass(mimeType: string): string {

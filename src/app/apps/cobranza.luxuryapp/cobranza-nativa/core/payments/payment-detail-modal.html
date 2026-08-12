@@ -5,8 +5,12 @@
   <div class="grid">
     <div class="col-12 md:col-4">
       <lx-card class="card h-full">
-        <div class="text-xs text-500 uppercase font-semibold mb-2">Propiedad</div>
-        <div class="font-bold text-900">{{ payment()!.propertyFullName || "N/A" }}</div>
+        <div class="text-xs text-500 uppercase font-semibold mb-2">
+          Propiedad
+        </div>
+        <div class="font-bold text-900">
+          {{ payment()!.propertyFullName || "N/A" }}
+        </div>
         <div class="text-sm text-500 mt-2">
           {{ payment()!.paymentDate | date:'dd/MM/yyyy':'UTC' }}
         </div>
@@ -18,7 +22,9 @@
         <div class="text-2xl font-bold text-green-600">
           {{ payment()!.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}
         </div>
-        <div class="text-sm text-500 mt-2">{{ getMethodLabel(payment()!.method) }}</div>
+        <div class="text-sm text-500 mt-2">
+          {{ getMethodLabel(payment()!.method) }}
+        </div>
       </lx-card>
     </div>
     <div class="col-12 md:col-4">
@@ -28,7 +34,9 @@
           [value]="getStatusLabel(payment()!)"
           [severity]="getStatusSeverity(payment()!)"
         />
-        <div class="text-sm text-500 mt-2">Ref: {{ payment()!.reference || "-" }}</div>
+        <div class="text-sm text-500 mt-2">
+          Ref: {{ payment()!.reference || "-" }}
+        </div>
       </lx-card>
     </div>
   </div>
@@ -36,17 +44,23 @@
   <div class="grid">
     <div class="col-12 md:col-6">
       <lx-card class="card h-full">
-        <div class="text-xs text-blue-600 uppercase font-semibold mb-2">Aplicado</div>
+        <div class="text-xs text-blue-600 uppercase font-semibold mb-2">
+          Aplicado
+        </div>
         <div class="text-xl font-bold text-blue-700">
-          {{ payment()!.allocatedAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
+          {{ payment()!.allocatedAmount | currency:'MXN':'symbol-narrow':'1.2-2'
+          }}
         </div>
       </lx-card>
     </div>
     <div class="col-12 md:col-6">
       <lx-card class="card h-full">
-        <div class="text-xs text-orange-600 uppercase font-semibold mb-2">Sin aplicar</div>
+        <div class="text-xs text-orange-600 uppercase font-semibold mb-2">
+          Sin aplicar
+        </div>
         <div class="text-xl font-bold text-orange-700">
-          {{ payment()!.unappliedAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
+          {{ payment()!.unappliedAmount | currency:'MXN':'symbol-narrow':'1.2-2'
+          }}
         </div>
       </lx-card>
     </div>
@@ -73,9 +87,13 @@
         <tr>
           <td>
             <div class="flex flex-column">
-              <span class="font-medium text-800">{{ item.chargeTypeName || "Sin tipo" }}</span>
+              <span class="font-medium text-800"
+                >{{ item.chargeTypeName || "Sin tipo" }}</span
+              >
               @if (getChargeTypeMeta(item)) {
-              <span class="text-xs text-400">{{ getChargeTypeMeta(item) }}</span>
+              <span class="text-xs text-400"
+                >{{ getChargeTypeMeta(item) }}</span
+              >
               }
             </div>
           </td>
@@ -84,12 +102,14 @@
             {{ item.amountApplied | currency:'MXN':'symbol-narrow':'1.2-2' }}
           </td>
           <td>{{ item.appliedBy || "Sistema" }}</td>
-          <td class="text-center">{{ item.appliedAt | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td class="text-center">
+            {{ item.appliedAt | date:'dd/MM/yyyy HH:mm' }}
+          </td>
           <td class="text-center">
             <iw-button
-              iconClass="mdi:open-in-new"
+              iconClass="material-symbols-light:open-in-new"
               severity="info"
-              variant="outlined"
+              variant="outline"
               size="small"
               lxTooltip="Abrir cargo relacionado"
               tooltipPosition="top"
@@ -113,24 +133,31 @@
     <lx-card class="card text-center text-500">
       Este pago no ha sido aplicado a cargos todavía.
     </lx-card>
-    } @else { @for (item of payment()!.allocations || []; track item.allocationId) {
+    } @else { @for (item of payment()!.allocations || []; track
+    item.allocationId) {
     <ili-list-item class="mb-2 rounded-xl border-1 surface-border">
       <div
         start
         class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:receipt-text-outline" class="text-blue-700 text-xl" />
+        <app-icon
+          icon="material-symbols-light:receipt-outline"
+          class="text-blue-700 text-xl"
+        />
       </div>
       <div class="flex-1 min-w-0">
         <h3>{{ item.chargeTypeName || "Sin tipo" }}</h3>
         <p>{{ item.chargeConcept }}</p>
-        <p>{{ item.amountApplied | currency:'MXN':'symbol-narrow':'1.2-2' }} · {{ item.appliedBy || "Sistema" }}</p>
+        <p>
+          {{ item.amountApplied | currency:'MXN':'symbol-narrow':'1.2-2' }} · {{
+          item.appliedBy || "Sistema" }}
+        </p>
       </div>
       <iw-button
         end
-        iconClass="mdi:open-in-new"
+        iconClass="material-symbols-light:open-in-new"
         severity="info"
-        variant="outlined"
+        variant="outline"
         size="small"
         (clicked)="openCharge(item)"
       />
@@ -139,5 +166,7 @@
   </div>
 </div>
 } @else {
-<div class="p-5 text-center text-500">No fue posible cargar el detalle del pago.</div>
+<div class="p-5 text-center text-500">
+  No fue posible cargar el detalle del pago.
+</div>
 }

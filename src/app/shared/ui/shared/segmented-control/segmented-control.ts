@@ -6,12 +6,13 @@ import {
   output,
 } from "@angular/core";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 /** Opción de un control segmentado. */
 export interface SegmentItem {
   value: any;
   label: string;
-  icon?: string;
+  icon?: AppIconName;
 }
 
 /**

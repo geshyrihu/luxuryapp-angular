@@ -42,8 +42,8 @@
       <div class="col-12 md:col-2 mt-4">
         @if (rolAuth) {
         <il-button
-          variant="outlined"
-          iconClass="mdi:plus"
+          variant="outline"
+          iconClass="material-symbols-light:add"
           [label]="label"
           customClass="w-full"
           (clicked)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -71,7 +71,7 @@
               {{ item.nivelAcceso }} | {{ item.tipoServicio }}
             </div>
             <app-icon
-              [icon]="'mdi:card-account-details'"
+              [icon]="'material-symbols-light:badge'"
               class="cursor-pointer text-primary text-xl"
               lxTooltip="Ver Ficha Túcnica"
               (click)="showModalCardProveedor(item)"
@@ -121,7 +121,7 @@
             <div class="flex align-items-center">
               <lx-avatar
                 [image]="item.pathPhoto"
-                icon="mdi:store-outline"
+                icon="material-symbols-light:store-outline"
                 shape="square"
                 size="xlarge"
                 styleClass="rounded mr-3 shadow-sm"
@@ -142,12 +142,12 @@
             <!-- Contacto -->
             <div class="flex flex-column gap-1 text-sm">
               <div class="flex align-items-center text-600">
-                <app-icon [icon]="'mdi:phone'" class="mr-2" />
+                <app-icon [icon]="'material-symbols-light:call'" class="mr-2" />
                 <span>{{ item.phoneOne }}</span>
               </div>
               @if (item.phoneTwo) {
               <div class="flex align-items-center text-600">
-                <app-icon [icon]="'mdi:phone'" class="mr-2" />
+                <app-icon [icon]="'material-symbols-light:call'" class="mr-2" />
                 <span>{{ item.phoneTwo }}</span>
               </div>
               }
@@ -189,7 +189,7 @@
                 />
                 } @if (item.activo) {
                 <iw-button-item
-                  iconClass="mdi:chart-bar"
+                  iconClass="material-symbols-light:bar-chart"
                   lxTooltip="Calificar"
                   (clicked)="showModalCalificarProveedor({ providerId: item.providerId, nameProvider: item.nameComercial })"
                 />
@@ -198,27 +198,27 @@
                 } @if (!item.activo && validateRole([roles.SuperUsuario])) {
                 <iw-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
-                  iconClass="mdi:check"
+                  iconClass="material-symbols-light:check"
                   lxTooltip="Activar"
                   tooltipPosition="top"
                 />
                 } @if (item.activo && validateRole([roles.SuperUsuario])) {
                 <iw-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
-                  iconClass="mdi:ban"
+                  iconClass="material-symbols-light:block"
                   lxTooltip="Inactivar"
                   tooltipPosition="top"
                 />
 
                 <iw-button-item
                   (clicked)="onConicidencias({ providerId: item.providerId, state: !item.activo })"
-                  iconClass="mdi:magnify"
+                  iconClass="material-symbols-light:search"
                   lxTooltip="Buscar Coincidencias"
                 />
 
                 <iw-button-item
                   (clicked)="onAutorizarProvider(item.providerId)"
-                  [iconClass]="item.autorizado ? 'mdi:shield' : 'mdi:ban'"
+                  [iconClass]="item.autorizado ? 'material-symbols-light:shield' : 'material-symbols-light:block'"
                   [lxTooltip]="item.autorizado ? 'Desautorizar' : 'Autorizar'"
                   tooltipPosition="top"
                 />
@@ -246,7 +246,10 @@
         start
         class="w-3rem h-3rem rounded-lg bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:store-outline" class="text-green-600 text-xl" />
+        <app-icon
+          icon="material-symbols-light:store-outline"
+          class="text-green-600 text-xl"
+        />
       </div>
 
       <h3 class="font-bold text-900">{{ item.nameComercial }}</h3>

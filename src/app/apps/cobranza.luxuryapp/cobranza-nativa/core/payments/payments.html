@@ -1,7 +1,7 @@
 <div class="card p-4">
   <div class="cb-payments__header">
     <h1 class="cb-payments__title text-xl font-bold">
-      <app-icon [icon]="'mdi:wallet'" class="mr-2 text-primary" />
+      <app-icon [icon]="'material-symbols-light:wallet'" class="mr-2 text-primary" />
       Registrar Pago y Aplicar a Cargos
     </h1>
     <p class="cb-payments__subtitle text-sm mt-1">
@@ -30,7 +30,7 @@
         </div>
         <il-button
           label="Buscar Deuda"
-          iconClass="mdi:magnify"
+          iconClass="material-symbols-light:search"
           (clicked)="searchPendingCharges()"
           [disabled]="!form.controls.propertyId.value || loadingCharges()"
         />
@@ -47,7 +47,7 @@
             <div class="flex justify-content-end">
               <il-button
                 label="Distribuir / Auto-asignar"
-                iconClass="mdi:lightning-bolt"
+                iconClass="material-symbols-light:bolt"
                 variant="link"
                 size="small"
                 class="text-xs"
@@ -90,7 +90,7 @@
             </div>
             @if (totalSelectedToApply() > form.controls.amount.value) {
             <div class="cb-payments__warning text-xs flex align-items-center">
-              <app-icon [icon]="'mdi:alert'" class="mr-2 text-lg" />
+              <app-icon [icon]="'material-symbols-light:warning'" class="mr-2 text-lg" />
               <span>No puedes aplicar más monto del que estás recibiendo en este pago.</span>
             </div>
             }
@@ -121,7 +121,7 @@
           <div class="flex-flex-grow-1 p-0">
             @if (pendingCharges().length === 0) {
             <div class="flex flex-column align-items-center justify-content-center p-12 text-500">
-              <app-icon [icon]="'mdi:check-circle'" class="cb-payments__empty-icon text-5xl mb-4" />
+              <app-icon [icon]="'material-symbols-light:check-circle'" class="cb-payments__empty-icon text-5xl mb-4" />
               <p class="text-lg font-medium text-700">Esta propiedad está al día.</p>
               <p class="text-sm">No tiene cargos pendientes de pago o vencidos.</p>
             </div>

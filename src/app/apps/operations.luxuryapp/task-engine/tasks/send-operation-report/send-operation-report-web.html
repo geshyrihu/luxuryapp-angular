@@ -1,34 +1,34 @@
 <div class="flex flex-wrap align-items-center">
   <il-button
-    iconClass="mdi:checkbox-marked"
+    iconClass="material-symbols-light:check-box"
     label="Seleccionar Todos"
     customClass="mr-2"
     size="small"
     (clicked)="service.onSelectAll()"
   />
   <il-button
-    iconClass="mdi:close-circle"
+    iconClass="material-symbols-light:cancel"
     label="Desmarcar Todos"
     customClass="mr-2"
     size="small"
     (clicked)="service.onDeselecteAll()"
   />
   <il-button
-    [iconClass]="'mdi:plus'"
+    [iconClass]="'material-symbols-light:add'"
     label="Agregar PARA"
     customClass="mr-2"
     size="small"
     (clicked)="service.onMostrarInput(true, false, false, 'PARA')"
   />
   <il-button
-    [iconClass]="'mdi:plus'"
+    [iconClass]="'material-symbols-light:add'"
     label="Agregar CC"
     customClass="mr-2"
     size="small"
     (clicked)="service.onMostrarInput(false, true, false, 'CC')"
   />
   <il-button
-    [iconClass]="'mdi:plus'"
+    [iconClass]="'material-symbols-light:add'"
     label="Agregar CCO"
     customClass="mr-2"
     size="small"
@@ -66,7 +66,7 @@
         [type]="service.ButtonTypeSubmit"
         label="Agregar Correo"
         [disabled]="service.form.invalid"
-        [iconClass]="service.form.invalid ? 'mdi:close' : 'mdi:check'"
+        [iconClass]="service.form.invalid ? 'material-symbols-light:close' : 'material-symbols-light:check'"
         [customNgClass]="{
           'p-button-danger': service.form.invalid,
           'p-button-success': !service.form.invalid,
@@ -114,7 +114,7 @@
         class="absolute top-0 right-0 -mt-2 -mr-2 p-badge p-badge-success p-badge-rounded"
       >
         <app-icon
-          [icon]="'mdi:close'"
+          [icon]="'material-symbols-light:close'"
           class="cursor-pointer"
           tooltip="Descartar correo"
           placement="top"

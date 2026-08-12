@@ -207,7 +207,7 @@ export class ApiResponseService {
     urlApi: string,
     data: unknown = null,
     onRequestError?: ApiRequestErrorHandler,
-    showLoader: boolean = true
+    showLoader: boolean = true,
   ): Promise<T | false> {
     if (showLoader) this.loaderS.show();
     try {

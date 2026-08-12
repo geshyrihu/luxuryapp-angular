@@ -85,9 +85,15 @@
           </td>
           <td class="text-center">
             @if (item.priority === "Alta") {
-            <app-icon [icon]="'mdi:star-outline'" class="icon icon- icon-xl" />
+            <app-icon
+              [icon]="'material-symbols-light:star-outline'"
+              class="icon icon- icon-xl"
+            />
             } @if (item.priority === "Baja") {
-            <app-icon [icon]="'mdi:star-outline'" class="icon icon- icon-xl" />
+            <app-icon
+              [icon]="'material-symbols-light:star-outline'"
+              class="icon icon- icon-xl"
+            />
             }
           </td>
           <td>{{ item.scheduledAt }}</td>
@@ -110,7 +116,7 @@
   p-badge: Muestra el contador. Se oculta si el contador es 0.
 -->
               <iw-button-tracking
-                iconClass="mdi:star-outline"
+                iconClass="material-symbols-light:star-outline"
                 ngbTooltip="Dar seguimiento"
                 [badgeCount]="item.ticketMessageFollowUp"
                 (clickTracking)="onFollowUp(item.id)"
@@ -119,20 +125,20 @@
                 <ng-container actions>
                   @if (item.status !== "Completed") {
                   <il-button-item
-                    iconClass="mdi:calendar"
+                    iconClass="material-symbols-light:calendar-today"
                     label="Programar"
                     (clicked)="onProgram(item.id)"
                   />
 
                   } @if (item.status !== "Completed") {
                   <il-button-item
-                    iconClass="mdi:lock"
+                    iconClass="material-symbols-light:lock"
                     label="Cerrar"
                     (clicked)="onClosed(item.id)"
                   />
                   } @if (item.status === "Completed") {
                   <il-button-item
-                    iconClass="mdi:lock-open"
+                    iconClass="material-symbols-light:lock-open"
                     label="Re abrir"
                     (clicked)="onReopen(item.id)"
                   />
@@ -179,7 +185,7 @@
         />
         <il-button-add
           label="Agregar"
-          iconClass="mdi:plus"
+          iconClass="material-symbols-light:add"
           customClass="p-button-outlined"
           (clicked)="
         onModalAdd({
@@ -192,33 +198,33 @@
 
       <div class="flex mb-1">
         <il-button
-          iconClass="mdi:hourglass"
+          iconClass="material-symbols-light:hourglass-empty"
           label="Pend.."
-          variant="outlined"
+          variant="outline"
           size="small"
           (clicked)="onLoadData(0)"
         />
 
         <il-button
-          iconClass="mdi:sync"
+          iconClass="material-symbols-light:sync"
           label="Reab.."
-          variant="outlined"
+          variant="outline"
           size="small"
           (clicked)="onLoadData(3)"
         />
 
         <il-button
-          iconClass="mdi:cog"
+          iconClass="material-symbols-light:settings"
           label="Proc.."
-          variant="outlined"
+          variant="outline"
           size="small"
           (clicked)="onLoadData(1)"
         />
 
         <il-button
-          iconClass="mdi:check"
+          iconClass="material-symbols-light:check"
           label="Term.."
-          variant="outlined"
+          variant="outline"
           size="small"
           (clicked)="onLoadData(2)"
         />
@@ -277,7 +283,7 @@
               <app-action-menu>
                 <ng-container actions>
                   <il-button-item
-                    iconClass="mdi:clipboard-text"
+                    iconClass="material-symbols-light:article"
                     label="Seguimiento"
                     (clicked)="onFollowUp(item.id)"
                   />
@@ -287,24 +293,24 @@
                     label="Editar"
                   />
                   <il-button-item
-                    iconClass="mdi:calendar"
+                    iconClass="material-symbols-light:calendar-today"
                     label="Programar"
                     (clicked)="onProgram(item.id)"
                   />
                   <il-button-item
-                    iconClass="mdi:sync"
+                    iconClass="material-symbols-light:sync"
                     label="En proceso"
                     (clicked)="onProgress(item.id)"
                   />
                   } @if (item.status !== "Completed") {
                   <il-button-item
-                    iconClass="mdi:lock"
+                    iconClass="material-symbols-light:lock"
                     label="Cerrar"
                     (clicked)="onClosed(item.id)"
                   />
                   } @if (item.status === "Completed") {
                   <il-button-item
-                    iconClass="mdi:lock-open"
+                    iconClass="material-symbols-light:lock-open"
                     label="Re abrir"
                     (clicked)="onReopen(item.id)"
                   />

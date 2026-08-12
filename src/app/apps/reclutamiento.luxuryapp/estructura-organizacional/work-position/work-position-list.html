@@ -67,7 +67,7 @@
             <lx-tag
               severity="warn"
               value="Actualizar puesto"
-              icon="mdi:alert"
+              icon="material-symbols-light:warning"
             />
             <iw-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
@@ -93,7 +93,7 @@
               styleClass="cursor-pointer"
             />
             } @else {
-            <app-avatar icon="mdi:account" shape="circle" size="large" />
+            <app-avatar icon="material-symbols-light:person" shape="circle" size="large" />
             }
             <span>{{ item.applicationUser || 'Vacante' }}</span>
           </div>
@@ -103,7 +103,7 @@
             @if (shouldShowVacancyRequest(item)) {
             <iw-button-item
               (clicked)="onModalSolicitudVacante(item.id)"
-              iconClass="mdi:account-plus"
+              iconClass="material-symbols-light:person-add"
               lxTooltip="Solicitar vacante"
               tooltipPosition="top"
               [lxTooltip]="'Solicitar vacante'"
@@ -111,14 +111,14 @@
             }
             <iw-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
-              iconClass="mdi:book"
+              iconClass="material-symbols-light:book"
               lxTooltip="Descripción"
               tooltipPosition="top"
               [lxTooltip]="'Descripción de puesto'"
             />
             <iw-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"
-              iconClass="mdi:clock-outline"
+              iconClass="material-symbols-light:schedule"
               lxTooltip="Horarios"
               tooltipPosition="top"
               [lxTooltip]="'Horarios de trabajo'"
@@ -173,7 +173,7 @@
             class="mobile-avatar-img"
           />
           } @else {
-          <app-icon icon="mdi:briefcase-outline" />
+          <app-icon icon="material-symbols-light:work-outline" />
           }
         </div>
 
@@ -186,7 +186,7 @@
           <lx-tag
             severity="warning"
             value="Actualizar puesto"
-            icon="mdi:alert"
+            icon="material-symbols-light:warning"
           />
           } @else { {{ item.applicationRoleName }} }
         </h2>

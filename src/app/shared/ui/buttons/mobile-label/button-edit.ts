@@ -18,7 +18,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       [class]="styleClass()"
       (click)="onClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:pencil-outline'" slot="start" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:edit-outline'" slot="start" />
       {{ label() || "Editar" }}
     </ion-button>
   `,

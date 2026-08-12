@@ -33,7 +33,7 @@
         Correo
         <p-sorticon field="email" />
       </th>
-      <th class="text-center">Postulaciones</th>
+      <th class="text-center">Procesos activos</th>
       <th pSortableColumn="status">
         Estado
         <p-sorticon field="status" />
@@ -64,7 +64,7 @@
           <iw-button-item
             size="sm"
             class="btn--circle"
-            iconClass="mdi:information"
+            iconClass="material-symbols-light:info"
             [attr.aria-label]="'Ver detalle candidato ' + item.fullName"
             (clicked)="detail.emit(item.id)"
           />

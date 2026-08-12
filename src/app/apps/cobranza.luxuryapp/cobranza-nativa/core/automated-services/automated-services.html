@@ -1,7 +1,7 @@
 <div class="p-3 md:p-4">
   <lx-card class="card card--elevated mb-4">
     <div class="flex gap-2 align-items-start">
-      <app-icon [icon]="'mdi:cog'" class="text-primary mt-1 text-xl" />
+      <app-icon [icon]="'material-symbols-light:settings'" class="text-primary mt-1 text-xl" />
       <div>
         <div class="font-bold mb-1">Servicios Automatizados del Sistema</div>
         <div class="text-sm text-600 line-height-3">
@@ -21,7 +21,7 @@
           <div
             class="w-2rem h-2rem rounded-lg bg-green-100 flex align-items-center justify-content-center"
           >
-            <app-icon [icon]="'mdi:plus-circle'" class="text-green-600" />
+            <app-icon [icon]="'material-symbols-light:add-circle'" class="text-green-600" />
           </div>
           <div class="font-semibold">Generacion de Cargos Mensuales</div>
         </div>
@@ -55,7 +55,7 @@
         </div>
         <il-button
           label="Ejecutar Ahora"
-          iconClass="mdi:play"
+          iconClass="material-symbols-light:play-arrow"
           severity="success"
           [disabled]="running() !== null"
           [loading]="running() === 'generate'"
@@ -70,7 +70,7 @@
           <div
             class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center"
           >
-            <app-icon [icon]="'mdi:percent'" class="text-orange-600" />
+            <app-icon [icon]="'material-symbols-light:percent'" class="text-orange-600" />
           </div>
           <div class="font-semibold">Calculo de Recargos por Mora</div>
         </div>
@@ -86,7 +86,7 @@
         </div>
         <il-button
           label="Ejecutar Ahora"
-          iconClass="mdi:play"
+          iconClass="material-symbols-light:play-arrow"
           severity="warn"
           [disabled]="running() !== null"
           [loading]="running() === 'latefees'"
@@ -101,7 +101,7 @@
           <div
             class="w-2rem h-2rem rounded-lg bg-red-100 flex align-items-center justify-content-center"
           >
-            <app-icon [icon]="'mdi:alert'" class="text-red-600" />
+            <app-icon [icon]="'material-symbols-light:warning'" class="text-red-600" />
           </div>
           <div class="font-semibold">Escalada a Cobranza Legal (Gestoria)</div>
         </div>
@@ -116,7 +116,7 @@
         </div>
         <il-button
           label="Evaluar y Escalar Ahora"
-          iconClass="mdi:play"
+          iconClass="material-symbols-light:play-arrow"
           severity="danger"
           [disabled]="running() !== null"
           [loading]="running() === 'escalate'"
@@ -131,7 +131,7 @@
           <div
             class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center"
           >
-            <app-icon [icon]="'mdi:sync'" class="text-blue-600" />
+            <app-icon [icon]="'material-symbols-light:sync'" class="text-blue-600" />
           </div>
           <div class="font-semibold">Auto-Conciliacion de Pagos</div>
         </div>
@@ -147,7 +147,7 @@
         </div>
         <il-button
           label="Conciliar Ahora"
-          iconClass="mdi:play"
+          iconClass="material-symbols-light:play-arrow"
           severity="info"
           [disabled]="running() !== null"
           [loading]="running() === 'reconcile'"
@@ -162,7 +162,7 @@
           <div
             class="w-2rem h-2rem rounded-lg bg-purple-100 flex align-items-center justify-content-center"
           >
-            <app-icon [icon]="'mdi:lightning-bolt'" class="text-purple-600" />
+            <app-icon [icon]="'material-symbols-light:bolt'" class="text-purple-600" />
           </div>
           <div class="font-semibold">Webhooks de Pasarelas de Pago</div>
           <lx-tag
@@ -198,9 +198,9 @@
       @for (r of results(); track r.executedAt) {
       <div class="flex align-items-center gap-3 p-2 surface-50 rounded border-1 surface-border text-sm">
         <app-icon
-          [icon]="'mdi:check-circle'"
+          [icon]="'material-symbols-light:check-circle'"
           class="pi"
-          [class]="r.success ? ' text-green-600' : 'mdi:close-circle text-red-600'"
+          [class]="r.success ? ' text-green-600' : 'material-symbols-light:cancel text-red-600'"
         />
         <span class="font-medium">{{ r.jobName }}</span>
         <span class="text-500"

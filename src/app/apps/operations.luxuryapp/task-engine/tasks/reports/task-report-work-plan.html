@@ -19,9 +19,9 @@
       </div>
       <div class="col-12 lg:col-2">
         <il-button
-          iconClass="mdi:eye-outline"
+          iconClass="material-symbols-light:visibility-outline"
           label="Vista Previa"
-          variant="outlined"
+          variant="outline"
           customClass="w-full"
           (clicked)="onPreviewClicked()"
         />
@@ -100,13 +100,13 @@
       <td class="text-center">
         @if (item.priority === 'Alta') {
         <app-icon
-          [icon]="'mdi:star-outline'"
+          [icon]="'material-symbols-light:star-outline'"
           class="text-md text-primary-500 cursor-pointer"
           (click)="onUpdatePriority(item.id)"
         />
         } @if (item.priority === 'Baja') {
         <app-icon
-          [icon]="'mdi:star-outline'"
+          [icon]="'material-symbols-light:star-outline'"
           class="text-md text-primary-500 cursor-pointer"
           (click)="onUpdatePriority(item.id)"
         />
@@ -142,7 +142,7 @@
             (followUpCompleted)="onLoadData()"
           />
           <lx-split-button
-            icon="mdi:dots-vertical"
+            icon="material-symbols-light:more-vert"
             lxTooltip="Opciones"
             [model]="getMenuItems(item)"
           ></lx-split-button> -->

@@ -58,18 +58,18 @@
             <div class="flex flex-shrink-0 gap-2">
               <il-button
                 label="Buscar"
-                iconClass="mdi:magnify"
+                iconClass="material-symbols-light:search"
                 (clicked)="onLoadData(true)"
                 [disabled]="isSearchDisabled"
               />
               <iw-button
-                iconClass="mdi:refresh"
+                iconClass="material-symbols-light:refresh"
                 variant="outline"
                 size="small"
                 (clicked)="onLoadData(true)"
               />
               <iw-button
-                iconClass="mdi:delete-outline"
+                iconClass="material-symbols-light:delete-outline"
                 variant="outline"
                 size="small"
                 (clicked)="onDeleteAll()"
@@ -101,7 +101,7 @@
         <tr>
           <td>
             <iw-button
-              iconClass="mdi:chevron-right"
+              iconClass="material-symbols-light:chevron-right"
               variant="ghost-text"
               size="sm"
               (clicked)="toggleExpand(item)"
@@ -123,7 +123,7 @@
           <td></td>
           <td colspan="4" class="surface-section p-3">
             <div class="flex align-items-center mb-2">
-              <app-icon [icon]="'mdi:information'" class="text-primary" />
+              <app-icon [icon]="'material-symbols-light:info'" class="text-primary" />
               <strong class="text-sm">Propiedades:</strong>
             </div>
             <pre
@@ -139,7 +139,7 @@
           <td></td>
           <td colspan="4" class="bg-red-50 p-3">
             <div class="flex align-items-center mb-2">
-              <app-icon [icon]="'mdi:alert'" class="text-red-600" />
+              <app-icon [icon]="'material-symbols-light:warning'" class="text-red-600" />
               <strong class="text-sm text-red-600">Excepción:</strong>
             </div>
             <pre
@@ -174,14 +174,14 @@
           <div class="flex justify-content-between align-items-center mb-1">
             <h2 class="font-bold m-0 text-base text-wrap">{{ item.level }}</h2>
             <p class="text-medium text-500 m-0 text-sm">
-              <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" />
+              <app-icon [icon]="'material-symbols-light:schedule'" class="mr-1 text-xs" />
               {{ item.timestamp | date: "dd/MM/yyyy h:mm a" }}
             </p>
           </div>
 
           @if (item.userName) {
           <p class="text-sm text-color-secondary m-0 mb-1">
-            <app-icon [icon]="'mdi:account'" class="mr-1 text-xs" /> {{
+            <app-icon [icon]="'material-symbols-light:person'" class="mr-1 text-xs" /> {{
             item.userName }}
           </p>
           }
@@ -191,7 +191,7 @@
           @if (item.properties) {
           <div class="mb-2">
             <span class="text-xs flex align-items-center gap-1 mb-1">
-              <app-icon [icon]="'mdi:information'" /> Propiedades:
+              <app-icon [icon]="'material-symbols-light:info'" /> Propiedades:
             </span>
             <pre class="text-xs bg-light p-2 border-radius overflow-auto">
 {{ item.properties }}</pre>
@@ -201,7 +201,7 @@
             <span
               class="text-xs text-danger flex align-items-center gap-1 mb-1"
             >
-              <app-icon [icon]="'mdi:alert'" /> Excepción:
+              <app-icon [icon]="'material-symbols-light:warning'" /> Excepción:
             </span>
             <pre
               class="text-xs bg-danger-subtle p-2 border-radius border border-danger overflow-auto"

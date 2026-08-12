@@ -3,14 +3,14 @@
     <div class="flex flex-wrap justify-content-between mb-4">
       <div class="flex gap-2">
         <il-button
-          iconClass="mdi:content-save"
+          iconClass="material-symbols-light:save"
           label="Guardar"
           (clicked)="onSaveChanges()"
-          variant="outlined"
+          variant="outline"
           severity="success"
         />
         <il-button
-          iconClass="mdi:file-pdf-box"
+          iconClass="material-symbols-light:picture-as-pdf"
           label="Crear Orden"
           (clicked)="onModalCreateOrdenCompra()"
           severity="info"
@@ -28,10 +28,10 @@
         />
 
         <il-button
-          iconClass="mdi:upload"
+          iconClass="material-symbols-light:upload"
           label="Adjuntar/Actualizar"
           (clicked)="fileInput.click()"
-          variant="outlined"
+          variant="outline"
           severity="warning"
         />
 
@@ -43,18 +43,18 @@
           label="Ver PDF"
         />
         <il-button
-          iconClass="mdi:delete"
+          iconClass="material-symbols-light:delete"
           label="Eliminar Archivo"
           (clicked)="onRemoveFile()"
           severity="danger"
-          variant="outlined"
+          variant="outline"
         />
         }
       </div>
 
       <div class="flex">
         <il-button
-          iconClass="mdi:delete"
+          iconClass="material-symbols-light:delete"
           label="Eliminar Proveedor"
           (clicked)="onDeleteProvider()"
           severity="danger"

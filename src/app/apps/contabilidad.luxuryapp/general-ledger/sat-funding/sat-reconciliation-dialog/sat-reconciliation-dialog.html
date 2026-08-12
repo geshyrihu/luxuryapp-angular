@@ -3,7 +3,7 @@
   @if (step() === 'config') {
   <div class="flex flex-column">
     <div class="text-center">
-      <app-icon [icon]="'mdi:calendar'" class="text-primary text-5xl mb-3" />
+      <app-icon [icon]="'material-symbols-light:calendar-today'" class="text-primary text-5xl mb-3" />
       <h3>
         {{ mode() === 'xml' ? 'Descargar XMLs (CFDI)' : 'Selecciona Periodo de
         Conciliación' }}
@@ -24,13 +24,13 @@
     <div class="flex justify-content-end mt-4">
       <il-button
         label="Cancelar"
-        iconClass="mdi:close"
+        iconClass="material-symbols-light:close"
         variant="ghost-text"
         (clicked)="close()"
       />
       <il-button
         label="Iniciar Conciliación"
-        iconClass="mdi:check"
+        iconClass="material-symbols-light:check"
         (clicked)="startReconciliation()"
       />
     </div>
@@ -54,12 +54,12 @@
   <!-- Error Section -->
   @if (step() === 'error') {
   <div class="flex flex-column align-items-center">
-    <app-icon [icon]="'mdi:close-circle'" class="text-red-500 text-6xl" />
+    <app-icon [icon]="'material-symbols-light:cancel'" class="text-red-500 text-6xl" />
     <div class="text-xl text-red-600 font-bold">Error en la Conciliación</div>
     <p class="text-center">{{ errorMessage() }}</p>
     <il-button
       label="Reintentar"
-      iconClass="mdi:refresh"
+      iconClass="material-symbols-light:refresh"
       severity="danger"
       (clicked)="retry()"
     />
@@ -130,7 +130,7 @@
       </ng-template>
     </p-table>
     <div class="flex justify-content-end mt-3">
-      <il-button label="Cerrar" iconClass="mdi:check" (clicked)="close()" />
+      <il-button label="Cerrar" iconClass="material-symbols-light:check" (clicked)="close()" />
     </div>
   </div>
   }

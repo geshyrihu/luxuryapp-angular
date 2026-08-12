@@ -5,6 +5,7 @@ import {
   input,
 } from "@angular/core";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface ActivityEntry {
   id: string;
@@ -17,14 +18,14 @@ export interface ActivityEntry {
   metadata?: Record<string, string>;
 }
 
-const ACTIVITY_ICONS: Record<string, string> = {
-  call: "mdi:phone",
-  meeting: "mdi:calendar-account",
-  note: "mdi:note-text-outline",
-  email: "mdi:email-outline",
-  task: "mdi:checkbox-marked-circle-outline",
-  system: "mdi:cog-outline",
-  approval: "mdi:thumb-up-outline",
+const ACTIVITY_ICONS: Record<string, AppIconName> = {
+  call: "material-symbols-light:call",
+  meeting: "material-symbols-light:event-note",
+  note: "material-symbols-light:note-alt",
+  email: "material-symbols-light:mail-outline",
+  task: "material-symbols-light:radio-button-checked",
+  system: "material-symbols-light:settings-outline",
+  approval: "material-symbols-light:thumb-up-outline",
 };
 
 const ACTIVITY_COLORS: Record<string, string> = {
@@ -116,7 +117,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
 
       @if (!entries().length) {
         <div class="activity-empty p-4 text-center text-color-secondary">
-          <app-icon icon="mdi:clipboard-text-outline" class="text-3xl mb-2" />
+          <app-icon icon="material-symbols-light:article-outline" class="text-3xl mb-2" />
           <p class="text-sm m-0">Sin actividad reciente</p>
         </div>
       }
@@ -273,8 +274,8 @@ export class ActivityLog {
     }));
   });
 
-  getIcon(type: string): string {
-    return ACTIVITY_ICONS[type] || "mdi:circle-small";
+  getIcon(type: string): AppIconName {
+    return ACTIVITY_ICONS[type] || "material-symbols-light:circle";
   }
 
   getColor(type: string): string {

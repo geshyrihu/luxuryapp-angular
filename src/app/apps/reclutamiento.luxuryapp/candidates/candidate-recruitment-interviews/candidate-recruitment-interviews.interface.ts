@@ -20,6 +20,7 @@ export interface CandidateRecruitmentInterviewBoard {
 
 export interface CandidateRecruitmentInterviewBoardItem {
   candidateApplicationId: string;
+  interviewId?: string | null;
   candidateId: string;
   candidateName: string;
   currentStage: CandidateApplicationStage;

@@ -29,7 +29,7 @@
     <div class="flex gap-2 mt-2">
       <il-button
         [label]="editingId() ? 'Guardar cambios' : 'Crear visitante'"
-        iconClass="mdi:account-plus"
+        iconClass="material-symbols-light:person-add"
         type="submit"
         [loading]="submitting()"
         [disabled]="form.invalid"
@@ -62,7 +62,7 @@
         } @else { No }
       </td>
       <td class="text-right">
-        <il-button label="Editar" variant="text" iconClass="mdi:pencil" (clicked)="edit(v)" />
+        <il-button label="Editar" variant="text" iconClass="material-symbols-light:edit" (clicked)="edit(v)" />
       </td>
     </tr>
   </ng-template>

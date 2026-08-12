@@ -47,6 +47,7 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
     LxMenu,
     LxTag,
     DataViewMobile,
+    AppIcon,
   ],
 })
 export class CalendarioMaestroLista implements OnInit {
@@ -102,12 +103,12 @@ export class CalendarioMaestroLista implements OnInit {
         items: [
           {
             label: "Editar",
-            icon: "mdi:pencil",
+            icon: "material-symbols-light:edit",
             command: () => this.onModalForm(item.id, item.eMonth),
           },
           {
             label: "Eliminar",
-            icon: "mdi:delete",
+            icon: "material-symbols-light:delete",
             command: () => this.onDelete(item.id),
           },
           MobileListItem,

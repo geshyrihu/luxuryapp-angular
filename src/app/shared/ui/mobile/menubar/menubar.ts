@@ -14,7 +14,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         (click)="toggleOpen()"
         aria-label="Menú"
       >
-        <app-icon icon="mdi:menu" />
+        <app-icon icon="material-symbols-light:menu" />
       </button>
       @if (isOpen()) {
         <div class="ili-menubar-backdrop" (click)="close()"></div>
@@ -30,12 +30,12 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 (click)="onItemClick(item)"
               >
                 @if (item.icon) {
-                  <app-icon [icon]="item.icon" class="ili-menubar-item-icon" />
+                  <app-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="ili-menubar-item-icon" />
                 }
                 <span>{{ item.label }}</span>
                 @if (item.items?.length) {
                   <app-icon
-                    icon="mdi:chevron-right"
+                    icon="material-symbols-light:chevron-right"
                     class="ili-menubar-chevron"
                   />
                 }

@@ -27,8 +27,8 @@ export const candidatesRoutes: Routes = [
       ).then((m) => m.CandidateApplicationList),
     canActivate: [authGuard],
     data: {
-      title: "Bandeja de Postulaciones",
-      breadcrumb: "Bandeja de Postulaciones",
+      title: "Procesos de Candidatos",
+      breadcrumb: "Procesos de Candidatos",
     },
   },
   {

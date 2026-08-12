@@ -35,7 +35,7 @@
             />
             @if (selectedDateControl.value) {
             <iw-button
-              iconClass="mdi:close"
+              iconClass="material-symbols-light:close"
               (clicked)="clearFilter()"
               severity="danger"
             />
@@ -46,7 +46,7 @@
           <iw-button-download
             lxTooltip="Generar Reporte"
             tooltipPosition="top"
-            iconClass="mdi:file-excel"
+            iconClass="material-symbols-light:table-view"
             severity="success"
             (clicked)="onGenerateReport()"
           />
@@ -61,7 +61,7 @@
             [horizontal]="false"
           />
           <iw-button
-            iconClass="mdi:magnify"
+            iconClass="material-symbols-light:search"
             (clicked)="onLoadData()"
             severity="primary"
           />
@@ -156,7 +156,7 @@
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
       >
-        <app-icon icon="mdi:package-down" />
+        <app-icon icon="material-symbols-light:download" />
       </div>
 
       <div class="flex flex-column">

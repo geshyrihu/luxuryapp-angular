@@ -8,7 +8,7 @@
             @if (facturas().length > 0) {
             <il-button
               label="Validar Todas"
-              iconClass="mdi:check"
+              iconClass="material-symbols-light:check"
               severity="warning"
               size="small"
               (clicked)="onValidateInvoice()"
@@ -63,9 +63,9 @@
           <td>
             <div class="flex">
               @if (factura.pdfFile) {
-              <lx-tag class="cursor-pointer" severity="danger" icon="mdi:file-pdf-box" value="PDF" (click)="viewPdf(factura.pdfFile, factura.factura || 'Factura')" />
+              <lx-tag class="cursor-pointer" severity="danger" icon="material-symbols-light:picture-as-pdf" value="PDF" (click)="viewPdf(factura.pdfFile, factura.factura || 'Factura')" />
               } @if (factura.xmlFile) {
-              <lx-tag class="cursor-pointer" severity="info" icon="mdi:file-document-outline" value="XML" (click)="descargarArchivo(factura.xmlFile)" />
+              <lx-tag class="cursor-pointer" severity="info" icon="material-symbols-light:description" value="XML" (click)="descargarArchivo(factura.xmlFile)" />
               }
             </div>
           </td>
@@ -75,7 +75,7 @@
         <tr>
           <td colspan="8" class="text-center p-4">
             <div class="flex flex-column align-items-center">
-              <app-icon [icon]="'mdi:file-excel'" class="text-4xl text-500" />
+              <app-icon [icon]="'material-symbols-light:table-view'" class="text-4xl text-500" />
               <span
                 >No hay facturas asociadas. Haz clic en "Administrar" para
                 agregar una.</span

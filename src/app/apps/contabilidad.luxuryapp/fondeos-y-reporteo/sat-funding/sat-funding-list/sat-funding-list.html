@@ -43,7 +43,7 @@
               (click)="goToDetail(item.id)"
               lxTooltip="Ver Detalle"
               tooltipPosition="top"
-              iconClass="mdi:arrow-right"
+              iconClass="material-symbols-light:arrow-forward"
             />
           </div>
         </td>
@@ -63,7 +63,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="mdi:cash" class="text-xl text-green-500" />
+        <app-icon icon="material-symbols-light:paid" class="text-xl text-green-500" />
       </div>
       <div class="flex-1 min-w-0">
         <h3>{{ item.periodDisplayName }}</h3>

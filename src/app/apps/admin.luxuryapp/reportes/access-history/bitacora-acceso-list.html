@@ -32,7 +32,11 @@
           <iw-button
             [pRowToggler]="item"
             [customClass]="'p-button-text p-button-rounded p-button-plain'"
-            [iconClass]="'mdi:' + (expanded ? 'chevron-down' : 'chevron-right')"
+            [iconClass]="
+              expanded
+                ? 'material-symbols-light:keyboard-arrow-down'
+                : 'material-symbols-light:keyboard-arrow-right'
+            "
           />
         </td>
         <td>
@@ -135,7 +139,7 @@
   </div>
   } @else {
   <div class="text-center p-4">
-    <app-icon icon="mdi:magnify" />
+    <app-icon icon="material-symbols-light:search" />
     <p class="mt-2 text-medium">No se encontraron registros.</p>
   </div>
   }

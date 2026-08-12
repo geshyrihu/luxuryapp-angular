@@ -40,9 +40,9 @@
         <tr>
           <td>
             @if (item.isRealized) {
-            <app-icon [icon]="'mdi:check'"  />
+            <app-icon [icon]="'material-symbols-light:check'"  />
             Realizada } @else {
-            <app-icon [icon]="'mdi:close'"  />
+            <app-icon [icon]="'material-symbols-light:close'"  />
             Pendiente }
           </td>
           <td>{{ item.nameInspection }}</td>
@@ -55,14 +55,14 @@
                 [routerLink]="ROUTES.INSPECCIONES.RESULTADO(item.id)"
                 class="btn btn-secondary btn-sm"
                 ngbTooltip="Ver resultado"
-                ><app-icon [icon]="'mdi:book'"></app-icon
+                ><app-icon [icon]="'material-symbols-light:book'"></app-icon
               ></a>
               }
               <a
                 [routerLink]="ROUTES.BITACORAS.MI_INSPECCION(item.id)"
                 class="btn btn-secondary btn-sm"
                 ngbTooltip="Inspeccionar"
-                ><app-icon [icon]="'mdi:chevron-right'"></app-icon
+                ><app-icon [icon]="'material-symbols-light:chevron-right'"></app-icon
               ></a>
             </div>
           </td>
@@ -87,7 +87,7 @@
           class="flex align-items-center justify-content-center flex-shrink-0 w-3rem h-3rem bg-primary-50 rounded-md"
         >
           <app-icon
-            icon="mdi:clipboard-search-outline"
+            icon="material-symbols-light:manage-search"
             class="text-xl text-primary-700"
           />
         </div>
@@ -96,12 +96,12 @@
           <div class="flex align-items-center gap-2">
             @if (item.isRealized) {
             <app-icon
-              [icon]="'mdi:check-circle'"
+              [icon]="'material-symbols-light:check-circle'"
               class="text-success-600"
             />
             } @else {
             <app-icon
-              [icon]="'mdi:alert-circle-outline'"
+              [icon]="'material-symbols-light:error-outline'"
               class="text-danger-600"
             />
             }

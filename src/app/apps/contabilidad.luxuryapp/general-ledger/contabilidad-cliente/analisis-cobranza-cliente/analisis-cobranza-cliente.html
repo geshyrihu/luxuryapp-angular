@@ -46,7 +46,7 @@
               pButton
               type="button"
               label="Cómo se compone"
-              icon="mdi:help-circle-outline"
+              icon="material-symbols-light:help-outline"
               class="p-button-text p-button-sm p-button-secondary"
               (click)="onOpenComposicionReportes()"
             ></button>
@@ -107,7 +107,7 @@
             label="Cartera vencida"
             [value]="totalCartera()"
             format="currency"
-            icon="mdi:cash-multiple"
+            icon="material-symbols-light:payments"
             iconColor="var(--ds-danger)"
             iconBg="var(--ds-danger-light)"
             [subtitle]="cuentasEnCartera() + ' cuentas en cartera'"
@@ -119,7 +119,7 @@
             label="Morosos"
             [value]="totalMorosos()"
             format="currency"
-            icon="mdi:account-alert-outline"
+            icon="material-symbols-light:person-alert"
             iconColor="var(--ds-warning)"
             iconBg="var(--ds-warning-light)"
             [subtitle]="morosos().length + ' condóminos'"
@@ -131,7 +131,7 @@
             label="Cobranza judicial"
             [value]="totalJudicial()"
             format="currency"
-            icon="mdi:gavel"
+            icon="material-symbols-light:gavel"
             iconColor="var(--ds-danger)"
             iconBg="var(--ds-danger-light)"
             [subtitle]="judicial().length + ' condóminos'"
@@ -249,7 +249,7 @@
                 start
                 class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
               >
-                <app-icon icon="mdi:city" />
+                <app-icon icon="material-symbols-light:location-city" />
               </div>
               <div class="flex-1 min-w-0 ion-text-wrap">
                 <p class="font-semibold m-0 text-color">{{ row.towerName }}</p>
@@ -282,7 +282,7 @@
             label="Total a favor"
             [value]="totalAFavor()"
             format="currency"
-            icon="mdi:cash-plus"
+            icon="material-symbols-light:add-card"
             iconColor="var(--ds-success)"
             iconBg="var(--ds-success-light)"
             [subtitle]="condominosConSaldo() + ' condóminos con saldo a favor'"
@@ -294,7 +294,7 @@
             label="Anticipo promedio"
             [value]="promedioAFavor()"
             format="currency"
-            icon="mdi:chart-line-variant"
+            icon="material-symbols-light:show-chart"
             iconColor="var(--ds-info)"
             iconBg="var(--ds-info-light)"
             subtitle="Por condómino con saldo a favor"
@@ -306,7 +306,7 @@
             label="A favor en mantenimiento"
             [value]="totalMtto()"
             format="currency"
-            icon="mdi:home-city-outline"
+            icon="material-symbols-light:location-city"
             iconColor="var(--ds-primary)"
             iconBg="var(--ds-primary-light)"
             [subtitle]="subtituloMtto()"

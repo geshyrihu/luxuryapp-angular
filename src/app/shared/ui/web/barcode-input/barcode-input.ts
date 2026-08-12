@@ -13,6 +13,7 @@ import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 /**
  * AppBarcodeInput — Input de texto con botón de escaneo de barcode/QR.
  * En mobile activa BarcodeDetector API (si disponible) o fallback a cámara.
@@ -21,7 +22,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 @Component({
   selector: "app-barcode-input",
 
-  imports: [FormsModule, ButtonModule, InputTextModule, LxTooltipDirective],
+  imports: [FormsModule, ButtonModule, InputTextModule, LxTooltipDirective, AppIcon],
   template: `
     <div class="bi-root">
       @if (label()) {
@@ -38,7 +39,6 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
           (keydown.enter)="search()"
         />
         <p-button
-          icon="mdi:barcode-scan"
           [lxTooltip]="'Escanear código'"
           tooltipPosition="top"
           severity="secondary"
@@ -47,16 +47,23 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
           [disabled]="disabled()"
           (onClick)="scan()"
           styleClass="bi-scan-btn"
-        />
+        >
+          <ng-template #icon>
+            <app-icon icon="material-symbols-light:barcode-scanner" />
+          </ng-template>
+        </p-button>
         @if (showSearch()) {
           <p-button
-            icon="mdi:magnify"
             [lxTooltip]="'Buscar'"
             tooltipPosition="top"
             [disabled]="!value() || disabled()"
             (onClick)="search()"
             styleClass="bi-search-btn"
-          />
+          >
+            <ng-template #icon>
+              <app-icon icon="material-symbols-light:search" />
+            </ng-template>
+          </p-button>
         }
       </div>
 

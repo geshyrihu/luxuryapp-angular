@@ -16,11 +16,11 @@ import {
  *
  * ✓ GOOD:
  *   <button style="min-width: 44px; padding: 8px;">
- *     <app-icon icon="mdi:edit" />
+ *     <app-icon icon="material-symbols-light:edit" />
  *   </button>
  *
  * ✗ BAD (< 44px touch target):
- *   <app-icon icon="mdi:edit" class="text-2xl" />
+ *   <app-icon icon="material-symbols-light:edit" class="text-2xl" />
  *
  * Minimum list-item height is 4.25rem (68px) which provides ample
  * vertical space. Enforce min-width on nested button/icon elements.

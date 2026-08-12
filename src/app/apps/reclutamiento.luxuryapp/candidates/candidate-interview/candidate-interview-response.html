@@ -6,7 +6,7 @@
     <div class="flex align-items-center gap-3">
       <il-button
         label="Volver a entrevistas"
-        iconClass="mdi:arrow-left"
+        iconClass="material-symbols-light:arrow-back"
         severity="secondary"
         size="small"
         (clicked)="goBack()"
@@ -101,25 +101,25 @@
     <div class="flex flex-wrap gap-2">
       <il-button
         label="Registrar retroalimentación"
-        iconClass="mdi:comment-processing-outline"
+        iconClass="material-symbols-light:more"
         severity="info"
         (clicked)="openFeedbackModal()"
       />
       <il-button
         label="Marcar no asistió"
-        iconClass="mdi:account-off"
+        iconClass="material-symbols-light:person-off"
         severity="warn"
         (clicked)="onMarkNoShow()"
       />
       <il-button
         label="Rechazar"
-        iconClass="mdi:close-circle"
+        iconClass="material-symbols-light:cancel"
         severity="danger"
         (clicked)="onReject()"
       />
       <il-button
         label="Aprobar / Continuar"
-        iconClass="mdi:check-circle"
+        iconClass="material-symbols-light:check-circle"
         severity="success"
         (clicked)="onApprove()"
       />

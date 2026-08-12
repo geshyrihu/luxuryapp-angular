@@ -75,7 +75,7 @@
                 [disabled]="!selection || selection.length === 0"
               ></iw-button-confirm>
               <span class="p-input-icon-left ml-auto">
-                <app-icon [icon]="'mdi:magnify'" />
+                <app-icon [icon]="'material-symbols-light:search'" />
                 <custom-input-text-signal
                   (input)="dtInvoices.filterGlobal($event.target.value, 'contains')"
                   placeholder="Buscar..."
@@ -130,7 +130,7 @@
                 class="flex align-items-center justify-content-center"
                 [pReorderableRowHandle]="i"
               >
-                <app-icon [icon]="'mdi:menu'" />
+                <app-icon [icon]="'material-symbols-light:menu'" />
               </div>
             </td>
             <td>

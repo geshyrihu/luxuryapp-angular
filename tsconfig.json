@@ -40,8 +40,17 @@
     // Requiere que los inputs tengan modificadores de acceso válidos (ej. public/private).
     "strictInputAccessModifiers": true,
 
-    // Desactiva comprobaciones estrictas en plantillas (bindings, tipos, etc).
+    // Activado temporalmente (2026-08-11) solo para la migracion de iconos y
+    // devuelto a false al cerrarla. Los nombres de icono quedaron en 0
+    // pendientes, pero NO gracias a este interruptor: casi ningun literal
+    // llega por un input tipado, asi que el compilador nunca los vio. Lo que
+    // los cubre hoy es `npm run audit:icon-names`.
+    //
+    // Con true afloran 763 defectos ajenos a iconos (169 variant="outlined"
+    // que renderizan solidos, 142 string-como-boolean, 100 signals sin
+    // invocar...). Son reales y estan documentados en
+    // docs/plans/20260809-design-system-remediacion-integral-plan.md;
+    // mientras siga en false, ninguna plantilla de la app se valida.
     "strictTemplates": false
-    // "strictTemplates": true
   }
 }

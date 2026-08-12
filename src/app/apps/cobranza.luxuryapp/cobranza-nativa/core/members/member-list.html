@@ -35,14 +35,14 @@
         <td colspan="8" class="surface-100 py-2 px-3">
           <div class="flex align-items-center justify-content-between">
             <div class="flex align-items-center gap-2">
-              <app-icon [icon]="'mdi:office-building'" class="text-primary" />
+              <app-icon [icon]="'material-symbols-light:apartment'" class="text-primary" />
               <span class="font-bold text-primary">{{ item.propertyName }}</span>
               <span class="text-500 text-sm">· Cta: {{ item.accountNumber }}</span>
             </div>
             <iw-button
               lxTooltip="Nuevo Miembro"
               tooltipPosition="top"
-              iconClass="mdi:account-plus"
+              iconClass="material-symbols-light:person-add"
               severity="success"
               size="small"
               (clicked)="onModalForm('', item.propertyId)"
@@ -62,7 +62,7 @@
         <td class="text-center">
           @if (item.isFinancialResponsible) {
           <app-icon
-            [icon]="'mdi:check-circle'"
+            [icon]="'material-symbols-light:check-circle'"
             class="text-green-600 text-xl"
             title="Responsable financiero"
           />
@@ -70,9 +70,9 @@
         </td>
         <td class="text-center">
           @if (item.receiveNotifications) {
-          <app-icon [icon]="'mdi:bell'" class="text-blue-500" />
+          <app-icon [icon]="'material-symbols-light:notifications'" class="text-blue-500" />
           } @else {
-          <app-icon [icon]="'mdi:bell-off'" class="text-400" />
+          <app-icon [icon]="'material-symbols-light:notifications-off'" class="text-400" />
           }
         </td>
         <td class="text-center text-sm">
@@ -97,7 +97,7 @@
             />
             } @if (!item.isActive) {
             <iw-button-delete
-              iconClass="mdi:link-off"
+              iconClass="material-symbols-light:link-off"
               title="Eliminar relación"
               confirmHeader="Eliminar relación"
               confirmMessage="Eliminar permanentemente la relación de {{ item.userName }} con esta propiedad? Solo se permitirá si no existen referencias históricas."
@@ -128,7 +128,7 @@
         class="w-2rem h-2rem rounded-lg bg-indigo-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
         <app-icon
-          icon="mdi:account-group-outline"
+          icon="material-symbols-light:group-outline"
           class="text-indigo-600 text-xl"
         />
       </div>

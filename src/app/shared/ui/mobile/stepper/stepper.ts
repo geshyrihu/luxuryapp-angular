@@ -18,7 +18,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           >
             <div class="ili-stepper-indicator">
               @if (step.value < activeStep()) {
-                <app-icon icon="mdi:check" />
+                <app-icon icon="material-symbols-light:check" />
               } @else {
                 <span>{{ step.value }}</span>
               }
@@ -36,18 +36,18 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       <div class="ili-stepper-actions">
         @if (activeStep() > 1) {
           <ion-button fill="clear" color="medium" (click)="previous()">
-            <app-icon icon="mdi:arrow-left" slot="start" />
+            <app-icon icon="material-symbols-light:arrow-back" slot="start" />
             Anterior
           </ion-button>
         }
         @if (activeStep() < lastStep()) {
           <ion-button (click)="next()">
             Siguiente
-            <app-icon icon="mdi:arrow-right" slot="end" />
+            <app-icon icon="material-symbols-light:arrow-forward" slot="end" />
           </ion-button>
         } @else {
           <ion-button color="success" (click)="finish.emit()">
-            <app-icon icon="mdi:check" slot="start" />
+            <app-icon icon="material-symbols-light:check" slot="start" />
             {{ finishLabel() }}
           </ion-button>
         }

@@ -26,39 +26,39 @@
         AspRole.Reclutamiento ])) {
         <il-button
           (clicked)="onModalForm({ id: '', title: 'Nuevo Puesto de Trabajo' })"
-          iconClass="mdi:briefcase"
+          iconClass="material-symbols-light:work"
           label="Agregar Puesto"
           severity="info"
-          variant="outlined"
+          variant="outline"
         />
         <il-button
           (clicked)="showModalAddEmployee()"
-          iconClass="mdi:account"
+          iconClass="material-symbols-light:person"
           label="Agregar Empleado"
           severity="info"
-          variant="outlined"
+          variant="outline"
         />
         }
         <il-button
           (clicked)="onExportExcel()"
-          iconClass="mdi:file-excel"
+          iconClass="material-symbols-light:table-view"
           label="Exportar Excel"
           severity="info"
-          variant="outlined"
+          variant="outline"
         />
         <il-button
           (clicked)="onOpenInactivos()"
-          iconClass="mdi:package"
+          iconClass="material-symbols-light:package"
           label="Inactivos"
           severity="info"
-          variant="outlined"
+          variant="outline"
         />
         <il-button
           (clicked)="onOrgChart()"
-          iconClass="mdi:sitemap"
+          iconClass="material-symbols-light:account-tree"
           label="Organigrama"
           severity="info"
-          variant="outlined"
+          variant="outline"
         />
       </div>
     </div>
@@ -71,14 +71,17 @@
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
         class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
       >
-        <app-icon [icon]="'mdi:briefcase'" class="mr-2" />GESTIóN DEL PUESTO DE
-        TRABAJO
+        <app-icon [icon]="'material-symbols-light:work'" class="mr-2" />GESTIóN
+        DEL PUESTO DE TRABAJO
       </th>
       <th
         colspan="1"
         class="text-center bg-bluegray-50 text-bluegray-700 font-bold border-bottom-2 border-bluegray-200 border-left-2"
       >
-        <app-icon [icon]="'mdi:account'" class="mr-2" />COLABORADOR ASIGNADO
+        <app-icon
+          [icon]="'material-symbols-light:person'"
+          class="mr-2"
+        />COLABORADOR ASIGNADO
       </th>
     </tr>
 
@@ -117,7 +120,11 @@
       <td>
         @if (necesitaActualizacion(item)) {
         <div class="flex align-items-center">
-          <lx-tag severity="warn" value="Actualizar puesto" icon="mdi:alert" />
+          <lx-tag
+            severity="warn"
+            value="Actualizar puesto"
+            icon="material-symbols-light:warning"
+          />
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
             lxTooltip="Asignar rol al puesto"
@@ -163,24 +170,24 @@
               @if (shouldShowVacancyRequest(item)) {
 
               <il-button-item
-                iconClass="mdi:receipt"
+                iconClass="material-symbols-light:receipt"
                 label="Solicitar Vacante"
                 (clicked)="onModalSolicitudVacante(item.id)"
               />
               }
               <il-button-item
-                iconClass="mdi:clipboard-text"
+                iconClass="material-symbols-light:article"
                 label="Descripción"
                 (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
               />
               <il-button-item
-                iconClass="mdi:clock-outline"
+                iconClass="material-symbols-light:schedule"
                 label="Horarios"
                 (clicked)="onModalHoursWorkPosition(item.id)"
               />
               <il-button-item
                 label="Editar"
-                iconClass="mdi:pencil"
+                iconClass="material-symbols-light:edit"
                 (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
               />
 
@@ -212,7 +219,7 @@
             />
             } @else {
             <lx-avatar
-              icon="mdi:account"
+              icon="material-symbols-light:person"
               shape="circle"
               size="large"
               class="mr-2"
@@ -226,7 +233,7 @@
             <app-action-menu>
               <ng-container actions>
                 <il-button-item
-                  iconClass="mdi:account-edit"
+                  iconClass="material-symbols-light:manage-accounts"
                   label="Perfil"
                   lxTooltip="Ir al perfil"
                   (clicked)="onShowEditEmpleado(item)"
@@ -235,14 +242,14 @@
                 AspRole.CoordinacionLegal, AspRole.RecursosHumanos,
                 AspRole.Reclutamiento ])) {
                 <il-button-item
-                  iconClass="mdi:folder-open"
+                  iconClass="material-symbols-light:folder-open"
                   label="Expediente"
                   lxTooltip="Ver expediente completo"
                   (clicked)="onGoToEmployeeFile(item)"
                 />
                 } @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
                 <il-button-item
-                  iconClass="mdi:logout"
+                  iconClass="material-symbols-light:logout"
                   label="Desvincular del puesto"
                   lxTooltip="Desvincular del puesto"
                   (clicked)="onUnassignEmployee(item.id)"
@@ -262,17 +269,20 @@
             class="drop-zone flex align-items-center justify-content-between p-2"
           >
             <div class="flex align-items-center gap-2">
-              <app-icon [icon]="'mdi:account-group'" class="text-400" />
+              <app-icon
+                [icon]="'material-symbols-light:group'"
+                class="text-400"
+              />
               <span class="text-sm font-bold">VACANTE</span>
             </div>
             <div class="flex gap-1">
               <iw-button-item
-                iconClass="mdi:link"
+                iconClass="material-symbols-light:link"
                 lxTooltip="Vincular del pool"
                 (clicked)="onOpenDrawer(item)"
               />
               <iw-button-item
-                iconClass="mdi:account-plus"
+                iconClass="material-symbols-light:person-add"
                 lxTooltip="Registrar nuevo empleado"
                 (clicked)="showModalAddEmployeeFromPosition(item)"
               />
@@ -316,17 +326,22 @@
   <!-- Header expandible -->
   <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
     <div class="flex align-items-center">
-      <app-icon [icon]="'mdi:account-group'" class="text-lg" />
+      <app-icon [icon]="'material-symbols-light:group'" class="text-lg" />
       <span class="font-semibold">Sin puesto asignado</span>
       <!-- DS: badge + badge-primary -->
       <span class="badge badge-primary"
         >{{ unassignedEmployees().length }}</span
       >
       @if (assignLoading()) {
-      <app-icon [icon]="'mdi:loading'" class="text-sm" />
+      <app-icon
+        [icon]="'material-symbols-light:progress-activity'"
+        class="text-sm"
+      />
       }
     </div>
-    <app-icon [icon]="poolExpanded() ? 'mdi:chevron-up' : 'mdi:chevron-down'" />
+    <app-icon
+      [icon]="poolExpanded() ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:keyboard-arrow-down'"
+    />
   </div>
 
   <!-- Guía rápida -->
@@ -334,8 +349,11 @@
   <p class="text-sm text-color-secondary m-0 px-3 pt-2 pb-1">
     Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic
     en
-    <app-icon [icon]="'mdi:account-edit'" class="text-xs" /> para editar sus
-    datos.
+    <app-icon
+      [icon]="'material-symbols-light:manage-accounts'"
+      class="text-xs"
+    />
+    para editar sus datos.
   </p>
   }
 
@@ -361,7 +379,7 @@
         <span class="chip-sub">{{ emp.userName }}</span>
       </div>
       <il-button-item
-        iconClass="mdi:account-edit"
+        iconClass="material-symbols-light:manage-accounts"
         label="Ver perfil"
         (clicked)="onGoToProfile(emp)"
       />
@@ -393,7 +411,7 @@
     <!-- DS: drawer-position-card (border-left primario, no cubierto por .card--primary) -->
     <div class="drawer-position-card">
       <div class="flex align-items-center mb-1">
-        <app-icon [icon]="'mdi:briefcase'" />
+        <app-icon [icon]="'material-symbols-light:work'" />
         <span class="font-bold">{{ pos.folio }}</span>
       </div>
       <p class="m-0 font-semibold">{{ pos.applicationRoleName }}</p>
@@ -406,7 +424,10 @@
 
     @if (assignLoading()) {
     <div class="flex justify-content-center py-4">
-      <app-icon [icon]="'mdi:loading'" class="text-2xl" />
+      <app-icon
+        [icon]="'material-symbols-light:progress-activity'"
+        class="text-2xl"
+      />
     </div>
     } @else if (unassignedEmployees().length === 0) {
     <p class="text-center text-500 py-4 m-0">
@@ -420,7 +441,7 @@
         <span class="font-semibold truncate">{{ emp.fullName }}</span>
         <span class="text-sm text-500 truncate">{{ emp.userName }}</span>
       </div>
-      <app-icon [icon]="'mdi:chevron-right'" />
+      <app-icon [icon]="'material-symbols-light:chevron-right'" />
     </div>
     } }
   </div>
@@ -438,7 +459,7 @@
   <!-- Tabs de selección -->
   <div class="flex mb-4">
     <il-button
-      iconClass="mdi:office-building"
+      iconClass="material-symbols-light:apartment"
       [label]="'Puestos (' + inactivePositions().length + ')'"
       [severity]="inactivosTab() === 'positions' ? 'primary' : 'secondary'"
       [variant]="inactivosTab() === 'positions' ? 'solid' : 'ghost'"
@@ -446,7 +467,7 @@
       (clicked)="inactivosTab.set('positions')"
     />
     <il-button
-      iconClass="mdi:account"
+      iconClass="material-symbols-light:person"
       [label]="'Colaboradores (' + inactiveEmployees().length + ')'"
       [severity]="inactivosTab() === 'employees' ? 'primary' : 'secondary'"
       [variant]="inactivosTab() === 'employees' ? 'solid' : 'ghost'"
@@ -457,14 +478,20 @@
 
   @if (inactivosLoading()) {
   <div class="flex justify-content-center py-8">
-    <app-icon [icon]="'mdi:loading'" class="text-3xl" />
+    <app-icon
+      [icon]="'material-symbols-light:progress-activity'"
+      class="text-3xl"
+    />
   </div>
 
   } @else if (inactivosTab() === 'positions') {
   <!-- -- Tab: Puestos inactivos -- -->
   @if (inactivePositions().length === 0) {
   <div class="alert alert-neutral">
-    <app-icon [icon]="'mdi:inbox'" class="alert__icon" />
+    <app-icon
+      [icon]="'material-symbols-light:move-to-inbox'"
+      class="alert__icon"
+    />
     <div class="alert__body">No hay puestos inactivos.</div>
   </div>
   } @else {
@@ -479,7 +506,7 @@
         >
       </div>
       <il-button-item
-        iconClass="mdi:check"
+        iconClass="material-symbols-light:check"
         label="Activar"
         lxTooltip="Activar puesto"
         (clicked)="onActivatePosition(pos.id)"
@@ -491,7 +518,10 @@
   <!-- -- Tab: Colaboradores inactivos -- -->
   @if (inactiveEmployees().length === 0) {
   <div class="alert alert-neutral">
-    <app-icon [icon]="'mdi:inbox'" class="alert__icon" />
+    <app-icon
+      [icon]="'material-symbols-light:move-to-inbox'"
+      class="alert__icon"
+    />
     <div class="alert__body">No hay colaboradores inactivos.</div>
   </div>
   } @else {
@@ -510,13 +540,13 @@
       </div>
       <div class="flex gap-1">
         <il-button-item
-          iconClass="mdi:check"
+          iconClass="material-symbols-light:check"
           label="Activar"
           lxTooltip="Activar colaborador"
           (clicked)="onActivateEmployee(emp.applicationUserId)"
         />
         <il-button-item
-          iconClass="mdi:plus"
+          iconClass="material-symbols-light:add"
           label="Activar y asignar"
           lxTooltip="Activar y mover al pool para asignar puesto"
           (clicked)="onActivateAndAssign(emp)"

@@ -19,7 +19,7 @@
       </span>
     </span>
     }
-    <app-icon icon="mdi:chevron-down" class="committee-profile__caret" />
+    <app-icon icon="material-symbols-light:keyboard-arrow-down" class="committee-profile__caret" />
   </div>
 
   <p-popover #profilePopover appendTo="body">
@@ -45,7 +45,7 @@
         class="profile-popup-item"
         (click)="goToProfile(); profilePopover.hide()"
       >
-        <i class="pi pi-user"></i>
+        <app-icon icon="material-symbols-light:person" />
         <span>Perfil</span>
       </button>
 
@@ -54,13 +54,13 @@
         class="profile-popup-item"
         (click)="onUpdateClick(); profilePopover.hide()"
       >
-        <i class="pi pi-sync"></i>
+        <app-icon icon="material-symbols-light:sync" />
         <span>Actualizar</span>
       </button>
       }
 
       <button class="profile-popup-item" (click)="onForceReload()">
-        <i class="pi pi-refresh"></i>
+        <app-icon icon="material-symbols-light:refresh" />
         <span>Recargar app</span>
       </button>
 
@@ -68,7 +68,7 @@
         class="profile-popup-item"
         (click)="openAdminSite(); profilePopover.hide()"
       >
-        <i class="pi pi-external-link"></i>
+        <app-icon icon="material-symbols-light:open-in-new" />
         <span>Más de mi administración</span>
       </button>
 
@@ -78,7 +78,7 @@
         class="profile-popup-item profile-popup-item--danger"
         (click)="logout(); profilePopover.hide()"
       >
-        <i class="pi pi-sign-out"></i>
+        <app-icon icon="material-symbols-light:logout" />
         <span>Cerrar sesión</span>
       </button>
     </div>

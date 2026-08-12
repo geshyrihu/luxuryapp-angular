@@ -8,13 +8,14 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface TourStep {
   title: string;
   description: string;
   target?: string;
   position?: "top" | "bottom" | "left" | "right" | "center";
-  icon?: string;
+  icon?: AppIconName;
 }
 
 @Component({
@@ -60,7 +61,7 @@ export interface TourStep {
 
             @if (currentIndex() > 0) {
               <button class="tour-btn tour-btn-ghost" (click)="prev()">
-                <app-icon icon="mdi:chevron-left" />
+                <app-icon icon="material-symbols-light:chevron-left" />
                 Anterior
               </button>
             }
@@ -72,7 +73,7 @@ export interface TourStep {
             } @else {
               <button class="tour-btn tour-btn-primary" (click)="next()">
                 Siguiente
-                <app-icon icon="mdi:chevron-right" />
+                <app-icon icon="material-symbols-light:chevron-right" />
               </button>
             }
           </div>

@@ -94,6 +94,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-equipos-list",
@@ -143,15 +144,15 @@ export class EquiposList {
   // CAMBIO CLAVE! La categora ahora es un signal interno.
   inventoryCategoryId = signal<number>(1);
 
-  categories = [
-    { id: 1, name: "Equipos Electromecanicos", emoji: "mdi:cog" },
-    { id: 2, name: "Amenidades", emoji: "mdi:star-outline" },
-    { id: 3, name: "Mobiliario", emoji: "mdi:table" },
-    { id: 4, name: "Equipamiento", emoji: "mdi:wrench" },
-    { id: 5, name: "Equipos de Gimnasio", emoji: "mdi:heart-outline" },
-    { id: 6, name: "Equipos de Sistemas", emoji: "mdi:monitor" },
-    { id: 8, name: "Areas Comunes", emoji: "mdi:map-marker" },
-    { id: 7, name: "Bodegas, Cuartos de Maquinas", emoji: "mdi:package" },
+  categories: { id: number; name: string; emoji: AppIconName }[] = [
+    { id: 1, name: "Equipos Electromecanicos", emoji: "material-symbols-light:settings" },
+    { id: 2, name: "Amenidades", emoji: "material-symbols-light:favorite-outline" },
+    { id: 3, name: "Mobiliario", emoji: "material-symbols-light:table" },
+    { id: 4, name: "Equipamiento", emoji: "material-symbols-light:build" },
+    { id: 5, name: "Equipos de Gimnasio", emoji: "material-symbols-light:favorite-outline" },
+    { id: 6, name: "Equipos de Sistemas", emoji: "material-symbols-light:desktop-windows" },
+    { id: 8, name: "Areas Comunes", emoji: "material-symbols-light:location-on" },
+    { id: 7, name: "Bodegas, Cuartos de Maquinas", emoji: "material-symbols-light:package" },
   ];
 
   // --- ESTADO DERIVADO CON `computed` ---

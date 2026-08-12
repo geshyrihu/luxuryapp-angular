@@ -12,7 +12,7 @@
       </span>
       <div class="committee-cobranza__hero-meta">
         <span>
-          <app-icon icon="mdi:home-city-outline" />
+          <app-icon icon="material-symbols-light:location-city" />
           {{ cartera.condominosConAdeudo }} de
           {{ cartera.totalCondominos }} condóminos deben
         </span>
@@ -49,7 +49,7 @@
     @if (baseService.cobranzaJudicial(); as judicial) {
     <div class="surface-card p-3 shadow-1 border-round-xl">
       <div class="flex align-items-center gap-3">
-        <app-icon icon="mdi:gavel" class="text-2xl text-danger" />
+        <app-icon icon="material-symbols-light:gavel" class="text-2xl text-danger" />
         <div class="flex-1">
           <div class="text-sm text-color-secondary">En cobranza judicial</div>
           <div class="text-xl font-bold">{{ judicial.cantidad }}</div>
@@ -86,20 +86,20 @@
       <span class="committee-cobranza__amount">
         {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
       </span>
-      <app-icon icon="mdi:chevron-right" class="committee-doc-item__chevron" />
+      <app-icon icon="material-symbols-light:chevron-right" class="committee-doc-item__chevron" />
     </button>
     }
   </div>
   } @else {
   <div class="committee-doc-empty">
-    <app-icon icon="mdi:check-circle-outline" class="committee-doc-empty__icon" />
+    <app-icon icon="material-symbols-light:check-circle-outline" class="committee-doc-empty__icon" />
     <p class="committee-doc-empty__text">Sin propiedades con deuda.</p>
   </div>
   }
 </div>
 } @else if (!baseService.loading()) {
 <div class="committee-doc-empty">
-  <app-icon icon="mdi:folder-open" class="committee-doc-empty__icon" />
+  <app-icon icon="material-symbols-light:folder-open" class="committee-doc-empty__icon" />
   <p class="committee-doc-empty__text">No hay información de cobranza.</p>
 </div>
 }

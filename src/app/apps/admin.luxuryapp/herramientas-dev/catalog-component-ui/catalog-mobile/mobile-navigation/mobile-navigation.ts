@@ -358,7 +358,7 @@ import {
 
         <div>
           <div class="font-bold text-sm mb-3">ili-breadcrumbs</div>
-          <ili-breadcrumbs [home]="{icon:'mdi:home'}" [items]="[{label:'Settings'}, {label:'Profile'}]"></ili-breadcrumbs>
+          <ili-breadcrumbs [home]="{icon:'material-symbols-light:home'}" [items]="[{label:'Settings'}, {label:'Profile'}]"></ili-breadcrumbs>
         </div>
 
         <div>
@@ -368,12 +368,12 @@ import {
 
         <div>
           <div class="font-bold text-sm mb-3">ili-bottom-nav</div>
-          <ili-bottom-nav [items]="[{id:'1', label:'Home', icon:'mdi:home'}, {id:'2', label:'Search', icon:'mdi:magnify'}]" [activeId]="'1'"></ili-bottom-nav>
+          <ili-bottom-nav [items]="[{id:'1', label:'Home', icon:'material-symbols-light:search'}, {id:'2', label:'Search', icon:'material-symbols-light:search'}]" [activeId]="'1'"></ili-bottom-nav>
         </div>
 
         <div>
           <div class="font-bold text-sm mb-3">ili-menu</div>
-          <ili-menu [model]="[{label:'New', icon:'mdi:plus'}, {label:'Open', icon:'mdi:folder'}]"></ili-menu>
+          <ili-menu [model]="[{label:'New', icon:'material-symbols-light:add'}, {label:'Open', icon:'material-symbols-light:folder'}]"></ili-menu>
         </div>
 
         <div>
@@ -383,7 +383,7 @@ import {
 
         <div>
           <div class="font-bold text-sm mb-3">ili-mega-menu</div>
-          <ili-mega-menu [items]="[{label:'Products', icon:'mdi:package-variant-closed', items:[[{label:'Electronics', items:[{label:'Phones'},{label:'Laptops'}]},{label:'Clothing', items:[{label:'Men'},{label:'Women'}]}]]},{label:'Services', icon:'mdi:handshake'}]"></ili-mega-menu>
+          <ili-mega-menu [items]="[{label:'Products', icon:'material-symbols-light:package', items:[[{label:'Electronics', items:[{label:'Phones'},{label:'Laptops'}]},{label:'Clothing', items:[{label:'Men'},{label:'Women'}]}]]},{label:'Services', icon:'material-symbols-light:handshake'}]"></ili-mega-menu>
         </div>
 
         <div>
@@ -547,8 +547,8 @@ export class MobileNavigation {
   selectedSegment = signal<string>("all");
   lastFabAction = signal<string>("");
   protected mockSwipeActions: SwipeAction[] = [
-    { icon: "mdi:delete", label: "Delete", color: "#ef4444", action: () => console.log("Delete") },
-    { icon: "mdi:pencil", label: "Edit", color: "#3b82f6", action: () => console.log("Edit") },
+    { icon: "material-symbols-light:delete", label: "Delete", color: "#ef4444", action: () => console.log("Delete") },
+    { icon: "material-symbols-light:edit", label: "Edit", color: "#3b82f6", action: () => console.log("Edit") },
   ];
 
   async openMenu(): Promise<void> {

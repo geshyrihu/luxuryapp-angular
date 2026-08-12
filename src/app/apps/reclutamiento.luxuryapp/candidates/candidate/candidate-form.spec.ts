@@ -1,7 +1,6 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
-import { of } from "rxjs";
 import { vi } from "vitest";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -10,7 +9,6 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CandidateForm } from "./candidate-form";
 import { CandidateAddOrEdit } from "./interfaces/candidate.dto";
 
@@ -21,19 +19,11 @@ const mockCandidate: CandidateAddOrEdit = {
   email: "juan@example.com",
   age: 30,
   currentAddress: "Calle 123",
-  livesNearWorkplace: true,
   availability: "Inmediata",
   salaryExpectation: 50000,
   experienceSummary: "5 anos experiencia",
-  recruitmentSource: 1,
   generalComments: "Buen candidato",
 };
-
-const mockSelectItems = [
-  { value: 1, label: "LinkedIn" },
-  { value: 2, label: "Indeed" },
-  { value: 3, label: "Referido" },
-];
 
 describe("CandidateForm", () => {
   let component: CandidateForm;
@@ -41,7 +31,6 @@ describe("CandidateForm", () => {
   let apiResponseService: ReturnType<typeof vi.fn>;
   let dialogConfig: ReturnType<typeof vi.fn>;
   let dialogRef: ReturnType<typeof vi.fn>;
-  let enumSelectService: ReturnType<typeof vi.fn>;
   let formHelperSubmitCrud: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
@@ -49,14 +38,11 @@ describe("CandidateForm", () => {
       onGetItem: vi.fn().mockResolvedValue(mockCandidate),
       onPost: vi.fn().mockResolvedValue({ success: true }),
       onPut: vi.fn().mockResolvedValue({ success: true }),
+      validateForm: vi.fn().mockReturnValue(true),
     };
 
     dialogConfig = { data: { id: "" } };
     dialogRef = { close: vi.fn() };
-
-    enumSelectService = {
-      fuenteReclutamiento: vi.fn(() => of(mockSelectItems)),
-    };
 
     formHelperSubmitCrud = vi
       .spyOn(FormHelper, "submitCrud")
@@ -76,7 +62,6 @@ describe("CandidateForm", () => {
         { provide: ApiResponseService, useValue: apiResponseService },
         { provide: DynamicDialogConfig, useValue: dialogConfig },
         { provide: DynamicDialogRef, useValue: dialogRef },
-        { provide: EnumSelectService, useValue: enumSelectService },
       ],
     });
 
@@ -89,16 +74,7 @@ describe("CandidateForm", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should load select items on init", async () => {
-    await fixture.whenStable();
-    expect(enumSelectService.fuenteReclutamiento).toHaveBeenCalled();
-    expect(component.cb_recruitmentSource()).toEqual(mockSelectItems);
-  });
-
-  it("should have form with required fields", () => {
-    expect(component.form.contains("firstName")).toBe(true);
-    expect(component.form.contains("lastName")).toBe(true);
-
+  it("should have required firstName and lastName controls", () => {
     component.form.get("firstName")?.setValue("");
     component.form.get("lastName")?.setValue("");
 

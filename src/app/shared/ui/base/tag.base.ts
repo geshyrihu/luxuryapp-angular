@@ -1,4 +1,5 @@
 import { Directive, input, computed } from "@angular/core";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export type TagSeverity =
   | "success"
@@ -14,7 +15,7 @@ export abstract class TagBase {
   value = input<string | number>("");
   severity = input<TagSeverity>("secondary");
   rounded = input<boolean>(false);
-  icon = input<string>("");
+  icon = input<AppIconName>();
   tooltip = input<string>("");
 
   displayValue = computed<string>(() => {

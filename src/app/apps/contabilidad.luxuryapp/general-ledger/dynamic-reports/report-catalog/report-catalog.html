@@ -8,7 +8,7 @@
     </div>
     <div class="flex gap-2">
       <iw-button
-        iconClass="mdi:book"
+        iconClass="material-symbols-light:book"
         severity="secondary"
         lxTooltip="Ver guía del módulo"
         tooltipPosition="bottom"
@@ -54,7 +54,7 @@
                 <div class="flex gap-1">
                   <iw-button
                     (clicked)="ver(r.id)"
-                    iconClass="mdi:eye-outline"
+                    iconClass="material-symbols-light:visibility-outline"
                     ngbTooltip="Ver reporte"
                   />
                   <iw-button-edit (clicked)="editar(r.id)" />
@@ -94,7 +94,7 @@
                 >{{ r.createdAt | date: 'dd/MM/yyyy' }}</span
               >
               <div class="flex mt-2 justify-content-end gap-1">
-                <iw-button iconClass="mdi:eye-outline" (clicked)="ver(r.id)" />
+                <iw-button iconClass="material-symbols-light:visibility-outline" (clicked)="ver(r.id)" />
                 <il-button-edit (clicked)="editar(r.id)" />
                 <il-button-delete [confirmMessage]="'Eliminar el reporte &quot;' + r.name + '&quot;?'" (confirmed)="eliminar(r.id)" />
               </div>
@@ -131,7 +131,7 @@
               <td>
                 <iw-button
                   (clicked)="ver(r.id)"
-                  iconClass="mdi:eye-outline"
+                  iconClass="material-symbols-light:visibility-outline"
                   ngbTooltip="Ver plantilla"
                 />
               </td>
@@ -161,7 +161,7 @@
               <p class="text-sm text-600 m-0">{{ r.description }}</p>
               <span class="text-xs text-500">Por: {{ r.createdBy }}</span>
               <div class="flex mt-2 justify-content-end">
-                <iw-button iconClass="mdi:eye-outline" (clicked)="ver(r.id)" />
+                <iw-button iconClass="material-symbols-light:visibility-outline" (clicked)="ver(r.id)" />
               </div>
             </div>
           </ng-template>

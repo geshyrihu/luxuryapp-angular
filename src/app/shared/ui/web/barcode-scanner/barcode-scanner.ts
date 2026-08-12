@@ -34,7 +34,7 @@ export interface ScanResult {
         <!-- Idle state -->
         <div class="bs-idle" (click)="startScan()">
           <div class="bs-icon-wrap">
-            <app-icon icon="mdi:barcode-scan" class="text-4xl" />
+            <app-icon icon="material-symbols-light:barcode-scanner" class="text-4xl" />
           </div>
           <span class="bs-idle-title">{{ idleLabel() }}</span>
           <span class="bs-idle-sub">Toca para activar la cámara</span>
@@ -59,7 +59,7 @@ export interface ScanResult {
 
       @if (lastResult()) {
         <div class="bs-result">
-          <app-icon icon="mdi:check-circle" style="color: var(--ds-success)" />
+          <app-icon icon="material-symbols-light:check-circle" style="color: var(--ds-success)" />
           <div>
             <span class="bs-result-value">{{ lastResult()!.value }}</span>
             <span class="bs-result-format">{{ lastResult()!.format }}</span>
@@ -69,7 +69,7 @@ export interface ScanResult {
 
       @if (error()) {
         <div class="bs-error">
-          <app-icon icon="mdi:alert-circle" />
+          <app-icon icon="material-symbols-light:error" />
           {{ error() }}
         </div>
       }

@@ -1,6 +1,6 @@
 @if (cargando()) {
 <div class="flex align-items-center gap-2 py-3">
-  <app-icon icon="mdi:loading" class="pi-spin text-primary" />
+  <app-icon icon="material-symbols-light:progress-activity" class="pi-spin text-primary" />
   <span class="text-sm text-500">Cargando agenda...</span>
 </div>
 } @else {
@@ -16,7 +16,7 @@
   </div>
   <il-button
     label="Ver agenda"
-    icon="mdi:calendar"
+    icon="material-symbols-light:calendar-today"
     size="sm"
     variant="outline"
     (clicked)="abrirAgenda()"
@@ -26,7 +26,7 @@
 <!-- Proximos eventos -->
 @if (proximosEventos().length === 0) {
 <div class="flex align-items-center gap-2 py-2 text-400">
-  <app-icon icon="mdi:calendar-remove" />
+  <app-icon icon="material-symbols-light:event-busy" />
   <span class="text-sm">Sin eventos proximos</span>
 </div>
 } @else {

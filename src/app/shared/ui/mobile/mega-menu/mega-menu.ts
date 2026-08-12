@@ -13,14 +13,14 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         <div class="ili-megamenu-category">
           <button class="ili-megamenu-trigger" (click)="toggleCategory($index)">
             @if (category.icon) {
-              <app-icon [icon]="category.icon" class="ili-megamenu-cat-icon" />
+              <app-icon [icon]="iconName(category.icon) || 'material-symbols-light:folder-outline'" class="ili-megamenu-cat-icon" />
             }
             <span>{{ category.label }}</span>
             <app-icon
               [icon]="
                 expandedCategory() === $index
-                  ? 'mdi:chevron-up'
-                  : 'mdi:chevron-down'
+                  ? 'material-symbols-light:keyboard-arrow-up'
+                  : 'material-symbols-light:keyboard-arrow-down'
               "
               class="ili-megamenu-chevron"
             />
@@ -42,7 +42,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                     >
                       @if (item.icon) {
                         <app-icon
-                          [icon]="item.icon"
+                          [icon]="iconName(item.icon) || 'material-symbols-light:circle'"
                           class="ili-megamenu-item-icon"
                         />
                       }

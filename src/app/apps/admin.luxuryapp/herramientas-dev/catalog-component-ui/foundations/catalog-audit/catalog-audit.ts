@@ -7,6 +7,7 @@ import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
 import { BloqueVisual } from "./interfaces/bloque-visual.interface";
 import { ItemChecklist } from "./interfaces/item-checklist.interface";
@@ -132,19 +133,19 @@ export class CatalogAudit {
   readonly bloquesVisuales: BloqueVisual[] = [
     {
       titulo: "Advertencia",
-      icono: "icon.alert",
+      icono: "material-symbols-light:warning",
       descripcion:
         "Usar cuando el incumplimiento genera riesgo fisico, legal, economico u operativo.",
     },
     {
       titulo: "Nota",
-      icono: "icon.information",
+      icono: "material-symbols-light:info",
       descripcion:
         "Informacion complementaria que aclara el procedimiento sin ser un paso obligatorio.",
     },
     {
       titulo: "Buena practica",
-      icono: "icon.check-circle",
+      icono: "material-symbols-light:check-circle",
       descripcion:
         "Recomendacion validada por el equipo para elevar calidad y consistencia.",
     },
@@ -250,7 +251,7 @@ export class CatalogAudit {
     );
   }
 
-  iconifyIcon(primeClass: string): string {
-    return resolveIconifyIcon(primeClass, "icon.cog");
+  iconifyIcon(primeClass: string): AppIconName {
+    return resolveIconifyIcon(primeClass, "material-symbols-light:settings") as AppIconName;
   }
 }

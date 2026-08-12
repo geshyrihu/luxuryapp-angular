@@ -3,7 +3,7 @@
   <div class="flex justify-content-between align-items-center mb-6">
     <h4 class="text-headline-md m-0">Listado de Inspecciones</h4>
     <iw-button
-      iconClass="mdi:plus-circle"
+      iconClass="material-symbols-light:add-circle"
       label="Agregar"
       size="sm"
       lxTooltip="Nuevo Registro"
@@ -42,7 +42,7 @@
     </div>
 
     <iw-button
-      iconClass="mdi:book-open-outline"
+      iconClass="material-symbols-light:menu-book-outline"
       label="Reportes"
       size="sm"
       severity="secondary"
@@ -78,7 +78,7 @@
                 label="Editar"
               />
               <il-button-item
-                iconClass="mdi:magnify"
+                iconClass="material-symbols-light:search"
                 label="Detalles"
                 (clicked)="navigateToDetalles(item.id)"
               />
@@ -130,7 +130,7 @@
       [filter]="true"
     />
     <ili-button
-      iconClass="mdi:book-open-outline"
+      iconClass="material-symbols-light:menu-book-outline"
       label="Reportes"
       (clicked)="navigateToReportes()"
     />

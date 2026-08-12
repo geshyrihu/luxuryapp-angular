@@ -27,7 +27,7 @@
 
   <il-button
     label="PROCESAR FONDEO"
-    iconClass="mdi:checkbox-marked"
+    iconClass="material-symbols-light:check-box"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onConfirmed()"
@@ -36,7 +36,7 @@
 
   <il-button-item
     label="REABRIR FONDEO"
-    iconClass="mdi:arrow-left"
+    iconClass="material-symbols-light:arrow-back"
     class="mr-1"
     (clicked)="onRevokeConfirmation()"
   />
@@ -44,7 +44,7 @@
 
   <il-button
     label="FINALIZAR FONDEO"
-    iconClass="mdi:lock"
+    iconClass="material-symbols-light:lock"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onCompleted()"
@@ -53,28 +53,28 @@
 
   <il-button
     label="REVERTIR FONDEO COMPLETADO"
-    iconClass="mdi:alert"
+    iconClass="material-symbols-light:warning"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onRevertComplete()"
   />
   } @if (isVerified() && isAuthorized()) {
   <il-button
-    iconClass="mdi:chart-bar"
+    iconClass="material-symbols-light:bar-chart"
     label="Excel"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onDownloadFileExcel()"
   />
   <il-button
-    iconClass="mdi:book"
+    iconClass="material-symbols-light:book"
     label="Pdf"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onDownloadFilePdf()"
   />
   <il-button
-    [iconClass]="'mdi:upload'"
+    [iconClass]="'material-symbols-light:upload'"
     label="Facturas"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
@@ -144,11 +144,11 @@
         <!-- Columna de Validación XML -->
         <td class="text-center">
           @if (orden.validationStatus === true) {
-          <lx-tag class="cursor-pointer text-xs" tooltip="{{ orden.validationMessage }}" tooltipPosition="left" icon="mdi:check-circle" severity="success" />
+          <lx-tag class="cursor-pointer text-xs" tooltip="{{ orden.validationMessage }}" tooltipPosition="left" icon="material-symbols-light:check-circle" severity="success" />
           } @else if (orden.validationStatus === false) {
-          <lx-tag class="cursor-pointer text-xs" tooltip="{{ orden.validationMessage }}" tooltipPosition="left" icon="mdi:close-circle" severity="danger" />
+          <lx-tag class="cursor-pointer text-xs" tooltip="{{ orden.validationMessage }}" tooltipPosition="left" icon="material-symbols-light:cancel" severity="danger" />
           } @else {
-          <lx-tag class="cursor-pointer text-xs" tooltip="No hay XML para validar" tooltipPosition="left" icon="mdi:help-circle" severity="secondary" />
+          <lx-tag class="cursor-pointer text-xs" tooltip="No hay XML para validar" tooltipPosition="left" icon="material-symbols-light:help" severity="secondary" />
           }
         </td>
         <td class="text-start">{{ orden.nameProvider | uppercase }}</td>

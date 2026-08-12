@@ -25,7 +25,7 @@ import { confirmAction } from "../shared/confirm";
       (click)="handleConfirm($event)"
     >
       <app-icon
-        [icon]="iconClass() || 'mdi:check-circle-outline'"
+        [icon]="resolvedIconClass() || 'material-symbols-light:check-circle-outline'"
         slot="start"
       />
       {{ label() || "Confirmar" }}

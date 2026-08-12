@@ -50,8 +50,8 @@
           <app-icon
             [icon]="
               groupingOption() === 'numeroCliente'
-                ? 'mdi:office-building'
-                : 'mdi:account'
+                ? 'material-symbols-light:apartment'
+                : 'material-symbols-light:person'
             "
             class="text-primary mr-2"
           />
@@ -136,7 +136,7 @@
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
-          icon="mdi:office-building-outline"
+          icon="material-symbols-light:apartment"
           class="text-xl text-primary"
         />
       </div>
@@ -146,11 +146,11 @@
       </div>
       <h2 class="text-base font-bold mb-1">{{ item.applicationUser }}</h2>
       <div class="flex align-items-center text-sm text-600 mb-1">
-        <app-icon [icon]="'mdi:email-outline'" class="text-xs" />
+        <app-icon [icon]="'material-symbols-light:mail-outline'" class="text-xs" />
         <span>{{ item.email }}</span>
       </div>
       <div class="flex align-items-center text-sm text-600">
-        <app-icon [icon]="'mdi:phone'" class="text-xs" />
+        <app-icon [icon]="'material-symbols-light:call'" class="text-xs" />
         <span>{{ item.phoneNumber }}</span>
       </div>
 

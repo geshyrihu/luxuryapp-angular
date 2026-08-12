@@ -3,7 +3,7 @@
   <div class="committee-card-panel">
     <div class="committee-card-panel__header">
       <span class="committee-card-panel__icon">
-        <app-icon icon="mdi:shield-home" />
+        <app-icon icon="material-symbols-light:shield" />
       </span>
       <div class="committee-card-panel__titles">
         <h3 class="committee-card-panel__title">
@@ -17,19 +17,19 @@
       <div class="committee-field-grid">
         <div class="committee-field">
           <span class="committee-field__label">
-            <app-icon icon="mdi:office-building" /> Proveedor
+            <app-icon icon="material-symbols-light:apartment" /> Proveedor
           </span>
           <span class="committee-field__value">{{ policy.providerName }}</span>
         </div>
         <div class="committee-field">
           <span class="committee-field__label">
-            <app-icon icon="mdi:file-document-outline" /> Descripción
+            <app-icon icon="material-symbols-light:description" /> Descripción
           </span>
           <span class="committee-field__value">{{ policy.description }}</span>
         </div>
         <div class="committee-field">
           <span class="committee-field__label">
-            <app-icon icon="mdi:calendar-start" /> Fecha de Inicio
+            <app-icon icon="material-symbols-light:event" /> Fecha de Inicio
           </span>
           <span class="committee-field__value"
             >{{ policy.startDate | date: 'dd/MM/yyyy' }}</span
@@ -37,7 +37,7 @@
         </div>
         <div class="committee-field">
           <span class="committee-field__label">
-            <app-icon icon="mdi:calendar-end" /> Fecha de Fin
+            <app-icon icon="material-symbols-light:event-upcoming" /> Fecha de Fin
           </span>
           <span class="committee-field__value"
             >{{ policy.endDate | date: 'dd/MM/yyyy' }}</span
@@ -57,7 +57,7 @@
   </div>
   } @else {
   <div class="committee-doc-empty">
-    <app-icon icon="mdi:folder-open" class="committee-doc-empty__icon" />
+    <app-icon icon="material-symbols-light:folder-open" class="committee-doc-empty__icon" />
     <p class="committee-doc-empty__text">No hay póliza disponible</p>
   </div>
   }

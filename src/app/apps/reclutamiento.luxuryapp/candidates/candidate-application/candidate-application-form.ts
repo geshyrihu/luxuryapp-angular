@@ -8,15 +8,20 @@ import {
 import {
   FormControl,
   FormGroup,
+  FormArray,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
+import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -26,9 +31,14 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { CandidateForm } from "../candidate/candidate-form";
 import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
 import { CandidateApplicationDetail } from "./interfaces/candidate-application";
+import {
+  CandidateDetail,
+  CandidateWorkExperienceAddOrEdit,
+  CandidateWorkExperienceItem,
+} from "../candidate/interfaces/candidate.dto";
+import { CandidateForm } from "../candidate/candidate-form";
 
 @Component({
   selector: "app-candidate-application-form",
@@ -40,7 +50,11 @@ import { CandidateApplicationDetail } from "./interfaces/candidate-application";
     CustomInputSelectSignal,
     CustomInputDateSignal,
     CustomInputDateTimeSignal,
+    CustomInputTextSignal,
+    CustomInputNumberSignal,
     CustomInputTextAreaSignal,
+    InputMask,
+    InputEmail,
     CandidateCvUpload,
     WebButtonLabelSave,
     WebButtonLabel,
@@ -57,10 +71,12 @@ export class CandidateApplicationForm implements OnInit {
   readonly allowCreateCandidate =
     this.config.data?.allowCreateCandidate !== false;
   submitting = signal(false);
+  isCreatingCandidate = signal(false);
   selectedFile: File | null = null;
   currentCvUrl = signal<string>("");
   cb_candidates = signal<SelectItemDto[]>([]);
   cb_vacancies = signal<SelectItemDto[]>([]);
+  readonly originalWorkExperienceIds = signal<string[]>([]);
 
   form: FormGroup = new FormGroup({
     id: new FormControl({ value: "", disabled: true }),
@@ -69,16 +85,41 @@ export class CandidateApplicationForm implements OnInit {
       null,
       Validators.required,
     ),
-    cvFileName: new FormControl<string | null>(null, Validators.required),
+    cvFileName: new FormControl<string | null>(null),
     applicationDate: new FormControl<string | null>(null),
     recruitmentInterviewAt: new FormControl<string | null>(null),
     initialComment: new FormControl<string | null>(null),
   });
 
+  candidateForm: FormGroup = new FormGroup({
+    firstName: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(80)],
+    }),
+    lastName: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(80)],
+    }),
+    phoneNumber: new FormControl<string | null>(null),
+    email: new FormControl<string | null>(null),
+    age: new FormControl<number | null>(null),
+    currentAddress: new FormControl<string | null>(null),
+    availability: new FormControl<string | null>(null),
+    salaryExpectation: new FormControl<number | null>(null),
+    experienceSummary: new FormControl<string | null>(null),
+    generalComments: new FormControl<string | null>(null),
+  });
+
+  candidateWorkExperiences = new FormArray<FormGroup>([]);
+
   async ngOnInit(): Promise<void> {
     this.id = this.config.data?.id ?? "";
     await this.onLoadSelectItems();
     this.applyDialogDefaults();
+    this.form.controls["candidateId"].valueChanges.subscribe((candidateId) => {
+      if (!candidateId || this.isCreatingCandidate()) return;
+      void this.loadCandidateCvPreview(candidateId);
+    });
     if (!this.id) {
       this.form.controls["applicationDate"].setValue(this.todayDateOnly());
     }
@@ -100,6 +141,7 @@ export class CandidateApplicationForm implements OnInit {
     if (vacancies) {
       this.cb_vacancies.set(vacancies);
     }
+
   }
 
   onLoadData() {
@@ -125,6 +167,14 @@ export class CandidateApplicationForm implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
+    if (this.isCreatingCandidate()) {
+      const candidateId = await this.createCandidateInline();
+      if (!candidateId) return;
+      this.form.controls["candidateId"].setValue(candidateId);
+      this.isCreatingCandidate.set(false);
+      this.applyCandidateModeValidators();
+    }
+
     if (!this.apiResponseS.validateForm(this.form)) return;
     this.submitting.set(true);
 
@@ -190,30 +240,105 @@ export class CandidateApplicationForm implements OnInit {
   }
 
   async onCreateCandidate() {
-    const result = await this.dialogHandlerS.openDialog<any>(
+    this.isCreatingCandidate.set(true);
+    this.applyCandidateModeValidators();
+    this.selectedFile = null;
+    this.currentCvUrl.set("");
+    this.form.controls["cvFileName"].setValue(null);
+    this.candidateForm.reset({
+      firstName: "",
+      lastName: "",
+      phoneNumber: null,
+      email: null,
+      age: null,
+      currentAddress: null,
+      availability: null,
+      salaryExpectation: null,
+      experienceSummary: null,
+      generalComments: null,
+    });
+    this.setCandidateWorkExperiences([]);
+  }
+
+  async onEditSelectedCandidate() {
+    const candidateId = this.form.controls["candidateId"].value;
+    if (!candidateId || this.isCreatingCandidate()) return;
+
+    const result = await this.dialogHandlerS.openDialog<
+      CandidateDetail | boolean
+    >(
       CandidateForm,
-      { id: "", title: "Nuevo Candidato", allowContinueToInterview: false },
-      "Nuevo Candidato",
+      {
+        id: candidateId,
+        title: "Actualizar candidato",
+      },
+      "Actualizar candidato",
       this.dialogHandlerS.sizeLg,
     );
 
-    if (!result?.id) return;
+    if (!result || typeof result === "boolean") {
+      return;
+    }
 
-    await this.onLoadSelectItems();
-    this.cb_candidates.update((current) => {
-      const exists = current.some((item) => item.value === result.id);
-      if (exists) return current;
-      return [
-        {
-          value: result.id,
-          label:
-            result.fullName ??
-            `${result.firstName ?? ""} ${result.lastName ?? ""}`.trim(),
-        },
-        ...current,
-      ];
-    });
+    this.refreshCandidateOption(result);
     this.form.controls["candidateId"].setValue(result.id);
+    this.currentCvUrl.set(result.cvFileUrl ?? "");
+    this.form.controls["cvFileName"].setValue(result.cvFileName ?? null);
+  }
+
+  onCancelCreateCandidate() {
+    this.isCreatingCandidate.set(false);
+    this.applyCandidateModeValidators();
+    this.candidateForm.reset();
+    this.setCandidateWorkExperiences([]);
+    this.selectedFile = null;
+    void this.loadCandidateCvPreview(this.form.controls["candidateId"].value);
+  }
+
+  addCandidateWorkExperience(
+    value?: Partial<CandidateWorkExperienceAddOrEdit>,
+  ) {
+    this.candidateWorkExperiences.push(
+      new FormGroup({
+        id: new FormControl<string | null>(value?.id ?? null),
+        companyName: new FormControl(value?.companyName ?? "", {
+          nonNullable: true,
+          validators: [Validators.required, Validators.maxLength(150)],
+        }),
+        jobPosition: new FormControl(value?.jobPosition ?? "", {
+          nonNullable: true,
+          validators: [Validators.required, Validators.maxLength(150)],
+        }),
+        startDate: new FormControl<string | null>(value?.startDate ?? null, {
+          validators: [Validators.required],
+        }),
+        endDate: new FormControl<string | null>(value?.endDate ?? null),
+        monthlyNetSalary: new FormControl<number | null>(
+          value?.monthlyNetSalary ?? null,
+        ),
+        departureReason: new FormControl<string | null>(
+          value?.departureReason ?? null,
+          [Validators.maxLength(500)],
+        ),
+      }),
+    );
+  }
+
+  removeCandidateWorkExperience(index: number) {
+    this.candidateWorkExperiences.removeAt(index);
+  }
+
+  get candidateWorkExperienceControls() {
+    return this.candidateWorkExperiences.controls;
+  }
+
+  isSubmitDisabled(): boolean {
+    return (
+      this.submitting() ||
+      this.form.invalid ||
+      (this.isCreatingCandidate() &&
+        (this.candidateForm.invalid || !this.selectedFile))
+    );
   }
 
   private applyDialogDefaults() {
@@ -309,5 +434,159 @@ export class CandidateApplicationForm implements OnInit {
 
   private todayDateOnly(): string {
     return this.toDateOnly(new Date().toISOString()) ?? "";
+  }
+
+  private applyCandidateModeValidators() {
+    const candidateControl = this.form.controls["candidateId"];
+    if (this.isCreatingCandidate()) {
+      candidateControl.clearValidators();
+      candidateControl.setErrors(null);
+    } else {
+      candidateControl.setValidators([Validators.required]);
+    }
+    candidateControl.updateValueAndValidity({ emitEvent: false });
+  }
+
+  private setCandidateWorkExperiences(items: CandidateWorkExperienceItem[]) {
+    this.candidateWorkExperiences.clear();
+    this.originalWorkExperienceIds.set(items.map((x) => x.id));
+
+    if (items.length === 0) {
+      this.addCandidateWorkExperience();
+      return;
+    }
+
+    for (const item of items) {
+      this.addCandidateWorkExperience({
+        id: item.id,
+        companyName: item.companyName,
+        jobPosition: item.jobPosition,
+        startDate: item.startDate,
+        endDate: item.endDate ?? null,
+        monthlyNetSalary: item.monthlyNetSalary ?? null,
+        departureReason: item.departureReason ?? null,
+      });
+    }
+  }
+
+  private async createCandidateInline(): Promise<string | null> {
+    if (!this.apiResponseS.validateForm(this.candidateForm)) return null;
+    if (!this.selectedFile) {
+      return null;
+    }
+
+    const formData = new FormData();
+    formData.append(
+      "FirstName",
+      this.candidateForm.controls["firstName"].value?.trim() ?? "",
+    );
+    formData.append(
+      "LastName",
+      this.candidateForm.controls["lastName"].value?.trim() ?? "",
+    );
+    formData.append(
+      "PhoneNumber",
+      this.candidateForm.controls["phoneNumber"].value ?? "",
+    );
+    formData.append("Email", this.candidateForm.controls["email"].value ?? "");
+
+    const age = this.candidateForm.controls["age"].value;
+    if (age != null) formData.append("Age", String(age));
+
+    formData.append(
+      "CurrentAddress",
+      this.candidateForm.controls["currentAddress"].value ?? "",
+    );
+    formData.append(
+      "Availability",
+      this.candidateForm.controls["availability"].value ?? "",
+    );
+
+    const salaryExpectation =
+      this.candidateForm.controls["salaryExpectation"].value;
+    if (salaryExpectation != null) {
+      formData.append("SalaryExpectation", String(salaryExpectation));
+    }
+
+    formData.append(
+      "ExperienceSummary",
+      this.candidateForm.controls["experienceSummary"].value ?? "",
+    );
+
+    formData.append(
+      "GeneralComments",
+      this.candidateForm.controls["generalComments"].value ?? "",
+    );
+    formData.append("CvFile", this.selectedFile, this.selectedFile.name);
+
+    const created = await this.apiResponseS.onPostFile<CandidateDetail>(
+      EndpointsReclutamiento.Candidates.base,
+      formData,
+    );
+
+    if (!created || typeof created === "boolean") return null;
+
+    await this.syncCandidateWorkExperiences(created.id);
+    this.cb_candidates.update((current) => [
+      {
+        value: created.id,
+        label: created.fullName,
+      },
+      ...current.filter((item) => item.value !== created.id),
+    ]);
+    return created.id;
+  }
+
+  private async syncCandidateWorkExperiences(candidateId: string) {
+    const validRows = this.candidateWorkExperienceControls
+      .map((group) => group.getRawValue())
+      .filter(
+        (row) => row.companyName?.trim() && row.jobPosition?.trim() && row.startDate,
+      );
+
+    for (const row of validRows) {
+      const payload = {
+        candidateId,
+        companyName: row.companyName?.trim() ?? "",
+        jobPosition: row.jobPosition?.trim() ?? "",
+        startDate: row.startDate,
+        endDate: row.endDate || null,
+        monthlyNetSalary: row.monthlyNetSalary ?? null,
+        departureReason: row.departureReason?.trim() ?? "",
+      };
+
+      await this.apiResponseS.onPost<CandidateWorkExperienceItem>(
+        EndpointsReclutamiento.CandidateWorkExperiences.base,
+        payload,
+      );
+    }
+  }
+
+  private async loadCandidateCvPreview(candidateId: string | null) {
+    if (!candidateId) {
+      this.currentCvUrl.set("");
+      this.form.controls["cvFileName"].setValue(null);
+      return;
+    }
+
+    const candidate = await this.apiResponseS.onGetItem<CandidateDetail>(
+      EndpointsReclutamiento.Candidates.getById(candidateId),
+      false,
+    );
+
+    if (!candidate) return;
+
+    this.currentCvUrl.set(candidate.cvFileUrl ?? "");
+    this.form.controls["cvFileName"].setValue(candidate.cvFileName ?? null);
+  }
+
+  private refreshCandidateOption(candidate: CandidateDetail) {
+    this.cb_candidates.update((current) => [
+      {
+        value: candidate.id,
+        label: candidate.fullName,
+      },
+      ...current.filter((item) => item.value !== candidate.id),
+    ]);
   }
 }

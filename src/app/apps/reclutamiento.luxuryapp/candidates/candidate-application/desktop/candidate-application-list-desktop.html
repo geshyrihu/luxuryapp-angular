@@ -33,9 +33,9 @@
 >
   <ng-template #caption>
     <primeng-custom-caption
-      (add)="add.emit({ id: '', title: 'Nueva Postulación' })"
+      (add)="add.emit({ id: '', title: 'Nuevo proceso de candidato' })"
       [dt]="dt"
-      aria-label="Agregar nueva postulación"
+      aria-label="Agregar nuevo proceso de candidato"
     />
   </ng-template>
   <ng-template #header>
@@ -86,14 +86,14 @@
           <iw-button-tracking
             size="sm"
             class="btn--circle"
-            [attr.aria-label]="'Avanzar etapa de postulación ' + item.candidateName"
+            [attr.aria-label]="'Avanzar etapa del proceso de ' + item.candidateName"
             (clickTracking)="advance.emit({ id: item.id, fromStage: item.currentStage, customerId: item.customerId })"
           />
           <iw-button-edit
             size="sm"
             class="btn--circle"
-            [attr.aria-label]="'Editar postulación ' + item.candidateName"
-            (clicked)="edit.emit({ id: item.id, title: 'Editar Postulación' })"
+            [attr.aria-label]="'Editar proceso de ' + item.candidateName"
+            (clicked)="edit.emit({ id: item.id, title: 'Editar proceso de candidato' })"
           />
         </div>
       </td>

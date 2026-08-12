@@ -38,29 +38,38 @@ export type WizardStep = StepperStep;
                 @if (step.value > 1) {
                   <p-button
                     label="Anterior"
-                    icon="mdi:arrow-left"
                     severity="secondary"
                     [outlined]="true"
                     (onClick)="previous()"
-                  />
+                  >
+                    <ng-template #icon>
+                      <app-icon icon="material-symbols-light:arrow-back" />
+                    </ng-template>
+                  </p-button>
                 } @else {
                   <div></div>
                 }
                 @if (step.value < lastStep()) {
                   <p-button
                     label="Siguiente"
-                    icon="mdi:arrow-right"
                     iconPos="right"
                     (onClick)="next()"
-                  />
+                  >
+                    <ng-template #icon>
+                      <app-icon icon="material-symbols-light:arrow-forward" />
+                    </ng-template>
+                  </p-button>
                 } @else {
                   <p-button
                     [label]="finishLabel()"
-                    icon="mdi:check"
                     iconPos="right"
                     severity="success"
                     (onClick)="finish.emit()"
-                  />
+                  >
+                    <ng-template #icon>
+                      <app-icon icon="material-symbols-light:check" />
+                    </ng-template>
+                  </p-button>
                 }
               </div>
             </ng-template>

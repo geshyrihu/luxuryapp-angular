@@ -27,6 +27,7 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { ThemeService } from "src/app/core/services/theme.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ProfileMonitor } from "../../../employee-view/monitor/profile-monitor/profile-monitor";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-header-direccion-monitor",
@@ -39,6 +40,7 @@ import { ProfileMonitor } from "../../../employee-view/monitor/profile-monitor/p
     ToolbarModule,
     LxTooltipDirective,
     WebButtonIcon,
+    AppIcon,
   ],
   templateUrl: "./header-direccion-monitor.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -80,7 +82,7 @@ export class HeaderDireccionMonitor implements OnInit {
       this.title = route.snapshot.data["title"] || "";
       const parent = route.parent?.snapshot.data["breadcrumb"];
       const child = route.snapshot.data["breadcrumb"];
-      this.breadcrumbItems = [{ icon: "pi pi-home", routerLink: "/direccion" }];
+      this.breadcrumbItems = [{ icon: "material-symbols-light:home", routerLink: "/direccion" }];
       if (parent) this.breadcrumbItems.push({ label: parent });
       if (child) this.breadcrumbItems.push({ label: child });
     });
@@ -94,8 +96,8 @@ export class HeaderDireccionMonitor implements OnInit {
   toggleTheme = () => this.themeService.toggleTheme();
   getThemeIcon = () =>
     this.themeService.getCurrentTheme() === "light"
-      ? "pi pi-moon"
-      : "pi pi-sun";
+      ? "material-symbols-light:nightlight"
+      : "material-symbols-light:sunny";
   selectCustomer = (newId: string) =>
     this.customerIdS.setCustomerId(newId).subscribe();
 }

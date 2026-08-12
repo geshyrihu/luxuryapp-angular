@@ -20,7 +20,7 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="handleClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'fluent-color:document-16'" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:description'" />
     </button>
   `,
 })

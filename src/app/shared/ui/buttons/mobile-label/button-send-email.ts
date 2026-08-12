@@ -24,7 +24,7 @@ import { confirmAction } from "../shared/confirm";
       [class]="styleClass()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="iconClass() || 'mdi:email-outline'" slot="start" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:mail-outline'" slot="start" />
       {{ label() || "Enviar correo" }}
     </ion-button>
   `,

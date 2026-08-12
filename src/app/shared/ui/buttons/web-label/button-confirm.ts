@@ -23,7 +23,7 @@ import { confirmAction } from "../shared/confirm";
       @if (emoji()) {
         <span>{{ emoji() }}</span>
       } @else {
-        <app-icon [icon]="iconClass() || 'mdi:check-circle-outline'" />
+        <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:check-circle-outline'" />
       }
       <span>{{ label() || "Confirmar" }}</span>
     </button>

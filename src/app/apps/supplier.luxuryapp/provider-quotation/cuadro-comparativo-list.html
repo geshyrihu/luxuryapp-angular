@@ -2,7 +2,7 @@
 <header
   class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden mb-4 w-full"
 >
-  <div class="bg-primary" ></div>
+  <div class="bg-primary"></div>
   <div class="surface-100 p-1 md:p-2 text-center">
     <div class="w-full">
       <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
@@ -15,9 +15,7 @@
   </div>
 </header>
 }
-<div
-  class="surface-card rounded-xl border-1 surface-border shadow-sm p-2 mb-4"
->
+<div class="surface-card rounded-xl border-1 surface-border shadow-sm p-2 mb-4">
   <div
     class="flex align-items-center justify-content-between gap-2 flex-wrap md:flex-nowrap"
   >
@@ -29,18 +27,18 @@
       class="flex align-items-center justify-content-end gap-2 overflow-x-auto"
     >
       <il-button
-        [iconClass]="cleanView ? 'mdi:eye-outline' : 'mdi:eye-off'"
+        [iconClass]="cleanView ? 'material-symbols-light:visibility-outline' : 'material-symbols-light:visibility-off'"
         [label]="cleanView ? 'Mostrar vista' : 'Limpiar vista'"
         (clicked)="toggleCleanView()"
         severity="secondary"
-        variant="outlined"
+        variant="outline"
         [tooltip]="cleanView ? 'Mostrar acciones' : 'Ocultar acciones y controles'"
         size="small"
         tooltipPosition="left"
       />
       @if (!cleanView && cotizacionProveedorSignal().length > 1) {
       <il-button
-        iconClass="mdi:chip"
+        iconClass="material-symbols-light:memory"
         label="AI Auditoria"
         (clicked)="onAnalyzeAI()"
         [disabled]="isAnalyzing"
@@ -50,7 +48,7 @@
         tooltipPosition="left"
       />
       <il-button
-        iconClass="mdi:chart-bar"
+        iconClass="material-symbols-light:bar-chart"
         label="Evaluar"
         (clicked)="evaluarPrecioIndependiente = !evaluarPrecioIndependiente"
         [variant]="!evaluarPrecioIndependiente ? 'outlined' : undefined"
@@ -61,20 +59,20 @@
       />
       @if (canOptimizeProducts()) {
       <il-button
-        [iconClass]="optimizeProducts ? 'mdi:view-list' : 'mdi:table-eye-off'"
+        [iconClass]="optimizeProducts ? 'material-symbols-light:view-list' : 'material-symbols-light:table'"
         [label]="optimizeProducts ? 'Ver detalle' : 'Optimizar'"
         (clicked)="toggleOptimizeProducts()"
         severity="info"
-        variant="outlined"
+        variant="outline"
         tooltip="Compactar productos para vista ejecutiva"
         size="small"
         tooltipPosition="left"
       />
       } } @if (!cleanView && cotizacionProveedorSignal().length < 3) {
       <il-button
-        iconClass="mdi:plus"
+        iconClass="material-symbols-light:add"
         label="Agregar cotizacion"
-        variant="outlined"
+        variant="outline"
         (clicked)="onModalAddProveedor()"
         tooltip="Agregar Cotizacion"
         tooltipPosition="left"
@@ -82,11 +80,11 @@
       />
       } @if (!cleanView) {
       <il-button
-        iconClass="mdi:wallet-outline"
+        iconClass="material-symbols-light:wallet"
         label="Agregar presupuesto"
         (clicked)="onOpenAddBudgetModal()"
         severity="contrast"
-        variant="outlined"
+        variant="outline"
         size="small"
       />
       <input
@@ -98,30 +96,30 @@
         (change)="onEvidenceFilesSelected($event)"
       />
       <il-button
-        iconClass="mdi:image-multiple"
+        iconClass="material-symbols-light:photo-library"
         label="Seleccionar fotos"
         (clicked)="evidenceInput.click()"
         severity="secondary"
-        variant="outlined"
+        variant="outline"
         [disabled]="evidenciasSignal().length >= 4"
         size="small"
       />
       <il-button
-        iconClass="mdi:upload"
+        iconClass="material-symbols-light:upload"
         label="Subir fotos"
         (clicked)="onUploadEvidenceFiles()"
         [disabled]="selectedEvidenceFiles.length === 0"
         severity="success"
-        variant="outlined"
+        variant="outline"
         size="small"
       />
       }
       <il-button
-        [iconClass]="isAuthorized() ? 'mdi:close' : (isDenied() ? 'mdi:cancel' : 'mdi:check')"
+        [iconClass]="isAuthorized() ? 'material-symbols-light:close' : (isDenied() ? 'material-symbols-light:cancel' : 'material-symbols-light:check')"
         [label]="isAuthorized() ? 'Desautorizar' : (isDenied() ? 'Resolver' : 'Autorizar')"
         (clicked)="onOpenAutorizarModal()"
         [severity]="isAuthorized() ? 'danger' : (isDenied() ? 'warning' : 'success')"
-        variant="outlined"
+        variant="outline"
         size="small"
       />
     </div>
@@ -161,7 +159,7 @@
           <span class="font-semibold text-sm">Requiere contrato:</span>
           @if (!cleanView) {
           <il-button
-            [iconClass]="solicitudCompra?.requiereContrato ? 'mdi:file-sign' : 'mdi:file-document-outline'"
+            [iconClass]="solicitudCompra?.requiereContrato ? 'material-symbols-light:edit-note' : 'material-symbols-light:description'"
             [label]="solicitudCompra?.requiereContrato ? 'Si requiere' : 'No requiere'"
             [severity]="solicitudCompra?.requiereContrato ? 'success' : 'secondary'"
             [variant]="solicitudCompra?.requiereContrato ? undefined : 'outlined'"
@@ -188,7 +186,7 @@
           </span>
           @if (!cleanView) {
           <il-button
-            iconClass="mdi:calendar-edit"
+            iconClass="material-symbols-light:edit-calendar"
             label="Cambiar"
             size="small"
             severity="secondary"
@@ -198,11 +196,11 @@
           />
           } } @else { @if (!cleanView) {
           <il-button
-            iconClass="mdi:calendar-plus"
+            iconClass="material-symbols-light:calendar-add-on"
             label="Asignar junta"
             size="small"
             severity="info"
-            variant="outlined"
+            variant="outline"
             tooltip="Seleccionar la junta donde se presentara esta solicitud"
             (clicked)="onOpenAsignarJuntaModal()"
           />
@@ -254,7 +252,7 @@
                 </small>
                 @if (!cleanView && !evidencia.isPending) {
                 <il-button
-                  iconClass="mdi:delete"
+                  iconClass="material-symbols-light:delete"
                   label="Eliminar"
                   (clicked)="onDeleteEvidence(evidencia.id)"
                   severity="danger"
@@ -359,12 +357,7 @@
 >
   <ng-template #body>
     <tr>
-      <td
-        
-        class="text-right font-bold"
-      >
-        TIEMPO DE ENTREGA
-      </td>
+      <td class="text-right font-bold">TIEMPO DE ENTREGA</td>
       @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
       <td
         class="text-center"
@@ -375,12 +368,7 @@
       }
     </tr>
     <tr>
-      <td
-        
-        class="text-right font-bold"
-      >
-        GARANTIA
-      </td>
+      <td class="text-right font-bold">GARANTIA</td>
       @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
       <td
         class="text-center"
@@ -391,12 +379,7 @@
       }
     </tr>
     <tr>
-      <td
-        
-        class="text-right font-bold"
-      >
-        POLITICAS DE PAGO
-      </td>
+      <td class="text-right font-bold">POLITICAS DE PAGO</td>
       @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
       <td
         class="text-center"
@@ -407,12 +390,7 @@
       }
     </tr>
     <tr>
-      <td
-        
-        class="text-right font-bold"
-      >
-        VER COTIZACION
-      </td>
+      <td class="text-right font-bold">VER COTIZACION</td>
       @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
       <td
         class="text-center"
@@ -469,7 +447,7 @@
         <td class="text-center">
           @if (!cleanView) {
           <iw-button
-            iconClass="mdi:delete"
+            iconClass="material-symbols-light:delete"
             (clicked)="onDeleteBudget(budget.id)"
             severity="danger"
             variant="text"
@@ -490,7 +468,7 @@
   </p-table>
 </div>
 <lx-modal header="Auditoria de Compras - Analisis IA" [(visible)]="showAiModal">
-<div class="surface-card p-4 rounded shadow-sm">
+  <div class="surface-card p-4 rounded shadow-sm">
     <div
       [innerHTML]="aiAnalysisResult"
       class="text-lg line-height-3 text-800"
@@ -501,7 +479,7 @@
     <div class="flex justify-content-end pt-3">
       <il-button
         label="Cerrar Reporte"
-        icon="mdi:check"
+        icon="material-symbols-light:check"
         (clicked)="showAiModal=false"
         size="small"
         severity="secondary"

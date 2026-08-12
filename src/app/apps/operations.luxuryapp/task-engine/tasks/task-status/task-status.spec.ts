@@ -68,11 +68,11 @@ describe("TaskStatus", () => {
   });
 
   it("getIconForStatus should return correct icons", () => {
-    expect(component.getIconForStatus("NotStarted")).toBe("mdi:folder-open");
-    expect(component.getIconForStatus("InProgress")).toBe("mdi:sync");
-    expect(component.getIconForStatus("Completed")).toBe("mdi:check-circle");
-    expect(component.getIconForStatus("Reopened")).toBe("mdi:refresh");
-    expect(component.getIconForStatus("Unknown")).toBe("mdi:circle");
+    expect(component.getIconForStatus("NotStarted")).toBe("material-symbols-light:folder-open");
+    expect(component.getIconForStatus("InProgress")).toBe("material-symbols-light:sync");
+    expect(component.getIconForStatus("Completed")).toBe("material-symbols-light:check-circle");
+    expect(component.getIconForStatus("Reopened")).toBe("material-symbols-light:refresh");
+    expect(component.getIconForStatus("Unknown")).toBe("material-symbols-light:circle");
   });
 
   it("getSeverityForStatus should return correct severities", () => {

@@ -51,7 +51,7 @@ interface Equipo {
       AspRole.SuperUsuario])) {
       <il-button
         label="Agregar"
-        iconClass="mdi:plus"
+        iconClass="material-symbols-light:add"
         (clicked)="onAddMantenimiento()"
       />
       }
@@ -93,7 +93,7 @@ interface Equipo {
           <td>
             <div class="flex">
               <iw-button-item
-                iconClass="mdi:content-copy"
+                iconClass="material-symbols-light:content-copy"
                 lxTooltip="Duplicar"
                 tooltipPosition="top"
                 variant="text"

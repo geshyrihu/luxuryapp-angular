@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 type FlowNode = {
   title: string;
   subtitle: string;
-  icon: string;
+  icon: AppIconName;
   tone: "sky" | "teal" | "amber" | "rose" | "violet";
   bullets: string[];
 };
@@ -23,7 +24,7 @@ export default class SystemFlowMap {
     {
       title: "Propiedades",
       subtitle: "La unidad financiera base del condominio",
-      icon: "mdi:home-city-outline",
+      icon: "material-symbols-light:location-city",
       tone: "sky",
       bullets: [
         "Cada propiedad concentra deuda, pagos y estado de cuenta",
@@ -33,7 +34,7 @@ export default class SystemFlowMap {
     {
       title: "Miembros y responsable",
       subtitle: "Quien recibe cargos y notificaciones",
-      icon: "mdi:account-group-outline",
+      icon: "material-symbols-light:group-outline",
       tone: "sky",
       bullets: [
         "Se identifica un responsable financiero activo",
@@ -43,7 +44,7 @@ export default class SystemFlowMap {
     {
       title: "Configuracion",
       subtitle: "Modo de facturacion y canales del modulo",
-      icon: "mdi:tune-variant",
+      icon: "material-symbols-light:tune",
       tone: "sky",
       bullets: [
         "BillingConfig define el modo nativo",
@@ -56,7 +57,7 @@ export default class SystemFlowMap {
     {
       title: "Plantillas de cargos",
       subtitle: "Reglas para mantenimiento, extraordinarias y otros conceptos",
-      icon: "mdi:file-document-edit-outline",
+      icon: "material-symbols-light:edit-note",
       tone: "teal",
       bullets: [
         "Monto fijo o por indiviso",
@@ -66,7 +67,7 @@ export default class SystemFlowMap {
     {
       title: "Cargos emitidos",
       subtitle: "La deuda nace aqui",
-      icon: "mdi:cash-plus",
+      icon: "material-symbols-light:add-card",
       tone: "teal",
       bullets: [
         "Cargo manual, recurrente, recargo, multa o ajuste",
@@ -76,7 +77,7 @@ export default class SystemFlowMap {
     {
       title: "Eventos especiales",
       subtitle: "Movimientos que ajustan la posicion financiera",
-      icon: "mdi:flash-outline",
+      icon: "material-symbols-light:flash-on",
       tone: "teal",
       bullets: [
         "Notas de credito, condonaciones, multas y ajustes",
@@ -89,7 +90,7 @@ export default class SystemFlowMap {
     {
       title: "Pagos y abonos",
       subtitle: "Entrada de dinero y aplicacion operativa",
-      icon: "mdi:credit-card-check-outline",
+      icon: "material-symbols-light:credit-card",
       tone: "amber",
       bullets: [
         "Aplicacion FIFO a cargos pendientes",
@@ -99,7 +100,7 @@ export default class SystemFlowMap {
     {
       title: "Automatizaciones",
       subtitle: "Jobs y eventos que disparan acciones",
-      icon: "mdi:robot-outline",
+      icon: "material-symbols-light:smart-toy-outline",
       tone: "amber",
       bullets: [
         "Generacion de cargos, calculo de mora, avisos y escalamiento",
@@ -109,7 +110,7 @@ export default class SystemFlowMap {
     {
       title: "Aprobaciones y cierres",
       subtitle: "Controles para cambios sensibles",
-      icon: "mdi:shield-check-outline",
+      icon: "material-symbols-light:verified-outline",
       tone: "amber",
       bullets: [
         "Maker-checker para operaciones sensibles",
@@ -122,7 +123,7 @@ export default class SystemFlowMap {
     {
       title: "Ledger financiero",
       subtitle: "Fuente confiable e inmutable",
-      icon: "mdi:book-open-variant-outline",
+      icon: "material-symbols-light:menu-book",
       tone: "violet",
       bullets: [
         "Cada cargo, pago, reverso o ajuste genera entradas append-only",
@@ -132,7 +133,7 @@ export default class SystemFlowMap {
     {
       title: "Estado de cuenta y PDF",
       subtitle: "Salida operativa para residentes y equipo",
-      icon: "mdi:file-pdf-box",
+      icon: "material-symbols-light:picture-as-pdf",
       tone: "violet",
       bullets: [
         "Consulta por fecha de corte",
@@ -142,7 +143,7 @@ export default class SystemFlowMap {
     {
       title: "Notificaciones y casos",
       subtitle: "Seguimiento y cobranza preventiva/legal",
-      icon: "mdi:bell-badge-outline",
+      icon: "material-symbols-light:notifications-outline",
       tone: "violet",
       bullets: [
         "Avisos de cobro, push, correo y escalamiento",

@@ -91,7 +91,7 @@
             <iw-button
               lxTooltip="Checklist"
               tooltipPosition="top"
-              iconClass="mdi:format-list-checks"
+              iconClass="material-symbols-light:fact-check"
               [noMargin]="true"
               customClass="p-button-sm p-button-outlined"
               (clicked)="onOpenAssemblyChecklist(item)"
@@ -185,20 +185,20 @@
               <div
                 class="flex align-items-center gap-1 text-sm font-medium text-color-secondary"
               >
-                <app-icon icon="mdi:clock-outline" />
+                <app-icon icon="material-symbols-light:schedule" />
                 <span>{{ formatBusinessTime(item.startAt) }}</span>
               </div>
               <div
                 class="flex align-items-center gap-1 text-sm font-medium text-color-secondary"
               >
-                <app-icon icon="mdi:account-group-outline" />
+                <app-icon icon="material-symbols-light:group-outline" />
                 <span>{{ item.guestCount }} Invitados</span>
               </div>
               @if (item.recurrenceSummary) {
               <div
                 class="flex align-items-center gap-1 text-sm font-medium text-color-secondary"
               >
-                <app-icon icon="mdi:refresh" />
+                <app-icon icon="material-symbols-light:refresh" />
                 <span>{{ item.recurrenceSummary }}</span>
               </div>
               }
@@ -217,7 +217,7 @@
                 target="_blank"
                 class="no-underline text-xs font-bold px-2 py-1 border-round-xl bg-green-100 text-green-800 flex align-items-center gap-1"
               >
-                <app-icon icon="mdi:video" /> Meet
+                <app-icon icon="material-symbols-light:videocam" /> Meet
               </a>
               }
             </div>
@@ -226,7 +226,7 @@
             <div class="mt-2 w-full">
               <il-button
                 label="Checklist asamblea"
-                icon="mdi:format-list-checks"
+                icon="material-symbols-light:fact-check"
                 [noMargin]="true"
                 customClass="p-button-sm p-button-outlined w-full"
                 (clicked)="onOpenAssemblyChecklist(item)"

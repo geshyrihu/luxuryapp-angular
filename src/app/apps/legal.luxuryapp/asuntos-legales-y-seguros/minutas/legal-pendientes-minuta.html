@@ -124,10 +124,10 @@
         <app-action-menu>
           <ng-container actions>
             <il-button-item
-              iconClass="mdi:file-pdf-box"
+              iconClass="material-symbols-light:picture-as-pdf"
               (clicked)="onModalTodosSeguimientos(item.id)"
               label="Ver todos los seguimientos"
-              iconClass="mdi:format-list-bulleted"
+              iconClass="material-symbols-light:format-list-bulleted"
               []="true"
             />
             <il-button-add
@@ -143,7 +143,7 @@
                 })
               "
               label="Editar"
-              iconClass="mdi:pencil"
+              iconClass="material-symbols-light:edit"
               []="true"
             />
           </ng-container>
@@ -174,7 +174,7 @@
         class="w-3rem h-3rem bg-yellow-100"
       >
         <app-icon
-          icon="mdi:clipboard-text-outline"
+          icon="material-symbols-light:article-outline"
           class="text-xl text-yellow-500"
         />
       </div>
@@ -212,11 +212,11 @@
           [class.bg-secondary]="item.status == 2"
         >
           @if (item.status === 0) {
-          <app-icon [icon]="'mdi:close'" class="icon icon-" />
+          <app-icon [icon]="'material-symbols-light:close'" class="icon icon-" />
           } @if (item.status === 1) {
-          <app-icon [icon]="'mdi:check'" class="icon icon-" />
+          <app-icon [icon]="'material-symbols-light:check'" class="icon icon-" />
           } @if (item.status === 2) {
-          <app-icon [icon]="'mdi:ban'" class="icon icon-" />
+          <app-icon [icon]="'material-symbols-light:block'" class="icon icon-" />
           }
         </span>
       </p>
@@ -237,7 +237,7 @@
           />
           <ili-button-edit
             label="Editar"
-            iconClass="mdi:pencil"
+            iconClass="material-symbols-light:edit"
             (clicked)="
               onModalFormMinutaDetalle({
                 id: item.id,

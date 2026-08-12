@@ -8,7 +8,7 @@
       
     >
       <app-icon
-        icon="mdi:wallet"
+        icon="material-symbols-light:wallet"
         
       />
     </div>
@@ -45,7 +45,7 @@
       (click)="navigateTo('/cobranza-nativa/flow-map')"
     >
       <span class="mobile-flow-entry__icon">
-        <app-icon [icon]="'mdi:transit-connection-variant'" />
+        <app-icon [icon]="'material-symbols-light:route'" />
       </span>
       <span class="mobile-flow-entry__copy">
         <strong>Ver mapa visual del flujo</strong>
@@ -53,13 +53,13 @@
           >Explica properties, cargos, pagos, ledger, PDF y controles.</small
         >
       </span>
-      <app-icon [icon]="'mdi:arrow-right'" class="mobile-flow-entry__arrow" />
+      <app-icon [icon]="'material-symbols-light:arrow-forward'" class="mobile-flow-entry__arrow" />
     </lx-card>
 
     <div class="flex justify-content-end">
       <il-button
         label="Ajustes temporales"
-        iconClass="mdi:tune"
+        iconClass="material-symbols-light:tune"
         severity="secondary"
         variant="text"
         (clicked)="openBillingConfig()"
@@ -76,7 +76,7 @@
     >
       <div class="flex align-items-center gap-2">
         <app-icon
-          icon="mdi:view-dashboard-outline"
+          icon="material-symbols-light:dashboard-outline"
           
         />
         <span
@@ -163,7 +163,7 @@
           
         >
           <app-icon
-            icon="mdi:wallet"
+            icon="material-symbols-light:wallet"
             
           />
         </div>
@@ -180,7 +180,7 @@
       <div class="flex justify-content-end">
         <il-button
           label="Ajustes temporales"
-          iconClass="mdi:tune"
+          iconClass="material-symbols-light:tune"
           severity="secondary"
           variant="text"
           (clicked)="openBillingConfig()"
@@ -219,7 +219,7 @@
         <lx-tag value="Nuevo para UI" severity="info" [rounded]="true" class="desktop-flow-entry__badge" />
         <div class="desktop-flow-entry__body">
           <div class="desktop-flow-entry__icon">
-            <app-icon [icon]="'mdi:transit-connection-variant'" />
+            <app-icon [icon]="'material-symbols-light:route'" />
           </div>
           <div class="desktop-flow-entry__copy">
             <strong>Mapa visual del flujo completo</strong>
@@ -230,7 +230,7 @@
             </span>
           </div>
           <app-icon
-            [icon]="'mdi:arrow-right'"
+            [icon]="'material-symbols-light:arrow-forward'"
             class="desktop-flow-entry__arrow"
           />
         </div>
@@ -259,7 +259,7 @@
                 @if (card.pending) {
                 <lx-tag value="Pendiente" severity="warn" class="text-xs" />
                 }
-                <app-icon icon="mdi:arrow-up-right" class="text-400" />
+                <app-icon icon="material-symbols-light:north-east" class="text-400" />
               </div>
             </div>
 
@@ -275,7 +275,7 @@
 
           <div (click)="$event.stopPropagation()">
             <il-button
-              [iconClass]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:information-outline'"
+              [iconClass]="isExpanded(card.title) ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:info'"
               [label]="isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle tecnico'"
               variant="link"
               severity="secondary"
@@ -294,7 +294,7 @@
               class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center"
             >
               <app-icon
-                [icon]="'mdi:format-list-bulleted'"
+                [icon]="'material-symbols-light:format-list-bulleted'"
                 class="text-xs mr-2 text-primary"
               />Acciones
             </div>
@@ -308,7 +308,7 @@
               class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center"
             >
               <app-icon
-                [icon]="'mdi:server'"
+                [icon]="'material-symbols-light:dns'"
                 class="text-xs mr-2 text-primary"
               />Endpoints API
             </div>
@@ -337,7 +337,7 @@
                 class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center"
               >
                 <app-icon
-                  [icon]="'mdi:tag'"
+                  [icon]="'material-symbols-light:label'"
                   class="text-xs mr-2 text-primary"
                 />Estados
               </div>
@@ -351,7 +351,7 @@
             <div class="cb-card-note mt-3 pt-3 border-top-1">
               <div class="text-xs line-height-3 text-900">
                 <app-icon
-                  [icon]="'mdi:information'"
+                  [icon]="'material-symbols-light:info'"
                   class="mr-1 text-primary"
                 />
                 {{ card.notes }}
@@ -401,7 +401,7 @@
                 @if (card.pending) {
                 <lx-tag value="Pendiente" severity="warn" class="text-xs" />
                 }
-                <app-icon icon="mdi:arrow-up-right" class="text-400" />
+                <app-icon icon="material-symbols-light:north-east" class="text-400" />
               </div>
             </div>
 
@@ -417,7 +417,7 @@
 
           <div (click)="$event.stopPropagation()">
             <il-button
-              [iconClass]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:information-outline'"
+              [iconClass]="isExpanded(card.title) ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:info'"
               [label]="isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle tecnico'"
               variant="link"
               severity="secondary"
@@ -436,7 +436,7 @@
               class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center"
             >
               <app-icon
-                [icon]="'mdi:format-list-bulleted'"
+                [icon]="'material-symbols-light:format-list-bulleted'"
                 class="text-xs mr-2 text-primary"
               />Acciones
             </div>
@@ -450,7 +450,7 @@
               class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center"
             >
               <app-icon
-                [icon]="'mdi:server'"
+                [icon]="'material-symbols-light:dns'"
                 class="text-xs mr-2 text-primary"
               />Endpoints API
             </div>
@@ -479,7 +479,7 @@
                 class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center"
               >
                 <app-icon
-                  [icon]="'mdi:tag'"
+                  [icon]="'material-symbols-light:label'"
                   class="text-xs mr-2 text-primary"
                 />Estados
               </div>
@@ -493,7 +493,7 @@
             <div class="cb-card-note mt-3 pt-3 border-top-1">
               <div class="text-xs line-height-3 text-900">
                 <app-icon
-                  [icon]="'mdi:information'"
+                  [icon]="'material-symbols-light:info'"
                   class="mr-1 text-primary"
                 />
                 {{ card.notes }}

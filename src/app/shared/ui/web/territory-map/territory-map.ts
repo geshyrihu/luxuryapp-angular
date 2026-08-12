@@ -32,19 +32,17 @@ export interface Territory {
         <h3 class="tm-title">{{ title() }}</h3>
         <div class="tm-summary">
           <span class="tm-stat"
-            ><app-icon icon="mdi:map-marker-multiple-outline" />{{
-              territories().length
-            }}
-            territorios</span
+            ><app-icon
+              icon="material-symbols-light:location-on"
+            />{{ territories().length }} territorios</span
           >
           <span class="tm-stat"
-            ><app-icon icon="mdi:account-multiple-outline" />{{
-              totalAccounts()
-            }}
-            cuentas</span
+            ><app-icon
+              icon="material-symbols-light:groups"
+            />{{ totalAccounts() }} cuentas</span
           >
           <span class="tm-stat"
-            ><app-icon icon="mdi:currency-usd" />{{
+            ><app-icon icon="material-symbols-light:attach-money" />{{
               formatCurrency(totalRevenue())
             }}</span
           >
@@ -56,7 +54,7 @@ export interface Territory {
         <div class="tm-region">
           @if (region) {
             <h4 class="tm-region-title">
-              <app-icon icon="mdi:map-outline" />
+              <app-icon icon="material-symbols-light:map" />
               {{ region }}
             </h4>
           }

@@ -2,7 +2,7 @@
 <div class="p-3">
   <lx-card class="card card--elevated mb-4">
     <div class="flex align-items-center gap-3">
-      <app-icon [icon]="'mdi:shield'" class="text-3xl text-primary" />
+      <app-icon [icon]="'material-symbols-light:shield'" class="text-3xl text-primary" />
       <div>
         <div class="font-bold text-lg">{{ operationLabel(req.operationType) }}</div>
         <div class="text-500 text-sm">
@@ -34,7 +34,7 @@
 
   <lx-card class="card card--elevated mb-4">
     <div class="flex gap-2 align-items-start">
-      <app-icon [icon]="'mdi:alert'" class="text-warning mt-1" />
+      <app-icon [icon]="'material-symbols-light:warning'" class="text-warning mt-1" />
       <span class="text-sm text-700">
         No puedes aprobar una solicitud que tú mismo creaste. Al aprobar, la
         operación se ejecuta automáticamente.
@@ -52,14 +52,14 @@
   <div class="flex justify-content-end gap-2 mt-3">
     <il-button
       label="Rechazar"
-      iconClass="mdi:close"
+      iconClass="material-symbols-light:close"
       severity="danger"
       [disabled]="submitting()"
       (clicked)="onReject()"
     />
     <il-button
       label="Aprobar y Ejecutar"
-      iconClass="mdi:check"
+      iconClass="material-symbols-light:check"
       severity="success"
       [disabled]="submitting()"
       (clicked)="onApprove()"

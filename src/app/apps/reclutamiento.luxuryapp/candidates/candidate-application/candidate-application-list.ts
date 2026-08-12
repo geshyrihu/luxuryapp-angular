@@ -118,7 +118,7 @@ export class CandidateApplicationList implements OnInit {
       .openDialog(
         CandidateStageChangeModal,
         data,
-        "Cambiar etapa",
+        "Cambiar etapa del proceso",
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {

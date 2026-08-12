@@ -22,6 +22,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service";
 import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-committee-cobranza-web",
@@ -39,6 +40,7 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
     AppStatCard,
     AppProgressBar,
     LxTag,
+    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-cobranza-web.html",

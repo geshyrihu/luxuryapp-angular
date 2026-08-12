@@ -4,7 +4,7 @@
     class="flex align-items-center justify-content-center py-8"
     
   >
-    <app-icon [icon]="'mdi:loading'" class="text-primary text-4xl" />
+    <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
   </div>
   } @else {
   <div class="w-full xl:w-10 mx-auto flex flex-column gap-4">
@@ -17,7 +17,7 @@
       <div class="p-4 md:p-5">
         <div class="mb-3">
           <iw-button
-            iconClass="mdi:arrow-left"
+            iconClass="material-symbols-light:arrow-back"
             variant="text"
             severity="secondary"
             (clicked)="onBack()"
@@ -45,18 +45,18 @@
             <div
               class="inline-flex align-items-center gap-2 text-color-secondary"
             >
-              <app-icon [icon]="'mdi:format-list-bulleted'" />
+              <app-icon [icon]="'material-symbols-light:format-list-bulleted'" />
               <span>Total: {{ totalTasks() }} tareas</span>
             </div>
             <div
               class="inline-flex align-items-center gap-2 text-color-secondary"
             >
-              <app-icon [icon]="'mdi:grid'" />
+              <app-icon [icon]="'material-symbols-light:grid-view'" />
               <span>Areas: {{ groupedTasks().length }}</span>
             </div>
           </div>
           <il-button
-            iconClass="mdi:file-pdf-box"
+            iconClass="material-symbols-light:picture-as-pdf"
             label="Exportar PDF"
             severity="secondary"
             variant="outline"
@@ -128,12 +128,12 @@
                    />
                   @if (task.assignee) {
                   <span class="text-xs text-color-secondary"
-                    ><app-icon [icon]="'mdi:account'" class="mr-1" />{{
+                    ><app-icon [icon]="'material-symbols-light:person'" class="mr-1" />{{
                     task.assignee }}</span
                   >
                   } @if (task.scheduledAt) {
                   <span class="text-xs text-color-secondary"
-                    ><app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon
+                    ><app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1"></app-icon
                     >{{ task.scheduledAt }}</span
                   >
                   }
@@ -167,7 +167,7 @@
       class="surface-card rounded-xl border-1 surface-border p-6 shadow-sm text-center"
     >
       <app-icon
-        [icon]="'mdi:check-circle'"
+        [icon]="'material-symbols-light:check-circle'"
         class="text-4xl text-400 mb-3 block"
       />
       <p class="text-500 m-0 text-lg">

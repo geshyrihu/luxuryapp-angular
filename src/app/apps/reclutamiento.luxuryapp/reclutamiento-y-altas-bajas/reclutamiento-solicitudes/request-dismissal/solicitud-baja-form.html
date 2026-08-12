@@ -245,7 +245,7 @@
                     <div class="col-12 md:col-2">
                       <il-button
                         label="Borrar"
-                        variant="outlined"
+                        variant="outline"
                         severity="danger"
                         [fluid]="true"
                         [noMargin]="true"
@@ -274,8 +274,11 @@
             (click)="goToCreateEvaluation()"
             class="text-red-700 underline cursor-pointer"
           >
-            <app-icon [icon]="'mdi:external-link'" class="mr-1" /> Ir a crear
-            una evaluación de desempeño
+            <app-icon
+              [icon]="'material-symbols-light:open-in-new'"
+              class="mr-1"
+            />
+            Ir a crear una evaluación de desempeño
           </a>
         </div>
         }

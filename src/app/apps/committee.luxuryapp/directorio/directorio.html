@@ -27,7 +27,7 @@
           [alt]="person.firstName"
           width="56px"
           height="56px"
-          [fallbackIcon]="view() === 'casetas' ? 'mdi:office-building' : 'mdi:account'"
+          [fallbackIcon]="view() === 'casetas' ? 'material-symbols-light:person' : 'material-symbols-light:person'"
           [imageStyle]="{ 'border-radius': '50%', 'object-fit': 'cover' }"
           [fallbackStyle]="{ 'border-radius': '50%' }"
         />
@@ -48,7 +48,7 @@
         </div>
         }
       </div>
-      <i class="pi pi-chevron-right committee-contact__chevron"></i>
+      <app-icon icon="material-symbols-light:chevron-right" class="committee-contact__chevron" />
     </article>
     }
   </div>

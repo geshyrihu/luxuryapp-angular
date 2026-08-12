@@ -29,7 +29,11 @@
     <tr [pReorderableRow]="index">
       <td>
         <div>
-          <app-icon icon="mdi:menu" class="icon" pReorderableRowHandle />
+          <app-icon
+            icon="material-symbols-light:menu"
+            class="icon"
+            pReorderableRowHandle
+          />
         </div>
       </td>
       <td class="text-center">{{ item.folio }}</td>
@@ -40,8 +44,8 @@
         <iw-button
           lxTooltip="IA"
           tooltipPosition="top"
-          iconClass="mdi:comment-multiple"
-          variant="outlined"
+          iconClass="material-symbols-light:forum"
+          variant="outline"
           severity="info"
           size="sm"
           (clicked)="openConsultation(item.id)"
@@ -70,25 +74,34 @@
           start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
         >
-          <app-icon icon="mdi:scale-balance" class="text-xl text-primary" />
+          <app-icon
+            icon="material-symbols-light:balance"
+            class="text-xl text-primary"
+          />
         </div>
 
         <div class="flex justify-content-between align-items-center mb-1">
           <h2 class="font-bold m-0 text-base text-wrap">{{ item.name }}</h2>
         </div>
         <p class="text-sm text-500 m-0">
-          <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs" />
+          <app-icon
+            [icon]="'material-symbols-light:currency-pound'"
+            class="mr-1 text-xs"
+          />
           Folio: {{ item.folio }}
         </p>
         <p class="text-sm text-500 m-0">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" />
+          <app-icon
+            [icon]="'material-symbols-light:calendar-today'"
+            class="mr-1 text-xs"
+          />
           Fecha: {{ item.createAt }}
         </p>
 
         <div end class="flex align-items-center gap-1">
           <il-button-view-pdf [url]="item.path" pdf="Reglamento" />
           <iw-button
-            iconClass="mdi:comment-multiple"
+            iconClass="material-symbols-light:forum"
             severity="info"
             variant="ghost-text"
             (clicked)="openConsultation(item.id)"
@@ -109,7 +122,9 @@
   <div class="flex flex-column">
     <div class="p-message p-message-info border-none m-0 shadow-none">
       <div class="p-message-wrapper p-3">
-        <span class="p-message-icon mdi:information text-xl"></span>
+        <span
+          class="p-message-icon material-symbols-light:info text-xl"
+        ></span>
         <span class="p-message-text ml-2"
           >Haz una pregunta específica sobre este reglamento y la IA analizaré
           el documento para responderte.</span
@@ -134,7 +149,7 @@
     @if (aiResponse()) {
     <div class="surface-ground p-3 rounded-xl">
       <div class="flex align-items-center mb-2 text-primary font-bold">
-        <app-icon [icon]="'mdi:sparkles'" />
+        <app-icon [icon]="'material-symbols-light:auto-awesome-motion'" />
         <span>Respuesta del Asistente</span>
       </div>
       <div
@@ -148,14 +163,14 @@
   <ng-template #footer>
     <il-button
       label="Cancelar"
-      iconClass="mdi:close"
+      iconClass="material-symbols-light:close"
       variant="ghost-text"
       [disabled]="consultingDoc()"
       (clicked)="showConsultationDialog.set(false)"
     />
     <il-button
       label="Consultar"
-      iconClass="mdi:magnify"
+      iconClass="material-symbols-light:search"
       [loading]="consultingDoc()"
       [disabled]="!consultationQueryControl.value?.trim()"
       (clicked)="consultAi()"

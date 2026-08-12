@@ -27,7 +27,7 @@ export class CandidateStageTimeline {
         description: h.comment,
         date: this.formatDate(h.changedAt),
         badge: this.stageLabel(h.toStage),
-        icon: "mdi:swap-horizontal",
+        icon: "material-symbols-light:swap-horiz",
       })),
   );
 

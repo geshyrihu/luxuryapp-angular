@@ -77,13 +77,13 @@
               <div class="col-12 sm:col-1 p-1">
                 <div class="flex gap-1">
                   <iw-button
-                    iconClass="mdi:magnify"
+                    iconClass="material-symbols-light:search"
                     type="submit"
-                    variant="outlined"
+                    variant="outline"
                   />
                   <iw-button
-                    iconClass="mdi:filter-variant-remove"
-                    variant="outlined"
+                    iconClass="material-symbols-light:filter-alt-off"
+                    variant="outline"
                     (clicked)="onReset()"
                   />
                 </div>
@@ -174,13 +174,13 @@
                 <!-- Added  for spacing -->
                 <iw-button-item
                   (clicked)="onShowDetail(item)"
-                  iconClass="mdi:information-outline"
+                  iconClass="material-symbols-light:info"
                   lxTooltip="Ver Detalle"
                 />
                 @if(item.status === 'Aprobada' && canCancel()){
                 <iw-button-item
                   (clicked)="onCancel(item)"
-                  iconClass="mdi:ban"
+                  iconClass="material-symbols-light:block"
                   lxTooltip="Cancelar"
                 />
                 }
@@ -209,7 +209,7 @@
               class="w-3rem h-3rem bg-primary-50"
             >
               <app-icon
-                icon="mdi:format-list-bulleted"
+                icon="material-symbols-light:format-list-bulleted"
                 class="text-xl text-primary"
               />
             </div>

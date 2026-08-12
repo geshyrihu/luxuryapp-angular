@@ -25,12 +25,6 @@
           <p class="m-0 text-color">{{ d.age ?? "N/D" }}</p>
         </div>
         <div class="col-12 md:col-6">
-          <p class="text-sm m-0 text-color-secondary">Vive cerca</p>
-          <p class="m-0 text-color">
-            {{ d.livesNearWorkplace ? "Si" : d.livesNearWorkplace === false ? "No" : "N/D" }}
-          </p>
-        </div>
-        <div class="col-12 md:col-6">
           <p class="text-sm m-0 text-color-secondary">Expectativa salarial</p>
           <p class="m-0 text-color">$ {{ d.salaryExpectation }}</p>
         </div>
@@ -47,12 +41,43 @@
           <p class="m-0 text-color">{{ d.experienceSummary }}</p>
         </div>
         <div class="col-12">
+          <p class="text-sm m-0 text-color-secondary">Experiencia laboral</p>
+          @if (d.workExperiences?.length) {
+            <div class="flex flex-column gap-2 mt-2">
+              @for (experience of d.workExperiences; track experience.id) {
+                <div class="surface-50 border-1 surface-border border-round p-3">
+                  <div class="font-semibold">{{ experience.companyName }}</div>
+                  <div class="text-sm text-color-secondary">
+                    {{ experience.jobPosition }}
+                  </div>
+                  <div class="text-sm mt-1">
+                    {{ experience.startDate }} -
+                    {{ experience.endDate || "Actual" }}
+                  </div>
+                  @if (experience.monthlyNetSalary) {
+                    <div class="text-sm">
+                      Salario: $ {{ experience.monthlyNetSalary }}
+                    </div>
+                  }
+                  @if (experience.departureReason) {
+                    <div class="text-sm text-color-secondary mt-1">
+                      Motivo de salida: {{ experience.departureReason }}
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          } @else {
+            <p class="m-0 text-color">Sin experiencias registradas</p>
+          }
+        </div>
+        <div class="col-12">
           <lx-divider />
         </div>
         <div class="col-12 flex justify-content-end">
           <il-button
-            iconClass="pi pi-user-plus"
-            label="Agregar vacante / entrevista"
+            iconClass="material-symbols-light:person-add"
+            label="Asignar vacante / entrevista"
             customClass="p-button-outlined p-button-sm"
             (clicked)="onAddApplication()"
           />
@@ -62,10 +87,12 @@
   </div>
 }
 
-@if (activeTab() === "postulaciones") {
+@if (activeTab() === "procesos") {
   <div class="px-3 py-2">
     @if (applications().length === 0) {
-      <p class="text-center text-color-secondary m-0 py-3">Sin vacantes ligadas</p>
+      <p class="text-center text-color-secondary m-0 py-3">
+        Sin vacantes ligadas
+      </p>
     } @else {
       <div class="flex flex-column gap-2">
         @for (app of applications(); track app.id) {
@@ -86,7 +113,7 @@
             @if (isSelected(app.currentStage)) {
               <div class="flex justify-content-end">
                 <il-button
-                  iconClass="pi pi-shopping-cart"
+                  iconClass="material-symbols-light:shopping-cart"
                   label="Procesar alta"
                   customClass="p-button-sm p-button-success p-button-outlined"
                   (clicked)="onProcessHiring(app)"

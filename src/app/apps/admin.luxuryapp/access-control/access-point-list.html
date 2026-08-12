@@ -27,7 +27,7 @@
     <div class="flex gap-2 mt-2">
       <il-button
         [label]="editingId() ? 'Guardar cambios' : 'Crear puerta'"
-        iconClass="mdi:door"
+        iconClass="material-symbols-light:door-front"
         type="submit"
         [loading]="submitting()"
         [disabled]="form.invalid"
@@ -64,7 +64,7 @@
         <il-button
           label="Editar"
           variant="text"
-          iconClass="mdi:pencil"
+          iconClass="material-symbols-light:edit"
           (clicked)="edit(ap)"
         />
       </td>

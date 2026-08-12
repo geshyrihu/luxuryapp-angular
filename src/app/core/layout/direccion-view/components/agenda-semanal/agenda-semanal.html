@@ -3,7 +3,7 @@
   class="flex align-items-center justify-content-between gap-2 mb-3 flex-wrap"
 >
   <div class="flex align-items-center gap-2">
-    <app-icon icon="mdi:calendar" class="text-primary text-xl" />
+    <app-icon icon="material-symbols-light:calendar-today" class="text-primary text-xl" />
     <span class="font-bold text-lg text-900">Agenda</span>
     @if (totalEventos() > 0) {
     <span class="text-xs surface-200 text-600 rounded px-2 py-1">
@@ -14,7 +14,7 @@
 
   <div class="flex align-items-center gap-1 flex-wrap">
     <iw-button
-      icon="mdi:chevron-left"
+      icon="material-symbols-light:chevron-left"
       variant="text"
       severity="secondary"
       size="sm"
@@ -25,7 +25,7 @@
       {{ rangoLabel() }}
     </span>
     <iw-button
-      icon="mdi:chevron-right"
+      icon="material-symbols-light:chevron-right"
       variant="text"
       severity="secondary"
       size="sm"
@@ -43,7 +43,7 @@
     }
     <il-button
       label="Ver meses"
-      icon="mdi:calendar-plus"
+      icon="material-symbols-light:calendar-add-on"
       variant="text"
       size="sm"
       customClass="ml-2"
@@ -57,7 +57,7 @@
 @if (cargando()) {
 <div class="flex justify-content-center align-items-center py-5">
   <app-icon
-    icon="mdi:loading"
+    icon="material-symbols-light:progress-activity"
     class="pi-spin text-primary"
     style="font-size: 1.5rem"
   />
@@ -132,7 +132,7 @@
             >
             @if (evento.isRecurring) {
             <app-icon
-              icon="mdi:refresh"
+              icon="material-symbols-light:refresh"
               class="text-xs text-400"
               lxTooltip="Recurrente"
             />
@@ -155,11 +155,11 @@
             target="_blank"
             class="text-xs text-primary no-underline flex align-items-center gap-1"
           >
-            <app-icon icon="mdi:video" class="mr-1" /> Unirse a Meet
+            <app-icon icon="material-symbols-light:videocam" class="mr-1" /> Unirse a Meet
           </a>
           } @else if (evento.location) {
           <span class="text-xs text-500 flex align-items-center gap-1">
-            <app-icon icon="mdi:map-marker" /> {{ evento.location }}
+            <app-icon icon="material-symbols-light:location-on" /> {{ evento.location }}
           </span>
           }
         </div>
@@ -170,7 +170,7 @@
           class="flex align-items-center gap-1 flex-none text-400"
           [lxTooltip]="evento.guestCount + ' invitados'"
         >
-          <app-icon icon="mdi:account-group" class="text-xs" />
+          <app-icon icon="material-symbols-light:group" class="text-xs" />
           <span class="text-xs">{{ evento.guestCount }}</span>
         </div>
         }

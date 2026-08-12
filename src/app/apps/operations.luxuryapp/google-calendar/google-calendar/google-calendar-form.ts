@@ -300,10 +300,13 @@ export class GoogleCalendarForm implements OnInit {
     recurrence: new FormControl<number | null>(null),
     recurrenceMode: new FormControl<number | null>(null),
     recurrenceEndDate: new FormControl<Date | string | null>(null),
-    description: new FormControl("", { nonNullable: true }),
+    description: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.maxLength(2000)],
+    }),
     location: new FormControl("", {
       nonNullable: true,
-      validators: [Validators.required],
+      validators: [Validators.required, Validators.maxLength(250)],
     }),
     guests: new FormArray<FormGroup<IGoogleCalendarGuestForm>>([]),
     assemblyCopyLegal: new FormControl(true, { nonNullable: true }),

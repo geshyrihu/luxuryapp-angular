@@ -132,7 +132,7 @@ export class AnalisisCobranzaClienteComponent {
         label: "Mantenimiento Neto",
         value: m.total,
         subtitle: 'Abonado: ' + this.formatMoneda(m.collected) + ' · Faltante: ' + this.formatMoneda(m.pending),
-        icon: "mdi:home-city-outline",
+        icon: "material-symbols-light:location-city",
         iconColor: "var(--ds-info)",
         iconBg: "var(--ds-info-light)"
       });
@@ -143,7 +143,7 @@ export class AnalisisCobranzaClienteComponent {
         label: "Cuotas Extraordinarias",
         value: e.total,
         subtitle: 'Abonado: ' + this.formatMoneda(e.collected) + ' · Faltante: ' + this.formatMoneda(e.pending),
-        icon: "mdi:cash-plus",
+        icon: "material-symbols-light:add-card",
         iconColor: "var(--ds-warning)",
         iconBg: "var(--ds-warning-light)"
       });
@@ -154,7 +154,7 @@ export class AnalisisCobranzaClienteComponent {
         label: "Cuotas de Restaurante",
         value: r.total,
         subtitle: 'Abonado: ' + this.formatMoneda(r.collected) + ' · Faltante: ' + this.formatMoneda(r.pending),
-        icon: "mdi:silverware-fork-knife",
+        icon: "material-symbols-light:restaurant",
         iconColor: "var(--ds-success)",
         iconBg: "var(--ds-success-light)"
       });

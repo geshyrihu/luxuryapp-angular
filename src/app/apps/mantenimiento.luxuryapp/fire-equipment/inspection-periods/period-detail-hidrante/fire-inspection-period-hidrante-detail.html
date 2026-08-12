@@ -1,7 +1,7 @@
 <div class="p-3">
   <div class="flex align-items-center gap-2 mb-3">
     <iw-button
-      iconClass="pi pi-arrow-left"
+      iconClass="material-symbols-light:arrow-back"
       variant="text"
       (clicked)="location.back()"
     />
@@ -41,7 +41,7 @@
       <p class="text-600 m-0">Sin ciclo de inspección activo.</p>
       <il-button
         label="Generar Ciclo"
-        iconClass="pi pi-play"
+        iconClass="material-symbols-light:play-arrow"
         size="small"
         (clicked)="onGenerateCycle()"
       />
@@ -57,13 +57,13 @@
       <div class="flex gap-2">
         <il-button
           label="Escanear QR"
-          iconClass="pi pi-qrcode"
+          iconClass="material-symbols-light:qr-code-scanner"
           variant="outline"
           (clicked)="scanning() ? stopScan() : startScan()"
         />
         <il-button
           [label]="showAddForm() ? 'Cancelar' : 'Agregar Hidrante'"
-          [iconClass]="showAddForm() ? 'mdi:close' : 'mdi:plus'"
+          [iconClass]="showAddForm() ? 'material-symbols-light:close' : 'material-symbols-light:add'"
           variant="outline"
           (clicked)="showAddForm.set(!showAddForm())"
         />
@@ -84,7 +84,7 @@
       </select>
       <il-button
         label="Agregar"
-        iconClass="pi pi-check"
+        iconClass="material-symbols-light:check"
         (clicked)="onAddItem()"
         [disabled]="!selectedEquipmentId"
       />
@@ -134,13 +134,13 @@
             <div class="flex gap-1 justify-content-end">
               <il-button
                 label="Inspeccionar"
-                iconClass="pi pi-check-circle"
+                iconClass="material-symbols-light:check-circle"
                 size="small"
                 variant="outline"
                 (clicked)="openChecklist(item)"
               />
               <iw-button
-                iconClass="pi pi-trash"
+                iconClass="material-symbols-light:delete"
                 severity="danger"
                 size="small"
                 variant="text"

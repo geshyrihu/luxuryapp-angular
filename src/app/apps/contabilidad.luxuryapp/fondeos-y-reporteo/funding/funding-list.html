@@ -24,9 +24,9 @@
         />
         <il-button
           (clicked)="onFaqsFondeo()"
-          iconClass="mdi:help-circle"
+          iconClass="material-symbols-light:help"
           label="Ayuda"
-          variant="outlined"
+          variant="outline"
         />
       </div>
     </div>
@@ -86,7 +86,10 @@
       </td>
 
       <td class="no-print text-center">
-        <app-icon [icon]="'mdi:chevron-right'" class="text-400" />
+        <app-icon
+          [icon]="'material-symbols-light:chevron-right'"
+          class="text-400"
+        />
       </td>
     </tr>
   </ng-template>
@@ -109,7 +112,10 @@
         start
         class="w-2rem h-2rem rounded bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon [icon]="'mdi:wallet'" class="text-green-600 text-xl" />
+        <app-icon
+          [icon]="'material-symbols-light:wallet'"
+          class="text-green-600 text-xl"
+        />
       </div>
       <div class="flex-1 min-w-0 ml-2">
         <h3 class="font-bold text-900">{{ item.period | uppercase }}</h3>

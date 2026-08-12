@@ -16,7 +16,7 @@
         />
         <il-button
           label="Buscar equipo"
-          iconClass="pi pi-search"
+          iconClass="material-symbols-light:search"
           (clicked)="resolveManual()"
           [disabled]="!manualId().trim()"
         />
@@ -52,13 +52,13 @@
       @if (!scanning()) {
         <il-button
           label="Iniciar escaneo"
-          iconClass="pi pi-camera"
+          iconClass="material-symbols-light:photo-camera"
           (clicked)="startScan(videoEl)"
         />
       } @else {
         <il-button
           label="Detener"
-          iconClass="pi pi-stop"
+          iconClass="material-symbols-light:stop"
           severity="secondary"
           (clicked)="stopScan()"
         />

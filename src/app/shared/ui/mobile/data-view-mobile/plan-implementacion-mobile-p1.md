@@ -172,7 +172,7 @@ Más columnas, filtros, paginator, acciones condicionales.
 1. Verificar `hidden md:block` (sí, en p-table)
 2. Agregar `<app-data-view-mobile [showAdd]="false" [globalFilterFields]="globalFilterFields()" [dt]="dt">`
 3. Template: descripción + proveedor/fecha
-4. Acción: `ili-button-item` con icono mdi:file-document para ver PDF
+4. Acción: `ili-button-item` con icono material-symbols-light:file-document para ver PDF
 
 ### 2.2 `task-operation-report.html`
 

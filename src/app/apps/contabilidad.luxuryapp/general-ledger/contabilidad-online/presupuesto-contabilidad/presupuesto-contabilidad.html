@@ -1,7 +1,7 @@
 <div class="rf-shell">
   @if (loading()) {
   <div class="flex align-items-center text-color-secondary mb-4 gap-2">
-    <app-icon [icon]="'mdi:loading'" />
+    <app-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Consultando datos en Aspel...</span>
   </div>
   } @if (!loading() && !data()) {

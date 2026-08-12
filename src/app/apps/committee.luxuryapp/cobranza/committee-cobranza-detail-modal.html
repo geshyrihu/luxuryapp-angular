@@ -4,7 +4,7 @@
     <div
       class="bg-primary text-white border-round w-3rem h-3rem flex align-items-center justify-content-center text-xl font-bold flex-shrink-0"
     >
-      <app-icon icon="mdi:office-building" />
+      <app-icon icon="material-symbols-light:apartment" />
     </div>
     <div class="min-w-0">
       <div class="text-xl font-bold text-color">
@@ -33,7 +33,7 @@
     >
       <div class="flex align-items-center gap-2">
         <app-icon
-          icon="mdi:information-outline"
+          icon="material-symbols-light:info"
           class="text-lg"
           [ngClass]="{
             'text-red-500': row?.clasificacion === 'COBRANZA JUDICIAL',
@@ -57,7 +57,7 @@
 
   @if (loading()) {
   <div class="text-center p-4">
-    <i class="pi pi-spin pi-spinner text-3xl text-primary"></i>
+    <lx-spinner [size]="40" />
     <div class="mt-2 text-500">Cargando desglose...</div>
   </div>
   } @else if (detail(); as data) {
@@ -149,7 +149,7 @@
   </div>
   } @else {
   <div class="text-center p-4 text-500">
-    <app-icon icon="mdi:alert-outline" class="text-3xl mb-2" />
+    <app-icon icon="material-symbols-light:warning-outline" class="text-3xl mb-2" />
     <div>No se pudo cargar el desglose.</div>
   </div>
   }

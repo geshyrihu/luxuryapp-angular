@@ -24,11 +24,12 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { IManualTemplateSimpleDTO } from "./interfaces/manuals-and-processes.dto";
 import { ManualsAndProcessesForm } from "./manuals-and-processes-form";
 
 interface DeptConfig {
-  icon: string;
+  icon: AppIconName;
   color: string;
   bgColor: string;
 }
@@ -79,59 +80,59 @@ export class ManualsAndProcessesList implements OnInit {
 
   private readonly DEPT_CONFIG: Record<string, DeptConfig> = {
     Administracion: {
-      icon: "mdi:office-building",
+      icon: "material-symbols-light:apartment",
       color: "#1e40af",
       bgColor: "#dbeafe",
     },
-    Legal: { icon: "mdi:shield", color: "#7c2d12", bgColor: "#ffedd5" },
+    Legal: { icon: "material-symbols-light:security", color: "#7c2d12", bgColor: "#ffedd5" },
     Contabilidad: {
-      icon: "mdi:wallet",
+      icon: "material-symbols-light:wallet",
       color: "#0f766e",
       bgColor: "#ccfbf1",
     },
     Mantenimiento: {
-      icon: "mdi:wrench",
+      icon: "material-symbols-light:apartment",
       color: "#92400e",
       bgColor: "#fef3c7",
     },
-    Limpieza: { icon: "mdi:star", color: "#065f46", bgColor: "#d1fae5" },
-    Operaciones: { icon: "mdi:cog", color: "#1e3a8a", bgColor: "#e0e7ff" },
+    Limpieza: { icon: "material-symbols-light:star", color: "#065f46", bgColor: "#d1fae5" },
+    Operaciones: { icon: "material-symbols-light:settings", color: "#1e3a8a", bgColor: "#e0e7ff" },
     Jardineria: {
-      icon: "mdi:weather-sunny",
+      icon: "material-symbols-light:sunny",
       color: "#15803d",
       bgColor: "#dcfce7",
     },
-    Sistemas: { icon: "mdi:monitor", color: "#6d28d9", bgColor: "#f5f3ff" },
-    Seguridad: { icon: "mdi:lock", color: "#dc2626", bgColor: "#fee2e2" },
-    Constructora: { icon: "mdi:home", color: "#7c3aed", bgColor: "#ede9fe" },
-    Supervision: { icon: "mdi:eye", color: "#0891b2", bgColor: "#cffafe" },
-    Direccion: { icon: "mdi:account", color: "#374151", bgColor: "#f3f4f6" },
+    Sistemas: { icon: "material-symbols-light:desktop-windows", color: "#6d28d9", bgColor: "#f5f3ff" },
+    Seguridad: { icon: "material-symbols-light:lock", color: "#dc2626", bgColor: "#fee2e2" },
+    Constructora: { icon: "material-symbols-light:home", color: "#7c3aed", bgColor: "#ede9fe" },
+    Supervision: { icon: "material-symbols-light:visibility", color: "#0891b2", bgColor: "#cffafe" },
+    Direccion: { icon: "material-symbols-light:person", color: "#374151", bgColor: "#f3f4f6" },
     "Recursos Humanos": {
-      icon: "mdi:account-group",
+      icon: "material-symbols-light:group",
       color: "#d97706",
       bgColor: "#fef3c7",
     },
     Reclutamiento: {
-      icon: "mdi:briefcase",
+      icon: "material-symbols-light:work",
       color: "#0284c7",
       bgColor: "#e0f2fe",
     },
-    Recepcion: { icon: "mdi:phone", color: "#047857", bgColor: "#d1fae5" },
+    Recepcion: { icon: "material-symbols-light:call", color: "#047857", bgColor: "#d1fae5" },
     Mensajeria: {
-      icon: "mdi:email",
+      icon: "material-symbols-light:mail",
       color: "#0369a1",
       bgColor: "#e0f2fe",
     },
-    Ludoteca: { icon: "mdi:heart", color: "#db2777", bgColor: "#fce7f3" },
+    Ludoteca: { icon: "material-symbols-light:favorite", color: "#db2777", bgColor: "#fce7f3" },
     "N/A": {
-      icon: "mdi:minus-circle-outline",
+      icon: "material-symbols-light:do-not-disturb-on",
       color: "#6b7280",
       bgColor: "#f3f4f6",
     },
   };
 
   private readonly DEFAULT_CONFIG: DeptConfig = {
-    icon: "mdi:folder",
+    icon: "material-symbols-light:folder",
     color: "#6b7280",
     bgColor: "#f3f4f6",
   };

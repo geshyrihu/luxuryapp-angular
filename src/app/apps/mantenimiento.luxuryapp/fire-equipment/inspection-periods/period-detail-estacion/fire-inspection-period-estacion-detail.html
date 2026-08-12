@@ -1,6 +1,6 @@
 <div class="p-3">
   <div class="flex align-items-center gap-2 mb-3">
-    <iw-button iconClass="pi pi-arrow-left" [text]="true" (clicked)="location.back()" />
+    <iw-button iconClass="material-symbols-light:arrow-back" [text]="true" (clicked)="location.back()" />
     <h2 class="m-0">{{ period()?.name ?? 'Periodo de Estaciones Manuales' }}</h2>
     @if (period()?.isActive) {
       <lx-tag value="Activo" severity="success"  />
@@ -24,7 +24,7 @@
     } @else {
       <div class="flex align-items-center gap-3">
         <p class="text-600 m-0">Sin ciclo de inspección activo.</p>
-        <il-button label="Generar Ciclo" iconClass="pi pi-play" size="small" (clicked)="onGenerateCycle()" />
+        <il-button label="Generar Ciclo" iconClass="material-symbols-light:play-arrow" size="small" (clicked)="onGenerateCycle()" />
       </div>
     }
   </div>
@@ -33,8 +33,8 @@
     <div class="flex justify-content-between align-items-center mb-3">
       <h4 class="m-0">Estaciones Manuales en este Periodo ({{ periodItems().length }})</h4>
       <div class="flex gap-2">
-        <il-button label="Escanear QR" iconClass="pi pi-qrcode" [outlined]="true" (clicked)="scanning() ? stopScan() : startScan()" />
-        <il-button [label]="showAddForm() ? 'Cancelar' : 'Agregar Estación'" [iconClass]="showAddForm() ? 'pi pi-times' : 'pi pi-plus'" [outlined]="true" (clicked)="showAddForm.set(!showAddForm())" />
+        <il-button label="Escanear QR" iconClass="material-symbols-light:qr-code-scanner" [outlined]="true" (clicked)="scanning() ? stopScan() : startScan()" />
+        <il-button [label]="showAddForm() ? 'Cancelar' : 'Agregar Estación'" [iconClass]="showAddForm() ? 'material-symbols-light:close' : 'material-symbols-light:add'" [outlined]="true" (clicked)="showAddForm.set(!showAddForm())" />
       </div>
     </div>
 
@@ -46,7 +46,7 @@
             <option [value]="e.id">{{ e.localCode ? e.localCode + ' — ' : '' }}{{ e.location }}</option>
           }
         </select>
-        <il-button label="Agregar" iconClass="pi pi-check" (clicked)="onAddItem()" [disabled]="!selectedEquipmentId" />
+        <il-button label="Agregar" iconClass="material-symbols-light:check" (clicked)="onAddItem()" [disabled]="!selectedEquipmentId" />
       </div>
     }
 
@@ -80,8 +80,8 @@
               </td>
               <td class="p-2">
                 <div class="flex gap-1 justify-content-end">
-                  <il-button label="Inspeccionar" iconClass="pi pi-check-circle" size="small" [outlined]="true" (clicked)="openChecklist(item)" />
-                  <iw-button iconClass="pi pi-trash" severity="danger" size="small" [text]="true" (clicked)="onRemoveItem(item.id)" />
+                  <il-button label="Inspeccionar" iconClass="material-symbols-light:check-circle" size="small" [outlined]="true" (clicked)="openChecklist(item)" />
+                  <iw-button iconClass="material-symbols-light:delete" severity="danger" size="small" [text]="true" (clicked)="onRemoveItem(item.id)" />
                 </div>
               </td>
             </tr>

@@ -50,7 +50,7 @@ export interface ScannedFile {
           (drop)="onDrop($event)"
         >
           <app-icon
-            [icon]="mobile() ? 'mdi:camera-outline' : 'mdi:file-image-outline'"
+            [icon]="mobile() ? 'material-symbols-light:image-outline' : 'material-symbols-light:image-outline'"
             class="text-3xl"
           />
           <span class="rs-drop-title">{{
@@ -69,7 +69,7 @@ export interface ScannedFile {
             />
           } @else {
             <div class="rs-file-icon">
-              <app-icon icon="mdi:file-document-outline" class="text-3xl" />
+              <app-icon icon="material-symbols-light:description" class="text-3xl" />
             </div>
           }
           <div class="rs-preview-info">
@@ -78,19 +78,25 @@ export interface ScannedFile {
           </div>
           <div class="rs-preview-actions">
             <p-button
-              icon="mdi:refresh"
               label="Repetir"
               severity="secondary"
               [outlined]="true"
               size="small"
               (onClick)="retry()"
-            />
+            >
+              <ng-template #icon>
+                <app-icon icon="material-symbols-light:refresh" />
+              </ng-template>
+            </p-button>
             <p-button
-              icon="mdi:check"
               label="Confirmar"
               size="small"
               (onClick)="confirm()"
-            />
+            >
+              <ng-template #icon>
+                <app-icon icon="material-symbols-light:check" />
+              </ng-template>
+            </p-button>
           </div>
         </div>
       }

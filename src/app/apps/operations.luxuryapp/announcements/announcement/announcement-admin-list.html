@@ -48,8 +48,8 @@
         <div class="flex-shrink-0">
           <il-button
             label="Filtrar"
-            iconClass="mdi:magnify"
-            variant="outlined"
+            iconClass="material-symbols-light:search"
+            variant="outline"
           />
         </div>
       </div>
@@ -128,20 +128,20 @@
           <iw-button-edit (clicked)="onModalForm(item)" />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
           <iw-button-download
-            iconClass="mdi:file-pdf-box"
+            iconClass="material-symbols-light:picture-as-pdf"
             ngbTooltip="Descargar PDF"
             severity="danger"
             (clicked)="onDownloadPdf(item.id)"
           />
           <iw-button-item
             (clicked)="onViewPreview(item.id)"
-            iconClass="mdi:book"
+            iconClass="material-symbols-light:book"
             lxTooltip="Vista previa"
             tooltipPosition="top"
           />
           <iw-button-item
             (clicked)="onViewAnalytics(item.id)"
-            iconClass="mdi:chart-bar"
+            iconClass="material-symbols-light:bar-chart"
             lxTooltip="Analíticas"
             tooltipPosition="top"
           />
@@ -198,7 +198,10 @@
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg bg-primary-50 w-3rem h-3rem"
       >
-        <app-icon icon="mdi:bullhorn-outline" class="text-xl text-primary" />
+        <app-icon
+          icon="material-symbols-light:campaign"
+          class="text-xl text-primary"
+        />
       </div>
 
       <div class="flex justify-content-between align-items-center mb-2">
@@ -217,12 +220,15 @@
         />
       </div>
       <p class="text-medium text-500 m-0 text-sm mb-1">
-        <app-icon [icon]="'mdi:calendar'" class="mr-1" /> Publicado: {{
-        item.publishedAt | date: "dd/MM/yyyy" }}
+        <app-icon
+          [icon]="'material-symbols-light:calendar-today'"
+          class="mr-1"
+        />
+        Publicado: {{ item.publishedAt | date: "dd/MM/yyyy" }}
       </p>
       <p class="text-medium text-500 m-0 text-sm">
-        <app-icon [icon]="'mdi:office-building'" class="mr-1" /> Cliente: {{
-        item.customerName }}
+        <app-icon [icon]="'material-symbols-light:apartment'" class="mr-1" />
+        Cliente: {{ item.customerName }}
       </p>
       <lx-tag
         [value]="item.announcementType"

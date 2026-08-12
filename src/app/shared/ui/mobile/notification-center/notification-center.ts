@@ -8,7 +8,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   imports: [AppIcon],
   template: `
     <button type="button" class="ili-nc-bell" (click)="open.set(true)">
-      <app-icon icon="mdi:bell-outline" class="text-xl" />
+      <app-icon icon="material-symbols-light:notifications-outline" class="text-xl" />
       @if (unreadCount() > 0) {
         <span class="ili-nc-badge">{{ unreadCount() }}</span>
       }
@@ -57,7 +57,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               </div>
             } @empty {
               <div class="ili-nc-empty">
-                <app-icon icon="mdi:bell-off-outline" class="text-3xl" />
+                <app-icon icon="material-symbols-light:notifications-off-outline" class="text-3xl" />
                 <span>Sin notificaciones</span>
               </div>
             }

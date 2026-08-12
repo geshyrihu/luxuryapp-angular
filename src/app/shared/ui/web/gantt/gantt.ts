@@ -41,7 +41,7 @@ export interface GanttTask {
             (click)="shiftDays(-7)"
             title="Semana anterior"
           >
-            <app-icon icon="mdi:chevron-left" />
+            <app-icon icon="material-symbols-light:chevron-left" />
           </button>
           <span class="gantt-nav-range">{{ rangeLabel() }}</span>
           <button
@@ -49,7 +49,7 @@ export interface GanttTask {
             (click)="shiftDays(7)"
             title="Semana siguiente"
           >
-            <app-icon icon="mdi:chevron-right" />
+            <app-icon icon="material-symbols-light:chevron-right" />
           </button>
         </div>
       </div>

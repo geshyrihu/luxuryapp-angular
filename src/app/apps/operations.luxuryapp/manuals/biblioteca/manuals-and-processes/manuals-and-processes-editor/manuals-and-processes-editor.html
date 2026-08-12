@@ -5,7 +5,7 @@
   >
     <div class="flex align-items-center gap-3">
       <iw-button
-        iconClass="mdi:arrow-left"
+        iconClass="material-symbols-light:arrow-back"
         [variant]="'text'"
         severity="secondary"
         (clicked)="onGoBack()"
@@ -22,7 +22,7 @@
     <div class="flex align-items-center gap-2">
       @if (activeTab() === 'pasos') {
       <il-button
-        iconClass="mdi:plus"
+        iconClass="material-symbols-light:add"
         label="Agregar Paso"
         severity="primary"
         size="small"
@@ -31,7 +31,7 @@
       }
       <il-button
         [label]="'Pasos (' + pasos().length + ')'"
-        iconClass="mdi:format-list-bulleted"
+        iconClass="material-symbols-light:format-list-bulleted"
         [severity]="activeTab() === 'pasos' ? 'primary' : 'secondary'"
         [variant]="activeTab() === 'pasos' ? null : 'outlined'"
         size="small"
@@ -39,7 +39,7 @@
       />
       <il-button
         [label]="'Versiones (' + versiones().length + ')'"
-        iconClass="mdi:history"
+        iconClass="material-symbols-light:history"
         [severity]="activeTab() === 'versiones' ? 'primary' : 'secondary'"
         [variant]="activeTab() === 'versiones' ? null : 'outlined'"
         size="small"
@@ -47,7 +47,7 @@
       />
       <il-button
         [label]="'Adjuntos (' + adjuntos().length + ')'"
-        iconClass="mdi:paperclip"
+        iconClass="material-symbols-light:attach-file"
         [severity]="activeTab() === 'adjuntos' ? 'primary' : 'secondary'"
         [variant]="activeTab() === 'adjuntos' ? null : 'outlined'"
         size="small"
@@ -68,7 +68,7 @@
       @if (!pasos().length) {
       <div class="p-4 text-center text-500">
         <app-icon
-          [icon]="'mdi:format-list-bulleted'"
+          [icon]="'material-symbols-light:format-list-bulleted'"
           class="text-3xl mb-2 block"
         />
         <p class="text-sm m-0">Sin pasos. Agrega el primero.</p>
@@ -88,7 +88,7 @@
         >
           <app-icon
             cdkDragHandle
-            icon="mdi:menu"
+            icon="material-symbols-light:menu"
             class="text-400 cursor-grab flex-shrink-0 text-xs"
           />
 
@@ -127,7 +127,7 @@
           >
             @if (paso.diagramaId) {
             <iw-button
-              iconClass="mdi:sitemap"
+              iconClass="material-symbols-light:account-tree"
               [variant]="'text'"
               severity="info"
               size="small"
@@ -148,7 +148,7 @@
       <div
         class="flex flex-column align-items-center justify-content-center h-full text-center max-w-30rem mx-auto"
       >
-        <app-icon [icon]="'mdi:book'" class="text-6xl text-primary mb-4" />
+        <app-icon [icon]="'material-symbols-light:book'" class="text-6xl text-primary mb-4" />
         <h2 class="text-900 font-bold mb-2">Diseño del Manual</h2>
         <p class="text-500 line-height-3 mb-4">
           Aquí es donde defines el paso a paso de tu proceso. Selecciona un paso
@@ -157,7 +157,7 @@
         </p>
         @if (pasos().length === 0) {
         <il-button
-          iconClass="mdi:plus"
+          iconClass="material-symbols-light:add"
           label="Crear Primer Paso"
           severity="primary"
           (clicked)="onNewPaso()"
@@ -169,7 +169,7 @@
       <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
         <div class="surface-ground rounded-xl p-4 border-1 surface-border">
           <div class="flex align-items-center gap-3 mb-2">
-            <app-icon [icon]="'mdi:pencil'" class="text-2xl text-primary" />
+            <app-icon [icon]="'material-symbols-light:edit'" class="text-2xl text-primary" />
             <h3 class="m-0 text-900 font-semibold">
               {{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}
             </h3>
@@ -235,7 +235,7 @@
           <div class="flex align-items-center justify-content-between">
             <h4 class="text-base font-bold text-700 m-0">Diagrama de Flujo</h4>
             <il-button
-              [iconClass]="selectedPaso()!.diagramaId ? 'mdi:sitemap' : 'mdi:plus'"
+              [iconClass]="selectedPaso()!.diagramaId ? 'material-symbols-light:account-tree' : 'material-symbols-light:add'"
               [label]="selectedPaso()!.diagramaId ? 'Abrir Diagrama' : 'Crear Diagrama'"
               [severity]="selectedPaso()!.diagramaId ? 'info' : 'secondary'"
               size="small"
@@ -247,7 +247,7 @@
           <div class="surface-ground rounded p-3 border-1 surface-border">
             <div class="flex align-items-center gap-2 mb-2">
               <app-icon
-                [icon]="'mdi:lightbulb-on-outline'"
+                [icon]="'material-symbols-light:lightbulb-outline'"
                 class="text-yellow-500"
               />
               <span class="font-bold text-700 text-sm">Tip Visual</span>
@@ -265,7 +265,7 @@
           >
             <div class="flex align-items-center gap-2 mb-2">
               <app-icon
-                [icon]="'mdi:check-circle-outline'"
+                [icon]="'material-symbols-light:check-circle-outline'"
                 class="text-green-500"
               />
               <span class="font-bold text-700 text-sm">Diagrama Vinculado</span>
@@ -304,7 +304,7 @@
 
           @if (uploadingImagen()) {
           <div class="flex align-items-center gap-2 text-500 text-sm">
-            <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" />
+            <app-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin" />
             Subiendo...
           </div>
           } @if (selectedPaso()!.imagenes?.length) {
@@ -320,7 +320,7 @@
               />
               <div class="absolute top-0 right-0 m-1">
                 <iw-button
-                  iconClass="mdi:close"
+                  iconClass="material-symbols-light:close"
                   severity="danger"
                   size="small"
                   [rounded]="true"
@@ -366,7 +366,7 @@
                 <il-button
                   type="submit"
                   label="Agregar"
-                  iconClass="mdi:plus"
+                  iconClass="material-symbols-light:add"
                   size="small"
                   [loading]="savingEnlace()"
                   [disabled]="enlaceForm.invalid"
@@ -383,7 +383,7 @@
             >
               <div class="absolute top-0 right-0 m-2 z-5">
                 <iw-button
-                  iconClass="mdi:delete"
+                  iconClass="material-symbols-light:delete"
                   severity="danger"
                   size="small"
                   [rounded]="true"
@@ -421,7 +421,7 @@
                   class="no-underline"
                 >
                   <il-button
-                    iconClass="mdi:external-link"
+                    iconClass="material-symbols-light:open-in-new"
                     label="Abrir Enlace"
                     severity="info"
                     size="small"
@@ -458,7 +458,7 @@
       <div class="flex align-items-center justify-content-between">
         <h3 class="text-lg font-bold text-900 m-0">Historial de Versiones</h3>
         <il-button
-          iconClass="mdi:plus"
+          iconClass="material-symbols-light:add"
           label="Nueva Version"
           severity="primary"
           size="small"
@@ -523,7 +523,7 @@
       </div>
       } @if (!versiones().length) {
       <div class="text-center text-500 py-5">
-        <app-icon [icon]="'mdi:history'" class="text-4xl mb-3 block" />
+        <app-icon [icon]="'material-symbols-light:history'" class="text-4xl mb-3 block" />
         <p class="text-sm m-0">Sin versiones registradas.</p>
       </div>
       } @else {
@@ -547,7 +547,7 @@
             }
           </div>
           <iw-button
-            iconClass="mdi:delete"
+            iconClass="material-symbols-light:delete"
             [variant]="'text'"
             severity="danger"
             size="small"
@@ -599,7 +599,7 @@
             />
             @if (uploadingAdjunto()) {
             <span class="text-500 text-sm flex align-items-center gap-1">
-              <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" />
+              <app-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin" />
               Subiendo...
             </span>
             }
@@ -612,7 +612,7 @@
 
       @if (!adjuntos().length) {
       <div class="text-center text-500 py-5">
-        <app-icon [icon]="'mdi:paperclip'" class="text-4xl mb-3 block" />
+        <app-icon [icon]="'material-symbols-light:attach-file'" class="text-4xl mb-3 block" />
         <p class="text-sm m-0">Sin archivos adjuntos.</p>
       </div>
       } @else {
@@ -622,7 +622,7 @@
           class="surface-card p-3 rounded-xl border-1 border-200 flex align-items-center gap-3"
         >
           <app-icon
-            [icon]="'mdi:file-document-outline'"
+            [icon]="'material-symbols-light:description'"
             class="text-2xl text-400 flex-shrink-0"
           />
           <div class="flex-1 min-w-0">
@@ -638,14 +638,14 @@
           <div class="flex gap-1 flex-shrink-0">
             <a [href]="adj.url" target="_blank" class="no-underline">
               <iw-button
-                iconClass="mdi:download"
+                iconClass="material-symbols-light:download"
                 [variant]="'text'"
                 severity="info"
                 size="small"
               />
             </a>
             <iw-button
-              iconClass="mdi:delete"
+              iconClass="material-symbols-light:delete"
               [variant]="'text'"
               severity="danger"
               size="small"

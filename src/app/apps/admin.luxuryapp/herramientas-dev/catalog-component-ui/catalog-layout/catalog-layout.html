@@ -8,7 +8,7 @@
         class="logo-box border-round-lg bg-primary flex align-items-center justify-content-center"
         
       >
-        <app-icon [icon]="'bolt'" class="text-white text-lg" />
+        <app-icon [icon]="'material-symbols-light:bolt'" class="text-white text-lg" />
       </div>
       <div class="catalog-header__info">
         <h1 class="catalog-header__title">Luxury Design System</h1>
@@ -21,7 +21,7 @@
 
     <div class="catalog-header__end">
       <iw-button
-        [icon]="isDarkMode() ? 'mdi:weather-sunny' : 'mdi:weather-night'"
+        [icon]="isDarkMode() ? 'material-symbols-light:sunny' : 'material-symbols-light:nightlight'"
         [severity]="isDarkMode() ? 'warn' : 'secondary'"
         (clicked)="toggleTheme()"
         [rounded]="true"
@@ -29,7 +29,7 @@
         lxTooltip="Alternar tema"
       />
       <iw-button
-        icon="mdi:cellphone"
+        icon="material-symbols-light:devices-other"
         [severity]="mobilePreview() ? 'primary' : 'secondary'"
         (clicked)="mobilePreview.set(!mobilePreview())"
         [rounded]="true"

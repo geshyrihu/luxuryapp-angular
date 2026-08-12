@@ -49,7 +49,7 @@
           @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
           'Pendiente') {
           <iw-button-item
-            icon="mdi:login"
+            icon="material-symbols-light:login"
             title="Firmar"
             (click)="onSign(item)"
           />
@@ -57,7 +57,7 @@
           } @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
           'Pendiente') {
           <iw-button-item
-            icon="mdi:close-circle"
+            icon="material-symbols-light:cancel"
             title="Cancelar"
             severity="danger"
             (click)="onCancel(item)"
@@ -88,7 +88,7 @@
           class="w-3rem h-3rem bg-yellow-100"
         >
           <app-icon
-            icon="mdi:file-sign"
+            icon="material-symbols-light:edit-note"
             class="text-xl text-yellow-500"
           />
         </div>

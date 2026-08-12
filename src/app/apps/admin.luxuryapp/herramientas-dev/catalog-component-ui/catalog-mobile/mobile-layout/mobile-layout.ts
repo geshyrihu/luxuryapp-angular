@@ -345,8 +345,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           <ili-split-button
             label="Save"
             [model]="[
-              { label: 'Update', icon: 'mdi:refresh' },
-              { label: 'Delete', icon: 'mdi:close' },
+              { label: 'Update', icon: 'material-symbols-light:refresh' },
+              { label: 'Delete', icon: 'material-symbols-light:close' },
             ]"
           ></ili-split-button>
         </div>
@@ -355,9 +355,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           <div class="font-bold text-sm mb-3">ili-dock</div>
           <ili-dock
             [items]="[
-              { label: 'Home', icon: 'mdi:home' },
-              { label: 'Search', icon: 'mdi:magnify' },
-              { label: 'Profile', icon: 'mdi:account' },
+              { label: 'Home', icon: 'material-symbols-light:home' },
+              { label: 'Search', icon: 'material-symbols-light:search' },
+              { label: 'Profile', icon: 'material-symbols-light:person' },
             ]"
             position="bottom"
           ></ili-dock>
@@ -367,9 +367,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           <div class="font-bold text-sm mb-3">ili-panel-menu</div>
           <ili-panel-menu
             [model]="[
-              { label: 'Dashboard', icon: 'mdi:view-dashboard' },
-              { label: 'Reports', icon: 'mdi:file-chart' },
-              { label: 'Settings', icon: 'mdi:cog' },
+              { label: 'Dashboard', icon: 'material-symbols-light:dashboard' },
+              { label: 'Reports', icon: 'material-symbols-light:monitoring' },
+              { label: 'Settings', icon: 'material-symbols-light:settings' },
             ]"
           ></ili-panel-menu>
         </div>
@@ -377,7 +377,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         <div>
           <div class="font-bold text-sm mb-3">ili-iconfield</div>
           <ili-iconfield iconPosition="left">
-            <app-icon icon="mdi:magnify" slot="start"></app-icon>
+            <app-icon icon="material-symbols-light:search" slot="start"></app-icon>
             <span>Search...</span>
           </ili-iconfield>
         </div>
@@ -392,7 +392,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         <div>
           <div class="font-bold text-sm mb-3">ili-inputicon</div>
           <ili-inputicon>
-            <app-icon icon="mdi:email" slot="start"></app-icon>
+            <app-icon icon="material-symbols-light:mail" slot="start"></app-icon>
           </ili-inputicon>
         </div>
 

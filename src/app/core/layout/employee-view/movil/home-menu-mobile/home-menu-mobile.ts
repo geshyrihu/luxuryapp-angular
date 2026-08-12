@@ -21,6 +21,8 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { SubMenuItem } from "src/app/core/interfaces/menu.interface";
 import { MenuService } from "src/app/core/services/menu.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
 @Component({
   selector: "app-home-menu-mobile",
   templateUrl: "./home-menu-mobile.html",
@@ -58,6 +60,9 @@ export class HomeMenu {
   constructor() {}
   onItemClick() {
     this.onCloseMenu.emit();
+  }
+  protected iconName(v: string | null | undefined): AppIconName {
+    return resolveIconifyIcon(v) as AppIconName;
   }
   private applyCustomTransformations(items: MenuItem[]): MenuItem[] {
     const clonedItems = structuredClone(items);

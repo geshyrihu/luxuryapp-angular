@@ -7,7 +7,7 @@ describe('SupervisionModuleCard / SupervisionModuleGroup', () => {
       title: 'Test',
       description: 'Desc',
       route: '/test',
-      icon: 'mdi:flask',
+      icon: 'material-symbols-light:science',
       color: '#000',
       bgColor: '#fff',
     };
@@ -16,7 +16,7 @@ describe('SupervisionModuleCard / SupervisionModuleGroup', () => {
 
     const group: SupervisionModuleGroup = {
       label: 'Group',
-      icon: 'mdi:group',
+      icon: 'material-symbols-light:group',
       cards: [card],
     };
     expect(group.label).toBe('Group');

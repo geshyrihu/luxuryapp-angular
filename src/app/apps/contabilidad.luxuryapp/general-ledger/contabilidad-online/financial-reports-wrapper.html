@@ -4,7 +4,7 @@
   <!-- Overlay mientras se preparan los reportes -->
   @if (isPreparing()) {
   <div class="print-preparing-overlay">
-    <app-icon [icon]="'mdi:loading'" />
+    <app-icon [icon]="'material-symbols-light:progress-activity'" />
     <p>Cargando todos los reportes...</p>
     <p>
       El dialogo de impresion abrira automaticamente cuando todos los datos
@@ -104,50 +104,50 @@
 
               <div class="flex gap-2 flex-wrap align-items-center">
                 <il-button
-                  iconClass="mdi:refresh"
+                  iconClass="material-symbols-light:refresh"
                   label="Actualizar"
-                  variant="outlined"
+                  variant="outline"
                   severity="secondary"
                   size="small"
                   (clicked)="refreshReports()"
                 />
                 <il-button
-                  [iconClass]="isPreparing() ? 'mdi:loading pi-spinner' : 'mdi:printer'"
+                  [iconClass]="isPreparing() ? 'material-symbols-light:progress-activity pi-spinner' : 'material-symbols-light:print'"
                   [label]="isPreparing() ? 'Preparando...' : 'Imprimir'"
-                  variant="outlined"
+                  variant="outline"
                   severity="secondary"
                   size="small"
                   [disabled]="isPreparing()"
                   (clicked)="printReport()"
                 />
                 <il-button
-                  iconClass="mdi:comment-multiple"
+                  iconClass="material-symbols-light:forum"
                   label="Explicar IA"
-                  variant="outlined"
+                  variant="outline"
                   size="small"
                   severity="info"
                   (clicked)="aiAgentExplicador.togglePanel()"
                 />
                 <il-button
-                  iconClass="mdi:sparkles"
+                  iconClass="material-symbols-light:auto-awesome-motion"
                   label="Auditor CO"
-                  variant="outlined"
+                  variant="outline"
                   size="small"
                   severity="contrast"
                   (clicked)="aiAgentContabilidadOnline.togglePanel()"
                 />
                 <il-button
-                  iconClass="mdi:sparkles"
+                  iconClass="material-symbols-light:auto-awesome-motion"
                   label="Auditor IA"
-                  variant="outlined"
+                  variant="outline"
                   size="small"
                   severity="help"
                   (clicked)="aiAgent.togglePanel()"
                 />
                 <il-button
-                  iconClass="mdi:external-link"
+                  iconClass="material-symbols-light:open-in-new"
                   label="Vista cliente"
-                  variant="outlined"
+                  variant="outline"
                   size="small"
                   severity="success"
                   [disabled]="!clienteUrl()"

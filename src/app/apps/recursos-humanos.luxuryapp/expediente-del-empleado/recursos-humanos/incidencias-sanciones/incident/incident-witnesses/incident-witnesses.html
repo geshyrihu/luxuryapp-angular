@@ -3,7 +3,7 @@
   <div class="flex align-items-center justify-content-between mb-3">
     <div class="flex align-items-center">
       <app-icon
-        [icon]="'mdi:account-group'"
+        [icon]="'material-symbols-light:group'"
         class="text-xl text-primary mr-2"
       />
       <h3 class="text-base font-semibold text-color m-0">Testigos</h3>
@@ -12,7 +12,7 @@
       >
     </div>
     <il-button
-      iconClass="mdi:plus"
+      iconClass="material-symbols-light:add"
       label="Agregar Testigo"
       severity="secondary"
       [size]="'small'"
@@ -26,7 +26,7 @@
   </div>
   } @else if (witnesses().length === 0) {
   <div class="text-center p-4 text-color-secondary surface-100 rounded">
-    <app-icon [icon]="'mdi:account'" class="text-3xl text-400" />
+    <app-icon [icon]="'material-symbols-light:person'" class="text-3xl text-400" />
     <p class="mt-2 m-0">No hay testigos registrados</p>
   </div>
   } @else {
@@ -55,7 +55,7 @@
           <span
             class="text-green-600 flex align-items-center justify-content-center gap-1"
           >
-            <app-icon [icon]="'mdi:check-circle'" />
+            <app-icon [icon]="'material-symbols-light:check-circle'" />
             <span>Firmado</span>
           </span>
           } @else {

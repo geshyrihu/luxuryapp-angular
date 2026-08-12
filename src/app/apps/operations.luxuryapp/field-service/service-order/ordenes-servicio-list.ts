@@ -32,6 +32,7 @@ import {
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { ReporteOrdenesServicioService } from "src/app/core/services/reporte-ordenes-servicio.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { OrdenesServicioFotos } from "./ordenes-servicio-fotos";
 import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.service";
 import { OrdenesServicioReporteProveedor } from "./ordenes-servicio-reporte-proveedor";
@@ -108,15 +109,15 @@ export class OrdenesServicio {
 
   filtroEquiposValue: any = "todos";
   filtroId: any | string = "";
-  filtroEquipos = [
-    { icon: "mdi:format-list-bulleted", id: "", nombre: "todos" },
-    { icon: "mdi:star-outline", id: 2, nombre: "amenidades" },
-    { icon: "mdi:home", id: 8, nombre: "A. Comunes" },
-    { icon: "mdi:package", id: 7, nombre: "bodegas" },
-    { icon: "mdi:cog", id: 1, nombre: "equipos" },
-    { icon: "mdi:lightning-bolt", id: 5, nombre: "gimnasio" },
-    { icon: "mdi:video", id: 6, nombre: "sistemas" },
-    { icon: "mdi:palette", id: 10, nombre: "pintura" },
+  filtroEquipos: { icon: AppIconName; id: any | string; nombre: string }[] = [
+    { icon: "material-symbols-light:format-list-bulleted", id: "", nombre: "todos" },
+    { icon: "material-symbols-light:star-outline", id: 2, nombre: "amenidades" },
+    { icon: "material-symbols-light:home", id: 8, nombre: "A. Comunes" },
+    { icon: "material-symbols-light:package", id: 7, nombre: "bodegas" },
+    { icon: "material-symbols-light:settings", id: 1, nombre: "equipos" },
+    { icon: "material-symbols-light:bolt", id: 5, nombre: "gimnasio" },
+    { icon: "material-symbols-light:videocam", id: 6, nombre: "sistemas" },
+    { icon: "material-symbols-light:palette", id: 10, nombre: "pintura" },
   ];
 
   onSegmentFilterChange(event: any) {

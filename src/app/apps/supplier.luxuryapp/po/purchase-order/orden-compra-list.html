@@ -67,7 +67,7 @@
       <div class="flex flex-column sm:flex-row align-items-center gap-2">
         <il-button
           label="Actualizar Referencias"
-          iconClass="mdi:link"
+          iconClass="material-symbols-light:link"
           (clicked)="onManageLinks()"
           severity="warn"
           size="sm"
@@ -79,7 +79,7 @@
         <div class="flex gap-1">
           <il-button
             label="Denegadas"
-            iconClass="mdi:close-circle"
+            iconClass="material-symbols-light:cancel"
             (clicked)="onSelectStatus(1)"
             [variant]="statusCompra() !== 1 ? 'outlined' : null"
             [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
@@ -87,7 +87,7 @@
           />
           <il-button
             label="Autorizadas"
-            iconClass="mdi:check-circle"
+            iconClass="material-symbols-light:check-circle"
             (clicked)="onSelectStatus(0)"
             [variant]="statusCompra() !== 0 ? 'outlined' : null"
             [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
@@ -95,7 +95,7 @@
           />
           <il-button
             label="Pendientes"
-            iconClass="mdi:clock-outline"
+            iconClass="material-symbols-light:schedule"
             (clicked)="onSelectStatus(2)"
             [variant]="statusCompra() !== 2 ? 'outlined' : null"
             [severity]="statusCompra() === 2 ? 'primary' : 'secondary'"
@@ -178,7 +178,7 @@
         }
         <br />
         <span class="text-xs text-600">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1" />
+          <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1" />
           {{ item.fechaSolicitud | date : 'd MMM yyyy' : 'UTC' }}
         </span>
       </td>
@@ -217,7 +217,7 @@
         <app-action-menu>
           <ng-container actions>
             <il-button-item
-              iconClass="mdi:window-maximize"
+              iconClass="material-symbols-light:fullscreen"
               label="Editar en modal"
               (clicked)="onOrdenCompraModal(item.id)"
               variant="text"
@@ -230,13 +230,13 @@
 
             @if (statusCompra() === 0) {
             <il-button-item
-              iconClass="mdi:currency-usd"
+              iconClass="material-symbols-light:attach-money"
               label="Solicitud de pago"
               (clicked)="onDownloadSolicitudPagoPdf(item.id)"
               variant="text"
             />
             <il-button-item
-              iconClass="mdi:file-pdf-box"
+              iconClass="material-symbols-light:picture-as-pdf"
               label="Orden de compra"
               (clicked)="onDownloadOrdenCompraPdf(item.id)"
               variant="text"
@@ -335,7 +335,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon [icon]="'mdi:shopping'" class="text-xl text-yellow-700" />
+        <app-icon [icon]="'material-symbols-light:shopping-bag'" class="text-xl text-yellow-700" />
       </div>
 
       <h3>{{ item.equipoOInstalacion }}</h3>

@@ -14,12 +14,13 @@ import {
 import { FormsModule } from "@angular/forms";
 import { DialogModule } from "primeng/dialog";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface PaletteCommand {
   id: string;
   label: string;
   description?: string;
-  icon?: string;
+  icon?: AppIconName;
   category?: string;
   shortcut?: string;
   action: () => void;
@@ -44,7 +45,7 @@ export interface PaletteCommand {
     >
       <div class="palette-root" (keydown)="onKeydown($event)">
         <div class="palette-search">
-          <app-icon icon="mdi:magnify" class="palette-search-icon" />
+          <app-icon icon="material-symbols-light:search" class="palette-search-icon" />
           <input
             #searchInput
             type="text"
@@ -56,7 +57,7 @@ export interface PaletteCommand {
           />
           @if (query()) {
             <button class="palette-clear" (click)="query.set('')">
-              <app-icon icon="mdi:close" />
+              <app-icon icon="material-symbols-light:close" />
             </button>
           }
         </div>
@@ -64,7 +65,7 @@ export interface PaletteCommand {
         <div class="palette-results">
           @if (filtered().length === 0) {
             <div class="palette-empty">
-              <app-icon icon="mdi:magnify-minus" class="text-2xl" />
+              <app-icon icon="material-symbols-light:search" class="text-2xl" />
               <span>Sin resultados</span>
             </div>
           }

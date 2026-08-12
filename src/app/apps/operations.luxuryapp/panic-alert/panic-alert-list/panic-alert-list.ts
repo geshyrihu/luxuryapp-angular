@@ -8,6 +8,7 @@ import {
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { PanicAlertResolveDto } from "../interfaces/panic-alert-resolve.dto";
 import { PanicAlertDto } from "../interfaces/panic-alert.dto";
 
@@ -18,7 +19,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
   template: `
     <div class="panic-list-page">
       <h2 class="panic-list-page__title">
-        <app-icon icon="mdi:alert-circle" class="text-red-600 mr-2" />
+        <app-icon icon="material-symbols-light:error" class="text-red-600 mr-2" />
         Alertas de Pánico
       </h2>
 
@@ -35,7 +36,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
               <div class="panic-card panic-card--active">
                 <div class="panic-card__header">
                   <app-icon
-                    icon="mdi:alert-circle"
+                    icon="material-symbols-light:error"
                     class="panic-card__status-icon panic-card__status-icon--active"
                   />
                   <div>
@@ -57,7 +58,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                     target="_blank"
                     rel="noopener"
                   >
-                    <app-icon icon="mdi:map-marker" class="text-sm" />
+                    <app-icon icon="material-symbols-light:location-on" class="text-sm" />
                     Ver ubicación
                   </a>
                 }
@@ -67,7 +68,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                     class="panic-card__btn panic-card__btn--attend"
                     (click)="onAttend(alert)"
                   >
-                    <app-icon icon="mdi:check-circle" />
+                    <app-icon icon="material-symbols-light:schedule" />
                     Atender
                   </button>
                   <button
@@ -75,7 +76,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                     class="panic-card__btn panic-card__btn--resolve"
                     (click)="openResolve(alert)"
                   >
-                    <app-icon icon="mdi:check-all" />
+                    <app-icon icon="material-symbols-light:calendar-clock" />
                     Resolver
                   </button>
                 </div>
@@ -137,7 +138,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                       class="panic-card__btn panic-card__btn--resolve"
                       (click)="openResolve(alert)"
                     >
-                      <app-icon icon="mdi:check-all" />
+                      <app-icon icon="material-symbols-light:calendar-clock" />
                       Resolver
                     </button>
                   </div>
@@ -159,7 +160,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                 class="panic-card__btn panic-card__btn--resolve"
                 (click)="onResolve('Resolved')"
               >
-                <app-icon icon="mdi:check" />
+                <app-icon icon="material-symbols-light:schedule" />
                 Resuelta
               </button>
               <button
@@ -167,7 +168,7 @@ import { PanicAlertDto } from "../interfaces/panic-alert.dto";
                 class="panic-card__btn panic-card__btn--false"
                 (click)="onResolve('FalseAlarm')"
               >
-                <app-icon icon="mdi:close" />
+                <app-icon icon="material-symbols-light:close" />
                 Falsa Alarma
               </button>
             </div>
@@ -453,16 +454,16 @@ export class PanicAlertList implements OnInit {
     });
   }
 
-  getStatusIcon(status: string): string {
+  getStatusIcon(status: string): AppIconName {
     switch (status) {
       case "Atendida":
-        return "mdi:clock-check";
+        return "material-symbols-light:schedule";
       case "Resuelta":
-        return "mdi:check-circle";
+        return "material-symbols-light:schedule";
       case "Falsa Alarma":
-        return "mdi:close-circle";
+        return "material-symbols-light:cancel";
       default:
-        return "mdi:alert-circle";
+        return "material-symbols-light:error";
     }
   }
 

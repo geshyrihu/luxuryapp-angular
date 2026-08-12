@@ -37,10 +37,10 @@
             [data]="validityTypes"
           />
         </div>
-        <il-button label="Regenerar QR" iconClass="mdi:qrcode-plus" (clicked)="regenerate()" />
+        <il-button label="Regenerar QR" iconClass="material-symbols-light:qr-code-2-add" (clicked)="regenerate()" />
         @if (credential(); as c) {
         @if (c.status === "Active") {
-        <il-button label="Revocar" severity="danger" variant="text" iconClass="mdi:cancel" (clicked)="revoke()" />
+        <il-button label="Revocar" severity="danger" variant="text" iconClass="material-symbols-light:cancel" (clicked)="revoke()" />
         }
         }
       </div>
@@ -59,7 +59,7 @@
         [data]="channels"
       />
     </div>
-    <il-button label="Enviar invitación" iconClass="mdi:send" [loading]="sending()" (clicked)="send()" />
+    <il-button label="Enviar invitación" iconClass="material-symbols-light:send" [loading]="sending()" (clicked)="send()" />
   </div>
 
   <p-table [value]="invitations()" class="custom-table">
@@ -77,7 +77,7 @@
         <td>{{ inv.status }}</td>
         <td>{{ inv.sentAt | date: "dd/MM/yyyy HH:mm" }}</td>
         <td class="text-right">
-          <il-button label="Reenviar" variant="text" iconClass="mdi:refresh" (clicked)="resend(inv)" />
+          <il-button label="Reenviar" variant="text" iconClass="material-symbols-light:refresh" (clicked)="resend(inv)" />
         </td>
       </tr>
     </ng-template>

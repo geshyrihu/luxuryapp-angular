@@ -24,6 +24,7 @@ import {
 import { EPaidStatus } from "../interfaces/leave-request.interface";
 import { VacationBalanceDTO } from "../interfaces/vacation-balance.interface";
 import { ApprovalInfoService } from "./approval-info.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-approval-confirmation-modal",
   imports: [
@@ -36,6 +37,7 @@ import { ApprovalInfoService } from "./approval-info.service";
     LxMessage,
     LxTag,
     CustomInputToggleSwitch,
+    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -76,7 +78,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Permiso") {
           <div class="mb-4">
             <div class="flex items-center mb-2">
-              <app-icon [icon]="'mdi:history'" class="text-xl" />
+              <app-icon [icon]="'material-symbols-light:history'" class="text-xl" />
               <h5 class="mb-0 font-semibold">Historial (óltimos 3 meses)</h5>
             </div>
             <p class="text-600">
@@ -93,7 +95,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Vacaciones") {
           <div class="mb-4">
             <div class="flex items-center mb-2">
-              <app-icon [icon]="'mdi:weather-sunny'" class="text-xl" />
+              <app-icon [icon]="'material-symbols-light:sunny'" class="text-xl" />
               <h5 class="mb-0 font-semibold">Saldo de Vacaciones</h5>
             </div>
             <p class="text-600">
@@ -111,7 +113,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         <div class="mt-4">
           <div class="flex items-center mb-3">
             <app-icon
-              [icon]="'mdi:account-group'"
+              [icon]="'material-symbols-light:group'"
               class="text-xl text-orange-500"
             />
             <h5 class="mb-0 font-semibold text-orange-500">
@@ -127,7 +129,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                     <li class="flex items-center justify-between p-2">
                       <span>
                         <app-icon
-                          [icon]="'mdi:account'"
+                          [icon]="'material-symbols-light:person'"
                           class="mr-2 text-gray-600"
                         />
                         {{ req.fullName }}
@@ -160,7 +162,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                     <li class="flex items-center justify-between p-2">
                       <span>
                         <app-icon
-                          [icon]="'mdi:account'"
+                          [icon]="'material-symbols-light:person'"
                           class="mr-2 text-gray-600"
                         />
                         {{ req.fullName }}
@@ -196,7 +198,7 @@ import { ApprovalInfoService } from "./approval-info.service";
           <il-button
             (clicked)="onApprove()"
             label="Aprobar Solicitud"
-            iconClass="mdi:check"
+            iconClass="material-symbols-light:check"
             [loading]="submitting"
           />
         </div>

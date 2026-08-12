@@ -126,6 +126,18 @@ export const adminRoutes: Routes = [
     },
   },
   {
+    path: "interviewer-matrix",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/seguridad-permisos/interviewer-matrix/interviewer-matrix").then(
+        (m) => m.InterviewerMatrix,
+      ),
+    canActivate: [superUsuarioGuard],
+    data: {
+      title: "Matriz de Entrevistadores",
+      breadcrumb: "Matriz de Entrevistadores",
+    },
+  },
+  {
     path: "employee-permissions/:applicationUserId",
     loadComponent: () =>
       import("src/app/apps/admin.luxuryapp/seguridad-permisos/profile-users/employee-permission-app").then(

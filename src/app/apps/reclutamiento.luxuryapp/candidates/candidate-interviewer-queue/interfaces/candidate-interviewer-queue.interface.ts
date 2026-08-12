@@ -17,6 +17,7 @@ export interface CandidateInterviewerQueueDto {
 
 export interface CandidateInterviewerQueueItemDto {
   candidateApplicationId: string;
+  interviewId?: string | null;
   candidateName: string;
   currentStage: CandidateApplicationStage;
   interviewTypeLabel: string;

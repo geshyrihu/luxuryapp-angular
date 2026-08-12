@@ -79,9 +79,9 @@
         <div class="flex justify-content-between align-items-center mb-2">
           <label>Imagen principal (Banner)</label>
           <il-button
-            iconClass="mdi:image"
+            iconClass="material-symbols-light:photo"
             label="Generar con IA"
-            variant="outlined"
+            variant="outline"
             severity="help"
             size="sm"
             (clicked)="openImageGenerator()"
@@ -142,9 +142,9 @@
       <div class="flex justify-content-between align-items-center mb-2">
         <label class="font-bold">Contenido del Anuncio</label>
         <il-button
-          iconClass="mdi:sparkles"
+          iconClass="material-symbols-light:auto-awesome-motion"
           label="Generar con IA"
-          variant="outlined"
+          variant="outline"
           severity="help"
           size="sm"
           (clicked)="generateDraft()"
@@ -183,7 +183,10 @@
                   target="_blank"
                   class="text-primary hover:underline text-sm overflow-hidden text-overflow-ellipsis w-10rem inline-block white-space-nowrap"
                 >
-                  <app-icon [icon]="'mdi:file-document-outline'" class="mr-2" />
+                  <app-icon
+                    [icon]="'material-symbols-light:description'"
+                    class="mr-2"
+                  />
                   {{ item.fileName }}
                 </a>
 
@@ -257,13 +260,16 @@
                   [class.selected-item-green]="form.controls.targetedCustomerIds.value.includes(customer.value)"
                 >
                   <app-icon
-                    [icon]="'mdi:office-building'"
+                    [icon]="'material-symbols-light:apartment'"
                     class="mr-2 text-500"
                   />
                   <span class="flex-1">{{ customer.label }}</span>
                   @if(form.controls.targetedCustomerIds.value.includes(customer.value))
                   {
-                  <app-icon [icon]="'mdi:check'" class="text-green-700" />
+                  <app-icon
+                    [icon]="'material-symbols-light:check'"
+                    class="text-green-700"
+                  />
                   }
                 </div>
               </ng-template>
@@ -294,13 +300,16 @@
                   [class.selected-item-green]="form.controls.recipientRoleIds.value.includes(role.value)"
                 >
                   <app-icon
-                    [icon]="'mdi:card-account-details'"
+                    [icon]="'material-symbols-light:badge'"
                     class="mr-2 text-500"
                   />
                   <span class="flex-1">{{ role.label }}</span>
                   @if(form.controls.recipientRoleIds.value.includes(role.value))
                   {
-                  <app-icon [icon]="'mdi:check'" class="text-green-700" />
+                  <app-icon
+                    [icon]="'material-symbols-light:check'"
+                    class="text-green-700"
+                  />
                   }
                 </div>
               </ng-template>

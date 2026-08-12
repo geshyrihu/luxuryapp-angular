@@ -52,13 +52,13 @@ export default class CobranzaNativaWrapper {
   expandedCard = signal<string | null>(null);
 
   readonly wrapperTabs: TabItem[] = [
-    { id: "summary", label: "Resumen", icon: "mdi:view-dashboard-outline" },
-    { id: "master", label: "Base Maestra", icon: "mdi:domain" },
-    { id: "operations", label: "Operacion", icon: "mdi:cash-multiple" },
-    { id: "control", label: "Control", icon: "mdi:shield-check" },
-    { id: "extended", label: "Extendida", icon: "mdi:briefcase-outline" },
-    { id: "automation", label: "Automatizacion", icon: "mdi:robot-outline" },
-    { id: "onboarding", label: "Onboarding", icon: "mdi:sitemap" },
+    { id: "summary", label: "Resumen", icon: "material-symbols-light:dashboard-outline" },
+    { id: "master", label: "Base Maestra", icon: "material-symbols-light:domain" },
+    { id: "operations", label: "Operacion", icon: "material-symbols-light:payments" },
+    { id: "control", label: "Control", icon: "material-symbols-light:verified" },
+    { id: "extended", label: "Extendida", icon: "material-symbols-light:work-outline" },
+    { id: "automation", label: "Automatizacion", icon: "material-symbols-light:smart-toy-outline" },
+    { id: "onboarding", label: "Onboarding", icon: "material-symbols-light:account-tree" },
   ];
 
   private readonly groupLabelsByTab: Record<string, string[]> = {
@@ -84,14 +84,14 @@ export default class CobranzaNativaWrapper {
       label: "Modulos funcionales",
       value: String(COBRANZA_GROUPS.reduce((a, g) => a + g.cards.length, 0)),
       detail: "Paginas y funciones activas",
-      icon: "mdi:grid",
+      icon: "material-symbols-light:grid-view",
       tone: "primary",
     },
     {
       label: "Grupos de trabajo",
       value: String(COBRANZA_GROUPS.length),
       detail: "Areas funcionales del modulo",
-      icon: "mdi:sitemap",
+      icon: "material-symbols-light:account-tree",
       tone: "info",
     },
     {
@@ -103,7 +103,7 @@ export default class CobranzaNativaWrapper {
         ),
       ),
       detail: "Rutas del API por funcionalidad",
-      icon: "mdi:server",
+      icon: "material-symbols-light:dns",
       tone: "success",
     },
   ];

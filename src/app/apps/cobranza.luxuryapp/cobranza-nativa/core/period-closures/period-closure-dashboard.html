@@ -2,7 +2,7 @@
   <lx-card class="card card--elevated mb-4">
     <div class="p-3 surface-50 rounded border-1 surface-border">
       <div class="font-semibold mb-3 flex align-items-center gap-2">
-        <app-icon [icon]="'mdi:lock'" class="text-primary" />
+        <app-icon [icon]="'material-symbols-light:lock'" class="text-primary" />
         <span>Cerrar Período Contable</span>
       </div>
 
@@ -41,14 +41,14 @@
           @if (!currentPeriodClosed()) {
           <il-button
             label="Cerrar Período"
-            iconClass="mdi:lock"
+            iconClass="material-symbols-light:lock"
             severity="warn"
             [disabled]="submitting()"
             (clicked)="onClosePeriod()"
           />
           } @else {
           <div class="flex align-items-center h-3rem gap-2">
-            <app-icon [icon]="'mdi:check-circle'" class="text-green-600" />
+            <app-icon [icon]="'material-symbols-light:check-circle'" class="text-green-600" />
             <lx-tag value="Período ya cerrado" severity="success" />
           </div>
           }
@@ -93,9 +93,9 @@
         <td class="text-center">{{ monthName(item.month) }}</td>
         <td class="text-center">
           @if (item.isClosed) {
-          <lx-tag value="Cerrado" severity="danger" icon="mdi:lock" />
+          <lx-tag value="Cerrado" severity="danger" icon="material-symbols-light:lock" />
           } @else {
-          <lx-tag value="Abierto" severity="success" icon="mdi:lock-open" />
+          <lx-tag value="Abierto" severity="success" icon="material-symbols-light:lock-open" />
           }
         </td>
         <td class="text-center text-sm">{{ item.closedAt | date:'dd/MM/yyyy HH:mm' }}</td>
@@ -106,7 +106,7 @@
           <iw-button
             lxTooltip="Reabrir"
             tooltipPosition="top"
-            iconClass="mdi:lock-open"
+            iconClass="material-symbols-light:lock-open"
             size="small"
             severity="danger"
             [disabled]="submitting()"
@@ -137,7 +137,7 @@
           [class]="item.isClosed ? 'bg-red-100' : 'bg-green-100'"
         >
           <app-icon
-            [icon]="item.isClosed ? 'mdi:lock' : 'mdi:lock-open'"
+            [icon]="item.isClosed ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
             [class]="item.isClosed ? 'text-red-600 text-xl' : 'text-green-600 text-xl'"
           />
         </div>
@@ -152,7 +152,7 @@
         <il-button
           end
           label="Reabrir"
-          iconClass="mdi:lock-open"
+          iconClass="material-symbols-light:lock-open"
           size="small"
           severity="danger"
           [disabled]="submitting()"

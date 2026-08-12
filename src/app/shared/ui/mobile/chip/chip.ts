@@ -33,7 +33,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           aria-label="Quitar"
           (click)="onRemove(); $event.stopPropagation()"
         >
-          <app-icon icon="mdi:close-circle" />
+          <app-icon icon="material-symbols-light:cancel" />
         </button>
       }
     </ion-chip>

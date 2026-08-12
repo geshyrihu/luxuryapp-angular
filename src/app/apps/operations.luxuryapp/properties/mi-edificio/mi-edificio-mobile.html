@@ -9,7 +9,7 @@
         {{ data().cliente.nameCustomer }}
       </h2>
       <p class="text-sm text-500 m-0 flex align-items-center mt-1">
-        <app-icon icon="mdi:map-marker-outline" class="mr-1" />
+        <app-icon icon="material-symbols-light:location-on-outline" class="mr-1" />
         <a
           [href]="data().cliente.googleMpasUbication"
           target="_blank"
@@ -70,7 +70,7 @@
       <p>{{ item.applicationRole }}</p>
       @if (item.phoneNumber) {
       <p class="text-sm text-500">
-        <app-icon icon="mdi:phone-outline" class="vertical-align-middle mr-1" />
+        <app-icon icon="material-symbols-light:call-outline" class="vertical-align-middle mr-1" />
         <a
           [href]="'tel:' + item.phoneNumber"
           class="text-color-secondary no-underline"
@@ -79,7 +79,7 @@
       </p>
       } @if (item.email) {
       <p class="text-sm text-500">
-        <app-icon icon="mdi:email-outline" class="vertical-align-middle mr-1" />
+        <app-icon icon="material-symbols-light:mail-outline" class="vertical-align-middle mr-1" />
         <a
           [href]="'mailto:' + item.email"
           class="text-color-secondary no-underline"

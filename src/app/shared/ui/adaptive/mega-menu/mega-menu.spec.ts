@@ -10,7 +10,7 @@ describe("LxMegaMenu (render)", () => {
     TestBed.configureTestingModule({ imports: [LxMegaMenu] });
     const fixture = TestBed.createComponent(LxMegaMenu);
     fixture.componentRef.setInput("items", [
-      { label: "Productos", icon: "mdi:package", items: [[{ label: "Cat A" }]] },
+      { label: "Productos", icon: "material-symbols-light:package", items: [[{ label: "Cat A" }]] },
     ]);
     expect(fixture.componentInstance).toBeTruthy();
   });

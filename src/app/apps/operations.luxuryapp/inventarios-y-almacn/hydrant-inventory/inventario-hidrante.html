@@ -16,7 +16,7 @@
       <div class="flex align-items-center gap-2">
         <iw-button-item
           (clicked)="onOpenScanner()"
-          [iconClass]="'mdi:qrcode'"
+          [iconClass]="'material-symbols-light:qr-code'"
           tooltip="Escanear QR"
         />
         <iw-button-download
@@ -96,7 +96,7 @@
           <iw-button-item
             (clicked)="onViewHistory(item)"
             tooltip="Ver historial de inspecciones"
-            [iconClass]="'mdi:format-list-bulleted'"
+            [iconClass]="'material-symbols-light:format-list-bulleted'"
           />
           <iw-button-download
             (clicked)="onDownloadQr(item)"
@@ -128,14 +128,14 @@
       class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
       (click)="onOpenScanner()"
     >
-      <app-icon icon="mdi:qrcode" slot="start" />
+      <app-icon icon="material-symbols-light:qr-code" slot="start" />
       Escanear QR
     </button>
     <button
       class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
       (click)="onViewPeriodos()"
     >
-      <app-icon icon="mdi:clock-outline" slot="start" />
+      <app-icon icon="material-symbols-light:schedule" slot="start" />
       Periodos de Inspección
     </button>
   </div>
@@ -144,7 +144,7 @@
       class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
     >
       <div slot="start">
-        <app-icon icon="mdi:water-outline" />
+        <app-icon icon="material-symbols-light:water" />
       </div>
       <span class="">
         <h3>

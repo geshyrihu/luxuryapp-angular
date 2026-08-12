@@ -1,10 +1,11 @@
 import { Directive, input } from "@angular/core";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export interface TimelineEvent {
   title: string;
   description?: string;
   date?: string;
-  icon?: string;
+  icon?: AppIconName;
   color?: string;
   badge?: string;
   badgeColor?: string;

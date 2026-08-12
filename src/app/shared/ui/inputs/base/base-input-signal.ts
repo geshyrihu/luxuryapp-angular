@@ -19,6 +19,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * 🧱 BASE INPUT SIGNAL - El cimiento de tus formularios (Web/PrimeNG)
@@ -34,6 +35,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
     FormsModule,
     ReactiveFormsModule,
     ValidationErrorsCustomInput,
+    AppIcon,
   ],
   template: `
     <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
@@ -62,7 +64,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
             <ng-container [ngTemplateOutlet]="projected" />
             @if (description()) {
               <small class="block mt-1 text-500 line-height-2 italic px-1">
-                <app-icon [icon]="'mdi:information'" class="pi mr-1 text-xs" />
+                <app-icon [icon]="'material-symbols-light:info'" class="pi mr-1 text-xs" />
                 {{ description() }}
               </small>
             }

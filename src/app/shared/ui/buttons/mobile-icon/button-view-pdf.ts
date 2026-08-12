@@ -18,7 +18,7 @@ import { openPdf } from "../shared/pdf";
       [class]="styleClass()"
       (click)="handleClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:file-pdf-box'" slot="icon-only" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:picture-as-pdf'" slot="icon-only" />
     </ion-button>
   `,
 })

@@ -65,7 +65,7 @@
               [class.border-red-100]="!item.isAssigned"
             >
               <app-icon
-                [icon]="item.isAssigned ? 'mdi:check' : 'mdi:close'"
+                [icon]="item.isAssigned ? 'material-symbols-light:check' : 'material-symbols-light:close'"
                 
               />
             </span>
@@ -97,7 +97,7 @@
 
     <!-- Buscador Móvil -->
     <div class="p-input-icon-left w-full mb-3">
-      <app-icon [icon]="'mdi:magnify'" />
+      <app-icon [icon]="'material-symbols-light:search'" />
       <custom-search-input-signal
         placeholder="Filtrar módulos..."
         (searchChange)="searchTerm.set($event)"
@@ -124,7 +124,7 @@
         <ili-list-item class="ion-no-padding">
           <div slot="start" class="pl-3 py-2 flex align-items-center">
             <app-icon
-              [icon]="item.isAssigned ? 'mdi:check-circle' : 'mdi:circle-outline'"
+              [icon]="item.isAssigned ? 'material-symbols-light:check-circle' : 'material-symbols-light:circle-outline'"
               [class.text-green-500]="item.isAssigned"
               [class.text-400]="!item.isAssigned"
             />

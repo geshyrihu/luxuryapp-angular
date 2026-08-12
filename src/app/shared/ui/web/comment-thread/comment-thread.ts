@@ -24,7 +24,7 @@ export { type Comment } from "@ui/base/comment-thread.base";
       <!-- Title -->
       @if (title()) {
         <h4 class="comment-thread-title">
-          <app-icon icon="mdi:comment-multiple-outline" />
+          <app-icon icon="material-symbols-light:forum-outline" />
           {{ title() }}
           @if (comments().length > 0) {
             ({{ comments().length }})
@@ -35,7 +35,7 @@ export { type Comment } from "@ui/base/comment-thread.base";
       <!-- Comment list -->
       @if (comments().length === 0) {
         <div class="comment-empty">
-          <app-icon icon="mdi:comment-outline" class="text-2xl" />
+          <app-icon icon="material-symbols-light:comment-outline" class="text-2xl" />
           <span>Sin comentarios aún. Sé el primero.</span>
         </div>
       } @else {
@@ -102,12 +102,15 @@ export { type Comment } from "@ui/base/comment-thread.base";
             <span class="comment-form-hint">Ctrl+Enter para enviar</span>
             <p-button
               label="Comentar"
-              icon="mdi:send"
               size="small"
               [disabled]="!newText.trim() || submitting()"
               [loading]="submitting()"
               (onClick)="submitComment()"
-            />
+            >
+              <ng-template #icon>
+                <app-icon icon="material-symbols-light:send" />
+              </ng-template>
+            </p-button>
           </div>
         </div>
       }

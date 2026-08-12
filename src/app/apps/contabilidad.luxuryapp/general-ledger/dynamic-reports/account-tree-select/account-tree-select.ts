@@ -29,7 +29,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
     <div class="flex flex-column gap-2 p-1 h-full">
       <div class="p-inputgroup w-full sticky top-0 z-1 bg-white">
         <span class="p-inputgroup-addon"
-          ><app-icon [icon]="'mdi:magnify'"
+          ><app-icon [icon]="'material-symbols-light:search'"
         /></span>
         <custom-input-text-signal
           placeholder="Filtrar catálogo..."
@@ -44,7 +44,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
         <div
           class="flex flex-column align-items-center justify-content-center p-4 gap-2"
         >
-          <app-icon [icon]="'mdi:loading'" class="text-2xl text-primary-500" />
+          <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-2xl text-primary-500" />
           <span class="text-xs text-500 uppercase font-bold tracking-wider"
             >Cargando...</span
           >
@@ -77,7 +77,7 @@ const treeCatalogCache = new Map<string, IAccountTreeNode[]>();
                   *cdkDragPreview
                   class="bg-primary-50 border-1 border-primary-200 rounded p-2 shadow-sm flex align-items-center gap-2 opacity-90 z-5"
                 >
-                  <app-icon [icon]="'mdi:menu'" class="text-primary-500" />
+                  <app-icon [icon]="'material-symbols-light:menu'" class="text-primary-500" />
                   <span class="font-mono text-xs font-bold text-primary-900">{{
                     node.data.code
                   }}</span>

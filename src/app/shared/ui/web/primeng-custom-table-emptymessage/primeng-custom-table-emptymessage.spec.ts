@@ -49,7 +49,7 @@ describe('PrimeNgCustomTableEmptyMessage', () => {
   });
 
   it('should accept custom icon/title/message', () => {
-    fixture.componentRef.setInput('icon', 'mdi:bank-outline');
+    fixture.componentRef.setInput('icon', 'material-symbols-light:account-balance-outline');
     fixture.componentRef.setInput('title', 'Sin bancos');
     fixture.componentRef.setInput('message', 'No hay bancos registrados.');
     fixture.detectChanges();

@@ -30,7 +30,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         (click)="popover.toggle($event)"
         aria-label="Opciones"
       >
-        <app-icon icon="mdi:dots-vertical" class="text-xl" />
+        <app-icon icon="material-symbols-light:more-vert" class="text-xl" />
       </button>
 
       <p-popover #popover appendTo="body" styleClass="action-menu-popover">

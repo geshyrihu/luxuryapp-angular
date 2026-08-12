@@ -34,13 +34,13 @@
           size="small"
           [severity]="isFirstQuincenaSelected() ? 'success' : 'secondary'"
           [outlined]="isFirstQuincenaSelected() ? 'success' : 'secondary'"
-          [iconClass]="isFirstQuincenaSelected() ?  'mdi:check' : 'mdi:close'"
+          [iconClass]="isFirstQuincenaSelected() ?  'material-symbols-light:check' : 'material-symbols-light:close'"
         />
 
         <il-button
           (clicked)="generateOrdenesPorQuincena(0)"
           label="Generar 1ra Quincena"
-          iconClass="mdi:calendar"
+          iconClass="material-symbols-light:calendar-today"
           size="small"
           severity="success"
           [disabled]="!isGenerationParamsSelected() || !isFirstQuincenaSelected() || isFirstQuincenaGenerationBlocked()"
@@ -55,13 +55,13 @@
           size="small"
           [severity]="isSecondQuincenaSelected() ? 'info' : 'secondary'"
           [outlined]="!isSecondQuincenaSelected()"
-          [iconClass]="isSecondQuincenaSelected() ?'mdi:check' : 'mdi:close'"
+          [iconClass]="isSecondQuincenaSelected() ?'material-symbols-light:check' : 'material-symbols-light:close'"
         />
 
         <il-button
           [label]="'Generar 2da Quincena'"
           (clicked)="generateOrdenesPorQuincena(1)"
-          iconClass="mdi:calendar"
+          iconClass="material-symbols-light:calendar-today"
           size="small"
           severity="info"
           [disabled]="!isGenerationParamsSelected() || !isSecondQuincenaSelected() || isSecondQuincenaGenerationBlocked()"
@@ -86,7 +86,7 @@
             [variant]="selectedMonthName() === month.monthName ? null : 'outlined'"
             [severity]="selectedMonthName() === month.monthName ? 'success' : 'secondary'"
             [raised]="true"
-            [iconClass]="selectedMonthName() === month.monthName ? 'mdi:check' : 'mdi:close'"
+            [iconClass]="selectedMonthName() === month.monthName ? 'material-symbols-light:check' : 'material-symbols-light:close'"
             customClass="w-full text-xs"
             size="small"
           />
@@ -131,7 +131,7 @@
     >
       <div class="flex align-items-center text-700">
         <app-icon
-          [icon]="'mdi:information'"
+          [icon]="'material-symbols-light:info'"
           class="text-orange-500 font-bold"
         />
         <span class="font-bold text-sm uppercase">Guía de Generación:</span>
@@ -146,7 +146,7 @@
       </div>
 
       <app-icon
-        [icon]="'mdi:chevron-right'"
+        [icon]="'material-symbols-light:chevron-right'"
         class="text-400 text-xs hidden md:block"
       />
 
@@ -159,7 +159,7 @@
       </div>
 
       <app-icon
-        [icon]="'mdi:chevron-right'"
+        [icon]="'material-symbols-light:chevron-right'"
         class="text-400 text-xs hidden md:block"
       />
 
@@ -301,7 +301,7 @@
             <ili-button
               expand="block"
               color="success"
-              iconClass="mdi:calendar-blank"
+              iconClass="material-symbols-light:event"
               label="Gen. 1ra Q"
               [disabled]="!isGenerationParamsSelected() || isFirstQuincenaGenerationBlocked()"
               (clicked)="generateOrdenesPorQuincena(0)"
@@ -311,7 +311,7 @@
             <ili-button
               expand="block"
               color="tertiary"
-              iconClass="mdi:calendar-blank"
+              iconClass="material-symbols-light:event"
               label="Gen. 2da Q"
               [disabled]="!isGenerationParamsSelected() || isSecondQuincenaGenerationBlocked()"
               (clicked)="generateOrdenesPorQuincena(1)"
@@ -368,7 +368,7 @@
           <h2 class="text-base font-bold">{{ item.equipoOInstalacion }}</h2>
           <p class="text-sm text-700">{{ item.justificacionGasto }}</p>
           <p class="text-xs text-color-secondary mt-1 uppercase">
-            <app-icon icon="mdi:briefcase-outline" class="mr-1" />
+            <app-icon icon="material-symbols-light:work-outline" class="mr-1" />
             {{ item.provider }}
           </p>
 

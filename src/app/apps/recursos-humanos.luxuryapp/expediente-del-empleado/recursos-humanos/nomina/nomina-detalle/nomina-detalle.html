@@ -1,6 +1,6 @@
 @if (loading()) {
 <div class="flex justify-content-center align-items-center">
-  <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary" />
+  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl text-primary" />
 </div>
 } @else {
 
@@ -59,7 +59,7 @@
       <primeng-custom-caption [dt]="dt" [showAdd]="false" />
       <il-button
         label="Exportar Excel"
-        iconClass="mdi:file-excel"
+        iconClass="material-symbols-light:table-view"
         severity="success"
         variant="ghost-text"
         (clicked)="descargarExcel()"
@@ -99,7 +99,7 @@
         <div class="flex gap-1">
           <iw-button-edit (clicked)="openEditar(item)" />
           <iw-button
-            iconClass="mdi:file-pdf-box"
+            iconClass="material-symbols-light:picture-as-pdf"
             severity="danger"
             variant="ghost-text"
             lxTooltip="Descargar recibo"
@@ -127,7 +127,7 @@
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
       >
-        <app-icon icon="mdi:currency-usd" />
+        <app-icon icon="material-symbols-light:attach-money" />
       </div>
 
       <h2 class="font-normal m-0">{{ item.nombreCompleto }}</h2>

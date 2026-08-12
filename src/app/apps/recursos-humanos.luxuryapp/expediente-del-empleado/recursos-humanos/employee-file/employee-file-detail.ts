@@ -58,16 +58,16 @@ export class EmployeeFileDetail implements OnInit {
   employeeId = signal<string>("");
 
   tabs: TabItem[] = [
-    { id: "0", label: "Personales", icon: "mdi:account" },
-    { id: "1", label: "Emergencia", icon: "mdi:phone" },
-    { id: "2", label: "Clínicos", icon: "mdi:heart-outline" },
-    { id: "3", label: "Bancarios", icon: "mdi:wallet" },
-    { id: "4", label: "Contratos", icon: "mdi:file-document-outline" },
-    { id: "5", label: "Puesto", icon: "mdi:briefcase" },
-    { id: "6", label: "Vacaciones", icon: "mdi:calendar-plus" },
-    { id: "7", label: "Incidencias", icon: "mdi:alert" },
-    { id: "8", label: "Evaluaciones", icon: "mdi:chart-line" },
-    { id: "9", label: "Solicitudes", icon: "mdi:send" },
+    { id: "0", label: "Personales", icon: "material-symbols-light:person" },
+    { id: "1", label: "Emergencia", icon: "material-symbols-light:call" },
+    { id: "2", label: "Clínicos", icon: "material-symbols-light:favorite-outline" },
+    { id: "3", label: "Bancarios", icon: "material-symbols-light:wallet" },
+    { id: "4", label: "Contratos", icon: "material-symbols-light:description" },
+    { id: "5", label: "Puesto", icon: "material-symbols-light:work" },
+    { id: "6", label: "Vacaciones", icon: "material-symbols-light:event-note" },
+    { id: "7", label: "Incidencias", icon: "material-symbols-light:warning" },
+    { id: "8", label: "Evaluaciones", icon: "material-symbols-light:monitoring" },
+    { id: "9", label: "Solicitudes", icon: "material-symbols-light:send" },
   ];
   activeTab = model<string>("0");
 

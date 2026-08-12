@@ -67,19 +67,19 @@
           <iw-button-item
             lxTooltip="Imagenes"
             tooltipPosition="top"
-            iconClass="mdi:image"
+            iconClass="material-symbols-light:photo"
             (clicked)="onUpdateImages(item.id)"
           />
           <iw-button-item
             lxTooltip="Dirección"
             tooltipPosition="top"
-            iconClass="mdi:map-marker"
+            iconClass="material-symbols-light:location-on"
             (clicked)="onUpdateAddress(item.id)"
           />
           <iw-button-item
             lxTooltip="Ubicaciones"
             tooltipPosition="top"
-            iconClass="mdi:map-marker-multiple"
+            iconClass="material-symbols-light:location-on"
             (clicked)="onManageLocations(item.id, item.nameCustomer)"
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
@@ -124,7 +124,7 @@
           class="customer-logo-img"
         />
         } @else {
-        <app-icon icon="mdi:domain" class="text-xl" />
+        <app-icon icon="material-symbols-light:domain" class="text-xl" />
         }
       </div>
 
@@ -142,17 +142,17 @@
             label="Editar"
           />
           <ili-button-item
-            iconClass="mdi:image-multiple-outline"
+            iconClass="material-symbols-light:photo-library-outline"
             label="Imígenes"
             (clicked)="onUpdateImages(item.id)"
           />
           <ili-button-item
-            iconClass="mdi:map-marker-outline"
+            iconClass="material-symbols-light:location-on-outline"
             label="Dirección"
             (clicked)="onUpdateAddress(item.id)"
           />
           <ili-button-item
-            iconClass="mdi:map-marker-multiple"
+            iconClass="material-symbols-light:location-on"
             label="Ubicaciones"
             (clicked)="onManageLocations(item.id, item.nameCustomer)"
           />

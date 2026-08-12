@@ -1,12 +1,13 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { GlobalErrorAlertBase } from "@ui/base/global-error-alert.base";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { ButtonModule } from "primeng/button";
 import { MessageModule } from "primeng/message";
 
 @Component({
   selector: "app-global-error-alert",
 
-  imports: [MessageModule, ButtonModule],
+  imports: [MessageModule, ButtonModule, AppIcon],
   template: `
     @if (error) {
       <div class="global-error-web">
@@ -16,15 +17,14 @@ import { MessageModule } from "primeng/message";
           [style]="{ width: '100%' }"
         >
           <ng-template #messageicon>
-            <span class="pi pi-exclamation-circle"></span>
+            <app-icon icon="material-symbols-light:error" />
           </ng-template>
           <ng-template #messageaction>
-            <p-button
-              icon="pi pi-times"
-              severity="danger"
-              [text]="true"
-              (onClick)="onClose()"
-            />
+            <p-button severity="danger" [text]="true" (onClick)="onClose()">
+              <ng-template #icon>
+                <app-icon icon="material-symbols-light:close" />
+              </ng-template>
+            </p-button>
           </ng-template>
         </p-message>
       </div>

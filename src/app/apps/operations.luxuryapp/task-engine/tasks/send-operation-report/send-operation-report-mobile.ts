@@ -39,11 +39,11 @@ export class SendOperationReportMobile {
   service = inject(SendOperationReportBaseService);
 
   segmentItems: SegmentItem[] = [
-    { value: "seleccionar", label: "Todos", icon: "mdi:checkbox-marked" },
-    { value: "desmarcar", label: "Ninguno", icon: "mdi:close-circle" },
-    { value: "PARA", label: "PARA", icon: "mdi:email-arrow-right" },
-    { value: "CC", label: "CC", icon: "mdi:email-outline" },
-    { value: "CCO", label: "CCO", icon: "mdi:email-off-outline" },
+    { value: "seleccionar", label: "Todos", icon: "material-symbols-light:check-box" },
+    { value: "desmarcar", label: "Ninguno", icon: "material-symbols-light:cancel" },
+    { value: "PARA", label: "PARA", icon: "material-symbols-light:mail-outline" },
+    { value: "CC", label: "CC", icon: "material-symbols-light:mail-outline" },
+    { value: "CCO", label: "CCO", icon: "material-symbols-light:mail-off-outline" },
   ];
 
   onSegmentChange(value: string): void {

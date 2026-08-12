@@ -24,7 +24,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             <span class="ili-accordion-header-title">{{ item.title }}</span>
             <app-icon
               [icon]="
-                isExpanded(item.id) ? 'mdi:chevron-up' : 'mdi:chevron-down'
+                isExpanded(item.id) ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:keyboard-arrow-down'
               "
               class="ili-accordion-chevron"
             />

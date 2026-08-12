@@ -88,13 +88,13 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
                 />
               }
               <il-button
-                iconClass="mdi:checkbox-marked"
+                iconClass="material-symbols-light:check-box"
                 label="Aprobar"
                 size="small"
                 (clicked)="onApprove(request)"
               />
               <il-button
-                iconClass="mdi:close"
+                iconClass="material-symbols-light:close"
                 label="Rechazar"
                 size="small"
                 (clicked)="onReject(request)"

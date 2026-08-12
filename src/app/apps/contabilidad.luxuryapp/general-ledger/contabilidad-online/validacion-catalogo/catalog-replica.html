@@ -17,7 +17,7 @@
     <div class="mb-0">
       <il-button
         label="Cargar Catálogo"
-        iconClass="mdi:refresh"
+        iconClass="material-symbols-light:refresh"
         size="sm"
         [loading]="loading()"
         (clicked)="onLoadCatalog()"
@@ -33,16 +33,16 @@
       <div class="flex gap-1">
         <il-button
           label="Expandir Todo"
-          iconClass="mdi:chevron-double-down"
-          variant="outlined"
+          iconClass="material-symbols-light:keyboard-double-arrow-down"
+          variant="outline"
           severity="secondary"
           size="sm"
           (clicked)="toggleAll(true)"
         />
         <il-button
           label="Colapsar Todo"
-          iconClass="mdi:chevron-double-up"
-          variant="outlined"
+          iconClass="material-symbols-light:keyboard-double-arrow-up"
+          variant="outline"
           severity="secondary"
           size="sm"
           (clicked)="toggleAll(false)"
@@ -54,7 +54,7 @@
 
   @if (loading()) {
   <div class="flex align-items-center text-color-secondary mb-4 gap-2">
-    <app-icon [icon]="'mdi:loading'" />
+    <app-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Consultando catálogo en Aspel...</span>
   </div>
   } @if (!loading() && !data()) {
@@ -65,11 +65,12 @@
   } @if (data(); as catalog) {
   <!-- Panel de cuentas faltantes -->
   @if (cuentasFaltantes().length > 0) {
-  <div
-    class="surface-ground p-4 rounded mb-4 border-left-4 border-orange-500"
-  >
+  <div class="surface-ground p-4 rounded mb-4 border-left-4 border-orange-500">
     <div class="flex align-items-center mb-3">
-      <app-icon [icon]="'mdi:alert'" class="text-orange-500 text-xl" />
+      <app-icon
+        [icon]="'material-symbols-light:warning'"
+        class="text-orange-500 text-xl"
+      />
       <h4 class="m-0 text-orange-600 ml-2">
         {{ cuentasFaltantes().length }} cuenta(s) Nivel 1 no encontrada(s) en
         Aspel
@@ -86,7 +87,11 @@
       <div
         class="flex align-items-center surface-card rounded p-2 border-1 border-orange-300 gap-2"
       >
-        <lx-tag [value]="faltante.clasificacion" [severity]="getSeverity(faltante.clasificacion)" class="text-xs" />
+        <lx-tag
+          [value]="faltante.clasificacion"
+          [severity]="getSeverity(faltante.clasificacion)"
+          class="text-xs"
+        />
         <span class="font-mono text-xs font-bold"
           >{{ faltante.numeroCuenta }}</span
         >
@@ -96,11 +101,12 @@
     </div>
   </div>
   } @else {
-  <div
-    class="surface-ground p-3 rounded mb-4 border-left-4 border-green-500"
-  >
+  <div class="surface-ground p-3 rounded mb-4 border-left-4 border-green-500">
     <div class="flex align-items-center gap-2">
-      <app-icon [icon]="'mdi:check-circle'" class="text-green-500" />
+      <app-icon
+        [icon]="'material-symbols-light:check-circle'"
+        class="text-green-500"
+      />
       <span class="text-green-700 font-medium text-xs">
         Todas las cuentas Nivel 1 del Catálogo General LuxuryF estén presentes
         en Aspel.
@@ -117,8 +123,8 @@
   >
     <ng-template #header>
       <tr>
-        <th >No. de cuenta</th>
-        <th >Descripción</th>
+        <th>No. de cuenta</th>
+        <th>Descripción</th>
         <th class="table-col-160px">Origen de datos</th>
         <th class="text-center table-col-60px">Cta.M</th>
         <th class="table-col-90px">Debe</th>
@@ -148,7 +154,7 @@
               (clicked)="toggleNode(account)"
             />
             } @else {
-            <span class="inline-block" ></span>
+            <span class="inline-block"></span>
             }
             <span class="font-mono text-xs">{{ account.numeroCuenta }}</span>
           </div>

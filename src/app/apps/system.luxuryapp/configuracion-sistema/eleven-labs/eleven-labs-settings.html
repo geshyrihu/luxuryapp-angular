@@ -110,26 +110,26 @@
         <div class="flex flex-wrap gap-2 mt-3">
         <il-button
           label="Guardar configuración"
-          iconClass="mdi:content-save"
+          iconClass="material-symbols-light:save"
           severity="success"
           (clicked)="saveSettings()"
         />
         <il-button
           label="Probar audio"
-          iconClass="mdi:volume-high"
+          iconClass="material-symbols-light:volume-up"
           severity="info"
           [loading]="testingAudio()"
           (clicked)="testAudio()"
         />
         <il-button
           label="Detener audio"
-          iconClass="mdi:stop"
+          iconClass="material-symbols-light:stop"
           severity="secondary"
           (clicked)="stopAudio()"
         />
         <il-button
           label="Recargar voces"
-          iconClass="mdi:refresh"
+          iconClass="material-symbols-light:refresh"
           severity="contrast"
           [loading]="loadingVoices()"
           (clicked)="loadVoices()"
@@ -175,7 +175,7 @@
           </div>
           <il-button
             label="Actualizar estado"
-            iconClass="mdi:sync"
+            iconClass="material-symbols-light:sync"
             severity="warning"
             [loading]="loadingSubscription()"
             (clicked)="loadSubscription()"
@@ -187,7 +187,7 @@
           </div>
           <il-button
             label="Reintentar"
-            iconClass="mdi:refresh"
+            iconClass="material-symbols-light:refresh"
             severity="warning"
             (clicked)="loadSubscription()"
           />

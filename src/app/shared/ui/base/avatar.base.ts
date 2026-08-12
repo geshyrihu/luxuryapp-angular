@@ -1,4 +1,5 @@
 import { Directive, input, computed } from "@angular/core";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export type AvatarShape = "circle" | "square";
 export type AvatarSize = "normal" | "large" | "xlarge";
@@ -17,7 +18,7 @@ export abstract class AvatarBase {
   /** Iniciales / texto corto. */
   label = input<string>("");
   /** Nombre de icono `app-icon` (fallback si no hay image/label). */
-  icon = input<string>("");
+  icon = input<AppIconName>();
   shape = input<AvatarShape>("circle");
   size = input<AvatarSize>("normal");
   /** Clases CSS reenviadas al elemento avatar interno (color, margen, etc.). */

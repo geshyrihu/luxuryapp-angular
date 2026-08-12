@@ -9,6 +9,8 @@ import {
   signal,
   TemplateRef,
 } from "@angular/core";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
+import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { ButtonModule } from "primeng/button";
 import { DataViewModule } from "primeng/dataview";
@@ -25,12 +27,14 @@ export type DataViewLayout = "list" | "grid";
     InputTextModule,
     ButtonModule,
     EmptyState,
+    AppIcon,
+    LxSpinner,
   ],
   template: `
     <div class="flex align-items-center gap-2 mb-3 flex-wrap">
       @if (globalFilterFields().length) {
         <span class="p-input-icon-left flex-grow-1">
-          <i class="pi pi-search"></i>
+          <app-icon icon="material-symbols-light:search" />
           <input
             pInputText
             type="text"
@@ -48,17 +52,20 @@ export type DataViewLayout = "list" | "grid";
       }
       @if (showAdd()) {
         <p-button
-          icon="pi pi-plus"
           [label]="addLabel()"
           severity="primary"
           (onClick)="add.emit()"
-        />
+        >
+          <ng-template #icon>
+            <app-icon icon="material-symbols-light:add" />
+          </ng-template>
+        </p-button>
       }
     </div>
 
     @if (loading()) {
       <div class="flex justify-content-center py-5">
-        <i class="pi pi-spin pi-spinner text-4xl text-primary"></i>
+        <lx-spinner [size]="48" />
       </div>
     } @else if ($filteredData().length > 0) {
       <p-dataView
@@ -100,7 +107,7 @@ export type DataViewLayout = "list" | "grid";
       </p-dataView>
     } @else if ($filterValue()) {
       <app-empty-state
-        icon="pi pi-search"
+        icon="material-symbols-light:search"
         title="Sin resultados"
         [message]="
           'No se encontraron resultados para &quot;' + $filterValue() + '&quot;'
@@ -108,7 +115,7 @@ export type DataViewLayout = "list" | "grid";
       />
     } @else {
       <app-empty-state
-        icon="pi pi-inbox"
+        icon="material-symbols-light:move-to-inbox-outline"
         title="Sin registros"
         message="No hay registros disponibles."
       />

@@ -33,7 +33,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             >
               <app-icon
                 [icon]="
-                  isExpanded(node) ? 'mdi:chevron-down' : 'mdi:chevron-right'
+                  isExpanded(node) ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'
                 "
               />
             </button>

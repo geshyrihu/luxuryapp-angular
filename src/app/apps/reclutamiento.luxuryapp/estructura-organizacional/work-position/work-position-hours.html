@@ -2,7 +2,7 @@
 @if (data()) {
     <div class="flex flex-column">
       <div class="flex align-items-center p-3 surface-100 rounded-lg">
-        <app-icon [icon]="'mdi:clock-outline'" class="text-2xl text-600" />
+        <app-icon [icon]="'material-symbols-light:schedule'" class="text-2xl text-600" />
         <div>
           <h3 class="text-lg font-bold text-800 m-0">Horarios de Trabajo</h3>
           <p class="text-sm text-500 m-0">Turno: {{ data()?.turnoTrabajo }}</p>
@@ -25,7 +25,7 @@
           <div class="flex align-items-center">
             @if (dia.e && dia.s) {
             <span class="text-primary font-monospace">{{ dia.e }}</span>
-            <app-icon [icon]="'mdi:arrow-right'" class="text-300 text-xs" />
+            <app-icon [icon]="'material-symbols-light:arrow-forward'" class="text-300 text-xs" />
             <span class="text-primary font-monospace">{{ dia.s }}</span>
             } @else {
             <span class="text-400 font-italic">Descanso / Sin asignar</span>
@@ -39,7 +39,7 @@
     <div
       class="flex flex-column align-items-center justify-content-center p-8 text-400"
     >
-      <app-icon [icon]="'mdi:loading'" class="text-3xl mb-2" />
+      <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl mb-2" />
       <span>Cargando horarios...</span>
     </div>
     }

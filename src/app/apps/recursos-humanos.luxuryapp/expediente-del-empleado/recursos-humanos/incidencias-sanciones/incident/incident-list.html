@@ -92,14 +92,14 @@
             @if (item.investigationStatus === 'Reportado' ||
             item.investigationStatus === 'EnInvestigacion') {
             <iw-button-item
-              iconClass="mdi:check-circle"
+              iconClass="material-symbols-light:check-circle"
               lxTooltip="Resolver"
               tooltipPosition="top"
               (click)="onResolve(item)"
             />
             <iw-button-edit (click)="onEdit(item)" />
             <iw-button-item
-              iconClass="mdi:close-circle"
+              iconClass="material-symbols-light:cancel"
               lxTooltip="Cancelar"
               tooltipPosition="top"
               (click)="onCancel(item)"
@@ -108,14 +108,14 @@
 
             <!-- Generar y descargar acta para firma fósica -->
             <iw-button-download
-              iconClass="mdi:file-edit"
+              iconClass="material-symbols-light:note-alt"
               size="small"
               (clicked)="onGenerateAct(item)"
             />
 
             <!-- Subir acta firmada escaneada -->
             <iw-button-item
-              iconClass="mdi:upload"
+              iconClass="material-symbols-light:upload"
               [lxTooltip]="item.isActGenerated ? 'Reemplazar Acta' : 'Subir Acta'"
               tooltipPosition="top"
               (click)="onUploadSignedAct(item)"
@@ -124,7 +124,7 @@
             <!-- Ver acta firmada en visor é solo si ya fue subida -->
             @if (item.isActGenerated && item.administrativeActPdfUrl) {
             <iw-button-view-pdf
-              iconClass="mdi:file-pdf-box"
+              iconClass="material-symbols-light:picture-as-pdf"
               [url]="item.administrativeActPdfUrl"
               fileName="Acta Administrativa"
               size="small"
@@ -159,7 +159,7 @@
           
         >
           <app-icon
-            icon="mdi:alert-circle-outline"
+            icon="material-symbols-light:error-outline"
             
           />
         </div>

@@ -78,6 +78,8 @@ import { Tree } from "@ui/web/tree/tree";
 import { AppVirtualScroller } from "@ui/web/virtual-scroller/virtual-scroller";
 import { MegaMenuItem, MenuItem, TreeNode } from "primeng/api";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { BottomNavItem } from "@ui/base/bottom-nav.base";
+import type { TabBarItem } from "@ui/mobile/tab-bar/tab-bar";
 import { WhatsNew } from "src/app/shared/ui/web/whats-new/whats-new";
 
 const EXTRAS_LABELS: Record<string, string> = {
@@ -220,7 +222,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 <div class="card-body flex gap-2 flex-wrap">
                   <app-chip label="React" [removable]="true"></app-chip>
                   <app-chip label="Angular" color="primary"></app-chip>
-                  <app-chip label="Vue" icon="mdi:vuejs"></app-chip>
+                  <app-chip label="Vue" icon="material-symbols-light:code"></app-chip>
                   <app-chip
                     label="Svelte"
                     [removable]="true"
@@ -312,7 +314,7 @@ const EXTRAS_LABELS: Record<string, string> = {
                 <div class="card-body">
                   <app-iconfield iconPosition="left">
                     <app-inputicon>
-                      <app-icon icon="mdi:magnify" />
+                      <app-icon icon="material-symbols-light:search" />
                     </app-inputicon>
                     <input
                       type="text"
@@ -1159,17 +1161,17 @@ export class CatalogWebExtras {
     { label: "Month", value: "month" },
   ];
 
-  readonly bottomNavItems = [
-    { id: "home", label: "Home", icon: "mdi:home" },
-    { id: "search", label: "Search", icon: "mdi:magnify" },
-    { id: "profile", label: "Profile", icon: "mdi:account" },
+  readonly bottomNavItems: BottomNavItem[] = [
+    { id: "home", label: "Home", icon: "material-symbols-light:home" },
+    { id: "search", label: "Search", icon: "material-symbols-light:search" },
+    { id: "profile", label: "Profile", icon: "material-symbols-light:person" },
   ];
 
   readonly menuItems: MenuItem[] = [
-    { label: "New", icon: "mdi:plus" },
-    { label: "Open", icon: "mdi:folder" },
+    { label: "New", icon: "material-symbols-light:add" },
+    { label: "Open", icon: "material-symbols-light:folder" },
     { separator: true },
-    { label: "Save", icon: "mdi:content-save" },
+    { label: "Save", icon: "material-symbols-light:save" },
   ];
 
   readonly menubarItems: MenuItem[] = [
@@ -1192,14 +1194,14 @@ export class CatalogWebExtras {
   ];
 
   readonly panelMenuItems: MenuItem[] = [
-    { label: "Dashboard", icon: "mdi:view-dashboard" },
-    { label: "Reports", icon: "mdi:file-chart" },
+    { label: "Dashboard", icon: "material-symbols-light:dashboard" },
+    { label: "Reports", icon: "material-symbols-light:monitoring" },
   ];
 
-  readonly tabBarItems = [
-    { id: "home", label: "Home", icon: "mdi:home" },
-    { id: "search", label: "Search", icon: "mdi:magnify" },
-    { id: "settings", label: "Settings", icon: "mdi:cog" },
+  readonly tabBarItems: TabBarItem[] = [
+    { id: "home", label: "Home", icon: "material-symbols-light:home" },
+    { id: "search", label: "Search", icon: "material-symbols-light:search" },
+    { id: "settings", label: "Settings", icon: "material-symbols-light:settings" },
   ];
 
   readonly territories = [

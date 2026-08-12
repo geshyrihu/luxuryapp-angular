@@ -1,12 +1,12 @@
 <div class="flex align-items-center gap-2 flex-wrap">
-
   <!-- Menú de navegación -->
   @for (item of menu; track item) {
-    <a
-      [routerLink]="item.route"
-      class="btn btn-secondary btn-sm mb-0"
-      [class.btn-outline]="isActive(item.activePath)"
-    >{{ item.label }}</a>
+  <a
+    [routerLink]="item.route"
+    class="btn btn-secondary btn-sm mb-0"
+    [class.btn-outline]="isActive(item.activePath)"
+    >{{ item.label }}</a
+  >
   }
 
   <!-- Search -->
@@ -40,12 +40,11 @@
   <!-- Botón de exportar -->
   <il-button
     customClass="mb-0"
-    iconClass="mdi:chart-bar"
+    iconClass="material-symbols-light:bar-chart"
     label="Exportar a excel"
     (clicked)="exportToExcel()"
-    variant="outlined"
+    variant="outline"
     severity="success"
     size="small"
   />
-
 </div>

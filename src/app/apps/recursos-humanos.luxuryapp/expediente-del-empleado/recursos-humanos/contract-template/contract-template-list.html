@@ -41,7 +41,7 @@
         </td>
         <td class="text-center">
           <iw-button-item
-            [icon]="item.isActive ? 'mdi:toggle-switch' : 'mdi:toggle-switch-off-outline'"
+            [icon]="item.isActive ? 'material-symbols-light:toggle-on' : 'material-symbols-light:toggle-off'"
             [title]="item.isActive ? 'Desactivar' : 'Activar'"
             (click)="onToggleActive(item)"
           />
@@ -71,7 +71,7 @@
           class="w-3rem h-3rem bg-primary-50"
         >
           <app-icon
-            icon="mdi:file-document-outline"
+            icon="material-symbols-light:description"
             class="text-xl text-primary"
           />
         </div>

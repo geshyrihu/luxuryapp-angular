@@ -5,7 +5,7 @@
     <div
       class="w-3rem h-3rem rounded bg-primary-50 flex align-items-center justify-content-center text-primary"
     >
-      <app-icon [icon]="'mdi:shield'" class="text-xl" />
+      <app-icon [icon]="'material-symbols-light:shield'" class="text-xl" />
     </div>
     <div class="flex flex-column">
       <span class="text-900 font-bold uppercase tracking-wider text-sm"
@@ -20,7 +20,7 @@
   @if (isSelfProfile()) {
   <div class="p-3 rounded border-1 bg-yellow-50 border-yellow-200">
     <div class="flex align-items-start gap-3">
-      <app-icon [icon]="'mdi:alert-circle-outline'" class="text-yellow-600 text-xl mt-0.5" />
+      <app-icon [icon]="'material-symbols-light:error-outline'" class="text-yellow-600 text-xl mt-0.5" />
       <div class="flex-1">
         <span class="text-yellow-800 font-semibold text-sm">Acceso restringido</span>
         <p class="text-yellow-700 text-sm mt-1 mb-0">
@@ -71,7 +71,7 @@
                 [class.border-red-100]="!item.isSelected"
               >
                 <app-icon
-                  [icon]="item.isSelected ? 'mdi:check' : 'mdi:close'"
+                  [icon]="item.isSelected ? 'material-symbols-light:check' : 'material-symbols-light:close'"
                   class="text-xs"
                 />
               </span>

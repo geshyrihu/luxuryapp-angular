@@ -17,15 +17,15 @@
       <div class="flex gap-2">
         <il-button
           label="Filtrar"
-          iconClass="mdi:magnify"
+          iconClass="material-symbols-light:search"
           (clicked)="onFilter()"
           [loading]="loading()"
         />
         <il-button
           label="Limpiar"
-          iconClass="mdi:close"
+          iconClass="material-symbols-light:close"
           (clicked)="onClearFilters()"
-          variant="outlined"
+          variant="outline"
         />
       </div>
     </div>
@@ -33,7 +33,10 @@
 
   @if (loading()) {
   <div class="flex justify-content-center py-8">
-    <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary" />
+    <app-icon
+      [icon]="'material-symbols-light:progress-activity'"
+      class="text-4xl text-primary"
+    />
   </div>
   } @else if (dashboard()) {
   <!-- KPIs -->
@@ -158,9 +161,7 @@
     <h3 class="text-lg font-semibold mb-4">Distribución por Severidad</h3>
     <div class="flex flex-wrap gap-2">
       @for (item of dashboard()!.bySeverity; track item.name) {
-      <div
-        class="flex align-items-center px-3 py-2 surface-100 rounded-lg"
-      >
+      <div class="flex align-items-center px-3 py-2 surface-100 rounded-lg">
         <span class="font-medium">{{ item.name }}</span>
         <span class="badge badge-info ml-2">{{ item.count }}</span>
       </div>

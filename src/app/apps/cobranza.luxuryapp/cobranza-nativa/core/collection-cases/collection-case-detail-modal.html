@@ -2,7 +2,7 @@
 <div class="p-3">
   <!-- Cabecera -->
   <div class="flex align-items-center gap-3 mb-4 p-3 rounded surface-100">
-    <app-icon [icon]="'mdi:alert'" class="text-3xl text-red-600" />
+    <app-icon [icon]="'material-symbols-light:warning'" class="text-3xl text-red-600" />
     <div>
       <div class="font-bold text-lg">{{ c.propertyName }}</div>
       <div class="text-500 text-sm">
@@ -53,7 +53,7 @@
     <il-button label="Cerrar" severity="secondary" (clicked)="onClose()" />
     <il-button
       label="Guardar Actividad"
-      iconClass="mdi:content-save"
+      iconClass="material-symbols-light:save"
       severity="success"
       [disabled]="submitting()"
       (clicked)="onLogActivity()"

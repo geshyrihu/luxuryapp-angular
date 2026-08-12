@@ -5,7 +5,7 @@
 
   >
     <app-icon
-      [icon]="'mdi:loading'"
+      [icon]="'material-symbols-light:progress-activity'"
       class="text-primary text-4xl ds-animate-spin"
     />
   </div>
@@ -45,14 +45,14 @@
             <div
               class="surface-100 border-1 surface-border rounded-xl px-3 py-2 inline-flex align-items-center gap-2 text-sm text-color"
             >
-              <app-icon [icon]="'mdi:book'" class="text-xs" />
+              <app-icon [icon]="'material-symbols-light:book'" class="text-xs" />
               <span>Manual de Proceso · {{ manual()!.folio }}</span>
             </div>
             <div class="flex align-items-center gap-2">
               @if (isAdmin()) {
               <il-button
                 class="no-print"
-                iconClass="mdi:cog"
+                iconClass="material-symbols-light:settings"
                 label="Editor"
                 severity="secondary"
                 [variant]="'outlined'"
@@ -61,7 +61,7 @@
               }
               <il-button
                 class="no-print"
-                iconClass="mdi:printer"
+                iconClass="material-symbols-light:print"
                 label="Descargar PDF"
                 severity="primary"
                 (clicked)="descargarPDF()"
@@ -75,7 +75,7 @@
         <div class="mb-3">
           <iw-button
             class="no-print"
-            iconClass="mdi:arrow-left"
+            iconClass="material-symbols-light:arrow-back"
             [variant]="'text'"
             severity="secondary"
             (clicked)="onBack()"
@@ -100,49 +100,49 @@
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon [icon]="'mdi:sitemap'" />
+            <app-icon [icon]="'material-symbols-light:account-tree'" />
             <span>Departamento: {{ manual()!.departament }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon [icon]="'mdi:calendar-clock'" />
+            <app-icon [icon]="'material-symbols-light:calendar-clock'" />
             <span>Frecuencia: {{ getPeriodicityReadable(manual()) }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon [icon]="'mdi:tag'" />
+            <app-icon [icon]="'material-symbols-light:label'" />
             <span>Version: {{ manual()!.currentVersion }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon [icon]="'mdi:check-decagram'" />
+            <app-icon [icon]="'material-symbols-light:verified'" />
             <span>Estado: {{ manualStatusLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon [icon]="'mdi:web'" />
+            <app-icon [icon]="'material-symbols-light:web'" />
             <span>Alcance: {{ scopeLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon [icon]="'mdi:account-group'" />
+            <app-icon [icon]="'material-symbols-light:group'" />
             <span>Dirigido a: {{ audienceLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon [icon]="'mdi:office-building'" />
+            <app-icon [icon]="'material-symbols-light:apartment'" />
             <span>Visibilidad: {{ visibilityLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon [icon]="'mdi:format-list-bulleted'" />
+            <app-icon [icon]="'material-symbols-light:format-list-bulleted'" />
             <span>Pasos: {{ manual()!.pasos?.length || 0 }}</span>
           </div>
         </div>
@@ -344,11 +344,11 @@
             </div>
             } } @else {
             <div class="flex align-items-center gap-2">
-              <app-icon [icon]="'mdi:external-link'" class="text-primary" />
+              <app-icon [icon]="'material-symbols-light:open-in-new'" class="text-primary" />
               <a [href]="enlace.urlEnlace" target="_blank" class="no-underline">
                 <il-button
                   label="Abrir Enlace"
-                  iconClass="mdi:external-link"
+                  iconClass="material-symbols-light:open-in-new"
                   severity="info"
                   size="small"
                   [outlined]="true"
@@ -366,7 +366,7 @@
       </div>
       } @else {
       <div class="text-center py-6">
-        <app-icon [icon]="'mdi:book'" class="text-4xl text-400 mb-3" />
+        <app-icon [icon]="'material-symbols-light:book'" class="text-4xl text-400 mb-3" />
         <p class="text-500 m-0">Este manual aun no tiene pasos definidos.</p>
       </div>
       }
@@ -400,7 +400,7 @@
             >
               <div class="flex align-items-center gap-3">
                 <app-icon
-                  [icon]="'mdi:file-document-outline'"
+                  [icon]="'material-symbols-light:description'"
                   class="text-xl text-primary"
                 />
                 <div>
@@ -411,7 +411,7 @@
                 </div>
               </div>
               <a [href]="adj.url" target="_blank" download>
-                <il-button label="Descargar" iconClass="mdi:download" [text]="true" size="small" />
+                <il-button label="Descargar" iconClass="material-symbols-light:download" [text]="true" size="small" />
               </a>
             </div>
             }

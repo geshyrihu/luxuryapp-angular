@@ -35,13 +35,13 @@
         />
         <il-button
           label="Importar desde Excel"
-          iconClass="mdi:upload"
+          iconClass="material-symbols-light:upload"
           severity="success"
           (clicked)="fileInput.click()"
         />
         <il-button
           label="Descargar Plantilla"
-          iconClass="mdi:download"
+          iconClass="material-symbols-light:download"
           severity="secondary"
           (clicked)="downloadTemplate()"
         />
@@ -118,7 +118,7 @@
       <td class="no-print">
         <div class="flex gap-1">
           <iw-button-item
-            iconClass="mdi:account-group"
+            iconClass="material-symbols-light:group"
             lxTooltip="Ocupantes"
             tooltipPosition="top"
             (clicked)="showOccupantsDialog(item)"
@@ -155,7 +155,7 @@
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
       >
-        <app-icon icon="mdi:home-city-outline" />
+        <app-icon icon="material-symbols-light:location-city" />
       </div>
 
       <h2 class="font-normal m-0">{{ item.tower }} - {{ item.department }}</h2>

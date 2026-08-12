@@ -138,7 +138,7 @@ interface IResetPasswordForm {
                   label="CAMBIAR CONTRASEÑA"
                   [loading]="submitting()"
                   [disabled]="form.invalid || submitting()"
-                  icon="mdi:lock-reset"
+                  icon="material-symbols-light:lock-reset"
                   [fluid]="true"
                   severity="warning"
                   customClass="shadow"
@@ -152,7 +152,7 @@ interface IResetPasswordForm {
                     class="flex align-items-center p-3 rounded border-1 border-red-300 bg-red-50 text-red-800 shadow-sm"
                   >
                     <app-icon
-                      icon="mdi:alert-circle-outline"
+                      icon="material-symbols-light:error-outline"
                       class="text-xl mr-3"
                     />
                     <span class="text-sm font-medium">{{
@@ -195,7 +195,7 @@ interface IResetPasswordForm {
               style="background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2);"
             >
               <app-icon
-                icon="mdi:star"
+                icon="material-symbols-light:star"
                 class="text-4xl"
                 style="color: var(--ds-secondary);"
               />

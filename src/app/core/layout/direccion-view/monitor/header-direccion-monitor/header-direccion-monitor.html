@@ -1,7 +1,24 @@
 <p-toolbar styleClass="direccion-header-toolbar w-full p-0 m-0">
   <ng-template #start>
     <div class="flex align-items-center gap-2 px-3">
-      <p-breadcrumb [model]="breadcrumbItems" />
+      <!-- Mismo motivo que en header-employee-monitor: el `icon` de un MenuItem
+           lo pinta PrimeNG como clase CSS, no como identificador de Iconify. -->
+      <p-breadcrumb [model]="breadcrumbItems">
+        <ng-template #item let-item>
+          <a
+            class="p-breadcrumb-item-link"
+            [routerLink]="item.routerLink"
+            [attr.aria-label]="item.label || 'Inicio'"
+          >
+            @if (item.icon) {
+              <app-icon [icon]="item.icon" class="p-breadcrumb-item-icon" />
+            }
+            @if (item.label) {
+              <span class="p-breadcrumb-item-label">{{ item.label }}</span>
+            }
+          </a>
+        </ng-template>
+      </p-breadcrumb>
     </div>
   </ng-template>
 
@@ -47,7 +64,7 @@
     <div class="flex align-items-center gap-1 px-3">
       <iw-button
         (clicked)="onBack()"
-        icon="mdi:chevron-left"
+        icon="material-symbols-light:chevron-left"
         variant="text"
         severity="secondary"
         lxTooltip="Atras"
@@ -56,7 +73,7 @@
       />
       <iw-button
         (clicked)="onForward()"
-        icon="mdi:chevron-right"
+        icon="material-symbols-light:chevron-right"
         variant="text"
         severity="secondary"
         lxTooltip="Adelante"
@@ -65,7 +82,7 @@
       />
       <iw-button
         (clicked)="onHome()"
-        icon="mdi:home"
+        icon="material-symbols-light:home"
         variant="text"
         severity="secondary"
         lxTooltip="Inicio"

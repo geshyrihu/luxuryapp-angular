@@ -93,13 +93,13 @@
           <td class="text-center">
             @if (item.priority === "High") {
             <app-icon
-              [icon]="'mdi:star-outline'"
+              [icon]="'material-symbols-light:star-outline'"
               (click)="onUpdatePriority(item.id)"
               class="icon icon- icon-xl pointer text-primary"
             />
             } @if (item.priority === "Low") {
             <app-icon
-              [icon]="'mdi:star-outline'"
+              [icon]="'material-symbols-light:star-outline'"
               (click)="onUpdatePriority(item.id)"
               class="icon icon- icon-xl pointer text-primary"
             />
@@ -143,7 +143,7 @@
                 />
 
                 <il-button-item
-                  iconClass="mdi:comment"
+                  iconClass="material-symbols-light:comment"
                   label="Seguimiento"
                   (clicked)="onFollowUp(item.id)"
                 />
@@ -174,7 +174,7 @@
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
-          icon="mdi:clipboard-list-outline"
+          icon="material-symbols-light:fact-check"
           class="text-xl text-primary"
         />
       </div>

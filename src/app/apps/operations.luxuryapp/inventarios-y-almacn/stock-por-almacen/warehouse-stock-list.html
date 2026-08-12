@@ -98,14 +98,14 @@
           <td class="no-print">
             <div class="flex">
               <iw-button-item
-                [iconClass]="'mdi:plus'"
+                [iconClass]="'material-symbols-light:add'"
                 lxTooltip="Entrada"
                 tooltipPosition="top"
                 (clicked)="onAddEntrada({ id: 0, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
               />
 
               <iw-button-item
-                iconClass="mdi:minus"
+                iconClass="material-symbols-light:remove"
                 lxTooltip="Salida"
                 tooltipPosition="top"
                 (clicked)="onAddSalida({ id: 0, idInventarioProducto: item.id, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"

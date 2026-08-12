@@ -24,7 +24,7 @@ import { ConfirmService } from "../shared/confirm.service";
       [class]="styleClass()"
       (click)="confirmDelete($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:delete-outline'" slot="icon-only" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:delete-outline'" slot="icon-only" />
     </ion-button>
   `,
 })

@@ -19,7 +19,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         <div class="ptr-indicator" [style.height.px]="pullDistance()">
           <div class="ptr-spinner" [class.ptr-spinning]="refreshing()">
             <app-icon
-              [icon]="refreshing() ? 'mdi:loading' : 'mdi:arrow-down'"
+              [icon]="refreshing() ? 'material-symbols-light:arrow-downward' : 'material-symbols-light:arrow-downward'"
             />
           </div>
           <span class="ptr-text">

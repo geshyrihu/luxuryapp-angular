@@ -146,7 +146,7 @@
                 />
                 } @else {
                 <app-avatar
-                  icon="mdi:package"
+                  icon="material-symbols-light:package"
                   size="xlarge"
                   shape="square"
                 ></app-avatar>
@@ -193,13 +193,13 @@
               </td>
               <td class="text-center">
                 <iw-button
-                  iconClass="mdi:pencil"
+                  iconClass="material-symbols-light:edit"
                   variant="text"
                   severity="info"
                   (clicked)="editItem(item, i)"
                 />
                 <iw-button
-                  iconClass="mdi:delete"
+                  iconClass="material-symbols-light:delete"
                   variant="text"
                   severity="danger"
                   (clicked)="removeItem(i)"
@@ -276,7 +276,7 @@
               </td>
               <td>
                 <iw-button
-                  iconClass="mdi:delete"
+                  iconClass="material-symbols-light:delete"
                   severity="danger"
                   variant="text"
                   (clicked)="removeBudget(i)"
@@ -336,7 +336,7 @@
               class="flex align-items-center justify-content-center flex-column py-5"
             >
               <app-icon
-                [icon]="'mdi:cloud-upload'"
+                [icon]="'material-symbols-light:cloud-upload'"
                 class="border-2 border-circle p-5 text-8xl text-400 border-400"
               />
               <p class="mt-4 mb-0">Arrastre y suelte los archivos aquó.</p>
@@ -465,7 +465,7 @@
   <div class="wizard-navigation mt-4 flex justify-content-between">
     <il-button
       label="Anterior"
-      iconClass="mdi:arrow-left"
+      iconClass="material-symbols-light:arrow-back"
       (clicked)="prevStep()"
       [disabled]="activeIndex === 0"
       variant="secondary"
@@ -474,14 +474,14 @@
     @if (activeIndex < items.length - 1) {
     <il-button
       label="Siguiente"
-      iconClass="mdi:arrow-right"
+      iconClass="material-symbols-light:arrow-forward"
       (clicked)="nextStep()"
       iconPosition="right"
     />
     } @if (activeIndex === items.length - 1) {
     <il-button
       label="Finalizar y Crear Orden"
-      iconClass="mdi:check"
+      iconClass="material-symbols-light:check"
       (clicked)="onSubmit()"
       [loading]="submitting()"
       severity="success"

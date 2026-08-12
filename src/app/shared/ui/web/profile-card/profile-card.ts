@@ -50,19 +50,19 @@ export { type ProfileAction } from "@ui/base/profile-card.base";
         }
         @if (email()) {
           <a [href]="'mailto:' + email()" class="profile-email">
-            <app-icon icon="mdi:email-outline" class="text-xs" />
+            <app-icon icon="material-symbols-light:mail-outline" class="text-xs" />
             {{ email() }}
           </a>
         }
         @if (phone()) {
           <a [href]="'tel:' + phone()" class="profile-phone">
-            <app-icon icon="mdi:phone-outline" class="text-xs" />
+            <app-icon icon="material-symbols-light:call-outline" class="text-xs" />
             {{ phone() }}
           </a>
         }
         @if (company()) {
           <span class="profile-company">
-            <app-icon icon="mdi:office-building-outline" class="text-xs" />
+            <app-icon icon="material-symbols-light:apartment" class="text-xs" />
             {{ company() }}
           </span>
         }

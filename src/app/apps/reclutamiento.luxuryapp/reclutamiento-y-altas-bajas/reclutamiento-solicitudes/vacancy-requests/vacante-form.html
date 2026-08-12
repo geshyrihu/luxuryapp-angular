@@ -1,5 +1,5 @@
 <lx-card>
-<div class="card-body">
+  <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <custom-input-text-signal
         [control]="form.controls.id"
@@ -28,32 +28,6 @@
         [data]="cb_status()"
         [filter]="true"
       />
-      <div class="grid mb-4 align-items-center">
-        <label class="col-12 sm:col-3 mb-2 md:mb-0 flex align-items-center"
-          >Fuente</label
-        >
-        <div class="col-12 sm:col-9">
-          <custom-input-select-signal
-            [control]="form.controls.fuente"
-            [data]="cb_fuente()"
-            optionLabel="label"
-            optionValue="value"
-            placeholder="--Selecciona una opción--"
-          />
-        </div>
-      </div>
-
-      <custom-input-date-signal
-        [control]="form.controls.selectionDate"
-        label="Fecha de selección"
-        placeholder="fecha de selección"
-      />
-
-      <custom-input-date-signal
-        [control]="form.controls.entryDate"
-        label="Fecha de ingreso"
-        placeholder="fecha de ingreso"
-      />
 
       <div class="grid mb-4 align-items-start">
         <label class="col-12 sm:col-3 mb-2 md:mb-0 flex align-items-center">
@@ -76,7 +50,11 @@
                 [disabled]="!id"
                 (click)="manageCandidateApplication()"
               >
-                {{ currentApplicationId() ? "Editar candidato / entrevista" : "Agregar candidato / entrevista" }}
+                {{
+                  currentApplicationId()
+                    ? "Editar candidato / entrevista"
+                    : "Agregar candidato / entrevista"
+                }}
               </button>
               <button
                 type="button"

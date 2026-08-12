@@ -28,7 +28,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 
       <il-button
         label="Ejecutar Validación de Empleados"
-        iconClass="mdi:send"
+        iconClass="material-symbols-light:send"
         severity="primary"
         [loading]="loading()"
         (clicked)="triggerReport()"

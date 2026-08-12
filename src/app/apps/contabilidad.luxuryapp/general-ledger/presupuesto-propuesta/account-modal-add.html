@@ -21,10 +21,7 @@
 </div>
 
 @if (filteredAccounts().length > 0) {
-<div
-  class="border-1 surface-border rounded"
-  
->
+<div class="border-1 surface-border rounded">
   @for (account of filteredAccounts(); track account.codigoCuenta) {
   <div
     pRipple
@@ -35,7 +32,7 @@
   >
     <span>{{ account.codigoCuenta }} - {{ account.descripcionCuenta }}</span>
     @if (isSelected(account.codigoCuenta)) {
-    <app-icon [icon]="'mdi:check'" class="text-primary" />
+    <app-icon [icon]="'material-symbols-light:check'" class="text-primary" />
     }
   </div>
   }
@@ -43,14 +40,16 @@
 <div class="flex justify-content-end mt-3">
   <il-button
     type="button"
-    variant="outlined"
+    variant="outline"
     size="sm"
     (clicked)="submitSelectedAccounts()"
     [disabled]="selectedAccounts().length === 0"
-    iconClass="mdi:plus"
+    iconClass="material-symbols-light:add"
     label="Añadir Seleccionadas ({{selectedAccounts().length}})"
   />
 </div>
 } @else {
-<lx-message severity="info">No hay cuentas disponibles que coincidan con la bósqueda.</lx-message>
+<lx-message severity="info"
+  >No hay cuentas disponibles que coincidan con la bósqueda.</lx-message
+>
 }

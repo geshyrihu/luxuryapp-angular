@@ -7,7 +7,7 @@
         [alt]="person.firstName"
         width="88px"
         height="88px"
-        fallbackIcon="mdi:account"
+        fallbackIcon="material-symbols-light:person"
         [imageStyle]="{ 'border-radius': '50%', 'object-fit': 'cover' }"
         [fallbackStyle]="{ 'border-radius': '50%' }"
       />
@@ -33,19 +33,19 @@
   <lx-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
-        <app-icon icon="mdi:phone" /> Teléfono
+        <app-icon icon="material-symbols-light:call" /> Teléfono
       </span>
       <span class="committee-contact-detail__value">{{ person.phoneNumber }}</span>
       <div class="committee-contact-detail__actions">
         <ili-button
           label="Llamar"
-          iconClass="mdi:phone"
+          iconClass="material-symbols-light:call"
           expand="block"
           (clicked)="call()"
         />
         <ili-button
           label="WhatsApp"
-          iconClass="mdi:whatsapp"
+          iconClass="material-symbols-light:chat"
           color="success"
           expand="block"
           (clicked)="whatsapp()"
@@ -60,13 +60,13 @@
   <lx-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
-        <app-icon icon="mdi:email-outline" /> Correo
+        <app-icon icon="material-symbols-light:mail-outline" /> Correo
       </span>
       <span class="committee-contact-detail__value">{{ person.email }}</span>
       <div class="committee-contact-detail__actions">
         <ili-button
           label="Enviar correo"
-          iconClass="mdi:email-fast-outline"
+          iconClass="material-symbols-light:mail-outline"
           expand="block"
           (clicked)="email()"
         />
@@ -79,7 +79,7 @@
   <lx-card>
     <div class="committee-contact-detail__section">
       <span class="committee-field__label">
-        <app-icon icon="mdi:clock-outline" /> Horario
+        <app-icon icon="material-symbols-light:schedule" /> Horario
       </span>
       @if (person.schedule?.length) {
       <div class="committee-schedule">

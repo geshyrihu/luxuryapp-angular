@@ -23,9 +23,9 @@
     <div class="flex justify-content-between align-items-center mb-2">
       <il-button
         label="Analizar Imagen (IA)"
-        iconClass="mdi:camera"
+        iconClass="material-symbols-light:photo-camera"
         severity="secondary"
-        variant="outlined"
+        variant="outline"
         size="sm"
         (clicked)="openVision()"
       />
@@ -54,7 +54,10 @@
     <div class="grid mt-2">
       <div class="col-12 mb-2">
         <small class="text-500 italic">
-          <app-icon [icon]="'mdi:camera'" class="mr-1" />
+          <app-icon
+            [icon]="'material-symbols-light:photo-camera'"
+            class="mr-1"
+          />
           Recuerda: Fotos horizontales, centradas en el detalle.
         </small>
       </div>
@@ -64,9 +67,13 @@
             >Foto del antes</label
           >
           @if (form.controls.beforeWorkPreview.value) {
-            <div class="mb-2">
-              <img [src]="form.controls.beforeWorkPreview.value" class="w-full rounded shadow-sm"  alt="Evidencia Antes" />
-            </div>
+          <div class="mb-2">
+            <img
+              [src]="form.controls.beforeWorkPreview.value"
+              class="w-full rounded shadow-sm"
+              alt="Evidencia Antes"
+            />
+          </div>
           }
           <lx-file-upload
             accept="image/*,.heic,.heif"
@@ -84,9 +91,13 @@
             >Foto del después</label
           >
           @if (form.controls.afterWorkPreview.value) {
-            <div class="mb-2">
-              <img [src]="form.controls.afterWorkPreview.value" class="w-full rounded shadow-sm"  alt="Evidencia Después" />
-            </div>
+          <div class="mb-2">
+            <img
+              [src]="form.controls.afterWorkPreview.value"
+              class="w-full rounded shadow-sm"
+              alt="Evidencia Después"
+            />
+          </div>
           }
           <lx-file-upload
             accept="image/*,.heic,.heif"

@@ -44,7 +44,10 @@
         <div
           class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
-          <app-icon [icon]="'mdi:card-account-details'" class="text-primary" />
+          <app-icon
+            [icon]="'material-symbols-light:badge'"
+            class="text-primary"
+          />
           <span class="text-500">No.</span>
           <strong class="text-800"
             >{{ header()!.numberEmployee ?? 'é' }}</strong
@@ -53,20 +56,29 @@
         <div
           class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
-          <app-icon [icon]="'mdi:email-outline'" class="text-primary" />
+          <app-icon
+            [icon]="'material-symbols-light:mail-outline'"
+            class="text-primary"
+          />
           <strong class="text-800">{{ header()!.email }}</strong>
         </div>
         <div
           class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
-          <app-icon [icon]="'mdi:phone'" class="text-primary" />
+          <app-icon
+            [icon]="'material-symbols-light:call'"
+            class="text-primary"
+          />
           <strong class="text-800">{{ header()!.phoneNumber || 'é' }}</strong>
         </div>
         @if (header()!.dateAdmission) {
         <div
           class="flex align-items-center gap-2 surface-100 rounded-lg px-3 py-2 text-sm"
         >
-          <app-icon [icon]="'mdi:calendar'" class="text-primary" />
+          <app-icon
+            [icon]="'material-symbols-light:calendar-today'"
+            class="text-primary"
+          />
           <span class="text-500">Ingreso:</span>
           <strong class="text-800"
             >{{ header()!.dateAdmission | date:'dd/MM/yyyy' }}</strong
@@ -80,1322 +92,1384 @@
 }
 
 <!-- -- Pestaóas --------------------------------------------------------------- -->
-<lx-tabs [tabs]="tabs" [(activeId)]="activeTab" (tabChange)="onTabChange($event.id)">
-    <!-- Tab 1: Datos personales -->
-    <div tab="0">
-      @if (personalData(); as pd) {
-      <div class="flex flex-column gap-4 py-3">
-        <!-- Identificación -->
-        <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
-          <ng-template #header>
-            <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
-              <div
-                class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
-              >
-                <app-icon
-                  [icon]="'mdi:card-account-details'"
-                  class="text-primary"
-                />
-              </div>
-              <h4 class="m-0 font-bold text-900">Identificación</h4>
-            </div>
-          </ng-template>
-          <div class="grid row-gap-3">
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Nombre Completo</label
-              >
-              <p class="font-semibold text-900 m-0">
-                {{ pd.firstName }} {{ pd.lastName }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >CURP</label
-              >
-              <p class="font-semibold text-900 m-0 font-mono text-sm">
-                {{ pd.curp || 'é' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >RFC</label
-              >
-              <p class="font-semibold text-900 m-0 font-mono text-sm">
-                {{ pd.rfc || 'é' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >NSS</label
-              >
-              <p class="font-semibold text-900 m-0">{{ pd.nss || 'é' }}</p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Fecha de Nacimiento</label
-              >
-              <p class="font-semibold text-900 m-0">
-                {{ (pd.birth | date:'dd/MM/yyyy':'UTC') || 'é' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Gónero</label
-              >
-              <p class="font-semibold text-900 m-0">{{ pd.sex || 'é' }}</p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Tipo de Sangre</label
-              >
-              @if (pd.bloodType) {
-              <lx-tag
-                [value]="pd.bloodType"
-                severity="danger"
-                [rounded]="true"
-              ></lx-tag>
-              } @else {
-              <p class="m-0 text-500">é</p>
-              }
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Nacionalidad</label
-              >
-              <p class="font-semibold text-900 m-0">
-                {{ pd.nationality || 'é' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Estado Civil</label
-              >
-              <p class="font-semibold text-900 m-0">
-                {{ pd.maritalStatus || 'é' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Nivel Educativo</label
-              >
-              <p class="font-semibold text-900 m-0">
-                {{ pd.educationLevel || 'é' }}
-              </p>
-            </div>
-          </div>
-        </lx-card>
-
-        <!-- Contacto + Salario -->
-        <div class="grid row-gap-4">
-          <div class="col-12 lg:col-8">
-            <lx-card class="shadow-sm rounded-xl h-full" [elevated]="true">
-              <ng-template #header>
-                <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
-                  <div
-                    class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
-                  >
-                    <app-icon [icon]="'mdi:phone'" class="text-blue-500" />
-                  </div>
-                  <h4 class="m-0 font-bold text-900">Contacto</h4>
-                </div>
-              </ng-template>
-              <div class="grid row-gap-3">
-                <div class="col-12 sm:col-6">
-                  <label class="text-xs font-bold text-500 uppercase block mb-1"
-                    >Correo Institucional</label
-                  >
-                  <p class="font-semibold text-900 m-0">{{ pd.email }}</p>
-                </div>
-                <div class="col-12 sm:col-6">
-                  <label class="text-xs font-bold text-500 uppercase block mb-1"
-                    >Telófono Mívil</label
-                  >
-                  <p class="font-semibold text-900 m-0">
-                    {{ pd.phoneNumberPrefix }} {{ pd.phoneNumber }}
-                  </p>
-                </div>
-                <div class="col-12 sm:col-6">
-                  <label class="text-xs font-bold text-500 uppercase block mb-1"
-                    >Telófono Local</label
-                  >
-                  <p class="font-semibold text-900 m-0">
-                    {{ pd.localPhone || 'é' }}
-                  </p>
-                </div>
-                <div class="col-12 sm:col-6">
-                  <label class="text-xs font-bold text-500 uppercase block mb-1"
-                    >Fecha de Ingreso</label
-                  >
-                  <p class="font-semibold text-900 m-0">
-                    {{ (pd.dateAdmission | date:'dd/MM/yyyy':'UTC') || 'é' }}
-                  </p>
-                </div>
-              </div>
-            </lx-card>
-          </div>
-          <div class="col-12 lg:col-4">
+<lx-tabs
+  [tabs]="tabs"
+  [(activeId)]="activeTab"
+  (tabChange)="onTabChange($event.id)"
+>
+  <!-- Tab 1: Datos personales -->
+  <div tab="0">
+    @if (personalData(); as pd) {
+    <div class="flex flex-column gap-4 py-3">
+      <!-- Identificación -->
+      <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
+        <ng-template #header>
+          <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
-              class="rounded-xl bg-primary shadow-sm p-4 h-full flex flex-column justify-content-center gap-2"
+              class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
             >
-              <div class="flex align-items-center gap-2 text-white opacity-80">
-                <app-icon [icon]="'mdi:cash-multiple'" class="text-lg" />
-                <span class="text-xs font-bold uppercase">Salario Mensual</span>
-              </div>
-              <p class="text-4xl font-black text-white m-0">
-                {{ pd.salary | currency:'MXN':'symbol':'1.2-2' }}
-              </p>
-              <p class="text-xs text-white opacity-60 m-0">
-                Bruto mensual en MXN
-              </p>
+              <app-icon
+                [icon]="'material-symbols-light:badge'"
+                class="text-primary"
+              />
             </div>
+            <h4 class="m-0 font-bold text-900">Identificación</h4>
           </div>
-        </div>
-
-        <!-- Dirección -->
-        <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
-          <ng-template #header>
-            <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
-              <div
-                class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
-              >
-                <app-icon [icon]="'mdi:map-marker'" class="text-orange-500" />
-              </div>
-              <h4 class="m-0 font-bold text-900">Dirección de Residencia</h4>
-            </div>
-          </ng-template>
-          <div class="grid row-gap-3">
-            <div class="col-12 sm:col-8 lg:col-6">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Calle</label
-              >
-              <p class="font-semibold text-900 m-0">{{ pd.street || 'é' }}</p>
-            </div>
-            <div class="col-12 sm:col-2 lg:col-3">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Né Ext</label
-              >
-              <p class="font-semibold text-900 m-0">{{ pd.number || 'é' }}</p>
-            </div>
-            <div class="col-12 sm:col-2 lg:col-3">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Né Int</label
-              >
-              <p class="font-semibold text-900 m-0">
-                {{ pd.unitNumber || 'é' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-3">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Colonia</label
-              >
-              <p class="font-semibold text-900 m-0">{{ pd.district || 'é' }}</p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-3">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Alcaldía / Municipio</label
-              >
-              <p class="font-semibold text-900 m-0">{{ pd.townHall || 'é' }}</p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-3">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Ciudad / Estado</label
-              >
-              <p class="font-semibold text-900 m-0">{{ pd.city || 'é' }}</p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-3">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Paós</label
-              >
-              <p class="font-semibold text-900 m-0">{{ pd.country || 'é' }}</p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-3">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Código Postal</label
-              >
-              <p class="font-semibold text-900 m-0">{{ pd.zipCode || 'é' }}</p>
-            </div>
-          </div>
-        </lx-card>
-      </div>
-      } @else {
-      <div class="flex flex-column align-items-center py-8 gap-3">
-        <div
-          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
-        >
-          <app-icon [icon]="'mdi:account-minus'" class="text-4xl text-300" />
-        </div>
-        <p class="text-500 m-0">Sin datos personales registrados.</p>
-      </div>
-      }
-    </div>
-
-    <!-- Tab 2: Contacto de emergencia -->
-    <div tab="1">
-      @if (emergencyContacts().length > 0) {
-      <p-table
-        [value]="emergencyContacts()"
-        class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
-      >
-        <ng-template #header>
-          <tr>
-            <th>Nombre</th>
-            <th>Telófono</th>
-            <th>Parentesco</th>
-            <th>Tipo</th>
-          </tr>
         </ng-template>
-        <ng-template #body let-item>
-          <tr>
-            <td class="font-medium">{{ item.nameContact }}</td>
-            <td>
-              <div class="flex align-items-center gap-2">
-                <app-icon [icon]="'mdi:phone'" class="text-primary" />
-                {{ item.phoneNumber }}
-              </div>
-            </td>
-            <td>{{ item.relation }}</td>
-            <td>
-              <lx-tag
-                [value]="item.contactOfBeneficiary"
-                severity="secondary"
-                [rounded]="true"
-              ></lx-tag>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-      } @else {
-      <div class="flex flex-column align-items-center py-8 gap-3">
-        <div
-          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
-        >
-          <app-icon [icon]="'mdi:phone'" class="text-4xl text-300" />
-        </div>
-        <p class="text-500 m-0">Sin contactos de emergencia registrados.</p>
-      </div>
-      }
-    </div>
-
-    <!-- Tab 3: Datos clónicos -->
-    <div tab="2">
-      @if (clinicalData().length > 0) {
-      <p-table
-        [value]="clinicalData()"
-        class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
-      >
-        <ng-template #header>
-          <tr>
-            <th>Padecimiento / Alergia</th>
-            <th>Observaciones y Descripción</th>
-          </tr>
-        </ng-template>
-        <ng-template #body let-item>
-          <tr>
-            <td>
-              <div class="flex align-items-center gap-2">
-                <app-icon [icon]="'mdi:heart'" class="text-red-500" />
-                <span class="font-medium text-red-600">{{ item.name }}</span>
-              </div>
-            </td>
-            <td class="text-700">{{ item.description }}</td>
-          </tr>
-        </ng-template>
-      </p-table>
-      } @else {
-      <div class="flex flex-column align-items-center py-8 gap-3">
-        <div
-          class="w-5rem h-5rem rounded-circle bg-green-50 flex align-items-center justify-content-center"
-        >
-          <app-icon [icon]="'mdi:heart'" class="text-4xl text-green-400" />
-        </div>
-        <p class="text-500 m-0">Sin condiciones clónicas registradas.</p>
-      </div>
-      }
-    </div>
-
-    <!-- Tab 4: Datos bancarios -->
-    <div tab="3">
-      @if (bankData().length > 0) {
-      <p-table
-        [value]="bankData()"
-        class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
-      >
-        <ng-template #header>
-          <tr>
-            <th>Institución Bancaria</th>
-            <th>Número de Cuenta</th>
-            <th>CLABE Interbancaria</th>
-            <th>Titular de la Cuenta</th>
-            <th>Información de Contacto</th>
-          </tr>
-        </ng-template>
-        <ng-template #body let-item>
-          <tr>
-            <td class="font-bold text-primary">{{ item.bankName }}</td>
-            <td><code class="text-sm">{{ item.bankAccount }}</code></td>
-            <td><code class="text-sm font-medium">{{ item.bankKey }}</code></td>
-            <td>{{ item.nameContact }}</td>
-            <td>
-              <div class="flex flex-column">
-                <span>{{ item.phoneNumber }}</span>
-                <small class="text-500">{{ item.relacion || 'é' }}</small>
-              </div>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-      } @else {
-      <div class="flex flex-column align-items-center py-8 gap-3">
-        <div
-          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
-        >
-          <app-icon [icon]="'mdi:credit-card'" class="text-4xl text-300" />
-        </div>
-        <p class="text-500 m-0">Sin datos bancarios registrados.</p>
-      </div>
-      }
-    </div>
-
-    <!-- Tab 5: Contratos -->
-    <div tab="4">
-      @if (contracts().length > 0) {
-      <p-table
-        [value]="contracts()"
-        class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
-      >
-        <ng-template #header>
-          <tr>
-            <th>Folio</th>
-            <th>Tipo de Contrato</th>
-            <th>Estatus</th>
-            <th>Vigencia (Inicio - Fin)</th>
-            <th>Salario Pactado</th>
-            <th>Notas</th>
-          </tr>
-        </ng-template>
-        <ng-template #body let-item>
-          <tr>
-            <td>
-              <span class="font-bold text-primary"
-                >#{{ item.contractNumber }}</span
-              >
-            </td>
-            <td>{{ item.contractType }}</td>
-            <td>
-              <span [class]="'badge ' + getStatusBadge(item.contractStatus)"
-                >{{ item.contractStatus }}</span
-              >
-            </td>
-            <td>
-              <div class="flex align-items-center gap-2 text-sm">
-                <span>{{ item.startDate | date:'dd/MM/yyyy' }}</span>
-                <app-icon [icon]="'mdi:arrow-right'" class="text-xs text-400" />
-                <span
-                  >{{ (item.endDate | date:'dd/MM/yyyy') || 'Indeterminado'
-                  }}</span
-                >
-              </div>
-            </td>
-            <td class="font-bold text-primary">
-              {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
-            </td>
-            <td><small class="text-500">{{ item.notes || 'é' }}</small></td>
-          </tr>
-        </ng-template>
-      </p-table>
-      } @else {
-      <div class="flex flex-column align-items-center py-8 gap-3">
-        <div
-          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
-        >
-          <app-icon
-            [icon]="'mdi:file-document-outline'"
-            class="text-4xl text-300"
-          />
-        </div>
-        <p class="text-500 m-0">Sin contratos registrados en el sistema.</p>
-      </div>
-      }
-    </div>
-
-    <!-- Tab 6: Puesto y salario -->
-    <div tab="5">
-      @if (workPosition(); as wp) {
-      <div class="flex flex-column gap-4 py-3">
-        <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
-          <ng-template #header>
-            <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
-              <div
-                class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
-              >
-                <app-icon [icon]="'mdi:briefcase'" class="text-primary" />
-              </div>
-              <h4 class="m-0 font-bold text-900">Posición Actual</h4>
-            </div>
-          </ng-template>
-          <div class="grid row-gap-3">
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Puesto Actual</label
-              >
-              <p class="font-black text-900 m-0 text-xl">
-                {{ wp.puesto || 'é' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Departamento</label
-              >
-              <p class="font-semibold text-900 m-0">
-                {{ wp.departamento || 'é' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Jefe Directo</label
-              >
-              <p class="font-semibold text-900 m-0">
-                {{ wp.managerName || 'é' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Folio Posición</label
-              >
-              <p class="font-semibold text-900 m-0">#{{ wp.folio || 'é' }}</p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Sueldo de Contratación</label
-              >
-              <p class="font-black text-primary m-0 text-2xl">
-                {{ wp.sueldoBase | currency:'MXN':'symbol':'1.2-2' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Turno Asignado</label
-              >
-              <p class="font-semibold text-900 m-0">
-                {{ wp.turnoTrabajo || 'é' }}
-              </p>
-            </div>
-            <div class="col-12 sm:col-6 lg:col-4">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Estado de Ocupación</label
-              >
-              <lx-tag
-                [value]="wp.state || 'é'"
-                severity="info"
-                [rounded]="true"
-              ></lx-tag>
-            </div>
-          </div>
-        </lx-card>
-
-        <!-- Horarios -->
-        <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
-          <ng-template #header>
-            <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
-              <div
-                class="w-2rem h-2rem rounded-lg bg-teal-100 flex align-items-center justify-content-center flex-shrink-0"
-              >
-                <app-icon [icon]="'mdi:calendar-clock'" class="text-teal-500" />
-              </div>
-              <h4 class="m-0 font-bold text-900">Horario Semanal</h4>
-            </div>
-          </ng-template>
-          <div class="grid row-gap-3 text-center">
-            <div class="col-12 sm:col-6 lg:col">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Lunes</label
-              >
-              @if (wp.lunesEntrada && wp.lunesSalida) {
-              <p class="font-semibold text-900 m-0">
-                {{ wp.lunesEntrada }} - {{ wp.lunesSalida }}
-              </p>
-              } @else {
-              <p class="m-0 text-500">Descanso</p>
-              }
-            </div>
-            <div class="col-12 sm:col-6 lg:col">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Martes</label
-              >
-              @if (wp.martesEntrada && wp.martesSalida) {
-              <p class="font-semibold text-900 m-0">
-                {{ wp.martesEntrada }} - {{ wp.martesSalida }}
-              </p>
-              } @else {
-              <p class="m-0 text-500">Descanso</p>
-              }
-            </div>
-            <div class="col-12 sm:col-6 lg:col">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Miórcoles</label
-              >
-              @if (wp.miercolesEntrada && wp.miercolesSalida) {
-              <p class="font-semibold text-900 m-0">
-                {{ wp.miercolesEntrada }} - {{ wp.miercolesSalida }}
-              </p>
-              } @else {
-              <p class="m-0 text-500">Descanso</p>
-              }
-            </div>
-            <div class="col-12 sm:col-6 lg:col">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Jueves</label
-              >
-              @if (wp.juevesEntrada && wp.juevesSalida) {
-              <p class="font-semibold text-900 m-0">
-                {{ wp.juevesEntrada }} - {{ wp.juevesSalida }}
-              </p>
-              } @else {
-              <p class="m-0 text-500">Descanso</p>
-              }
-            </div>
-            <div class="col-12 sm:col-6 lg:col">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Viernes</label
-              >
-              @if (wp.viernesEntrada && wp.viernesSalida) {
-              <p class="font-semibold text-900 m-0">
-                {{ wp.viernesEntrada }} - {{ wp.viernesSalida }}
-              </p>
-              } @else {
-              <p class="m-0 text-500">Descanso</p>
-              }
-            </div>
-            <div class="col-12 sm:col-6 lg:col">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Síbado</label
-              >
-              @if (wp.sabadoEntrada && wp.sabadoSalida) {
-              <p class="font-semibold text-900 m-0">
-                {{ wp.sabadoEntrada }} - {{ wp.sabadoSalida }}
-              </p>
-              } @else {
-              <p class="m-0 text-500">Descanso</p>
-              }
-            </div>
-            <div class="col-12 sm:col-6 lg:col">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Domingo</label
-              >
-              @if (wp.domingoEntrada && wp.domingoSalida) {
-              <p class="font-semibold text-900 m-0">
-                {{ wp.domingoEntrada }} - {{ wp.domingoSalida }}
-              </p>
-              } @else {
-              <p class="m-0 text-500">Descanso</p>
-              }
-            </div>
-          </div>
-        </lx-card>
-
-        @if (wp.salaryModifications.length > 0) {
-        <div>
-          <div class="flex align-items-center gap-3 mb-3">
-            <div
-              class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
+        <div class="grid row-gap-3">
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Nombre Completo</label
             >
-              <app-icon [icon]="'mdi:history'" class="text-orange-500" />
-            </div>
-            <h4 class="m-0 font-bold text-900">
-              Historial de Modificaciones Salariales
-            </h4>
-          </div>
-          <p-table
-            [value]="wp.salaryModifications"
-            class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
-          >
-            <ng-template #header>
-              <tr>
-                <th>Folio</th>
-                <th>Movimiento de Puesto</th>
-                <th>Ajuste Salarial</th>
-                <th>Fecha de Aplicación</th>
-                <th>Estatus</th>
-              </tr>
-            </ng-template>
-            <ng-template #body let-item>
-              <tr>
-                <td><span class="font-bold">#{{ item.folio }}</span></td>
-                <td>
-                  <div class="flex align-items-center gap-2 text-sm">
-                    <span class="text-500">{{ item.puestoAnterior }}</span>
-                    <app-icon
-                      [icon]="'mdi:chevron-right'"
-                      class="text-primary"
-                    />
-                    <span class="font-semibold text-900"
-                      >{{ item.puestoNuevo }}</span
-                    >
-                  </div>
-                </td>
-                <td>
-                  <div class="flex flex-column text-sm">
-                    <span class="text-500 line-through"
-                      >{{ item.salarioAnterior | currency:'MXN' }}</span
-                    >
-                    <span class="font-bold text-green-600"
-                      >{{ item.salarioNuevo | currency:'MXN' }}</span
-                    >
-                  </div>
-                </td>
-                <td>{{ item.executionDate | date:'dd/MM/yyyy' }}</td>
-                <td>
-                  <span [class]="'badge ' + getStatusBadge(item.status)"
-                    >{{ item.status }}</span
-                  >
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
-        }
-      </div>
-      } @else {
-      <div class="flex flex-column align-items-center py-8 gap-3">
-        <div
-          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
-        >
-          <app-icon [icon]="'mdi:briefcase'" class="text-4xl text-300" />
-        </div>
-        <p class="text-500 m-0">Sin información de posición laboral activa.</p>
-      </div>
-      }
-    </div>
-
-    <!-- Tab 7: Vacaciones y permisos -->
-    <div tab="6">
-      @if (vacationsLeaves(); as vl) {
-      <div class="flex flex-column gap-5 py-3">
-        <!-- Balance -->
-        @if (vl.balance) {
-        <lx-card
-          class="shadow-sm rounded-xl overflow-hidden bg-primary-reverse"
-         [elevated]="true">
-          <ng-template #header>
-            <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
-              <div
-                class="w-2rem h-2rem rounded-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0"
-              >
-                <app-icon [icon]="'mdi:calculator'" class="text-yellow-600" />
-              </div>
-              <h4 class="m-0 font-bold text-900">
-                Saldo de Vacaciones ({{ vl.balance.year }})
-              </h4>
-            </div>
-          </ng-template>
-          <div class="grid row-gap-3">
-            <div class="col-6 sm:col-4 lg:col-2 text-center">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Antigóedad</label
-              >
-              <p class="font-black text-900 m-0 text-xl">
-                {{ vl.balance.seniorityYears }} aóos
-              </p>
-            </div>
-            <div class="col-6 sm:col-4 lg:col-2 text-center">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Total</label
-              >
-              <p class="font-black text-900 m-0 text-xl">
-                {{ vl.balance.totalDays }}
-              </p>
-            </div>
-            <div class="col-6 sm:col-4 lg:col-2 text-center">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Usados</label
-              >
-              <p class="font-black text-orange-500 m-0 text-xl">
-                {{ vl.balance.usedDays }}
-              </p>
-            </div>
-            <div class="col-6 sm:col-4 lg:col-2 text-center">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Pendientes</label
-              >
-              <p class="font-black text-blue-500 m-0 text-xl">
-                {{ vl.balance.pendingDays }}
-              </p>
-            </div>
-            <div class="col-6 sm:col-4 lg:col-2 text-center">
-              <label class="text-xs font-bold text-500 uppercase block mb-1"
-                >Disponibles</label
-              >
-              <p class="font-black text-green-500 m-0 text-2xl">
-                {{ vl.balance.availableDays }}
-              </p>
-            </div>
-          </div>
-        </lx-card>
-        }
-
-        <!-- Vacaciones -->
-        <div>
-          <div class="flex align-items-center gap-3 mb-3">
-            <div
-              class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
-            >
-              <app-icon [icon]="'mdi:weather-sunny'" class="text-orange-500" />
-            </div>
-            <h4 class="m-0 font-bold text-900">Solicitudes de Vacaciones</h4>
-          </div>
-          @if (vl.vacations.length > 0) {
-          <p-table
-            [value]="vl.vacations"
-            class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
-          >
-            <ng-template #header>
-              <tr>
-                <th>Periodo Disfrutado</th>
-                <th>Estatus</th>
-                <th>Fecha Solicitud</th>
-                <th>Prima Vacacional</th>
-                <th>Motivo</th>
-              </tr>
-            </ng-template>
-            <ng-template #body let-item>
-              <tr>
-                <td class="font-semibold">
-                  {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate |
-                  date:'dd/MM/yyyy' }}
-                </td>
-                <td>
-                  <span [class]="'badge ' + getStatusBadge(item.status)"
-                    >{{ item.status }}</span
-                  >
-                </td>
-                <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
-                <td class="text-center">
-                  @if (item.paidVacationBonus) {
-                  <lx-tag
-                    value="Pagada"
-                    severity="success"
-                    [rounded]="true"
-                  ></lx-tag>
-                  } @else {
-                  <span class="text-400 text-sm">N/A</span>
-                  }
-                </td>
-                <td>
-                  <small class="text-500">{{ item.reason || 'é' }}</small>
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
-          } @else {
-          <p
-            class="text-400 p-3 surface-50 rounded-lg border-1 border-100 m-0"
-          >
-            No se registran periodos vacacionales solicitados.
-          </p>
-          }
-        </div>
-
-        <!-- Permisos -->
-        <div>
-          <div class="flex align-items-center gap-3 mb-3">
-            <div
-              class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
-            >
-              <app-icon [icon]="'mdi:clock-outline'" class="text-blue-500" />
-            </div>
-            <h4 class="m-0 font-bold text-900">Permisos y Ausencias</h4>
-          </div>
-          @if (vl.leaves.length > 0) {
-          <p-table
-            [value]="vl.leaves"
-            class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
-          >
-            <ng-template #header>
-              <tr>
-                <th>Tipo de Permiso</th>
-                <th>Periodo</th>
-                <th>Estatus</th>
-                <th>Goce de Sueldo</th>
-                <th>Fecha Solicitud</th>
-              </tr>
-            </ng-template>
-            <ng-template #body let-item>
-              <tr>
-                <td class="font-semibold text-primary">{{ item.leaveType }}</td>
-                <td>
-                  {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate |
-                  date:'dd/MM/yyyy' }}
-                </td>
-                <td>
-                  <span [class]="'badge ' + getStatusBadge(item.status)"
-                    >{{ item.status }}</span
-                  >
-                </td>
-                <td>
-                  <span
-                    [class]="'badge ' + (item.paidStatus === 'Con Goce' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700')"
-                    >{{ item.paidStatus }}</span
-                  >
-                </td>
-                <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
-              </tr>
-            </ng-template>
-          </p-table>
-          } @else {
-          <p
-            class="text-400 p-3 surface-50 rounded-lg border-1 border-100 m-0"
-          >
-            No se registran permisos especiales.
-          </p>
-          }
-        </div>
-      </div>
-      }
-    </div>
-
-    <!-- Tab 8: Incidencias -->
-    <div tab="7">
-      @if (incidents().length > 0) {
-      <p-table
-        [value]="incidents()"
-        class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
-      >
-        <ng-template #header>
-          <tr>
-            <th>Incidencia</th>
-            <th>Severidad</th>
-            <th>Investigación</th>
-            <th>Fecha Hechos</th>
-            <th>Sanción Aplicada</th>
-            <th class="text-center">Acta</th>
-          </tr>
-        </ng-template>
-        <ng-template #body let-item>
-          <tr>
-            <td>
-              <div class="flex flex-column">
-                <span class="font-bold text-900"
-                  >{{ item.incidentTypeName }}</span
-                >
-                <small class="text-500">{{ item.category }}</small>
-              </div>
-            </td>
-            <td>
-              <span
-                [class]="'badge font-semibold ' + getSeverityBadge(item.severityLevel)"
-                >{{ item.severityLevel }}</span
-              >
-            </td>
-            <td>
-              <span class="badge surface-100 border-1 border-300 text-700"
-                >{{ item.investigationStatus }}</span
-              >
-            </td>
-            <td class="font-medium text-sm">
-              {{ item.incidentDateTime | date:'dd/MM/yyyy HH:mm' }}
-            </td>
-            <td>
-              @if (item.sanction) {
-              <div class="flex flex-column">
-                <span class="font-semibold text-red-600 text-sm"
-                  >{{ item.sanction.sanctionTypeName }}</span
-                >
-                <small class="text-500"
-                  >Desde: {{ item.sanction.effectiveStartDate |
-                  date:'dd/MM/yyyy' }}</small
-                >
-              </div>
-              } @else {
-              <span class="text-400 text-sm italic">Sin sanción</span>
-              }
-            </td>
-            <td class="text-center">
-              <div class="flex justify-content-center">
-                @if (item.isActGenerated) {
-                <iw-button-item
-                  iconClass="mdi:file-pdf-box"
-                  lxTooltip="Ver Acta"
-                  [size]="'small'"
-                  severity="danger"
-                  variant="outlined"
-                  lxTooltip="Descargar Acta Administrativa"
-                  (click)="onDownloadAct(item.administrativeActPdfUrl)"
-                />
-                } @else {
-                <span class="text-400 text-xs italic">No generada</span>
-                }
-              </div>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-      } @else {
-      <div class="flex flex-column align-items-center py-8 gap-3">
-        <div
-          class="w-5rem h-5rem rounded-circle bg-green-50 flex align-items-center justify-content-center"
-        >
-          <app-icon [icon]="'mdi:verified'" class="text-4xl text-green-400" />
-        </div>
-        <p class="text-500 m-0">
-          El colaborador no cuenta con incidencias disciplinarias.
-        </p>
-      </div>
-      }
-    </div>
-
-    <!-- Tab 9: Evaluaciones -->
-    <div tab="8">
-      @if (evaluations().length > 0) {
-      <div class="flex flex-column gap-3 mt-3">
-        @for (eval of evaluations(); track eval.id) {
-        <div
-          class="surface-card shadow-sm rounded-xl overflow-hidden border-1 border-200"
-        >
-          <div
-            class="flex flex-wrap align-items-center justify-content-between p-4 border-bottom-1 border-100"
-          >
-            <div class="flex align-items-center gap-3">
-              <div
-                class="w-3rem h-3rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
-              >
-                <app-icon
-                  [icon]="'mdi:chart-bar'"
-                  class="text-primary text-xl"
-                />
-              </div>
-              <div class="flex flex-column">
-                <span class="text-lg font-bold text-900"
-                  >{{ eval.templateName }}</span
-                >
-                <span class="text-sm text-500"
-                  >Evaluador:
-                  <strong class="text-700"
-                    >{{ eval.evaluatorName }}</strong
-                  ></span
-                >
-              </div>
-            </div>
-            <div class="flex align-items-center gap-4 mt-2 sm:mt-0">
-              <div class="text-center">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Calificación</span
-                >
-                <span class="text-3xl font-black text-primary">
-                  {{ eval.finalScore != null ? (eval.finalScore |
-                  number:'1.1-1') : 'é' }}
-                </span>
-              </div>
-              <div class="flex flex-column align-items-end gap-1">
-                <span [class]="'badge ' + getStatusBadge(eval.status)"
-                  >{{ eval.status }}</span
-                >
-                <small class="text-500"
-                  >{{ eval.evaluationDate | date:'dd/MM/yyyy':'UTC' }}</small
-                >
-              </div>
-            </div>
-          </div>
-          @if (eval.finalComments) {
-          <div class="p-4 surface-50">
-            <label class="text-xs font-bold text-500 uppercase block mb-2"
-              >Comentarios del Evaluador</label
-            >
-            <p
-              class="m-0 text-700 italic border-left-3 border-primary-200 pl-3 line-height-3"
-            >
-              "{{ eval.finalComments }}"
+            <p class="font-semibold text-900 m-0">
+              {{ pd.firstName }} {{ pd.lastName }}
             </p>
           </div>
-          }
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >CURP</label
+            >
+            <p class="font-semibold text-900 m-0 font-mono text-sm">
+              {{ pd.curp || 'é' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >RFC</label
+            >
+            <p class="font-semibold text-900 m-0 font-mono text-sm">
+              {{ pd.rfc || 'é' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >NSS</label
+            >
+            <p class="font-semibold text-900 m-0">{{ pd.nss || 'é' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Fecha de Nacimiento</label
+            >
+            <p class="font-semibold text-900 m-0">
+              {{ (pd.birth | date:'dd/MM/yyyy':'UTC') || 'é' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Gónero</label
+            >
+            <p class="font-semibold text-900 m-0">{{ pd.sex || 'é' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Tipo de Sangre</label
+            >
+            @if (pd.bloodType) {
+            <lx-tag
+              [value]="pd.bloodType"
+              severity="danger"
+              [rounded]="true"
+            ></lx-tag>
+            } @else {
+            <p class="m-0 text-500">é</p>
+            }
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Nacionalidad</label
+            >
+            <p class="font-semibold text-900 m-0">
+              {{ pd.nationality || 'é' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Estado Civil</label
+            >
+            <p class="font-semibold text-900 m-0">
+              {{ pd.maritalStatus || 'é' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Nivel Educativo</label
+            >
+            <p class="font-semibold text-900 m-0">
+              {{ pd.educationLevel || 'é' }}
+            </p>
+          </div>
         </div>
-        }
+      </lx-card>
+
+      <!-- Contacto + Salario -->
+      <div class="grid row-gap-4">
+        <div class="col-12 lg:col-8">
+          <lx-card class="shadow-sm rounded-xl h-full" [elevated]="true">
+            <ng-template #header>
+              <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+                <div
+                  class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
+                >
+                  <app-icon
+                    [icon]="'material-symbols-light:call'"
+                    class="text-blue-500"
+                  />
+                </div>
+                <h4 class="m-0 font-bold text-900">Contacto</h4>
+              </div>
+            </ng-template>
+            <div class="grid row-gap-3">
+              <div class="col-12 sm:col-6">
+                <label class="text-xs font-bold text-500 uppercase block mb-1"
+                  >Correo Institucional</label
+                >
+                <p class="font-semibold text-900 m-0">{{ pd.email }}</p>
+              </div>
+              <div class="col-12 sm:col-6">
+                <label class="text-xs font-bold text-500 uppercase block mb-1"
+                  >Telófono Mívil</label
+                >
+                <p class="font-semibold text-900 m-0">
+                  {{ pd.phoneNumberPrefix }} {{ pd.phoneNumber }}
+                </p>
+              </div>
+              <div class="col-12 sm:col-6">
+                <label class="text-xs font-bold text-500 uppercase block mb-1"
+                  >Telófono Local</label
+                >
+                <p class="font-semibold text-900 m-0">
+                  {{ pd.localPhone || 'é' }}
+                </p>
+              </div>
+              <div class="col-12 sm:col-6">
+                <label class="text-xs font-bold text-500 uppercase block mb-1"
+                  >Fecha de Ingreso</label
+                >
+                <p class="font-semibold text-900 m-0">
+                  {{ (pd.dateAdmission | date:'dd/MM/yyyy':'UTC') || 'é' }}
+                </p>
+              </div>
+            </div>
+          </lx-card>
+        </div>
+        <div class="col-12 lg:col-4">
+          <div
+            class="rounded-xl bg-primary shadow-sm p-4 h-full flex flex-column justify-content-center gap-2"
+          >
+            <div class="flex align-items-center gap-2 text-white opacity-80">
+              <app-icon
+                [icon]="'material-symbols-light:payments'"
+                class="text-lg"
+              />
+              <span class="text-xs font-bold uppercase">Salario Mensual</span>
+            </div>
+            <p class="text-4xl font-black text-white m-0">
+              {{ pd.salary | currency:'MXN':'symbol':'1.2-2' }}
+            </p>
+            <p class="text-xs text-white opacity-60 m-0">
+              Bruto mensual en MXN
+            </p>
+          </div>
+        </div>
       </div>
-      } @else {
-      <div class="flex flex-column align-items-center py-8 gap-3">
-        <div
-          class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
-        >
-          <app-icon [icon]="'mdi:chart-line'" class="text-4xl text-300" />
+
+      <!-- Dirección -->
+      <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
+        <ng-template #header>
+          <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+            <div
+              class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
+            >
+              <app-icon
+                [icon]="'material-symbols-light:location-on'"
+                class="text-orange-500"
+              />
+            </div>
+            <h4 class="m-0 font-bold text-900">Dirección de Residencia</h4>
+          </div>
+        </ng-template>
+        <div class="grid row-gap-3">
+          <div class="col-12 sm:col-8 lg:col-6">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Calle</label
+            >
+            <p class="font-semibold text-900 m-0">{{ pd.street || 'é' }}</p>
+          </div>
+          <div class="col-12 sm:col-2 lg:col-3">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Né Ext</label
+            >
+            <p class="font-semibold text-900 m-0">{{ pd.number || 'é' }}</p>
+          </div>
+          <div class="col-12 sm:col-2 lg:col-3">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Né Int</label
+            >
+            <p class="font-semibold text-900 m-0">{{ pd.unitNumber || 'é' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-3">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Colonia</label
+            >
+            <p class="font-semibold text-900 m-0">{{ pd.district || 'é' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-3">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Alcaldía / Municipio</label
+            >
+            <p class="font-semibold text-900 m-0">{{ pd.townHall || 'é' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-3">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Ciudad / Estado</label
+            >
+            <p class="font-semibold text-900 m-0">{{ pd.city || 'é' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-3">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Paós</label
+            >
+            <p class="font-semibold text-900 m-0">{{ pd.country || 'é' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-3">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Código Postal</label
+            >
+            <p class="font-semibold text-900 m-0">{{ pd.zipCode || 'é' }}</p>
+          </div>
         </div>
-        <p class="text-500 m-0">
-          No se han realizado evaluaciones de desempeóo a este colaborador.
-        </p>
+      </lx-card>
+    </div>
+    } @else {
+    <div class="flex flex-column align-items-center py-8 gap-3">
+      <div
+        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:person-remove'"
+          class="text-4xl text-300"
+        />
+      </div>
+      <p class="text-500 m-0">Sin datos personales registrados.</p>
+    </div>
+    }
+  </div>
+
+  <!-- Tab 2: Contacto de emergencia -->
+  <div tab="1">
+    @if (emergencyContacts().length > 0) {
+    <p-table
+      [value]="emergencyContacts()"
+      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Nombre</th>
+          <th>Telófono</th>
+          <th>Parentesco</th>
+          <th>Tipo</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td class="font-medium">{{ item.nameContact }}</td>
+          <td>
+            <div class="flex align-items-center gap-2">
+              <app-icon
+                [icon]="'material-symbols-light:call'"
+                class="text-primary"
+              />
+              {{ item.phoneNumber }}
+            </div>
+          </td>
+          <td>{{ item.relation }}</td>
+          <td>
+            <lx-tag
+              [value]="item.contactOfBeneficiary"
+              severity="secondary"
+              [rounded]="true"
+            ></lx-tag>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    } @else {
+    <div class="flex flex-column align-items-center py-8 gap-3">
+      <div
+        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:call'"
+          class="text-4xl text-300"
+        />
+      </div>
+      <p class="text-500 m-0">Sin contactos de emergencia registrados.</p>
+    </div>
+    }
+  </div>
+
+  <!-- Tab 3: Datos clónicos -->
+  <div tab="2">
+    @if (clinicalData().length > 0) {
+    <p-table
+      [value]="clinicalData()"
+      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Padecimiento / Alergia</th>
+          <th>Observaciones y Descripción</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>
+            <div class="flex align-items-center gap-2">
+              <app-icon
+                [icon]="'material-symbols-light:favorite'"
+                class="text-red-500"
+              />
+              <span class="font-medium text-red-600">{{ item.name }}</span>
+            </div>
+          </td>
+          <td class="text-700">{{ item.description }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    } @else {
+    <div class="flex flex-column align-items-center py-8 gap-3">
+      <div
+        class="w-5rem h-5rem rounded-circle bg-green-50 flex align-items-center justify-content-center"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:favorite'"
+          class="text-4xl text-green-400"
+        />
+      </div>
+      <p class="text-500 m-0">Sin condiciones clónicas registradas.</p>
+    </div>
+    }
+  </div>
+
+  <!-- Tab 4: Datos bancarios -->
+  <div tab="3">
+    @if (bankData().length > 0) {
+    <p-table
+      [value]="bankData()"
+      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Institución Bancaria</th>
+          <th>Número de Cuenta</th>
+          <th>CLABE Interbancaria</th>
+          <th>Titular de la Cuenta</th>
+          <th>Información de Contacto</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td class="font-bold text-primary">{{ item.bankName }}</td>
+          <td><code class="text-sm">{{ item.bankAccount }}</code></td>
+          <td><code class="text-sm font-medium">{{ item.bankKey }}</code></td>
+          <td>{{ item.nameContact }}</td>
+          <td>
+            <div class="flex flex-column">
+              <span>{{ item.phoneNumber }}</span>
+              <small class="text-500">{{ item.relacion || 'é' }}</small>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    } @else {
+    <div class="flex flex-column align-items-center py-8 gap-3">
+      <div
+        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:credit-card'"
+          class="text-4xl text-300"
+        />
+      </div>
+      <p class="text-500 m-0">Sin datos bancarios registrados.</p>
+    </div>
+    }
+  </div>
+
+  <!-- Tab 5: Contratos -->
+  <div tab="4">
+    @if (contracts().length > 0) {
+    <p-table
+      [value]="contracts()"
+      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Folio</th>
+          <th>Tipo de Contrato</th>
+          <th>Estatus</th>
+          <th>Vigencia (Inicio - Fin)</th>
+          <th>Salario Pactado</th>
+          <th>Notas</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>
+            <span class="font-bold text-primary"
+              >#{{ item.contractNumber }}</span
+            >
+          </td>
+          <td>{{ item.contractType }}</td>
+          <td>
+            <span [class]="'badge ' + getStatusBadge(item.contractStatus)"
+              >{{ item.contractStatus }}</span
+            >
+          </td>
+          <td>
+            <div class="flex align-items-center gap-2 text-sm">
+              <span>{{ item.startDate | date:'dd/MM/yyyy' }}</span>
+              <app-icon
+                [icon]="'material-symbols-light:arrow-forward'"
+                class="text-xs text-400"
+              />
+              <span
+                >{{ (item.endDate | date:'dd/MM/yyyy') || 'Indeterminado'
+                }}</span
+              >
+            </div>
+          </td>
+          <td class="font-bold text-primary">
+            {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
+          </td>
+          <td><small class="text-500">{{ item.notes || 'é' }}</small></td>
+        </tr>
+      </ng-template>
+    </p-table>
+    } @else {
+    <div class="flex flex-column align-items-center py-8 gap-3">
+      <div
+        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:description'"
+          class="text-4xl text-300"
+        />
+      </div>
+      <p class="text-500 m-0">Sin contratos registrados en el sistema.</p>
+    </div>
+    }
+  </div>
+
+  <!-- Tab 6: Puesto y salario -->
+  <div tab="5">
+    @if (workPosition(); as wp) {
+    <div class="flex flex-column gap-4 py-3">
+      <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
+        <ng-template #header>
+          <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+            <div
+              class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+            >
+              <app-icon
+                [icon]="'material-symbols-light:work'"
+                class="text-primary"
+              />
+            </div>
+            <h4 class="m-0 font-bold text-900">Posición Actual</h4>
+          </div>
+        </ng-template>
+        <div class="grid row-gap-3">
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Puesto Actual</label
+            >
+            <p class="font-black text-900 m-0 text-xl">
+              {{ wp.puesto || 'é' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Departamento</label
+            >
+            <p class="font-semibold text-900 m-0">
+              {{ wp.departamento || 'é' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Jefe Directo</label
+            >
+            <p class="font-semibold text-900 m-0">
+              {{ wp.managerName || 'é' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Folio Posición</label
+            >
+            <p class="font-semibold text-900 m-0">#{{ wp.folio || 'é' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Sueldo de Contratación</label
+            >
+            <p class="font-black text-primary m-0 text-2xl">
+              {{ wp.sueldoBase | currency:'MXN':'symbol':'1.2-2' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Turno Asignado</label
+            >
+            <p class="font-semibold text-900 m-0">
+              {{ wp.turnoTrabajo || 'é' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Estado de Ocupación</label
+            >
+            <lx-tag
+              [value]="wp.state || 'é'"
+              severity="info"
+              [rounded]="true"
+            ></lx-tag>
+          </div>
+        </div>
+      </lx-card>
+
+      <!-- Horarios -->
+      <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
+        <ng-template #header>
+          <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+            <div
+              class="w-2rem h-2rem rounded-lg bg-teal-100 flex align-items-center justify-content-center flex-shrink-0"
+            >
+              <app-icon
+                [icon]="'material-symbols-light:calendar-clock'"
+                class="text-teal-500"
+              />
+            </div>
+            <h4 class="m-0 font-bold text-900">Horario Semanal</h4>
+          </div>
+        </ng-template>
+        <div class="grid row-gap-3 text-center">
+          <div class="col-12 sm:col-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Lunes</label
+            >
+            @if (wp.lunesEntrada && wp.lunesSalida) {
+            <p class="font-semibold text-900 m-0">
+              {{ wp.lunesEntrada }} - {{ wp.lunesSalida }}
+            </p>
+            } @else {
+            <p class="m-0 text-500">Descanso</p>
+            }
+          </div>
+          <div class="col-12 sm:col-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Martes</label
+            >
+            @if (wp.martesEntrada && wp.martesSalida) {
+            <p class="font-semibold text-900 m-0">
+              {{ wp.martesEntrada }} - {{ wp.martesSalida }}
+            </p>
+            } @else {
+            <p class="m-0 text-500">Descanso</p>
+            }
+          </div>
+          <div class="col-12 sm:col-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Miórcoles</label
+            >
+            @if (wp.miercolesEntrada && wp.miercolesSalida) {
+            <p class="font-semibold text-900 m-0">
+              {{ wp.miercolesEntrada }} - {{ wp.miercolesSalida }}
+            </p>
+            } @else {
+            <p class="m-0 text-500">Descanso</p>
+            }
+          </div>
+          <div class="col-12 sm:col-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Jueves</label
+            >
+            @if (wp.juevesEntrada && wp.juevesSalida) {
+            <p class="font-semibold text-900 m-0">
+              {{ wp.juevesEntrada }} - {{ wp.juevesSalida }}
+            </p>
+            } @else {
+            <p class="m-0 text-500">Descanso</p>
+            }
+          </div>
+          <div class="col-12 sm:col-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Viernes</label
+            >
+            @if (wp.viernesEntrada && wp.viernesSalida) {
+            <p class="font-semibold text-900 m-0">
+              {{ wp.viernesEntrada }} - {{ wp.viernesSalida }}
+            </p>
+            } @else {
+            <p class="m-0 text-500">Descanso</p>
+            }
+          </div>
+          <div class="col-12 sm:col-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Síbado</label
+            >
+            @if (wp.sabadoEntrada && wp.sabadoSalida) {
+            <p class="font-semibold text-900 m-0">
+              {{ wp.sabadoEntrada }} - {{ wp.sabadoSalida }}
+            </p>
+            } @else {
+            <p class="m-0 text-500">Descanso</p>
+            }
+          </div>
+          <div class="col-12 sm:col-6 lg:col">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Domingo</label
+            >
+            @if (wp.domingoEntrada && wp.domingoSalida) {
+            <p class="font-semibold text-900 m-0">
+              {{ wp.domingoEntrada }} - {{ wp.domingoSalida }}
+            </p>
+            } @else {
+            <p class="m-0 text-500">Descanso</p>
+            }
+          </div>
+        </div>
+      </lx-card>
+
+      @if (wp.salaryModifications.length > 0) {
+      <div>
+        <div class="flex align-items-center gap-3 mb-3">
+          <div
+            class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
+          >
+            <app-icon
+              [icon]="'material-symbols-light:history'"
+              class="text-orange-500"
+            />
+          </div>
+          <h4 class="m-0 font-bold text-900">
+            Historial de Modificaciones Salariales
+          </h4>
+        </div>
+        <p-table
+          [value]="wp.salaryModifications"
+          class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
+        >
+          <ng-template #header>
+            <tr>
+              <th>Folio</th>
+              <th>Movimiento de Puesto</th>
+              <th>Ajuste Salarial</th>
+              <th>Fecha de Aplicación</th>
+              <th>Estatus</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-item>
+            <tr>
+              <td><span class="font-bold">#{{ item.folio }}</span></td>
+              <td>
+                <div class="flex align-items-center gap-2 text-sm">
+                  <span class="text-500">{{ item.puestoAnterior }}</span>
+                  <app-icon
+                    [icon]="'material-symbols-light:chevron-right'"
+                    class="text-primary"
+                  />
+                  <span class="font-semibold text-900"
+                    >{{ item.puestoNuevo }}</span
+                  >
+                </div>
+              </td>
+              <td>
+                <div class="flex flex-column text-sm">
+                  <span class="text-500 line-through"
+                    >{{ item.salarioAnterior | currency:'MXN' }}</span
+                  >
+                  <span class="font-bold text-green-600"
+                    >{{ item.salarioNuevo | currency:'MXN' }}</span
+                  >
+                </div>
+              </td>
+              <td>{{ item.executionDate | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <span [class]="'badge ' + getStatusBadge(item.status)"
+                  >{{ item.status }}</span
+                >
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
       }
     </div>
+    } @else {
+    <div class="flex flex-column align-items-center py-8 gap-3">
+      <div
+        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:work'"
+          class="text-4xl text-300"
+        />
+      </div>
+      <p class="text-500 m-0">Sin información de posición laboral activa.</p>
+    </div>
+    }
+  </div>
 
-    <!-- Tab 10: Solicitudes -->
-    <div tab="9">
-      @if (requests(); as req) {
-      <div class="grid py-3">
-        <!-- Alta -->
-        <div class="col-12 lg:col-6">
-          <div class="flex align-items-center gap-3 mb-3">
+  <!-- Tab 7: Vacaciones y permisos -->
+  <div tab="6">
+    @if (vacationsLeaves(); as vl) {
+    <div class="flex flex-column gap-5 py-3">
+      <!-- Balance -->
+      @if (vl.balance) {
+      <lx-card
+        class="shadow-sm rounded-xl overflow-hidden bg-primary-reverse"
+        [elevated]="true"
+      >
+        <ng-template #header>
+          <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
             <div
-              class="w-2rem h-2rem rounded-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0"
             >
-              <app-icon [icon]="'mdi:account-plus'" class="text-green-500" />
+              <app-icon
+                [icon]="'material-symbols-light:calculate'"
+                class="text-yellow-600"
+              />
             </div>
-            <h4 class="m-0 font-bold text-900">Solicitud de Ingreso (Alta)</h4>
+            <h4 class="m-0 font-bold text-900">
+              Saldo de Vacaciones ({{ vl.balance.year }})
+            </h4>
           </div>
-          @if (req.registerRequest; as r) {
-          <div class="surface-card shadow-sm rounded-xl p-4">
-            <div class="grid row-gap-3">
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1">Folio</span>
-                <span class="font-bold text-primary text-lg"
-                  >#{{ r.folio }}</span
+        </ng-template>
+        <div class="grid row-gap-3">
+          <div class="col-6 sm:col-4 lg:col-2 text-center">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Antigóedad</label
+            >
+            <p class="font-black text-900 m-0 text-xl">
+              {{ vl.balance.seniorityYears }} aóos
+            </p>
+          </div>
+          <div class="col-6 sm:col-4 lg:col-2 text-center">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Total</label
+            >
+            <p class="font-black text-900 m-0 text-xl">
+              {{ vl.balance.totalDays }}
+            </p>
+          </div>
+          <div class="col-6 sm:col-4 lg:col-2 text-center">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Usados</label
+            >
+            <p class="font-black text-orange-500 m-0 text-xl">
+              {{ vl.balance.usedDays }}
+            </p>
+          </div>
+          <div class="col-6 sm:col-4 lg:col-2 text-center">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Pendientes</label
+            >
+            <p class="font-black text-blue-500 m-0 text-xl">
+              {{ vl.balance.pendingDays }}
+            </p>
+          </div>
+          <div class="col-6 sm:col-4 lg:col-2 text-center">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Disponibles</label
+            >
+            <p class="font-black text-green-500 m-0 text-2xl">
+              {{ vl.balance.availableDays }}
+            </p>
+          </div>
+        </div>
+      </lx-card>
+      }
+
+      <!-- Vacaciones -->
+      <div>
+        <div class="flex align-items-center gap-3 mb-3">
+          <div
+            class="w-2rem h-2rem rounded-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0"
+          >
+            <app-icon
+              [icon]="'material-symbols-light:sunny'"
+              class="text-orange-500"
+            />
+          </div>
+          <h4 class="m-0 font-bold text-900">Solicitudes de Vacaciones</h4>
+        </div>
+        @if (vl.vacations.length > 0) {
+        <p-table
+          [value]="vl.vacations"
+          class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
+        >
+          <ng-template #header>
+            <tr>
+              <th>Periodo Disfrutado</th>
+              <th>Estatus</th>
+              <th>Fecha Solicitud</th>
+              <th>Prima Vacacional</th>
+              <th>Motivo</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-item>
+            <tr>
+              <td class="font-semibold">
+                {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate |
+                date:'dd/MM/yyyy' }}
+              </td>
+              <td>
+                <span [class]="'badge ' + getStatusBadge(item.status)"
+                  >{{ item.status }}</span
                 >
-              </div>
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Estatus</span
-                >
+              </td>
+              <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
+              <td class="text-center">
+                @if (item.paidVacationBonus) {
                 <lx-tag
-                  [value]="r.status"
+                  value="Pagada"
                   severity="success"
                   [rounded]="true"
                 ></lx-tag>
-              </div>
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Tipo Contrato</span
-                >
-                <span class="font-medium text-900"
-                  >{{ r.typeContractRegister }}</span
-                >
-              </div>
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Fuente</span
-                >
-                <span class="font-medium text-900">{{ r.fuente }}</span>
-              </div>
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Solicitado el</span
-                >
-                <span class="font-medium"
-                  >{{ r.requestDate | date:'dd/MM/yyyy' }}</span
-                >
-              </div>
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Ejecutado el</span
-                >
-                <span class="font-medium"
-                  >{{ (r.executionDate | date:'dd/MM/yyyy') || 'Pendiente'
-                  }}</span
-                >
-              </div>
-            </div>
-          </div>
-          } @else {
+                } @else {
+                <span class="text-400 text-sm">N/A</span>
+                }
+              </td>
+              <td>
+                <small class="text-500">{{ item.reason || 'é' }}</small>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        } @else {
+        <p class="text-400 p-3 surface-50 rounded-lg border-1 border-100 m-0">
+          No se registran periodos vacacionales solicitados.
+        </p>
+        }
+      </div>
+
+      <!-- Permisos -->
+      <div>
+        <div class="flex align-items-center gap-3 mb-3">
           <div
-            class="surface-50 rounded-lg border-1 border-100 p-4 text-400 italic"
+            class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0"
           >
-            No hay registros de solicitud de alta.
+            <app-icon
+              [icon]="'material-symbols-light:schedule'"
+              class="text-blue-500"
+            />
           </div>
-          }
+          <h4 class="m-0 font-bold text-900">Permisos y Ausencias</h4>
         </div>
+        @if (vl.leaves.length > 0) {
+        <p-table
+          [value]="vl.leaves"
+          class="p-datatable-sm shadow-sm rounded-xl overflow-hidden"
+        >
+          <ng-template #header>
+            <tr>
+              <th>Tipo de Permiso</th>
+              <th>Periodo</th>
+              <th>Estatus</th>
+              <th>Goce de Sueldo</th>
+              <th>Fecha Solicitud</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-item>
+            <tr>
+              <td class="font-semibold text-primary">{{ item.leaveType }}</td>
+              <td>
+                {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate |
+                date:'dd/MM/yyyy' }}
+              </td>
+              <td>
+                <span [class]="'badge ' + getStatusBadge(item.status)"
+                  >{{ item.status }}</span
+                >
+              </td>
+              <td>
+                <span
+                  [class]="'badge ' + (item.paidStatus === 'Con Goce' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700')"
+                  >{{ item.paidStatus }}</span
+                >
+              </td>
+              <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+        } @else {
+        <p class="text-400 p-3 surface-50 rounded-lg border-1 border-100 m-0">
+          No se registran permisos especiales.
+        </p>
+        }
+      </div>
+    </div>
+    }
+  </div>
 
-        <!-- Baja -->
-        <div class="col-12 lg:col-6">
-          <div class="flex align-items-center gap-3 mb-3">
-            <div
-              class="w-2rem h-2rem rounded-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0"
+  <!-- Tab 8: Incidencias -->
+  <div tab="7">
+    @if (incidents().length > 0) {
+    <p-table
+      [value]="incidents()"
+      class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Incidencia</th>
+          <th>Severidad</th>
+          <th>Investigación</th>
+          <th>Fecha Hechos</th>
+          <th>Sanción Aplicada</th>
+          <th class="text-center">Acta</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>
+            <div class="flex flex-column">
+              <span class="font-bold text-900"
+                >{{ item.incidentTypeName }}</span
+              >
+              <small class="text-500">{{ item.category }}</small>
+            </div>
+          </td>
+          <td>
+            <span
+              [class]="'badge font-semibold ' + getSeverityBadge(item.severityLevel)"
+              >{{ item.severityLevel }}</span
             >
-              <app-icon [icon]="'mdi:account-minus'" class="text-red-500" />
+          </td>
+          <td>
+            <span class="badge surface-100 border-1 border-300 text-700"
+              >{{ item.investigationStatus }}</span
+            >
+          </td>
+          <td class="font-medium text-sm">
+            {{ item.incidentDateTime | date:'dd/MM/yyyy HH:mm' }}
+          </td>
+          <td>
+            @if (item.sanction) {
+            <div class="flex flex-column">
+              <span class="font-semibold text-red-600 text-sm"
+                >{{ item.sanction.sanctionTypeName }}</span
+              >
+              <small class="text-500"
+                >Desde: {{ item.sanction.effectiveStartDate | date:'dd/MM/yyyy'
+                }}</small
+              >
             </div>
-            <h4 class="m-0 font-bold text-900">Solicitud de Egreso (Baja)</h4>
-          </div>
-          @if (req.dismissalRequest; as d) {
-          <div
-            class="surface-card shadow-sm rounded-xl border-left-3 border-red-500 p-4"
-          >
-            <div class="grid row-gap-3">
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1">Folio</span>
-                <span class="font-bold text-red-600 text-lg"
-                  >#{{ d.folio }}</span
-                >
-              </div>
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Estatus</span
-                >
-                <lx-tag
-                  [value]="d.status"
-                  severity="danger"
-                  [rounded]="true"
-                ></lx-tag>
-              </div>
-
-              <!-- Firmas -->
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Firma Legal</span
-                >
-                @if (d.isAuthorizedByLegal) {
-                <div class="flex align-items-center gap-2">
-                  <app-icon
-                    [icon]="'mdi:check-circle'"
-                    class="text-green-500"
-                  />
-                  <span class="text-sm font-medium text-green-700"
-                    >{{ d.legalAuthorizationDate | date:'dd/MM/yyyy' }}</span
-                  >
-                </div>
-                } @else {
-                <div class="flex align-items-center gap-2">
-                  <app-icon [icon]="'mdi:clock-outline'" class="text-500" />
-                  <span class="text-sm text-500">Pendiente</span>
-                </div>
-                }
-              </div>
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Firma Nóminas</span
-                >
-                @if (d.isAuthorizedByPayroll) {
-                <div class="flex align-items-center gap-2">
-                  <app-icon
-                    [icon]="'mdi:check-circle'"
-                    class="text-green-500"
-                  />
-                  <span class="text-sm font-medium text-green-700"
-                    >{{ d.payrollAuthorizationDate | date:'dd/MM/yyyy' }}</span
-                  >
-                </div>
-                } @else {
-                <div class="flex align-items-center gap-2">
-                  <app-icon [icon]="'mdi:clock-outline'" class="text-500" />
-                  <span class="text-sm text-500">Pendiente</span>
-                </div>
-                }
-              </div>
-
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Motivo de Baja</span
-                >
-                <span class="font-medium text-900">{{ d.tipoBaja }}</span>
-              </div>
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Asistencia Legal</span
-                >
-                <lx-tag
-                  [value]="d.lawyerAssistance ? 'Sí' : 'No'"
-                  [severity]="d.lawyerAssistance ? 'warn' : 'secondary'"
-                  [rounded]="true"
-                ></lx-tag>
-              </div>
-              <div class="col-12">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >Justificación</span
-                >
-                <p
-                  class="m-0 text-700 italic border-left-3 border-red-200 pl-3 line-height-3"
-                >
-                  "{{ d.reasonForLeaving }}"
-                </p>
-              </div>
-              <div class="col-6">
-                <span class="text-xs text-500 uppercase block mb-1"
-                  >óltimo día</span
-                >
-                <span class="font-bold text-900"
-                  >{{ (d.lastDayOfWork | date:'dd/MM/yyyy') || 'é' }}</span
-                >
-              </div>
-            </div>
-
-            <!-- Evidencia Adjunta -->
-            @if (d.supportFiles.length > 0 || d.incidents.length > 0 ||
-            d.evaluations.length > 0) {
-            <div class="mt-4 pt-3 border-top-1 border-200">
-              <div class="flex align-items-center gap-2 mb-3">
-                <app-icon [icon]="'mdi:folder-open'" class="text-primary" />
-                <h5 class="m-0 font-bold text-800">Evidencia Adjunta</h5>
-              </div>
-
-              @if (d.supportFiles.length > 0) {
-              <div class="mb-3">
-                <span class="text-xs text-500 uppercase block mb-2"
-                  >Archivos subidos</span
-                >
-                <div class="flex flex-wrap gap-2">
-                  @for (file of d.supportFiles; track file.id) {
-                  <a
-                    [href]="file.fileUrl"
-                    target="_blank"
-                    class="p-button p-button-outlined p-button-sm p-button-secondary no-underline"
-                  >
-                    <app-icon [icon]="'mdi:file-pdf-box'" class="mr-2" />
-                    {{ file.fileName }}
-                  </a>
-                  }
-                </div>
-              </div>
-              } @if (d.incidents.length > 0) {
-              <div class="mb-3">
-                <span class="text-xs text-500 uppercase block mb-2"
-                  >Actas vinculadas</span
-                >
-                <div class="flex flex-wrap gap-2">
-                  @for (acta of d.incidents; track acta.id) {
-                  <div
-                    class="border-1 border-300 rounded-lg p-2 surface-0 text-sm"
-                  >
-                    <strong>{{ acta.incidentTypeName }}</strong> - {{
-                    acta.incidentDateTime | date:'dd/MM/yyyy' }} @if
-                    (acta.administrativeActPdfUrl) {
-                    <a
-                      [href]="acta.administrativeActPdfUrl"
-                      target="_blank"
-                      class="ml-2 text-primary font-bold"
-                      ><app-icon [icon]="'mdi:download'" /> PDF</a
-                    >
-                    }
-                  </div>
-                  }
-                </div>
-              </div>
-              } @if (d.evaluations.length > 0) {
-              <div class="mb-3">
-                <span class="text-xs text-500 uppercase block mb-2"
-                  >Evaluaciones vinculadas</span
-                >
-                <div class="flex flex-wrap gap-2">
-                  @for (eval of d.evaluations; track eval.id) {
-                  <div
-                    class="border-1 border-300 rounded-lg p-2 surface-0 text-sm"
-                  >
-                    <strong>{{ eval.templateName }}</strong> - {{
-                    eval.evaluationDate | date:'dd/MM/yyyy' }}
-                    <span class="ml-2 text-500"
-                      >Calificación: {{ eval.finalScore | number:'1.0-2'
-                      }}</span
-                    >
-                  </div>
-                  }
-                </div>
-              </div>
+            } @else {
+            <span class="text-400 text-sm italic">Sin sanción</span>
+            }
+          </td>
+          <td class="text-center">
+            <div class="flex justify-content-center">
+              @if (item.isActGenerated) {
+              <iw-button-item
+                iconClass="material-symbols-light:picture-as-pdf"
+                lxTooltip="Ver Acta"
+                [size]="'small'"
+                severity="danger"
+                variant="outline"
+                lxTooltip="Descargar Acta Administrativa"
+                (click)="onDownloadAct(item.administrativeActPdfUrl)"
+              />
+              } @else {
+              <span class="text-400 text-xs italic">No generada</span>
               }
             </div>
-            }
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    } @else {
+    <div class="flex flex-column align-items-center py-8 gap-3">
+      <div
+        class="w-5rem h-5rem rounded-circle bg-green-50 flex align-items-center justify-content-center"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:verified'"
+          class="text-4xl text-green-400"
+        />
+      </div>
+      <p class="text-500 m-0">
+        El colaborador no cuenta con incidencias disciplinarias.
+      </p>
+    </div>
+    }
+  </div>
+
+  <!-- Tab 9: Evaluaciones -->
+  <div tab="8">
+    @if (evaluations().length > 0) {
+    <div class="flex flex-column gap-3 mt-3">
+      @for (eval of evaluations(); track eval.id) {
+      <div
+        class="surface-card shadow-sm rounded-xl overflow-hidden border-1 border-200"
+      >
+        <div
+          class="flex flex-wrap align-items-center justify-content-between p-4 border-bottom-1 border-100"
+        >
+          <div class="flex align-items-center gap-3">
+            <div
+              class="w-3rem h-3rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+            >
+              <app-icon
+                [icon]="'material-symbols-light:bar-chart'"
+                class="text-primary text-xl"
+              />
+            </div>
+            <div class="flex flex-column">
+              <span class="text-lg font-bold text-900"
+                >{{ eval.templateName }}</span
+              >
+              <span class="text-sm text-500"
+                >Evaluador:
+                <strong class="text-700">{{ eval.evaluatorName }}</strong></span
+              >
+            </div>
           </div>
-          } @else {
-          <div
-            class="surface-50 rounded-lg border-1 border-100 p-4 text-400 italic"
-          >
-            No hay registros de solicitud de baja activa.
+          <div class="flex align-items-center gap-4 mt-2 sm:mt-0">
+            <div class="text-center">
+              <span class="text-xs text-500 uppercase block mb-1"
+                >Calificación</span
+              >
+              <span class="text-3xl font-black text-primary">
+                {{ eval.finalScore != null ? (eval.finalScore | number:'1.1-1')
+                : 'é' }}
+              </span>
+            </div>
+            <div class="flex flex-column align-items-end gap-1">
+              <span [class]="'badge ' + getStatusBadge(eval.status)"
+                >{{ eval.status }}</span
+              >
+              <small class="text-500"
+                >{{ eval.evaluationDate | date:'dd/MM/yyyy':'UTC' }}</small
+              >
+            </div>
           </div>
-          }
         </div>
+        @if (eval.finalComments) {
+        <div class="p-4 surface-50">
+          <label class="text-xs font-bold text-500 uppercase block mb-2"
+            >Comentarios del Evaluador</label
+          >
+          <p
+            class="m-0 text-700 italic border-left-3 border-primary-200 pl-3 line-height-3"
+          >
+            "{{ eval.finalComments }}"
+          </p>
+        </div>
+        }
       </div>
       }
     </div>
+    } @else {
+    <div class="flex flex-column align-items-center py-8 gap-3">
+      <div
+        class="w-5rem h-5rem rounded-circle surface-100 flex align-items-center justify-content-center"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:monitoring'"
+          class="text-4xl text-300"
+        />
+      </div>
+      <p class="text-500 m-0">
+        No se han realizado evaluaciones de desempeóo a este colaborador.
+      </p>
+    </div>
+    }
+  </div>
+
+  <!-- Tab 10: Solicitudes -->
+  <div tab="9">
+    @if (requests(); as req) {
+    <div class="grid py-3">
+      <!-- Alta -->
+      <div class="col-12 lg:col-6">
+        <div class="flex align-items-center gap-3 mb-3">
+          <div
+            class="w-2rem h-2rem rounded-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0"
+          >
+            <app-icon
+              [icon]="'material-symbols-light:person-add'"
+              class="text-green-500"
+            />
+          </div>
+          <h4 class="m-0 font-bold text-900">Solicitud de Ingreso (Alta)</h4>
+        </div>
+        @if (req.registerRequest; as r) {
+        <div class="surface-card shadow-sm rounded-xl p-4">
+          <div class="grid row-gap-3">
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1">Folio</span>
+              <span class="font-bold text-primary text-lg">#{{ r.folio }}</span>
+            </div>
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1">Estatus</span>
+              <lx-tag
+                [value]="r.status"
+                severity="success"
+                [rounded]="true"
+              ></lx-tag>
+            </div>
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1"
+                >Tipo Contrato</span
+              >
+              <span class="font-medium text-900"
+                >{{ r.typeContractRegister }}</span
+              >
+            </div>
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1">Fuente</span>
+              <span class="font-medium text-900">{{ r.fuente }}</span>
+            </div>
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1"
+                >Solicitado el</span
+              >
+              <span class="font-medium"
+                >{{ r.requestDate | date:'dd/MM/yyyy' }}</span
+              >
+            </div>
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1"
+                >Ejecutado el</span
+              >
+              <span class="font-medium"
+                >{{ (r.executionDate | date:'dd/MM/yyyy') || 'Pendiente'
+                }}</span
+              >
+            </div>
+          </div>
+        </div>
+        } @else {
+        <div
+          class="surface-50 rounded-lg border-1 border-100 p-4 text-400 italic"
+        >
+          No hay registros de solicitud de alta.
+        </div>
+        }
+      </div>
+
+      <!-- Baja -->
+      <div class="col-12 lg:col-6">
+        <div class="flex align-items-center gap-3 mb-3">
+          <div
+            class="w-2rem h-2rem rounded-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0"
+          >
+            <app-icon
+              [icon]="'material-symbols-light:person-remove'"
+              class="text-red-500"
+            />
+          </div>
+          <h4 class="m-0 font-bold text-900">Solicitud de Egreso (Baja)</h4>
+        </div>
+        @if (req.dismissalRequest; as d) {
+        <div
+          class="surface-card shadow-sm rounded-xl border-left-3 border-red-500 p-4"
+        >
+          <div class="grid row-gap-3">
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1">Folio</span>
+              <span class="font-bold text-red-600 text-lg">#{{ d.folio }}</span>
+            </div>
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1">Estatus</span>
+              <lx-tag
+                [value]="d.status"
+                severity="danger"
+                [rounded]="true"
+              ></lx-tag>
+            </div>
+
+            <!-- Firmas -->
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1"
+                >Firma Legal</span
+              >
+              @if (d.isAuthorizedByLegal) {
+              <div class="flex align-items-center gap-2">
+                <app-icon
+                  [icon]="'material-symbols-light:check-circle'"
+                  class="text-green-500"
+                />
+                <span class="text-sm font-medium text-green-700"
+                  >{{ d.legalAuthorizationDate | date:'dd/MM/yyyy' }}</span
+                >
+              </div>
+              } @else {
+              <div class="flex align-items-center gap-2">
+                <app-icon
+                  [icon]="'material-symbols-light:schedule'"
+                  class="text-500"
+                />
+                <span class="text-sm text-500">Pendiente</span>
+              </div>
+              }
+            </div>
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1"
+                >Firma Nóminas</span
+              >
+              @if (d.isAuthorizedByPayroll) {
+              <div class="flex align-items-center gap-2">
+                <app-icon
+                  [icon]="'material-symbols-light:check-circle'"
+                  class="text-green-500"
+                />
+                <span class="text-sm font-medium text-green-700"
+                  >{{ d.payrollAuthorizationDate | date:'dd/MM/yyyy' }}</span
+                >
+              </div>
+              } @else {
+              <div class="flex align-items-center gap-2">
+                <app-icon
+                  [icon]="'material-symbols-light:schedule'"
+                  class="text-500"
+                />
+                <span class="text-sm text-500">Pendiente</span>
+              </div>
+              }
+            </div>
+
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1"
+                >Motivo de Baja</span
+              >
+              <span class="font-medium text-900">{{ d.tipoBaja }}</span>
+            </div>
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1"
+                >Asistencia Legal</span
+              >
+              <lx-tag
+                [value]="d.lawyerAssistance ? 'Sí' : 'No'"
+                [severity]="d.lawyerAssistance ? 'warn' : 'secondary'"
+                [rounded]="true"
+              ></lx-tag>
+            </div>
+            <div class="col-12">
+              <span class="text-xs text-500 uppercase block mb-1"
+                >Justificación</span
+              >
+              <p
+                class="m-0 text-700 italic border-left-3 border-red-200 pl-3 line-height-3"
+              >
+                "{{ d.reasonForLeaving }}"
+              </p>
+            </div>
+            <div class="col-6">
+              <span class="text-xs text-500 uppercase block mb-1"
+                >óltimo día</span
+              >
+              <span class="font-bold text-900"
+                >{{ (d.lastDayOfWork | date:'dd/MM/yyyy') || 'é' }}</span
+              >
+            </div>
+          </div>
+
+          <!-- Evidencia Adjunta -->
+          @if (d.supportFiles.length > 0 || d.incidents.length > 0 ||
+          d.evaluations.length > 0) {
+          <div class="mt-4 pt-3 border-top-1 border-200">
+            <div class="flex align-items-center gap-2 mb-3">
+              <app-icon
+                [icon]="'material-symbols-light:folder-open'"
+                class="text-primary"
+              />
+              <h5 class="m-0 font-bold text-800">Evidencia Adjunta</h5>
+            </div>
+
+            @if (d.supportFiles.length > 0) {
+            <div class="mb-3">
+              <span class="text-xs text-500 uppercase block mb-2"
+                >Archivos subidos</span
+              >
+              <div class="flex flex-wrap gap-2">
+                @for (file of d.supportFiles; track file.id) {
+                <a
+                  [href]="file.fileUrl"
+                  target="_blank"
+                  class="p-button p-button-outlined p-button-sm p-button-secondary no-underline"
+                >
+                  <app-icon
+                    [icon]="'material-symbols-light:picture-as-pdf'"
+                    class="mr-2"
+                  />
+                  {{ file.fileName }}
+                </a>
+                }
+              </div>
+            </div>
+            } @if (d.incidents.length > 0) {
+            <div class="mb-3">
+              <span class="text-xs text-500 uppercase block mb-2"
+                >Actas vinculadas</span
+              >
+              <div class="flex flex-wrap gap-2">
+                @for (acta of d.incidents; track acta.id) {
+                <div
+                  class="border-1 border-300 rounded-lg p-2 surface-0 text-sm"
+                >
+                  <strong>{{ acta.incidentTypeName }}</strong> - {{
+                  acta.incidentDateTime | date:'dd/MM/yyyy' }} @if
+                  (acta.administrativeActPdfUrl) {
+                  <a
+                    [href]="acta.administrativeActPdfUrl"
+                    target="_blank"
+                    class="ml-2 text-primary font-bold"
+                    ><app-icon [icon]="'material-symbols-light:download'" />
+                    PDF</a
+                  >
+                  }
+                </div>
+                }
+              </div>
+            </div>
+            } @if (d.evaluations.length > 0) {
+            <div class="mb-3">
+              <span class="text-xs text-500 uppercase block mb-2"
+                >Evaluaciones vinculadas</span
+              >
+              <div class="flex flex-wrap gap-2">
+                @for (eval of d.evaluations; track eval.id) {
+                <div
+                  class="border-1 border-300 rounded-lg p-2 surface-0 text-sm"
+                >
+                  <strong>{{ eval.templateName }}</strong> - {{
+                  eval.evaluationDate | date:'dd/MM/yyyy' }}
+                  <span class="ml-2 text-500"
+                    >Calificación: {{ eval.finalScore | number:'1.0-2' }}</span
+                  >
+                </div>
+                }
+              </div>
+            </div>
+            }
+          </div>
+          }
+        </div>
+        } @else {
+        <div
+          class="surface-50 rounded-lg border-1 border-100 p-4 text-400 italic"
+        >
+          No hay registros de solicitud de baja activa.
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
 </lx-tabs>

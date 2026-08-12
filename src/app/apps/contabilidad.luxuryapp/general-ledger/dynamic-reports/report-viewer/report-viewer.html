@@ -22,7 +22,7 @@
       </div>
       <il-button
         label="Ejecutar"
-        iconClass="mdi:play"
+        iconClass="material-symbols-light:play-arrow"
         [loading]="loading()"
         (clicked)="ejecutar()"
       />
@@ -31,25 +31,25 @@
       <div class="flex gap-2">
         <il-button
           label="Excel"
-          iconClass="mdi:file-excel"
+          iconClass="material-symbols-light:table-view"
           severity="success"
           (clicked)="exportarExcel()"
         />
         <il-button
           label="PDF"
-          iconClass="mdi:file-pdf-box"
+          iconClass="material-symbols-light:picture-as-pdf"
           severity="danger"
           (clicked)="exportarPdf()"
         />
         <il-button
           label="Compartir"
-          iconClass="mdi:link"
+          iconClass="material-symbols-light:link"
           severity="secondary"
           (clicked)="compartir()"
         />
         <il-button
           label="Auditor IA"
-          iconClass="mdi:sparkles"
+          iconClass="material-symbols-light:auto-awesome-motion"
           severity="info"
           (clicked)="aiAgent()?.togglePanel()"
         />

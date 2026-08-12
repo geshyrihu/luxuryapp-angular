@@ -115,14 +115,39 @@ CandidateApplications: {
   },
   CandidateInterviews: {
     base: "recruitment-candidate-interviews",
+    create: "recruitment-candidate-interviews",
     submitFeedback: "recruitment-candidate-interviews/feedback",
     byApplication: (candidateApplicationId: Id) =>
       `recruitment-candidate-interviews/application/${candidateApplicationId}`,
+    byApplicationNew: (candidateApplicationId: Id) =>
+      `recruitment-candidate-interviews/by-application/${candidateApplicationId}`,
+    byWorkPosition: (workPositionId: Id) =>
+      `recruitment-candidate-interviews/by-work-position/${workPositionId}`,
+    byInterviewer: (interviewerUserId: Id) =>
+      `recruitment-candidate-interviews/by-interviewer/${interviewerUserId}`,
+    reschedule: (id: Id) => `recruitment-candidate-interviews/${id}/reschedule`,
+    confirm: (id: Id) => `recruitment-candidate-interviews/${id}/confirm`,
+    cancel: (id: Id) => `recruitment-candidate-interviews/${id}/cancel`,
+    close: (id: Id) => `recruitment-candidate-interviews/${id}/close`,
+  },
+  CandidateWorkExperiences: {
+    base: "recruitment-candidate-work-experiences",
+    byCandidate: (candidateId: Id) =>
+      `recruitment-candidate-work-experiences/candidate/${candidateId}`,
+    update: (id: Id) => `recruitment-candidate-work-experiences/${id}`,
+    delete: (id: Id) => `recruitment-candidate-work-experiences/${id}`,
   },
   CandidateDecisionReasons: {
     base: "recruitment-candidate-decision-reasons",
     catalog: "recruitment-candidate-decision-reasons",
     create: "recruitment-candidate-decision-reasons",
     update: (id: Id) => `recruitment-candidate-decision-reasons/${id}`,
+  },
+  InterviewerMatrix: {
+    base: "recruitment-interviewer-matrix",
+    byCustomer: (customerId: Id) =>
+      `recruitment-interviewer-matrix/customer/${customerId}`,
+    resolve: (customerId: Id, workPositionRole: number) =>
+      `recruitment-interviewer-matrix/resolve/${customerId}/${workPositionRole}`,
   },
 } as const;

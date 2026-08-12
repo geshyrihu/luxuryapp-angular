@@ -26,23 +26,23 @@
           [lxTooltip]="'Ver ' + item.nombre"
           tooltipPosition="bottom"
           [iconClass]="item.icon"
-          variant="outlined"
+          variant="outline"
           [ngClass]="{'bg-primary text-white': filtroEquiposValue == item.nombre}"
           (clicked)="onReloadOrdenes(item.id, item.nombre)"
         />
         }
       </div>
       <il-button
-        iconClass="mdi:file-document-outline"
+        iconClass="material-symbols-light:description"
         label="Reporte de órdenes"
         (click)="onNavigateToReport()"
-        variant="outlined"
+        variant="outline"
       />
       <il-button
-        iconClass="mdi:table"
+        iconClass="material-symbols-light:table"
         label="Reporte por categoria"
         (click)="onNavigateToReportTabla()"
-        variant="outlined"
+        variant="outline"
       />
       <div class="ml-auto">
         <primeng-custom-caption
@@ -153,27 +153,27 @@
       <td class="no-print">
         <div class="flex">
           <iw-button-item
-            iconClass="mdi:printer"
+            iconClass="material-symbols-light:print"
             lxTooltip="Imprimir soporte"
             tooltipPosition="top"
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
-            variant="outlined"
+            variant="outline"
           />
 
           <iw-button-item
-            iconClass="mdi:image"
+            iconClass="material-symbols-light:photo"
             lxTooltip="Cargar imagen"
             tooltipPosition="top"
             (clicked)="onModalFormUploadImg(item.id)"
-            variant="outlined"
+            variant="outline"
           />
 
           <iw-button-item
-            iconClass="mdi:paperclip"
+            iconClass="material-symbols-light:attach-file"
             lxTooltip="Cargar documentos"
             tooltipPosition="top"
             (clicked)="onModalFormUploadDoc(item.id)"
-            variant="outlined"
+            variant="outline"
           />
           <iw-button-edit
             (clicked)="onEdit({
@@ -247,7 +247,7 @@
           iconName="document-text-outline"
           label="Reporte de órdenes"
           (click)="onNavigateToReport()"
-          variant="outlined"
+          variant="outline"
           fullWidth="true"
         />
       </div>
@@ -256,7 +256,7 @@
           iconName="grid-outline"
           label="Reporte por categoria"
           (click)="onNavigateToReportTabla()"
-          variant="outlined"
+          variant="outline"
           fullWidth="true"
         />
       </div>
@@ -280,7 +280,10 @@
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="mdi:wrench-outline" class="text-xl text-yellow-500" />
+        <app-icon
+          icon="material-symbols-light:build"
+          class="text-xl text-yellow-500"
+        />
       </div>
       <span class="">
         <div class="flex justify-content-between align-items-center mb-1">
@@ -339,7 +342,7 @@
             iconName="ellipsis-horizontal-outline"
             label="Cargar documentos"
             (clicked)="onModalFormUploadDoc(item.id)"
-            variant="outlined"
+            variant="outline"
           />
           <ili-button-edit
             (clicked)="onEdit({

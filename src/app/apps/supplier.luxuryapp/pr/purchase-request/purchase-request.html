@@ -7,7 +7,7 @@
     <div class="col-12 md:col-2 flex align-items-center">
       <div class="mr-2">
         <app-icon
-          [icon]="'mdi:circle'"
+          [icon]="'material-symbols-light:circle'"
           [class]="getTagSeverity(data.status)"
           class="icon icon-"
         />
@@ -45,7 +45,7 @@
           <il-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Editar' })"
             label="Editar"
-            icon="mdi:pencil"
+            icon="material-symbols-light:edit"
           />
           <il-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Cotizar' })"

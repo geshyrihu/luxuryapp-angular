@@ -20,7 +20,7 @@ import { TrackingEvent } from "../shared/tracking";
       [disabled]="disabled() || loading()"
       (click)="onTrackingClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:bell-outline'" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:notifications-outline'" />
       <span>{{ label() || "Seguimiento" }}</span>
       @if (badgeCount() && badgeCount()! > 0) {
         <span

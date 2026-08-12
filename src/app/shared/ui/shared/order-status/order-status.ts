@@ -29,7 +29,7 @@ export interface OrderStatusStep {
           <div class="order-step-marker">
             @if (step.completed) {
               <div class="order-step-dot order-step-done">
-                <app-icon icon="mdi:check" class="text-xs" />
+                <app-icon icon="material-symbols-light:check" class="text-xs" />
               </div>
             } @else if (step.active) {
               <div class="order-step-dot order-step-current">

@@ -1,4 +1,5 @@
 import { Directive, input, output } from "@angular/core";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export type EmptyStateSeverity =
   | "primary"
@@ -17,12 +18,12 @@ export type EmptyStateSeverity =
  */
 @Directive()
 export abstract class EmptyStateBase {
-  icon = input<string>("mdi:database-off-outline");
+  icon = input<AppIconName>("material-symbols-light:database-off-outline");
   iconColor = input<string>("var(--ds-text-muted)");
   title = input<string>("Sin registros");
   message = input<string>("No hay datos disponibles.");
   actionLabel = input<string>("");
-  actionIcon = input<string>("mdi:plus");
+  actionIcon = input<AppIconName>("material-symbols-light:add");
   actionSeverity = input<EmptyStateSeverity>("primary");
   tag = input<string>("");
 

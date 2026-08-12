@@ -69,34 +69,34 @@ export class Sidebar {
   readonly dsMenuItems: MenuItem[] = [
     {
       label: "Luxury Design System",
-      icon: "mdi:palette-outline",
+      icon: "material-symbols-light:palette-outline",
       expanded: false,
       items: [
         {
           label: "Tokens & Identidad",
-          icon: "mdi:palette",
+          icon: "material-symbols-light:palette",
           routerLink: [...this.catalogBase, "tokens"],
           items: [
             {
               label: "Colors",
-              icon: "mdi:format-color-fill",
+              icon: "material-symbols-light:format-color-fill",
               routerLink: [...this.catalogBase, "tokens", "colors"],
             },
             {
               label: "Typography",
-              icon: "mdi:format-letter-case",
+              icon: "material-symbols-light:text-fields",
               routerLink: [...this.catalogBase, "tokens", "typography"],
             },
           ],
         },
         {
           label: "Componentes",
-          icon: "mdi:view-grid-outline",
+          icon: "material-symbols-light:grid-view-outline",
           expanded: false,
           items: [
             {
               label: "Components (Web + Mobile)",
-              icon: "mdi:monitor-cellphone",
+              icon: "material-symbols-light:devices",
               routerLink: [...this.catalogBase, "web"],
               items: [
                 {
@@ -105,7 +105,7 @@ export class Sidebar {
                 },
                 {
                   label: "Calendar",
-                  icon: "mdi:calendar-outline",
+                  icon: "material-symbols-light:event-outline",
                   routerLink: [...this.catalogBase, "web", "calendar"],
                 },
                 {
@@ -218,109 +218,109 @@ export class Sidebar {
                 },
                 {
                   label: "Custom Inputs",
-                  icon: "mdi:form-textbox",
+                  icon: "material-symbols-light:text-fields",
                   routerLink: [...this.catalogBase, "web", "custominputs"],
                 },
                 {
                   label: "QR Code Generator",
-                  icon: "mdi:qr-code",
+                  icon: "material-symbols-light:qr-code",
                   routerLink: [...this.catalogBase, "core", "qrcode"],
                 },
                 {
                   label: "Barcode / QR Input",
-                  icon: "mdi:barcode",
+                  icon: "material-symbols-light:barcode",
                   routerLink: [...this.catalogBase, "core", "barcodeinput"],
                 },
                 {
                   label: "Barcode Scanner",
-                  icon: "mdi:camera",
+                  icon: "material-symbols-light:photo-camera",
                   routerLink: [...this.catalogBase, "extras", "business"],
                 },
                 {
                   label: "┤ Mobile only ├",
-                  icon: "mdi:cellphone",
+                  icon: "material-symbols-light:devices-other",
                   routerLink: [...this.catalogBase, "mobile"],
                 },
                 {
                   label: "Mobile: Buttons",
-                  icon: "mdi:gesture-tap",
+                  icon: "material-symbols-light:touch-app",
                   routerLink: [...this.catalogBase, "mobile", "buttons"],
                 },
                 {
                   label: "Mobile: Inputs",
-                  icon: "mdi:keyboard",
+                  icon: "material-symbols-light:keyboard",
                   routerLink: [...this.catalogBase, "mobile", "inputs"],
                 },
                 {
                   label: "Mobile: Feedback",
-                  icon: "mdi:progress-clock",
+                  icon: "material-symbols-light:pending",
                   routerLink: [...this.catalogBase, "mobile", "feedback"],
                 },
                 {
                   label: "Mobile: Navigation",
-                  icon: "mdi:menu",
+                  icon: "material-symbols-light:menu",
                   routerLink: [...this.catalogBase, "mobile", "navigation"],
                 },
                 {
                   label: "Mobile: Lists",
-                  icon: "mdi:format-list-bulleted",
+                  icon: "material-symbols-light:format-list-bulleted",
                   routerLink: [...this.catalogBase, "mobile", "lists"],
                 },
                 {
                   label: "Mobile: Data & Grid",
-                  icon: "mdi:database-outline",
+                  icon: "material-symbols-light:database-outline",
                   routerLink: [...this.catalogBase, "mobile", "data"],
                 },
                 {
                   label: "Mobile: Forms",
-                  icon: "mdi:form-dropdown",
+                  icon: "material-symbols-light:arrow-drop-down",
                   routerLink: [...this.catalogBase, "mobile", "forms"],
                 },
                 {
                   label: "Mobile: Overlays",
-                  icon: "mdi:layers-outline",
+                  icon: "material-symbols-light:layers",
                   routerLink: [...this.catalogBase, "mobile", "overlays"],
                 },
                 {
                   label: "Mobile: Layout",
-                  icon: "mdi:page-layout-sidebar-left",
+                  icon: "material-symbols-light:view-sidebar",
                   routerLink: [...this.catalogBase, "mobile", "layout"],
                 },
                 {
                   label: "Mobile: Page Structure",
-                  icon: "mdi:page-layout-body",
+                  icon: "material-symbols-light:web",
                   routerLink: [...this.catalogBase, "mobile", "page-structure"],
                 },
               ],
             },
             {
               label: "Gráficos",
-              icon: "mdi:chart-bar",
+              icon: "material-symbols-light:bar-chart",
               routerLink: [...this.catalogBase, "charts"],
               items: [
                 {
                   label: "Bar Chart",
-                  icon: "mdi:chart-bar",
+                  icon: "material-symbols-light:bar-chart",
                   routerLink: [...this.catalogBase, "charts", "bar"],
                 },
                 {
                   label: "Pie Chart",
-                  icon: "mdi:chart-pie",
+                  icon: "material-symbols-light:pie-chart",
                   routerLink: [...this.catalogBase, "charts", "pie"],
                 },
                 {
                   label: "Line Chart",
-                  icon: "mdi:chart-line",
+                  icon: "material-symbols-light:monitoring",
                   routerLink: [...this.catalogBase, "charts", "line"],
                 },
                 {
                   label: "Doughnut Chart",
-                  icon: "mdi:chart-donut",
+                  icon: "material-symbols-light:donut-large",
                   routerLink: [...this.catalogBase, "charts", "doughnut"],
                 },
                 {
                   label: "Radar Chart",
-                  icon: "mdi:radar",
+                  icon: "material-symbols-light:radar",
                   routerLink: [...this.catalogBase, "charts", "radar"],
                 },
               ],
@@ -329,307 +329,307 @@ export class Sidebar {
         },
         {
           label: "Core Components",
-          icon: "mdi:cube",
+          icon: "material-symbols-light:crop-rotate",
           routerLink: [...this.catalogBase, "core"],
           items: [
             {
               label: "Action Menu",
-              icon: "mdi:dots-vertical",
+              icon: "material-symbols-light:more-vert",
               routerLink: [...this.catalogBase, "core", "actionmenu"],
             },
             {
               label: "App Icon",
-              icon: "mdi:star",
+              icon: "material-symbols-light:star",
               routerLink: [...this.catalogBase, "core", "appicon"],
             },
             {
               label: "Data View Mobile",
-              icon: "mdi:view-list",
+              icon: "material-symbols-light:view-list",
               routerLink: [...this.catalogBase, "core", "dataviewmobile"],
             },
             {
               label: "Loader",
-              icon: "mdi:loading",
+              icon: "material-symbols-light:progress-activity",
               routerLink: [...this.catalogBase, "core", "loader"],
             },
             {
               label: "Notification Center",
-              icon: "mdi:bell-outline",
+              icon: "material-symbols-light:notifications-outline",
               routerLink: [...this.catalogBase, "core", "notificationcenter"],
             },
             {
               label: "PrimeNg Custom Caption",
-              icon: "mdi:table-headers-eye",
+              icon: "material-symbols-light:table",
               routerLink: [...this.catalogBase, "core", "primengcustomcaption"],
             },
             {
               label: "Status Badge",
-              icon: "mdi:check-circle",
+              icon: "material-symbols-light:check-circle",
               routerLink: [...this.catalogBase, "core", "statusbadge"],
             },
             {
               label: "Wizard",
-              icon: "mdi:stairs",
+              icon: "material-symbols-light:stairs",
               routerLink: [...this.catalogBase, "core", "wizard"],
             },
             {
               label: "Empty State",
-              icon: "mdi:inbox-outline",
+              icon: "material-symbols-light:move-to-inbox-outline",
               routerLink: [...this.catalogBase, "core", "emptystate"],
             },
             {
               label: "Confirm Dialog",
-              icon: "mdi:alert-circle",
+              icon: "material-symbols-light:error",
               routerLink: [...this.catalogBase, "core", "confirmdialog"],
             },
             {
               label: "Date Range",
-              icon: "mdi:calendar-range",
+              icon: "material-symbols-light:event",
               routerLink: [...this.catalogBase, "core", "daterange"],
             },
             {
               label: "File Upload",
-              icon: "mdi:upload",
+              icon: "material-symbols-light:upload",
               routerLink: [...this.catalogBase, "core", "fileupload"],
             },
             // Fase 6-10
             {
               label: "Data Grid",
-              icon: "mdi:table-edit",
+              icon: "material-symbols-light:edit-note",
               routerLink: [...this.catalogBase, "core", "datagrid"],
             },
             {
               label: "KPI Card",
-              icon: "mdi:chart-box",
+              icon: "material-symbols-light:bar-chart",
               routerLink: [...this.catalogBase, "core", "kpicard"],
             },
             {
               label: "Avatar Group",
-              icon: "mdi:account-multiple",
+              icon: "material-symbols-light:person",
               routerLink: [...this.catalogBase, "core", "avatargroup"],
             },
             {
               label: "Timeline",
-              icon: "mdi:timeline",
+              icon: "material-symbols-light:timeline",
               routerLink: [...this.catalogBase, "core", "timeline"],
             },
             {
               label: "Slider",
-              icon: "mdi:tune-vertical",
+              icon: "material-symbols-light:tune",
               routerLink: [...this.catalogBase, "core", "slider"],
             },
             {
               label: "Rating",
-              icon: "mdi:star-outline",
+              icon: "material-symbols-light:star-outline",
               routerLink: [...this.catalogBase, "core", "rating"],
             },
             {
               label: "Pipeline CRM",
-              icon: "mdi:pipe",
+              icon: "material-symbols-light:precision-manufacturing",
               routerLink: [...this.catalogBase, "core", "pipelinecrm"],
             },
             {
               label: "Tag Input",
-              icon: "mdi:tag-multiple",
+              icon: "material-symbols-light:label",
               routerLink: [...this.catalogBase, "core", "taginput"],
             },
             {
               label: "Stat Card",
-              icon: "mdi:chart-line",
+              icon: "material-symbols-light:monitoring",
               routerLink: [...this.catalogBase, "core", "statcard"],
             },
             {
               label: "Skeleton Presets",
-              icon: "mdi:card-bulleted-outline",
+              icon: "material-symbols-light:description",
               routerLink: [...this.catalogBase, "core", "skeletonpresets"],
             },
             // 13.3.2
             {
               label: "Comparison Table",
-              icon: "mdi:table-large",
+              icon: "material-symbols-light:table",
               routerLink: [...this.catalogBase, "core", "comparisontable"],
             },
             {
               label: "Activity Log",
-              icon: "mdi:history",
+              icon: "material-symbols-light:history",
               routerLink: [...this.catalogBase, "core", "activitylog"],
             },
             {
               label: "Kanban Board",
-              icon: "mdi:view-column",
+              icon: "material-symbols-light:view-column",
               routerLink: [...this.catalogBase, "core", "kanbanboard"],
             },
             {
               label: "Tree Table",
-              icon: "mdi:file-tree",
+              icon: "material-symbols-light:account-tree",
               routerLink: [...this.catalogBase, "core", "treetable"],
             },
             {
               label: "Context Menu",
-              icon: "mdi:cursor-pointer",
+              icon: "material-symbols-light:ads-click",
               routerLink: [...this.catalogBase, "core", "contextmenu"],
             },
             {
               label: "Split Pane",
-              icon: "mdi:view-split-vertical",
+              icon: "material-symbols-light:vertical-split",
               routerLink: [...this.catalogBase, "core", "splitpane"],
             },
             {
               label: "Command Palette",
-              icon: "mdi:magnify",
+              icon: "material-symbols-light:search",
               routerLink: [...this.catalogBase, "core", "commandpalette"],
             },
             {
               label: "Tour / Onboarding",
-              icon: "mdi:map-marker-path",
+              icon: "material-symbols-light:route",
               routerLink: [...this.catalogBase, "core", "tour"],
             },
             {
               label: "Gauge",
-              icon: "mdi:speedometer",
+              icon: "material-symbols-light:speed",
               routerLink: [...this.catalogBase, "core", "gauge"],
             },
             {
               label: "Funnel Chart",
-              icon: "mdi:filter-variant",
+              icon: "material-symbols-light:filter",
               routerLink: [...this.catalogBase, "core", "funnelchart"],
             },
             // 13.3.3
             {
               label: "OTP Input",
-              icon: "mdi:numeric",
+              icon: "material-symbols-light:pin",
               routerLink: [...this.catalogBase, "core", "otpinput"],
             },
             {
               label: "Profile Card",
-              icon: "mdi:card-account-details",
+              icon: "material-symbols-light:badge",
               routerLink: [...this.catalogBase, "core", "profilecard"],
             },
             {
               label: "Theme Switcher",
-              icon: "mdi:theme-light-dark",
+              icon: "material-symbols-light:brightness-4",
               routerLink: [...this.catalogBase, "core", "themeswitcher"],
             },
             {
               label: "Lang Selector",
-              icon: "mdi:translate",
+              icon: "material-symbols-light:translate",
               routerLink: [...this.catalogBase, "core", "langselector"],
             },
             {
               label: "Color Picker",
-              icon: "mdi:palette",
+              icon: "material-symbols-light:palette",
               routerLink: [...this.catalogBase, "core", "colorpicker"],
             },
             {
               label: "Tristate Switch",
-              icon: "mdi:toggle-switch-outline",
+              icon: "material-symbols-light:toggle-on",
               routerLink: [...this.catalogBase, "core", "tristateswitch"],
             },
             {
               label: "Signature Pad",
-              icon: "mdi:draw",
+              icon: "material-symbols-light:draw",
               routerLink: [...this.catalogBase, "core", "signaturepad"],
             },
             {
               label: "QR Code",
-              icon: "mdi:qrcode",
+              icon: "material-symbols-light:qr-code",
               routerLink: [...this.catalogBase, "core", "qrcode"],
             },
             {
               label: "Barcode Input",
-              icon: "mdi:barcode-scan",
+              icon: "material-symbols-light:barcode-scanner",
               routerLink: [...this.catalogBase, "core", "barcodeinput"],
             },
             {
               label: "Realtime Indicator",
-              icon: "mdi:wifi",
+              icon: "material-symbols-light:wifi",
               routerLink: [...this.catalogBase, "core", "realtimeindicator"],
             },
             {
               label: "Inventory Level",
-              icon: "mdi:package-variant",
+              icon: "material-symbols-light:package",
               routerLink: [...this.catalogBase, "core", "inventorylevel"],
             },
             {
               label: "Lead Scoring",
-              icon: "mdi:star-circle",
+              icon: "material-symbols-light:star",
               routerLink: [...this.catalogBase, "core", "leadscoring"],
             },
             {
               label: "Approval Workflow",
-              icon: "mdi:source-branch-check",
+              icon: "material-symbols-light:call-split",
               routerLink: [...this.catalogBase, "core", "approvalworkflow"],
             },
             {
               label: "Order Status",
-              icon: "mdi:package-check",
+              icon: "material-symbols-light:check-circle",
               routerLink: [...this.catalogBase, "core", "orderstatus"],
             },
             {
               label: "Document Previewer",
-              icon: "mdi:file-pdf-box",
+              icon: "material-symbols-light:picture-as-pdf",
               routerLink: [...this.catalogBase, "core", "documentpreviewer"],
             },
             {
               label: "Dashboard Layout",
-              icon: "mdi:view-dashboard-edit",
+              icon: "material-symbols-light:dashboard-customize",
               routerLink: [...this.catalogBase, "core", "dashboardlayout"],
             },
             {
               label: "Comment Thread",
-              icon: "mdi:comment-multiple",
+              icon: "material-symbols-light:forum",
               routerLink: [...this.catalogBase, "core", "commentthread"],
             },
             {
               label: "Email Preview",
-              icon: "mdi:email-edit",
+              icon: "material-symbols-light:edit-note",
               routerLink: [...this.catalogBase, "core", "emailpreview"],
             },
             {
               label: "Form Builder",
-              icon: "mdi:form-select",
+              icon: "material-symbols-light:list",
               routerLink: [...this.catalogBase, "core", "formbuilder"],
             },
             {
               label: "Print View",
-              icon: "mdi:printer",
+              icon: "material-symbols-light:print",
               routerLink: [...this.catalogBase, "core", "printview"],
             },
             {
               label: "Customer 360",
-              icon: "mdi:account-details",
+              icon: "material-symbols-light:badge",
               routerLink: [...this.catalogBase, "core", "customer360"],
             },
             {
               label: "Dock",
-              icon: "mdi:dock-window",
+              icon: "material-symbols-light:view-sidebar",
               routerLink: [...this.catalogBase, "core", "dock"],
             },
             {
               label: "Heatmap",
-              icon: "mdi:grid",
+              icon: "material-symbols-light:grid-view",
               routerLink: [...this.catalogBase, "core", "heatmap"],
             },
             {
               label: "Gantt",
-              icon: "mdi:chart-gantt",
+              icon: "material-symbols-light:pattern",
               routerLink: [...this.catalogBase, "core", "gantt"],
             },
             {
               label: "Pivot Table",
-              icon: "mdi:table-pivot",
+              icon: "material-symbols-light:table",
               routerLink: [...this.catalogBase, "core", "pivottable"],
             },
           ],
         },
         {
           label: "Patrones y Layouts",
-          icon: "mdi:page-layout-body",
+          icon: "material-symbols-light:web",
           expanded: false,
           items: [
             {
               label: "Patrones UX",
-              icon: "mdi:content-copy",
+              icon: "material-symbols-light:content-copy",
               routerLink: [...this.catalogBase, "patterns"],
               items: [
                 {
@@ -662,14 +662,14 @@ export class Sidebar {
                 },
                 {
                   label: "Navigation Hub Page",
-                  icon: "mdi:view-dashboard-outline",
+                  icon: "material-symbols-light:dashboard-outline",
                   routerLink: [...this.catalogBase, "patterns", "navhub"],
                 },
               ],
             },
             {
               label: "Layouts",
-              icon: "mdi:page-layout-body",
+              icon: "material-symbols-light:web",
               routerLink: [...this.catalogBase, "layouts"],
               items: [
                 {
@@ -702,12 +702,12 @@ export class Sidebar {
         },
         {
           label: "Guía y Estándares",
-          icon: "mdi:book-open-page-variant",
+          icon: "material-symbols-light:menu-book",
           expanded: false,
           items: [
             {
               label: "Guía ERP",
-              icon: "mdi:book-open-page-variant",
+              icon: "material-symbols-light:menu-book",
               routerLink: [...this.catalogBase, "guide"],
               items: [
                 {
@@ -732,7 +732,7 @@ export class Sidebar {
                 },
                 {
                   label: "Button Catalog",
-                  icon: "mdi:button-cursor",
+                  icon: "material-symbols-light:touch-app",
                   routerLink: [...this.catalogBase, "guide", "buttoncatalog"],
                 },
                 {
@@ -743,7 +743,7 @@ export class Sidebar {
             },
             {
               label: "Estándar Documental",
-              icon: "mdi:file-pdf-box",
+              icon: "material-symbols-light:picture-as-pdf",
               routerLink: [...this.catalogBase, "docs"],
               items: [
                 {
@@ -762,7 +762,7 @@ export class Sidebar {
             },
             {
               label: "Auditoría",
-              icon: "mdi:checkbox-marked",
+              icon: "material-symbols-light:check-box",
               routerLink: [...this.catalogBase, "audit"],
               items: [
                 {

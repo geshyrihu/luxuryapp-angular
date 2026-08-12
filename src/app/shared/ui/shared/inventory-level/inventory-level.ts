@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
 
@@ -233,7 +234,7 @@ export class AppInventoryLevel {
   current = input.required<number>();
   max = input.required<number>();
   sku = input<string>("");
-  icon = input<string>("mdi:package-variant-closed");
+  icon = input<AppIconName>("material-symbols-light:package");
   reorderPoint = input<number | undefined>(undefined);
   maxCapacity = input<number | undefined>(undefined);
 
@@ -268,13 +269,13 @@ export class AppInventoryLevel {
     return map[this.status()];
   }
 
-  statusIcon(): string {
-    const map: Record<StockStatus, string> = {
-      critical: "mdi:alert-circle",
-      low: "mdi:alert",
-      medium: "mdi:check-circle",
-      high: "mdi:check-circle",
-      overstock: "mdi:information",
+  statusIcon(): AppIconName {
+    const map: Record<StockStatus, AppIconName> = {
+      critical: "material-symbols-light:error",
+      low: "material-symbols-light:warning",
+      medium: "material-symbols-light:check-circle",
+      high: "material-symbols-light:check-circle",
+      overstock: "material-symbols-light:info",
     };
     return map[this.status()];
   }

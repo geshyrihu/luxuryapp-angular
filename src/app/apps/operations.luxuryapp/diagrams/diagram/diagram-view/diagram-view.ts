@@ -23,7 +23,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
         <h2 class="m-0">{{ diagram()?.name }}</h2>
         <il-button
           label="Volver"
-          iconClass="mdi:arrow-left"
+          iconClass="material-symbols-light:arrow-back"
           (clicked)="goBack()"
           variant="text"
           severity="secondary"

@@ -48,13 +48,13 @@
             (clicked)="onViewProducts(item.id)"
             lxTooltip="Ver Productos"
             tooltipPosition="top"
-            iconClass="mdi:package"
+            iconClass="material-symbols-light:package"
           />
           <iw-button-item
             (clicked)="onDownloadInventory(item.id, item.nombre)"
             lxTooltip="Descargar Inventario"
             tooltipPosition="top"
-            iconClass="mdi:file-pdf-box"
+            iconClass="material-symbols-light:picture-as-pdf"
           />
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -87,7 +87,7 @@
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="mdi:warehouse" class="text-xl text-primary" />
+        <app-icon icon="material-symbols-light:warehouse" class="text-xl text-primary" />
       </div>
 
       <p class="mt-0 mb-0 font-bold">{{ item.nombre }}</p>

@@ -13,6 +13,7 @@ import { ProgressBarModule } from "primeng/progressbar";
 import { TextareaModule } from "primeng/textarea";
 import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.service";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-image-analysis-dialog",
@@ -23,6 +24,7 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
     DialogModule,
     ProgressBarModule,
     TextareaModule,
+    AppIcon,
   ],
   template: `
     <p-dialog
@@ -75,7 +77,7 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
                   pButton
                   type="button"
                   label="Analizar Ahora"
-                  icon="mdi:lightning-bolt"
+                  icon="material-symbols-light:bolt"
                   (click)="analyze()"
                   class="p-button-primary w-full mt-2"
                 ></button>
@@ -89,7 +91,7 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
         <div class="result-container">
           <div class="text-center mb-3">
             <app-icon
-              [icon]="'mdi:check-circle'"
+              [icon]="'material-symbols-light:check-circle'"
               class="pi text-green-500 text-3xl"
             />
             <h3 class="m-0">Análisis Completado</h3>
@@ -113,7 +115,7 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
             <button
               pButton
               label="Copiar y Usar"
-              icon="mdi:content-copy"
+              icon="material-symbols-light:content-copy"
               (click)="useResult()"
             ></button>
           </div>

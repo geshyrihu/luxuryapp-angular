@@ -18,21 +18,21 @@
         <il-button
           (clicked)="sendSignalRToUser()"
           [disabled]="!selectedUserId()"
-          iconClass="mdi:send"
+          iconClass="material-symbols-light:send"
           label="Enviar SignalR"
         />
         <il-button
           severity="success"
           (clicked)="sendOneSignalToUser()"
           [disabled]="!selectedUserId()"
-          iconClass="mdi:bell"
+          iconClass="material-symbols-light:notifications"
           label="Enviar Push (OneSignal)"
         />
         <il-button
           severity="success"
           (clicked)="sendOneSignalWebToUser()"
           [disabled]="!selectedUserId()"
-          iconClass="mdi:bell"
+          iconClass="material-symbols-light:notifications"
           label="Enviar Push (OneSignal) Web"
         />
       </div>
@@ -69,7 +69,7 @@
           [fluid]="true"
           (clicked)="sendSignalRToUsers()"
           [disabled]="!selectedUserIds().length"
-          iconClass="mdi:send"
+          iconClass="material-symbols-light:send"
           label="Enviar SignalR a seleccionados"
         />
       </div>

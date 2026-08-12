@@ -20,9 +20,9 @@
         />
         <il-button
           label="Nota de Crédito"
-          iconClass="mdi:credit-card"
+          iconClass="material-symbols-light:credit-card"
           severity="secondary"
-          variant="outlined"
+          variant="outline"
           size="small"
           lxTooltip="Emitir condonación de deuda"
           tooltipPosition="top"
@@ -77,9 +77,9 @@
         <td class="text-center">
           <div class="flex justify-content-center gap-1">
             <iw-button
-              iconClass="mdi:eye-outline"
+              iconClass="material-symbols-light:visibility-outline"
               severity="info"
-              variant="outlined"
+              variant="outline"
               size="small"
               lxTooltip="Ver detalle"
               tooltipPosition="top"
@@ -87,11 +87,12 @@
             />
             <iw-button-edit (clicked)="onModalForm(item.id)" />
             @if (item.status !== EPaymentStatus.Rechazado && item.status !==
-            EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido) {
+            EPaymentStatus.Cancelado && item.status !==
+            EPaymentStatus.Revertido) {
             <iw-button
-              iconClass="mdi:close-circle"
+              iconClass="material-symbols-light:cancel"
               severity="warning"
-              variant="outlined"
+              variant="outline"
               size="small"
               lxTooltip="Cancelar pago"
               tooltipPosition="top"
@@ -120,13 +121,16 @@
         start
         class="w-2rem h-2rem rounded-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:cash" class="text-green-600 text-xl" />
+        <app-icon
+          icon="material-symbols-light:paid"
+          class="text-green-600 text-xl"
+        />
       </div>
       <div class="flex-1 min-w-0">
         <h3>{{ item.propertyFullName || "N/A" }}</h3>
         <p>
-          {{ item.paymentDate | date:"dd/MM/yyyy":"UTC" }} ·
-          {{ item.amount | number:"1.2-2" }}
+          {{ item.paymentDate | date:"dd/MM/yyyy":"UTC" }} · {{ item.amount |
+          number:"1.2-2" }}
         </p>
         <p>
           Aplicado: {{ item.allocatedAmount | number:"1.2-2" }} · Sin aplicar:
@@ -138,20 +142,21 @@
         <ng-container actions>
           <il-button
             label="Detalle"
-            iconClass="mdi:eye-outline"
+            iconClass="material-symbols-light:visibility-outline"
             severity="info"
-            variant="outlined"
+            variant="outline"
             size="small"
             (clicked)="onViewDetail(item)"
           />
           <ili-button-edit (clicked)="onModalForm(item.id)" label="Editar" />
           @if (item.status !== EPaymentStatus.Rechazado && item.status !==
-          EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido) {
+          EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido)
+          {
           <il-button
             label="Cancelar"
-            iconClass="mdi:close-circle"
+            iconClass="material-symbols-light:cancel"
             severity="warning"
-            variant="outlined"
+            variant="outline"
             size="small"
             (clicked)="onCancelPayment(item)"
           />

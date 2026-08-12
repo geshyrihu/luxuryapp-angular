@@ -32,10 +32,8 @@ import {
 } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import {
-  resolveIconifyIcon,
-  resolvePrimeIcon,
-} from "src/app/shared/utils/icon-mapping";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
+import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";
 import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
@@ -57,7 +55,6 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
 })
 export class CronogramaAnualMantenimiento {
   TooltipPlacement = TooltipPlacement;
-  readonly resolvePrimeIcon = resolvePrimeIcon;
   // --- Inyección de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
@@ -196,8 +193,8 @@ export class CronogramaAnualMantenimiento {
     this.onLoadData();
   }
 
-  getFiltroIconClass(icon: string | null | undefined): string {
-    return resolveIconifyIcon(icon, "mdi:package");
+  getFiltroIconClass(icon: string | null | undefined): AppIconName {
+    return resolveIconifyIcon(icon, "material-symbols-light:package") as AppIconName;
   }
 
   // --- Funciones de Ayuda para la Vista ---

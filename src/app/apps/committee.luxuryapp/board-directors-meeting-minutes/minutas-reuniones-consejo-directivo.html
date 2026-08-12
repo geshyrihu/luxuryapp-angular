@@ -3,7 +3,7 @@
 
   @if (dataSignal().length === 0) {
   <div class="committee-doc-empty">
-    <app-icon icon="mdi:folder-open" class="committee-doc-empty__icon" />
+    <app-icon icon="material-symbols-light:folder-open" class="committee-doc-empty__icon" />
     <p class="committee-doc-empty__text">No hay documentos disponibles</p>
   </div>
   } @else { @for (item of dataSignal(); track item.id) {
@@ -23,7 +23,7 @@
         >Archivo .{{ item.fileExtension }}</span
       >
     </span>
-    <app-icon icon="mdi:chevron-right" class="committee-doc-item__chevron" />
+    <app-icon icon="material-symbols-light:chevron-right" class="committee-doc-item__chevron" />
   </a>
   } }
 </section>

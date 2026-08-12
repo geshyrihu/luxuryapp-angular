@@ -44,11 +44,11 @@ export interface PipelineStage {
         <h3 class="pipeline-title">{{ title() }}</h3>
         <div class="pipeline-summary">
           <span class="pipeline-stat">
-            <app-icon icon="mdi:briefcase-outline" />
+            <app-icon icon="material-symbols-light:work-outline" />
             {{ totalDeals() }} deals
           </span>
           <span class="pipeline-stat">
-            <app-icon icon="mdi:currency-usd" />
+            <app-icon icon="material-symbols-light:attach-money" />
             {{ formattedTotal() }}
           </span>
         </div>
@@ -91,7 +91,7 @@ export interface PipelineStage {
                     <span class="pipeline-deal-title">{{ deal.title }}</span>
                     @if (deal.priority === "high") {
                       <app-icon
-                        icon="mdi:flag"
+                        icon="material-symbols-light:flag"
                         class="text-sm"
                         style="color: var(--ds-danger)"
                         lxTooltip="Alta prioridad"
@@ -102,7 +102,7 @@ export interface PipelineStage {
                   @if (deal.company) {
                     <span class="pipeline-deal-company">
                       <app-icon
-                        icon="mdi:office-building-outline"
+                        icon="material-symbols-light:apartment"
                         class="text-xs"
                       />
                       {{ deal.company }}
@@ -121,7 +121,7 @@ export interface PipelineStage {
                         [class.pipeline-deal-days-warn]="deal.daysInStage > 14"
                         [lxTooltip]="deal.daysInStage + ' días en esta etapa'"
                       >
-                        <app-icon icon="mdi:clock-outline" class="text-xs" />
+                        <app-icon icon="material-symbols-light:schedule" class="text-xs" />
                         {{ deal.daysInStage }}d
                       </span>
                     }
@@ -143,7 +143,7 @@ export interface PipelineStage {
                 (click)="addDeal.emit(stage.id)"
                 [attr.aria-label]="'Agregar deal a ' + stage.name"
               >
-                <app-icon icon="mdi:plus" class="text-sm" />
+                <app-icon icon="material-symbols-light:add" class="text-sm" />
                 Agregar deal
               </button>
             </div>

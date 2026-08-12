@@ -19,7 +19,7 @@ import { openPdf } from "../shared/pdf";
       [class]="styleClass()"
       (click)="handleClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:file-pdf-box'" slot="start" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:picture-as-pdf'" slot="start" />
       {{ label() || "Ver archivo" }}
     </ion-button>
   `,

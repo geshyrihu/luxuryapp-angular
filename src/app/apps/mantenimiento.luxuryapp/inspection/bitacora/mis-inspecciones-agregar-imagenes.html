@@ -3,7 +3,7 @@
   <div class="flex gap-3 mb-6 flex-wrap">
     <!-- Botón cámara -->
     <iw-button
-      iconClass="mdi:camera"
+      iconClass="material-symbols-light:photo-camera"
       label="Tomar foto"
       severity="secondary"
       (clicked)="cameraInput.click()"
@@ -19,7 +19,7 @@
 
     <!-- Botón galería -->
     <iw-button
-      iconClass="mdi:image-multiple"
+      iconClass="material-symbols-light:photo-library"
       label="Galería"
       severity="secondary"
       (clicked)="galleryInput.click()"
@@ -38,7 +38,7 @@
   @if (newImages.length > 0) {
   <div class="mb-6">
     <div class="flex align-items-center gap-2 mb-4">
-      <app-icon icon="mdi:plus-circle" class="text-success-600 text-lg" />
+      <app-icon icon="material-symbols-light:add-circle" class="text-success-600 text-lg" />
       <h6 class="text-title-md m-0 text-on-surface">Nuevas imágenes ({{ newImages.length }})</h6>
     </div>
     <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -50,7 +50,7 @@
           alt="Foto nueva"
         />
         <iw-button
-          iconClass="mdi:trash-can-outline"
+          iconClass="material-symbols-light:delete-outline"
           severity="danger"
           size="sm"
           variant="ghost-text"
@@ -69,7 +69,7 @@
   @if (existingImages.length > 0) {
   <div class="mb-6">
     <div class="flex align-items-center gap-2 mb-4">
-      <app-icon icon="mdi:cloud-check-outline" class="text-info-600 text-lg" />
+      <app-icon icon="material-symbols-light:cloud-done" class="text-info-600 text-lg" />
       <h6 class="text-title-md m-0 text-on-surface">Imágenes almacenadas ({{ existingImages.length }})</h6>
     </div>
     <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -81,7 +81,7 @@
           alt="Foto almacenada"
         />
         <iw-button
-          iconClass="mdi:close-circle-outline"
+          iconClass="material-symbols-light:cancel-outline"
           severity="danger"
           size="sm"
           variant="ghost-text"
@@ -100,7 +100,7 @@
   <div class="flex justify-content-center pt-4 border-top-1 border-outline">
     <il-button
       label="Guardar imágenes"
-      iconClass="mdi:content-save"
+      iconClass="material-symbols-light:save"
       (clicked)="onSaveImages()"
       [disabled]="newImages.length === 0"
     />

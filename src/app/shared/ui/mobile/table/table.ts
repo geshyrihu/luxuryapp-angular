@@ -30,7 +30,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
       @if (data().length === 0 && !loading()) {
         <ili-empty-state
-          icon="mdi:table-off"
+          icon="material-symbols-light:table-view"
           [title]="'Sin registros'"
           [message]="emptyMessage()"
         />

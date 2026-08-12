@@ -14,7 +14,7 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:plus'" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:add'" />
       <span>{{ label() || "Agregar" }}</span>
     </button>
   `,

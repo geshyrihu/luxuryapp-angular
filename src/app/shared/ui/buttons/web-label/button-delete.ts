@@ -21,7 +21,7 @@ import { ConfirmService } from "../shared/confirm.service";
       [disabled]="disabled() || loading()"
       (click)="confirmDelete($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:delete-outline'" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:delete-outline'" />
       <span>{{ label() || "Eliminar" }}</span>
     </button>
   `,

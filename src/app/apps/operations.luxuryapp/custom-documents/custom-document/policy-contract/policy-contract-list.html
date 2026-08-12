@@ -109,7 +109,7 @@
         <!-- Alineación opcional -->
         @if (item.document) {
         <iw-button-view-pdf
-          iconClass="mdi:file-pdf-box"
+          iconClass="material-symbols-light:picture-as-pdf"
           [url]="item.pathDocument"
           fileName="Poliza | Contrato"
           lxTooltip="Ver documento"
@@ -155,7 +155,7 @@
         start
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="mdi:file-sign" class="text-xl text-yellow-500" />
+        <app-icon icon="material-symbols-light:edit-note" class="text-xl text-yellow-500" />
       </div>
 
       <div class="flex justify-content-between align-items-center mb-1">
@@ -168,7 +168,7 @@
       </div>
       <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
       <p class="text-xs text-500 m-0">
-        <app-icon [icon]="'mdi:calendar'" class="mr-1" /> Inicio: {{
+        <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1" /> Inicio: {{
         item.startDate }}
       </p>
 

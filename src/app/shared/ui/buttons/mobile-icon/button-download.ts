@@ -17,7 +17,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       [class]="styleClass()"
       (click)="onClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:download'" slot="icon-only" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:download'" slot="icon-only" />
     </ion-button>
   `,
 })

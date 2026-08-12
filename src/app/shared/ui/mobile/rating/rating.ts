@@ -24,7 +24,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             (click)="setValue(s)"
           >
             <app-icon
-              [icon]="(value() ?? 0) >= s ? 'mdi:star' : 'mdi:star-outline'"
+              [icon]="(value() ?? 0) >= s ? 'material-symbols-light:star' : 'material-symbols-light:star-outline'"
             />
           </button>
         }

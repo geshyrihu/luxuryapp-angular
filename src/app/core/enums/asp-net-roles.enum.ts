@@ -38,6 +38,7 @@ export enum ApplicationRole {
   Chofer = "Chofer",
   BellBoy = "BellBoy",
   SnackBar = "SnackBar",
+  Salvavidas = "Salvavidas", // 🚨 ROL AGREGADO
 
   // 🏘️ CLIENTES
   Comite = "Comite",

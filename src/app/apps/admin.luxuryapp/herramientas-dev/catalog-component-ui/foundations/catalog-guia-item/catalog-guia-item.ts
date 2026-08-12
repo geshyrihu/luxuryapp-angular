@@ -28,6 +28,7 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { ToolbarModule } from "@ui/web/primeng-toolbar/primeng-toolbar";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { ButtonCatalog } from "./button-catalog/button-catalog";
 
 type TagSeverity =
@@ -455,34 +456,46 @@ export class CatalogGuiaItem {
     { label: "Biblioteca", value: "library" },
   ];
 
-  readonly metrics = [
+  readonly metrics: {
+    label: string;
+    value: string;
+    detail: string;
+    icon: AppIconName;
+    tone: string;
+  }[] = [
     {
       label: "Consistencia UI",
       value: "92%",
       detail: "Componentes alineados a DS",
-      icon: "icon.tune",
+      icon: "material-symbols-light:tune",
       tone: "primary",
     },
     {
       label: "Densidad ERP",
       value: "Alta",
       detail: "Lectura rapida sin perder aire visual",
-      icon: "icon.table",
+      icon: "material-symbols-light:table",
       tone: "info",
     },
     {
       label: "Mobile ready",
       value: "AA",
       detail: "Controles tactiles y secciones apilables",
-      icon: "icon.cellphone",
+      icon: "material-symbols-light:devices-other",
       tone: "success",
     },
   ];
 
-  readonly identityPillars = [
+  readonly identityPillars: {
+    title: string;
+    icon: AppIconName;
+    summary: string;
+    application: string;
+    severity: TagSeverity;
+  }[] = [
     {
       title: "Autoridad tranquila",
-      icon: "icon.bank",
+      icon: "material-symbols-light:account-balance",
       summary:
         "LuxuryApp debe sentirse corporativa, confiable y precisa sin parecer pesada.",
       application:
@@ -491,7 +504,7 @@ export class CatalogGuiaItem {
     },
     {
       title: "Operacion sin friccion",
-      icon: "icon.flash",
+      icon: "material-symbols-light:flash-on",
       summary:
         "El usuario ERP necesita decidir rapido, comparar datos y cerrar tareas.",
       application:
@@ -500,7 +513,7 @@ export class CatalogGuiaItem {
     },
     {
       title: "Jerarquia auditables",
-      icon: "icon.shield",
+      icon: "material-symbols-light:security",
       summary:
         "Cada pantalla debe dejar claro que es dato, estado, decision o accion.",
       application:
@@ -509,27 +522,32 @@ export class CatalogGuiaItem {
     },
   ];
 
-  readonly businessScenarios = [
+  readonly businessScenarios: {
+    title: string;
+    description: string;
+    rule: string;
+    icon: AppIconName;
+  }[] = [
     {
       title: "Master-Detail (Complejidad)",
       description:
         "Gestion de formularios con lineas dinamicas y calculos en tiempo real.",
       rule: "Usar botones outlined para acciones secundarias y primary para el cierre del flujo.",
-      icon: "icon.format-list-checks",
+      icon: "material-symbols-light:fact-check",
     },
     {
       title: "Dashboard de Lujo (Identidad)",
       description:
         "Uso de Luxury Gold para jerarquizar KPIs financieros y resultados premium.",
       rule: "Maximo 5% de presencia dorada en pantalla para mantener la elegancia.",
-      icon: "icon.star",
+      icon: "material-symbols-light:star",
     },
     {
       title: "Responsive Total (Omnichannel)",
       description:
         "Transicion automatica de tablas densas a vistas de tarjetas en dispositivos moviles.",
       rule: "Obligatorio implementar app-data-view-mobile en cada listado operativo.",
-      icon: "icon.cellphone",
+      icon: "material-symbols-light:devices-other",
     },
   ];
 
@@ -571,14 +589,21 @@ export class CatalogGuiaItem {
     },
   ];
 
-  readonly buttonRules = [
+  readonly buttonRules: {
+    variant: string;
+    usage: string;
+    avoid: string;
+    severity: TagSeverity;
+    cardClass: string;
+    iconClass: AppIconName;
+  }[] = [
     {
       variant: "Primary",
       usage: "Una accion principal por bloque: guardar, crear, aprobar.",
       avoid: "No usar para acciones destructivas ni acciones repetidas.",
       severity: "info" as TagSeverity,
       cardClass: "h-full border-left-3 border-primary surface-card shadow-1",
-      iconClass: "icon.check-circle text-primary text-xl",
+      iconClass: "material-symbols-light:check-circle",
     },
     {
       variant: "Secondary",
@@ -586,7 +611,7 @@ export class CatalogGuiaItem {
       avoid: "No competir visualmente con la accion principal.",
       severity: "secondary" as TagSeverity,
       cardClass: "h-full border-left-3 surface-border surface-card shadow-1",
-      iconClass: "icon.arrow-left text-color-secondary text-xl",
+      iconClass: "material-symbols-light:arrow-back",
     },
     {
       variant: "Danger",
@@ -594,7 +619,7 @@ export class CatalogGuiaItem {
       avoid: "Nunca ubicar sin confirmacion en acciones irreversibles.",
       severity: "danger" as TagSeverity,
       cardClass: "h-full border-left-3 border-red-500 surface-card shadow-1",
-      iconClass: "icon.delete text-red-600 text-xl",
+      iconClass: "material-symbols-light:delete",
     },
     {
       variant: "Text",
@@ -602,7 +627,7 @@ export class CatalogGuiaItem {
       avoid: "No usar para el CTA principal de un formulario.",
       severity: "secondary" as TagSeverity,
       cardClass: "h-full border-left-3 border-300 surface-card shadow-1",
-      iconClass: "icon.dots-horizontal text-600 text-xl",
+      iconClass: "material-symbols-light:more-horiz",
     },
   ];
 

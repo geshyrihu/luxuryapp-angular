@@ -25,7 +25,7 @@ describe('LayoutService', () => {
     expect(service.config.settings.layout_type).toBe('ltr');
     expect(service.config.settings.layout_version).toBe('dark-sidebar');
     expect(service.config.settings.sidebar_type).toBe('compact-wrapper');
-    expect(service.config.settings.icon).toBe('mdi:draw-pen');
+    expect(service.config.settings.icon).toBe('material-symbols-light:draw');
   });
 
   it('should have default color config', () => {

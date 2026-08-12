@@ -38,7 +38,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             (click)="prev()"
             [disabled]="currentIndex() === 0"
           >
-            <app-icon icon="mdi:chevron-left" />
+            <app-icon icon="material-symbols-light:chevron-left" />
           </button>
           <span class="ili-gallery-counter"
             >{{ currentIndex() + 1 }} / {{ images().length }}</span
@@ -48,7 +48,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             (click)="next()"
             [disabled]="currentIndex() === images().length - 1"
           >
-            <app-icon icon="mdi:chevron-right" />
+            <app-icon icon="material-symbols-light:chevron-right" />
           </button>
         </div>
 

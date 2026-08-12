@@ -110,7 +110,7 @@ import {
           <div class="flex gap-2 w-full mt-1 lg:mt-0">
             <il-button
               label="Consultar"
-              iconClass="mdi:magnify"
+              iconClass="material-symbols-light:search"
               [loading]="loading"
               [disabled]="!canSearch"
               customClass="flex-1"
@@ -118,7 +118,7 @@ import {
             />
             <il-button
               label="Limpiar"
-              iconClass="mdi:eraser"
+              iconClass="material-symbols-light:ink-eraser"
               customClass="flex-1 p-button-secondary"
               (clicked)="clear.emit()"
             />

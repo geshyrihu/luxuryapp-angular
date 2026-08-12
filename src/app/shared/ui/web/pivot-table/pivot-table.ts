@@ -59,7 +59,7 @@ export interface PivotValue {
                   @if (row.children?.length) {
                     <app-icon
                       [icon]="
-                        row.expanded ? 'mdi:chevron-down' : 'mdi:chevron-right'
+                        row.expanded ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'
                       "
                       class="text-xs"
                     />

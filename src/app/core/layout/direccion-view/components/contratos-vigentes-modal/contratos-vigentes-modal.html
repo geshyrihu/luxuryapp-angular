@@ -1,7 +1,7 @@
 @if (cargando()) {
 <div class="flex align-items-center gap-2 py-6 justify-content-center">
   <app-icon
-    icon="mdi:loading"
+    icon="material-symbols-light:progress-activity"
     style="font-size: 1.5rem"
     class="ner text-primary ds-animate-spin"
   />
@@ -9,7 +9,7 @@
 </div>
 } @else if (!resumen() || resumen()!.total === 0) {
 <div class="flex flex-column align-items-center py-6 gap-3 text-400">
-  <app-icon icon="mdi:file-edit" style="font-size: 3rem" />
+  <app-icon icon="material-symbols-light:note-alt" style="font-size: 3rem" />
   <span>Sin contratos vigentes registrados</span>
 </div>
 } @else {
@@ -33,7 +33,7 @@
       (click)="toggleCliente(customer.customerName)"
     >
       <div class="flex align-items-center gap-2">
-        <app-icon icon="mdi:building" class="text-primary text-sm" />
+        <app-icon icon="material-symbols-light:apartment" class="text-primary text-sm" />
         <span class="font-bold text-800">{{ customer.customerName }}</span>
       </div>
       <div class="flex align-items-center gap-3">
@@ -42,7 +42,7 @@
           }}</span
         >
         <app-icon
-          [icon]="estaExpandido(customer.customerName) ? 'mdi:chevron-up' : 'mdi:chevron-down'"
+          [icon]="estaExpandido(customer.customerName) ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:keyboard-arrow-down'"
           class="text-400 text-xs"
         />
       </div>
@@ -62,12 +62,12 @@
         <div class="flex-none mt-1">
           @if (contrato.porVencer) {
           <app-icon
-            icon="mdi:alert-outline"
+            icon="material-symbols-light:warning-outline"
             lxTooltip="Por vencer"
             class="text-ds-warning text-sm"
           />
           } @else {
-          <app-icon icon="mdi:check-circle" class="text-ds-success text-sm" />
+          <app-icon icon="material-symbols-light:check-circle" class="text-ds-success text-sm" />
           }
         </div>
 

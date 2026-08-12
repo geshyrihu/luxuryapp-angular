@@ -26,14 +26,14 @@
         <div class="flex align-items-center flex-wrap gap-2 no-print mb-2 mt-1">
           <!-- Botones de acción -->
           <il-button
-            iconClass="mdi:printer"
+            iconClass="material-symbols-light:print"
             label="PENDIENTES"
             severity="danger"
             size="sm"
             (clicked)="navigateToPendientes()"
           />
           <il-button
-            iconClass="mdi:send"
+            iconClass="material-symbols-light:send"
             label="SEGUIMIENTO"
             severity="secondary"
             size="sm"
@@ -43,21 +43,21 @@
           <!-- Filtros de tipo de junta -->
           <div class="flex gap-1 ml-2">
             <il-button
-              iconClass="mdi:bank"
+              iconClass="material-symbols-light:account-balance"
               label="ASAMBLEA"
               size="sm"
               [variant]="tipoJunta === 1 ? null : 'outlined'"
               (clicked)="onLoadData(1)"
             />
             <il-button
-              iconClass="mdi:account-group"
+              iconClass="material-symbols-light:group"
               label="COMITé"
               size="sm"
               [variant]="tipoJunta === 0 ? null : 'outlined'"
               (clicked)="onLoadData(0)"
             />
             <il-button
-              iconClass="mdi:cog"
+              iconClass="material-symbols-light:settings"
               label="OPERACIóN"
               size="sm"
               [variant]="tipoJunta === 2 ? null : 'outlined'"
@@ -126,7 +126,7 @@
               [class.pointer-events-none]="item.issues == 0"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <app-icon [icon]="'mdi:chart-bar'" class="text-xs" />
+                <app-icon [icon]="'material-symbols-light:bar-chart'" class="text-xs" />
                 <span>TOTAL</span>
               </span>
               <span class="font-bold">{{ item.issues }}</span>
@@ -146,7 +146,7 @@
               [class.pointer-events-none]="item.concluidos == 0"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <app-icon [icon]="'mdi:check-circle'" class="text-xs" />
+                <app-icon [icon]="'material-symbols-light:check-circle'" class="text-xs" />
                 <span>CONCL.</span>
               </span>
               <span class="font-bold">{{ item.concluidos }}</span>
@@ -166,7 +166,7 @@
               [class.pointer-events-none]="item.pending == 0"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <app-icon [icon]="'mdi:clock-outline'" class="text-xs" />
+                <app-icon [icon]="'material-symbols-light:schedule'" class="text-xs" />
                 <span>PEND.</span>
               </span>
               <span class="font-bold">{{ item.pending }}</span>
@@ -186,7 +186,7 @@
               [class.pointer-events-none]="item.noAutorizado == 0"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <app-icon [icon]="'mdi:ban'" class="text-xs" />
+                <app-icon [icon]="'material-symbols-light:block'" class="text-xs" />
                 <span>NO AUT.</span>
               </span>
               <span class="font-bold">{{ item.noAutorizado }}</span>
@@ -196,7 +196,7 @@
           <!-- GESTIONAR -->
           <td class="text-center">
             <iw-button
-              iconClass="mdi:file-edit"
+              iconClass="material-symbols-light:note-alt"
               lxTooltip="GESTIONAR"
               tooltipPosition="top"
               severity="secondary"
@@ -211,12 +211,12 @@
             <app-action-menu>
               <ng-container actions>
                 <il-button-item
-                  iconClass="mdi:chart-bar"
+                  iconClass="material-symbols-light:bar-chart"
                   label="Exportar Excel"
                   (clicked)="exportToExcel(item.id)"
                 />
                 <il-button-confirm
-                  iconClass="mdi:email-outline"
+                  iconClass="material-symbols-light:mail-outline"
                   label="Enviar a Comité"
                   swalTitle="Confirmar envío"
                   swalText="Esta seguro de que desea enviar la minuta?"
@@ -224,12 +224,12 @@
                   (confirmed)="onSendEmailMeeting(item.id)"
                 />
                 <il-button-item
-                  iconClass="mdi:file-pdf-box"
+                  iconClass="material-symbols-light:picture-as-pdf"
                   label="Minuta PDF"
                   (clicked)="onNavigateMinutaPublico(item.id)"
                 />
                 <il-button-item
-                  iconClass="mdi:clipboard-text"
+                  iconClass="material-symbols-light:article"
                   label="Resumen minuta"
                   (clicked)="resumenMinuta(item.id)"
                 />
@@ -280,14 +280,14 @@
         />
         <div class="mt-2 flex flex-column gap-2">
           <il-button
-            iconClass="mdi:printer"
+            iconClass="material-symbols-light:print"
             label="IMPRIMIR PENDIENTES"
             severity="danger"
             [fluid]="true"
             (clicked)="navigateToPendientes()"
           />
           <il-button
-            iconClass="mdi:send"
+            iconClass="material-symbols-light:send"
             label="SEGUIMIENTO PENDIENTES"
             severity="secondary"
             [fluid]="true"
@@ -295,7 +295,7 @@
           />
           <div class="flex gap-1 mt-1">
             <il-button
-              iconClass="mdi:bank"
+              iconClass="material-symbols-light:account-balance"
               label="ASAMBLEA"
               size="sm"
               [fluid]="true"
@@ -303,7 +303,7 @@
               (clicked)="onLoadData(1)"
             />
             <il-button
-              iconClass="mdi:account-group"
+              iconClass="material-symbols-light:group"
               label="COMITé"
               size="sm"
               [fluid]="true"
@@ -311,7 +311,7 @@
               (clicked)="onLoadData(0)"
             />
             <il-button
-              iconClass="mdi:cog"
+              iconClass="material-symbols-light:settings"
               label="OPERACIóN"
               size="sm"
               [fluid]="true"
@@ -338,7 +338,7 @@
             class="w-3rem h-3rem bg-primary-50"
           >
             <app-icon
-              icon="mdi:notebook-outline"
+              icon="material-symbols-light:book"
               class="text-xl text-primary"
             />
           </div>

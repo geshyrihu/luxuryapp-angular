@@ -11,7 +11,7 @@ export class LayoutService {
       layout_type: "ltr",
       layout_version: "dark-sidebar",
       sidebar_type: "compact-wrapper",
-      icon: "mdi:draw-pen",
+      icon: "material-symbols-light:draw",
     },
     color: {
       primary_color: "#6f5a99",

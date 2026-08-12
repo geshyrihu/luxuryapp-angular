@@ -26,8 +26,8 @@ import { MobileButtonBase } from "../mobile-button-base";
       <app-icon
         [icon]="
           propertyId()
-            ? 'mdi:content-save-edit-outline'
-            : 'mdi:content-save-outline'
+            ? 'material-symbols-light:edit-note'
+            : 'material-symbols-light:save-outline'
         "
         slot="start"
       />

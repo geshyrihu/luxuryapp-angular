@@ -4,6 +4,7 @@ import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-catalog-layouts",
@@ -563,45 +564,50 @@ export class CatalogLayouts {
     },
   ];
 
-  readonly layoutRules = [
+  readonly layoutRules: {
+    titulo: string;
+    icon: AppIconName;
+    color: string;
+    descripcion: string;
+  }[] = [
     {
       titulo: "Grid de 12 columnas",
-      icon: "icon.grid",
+      icon: "material-symbols-light:grid-view",
       color: "var(--ds-primary)",
       descripcion:
         "Usa siempre PrimeFlex con col-12, md:col-6, lg:col-4. Nunca anchos en px para elementos del grid.",
     },
     {
       titulo: "Max-width de contenido",
-      icon: "icon.arrow-collapse-horizontal",
+      icon: "material-symbols-light:open-with",
       color: "var(--ds-info)",
       descripcion:
         "En full-width, el contenido tiene max-width implócito del contenedor. En sidebar+content, el content ocupa el espacio restante.",
     },
     {
       titulo: "Espaciado consistente",
-      icon: "icon.arrow-expand-vertical",
+      icon: "material-symbols-light:open-in-full",
       color: "var(--ds-success)",
       descripcion:
         "gap-4 entre bloques principales, gap-3 entre campos relacionados, gap-2 entre elementos inline.",
     },
     {
       titulo: "Mobile primero",
-      icon: "icon.cellphone",
+      icon: "material-symbols-light:devices-other",
       color: "var(--ds-warning)",
       descripcion:
         "Diseóa para col-12 primero. Expande con md:col-6 y lg:col-4. Los formularios siempre apilan en mobile.",
     },
     {
       titulo: "Header fijo, no pegajoso",
-      icon: "icon.page-layout-header",
+      icon: "material-symbols-light:web",
       color: "var(--ds-danger)",
       descripcion:
         "El header de la app es sticky. El contenido de la página hace scroll debajo. Nunca pongas sticky en elementos de contenido.",
     },
     {
       titulo: "Jerarquóa de acciones",
-      icon: "icon.cursor-default-click",
+      icon: "material-symbols-light:ads-click",
       color: "var(--ds-primary)",
       descripcion:
         "Una acción primaria por vista. Las secundarias van a la derecha o en mení contextual. Danger siempre separado y confirmado.",

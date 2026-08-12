@@ -9,7 +9,7 @@
         <div
           class="flex align-items-center justify-content-center bg-blue-50 rounded-xl flex-shrink-0"
         >
-          <app-icon [icon]="'mdi:book'" class="text-3xl text-blue-600" />
+          <app-icon [icon]="'material-symbols-light:book'" class="text-3xl text-blue-600" />
         </div>
         <div>
           <h1 class="text-3xl font-bold text-900 m-0">Manuales y Procesos</h1>
@@ -26,7 +26,7 @@
         />
         @if (isAdmin()) {
         <il-button
-          iconClass="mdi:plus"
+          iconClass="material-symbols-light:add"
           label="Nuevo Manual"
           severity="primary"
           (clicked)="onModalForm({})"
@@ -40,7 +40,7 @@
   @if (loading()) {
   <div class="flex justify-content-center align-items-center py-8">
     <app-icon
-      [icon]="'mdi:loading'"
+      [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl text-400 ds-animate-spin"
     />
   </div>
@@ -49,7 +49,7 @@
   <!-- Sin datos -->
   @else if (!groupedData().length) {
   <div class="text-center py-8">
-    <app-icon [icon]="'mdi:book'" class="text-5xl text-400 mb-3 block" />
+    <app-icon [icon]="'material-symbols-light:book'" class="text-5xl text-400 mb-3 block" />
     <p class="text-600 font-medium m-0">Sin manuales registrados</p>
     <p class="text-500 text-sm mt-1 m-0">
       Agrega el primer manual para comenzar.
@@ -167,7 +167,7 @@
               @if (isAdmin()) {
               <il-button-edit (clicked)="onModalForm({ id: manual.id })" />
               <il-button
-                iconClass="mdi:cog"
+                iconClass="material-symbols-light:settings"
                 label="Editor"
                 severity="primary"
                 [variant]="'text'"
@@ -176,7 +176,7 @@
               <il-button-delete (confirmed)="onDelete(manual)" />
               }
               <il-button
-                iconClass="mdi:file-document-outline"
+                iconClass="material-symbols-light:description"
                 label="Ver"
                 severity="secondary"
                 [variant]="'text'"
@@ -208,7 +208,7 @@
           class="w-3rem h-3rem bg-primary-50"
         >
           <app-icon
-            icon="mdi:book-open-page-variant"
+            icon="material-symbols-light:menu-book"
             class="text-xl text-primary"
           />
         </div>

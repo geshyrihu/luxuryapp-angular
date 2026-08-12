@@ -3,7 +3,7 @@
 <div class="flex justify-content-center align-items-center h-full p-4">
   <div class="text-center">
     <app-icon
-      icon="mdi:alert-circle-outline"
+      icon="material-symbols-light:error-outline"
       class="text-yellow-500 text-6xl mb-3"
     />
     <h2 class="text-lg font-bold text-700">Ticket no encontrado</h2>
@@ -20,7 +20,7 @@
     <il-button
       (clicked)="goBack()"
       label="Volver al Listado"
-      iconClass="mdi:arrow-left"
+      iconClass="material-symbols-light:arrow-back"
       variant="text"
     />
   </div>
@@ -39,7 +39,8 @@
             </div>
             <h2 class="text-2xl font-bold text-900 m-0">{{ t.title }}</h2>
             <div class="text-500 mt-1 flex align-items-center">
-              <app-icon [icon]="'mdi:account'" class="mr-2" /> {{ t.customer }}
+              <app-icon [icon]="'material-symbols-light:person'" class="mr-2" />
+              {{ t.customer }}
             </div>
           </div>
           <div class="text-right">
@@ -136,44 +137,44 @@
         <il-button
           (clicked)="onModalForm(t)"
           label="Editar Ticket"
-          iconClass="mdi:pencil"
-          variant="outlined"
+          iconClass="material-symbols-light:edit"
+          variant="outline"
         />
         <il-button
           (clicked)="onFollowUp(t.id)"
           label="Anadir Seguimiento"
-          iconClass="mdi:comment-multiple"
+          iconClass="material-symbols-light:forum"
           severity="help"
-          variant="outlined"
+          variant="outline"
         />
         <il-button
           (clicked)="onProgram(t.id)"
           label="Programar"
-          iconClass="mdi:calendar"
+          iconClass="material-symbols-light:calendar-today"
           severity="info"
-          variant="outlined"
+          variant="outline"
         />
         @if (t.status !== 'Cerrado' && t.status !== 'Completed') {
         <il-button
           (clicked)="onProgress(t.id)"
           label="En Proceso"
-          iconClass="mdi:sync"
+          iconClass="material-symbols-light:sync"
           severity="warn"
-          variant="outlined"
+          variant="outline"
         />
         <il-button
           (clicked)="onClosed(t.id)"
           label="Cerrar Ticket"
-          iconClass="mdi:lock"
+          iconClass="material-symbols-light:lock"
           severity="success"
-          variant="outlined"
+          variant="outline"
         />
         } @if (t.status === 'Cerrado' || t.status === 'Completed') {
         <il-button
           (clicked)="onReopen(t.id)"
           label="Reabrir Ticket"
-          iconClass="mdi:lock-open"
-          variant="outlined"
+          iconClass="material-symbols-light:lock-open"
+          variant="outline"
           severity="danger"
         />
         }
@@ -228,11 +229,14 @@
     <div class="pb-2">
       <div class="flex justify-content-between mb-1">
         <lx-tag [value]="t.folio"></lx-tag>
-        <lx-tag [value]="t.priority" [severity]="t.priority === 'Alta' ? 'danger' : t.priority === 'Media' ? 'warning' : 'info'"></lx-tag>
+        <lx-tag
+          [value]="t.priority"
+          [severity]="t.priority === 'Alta' ? 'danger' : t.priority === 'Media' ? 'warning' : 'info'"
+        ></lx-tag>
       </div>
       <h2 class="text-xl font-bold my-1 text-dark">{{ t.title }}</h2>
       <p class="text-sm text-color-secondary m-0 flex align-items-center gap-1">
-        <app-icon icon="mdi:clock-outline" /> {{ t.createDate }}
+        <app-icon icon="material-symbols-light:schedule" /> {{ t.createDate }}
       </p>
     </div>
     <div
@@ -321,7 +325,11 @@
         <p class="text-dark font-semibold">{{ t.status }}</p>
       </span>
       @if (t.status === 'Cerrado' || t.status === 'Completed') {
-      <app-icon icon="mdi:check-circle-outline" slot="end" color="success" />
+      <app-icon
+        icon="material-symbols-light:check-circle-outline"
+        slot="end"
+        color="success"
+      />
       }
     </div>
   </div>
@@ -329,14 +337,17 @@
   <div class="px-3">
     <div class="flex justify-content-between align-items-center mb-3">
       <h3 class="text-lg font-bold m-0 flex align-items-center">
-        <app-icon icon="mdi:forum-outline" /> Seguimiento
+        <app-icon icon="material-symbols-light:forum-outline" /> Seguimiento
       </h3>
       @if (t.seeEditingOptions) {
       <button
         class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
         (click)="onFollowUp(t.id)"
       >
-        <app-icon icon="mdi:plus-circle-outline" slot="icon-only" />
+        <app-icon
+          icon="material-symbols-light:add-circle-outline"
+          slot="icon-only"
+        />
       </button>
       }
     </div>
@@ -374,7 +385,6 @@
   @if (t.seeEditingOptions) {
   <div
     class="fixed bottom-0 left-0 w-full bg-white p-2 border-top-1 surface-border shadow-md"
-    
   >
     <div class="flex flex-column gap-1">
       <div class="flex gap-1">
@@ -382,22 +392,14 @@
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
           (click)="onModalForm(t)"
         >
-          <app-icon
-            icon="mdi:pencil-outline"
-            slot="start"
-            
-          />
+          <app-icon icon="material-symbols-light:edit-outline" slot="start" />
           Editar
         </button>
         <button
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
           (click)="onProgram(t.id)"
         >
-          <app-icon
-            icon="mdi:calendar-blank"
-            slot="start"
-            
-          />
+          <app-icon icon="material-symbols-light:event" slot="start" />
           Programar
         </button>
       </div>
@@ -408,18 +410,14 @@
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
           (click)="onProgress(t.id)"
         >
-          <app-icon icon="mdi:sync" slot="start"  />
+          <app-icon icon="material-symbols-light:sync" slot="start" />
           Proceso
         </button>
         <button
           class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
           (click)="onClosed(t.id)"
         >
-          <app-icon
-            icon="mdi:lock-outline"
-            slot="start"
-            
-          />
+          <app-icon icon="material-symbols-light:lock-outline" slot="start" />
           Cerrar
         </button>
         } @if (t.status === 'Cerrado' || t.status === 'Completed') {
@@ -428,9 +426,8 @@
           (click)="onReopen(t.id)"
         >
           <app-icon
-            icon="mdi:lock-open-outline"
+            icon="material-symbols-light:lock-open-outline"
             slot="start"
-            
           />
           Reabrir Ticket
         </button>
@@ -441,11 +438,7 @@
         class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
         (click)="onFollowUp(t.id)"
       >
-        <app-icon
-          icon="mdi:forum-outline"
-          slot="start"
-          
-        />
+        <app-icon icon="material-symbols-light:forum-outline" slot="start" />
         Seguimiento
       </button>
     </div>

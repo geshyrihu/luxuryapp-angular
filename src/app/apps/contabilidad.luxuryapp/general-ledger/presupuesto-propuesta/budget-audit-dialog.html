@@ -14,7 +14,7 @@
 <div class="p-4">
   @if (loading()) {
   <div class="flex flex-column align-items-center justify-content-center p-8">
-    <app-icon [icon]="'mdi:loading'" class="text-6xl text-primary mb-4" />
+    <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-6xl text-primary mb-4" />
     <div class="text-xl font-medium text-700">Analizando con IA...</div>
     <div class="text-500 mt-2 text-center">Esto puede tomar unos segundos.</div>
   </div>
@@ -33,7 +33,7 @@
 
   <div class="flex justify-content-end mt-4 pt-3 border-top-1 border-100">
     <il-button
-      iconClass="mdi:check"
+      iconClass="material-symbols-light:check"
       (clicked)="close()"
       label="Entendido"
       severity="success"

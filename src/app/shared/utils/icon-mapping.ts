@@ -1,190 +1,187 @@
 export const PRIME_TO_ICONIFY: Record<string, string> = {
-  "angle-double-down": "mdi:chevron-double-down",
-  "angle-double-up": "mdi:chevron-double-up",
-  "angle-down": "mdi:chevron-down",
-  "angle-right": "mdi:chevron-right",
-  "angle-up": "mdi:chevron-up",
-  "arrow-down": "mdi:arrow-down",
-  "arrow-down-left": "mdi:arrow-down-left",
-  "arrow-left": "mdi:arrow-left",
-  "arrow-right": "mdi:arrow-right",
-  "arrows-alt": "mdi:arrow-expand-all",
-  "arrows-h": "mdi:arrow-expand-horizontal",
-  "arrow-up": "mdi:arrow-up",
-  "arrow-up-right": "mdi:arrow-up-right",
-  "balance-scale": "mdi:scale-balance",
-  ban: "mdi:ban",
-  bars: "mdi:menu",
-  bell: "mdi:bell",
-  "bell-slash": "mdi:bell-off",
-  bolt: "mdi:lightning-bolt",
-  book: "mdi:book",
-  "bookmark-fill": "mdi:bookmark",
-  box: "mdi:package",
-  briefcase: "mdi:briefcase",
-  building: "mdi:office-building",
-  "building-columns": "mdi:bank",
-  calculator: "mdi:calculator",
-  calendar: "mdi:calendar",
-  "calendar-check": "mdi:calendar-check",
-  "calendar-clock": "mdi:calendar-clock",
-  "calendar-minus": "mdi:calendar-minus",
-  "calendar-plus": "mdi:calendar-plus",
-  "calendar-times": "mdi:calendar-remove",
-  camera: "mdi:camera",
-  "chart-bar": "mdi:chart-bar",
-  "chart-line": "mdi:chart-line",
-  check: "mdi:check",
-  "check-circle": "mdi:check-circle",
-  "check-square": "mdi:checkbox-marked",
-  "chevron-down": "mdi:chevron-down",
-  "chevron-left": "mdi:chevron-left",
-  "chevron-right": "mdi:chevron-right",
-  "chevron-up": "mdi:chevron-up",
-  circle: "mdi:circle",
-  "circle-fill": "mdi:circle",
-  clipboard: "mdi:clipboard-text",
-  clock: "mdi:clock-outline",
-  clone: "mdi:content-copy",
-  "cloud-upload": "mdi:cloud-upload",
-  code: "mdi:code-tags",
-  cog: "mdi:cog",
-  comment: "mdi:comment",
-  comments: "mdi:comment-multiple",
-  compass: "mdi:compass",
-  copy: "mdi:content-copy",
-  "credit-card": "mdi:credit-card",
-  desktop: "mdi:monitor",
-  dollar: "mdi:dollar",
-  download: "mdi:download",
-  "ellipsis-h": "mdi:dots-horizontal",
-  "ellipsis-v": "mdi:dots-vertical",
-  envelope: "mdi:email-outline",
-  eraser: "mdi:eraser",
-  "exclamation-circle": "mdi:alert-circle",
-  "exclamation-triangle": "mdi:alert",
-  "external-link": "mdi:external-link",
-  eye: "mdi:eye-outline",
-  "eye-slash": "mdi:eye-off",
-  file: "mdi:file-document-outline",
-  "file-check": "mdi:file-check",
-  "file-code": "mdi:file-code",
-  "file-edit": "mdi:file-edit",
-  "file-excel": "mdi:file-excel",
-  "file-pdf": "mdi:file-pdf-box",
-  "file-plus": "mdi:file-plus",
-  "file-text": "mdi:file-text",
-  "file-zip": "mdi:zip-box",
-  filter: "mdi:filter-variant",
-  "filter-slash": "mdi:filter-variant-remove",
-  flag: "mdi:flag-outline",
-  "flag-fill": "mdi:flag",
-  folder: "mdi:folder",
-  "folder-open": "mdi:folder-open",
-  gift: "mdi:gift",
-  globe: "mdi:globe",
-  "graduation-cap": "mdi:graduation-cap",
-  hammer: "mdi:hammer",
-  hashtag: "mdi:pound",
-  heart: "mdi:heart-outline",
-  "heart-fill": "mdi:heart",
-  history: "mdi:history",
-  home: "mdi:home",
-  hourglass: "mdi:hourglass",
-  "id-card": "mdi:card-account-details",
-  image: "mdi:image",
-  images: "mdi:image-multiple",
-  inbox: "mdi:inbox",
-  info: "mdi:information-outline",
-  "info-circle": "mdi:information",
-  key: "mdi:key",
-  "level-down-alt": "mdi:arrow-down-bold",
-  lightbulb: "mdi:lightbulb",
-  link: "mdi:link",
-  list: "mdi:format-list-bulleted",
-  "list-check": "mdi:format-list-checks",
-  lock: "mdi:lock",
-  "lock-open": "mdi:lock-open",
-  "map-marker": "mdi:map-marker",
-  microchip: "mdi:chip",
-  microphone: "mdi:microphone",
-  minus: "mdi:minus",
-  "minus-circle": "mdi:minus-circle",
-  mobile: "mdi:cellphone",
-  "money-bill": "mdi:currency-usd",
-  moon: "mdi:weather-night",
-  palette: "mdi:palette",
-  paperclip: "mdi:paperclip",
-  pencil: "mdi:pencil",
-  "pen-to-square": "mdi:square-edit-outline",
-  percent: "mdi:percent",
-  percentage: "mdi:percent",
-  phone: "mdi:phone",
-  play: "mdi:play",
-  "play-circle": "mdi:play-circle",
-  plus: "mdi:plus",
-  "plus-circle": "mdi:plus-circle",
-  print: "mdi:printer",
-  "question-circle": "mdi:help-circle",
-  receipt: "mdi:receipt",
-  refresh: "mdi:refresh",
-  replay: "mdi:replay",
-  save: "mdi:content-save",
-  search: "mdi:magnify",
-  "search-plus": "mdi:magnify-plus",
-  send: "mdi:send",
-  server: "mdi:server",
-  shield: "mdi:shield",
-  "shopping-bag": "mdi:shopping",
-  "shopping-cart": "mdi:cart",
-  "sign-in": "mdi:login",
-  "sign-out": "mdi:logout",
-  sitemap: "mdi:sitemap",
-  "sliders-h": "mdi:tune",
-  "sort-amount-down": "mdi:sort-descending",
-  sparkles: "mdi:sparkles",
-  star: "mdi:star-outline",
-  stop: "mdi:stop",
-  stopwatch: "mdi:stopwatch",
-  sun: "mdi:weather-sunny",
-  sync: "mdi:sync",
-  table: "mdi:table",
-  tag: "mdi:tag",
-  "th-large": "mdi:grid",
-  "thumbs-up": "mdi:thumb-up",
-  times: "mdi:close",
-  "times-circle": "mdi:close-circle",
-  "toggle-off": "mdi:toggle-switch-off-outline",
-  "toggle-on": "mdi:toggle-switch",
-  trash: "mdi:delete",
-  undo: "mdi:undo",
-  upload: "mdi:upload",
-  user: "mdi:account",
-  "user-edit": "mdi:account-edit",
-  "user-minus": "mdi:account-minus",
-  "user-plus": "mdi:account-plus",
-  users: "mdi:account-group",
-  verified: "mdi:verified",
-  video: "mdi:video",
-  "volume-up": "mdi:volume-high",
-  wallet: "mdi:wallet",
-  whatsapp: "mdi:whatsapp",
-  "window-maximize": "mdi:window-maximize",
-  wrench: "mdi:wrench",
+  "angle-double-down": "material-symbols-light:keyboard-double-arrow-down",
+  "angle-double-up": "material-symbols-light:keyboard-double-arrow-up",
+  "angle-down": "material-symbols-light:keyboard-arrow-down",
+  "angle-right": "material-symbols-light:chevron-right",
+  "angle-up": "material-symbols-light:keyboard-arrow-up",
+  "arrow-down": "material-symbols-light:arrow-downward",
+  "arrow-down-left": "material-symbols-light:south-west",
+  "arrow-left": "material-symbols-light:arrow-back",
+  "arrow-right": "material-symbols-light:arrow-forward",
+  "arrows-alt": "material-symbols-light:open-in-full",
+  "arrows-h": "material-symbols-light:open-with",
+  "arrow-up": "material-symbols-light:arrow-upward",
+  "arrow-up-right": "material-symbols-light:north-east",
+  "balance-scale": "material-symbols-light:balance",
+  ban: "material-symbols-light:block",
+  bars: "material-symbols-light:menu",
+  bell: "material-symbols-light:notifications",
+  "bell-slash": "material-symbols-light:notifications-off",
+  bolt: "material-symbols-light:bolt",
+  book: "material-symbols-light:book",
+  "bookmark-fill": "material-symbols-light:bookmark",
+  box: "material-symbols-light:package",
+  briefcase: "material-symbols-light:work",
+  building: "material-symbols-light:apartment",
+  "building-columns": "material-symbols-light:account-balance",
+  calculator: "material-symbols-light:calculate",
+  calendar: "material-symbols-light:calendar-today",
+  "calendar-check": "material-symbols-light:event-available",
+  "calendar-clock": "material-symbols-light:calendar-clock",
+  "calendar-minus": "material-symbols-light:event-busy",
+  "calendar-plus": "material-symbols-light:calendar-add-on",
+  "calendar-times": "material-symbols-light:event-busy",
+  camera: "material-symbols-light:photo-camera",
+  "chart-bar": "material-symbols-light:bar-chart",
+  "chart-line": "material-symbols-light:monitoring",
+  check: "material-symbols-light:check",
+  "check-circle": "material-symbols-light:check-circle",
+  "check-square": "material-symbols-light:check-box",
+  "chevron-down": "material-symbols-light:keyboard-arrow-down",
+  "chevron-left": "material-symbols-light:chevron-left",
+  "chevron-right": "material-symbols-light:chevron-right",
+  "chevron-up": "material-symbols-light:keyboard-arrow-up",
+  circle: "material-symbols-light:circle",
+  "circle-fill": "material-symbols-light:circle",
+  clipboard: "material-symbols-light:article",
+  clock: "material-symbols-light:schedule",
+  clone: "material-symbols-light:content-copy",
+  "cloud-upload": "material-symbols-light:cloud-upload",
+  code: "material-symbols-light:code",
+  cog: "material-symbols-light:settings",
+  comment: "material-symbols-light:comment",
+  comments: "material-symbols-light:forum",
+  compass: "material-symbols-light:explore",
+  copy: "material-symbols-light:content-copy",
+  "credit-card": "material-symbols-light:credit-card",
+  desktop: "material-symbols-light:desktop-windows",
+  dollar: "material-symbols-light:attach-money",
+  download: "material-symbols-light:download",
+  "ellipsis-h": "material-symbols-light:more-horiz",
+  "ellipsis-v": "material-symbols-light:more-vert",
+  envelope: "material-symbols-light:mail-outline",
+  eraser: "material-symbols-light:ink-eraser",
+  "exclamation-circle": "material-symbols-light:error",
+  "exclamation-triangle": "material-symbols-light:warning",
+  "external-link": "material-symbols-light:open-in-new",
+  eye: "material-symbols-light:visibility-outline",
+  "eye-slash": "material-symbols-light:visibility-off",
+  file: "material-symbols-light:description",
+  "file-check": "material-symbols-light:fact-check",
+  "file-code": "material-symbols-light:data-object",
+  "file-edit": "material-symbols-light:note-alt",
+  "file-excel": "material-symbols-light:table-view",
+  "file-pdf": "material-symbols-light:picture-as-pdf",
+  "file-plus": "material-symbols-light:note-add",
+  "file-text": "material-symbols-light:description",
+  "file-zip": "material-symbols-light:folder-zip",
+  filter: "material-symbols-light:filter",
+  "filter-slash": "material-symbols-light:filter-alt-off",
+  flag: "material-symbols-light:flag-outline",
+  "flag-fill": "material-symbols-light:flag",
+  folder: "material-symbols-light:folder",
+  "folder-open": "material-symbols-light:folder-open",
+  gift: "material-symbols-light:redeem",
+  globe: "material-symbols-light:public",
+  "graduation-cap": "material-symbols-light:school",
+  hammer: "material-symbols-light:construction",
+  hashtag: "material-symbols-light:currency-pound",
+  heart: "material-symbols-light:favorite-outline",
+  "heart-fill": "material-symbols-light:favorite",
+  history: "material-symbols-light:history",
+  home: "material-symbols-light:home",
+  hourglass: "material-symbols-light:hourglass-empty",
+  "id-card": "material-symbols-light:badge",
+  image: "material-symbols-light:photo",
+  images: "material-symbols-light:photo-library",
+  inbox: "material-symbols-light:move-to-inbox",
+  info: "material-symbols-light:info",
+  "info-circle": "material-symbols-light:info",
+  key: "material-symbols-light:key",
+  "level-down-alt": "material-symbols-light:keyboard-double-arrow-down",
+  lightbulb: "material-symbols-light:lightbulb",
+  link: "material-symbols-light:link",
+  list: "material-symbols-light:format-list-bulleted",
+  "list-check": "material-symbols-light:fact-check",
+  lock: "material-symbols-light:lock",
+  "lock-open": "material-symbols-light:lock-open",
+  "map-marker": "material-symbols-light:location-on",
+  microchip: "material-symbols-light:memory",
+  microphone: "material-symbols-light:mic",
+  minus: "material-symbols-light:remove",
+  "minus-circle": "material-symbols-light:do-not-disturb-on",
+  mobile: "material-symbols-light:devices-other",
+  "money-bill": "material-symbols-light:attach-money",
+  moon: "material-symbols-light:nightlight",
+  palette: "material-symbols-light:palette",
+  paperclip: "material-symbols-light:attach-file",
+  pencil: "material-symbols-light:edit",
+  "pen-to-square": "material-symbols-light:edit-square",
+  percent: "material-symbols-light:percent",
+  percentage: "material-symbols-light:percent",
+  phone: "material-symbols-light:call",
+  play: "material-symbols-light:play-arrow",
+  "play-circle": "material-symbols-light:play-circle",
+  plus: "material-symbols-light:add",
+  "plus-circle": "material-symbols-light:add-circle",
+  print: "material-symbols-light:print",
+  qrcode: "material-symbols-light:qr-code-scanner",
+  "question-circle": "material-symbols-light:help",
+  receipt: "material-symbols-light:receipt",
+  refresh: "material-symbols-light:refresh",
+  replay: "material-symbols-light:replay",
+  save: "material-symbols-light:save",
+  search: "material-symbols-light:search",
+  "search-plus": "material-symbols-light:zoom-in",
+  send: "material-symbols-light:send",
+  server: "material-symbols-light:dns",
+  shield: "material-symbols-light:security",
+  "shopping-bag": "material-symbols-light:shopping-bag",
+  "shopping-cart": "material-symbols-light:shopping-cart",
+  "sign-in": "material-symbols-light:login",
+  "sign-out": "material-symbols-light:logout",
+  sitemap: "material-symbols-light:account-tree",
+  "sliders-h": "material-symbols-light:tune",
+  "sort-amount-down": "material-symbols-light:arrow-downward",
+  sparkles: "material-symbols-light:auto-awesome-motion",
+  star: "material-symbols-light:star-outline",
+  stop: "material-symbols-light:stop",
+  stopwatch: "material-symbols-light:timer",
+  sun: "material-symbols-light:sunny",
+  sync: "material-symbols-light:sync",
+  table: "material-symbols-light:table",
+  tag: "material-symbols-light:label",
+  "th-large": "material-symbols-light:grid-view",
+  "thumbs-up": "material-symbols-light:thumb-up",
+  times: "material-symbols-light:close",
+  "times-circle": "material-symbols-light:cancel",
+  "toggle-off": "material-symbols-light:toggle-off",
+  "toggle-on": "material-symbols-light:toggle-on",
+  trash: "material-symbols-light:delete",
+  undo: "material-symbols-light:undo",
+  upload: "material-symbols-light:upload",
+  user: "material-symbols-light:person",
+  "user-edit": "material-symbols-light:manage-accounts",
+  "user-minus": "material-symbols-light:person-remove",
+  "user-plus": "material-symbols-light:person-add",
+  users: "material-symbols-light:group",
+  verified: "material-symbols-light:verified",
+  video: "material-symbols-light:videocam",
+  "volume-up": "material-symbols-light:volume-up",
+  wallet: "material-symbols-light:wallet",
+  whatsapp: "material-symbols-light:chat",
+  "window-maximize": "material-symbols-light:fullscreen",
+  wrench: "material-symbols-light:build",
 };
-
-export const ICONIFY_TO_PRIME: Record<string, string> = Object.fromEntries(
-  Object.entries(PRIME_TO_ICONIFY).map(([prime, iconify]) => [iconify, prime]),
-);
 
 export function resolveToIconify(
   iconName: string | null | undefined,
-  fallback = "mdi:cog",
+  fallback = "material-symbols-light:settings",
 ): string {
   if (!iconName) return fallback;
 
-  // Ya está en formato Iconify (ej. "mdi:account-group")
-  if (iconName.startsWith("mdi:") || iconName.includes(":")) return iconName;
+  // Ya está en formato Iconify (ej. "material-symbols-light:group")
+  if (iconName.startsWith("material-symbols-light:") || iconName.includes(":")) return iconName;
 
   // Limpiar formatos comunes de PrimeIcons y clases de CSS
   const cleanName = iconName
@@ -201,194 +198,134 @@ export function resolveToIconify(
   const mapped = PRIME_TO_ICONIFY[cleanName];
   if (mapped) return mapped;
 
-  // Si no está mapeado, intentar usarlo como mdi:prefijo
-  // Pero primero verificar si parece una clase de PrimeIcons no mapeada
-  return `mdi:${cleanName}`;
+  // Último recurso: anteponer el prefijo y confiar en que el nombre exista.
+  //
+  // ⚠️ Aquí nace la falla muda: si `cleanName` no es un nombre real de
+  // Material Symbols, `<iconify-icon>` no encuentra nada y no dibuja —sin
+  // error de compilación ni de consola—. Fue el mecanismo que dejó 606
+  // iconos en blanco (2026-08-11). El gate `audit:icon-names` vigila los
+  // literales del código, pero NO puede ver lo que se arma aquí en ejecución:
+  // la defensa real es que todo nombre que llegue esté en PRIME_TO_ICONIFY.
+  return `material-symbols-light:${cleanName}`;
 }
 
-export function resolveToPrime(
-  iconifyName: string | null | undefined,
-  fallback = "cog",
-): string {
-  if (!iconifyName) return fallback;
-  if (iconifyName.startsWith("mdi:")) {
-    return ICONIFY_TO_PRIME[iconifyName] ?? iconifyName.replace("mdi:", "");
-  }
-  return iconifyName;
-}
+// `resolveToPrime` e `ICONIFY_TO_PRIME` (la tabla inversa) se retiraron el
+// 2026-08-11: existían para volver a nombres de PrimeIcons, y ya no queda
+// ningún consumidor de ese formato. La conversión es de un solo sentido.
 
 // ─── Resolución de iconos (emoji/legacy/PrimeIcons → Iconify) ────────────────
 // Consolidado desde el antiguo prime-icon-resolver.ts. icon-mapping.ts es la
 // única fuente de verdad de iconos del proyecto.
 
 type LegacyIconRule = {
-  iconClass: string;
+  /** Nombre heredado, clave de `PRIME_TO_ICONIFY`. Sin prefijo `pi pi-`. */
+  name: string;
   tokens: readonly string[];
 };
 
+// Emoji que alguna vez se usaron como icono. Se conservan porque pueden llegar
+// en datos guardados, no porque se escriban hoy.
 const LEGACY_ICON_RULES: LegacyIconRule[] = [
-  {
-    tokens: ["\u{1F464}\u{1F5D1}", "\u{1F464}\u{1F5D1}️"],
-    iconClass: "pi pi-user-minus",
-  },
-  { tokens: ["←"], iconClass: "pi pi-arrow-left" },
-  { tokens: ["✅"], iconClass: "pi pi-check" },
-  {
-    tokens: ["✏", "✏️", "\u{1F4DD}"],
-    iconClass: "pi pi-pencil",
-  },
-  { tokens: ["➕"], iconClass: "pi pi-plus" },
-  { tokens: ["➖"], iconClass: "pi pi-minus" },
-  { tokens: ["❌"], iconClass: "pi pi-times-circle" },
-  { tokens: ["\u{1F50D}", "\u{1F50E}"], iconClass: "pi pi-search" },
-  { tokens: ["\u{1F441}"], iconClass: "pi pi-eye" },
-  {
-    tokens: ["\u{1F4E5}", "⬇", "⬇️"],
-    iconClass: "pi pi-download",
-  },
-  {
-    tokens: ["\u{1F4E4}", "⬆", "⬆️"],
-    iconClass: "pi pi-upload",
-  },
-  { tokens: ["\u{1F4E7}"], iconClass: "pi pi-envelope" },
-  { tokens: ["\u{1F4CD}"], iconClass: "pi pi-map-marker" },
-  { tokens: ["\u{1F4D1}", "\u{1F4C4}", "\u{1F4DC}"], iconClass: "pi pi-file" },
-  { tokens: ["\u{1F4CB}"], iconClass: "pi pi-clone" },
-  { tokens: ["\u{1F4C2}", "\u{1F4C1}"], iconClass: "pi pi-folder" },
-  { tokens: ["\u{1F5BC}", "\u{1F4F8}"], iconClass: "pi pi-image" },
-  { tokens: ["\u{1F4CE}"], iconClass: "pi pi-paperclip" },
-  { tokens: ["\u{1F4CA}"], iconClass: "pi pi-chart-bar" },
-  { tokens: ["\u{1F4C5}"], iconClass: "pi pi-calendar" },
-  { tokens: ["\u{1F4AC}"], iconClass: "pi pi-comments" },
-  { tokens: ["\u{1F4BE}", "\u{1F504}"], iconClass: "pi pi-save" },
-  { tokens: ["\u{1F4B2}"], iconClass: "pi pi-dollar" },
-  { tokens: ["\u{1F465}", "\u{1F91D}"], iconClass: "pi pi-users" },
-  { tokens: ["\u{1F464}"], iconClass: "pi pi-user" },
-  { tokens: ["\u{1F511}"], iconClass: "pi pi-key" },
-  { tokens: ["\u{1F512}"], iconClass: "pi pi-lock" },
-  { tokens: ["\u{1F513}"], iconClass: "pi pi-lock-open" },
-  { tokens: ["\u{1F517}"], iconClass: "pi pi-link" },
-  { tokens: ["\u{1F550}", "⏳"], iconClass: "pi pi-clock" },
-  { tokens: ["\u{1F680}"], iconClass: "pi pi-send" },
-  { tokens: ["\u{1F5A8}"], iconClass: "pi pi-print" },
-  { tokens: ["\u{1F4E6}"], iconClass: "pi pi-box" },
-  { tokens: ["\u{1F4D8}", "\u{1F4DA}"], iconClass: "pi pi-book" },
-  { tokens: ["\u{1F6AA}"], iconClass: "pi pi-sign-out" },
-  { tokens: ["\u{1F6AB}"], iconClass: "pi pi-ban" },
-  { tokens: ["\u{1F6E1}"], iconClass: "pi pi-shield" },
-  { tokens: ["\u{1F6E0}", "⚙", "⚙️"], iconClass: "pi pi-cog" },
-  { tokens: ["\u{1F3C1}"], iconClass: "pi pi-flag" },
-  { tokens: ["\u{1F3DB}", "\u{1F3E2}"], iconClass: "pi pi-building" },
-  { tokens: ["✨"], iconClass: "pi pi-sparkles" },
-  { tokens: ["\u{1F3CB}", "\u{1F3CB}️"], iconClass: "pi pi-heart" },
-  { tokens: ["\u{1F50C}"], iconClass: "pi pi-bolt" },
-  { tokens: ["\u{1F58C}", "\u{1F58C}️"], iconClass: "pi pi-palette" },
-  { tokens: ["\u{1FA9A}"], iconClass: "pi pi-hammer" },
-  { tokens: ["\u{1F9FE}"], iconClass: "pi pi-receipt" },
-  { tokens: ["\u{1FA9F}"], iconClass: "pi pi-window-maximize" },
-  {
-    tokens: ["⚠", "⚠️"],
-    iconClass: "pi pi-exclamation-triangle",
-  },
+  { tokens: ["\u{1F464}\u{1F5D1}", "\u{1F464}\u{1F5D1}️"], name: "user-minus" },
+  { tokens: ["←"], name: "arrow-left" },
+  { tokens: ["✅"], name: "check" },
+  { tokens: ["✏", "✏️", "\u{1F4DD}"], name: "pencil" },
+  { tokens: ["➕"], name: "plus" },
+  { tokens: ["➖"], name: "minus" },
+  { tokens: ["❌"], name: "times-circle" },
+  { tokens: ["\u{1F50D}", "\u{1F50E}"], name: "search" },
+  { tokens: ["\u{1F441}"], name: "eye" },
+  { tokens: ["\u{1F4E5}", "⬇", "⬇️"], name: "download" },
+  { tokens: ["\u{1F4E4}", "⬆", "⬆️"], name: "upload" },
+  { tokens: ["\u{1F4E7}"], name: "envelope" },
+  { tokens: ["\u{1F4CD}"], name: "map-marker" },
+  { tokens: ["\u{1F4D1}", "\u{1F4C4}", "\u{1F4DC}"], name: "file" },
+  { tokens: ["\u{1F4CB}"], name: "clone" },
+  { tokens: ["\u{1F4C2}", "\u{1F4C1}"], name: "folder" },
+  { tokens: ["\u{1F5BC}", "\u{1F4F8}"], name: "image" },
+  { tokens: ["\u{1F4CE}"], name: "paperclip" },
+  { tokens: ["\u{1F4CA}"], name: "chart-bar" },
+  { tokens: ["\u{1F4C5}"], name: "calendar" },
+  { tokens: ["\u{1F4AC}"], name: "comments" },
+  { tokens: ["\u{1F4BE}", "\u{1F504}"], name: "save" },
+  { tokens: ["\u{1F4B2}"], name: "dollar" },
+  { tokens: ["\u{1F465}", "\u{1F91D}"], name: "users" },
+  { tokens: ["\u{1F464}"], name: "user" },
+  { tokens: ["\u{1F511}"], name: "key" },
+  { tokens: ["\u{1F512}"], name: "lock" },
+  { tokens: ["\u{1F513}"], name: "lock-open" },
+  { tokens: ["\u{1F517}"], name: "link" },
+  { tokens: ["\u{1F550}", "⏳"], name: "clock" },
+  { tokens: ["\u{1F680}"], name: "send" },
+  { tokens: ["\u{1F5A8}"], name: "print" },
+  { tokens: ["\u{1F4E6}"], name: "box" },
+  { tokens: ["\u{1F4D8}", "\u{1F4DA}"], name: "book" },
+  { tokens: ["\u{1F6AA}"], name: "sign-out" },
+  { tokens: ["\u{1F6AB}"], name: "ban" },
+  { tokens: ["\u{1F6E1}"], name: "shield" },
+  { tokens: ["\u{1F6E0}", "⚙", "⚙️"], name: "cog" },
+  { tokens: ["\u{1F3C1}"], name: "flag" },
+  { tokens: ["\u{1F3DB}", "\u{1F3E2}"], name: "building" },
+  { tokens: ["✨"], name: "sparkles" },
+  { tokens: ["\u{1F3CB}", "\u{1F3CB}️"], name: "heart" },
+  { tokens: ["\u{1F50C}"], name: "bolt" },
+  { tokens: ["\u{1F58C}", "\u{1F58C}️"], name: "palette" },
+  { tokens: ["\u{1FA9A}"], name: "hammer" },
+  { tokens: ["\u{1F9FE}"], name: "receipt" },
+  { tokens: ["\u{1FA9F}"], name: "window-maximize" },
+  { tokens: ["⚠", "⚠️"], name: "exclamation-triangle" },
 ];
 
-export function normalizePrimeIconClass(
-  rawIconClass: string | null | undefined,
-): string {
-  const trimmed = (rawIconClass ?? "").trim();
-  if (!trimmed) return "";
-
-  // Si ya tiene el formato de icono custom del proyecto, lo respetamos
-  if (trimmed.startsWith("icon ")) return trimmed;
-
-  // Si ya tiene el formato pi pi-, lo devolvemos tal cual
-  if (trimmed.startsWith("pi pi-")) return trimmed;
-
-  // Extraer el nombre para normalizar a pi pi-
-  let name = trimmed;
-  if (trimmed.startsWith("pi-")) name = trimmed.replace("pi-", "");
-  else if (trimmed.startsWith("pi ")) {
-    name = trimmed.replace("pi ", "").replace("pi-", "");
-  }
-
-  return `pi pi-${name}`;
+/**
+ * Deja un valor heredado en su nombre desnudo, listo para `PRIME_TO_ICONIFY`.
+ *
+ * Acepta los prefijos que puedan venir en datos guardados (`"pi pi-plus"`,
+ * `"pi-plus"`, `"pi plus"`) porque la base de datos no se migró; lo que ya no
+ * hace nadie es *producirlos*. Antes existía `normalizePrimeIconClass`, que
+ * devolvía `"pi pi-nombre"`: era la única fuente de clases de PrimeIcons que
+ * quedaba en el proyecto y se retiró junto con el último uso (2026-08-11).
+ */
+function toLegacyName(rawValue: string): string {
+  return rawValue
+    .trim()
+    .replace(/^pi pi-/, "")
+    .replace(/^pi-/, "")
+    .replace(/^pi /, "")
+    .trim();
 }
 
-export function resolvePrimeIcon(
-  rawValue: string | null | undefined,
-  fallback = "",
-): string {
-  if (!rawValue) return fallback;
-
-  // Si ya tiene formato de clase de icono, devolver normalizado
-  if (
-    rawValue.startsWith("pi ") ||
-    rawValue.startsWith("pi-") ||
-    rawValue.startsWith("icon ")
-  ) {
-    return normalizePrimeIconClass(rawValue);
-  }
-
-  // Intentar resolver como emoji o regla legacy
-  const normalized = rawValue
-    .normalize("NFKC")
-    .replace(/️/g, "")
-    .trim();
-
-  const matchedRule = LEGACY_ICON_RULES.find(({ tokens }) =>
-    tokens.some((token) => normalized.includes(token)),
+/** Emoji o texto heredado → nombre desnudo. `null` si no hay regla. */
+function matchLegacyEmoji(rawValue: string): string | null {
+  const normalizado = rawValue.normalize("NFKC").replace(/️/g, "").trim();
+  const regla = LEGACY_ICON_RULES.find(({ tokens }) =>
+    tokens.some((token) => normalizado.includes(token)),
   );
-
-  if (matchedRule) {
-    return matchedRule.iconClass;
-  }
-
-  // Si no es nada de lo anterior, intentar normalizar como pi pi-name
-  return normalizePrimeIconClass(rawValue) || fallback;
+  return regla ? regla.name : null;
 }
 
 export function resolveIconifyIcon(
   rawValue: string | null | undefined,
-  fallback = "mdi:cog",
+  fallback = "material-symbols-light:settings",
 ): string {
   if (!rawValue) return fallback;
 
-  // 1. Si ya es formato Iconify, devolverlo
+  // 1. Ya es un identificador de Iconify.
   if (rawValue.includes(":")) return rawValue;
 
-  // 2. Intentar resolver como emoji/legacy primero
-  const emojiResolved = resolvePrimeIcon(rawValue);
-  if (
-    emojiResolved &&
-    emojiResolved !== rawValue &&
-    emojiResolved.startsWith("pi pi-")
-  ) {
-    const name = emojiResolved.replace("pi pi-", "");
-    return resolveToIconify(name, fallback);
-  }
+  // 2. Emoji o texto heredado con regla propia.
+  const porEmoji = matchLegacyEmoji(rawValue);
+  if (porEmoji) return resolveToIconify(porEmoji, fallback);
 
-  // 3. Normalizar como PrimeIcon y resolver a Iconify
-  const primeClass = normalizePrimeIconClass(rawValue);
-  const name = primeClass.replace("pi pi-", "");
-  if (name && name !== primeClass) {
-    return resolveToIconify(name, fallback);
-  }
+  // 3. Emoji sin regla: se deja tal cual, se pinta como carácter.
+  if (/\p{Emoji}/u.test(rawValue)) return rawValue;
 
-  // 4. Si es un emoji directo (que no se resolvió a pi pi-)
-  if (/\p{Emoji}/u.test(rawValue)) {
-    return rawValue;
-  }
-
-  return resolveToIconify(rawValue, fallback);
+  // 4. Nombre heredado (con o sin prefijo) contra la tabla.
+  return resolveToIconify(toLegacyName(rawValue), fallback);
 }
 
 export function resolveIcon(
   rawValue: string | null | undefined,
-  format: "prime" | "iconify" = "prime",
   fallback?: string,
 ): string {
-  if (format === "iconify") {
-    return resolveIconifyIcon(rawValue, fallback as string | undefined);
-  }
-  return resolvePrimeIcon(rawValue, fallback);
+  return resolveIconifyIcon(rawValue, fallback);
 }

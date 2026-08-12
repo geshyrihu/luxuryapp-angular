@@ -14,7 +14,7 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="iconClass() || 'mdi:pencil-outline'" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:edit-outline'" />
       <span>{{ label() || "Editar" }}</span>
     </button>
   `,

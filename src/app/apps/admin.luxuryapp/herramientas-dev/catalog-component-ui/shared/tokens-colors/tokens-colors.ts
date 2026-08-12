@@ -63,7 +63,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
                 </div>
               </div>
               <app-icon
-                [icon]="'mdi:content-copy'"
+                [icon]="'material-symbols-light:content-copy'"
                 class="text-color-secondary text-sm ml-2 flex-shrink-0"
               />
             </div>
@@ -121,7 +121,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
                     </div>
                   </div>
                   <app-icon
-                    [icon]="'mdi:content-copy'"
+                    [icon]="'material-symbols-light:content-copy'"
                     class="text-color-secondary text-sm ml-2 flex-shrink-0"
                   />
                 </div>

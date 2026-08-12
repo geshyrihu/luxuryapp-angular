@@ -8,6 +8,7 @@ import {
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface Customer360Data {
   // Identity
@@ -24,7 +25,7 @@ export interface Customer360Data {
   lastContact?: string;
   nps?: number;
   // Activity feed (last 3-5 items)
-  recentActivity?: { icon: string; text: string; time: string }[];
+  recentActivity?: { icon: AppIconName; text: string; time: string }[];
   // Open deals summary
   deals?: { title: string; stage: string; value?: number }[];
 }
@@ -59,19 +60,19 @@ export interface Customer360Data {
           }
           @if (data().company) {
             <span class="c360-company">
-              <app-icon icon="mdi:office-building-outline" class="text-sm" />
+              <app-icon icon="material-symbols-light:apartment" class="text-sm" />
               {{ data().company }}
             </span>
           }
           <div class="c360-contact-links">
             @if (data().email) {
               <a [href]="'mailto:' + data().email" class="c360-link">
-                <app-icon icon="mdi:email-outline" /> {{ data().email }}
+                <app-icon icon="material-symbols-light:mail-outline" /> {{ data().email }}
               </a>
             }
             @if (data().phone) {
               <a [href]="'tel:' + data().phone" class="c360-link">
-                <app-icon icon="mdi:phone-outline" /> {{ data().phone }}
+                <app-icon icon="material-symbols-light:call-outline" /> {{ data().phone }}
               </a>
             }
           </div>
@@ -93,28 +94,28 @@ export interface Customer360Data {
             (click)="action.emit('email')"
             title="Enviar email"
           >
-            <app-icon icon="mdi:email-plus-outline" />
+            <app-icon icon="material-symbols-light:drafts" />
           </button>
           <button
             class="c360-action"
             (click)="action.emit('call')"
             title="Llamar"
           >
-            <app-icon icon="mdi:phone-plus-outline" />
+            <app-icon icon="material-symbols-light:add-call" />
           </button>
           <button
             class="c360-action"
             (click)="action.emit('meeting')"
             title="Agendar reunión"
           >
-            <app-icon icon="mdi:calendar-plus-outline" />
+            <app-icon icon="material-symbols-light:event-note" />
           </button>
           <button
             class="c360-action"
             (click)="action.emit('note')"
             title="Añadir nota"
           >
-            <app-icon icon="mdi:note-plus-outline" />
+            <app-icon icon="material-symbols-light:note-add" />
           </button>
         </div>
       </div>
@@ -165,7 +166,7 @@ export interface Customer360Data {
         @if (data().recentActivity?.length) {
           <div class="c360-section">
             <h4 class="c360-section-title">
-              <app-icon icon="mdi:history" />
+              <app-icon icon="material-symbols-light:history" />
               Actividad reciente
             </h4>
             <div class="c360-activity">
@@ -188,7 +189,7 @@ export interface Customer360Data {
         @if (data().deals?.length) {
           <div class="c360-section">
             <h4 class="c360-section-title">
-              <app-icon icon="mdi:briefcase-outline" />
+              <app-icon icon="material-symbols-light:work-outline" />
               Deals activos
             </h4>
             <div class="c360-deals">

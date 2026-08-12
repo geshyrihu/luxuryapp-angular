@@ -20,7 +20,7 @@ import { confirmAction } from "../shared/confirm";
       [disabled]="disabled() || loading()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="iconClass() || 'fluent-color:mail-16'" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:mail'" />
     </button>
   `,
 })

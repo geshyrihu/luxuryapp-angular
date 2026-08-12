@@ -41,7 +41,7 @@
         <il-button
           lxTooltip="Descargar excel"
           class="p-button-outlined p-button-primary w-full"
-          iconClass="mdi:file-excel text-success mr-2"
+          iconClass="material-symbols-light:table-view text-success mr-2"
           label="Descargar excel"
           (clicked)="DownloadExcel()"
         />
@@ -127,18 +127,18 @@
           <iw-button
             class="p-button-outlined p-button-primary"
             lxTooltip="Gastos realizados"
-            iconClass="mdi:cart"
+            iconClass="material-symbols-light:shopping-cart"
             (clicked)="onModalOrdenesCompraCedula(item.id)"
           />
 
           <iw-button
-            iconClass="mdi:pencil"
+            iconClass="material-symbols-light:edit"
             lxTooltip="Editar"
             class="p-button-outlined p-button-secondary"
             (clicked)="onModalEditar({ id: item.id, title: 'Editar' })"
           />
           <iw-button-confirm
-            iconClass="mdi:delete"
+            iconClass="material-symbols-light:delete"
             lxTooltip="Eliminar"
             class="p-button-outlined p-button-danger"
             (confirmed)="onDelete(item.id)"
@@ -161,7 +161,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="mdi:wallet-outline" />
+        <app-icon icon="material-symbols-light:wallet" />
       </div>
 
       <h3>{{ item.descripcion }}</h3>

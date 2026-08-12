@@ -1,21 +1,19 @@
 <div class="card">
-  
-    <div class="flex flex-wrap align-items-end gap-3">
-      <div class="flex-1">
-        <custom-input-select-signal
-          [control]="statusControl"
-          label="Estatus"
-          [data]="statusOptions"
-        />
-      </div>
-      <div>
-        <il-button
-          label="Guardar"
-          variant="outlined"
-          [loading]="loading()"
-          (clicked)="onSubmit()"
-        />
-      </div>
+  <div class="flex flex-wrap align-items-end gap-3">
+    <div class="flex-1">
+      <custom-input-select-signal
+        [control]="statusControl"
+        label="Estatus"
+        [data]="statusOptions"
+      />
     </div>
-  
+    <div>
+      <il-button
+        label="Guardar"
+        variant="outline"
+        [loading]="loading()"
+        (clicked)="onSubmit()"
+      />
+    </div>
+  </div>
 </div>

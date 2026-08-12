@@ -45,7 +45,7 @@
     </div>
     <il-button
       label="Guardar Hoja"
-      iconClass="mdi:content-save"
+      iconClass="material-symbols-light:save"
       severity="success"
       [disabled]="!hayCambios() || guardando()"
       [loading]="guardando()"
@@ -60,7 +60,7 @@
   class="flex justify-content-center align-items-center"
   
 >
-  <app-icon [icon]="'mdi:loading'" class="text-4xl text-primary" />
+  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl text-primary" />
 </div>
 }
 
@@ -70,7 +70,7 @@
   class="flex flex-column align-items-center justify-content-center gap-2 text-color-secondary"
   
 >
-  <app-icon [icon]="'mdi:calendar-remove'" class="text-5xl" />
+  <app-icon [icon]="'material-symbols-light:event-busy'" class="text-5xl" />
   <span class="text-lg">No hay periodos de nómina para {{ anioFiltro() }}</span>
   <span class="text-sm"
     >Crea un periodo desde <strong>Periodos de Nómina</strong> para

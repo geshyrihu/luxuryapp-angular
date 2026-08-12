@@ -68,20 +68,26 @@ export interface UploadFile {
           @if (mobileSource() === "camera" || mobileSource() === "both") {
             <p-button
               [label]="'Tomar foto'"
-              icon="mdi:camera"
               severity="secondary"
               styleClass="w-full justify-content-center"
               (onClick)="cameraInput().nativeElement.click()"
-            />
+            >
+              <ng-template #icon>
+                <app-icon icon="material-symbols-light:photo-camera" />
+              </ng-template>
+            </p-button>
           }
           @if (mobileSource() === "gallery" || mobileSource() === "both") {
             <p-button
               [label]="'Galería'"
-              icon="mdi:image"
               severity="secondary"
               styleClass="w-full justify-content-center"
               (onClick)="galleryInput().nativeElement.click()"
-            />
+            >
+              <ng-template #icon>
+                <app-icon icon="material-symbols-light:photo" />
+              </ng-template>
+            </p-button>
           }
         </div>
       }
@@ -121,7 +127,7 @@ export interface UploadFile {
                 />
               } @else {
                 <app-icon
-                  icon="mdi:file-document-outline"
+                  icon="material-symbols-light:description"
                   class="text-2xl text-color-muted"
                 />
               }
@@ -138,13 +144,13 @@ export interface UploadFile {
 
               @if (file.status === "done") {
                 <app-icon
-                  icon="mdi:check-circle"
+                  icon="material-symbols-light:check-circle"
                   class="text-lg"
                   style="color: var(--ds-success)"
                 />
               } @else if (file.status === "error") {
                 <app-icon
-                  icon="mdi:alert-circle"
+                  icon="material-symbols-light:error"
                   class="text-lg"
                   style="color: var(--ds-danger)"
                 />
@@ -156,7 +162,7 @@ export interface UploadFile {
                   size="small"
                   (onClick)="removeFile(file)"
                 >
-                  <app-icon icon="mdi:close" class="text-lg" />
+                  <app-icon icon="material-symbols-light:close" class="text-lg" />
                 </p-button>
               }
             </div>

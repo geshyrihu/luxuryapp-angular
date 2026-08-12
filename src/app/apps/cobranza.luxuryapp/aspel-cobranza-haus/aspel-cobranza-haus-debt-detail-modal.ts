@@ -21,6 +21,7 @@ import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
 
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-aspel-cobranza-haus-debt-detail-modal",
@@ -37,6 +38,7 @@ import { RippleModule } from "primeng/ripple";
     LxMessage,
     ButtonModule,
     RippleModule,
+    AppIcon,
   ],
 })
 export class AspelCobranzaHausDebtDetailModal implements OnInit {

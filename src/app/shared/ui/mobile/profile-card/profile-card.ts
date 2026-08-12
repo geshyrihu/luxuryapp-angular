@@ -39,19 +39,19 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         }
         @if (email()) {
           <a [href]="'mailto:' + email()" class="ili-profile-line">
-            <app-icon icon="mdi:email-outline" class="text-xs" />
+            <app-icon icon="material-symbols-light:mail-outline" class="text-xs" />
             {{ email() }}
           </a>
         }
         @if (phone()) {
           <a [href]="'tel:' + phone()" class="ili-profile-line">
-            <app-icon icon="mdi:phone-outline" class="text-xs" />
+            <app-icon icon="material-symbols-light:call-outline" class="text-xs" />
             {{ phone() }}
           </a>
         }
         @if (company()) {
           <span class="ili-profile-line">
-            <app-icon icon="mdi:office-building-outline" class="text-xs" />
+            <app-icon icon="material-symbols-light:apartment" class="text-xs" />
             {{ company() }}
           </span>
         }

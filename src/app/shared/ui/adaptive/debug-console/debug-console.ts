@@ -42,7 +42,7 @@ interface LogEntry {
             (click)="debugConsole.toggleConsole()"
             class="text-white hover:text-gray-300"
           >
-            <app-icon icon="mdi:close" class="text-lg" />
+            <app-icon icon="material-symbols-light:close" class="text-lg" />
           </button>
         </div>
       </div>

@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { ButtonModule } from "primeng/button";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
  * AppPrintView — Wrapper para contenido con vista de impresión optimizada.
@@ -14,7 +15,7 @@ import { ButtonModule } from "primeng/button";
 @Component({
   selector: "app-print-view",
 
-  imports: [ButtonModule],
+  imports: [ButtonModule, AppIcon],
   template: `
     <div class="print-view-root">
       <!-- Toolbar (only shown on screen, hidden when printing) -->
@@ -25,12 +26,15 @@ import { ButtonModule } from "primeng/button";
         <div class="print-toolbar-actions">
           <p-button
             [label]="'Imprimir'"
-            icon="mdi:printer-outline"
             severity="secondary"
             [outlined]="true"
             size="small"
             (onClick)="print()"
-          />
+          >
+            <ng-template #icon>
+              <app-icon icon="material-symbols-light:print-outline" />
+            </ng-template>
+          </p-button>
         </div>
       </div>
 

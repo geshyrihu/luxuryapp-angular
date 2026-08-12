@@ -19,7 +19,7 @@
     <div class="mt-1">
       <iw-button-download
         ngbTooltip="Exportar a Excel"
-        iconClass="mdi:file-excel"
+        iconClass="material-symbols-light:table-view"
         severity="success"
         (clicked)="exportExcel()"
       />
@@ -89,12 +89,12 @@
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="mdi:gauge" class="text-xl text-primary" />
+        <app-icon icon="material-symbols-light:speed" class="text-xl text-primary" />
       </div>
 
       <h2 class="font-bold m-0 text-base">{{ item.lectura }}</h2>
       <p class="text-sm text-500 m-0 mt-1">
-        <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" /> {{
+        <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1 text-xs" /> {{
         item.fechaRegistro | date: "dd-MMM-yyyy" : "UTC" }}
       </p>
 

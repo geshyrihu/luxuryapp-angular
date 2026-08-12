@@ -1,7 +1,8 @@
 import { Directive, input, signal } from "@angular/core";
+import type { AppIconName } from "@ui/shared/app-icon/app-icon.catalog";
 
 export interface SwipeAction {
-  icon: string;
+  icon: AppIconName;
   label: string;
   color: string;
   action: () => void;

@@ -15,7 +15,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           (click)="runCommand(item)"
         >
           @if (item.icon) {
-            <app-icon [icon]="item.icon" class="ili-dock-icon" />
+            <app-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="ili-dock-icon" />
           }
           @if (item.label && position() !== "bottom") {
             <span class="ili-dock-label">{{ item.label }}</span>

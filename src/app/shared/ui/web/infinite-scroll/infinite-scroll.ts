@@ -18,7 +18,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     <div #sentinel class="infinite-scroll-sentinel">
       @if (loading()) {
         <div class="infinite-scroll-loader">
-          <app-icon icon="mdi:loading" class="infinite-scroll-spinner" />
+          <app-icon icon="material-symbols-light:progress-activity" class="infinite-scroll-spinner" />
           <span>Cargando más registros...</span>
         </div>
       }

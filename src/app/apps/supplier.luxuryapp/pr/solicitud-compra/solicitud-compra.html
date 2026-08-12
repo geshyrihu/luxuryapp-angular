@@ -4,7 +4,6 @@
     <app-progress-bar
       [value]="100"
       [showValue]="false"
-      
       [class]="'p-progressbar-' + type"
     ></app-progress-bar>
   </div>
@@ -14,7 +13,11 @@
     <div class="flex flex-wrap align-items-center justify-content-between mb-4">
       <div class="flex align-items-center">
         @if (id && id !== "" && id !== "0") {
-        <lx-tag [value]="form.controls.folio.value" color="info" class="text-lg" />
+        <lx-tag
+          [value]="form.controls.folio.value"
+          color="info"
+          class="text-lg"
+        />
         } @else {
         <lx-tag value="NUEVA SOLICITUD" severity="success" class="text-lg" />
         }
@@ -24,20 +27,20 @@
       <div class="flex flex-wrap">
         @if (id && id !== "" && id !== "0") {
         <il-button
-          iconClass="mdi:whatsapp"
+          iconClass="material-symbols-light:chat"
           label="Compartir WA"
           (clicked)="onSendWhatsApp()"
           severity="success"
-          variant="outlined"
+          variant="outline"
           class="mr-2"
           size="small"
         />
         <il-button
-          iconClass="mdi:email-outline"
+          iconClass="material-symbols-light:mail-outline"
           label="Enviar Correo"
           (clicked)="onSendEmail()"
           color="info"
-          variant="outlined"
+          variant="outline"
           class="mr-2"
           size="small"
         />
@@ -46,19 +49,19 @@
           class="no-underline mr-2"
         >
           <il-button
-            iconClass="mdi:file-pdf-box"
+            iconClass="material-symbols-light:picture-as-pdf"
             label="Ver PDF"
             severity="danger"
-            variant="outlined"
+            variant="outline"
             size="small"
           />
         </a>
         <il-button
-          iconClass="mdi:table"
+          iconClass="material-symbols-light:table"
           label="Cuadro Comparativo"
           (clicked)="router.navigate(['/purchases/cuadro-comparativo', id])"
           color="info"
-          variant="outlined"
+          variant="outline"
           class="mr-2"
           size="small"
         />
@@ -116,7 +119,10 @@
   <!-- SECCION DE PRODUCTOS -->
   <div class="flex align-items-center justify-content-between mb-3">
     <div class="flex align-items-center">
-      <app-icon [icon]="'mdi:cart'" class="text-xl text-primary mr-2" />
+      <app-icon
+        [icon]="'material-symbols-light:shopping-cart'"
+        class="text-xl text-primary mr-2"
+      />
       <h4 class="m-0 font-bold text-800 mr-2">Productos Solicitados</h4>
       <app-badge
         [value]="SolicitudCompraDetalle.length.toString()"
@@ -148,7 +154,7 @@
         >Órdenes de Compra Relacionadas:</span
       >
       <il-button
-        iconClass="mdi:link"
+        iconClass="material-symbols-light:link"
         label="Actualizar Referencias"
         (clicked)="onManageLinks()"
         severity="warn"
@@ -159,7 +165,13 @@
     <div class="flex flex-wrap">
       @if (cotizacionesRelacionadas.length > 0) { @for (item of
       cotizacionesRelacionadas; track item.id) {
-      <lx-tag (click)="onAddOrEdit(item.id)" [value]="item.folio" severity="warning" class="cursor-pointer" [tooltip]="'Ver Orden de Compra'" />
+      <lx-tag
+        (click)="onAddOrEdit(item.id)"
+        [value]="item.folio"
+        severity="warning"
+        class="cursor-pointer"
+        [tooltip]="'Ver Orden de Compra'"
+      />
       } } @else {
       <span class="text-sm italic text-500"
         >No hay órdenes de compra vinculadas formalmente.</span

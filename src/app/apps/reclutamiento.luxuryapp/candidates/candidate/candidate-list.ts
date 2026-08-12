@@ -91,11 +91,11 @@ export class CandidateList implements OnInit {
       CandidateApplicationForm,
       {
         id: "",
-        title: "Asignar vacante y entrevista",
+        title: "Asignar vacante e iniciar entrevista",
         candidateId: result.id,
         allowCreateCandidate: false,
       },
-      "Asignar vacante y entrevista",
+      "Asignar vacante e iniciar entrevista",
       this.dialogHandlerS.sizeLg,
     );
 

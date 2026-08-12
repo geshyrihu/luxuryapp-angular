@@ -38,7 +38,7 @@ export class CandidateDetail implements OnInit {
   activeTab = model<string>("datos");
   tabs = [
     { id: "datos", label: "Datos" },
-    { id: "postulaciones", label: "Postulaciones" },
+    { id: "procesos", label: "Procesos" },
   ];
 
   onTabChange(tab: { id: string; label: string }) {
@@ -79,11 +79,11 @@ export class CandidateDetail implements OnInit {
         CandidateApplicationForm,
         {
           id: "",
-          title: "Asignar vacante y entrevista",
+          title: "Asignar vacante e iniciar entrevista",
           candidateId: this.config.data?.id,
           allowCreateCandidate: false,
         },
-        "Asignar vacante y entrevista",
+        "Asignar vacante e iniciar entrevista",
         this.dialogHandlerS.sizeLg,
       )
       .then((created: boolean) => {

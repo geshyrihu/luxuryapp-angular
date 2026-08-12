@@ -1,7 +1,7 @@
 <div class="flex flex-wrap align-items-center">
   <!-- Botón Seleccionar Todos -->
   <il-button
-    iconClass="mdi:checkbox-marked"
+    iconClass="material-symbols-light:check-box"
     label="Seleccionar Todos"
     customClass="mr-2"
     size="small"
@@ -10,7 +10,7 @@
 
   <!-- Botón Desmarcar Todos -->
   <il-button
-    iconClass="mdi:close-circle"
+    iconClass="material-symbols-light:cancel"
     label="Desmarcar Todos"
     customClass="mr-2"
     size="small"
@@ -19,7 +19,7 @@
 
   <!-- Botón Agregar PARA -->
   <il-button
-    [iconClass]="'mdi:plus'"
+    [iconClass]="'material-symbols-light:add'"
     label="Agregar PARA"
     customClass="mr-2"
     size="small"
@@ -29,7 +29,7 @@
 
   <!-- Botón Agregar CC -->
   <il-button
-    [iconClass]="'mdi:plus'"
+    [iconClass]="'material-symbols-light:add'"
     label="Agregar CC"
     customClass="mr-2"
     size="small"
@@ -39,7 +39,7 @@
 
   <!-- Botón Agregar CCO -->
   <il-button
-    [iconClass]="'mdi:plus'"
+    [iconClass]="'material-symbols-light:add'"
     label="Agregar CCO"
     customClass="mr-2"
     size="small"
@@ -74,7 +74,7 @@
         [type]="ButtonTypeSubmit"
         label="Agregar Correo"
         [disabled]="form.invalid"
-        [iconClass]="form.invalid ? 'mdi:close' : 'mdi:check'"
+        [iconClass]="form.invalid ? 'material-symbols-light:close' : 'material-symbols-light:check'"
         [customNgClass]="{
                 'p-button-danger': form.invalid,
                 'p-button-success': !form.invalid,
@@ -117,7 +117,7 @@
         class="absolute top-0 right-0 -mt-2 -mr-2 p-badge p-badge-success p-badge-rounded"
       >
         <app-icon
-          [icon]="'mdi:close'"
+          [icon]="'material-symbols-light:close'"
           class="cursor-pointer"
           tooltip="Descartar correo"
           placement="top"

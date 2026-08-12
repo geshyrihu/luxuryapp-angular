@@ -44,7 +44,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
         @if (isEmpty()) {
           <div class="sig-placeholder">
-            <app-icon icon="mdi:draw-pen" class="text-2xl" />
+            <app-icon icon="material-symbols-light:draw" class="text-2xl" />
             <span>{{ placeholder() }}</span>
           </div>
         }
@@ -53,20 +53,26 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       <div class="sig-actions">
         <p-button
           label="Limpiar"
-          icon="mdi:eraser"
           severity="secondary"
           [outlined]="true"
           size="small"
           [disabled]="disabled() || isEmpty()"
           (onClick)="clear()"
-        />
+        >
+          <ng-template #icon>
+            <app-icon icon="material-symbols-light:ink-eraser" />
+          </ng-template>
+        </p-button>
         <p-button
           label="Confirmar"
-          icon="mdi:check"
           size="small"
           [disabled]="disabled() || isEmpty()"
           (onClick)="confirm()"
-        />
+        >
+          <ng-template #icon>
+            <app-icon icon="material-symbols-light:check" />
+          </ng-template>
+        </p-button>
       </div>
 
       @if (hint()) {

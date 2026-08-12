@@ -35,7 +35,7 @@
         <tr [pReorderableRow]="index">
           <td>
             <div>
-              <app-icon icon="mdi:menu" class="icon" pReorderableRowHandle />
+              <app-icon icon="material-symbols-light:menu" class="icon" pReorderableRowHandle />
             </div>
           </td>
           <td class="text-center">{{ item.folio }}</td>
@@ -70,18 +70,18 @@
           start
           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
         >
-          <app-icon icon="mdi:file-star-outline" class="text-xl text-primary" />
+          <app-icon icon="material-symbols-light:star-outline" class="text-xl text-primary" />
         </div>
 
         <div class="flex justify-content-between align-items-center mb-1">
           <h2 class="font-bold m-0 text-base text-wrap">{{ item.name }}</h2>
         </div>
         <p class="text-sm text-500 m-0">
-          <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs" />
+          <app-icon [icon]="'material-symbols-light:currency-pound'" class="mr-1 text-xs" />
           Folio: {{ item.folio }}
         </p>
         <p class="text-sm text-500 m-0">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs" />
+          <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1 text-xs" />
           Fecha: {{ item.createAt }}
         </p>
 

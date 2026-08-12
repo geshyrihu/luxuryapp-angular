@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-kpi-card",
@@ -43,7 +44,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               [class.kpi-trend-down]="trend()! < 0"
             >
               <app-icon
-                [icon]="trend()! >= 0 ? 'mdi:trending-up' : 'mdi:trending-down'"
+                [icon]="trend()! >= 0 ? 'material-symbols-light:trending-up' : 'material-symbols-light:trending-down'"
                 class="text-sm"
               />
               <span>{{ absTrend() }}%</span>
@@ -129,7 +130,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 export class KpiCard {
   label = input.required<string>();
   value = input.required<number>();
-  icon = input<string>("");
+  icon = input<AppIconName>();
   iconColor = input<string>("var(--ds-primary)");
   prefix = input<string>("");
   suffix = input<string>("");

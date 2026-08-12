@@ -14,7 +14,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       <div class="error-boundary-root">
         <div class="error-boundary-content">
           <app-icon
-            icon="mdi:alert-circle-outline"
+            icon="material-symbols-light:error-outline"
             class="error-boundary-icon"
           />
           <strong class="error-boundary-title">{{ title() }}</strong>
@@ -22,10 +22,13 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           @if (showRetry()) {
             <p-button
               [label]="retryLabel()"
-              icon="mdi:refresh"
               severity="warn"
               (onClick)="onRetry()"
-            />
+            >
+              <ng-template #icon>
+                <app-icon icon="material-symbols-light:refresh" />
+              </ng-template>
+            </p-button>
           }
           @if (showDetails()) {
             <details class="error-boundary-details">

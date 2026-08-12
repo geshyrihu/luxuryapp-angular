@@ -44,10 +44,10 @@ import { BaseButton } from "../base/base-button";
       <app-icon
         [icon]="
           submitting()
-            ? 'mdi:loading'
+            ? 'material-symbols-light:progress-activity'
             : propertyId()
-              ? 'mdi:content-save-edit-outline'
-              : 'mdi:content-save-outline'
+              ? 'material-symbols-light:edit-note'
+              : 'material-symbols-light:save-outline'
         "
         [class.spinner]="submitting()"
       />

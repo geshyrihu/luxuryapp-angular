@@ -22,7 +22,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               class="doc-previewer-btn"
               title="Descargar"
             >
-              <app-icon icon="mdi:download" />
+              <app-icon icon="material-symbols-light:download" />
             </a>
           }
           @if (printable()) {
@@ -31,7 +31,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               (click)="print()"
               title="Imprimir"
             >
-              <app-icon icon="mdi:printer" />
+              <app-icon icon="material-symbols-light:print" />
             </button>
           }
         </div>
@@ -45,7 +45,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           ></iframe>
         } @else {
           <div class="doc-previewer-empty">
-            <app-icon icon="mdi:file-document-outline" class="text-4xl" />
+            <app-icon icon="material-symbols-light:description" class="text-4xl" />
             <p>Vista previa no disponible</p>
           </div>
         }

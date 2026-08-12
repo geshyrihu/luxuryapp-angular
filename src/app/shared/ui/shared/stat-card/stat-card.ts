@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 /**
  * AppStatCard — KPI card con sparkline SVG inline.
@@ -37,7 +38,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           [class.stat-trend-down]="trend()! < 0"
         >
           <app-icon
-            [icon]="trend()! >= 0 ? 'mdi:trending-up' : 'mdi:trending-down'"
+            [icon]="trend()! >= 0 ? 'material-symbols-light:trending-up' : 'material-symbols-light:trending-down'"
             class="text-xs"
           />
           {{ absTrend() }}%
@@ -220,7 +221,7 @@ export class AppStatCard {
    */
   orientation = input<"vertical" | "horizontal">("vertical");
   sparkline = input<number[]>([]);
-  icon = input<string>("");
+  icon = input<AppIconName>();
   iconColor = input<string>("var(--ds-primary)");
   iconBg = input<string>("var(--primary-100)");
   prefix = input<string>("");

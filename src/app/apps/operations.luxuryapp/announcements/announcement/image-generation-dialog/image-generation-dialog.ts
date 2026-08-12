@@ -12,6 +12,7 @@ import { AiService } from "src/app/core/services/ai.service";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-image-generation-dialog",
@@ -41,26 +42,26 @@ export class ImageGenerationDialog {
 
   recognition: any;
 
-  styles = [
+  styles: { label: string; value: string; icon: AppIconName }[] = [
     {
       label: "Realista",
       value: "photorealistic, high quality, 4k",
-      icon: "mdi:camera",
+      icon: "material-symbols-light:photo-camera",
     },
     {
       label: "Ilustración",
       value: "digital illustration, vector art, vibrant",
-      icon: "mdi:pencil",
+      icon: "material-symbols-light:edit",
     },
     {
       label: "3D Render",
       value: "3d render, blender, unreal engine, isometric",
-      icon: "mdi:package",
+      icon: "material-symbols-light:package",
     },
     {
       label: "Minimalista",
       value: "minimalist, clean lines, flat colors, modern",
-      icon: "mdi:minus-circle-outline",
+      icon: "material-symbols-light:do-not-disturb-on",
     },
   ];
 
@@ -83,26 +84,26 @@ export class ImageGenerationDialog {
     { label: "Nocturno", value: "night, neon lights, dark mode", emoji: "??" },
   ];
 
-  elements = [
+  elements: { label: string; value: string; icon: AppIconName }[] = [
     {
       label: "Edificio",
       value: "modern luxury building facade",
-      icon: "mdi:office-building",
+      icon: "material-symbols-light:apartment",
     },
     {
       label: "Interiores",
       value: "luxury interior, lobby, marble",
-      icon: "mdi:home",
+      icon: "material-symbols-light:home",
     },
     {
       label: "Personas",
       value: "professional people, happy residents, diverse",
-      icon: "mdi:account-group",
+      icon: "material-symbols-light:group",
     },
     {
       label: "Abstracto",
       value: "abstract shapes, branding colors",
-      icon: "mdi:palette",
+      icon: "material-symbols-light:palette",
     },
   ];
 

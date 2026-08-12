@@ -34,9 +34,10 @@ import {
 import { filter, map, startWith } from "rxjs";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { MobileEmptyState } from "../empty-state/empty-state";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface IMobileBreadcrumbItem {
-  icon?: string;
+  icon?: AppIconName;
   routerLink?: string | any[];
   label?: string;
 }
@@ -158,7 +159,7 @@ export class DataViewMobile implements OnInit {
 
     const items: IMobileBreadcrumbItem[] = [
       {
-        icon: "mdi:home",
+        icon: "material-symbols-light:home",
         routerLink: "/dashboard/default",
       },
     ];

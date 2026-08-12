@@ -34,7 +34,7 @@
             <div class="flex-shrink-0">
               <lx-menu #menu [model]="menuItems()" [popup]="true"></lx-menu>
               <il-button-item
-                iconClass="mdi:menu"
+                iconClass="material-symbols-light:menu"
                 (clicked)="onSelectItem(evento, menu, $event)"
               />
             </div>
@@ -59,13 +59,13 @@
               <lx-tag
                 [value]="evento.frequency"
                 severity="info"
-                icon="mdi:clock-outline"
+                icon="material-symbols-light:schedule"
                 class="text-xs"
                />
               }
             </div>
             <app-icon
-              [icon]="'mdi:chevron-right'"
+              [icon]="'material-symbols-light:chevron-right'"
               class="text-400 flex-shrink-0 mt-1"
             />
           </div>
@@ -93,7 +93,7 @@
           
         >
           <app-icon
-            icon="mdi:calendar-check"
+            icon="material-symbols-light:event-available"
             
           />
         </div>

@@ -39,6 +39,7 @@ import { SearchService } from "src/app/core/services/search.service";
 import { ThemeService } from "src/app/core/services/theme.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { ProfileMonitor } from "../profile-monitor/profile-monitor";
 
@@ -182,7 +183,7 @@ export class HeaderEmployeeMonitor implements OnInit {
 
         // Home item
         this.breadcrumbItems.push({
-          icon: "pi pi-home", // PrimeNG icon class
+          icon: "material-symbols-light:home", // PrimeNG icon class
           routerLink: "/dashboard",
         });
 
@@ -233,63 +234,63 @@ export class HeaderEmployeeMonitor implements OnInit {
       {
         id: "home",
         ngbTooltip: "Inicio",
-        iconClass: "fluent-color:home-24",
+        iconClass: "material-symbols-light:home",
         action: () => this.onHome(),
       },
       {
         id: "back",
         ngbTooltip: "Pagina anterior",
-        iconClass: "mdi:chevron-left",
+        iconClass: "material-symbols-light:chevron-left",
         action: () => this.onBack(),
       },
       {
         id: "next",
         ngbTooltip: "Pagina siguiente",
-        iconClass: "mdi:chevron-right",
+        iconClass: "material-symbols-light:chevron-right",
         action: () => this.onNext(),
       },
       {
         id: "refresh",
         ngbTooltip: "Actualizar",
-        iconClass: "fluent-color:arrow-sync-24",
+        iconClass: "material-symbols-light:sync",
         action: () => this.onRefresh(),
       },
       {
         id: "building",
         ngbTooltip: "Mi edificio",
-        iconClass: "fluent-color:building-24",
+        iconClass: "material-symbols-light:apartment",
         action: () => this.onBuilding(),
       },
       {
         id: "announcement",
         ngbTooltip: "Anuncios",
-        iconClass: "fluent-color:megaphone-loud-24",
+        iconClass: "material-symbols-light:campaign",
         action: () => this.onannouncement(),
       },
       {
         id: "ai-announcement",
         ngbTooltip: "Comunicado IA",
-        iconClass: "fluent-color:bot-24",
+        iconClass: "material-symbols-light:smart-toy-outline",
         iconExtraClass: "text-purple-500",
         action: () => this.onAiAnnouncement(),
       },
       {
         id: "emergency-phones",
         ngbTooltip: "Telefonos de Emergencia",
-        iconClass: "fluent-color:phone-24",
+        iconClass: "material-symbols-light:call",
         action: () => this.onEmergencyPhones(),
       },
       {
         id: "admin",
         ngbTooltip: "Configuración",
-        iconClass: "fluent-color:settings-24",
+        iconClass: "material-symbols-light:settings",
         action: () => this.onSetting(),
         requiresRole: [ApplicationRole.SuperUsuario],
       },
       {
         id: "whats-new",
         ngbTooltip: "Novedades",
-        iconClass: "fluent-color:star-24",
+        iconClass: "material-symbols-light:star",
         iconExtraClass: "text-yellow-500",
         action: () => this.onWhatsNew(),
       },
@@ -305,10 +306,20 @@ export class HeaderEmployeeMonitor implements OnInit {
     this.themeService.toggleTheme();
   }
 
-  getThemeIcon(): string {
+  getThemeIcon(): AppIconName {
     const theme = this.themeService.getCurrentTheme();
-    if (theme === "light") return "mdi:weather-night";
-    return "mdi:weather-sunny";
+    if (theme === "light") return "material-symbols-light:nightlight";
+    return "material-symbols-light:sunny";
+  }
+
+  getPosterPointIcon(index: number): AppIconName {
+    const icons: AppIconName[] = [
+      "material-symbols-light:info",
+      "material-symbols-light:shield",
+      "material-symbols-light:group",
+      "material-symbols-light:check-circle",
+    ];
+    return icons[index % icons.length];
   }
 
   // Navigation methods

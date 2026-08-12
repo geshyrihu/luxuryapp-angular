@@ -15,9 +15,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           [routerLink]="h.routerLink"
           (click)="runCommand(h, $event)"
         >
-          <app-icon [icon]="h.icon || 'mdi:home'" />
+          <app-icon [icon]="iconName(h.icon) || 'material-symbols-light:home'" />
         </a>
-        <app-icon icon="mdi:chevron-right" class="ili-bc-sep" />
+        <app-icon icon="material-symbols-light:chevron-right" class="ili-bc-sep" />
       }
       @for (item of items(); track $index; let last = $last) {
         <a
@@ -27,12 +27,12 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           (click)="runCommand(item, $event)"
         >
           @if (item.icon) {
-            <app-icon [icon]="item.icon" />
+            <app-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" />
           }
           {{ item.label }}
         </a>
         @if (!last) {
-          <app-icon icon="mdi:chevron-right" class="ili-bc-sep" />
+          <app-icon icon="material-symbols-light:chevron-right" class="ili-bc-sep" />
         }
       }
     </nav>

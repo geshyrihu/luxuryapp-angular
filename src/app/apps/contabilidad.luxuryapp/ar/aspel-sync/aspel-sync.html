@@ -12,7 +12,7 @@
           class="surface-ground p-3 rounded-lg border-1 border-blue-100 h-full"
         >
           <div class="flex align-items-center gap-2 mb-2 text-blue-700">
-            <app-icon [icon]="'mdi:information'" class="text-xl" />
+            <app-icon [icon]="'material-symbols-light:info'" class="text-xl" />
             <span class="font-bold">Cliente Seleccionado</span>
           </div>
           <div class="text-sm line-height-3">
@@ -47,7 +47,7 @@
     <div class="flex flex-wrap gap-2 mt-4">
       <il-button
         label="Sincronización Completa"
-        iconClass="mdi:sync"
+        iconClass="material-symbols-light:sync"
         severity="success"
         [loading]="syncing()"
         [disabled]="!canExecute()"
@@ -55,7 +55,7 @@
       />
       <il-button
         label="Solo Contabilidad"
-        iconClass="mdi:book"
+        iconClass="material-symbols-light:book"
         severity="info"
         [loading]="syncing()"
         [disabled]="!canExecute()"
@@ -63,7 +63,7 @@
       />
       <il-button
         label="Solo Cobranza"
-        iconClass="mdi:wallet"
+        iconClass="material-symbols-light:wallet"
         severity="warning"
         [loading]="syncing()"
         [disabled]="!canExecute()"

@@ -116,9 +116,22 @@ export class RecruitmentAgendaList implements OnInit {
       });
   }
 
-  navigateToApplication(applicationId: string) {
+  navigateToApplication(item: CandidateRecruitmentAgendaItem) {
+    if (item.workPositionId) {
+      this.router.navigate(
+        ["/recruitment/candidates/work-position", item.workPositionId, "candidates"],
+        {
+          queryParams: {
+            requestPositionId: item.requestPositionId,
+            candidateApplicationId: item.id,
+          },
+        },
+      );
+      return;
+    }
+
     this.router.navigate(["/recruitment/candidates/applications"], {
-      queryParams: { detail: applicationId },
+      queryParams: { detail: item.id },
     });
   }
 

@@ -70,7 +70,7 @@
             (click)="showFeeComparisonModal()"
             class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:tag-outline" class="mb-1" />
+            <app-icon icon="material-symbols-light:label-outline" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
               >Cuotas (Fija)</span
             >
@@ -83,7 +83,7 @@
             (click)="showFeeComparisonByIndivisoModal()"
             class="bg-white shadow-sm hover:shadow border-2 border-gray-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:chart-bar" class="mb-1" />
+            <app-icon icon="material-symbols-light:bar-chart" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-700"
               >Cuotas (Indiviso)</span
             >
@@ -97,7 +97,7 @@
             [class.opacity-50]="currentProposal()?.status !== 'Borrador'"
             class="bg-blue-50 hover:bg-blue-100 shadow-sm hover:shadow border-2 border-blue-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:plus-circle-outline" class="mb-1" />
+            <app-icon icon="material-symbols-light:add-circle-outline" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-blue-700"
               >Añadir Cuenta</span
             >
@@ -111,7 +111,7 @@
             (click)="auditProposal()"
             class="bg-indigo-50 hover:bg-indigo-100 shadow-sm hover:shadow border-2 border-indigo-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:robot-outline" class="mb-1" />
+            <app-icon icon="material-symbols-light:smart-toy-outline" class="mb-1" />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
               >Auditoría IA</span
@@ -126,7 +126,7 @@
             [class.opacity-50]="auditLoading || forecastLoading"
             class="bg-indigo-50 hover:bg-indigo-100 shadow-sm hover:shadow border-2 border-indigo-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:chart-line" class="mb-1" />
+            <app-icon icon="material-symbols-light:monitoring" class="mb-1" />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
               >Proyección {{ fiscalYear }}</span
@@ -140,7 +140,7 @@
             (click)="openHighIncreaseModal()"
             class="bg-orange-50 hover:bg-orange-100 shadow-sm hover:shadow border-2 border-orange-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:alert-decagram-outline" class="mb-1" />
+            <app-icon icon="material-symbols-light:warning-outline" class="mb-1" />
             <span
               class="text-xs text-center line-height-2 text-orange-700 font-medium"
               >Alertas > 5%</span
@@ -154,7 +154,7 @@
             (click)="exportarResumenExcel()"
             class="bg-green-50 hover:bg-green-100 shadow-sm hover:shadow border-2 border-green-300 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:microsoft-excel" class="mb-1" />
+            <app-icon icon="material-symbols-light:table-view" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-green-700"
               >Excel</span
             >
@@ -217,7 +217,7 @@
             (click)="showProjectedExpensesModal()"
             class="bg-orange-50 hover:bg-orange-100 shadow-sm hover:shadow border-2 border-orange-300 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:cog-outline" class="mb-1" />
+            <app-icon icon="material-symbols-light:settings-outline" class="mb-1" />
             <span class="text-xs text-center line-height-2 text-orange-700"
               >Admin Proyección</span
             >
@@ -230,7 +230,7 @@
             (click)="showMaintenanceCalendarModal()"
             class="bg-indigo-50 hover:bg-indigo-100 shadow-sm hover:shadow border-2 border-indigo-200 rounded-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:calendar-outline" class="mb-1" />
+            <app-icon icon="material-symbols-light:event-outline" class="mb-1" />
             <span
               class="text-xs text-center line-height-2 text-indigo-700 font-medium"
               >Calendario Mtto</span
@@ -281,7 +281,7 @@
       >
         <div class="flex flex-wrap gap-4 align-items-center text-sm text-700">
           <div class="font-semibold text-800 flex align-items-center gap-1">
-            <app-icon icon="mdi:information-outline" />
+            <app-icon icon="material-symbols-light:info" />
             Guía Rápida:
           </div>
 
@@ -309,7 +309,7 @@
             class="flex align-items-center gap-2"
             lxTooltip="Ver historial de compras asociadas a la cuenta"
           >
-            <app-icon icon="mdi:cart-outline" class="text-blue-500" />
+            <app-icon icon="material-symbols-light:shopping-cart-outline" class="text-blue-500" />
             <span>Historial Compras</span>
           </div>
 
@@ -317,7 +317,7 @@
             class="flex align-items-center gap-2"
             lxTooltip="Ver histórico de movimientos contables"
           >
-            <app-icon icon="mdi:history" class="text-indigo-500" />
+            <app-icon icon="material-symbols-light:history" class="text-indigo-500" />
             <span>Historial Partida</span>
           </div>
 
@@ -325,7 +325,7 @@
             class="flex align-items-center gap-2"
             lxTooltip="Ver cotizaciones y documentos soporte"
           >
-            <app-icon icon="mdi:folder-outline" class="text-orange-500" />
+            <app-icon icon="material-symbols-light:folder-outline" class="text-orange-500" />
             <span>Documentos Soporte</span>
           </div>
 
@@ -445,14 +445,14 @@
                 class="pointer mr-1 text-sm"
                 (click)="showPurchaseHistory(item)"
                 lxTooltip="Historial de compras"
-                ><app-icon icon="mdi:cart-outline" class="text-blue-500" />
+                ><app-icon icon="material-symbols-light:shopping-cart-outline" class="text-blue-500" />
                 |</span
               >
               <span
                 class="pointer mr-1 text-sm"
                 (click)="showItemHistory(item)"
                 lxTooltip="Historial de partidas"
-                ><app-icon icon="mdi:history" class="text-indigo-500" /> |</span
+                ><app-icon icon="material-symbols-light:history" class="text-indigo-500" /> |</span
               >
               <span
                 class="pointer mr-1 text-sm"

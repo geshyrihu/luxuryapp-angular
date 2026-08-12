@@ -1,4 +1,5 @@
 import { Directive, input, output, computed } from "@angular/core";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export type MessageSeverity =
   | "success"
@@ -14,7 +15,7 @@ export abstract class MessageBase {
   text = input<string>("");
   severity = input<MessageSeverity>("info");
   closable = input<boolean>(false);
-  icon = input<string>("");
+  icon = input<AppIconName>();
 
   close = output<void>();
 
@@ -24,56 +25,56 @@ export abstract class MessageBase {
     return this.severity();
   });
 
-  colors = computed<{ bg: string; text: string; border: string; icon: string }>(() => {
-    const map: Record<MessageSeverity, { bg: string; text: string; border: string; icon: string }> = {
+  colors = computed<{ bg: string; text: string; border: string; icon: AppIconName }>(() => {
+    const map: Record<MessageSeverity, { bg: string; text: string; border: string; icon: AppIconName }> = {
       success: {
         bg: "var(--ds-success-light)",
         text: "var(--ds-success)",
         border: "transparent",
-        icon: "mdi:check-circle-outline",
+        icon: "material-symbols-light:check-circle-outline",
       },
       info: {
         bg: "var(--ds-info-light)",
         text: "var(--ds-info)",
         border: "transparent",
-        icon: "mdi:information-outline",
+        icon: "material-symbols-light:info",
       },
       warn: {
         bg: "var(--ds-warning-light)",
         text: "var(--ds-warning)",
         border: "transparent",
-        icon: "mdi:alert-outline",
+        icon: "material-symbols-light:warning-outline",
       },
       warning: {
         bg: "var(--ds-warning-light)",
         text: "var(--ds-warning)",
         border: "transparent",
-        icon: "mdi:alert-outline",
+        icon: "material-symbols-light:warning-outline",
       },
       danger: {
         bg: "var(--ds-danger-light)",
         text: "var(--ds-danger)",
         border: "transparent",
-        icon: "mdi:alert-circle-outline",
+        icon: "material-symbols-light:error-outline",
       },
       error: {
         bg: "var(--ds-danger-light)",
         text: "var(--ds-danger)",
         border: "transparent",
-        icon: "mdi:alert-circle-outline",
+        icon: "material-symbols-light:error-outline",
       },
       secondary: {
         bg: "var(--ds-bg-sunken)",
         text: "var(--ds-text-secondary)",
         border: "var(--ds-border)",
-        icon: "mdi:information-outline",
+        icon: "material-symbols-light:info",
       },
     };
 
     return map[this.normalizedSeverity()] ?? map.info;
   });
 
-  displayIcon = computed<string>(() => {
+  displayIcon = computed<AppIconName>(() => {
     return this.icon() || this.colors().icon;
   });
 

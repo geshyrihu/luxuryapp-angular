@@ -14,7 +14,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       (click)="tapToTop()"
       [ngStyle]="{ display: show ? 'block' : 'none' }"
     >
-      <app-icon icon="mdi:arrow-up" class="m-0 icon icon-" />
+      <app-icon icon="material-symbols-light:arrow-upward" class="m-0 icon icon-" />
     </div>
   `,
   styles: [

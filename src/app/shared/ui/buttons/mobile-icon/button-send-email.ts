@@ -23,7 +23,7 @@ import { confirmAction } from "../shared/confirm";
       [class]="styleClass()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="iconClass() || 'mdi:email-outline'" slot="icon-only" />
+      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:mail-outline'" slot="icon-only" />
     </ion-button>
   `,
 })

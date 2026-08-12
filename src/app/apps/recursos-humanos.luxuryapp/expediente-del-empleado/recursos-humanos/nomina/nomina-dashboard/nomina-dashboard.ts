@@ -7,6 +7,7 @@ import {
 import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export type NominaRole =
   | "SuperUsuario"
@@ -29,7 +30,7 @@ export interface NominaCard {
   title: string;
   description: string;
   route: string;
-  icon: string;
+  icon: AppIconName;
   bgColor: string;
   roles: NominaRole[];
   actions: NominaAction[];
@@ -40,7 +41,7 @@ export interface NominaCard {
 
 export interface NominaGroup {
   label: string;
-  icon: string;
+  icon: AppIconName;
   description: string;
   cards: NominaCard[];
 }
@@ -48,7 +49,7 @@ export interface NominaGroup {
 const GROUPS: NominaGroup[] = [
   {
     label: "Configuracion y Periodos",
-    icon: "mdi:cog",
+    icon: "material-symbols-light:settings",
     description:
       "Parametros de nomina por cliente y gestion de quincenas con dias habiles y festivos.",
     cards: [
@@ -57,7 +58,7 @@ const GROUPS: NominaGroup[] = [
         description:
           "Parametros globales por cliente: frecuencia de pago, dias de pago, tolerancia de retardos, porcentajes IMSS empleado y factor de prima vacacional.",
         route: "/recursos-humanos/nomina/configuracion",
-        icon: "mdi:tune",
+        icon: "material-symbols-light:tune",
         bgColor: "#e0f2fe",
         roles: ["SuperUsuario", "Administrador", "RecursosHumanos"],
         actions: [
@@ -85,7 +86,7 @@ const GROUPS: NominaGroup[] = [
         description:
           "Gestion de quincenas: define fechas de inicio y fin, dias habiles, fecha de pago. Administra los dias festivos oficiales y descansos adicionales del periodo.",
         route: "/recursos-humanos/nomina/periodos",
-        icon: "mdi:calendar",
+        icon: "material-symbols-light:calendar-today",
         bgColor: "#f0fdf4",
         roles: [
           "SuperUsuario",
@@ -150,7 +151,7 @@ const GROUPS: NominaGroup[] = [
   },
   {
     label: "Nomina Principal",
-    icon: "mdi:file-check",
+    icon: "material-symbols-light:fact-check",
     description:
       "Generacion, edicion y aprobacion de la nomina quincenal completa con percepciones, deducciones y neto a pagar.",
     cards: [
@@ -159,7 +160,7 @@ const GROUPS: NominaGroup[] = [
         description:
           "Listado de nominas generadas por periodo y cliente. Flujo completo de estados: Borrador, En Revision, Aprobada, Pagada, Cerrada. Exportacion a Excel y resumen ejecutivo.",
         route: "/recursos-humanos/nomina/nominas",
-        icon: "mdi:file-check",
+        icon: "material-symbols-light:fact-check",
         bgColor: "#fef9c3",
         roles: [
           "SuperUsuario",
@@ -235,7 +236,7 @@ const GROUPS: NominaGroup[] = [
         description:
           "Vista y edicion de la linea de nomina de cada empleado: dias trabajados, sueldo proporcional, tiempo extra, prima dominical, prima vacacional, IMSS, ISR, prestamos y neto a pagar.",
         route: "/recursos-humanos/nomina/nominas",
-        icon: "mdi:format-list-checks",
+        icon: "material-symbols-light:fact-check",
         bgColor: "#fce7f3",
         roles: [
           "SuperUsuario",
@@ -278,7 +279,7 @@ const GROUPS: NominaGroup[] = [
   },
   {
     label: "Incidencias",
-    icon: "mdi:alert",
+    icon: "material-symbols-light:warning",
     description:
       "Faltas, retardos, incapacidades y permisos que afectan el calculo de dias trabajados y montos de la nomina.",
     cards: [
@@ -287,7 +288,7 @@ const GROUPS: NominaGroup[] = [
         description:
           "Registro de faltas injustificadas, retardos menores y mayores, incapacidades IMSS con folio, vacaciones pagadas, permisos con/sin goce y dias economicos. Sincronizacion automatica con modulos de vacaciones y permisos aprobados.",
         route: "/recursos-humanos/nomina/incidencias",
-        icon: "mdi:alert",
+        icon: "material-symbols-light:warning",
         bgColor: "#fff7ed",
         roles: [
           "SuperUsuario",
@@ -362,7 +363,7 @@ const GROUPS: NominaGroup[] = [
   },
   {
     label: "Tiempo Extra",
-    icon: "mdi:clock-outline",
+    icon: "material-symbols-light:schedule",
     description:
       "Registro, calculo y aprobacion de horas extra segun LFT: primeras 9 horas semanales al doble, restantes al triple.",
     cards: [
@@ -371,7 +372,7 @@ const GROUPS: NominaGroup[] = [
         description:
           "Registro de horas extra por empleado y dia. El sistema calcula automaticamente el importe segun LFT. Requiere aprobacion para incluirse en el calculo de nomina. Soporta evidencias fotograficas.",
         route: "/recursos-humanos/nomina/tiempo-extra",
-        icon: "mdi:clock-outline",
+        icon: "material-symbols-light:schedule",
         bgColor: "#ede9fe",
         roles: [
           "SuperUsuario",
@@ -437,7 +438,7 @@ const GROUPS: NominaGroup[] = [
   },
   {
     label: "Prestamos",
-    icon: "mdi:wallet",
+    icon: "material-symbols-light:wallet",
     description:
       "Autorizacion de prestamos a empleados con descuento automatico por quincena y control de amortizacion.",
     cards: [
@@ -446,7 +447,7 @@ const GROUPS: NominaGroup[] = [
         description:
           "Solicitud y autorizacion de prestamos descontados via nomina. El sistema genera la tabla de amortizacion automaticamente y aplica el descuento al cerrar cada nomina. Seguimiento del saldo pendiente en tiempo real.",
         route: "/recursos-humanos/nomina/prestamos",
-        icon: "mdi:wallet",
+        icon: "material-symbols-light:wallet",
         bgColor: "#d1fae5",
         roles: [
           "SuperUsuario",
@@ -511,7 +512,7 @@ const GROUPS: NominaGroup[] = [
   },
   {
     label: "Evidencias y Reportes",
-    icon: "mdi:image-multiple",
+    icon: "material-symbols-light:photo",
     description:
       "Archivos fotograficos de nomina firmada, tiempo extra y asistencia. Recibos individuales en PDF y exportacion a Excel.",
     cards: [
@@ -520,7 +521,7 @@ const GROUPS: NominaGroup[] = [
         description:
           "Gestion de archivos de soporte: foto de nomina firmada, foto de registro de tiempo extra firmado y comprobantes de asistencia. Equivale a las hojas 3, 4 y 5 del Excel original.",
         route: "/recursos-humanos/nomina/evidencias",
-        icon: "mdi:image-multiple",
+        icon: "material-symbols-light:photo",
         bgColor: "#fdf4ff",
         roles: ["SuperUsuario", "Administrador", "RecursosHumanos"],
         actions: [
@@ -568,7 +569,7 @@ interface HeroMetric {
   label: string;
   value: string;
   detail: string;
-  icon: string;
+  icon: AppIconName;
   tone: string;
 }
 
@@ -593,14 +594,14 @@ export default class NominaDashboard {
       label: "Modulos funcionales",
       value: String(GROUPS.reduce((a, g) => a + g.cards.length, 0)),
       detail: "Paginas y funciones del modulo",
-      icon: "mdi:grid",
+      icon: "material-symbols-light:grid-view",
       tone: "primary",
     },
     {
       label: "Grupos de trabajo",
       value: String(GROUPS.length),
       detail: "Areas funcionales de nomina",
-      icon: "mdi:sitemap",
+      icon: "material-symbols-light:account-tree",
       tone: "info",
     },
     {
@@ -612,7 +613,7 @@ export default class NominaDashboard {
         ),
       ),
       detail: "Rutas del API implementadas",
-      icon: "mdi:server",
+      icon: "material-symbols-light:dns",
       tone: "success",
     },
   ];

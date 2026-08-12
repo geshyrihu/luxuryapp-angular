@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface ApprovalNode {
   id: string;
@@ -173,16 +174,16 @@ export interface ApprovalNode {
 export class ApprovalWorkflow {
   nodes = input.required<ApprovalNode[]>();
 
-  statusIcon(status: string): string {
+  statusIcon(status: string): AppIconName {
     switch (status) {
       case "approved":
-        return "mdi:check-circle";
+        return "material-symbols-light:cancel";
       case "rejected":
-        return "mdi:close-circle";
+        return "material-symbols-light:cancel";
       case "skip":
-        return "mdi:minus-circle";
+        return "material-symbols-light:do-not-disturb-on";
       default:
-        return "mdi:circle-outline";
+        return "material-symbols-light:do-not-disturb-on";
     }
   }
 

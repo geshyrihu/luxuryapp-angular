@@ -44,15 +44,15 @@
       <div class="col-12 flex gap-2">
         <il-button
           label="Consultar"
-          iconClass="mdi:magnify"
+          iconClass="material-symbols-light:search"
           (clicked)="onLoadStats()"
           size="small"
         />
         <il-button
           label="Excel"
-          iconClass="mdi:file-excel"
+          iconClass="material-symbols-light:table-view"
           severity="success"
-          variant="outlined"
+          variant="outline"
           (clicked)="onExport()"
           size="small"
         />
@@ -166,7 +166,7 @@
           <td class="text-center">
             @if (item.requiresAlert) {
             <app-icon
-              [icon]="'mdi:alert'"
+              [icon]="'material-symbols-light:warning'"
               class="text-danger"
               title="Requiere atención urgente"
             />

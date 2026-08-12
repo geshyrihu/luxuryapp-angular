@@ -18,7 +18,7 @@
       <div tab="view">
         @if (loading()) {
         <div class="org-chart-state">
-          <app-icon [icon]="'mdi:loading'" class="text-primary text-4xl" />
+          <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
         </div>
         } @else if (graphModel().nodes.length === 0) {
         <div class="org-chart-state org-chart-state--empty">
@@ -36,7 +36,7 @@
         </div>
         } @else if (loading()) {
         <div class="org-chart-state">
-          <app-icon [icon]="'mdi:loading'" class="text-primary text-4xl" />
+          <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
         </div>
         } @else {
         <div class="org-chart-toolbar">
@@ -153,7 +153,7 @@
                     [style.padding-left]="getEditorRowIndent(row.depth)"
                   >
                     <span
-                      class="org-editor-node__drag-handle mdi:arrow-expand-all"
+                      class="org-editor-node__drag-handle material-symbols-light:open-in-full"
                       aria-hidden="true"
                     ></span>
                     <span class="org-editor-node__tree-guide"></span>
@@ -404,7 +404,7 @@
       <lx-avatar [image]="node.employeePhoto" shape="circle" size="large" />
       } @else {
       <lx-avatar
-        icon="mdi:briefcase"
+        icon="material-symbols-light:work"
         shape="circle"
         size="large"
         class="surface-300 text-600"

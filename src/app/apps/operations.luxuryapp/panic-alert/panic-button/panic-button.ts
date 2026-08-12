@@ -82,7 +82,7 @@ const COUNTDOWN_SECONDS = 5;
         title="Mantén presionado para activar alerta de pánico"
       >
         <div class="panic-btn__ring" [style.--progress]="holdProgress() + '%'">
-          <app-icon icon="mdi:alert-circle" class="panic-btn__icon" />
+          <app-icon icon="material-symbols-light:error" class="panic-btn__icon" />
         </div>
         @if (isSending()) {
           <span class="panic-btn__label">Enviando...</span>
@@ -99,7 +99,7 @@ const COUNTDOWN_SECONDS = 5;
           (cancel)="onCancelCountdown()"
         >
           <div class="panic-countdown">
-            <app-icon icon="mdi:alert-circle" class="panic-countdown__icon" />
+            <app-icon icon="material-symbols-light:error" class="panic-countdown__icon" />
             <p class="panic-countdown__title">Enviando alerta de pánico en</p>
             <p class="panic-countdown__seconds">{{ countdownSeconds() }}</p>
             <button
