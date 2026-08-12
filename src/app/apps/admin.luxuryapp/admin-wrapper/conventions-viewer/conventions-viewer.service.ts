@@ -451,6 +451,48 @@ import { TagModule } from 'primeng/tag';`,
         'Vuelve repetibles las decisiones de UI y reduce divergencia entre agentes.',
     },
     {
+      id: 'ui-icon-catalog',
+      title: 'Iconos: Material Symbols Light, siempre desde el catalogo',
+      description:
+        'Un solo paquete de iconos (material-symbols-light) y una sola fuente de valores (app-icon.catalog.ts). Un nombre de icono inexistente NO falla: no rompe la compilacion, no avisa por consola, no pone una prueba en rojo. Simplemente no dibuja. En 2026-08-11 se hallaron 606 iconos en blanco en produccion por esa causa. Ojo con PrimeNG: su input icon espera una CLASE CSS, no un identificador de Iconify.',
+      severity: 'CRÍTICA',
+      domain: 'ui',
+      taskTypes: ['implementacion-frontend', 'auditoria', 'documentacion'],
+      technologies: ['Angular', 'CSS'],
+      examples: {
+        angular: {
+          code: `<!-- OK: valor declarado en el catalogo -->
+<app-icon icon="material-symbols-light:add" />
+
+<!-- OK: dentro de PrimeNG va por plantilla, sin el input icon -->
+<p-button label="Agregar">
+  <ng-template #icon>
+    <app-icon icon="material-symbols-light:add" />
+  </ng-template>
+</p-button>
+
+<!-- NO: PrimeNG lo pinta como clase CSS -> span vacio -->
+<p-button icon="material-symbols-light:add" label="Agregar" />
+
+<!-- NO: paquetes retirados -->
+<i class="pi pi-plus"></i>
+<app-icon icon="mdi:plus" />
+
+<!-- NO: nombre inventado, se renderiza vacio y nadie se entera -->
+<app-icon icon="material-symbols-light:file-pdf-box" />`,
+          description:
+            'Alta de icono nuevo: verificar contra el set real de Iconify ANTES de usarlo, dar de alta el concepto en el catalogo, y usarlo desde ahi. Validar con npm run audit:icon-names.',
+        },
+      },
+      relatedRules: ['ui-catalog-first', 'styles-controlled-layer'],
+      sourceDocuments: [
+        'docs/conventions/ui/icon-usage-rule.md',
+        'CONVENTIONS.md',
+      ],
+      importance:
+        'Es la unica regla visual cuyo incumplimiento es invisible para el compilador, para la consola y para las pruebas: solo se ve abriendo la pantalla. Por eso se valida con un gate y no con revision.',
+    },
+    {
       id: 'styles-controlled-layer',
       title: 'src/styles es una capa global controlada',
       description:

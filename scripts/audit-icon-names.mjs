@@ -38,6 +38,16 @@ const PERMITIDOS = new Set([
   // (vacío: hoy todo literal vivo está en el catálogo)
 ]);
 
+// ── Archivos de documentación ─────────────────────────────────────────────
+// Un contraejemplo no es un uso. Estos archivos MUESTRAN la forma prohibida
+// para que se reconozca —`pi pi-plus`, `material-symbols-light:file-pdf-box`—
+// en cadenas que se pintan como texto, no en plantillas que se renderizan.
+// Este gate no sabe distinguir un ejemplo de un uso, así que la exención es
+// explícita y por archivo. No añadas aquí código que sí se ejecuta.
+const DOCUMENTACION = [
+  'src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts',
+];
+
 if (!fs.existsSync(CATALOGO)) {
   console.error(`❌ No se encontró el catálogo en ${CATALOGO}.`);
   process.exit(1);
@@ -74,6 +84,7 @@ let literales = 0;
 for (const archivo of recorrer(RAIZ)) {
   const rel = archivo.replace(/\\/g, '/');
   if (rel === CATALOGO) continue;
+  if (DOCUMENTACION.includes(rel)) continue;
 
   const lineas = fs.readFileSync(archivo, 'utf-8').split('\n');
   lineas.forEach((linea, i) => {
@@ -102,6 +113,7 @@ const PI_PERMITIDO = [
   'src/app/shared/utils/icon-mapping.spec.ts',
   'src/app/shared/ui/buttons/base/base-button.ts', // comentario histórico
   'src/app/shared/ui/buttons/mobile-button-base.ts', // comentario histórico
+  ...DOCUMENTACION,
 ];
 
 const pi = [];

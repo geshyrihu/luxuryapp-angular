@@ -147,6 +147,7 @@ export class TreeTable {
 
   headerTitle = input<string>("");
   headerTemplate = input<boolean>(false);
+  summaryTemplate = input<boolean>(false);
 
   onNodeExpand = output<any>();
   onNodeCollapse = output<any>();
