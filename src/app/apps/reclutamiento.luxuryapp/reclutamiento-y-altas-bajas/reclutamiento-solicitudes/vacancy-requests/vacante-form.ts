@@ -44,10 +44,16 @@ interface RequestEmployeeRegisterListItem {
   nameEmployee?: string | null;
 }
 
-interface VacancyCandidateApplicationListItem {
+interface VacancyCandidateProcessListItem {
   id: string;
+  candidateProcessId?: string | null;
   candidateName: string;
   requestPositionId: string;
+}
+
+interface VacancyCandidateProcessDetail {
+  requestPositionId: string;
+  activeProcesses: VacancyCandidateProcessListItem[];
 }
 
 @Component({
@@ -127,19 +133,19 @@ export class VacanteForm implements OnInit {
     folio: number,
     requestPositionId?: string,
   ): Promise<void> {
-    const applications =
-      await this.apiResponseS.onGetList<VacancyCandidateApplicationListItem[]>(
-        EndpointsReclutamiento.CandidateApplications.list,
-      );
+    if (requestPositionId) {
+      const vacancyDetail =
+        await this.apiResponseS.onGetItem<VacancyCandidateProcessDetail>(
+          `${EndpointsReclutamiento.CandidateProcesses.base}/request-position/${requestPositionId}`,
+          false,
+        );
 
-    if (applications?.length) {
-      const currentApplication = applications.find(
-        (item) => item?.requestPositionId === requestPositionId,
-      );
-
-      if (currentApplication) {
-        this.currentApplicationId.set(currentApplication.id);
-        this.currentCandidateName.set(currentApplication.candidateName ?? "");
+      const currentProcess = vacancyDetail?.activeProcesses?.[0];
+      if (currentProcess) {
+        this.currentApplicationId.set(
+          currentProcess.candidateProcessId ?? currentProcess.id,
+        );
+        this.currentCandidateName.set(currentProcess.candidateName ?? "");
         return;
       }
     }

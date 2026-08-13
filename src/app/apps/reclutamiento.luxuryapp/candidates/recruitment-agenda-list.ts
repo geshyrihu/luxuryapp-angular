@@ -107,7 +107,7 @@ export class RecruitmentAgendaList implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetList<CandidateRecruitmentAgendaItem[]>(
-        EndpointsReclutamiento.CandidateApplications.recruitmentAgenda,
+        EndpointsReclutamiento.CandidateProcesses.recruitmentAgenda,
       )
       .then((result) => {
         if (result) {

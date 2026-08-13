@@ -14,6 +14,15 @@
         <p class="text-xs m-0 text-color-secondary">
           {{ item.activeApplicationsCount }} procesos activos
         </p>
+        @if (item.cvFileName) {
+          <div>
+            <ili-button-view-pdf
+              [url]="item.cvFileUrl"
+              [fileName]="item.cvFileName"
+              label="Ver CV"
+            />
+          </div>
+        }
         <app-mapped-p-tag
           [value]="item.status"
           [options]="candidateStatusOptions"

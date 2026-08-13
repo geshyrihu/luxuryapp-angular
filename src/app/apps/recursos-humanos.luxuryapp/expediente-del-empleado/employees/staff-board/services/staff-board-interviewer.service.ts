@@ -9,14 +9,14 @@ export class StaffBoardInterviewerService {
 
   async getInterviewerView(): Promise<InterviewerApplicationViewDto[]> {
     const result = await this.apiResponseS.onGetList<InterviewerApplicationViewDto[]>(
-      EndpointsReclutamiento.CandidateApplications.interviewerView,
+      EndpointsReclutamiento.CandidateProcesses.interviewerView,
     );
     return result ?? [];
   }
 
   async executeAction(request: InterviewerActionRequest): Promise<boolean> {
     const result = await this.apiResponseS.onPost<boolean>(
-      EndpointsReclutamiento.CandidateApplications.interviewerAction,
+      EndpointsReclutamiento.CandidateProcesses.interviewerAction,
       request,
     );
     return result ?? false;
@@ -25,6 +25,7 @@ export class StaffBoardInterviewerService {
   // Helper para crear request de feedback
   createFeedbackRequest(
     candidateApplicationId: string,
+    candidateProcessId: string | null | undefined,
     reasonId: string,
     comment: string,
     interviewAt?: Date,
@@ -32,6 +33,7 @@ export class StaffBoardInterviewerService {
   ): InterviewerActionRequest {
     return {
       candidateApplicationId,
+      candidateProcessId,
       action: InterviewerActionType.SubmitFeedback,
       reasonId,
       comment,
@@ -41,18 +43,29 @@ export class StaffBoardInterviewerService {
   }
 
   // Helper para crear request de no-show
-  createNoShowRequest(candidateApplicationId: string, comment: string): InterviewerActionRequest {
+  createNoShowRequest(
+    candidateApplicationId: string,
+    candidateProcessId: string | null | undefined,
+    comment: string,
+  ): InterviewerActionRequest {
     return {
       candidateApplicationId,
+      candidateProcessId,
       action: InterviewerActionType.MarkNoShow,
       comment,
     };
   }
 
   // Helper para crear request de rechazo
-  createRejectRequest(candidateApplicationId: string, reasonId: string, comment: string): InterviewerActionRequest {
+  createRejectRequest(
+    candidateApplicationId: string,
+    candidateProcessId: string | null | undefined,
+    reasonId: string,
+    comment: string,
+  ): InterviewerActionRequest {
     return {
       candidateApplicationId,
+      candidateProcessId,
       action: InterviewerActionType.Reject,
       reasonId,
       comment,
@@ -60,9 +73,14 @@ export class StaffBoardInterviewerService {
   }
 
   // Helper para crear request de aprobacion
-  createApproveRequest(candidateApplicationId: string, comment: string): InterviewerActionRequest {
+  createApproveRequest(
+    candidateApplicationId: string,
+    candidateProcessId: string | null | undefined,
+    comment: string,
+  ): InterviewerActionRequest {
     return {
       candidateApplicationId,
+      candidateProcessId,
       action: InterviewerActionType.Approve,
       comment,
     };

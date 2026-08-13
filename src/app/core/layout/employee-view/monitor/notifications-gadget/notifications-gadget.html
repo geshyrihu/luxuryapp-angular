@@ -45,6 +45,12 @@
             {{ notification.message }}
           </p>
         </div>
+        <iw-button-delete
+          class="flex-shrink-0"
+          lxTooltip="Eliminar notificacion"
+          (click)="$event.stopPropagation()"
+          (confirmed)="deleteNotification(notification.id)"
+        />
       </div>
       } @empty {
       <!-- Estado vacóo -->

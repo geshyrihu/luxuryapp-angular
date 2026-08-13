@@ -87,7 +87,7 @@ export class CandidateInterviewPendingList implements OnInit {
     ];
     const tasks = stages.map((stage) =>
       this.apiResponseS.onGetList<CandidateApplicationListItem[]>(
-        EndpointsReclutamiento.CandidateApplications.listByStage(stage),
+        EndpointsReclutamiento.CandidateProcesses.listByStage(stage),
         { page: 1, recordsNumber: 200 },
       ),
     );

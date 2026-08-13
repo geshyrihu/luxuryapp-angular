@@ -6,7 +6,7 @@
   FUNCIONAL y ESTABLE.
 
   Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
-  sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+  sin antes consultar y obtener autorización explícita del Ing. Ricardo Márquez.
 
   Por favor, NO rompan el código.
   ============================================================================
@@ -16,7 +16,7 @@
 } @else {
 <!-- Formulario -->
 <lx-card class="mb-4 shadow-sm border-none">
-<form [formGroup]="supportForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="supportForm" (ngSubmit)="onSubmit()">
     <div class="flex flex-column gap-3">
       <div>
         <custom-input-text-signal
@@ -74,29 +74,25 @@
 <!-- Lista de soportes existentes -->
 @if (budgetProposalItem()?.files && budgetProposalItem()!.files.length > 0) {
 <lx-card class="shadow-sm border-none">
-<ng-template #header>
+  <ng-template #header>
     <div class="px-4 pt-4 font-bold text-lg text-700">Archivos Adjuntos</div>
   </ng-template>
   <lx-listbox
     [options]="budgetProposalItem()!.files"
     optionLabel="fileName"
-    
     styleClass="compact-listbox border-none"
   >
     <ng-template let-file #item>
       <div class="flex justify-content-between align-items-center w-full py-1">
         <div class="flex align-items-center gap-2 overflow-hidden">
-          <app-icon [icon]="'material-symbols-light:picture-as-pdf'" class="text-danger text-xl" />
+          <app-icon
+            [icon]="'material-symbols-light:picture-as-pdf'"
+            class="text-danger text-xl"
+          />
           <span class="text-sm font-medium truncate">{{ file.fileName }}</span>
         </div>
         <div class="flex gap-2">
-          <il-button
-            iconClass="material-symbols-light:visibility-outline"
-            (clicked)="viewPdf(file.fileUrl, file.fileName)"
-            label="Ver"
-            variant="text"
-            severity="info"
-          />
+          <il-button-view-pdf [url]="file.fileUrl" [fileName]="file.fileName" />
           <il-button
             iconClass="material-symbols-light:delete"
             (clicked)="onDeleteFile(file.id)"
@@ -111,7 +107,10 @@
 </lx-card>
 } @else if (budgetProposalItem()) {
 <div class="surface-50 rounded p-4 text-center mt-3">
-  <app-icon [icon]="'material-symbols-light:info'" class="text-4xl text-info mb-2" />
+  <app-icon
+    [icon]="'material-symbols-light:info'"
+    class="text-4xl text-info mb-2"
+  />
   <p class="text-500 italic">No hay archivos adjuntos para esta partida.</p>
 </div>
 } }

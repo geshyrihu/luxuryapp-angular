@@ -22,127 +22,127 @@
 
 // Primario (Azul Profundo #003152) — rampa monocroma H=204, ancla en 700
 // (Plan de Unificación de Color — Ancla única #003152, 2026-08-09)
-$primary-50:   #f0f6f9 !default;
-$primary-100:  #ddeaf4 !default; // primary-container
-$primary-200:  #b6d6ec !default;
-$primary-300:  #80bde5 !default;
-$primary-400:  #37a0e6 !default;
-$primary-500:  #097fce !default;
-$primary-600:  #00568f !default; // primary-light
-$primary-700:  #003152 !default; // primary · ANCLA DE MARCA
-$primary-800:  #00253d !default; // primary-dark
-$primary-900:  #001829 !default;
-$primary-950:  #000c14 !default;
+$primary-50: #f0f6f9 !default;
+$primary-100: #ddeaf4 !default; // primary-container
+$primary-200: #b6d6ec !default;
+$primary-300: #80bde5 !default;
+$primary-400: #37a0e6 !default;
+$primary-500: #097fce !default;
+$primary-600: #00568f !default; // primary-light
+$primary-700: #003152 !default; // primary · ANCLA DE MARCA
+$primary-800: #00253d !default; // primary-dark
+$primary-900: #001829 !default;
+$primary-950: #000c14 !default;
 
 // Secundario (Neutros fríos)
-$secondary-50:   #f8f9fc !default; // surface
-$secondary-100:  #e8eef6 !default; // surface-dim
-$secondary-200:  #e2e8f0 !default; // outline
-$secondary-300:  #c5d0db !default; // outline-strong
-$secondary-400:  #9aacbb !default; // on-surface-tertiary
-$secondary-500:  #75899c !default;
-$secondary-600:  #5a6878 !default; // on-surface-secondary
-$secondary-700:  #3b4a59 !default;
-$secondary-800:  #1a2634 !default; // on-surface
-$secondary-900:  #0d141c !default;
-$secondary-950:  #060a0f !default;
+$secondary-50: #f8f9fc !default; // surface
+$secondary-100: #e8eef6 !default; // surface-dim
+$secondary-200: #e2e8f0 !default; // outline
+$secondary-300: #c5d0db !default; // outline-strong
+$secondary-400: #9aacbb !default; // on-surface-tertiary
+$secondary-500: #75899c !default;
+$secondary-600: #5a6878 !default; // on-surface-secondary
+$secondary-700: #3b4a59 !default;
+$secondary-800: #1a2634 !default; // on-surface
+$secondary-900: #0d141c !default;
+$secondary-950: #060a0f !default;
 
 // Success (Esmeralda)
-$success-50:   #f0fcf7 !default;
-$success-100:  #e6f7f0 !default; // success-container
-$success-200:  #bcf0d9 !default;
-$success-300:  #8ce3c1 !default;
-$success-400:  #53d4a6 !default;
-$success-500:  #2abf8e !default;
-$success-600:  #1e9b6d !default; // success / secondary-emerald
-$success-700:  #157a55 !default;
-$success-800:  #0d5e3f !default; // on-success-container
-$success-900:  #08402a !default;
-$success-950:  #042417 !default;
+$success-50: #f0fcf7 !default;
+$success-100: #e6f7f0 !default; // success-container
+$success-200: #bcf0d9 !default;
+$success-300: #8ce3c1 !default;
+$success-400: #53d4a6 !default;
+$success-500: #2abf8e !default;
+$success-600: #1e9b6d !default; // success / secondary-emerald
+$success-700: #157a55 !default;
+$success-800: #0d5e3f !default; // on-success-container
+$success-900: #08402a !default;
+$success-950: #042417 !default;
 
 // Warning (Oro)
-$warning-50:   #fdfcf7 !default;
-$warning-100:  #fcf3e0 !default; // warning-container
-$warning-200:  #f8e5b6 !default;
-$warning-300:  #f3d58a !default;
-$warning-400:  #efc45d !default;
-$warning-500:  #e8b233 !default;
-$warning-600:  #d4a74a !default; // warning / secondary-gold
-$warning-700:  #a88132 !default;
-$warning-800:  #7a5e15 !default; // on-warning-container
-$warning-900:  #523c0b !default;
-$warning-950:  #2b1f04 !default;
+$warning-50: #fdfcf7 !default;
+$warning-100: #fcf3e0 !default; // warning-container
+$warning-200: #f8e5b6 !default;
+$warning-300: #f3d58a !default;
+$warning-400: #efc45d !default;
+$warning-500: #e8b233 !default;
+$warning-600: #d4a74a !default; // warning / secondary-gold
+$warning-700: #a88132 !default;
+$warning-800: #7a5e15 !default; // on-warning-container
+$warning-900: #523c0b !default;
+$warning-950: #2b1f04 !default;
 
 // Danger (Carmesí)
-$danger-50:   #fefafa !default;
-$danger-100:  #fde8e8 !default; // error-container
-$danger-200:  #fac7c7 !default;
-$danger-300:  #f5a3a3 !default;
-$danger-400:  #f07a7a !default;
-$danger-500:  #ea5454 !default;
-$danger-600:  #d34b4b !default; // error / secondary-crimson
-$danger-700:  #a63939 !default;
-$danger-800:  #8a1f1f !default; // on-error-container
-$danger-900:  #5c1111 !default;
-$danger-950:  #330707 !default;
+$danger-50: #fefafa !default;
+$danger-100: #fde8e8 !default; // error-container
+$danger-200: #fac7c7 !default;
+$danger-300: #f5a3a3 !default;
+$danger-400: #f07a7a !default;
+$danger-500: #ea5454 !default;
+$danger-600: #d34b4b !default; // error / secondary-crimson
+$danger-700: #a63939 !default;
+$danger-800: #8a1f1f !default; // on-error-container
+$danger-900: #5c1111 !default;
+$danger-950: #330707 !default;
 
 // Info (Cian)
-$info-50:   #f4f9fe !default;
-$info-100:  #e8eef6 !default; // info-container
-$info-200:  #c2dbf6 !default;
-$info-300:  #9bc8f3 !default;
-$info-400:  #72b3ef !default;
-$info-500:  #4a90e2 !default; // info / secondary-cyan
-$info-600:  #3678c2 !default;
-$info-700:  #245fa1 !default;
-$info-800:  #1b365d !default; // on-info-container
-$info-900:  #0d223f !default;
-$info-950:  #061121 !default;
+$info-50: #f4f9fe !default;
+$info-100: #e8eef6 !default; // info-container
+$info-200: #c2dbf6 !default;
+$info-300: #9bc8f3 !default;
+$info-400: #72b3ef !default;
+$info-500: #4a90e2 !default; // info / secondary-cyan
+$info-600: #3678c2 !default;
+$info-700: #245fa1 !default;
+$info-800: #1b365d !default; // on-info-container
+$info-900: #0d223f !default;
+$info-950: #061121 !default;
 
 // Help (Mismo que Info)
-$help-50:   $info-50 !default;
-$help-100:  $info-100 !default;
-$help-200:  $info-200 !default;
-$help-300:  $info-300 !default;
-$help-400:  $info-400 !default;
-$help-500:  $info-500 !default;
-$help-600:  $info-600 !default;
-$help-700:  $info-700 !default;
-$help-800:  $info-800 !default;
-$help-900:  $info-900 !default;
-$help-950:  $info-950 !default;
+$help-50: $info-50 !default;
+$help-100: $info-100 !default;
+$help-200: $info-200 !default;
+$help-300: $info-300 !default;
+$help-400: $info-400 !default;
+$help-500: $info-500 !default;
+$help-600: $info-600 !default;
+$help-700: $info-700 !default;
+$help-800: $info-800 !default;
+$help-900: $info-900 !default;
+$help-950: $info-950 !default;
 
 // Terciario (Cyan)
-$tertiary-50:   $info-50 !default;
-$tertiary-100:  $info-100 !default;
-$tertiary-200:  $info-200 !default;
-$tertiary-300:  $info-300 !default;
-$tertiary-400:  $info-400 !default;
-$tertiary-500:  $info-500 !default;
-$tertiary-600:  $info-600 !default;
-$tertiary-700:  $info-700 !default;
-$tertiary-800:  $info-800 !default;
-$tertiary-900:  $info-900 !default;
-$tertiary-950:  $info-950 !default;
+$tertiary-50: $info-50 !default;
+$tertiary-100: $info-100 !default;
+$tertiary-200: $info-200 !default;
+$tertiary-300: $info-300 !default;
+$tertiary-400: $info-400 !default;
+$tertiary-500: $info-500 !default;
+$tertiary-600: $info-600 !default;
+$tertiary-700: $info-700 !default;
+$tertiary-800: $info-800 !default;
+$tertiary-900: $info-900 !default;
+$tertiary-950: $info-950 !default;
 
 // Contrast (Negro/Blanco)
-$contrast-0:   #ffffff !default;
+$contrast-0: #ffffff !default;
 $contrast-500: #1a2634 !default;
 $contrast-900: #0d141c !default;
 
 // Neutral (Escala de grises)
-$neutral-0:    #ffffff !default;
-$neutral-50:   #f8f9fc !default;
-$neutral-100:  #e8eef6 !default;
-$neutral-200:  #e2e8f0 !default;
-$neutral-300:  #c5d0db !default;
-$neutral-400:  #9aacbb !default;
-$neutral-500:  #75899c !default;
-$neutral-600:  #5a6878 !default;
-$neutral-700:  #3b4a59 !default;
-$neutral-800:  #1a2634 !default;
-$neutral-900:  #0d141c !default;
-$neutral-950:  #060a0f !default;
+$neutral-0: #ffffff !default;
+$neutral-50: #f8f9fc !default;
+$neutral-100: #e8eef6 !default;
+$neutral-200: #e2e8f0 !default;
+$neutral-300: #c5d0db !default;
+$neutral-400: #9aacbb !default;
+$neutral-500: #75899c !default;
+$neutral-600: #5a6878 !default;
+$neutral-700: #3b4a59 !default;
+$neutral-800: #1a2634 !default;
+$neutral-900: #0d141c !default;
+$neutral-950: #060a0f !default;
 $neutral-1000: #000000 !default;
 
 // ── COLORES SEMÁNTICOS ────────────────────────────────────────
@@ -150,72 +150,71 @@ $neutral-1000: #000000 !default;
 // Se definen en _light.scss y _dark.scss como variables CSS
 
 // Texto
-$color-text-primary:    $neutral-800  !default;
-$color-text-secondary:  $neutral-600  !default;
-$color-text-muted:      $neutral-400  !default;
-$color-text-inverse:    $neutral-0      !default;
-$color-text-disabled:   $neutral-300  !default;
-$color-text-link:       $primary-600    !default;
-$color-text-link-hover: $primary-700    !default;
+$color-text-primary: $neutral-800 !default;
+$color-text-secondary: $neutral-600 !default;
+$color-text-muted: $neutral-400 !default;
+$color-text-inverse: $neutral-0 !default;
+$color-text-disabled: $neutral-300 !default;
+$color-text-link: $primary-600 !default;
+$color-text-link-hover: $primary-700 !default;
 
 // Fondos
-$color-bg-page:       $neutral-50      !default;
-$color-bg-surface:    $neutral-0       !default;
-$color-bg-elevated:   $neutral-0       !default;
-$color-bg-sunken:     $neutral-100    !default;
-$color-bg-overlay:    rgba(27, 54, 93, 0.45)  !default;
+$color-bg-page: $neutral-50 !default;
+$color-bg-surface: $neutral-0 !default;
+$color-bg-elevated: $neutral-0 !default;
+$color-bg-sunken: $neutral-100 !default;
+$color-bg-overlay: rgba(27, 54, 93, 0.45) !default;
 
 // Bordes
-$color-border-default: $neutral-200  !default;
-$color-border-strong:  $neutral-300  !default;
-$color-border-focus:   $primary-500    !default;
-$color-border-error:   $danger-600     !default;
-$color-border-success: $success-600    !default;
+$color-border-default: $neutral-200 !default;
+$color-border-strong: $neutral-300 !default;
+$color-border-focus: $primary-500 !default;
+$color-border-error: $danger-600 !default;
+$color-border-success: $success-600 !default;
 
 // Estados interactivos — Primario
-$color-primary:            $primary-700   !default;
-$color-primary-hover:      $primary-800   !default;
-$color-primary-active:     $primary-900   !default;
-$color-primary-light:      $primary-100    !default;
-$color-primary-text:       $neutral-0     !default;
+$color-primary: $primary-700 !default;
+$color-primary-hover: $primary-800 !default;
+$color-primary-active: $primary-900 !default;
+$color-primary-light: $primary-100 !default;
+$color-primary-text: $neutral-0 !default;
 
 // Estados interactivos — Danger
-$color-danger:             $danger-600    !default;
-$color-danger-hover:       $danger-700    !default;
-$color-danger-active:      $danger-800    !default;
-$color-danger-light:       $danger-50     !default;
+$color-danger: $danger-600 !default;
+$color-danger-hover: $danger-700 !default;
+$color-danger-active: $danger-800 !default;
+$color-danger-light: $danger-50 !default;
 
 // Estados interactivos — Success
-$color-success:            $success-600   !default;
-$color-success-hover:      $success-700   !default;
-$color-success-light:      $success-50    !default;
+$color-success: $success-600 !default;
+$color-success-hover: $success-700 !default;
+$color-success-light: $success-50 !default;
 
 // Estados interactivos — Warning
-$color-warning:            $warning-500   !default;
-$color-warning-hover:      $warning-600   !default;
-$color-warning-light:      $warning-50    !default;
+$color-warning: $warning-500 !default;
+$color-warning-hover: $warning-600 !default;
+$color-warning-light: $warning-50 !default;
 
 // Estados interactivos — Info
-$color-info:               $info-600      !default;
-$color-info-hover:         $info-700      !default;
-$color-info-light:         $info-50       !default;
+$color-info: $info-600 !default;
+$color-info-hover: $info-700 !default;
+$color-info-light: $info-50 !default;
 
 // Estados interactivos — Help
-$color-help:               $help-600      !default;
-$color-help-hover:         $help-700      !default;
-$color-help-light:         $help-50       !default;
+$color-help: $help-600 !default;
+$color-help-hover: $help-700 !default;
+$color-help-light: $help-50 !default;
 
 // Estados interactivos — Contrast
-$color-contrast:           $neutral-950   !default;
-$color-contrast-hover:     $neutral-900   !default;
-$color-contrast-light:     $neutral-100   !default;
-$color-contrast-text:      $neutral-0     !default;
+$color-contrast: $neutral-950 !default;
+$color-contrast-hover: $neutral-900 !default;
+$color-contrast-light: $neutral-100 !default;
+$color-contrast-text: $neutral-0 !default;
 
 // NOTA: Los CSS Custom Properties (--ds-*, --p-*) se generan en:
 //   theme/_variables.scss -> --primary-50..950, --ds-*, --ion-*, --z-*
 //   prime-overrides/_prime-tokens.scss -> --p-* bridge de PrimeNG
 // Este archivo solo define SCSS variables para uso en componentes via @use.
-
 
 // ── DECISIONES VISUALES DE MARCA ─────────────────────────────
 // Estos NO son escalas de color — son elecciones puntuales de diseño
@@ -223,41 +222,40 @@ $color-contrast-text:      $neutral-0     !default;
 // Al estar aquí, cambiarlos propaga el cambio a toda la app.
 
 // Layout
-$sidebar-bg:          #ffffff !default;
-$header-bg:           #ffffff !default;
-$sidebar-bg-dark:     $primary-800 !default;
-$header-bg-dark:      $primary-800 !default;
+$sidebar-bg: #ffffff !default;
+$header-bg: #ffffff !default;
+$sidebar-bg-dark: $primary-800 !default;
+$header-bg-dark: $primary-800 !default;
 
 // Semánticos de estado (brand-level, no escala)
 $color-success-brand: $success-600 !default;
-$color-success-bg:    $success-100 !default;
+$color-success-bg: $success-100 !default;
 $color-warning-brand: $warning-600 !default;
-$color-warning-bg:    $warning-100 !default;
-$color-danger-brand:  $danger-600 !default;
-$color-danger-bg:     $danger-100 !default;
+$color-warning-bg: $warning-100 !default;
+$color-danger-brand: $danger-600 !default;
+$color-danger-bg: $danger-100 !default;
 
 // ── TOKENS NUEVOS (Sprint 2 · T2.1) ──────────────────────────
 // Fondos de superficie e identidad de consola embebida.
-$ds-bg-muted:        $secondary-100 !default;
-$ds-bg-hover:        $secondary-50 !default;
-$ds-bg-input:        $neutral-0 !default;
-$ds-bg-primary:      $neutral-0 !default;
-$ds-bg-inverse:      $secondary-800 !default;
+$ds-bg-muted: $secondary-100 !default;
+$ds-bg-hover: $secondary-50 !default;
+$ds-bg-input: $neutral-0 !default;
+$ds-bg-primary: $neutral-0 !default;
+$ds-bg-inverse: $secondary-800 !default;
 $ds-secondary-light: $warning-100 !default;
 // Consola embebida (mobile/terminal): identidad fuera de paleta — excepción
 // documentada (RN-DS-007 / T2.1). Light usa la escala neutra; dark usa los
 // literales de la identidad de la terminal (Catppuccin-like).
-$ds-bg-terminal:     $secondary-900 !default;
-$ds-text-terminal:   $secondary-100 !default;
-
+$ds-bg-terminal: $secondary-900 !default;
+$ds-text-terminal: $secondary-100 !default;
 
 // Auth panel (login/recovery/reset) — fondo azul semitransparente
-$color-auth-panel-bg: #0B3164 !default;
+$color-auth-panel-bg: #0b3164 !default;
 
 // Budget
-$color-budget-bg:     #fff3e0 !default;
-$color-budget-text:   inherit  !default;
-$color-budget-bg-dark:  #78350f !default;
+$color-budget-bg: #fff3e0 !default;
+$color-budget-text: inherit !default;
+$color-budget-bg-dark: #78350f !default;
 $color-budget-text-dark: #ffffff !default;
 
 // ── SUPERFICIES DARK MODE (PrimeNG) ─────────────────────────
@@ -265,8 +263,8 @@ $color-budget-text-dark: #ffffff !default;
 // Rampa monocroma H=204, estrictamente monótona (decreciente en luminancia),
 // sin escalones duplicados (RN-DS-014). 0 = texto → 950 = form-field.
 // (Plan de Unificación de Color — Ancla única #003152, 2026-08-09)
-$surface-dark-0:   #eaeef0 !default; // on-surface / texto
-$surface-dark-50:  #ced8de !default;
+$surface-dark-0: #eaeef0 !default; // on-surface / texto
+$surface-dark-50: #ced8de !default;
 $surface-dark-100: #a8bbc7 !default; // on-surface-variant
 $surface-dark-200: #7a99ae !default; // outline
 $surface-dark-300: #557991 !default; // outline-strong
@@ -279,24 +277,20 @@ $surface-dark-900: #02131f !default; // content / bg
 $surface-dark-950: #000b12 !default; // form-field
 
 // ── SUPERFICIES M3 (ERP Premium) ──────────────────────
-$m3-surface:                    #ffffff !default;
-$m3-surface-dim:                $primary-100 !default;
-$m3-surface-bright:             #ffffff !default;
-$m3-surface-container-lowest:   #ffffff !default;
-$m3-surface-container-low:      #ffffff !default;
-$m3-surface-container:          $primary-100 !default;
-$m3-surface-container-high:     $secondary-200 !default;
-$m3-surface-container-highest:  $secondary-300 !default;
-$m3-on-surface:                 $secondary-800 !default;
-$m3-on-surface-variant:         $secondary-600 !default;
-$m3-inverse-surface:            $primary-800 !default;
-$m3-inverse-on-surface:         $primary-50 !default;
-$m3-outline:                    $secondary-200 !default;
-$m3-outline-variant:            $secondary-300 !default;
-$m3-surface-variant:            $primary-100 !default;
-$m3-background:                 $primary-50 !default;
-$m3-on-background:              $secondary-800 !default;
-
-
-
-
+$m3-surface: #ffffff !default;
+$m3-surface-dim: $primary-100 !default;
+$m3-surface-bright: #ffffff !default;
+$m3-surface-container-lowest: #ffffff !default;
+$m3-surface-container-low: #ffffff !default;
+$m3-surface-container: $primary-100 !default;
+$m3-surface-container-high: $secondary-200 !default;
+$m3-surface-container-highest: $secondary-300 !default;
+$m3-on-surface: $secondary-800 !default;
+$m3-on-surface-variant: $secondary-600 !default;
+$m3-inverse-surface: $primary-800 !default;
+$m3-inverse-on-surface: $primary-50 !default;
+$m3-outline: $secondary-200 !default;
+$m3-outline-variant: $secondary-300 !default;
+$m3-surface-variant: $primary-100 !default;
+$m3-background: $primary-50 !default;
+$m3-on-background: $secondary-800 !default;

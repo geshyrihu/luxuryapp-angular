@@ -15,7 +15,6 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -53,7 +52,7 @@ export class CandidateStageChangeModal implements OnInit {
     CandidateApplicationStage.EntrevistaOperaciones;
   id: string = this.config.data.id;
   fromStage: CandidateApplicationStage = this.config.data.fromStage;
-  customerId: string = this.config.data.customerId;
+  requestPositionId: string = this.config.data.requestPositionId;
   cb_targetStages = signal<SelectItemDto[]>([]);
   cb_interviewers = signal<SelectItemDto[]>([]);
 
@@ -150,13 +149,15 @@ export class CandidateStageChangeModal implements OnInit {
   }
 
   async onLoadInterviewers(): Promise<void> {
-    if (!this.customerId || this.cb_interviewers().length > 0) return;
+    if (!this.requestPositionId || this.cb_interviewers().length > 0) return;
     this.loadingInterviewers.set(true);
     try {
-      const interviewers = await this.apiResponseS.onGetSelectItem<
+      const interviewers = await this.apiResponseS.onGetItem<
         SelectItemDto[]
       >(
-        Endpoints.SelectItems.operationsInterviewersByCustomer(this.customerId),
+        EndpointsReclutamiento.InterviewerMatrix.eligibleInterviewersByRequestPosition(
+          this.requestPositionId,
+        ),
       );
       if (interviewers) {
         this.cb_interviewers.set(interviewers);
@@ -185,7 +186,7 @@ export class CandidateStageChangeModal implements OnInit {
     this.submitting.set(true);
     try {
       const result = await this.apiResponseS.onPost<boolean>(
-        EndpointsReclutamiento.CandidateApplications.changeStage(this.id),
+        EndpointsReclutamiento.CandidateProcesses.changeStage(this.id),
         payload,
       );
       if (result) {

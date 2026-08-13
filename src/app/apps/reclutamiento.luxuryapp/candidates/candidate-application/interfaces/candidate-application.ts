@@ -3,6 +3,7 @@ import { CandidateDecision } from "src/app/core/enums/candidate-decision";
 
 export interface CandidateApplicationListItem {
   id: string;
+  candidateProcessId?: string | null;
   candidateId: string;
   candidateName: string;
   requestPositionId: string;
@@ -72,6 +73,7 @@ export interface CandidateApplicationAddOrEdit {
   cvFileName: string;
   applicationDate?: string;
   recruitmentInterviewAt?: string;
+  operationsInterviewAssignedToUserId?: string;
   initialComment?: string;
 }
 

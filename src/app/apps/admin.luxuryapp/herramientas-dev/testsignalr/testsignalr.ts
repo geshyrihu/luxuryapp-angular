@@ -39,6 +39,7 @@ export class Testsignalr implements OnInit {
   titleControl = new FormControl("Tútulo de prueba");
   messageControl = new FormControl("Mensaje de prueba desde Angular");
   routeControl = new FormControl("/ruta/prueba");
+  phoneControl = new FormControl("");
 
   async ngOnInit(): Promise<void> {
     await this.onLoadUsers();
@@ -116,6 +117,23 @@ export class Testsignalr implements OnInit {
     );
 
     alert("Push enviada (OneSignal Web). Revisa el resultado en la respuesta.");
+    console.log(result);
+  }
+
+  async sendWhatsAppToUser(): Promise<void> {
+    if (!this.phoneControl.value) return;
+
+    const body = {
+      title: this.titleControl.value,
+      phone: this.phoneControl.value,
+    };
+
+    const result: any = await this.apiResponseS.onPost(
+      Endpoints.NotificationDiagnostics.testWhatsApp,
+      body,
+    );
+
+    alert("WhatsApp enviado. Revisa tu consola y celular.");
     console.log(result);
   }
 }

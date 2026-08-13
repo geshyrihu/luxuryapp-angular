@@ -1,9 +1,9 @@
 <div class="card p-3 mb-4">
   <div class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3">
     <div>
-      <h2 class="m-0 font-semibold text-xl">Cola de entrevistas y seguimiento</h2>
+      <h2 class="m-0 font-semibold text-xl">Mis vacantes y entrevistas</h2>
       <p class="m-0 text-sm text-color-secondary">
-        Vacantes del customer en contexto con candidatos pendientes e historico de seguimiento.
+        Vacantes abiertas relacionadas contigo como entrevistador y entrevistas agendadas para dar seguimiento.
       </p>
     </div>
     <div class="flex flex-wrap gap-2">
@@ -22,7 +22,7 @@
     <div class="card p-3 h-full">
       <small class="text-color-secondary block mb-1">Vacantes</small>
       <div class="text-2xl font-semibold">{{ totalVacancies() }}</div>
-      <small class="text-color-secondary">{{ totalCandidates() }} candidatos relacionados</small>
+      <small class="text-color-secondary">{{ totalCandidates() }} entrevistas relacionadas</small>
     </div>
   </div>
   <div class="col-12 md:col-6 xl:col-3">
@@ -92,7 +92,7 @@
       <input
         type="text"
         class="w-full p-inputtext p-component"
-        placeholder="Buscar por vacante, candidato, cliente, entrevistador..."
+        placeholder="Buscar por vacante, candidato o estado..."
         [value]="searchTerm()"
         (input)="onSearchInput($event)"
       />
@@ -102,13 +102,13 @@
 
 @if (loading()) {
 <div class="card p-4 text-center text-color-secondary">
-  Cargando entrevistas y seguimientos...
+  Cargando vacantes y entrevistas del entrevistador...
 </div>
 } @else if (filteredVacancies().length === 0) {
 <div class="card p-4 text-center">
-  <div class="text-lg font-semibold mb-2">Sin resultados</div>
+  <div class="text-lg font-semibold mb-2">Sin entrevistas asignadas</div>
   <div class="text-color-secondary">
-    No se encontraron vacantes o candidatos con los filtros aplicados.
+    No se encontraron vacantes con entrevistas programadas o activas para este entrevistador.
   </div>
 </div>
 } @else {
@@ -130,22 +130,12 @@
               <span>Pendientes: {{ vacancy.pendingCandidatesCount }}</span>
               <span>Vencidas: {{ vacancy.overdueCandidatesCount }}</span>
               @if (vacancy.nextInterviewAt) {
-              <span>
-                Proxima cita: {{ vacancy.nextInterviewAt | date:'dd/MM/yyyy HH:mm' }}
-              </span>
+              <span>Proxima cita: {{ vacancy.nextInterviewAt | date:'dd/MM/yyyy HH:mm' }}</span>
               }
             </div>
           </div>
         </div>
 
-        @if (vacancy.filteredCandidates.length === 0) {
-        <div class="border-1 border-dashed surface-border border-round p-4 bg-surface-50">
-          <div class="font-semibold mb-2">Sin candidatos postulados</div>
-          <div class="text-sm text-color-secondary">
-            Esta vacante sigue activa para el customer en contexto, pero todavia no tiene candidatos visibles en seguimiento.
-          </div>
-        </div>
-        } @else {
         <div class="flex flex-column gap-2">
           @for (candidate of vacancy.filteredCandidates; track candidate.candidateApplicationId) {
           <div
@@ -169,7 +159,7 @@
 
                 <div class="grid text-sm">
                   <div class="col-12 md:col-6">
-                    <small class="text-color-secondary block">Junta</small>
+                    <small class="text-color-secondary block">Entrevista agendada</small>
                     <div class="font-medium">
                       {{ candidate.operationsInterviewAt ? (candidate.operationsInterviewAt | date:'dd/MM/yyyy HH:mm') : 'Sin fecha programada' }}
                     </div>
@@ -205,13 +195,6 @@
                   size="small"
                   (clicked)="selectCandidate(candidate)"
                 />
-                <il-button
-                  label="Seguimiento"
-                  iconClass="material-symbols-light:timeline"
-                  severity="secondary"
-                  size="small"
-                  (clicked)="navigateToApplicationDetail(candidate.candidateApplicationId)"
-                />
                 @if (!candidate.isHistorical) {
                 <il-button
                   label="Responder entrevista"
@@ -226,7 +209,6 @@
           </div>
           }
         </div>
-        }
       </div>
       }
     </div>
@@ -263,7 +245,7 @@
           <div class="font-medium">{{ selectedCandidate()?.customerName }}</div>
         </div>
         <div class="col-12">
-          <small class="text-color-secondary block">Fecha y hora de junta</small>
+          <small class="text-color-secondary block">Fecha y hora de entrevista</small>
           <div class="font-medium">
             {{ selectedCandidate()?.operationsInterviewAt ? (selectedCandidate()?.operationsInterviewAt | date:'dd/MM/yyyy HH:mm') : 'Pendiente de programacion' }}
           </div>
@@ -299,24 +281,18 @@
           severity="danger"
           variant="outline"
         />
-        <il-button
-          label="Ver seguimiento"
-          iconClass="material-symbols-light:timeline"
-          severity="secondary"
-          (clicked)="navigateToApplicationDetail(selectedCandidate()!.candidateApplicationId)"
-        />
       </div>
 
       @if (!selectedCandidate()?.isHistorical) {
       <div class="mt-4 pt-3 border-top-1 surface-border">
         <div class="font-semibold mb-2">Acciones del entrevistador</div>
         <div class="flex flex-wrap gap-2">
-        <il-button
-          label="Responder"
-          iconClass="material-symbols-light:more"
-          severity="primary"
-          (clicked)="navigateToQueueResponse(selectedCandidate()!)"
-        />
+          <il-button
+            label="Responder"
+            iconClass="material-symbols-light:more"
+            severity="primary"
+            (clicked)="navigateToQueueResponse(selectedCandidate()!)"
+          />
           @if (selectedCandidate()?.canSubmitFeedback) {
           <il-button
             label="Feedback"
@@ -346,9 +322,9 @@
       }
       } @else {
       <div class="text-center py-6">
-        <div class="text-lg font-semibold mb-2">Selecciona un candidato</div>
+        <div class="text-lg font-semibold mb-2">Selecciona una entrevista</div>
         <div class="text-color-secondary">
-          Cuando la vacante tenga candidatos visibles en seguimiento, aqui podras revisar su junta, CV y acciones disponibles.
+          Aqui podras revisar la vacante, el CV y las acciones disponibles del candidato asignado.
         </div>
       </div>
       }

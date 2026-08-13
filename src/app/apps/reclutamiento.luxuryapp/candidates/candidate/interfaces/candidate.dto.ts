@@ -11,6 +11,8 @@ export interface CandidateListItem {
   email: string;
   status: CandidateStatus;
   activeApplicationsCount: number;
+  cvFileName: string;
+  cvFileUrl: string;
   lastUpdatedAt?: string;
 }
 

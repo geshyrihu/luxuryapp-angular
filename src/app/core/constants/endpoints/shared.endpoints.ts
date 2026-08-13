@@ -21,6 +21,8 @@ export const EndpointsShared = {
     getAll: "notifications",
     markAsRead: (notificationId: string) =>
       `notifications/mark-as-read/${notificationId}`,
+    delete: (notificationId: string) => `notifications/${notificationId}`,
+    deleteRange: "notifications",
     unreadCount: "notifications/unread-count",
   },
   Banks: {

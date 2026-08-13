@@ -77,10 +77,10 @@ export class CandidateApplicationList implements OnInit {
       : { page: 1, recordsNumber: 200 };
 
     const endpoint = this.activeStage() !== null
-      ? EndpointsReclutamiento.CandidateApplications.listByStage(
+      ? EndpointsReclutamiento.CandidateProcesses.listByStage(
           this.activeStage()!,
         )
-      : EndpointsReclutamiento.CandidateApplications.list;
+      : EndpointsReclutamiento.CandidateProcesses.list;
 
     this.apiResponseS
       .onGetList<CandidateApplicationListItem[]>(endpoint, query)
@@ -113,6 +113,7 @@ export class CandidateApplicationList implements OnInit {
     id: string;
     fromStage: CandidateApplicationStage;
     customerId: string;
+    requestPositionId: string;
   }) {
     this.dialogHandlerS
       .openDialog(

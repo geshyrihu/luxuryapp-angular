@@ -857,6 +857,36 @@ public record ReportFilterDTO { ... }     // ← PROHIBIDO
         'Cumplimiento obligatorio en toda auditoría. Violación = Hallazgo CRÍTICO. Refactorizar en 1-2 sprints.',
     },
     {
+      id: 'backend-multipart-fromform',
+      title: 'Endpoints multipart/form-data exigen [FromForm] (HTTP 415)',
+      description:
+        'Todo endpoint Minimal API cuyo DTO reciba archivos (IFormFile) debe declarar [FromForm] en el parámetro DTO y usar .DisableAntiforgery(). Sin [FromForm], ASP.NET Core asume cuerpo JSON y responde 415 Unsupported Media Type (content-length: 0) aunque el multipart enviado por el frontend este bien formado. [FromBody] = JSON; [FromForm] = multipart. El frontend nunca fija Content-Type manual al enviar FormData (el navegador agrega el boundary). Diagnóstico rapido: 415 con content-length 0 en POST/PUT multipart == endpoint sin [FromForm]. Caso real 2026-08-12: módulo RecepcionPipasAgua, subida de fotos fallaba por esto; fix replicando el patrón de TasksEndpoints.cs.',
+      severity: 'CRÍTICA',
+      domain: 'backend',
+      taskTypes: ['implementacion-backend', 'auditoria'],
+      technologies: ['.NET', 'C#'],
+      examples: {
+        dotnet: {
+          code: `// ✅ CORRECTO (patrón vigente en TasksEndpoints.cs)
+group.MapPost("", async ([FromForm] RecepcionPipaAguaAddDTO DTO, IRecepcionPipasAguaAppService appService) =>
+    TypedResults.Ok(await appService.AddAsync(DTO)))
+    .DisableAntiforgery();
+
+// ❌ PROHIBIDO → responde 415 al recibir FormData
+group.MapPost("", async (RecepcionPipaAguaAddDTO DTO, IRecepcionPipasAguaAppService appService) => ...);`,
+          description:
+            'Endpoint con IFormFile sin [FromForm] = 415 Unsupported Media Type. Auditoría: hallazgo CRÍTICO.',
+        },
+      },
+      sourceDocuments: [
+        'docs/conventions/backend/backend-rules.md',
+        'docs/conventions/backend/document-read-write-pattern.md',
+        'CONVENTIONS.md §6.1',
+      ],
+      importance:
+        'Evita el 415 en subidas de archivos/imágenes. Revisar todo MapPost/MapPut con DTO de IFormFile.',
+    },
+    {
       id: 'operations-fase-0-mandatory',
       title: 'FASE 0: Business Rules Discovery es obligatoria antes de cualquier plan',
       description:

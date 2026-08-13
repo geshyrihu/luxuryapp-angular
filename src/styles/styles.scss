@@ -16,7 +16,7 @@
    El preset de PrimeNG se inyecta en runtime dentro de @layer primeng/primevue.
    Los estilos UNLAYERED ganan sobre cualquier capa (intencional en
    _dark-mode.scss y en los overrides web/_prime-*.scss). */
-@layer reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides;
+@layer ionic, reset, tokens, primeng, primevue, primeng-brand, base, components, utilities, overrides;
 
 /* 1. VARIABLES & TOKENS */
 @layer tokens {
@@ -49,14 +49,24 @@
 @import "shared/toast";
 @import "mobile/header-mobile";
 
-/* 📱 CORE IONIC CSS */
-@import "@ionic/angular/css/core.css";
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/flex-utils.css";
-@import "@ionic/angular/css/display.css";
+/* 📱 CORE IONIC CSS
+   Van en `layer(ionic)`, la capa de MENOR prioridad (ver el orden arriba).
+   Motivo: `core.css` declara `:root { --ion-color-primary: #0054e9 }`. Sin
+   capa, esa declaración queda UNLAYERED y gana a todo lo que esté en una capa
+   —incluido nuestro puente `--ion-color-primary: #003152` de @layer tokens—,
+   sin importar el orden ni la especificidad. Era la causa de que la vista
+   móvil pintara el azul de Ionic en lugar del ancla de marca (2026-08-12).
+
+   Se usa la sintaxis `@import … layer(nombre)` de CSS porque Sass no incrusta
+   estos archivos: los emite como @import planos y los eleva al inicio, así que
+   envolverlos en un bloque `@layer { }` no funcionaría. */
+@import "@ionic/angular/css/core.css" layer(ionic);
+@import "@ionic/angular/css/normalize.css" layer(ionic);
+@import "@ionic/angular/css/structure.css" layer(ionic);
+@import "@ionic/angular/css/typography.css" layer(ionic);
+@import "@ionic/angular/css/padding.css" layer(ionic);
+@import "@ionic/angular/css/flex-utils.css" layer(ionic);
+@import "@ionic/angular/css/display.css" layer(ionic);
 
 /* Override Ionic structure.css — body debe hacer scroll */
 body {

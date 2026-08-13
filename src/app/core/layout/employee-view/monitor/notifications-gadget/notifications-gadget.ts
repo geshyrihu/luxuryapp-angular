@@ -10,6 +10,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon";
 import { DrawerModule } from "primeng/drawer";
 import { OverlayBadge } from "primeng/overlaybadge";
 import { ScrollPanelModule } from "primeng/scrollpanel";
@@ -29,6 +30,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     LxTooltipDirective,
     ScrollPanelModule,
     WebButtonLabel,
+    WebButtonIconDelete,
   ],
   templateUrl: "./notifications-gadget.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -84,6 +86,15 @@ export class NotificationsGadget implements OnInit {
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadNotification();
       this.router.navigate([url]);
+    });
+  }
+
+  deleteNotification(notificationId: string): void {
+    const urlApi = Endpoints.Notifications.delete(notificationId);
+    this.apiResponseS.onDelete(urlApi).then((deleted) => {
+      if (deleted) {
+        this.onLoadNotification();
+      }
     });
   }
 

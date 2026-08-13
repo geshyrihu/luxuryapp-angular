@@ -67,6 +67,7 @@ export class CandidateApplicationForm implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
 
   id: string = "";
+  candidateProcessId: string = "";
   readonly lockRequestPosition = Boolean(this.config.data?.lockRequestPosition);
   readonly allowCreateCandidate =
     this.config.data?.allowCreateCandidate !== false;
@@ -76,6 +77,8 @@ export class CandidateApplicationForm implements OnInit {
   currentCvUrl = signal<string>("");
   cb_candidates = signal<SelectItemDto[]>([]);
   cb_vacancies = signal<SelectItemDto[]>([]);
+  cb_interviewers = signal<SelectItemDto[]>([]);
+  loadingInterviewers = signal(false);
   readonly originalWorkExperienceIds = signal<string[]>([]);
 
   form: FormGroup = new FormGroup({
@@ -88,6 +91,7 @@ export class CandidateApplicationForm implements OnInit {
     cvFileName: new FormControl<string | null>(null),
     applicationDate: new FormControl<string | null>(null),
     recruitmentInterviewAt: new FormControl<string | null>(null),
+    operationsInterviewAssignedToUserId: new FormControl<string | null>(null),
     initialComment: new FormControl<string | null>(null),
   });
 
@@ -112,19 +116,38 @@ export class CandidateApplicationForm implements OnInit {
 
   candidateWorkExperiences = new FormArray<FormGroup>([]);
 
+  private get editingId(): string {
+    return this.candidateProcessId || this.id;
+  }
+
   async ngOnInit(): Promise<void> {
     this.id = this.config.data?.id ?? "";
+    this.candidateProcessId = this.config.data?.candidateProcessId ?? "";
     await this.onLoadSelectItems();
     this.applyDialogDefaults();
     this.form.controls["candidateId"].valueChanges.subscribe((candidateId) => {
       if (!candidateId || this.isCreatingCandidate()) return;
       void this.loadCandidateCvPreview(candidateId);
     });
-    if (!this.id) {
+    this.form.controls["requestPositionId"].valueChanges.subscribe(
+      (requestPositionId) => {
+        void this.onLoadInterviewersForRequestPosition(requestPositionId);
+      },
+    );
+    this.form.controls["recruitmentInterviewAt"].valueChanges.subscribe(() => {
+      this.applyInterviewerValidators();
+    });
+    if (!this.editingId) {
       this.form.controls["applicationDate"].setValue(this.todayDateOnly());
     }
     this.form.controls["applicationDate"].disable({ emitEvent: false });
-    if (this.id) this.onLoadData();
+    this.applyInterviewerValidators();
+    if (this.form.controls["requestPositionId"].value) {
+      void this.onLoadInterviewersForRequestPosition(
+        this.form.controls["requestPositionId"].value,
+      );
+    }
+    if (this.editingId) this.onLoadData();
   }
 
   async onLoadSelectItems(): Promise<void> {
@@ -147,10 +170,13 @@ export class CandidateApplicationForm implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetItem<CandidateApplicationDetail>(
-        EndpointsReclutamiento.CandidateApplications.getById(this.id),
+        EndpointsReclutamiento.CandidateApplications.getById(this.editingId),
       )
       .then((result) => {
         if (result) {
+          this.id = result.id ?? this.id;
+          this.candidateProcessId =
+            result.candidateProcessId ?? this.candidateProcessId;
           this.ensureCurrentVacancyOption(result);
           this.ensureCurrentCandidateOption(result);
           this.form.patchValue({
@@ -159,9 +185,12 @@ export class CandidateApplicationForm implements OnInit {
             cvFileName: result.cvFileName,
             applicationDate: result.applicationDate,
             recruitmentInterviewAt: result.recruitmentInterviewAt ?? null,
+            operationsInterviewAssignedToUserId:
+              result.operationsInterviewAssignedToUserId || null,
             initialComment: null,
           });
           this.currentCvUrl.set(result.cvFileUrl ?? "");
+          this.applyInterviewerValidators();
         }
       });
   }
@@ -199,6 +228,14 @@ export class CandidateApplicationForm implements OnInit {
           new Date(recruitmentInterviewAt).toISOString(),
         );
       }
+      const operationsInterviewAssignedToUserId =
+        this.form.controls["operationsInterviewAssignedToUserId"].value?.trim();
+      if (operationsInterviewAssignedToUserId) {
+        formData.append(
+          "OperationsInterviewAssignedToUserId",
+          operationsInterviewAssignedToUserId,
+        );
+      }
       const initialComment = this.form.controls["initialComment"].value?.trim();
       if (initialComment) {
         formData.append("InitialComment", initialComment);
@@ -208,14 +245,16 @@ export class CandidateApplicationForm implements OnInit {
       }
 
       let result: CandidateApplicationDetail | boolean = false;
-      if (this.id) {
+      if (this.editingId) {
         result = await this.apiResponseS.onPut<CandidateApplicationDetail>(
-          `${EndpointsReclutamiento.CandidateApplications.base}/${this.id}`,
+          EndpointsReclutamiento.CandidateProcesses.updateMultipart(
+            this.editingId,
+          ),
           formData,
         );
       } else {
         result = await this.apiResponseS.onPostFile<CandidateApplicationDetail>(
-          EndpointsReclutamiento.CandidateApplications.base,
+          EndpointsReclutamiento.CandidateProcesses.createMultipart,
           formData,
         );
       }
@@ -336,8 +375,17 @@ export class CandidateApplicationForm implements OnInit {
     return (
       this.submitting() ||
       this.form.invalid ||
+      this.isInterviewSchedulingBlocked() ||
       (this.isCreatingCandidate() &&
         (this.candidateForm.invalid || !this.selectedFile))
+    );
+  }
+
+  interviewersUnavailable(): boolean {
+    return (
+      !!this.form.controls["requestPositionId"].value &&
+      !this.loadingInterviewers() &&
+      this.cb_interviewers().length === 0
     );
   }
 
@@ -421,6 +469,57 @@ export class CandidateApplicationForm implements OnInit {
       },
       ...currentOptions,
     ]);
+  }
+
+  private async onLoadInterviewersForRequestPosition(
+    requestPositionId: string | null,
+  ): Promise<void> {
+    if (!requestPositionId) {
+      this.cb_interviewers.set([]);
+      this.form.controls["operationsInterviewAssignedToUserId"].setValue(null);
+      this.applyInterviewerValidators();
+      return;
+    }
+
+    this.loadingInterviewers.set(true);
+    try {
+      const interviewers = await this.apiResponseS.onGetItem<
+        SelectItemDto[]
+      >(
+        EndpointsReclutamiento.InterviewerMatrix.eligibleInterviewersByRequestPosition(
+          requestPositionId,
+        ),
+      );
+
+      const options = interviewers ?? [];
+      this.cb_interviewers.set(options);
+
+      const currentValue =
+        this.form.controls["operationsInterviewAssignedToUserId"].value;
+      if (!options.some((item) => item.value === currentValue)) {
+        this.form.controls["operationsInterviewAssignedToUserId"].setValue(null);
+      }
+    } finally {
+      this.loadingInterviewers.set(false);
+      this.applyInterviewerValidators();
+    }
+  }
+
+  private applyInterviewerValidators(): void {
+    const control = this.form.controls["operationsInterviewAssignedToUserId"];
+    const requiresInterviewer = !!this.form.controls["recruitmentInterviewAt"].value;
+
+    control.setValidators(requiresInterviewer ? [Validators.required] : []);
+    control.updateValueAndValidity({ emitEvent: false });
+  }
+
+  private isInterviewSchedulingBlocked(): boolean {
+    return (
+      !!this.form.controls["recruitmentInterviewAt"].value &&
+      (this.loadingInterviewers() ||
+        this.cb_interviewers().length === 0 ||
+        !this.form.controls["operationsInterviewAssignedToUserId"].value)
+    );
   }
 
   private toDateOnly(value: string | null): string | undefined {

@@ -35,6 +35,13 @@
           iconClass="material-symbols-light:notifications"
           label="Enviar Push (OneSignal) Web"
         />
+        <il-button
+          severity="success"
+          (clicked)="sendWhatsAppToUser()"
+          [disabled]="!phoneControl.value"
+          iconClass="material-symbols-light:chat"
+          label="Enviar WhatsApp"
+        />
       </div>
     </div>
 
@@ -49,6 +56,12 @@
     />
 
     <custom-input-text-signal [control]="routeControl" label="Ruta de prueba" />
+
+    <custom-input-text-signal 
+      [control]="phoneControl" 
+      label="Número WhatsApp (Ej: +52...)" 
+      placeholder="+521XXXXXXXXXX"
+    />
   </lx-card>
 
   <!-- Selección de usuarios móltiples -->

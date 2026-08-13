@@ -1,25 +1,16 @@
 import { Injectable, inject } from "@angular/core";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { CandidateInterviewerQueueDto } from "./interfaces/candidate-interviewer-queue.interface";
-
-export interface InterviewerActionRequest {
-  candidateApplicationId: string;
-  candidateProcessId?: string;
-  action: number;
-  reasonId?: string;
-  comment?: string;
-  interviewAt?: string;
-  receptionConfirmedAt?: string;
-}
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CandidateInterviewerQueueDto } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
+import { InterviewerActionRequest } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
 
 @Injectable({ providedIn: "root" })
-export class CandidateInterviewerQueueService {
+export class EmployeeInterviewerQueueService {
   private apiResponseS = inject(ApiResponseService);
 
-  async getInterviewerQueue(): Promise<CandidateInterviewerQueueDto[]> {
+  async getQueue(): Promise<CandidateInterviewerQueueDto[]> {
     const result = await this.apiResponseS.onGetList<CandidateInterviewerQueueDto[]>(
-      EndpointsReclutamiento.CandidateProcesses.interviewerQueue,
+      EndpointsReclutamiento.CandidateProcesses.employeeInterviewerQueue,
     );
     return result ?? [];
   }

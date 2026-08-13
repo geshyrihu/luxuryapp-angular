@@ -50,6 +50,7 @@ export class CandidateApplicationListMobile {
     id: string;
     fromStage: CandidateApplicationStage;
     customerId: string;
+    requestPositionId: string;
   }>();
 
   stageControl = new FormControl<number | null>(null);

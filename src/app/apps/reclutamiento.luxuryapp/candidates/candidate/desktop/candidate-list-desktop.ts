@@ -9,6 +9,7 @@ import {
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -36,6 +37,7 @@ import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
     WebButtonIconDelete,
     WebButtonIconEdit,
     WebButtonIconItem,
+    WebButtonIconViewPdf,
     MappedPTag,
   ],
 })

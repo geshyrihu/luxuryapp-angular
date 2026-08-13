@@ -33,6 +33,7 @@
         Correo
         <p-sorticon field="email" />
       </th>
+      <th class="text-center">CV</th>
       <th class="text-center">Procesos activos</th>
       <th pSortableColumn="status">
         Estado
@@ -46,6 +47,19 @@
       <td>{{ item.fullName }}</td>
       <td>{{ item.phoneNumber }}</td>
       <td>{{ item.email }}</td>
+      <td class="text-center">
+        @if (item.cvFileName) {
+          <iw-button-view-pdf
+            size="sm"
+            class="btn--circle"
+            [url]="item.cvFileUrl"
+            [fileName]="item.cvFileName"
+            [attr.aria-label]="'Ver CV de ' + item.fullName"
+          />
+        } @else {
+          <span class="text-color-secondary">-</span>
+        }
+      </td>
       <td class="text-center">{{ item.activeApplicationsCount }}</td>
       <td>
         <app-mapped-p-tag
@@ -81,7 +95,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="6" />
+    <primeng-custom-table-emptymessage [colspan]="7" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />

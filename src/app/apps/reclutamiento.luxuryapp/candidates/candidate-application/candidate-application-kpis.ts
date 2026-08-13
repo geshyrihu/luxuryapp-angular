@@ -274,7 +274,7 @@ export class CandidateApplicationKpis implements OnInit {
     this.loading.set(true);
     this.apiResponseS
       .onGetItem<CandidateApplicationKpisDto>(
-        EndpointsReclutamiento.CandidateApplications.kpis,
+        EndpointsReclutamiento.CandidateProcesses.kpis,
       )
       .then((result) => {
         if (result) {

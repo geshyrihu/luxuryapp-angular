@@ -115,6 +115,7 @@ export const EndpointsAdmin = {
     sendAnnouncement: "admin/realtime-diagnostics/sendannouncement",
   },
   NotificationDiagnostics: {
+    testWhatsApp: "admin/notification-diagnostics/test-whatsapp",
     testOneSignal: "admin/notification-diagnostics/test-one-signal",
     testOneSignalWeb: "admin/notification-diagnostics/test-one-signal-web",
     testSignalR: (userId: string) =>

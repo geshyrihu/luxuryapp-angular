@@ -2,13 +2,16 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  computed,
   inject,
   OnInit,
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
+import { WebButtonIcon, WebButtonIconDelete } from "@ui/buttons/web-icon";
+import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { BadgeModule } from "primeng/badge";
 import { ScrollPanelModule } from "primeng/scrollpanel";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -21,7 +24,15 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   selector: "app-notifications-list-web",
   templateUrl: "./notifications-list-web.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [BadgeModule, ScrollPanelModule, AppIcon, WebButtonIcon],
+  imports: [
+    BadgeModule,
+    ScrollPanelModule,
+    AppIcon,
+    WebButtonIcon,
+    WebButtonIconDelete,
+    LxCheckbox,
+    LxTooltipDirective,
+  ],
 })
 export class NotificationsListWeb implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -32,6 +43,15 @@ export class NotificationsListWeb implements OnInit {
 
   notifications = signal<any[]>([]);
   loading = signal(false);
+
+  selectionMode = signal(false);
+  selectedIds = signal<Set<string>>(new Set<string>());
+
+  allSelected = computed(
+    () =>
+      this.notifications().length > 0 &&
+      this.notifications().every((n) => this.selectedIds().has(n.id)),
+  );
 
   constructor() {
     this.signalRService.messageReceived$
@@ -60,11 +80,60 @@ export class NotificationsListWeb implements OnInit {
       });
   }
 
+  toggleSelectionMode(): void {
+    this.selectionMode.update((v) => !v);
+    if (!this.selectionMode()) {
+      this.selectedIds.set(new Set<string>());
+    }
+  }
+
+  toggleSelection(notificationId: string): void {
+    this.selectedIds.update((set) => {
+      const next = new Set(set);
+      if (next.has(notificationId)) {
+        next.delete(notificationId);
+      } else {
+        next.add(notificationId);
+      }
+      return next;
+    });
+  }
+
+  toggleSelectAll(): void {
+    if (this.allSelected()) {
+      this.selectedIds.set(new Set<string>());
+    } else {
+      this.selectedIds.set(new Set(this.notifications().map((n) => n.id)));
+    }
+  }
+
   markAsRead(notificationId: string, url: string): void {
     const urlApi = Endpoints.Notifications.markAsRead(notificationId);
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadNotification();
       this.router.navigateByUrl(url);
     });
+  }
+
+  deleteNotification(notificationId: string): void {
+    const urlApi = Endpoints.Notifications.delete(notificationId);
+    this.apiResponseS.onDelete(urlApi).then((deleted) => {
+      if (deleted) {
+        this.onLoadNotification();
+      }
+    });
+  }
+
+  deleteSelected(): void {
+    const ids = Array.from(this.selectedIds());
+    if (ids.length === 0) return;
+    this.apiResponseS
+      .onDelete(Endpoints.Notifications.deleteRange, ids)
+      .then((deleted) => {
+        if (deleted) {
+          this.selectedIds.set(new Set<string>());
+          this.onLoadNotification();
+        }
+      });
   }
 }

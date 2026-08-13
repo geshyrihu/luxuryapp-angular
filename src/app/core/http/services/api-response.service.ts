@@ -325,11 +325,16 @@ export class ApiResponseService {
     }
   }
 
-  async onDelete(urlApi: string): Promise<boolean> {
+  async onDelete(urlApi: string, data?: unknown): Promise<boolean> {
     this.loaderS.show();
     try {
       const responseData = await lastValueFrom(
-        this.dataConnectorS.delete<ApiResponseDto<unknown>>(urlApi),
+        data !== undefined
+          ? this.dataConnectorS.deleteWithBody<ApiResponseDto<unknown>>(
+              urlApi,
+              data,
+            )
+          : this.dataConnectorS.delete<ApiResponseDto<unknown>>(urlApi),
       );
       const result = this.processResponse(responseData.body, {
         showSuccessToast: true,

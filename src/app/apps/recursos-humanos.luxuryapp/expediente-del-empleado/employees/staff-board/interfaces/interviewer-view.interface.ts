@@ -10,6 +10,7 @@ export enum InterviewerActionType {
 
 export interface InterviewerApplicationViewDto {
   candidateApplicationId: string;
+  candidateProcessId?: string | null;
   requestPositionId: string;
   workPositionId: string;
   vacancyFolio: string;
@@ -34,6 +35,7 @@ export interface InterviewerApplicationViewDto {
 
 export interface InterviewerActionRequest {
   candidateApplicationId: string;
+  candidateProcessId?: string | null;
   action: InterviewerActionType;
   reasonId?: string;
   comment?: string;

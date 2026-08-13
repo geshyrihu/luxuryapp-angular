@@ -32,13 +32,12 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { BudgetProposalItemDTO } from "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-budget-support-dialog",
@@ -49,6 +48,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     CustomInputTextAreaSignal,
     CustomInputFile,
     WebButtonLabel,
+    WebButtonLabelViewPdf,
     LxListbox,
     LxTag,
     LxCard,
@@ -63,7 +63,7 @@ export class BudgetSupportDialog implements OnInit {
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
   private fb = inject(FormBuilder);
-  private dialogHandlerS = inject(DialogHandlerService); // New injection
+  // dialogHandlerS removed: PDF viewer now uses the official WebButtonLabelViewPdf
 
   loading = signal(true);
   budgetProposalItem = signal<BudgetProposalItemDTO | null>(null); // Changed to BudgetProposalItemDTO
@@ -271,15 +271,5 @@ export class BudgetSupportDialog implements OnInit {
 
   closeDialog(): void {
     this.ref.close();
-  }
-
-  viewPdf(url: string, fileName: string): void {
-    this.dialogHandlerS.openDialog(
-      PdfViewerModal,
-      { pdfSrc: url, fileName: fileName },
-      fileName, // Title for the dialog
-      this.dialogHandlerS.sizeFull, // Or a custom size
-      true,
-    );
   }
 }

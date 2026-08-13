@@ -61,6 +61,7 @@ export class CandidateApplicationListDesktop {
     id: string;
     fromStage: CandidateApplicationStage;
     customerId: string;
+    requestPositionId: string;
   }>();
 
   loading = signal(true);

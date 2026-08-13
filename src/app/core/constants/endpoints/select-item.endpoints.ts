@@ -40,6 +40,8 @@ export const EndpointsSelectItem = {
     nombreCorto: "nombre-corto",
     operationsInterviewersByCustomer: (customerId: string) =>
       `operations-interviewers/${customerId}`,
+    operationsInterviewersByRequestPosition: (requestPositionId: string) =>
+      `operations-interviewers/by-request-position/${requestPositionId}`,
     paymentMethod: "payment-methods",
     wayToPay: "payment-ways",
     properties: (customerId: string) => `properties/${customerId}`,

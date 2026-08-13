@@ -17,6 +17,7 @@ export interface CandidateInterviewFeedbackItem {
 
 export interface CandidateInterviewFeedbackCreate {
   candidateApplicationId: string;
+  candidateProcessId?: string;
   receptionConfirmedAt?: string;
   interviewAt?: string;
   decision: CandidateDecision;
@@ -36,6 +37,7 @@ export interface CandidateDecisionReasonItem {
 // NUEVO: Para la vista de respuesta del entrevistador
 export interface CandidateInterviewResponseDto {
   candidateApplicationId: string;
+  candidateProcessId?: string | null;
   requestPositionId: string;
   workPositionId: string;
   vacancyFolio: string;
@@ -67,6 +69,7 @@ export interface CandidateInterviewTimelineItem {
 
 export interface CandidateInterviewFeedbackDto {
   candidateApplicationId: string;
+  candidateProcessId?: string;
   receptionConfirmedAt?: string;
   interviewAt?: string;
   decision: string;

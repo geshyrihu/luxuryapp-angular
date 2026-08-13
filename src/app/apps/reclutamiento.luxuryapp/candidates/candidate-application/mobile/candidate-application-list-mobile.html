@@ -38,7 +38,7 @@
           />
         }
         <ili-button-tracking
-          (clickTracking)="advance.emit({ id: item.id, fromStage: item.currentStage, customerId: item.customerId })"
+          (clickTracking)="advance.emit({ id: item.id, fromStage: item.currentStage, customerId: item.customerId, requestPositionId: item.requestPositionId })"
           label="Avanzar etapa"
           [attr.aria-label]="'Avanzar etapa del proceso de ' + item.candidateName"
         />

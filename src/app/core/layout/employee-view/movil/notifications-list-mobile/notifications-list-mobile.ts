@@ -19,6 +19,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { MobileButtonIconDelete } from "src/app/shared/ui/buttons/mobile-icon";
 @Component({
   selector: "app-notifications-list-mobile",
   templateUrl: "./notifications-list-mobile.html",
@@ -60,7 +61,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppIcon, IonicModule],
+  imports: [AppIcon, IonicModule, MobileButtonIconDelete],
 })
 export class NotificationsListMobile implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -115,6 +116,19 @@ export class NotificationsListMobile implements OnInit {
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadNotification();
       this.router.navigateByUrl(url);
+    });
+  }
+
+  /**
+   * Elimina una notificación
+   * @param notificationId ID de la notificación a eliminar
+   */
+  deleteNotification(notificationId: string): void {
+    const urlApi = `notifications/${notificationId}`;
+    this.apiResponseS.onDelete(urlApi).then((deleted) => {
+      if (deleted) {
+        this.onLoadNotification();
+      }
     });
   }
 }

@@ -86,6 +86,30 @@ export const directoryRoutes: Routes = [
     },
   },
   {
+    path: "employee-interviewer-queue",
+    loadComponent: () =>
+      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interviewer-queue").then(
+        (m) => m.EmployeeInterviewerQueue,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Mis Vacantes y Entrevistas",
+      breadcrumb: "Mis Entrevistas",
+    },
+  },
+  {
+    path: "employee-interviews/respond",
+    loadComponent: () =>
+      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interview-response").then(
+        (m) => m.EmployeeInterviewResponse,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Responder Entrevista",
+      breadcrumb: "Responder Entrevista",
+    },
+  },
+  {
     path: "external-staff", // Ruta anterior: 'personal-externo'
     loadComponent: () =>
       import("src/app/apps/recursos-humanos.luxuryapp/employee-external/employee-external-list").then(

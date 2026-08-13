@@ -1,28 +1,19 @@
 <div class="matrix-page">
   <lx-card
     header="Matriz de Entrevistadores"
-    subheader="Relaciona cada rol entrevistador con los puestos que puede evaluar por cliente."
+    subheader="Relaciona cada puesto evaluado con los roles entrevistadores que pueden atenderlo por cliente."
   >
     <div class="matrix-topbar">
       <section class="matrix-toolbar">
         <div class="matrix-toolbar__field">
           <div class="matrix-toolbar__field-copy">
-            <span class="matrix-toolbar__eyebrow">Configuración por cliente</span>
-            <h3 class="matrix-toolbar__title">Selecciona la empresa a configurar</h3>
+            <span class="matrix-toolbar__eyebrow">Configuracion por cliente</span>
+            <h3 class="matrix-toolbar__title">{{ activeCustomerName() || "Cliente activo" }}</h3>
             <p class="matrix-toolbar__subtitle">
-              La matriz define qué entrevistador puede evaluar cada tipo de puesto.
+              La matriz usa el cliente activo del encabezado global para definir que rol entrevistador
+              puede evaluar cada tipo de puesto.
             </p>
           </div>
-
-          <web-input-select
-            label="Cliente"
-            placeholder="Selecciona un cliente"
-            [data]="customers()"
-            [ngModel]="selectedCustomerId()"
-            (ngModelChange)="onCustomerChange($event)"
-            [showClear]="false"
-            [filter]="true"
-          />
         </div>
 
         <div class="matrix-toolbar__summary">
@@ -38,32 +29,32 @@
 
           <div class="matrix-summary-card">
             <span class="matrix-summary-card__icon">
-              <app-icon icon="material-symbols-light:group-outline" />
+              <app-icon icon="material-symbols-light:work-outline" />
             </span>
             <div class="matrix-summary-card__content">
-              <span class="matrix-summary-card__label">Entrevistadores</span>
+              <span class="matrix-summary-card__label">Puestos evaluados</span>
               <strong class="matrix-summary-card__value">{{ activeRowsCount() }}</strong>
             </div>
           </div>
 
           <div class="matrix-summary-card">
             <span class="matrix-summary-card__icon">
-              <app-icon icon="material-symbols-light:work-outline" />
+              <app-icon icon="material-symbols-light:group-outline" />
             </span>
             <div class="matrix-summary-card__content">
-              <span class="matrix-summary-card__label">Puestos cubiertos</span>
+              <span class="matrix-summary-card__label">Entrevistadores</span>
               <strong class="matrix-summary-card__value">{{ activeColumnsCount() }}</strong>
             </div>
           </div>
         </div>
       </section>
 
-      @if (!loading() && selectedCustomerId() && roles().length > 0) {
+      @if (!loading() && activeCustomerId() && interviewerRoles().length > 0 && workPositionRoles().length > 0) {
         <section class="matrix-helper">
           <div class="matrix-helper__copy">
-            <h3 class="matrix-helper__title">Cruza entrevistadores contra puestos</h3>
+            <h3 class="matrix-helper__title">Cruza puestos contra entrevistadores</h3>
             <p class="matrix-helper__text">
-              Haz clic en una celda para activar o desactivar la relación.
+              Haz clic en una celda para activar o desactivar que rol entrevistador puede evaluar cada puesto.
             </p>
           </div>
 
@@ -78,70 +69,70 @@
 
     @if (loading()) {
       <lx-skeleton />
-    } @else if (roles().length === 0) {
+    } @else if (interviewerRoles().length === 0 || workPositionRoles().length === 0) {
       <div class="matrix-state">
         <h3>Sin catalogo de roles</h3>
-        <p>No hay roles disponibles para construir la matriz.</p>
+        <p>No hay roles validos disponibles para construir la matriz.</p>
       </div>
-    } @else if (!selectedCustomerId()) {
+    } @else if (!activeCustomerId()) {
       <div class="matrix-state">
-        <h3>Selecciona un cliente</h3>
-        <p>La matriz se construye por cliente; elige uno para empezar.</p>
+        <h3>Sin cliente activo</h3>
+        <p>Selecciona un cliente desde el encabezado global para empezar.</p>
       </div>
     } @else {
       <div class="matrix-board">
         <div class="matrix-board__caption">
           <div>
             <span class="matrix-board__eyebrow">Vista matricial</span>
-            <strong class="matrix-board__title">Entrevistadores vs puestos operativos</strong>
+            <strong class="matrix-board__title">Puestos evaluados vs entrevistadores</strong>
           </div>
 
           @if (activeRulesCount() === 0) {
-            <app-tag value="Sin reglas aun" icon="material-symbols-light:auto-fix-high" />
+            <app-tag value="Sin reglas aun" icon="material-symbols-light:auto-awesome-motion" />
           }
         </div>
 
-        <table class="matrix-table" aria-label="Matriz de entrevistadores y puestos de trabajo">
+        <table class="matrix-table" aria-label="Matriz de puestos evaluados y entrevistadores">
           <thead>
             <tr>
               <th class="matrix-table__corner">
-                <span class="matrix-table__corner-title">Entrevistador</span>
-                <span class="matrix-table__corner-subtitle">Puesto evaluado</span>
+                <span class="matrix-table__corner-title">Filas: Puesto evaluado</span>
+                <span class="matrix-table__corner-subtitle">Columnas: Rol entrevistador</span>
               </th>
-              @for (role of roles(); track role.value) {
+              @for (interviewerRole of interviewerRoles(); track interviewerRole.value) {
                 <th class="matrix-table__column-header">
                   <div class="matrix-table__column-card">
                     <span class="matrix-table__column-count">
-                      {{ getActiveColumnCount(toRoleValue(role.value)) }}
+                      {{ getActiveColumnCount(toRoleValue(interviewerRole.value)) }}
                     </span>
-                    <span class="matrix-table__column-text">{{ role.label }}</span>
+                    <span class="matrix-table__column-text">{{ interviewerRole.label }}</span>
                   </div>
                 </th>
               }
             </tr>
           </thead>
           <tbody>
-            @for (interviewerRole of roles(); track interviewerRole.value) {
+            @for (workRole of workPositionRoles(); track workRole.value) {
               <tr>
                 <th class="matrix-table__row-header">
                   <div class="matrix-table__row-header-content">
                     <span class="matrix-table__row-title">
-                      {{ interviewerRole.label }}
+                      {{ workRole.label }}
                     </span>
                     <span class="matrix-table__row-count">
-                      {{ getActiveRowCount(toRoleValue(interviewerRole.value)) }}
+                      {{ getActiveRowCount(toRoleValue(workRole.value)) }}
                     </span>
                   </div>
                 </th>
 
-                @for (workRole of roles(); track workRole.value) {
+                @for (interviewerRole of interviewerRoles(); track interviewerRole.value) {
                   <td class="matrix-table__cell">
                     <button
                       type="button"
                       class="matrix-cell"
                       [class.matrix-cell--active]="getCellState(toRoleValue(interviewerRole.value), toRoleValue(workRole.value)) === 'active'"
                       [class.matrix-cell--saving]="isSavingCell(toRoleValue(interviewerRole.value), toRoleValue(workRole.value))"
-                      [attr.aria-label]="'Asignar ' + interviewerRole.label + ' a ' + workRole.label"
+                      [attr.aria-label]="'Permitir que ' + interviewerRole.label + ' entreviste a ' + workRole.label"
                       [attr.aria-pressed]="getCellState(toRoleValue(interviewerRole.value), toRoleValue(workRole.value)) === 'active'"
                       [disabled]="isSavingCell(toRoleValue(interviewerRole.value), toRoleValue(workRole.value))"
                       (click)="toggleCell(toRoleValue(interviewerRole.value), toRoleValue(workRole.value))"

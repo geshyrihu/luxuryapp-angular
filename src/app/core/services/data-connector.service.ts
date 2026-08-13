@@ -123,6 +123,21 @@ export class DataConnectorService implements OnDestroy {
   }
 
   /**
+   * Realiza una solicitud DELETE al servidor con un cuerpo de solicitud.
+   * @param url La URL del recurso.
+   * @param data Los datos a enviar en el cuerpo de la solicitud.
+   * @returns Un observable que emite una respuesta HTTP con datos de tipo T.
+   */
+  deleteWithBody<T>(url: string, data: unknown): Observable<HttpResponse<T>> {
+    const httpHeaders: HttpHeaders = this.getHeaders();
+    return this.http.delete<T>(urlBase + url, {
+      headers: httpHeaders,
+      body: data,
+      observe: "response",
+    });
+  }
+
+  /**
    * Obtiene las cabeceras HTTP para la solicitud.
    * @returns Un objeto HttpHeaders con las cabeceras de la solicitud.
    */

@@ -116,21 +116,59 @@ const PI_PERMITIDO = [
   ...DOCUMENTACION,
 ];
 
+// Formatos que no deben volver. Cada uno tiene su propia forma de fallar en
+// silencio, y ninguno lo detecta el compilador.
+const PROHIBIDOS = [
+  {
+    re: /\bpi pi-/,
+    que: 'clases de PrimeIcons (`pi pi-*`)',
+    porque: 'El proyecto usa un solo paquete de iconos. Retiradas el 2026-08-11.',
+  },
+  {
+    re: /\bmdi:/,
+    que: 'prefijo `mdi:`',
+    porque: 'Paquete retirado. Un `mdi:*` no se resuelve y no dibuja nada.',
+  },
+  {
+    // `<span class="iconify" data-icon="...">` es la sintaxis del framework SVG
+    // de Iconify (`@iconify/iconify`), que NO esta instalado: aqui solo vive el
+    // web component `iconify-icon`. Ese span no pinta nada.
+    re: /class="[^"]*\biconify\b[^"]*"|\bdata-icon\s*=/,
+    que: 'sintaxis del framework SVG de Iconify (`class="iconify"` / `data-icon`)',
+    porque: '`@iconify/iconify` no esta instalado. Usa <app-icon>.',
+  },
+];
+
 const pi = [];
 for (const archivo of recorrer(RAIZ)) {
   const rel = archivo.replace(/\\/g, '/');
   if (PI_PERMITIDO.includes(rel)) continue;
   const lineas = fs.readFileSync(archivo, 'utf-8').split('\n');
   lineas.forEach((linea, i) => {
-    if (/\bpi pi-/.test(linea)) pi.push({ archivo: rel, linea: i + 1, texto: linea.trim().slice(0, 110) });
+    for (const p of PROHIBIDOS) {
+      if (p.re.test(linea)) {
+        pi.push({ archivo: rel, linea: i + 1, texto: linea.trim().slice(0, 110), que: p.que, porque: p.porque });
+        break;
+      }
+    }
   });
 }
 
 if (pi.length > 0) {
-  console.error(`❌ ${pi.length} uso(s) de clases PrimeIcons (\`pi pi-*\`):\n`);
-  for (const p of pi.slice(0, 25)) console.error(`   ${p.archivo}:${p.linea}\n     ${p.texto}`);
-  if (pi.length > 25) console.error(`   … y ${pi.length - 25} más`);
-  console.error(`\n   💡 Usa <app-icon> con un valor del catálogo. Si el icono va dentro`);
+  console.error(`❌ ${pi.length} uso(s) de formatos de icono retirados:\n`);
+  const porTipo = new Map();
+  for (const p of pi) {
+    if (!porTipo.has(p.que)) porTipo.set(p.que, { porque: p.porque, casos: [] });
+    porTipo.get(p.que).casos.push(p);
+  }
+  for (const [que, { porque, casos }] of porTipo) {
+    console.error(`   ${que}  (${casos.length})`);
+    console.error(`   ${porque}`);
+    for (const c of casos.slice(0, 10)) console.error(`     ${c.archivo}:${c.linea}\n       ${c.texto}`);
+    if (casos.length > 10) console.error(`     … y ${casos.length - 10} más`);
+    console.error('');
+  }
+  console.error(`   💡 Usa <app-icon> con un valor del catálogo. Si el icono va dentro`);
   console.error(`      de un componente PrimeNG, pásalo por <ng-template #icon>:`);
   console.error(`      su input \`icon\` espera una clase CSS y no entiende Iconify.`);
   process.exit(1);

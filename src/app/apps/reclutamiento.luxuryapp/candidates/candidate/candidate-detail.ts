@@ -95,7 +95,11 @@ export class CandidateDetail implements OnInit {
     this.dialogHandlerS
       .openDialog(
         CandidateProcessHiringModal,
-        { id: app.id, toStage: CandidateApplicationStage.AltaEnProceso },
+        {
+          id: app.id,
+          candidateProcessId: app.candidateProcessId ?? undefined,
+          toStage: CandidateApplicationStage.AltaEnProceso,
+        },
         "Procesar alta",
         this.dialogHandlerS.sizeLg,
       )

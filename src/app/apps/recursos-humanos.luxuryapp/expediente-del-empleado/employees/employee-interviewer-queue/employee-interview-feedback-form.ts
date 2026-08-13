@@ -1,8 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
   OnInit,
+  inject,
   signal,
 } from "@angular/core";
 import {
@@ -16,7 +16,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CandidateDecisionReasonSelect } from "../recruitment-shared/candidate-decision-reason-select";
+import { CandidateDecisionReasonSelect } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-decision-reason-select";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -25,13 +25,13 @@ import {
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
-import { candidateDecisionLabel } from "../recruitment-shared/candidate-decision-labels";
-import { CandidateInterviewFeedbackCreate } from "./interfaces/candidate-interview";
+import { candidateDecisionLabel } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-decision-labels";
+import { CandidateInterviewFeedbackCreate } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/interfaces/candidate-interview";
 
 @Component({
-  selector: "app-candidate-interview-feedback-form",
+  selector: "app-employee-interview-feedback-form",
   standalone: true,
-  templateUrl: "./candidate-interview-feedback-form.html",
+  templateUrl: "./employee-interview-feedback-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
@@ -43,7 +43,7 @@ import { CandidateInterviewFeedbackCreate } from "./interfaces/candidate-intervi
     WebButtonLabelSave,
   ],
 })
-export class CandidateInterviewFeedbackForm implements OnInit {
+export class EmployeeInterviewFeedbackForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
@@ -60,10 +60,7 @@ export class CandidateInterviewFeedbackForm implements OnInit {
     receptionConfirmedAt: new FormControl<string | null>(null),
     interviewAt: new FormControl<string | null>(null),
     decision: new FormControl<number | null>(null, Validators.required),
-    decisionReasonId: new FormControl<string | null>(
-      null,
-      Validators.required,
-    ),
+    decisionReasonId: new FormControl<string | null>(null, Validators.required),
     additionalComment: new FormControl<string | null>(null),
   });
 
@@ -71,6 +68,7 @@ export class CandidateInterviewFeedbackForm implements OnInit {
     this.form.patchValue({
       candidateApplicationId: this.candidateApplicationId ?? this.candidateProcessId ?? "",
     });
+
     this.cb_decision.set(
       Object.keys(CandidateDecision)
         .filter((key) => Number.isNaN(Number(key)))
@@ -83,6 +81,7 @@ export class CandidateInterviewFeedbackForm implements OnInit {
           };
         }),
     );
+
     this.form.controls["decision"].valueChanges.subscribe((value) => {
       this.selectedDecision.set(value as CandidateDecision | null);
       this.form.controls["decisionReasonId"].setValue(null);
@@ -109,12 +108,11 @@ export class CandidateInterviewFeedbackForm implements OnInit {
         EndpointsReclutamiento.CandidateInterviews.submitFeedback,
         payload,
       );
+
       if (result) {
         this.ref.close(true);
         return;
       }
-    } catch {
-      // Error ya notificado por ApiResponseService
     } finally {
       this.submitting.set(false);
     }

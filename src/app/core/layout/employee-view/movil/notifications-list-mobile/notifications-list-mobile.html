@@ -25,6 +25,11 @@
         <p>{{ notification.message }}</p>
         <p class="timestamp">{{ notification.createdAt }}</p>
       </ion-label>
+      <ii-button-delete
+        slot="end"
+        (click)="$event.stopPropagation()"
+        (confirmed)="deleteNotification(notification.id)"
+      />
     </ion-item>
     }
   </ion-list>

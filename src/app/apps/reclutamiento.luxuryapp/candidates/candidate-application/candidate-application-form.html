@@ -270,6 +270,23 @@
           placeholder="Selecciona fecha y hora"
         />
       </div>
+      <div class="col-12 md:col-6">
+        <custom-input-select-signal
+          [control]="form.controls['operationsInterviewAssignedToUserId']"
+          label="Entrevistador asignado"
+          placeholder="Selecciona al entrevistador"
+          [data]="cb_interviewers()"
+          [loading]="loadingInterviewers()"
+          [filter]="true"
+        />
+        @if (interviewersUnavailable()) {
+        <small class="block mt-2 text-red-500">
+          No hay entrevistadores elegibles en la matrix para esta vacante. No
+          se puede agendar la entrevista hasta configurar una coincidencia
+          valida.
+        </small>
+        }
+      </div>
       <div class="col-12">
         <custom-input-textarea-signal
           [control]="form.controls['initialComment']"

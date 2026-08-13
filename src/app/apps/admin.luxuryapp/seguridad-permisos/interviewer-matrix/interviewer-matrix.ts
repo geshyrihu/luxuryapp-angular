@@ -2,19 +2,21 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   OnInit,
   signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { WebInputSelect } from "@ui/inputs/web/input-select/input-select";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { InterviewerMatrixService } from "./interviewer-matrix.service";
-import { InterviewerMatrixItemDto } from "./interfaces/interviewer-matrix.dto";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import {
+  InterviewerMatrixItemDto,
+  InterviewerMatrixRoleOptionDto,
+} from "./interfaces/interviewer-matrix.dto";
 
 type MatrixCellState = "active" | "inactive" | "empty";
 
@@ -24,17 +26,22 @@ type MatrixCellState = "active" | "inactive" | "empty";
   templateUrl: "./interviewer-matrix.html",
   styleUrls: ["./interviewer-matrix.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, LxCard, LxSkeleton, WebInputSelect, AppIcon, AppTag],
+  imports: [LxCard, LxSkeleton, AppIcon, AppTag],
 })
 export class InterviewerMatrix implements OnInit {
   private service = inject(InterviewerMatrixService);
+  private customerIdS = inject(CustomerIdService);
 
   loading = signal(true);
   savingKey = signal<string | null>(null);
-  customers = signal<SelectItemDto[]>([]);
-  roles = signal<SelectItemDto[]>([]);
-  selectedCustomerId = signal<string>("");
+  interviewerRoles = signal<InterviewerMatrixRoleOptionDto[]>([]);
+  workPositionRoles = signal<InterviewerMatrixRoleOptionDto[]>([]);
   rules = signal<InterviewerMatrixItemDto[]>([]);
+  readonly activeCustomerId = this.customerIdS.customerId;
+  readonly activeCustomerName = computed(
+    () => this.customerIdS.nombreCorto() || this.customerIdS.customerName(),
+  );
+  readonly customerReady = this.customerIdS.customerDataReady;
 
   readonly rulesMap = computed(() => {
     const map = new Map<string, InterviewerMatrixItemDto>();
@@ -52,7 +59,7 @@ export class InterviewerMatrix implements OnInit {
     const rows = new Set(
       this.rules()
         .filter((rule) => rule.isActive)
-        .map((rule) => rule.interviewerRole),
+        .map((rule) => rule.workPositionRole),
     );
     return rows.size;
   });
@@ -61,7 +68,7 @@ export class InterviewerMatrix implements OnInit {
     const columns = new Set(
       this.rules()
         .filter((rule) => rule.isActive)
-        .map((rule) => rule.workPositionRole),
+        .map((rule) => rule.interviewerRole),
     );
     return columns.size;
   });
@@ -70,7 +77,7 @@ export class InterviewerMatrix implements OnInit {
     const counts = new Map<number, number>();
     for (const rule of this.rules()) {
       if (!rule.isActive) continue;
-      counts.set(rule.interviewerRole, (counts.get(rule.interviewerRole) ?? 0) + 1);
+      counts.set(rule.workPositionRole, (counts.get(rule.workPositionRole) ?? 0) + 1);
     }
     return counts;
   });
@@ -79,69 +86,66 @@ export class InterviewerMatrix implements OnInit {
     const counts = new Map<number, number>();
     for (const rule of this.rules()) {
       if (!rule.isActive) continue;
-      counts.set(rule.workPositionRole, (counts.get(rule.workPositionRole) ?? 0) + 1);
+      counts.set(rule.interviewerRole, (counts.get(rule.interviewerRole) ?? 0) + 1);
     }
     return counts;
   });
 
   private readonly invalidRoleLabels = ["--seleccione una opción--", "--seleccione una opcion--"];
 
+  constructor() {
+    effect(() => {
+      const customerId = this.activeCustomerId();
+      const isReady = this.customerReady();
+
+      if (!isReady) {
+        this.rules.set([]);
+        return;
+      }
+
+      if (customerId) {
+        void this.loadMatrixForCustomer(customerId);
+      }
+    });
+  }
+
   ngOnInit(): void {
-    this.loadCatalogs();
+    this.loading.set(false);
   }
 
-  private loadCatalogs(): void {
-    this.loading.set(true);
-    Promise.all([this.service.getCustomers(), this.service.getRoles()])
-      .then(([customers, roles]) => {
-        const customerItems = customers ?? [];
-        const roleItems = (roles ?? []).filter((role) => this.isValidRoleOption(role));
-
-        this.customers.set(customerItems);
-        this.roles.set(roleItems);
-
-        if (!this.selectedCustomerId() && customerItems.length === 1) {
-          this.onCustomerChange(String(customerItems[0].value ?? ""));
-        }
-      })
-      .finally(() => this.loading.set(false));
-  }
-
-  private isValidRoleOption(role: SelectItemDto): boolean {
-    const label = String(role.label ?? "").trim().toLowerCase();
-    const value = this.toRoleValue(role.value);
-
-    return !this.invalidRoleLabels.includes(label) && Number.isFinite(value) && value > 0;
-  }
-
-  onCustomerChange(customerId: string): void {
-    this.selectedCustomerId.set(customerId);
+  private async loadMatrixForCustomer(customerId: string): Promise<void> {
     if (!customerId) {
+      this.interviewerRoles.set([]);
+      this.workPositionRoles.set([]);
       this.rules.set([]);
       return;
     }
 
     this.loading.set(true);
-    this.service
-      .getByCustomer(customerId)
-      .then((data) => this.rules.set(data ?? []))
-      .finally(() => this.loading.set(false));
+    try {
+      const board = await this.service.getBoard(customerId);
+      this.interviewerRoles.set(board?.interviewerRoles ?? []);
+      this.workPositionRoles.set(board?.workPositionRoles ?? []);
+      this.rules.set(board?.rules ?? []);
+    } finally {
+      this.loading.set(false);
+    }
   }
 
   getCellKey(interviewerRole: number, workPositionRole: number): string {
     return `${interviewerRole}-${workPositionRole}`;
   }
 
-  toRoleValue(value: SelectItemDto["value"]): number {
+  toRoleValue(value: number | null | undefined): number {
     return Number(value ?? 0);
   }
 
-  getActiveRowCount(interviewerRole: number): number {
-    return this.activeRowCounts().get(interviewerRole) ?? 0;
+  getActiveRowCount(workPositionRole: number): number {
+    return this.activeRowCounts().get(workPositionRole) ?? 0;
   }
 
-  getActiveColumnCount(workPositionRole: number): number {
-    return this.activeColumnCounts().get(workPositionRole) ?? 0;
+  getActiveColumnCount(interviewerRole: number): number {
+    return this.activeColumnCounts().get(interviewerRole) ?? 0;
   }
 
   getCellState(interviewerRole: number, workPositionRole: number): MatrixCellState {
@@ -155,7 +159,7 @@ export class InterviewerMatrix implements OnInit {
   }
 
   async toggleCell(interviewerRole: number, workPositionRole: number): Promise<void> {
-    const customerId = this.selectedCustomerId();
+    const customerId = this.activeCustomerId();
     if (!customerId) return;
 
     const cellKey = this.getCellKey(interviewerRole, workPositionRole);

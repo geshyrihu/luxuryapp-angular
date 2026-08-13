@@ -1,27 +1,27 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnInit,
   computed,
   inject,
-  OnInit,
   signal,
 } from "@angular/core";
 import { CommonModule, DatePipe } from "@angular/common";
 import { Router } from "@angular/router";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CandidateInterviewerQueueService } from "./candidate-interviewer-queue.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { DialogSize } from "src/app/core/enums/dialog-size.enum";
+import { EmployeeInterviewFeedbackForm } from "./employee-interview-feedback-form";
+import { CandidateStageBadge } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-stage-badge";
+import { MappedPTag, MappedTagOption } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/mapped-p-tag";
+import { CandidateDecision } from "src/app/core/enums/candidate-decision";
+import { candidateDecisionLabel } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-decision-labels";
 import {
   CandidateInterviewerQueueDto,
   CandidateInterviewerQueueItemDto,
-} from "./interfaces/candidate-interviewer-queue.interface";
-import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
-import { MappedPTag, MappedTagOption } from "../recruitment-shared/mapped-p-tag";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { CandidateInterviewFeedbackForm } from "../candidate-interview/candidate-interview-feedback-form";
-import { DialogSize } from "src/app/core/enums/dialog-size.enum";
-import { candidateDecisionLabel } from "../recruitment-shared/candidate-decision-labels";
-import { CandidateDecision } from "src/app/core/enums/candidate-decision";
+} from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
+import { EmployeeInterviewerQueueService } from "./employee-interviewer-queue.service";
 
 type QueueMode = "pending" | "history" | "overdue" | "feedback" | "all";
 
@@ -34,13 +34,12 @@ type QueueCandidateView = CandidateInterviewerQueueItemDto & {
 
 type QueueVacancyView = CandidateInterviewerQueueDto & {
   filteredCandidates: QueueCandidateView[];
-  showWithoutCandidates: boolean;
 };
 
 @Component({
-  selector: "app-candidate-interviewer-queue",
+  selector: "app-employee-interviewer-queue",
   standalone: true,
-  templateUrl: "./candidate-interviewer-queue.html",
+  templateUrl: "./employee-interviewer-queue.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
@@ -51,8 +50,8 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
     MappedPTag,
   ],
 })
-export class CandidateInterviewerQueue implements OnInit {
-  private interviewerQueueS = inject(CandidateInterviewerQueueService);
+export class EmployeeInterviewerQueue implements OnInit {
+  private queueS = inject(EmployeeInterviewerQueueService);
   private router = inject(Router);
   private dialogHandlerS = inject(DialogHandlerService);
 
@@ -73,10 +72,8 @@ export class CandidateInterviewerQueue implements OnInit {
     { value: "no_show", label: "No asistio", severity: "warn" },
   ]);
 
-  readonly totalVacancies = computed(() => this.dataSignal().length);
-  readonly totalCandidates = computed(() =>
-    this.dataSignal().reduce((sum, vacancy) => sum + vacancy.candidates.length, 0),
-  );
+  readonly totalVacancies = computed(() => this.filteredVacancies().length);
+  readonly totalCandidates = computed(() => this.flattenedCandidates().length);
   readonly pendingCount = computed(() =>
     this.flattenedCandidates().filter((candidate) => !candidate.isHistorical).length,
   );
@@ -106,8 +103,9 @@ export class CandidateInterviewerQueue implements OnInit {
     const term = this.searchTerm().trim().toLowerCase();
 
     return this.dataSignal()
-      .map((vacancy) => {
-        const filteredCandidates = vacancy.candidates
+      .map((vacancy) => ({
+        ...vacancy,
+        filteredCandidates: vacancy.candidates
           .map((candidate) => ({
             ...candidate,
             vacancyFolio: vacancy.vacancyFolio,
@@ -115,20 +113,9 @@ export class CandidateInterviewerQueue implements OnInit {
             customerName: vacancy.customerName,
             vacancyStatus: vacancy.vacancyStatus,
           }))
-          .filter((candidate) => this.matchesMode(candidate) && this.matchesSearch(candidate, term));
-
-        const showWithoutCandidates =
-          filteredCandidates.length === 0 &&
-          vacancy.candidates.length === 0 &&
-          this.matchesVacancyWithoutCandidates(vacancy, term);
-
-        return {
-          ...vacancy,
-          filteredCandidates,
-          showWithoutCandidates,
-        };
-      })
-      .filter((vacancy) => vacancy.filteredCandidates.length > 0 || vacancy.showWithoutCandidates);
+          .filter((candidate) => this.matchesMode(candidate) && this.matchesSearch(candidate, term)),
+      }))
+      .filter((vacancy) => vacancy.filteredCandidates.length > 0);
   });
 
   ngOnInit(): void {
@@ -138,7 +125,7 @@ export class CandidateInterviewerQueue implements OnInit {
   async onLoadData(): Promise<void> {
     this.loading.set(true);
     try {
-      const data = await this.interviewerQueueS.getInterviewerQueue();
+      const data = await this.queueS.getQueue();
       this.dataSignal.set(data);
 
       const current = this.selectedCandidate();
@@ -171,7 +158,7 @@ export class CandidateInterviewerQueue implements OnInit {
   }
 
   navigateToQueueResponse(candidate: QueueCandidateView): void {
-    this.router.navigate(["/recruitment/candidates/interviews/respond"], {
+    this.router.navigate(["/directory/employee-interviews/respond"], {
       queryParams: {
         applicationId: candidate.candidateApplicationId,
         candidateProcessId: candidate.candidateProcessId ?? undefined,
@@ -179,15 +166,9 @@ export class CandidateInterviewerQueue implements OnInit {
     });
   }
 
-  navigateToApplicationDetail(candidateApplicationId: string): void {
-    this.router.navigate(["/recruitment/candidates/applications"], {
-      queryParams: { detail: candidateApplicationId },
-    });
-  }
-
   async onFeedback(candidate: QueueCandidateView): Promise<void> {
     const result = await this.dialogHandlerS.openDialog<boolean>(
-      CandidateInterviewFeedbackForm,
+      EmployeeInterviewFeedbackForm,
       {
         candidateApplicationId: candidate.candidateApplicationId,
         candidateProcessId: candidate.candidateProcessId ?? undefined,
@@ -195,6 +176,7 @@ export class CandidateInterviewerQueue implements OnInit {
       `Retroalimentacion - ${candidate.candidateName}`,
       DialogSize.lg,
     );
+
     if (result) {
       await this.onLoadData();
     }
@@ -204,7 +186,7 @@ export class CandidateInterviewerQueue implements OnInit {
     const confirmed = confirm(`Marcar a ${candidate.candidateName} como "No asistio"?`);
     if (!confirmed) return;
 
-    await this.interviewerQueueS.executeAction({
+    await this.queueS.executeAction({
       candidateApplicationId: candidate.candidateApplicationId,
       candidateProcessId: candidate.candidateProcessId ?? undefined,
       action: 1,
@@ -215,7 +197,7 @@ export class CandidateInterviewerQueue implements OnInit {
   }
 
   async onApprove(candidate: QueueCandidateView): Promise<void> {
-    await this.interviewerQueueS.executeAction({
+    await this.queueS.executeAction({
       candidateApplicationId: candidate.candidateApplicationId,
       candidateProcessId: candidate.candidateProcessId ?? undefined,
       action: 3,
@@ -228,10 +210,6 @@ export class CandidateInterviewerQueue implements OnInit {
   decisionLabel(decision?: CandidateDecision): string {
     if (decision === undefined || decision === null) return "Sin decision";
     return candidateDecisionLabel(decision);
-  }
-
-  hasQueueDataForStaffBoard(): boolean {
-    return this.totalVacancies() > 0;
   }
 
   private matchesMode(candidate: QueueCandidateView): boolean {
@@ -261,27 +239,6 @@ export class CandidateInterviewerQueue implements OnInit {
       candidate.assignedInterviewerName,
       candidate.pendingAction,
       candidate.interviewTypeLabel,
-    ]
-      .filter(Boolean)
-      .join(" ")
-      .toLowerCase();
-
-    return haystack.includes(term);
-  }
-
-  private matchesVacancyWithoutCandidates(
-    vacancy: CandidateInterviewerQueueDto,
-    term: string,
-  ): boolean {
-    if (!(this.mode() === "pending" || this.mode() === "all")) return false;
-
-    if (!term) return true;
-
-    const haystack = [
-      vacancy.vacancyFolio,
-      vacancy.positionName,
-      vacancy.customerName,
-      vacancy.vacancyStatus,
     ]
       .filter(Boolean)
       .join(" ")

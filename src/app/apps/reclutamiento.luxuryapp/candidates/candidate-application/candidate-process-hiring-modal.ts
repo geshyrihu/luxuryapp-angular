@@ -49,6 +49,7 @@ export class CandidateProcessHiringModal implements OnInit {
 
   submitting = signal(false);
   id: string = this.config.data.id;
+  candidateProcessId: string | undefined = this.config.data.candidateProcessId;
   toStage: CandidateApplicationStage = this.config.data.toStage;
   cb_contracts = signal<SelectItemDto[]>([]);
 
@@ -80,11 +81,14 @@ export class CandidateProcessHiringModal implements OnInit {
     };
 
     this.submitting.set(true);
+    const targetEndpoint = this.candidateProcessId
+      ? EndpointsReclutamiento.CandidateProcesses.processHiring(
+          this.candidateProcessId,
+        )
+      : EndpointsReclutamiento.CandidateApplications.processHiring(this.id);
+
     this.apiResponseS
-      .onPost<boolean>(
-        EndpointsReclutamiento.CandidateApplications.processHiring(this.id),
-        payload,
-      )
+      .onPost<boolean>(targetEndpoint, payload)
       .then((result: boolean | false) => {
         if (result) this.ref.close(true);
         else this.submitting.set(false);

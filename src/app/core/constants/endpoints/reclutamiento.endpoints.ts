@@ -113,6 +113,30 @@ CandidateApplications: {
     processHiring: (id: Id) =>
       `recruitment-candidate-applications/${id}/process-hiring`,
   },
+  CandidateProcesses: {
+    base: "recruitment-candidate-processes",
+    list: "recruitment-candidate-processes",
+    listByStage: (stage: string | number) =>
+      `recruitment-candidate-processes/by-stage/${stage}`,
+    getById: (id: Id) => `recruitment-candidate-processes/${id}`,
+    createMultipart: "recruitment-candidate-processes/multipart",
+    updateMultipart: (id: Id) =>
+      `recruitment-candidate-processes/${id}/multipart`,
+    kpis: "recruitment-candidate-processes/kpis",
+    recruitmentAgenda: "recruitment-candidate-processes/recruitment-agenda",
+    recruitmentInterviewBoard:
+      "recruitment-candidate-processes/recruitment-board",
+    interviewerQueue: "recruitment-candidate-processes/interviewer-queue",
+    interviewerView: "recruitment-candidate-processes/interviewer-view",
+    employeeInterviewerQueue: "recruitment-candidate-processes/employee-interviewer-queue",
+    schedule: (id: Id) => `recruitment-candidate-processes/${id}/schedule`,
+    cancelSchedule: (id: Id) =>
+      `recruitment-candidate-processes/${id}/cancel-schedule`,
+    changeStage: (id: Id) => `recruitment-candidate-processes/${id}/stage`,
+    interviewResponse: (id: Id) => `recruitment-candidate-processes/${id}/interview-response`,
+    interviewerAction: "recruitment-candidate-processes/interviewer-action",
+    processHiring: (id: Id) => `recruitment-candidate-processes/${id}/process-hiring`,
+  },
   CandidateInterviews: {
     base: "recruitment-candidate-interviews",
     create: "recruitment-candidate-interviews",
@@ -147,6 +171,10 @@ CandidateApplications: {
     base: "recruitment-interviewer-matrix",
     byCustomer: (customerId: Id) =>
       `recruitment-interviewer-matrix/customer/${customerId}`,
+    board: (customerId: Id) =>
+      `recruitment-interviewer-matrix/customer/${customerId}/board`,
+    eligibleInterviewersByRequestPosition: (requestPositionId: Id) =>
+      `recruitment-interviewer-matrix/eligible-interviewers/by-request-position/${requestPositionId}`,
     resolve: (customerId: Id, workPositionRole: number) =>
       `recruitment-interviewer-matrix/resolve/${customerId}/${workPositionRole}`,
   },

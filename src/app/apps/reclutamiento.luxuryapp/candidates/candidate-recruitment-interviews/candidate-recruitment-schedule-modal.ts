@@ -19,6 +19,7 @@ import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -62,6 +63,8 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
     this.config.data.item;
   readonly action: RecruitmentBoardAction = this.config.data.action;
   readonly customerId: string = this.config.data.customerId;
+  readonly requestPositionId: string = this.config.data.requestPositionId;
+  readonly scheduleTargetId = this.item.candidateProcessId || this.item.candidateApplicationId;
 
   readonly form: FormGroup = new FormGroup({
     recruitmentInterviewAt: new FormControl<string | null>(null),
@@ -119,21 +122,38 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
     );
 
     if (this.action === "assign") {
+      this.form.controls["operationsInterviewAssignedToUserId"].setValidators(
+        Validators.required,
+      );
+      this.form.controls["operationsInterviewAssignedToUserId"].updateValueAndValidity({
+        emitEvent: false,
+      });
       void this.onLoadInterviewers();
     }
   }
 
   async onLoadInterviewers(): Promise<void> {
-    if (!this.customerId || this.cb_interviewers().length > 0) return;
+    if (!this.requestPositionId || this.cb_interviewers().length > 0) return;
     this.loadingInterviewers.set(true);
     try {
-      const interviewers = await this.apiResponseS.onGetSelectItem<
+      const interviewers = await this.apiResponseS.onGetItem<
         SelectItemDto[]
       >(
-        Endpoints.SelectItems.operationsInterviewersByCustomer(this.customerId),
+        EndpointsReclutamiento.InterviewerMatrix.eligibleInterviewersByRequestPosition(
+          this.requestPositionId,
+        ),
       );
-      if (interviewers) {
-        this.cb_interviewers.set(interviewers);
+      const options = interviewers ?? [];
+      this.cb_interviewers.set(options);
+      if (
+        options.length > 0 &&
+        !options.some(
+          (item) =>
+            item.value ===
+            this.form.controls["operationsInterviewAssignedToUserId"].value,
+        )
+      ) {
+        this.form.controls["operationsInterviewAssignedToUserId"].setValue(null);
       }
     } finally {
       this.loadingInterviewers.set(false);
@@ -141,6 +161,7 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
+    if (this.isAssignActionBlocked()) return;
     this.submitting.set(true);
     try {
       const ok = await this.execute();
@@ -155,13 +176,22 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
     }
   }
 
+  isAssignActionBlocked(): boolean {
+    return (
+      this.action === "assign" &&
+      (this.loadingInterviewers() ||
+        this.cb_interviewers().length === 0 ||
+        !this.form.controls["operationsInterviewAssignedToUserId"].value)
+    );
+  }
+
   async onCancelInterview(): Promise<void> {
     this.submitting.set(true);
     try {
       const ok = this.item.interviewId
         ? await this.boardS.cancelInterview(this.item.interviewId)
         : await this.boardS.cancelSchedule(
-            this.item.candidateApplicationId,
+            this.scheduleTargetId,
             {
               comment: this.form.controls["comment"].value ?? "",
               cancelInterview: true,
@@ -188,7 +218,7 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
           this.form.controls["recruitmentInterviewAt"].value,
         ),
       };
-      return this.boardS.sendToInterview(this.item.candidateApplicationId, payload);
+      return this.boardS.sendToInterview(this.scheduleTargetId, payload);
     }
 
     if (this.action === "reschedule" && this.item.interviewId) {
@@ -221,7 +251,7 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
       comment,
     };
 
-    return this.boardS.schedule(this.item.candidateApplicationId, schedulePayload);
+    return this.boardS.schedule(this.scheduleTargetId, schedulePayload);
   }
 
   private toIso(value: string | null): string | undefined {

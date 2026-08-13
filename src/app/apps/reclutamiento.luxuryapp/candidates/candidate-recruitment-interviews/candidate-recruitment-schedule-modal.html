@@ -34,6 +34,12 @@
           [loading]="loadingInterviewers()"
           [filter]="true"
         />
+        @if (!loadingInterviewers() && cb_interviewers().length === 0) {
+        <small class="block mt-2 text-red-500">
+          No hay entrevistadores elegibles en la matrix para esta vacante. No
+          se puede asignar ni agendar hasta configurar una coincidencia valida.
+        </small>
+        }
       </div>
       }
       <div class="col-12">
@@ -59,7 +65,11 @@
         />
         }
       </div>
-      <il-button-save [submitting]="submitting()" [label]="submitLabel()" />
+      <il-button-save
+        [submitting]="submitting()"
+        [label]="submitLabel()"
+        [disabled]="isAssignActionBlocked()"
+      />
     </div>
   </form>
 </div>

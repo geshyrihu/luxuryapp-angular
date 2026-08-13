@@ -26,7 +26,7 @@ export class CandidateRecruitmentInterviewsService {
 
   async getBoard(): Promise<CandidateRecruitmentInterviewBoard[]> {
     const result = await this.apiResponseS.onGetList<CandidateRecruitmentInterviewBoard[]>(
-      EndpointsReclutamiento.CandidateApplications.recruitmentInterviewBoard,
+      EndpointsReclutamiento.CandidateProcesses.recruitmentInterviewBoard,
     );
     return result ?? [];
   }
@@ -36,7 +36,7 @@ export class CandidateRecruitmentInterviewsService {
     payload: ChangeStageApplicationRequest,
   ): Promise<boolean> {
     const result = await this.apiResponseS.onPost<boolean>(
-      EndpointsReclutamiento.CandidateApplications.changeStage(id),
+      EndpointsReclutamiento.CandidateProcesses.changeStage(id),
       payload,
     );
     return result ?? false;
@@ -47,7 +47,7 @@ export class CandidateRecruitmentInterviewsService {
     payload: ScheduleRecruitmentInterviewRequest,
   ): Promise<boolean> {
     const result = await this.apiResponseS.onPost<boolean>(
-      EndpointsReclutamiento.CandidateApplications.recruitmentSchedule(id),
+      EndpointsReclutamiento.CandidateProcesses.schedule(id),
       payload,
     );
     return result ?? false;
@@ -58,7 +58,7 @@ export class CandidateRecruitmentInterviewsService {
     payload: ScheduleRecruitmentInterviewRequest,
   ): Promise<boolean> {
     const result = await this.apiResponseS.onPost<boolean>(
-      EndpointsReclutamiento.CandidateApplications.cancelRecruitmentSchedule(id),
+      EndpointsReclutamiento.CandidateProcesses.cancelSchedule(id),
       payload,
     );
     return result ?? false;

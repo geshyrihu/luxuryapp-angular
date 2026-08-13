@@ -151,7 +151,12 @@ export class CandidateRecruitmentInterviews implements OnInit {
   ): Promise<void> {
     const result = await this.dialogHandlerS.openDialog<boolean>(
       CandidateRecruitmentScheduleModal,
-      { item: candidate, action, customerId: vacancy.customerId },
+      {
+        item: candidate,
+        action,
+        customerId: vacancy.customerId,
+        requestPositionId: vacancy.requestPositionId,
+      },
       this.modalTitle(action, candidate),
       DialogSize.md,
     );

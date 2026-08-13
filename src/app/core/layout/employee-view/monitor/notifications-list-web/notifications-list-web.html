@@ -3,14 +3,35 @@
     <div class="card-header">
       <div class="flex align-items-center justify-content-between px-4 pt-4">
         <span class="text-xl font-bold">Notificaciones</span>
-        <iw-button
-          icon="material-symbols-light:refresh"
-          variant="text"
-          severity="secondary"
-          lxTooltip="Recargar"
-          (clicked)="onLoadNotification()"
-          [loading]="loading()"
-        />
+        <div class="flex align-items-center gap-2">
+          @if (selectionMode()) {
+            <lx-checkbox
+              label="Todas"
+              [checked]="allSelected()"
+              (checkedChange)="toggleSelectAll()"
+            />
+            <iw-button-delete
+              lxTooltip="Eliminar seleccionadas"
+              [disabled]="selectedIds().size === 0"
+              (confirmed)="deleteSelected()"
+            />
+          }
+          <iw-button
+            icon="material-symbols-light:checklist"
+            variant="text"
+            [severity]="selectionMode() ? 'primary' : 'secondary'"
+            lxTooltip="Seleccionar"
+            (clicked)="toggleSelectionMode()"
+          />
+          <iw-button
+            icon="material-symbols-light:refresh"
+            variant="text"
+            severity="secondary"
+            lxTooltip="Recargar"
+            (clicked)="onLoadNotification()"
+            [loading]="loading()"
+          />
+        </div>
       </div>
     </div>
 
@@ -20,8 +41,21 @@
         <div
           class="flex align-items-start p-3 gap-3 cursor-pointer border-bottom-1 surface-border"
           [class.surface-50]="!notification.isRead"
-          (click)="markAsRead(notification.id, notification.url)"
+          (click)="
+            selectionMode()
+              ? toggleSelection(notification.id)
+              : markAsRead(notification.id, notification.url)
+          "
         >
+          @if (selectionMode()) {
+            <lx-checkbox
+              class="mt-1"
+              [checked]="selectedIds().has(notification.id)"
+              (checkedChange)="toggleSelection(notification.id)"
+              (click)="$event.stopPropagation()"
+            />
+          }
+
           <app-icon
             icon="material-symbols-light:notifications"
             class="text-xl mt-1"
@@ -39,11 +73,18 @@
               {{ notification.createdAt }}
             </p>
           </div>
-          @if (!notification.isRead) {
-          <span class="flex-shrink-0">
-            <p-badge severity="danger" />
-          </span>
-          }
+          <div class="flex-shrink-0 flex align-items-center gap-2 ml-auto">
+            @if (!selectionMode() && !notification.isRead) {
+              <p-badge severity="danger" />
+            }
+            @if (!selectionMode()) {
+              <iw-button-delete
+                lxTooltip="Eliminar notificacion"
+                (click)="$event.stopPropagation()"
+                (confirmed)="deleteNotification(notification.id)"
+              />
+            }
+          </div>
         </div>
         } @empty {
         <div
