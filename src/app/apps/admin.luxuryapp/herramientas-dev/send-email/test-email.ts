@@ -36,7 +36,7 @@ export class TestEmail {
         alert("Correo enviado de prueba correctamente");
       })
       .catch((error: any) => {
-        console.error("? Error al enviar el correo:", error);
+        console.error("¿ Error al enviar el correo:", error);
         alert("Hubo un problema al enviar el correo");
       });
   }

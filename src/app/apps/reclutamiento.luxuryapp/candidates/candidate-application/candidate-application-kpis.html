@@ -1,9 +1,11 @@
-<div class="card p-3 mb-3" *ngIf="loading()">
+@if (loading()) {
+<div class="card p-3 mb-3">
   <div class="flex align-items-center justify-content-center py-5">
     <lx-spinner [size]="40" />
     <span class="ml-3 text-color-secondary">Calculando indicadores...</span>
   </div>
 </div>
+}
 
 @if (!loading() && kpis()) {
   <!-- Tarjetas KPIs principales -->
@@ -13,7 +15,7 @@
         <div class="card p-3 h-full">
           <div class="flex align-items-start gap-3">
             <div
-              class="flex align-items-center justify-content-center rounded-xl"
+              class="flex align-items-center justify-content-center rounded-xl w-3rem h-3rem"
               [ngClass]="{
                 'bg-red-100 text-red-600': card.severity === 'danger',
                 'bg-yellow-100 text-yellow-600': card.severity === 'warn',
@@ -21,7 +23,6 @@
                 'bg-blue-100 text-blue-600': card.severity === 'info',
                 'bg-purple-100 text-purple-600': card.severity === 'primary',
               }"
-              style="width: 48px; height: 48px;"
             >
               <app-icon [icon]="card.icon" class="text-2xl" />
             </div>

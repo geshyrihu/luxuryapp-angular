@@ -1,3 +1,4 @@
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,10 +19,13 @@ import {
 import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
 import { MappedPTag, MappedTagOption } from "../recruitment-shared/mapped-p-tag";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
 import { CandidateInterviewFeedbackForm } from "../candidate-interview/candidate-interview-feedback-form";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { candidateDecisionLabel } from "../recruitment-shared/candidate-decision-labels";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
+import { InterviewerActionType } from "src/app/core/enums/interviewer-action-type";
+
 
 type QueueMode = "pending" | "history" | "overdue" | "feedback" | "all";
 
@@ -55,6 +59,7 @@ export class CandidateInterviewerQueue implements OnInit {
   private interviewerQueueS = inject(CandidateInterviewerQueueService);
   private router = inject(Router);
   private dialogHandlerS = inject(DialogHandlerService);
+  private confirmS = inject(ConfirmService);
 
   readonly dataSignal = signal<CandidateInterviewerQueueDto[]>([]);
   readonly loading = signal(false);
@@ -171,7 +176,7 @@ export class CandidateInterviewerQueue implements OnInit {
   }
 
   navigateToQueueResponse(candidate: QueueCandidateView): void {
-    this.router.navigate(["/recruitment/candidates/interviews/respond"], {
+    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS_RESPONDER, {
       queryParams: {
         applicationId: candidate.candidateApplicationId,
         candidateProcessId: candidate.candidateProcessId ?? undefined,
@@ -180,7 +185,7 @@ export class CandidateInterviewerQueue implements OnInit {
   }
 
   navigateToApplicationDetail(candidateApplicationId: string): void {
-    this.router.navigate(["/recruitment/candidates/applications"], {
+    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_APLICACIONES, {
       queryParams: { detail: candidateApplicationId },
     });
   }
@@ -201,13 +206,13 @@ export class CandidateInterviewerQueue implements OnInit {
   }
 
   async onMarkNoShow(candidate: QueueCandidateView): Promise<void> {
-    const confirmed = confirm(`Marcar a ${candidate.candidateName} como "No asistio"?`);
+    const confirmed = await this.confirmS.confirm(`Marcar a ${candidate.candidateName} como "No asistio"?`);
     if (!confirmed) return;
 
     await this.interviewerQueueS.executeAction({
       candidateApplicationId: candidate.candidateApplicationId,
       candidateProcessId: candidate.candidateProcessId ?? undefined,
-      action: 1,
+      action: InterviewerActionType.MarkNoShow,
       comment: "No asistio a la entrevista programada.",
     });
 
@@ -218,8 +223,22 @@ export class CandidateInterviewerQueue implements OnInit {
     await this.interviewerQueueS.executeAction({
       candidateApplicationId: candidate.candidateApplicationId,
       candidateProcessId: candidate.candidateProcessId ?? undefined,
-      action: 3,
+      action: InterviewerActionType.Approve,
       comment: "Aprobado por entrevistador para continuar proceso.",
+    });
+
+    await this.onLoadData();
+  }
+
+  async onRevert(candidate: QueueCandidateView): Promise<void> {
+    const confirmed = await this.confirmS.confirm(`¿Revertir decisión para ${candidate.candidateName}?`);
+    if (!confirmed) return;
+
+    await this.interviewerQueueS.executeAction({
+      candidateApplicationId: candidate.candidateApplicationId,
+      candidateProcessId: candidate.candidateProcessId ?? undefined,
+      action: InterviewerActionType.RevertDecision,
+      comment: "Decisión revertida.",
     });
 
     await this.onLoadData();
@@ -290,3 +309,7 @@ export class CandidateInterviewerQueue implements OnInit {
     return haystack.includes(term);
   }
 }
+
+
+
+

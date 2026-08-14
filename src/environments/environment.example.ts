@@ -17,6 +17,10 @@ export const environment = {
   // ⚠️ IMPORTANT: Use environment variables for these values
   // Load from process.env or import.meta.env at runtime
   ONESIGNAL_APPID: "YOUR_ONESIGNAL_APP_ID_HERE",
+  // Lista solo los orígenes que coincidan con el Site URL configurado en el dashboard de
+  // OneSignal. Si el dashboard tiene la restricción de origen activada, agregar un origen
+  // distinto (p. ej. http://localhost:4200) hace que init() lance
+  // "Can only be used on: <site-url>". Para desarrollo local usar una app OneSignal aparte.
   ONESIGNAL_ALLOWED_ORIGINS: ["https://luxurybuildingapp.com"],
 
   // Firebase configuration

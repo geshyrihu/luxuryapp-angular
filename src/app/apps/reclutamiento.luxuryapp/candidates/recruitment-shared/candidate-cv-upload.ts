@@ -7,19 +7,16 @@ import {
   signal,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import {
-  FileUploadModule,
-  FileUploadValidators,
-} from "@iplab/ngx-file-upload";
 import { PlatformService } from "src/app/core/services/platform.service";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { FileUpload } from "src/app/shared/ui/web/file-upload/file-upload";
 
 @Component({
   selector: "app-candidate-cv-upload",
   standalone: true,
   templateUrl: "./candidate-cv-upload.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, ReactiveFormsModule, FileUploadModule],
+  imports: [CommonModule, FileUpload, WebButtonIconViewPdf],
   styles: [
     `
       :host {
@@ -47,64 +44,25 @@ import { PlatformService } from "src/app/core/services/platform.service";
         border: 1px solid var(--ds-border-strong);
         border-radius: var(--ds-radius-md);
         background-color: var(--ds-bg-surface);
-        color: var(--ds-text-primary);
+        padding: var(--ds-space-sm) var(--ds-space-md);
+        color: var(--ds-text);
+        font-weight: 500;
         cursor: pointer;
-        font: inherit;
-        padding: var(--ds-space-xs) var(--ds-space-md);
+        transition: all 0.2s ease;
       }
 
       .cv-action-button:hover {
-        background-color: var(--ds-bg-sunken);
+        background-color: var(--ds-bg-surface-hover);
       }
 
       .cv-action-button--subtle {
-        border-color: var(--ds-border-subtle);
+        border-color: transparent;
+        color: var(--ds-text-subtle);
       }
 
-      :host ::ng-deep {
-        file-upload {
-          display: block !important;
-          width: 100% !important;
-          border: 2px dashed var(--ds-border-strong) !important;
-          border-radius: var(--ds-radius-lg) !important;
-          background-color: var(--ds-bg-surface) !important;
-          min-height: 140px !important;
-          position: relative !important;
-        }
-
-        file-upload:hover {
-          background-color: var(--ds-bg-sunken) !important;
-          border-color: var(--ds-primary) !important;
-        }
-
-        file-upload label.upload-input {
-          position: absolute !important;
-          inset: 0 !important;
-          transform: none !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          pointer-events: auto !important;
-          cursor: pointer !important;
-          color: inherit !important;
-        }
-
-        file-upload-drop-zone {
-          display: flex !important;
-          flex-direction: column !important;
-          align-items: center !important;
-          justify-content: center !important;
-          text-align: center !important;
-          min-height: 140px !important;
-          padding: var(--ds-space-md) !important;
-        }
-
-        file-upload-drop-zone .upload-text {
-          overflow: visible !important;
-          padding: 0 !important;
-          width: auto !important;
-          text-align: center !important;
-        }
+      .cv-action-button--subtle:hover {
+        background-color: var(--ds-bg-subtle);
+        color: var(--ds-text);
       }
     `,
   ],
@@ -118,27 +76,16 @@ export class CandidateCvUpload {
   fileSelected = output<string | null>();
   fileEmitted = output<File | null>();
 
-  cvControl = new FormControl<File[] | null>(null, [
-    FileUploadValidators.fileSize(10485760),
-    FileUploadValidators.accept([".pdf"]),
-  ]);
-
   currentFileName = signal<string | null>(null);
   replaceMode = signal(false);
 
-  onFileChange() {
-    const files = this.cvControl.value;
-    if (files && files.length > 0) {
-      const file = files[0];
+  onFileSelect(event: any) {
+    if (event.files && event.files.length > 0) {
+      const file = event.files[0];
       this.currentFileName.set(file.name);
       this.replaceMode.set(true);
       this.fileSelected.emit(file.name);
       this.fileEmitted.emit(file);
-    } else {
-      this.currentFileName.set(null);
-      this.replaceMode.set(false);
-      this.fileSelected.emit(this.fileName());
-      this.fileEmitted.emit(null);
     }
   }
 
@@ -147,7 +94,6 @@ export class CandidateCvUpload {
   }
 
   protected clearReplacement() {
-    this.cvControl.reset(null);
     this.currentFileName.set(null);
     this.replaceMode.set(false);
     this.fileSelected.emit(this.fileName());

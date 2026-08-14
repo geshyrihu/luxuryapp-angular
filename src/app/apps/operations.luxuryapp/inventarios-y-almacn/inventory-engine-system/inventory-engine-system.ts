@@ -46,7 +46,7 @@ export class InventoryEngineSystem {
     return [{ system: "Mostrar todos" }, ...this.dataSignal()];
   });
 
-  ref: DynamicDialogRef; // Referencia a un cuadro de diólogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   constructor() {
     effect(() => {

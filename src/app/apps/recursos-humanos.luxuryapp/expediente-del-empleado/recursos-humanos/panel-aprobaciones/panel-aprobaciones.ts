@@ -13,6 +13,7 @@ import {
 import { MotivoRechazoFormulario } from "../motivo-rechazo-formulario/motivo-rechazo-formulario";
 import { GenericApprovalPanel } from "../shared/generic-approval-panel";
 import { ApprovalConfirmationModal } from "../shared/modal-approval-confirmation";
+import { ApprovalDetailModal } from "../shared/modal-approval-detail";
 import { ApprovalStateService } from "./state/approval-state.service";
 @Component({
   selector: "app-panel-aprobaciones",
@@ -38,6 +39,15 @@ export class PanelAprobaciones implements OnInit {
 
   ngOnInit(): void {
     this.state.loadRequests();
+  }
+
+  onViewDetail(request: ApprovalPanelRequest): void {
+    this.dialogHandlerS.openDialog<unknown>(
+      ApprovalDetailModal,
+      { request },
+      `Detalle de Solicitud (${request.requestType})`,
+      this.dialogHandlerS.sizeLg,
+    );
   }
 
   onApprove(request: ApprovalPanelRequest): void {

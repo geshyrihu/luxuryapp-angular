@@ -1,3 +1,4 @@
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,6 +17,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { CandidateRecruitmentInterviewsService } from "./candidate-recruitment-interviews.service";
 import { CandidateRecruitmentScheduleModal } from "./candidate-recruitment-schedule-modal";
+import { EmployeeProviderForm } from "src/app/apps/supplier.luxuryapp/provider/employee-provider-form";
 import {
   CandidateRecruitmentInterviewBoard,
   CandidateRecruitmentInterviewBoardItem,
@@ -135,13 +137,13 @@ export class CandidateRecruitmentInterviews implements OnInit {
   }
 
   navigateToApplicationDetail(candidateApplicationId: string): void {
-    this.router.navigate(["/recruitment/candidates/applications"], {
+    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_APLICACIONES, {
       queryParams: { detail: candidateApplicationId },
     });
   }
 
   clearVacancyFocus(): void {
-    this.router.navigate(["/recruitment/candidates/recruitment-interviews"]);
+    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS_RECLUTAMIENTO);
   }
 
   async onAction(
@@ -163,6 +165,26 @@ export class CandidateRecruitmentInterviews implements OnInit {
     if (result) {
       await this.onLoadData();
     }
+  }
+
+  openAltaForm(
+    vacancy: CandidateRecruitmentInterviewBoard,
+    candidate: CandidateRecruitmentInterviewBoardItem,
+  ): void {
+    this.dialogHandlerS
+      .openDialog(
+        EmployeeProviderForm,
+        {
+          typePerson: 0,
+          positionRequestId: vacancy.requestPositionId,
+          candidateId: candidate.candidateId,
+        },
+        `Alta de Candidato - ${candidate.candidateName}`,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((res) => {
+        if (res) this.onLoadData();
+      });
   }
 
   private modalTitle(
@@ -205,3 +227,4 @@ export class CandidateRecruitmentInterviews implements OnInit {
     return haystack.includes(term);
   }
 }
+

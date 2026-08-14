@@ -434,7 +434,7 @@ export class CatalogoGastosFijosList {
     if (!monthData || !monthData.quincenas[quincenaIndex]) {
       this.customToastS.showError(
         "Error",
-        "No se encontré el periodo para la quincena seleccionada.",
+        "No se encontró el periodo para la quincena seleccionada.",
       );
       return;
     }

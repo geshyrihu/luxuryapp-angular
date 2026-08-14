@@ -12,7 +12,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { ChartJsData } from "@ui/web/charts/echarts-adapters";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { ProgressBarModule } from "primeng/progressbar";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
@@ -32,7 +31,6 @@ import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
     CommonModule,
     WebButtonLabel,
     TableModule,
-    ProgressBarModule,
     MappedPTag,
     ChartWrapper,
     AppIcon,
@@ -344,15 +342,15 @@ export class CandidateApplicationKpis implements OnInit {
             k.postulacionesRechazadasONoPresentadas,
           ],
           backgroundColor: [
-            "#3b82f6",
-            "#3b82f6",
-            "#f59e0b",
-            "#8b5cf6",
-            "#f59e0b",
-            "#22c55e",
-            "#8b5cf6",
-            "#16a34a",
-            "#ef4444",
+            "var(--blue-500)",
+            "var(--blue-500)",
+            "var(--yellow-500)",
+            "var(--purple-500)",
+            "var(--yellow-500)",
+            "var(--green-500)",
+            "var(--purple-500)",
+            "var(--green-600)",
+            "var(--red-500)",
           ],
         },
       ],
@@ -382,11 +380,11 @@ export class CandidateApplicationKpis implements OnInit {
             k.entrevistasOperacionesVencidas,
           ],
           backgroundColor: [
-            "#3b82f6",
-            "#22c55e",
-            "#6b7280",
-            "#f59e0b",
-            "#ef4444",
+            "var(--blue-500)",
+            "var(--green-500)",
+            "var(--gray-500)",
+            "var(--yellow-500)",
+            "var(--red-500)",
           ],
         },
       ],
@@ -408,17 +406,17 @@ export class CandidateApplicationKpis implements OnInit {
           data: [promedio, mediana, p90, sla],
           backgroundColor: [
             promedio <= sla
-              ? "#22c55e"
+              ? "var(--green-500)"
               : promedio <= sla * 2
-                ? "#f59e0b"
-                : "#ef4444",
+                ? "var(--yellow-500)"
+                : "var(--red-500)",
             mediana <= sla
-              ? "#22c55e"
+              ? "var(--green-500)"
               : mediana <= sla * 2
-                ? "#f59e0b"
-                : "#ef4444",
-            p90 <= sla ? "#22c55e" : p90 <= sla * 2 ? "#f59e0b" : "#ef4444",
-            "#3b82f6",
+                ? "var(--yellow-500)"
+                : "var(--red-500)",
+            p90 <= sla ? "var(--green-500)" : p90 <= sla * 2 ? "var(--yellow-500)" : "var(--red-500)",
+            "var(--blue-500)",
           ],
         },
       ],
@@ -435,13 +433,13 @@ export class CandidateApplicationKpis implements OnInit {
         {
           label: "Postulaciones",
           data: top.map((f) => f.totalPostulaciones),
-          backgroundColor: "#3b82f6",
+          backgroundColor: "var(--blue-500)",
           yAxisID: "y",
         },
         {
           label: "Tasa conversión (%)",
           data: top.map((f) => f.tasaConversion),
-          backgroundColor: "#22c55e",
+          backgroundColor: "var(--green-500)",
           yAxisID: "y1",
         },
       ],
@@ -457,9 +455,10 @@ export class CandidateApplicationKpis implements OnInit {
         {
           label: "Postulaciones",
           data: [k.postulacionesUltimos7Dias, k.postulacionesUltimos30Dias],
-          backgroundColor: ["#3b82f6", "#8b5cf6"],
+          backgroundColor: ["var(--blue-500)", "var(--purple-500)"],
         },
       ],
     };
   });
 }
+

@@ -113,7 +113,7 @@ export class VacacionesSaldo implements OnInit {
    * (ej. empleado ingresó el Año pasado), carga el último Año disponible.
    *
    * **Importante:** `loadBalance()` se llama Después de validar `currentYear`
-   * para evitar enviar un Año invólido al endpoint de balance.
+   * para evitar enviar un Año inválido al endpoint de balance.
    */
   async loadAvailableYearsAndBalance(): Promise<void> {
     try {

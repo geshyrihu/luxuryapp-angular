@@ -88,21 +88,34 @@ export class RecepcionPipasAguaForm implements OnInit {
       colaboradorMttoId: new FormControl<string | null>(null),
       colaboradorMtto: new FormControl<string | null>(null),
       guardiaSeguridad: new FormControl<string | null>(null),
-      fotoPipaLlena: new FormControl<string | File>("", { nonNullable: true }),
-      fotoPipaVacia: new FormControl<string | File>("", { nonNullable: true }),
-      fotoIneChofer: new FormControl<string | File>("", { nonNullable: true }),
-      fotoPlacas: new FormControl<string | File>("", { nonNullable: true }),
-      fotoMedidorAntes: new FormControl<string | File>("", {
+      // "" = sin cambios, File = nueva imagen, null = eliminar la existente.
+      fotoPipaLlena: new FormControl<string | File | null>("", {
         nonNullable: true,
       }),
-      fotoMedidorDespues: new FormControl<string | File>("", {
+      fotoPipaVacia: new FormControl<string | File | null>("", {
         nonNullable: true,
       }),
-      fotoNivelAntes: new FormControl<string | File>("", { nonNullable: true }),
-      fotoNivelDespues: new FormControl<string | File>("", {
+      fotoIneChofer: new FormControl<string | File | null>("", {
         nonNullable: true,
       }),
-      fotoNota: new FormControl<string | File>("", { nonNullable: true }),
+      fotoPlacas: new FormControl<string | File | null>("", {
+        nonNullable: true,
+      }),
+      fotoMedidorAntes: new FormControl<string | File | null>("", {
+        nonNullable: true,
+      }),
+      fotoMedidorDespues: new FormControl<string | File | null>("", {
+        nonNullable: true,
+      }),
+      fotoNivelAntes: new FormControl<string | File | null>("", {
+        nonNullable: true,
+      }),
+      fotoNivelDespues: new FormControl<string | File | null>("", {
+        nonNullable: true,
+      }),
+      fotoNota: new FormControl<string | File | null>("", {
+        nonNullable: true,
+      }),
     });
 
   ngOnInit(): void {
@@ -112,16 +125,19 @@ export class RecepcionPipasAguaForm implements OnInit {
   }
 
   private async loadEmpleados(): Promise<void> {
+    // employeesByCustomer devuelve Employee.Id; employeeActive devuelve
+    // Employee.UserId y rompe el FK ColaboradorMttoId -> Employees.Id.
     const data = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-      Endpoints.SelectItems.employeeActive(this.customerIdS.customerId()),
+      Endpoints.SelectItems.employeesByCustomer(this.customerIdS.customerId()),
     );
     this.cb_empleados.set(data || []);
   }
 
   saveColaboradorMtto = (item: SelectItemDto) =>
     this.form.patchValue({
-      colaboradorMttoId: String(item?.value),
-      colaboradorMtto: item?.label,
+      // Sin String(): si se limpia el autocomplete enviaba el literal "undefined".
+      colaboradorMttoId: item?.value ? String(item.value) : null,
+      colaboradorMtto: item?.label ?? null,
     });
 
   onLoadData() {
@@ -172,22 +188,36 @@ export class RecepcionPipasAguaForm implements OnInit {
       fd.append("colaboradorMttoId", dto.colaboradorMttoId);
     if (dto.guardiaSeguridad)
       fd.append("guardiaSeguridad", dto.guardiaSeguridad);
-    if (dto.fotoPipaLlena instanceof File)
-      fd.append("fotoPipaLlena", dto.fotoPipaLlena);
-    if (dto.fotoPipaVacia instanceof File)
-      fd.append("fotoPipaVacia", dto.fotoPipaVacia);
-    if (dto.fotoIneChofer instanceof File)
-      fd.append("fotoIneChofer", dto.fotoIneChofer);
-    if (dto.fotoPlacas instanceof File) fd.append("fotoPlacas", dto.fotoPlacas);
-    if (dto.fotoMedidorAntes instanceof File)
-      fd.append("fotoMedidorAntes", dto.fotoMedidorAntes);
-    if (dto.fotoMedidorDespues instanceof File)
-      fd.append("fotoMedidorDespues", dto.fotoMedidorDespues);
-    if (dto.fotoNivelAntes instanceof File)
-      fd.append("fotoNivelAntes", dto.fotoNivelAntes);
-    if (dto.fotoNivelDespues instanceof File)
-      fd.append("fotoNivelDespues", dto.fotoNivelDespues);
-    if (dto.fotoNota instanceof File) fd.append("fotoNota", dto.fotoNota);
+    this.appendFoto(fd, "fotoPipaLlena", dto.fotoPipaLlena, this.urlFotoPipaLlena());
+    this.appendFoto(fd, "fotoPipaVacia", dto.fotoPipaVacia, this.urlFotoPipaVacia());
+    this.appendFoto(fd, "fotoIneChofer", dto.fotoIneChofer, this.urlFotoIneChofer());
+    this.appendFoto(fd, "fotoPlacas", dto.fotoPlacas, this.urlFotoPlacas());
+    this.appendFoto(fd, "fotoMedidorAntes", dto.fotoMedidorAntes, this.urlFotoMedidorAntes());
+    this.appendFoto(fd, "fotoMedidorDespues", dto.fotoMedidorDespues, this.urlFotoMedidorDespues());
+    this.appendFoto(fd, "fotoNivelAntes", dto.fotoNivelAntes, this.urlFotoNivelAntes());
+    this.appendFoto(fd, "fotoNivelDespues", dto.fotoNivelDespues, this.urlFotoNivelDespues());
+    this.appendFoto(fd, "fotoNota", dto.fotoNota, this.urlFotoNota());
     return fd;
+  }
+
+  /**
+   * Adjunta la foto o la marca para eliminar.
+   * Contrato del control: File = nueva imagen, null = eliminar, "" = sin cambios.
+   * El flag de borrado solo se envia si realmente habia una foto guardada.
+   */
+  private appendFoto(
+    fd: FormData,
+    key: string,
+    value: unknown,
+    urlActual: string,
+  ): void {
+    if (value instanceof File) {
+      fd.append(key, value);
+      return;
+    }
+    if (value === null && urlActual) {
+      const flag = `eliminar${key.charAt(0).toUpperCase()}${key.slice(1)}`;
+      fd.append(flag, "true");
+    }
   }
 }

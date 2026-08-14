@@ -77,7 +77,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // Datos que vienen de la API (partidas presupuestales)
   dataSignal = signal<any[]>([]);
-  // Aóo en curso (lo vamos a usar para filtrar info del presupuesto)
+  // Año en curso (lo vamos a usar para filtrar info del presupuesto)
   intYearControl = new FormControl<number>(new Date().getFullYear());
   availableYears = [
     { label: "2024", value: 2024 },
@@ -241,7 +241,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // 6. LIMPIEZA
   //----------------------------------------------------------------
-  // Al destruir el componente cerramos el diólogo ??
+  // Al destruir el componente cerramos el diálogo ??
   ngOnDestroy(): void {
     this.ref.close(true);
   }

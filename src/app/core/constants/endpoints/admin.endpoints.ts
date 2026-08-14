@@ -116,6 +116,12 @@ export const EndpointsAdmin = {
   },
   NotificationDiagnostics: {
     testWhatsApp: "admin/notification-diagnostics/test-whatsapp",
+    testWhatsAppLegalTicket:
+      "admin/notification-diagnostics/test-whatsapp-legal-ticket",
+    testWhatsAppSolicitudRecibida:
+      "admin/notification-diagnostics/test-whatsapp-solicitud-recibida",
+    testWhatsAppSolicitudTerminada:
+      "admin/notification-diagnostics/test-whatsapp-solicitud-terminada",
     testOneSignal: "admin/notification-diagnostics/test-one-signal",
     testOneSignalWeb: "admin/notification-diagnostics/test-one-signal-web",
     testSignalR: (userId: string) =>

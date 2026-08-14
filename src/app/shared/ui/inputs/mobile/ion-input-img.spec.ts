@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { IonInputImg } from './ion-input-img';
+import { CustomToastService } from 'src/app/core/services/custom-toast.service';
 import { vi } from 'vitest';
 
 vi.mock('@ionic/angular/standalone', () => ({
@@ -47,6 +48,9 @@ describe('IonInputImg', () => {
     TestBed.configureTestingModule({
       imports: [IonInputImg],
       schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        { provide: CustomToastService, useValue: { showError: vi.fn() } },
+      ],
     });
     fixture = TestBed.createComponent(IonInputImg);
     component = fixture.componentInstance;

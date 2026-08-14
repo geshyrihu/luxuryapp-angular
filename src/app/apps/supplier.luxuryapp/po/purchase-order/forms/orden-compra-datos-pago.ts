@@ -89,7 +89,7 @@ export class OrdenCompraDatosPago implements OnInit {
       tipoGasto: new FormControl(null),
       provider: new FormControl("", Validators.required),
       fundingPeriod: new FormControl(null),
-      fundingYear: new FormControl(null), // Nuevo control para el Aóo de fondeo
+      fundingYear: new FormControl(null), // Nuevo control para el Año de fondeo
       reference: new FormControl(""),
       cuentaClave: new FormControl(""),
     });
@@ -175,7 +175,7 @@ export class OrdenCompraDatosPago implements OnInit {
     this.form.patchValue(result);
   }
 
-  // Nuevo método para generar opciones de Aóo
+  // Nuevo método para generar opciones de Año
   private generateYearOptions(): SelectItemDto[] {
     const currentYear = new Date().getFullYear();
     return [

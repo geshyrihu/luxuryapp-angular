@@ -43,6 +43,27 @@ export class MenuService implements OnDestroy {
   private menuLoadedSignal = signal(false);
   private menuLoadingSignal = signal(false);
 
+  private logMenuTrace(
+    origin: string,
+    extra: Record<string, unknown> = {},
+  ): void {
+    const snapshot = untracked(() => ({
+      at: new Date().toISOString(),
+      customerId: this.customerIdS.customerId(),
+      customerReady: this.customerIdS.customerDataReady(),
+      applicationUserId: this.authS.applicationUserId,
+      lastCustomerId: this.lastCustomerId,
+      menuLoaded: this.menuLoadedSignal(),
+      menuLoading: this.menuLoadingSignal(),
+      menuItemsCount: this.menuItemsSignal().length,
+    }));
+
+    this.consoleLogger.custom("", "#9C27B0", `[MenuTrace] ${origin}`, {
+      ...snapshot,
+      ...extra,
+    });
+  }
+
   // --- FUENTE DE DATOS REACTIVA ---
   public readonly sidebarMenuItems = computed(() => this.menuItemsSignal());
   public readonly menuLoaded = computed(() => this.menuLoadedSignal());
@@ -75,6 +96,12 @@ export class MenuService implements OnDestroy {
       const userToken = this.userTokenSignal();
       const applicationUserId = userToken?.infoUserAuthDTO?.applicationUserId;
 
+      this.logMenuTrace("effect.tick", {
+        effectCustomerId: customerId,
+        effectCustomerReady: isCustomerReady,
+        effectApplicationUserId: applicationUserId ?? null,
+      });
+
       if (isCustomerReady && customerId && applicationUserId) {
         this.consoleLogger.custom(
           "",
@@ -91,6 +118,7 @@ export class MenuService implements OnDestroy {
           `[MenuService] Data or session not ready. Clearing menu...`,
         );
         untracked(() => {
+          this.logMenuTrace("effect.clearing-cache");
           this.clearCache();
         });
       }
@@ -98,6 +126,7 @@ export class MenuService implements OnDestroy {
   }
 
   async triggerMenuLoad(): Promise<void> {
+    this.logMenuTrace("triggerMenuLoad.start");
     const customerId: string = this.customerIdS.customerId();
     const applicationUserId = this.authS.applicationUserId;
 
@@ -126,6 +155,10 @@ export class MenuService implements OnDestroy {
       try {
         this.lastCustomerId = customerId;
         const rawItems = await this.fetchMenuItemsFromApi(customerId);
+        this.logMenuTrace("triggerMenuLoad.response", {
+          rawItemsCount: rawItems.length,
+          rawItemsLabels: rawItems.map((item) => item.label),
+        });
         this.menuItemsSignal.set(rawItems);
         this.menuLoadedSignal.set(true);
       } catch (error) {
@@ -162,8 +195,15 @@ export class MenuService implements OnDestroy {
 
     if (result === null) {
       this.consoleLogger.error("MenuService: onGetList returned null.");
+      this.logMenuTrace("fetchMenuItemsFromApi.null-response", { customerId });
       return [];
     }
+
+    this.logMenuTrace("fetchMenuItemsFromApi.success", {
+      customerId,
+      resultCount: result.length,
+      resultLabels: result.map((item) => item.label),
+    });
 
     // Recalculamos las rutas permitidas a partir del menú recién cargado para no
     // arrastrar permisos del customer anterior.
@@ -188,6 +228,7 @@ export class MenuService implements OnDestroy {
   }
 
   clearCache(): void {
+    this.logMenuTrace("clearCache.before");
     this.lastCustomerId = null;
     this.allowedRoutes.clear();
     this.menuLoadPromise = null;
@@ -195,6 +236,7 @@ export class MenuService implements OnDestroy {
     this.menuItemsSignal.set([]);
     this.menuLoadedSignal.set(false);
     this.menuLoadingSignal.set(false);
+    this.logMenuTrace("clearCache.after");
   }
 
   ngOnDestroy(): void {

@@ -109,7 +109,7 @@ export class ExtintorBitacoraList implements OnInit {
     }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF é€” Bitúcora Extintores",
+      "Reporte PDF de Bitácora Extintores",
       this.dialogHandlerS.sizeSm,
     );
     if (result)

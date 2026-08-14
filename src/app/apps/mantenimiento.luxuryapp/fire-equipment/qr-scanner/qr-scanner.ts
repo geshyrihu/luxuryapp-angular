@@ -126,7 +126,7 @@ export class QrScanner implements OnDestroy {
       .catch(() => null);
 
     if (!result) {
-      this.errorMsg.set("No se encontré el equipo en el sistema.");
+      this.errorMsg.set("No se encontró el equipo en el sistema.");
       this.statusMsg.set("");
       return;
     }

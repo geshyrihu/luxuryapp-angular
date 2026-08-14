@@ -57,8 +57,8 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
   // --- Inyección de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private config = inject(DynamicDialogConfig); // Configuración pasada al abrir el diólogo
-  public ref = inject(DynamicDialogRef); // Referencia al diólogo dinámico para cerrarlo
+  private config = inject(DynamicDialogConfig); // Configuración pasada al abrir el diálogo
+  public ref = inject(DynamicDialogRef); // Referencia al diálogo dinámico para cerrarlo
   private store = inject<PaginationStore<IProductData>>(PaginationStore);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
@@ -209,7 +209,7 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
       TarjetaProducto,
       { productoId: productoId }, // Datos a pasar al modal TarjetaProductoComponent
       "Tarjeta de Producto",
-      this.dialogHandlerS.sizeLg, // Tamaóo del diólogo
+      this.dialogHandlerS.sizeLg, // Tamaño del diálogo
     );
   }
 

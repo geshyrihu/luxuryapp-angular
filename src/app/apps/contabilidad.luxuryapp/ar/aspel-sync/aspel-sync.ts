@@ -103,7 +103,7 @@ export class AspelSyncComponent {
     if (!this.currentCustomerId()) {
       this.customToastS.showError(
         "Cliente no disponible",
-        "No se encontré un cliente activo para sincronizar.",
+        "No se encontró un cliente activo para sincronizar.",
       );
       return;
     }
@@ -111,8 +111,8 @@ export class AspelSyncComponent {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.customToastS.showError(
-        "Aóo invólido",
-        "Revisa el aóo antes de ejecutar la sincronización.",
+        "Año inválido",
+        "Revisa el año antes de ejecutar la sincronización.",
       );
       return;
     }

@@ -2,9 +2,9 @@
 <div
   class="flex flex-wrap align-items-center justify-content-between gap-2 mb-3"
 >
-  <!-- Selector de aóo + periodo -->
+  <!-- Selector de año + periodo -->
   <div class="flex flex-wrap align-items-center gap-2">
-    <!-- Aóos -->
+    <!-- Años -->
     <div class="flex gap-1">
       @for (anio of aniosDisponibles; track anio) {
       <il-button
@@ -16,7 +16,7 @@
       />
       }
     </div>
-    <!-- Periodos del aóo seleccionado -->
+    <!-- Periodos del año seleccionado -->
     @if (periodos().length) {
     <span class="text-color-secondary mx-1">|</span>
     @for (p of periodos(); track p.value) {

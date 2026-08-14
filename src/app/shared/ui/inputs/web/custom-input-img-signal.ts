@@ -12,6 +12,7 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../base/base-input-signal";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 @Component({
   selector: "web-custom-input-img-signal",
@@ -24,34 +25,46 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
       [control]="control()"
       [horizontal]="horizontal()"
     >
-      <div class="image-upload-container" (click)="triggerFileInput()">
-        @if (hasImageError()) {
-          <div
-            class="image-placeholder error"
-            [style.height.px]="contentHeight()"
-            [style.width.px]="contentWidth()"
+      <div class="image-upload-container">
+        <div class="image-trigger" (click)="triggerFileInput()">
+          @if (hasImageError()) {
+            <div
+              class="image-placeholder error"
+              [style.height.px]="contentHeight()"
+              [style.width.px]="contentWidth()"
+            >
+              <span class="emoji">⚠️</span>
+              <span class="placeholder-text">Imagen no disponible</span>
+            </div>
+          } @else if (hasImage()) {
+            <img
+              [src]="displayImageSrc()"
+              [alt]="title()"
+              [style.height.px]="contentHeight()"
+              [style.width.px]="contentWidth()"
+              class="image-preview object-cover"
+              (error)="onImageError()"
+            />
+          } @else {
+            <div
+              class="image-placeholder"
+              [style.height.px]="contentHeight()"
+              [style.width.px]="contentWidth()"
+            >
+              <span class="emoji">📷</span>
+              <span class="placeholder-text">{{ chooseLabel() }}</span>
+            </div>
+          }
+        </div>
+
+        @if (allowRemove() && (hasImage() || hasImageError())) {
+          <button
+            type="button"
+            class="remove-button"
+            (click)="removeImage($event)"
           >
-            <span class="emoji">⚠️</span>
-            <span class="placeholder-text">Imagen no disponible</span>
-          </div>
-        } @else if (hasImage()) {
-          <img
-            [src]="displayImageSrc()"
-            [alt]="title()"
-            [style.height.px]="contentHeight()"
-            [style.width.px]="contentWidth()"
-            class="image-preview object-cover"
-            (error)="onImageError()"
-          />
-        } @else {
-          <div
-            class="image-placeholder"
-            [style.height.px]="contentHeight()"
-            [style.width.px]="contentWidth()"
-          >
-            <span class="emoji">📷</span>
-            <span class="placeholder-text">{{ chooseLabel() }}</span>
-          </div>
+            Eliminar
+          </button>
         }
 
         <input
@@ -73,8 +86,28 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
         flex-direction: column;
         align-items: center;
         gap: 0.5rem;
-        cursor: pointer;
         user-select: none;
+      }
+
+      .image-trigger {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .remove-button {
+        background: none;
+        border: none;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        color: var(--ds-danger);
+        cursor: pointer;
+        border-radius: var(--ds-radius-card);
+      }
+
+      .remove-button:hover {
+        background-color: var(--ds-danger-light);
       }
 
       .image-preview {
@@ -140,11 +173,14 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
 })
 export class CustomInputImg implements OnChanges {
   private readonly imageProcessing = inject(ImageProcessingService);
+  private readonly toast = inject(CustomToastService);
   control = input<FormControl>(new FormControl());
   id = input<string>(`img-${Math.random().toString(36).substring(2, 9)}`);
   urlImgCurrent = input<string>("");
   title = input<string>("");
   chooseLabel = input<string>("Seleccionar imagen");
+  /** Muestra el boton de eliminar. El padre debe persistir el borrado. */
+  allowRemove = input<boolean>(false);
   maxFileSize = input<number>(15000000); // 15MB — post-compresión
   compressThreshold = input<number>(2000000); // 2MB — comprimir si supera esto
   compressionQuality = input<number>(0.75);
@@ -171,15 +207,19 @@ export class CustomInputImg implements OnChanges {
 
   imgBase64 = signal<string>("");
   hasImageError = signal<boolean>(false);
+  /** El usuario elimino la imagen: ignora urlImgCurrent hasta elegir otra. */
+  removed = signal<boolean>(false);
 
   hasImage = computed(() => {
     if (this.imgBase64()) return true;
+    if (this.removed()) return false;
     const current = this.urlImgCurrent();
-    return current && !this.isNullUrl(current);
+    return !!current && !this.isNullUrl(current);
   });
 
   displayImageSrc = computed(() => {
     if (this.imgBase64()) return this.imgBase64();
+    if (this.removed()) return "";
     const current = this.urlImgCurrent();
     if (current && !this.isNullUrl(current)) {
       return current;
@@ -230,16 +270,17 @@ export class CustomInputImg implements OnChanges {
       });
 
       if (processed.size > this.maxFileSize()) {
-        this.uploadError.emit(
-          new Error(
-            `El archivo excede el tamaño máximo de ${this.maxFileSize() / 1000000} MB`,
-          ),
+        const tooLarge = new Error(
+          `El archivo excede el tamaño máximo de ${this.maxFileSize() / 1000000} MB`,
         );
+        this.toast.showError("Archivo demasiado grande", tooLarge.message);
+        this.uploadError.emit(tooLarge);
         return;
       }
 
       const base64 = await this.convertToBase64(processed);
       this.imgBase64.set(base64);
+      this.removed.set(false);
       this.fileSelected.emit(processed);
       this.imageLoaded.emit(base64);
       this.control().setValue(processed);
@@ -247,8 +288,25 @@ export class CustomInputImg implements OnChanges {
       this.control().updateValueAndValidity();
     } catch (error) {
       console.error("Error al procesar imagen:", error);
+      this.toast.showError(
+        "No se pudo procesar la imagen",
+        error instanceof Error
+          ? error.message
+          : `No se pudo procesar "${file.name}".`,
+      );
       this.uploadError.emit(error);
     }
+  }
+
+  /** `null` en el control significa "eliminar"; el padre debe persistirlo. */
+  removeImage(event: Event): void {
+    event.stopPropagation();
+    this.imgBase64.set("");
+    this.hasImageError.set(false);
+    this.removed.set(true);
+    this.control().setValue(null);
+    this.control().markAsDirty();
+    this.control().updateValueAndValidity();
   }
 
   private convertToBase64(file: File): Promise<string> {

@@ -450,7 +450,7 @@ export class FundingDetail {
       "🔍 ~ FundingDetail ~ openCreateOrdenCompraWizard ~ tipoGasto:",
       tipoGasto,
     );
-    // Si no se proporciona tipoGasto, no abras el diólogo aón
+    // Si no se proporciona tipoGasto, no abras el diálogo aón
     // o muestra un mensaje para que seleccionen del mení
     if (tipoGasto === undefined) {
       // Opción 2: Mostrar un mensaje

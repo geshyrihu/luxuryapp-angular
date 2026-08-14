@@ -299,7 +299,7 @@ export class TokensColors {
     {
       nombre: "On Background",
       token: "--ds-on-background",
-      uso: "Tútulos principales fuera de cards.",
+      uso: "Títulos principales fuera de cards.",
     },
   ];
 

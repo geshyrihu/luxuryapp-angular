@@ -1,3 +1,4 @@
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -102,7 +103,7 @@ export class CandidateInterviewResponse implements OnInit {
 
   /** Volver a la bandeja de entrevistas */
   goBack(): void {
-    this.router.navigate(["/recruitment/candidates/interviews"]);
+    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS);
   }
 
   /** Abrir modal de feedback */
@@ -228,3 +229,4 @@ export class CandidateInterviewResponse implements OnInit {
     this.loadInterviewResponse(identifier);
   }
 }
+

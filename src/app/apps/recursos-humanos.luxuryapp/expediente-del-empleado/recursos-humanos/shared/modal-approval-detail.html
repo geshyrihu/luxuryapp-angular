@@ -1,0 +1,162 @@
+@if (loading()) {
+  <div class="flex justify-center items-center p-5">
+    <lx-spinner [strokeWidth]="6" [ariaLabel]="'Cargando detalle'" />
+  </div>
+} @else if (request.requestType === "Permiso" && leaveDetail()) {
+  <div class="p-3">
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <p>
+          <strong>Empleado:</strong>
+          {{ leaveDetail().employeeFullName }}
+        </p>
+        <p>
+          <strong>Tipo de Permiso:</strong>
+          {{ leaveDetail().requestTypeName }}
+        </p>
+        <p>
+          <strong>Periodo:</strong>
+          {{ leaveDetail().period }}
+        </p>
+        <p>
+          <strong>Tipo de día:</strong>
+          <lx-tag
+            [value]="leaveDetail().isPartial ? 'Parcial' : 'Día completo'"
+            [severity]="leaveDetail().isPartial ? 'warn' : 'info'"
+          />
+        </p>
+        @if (leaveDetail().isPartial) {
+          <p>
+            <strong>Horario:</strong>
+            {{ leaveDetail().timeRange }}
+          </p>
+        }
+      </div>
+      <div class="col-12 md:col-6">
+        <p>
+          <strong>Estado:</strong>
+          <lx-tag
+            [value]="leaveDetail().status"
+            [severity]="getStatusSeverity(leaveDetail().status)"
+          />
+        </p>
+        <p>
+          <strong>Fecha de Solicitud:</strong>
+          {{ leaveDetail().requestDate }}
+        </p>
+        <p>
+          <strong>Motivo:</strong>
+          {{ leaveDetail().reason || "N/A" }}
+        </p>
+        @if (leaveDetail().attachmentUrl) {
+          <p>
+            <strong>Comprobante Adjunto:</strong>
+            <a
+              [href]="leaveDetail().attachmentUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Descargar Comprobante
+            </a>
+          </p>
+        }
+        @if (leaveDetail().comments) {
+          <p>
+            <strong>Comentarios:</strong>
+            {{ leaveDetail().comments }}
+          </p>
+        }
+        @if (leaveDetail().rejectionReason) {
+          <p>
+            <strong>Motivo de Rechazo:</strong>
+            {{ leaveDetail().rejectionReason }}
+          </p>
+        }
+      </div>
+    </div>
+    <div class="flex justify-content-end mt-3">
+      <il-button
+        label="Cerrar"
+        variant="text"
+        severity="secondary"
+        (clicked)="close()"
+      />
+    </div>
+  </div>
+} @else if (request.requestType === "Vacaciones" && vacationDetail()) {
+  <div class="p-3">
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <p>
+          <strong>Empleado:</strong>
+          {{ vacationDetail().employeeFullName }}
+        </p>
+        <p>
+          <strong>Fecha de Inicio:</strong>
+          {{ vacationDetail().startDate }}
+        </p>
+        <p>
+          <strong>Fecha de Fin:</strong>
+          {{ vacationDetail().endDate }}
+        </p>
+        <p>
+          <strong>Días Solicitados:</strong>
+          {{ vacationDetail().requestedDays }}
+        </p>
+      </div>
+      <div class="col-12 md:col-6">
+        <p>
+          <strong>Estado:</strong>
+          <lx-tag
+            [value]="vacationDetail().status"
+            [severity]="getStatusSeverity(vacationDetail().status)"
+          />
+        </p>
+        <p>
+          <strong>Fecha de Solicitud:</strong>
+          {{ vacationDetail().requestDate }}
+        </p>
+        @if (vacationDetail().approvalDate) {
+          <p>
+            <strong>Fecha de Aprobación:</strong>
+            {{ vacationDetail().approvalDate }}
+          </p>
+        }
+        @if (vacationDetail().approverFullName) {
+          <p>
+            <strong>Aprobado por:</strong>
+            {{ vacationDetail().approverFullName }}
+          </p>
+        }
+        <p>
+          <strong>Motivo:</strong>
+          {{ vacationDetail().reason || "N/A" }}
+        </p>
+        @if (vacationDetail().comments) {
+          <p>
+            <strong>Comentarios:</strong>
+            {{ vacationDetail().comments }}
+          </p>
+        }
+        @if (vacationDetail().rejectionReason) {
+          <p>
+            <strong>Motivo de Rechazo:</strong>
+            {{ vacationDetail().rejectionReason }}
+          </p>
+        }
+      </div>
+    </div>
+    <div class="flex justify-content-end mt-3">
+      <il-button
+        label="Cerrar"
+        variant="text"
+        severity="secondary"
+        (clicked)="close()"
+      />
+    </div>
+  </div>
+} @else {
+  <div class="p-3 text-center">
+    No se pudo cargar el detalle de la solicitud.
+  </div>
+}

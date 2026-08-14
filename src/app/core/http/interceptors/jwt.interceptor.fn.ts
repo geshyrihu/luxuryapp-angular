@@ -18,6 +18,11 @@ const refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<
   string | null
 >(null);
 
+function shortToken(token: string | null | undefined): string | null {
+  if (!token) return null;
+  return token.slice(0, 12);
+}
+
 export const jwtInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn,
@@ -59,10 +64,21 @@ export const jwtInterceptor: HttpInterceptorFn = (
         });
       }
 
+      consoleLogger.custom("", "#F44336", "[JwtTrace] request", {
+        at: new Date().toISOString(),
+        url: request.url,
+        method: request.method,
+        appUserId: authService.applicationUserId,
+        storageCustomerId: storageService.retrieve("customerId"),
+        authTokenPrefix: shortToken(token),
+        hasAuthorizationHeader: request.headers.has("Authorization"),
+        xCustomerId: request.headers.get("X-Customer-Id"),
+      });
+
       return next(request).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
-            return handle401Error(request, next, authService);
+            return handle401Error(request, next, authService, consoleLogger);
           }
           return throwError(() => error);
         }),
@@ -84,13 +100,25 @@ function handle401Error(
   request: HttpRequest<unknown>,
   next: HttpHandlerFn,
   authService: AuthService,
+  consoleLogger: ConsoleLoggerService,
 ): Observable<HttpEvent<unknown>> {
   if (!isRefreshing) {
     isRefreshing = true;
     refreshTokenSubject.next(null);
+    consoleLogger.custom("", "#E91E63", "[JwtTrace] 401.detected", {
+      at: new Date().toISOString(),
+      url: request.url,
+    });
 
     return authService.refreshToken().pipe(
       switchMap((newSession: UserTokenDto) => {
+        consoleLogger.custom("", "#4CAF50", "[JwtTrace] refresh.success", {
+          at: new Date().toISOString(),
+          url: request.url,
+          newAppUserId: newSession?.infoUserAuthDTO?.applicationUserId ?? null,
+          newTokenCustomerId: newSession?.infoUserAuthDTO?.customerId ?? null,
+          newTokenPrefix: shortToken(newSession?.token),
+        });
         isRefreshing = false;
         refreshTokenSubject.next(newSession.token);
         return next(addToken(request, newSession.token));

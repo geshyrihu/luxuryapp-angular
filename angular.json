@@ -39,7 +39,6 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/onesignal/OneSignalSDKWorker.js",
               {
                 "glob": "**/*",
                 "input": "public"

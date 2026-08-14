@@ -101,7 +101,7 @@ export class CustomerModulList implements OnInit {
     this.state = selectedValue;
     this.onLoadData(selectedValue);
   }
-  // Función para abrir un cuadro de diólogo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS.openDialog(
       CustomerModulEdit,

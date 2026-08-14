@@ -88,6 +88,14 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
                 />
               }
               <il-button
+                iconClass="material-symbols-light:visibility"
+                label="Detalle"
+                size="small"
+                variant="outline"
+                severity="info"
+                (clicked)="onViewDetail(request)"
+              />
+              <il-button
                 iconClass="material-symbols-light:check-box"
                 label="Aprobar"
                 size="small"

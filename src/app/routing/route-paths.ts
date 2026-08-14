@@ -689,7 +689,11 @@ export const ROUTES = {
       "status-solicitud-modificacion-salario",
     ],
     SOLICITUDES_CLIENTE: ["/recruitment", "solicitudes_cliente"],
-    SOLICITUDES_BAJA_LISTA: ["/recruitment", "dismissal-requests"],
+        CANDIDATOS_APLICACIONES: ["/recruitment", "candidates", "applications"],
+      CANDIDATOS_ENTREVISTAS: ["/recruitment", "candidates", "interviews"],
+      CANDIDATOS_ENTREVISTAS_RESPONDER: ["/recruitment", "candidates", "interviews", "respond"],
+      CANDIDATOS_ENTREVISTAS_RECLUTAMIENTO: ["/recruitment", "candidates", "recruitment-interviews"],
+      SOLICITUDES_BAJA_LISTA: ["/recruitment", "dismissal-requests"],
   },
 
   // ============================================================
@@ -975,3 +979,4 @@ export const ROUTES = {
     POLIZAS_ACTIVAS: ["/initial-implementation", "active-policies"],
   },
 } as const;
+

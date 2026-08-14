@@ -25,11 +25,17 @@ import { WebInputImg } from "../../web/input-img/input-img";
   template: `
     @if (platform.isMobile()) {
       <ion-input-img
+        [control]="control() || internalControl"
         [id]="id()"
         [label]="label()"
+        [placeholder]="placeholder()"
         [readonly]="readonly()"
+        [disabled]="disabled()"
         [required]="requiredInput()"
+        [hidden]="hidden()"
         [urlImgCurrent]="urlImgCurrent()"
+        [chooseLabel]="chooseLabel()"
+        [allowRemove]="allowRemove()"
         [maxFileSize]="maxFileSize()"
         [compressThreshold]="compressThreshold()"
         [compressionQuality]="compressionQuality()"
@@ -52,6 +58,7 @@ import { WebInputImg } from "../../web/input-img/input-img";
         [urlImgCurrent]="urlImgCurrent()"
         [title]="title()"
         [chooseLabel]="chooseLabel()"
+        [allowRemove]="allowRemove()"
         [maxFileSize]="maxFileSize()"
         [compressThreshold]="compressThreshold()"
         [compressionQuality]="compressionQuality()"

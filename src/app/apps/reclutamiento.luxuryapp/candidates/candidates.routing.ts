@@ -1,5 +1,7 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
+import { hasRolesGuard } from "src/app/core/auth/guards/has-roles.guard";
+
 
 export const candidatesRoutes: Routes = [
   {
@@ -13,8 +15,9 @@ export const candidatesRoutes: Routes = [
       import(
         "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/candidate-list"
       ).then((m) => m.CandidateList),
-    canActivate: [authGuard],
+    canActivate: [authGuard, hasRolesGuard],
     data: {
+      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
       title: "Candidatos",
       breadcrumb: "Candidatos",
     },
@@ -25,8 +28,9 @@ export const candidatesRoutes: Routes = [
       import(
         "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-application/candidate-application-list"
       ).then((m) => m.CandidateApplicationList),
-    canActivate: [authGuard],
+    canActivate: [authGuard, hasRolesGuard],
     data: {
+      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
       title: "Procesos de Candidatos",
       breadcrumb: "Procesos de Candidatos",
     },
@@ -37,8 +41,9 @@ export const candidatesRoutes: Routes = [
       import(
         "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/candidate-interview-pending-list"
       ).then((m) => m.CandidateInterviewPendingList),
-    canActivate: [authGuard],
+    canActivate: [authGuard, hasRolesGuard],
     data: {
+      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
       title: "Entrevistas Pendientes",
       breadcrumb: "Entrevistas Pendientes",
     },
@@ -49,8 +54,9 @@ export const candidatesRoutes: Routes = [
       import(
         "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/candidate-interview-response"
       ).then((m) => m.CandidateInterviewResponse),
-    canActivate: [authGuard],
+    canActivate: [authGuard, hasRolesGuard],
     data: {
+      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
       title: "Responder Entrevista",
       breadcrumb: "Responder Entrevista",
     },
@@ -61,8 +67,9 @@ export const candidatesRoutes: Routes = [
       import(
         "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interviewer-queue/candidate-interviewer-queue"
       ).then((m) => m.CandidateInterviewerQueue),
-    canActivate: [authGuard],
+    canActivate: [authGuard, hasRolesGuard],
     data: {
+      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
       title: "Entrevistas y Seguimiento",
       breadcrumb: "Entrevistas y Seguimiento",
     },
@@ -73,8 +80,9 @@ export const candidatesRoutes: Routes = [
       import(
         "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-agenda-list"
       ).then((m) => m.RecruitmentAgendaList),
-    canActivate: [authGuard],
+    canActivate: [authGuard, hasRolesGuard],
     data: {
+      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
       title: "Agenda Reclutamiento",
       breadcrumb: "Agenda Reclutamiento",
     },
@@ -85,8 +93,9 @@ export const candidatesRoutes: Routes = [
       import(
         "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-work-position-candidates/candidate-work-position-candidates"
       ).then((m) => m.CandidateWorkPositionCandidates),
-    canActivate: [authGuard],
+    canActivate: [authGuard, hasRolesGuard],
     data: {
+      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
       title: "Detalle del Puesto y Candidatos",
       breadcrumb: "Detalle del Puesto",
     },
@@ -97,8 +106,9 @@ export const candidatesRoutes: Routes = [
       import(
         "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-application/candidate-application-kpis"
       ).then((m) => m.CandidateApplicationKpis),
-    canActivate: [authGuard],
+    canActivate: [authGuard, hasRolesGuard],
     data: {
+      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
       title: "Indicadores Reclutamiento",
       breadcrumb: "Indicadores",
     },
@@ -110,10 +120,12 @@ export const candidatesRoutes: Routes = [
       import(
         "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-recruitment-interviews/candidate-recruitment-interviews"
       ).then((m) => m.CandidateRecruitmentInterviews),
-    canActivate: [authGuard],
+    canActivate: [authGuard, hasRolesGuard],
     data: {
+      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
       title: "Entrevistas Reclutamiento",
       breadcrumb: "Entrevistas Reclutamiento",
     },
   },
 ];
+

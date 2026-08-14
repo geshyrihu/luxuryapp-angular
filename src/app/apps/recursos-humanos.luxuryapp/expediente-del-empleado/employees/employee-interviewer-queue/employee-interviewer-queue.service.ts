@@ -8,9 +8,9 @@ import { InterviewerActionRequest } from "src/app/apps/reclutamiento.luxuryapp/c
 export class EmployeeInterviewerQueueService {
   private apiResponseS = inject(ApiResponseService);
 
-  async getQueue(): Promise<CandidateInterviewerQueueDto[]> {
+  async getQueue(customerId: string): Promise<CandidateInterviewerQueueDto[]> {
     const result = await this.apiResponseS.onGetList<CandidateInterviewerQueueDto[]>(
-      EndpointsReclutamiento.CandidateProcesses.employeeInterviewerQueue,
+      `${EndpointsReclutamiento.CandidateProcesses.employeeInterviewerQueue}/${customerId}`,
     );
     return result ?? [];
   }

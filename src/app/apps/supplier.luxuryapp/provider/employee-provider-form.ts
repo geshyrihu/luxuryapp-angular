@@ -131,6 +131,12 @@ export class EmployeeProviderForm implements OnInit {
     ),
   });
 
+  preselectedCandidateId: string | null =
+    this.config.data?.candidateId ?? null;
+
+  vacancyCandidates = signal<any[]>([]);
+  candidateControl = new FormControl<string | null>(null);
+
   async ngOnInit(): Promise<void> {
     this.employeeS.getApplicationRoles().then((response: any) => {
       this.cb_applicationRole.set(response);
@@ -140,19 +146,105 @@ export class EmployeeProviderForm implements OnInit {
         );
       }
     });
+
+    this.candidateControl.valueChanges.subscribe((candidateId) => {
+      if (candidateId) {
+        this.preselectedCandidateId = candidateId;
+        this.loadCandidateData();
+      }
+    });
+
+    if (this.preselectedCandidateId) {
+      this.loadCandidateData();
+    } else if (this.preselectedPositionRequestId) {
+      // If we are opening this from a vacancy, fetch candidates in pipeline
+      this.loadVacancyCandidates();
+    }
+  }
+
+  private async loadVacancyCandidates(): Promise<void> {
+    try {
+      console.log("loadVacancyCandidates called for PositionRequestId:", this.preselectedPositionRequestId);
+      const res = await this.apiResponseS.onGetItem<any>(
+        `recruitment-candidate-processes/request-position/${this.preselectedPositionRequestId}`
+      );
+      console.log("Response from recruitment-candidate-processes:", res);
+      
+      const activeProcesses = res?.activeProcesses || res?.ActiveProcesses || [];
+      const historicalProcesses = res?.historicalProcesses || res?.HistoricalProcesses || [];
+      const processes = [...activeProcesses, ...historicalProcesses];
+
+      if (processes.length > 0) {
+        // Filter by stage 7 (Seleccionado) or 8 (AltaEnProceso)
+        const approvedCandidates = processes.filter((c: any) => {
+          const stage = c.currentStage ?? c.CurrentStage ?? c.stage ?? c.Stage;
+          return stage === 7 || stage === 8 || stage === 'Seleccionado' || stage === 'AltaEnProceso';
+        });
+        
+        console.log("Approved candidates filtered:", approvedCandidates);
+        this.vacancyCandidates.set(
+          approvedCandidates.map((c: any) => ({
+            label: `${c.candidateName ?? c.CandidateName ?? 'Candidato'} (Etapa ${c.currentStage ?? c.CurrentStage ?? ''})`,
+            value: c.candidateId ?? c.CandidateId
+          }))
+        );
+      } else {
+        console.log("No active or historical processes found");
+      }
+    } catch (err) {
+      console.error('Error fetching vacancy candidates', err);
+    }
+  }
+
+  private async loadCandidateData(): Promise<void> {
+    try {
+      const candidate = await this.apiResponseS.onGetItem<any>(`recruitment-candidates/${this.preselectedCandidateId}`);
+      if (candidate) {
+        this.form.patchValue({
+          firstName: candidate.firstName,
+          lastName: candidate.lastName,
+          email: candidate.email,
+          phoneNumber: candidate.phoneNumber,
+        });
+        
+        // Ejecutar búsqueda de duplicados automáticamente
+        if (candidate.email || candidate.phoneNumber) {
+          const duplicate = await this.apiResponseS.onGetItem<any>(
+            `employee-internal/check-duplicate?email=${candidate.email || ''}&phoneNumber=${candidate.phoneNumber || ''}`
+          );
+
+          if (duplicate) {
+            const reuse = window.confirm(
+              `Se detectó que el candidato ya existe como colaborador: ${duplicate.fullName}.\n\n¿Deseas usar su perfil existente (Reingreso/Transferencia) y pasar directamente a la Fase 2 (Alta a Vacante)?`
+            );
+            if (reuse) {
+              this.newEmployeeId.set(duplicate.employeeId);
+              this.fase.set(2);
+              this.loadFase2Catalogs();
+              return; // Terminamos aquí la fase 1
+            }
+          }
+
+          const fullName = `${candidate.firstName} ${candidate.lastName}`.trim();
+          this.searchExistingPerson({ target: { value: fullName } });
+          if (candidate.phoneNumber) {
+            this.searchExistingPhone({ target: { value: candidate.phoneNumber } });
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Error loading candidate data", error);
+    }
   }
 
   private async loadFase2Catalogs(): Promise<void> {
     const customerId = this.customerIdS.customerId();
-    const [vacantes, tiposContrato, address, admins] = await Promise.all([
+    const [vacantes, tiposContrato, address] = await Promise.all([
       this.apiResponseS.onGetList<SelectItemDto[]>(
         EndpointsReclutamiento.RequestEmployeeRegister.getVacantes(customerId),
       ),
       firstValueFrom(this.enumSelectS.typeContractRegister()),
       this.apiResponseS.onGetItem<any>(`customer-addresses/${customerId}`),
-      this.apiResponseS.onGetList<any[]>(
-        `customer-data-company/administrador/${customerId}`,
-      ),
     ]);
 
     this.cb_vacantes.set(vacantes ?? []);
@@ -176,10 +268,6 @@ export class EmployeeProviderForm implements OnInit {
       this.altaForm.controls.customerAddress.setValue(
         this.buildFullAddress(address),
       );
-    }
-
-    if (admins?.length) {
-      this.altaForm.controls.boss.setValue(admins[0].nameEmployee ?? "");
     }
   }
 
@@ -247,6 +335,7 @@ export class EmployeeProviderForm implements OnInit {
           ),
           {
             employeeId: this.newEmployeeId(),
+            candidateId: this.preselectedCandidateId,
             positionRequestId,
             typeContractRegister,
             candidateName: `${this.form.value.firstName} ${this.form.value.lastName}`,
@@ -267,6 +356,7 @@ export class EmployeeProviderForm implements OnInit {
           ),
           {
             employeeId: this.newEmployeeId(),
+            candidateId: this.preselectedCandidateId,
             positionRequestId: altaValues.positionRequestId,
             typeContractRegister: altaValues.typeContractRegister,
             boss: altaValues.boss,

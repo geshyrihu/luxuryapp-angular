@@ -198,13 +198,7 @@
                   severity="danger"
                   variant="outline"
                 />
-                <il-button
-                  label="Ver card"
-                  iconClass="material-symbols-light:badge-outline"
-                  severity="secondary"
-                  size="small"
-                  (clicked)="selectCandidate(candidate)"
-                />
+                
                 <il-button
                   label="Seguimiento"
                   iconClass="material-symbols-light:timeline"
@@ -212,15 +206,7 @@
                   size="small"
                   (clicked)="navigateToApplicationDetail(candidate.candidateApplicationId)"
                 />
-                @if (!candidate.isHistorical) {
-                <il-button
-                  label="Responder entrevista"
-                  iconClass="material-symbols-light:more"
-                  severity="primary"
-                  size="small"
-                  (clicked)="navigateToQueueResponse(candidate)"
-                />
-                }
+                
               </div>
             </div>
           </div>
@@ -311,12 +297,7 @@
       <div class="mt-4 pt-3 border-top-1 surface-border">
         <div class="font-semibold mb-2">Acciones del entrevistador</div>
         <div class="flex flex-wrap gap-2">
-        <il-button
-          label="Responder"
-          iconClass="material-symbols-light:more"
-          severity="primary"
-          (clicked)="navigateToQueueResponse(selectedCandidate()!)"
-        />
+        
           @if (selectedCandidate()?.canSubmitFeedback) {
           <il-button
             label="Feedback"
@@ -341,7 +322,16 @@
             (clicked)="onApprove(selectedCandidate()!)"
           />
           }
-        </div>
+        
+          @if (selectedCandidate()?.lastDecision === 1 || selectedCandidate()?.lastDecision === 2) {
+          <il-button
+            label="Deshacer decision"
+            iconClass="material-symbols-light:undo"
+            severity="secondary"
+            (clicked)="onRevert(selectedCandidate()!)"
+          />
+          }
+</div>
       </div>
       }
       } @else {
@@ -356,3 +346,5 @@
   </div>
 </div>
 }
+
+

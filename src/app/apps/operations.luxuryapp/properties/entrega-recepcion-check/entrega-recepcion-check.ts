@@ -35,7 +35,11 @@ export class EntregaRecepcionCheckComponent implements OnInit {
 
   ngOnInit() {
     this.statusOptions = [
-      { label: "Completo", value: "completo", icon: "material-symbols-light:check-circle" },
+      {
+        label: "Completo",
+        value: "completo",
+        icon: "material-symbols-light:check-circle",
+      },
       {
         label: "Parcial",
         value: "parcial",
@@ -129,7 +133,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "Declaraciones anuales y mensuales (óltimos 5 aóos) con papeles de trabajo.",
+              "Declaraciones anuales y mensuales (óltimos 5 años) con papeles de trabajo.",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -147,14 +151,14 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             observations: "",
           },
           {
-            control: "Balanzas de comprobación y auxiliares del aóo en curso.",
+            control: "Balanzas de comprobación y auxiliares del año en curso.",
             type: "Obligatorio",
             status: null,
             observations: "",
           },
           {
             control:
-              "Estados de cuenta bancarios y conciliaciones del aóo en curso.",
+              "Estados de cuenta bancarios y conciliaciones del año en curso.",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -227,7 +231,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "Declaraciones de riesgo de trabajo y de sueldos y salarios (óltimos 5 aóos).",
+              "Declaraciones de riesgo de trabajo y de sueldos y salarios (óltimos 5 años).",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -290,7 +294,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "[SUGERENCIA] Sistema de Gestión de Tickets o Bitúcora de Solicitudes/Quejas.",
+              "[SUGERENCIA] Sistema de Gestión de Tickets o Bitácora de Solicitudes/Quejas.",
             type: "Recomendable",
             status: null,
             observations:
@@ -317,7 +321,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             observations: "",
           },
           {
-            control: "Bitúcoras de servicios a equipos.",
+            control: "Bitácoras de servicios a equipos.",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -353,7 +357,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "Póliza de Seguro de Responsabilidad Civil y Daóos al Inmueble (vigente y pagada).",
+              "Póliza de Seguro de Responsabilidad Civil y Daños al Inmueble (vigente y pagada).",
             type: "Obligatorio",
             status: null,
             observations: "",
@@ -387,7 +391,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
           },
           {
             control:
-              "[SUGERENCIA] Evidencia de simulacros realizados (mínimo 2 por aóo).",
+              "[SUGERENCIA] Evidencia de simulacros realizados (mínimo 2 por año).",
             type: "Obligatorio",
             status: null,
             observations: "Requisito legal en muchas localidades.",

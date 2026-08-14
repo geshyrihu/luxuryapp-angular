@@ -55,7 +55,7 @@ export class BudgetHistoryDialog implements OnInit {
         if (response) {
           this.history.set(response);
         } else {
-          this.errorMensaje = "No se encontré historial para esta partida.";
+          this.errorMensaje = "No se encontró historial para esta partida.";
         }
         this.loading.set(false);
       })

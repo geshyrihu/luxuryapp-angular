@@ -1,3 +1,4 @@
+import { ROUTES } from "src/app/routing/route-paths";
 import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -119,7 +120,11 @@ export class RecruitmentAgendaList implements OnInit {
   navigateToApplication(item: CandidateRecruitmentAgendaItem) {
     if (item.workPositionId) {
       this.router.navigate(
-        ["/recruitment/candidates/work-position", item.workPositionId, "candidates"],
+        [
+          "/recruitment/candidates/work-position",
+          item.workPositionId,
+          "candidates",
+        ],
         {
           queryParams: {
             requestPositionId: item.requestPositionId,
@@ -130,13 +135,9 @@ export class RecruitmentAgendaList implements OnInit {
       return;
     }
 
-    this.router.navigate(["/recruitment/candidates/applications"], {
+    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_APLICACIONES, {
       queryParams: { detail: item.id },
     });
-  }
-
-  navigateToInterviews() {
-    this.router.navigate(["/recruitment/candidates/interviews"]);
   }
 
   getRowClass(item: CandidateRecruitmentAgendaItem): string {
@@ -148,3 +149,4 @@ export class RecruitmentAgendaList implements OnInit {
     return "";
   }
 }
+

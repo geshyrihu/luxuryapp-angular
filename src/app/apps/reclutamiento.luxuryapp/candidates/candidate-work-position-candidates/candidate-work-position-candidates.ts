@@ -1,3 +1,4 @@
+import { ROUTES } from "src/app/routing/route-paths";
 import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -214,13 +215,13 @@ export class CandidateWorkPositionCandidates implements OnInit {
   }
 
   navigateToApplicationDetail(candidateApplicationId: string): void {
-    this.router.navigate(["/recruitment/candidates/applications"], {
+    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_APLICACIONES, {
       queryParams: { detail: candidateApplicationId },
     });
   }
 
   goBackToBoard(): void {
-    this.router.navigate(["/recruitment/candidates/recruitment-interviews"]);
+    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS_RECLUTAMIENTO);
   }
 
   private modalTitle(
@@ -241,3 +242,4 @@ export class CandidateWorkPositionCandidates implements OnInit {
     }
   }
 }
+

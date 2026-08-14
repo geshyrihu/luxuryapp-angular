@@ -16,6 +16,21 @@
         sistema)
       </p>
     </div>
+    @if (vacancyCandidates().length > 0) {
+      <div class="col-12 mb-4 p-3 border-1 surface-border border-round bg-primary-reverse">
+        <h5 class="m-0 mb-2">Candidato Aprobado</h5>
+        <p class="text-sm mb-3">Esta vacante tiene candidatos seleccionados o en proceso de alta. Puedes elegir uno para pre-llenar los datos y vincularlo.</p>
+        <div class="flex flex-column gap-2">
+          <custom-input-select-signal
+            label="Seleccionar candidato:"
+            placeholder="Selecciona un candidato"
+            [control]="candidateControl"
+            [data]="vacancyCandidates()"
+            [filter]="true"
+          />
+        </div>
+      </div>
+    }
     <div class="col-12 sm:col-7">
       <form autocomplete="off" (ngSubmit)="register()" [formGroup]="form">
         <custom-input-text-signal

@@ -43,13 +43,13 @@ export interface IRecepcionPipaAguaForm {
   colaboradorMttoId: FormControl<string | null>;
   colaboradorMtto: FormControl<string | null>;
   guardiaSeguridad: FormControl<string | null>;
-  fotoPipaLlena: FormControl<string | File>;
-  fotoPipaVacia: FormControl<string | File>;
-  fotoIneChofer: FormControl<string | File>;
-  fotoPlacas: FormControl<string | File>;
-  fotoMedidorAntes: FormControl<string | File>;
-  fotoMedidorDespues: FormControl<string | File>;
-  fotoNivelAntes: FormControl<string | File>;
-  fotoNivelDespues: FormControl<string | File>;
-  fotoNota: FormControl<string | File>;
+  fotoPipaLlena: FormControl<string | File | null>;
+  fotoPipaVacia: FormControl<string | File | null>;
+  fotoIneChofer: FormControl<string | File | null>;
+  fotoPlacas: FormControl<string | File | null>;
+  fotoMedidorAntes: FormControl<string | File | null>;
+  fotoMedidorDespues: FormControl<string | File | null>;
+  fotoNivelAntes: FormControl<string | File | null>;
+  fotoNivelDespues: FormControl<string | File | null>;
+  fotoNota: FormControl<string | File | null>;
 }

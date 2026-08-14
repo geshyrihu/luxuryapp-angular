@@ -6,14 +6,13 @@
       <div class="flex flex-column gap-1">
         <span class="text-sm font-medium text-color">CV actual</span>
         @if (fileUrl()) {
-          <a
-            class="cv-file-link"
-            [href]="fileUrl()"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {{ fileName() }}
-          </a>
+          <iw-button-view-pdf
+            size="sm"
+            class="btn--circle"
+            [url]="fileUrl()"
+            [fileName]="fileName()"
+            [attr.aria-label]="'Ver CV'"
+          />
         } @else {
           <span class="text-sm text-blue-700">{{ fileName() }}</span>
         }
@@ -29,34 +28,18 @@
   }
 
   @if (!fileName() || replaceMode() || currentFileName()) {
-  <file-upload
+  <app-file-upload
     class="w-full"
-    [formControl]="cvControl"
-    [animation]="true"
-    accept=".pdf"
-    (change)="onFileChange()"
-  >
-    <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
-      <file-upload-drop-zone>
-        @if (isFileDragDropAvailable) {
-          <b>Arrastrar y soltar el CV</b><br />
-          <span>o haga clic aquí</span>
-        } @else {
-          <b>Haz clic aquí</b> para seleccionar el CV
-        }
-      </file-upload-drop-zone>
-    </ng-template>
-    <ng-template let-i="index" let-file="file" let-control="control" #item>
-      <file-upload-list-item [index]="i" [file]="file" [control]="control">
-        Quitar
-      </file-upload-list-item>
-    </ng-template>
-  </file-upload>
+    [accept]="'.pdf'"
+    [multiple]="false"
+    [autoUpload]="false"
+    (onSelect)="onFileSelect($event)"
+  />
   }
 
-  @if (currentFileName() || fileName()) {
+  @if (currentFileName()) {
     <p class="text-sm m-0 text-blue-700">
-      Archivo: {{ currentFileName() ?? fileName() }}
+      Archivo: {{ currentFileName() }}
     </p>
   }
 

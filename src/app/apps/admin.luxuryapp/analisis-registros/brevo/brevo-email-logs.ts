@@ -146,7 +146,7 @@ export class BrevoEmailLogs implements OnInit {
   }
 
   /**
-   * Etiqueta legible en espaóol para cada tipo de evento de Brevo.
+   * Etiqueta legible en español para cada tipo de evento de Brevo.
    */
   etiquetaEvento(evento: string): string {
     const mapa: Record<string, string> = {
@@ -158,7 +158,7 @@ export class BrevoEmailLogs implements OnInit {
       softBounce: "Rebote suave",
       hardBounce: "Rebote duro",
       blocked: "Bloqueado",
-      invalid_email: "Email invólido",
+      invalid_email: "Email inválido",
       deferred: "Diferido",
       complaint: "Queja",
       unsubscribed: "Desuscrito",

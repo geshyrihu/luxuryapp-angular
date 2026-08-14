@@ -52,9 +52,27 @@ export class CustomerIdService {
     () => this.customerState().isLoaded,
   );
 
+  private logCustomerTrace(
+    origin: string,
+    extra: Record<string, unknown> = {},
+  ): void {
+    this.consoleLogger.custom("", "#FF9800", `[CustomerTrace] ${origin}`, {
+      at: new Date().toISOString(),
+      state: this.customerState(),
+      storedCustomerId: this.storageS.retrieve("customerId"),
+      ...extra,
+    });
+  }
+
   public initializeCustomerStateAfterLogin(
     userTokenData: UserTokenDto,
   ): Observable<boolean> {
+    this.logCustomerTrace("initialize.start", {
+      tokenCustomerId: userTokenData?.infoUserAuthDTO?.customerId ?? null,
+      customerAccess:
+        userTokenData?.customerAccess?.map((customer) => customer.value) ?? [],
+    });
+
     if (!userTokenData) {
       this.consoleLogger.error(
         "[CustomerIdService] Se intentó inicializar sin datos de token.",
@@ -83,6 +101,9 @@ export class CustomerIdService {
     }
 
     if (customerIDTOSet) {
+      this.logCustomerTrace("initialize.selected-customer", {
+        selectedCustomerId: customerIDTOSet,
+      });
       this.storageS.store("customerId", customerIDTOSet);
       return this.loadDataForCustomer(customerIDTOSet);
     } else {
@@ -94,6 +115,11 @@ export class CustomerIdService {
   }
 
   public setCustomerId(customerId: string): Observable<boolean> {
+    this.logCustomerTrace("setCustomerId.start", {
+      requestedCustomerId: customerId,
+      currentCustomerId: this.customerId(),
+    });
+
     const newId = customerId;
     if (!newId || newId === this.customerId()) {
       return of(true);
@@ -101,12 +127,16 @@ export class CustomerIdService {
 
     // Marcamos como no cargado para que los servicios dependientes reaccionen al cambio de estado
     this.customerState.update((s) => ({ ...s, isLoaded: false }));
+    this.logCustomerTrace("setCustomerId.mark-not-ready", {
+      requestedCustomerId: newId,
+    });
 
     this.storageS.store("customerId", newId);
     return this.loadDataForCustomer(newId);
   }
 
   public clearCustomerData(): void {
+    this.logCustomerTrace("clearCustomerData.before");
     this.storageS.clear("customerId");
     this.customerState.set({
       id: "",
@@ -115,9 +145,12 @@ export class CustomerIdService {
       customerName: "",
       isLoaded: false,
     });
+    this.logCustomerTrace("clearCustomerData.after");
   }
 
   private loadDataForCustomer(customerId: string): Observable<boolean> {
+    this.logCustomerTrace("loadDataForCustomer.start", { customerId });
+
     if (!customerId) {
       this.clearCustomerData();
       return of(false);
@@ -129,6 +162,12 @@ export class CustomerIdService {
       )
       .pipe(
         tap((response) => {
+          this.logCustomerTrace("loadDataForCustomer.response", {
+            customerId,
+            success: response.success,
+            responseDataId: response.data?.id ?? null,
+          });
+
           if (!response.success || !response.data) {
             this.consoleLogger.error(
               "[CustomerIdService] API retorno error o datos nulos.",
@@ -147,6 +186,9 @@ export class CustomerIdService {
               customerName: response.data.nameCustomer,
               isLoaded: true,
             });
+            this.logCustomerTrace("loadDataForCustomer.ready", {
+              customerId,
+            });
           });
         }),
         map((response) => response.success && !!response.data),
@@ -155,6 +197,10 @@ export class CustomerIdService {
             "[CustomerIdService] API call FAILED.",
             error,
           );
+          this.logCustomerTrace("loadDataForCustomer.error", {
+            customerId,
+            error,
+          });
           this.zone.run(() => {
             this.customerState.update((s) => ({ ...s, isLoaded: false }));
           });

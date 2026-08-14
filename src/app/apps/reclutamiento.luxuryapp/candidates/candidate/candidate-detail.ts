@@ -26,7 +26,7 @@ import { CandidateDetail as CandidateDetailDto } from "./interfaces/candidate.dt
 @Component({
   selector: "app-candidate-detail",
   templateUrl: "./candidate-detail.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule, LxTabs, LxDivider, CandidateStageBadge, WebButtonLabel],
 })

@@ -39,7 +39,11 @@ export class Testsignalr implements OnInit {
   titleControl = new FormControl("Tútulo de prueba");
   messageControl = new FormControl("Mensaje de prueba desde Angular");
   routeControl = new FormControl("/ruta/prueba");
-  phoneControl = new FormControl("");
+  phoneControl = new FormControl("5559878523");
+  folioControl = new FormControl("FOLIO-TEST");
+  clienteControl = new FormControl("Cliente Prueba");
+  solicitaControl = new FormControl("Solicita Prueba");
+  resultadoControl = new FormControl("Completada");
 
   async ngOnInit(): Promise<void> {
     await this.onLoadUsers();
@@ -120,20 +124,62 @@ export class Testsignalr implements OnInit {
     console.log(result);
   }
 
-  async sendWhatsAppToUser(): Promise<void> {
+  async sendWhatsAppLegalTicket(): Promise<void> {
     if (!this.phoneControl.value) return;
 
     const body = {
-      title: this.titleControl.value,
+      title: this.titleControl.value ?? "Test",
+      folio: this.folioControl.value ?? "FOLIO-TEST",
+      cliente: this.clienteControl.value ?? "Cliente Prueba",
+      solicita: this.solicitaControl.value ?? "Solicita Prueba",
       phone: this.phoneControl.value,
     };
 
     const result: any = await this.apiResponseS.onPost(
-      Endpoints.NotificationDiagnostics.testWhatsApp,
+      Endpoints.NotificationDiagnostics.testWhatsAppLegalTicket,
       body,
     );
 
-    alert("WhatsApp enviado. Revisa tu consola y celular.");
+    alert("WhatsApp LegalTicket enviado. Revisa tu consola y celular.");
+    console.log(result);
+  }
+
+  async sendWhatsAppSolicitudRecibida(): Promise<void> {
+    if (!this.phoneControl.value) return;
+
+    const body = {
+      cliente: this.clienteControl.value ?? "Cliente Prueba",
+      folio: this.folioControl.value ?? "FOLIO-TEST",
+      asunto: this.titleControl.value ?? "Solicitud de prueba",
+      phone: this.phoneControl.value,
+    };
+
+    const result: any = await this.apiResponseS.onPost(
+      Endpoints.NotificationDiagnostics.testWhatsAppSolicitudRecibida,
+      body,
+    );
+
+    alert("WhatsApp SolicitudRecibida enviado. Revisa tu consola y celular.");
+    console.log(result);
+  }
+
+  async sendWhatsAppSolicitudTerminada(): Promise<void> {
+    if (!this.phoneControl.value) return;
+
+    const body = {
+      cliente: this.clienteControl.value ?? "Cliente Prueba",
+      folio: this.folioControl.value ?? "FOLIO-TEST",
+      asunto: this.titleControl.value ?? "Solicitud concluida",
+      resultado: this.resultadoControl.value ?? "Completada",
+      phone: this.phoneControl.value,
+    };
+
+    const result: any = await this.apiResponseS.onPost(
+      Endpoints.NotificationDiagnostics.testWhatsAppSolicitudTerminada,
+      body,
+    );
+
+    alert("WhatsApp SolicitudTerminada enviado. Revisa tu consola y celular.");
     console.log(result);
   }
 }

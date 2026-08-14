@@ -28,7 +28,10 @@
             [routerLinkActiveOptions]="{ exact: true }"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon [icon]="'material-symbols-light:format-list-bulleted'" class="mr-1" />
+            <app-icon
+              [icon]="'material-symbols-light:format-list-bulleted'"
+              class="mr-1"
+            />
             Registros
           </a>
           <a
@@ -36,14 +39,19 @@
             routerLinkActive="p-button-primary"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon [icon]="'material-symbols-light:table'" class="mr-1" /> Reporte
+            <app-icon [icon]="'material-symbols-light:table'" class="mr-1" />
+            Reporte
           </a>
           <a
             routerLink="/logbook/water-truck-reception/analisis"
             routerLinkActive="p-button-primary"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon [icon]="'material-symbols-light:bar-chart'" class="mr-1" /> Analisis
+            <app-icon
+              [icon]="'material-symbols-light:bar-chart'"
+              class="mr-1"
+            />
+            Analisis
           </a>
         </div>
       </div>
@@ -77,7 +85,7 @@
       <th class="text-right">Costo mí</th>
       <th>Colaborador mtto</th>
       <th>Guardia testigo</th>
-      <th>Fotos</th>
+      <!-- <th>Fotos</th> -->
       <th class="table-col-5"></th>
     </tr>
   </ng-template>
@@ -124,74 +132,7 @@
       </td>
       <td><small>{{ item.colaboradorMtto }}</small></td>
       <td><small>{{ item.guardiaSeguridad }}</small></td>
-      <td>
-        <div class="flex flex-wrap gap-1">
-          @if (item.fotoPipaLlenaUrl) {
-          <app-image
-            [src]="item.fotoPipaLlenaUrl"
-            alt="Pipa llena"
-            width="30"
-            [preview]="true"
-          />
-          } @if (item.fotoPipaVaciaUrl) {
-          <app-image
-            [src]="item.fotoPipaVaciaUrl"
-            alt="Pipa vacia"
-            width="30"
-            [preview]="true"
-          />
-          } @if (item.fotoPlacasUrl) {
-          <app-image
-            [src]="item.fotoPlacasUrl"
-            alt="Placas"
-            width="30"
-            [preview]="true"
-          />
-          } @if (item.fotoIneChoferUrl) {
-          <app-image
-            [src]="item.fotoIneChoferUrl"
-            alt="INE chofer"
-            width="30"
-            [preview]="true"
-          />
-          } @if (item.fotoMedidorAntesUrl) {
-          <app-image
-            [src]="item.fotoMedidorAntesUrl"
-            alt="Medidor antes"
-            width="30"
-            [preview]="true"
-          />
-          } @if (item.fotoMedidorDespuesUrl) {
-          <app-image
-            [src]="item.fotoMedidorDespuesUrl"
-            alt="Medidor despues"
-            width="30"
-            [preview]="true"
-          />
-          } @if (item.fotoNivelAntesUrl) {
-          <app-image
-            [src]="item.fotoNivelAntesUrl"
-            alt="Nivel antes"
-            width="30"
-            [preview]="true"
-          />
-          } @if (item.fotoNivelDespuesUrl) {
-          <app-image
-            [src]="item.fotoNivelDespuesUrl"
-            alt="Nivel despues"
-            width="30"
-            [preview]="true"
-          />
-          } @if (item.fotoNotaUrl) {
-          <app-image
-            [src]="item.fotoNotaUrl"
-            alt="Nota"
-            width="30"
-            [preview]="true"
-          />
-          }
-        </div>
-      </td>
+
       <td>
         <div class="flex">
           <iw-button-item
@@ -203,6 +144,77 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="13" class="p-2">
+        <div class="flex flex-wrap gap-1">
+          @if (item.fotoPipaLlenaUrl) {
+          <app-image
+            [src]="item.fotoPipaLlenaUrl"
+            alt="Pipa llena"
+            width="40"
+            [preview]="true"
+          />
+          } @if (item.fotoPipaVaciaUrl) {
+          <app-image
+            [src]="item.fotoPipaVaciaUrl"
+            alt="Pipa vacia"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoPlacasUrl) {
+          <app-image
+            [src]="item.fotoPlacasUrl"
+            alt="Placas"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoIneChoferUrl) {
+          <app-image
+            [src]="item.fotoIneChoferUrl"
+            alt="INE chofer"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoMedidorAntesUrl) {
+          <app-image
+            [src]="item.fotoMedidorAntesUrl"
+            alt="Medidor antes"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoMedidorDespuesUrl) {
+          <app-image
+            [src]="item.fotoMedidorDespuesUrl"
+            alt="Medidor despues"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoNivelAntesUrl) {
+          <app-image
+            [src]="item.fotoNivelAntesUrl"
+            alt="Nivel antes"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoNivelDespuesUrl) {
+          <app-image
+            [src]="item.fotoNivelDespuesUrl"
+            alt="Nivel despues"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoNotaUrl) {
+          <app-image
+            [src]="item.fotoNotaUrl"
+            alt="Nota"
+            width="40"
+            [preview]="true"
+          />
+          }
         </div>
       </td>
     </tr>
@@ -229,7 +241,10 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'material-symbols-light:format-list-bulleted'" class="mr-1" />
+        <app-icon
+          [icon]="'material-symbols-light:format-list-bulleted'"
+          class="mr-1"
+        />
         Registros
       </a>
       <a
@@ -237,14 +252,16 @@
         routerLinkActive="p-button-primary"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'material-symbols-light:table'" class="mr-1" /> Reporte
+        <app-icon [icon]="'material-symbols-light:table'" class="mr-1" />
+        Reporte
       </a>
       <a
         routerLink="/logbook/water-truck-reception/analisis"
         routerLinkActive="p-button-primary"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'material-symbols-light:bar-chart'" class="mr-1" /> Analisis
+        <app-icon [icon]="'material-symbols-light:bar-chart'" class="mr-1" />
+        Analisis
       </a>
     </div>
   </div>

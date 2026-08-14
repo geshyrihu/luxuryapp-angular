@@ -61,7 +61,7 @@ export class ReportGuide {
       path: "/contabilidad/reportes/ver/:id",
       component: "ReportViewer",
       description:
-        "Ejecución y visualización del reporte. Permite filtrar por aóo/mes, exportar a Excel o PDF, compartir enlace y consultar el Auditor IA.",
+        "Ejecución y visualización del reporte. Permite filtrar por año/mes, exportar a Excel o PDF, compartir enlace y consultar el Auditor IA.",
     },
     {
       path: "/contabilidad/reportes/guia",
@@ -144,7 +144,7 @@ export class ReportGuide {
       method: "GET",
       path: "/api/dynamic-reports/accounts/{customerId}/{year}",
       description:
-        "Catálogo de cuentas contables del cliente para el aóo indicado. Usado por el autocomplete en el Builder.",
+        "Catálogo de cuentas contables del cliente para el año indicado. Usado por el autocomplete en el Builder.",
       params: "customerId: Guid, year: int",
       response: "AccountCatalogItemDTO[] { code, name, level }",
     },
@@ -209,7 +209,7 @@ export class ReportGuide {
       tipo: "annual",
       campo: "(ignorado)",
       descripcion:
-        "Suma de los 12 meses del aóo. Para presupuesto suma los 12 montos de presupuesto.",
+        "Suma de los 12 meses del año. Para presupuesto suma los 12 montos de presupuesto.",
     },
   ];
 

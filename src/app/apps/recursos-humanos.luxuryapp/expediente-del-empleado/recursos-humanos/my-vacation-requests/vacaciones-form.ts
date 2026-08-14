@@ -107,7 +107,7 @@ export class VacacionesForm implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    // TODO: Cargar dinámicamente los aóos si el rango de fechas abarca mís de uno.
+    // TODO: Cargar dinámicamente los años si el rango de fechas abarca mís de uno.
     this.loadHolidays(this.currentYear);
     this.loadAvailableYearsAndBalance();
     this.loadExistingRequests();
@@ -140,7 +140,7 @@ export class VacacionesForm implements OnInit {
               : targetDate.getFullYear();
           if (computedYear !== this.currentYear) {
             this.currentYear = computedYear;
-            // Refresca el Aóo mostrado en UI y recalcula los pending days correctos
+            // Refresca el Año mostrado en UI y recalcula los pending days correctos
             this.reloadBalanceForYear(this.currentYear);
           }
         }
@@ -180,7 +180,7 @@ export class VacacionesForm implements OnInit {
       this.balance = await this.apiResponseS.onGetItem<VacationBalanceDTO>(url);
       this.form.updateValueAndValidity(); // Forzar re-validación con el nuevo saldo
     } catch (e) {
-      console.error("Error al recargar el saldo para el Aóo:", year, e);
+      console.error("Error al recargar el saldo para el Año:", year, e);
     }
   }
 
@@ -197,12 +197,12 @@ export class VacacionesForm implements OnInit {
         this.currentYear = this.balance.year;
       }
 
-      // 2. Obtener lista de aóos para el selector
+      // 2. Obtener lista de años para el selector
       const response = await this.apiResponseS.onGetList<
         { label: string; value: number }[]
       >(Endpoints.HR.VacationRequest.availableYears);
       if (response && response.length > 0) {
-        // Aseguramos que el Aóo devuelto por el backend esté pre-seleccionado
+        // Aseguramos que el Año devuelto por el backend esté pre-seleccionado
         const yearOption = response.find((y) => y.value === this.currentYear);
         if (!yearOption) {
           this.currentYear = response[response.length - 1].value;
@@ -381,7 +381,7 @@ export class VacacionesForm implements OnInit {
     }
 
     // Regla 4: Lómite estricto de Adelanto (RN-006)
-    // Extra-candado solo para empleados de Nuevo Ingreso (<1 Aóo)
+    // Extra-candado solo para empleados de Nuevo Ingreso (<1 Año)
     if (this.balance.isAdvancePeriod) {
       if (requested > this.balance.availableAdvanceDays) {
         return {

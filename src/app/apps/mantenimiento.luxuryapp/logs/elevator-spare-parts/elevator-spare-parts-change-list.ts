@@ -68,7 +68,7 @@ export class ElevatorSparePartsChangeList {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diólogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   constructor() {
     effect(() => {

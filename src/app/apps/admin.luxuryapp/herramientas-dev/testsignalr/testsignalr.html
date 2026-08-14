@@ -35,13 +35,6 @@
           iconClass="material-symbols-light:notifications"
           label="Enviar Push (OneSignal) Web"
         />
-        <il-button
-          severity="success"
-          (clicked)="sendWhatsAppToUser()"
-          [disabled]="!phoneControl.value"
-          iconClass="material-symbols-light:chat"
-          label="Enviar WhatsApp"
-        />
       </div>
     </div>
 
@@ -56,12 +49,59 @@
     />
 
     <custom-input-text-signal [control]="routeControl" label="Ruta de prueba" />
+  </lx-card>
 
-    <custom-input-text-signal 
-      [control]="phoneControl" 
-      label="Número WhatsApp (Ej: +52...)" 
-      placeholder="+521XXXXXXXXXX"
-    />
+  <!-- Test de plantillas WhatsApp aprobadas -->
+  <lx-card class="mb-4">
+    <ng-template #title>Test de plantillas WhatsApp (aprobadas)</ng-template>
+    <div class="flex flex-column gap-2 mb-3">
+      <custom-input-text-signal
+        [control]="phoneControl"
+        label="Número WhatsApp (destinatario de test)"
+        placeholder="5559878523"
+      />
+
+      <custom-input-text-signal
+        [control]="titleControl"
+        label="Título / Asunto"
+      />
+
+      <custom-input-text-signal [control]="folioControl" label="Folio" />
+
+      <custom-input-text-signal [control]="clienteControl" label="Cliente" />
+
+      <custom-input-text-signal
+        [control]="solicitaControl"
+        label="Solicita (solo LegalTicket)"
+      />
+
+      <custom-input-text-signal
+        [control]="resultadoControl"
+        label="Resultado (solo SolicitudTerminada)"
+      />
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <il-button
+        (clicked)="sendWhatsAppLegalTicket()"
+        [disabled]="!phoneControl.value"
+        iconClass="material-symbols-light:chat"
+        label="Enviar LegalTicket"
+      />
+      <il-button
+        severity="success"
+        (clicked)="sendWhatsAppSolicitudRecibida()"
+        [disabled]="!phoneControl.value"
+        iconClass="material-symbols-light:mail"
+        label="Enviar SolicitudRecibida"
+      />
+      <il-button
+        severity="success"
+        (clicked)="sendWhatsAppSolicitudTerminada()"
+        [disabled]="!phoneControl.value"
+        iconClass="material-symbols-light:check-circle"
+        label="Enviar SolicitudTerminada"
+      />
+    </div>
   </lx-card>
 
   <!-- Selección de usuarios móltiples -->

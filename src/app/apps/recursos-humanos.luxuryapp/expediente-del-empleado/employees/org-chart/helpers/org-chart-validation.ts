@@ -10,7 +10,7 @@ import { IWorkPositionOrgChartNode, ReassignmentValidation } from '../interfaces
  *
  * @param dragged Puesto que esté siendo movido
  * @param target  Puesto destino (null = convertir en root)
- * @returns Objeto con valid y reason si es invólido
+ * @returns Objeto con valid y reason si es inválido
  */
 export function validateReassignment(
   dragged: IWorkPositionOrgChartNode,

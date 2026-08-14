@@ -296,6 +296,15 @@
               (clicked)="onAction(vacancy, candidate, 'assign')"
             />
             }
+            @if (candidate.currentStage === 7 || candidate.currentStage === 8) {
+            <il-button
+              label="Proceder a Alta"
+              iconClass="material-symbols-light:how-to-reg"
+              severity="success"
+              size="small"
+              (clicked)="openAltaForm(vacancy, candidate)"
+            />
+            }
             <il-button
               label="Ver historial"
               iconClass="material-symbols-light:history"

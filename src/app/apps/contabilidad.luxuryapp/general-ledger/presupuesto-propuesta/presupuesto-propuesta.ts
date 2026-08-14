@@ -102,7 +102,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   private apiResponseS = inject(ApiResponseService);
   /** Servicio para obtener y reaccionar a cambios en el ID del cliente. */
   private customerIdS = inject(CustomerIdService);
-  /** Servicio para manejar la apertura y cierre de diólogos modales. */
+  /** Servicio para manejar la apertura y cierre de diálogos modales. */
   private dialogHandlerS = inject(DialogHandlerService);
   /** Servicio para la comunicación en tiempo real con SignalR. */
   private signalRService = inject(SignalRService);
@@ -138,12 +138,12 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /** ID del cliente actual. */
   customerId: string = this.customerIdS.customerId();
-  /** Aóo fiscal para el cual se esté generando la propuesta (normalmente el próximo Aóo). */
+  /** Año fiscal para el cual se esté generando la propuesta (normalmente el próximo Año). */
   selectedFiscalYear: number = new Date().getFullYear();
   fiscalYear: number = this.selectedFiscalYear;
-  /** Aóo fiscal que se usa como base para comparaciones (normalmente el Aóo actual). */
+  /** Año fiscal que se usa como base para comparaciones (normalmente el Año actual). */
   baseBudgetYear: number = this.selectedFiscalYear - 1;
-  /** Lista de aóos disponibles para la selección del Aóo fiscal. */
+  /** Lista de años disponibles para la selección del Año fiscal. */
   availableYears: SelectItemDto<number>[] = [];
 
   /** Campos utilizados por el filtro global de la tabla PrimeNG. */
@@ -202,7 +202,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       BudgetAuditDialog,
       { items: this.proposalItems() },
       "🤖 Reporte de Auditoría Presupuestal",
-      this.dialogHandlerS.sizeMd, // Ajustar tamaóo segón preferencia
+      this.dialogHandlerS.sizeMd, // Ajustar tamaño segón preferencia
     );
   }
 
@@ -388,7 +388,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   // --------------------------------------------------------------------------------
 
   /**
-   * Carga los datos de la propuesta de presupuesto desde el API para el cliente y Aóo fiscal actuales.
+   * Carga los datos de la propuesta de presupuesto desde el API para el cliente y Año fiscal actuales.
    */
   onLoadData(): void {
     this.loading.set(true);
@@ -439,7 +439,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
           this.allProposalItems.set([]);
           this.proposalItems.set([]);
           this.errorMensaje =
-            "No se encontré una propuesta para el Aóo fiscal seleccionado.";
+            "No se encontró una propuesta para el Año fiscal seleccionado.";
         }
         this.loading.set(false);
       })
@@ -449,7 +449,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       });
   }
   /**
-   * Inicializa la lista de aóos disponibles para el selector, desde 2014 hasta el Aóo actual + 1.
+   * Inicializa la lista de años disponibles para el selector, desde 2014 hasta el Año actual + 1.
    */
   initializeYears(): void {
     const currentYear = new Date().getFullYear();
@@ -459,8 +459,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Se ejecuta cuando el usuario cambia el Aóo fiscal en el selector.
-   * Actualiza el Aóo fiscal seleccionado y vuelve a cargar los datos.
+   * Se ejecuta cuando el usuario cambia el Año fiscal en el selector.
+   * Actualiza el Año fiscal seleccionado y vuelve a cargar los datos.
    */
 
   /**
@@ -926,7 +926,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   // --------------------------------------------------------------------------------
 
   /**
-   * Muestra un diólogo con el historial de compras de una cuenta.
+   * Muestra un diálogo con el historial de compras de una cuenta.
    * @param item La partida seleccionada.
    */
   showPurchaseHistory(item: BudgetProposalItemDTO) {
@@ -1234,7 +1234,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra un diólogo con el historial de cambios de una partida.
+   * Muestra un diálogo con el historial de cambios de una partida.
    * @param item La partida seleccionada.
    */
   showItemHistory(item: BudgetProposalItemDTO): void {
@@ -1250,7 +1250,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra un diólogo para ver o adjuntar archivos de soporte a una partida.
+   * Muestra un diálogo para ver o adjuntar archivos de soporte a una partida.
    * @param item La partida seleccionada.
    */
   showSupportDialog(item: BudgetProposalItemDTO): void {
@@ -1266,7 +1266,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra el diólogo modal para Añadirnuevas cuentas a la propuesta.
+   * Muestra el diálogo modal para Añadirnuevas cuentas a la propuesta.
    */
   showAddAccountModal(): void {
     const currentProposal = this.currentProposal();
@@ -1331,7 +1331,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /**
    * Determina si una partida puede ser eliminada.
-   * La regla es que solo se puede eliminar si no ha tenido actividad (gastos o presupuesto) en todo el Aóo base.
+   * La regla es que solo se puede eliminar si no ha tenido actividad (gastos o presupuesto) en todo el Año base.
    * @param item La partida a verificar.
    * @returns `true` si el ótem puede ser eliminado.
    */
@@ -1392,7 +1392,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra el diólogo para comparar las cuotas de mantenimiento resultantes de la propuesta.
+   * Muestra el diálogo para comparar las cuotas de mantenimiento resultantes de la propuesta.
    */
   showFeeComparisonModal(): void {
     const proposal = this.currentProposal();
@@ -1409,7 +1409,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra el diólogo modal para comparar las cuotas de mantenimiento resultantes de la propuesta, calculadas por indiviso.
+   * Muestra el diálogo modal para comparar las cuotas de mantenimiento resultantes de la propuesta, calculadas por indiviso.
    */
   showFeeComparisonByIndivisoModal(): void {
     const proposal = this.currentProposal();

@@ -271,7 +271,7 @@ export class RealizarEvaluacion implements OnInit {
 
       answerGroup.get("score")?.setValue(value);
     } else {
-      console.error("óndice invólido:", index);
+      console.error("óndice inválido:", index);
     }
   }
 

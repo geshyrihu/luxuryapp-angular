@@ -297,17 +297,19 @@
       </div>
     </div>
 
-    <div class="grid align-items-start">
-      <div class="col-12 md:col-8">
-        <app-candidate-cv-upload
-          [fileName]="form.controls['cvFileName'].value"
-          [fileUrl]="currentCvUrl()"
-          (fileSelected)="onCvSelected($event)"
-          (fileEmitted)="onCvFile($event)"
-          label="CV maestro del candidato (PDF)"
-        />
+    @if (form.controls['candidateId'].value || isCreatingCandidate()) {
+      <div class="grid align-items-start mt-3">
+        <div class="col-12 md:col-8">
+          <app-candidate-cv-upload
+            [fileName]="form.controls['cvFileName'].value"
+            [fileUrl]="currentCvUrl()"
+            (fileSelected)="onCvSelected($event)"
+            (fileEmitted)="onCvFile($event)"
+            label="CV maestro del candidato (PDF)"
+          />
+        </div>
       </div>
-    </div>
+    }
 
     <il-button-save
       [propertyId]="id"

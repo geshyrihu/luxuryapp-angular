@@ -1,6 +1,8 @@
-<!-- ═══════════════════════════════════════════════════════════════════
-     TABLA DE PUESTOS DE TRABAJO
-     ═══════════════════════════════════════════════════════════════════ -->
+<!--
+ ═══════════════════════════════════════════════════════════════════
+ TABLA DE PUESTOS DE TRABAJO
+ ═══════════════════════════════════════════════════════════════════
+ -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="positions()"
@@ -38,13 +40,6 @@
           severity="info"
           variant="outline"
         />
-        <il-button
-          (clicked)="showModalAddEmployee()"
-          iconClass="material-symbols-light:person"
-          label="Agregar Empleado"
-          severity="info"
-          variant="outline"
-        />
         }
         <il-button
           (clicked)="onExportExcel()"
@@ -78,7 +73,7 @@
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
         class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
       >
-        <app-icon [icon]="'material-symbols-light:work'" class="mr-2" />GESTIóN
+        <app-icon [icon]="'material-symbols-light:work'" class="mr-2" />GESTIÓN
         DEL PUESTO DE TRABAJO
       </th>
       <th
@@ -92,7 +87,7 @@
       </th>
     </tr>
 
-    <!-- ⚪ Fila de Tútulos de Columna -->
+    <!-- ⚪ Fila de Títulos de Columna -->
     <tr>
       <th pSortableColumn="applicationRoleName">
         PUESTO <p-sorticon field="applicationRoleName" />
@@ -303,7 +298,7 @@
             class="badge badge-warning text-xs text-center block py-2"
             lxTooltip="Vacante abierta é esperando alta de colaborador"
           >
-            🟡 VA-{{ item.positionRequest.folio }} é Vacante abierta
+            🟡 VA-{{ item.positionRequest.folio }} | Vacante abierta
           </span>
           } @else {
           <span
@@ -426,7 +421,7 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════
-     DRAWER é ASIGNACIóN RÁPIDA (alternativa al DnD)
+     DRAWER é ASIGNACIÓN RÁPIDA (alternativa al DnD)
      ═══════════════════════════════════════════════════════════════════ -->
 <lx-sidebar
   [visible]="drawerVisible()"

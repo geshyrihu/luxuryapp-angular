@@ -43,6 +43,20 @@ export class AuthService {
   ) as HttpClient;
   private _signalRService?: SignalRService;
 
+  private logSessionSnapshot(
+    origin: string,
+    session: UserTokenDto | null,
+  ): void {
+    this.consoleLogger.custom("", "#03A9F4", `[AuthTrace] ${origin}`, {
+      at: new Date().toISOString(),
+      applicationUserId: session?.infoUserAuthDTO?.applicationUserId ?? null,
+      tokenCustomerId: session?.infoUserAuthDTO?.customerId ?? null,
+      roles: session?.roles ?? [],
+      customerAccessCount: session?.customerAccess?.length ?? 0,
+      hasToken: !!session?.token,
+    });
+  }
+
   // === PROPIEDADES DE ESTADO (INTERNAS) ===
   private currentUserSession = new BehaviorSubject<UserTokenDto | null>(null);
   private initialAuthCheckCompleted = new BehaviorSubject<boolean>(false);
@@ -138,6 +152,7 @@ export class AuthService {
           throw new Error(response.message);
         }),
         tap((session) => {
+          this.logSessionSnapshot("login.success", session);
           this.currentUserSession.next(session);
           this.signalRService.start();
         }),
@@ -179,7 +194,12 @@ export class AuthService {
             "color: #4CAF50; font-style: italic;",
             "[AuthService] Token renovado. Actualizando sesion en memoria.",
           );
+          this.logSessionSnapshot("refresh.success.before-set", newSession);
           this.currentUserSession.next(newSession);
+          this.logSessionSnapshot(
+            "refresh.success.after-set",
+            this.currentUserSession.value,
+          );
           this.signalRService.start();
         }),
         catchError((error) => {
@@ -200,6 +220,15 @@ export class AuthService {
         return of(null);
       }),
       finalize(() => {
+        this.consoleLogger.custom(
+          "",
+          "#8BC34A",
+          "[AuthTrace] trySilentLogin.finalize",
+          {
+            at: new Date().toISOString(),
+            isAuthenticated: !!this.currentUserSession.value,
+          },
+        );
         this.initialAuthCheckCompleted.next(true);
       }),
     );
@@ -207,12 +236,14 @@ export class AuthService {
 
   // === MÉTODOS DE UTILIDAD Y COMPATIBILIDAD ===
   public notifyLoginSuccess(sessionData: UserTokenDto): Observable<boolean> {
+    this.logSessionSnapshot("notifyLoginSuccess", sessionData);
     this.currentUserSession.next(sessionData);
     this.signalRService.start();
     return of(true);
   }
 
   private clearSession(): void {
+    this.logSessionSnapshot("clearSession.before", this.currentUserSession.value);
     this.signalRService.stop();
     this.currentUserSession.next(null);
     this.customerIdS.clearCustomerData();

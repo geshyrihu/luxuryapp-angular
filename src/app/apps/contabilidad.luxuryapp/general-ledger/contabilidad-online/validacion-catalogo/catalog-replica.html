@@ -59,7 +59,7 @@
   </div>
   } @if (!loading() && !data()) {
   <p class="text-color-secondary">
-    No hay datos. Verifique el cliente y el aóo, luego pulse
+    No hay datos. Verifique el cliente y el año, luego pulse
     <strong>Cargar Catálogo</strong>.
   </p>
   } @if (data(); as catalog) {
@@ -80,7 +80,7 @@
       Las siguientes cuentas del
       <strong>Catálogo General LuxuryF</strong> (base para reportes)
       <strong>no fueron devueltas</strong> por la API de Aspel para este cliente
-      y aóo. Si deben existir, el contador debe darlas de alta en Aspel COI.
+      y año. Si deben existir, el contador debe darlas de alta en Aspel COI.
     </p>
     <div class="flex flex-wrap gap-2">
       @for (faltante of cuentasFaltantes(); track faltante.numeroCuenta) {
@@ -144,10 +144,10 @@
       >
         <td>
           <div class="flex align-items-center">
-            <!-- ⬆️ ⬇️ âž¡️ ⬅️ -->
+            <!-- ⬆️ ⬇️ ➡️ ⬅️ -->
             @if (account.nivel === 1) {
             <iw-button
-              [lxTooltip]="account.expanded ? '⬇️' : 'âž¡️'"
+              [lxTooltip]="account.expanded ? '⬇️' : '➡️'"
               tooltipPosition="top"
               variant="ghost-text"
               size="sm"

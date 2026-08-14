@@ -23,6 +23,7 @@ import { CustomInputImg } from "../custom-input-img-signal";
       [urlImgCurrent]="urlImgCurrent()"
       [title]="title()"
       [chooseLabel]="chooseLabel()"
+      [allowRemove]="allowRemove()"
       [maxFileSize]="maxFileSize()"
       [compressThreshold]="compressThreshold()"
       [compressionQuality]="compressionQuality()"
@@ -46,6 +47,8 @@ export class WebInputImg extends BaseInputSignal {
   urlImgCurrent = input<string>("");
   title = input<string>("");
   chooseLabel = input<string>("Seleccionar imagen");
+  /** Muestra el boton de eliminar. El padre debe persistir el borrado. */
+  allowRemove = input<boolean>(false);
   maxFileSize = input<number>(15000000);
   compressThreshold = input<number>(2000000);
   compressionQuality = input<number>(0.75);

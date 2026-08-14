@@ -37,12 +37,14 @@ export const EndpointsReclutamiento = {
   },
   RecruitmentRequests: {
     sendReportVacants: "solicitudesreclutamiento/sendreportvacants",
-    solicitudVacante: (applicationUserId: Id) => `recruitment-requests/solicitud-vacante/${applicationUserId}`,
+    solicitudVacante: (applicationUserId: Id) =>
+      `recruitment-requests/solicitud-vacante/${applicationUserId}`,
     solicitudModificacionSalario: (customerId: Id, applicationUserId: Id) =>
       `recruitment-requests/solicitud-modificacion-salario/${customerId}/${applicationUserId}`,
     solicitudBaja: (customerId: Id, employeeId: Id, applicationUserId: Id) =>
       `recruitment-requests/solicitud-baja/${customerId}/${employeeId}/${applicationUserId}`,
-    solicitudAlta: (applicationUserId: Id) => `recruitment-requests/solicitud-alta/${applicationUserId}`,
+    solicitudAlta: (applicationUserId: Id) =>
+      `recruitment-requests/solicitud-alta/${applicationUserId}`,
     solicitudesPorCliente: (customerId: Id, applicationUserId: Id) =>
       `recruitment-requests/solicitudes-por-cliente/${customerId}/${applicationUserId}`,
     pendingGlobal: "recruitment-requests/pending-global",
@@ -50,17 +52,21 @@ export const EndpointsReclutamiento = {
   RequestDismissal: {
     base: "request-dismissal",
     list: "request-dismissal/list",
-    sendEmail: (workPositionId: Id) => `request-dismissal/send-email/${workPositionId}`,
+    sendEmail: (workPositionId: Id) =>
+      `request-dismissal/send-email/${workPositionId}`,
     getById: (id: Id) => `request-dismissal/get-by-id/${id}`,
-    getRequestDismissal: (employeeId: Id) => `request-dismissal/get-request-dismissal/${employeeId}`,
+    getRequestDismissal: (employeeId: Id) =>
+      `request-dismissal/get-request-dismissal/${employeeId}`,
     updateStatus: (id: Id) => `request-dismissal/${id}/status`,
     delete: (id: Id) => `request-dismissal/${id}`,
-    authorize: (id: Id, department: string) => `request-dismissal/${id}/authorize/${department}`,
+    authorize: (id: Id, department: string) =>
+      `request-dismissal/${id}/authorize/${department}`,
     exportExcel: "request-dismissal/export-excel",
   },
   RequestSalaryModification: {
     base: "request-salary-modification",
-    getData: (employeeId: Id) => `request-salary-modification/get-data/${employeeId}`,
+    getData: (employeeId: Id) =>
+      `request-salary-modification/get-data/${employeeId}`,
     getStatus: (workPositionId: Id, employeeId: Id) =>
       `request-salary-modification/${workPositionId}/${employeeId}`,
     getById: (id: Id) => `request-salary-modification/get-by-id/${id}`,
@@ -73,7 +79,8 @@ export const EndpointsReclutamiento = {
     getBasicInfo: (id: Id) => `request-employee-register/${id}/basic-info`,
     getEmployeeRegister: (employeeId: Id, customerId: Id) =>
       `request-employee-register/get-employee-register/${employeeId}/${customerId}`,
-    getVacantes: (customerId: Id) => `request-employee-register/vacantes/${customerId}`,
+    getVacantes: (customerId: Id) =>
+      `request-employee-register/vacantes/${customerId}`,
     list: "request-employee-register/list",
     updateStatus: (id: Id) => `request-employee-register/${id}/status`,
     delete: (id: Id) => `request-employee-register/${id}`,
@@ -87,11 +94,12 @@ export const EndpointsReclutamiento = {
     update: (id: Id) => `recruitment-candidates/${id}`,
     archive: (id: Id) => `recruitment-candidates/${id}/archive`,
   },
-CandidateApplications: {
+  CandidateApplications: {
     base: "recruitment-candidate-applications",
     list: "recruitment-candidate-applications",
     recruitmentAgenda: "recruitment-candidate-applications/recruitment-agenda",
-    recruitmentInterviewBoard: "recruitment-candidate-applications/recruitment-interview-board",
+    recruitmentInterviewBoard:
+      "recruitment-candidate-applications/recruitment-interview-board",
     recruitmentSchedule: (id: Id) =>
       `recruitment-candidate-applications/${id}/recruitment-schedule`,
     cancelRecruitmentSchedule: (id: Id) =>
@@ -128,14 +136,17 @@ CandidateApplications: {
       "recruitment-candidate-processes/recruitment-board",
     interviewerQueue: "recruitment-candidate-processes/interviewer-queue",
     interviewerView: "recruitment-candidate-processes/interviewer-view",
-    employeeInterviewerQueue: "recruitment-candidate-processes/employee-interviewer-queue",
+    employeeInterviewerQueue:
+      "recruitment-candidate-processes/employee-interviewer-queue",
     schedule: (id: Id) => `recruitment-candidate-processes/${id}/schedule`,
     cancelSchedule: (id: Id) =>
       `recruitment-candidate-processes/${id}/cancel-schedule`,
     changeStage: (id: Id) => `recruitment-candidate-processes/${id}/stage`,
-    interviewResponse: (id: Id) => `recruitment-candidate-processes/${id}/interview-response`,
+    interviewResponse: (id: Id) =>
+      `recruitment-candidate-processes/${id}/interview-response`,
     interviewerAction: "recruitment-candidate-processes/interviewer-action",
-    processHiring: (id: Id) => `recruitment-candidate-processes/${id}/process-hiring`,
+    processHiring: (id: Id) =>
+      `recruitment-candidate-processes/${id}/process-hiring`,
   },
   CandidateInterviews: {
     base: "recruitment-candidate-interviews",

@@ -685,8 +685,8 @@ export class TaskList implements OnInit {
     }
 
     // BFS: collect ALL transitive dependents —
-    //   ââ‚¬¢ parentTaskId === currentId  (true child tasks)
-    //   ââ‚¬¢ dependsOnTaskId === currentId  (successor in predecessor chain)
+    //   • parentTaskId === currentId  (true child tasks)
+    //   • dependsOnTaskId === currentId  (successor in predecessor chain)
     const dependentIds = new Set<string>();
     const queue = [movedItem.id];
     const visited = new Set<string>([movedItem.id]);
@@ -719,7 +719,7 @@ export class TaskList implements OnInit {
     );
   }
 
-  // âââ‚¬Ââ‚¬ââ€€ Chain step computation (visual Gantt-style ordering) âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬ââ€€
+  // ═══ Chain step computation (visual Gantt-style ordering) ═══
 
   readonly chainStepMap = computed(() => {
     const items = this.dataSignal().items;
@@ -758,7 +758,7 @@ export class TaskList implements OnInit {
     );
   });
 
-  // âââ‚¬Ââ‚¬ââ€€ Drag-to-link (asignación de predecesora por arrastre) âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬âââ‚¬Ââ‚¬ââ€€
+  // ═══ Drag-to-link (asignación de predecesora por arrastre) ═══
 
   readonly linkDragSourceId = signal<string | null>(null);
   readonly linkDragTargetId = signal<string | null>(null);

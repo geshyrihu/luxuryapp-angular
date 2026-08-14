@@ -1,7 +1,9 @@
 <div class="grid mb-3">
   <div class="col-12 md:col-6 xl:col">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-2">Pendientes de agenda</small>
+      <small class="text-color-secondary block mb-2"
+        >Pendientes de agenda</small
+      >
       <div class="text-2xl font-semibold">{{ summary().pendingSchedule }}</div>
     </div>
   </div>
@@ -14,71 +16,41 @@
   <div class="col-12 md:col-6 xl:col">
     <div class="card p-3 h-full">
       <small class="text-color-secondary block mb-2">Vencidas</small>
-      <div class="text-2xl font-semibold text-red-500">{{ summary().overdue }}</div>
+      <div class="text-2xl font-semibold text-red-500">
+        {{ summary().overdue }}
+      </div>
     </div>
   </div>
   <div class="col-12 md:col-6 xl:col">
     <div class="card p-3 h-full">
       <small class="text-color-secondary block mb-2">Sin entrevistador</small>
-      <div class="text-2xl font-semibold text-orange-500">{{ summary().missingInterviewer }}</div>
+      <div class="text-2xl font-semibold text-orange-500">
+        {{ summary().missingInterviewer }}
+      </div>
     </div>
   </div>
   <div class="col-12 md:col-6 xl:col">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-2">Con retroalimentacion</small>
-      <div class="text-2xl font-semibold text-green-500">{{ summary().withFeedback }}</div>
+      <small class="text-color-secondary block mb-2"
+        >Con retroalimentacion</small
+      >
+      <div class="text-2xl font-semibold text-green-500">
+        {{ summary().withFeedback }}
+      </div>
     </div>
   </div>
 </div>
 
-<div class="card p-3 mb-2 flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-2">
+<div
+  class="card p-3 mb-2 flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-2"
+>
   <div>
     <div class="font-semibold mb-1">Agenda operativa de Reclutamiento</div>
     <p class="m-0 text-sm text-color-secondary">
-      Seguimiento de entrevistas de reclutamiento y operaciones en un solo tablero.
+      Seguimiento de entrevistas de reclutamiento y operaciones en un solo
+      tablero.
     </p>
   </div>
-  <div class="flex flex-wrap gap-2">
-    <il-button
-      label="Ver bandeja de entrevistas"
-      iconClass="material-symbols-light:calendar-clock"
-      severity="secondary"
-      size="small"
-      (clicked)="navigateToInterviews()"
-    />
-    <il-button
-      label="Actualizar"
-      iconClass="material-symbols-light:refresh"
-      severity="secondary"
-      size="small"
-      (clicked)="onLoadData()"
-    />
-  </div>
-</div>
-
-<!-- Filtro rapido por estado -->
-<div class="flex flex-wrap gap-2 mb-3">
-  <span class="text-sm text-color-secondary align-self-center">Filtrar por estado:</span>
-  @for (opt of agendaStatusOptions; track opt.value) {
-    <button
-      type="button"
-      class="btn btn-sm"
-      [class.btn-primary]="statusFilter() === opt.value"
-      [class.btn-outline]="statusFilter() !== opt.value"
-      (click)="statusFilter.set(statusFilter() === opt.value ? '' : opt.value)"
-      [attr.aria-pressed]="statusFilter() === opt.value"
-    >
-      {{ opt.label }}
-    </button>
-  }
-  <button
-    type="button"
-    class="btn btn-sm btn-outline"
-    [class.btn-primary]="statusFilter() === ''"
-    (click)="statusFilter.set('')"
-  >
-    Todos
-  </button>
 </div>
 
 <p-table
@@ -97,21 +69,42 @@
   [rowTrackBy]="trackById"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      [dt]="dt"
-      [showAdd]="false"
-      aria-label="Agenda operativa de reclutamiento"
-    />
+    <div class="flex flex-wrap gap-3 align-items-center justify-content-between">
+      <div class="flex flex-wrap gap-2">
+        <span class="text-sm text-color-secondary align-self-center">Filtrar por estado:</span>
+        @for (opt of agendaStatusOptions; track opt.value) {
+        <button type="button" class="btn btn-sm" [class.btn-primary]="statusFilter() === opt.value" [class.btn-outline]="statusFilter() !== opt.value" (click)="statusFilter.set(statusFilter() === opt.value ? '' : opt.value)" [attr.aria-pressed]="statusFilter() === opt.value">
+          {{ opt.label }}
+        </button>
+        }
+        <button type="button" class="btn btn-sm btn-outline" [class.btn-primary]="statusFilter() === ''" (click)="statusFilter.set('')">
+          Todos
+        </button>
+      </div>
+      <primeng-custom-caption [dt]="dt" [showAdd]="false" aria-label="Agenda operativa de reclutamiento" />
+    </div>
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="candidateName">Candidato <p-sorticon field="candidateName" /></th>
-      <th pSortableColumn="vacancyFolio">Vacante <p-sorticon field="vacancyFolio" /></th>
-      <th pSortableColumn="customerName">Cliente <p-sorticon field="customerName" /></th>
+      <th pSortableColumn="candidateName">
+        Candidato <p-sorticon field="candidateName" />
+      </th>
+      <th pSortableColumn="vacancyFolio">
+        Vacante <p-sorticon field="vacancyFolio" />
+      </th>
+      <th pSortableColumn="customerName">
+        Cliente <p-sorticon field="customerName" />
+      </th>
       <th>Estatus agenda</th>
-      <th pSortableColumn="scheduledInterviewAt">Fecha entrevista <p-sorticon field="scheduledInterviewAt" /></th>
-      <th pSortableColumn="assignedInterviewerName">Entrevistador <p-sorticon field="assignedInterviewerName" /></th>
-      <th pSortableColumn="daysInStage">Dias en etapa <p-sorticon field="daysInStage" /></th>
+      <th pSortableColumn="scheduledInterviewAt">
+        Fecha entrevista <p-sorticon field="scheduledInterviewAt" />
+      </th>
+      <th pSortableColumn="assignedInterviewerName">
+        Entrevistador <p-sorticon field="assignedInterviewerName" />
+      </th>
+      <th pSortableColumn="daysInStage">
+        Dias en etapa <p-sorticon field="daysInStage" />
+      </th>
       <th>Proxima accion</th>
       <th>CV</th>
     </tr>
@@ -131,20 +124,21 @@
       </td>
       <td>{{ item.customerName }}</td>
       <td>
-        <app-mapped-p-tag [value]="item.agendaStatusCode" [options]="agendaStatusOptions" />
+        <app-mapped-p-tag
+          [value]="item.agendaStatusCode"
+          [options]="agendaStatusOptions"
+        />
       </td>
       <td>
-        @if (item.scheduledInterviewAt) {
-          {{ item.scheduledInterviewAt | date: "dd/MM/yyyy HH:mm" }}
-        } @else {
-          <span class="text-color-secondary">Sin fecha</span>
+        @if (item.scheduledInterviewAt) { {{ item.scheduledInterviewAt | date:
+        "dd/MM/yyyy HH:mm" }} } @else {
+        <span class="text-color-secondary">Sin fecha</span>
         }
       </td>
       <td>
-        @if (item.assignedInterviewerName) {
-          {{ item.assignedInterviewerName }}
+        @if (item.assignedInterviewerName) { {{ item.assignedInterviewerName }}
         } @else {
-          <span class="text-color-secondary">Sin asignar</span>
+        <span class="text-color-secondary">Sin asignar</span>
         }
       </td>
       <td>
@@ -158,15 +152,15 @@
       </td>
       <td>
         @if (item.cvFileName) {
-          <iw-button-view-pdf
-            size="sm"
-            class="btn--circle"
-            [url]="item.cvFileUrl"
-            [fileName]="item.cvFileName"
-            [attr.aria-label]="'Ver CV de ' + item.candidateName"
-          />
+        <iw-button-view-pdf
+          size="sm"
+          class="btn--circle"
+          [url]="item.cvFileUrl"
+          [fileName]="item.cvFileName"
+          [attr.aria-label]="'Ver CV de ' + item.candidateName"
+        />
         } @else {
-          <span class="text-color-secondary">Sin CV</span>
+        <span class="text-color-secondary">Sin CV</span>
         }
       </td>
     </tr>

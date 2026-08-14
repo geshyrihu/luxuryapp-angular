@@ -1,13 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  effect,
+  computed,
   ElementRef,
   forwardRef,
   inject,
   input,
   OnDestroy,
   output,
+  signal,
   ViewChild,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
@@ -15,6 +16,7 @@ import { IonButton, IonIcon, IonImg } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { cameraOutline, trashOutline } from "ionicons/icons";
 import { BaseIonicInput } from "../base/base-ionic-input";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ImageProcessingService } from "src/app/core/services/image-processing.service";
 
 @Component({
@@ -22,39 +24,43 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
   imports: [BaseIonicInput, ReactiveFormsModule, IonButton, IonIcon, IonImg],
   template: `
     <base-ionic-input
-      [control]="control()"
+      [control]="control() || internalControl"
       [id]="id()"
       [label]="label()"
       [readonly]="readonly()"
       [required]="requiredInput()"
     >
       <div class="w-full flex flex-column gap-2 align-items-center">
-        @if (!imageUrl) {
+        @if (!displayUrl()) {
           <ion-button
             expand="block"
             mode="md"
             fill="outline"
+            [disabled]="readonly() || disabled()"
             (click)="triggerFileInput()"
             class="w-full"
           >
             <ion-icon slot="start" name="camera-outline"></ion-icon>
-            Seleccionar imagen
+            {{ chooseLabel() }}
           </ion-button>
         } @else {
           <div class="flex flex-column gap-1 w-15rem align-items-center">
             <ion-img
-              [src]="imageUrl"
+              [src]="displayUrl()"
               class="w-full h-10rem rounded shadow-sm object-cover"
+              (click)="triggerFileInput()"
             />
-            <ion-button
-              fill="clear"
-              color="danger"
-              size="small"
-              (click)="removeFile()"
-            >
-              <ion-icon slot="start" name="trash-outline"></ion-icon>
-              Eliminar
-            </ion-button>
+            @if (allowRemove() && !readonly() && !disabled()) {
+              <ion-button
+                fill="clear"
+                color="danger"
+                size="small"
+                (click)="removeFile()"
+              >
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+                Eliminar
+              </ion-button>
+            }
           </div>
         }
         <input
@@ -79,15 +85,31 @@ import { ImageProcessingService } from "src/app/core/services/image-processing.s
 })
 export class IonInputImg extends BaseIonicInput implements OnDestroy {
   private readonly imageProcessing = inject(ImageProcessingService);
+  private readonly toast = inject(CustomToastService);
   private previewObjectUrl: string | null = null;
 
   urlImgCurrent = input<string>("");
+  chooseLabel = input<string>("Seleccionar imagen");
+  /** Muestra el boton de eliminar. El padre debe persistir el borrado. */
+  allowRemove = input<boolean>(false);
   maxFileSize = input<number>(15000000);
   compressThreshold = input<number>(2000000);
   compressionQuality = input<number>(0.75);
   fileSelected = output<File>();
   uploadError = output<unknown>();
-  imageUrl: string | null = null;
+
+  /** Preview local del archivo recien elegido (objectURL). */
+  private readonly previewUrl = signal<string | null>(null);
+  /** El usuario elimino la imagen: ignora urlImgCurrent hasta elegir otra. */
+  private readonly removed = signal(false);
+
+  readonly displayUrl = computed(() => {
+    const preview = this.previewUrl();
+    if (preview) return preview;
+    if (this.removed()) return null;
+    const url = this.urlImgCurrent();
+    return url && !this.isNullUrl(url) ? url : null;
+  });
 
   @ViewChild("fileInput", { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
@@ -95,15 +117,10 @@ export class IonInputImg extends BaseIonicInput implements OnDestroy {
   constructor() {
     super();
     addIcons({ cameraOutline, trashOutline });
-    effect(() => {
-      const url = this.urlImgCurrent();
-      if (url && !this.imageUrl) {
-        this.imageUrl = url;
-      }
-    });
   }
 
   triggerFileInput(): void {
+    if (this.readonly() || this.disabled()) return;
     this.fileInput?.nativeElement.click();
   }
 
@@ -119,27 +136,38 @@ export class IonInputImg extends BaseIonicInput implements OnDestroy {
         maxDimension: 1920,
         quality: this.compressionQuality(),
       });
+
+      if (processed.size > this.maxFileSize()) {
+        const tooLarge = new Error(
+          `El archivo excede el tamaño máximo de ${this.maxFileSize() / 1000000} MB`,
+        );
+        this.toast.showError("Archivo demasiado grande", tooLarge.message);
+        this.uploadError.emit(tooLarge);
+        return;
+      }
+
       this.clearPreview();
       this.previewObjectUrl = URL.createObjectURL(processed);
-      this.imageUrl = this.previewObjectUrl;
-      this.onChange(processed);
-      this.onTouch();
-      const ctrl = this.control() || this.internalControl;
-      ctrl.setValue(processed);
-      ctrl.markAsDirty();
+      this.previewUrl.set(this.previewObjectUrl);
+      this.removed.set(false);
+      this.writeToControl(processed);
       this.fileSelected.emit(processed);
     } catch (error) {
+      this.toast.showError(
+        "No se pudo procesar la imagen",
+        error instanceof Error
+          ? error.message
+          : `No se pudo procesar "${file.name}".`,
+      );
       this.uploadError.emit(error);
     }
   }
 
   removeFile(): void {
     this.clearPreview();
-    this.imageUrl = null;
-    this.onChange(null);
-    this.onTouch();
-    const ctrl = this.control() || this.internalControl;
-    ctrl.setValue(null);
+    this.previewUrl.set(null);
+    this.removed.set(true);
+    this.writeToControl(null);
   }
 
   override registerOnChange(fn: any): void {
@@ -151,6 +179,20 @@ export class IonInputImg extends BaseIonicInput implements OnDestroy {
 
   ngOnDestroy(): void {
     this.clearPreview();
+  }
+
+  /** Escribe en el control del padre; `null` significa "eliminar". */
+  private writeToControl(value: File | null): void {
+    this.onChange(value);
+    this.onTouch();
+    const ctrl = this.control() || this.internalControl;
+    ctrl.setValue(value);
+    ctrl.markAsDirty();
+    ctrl.updateValueAndValidity();
+  }
+
+  private isNullUrl(url: string): boolean {
+    return url.endsWith("/null") || url === "null";
   }
 
   private clearPreview(): void {

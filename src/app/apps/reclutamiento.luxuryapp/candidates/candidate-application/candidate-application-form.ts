@@ -124,7 +124,6 @@ export class CandidateApplicationForm implements OnInit {
     this.id = this.config.data?.id ?? "";
     this.candidateProcessId = this.config.data?.candidateProcessId ?? "";
     await this.onLoadSelectItems();
-    this.applyDialogDefaults();
     this.form.controls["candidateId"].valueChanges.subscribe((candidateId) => {
       if (!candidateId || this.isCreatingCandidate()) return;
       void this.loadCandidateCvPreview(candidateId);
@@ -137,11 +136,19 @@ export class CandidateApplicationForm implements OnInit {
     this.form.controls["recruitmentInterviewAt"].valueChanges.subscribe(() => {
       this.applyInterviewerValidators();
     });
+    
+    this.applyDialogDefaults();
+
     if (!this.editingId) {
       this.form.controls["applicationDate"].setValue(this.todayDateOnly());
     }
     this.form.controls["applicationDate"].disable({ emitEvent: false });
     this.applyInterviewerValidators();
+    
+    // We can remove the manual check for requestPositionId here since applyDialogDefaults will trigger the subscription.
+    // However, if the subscription uses async/await, it's fine.
+    // Actually, if requestPositionId was set in applyDialogDefaults, it will trigger onLoadInterviewersForRequestPosition.
+    // Just to be safe, I will leave the manual check but it shouldn't hurt if it runs twice (it uses signals).
     if (this.form.controls["requestPositionId"].value) {
       void this.onLoadInterviewersForRequestPosition(
         this.form.controls["requestPositionId"].value,

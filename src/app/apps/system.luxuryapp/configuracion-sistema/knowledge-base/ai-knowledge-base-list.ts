@@ -89,7 +89,7 @@ export class AiKnowledgeBaseList implements OnInit {
 
   async onDelete(id: string) {
     this.confirmationService.confirm({
-      message: "ÂóEstÃós seguro de que quieres eliminar este registro?",
+      message: "¿Estás seguro de que quieres eliminar este registro?",
       header: "Confirmar",
       icon: "material-symbols-light:warning",
       accept: async () => {

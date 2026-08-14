@@ -404,7 +404,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <div class="card-body">
                     <p class="text-sm text-secondary m-0 mb-3">
                       Para botones de shell (sidebar toggle, header actions) que
-                      requieren un aspecto específico con borde y tamaóo fijo,
+                      requieren un aspecto específico con borde y tamaño fijo,
                       usa
                       <code>&lt;button class="ds-icon-btn"&gt;</code> con tokens
                       DS en el SCSS. No uses <code>p-button</code> - sus

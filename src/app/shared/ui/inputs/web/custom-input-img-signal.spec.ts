@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { CustomInputImg } from "./custom-input-img-signal";
 import { FormControl } from "@angular/forms";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { vi } from "vitest";
 
 describe("CustomInputImg", () => {
@@ -19,6 +20,9 @@ describe("CustomInputImg", () => {
     TestBed.configureTestingModule({
       imports: [CustomInputImg],
       schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        { provide: CustomToastService, useValue: { showError: vi.fn() } },
+      ],
     });
 
     fixture = TestBed.createComponent(CustomInputImg);

@@ -181,7 +181,7 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
         .onGetItem(Endpoints.FireEquipment.resolveById(segments[0]))
         .catch(() => null);
       if (!result) {
-        this.scanError.set("No se encontré el equipo en el sistema.");
+        this.scanError.set("No se encontró el equipo en el sistema.");
         return;
       }
       const typeMap: Record<string, string> = {

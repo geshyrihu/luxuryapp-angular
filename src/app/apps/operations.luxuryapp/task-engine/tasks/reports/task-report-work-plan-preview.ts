@@ -48,7 +48,7 @@ export class TaskReportWorkPlanPreview {
   loading = signal(true);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  year: number = 0; // Almacena el Aóo seleccionado
+  year: number = 0; // Almacena el Año seleccionado
   numeroSemana: number = 0; // Almacena el número de semana seleccionado
   weekInputValueControl = new FormControl<string>("");
 
@@ -68,7 +68,7 @@ export class TaskReportWorkPlanPreview {
     );
   }
   onLoadData() {
-    // No sobreescribimos el Aóo y la semana seleccionados con los valores actuales
+    // No sobreescribimos el Año y la semana seleccionados con los valores actuales
     this.apiResponseS
       .onGetList(
         Endpoints.TaskWorkPlans.preview(

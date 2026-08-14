@@ -176,7 +176,7 @@ export class TaskTemplateItems implements OnInit {
         }
         break;
       case "YEARLY":
-        humanReadable += `Cada ${interval} Aóo${interval > 1 ? "s" : ""}`;
+        humanReadable += `Cada ${interval} Año${interval > 1 ? "s" : ""}`;
         if (rrule["BYMONTH"] && rrule["BYMONTHDAY"]) {
           const month = parseInt(rrule["BYMONTH"], 10);
           humanReadable += ` el ${rrule["BYMONTHDAY"]} de ${this.getMonthName(

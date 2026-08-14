@@ -94,7 +94,7 @@ export const directoryRoutes: Routes = [
     canActivate: [authGuard],
     data: {
       title: "Mis Vacantes y Entrevistas",
-      breadcrumb: "Mis Entrevistas",
+      breadcrumb: "Vacantes y Entrevistas",
     },
   },
   {
