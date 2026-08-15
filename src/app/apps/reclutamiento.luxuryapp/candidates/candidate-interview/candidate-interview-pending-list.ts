@@ -19,6 +19,7 @@ import { PlatformService } from "src/app/core/services/platform.service";
 import { CandidateApplicationListItem } from "../candidate-application/interfaces/candidate-application";
 import { CandidateInterviewFeedbackForm } from "./candidate-interview-feedback-form";
 import { CandidateInterviewPendingDesktop } from "./desktop/candidate-interview-pending-desktop";
+import { CandidateInterviewFeedbackTarget } from "./interfaces/candidate-interview-feedback-target.interface";
 import { CandidateInterviewPendingMobile } from "./mobile/candidate-interview-pending-mobile";
 
 @Component({
@@ -47,7 +48,6 @@ export class CandidateInterviewPendingList implements OnInit {
     return globalFilterFields(data);
   });
 
-  // Detectar si estamos en modo "mis pendientes" o "responder"
   readonly isMyPendingMode = computed(
     () => this.route.snapshot.queryParamMap.get("myPending") === "true",
   );
@@ -57,11 +57,8 @@ export class CandidateInterviewPendingList implements OnInit {
   readonly isRespondMode = computed(
     () => this.route.snapshot.queryParamMap.get("action") === "respond",
   );
-
-  // Usuario actual
   readonly currentUserId = computed(() => this.authS.applicationUserId ?? "");
 
-  // Filtrar datos para el entrevistador actual
   readonly filteredData = computed(() => {
     const data = this.dataSignal();
     if (this.isMyPendingMode()) {
@@ -94,19 +91,22 @@ export class CandidateInterviewPendingList implements OnInit {
 
     Promise.all(tasks).then((results) => {
       const merged: CandidateApplicationListItem[] = [];
-      results.forEach((r) => {
-        if (r) merged.push(...r);
+      results.forEach((result) => {
+        if (result) merged.push(...result);
       });
       this.dataSignal.set(merged);
     });
   }
 
-  onFeedback(candidateApplicationId: string) {
+  onFeedback(target: CandidateInterviewFeedbackTarget) {
     this.dialogHandlerS
       .openDialog(
         CandidateInterviewFeedbackForm,
-        { candidateApplicationId },
-        "Retroalimentación de entrevista",
+        {
+          candidateApplicationId: target.candidateApplicationId,
+          candidateProcessId: target.candidateProcessId ?? undefined,
+        },
+        "Retroalimentacion de entrevista",
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {

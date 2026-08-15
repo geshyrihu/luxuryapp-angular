@@ -11,6 +11,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CandidateApplicationListItem } from "../../candidate-application/interfaces/candidate-application";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
+import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interview-feedback-target.interface";
 
 @Component({
   selector: "app-candidate-interview-pending-mobile",
@@ -30,5 +31,5 @@ export class CandidateInterviewPendingMobile {
   data = input.required<CandidateApplicationListItem[]>();
   globalFilterFields = input<string[]>([]);
 
-  feedback = output<string>();
+  feedback = output<CandidateInterviewFeedbackTarget>();
 }

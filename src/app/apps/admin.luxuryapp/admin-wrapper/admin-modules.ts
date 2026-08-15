@@ -1,6 +1,6 @@
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AdminModuleGroup } from "./admin-module.model";
+import { AdminModuleGroup } from "./interfaces/admin-module-group.interface";
 
 export const ADMIN_MODULES: AdminModuleGroup[] = [
   // -------------------------------------------------------------

@@ -15,14 +15,14 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { CandidateInterviewFeedbackForm } from "./candidate-interview-feedback-form";
-import { CandidateInterviewResponseDto, CandidateDecisionReasonItem } from "./interfaces/candidate-interview";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { FormsModule } from "@angular/forms";
 import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
 import { MappedPTag, MappedTagOption } from "../recruitment-shared/mapped-p-tag";
+import { CandidateDecisionReasonItem } from "./interfaces/candidate-decision-reason-item.interface";
+import { CandidateInterviewResponseDto } from "./interfaces/candidate-interview-response.dto";
 
 @Component({
   selector: "app-candidate-interview-response",
@@ -106,7 +106,7 @@ export class CandidateInterviewResponse implements OnInit {
     this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS);
   }
 
-  /** Abrir modal de feedback */
+  /** Abrir modal process-first de feedback */
   openFeedbackModal(): void {
     const interviewData = this.interviewData();
     this.dialogHandlerS

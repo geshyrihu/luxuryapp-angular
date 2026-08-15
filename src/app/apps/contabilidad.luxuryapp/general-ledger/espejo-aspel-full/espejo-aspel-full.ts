@@ -337,7 +337,7 @@ export class EspejoAspelFull {
         ...prev,
         [codigo]: nivel,
       }));
-      // Damos un pequeóo respiro para que Angular procese los miles de filas antes de quitar el spinner
+      // Damos un pequeño respiro para que Angular procese los miles de filas antes de quitar el spinner
       setTimeout(() => {
         this.loading.set(false);
       }, 50);

@@ -111,8 +111,13 @@ describe("CandidateDetail", () => {
 
     expect(dialogHandlerService.openDialog).toHaveBeenCalledWith(
       expect.any(Function),
-      { id: "", title: "Nueva Postulacion", candidateId: "1" },
-      "Nueva Postulacion",
+      {
+        id: "",
+        title: "Asignar vacante e iniciar entrevista",
+        candidateId: "1",
+        allowCreateCandidate: false,
+      },
+      "Asignar vacante e iniciar entrevista",
       "lg",
     );
   });

@@ -21,13 +21,7 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AccessPointDto } from "src/app/core/interfaces/access-point.dto";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-
-interface IAccessPointForm {
-  name: FormControl<string>;
-  accessPointType: FormControl<string>;
-  location: FormControl<string | null>;
-  isActive: FormControl<boolean>;
-}
+import { AccessPointFormGroup } from "./interfaces/access-point-form.interface";
 
 @Component({
   selector: "app-access-point-list",
@@ -57,11 +51,11 @@ export class AccessPointList implements OnInit {
     { value: "Emergency", label: "Emergencia" },
   ];
 
-  form!: FormGroup<IAccessPointForm>;
+  form!: FormGroup<AccessPointFormGroup>;
 
   ngOnInit(): void {
     this.onLoadData();
-    this.form = this.formB.group<IAccessPointForm>({
+    this.form = this.formB.group<AccessPointFormGroup>({
       name: new FormControl("", {
         validators: [Validators.required],
         nonNullable: true,

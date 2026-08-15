@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   output,
 } from "@angular/core";
@@ -12,6 +13,8 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CandidateStatus } from "src/app/core/enums/candidate-status";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CandidateListItem } from "../interfaces/candidate.dto";
 import { MappedPTag } from "../../recruitment-shared/mapped-p-tag";
 import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
@@ -33,13 +36,18 @@ import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
   ],
 })
 export class CandidateListMobile {
+  aspRoleS = inject(AspRoleService);
+
   data = input.required<CandidateListItem[]>();
   globalFilterFields = input<string[]>([]);
 
   add = output<{ id: string; title: string }>();
   edit = output<{ id: string; title: string }>();
   archive = output<string>();
+  delete = output<string>();
   detail = output<string>();
+
+  readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
 
   protected readonly candidateStatus = CandidateStatus;
   protected readonly candidateStatusOptions = CANDIDATE_STATUS_TAG_OPTIONS;

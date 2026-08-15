@@ -50,6 +50,14 @@
         />
       </div>
       <div class="col-12 md:col-6">
+        <custom-input-select-signal
+          [control]="form.controls.recruitmentSource"
+          label="Fuente de reclutamiento"
+          [data]="recruitmentSourceOptions()"
+          [filter]="true"
+        />
+      </div>
+      <div class="col-12 md:col-6">
         <custom-input-number-signal
           [control]="form.controls.salaryExpectation"
           label="Expectativa salarial"

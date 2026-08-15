@@ -244,14 +244,72 @@ export class EquiposList {
     }
   }
 
-  // Helper to convert Blob to Base64
+  // Tamano maximo de miniatura embebida en el PDF para no saturar el iframe de impresion
+  private readonly pdfImageMaxDimension = 160;
+  // Concurrencia limite para descargar fotos (evita 600+ peticiones simultaneas)
+  private readonly pdfImageFetchConcurrency = 8;
+
+  // Helper to convert Blob to Base64 (downscaled thumbnail for PDF)
   private blobToBase64(blob: Blob): Promise<string> {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const scale = Math.min(
+          1,
+          this.pdfImageMaxDimension /
+            Math.max(img.naturalWidth, img.naturalHeight),
+        );
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.round(img.naturalWidth * scale));
+        canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          img.src = "";
+          reject("Could not get canvas context");
+          return;
+        }
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+        canvas.width = 1;
+        canvas.height = 1;
+        img.src = "";
+        resolve(dataUrl);
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        img.src = "";
+        reject("Error loading image from blob");
+      };
+      img.src = url;
     });
+  }
+
+  // Procesa items en lotes para limitar la concurrencia de descargas de imagenes
+  private async mapWithConcurrency<T>(
+    items: T[],
+    concurrency: number,
+    mapper: (item: T) => Promise<T>,
+  ): Promise<T[]> {
+    const results = new Array<T>(items.length);
+    let nextIndex = 0;
+
+    const workers = Array.from(
+      { length: Math.min(concurrency, items.length) },
+      async () => {
+        while (true) {
+          const index = nextIndex++;
+          if (index >= items.length) return;
+          results[index] = await mapper(items[index]);
+        }
+      },
+    );
+
+    await Promise.all(workers);
+    return results;
   }
 
   async onDownloadPdf(): Promise<void> {
@@ -260,9 +318,11 @@ export class EquiposList {
     this.loading.set(true); // Show loading indicator while processing images
 
     try {
-      // 1. Fetch images for each item
-      const dataWithImages = await Promise.all(
-        data.map(async (item) => {
+      // 1. Fetch images for each item (concurrencia limitada para evitar 600+ peticiones simultaneas)
+      const dataWithImages = await this.mapWithConcurrency(
+        data,
+        this.pdfImageFetchConcurrency,
+        async (item) => {
           let base64Image = null;
           if (item.photoPath) {
             try {
@@ -289,7 +349,7 @@ export class EquiposList {
             }
           }
           return { ...item, base64Image };
-        }),
+        },
       );
       // Sort by system (equipoClasificacion)
       const sortedData = [...dataWithImages].sort((a, b) =>

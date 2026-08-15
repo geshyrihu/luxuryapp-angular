@@ -66,8 +66,8 @@
         <iw-button-edit
           size="sm"
           class="btn--circle"
-          [attr.aria-label]="'Llenar retroalimentación de ' + item.candidateName"
-          (clicked)="feedback.emit(item.id)"
+          [attr.aria-label]="'Llenar retroalimentacion de ' + item.candidateName"
+          (clicked)="feedback.emit({ candidateApplicationId: item.id, candidateProcessId: item.candidateProcessId })"
         />
       </td>
     </tr>

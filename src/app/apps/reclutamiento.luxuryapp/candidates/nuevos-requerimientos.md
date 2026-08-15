@@ -39,3 +39,16 @@ entidades nuevas para todo). Grupos de datos:
 - D4: ¿El alta escribe directo en entidades destino o vía `RequestEmployeeRegister` como orquestador?
 - D5: ¿Versión de documentación a adoptar (simple vs con validación)?
 - D6: ¿Refactor de nombres a `RecruitmentCandidate*` (extructura.md) o trabajo sobre esquema actual?
+
+## R-04 — Registro de entrevista de Reclutamiento (apto/no apto) [nueva idea, nivel control]
+- En vez de un enum `CandidateInterviewType` (Reclutamiento/Operaciones) como discriminador, Reclutamiento
+  debe documentar la **ocurrencia** de la entrevista (cuándo se entrevistó) y un **check de aptitud**
+  (apto / no apto).
+- Por el momento es requerimiento de control; definir en FASE 0 (Reglas de Negocio). No modelar tablas aún.
+- Análisis previo en `nueva-extructuraV2.md` sección J (ya existe `CandidateInterview` +
+  `CandidateInterviewResult`; brecha: falta flag explícito `apto/no apto` en la entrevista de Reclutamiento).
+- Decisiones de alcance de agendamiento (sección I.3): solo entrevistador a nivel Customer; Location se
+  obtiene de `Customer.Address` (no se captura); cancelación ya existe.
+- **Actualización:** el "apto/no apto" Ya corresponde al enum `CandidateDecision`
+  (Aprobado/Rechazado/EnEspera/NoSePresento) y se registra en `CandidateInterviewResult` (sección K).
+  No se necesita entidad ni flag nuevo; se confirma Opción A (reusar `CandidateInterviewResult`).

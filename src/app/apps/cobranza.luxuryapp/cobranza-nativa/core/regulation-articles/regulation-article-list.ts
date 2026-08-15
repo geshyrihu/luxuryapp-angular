@@ -1,4 +1,4 @@
-﻿import { CurrencyPipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,

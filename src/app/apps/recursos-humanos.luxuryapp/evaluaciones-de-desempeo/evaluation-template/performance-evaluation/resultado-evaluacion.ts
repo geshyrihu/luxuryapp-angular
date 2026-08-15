@@ -282,7 +282,7 @@ ${this.htmlPrintS.getStandardCss()}
       <div style="font-size: 12px; color: #6c757d;">Promedio: ${result.finalScore.toFixed(2)} / 5.00</div>
     </div>
 
-    <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Resumen de Desempeóo por Categoróa</div>
+    <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Resumen de Desempeño por Categoróa</div>
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
       ${summaryTableHtml}
     </table>

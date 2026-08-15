@@ -7,6 +7,7 @@ export interface CandidateFormGroup {
   phoneNumber: FormControl<string | null>;
   email: FormControl<string | null>;
   age: FormControl<number | null>;
+  recruitmentSource: FormControl<number | null>;
   currentAddress: FormControl<string | null>;
   availability: FormControl<string | null>;
   salaryExpectation: FormControl<number | null>;

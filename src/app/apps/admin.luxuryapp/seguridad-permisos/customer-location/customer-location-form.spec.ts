@@ -10,7 +10,7 @@ import { ApiResponseService } from 'src/app/core/http/services/api-response.serv
 import { FormHelper } from 'src/app/core/helpers/form-helper';
 import { EndpointsAdmin } from 'src/app/core/constants/endpoints/admin.endpoints';
 import { CustomerLocationType, CustomerLocationTypeOptions } from './interfaces/customer-location-type.enum';
-import { CustomerLocationAddOrEditDTO } from './interfaces/customer-location-add-or-edit.dto';
+import { CustomerLocationAddOrEditDto } from './interfaces/customer-location-add-or-edit.dto';
 
 describe('CustomerLocationForm', () => {
   let component: CustomerLocationForm;
@@ -159,7 +159,7 @@ describe('CustomerLocationForm', () => {
 
   describe('onLoadData', () => {
     it('should patch form with loaded data', async () => {
-      const mockDto: CustomerLocationAddOrEditDTO = {
+      const mockDto: CustomerLocationAddOrEditDto = {
         id: 'loc-1',
         customerId: 'cust-1',
         name: 'Test Location',

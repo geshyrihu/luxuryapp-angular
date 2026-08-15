@@ -92,6 +92,16 @@
             (clicked)="onModalDetail(item.workPositionId)"
           />
           <iw-button-delete (confirmed)="onDelete(item.id)" />
+          @if (isSuperUser()) {
+            <iw-button-item
+              iconClass="material-symbols-light:delete"
+              severity="danger"
+              lxTooltip="Eliminar definitivamente"
+              tooltipPosition="top"
+              [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
+              (clicked)="onDeletePermanente(item.id)"
+            />
+          }
         </div>
       </td>
     </tr>
@@ -129,6 +139,15 @@
             label="Editar"
           />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+          @if (isSuperUser()) {
+            <ili-button-item
+              (clicked)="onDeletePermanente(item.id)"
+              label="Eliminar definitivamente"
+              color="danger"
+              iconClass="material-symbols-light:delete"
+              [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
+            />
+          }
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

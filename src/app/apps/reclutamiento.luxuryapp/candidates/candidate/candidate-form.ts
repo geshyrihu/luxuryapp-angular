@@ -5,6 +5,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { firstValueFrom } from "rxjs";
 import {
   FormArray,
   FormControl,
@@ -15,6 +16,7 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -22,10 +24,12 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
 import {
   CandidateDetail,
@@ -47,6 +51,7 @@ import { CandidateFormGroup } from "./interfaces/candidate-form.interface";
     CustomInputTextAreaSignal,
     InputMask,
     InputEmail,
+    CustomInputSelectSignal,
     CandidateCvUpload,
     WebButtonLabel,
     WebButtonLabelSave,
@@ -56,10 +61,12 @@ export class CandidateForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
+  enumSelectS = inject(EnumSelectService);
 
   id: string = "";
   submitting = signal(false);
   currentCvUrl = signal("");
+  recruitmentSourceOptions = signal<SelectItemDto[]>([]);
   selectedFile: File | null = null;
   readonly originalWorkExperienceIds = signal<string[]>([]);
 
@@ -76,6 +83,10 @@ export class CandidateForm implements OnInit {
     phoneNumber: new FormControl<string | null>(null),
     email: new FormControl<string | null>(null),
     age: new FormControl<number | null>(null),
+    recruitmentSource: new FormControl<number | null>(null, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     currentAddress: new FormControl<string | null>(null),
     availability: new FormControl<string | null>(null),
     salaryExpectation: new FormControl<number | null>(null),
@@ -87,8 +98,15 @@ export class CandidateForm implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.id = this.config.data?.id ?? "";
+    await this.loadSelectItems();
     if (this.id) this.onLoadData();
     else this.addWorkExperience();
+  }
+
+  private async loadSelectItems(): Promise<void> {
+    this.recruitmentSourceOptions.set(
+      await firstValueFrom(this.enumSelectS.fuenteReclutamiento()),
+    );
   }
 
   onLoadData() {
@@ -99,7 +117,10 @@ export class CandidateForm implements OnInit {
       .then((result) => {
         if (!result) return;
 
-        this.form.patchValue(result);
+        this.form.patchValue({
+          ...result,
+          recruitmentSource: result.recruitmentSource ?? null,
+        });
         this.currentCvUrl.set(result.cvFileUrl ?? "");
         this.setWorkExperiences(result.workExperiences ?? []);
       });
@@ -116,6 +137,10 @@ export class CandidateForm implements OnInit {
 
     const age = this.form.controls.age.value;
     if (age != null) formData.append("Age", String(age));
+    formData.append(
+      "RecruitmentSource",
+      String(this.form.controls.recruitmentSource.value),
+    );
 
     formData.append(
       "CurrentAddress",

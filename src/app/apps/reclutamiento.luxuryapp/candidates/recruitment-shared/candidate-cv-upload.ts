@@ -71,6 +71,9 @@ export class CandidateCvUpload {
   protected platform = inject(PlatformService);
 
   label = input<string>("CV del candidato");
+  currentFileLabel = input<string>("Archivo actual");
+  replaceLabel = input<string>("Reemplazar archivo");
+  viewAriaLabel = input<string>("Ver archivo");
   fileName = input<string | null>(null);
   fileUrl = input<string>("");
   fileSelected = output<string | null>();

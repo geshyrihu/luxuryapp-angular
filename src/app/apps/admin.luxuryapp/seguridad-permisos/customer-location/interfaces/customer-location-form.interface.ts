@@ -1,5 +1,5 @@
-﻿import { FormControl, FormGroup } from '@angular/forms';
-import { CustomerLocationAddOrEditDTO } from './customer-location-add-or-edit.dto';
+import { FormControl, FormGroup } from '@angular/forms';
+import { CustomerLocationAddOrEditDto } from './customer-location-add-or-edit.dto';
 
 export interface CustomerLocationForm extends FormGroup<{
   id: FormControl<string | null>;
@@ -13,6 +13,6 @@ export interface CustomerLocationForm extends FormGroup<{
   sortOrder: FormControl<number | null>;
   isActive: FormControl<boolean | null>;
 }> {
-  value: Partial<CustomerLocationAddOrEditDTO>;
-  rawValue: CustomerLocationAddOrEditDTO;
+  value: Partial<CustomerLocationAddOrEditDto>;
+  rawValue: CustomerLocationAddOrEditDto;
 }

@@ -14,7 +14,10 @@ import {
 @Component({
   selector: "app-candidate-stage-badge",
   standalone: true,
-  template: `<span class="inline-flex font-bold text-xs px-2 py-1 border-round" [class]="class()">
+  template: `<span
+    class="inline-flex font-bold text-xs px-2 py-1 border-round"
+    [ngClass]="class()"
+  >
     {{ label() }}
   </span>`,
   changeDetection: ChangeDetectionStrategy.OnPush,

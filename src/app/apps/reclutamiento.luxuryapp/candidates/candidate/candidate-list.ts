@@ -8,10 +8,14 @@ import {
 } from "@angular/core";
 import { addIcons } from "ionicons";
 import { personOutline } from "ionicons/icons";
+import Swal from "sweetalert2";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateStatus } from "src/app/core/enums/candidate-status";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { CandidateForm } from "./candidate-form";
@@ -19,7 +23,7 @@ import { CandidateDetail } from "./candidate-detail";
 import { CandidateApplicationForm } from "../candidate-application/candidate-application-form";
 import { CandidateListDesktop } from "./desktop/candidate-list-desktop";
 import { CandidateListMobile } from "./mobile/candidate-list-mobile";
-import { CandidateDetail as CandidateDetailDto, CandidateListItem } from "./interfaces/candidate.dto";
+import { CandidateDetail as CandidateDetailDto, CandidateDeleteImpact, CandidateListItem } from "./interfaces/candidate.dto";
 
 @Component({
   selector: "app-candidate-list",
@@ -32,6 +36,7 @@ export class CandidateList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  aspRoleS = inject(AspRoleService);
 
   dataSignal = signal<CandidateListItem[]>([]);
 
@@ -74,6 +79,48 @@ export class CandidateList implements OnInit {
           );
         }
       });
+  }
+
+  async onDelete(id: string) {
+    if (!this.aspRoleS.hasRole(ApplicationRole.SuperUsuario)) return;
+
+    const impact = await this.apiResponseS.onGetItem<CandidateDeleteImpact>(
+      EndpointsReclutamiento.Candidates.deleteImpact(id),
+    );
+    if (!impact) return;
+
+    const result = await Swal.fire({
+      title: "Eliminar candidato",
+      html: `Se eliminará permanentemente el candidato y todo lo relacionado en cascada:<br /><br />
+        <ul class="text-left" style="display:inline-block">
+          <li>Procesos: <b>${impact.candidateProcessesCount}</b></li>
+          <li>Postulaciones: <b>${impact.candidateApplicationsCount}</b></li>
+          <li>Entrevistas: <b>${impact.candidateInterviewsCount}</b></li>
+          <li>Retroalimentación de entrevistas: <b>${impact.candidateInterviewFeedbacksCount}</b></li>
+          <li>Resultados de entrevistas: <b>${impact.candidateInterviewResultsCount}</b></li>
+          <li>Historial de etapas: <b>${impact.candidateStageHistoryCount}</b></li>
+          <li>Experiencias laborales: <b>${impact.candidateWorkExperiencesCount}</b></li>
+          <li>Roles de postulación: <b>${impact.candidateApplicationRolesCount}</b></li>
+        </ul>
+        <br /><b>Total de registros afectados: ${impact.totalRelatedRecordsCount}</b><br />
+        <span class="text-color-secondary">Esta acción es irreversible.</span>`,
+      icon: SweetAlertIcon.Warning,
+      showCancelButton: true,
+      confirmButtonText: "Si, eliminar",
+      cancelButtonText: "Cancelar",
+      reverseButtons: true,
+      customClass: { container: "my-swal-container" },
+    });
+    if (!result.isConfirmed) return;
+
+    const deleted = await this.apiResponseS.onDelete(
+      EndpointsReclutamiento.Candidates.delete(id),
+    );
+    if (deleted) {
+      this.dataSignal.update((currentData) =>
+        currentData.filter((item) => item.id !== id),
+      );
+    }
   }
 
   async onModalForm(data: { id: string; title: string }) {

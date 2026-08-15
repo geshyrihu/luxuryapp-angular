@@ -120,6 +120,16 @@
                 />
               </div>
             }
+            @if (canManageHiringDocuments(app)) {
+              <div class="flex justify-content-end">
+                <il-button
+                  iconClass="material-symbols-light:folder-open"
+                  label="Documentos de contratacion"
+                  customClass="p-button-sm p-button-outlined"
+                  (clicked)="onManageHiringDocuments(app)"
+                />
+              </div>
+            }
           </div>
         }
       </div>

@@ -1,14 +1,15 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
+import { of } from "rxjs";
 import { vi } from "vitest";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CandidateForm } from "./candidate-form";
 import { CandidateAddOrEdit } from "./interfaces/candidate.dto";
 
@@ -18,6 +19,7 @@ const mockCandidate: CandidateAddOrEdit = {
   phoneNumber: "555-1234",
   email: "juan@example.com",
   age: 30,
+  recruitmentSource: 0,
   currentAddress: "Calle 123",
   availability: "Inmediata",
   salaryExpectation: 50000,
@@ -29,24 +31,29 @@ describe("CandidateForm", () => {
   let component: CandidateForm;
   let fixture: ComponentFixture<CandidateForm>;
   let apiResponseService: ReturnType<typeof vi.fn>;
+  let enumSelectService: ReturnType<typeof vi.fn>;
   let dialogConfig: ReturnType<typeof vi.fn>;
   let dialogRef: ReturnType<typeof vi.fn>;
-  let formHelperSubmitCrud: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
     apiResponseService = {
       onGetItem: vi.fn().mockResolvedValue(mockCandidate),
-      onPost: vi.fn().mockResolvedValue({ success: true }),
-      onPut: vi.fn().mockResolvedValue({ success: true }),
+      onPostFile: vi.fn().mockResolvedValue({ id: "candidate-id" }),
+      onPut: vi.fn().mockResolvedValue({ id: "candidate-id" }),
+      onDelete: vi.fn().mockResolvedValue(true),
       validateForm: vi.fn().mockReturnValue(true),
+    };
+    enumSelectService = {
+      fuenteReclutamiento: vi.fn().mockReturnValue(
+        of([
+          { label: "Interno", value: 0 },
+          { label: "Externo", value: 1 },
+        ]),
+      ),
     };
 
     dialogConfig = { data: { id: "" } };
     dialogRef = { close: vi.fn() };
-
-    formHelperSubmitCrud = vi
-      .spyOn(FormHelper, "submitCrud")
-      .mockResolvedValue(true);
 
     TestBed.overrideComponent(CandidateForm, {
       set: {
@@ -60,6 +67,7 @@ describe("CandidateForm", () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ApiResponseService, useValue: apiResponseService },
+        { provide: EnumSelectService, useValue: enumSelectService },
         { provide: DynamicDialogConfig, useValue: dialogConfig },
         { provide: DynamicDialogRef, useValue: dialogRef },
       ],
@@ -77,6 +85,7 @@ describe("CandidateForm", () => {
   it("should have required firstName and lastName controls", () => {
     component.form.get("firstName")?.setValue("");
     component.form.get("lastName")?.setValue("");
+    component.form.get("recruitmentSource")?.setValue(null);
 
     expect(component.form.get("firstName")?.errors).toEqual(
       expect.objectContaining({ required: true }),
@@ -84,35 +93,43 @@ describe("CandidateForm", () => {
     expect(component.form.get("lastName")?.errors).toEqual(
       expect.objectContaining({ required: true }),
     );
+    expect(component.form.get("recruitmentSource")?.errors).toEqual(
+      expect.objectContaining({ required: true }),
+    );
   });
 
-  it("should load candidate data when id is provided", async () => {
-    const configWithId = { data: { id: "1" } };
-    TestBed.overrideProvider(DynamicDialogConfig, { useValue: configWithId });
+  it("should load candidate data when onLoadData is called for an existing id", async () => {
+    component.id = "1";
 
-    const fixture2 = TestBed.createComponent(CandidateForm);
-    const component2 = fixture2.componentInstance;
-    fixture2.detectChanges();
-    await fixture2.whenStable();
+    component.onLoadData();
+    await fixture.whenStable();
 
     expect(apiResponseService.onGetItem).toHaveBeenCalledWith(
       EndpointsReclutamiento.Candidates.getById("1"),
     );
-    expect(component2.form.value.firstName).toBe("Juan");
-    expect(component2.form.value.lastName).toBe("Perez");
+    expect(component.form.value.firstName).toBe("Juan");
+    expect(component.form.value.lastName).toBe("Perez");
+    expect(component.form.value.recruitmentSource).toBe(0);
   });
 
-  it("should call submitCrud on submit", () => {
-    component.onSubmit();
-    expect(formHelperSubmitCrud).toHaveBeenCalledWith(
-      expect.objectContaining({
-        form: component.form,
-        api: apiResponseService,
-        endpoint: EndpointsReclutamiento.Candidates.base,
-        id: "",
-        ref: dialogRef,
-        submitting: component.submitting,
-      }),
+  it("should send recruitmentSource in form data on submit", async () => {
+    component.form.patchValue({
+      firstName: "Juan",
+      lastName: "Perez",
+      recruitmentSource: 1,
+    });
+
+    await component.onSubmit();
+
+    expect(apiResponseService.onPostFile).toHaveBeenCalledWith(
+      EndpointsReclutamiento.Candidates.base,
+      expect.any(FormData),
+    );
+
+    const formData = apiResponseService.onPostFile.mock.calls[0][1] as FormData;
+    expect(formData.get("RecruitmentSource")).toBe("1");
+    expect(dialogRef.close).toHaveBeenCalledWith(
+      expect.objectContaining({ id: "candidate-id" }),
     );
   });
 });

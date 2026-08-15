@@ -60,7 +60,7 @@ export class IncidentReport {
   cb_category: SelectItemDto[] = [
     { value: "", label: "Todas las categoróas" },
     { value: "Conducta", label: "Conducta" },
-    { value: "Desempeno", label: "Desempeóo" },
+    { value: "Desempeno", label: "Desempeño" },
     { value: "Seguridad", label: "Seguridad" },
     { value: "Asistencia", label: "Asistencia" },
     { value: "Etica", label: "ótica" },

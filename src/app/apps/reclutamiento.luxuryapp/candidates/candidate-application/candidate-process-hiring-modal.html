@@ -5,51 +5,358 @@
     [formGroup]="form"
     aria-label="Procesar alta"
   >
-    <p class="m-0 pb-2 text-color-secondary">
-      Confirmar el alta del candidato seleccionado.
-    </p>
-    <div class="grid">
-      <div class="col-12 md:col-6">
-        <custom-input-date-signal
-          [control]="form.controls['executionDate']"
-          label="Fecha de alta"
-        />
+    <div class="flex justify-content-between align-items-start gap-3 pb-3">
+      <div>
+        <p class="m-0 font-semibold">Proceso de alta</p>
+        <p class="m-0 text-color-secondary">
+          Completa los datos para distribuir el alta al expediente del empleado.
+        </p>
       </div>
-      <div class="col-12 md:col-6">
-        <custom-input-select-signal
-          [control]="form.controls['typeContractRegister']"
-          label="Tipo de contrato"
-          [data]="cb_contracts()"
-        />
-      </div>
-      <div class="col-12 md:col-6">
-        <custom-input-text-signal
-          [control]="form.controls['boss']"
-          label="Jefe inmediato"
-          placeholder="Nombre del jefe inmediato..."
-        />
-      </div>
-      <div class="col-12 md:col-6">
-        <custom-input-text-signal
-          [control]="form.controls['customerAddress']"
-          label="Direccion del cliente"
-          placeholder="Direccion..."
-        />
-      </div>
-      <div class="col-12">
-        <custom-input-textarea-signal
-          [control]="form.controls['additionalInformation']"
-          label="Informacion adicional"
-          placeholder="Detalles del alta..."
-          [rows]="3"
-        />
-      </div>
+      <button
+        type="button"
+        class="border-none bg-transparent text-primary cursor-pointer p-0 font-medium"
+        (click)="clearDraft()"
+      >
+        Limpiar borrador
+      </button>
     </div>
-    <il-button-save
-      [propertyId]="id"
-      [disabled]="form.invalid"
-      [submitting]="submitting()"
-      class="pb-2"
-    />
+
+    <p class="m-0 pb-3 text-color-secondary text-sm">
+      El borrador se guarda automaticamente en este navegador.
+    </p>
+
+    <lx-stepper
+      [steps]="steps"
+      finishLabel="Guardar y procesar alta"
+      [activeStep]="activeStep()"
+      (activeStepChange)="activeStep.set($event)"
+      (finish)="onSubmit()"
+    >
+      <section step="1">
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.firstName"
+              label="Nombre(s)"
+              placeholder="Nombre del candidato"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <div class="pb-3">
+              <label class="block text-sm font-medium pb-2">Fuente heredada</label>
+              <div class="surface-ground border-round p-3">
+                {{ recruitmentSourceLabel() }}
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.paternalLastName"
+              label="Apellido paterno"
+              placeholder="Apellido paterno"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.maternalLastName"
+              label="Apellido materno"
+              placeholder="Apellido materno"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-date-signal
+              [control]="form.controls.birthDate"
+              label="Fecha de nacimiento"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.phoneNumber"
+              label="Telefono principal"
+              placeholder="Telefono"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-text-signal
+              [control]="form.controls.nss"
+              label="NSS"
+              placeholder="Numero de seguro social"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-text-signal
+              [control]="form.controls.rfc"
+              label="RFC"
+              placeholder="RFC"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-text-signal
+              [control]="form.controls.curp"
+              label="CURP"
+              placeholder="CURP"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section step="2">
+        <div class="grid">
+          <div class="col-12">
+            <custom-input-text-signal
+              [control]="form.controls.street"
+              label="Calle"
+              placeholder="Calle y referencias"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.neighborhood"
+              label="Colonia"
+              placeholder="Colonia"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.municipality"
+              label="Municipio o alcaldia"
+              placeholder="Municipio"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.postalCode"
+              label="Codigo postal"
+              placeholder="Codigo postal"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.state"
+              label="Estado"
+              placeholder="Estado"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section step="3">
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.emergencyContactName"
+              label="Contacto de emergencia"
+              placeholder="Nombre completo"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.emergencyContactPhoneNumber"
+              label="Telefono de emergencia"
+              placeholder="Telefono"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.emergencyContactRelation"
+              label="Parentesco de emergencia"
+              [data]="relationOptions()"
+            />
+          </div>
+          <div class="col-12 md:col-6"></div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.beneficiaryName"
+              label="Beneficiario"
+              placeholder="Nombre del beneficiario"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.beneficiaryPhoneNumber"
+              label="Telefono del beneficiario"
+              placeholder="Telefono"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.beneficiaryRelation"
+              label="Parentesco del beneficiario"
+              [data]="relationOptions()"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section step="4">
+        <div class="grid">
+          <div class="col-12 md:col-4">
+            <custom-input-text-signal
+              [control]="form.controls.bankName"
+              label="Banco"
+              placeholder="Nombre del banco"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-text-signal
+              [control]="form.controls.accountNumber"
+              label="Cuenta bancaria"
+              placeholder="Cuenta"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-text-signal
+              [control]="form.controls.clabe"
+              label="CLABE"
+              placeholder="CLABE"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-toggle-switch-signal
+              [control]="form.controls.hasControlledMedication"
+              label="Medicacion controlada"
+            />
+          </div>
+          <div class="col-12 md:col-8">
+            <custom-input-textarea-signal
+              [control]="form.controls.controlledMedicationDetails"
+              label="Detalle de medicacion"
+              placeholder="Medicamento o control"
+              [rows]="2"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-toggle-switch-signal
+              [control]="form.controls.hasMedicationAllergies"
+              label="Alergias a medicamentos"
+            />
+          </div>
+          <div class="col-12 md:col-8">
+            <custom-input-textarea-signal
+              [control]="form.controls.medicationAllergiesDetails"
+              label="Detalle de alergias"
+              placeholder="Alergias o reacciones"
+              [rows]="2"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-toggle-switch-signal
+              [control]="form.controls.hasChronicDiseases"
+              label="Enfermedades cronicas"
+            />
+          </div>
+          <div class="col-12 md:col-8">
+            <custom-input-textarea-signal
+              [control]="form.controls.chronicDiseasesDetails"
+              label="Detalle de cronicas"
+              placeholder="Condiciones cronicas relevantes"
+              [rows]="2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section step="5">
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <custom-input-date-signal
+              [control]="form.controls.executionDate"
+              label="Fecha de alta"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.typeContractRegister"
+              label="Tipo de contrato"
+              [data]="contractOptions()"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.workShift"
+              label="Turno de trabajo"
+              [data]="workShiftOptions()"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.boss"
+              label="Jefe inmediato"
+              placeholder="Nombre del jefe inmediato"
+            />
+          </div>
+          <div class="col-12">
+            <custom-input-text-signal
+              [control]="form.controls.customerAddress"
+              label="Direccion del cliente"
+              placeholder="Direccion del servicio o cliente"
+            />
+          </div>
+          <div class="col-12">
+            <custom-input-textarea-signal
+              [control]="form.controls.additionalInformation"
+              label="Informacion adicional"
+              placeholder="Detalles operativos del alta"
+              [rows]="3"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section step="6">
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <div class="surface-ground border-round p-3 h-full">
+              <p class="m-0 font-semibold pb-2">Resumen personal</p>
+              <p class="m-0 pb-1">
+                {{ form.controls.firstName.value }}
+                {{ form.controls.paternalLastName.value }}
+                {{ form.controls.maternalLastName.value }}
+              </p>
+              <p class="m-0 pb-1">Fuente: {{ recruitmentSourceLabel() }}</p>
+              <p class="m-0 pb-1">Telefono: {{ form.controls.phoneNumber.value }}</p>
+              <p class="m-0">CURP: {{ form.controls.curp.value }}</p>
+            </div>
+          </div>
+          <div class="col-12 md:col-6">
+            <div class="surface-ground border-round p-3 h-full">
+              <p class="m-0 font-semibold pb-2">Resumen de alta</p>
+              <p class="m-0 pb-1">
+                Fecha: {{ form.controls.executionDate.value || "Pendiente" }}
+              </p>
+              <p class="m-0 pb-1">
+                Contrato:
+                {{
+                  resolveOptionLabel(
+                    contractOptions(),
+                    form.controls.typeContractRegister.value
+                  )
+                }}
+              </p>
+              <p class="m-0 pb-1">
+                Turno:
+                {{
+                  resolveOptionLabel(
+                    workShiftOptions(),
+                    form.controls.workShift.value
+                  )
+                }}
+              </p>
+              <p class="m-0">Banco: {{ form.controls.bankName.value }}</p>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="surface-ground border-round p-3">
+              <p class="m-0 font-semibold pb-2">Confirmacion</p>
+              <p class="m-0 text-color-secondary">
+                Al finalizar, el sistema distribuira esta informacion al empleado,
+                expediente, contactos, banco, salud y solicitud de alta en una sola
+                operacion.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </lx-stepper>
   </form>
 </div>

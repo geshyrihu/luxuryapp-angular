@@ -166,7 +166,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
       })
       .catch((error) => {
         console.error("Error loading measurement units:", error);
-        this.cb_unidadMedida = []; // Asegurar que sea un array vacóo en caso de error
+        this.cb_unidadMedida = []; // Asegurar que sea un array vacño en caso de error
       });
   }
 

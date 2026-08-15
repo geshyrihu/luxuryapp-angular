@@ -1,0 +1,107 @@
+<div class="documents-shell">
+  <div class="documents-header">
+    <p class="m-0 font-semibold">Documentacion de contratacion</p>
+    <p class="m-0 text-color-secondary">
+      {{ dialogData.candidateName }} · {{ dialogData.positionName }}
+    </p>
+    <p class="m-0 text-color-secondary">
+      Los documentos se cargan en el expediente del empleado. El CV sigue en el
+      candidato.
+    </p>
+  </div>
+
+  <lx-divider />
+
+  @if (loading()) {
+    <p class="m-0 text-color-secondary">Cargando documentos...</p>
+  } @else {
+    <div class="documents-grid">
+      @for (row of documentRows(); track row.option.value) {
+        <section class="document-card">
+          <div class="document-card__header">
+            <div>
+              <p class="m-0 font-semibold">{{ row.option.label }}</p>
+              <div class="document-meta pt-2">
+                @if (row.document?.submittedAt) {
+                  <span>
+                    Entregado: {{ row.document?.submittedAt | date: "dd/MM/yyyy HH:mm" }}
+                  </span>
+                } @else {
+                  <span>Pendiente de entrega</span>
+                }
+                @if (row.document?.validatedAt) {
+                  <span>
+                    Validado por {{ row.document?.validatedByUserName || "usuario" }}
+                    el
+                    {{ row.document?.validatedAt | date: "dd/MM/yyyy HH:mm" }}
+                  </span>
+                }
+              </div>
+            </div>
+            <span
+              class="document-status"
+              [class.document-status--validated]="row.document?.isValidated"
+              [class.document-status--pending]="!row.document?.isValidated"
+            >
+              {{ row.document?.isValidated ? "Validado" : "Pendiente" }}
+            </span>
+          </div>
+
+          <div class="pt-3">
+            <app-candidate-cv-upload
+              [label]="'Archivo PDF'"
+              [currentFileLabel]="'Archivo actual'"
+              [replaceLabel]="'Reemplazar archivo'"
+              [viewAriaLabel]="'Ver documento'"
+              [fileName]="row.document?.fileName ?? null"
+              [fileUrl]="row.document?.fileUrl ?? ''"
+              (fileEmitted)="onFileChanged(row.option.value, $event)"
+            />
+          </div>
+
+          <div class="document-actions pt-3">
+            <textarea
+              class="document-notes"
+              [value]="validationNotes()[row.document?.id ?? ''] ?? row.document?.validationNotes ?? ''"
+              (input)="onValidationNotesChange(row.document?.id ?? '', $any($event.target).value)"
+              placeholder="Notas de validacion"
+              [disabled]="!row.document"
+            ></textarea>
+
+            <div class="document-buttons">
+              <button
+                type="button"
+                class="document-button document-button--primary"
+                [disabled]="!row.pendingFile || isUploading(row.option.value)"
+                (click)="onUploadDocument(row.option.value)"
+              >
+                {{ isUploading(row.option.value) ? "Subiendo..." : "Guardar documento" }}
+              </button>
+
+              <button
+                type="button"
+                class="document-button document-button--success"
+                [disabled]="!row.document || row.document.isValidated || isValidating(row.document?.id ?? '')"
+                (click)="onValidateDocument(row.document?.id ?? '')"
+              >
+                {{
+                  isValidating(row.document?.id ?? "")
+                    ? "Validando..."
+                    : row.document?.isValidated
+                      ? "Validado"
+                      : "Validar documento"
+                }}
+              </button>
+            </div>
+          </div>
+        </section>
+      }
+    </div>
+  }
+
+  <div class="flex justify-content-end pt-2">
+    <button type="button" class="document-button" (click)="close()">
+      Cerrar
+    </button>
+  </div>
+</div>

@@ -15,6 +15,8 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CandidateStatus } from "src/app/core/enums/candidate-status";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import {
   rowsPerPageOptions,
@@ -43,6 +45,7 @@ import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
 })
 export class CandidateListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);
+  aspRoleS = inject(AspRoleService);
 
   data = input.required<CandidateListItem[]>();
   globalFilterFields = input<string[]>([]);
@@ -50,7 +53,10 @@ export class CandidateListDesktop {
   add = output<{ id: string; title: string }>();
   edit = output<{ id: string; title: string }>();
   archive = output<string>();
+  delete = output<string>();
   detail = output<string>();
+
+  readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
 
   loading = signal(true);
   readonly tablePrimeNgRows: number = tablePrimeNgRows();

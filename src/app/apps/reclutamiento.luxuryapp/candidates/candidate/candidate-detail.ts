@@ -18,6 +18,7 @@ import {
   DynamicDialogConfig,
 } from "src/app/core/services/dialog-handler.service";
 import { CandidateApplicationForm } from "../candidate-application/candidate-application-form";
+import { CandidateHiringDocumentsModal } from "../candidate-application/candidate-hiring-documents-modal";
 import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
 import { CandidateApplicationListItem } from "../candidate-application/interfaces/candidate-application";
 import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
@@ -99,6 +100,9 @@ export class CandidateDetail implements OnInit {
           id: app.id,
           candidateProcessId: app.candidateProcessId ?? undefined,
           toStage: CandidateApplicationStage.AltaEnProceso,
+          candidateFirstName: this.detail()?.firstName,
+          candidateLastName: this.detail()?.lastName,
+          recruitmentSource: this.detail()?.recruitmentSource ?? null,
         },
         "Procesar alta",
         this.dialogHandlerS.sizeLg,
@@ -108,7 +112,28 @@ export class CandidateDetail implements OnInit {
       });
   }
 
+  onManageHiringDocuments(app: CandidateApplicationListItem) {
+    if (!app.candidateProcessId) return;
+
+    this.dialogHandlerS.openDialog(
+      CandidateHiringDocumentsModal,
+      {
+        candidateProcessId: app.candidateProcessId,
+        candidateName: app.candidateName,
+        positionName: app.positionName,
+      },
+      "Documentacion de contratacion",
+      this.dialogHandlerS.sizeLg,
+    );
+  }
+
   isSelected(stage: CandidateApplicationStage): boolean {
     return stage === CandidateApplicationStage.Seleccionado;
+  }
+
+  canManageHiringDocuments(app: CandidateApplicationListItem): boolean {
+    return Boolean(app.candidateProcessId) &&
+      (app.currentStage === CandidateApplicationStage.AltaEnProceso ||
+        app.currentStage === CandidateApplicationStage.Contratado);
   }
 }

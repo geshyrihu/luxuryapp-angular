@@ -86,6 +86,9 @@ export class EnumSelectService {
   fuenteReclutamiento = (d?: boolean) =>
     this.onLoadEnumList("fuente-reclutamiento", d);
 
+  recruitmentDocumentType = (d?: boolean) =>
+    this.onLoadEnumList("recruitment-document-type", d);
+
   maritalStatus = (d?: boolean) => this.onLoadEnumList("marital-status", d);
 
   month(defaultOption?: boolean): Observable<SelectItemDto[]> {

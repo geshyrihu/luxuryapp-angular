@@ -3,9 +3,13 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import {
   InterviewerMatrixBoardDto,
+} from "./interfaces/interviewer-matrix-board.dto";
+import {
   InterviewerMatrixCreateOrUpdateDto,
+} from "./interfaces/interviewer-matrix-create-or-update.dto";
+import {
   InterviewerMatrixItemDto,
-} from "./interfaces/interviewer-matrix.dto";
+} from "./interfaces/interviewer-matrix-item.dto";
 
 @Injectable({ providedIn: "root" })
 export class InterviewerMatrixService {

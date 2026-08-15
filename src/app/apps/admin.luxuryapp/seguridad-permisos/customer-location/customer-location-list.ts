@@ -35,7 +35,7 @@ import {
   CustomerLocationType,
   CustomerLocationTypeLabels,
 } from "./interfaces/customer-location-type.enum";
-import { CustomerLocationDTO } from "./interfaces/customer-location.dto";
+import { CustomerLocationDto } from "./interfaces/customer-location.dto";
 
 @Component({
   selector: "app-customer-location-list",
@@ -63,7 +63,7 @@ export class CustomerLocationList implements OnInit {
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
 
-  dataSignal = signal<CustomerLocationDTO[]>([]);
+  dataSignal = signal<CustomerLocationDto[]>([]);
   loading = signal(true);
 
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
@@ -92,7 +92,7 @@ export class CustomerLocationList implements OnInit {
 
     this.loading.set(true);
     this.apiResponseS
-      .onGetList<CustomerLocationDTO[]>(
+      .onGetList<CustomerLocationDto[]>(
         EndpointsAdmin.CustomerLocations.listByCustomer(this.customerId),
       )
       .then((result) => {
@@ -109,7 +109,7 @@ export class CustomerLocationList implements OnInit {
     return CustomerLocationTypeLabels[type as CustomerLocationType] || type;
   }
 
-  onEdit(item: CustomerLocationDTO) {
+  onEdit(item: CustomerLocationDto) {
     this.dialogHandlerS
       .openDialog(
         CustomerLocationForm,

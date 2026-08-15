@@ -236,7 +236,7 @@ export class MyTaskForm implements OnInit, OnDestroy {
             const formattedDate = new Date(value).toISOString().split("T")[0]; // Formato 'YYYY-MM-DD'
             formData.append(key, formattedDate);
           } else {
-            formData.append(key, ""); // Si no hay valor, se envía como vacóo
+            formData.append(key, ""); // Si no hay valor, se envía como vacño
           }
         } else {
           // Verifica si el valor es null antes de agregarlo a FormData

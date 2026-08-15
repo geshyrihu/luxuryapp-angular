@@ -4,7 +4,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { ConventionRule } from '../../conventions-viewer.service';
+import { ConventionRule } from '../../interfaces/convention-rule.interface';
 import {
   domainLabel,
   severityColor,

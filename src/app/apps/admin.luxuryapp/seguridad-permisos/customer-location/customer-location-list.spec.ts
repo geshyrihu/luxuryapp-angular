@@ -9,7 +9,7 @@ import { ApiResponseService } from 'src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
 import { TableScrollHeightService } from 'src/app/core/services/table-scroll-height.service';
 import { EndpointsAdmin } from 'src/app/core/constants/endpoints/admin.endpoints';
-import { CustomerLocationDTO } from './interfaces/customer-location.dto';
+import { CustomerLocationDto } from './interfaces/customer-location.dto';
 import { CustomerLocationType, CustomerLocationTypeLabels } from './interfaces/customer-location-type.enum';
 
 describe('CustomerLocationList', () => {
@@ -92,7 +92,7 @@ describe('CustomerLocationList', () => {
 
   describe('onLoadData', () => {
     it('should load data from API', async () => {
-      const mockData: CustomerLocationDTO[] = [
+      const mockData: CustomerLocationDto[] = [
         {
           id: 'loc-1',
           customerId: 'cust-1',
@@ -164,7 +164,7 @@ describe('CustomerLocationList', () => {
 
   describe('onEdit', () => {
     it('should open dialog with edit data', async () => {
-      const item: CustomerLocationDTO = {
+      const item: CustomerLocationDto = {
         id: 'loc-1',
         customerId: 'cust-1',
         name: 'Test Location',
@@ -192,7 +192,7 @@ describe('CustomerLocationList', () => {
     });
 
     it('should not reload data if dialog returns false', () => {
-      const item: CustomerLocationDTO = {
+      const item: CustomerLocationDto = {
         id: 'loc-1',
         customerId: 'cust-1',
         name: 'Test Location',
@@ -214,7 +214,7 @@ describe('CustomerLocationList', () => {
 
   describe('onDelete', () => {
     it('should call API and remove item from signal on success', async () => {
-      const mockData: CustomerLocationDTO[] = [
+      const mockData: CustomerLocationDto[] = [
         {
           id: 'loc-1',
           customerId: 'cust-1',
@@ -256,7 +256,7 @@ describe('CustomerLocationList', () => {
     });
 
     it('should not remove item if API returns false', () => {
-      const mockData: CustomerLocationDTO[] = [
+      const mockData: CustomerLocationDto[] = [
         {
           id: 'loc-1',
           customerId: 'cust-1',

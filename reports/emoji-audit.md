@@ -1,8 +1,8 @@
 # Emoji Audit
 
-- Generated at: 2026-08-13T20:21:56.702Z
+- Generated at: 2026-08-15T12:49:15.069Z
 - Scope: `src/`
-- Total matches: 1601
+- Total matches: 1863
 - User-facing matches: 338
 - Button emoji inputs: 0
 
@@ -15,30 +15,30 @@
 
 ## Top Modules
 
-- app/apps: 899
+- app/apps: 1160
 - app/shared: 249
 - src/styles: 149
 - app/routing: 136
-- app/core: 121
+- app/core: 122
 - app/root: 38
 - src/environments: 5
 - src/root: 4
 
 ## Top User-Facing Modules
 
-- app/apps: 232
-- app/core: 63
+- app/apps: 231
+- app/core: 64
 - app/shared: 23
 - app/root: 14
 - src/styles: 6
 
 ## Top Categories
 
-- docs: 799
-- code_string: 213
+- docs: 1064
+- code_string: 214
 - code_comment: 198
-- template_comment: 182
-- template_text: 119
+- template_comment: 179
+- template_text: 118
 - style_comment: 51
 - code_misc: 24
 - style_content: 6

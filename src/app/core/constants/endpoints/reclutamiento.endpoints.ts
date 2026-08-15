@@ -33,6 +33,8 @@ export const EndpointsReclutamiento = {
     list: "request-position",
     getById: (id: Id) => `request-position/${id}`,
     delete: (id: Id) => `request-position/${id}`,
+    deleteImpact: (id: Id) => `request-position/${id}/delete-impact`,
+    deleteCascade: (id: Id) => `request-position/${id}/cascade`,
     exportExcel: "request-position/export-excel",
   },
   RecruitmentRequests: {
@@ -93,6 +95,8 @@ export const EndpointsReclutamiento = {
     create: "recruitment-candidates",
     update: (id: Id) => `recruitment-candidates/${id}`,
     archive: (id: Id) => `recruitment-candidates/${id}/archive`,
+    delete: (id: Id) => `recruitment-candidates/${id}`,
+    deleteImpact: (id: Id) => `recruitment-candidates/${id}/delete-impact`,
   },
   CandidateApplications: {
     base: "recruitment-candidate-applications",
@@ -147,6 +151,10 @@ export const EndpointsReclutamiento = {
     interviewerAction: "recruitment-candidate-processes/interviewer-action",
     processHiring: (id: Id) =>
       `recruitment-candidate-processes/${id}/process-hiring`,
+    hiringDocuments: (id: Id) =>
+      `recruitment-candidate-processes/${id}/hiring-documents`,
+    validateHiringDocument: (documentId: Id) =>
+      `recruitment-candidate-processes/hiring-documents/${documentId}/validate`,
   },
   CandidateInterviews: {
     base: "recruitment-candidate-interviews",

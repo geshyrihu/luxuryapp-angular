@@ -4,7 +4,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { LxCard } from "@ui/adaptive/card/card";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AdminModuleGroup } from "./admin-module.model";
+import { AdminModuleGroup } from "./interfaces/admin-module-group.interface";
 import { ADMIN_MODULES } from "./admin-modules";
 
 @Component({

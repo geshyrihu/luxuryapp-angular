@@ -6,10 +6,8 @@ import {
   signal,
 } from '@angular/core';
 import { ConventionCard } from './components/convention-card/convention-card';
-import {
-  ConventionRule,
-  ConventionsService,
-} from './conventions-viewer.service';
+import { ConventionsService } from './conventions-viewer.service';
+import { ConventionRule } from './interfaces/convention-rule.interface';
 import {
   domainLabel,
   severityColor,

@@ -1,6 +1,6 @@
 import { CustomerLocationType } from './customer-location-type.enum';
 
-export interface CustomerLocationDTO {
+export interface CustomerLocationDto {
   id: string;
   customerId: string;
   name: string;

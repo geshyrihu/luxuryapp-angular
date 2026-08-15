@@ -26,9 +26,9 @@
           />
         }
         <ili-button-edit
-          (clicked)="feedback.emit(item.id)"
-          label="Retroalimentación"
-          [attr.aria-label]="'Llenar retroalimentación de ' + item.candidateName"
+          (clicked)="feedback.emit({ candidateApplicationId: item.id, candidateProcessId: item.candidateProcessId })"
+          label="Retroalimentacion"
+          [attr.aria-label]="'Llenar retroalimentacion de ' + item.candidateName"
         />
       </ili-action-menu>
     </ili-list-item>

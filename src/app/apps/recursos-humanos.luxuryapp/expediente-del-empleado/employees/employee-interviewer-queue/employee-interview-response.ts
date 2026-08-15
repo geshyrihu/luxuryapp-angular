@@ -1,3 +1,4 @@
+import { CommonModule, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,23 +7,25 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { CommonModule, DatePipe } from "@angular/common";
-import { ActivatedRoute, Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { ActivatedRoute, Router } from "@angular/router";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { CandidateDecision } from "src/app/core/enums/candidate-decision";
-import { CandidateStageBadge } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-stage-badge";
-import { MappedPTag, MappedTagOption } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/mapped-p-tag";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
   CandidateDecisionReasonItem,
   CandidateInterviewResponseDto,
 } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/interfaces/candidate-interview";
+import { CandidateStageBadge } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-stage-badge";
+import {
+  MappedPTag,
+  MappedTagOption,
+} from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/mapped-p-tag";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { CandidateDecision } from "src/app/core/enums/candidate-decision";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EmployeeInterviewFeedbackForm } from "./employee-interview-feedback-form";
 
 @Component({
@@ -59,7 +62,9 @@ export class EmployeeInterviewResponse implements OnInit {
   readonly loading = signal(true);
   readonly actionLoading = signal(false);
   readonly showReasonModal = signal(false);
-  readonly pendingAction = signal<"markNoShow" | "reject" | "approve" | null>(null);
+  readonly pendingAction = signal<"markNoShow" | "reject" | "approve" | null>(
+    null,
+  );
   readonly selectedReasonId = signal<string | null>(null);
   readonly reasonOptions = signal<CandidateDecisionReasonItem[]>([]);
 
@@ -87,9 +92,12 @@ export class EmployeeInterviewResponse implements OnInit {
   private async loadInterviewResponse(identifier: string): Promise<void> {
     this.loading.set(true);
     try {
-      const result = await this.apiResponseS.onGetItem<CandidateInterviewResponseDto>(
-        EndpointsReclutamiento.CandidateProcesses.interviewResponse(identifier),
-      );
+      const result =
+        await this.apiResponseS.onGetItem<CandidateInterviewResponseDto>(
+          EndpointsReclutamiento.CandidateProcesses.interviewResponse(
+            identifier,
+          ),
+        );
       if (result) {
         this.interviewData.set(result);
       }
@@ -108,8 +116,10 @@ export class EmployeeInterviewResponse implements OnInit {
       .openDialog(
         EmployeeInterviewFeedbackForm,
         {
-          candidateApplicationId: interviewData?.candidateApplicationId ?? this.applicationId(),
-          candidateProcessId: interviewData?.candidateProcessId ?? this.candidateProcessId(),
+          candidateApplicationId:
+            interviewData?.candidateApplicationId ?? this.applicationId(),
+          candidateProcessId:
+            interviewData?.candidateProcessId ?? this.candidateProcessId(),
         },
         "Retroalimentacion de entrevista",
         this.dialogHandlerS.sizeLg,
@@ -122,7 +132,9 @@ export class EmployeeInterviewResponse implements OnInit {
   }
 
   private async loadReasonOptions(decision: CandidateDecision): Promise<void> {
-    const result = await this.apiResponseS.onGetList<CandidateDecisionReasonItem[]>(
+    const result = await this.apiResponseS.onGetList<
+      CandidateDecisionReasonItem[]
+    >(
       `${EndpointsReclutamiento.CandidateDecisionReasons.catalog}?decision=${decision}&activeOnly=true`,
     );
     if (result) {

@@ -261,7 +261,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   isDeficit(item: BudgetProposalItemDTO): boolean {
     if (item.esFilaAgrupadora) return false;
     const avgExpense = this.getAverageMonthlyExpense(item);
-    // Margen de tolerancia pequeóo (ej. $1) para evitar falsos positivos por redondeo
+    // Margen de tolerancia pequeño (ej. $1) para evitar falsos positivos por redondeo
     return item.proposedAmount < avgExpense - 1;
   }
 

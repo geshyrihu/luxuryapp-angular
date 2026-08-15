@@ -47,6 +47,15 @@
             [attr.aria-label]="'Archivar candidato ' + item.fullName"
           />
         }
+        @if (isSuperUser()) {
+          <ili-button-item
+            (clicked)="delete.emit(item.id)"
+            label="Eliminar definitivamente"
+            color="danger"
+            iconClass="material-symbols-light:delete"
+            [attr.aria-label]="'Eliminar definitivamente candidato ' + item.fullName"
+          />
+        }
       </ili-action-menu>
     </ili-list-item>
   </ng-template>

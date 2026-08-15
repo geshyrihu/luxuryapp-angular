@@ -3,32 +3,26 @@
     autocomplete="off"
     (ngSubmit)="onSubmit()"
     [formGroup]="form"
-    aria-label="Formulario de retroalimentación de entrevista"
+    aria-label="Formulario de retroalimentacion de entrevista"
   >
     <custom-input-text-signal
-      [control]="form.controls['candidateApplicationId']"
+      [control]="form.controls['targetId']"
       hidden
-      label="Postulación"
+      label="Proceso"
       [readonly]="true"
     />
     <div class="grid">
       <div class="col-12 md:col-6">
         <custom-input-date-signal
           [control]="form.controls['receptionConfirmedAt']"
-          label="Recepción confirmada"
-        />
-      </div>
-      <div class="col-12 md:col-6">
-        <custom-input-date-signal
-          [control]="form.controls['interviewAt']"
-          label="Fecha de entrevista"
+          label="Recepcion confirmada"
         />
       </div>
       <div class="col-12 md:col-6">
         <custom-input-select-signal
           [control]="form.controls['decision']"
-          label="Decisión"
-          [data]="cb_decision()"
+          label="Decision"
+          [data]="cbDecision()"
         />
       </div>
       <div class="col-12 md:col-6">
@@ -47,9 +41,9 @@
       </div>
     </div>
     <il-button-save
-      [propertyId]="candidateApplicationId"
-      [disabled]="form.invalid"
-      [submitting]="submitting()"
+      [propertyId]="targetLabel()"
+      [disabled]="form.invalid || resolvingProcess()"
+      [submitting]="submitting() || resolvingProcess()"
       class="pb-2"
     />
   </form>

@@ -4,14 +4,14 @@
   @if (fileName() && !replaceMode() && !currentFileName()) {
     <div class="cv-current-file">
       <div class="flex flex-column gap-1">
-        <span class="text-sm font-medium text-color">CV actual</span>
+        <span class="text-sm font-medium text-color">{{ currentFileLabel() }}</span>
         @if (fileUrl()) {
           <iw-button-view-pdf
             size="sm"
             class="btn--circle"
             [url]="fileUrl()"
             [fileName]="fileName()"
-            [attr.aria-label]="'Ver CV'"
+            [attr.aria-label]="viewAriaLabel()"
           />
         } @else {
           <span class="text-sm text-blue-700">{{ fileName() }}</span>
@@ -22,7 +22,7 @@
         class="cv-action-button"
         (click)="enableReplaceMode()"
       >
-        Reemplazar CV
+        {{ replaceLabel() }}
       </button>
     </div>
   }

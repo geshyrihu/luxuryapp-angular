@@ -1,9 +1,12 @@
 <div class="card p-3 mb-4">
-  <div class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3">
+  <div
+    class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3"
+  >
     <div>
       <h2 class="m-0 font-semibold text-xl">Mis vacantes y entrevistas</h2>
       <p class="m-0 text-sm text-color-secondary">
-        Vacantes abiertas relacionadas contigo como entrevistador y entrevistas agendadas para dar seguimiento.
+        Vacantes abiertas relacionadas contigo como entrevistador y entrevistas
+        agendadas para dar seguimiento.
       </p>
     </div>
     <div class="flex flex-wrap gap-2">
@@ -22,28 +25,40 @@
     <div class="card p-3 h-full">
       <small class="text-color-secondary block mb-1">Vacantes</small>
       <div class="text-2xl font-semibold">{{ totalVacancies() }}</div>
-      <small class="text-color-secondary">{{ totalCandidates() }} entrevistas relacionadas</small>
+      <small class="text-color-secondary"
+        >{{ totalCandidates() }} entrevistas relacionadas</small
+      >
     </div>
   </div>
   <div class="col-12 md:col-6 xl:col-3">
     <div class="card p-3 h-full">
       <small class="text-color-secondary block mb-1">Pendientes</small>
-      <div class="text-2xl font-semibold text-orange-500">{{ pendingCount() }}</div>
-      <small class="text-color-secondary">Entrevistas activas por responder</small>
+      <div class="text-2xl font-semibold text-orange-500">
+        {{ pendingCount() }}
+      </div>
+      <small class="text-color-secondary"
+        >Entrevistas activas por responder</small
+      >
     </div>
   </div>
   <div class="col-12 md:col-6 xl:col-3">
     <div class="card p-3 h-full">
       <small class="text-color-secondary block mb-1">Vencidas</small>
-      <div class="text-2xl font-semibold text-red-500">{{ overdueCount() }}</div>
+      <div class="text-2xl font-semibold text-red-500">
+        {{ overdueCount() }}
+      </div>
       <small class="text-color-secondary">Requieren respuesta inmediata</small>
     </div>
   </div>
   <div class="col-12 md:col-6 xl:col-3">
     <div class="card p-3 h-full">
       <small class="text-color-secondary block mb-1">Historico</small>
-      <div class="text-2xl font-semibold text-bluegray-700">{{ historyCount() }}</div>
-      <small class="text-color-secondary">{{ feedbackCount() }} con retroalimentacion</small>
+      <div class="text-2xl font-semibold text-bluegray-700">
+        {{ historyCount() }}
+      </div>
+      <small class="text-color-secondary"
+        >{{ feedbackCount() }} con retroalimentacion</small
+      >
     </div>
   </div>
 </div>
@@ -108,7 +123,8 @@
 <div class="card p-4 text-center">
   <div class="text-lg font-semibold mb-2">Sin entrevistas asignadas</div>
   <div class="text-color-secondary">
-    No se encontraron vacantes con entrevistas programadas o activas para este entrevistador.
+    No se encontraron vacantes con entrevistas programadas o activas para este
+    entrevistador.
   </div>
 </div>
 } @else {
@@ -117,27 +133,39 @@
     <div class="flex flex-column gap-3">
       @for (vacancy of filteredVacancies(); track vacancy.requestPositionId) {
       <div class="card p-3">
-        <div class="flex flex-column lg:flex-row lg:align-items-start lg:justify-content-between gap-3 mb-3">
+        <div
+          class="flex flex-column lg:flex-row lg:align-items-start lg:justify-content-between gap-3 mb-3"
+        >
           <div>
             <div class="flex flex-wrap align-items-center gap-2 mb-2">
-              <span class="text-lg font-semibold">{{ vacancy.vacancyFolio }}</span>
-              <span class="text-sm text-color-secondary">{{ vacancy.positionName }}</span>
+              <span class="text-lg font-semibold"
+                >{{ vacancy.vacancyFolio }}</span
+              >
+              <span class="text-sm text-color-secondary"
+                >{{ vacancy.positionName }}</span
+              >
               <span class="badge badge-info">{{ vacancy.customerName }}</span>
-              <span class="badge badge-secondary">{{ vacancy.vacancyStatus }}</span>
+              <span class="badge badge-secondary"
+                >{{ vacancy.vacancyStatus }}</span
+              >
             </div>
             <div class="flex flex-wrap gap-2 text-sm text-color-secondary">
               <span>{{ vacancy.filteredCandidates.length }} candidato(s)</span>
               <span>Pendientes: {{ vacancy.pendingCandidatesCount }}</span>
               <span>Vencidas: {{ vacancy.overdueCandidatesCount }}</span>
               @if (vacancy.nextInterviewAt) {
-              <span>Proxima cita: {{ vacancy.nextInterviewAt | date:'dd/MM/yyyy HH:mm' }}</span>
+              <span
+                >Proxima cita: {{ vacancy.nextInterviewAt | date:'dd/MM/yyyy
+                HH:mm' }}</span
+              >
               }
             </div>
           </div>
         </div>
 
         <div class="flex flex-column gap-2">
-          @for (candidate of vacancy.filteredCandidates; track candidate.candidateApplicationId) {
+          @for (candidate of vacancy.filteredCandidates; track
+          candidate.candidateApplicationId) {
           <div
             class="border-1 surface-border border-round p-3 cursor-pointer"
             [class.bg-orange-50]="!candidate.isHistorical"
@@ -146,10 +174,14 @@
             [class.border-green-300]="candidate.agendaStatusCode === 'feedback'"
             (click)="selectCandidate(candidate)"
           >
-            <div class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3">
+            <div
+              class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-3"
+            >
               <div class="flex-grow-1">
                 <div class="flex flex-wrap align-items-center gap-2 mb-2">
-                  <span class="font-semibold">{{ candidate.candidateName }}</span>
+                  <span class="font-semibold"
+                    >{{ candidate.candidateName }}</span
+                  >
                   <app-candidate-stage-badge [stage]="candidate.currentStage" />
                   <app-mapped-p-tag
                     [value]="candidate.agendaStatusCode"
@@ -159,23 +191,34 @@
 
                 <div class="grid text-sm">
                   <div class="col-12 md:col-6">
-                    <small class="text-color-secondary block">Entrevista agendada</small>
+                    <small class="text-color-secondary block"
+                      >Entrevista agendada</small
+                    >
                     <div class="font-medium">
-                      {{ candidate.operationsInterviewAt ? (candidate.operationsInterviewAt | date:'dd/MM/yyyy HH:mm') : 'Sin fecha programada' }}
+                      {{ candidate.operationsInterviewAt ?
+                      (candidate.operationsInterviewAt | date:'dd/MM/yyyy
+                      HH:mm') : 'Sin fecha programada' }}
                     </div>
                   </div>
                   <div class="col-12 md:col-6">
-                    <small class="text-color-secondary block">Entrevistador</small>
+                    <small class="text-color-secondary block"
+                      >Entrevistador</small
+                    >
                     <div class="font-medium">
-                      {{ candidate.assignedInterviewerName || 'Sin entrevistador asignado' }}
+                      {{ candidate.assignedInterviewerName || 'Sin entrevistador
+                      asignado' }}
                     </div>
                   </div>
                   <div class="col-12 md:col-6">
                     <small class="text-color-secondary block">Tipo</small>
-                    <div class="font-medium">{{ candidate.interviewTypeLabel }}</div>
+                    <div class="font-medium">
+                      {{ candidate.interviewTypeLabel }}
+                    </div>
                   </div>
                   <div class="col-12 md:col-6">
-                    <small class="text-color-secondary block">Proxima accion</small>
+                    <small class="text-color-secondary block"
+                      >Proxima accion</small
+                    >
                     <div class="font-medium">{{ candidate.pendingAction }}</div>
                   </div>
                 </div>
@@ -192,16 +235,21 @@
   </div>
 
   <div class="col-12 xl:col-4">
-    <div class="card p-3 xl:sticky" style="top: 1rem;">
+    <div class="card p-3 xl:sticky" style="top: 1rem">
       @if (selectedCandidate()) {
       <div class="flex align-items-start justify-content-between gap-2 mb-3">
         <div>
-          <div class="text-xl font-semibold">{{ selectedCandidate()?.candidateName }}</div>
+          <div class="text-xl font-semibold">
+            {{ selectedCandidate()?.candidateName }}
+          </div>
           <div class="text-sm text-color-secondary">
-            {{ selectedCandidate()?.vacancyFolio }} - {{ selectedCandidate()?.positionName }}
+            {{ selectedCandidate()?.vacancyFolio }} - {{
+            selectedCandidate()?.positionName }}
           </div>
         </div>
-        <app-candidate-stage-badge [stage]="selectedCandidate()?.currentStage" />
+        <app-candidate-stage-badge
+          [stage]="selectedCandidate()?.currentStage"
+        />
       </div>
 
       <div class="flex flex-wrap gap-2 mb-3">
@@ -209,7 +257,8 @@
           [value]="selectedCandidate()?.agendaStatusCode"
           [options]="agendaStatusOptions()"
         />
-        @if (selectedCandidate()?.lastDecision !== undefined && selectedCandidate()?.lastDecision !== null) {
+        @if (selectedCandidate()?.lastDecision !== undefined &&
+        selectedCandidate()?.lastDecision !== null) {
         <span class="badge badge-secondary">
           {{ decisionLabel(selectedCandidate()?.lastDecision) }}
         </span>
@@ -222,31 +271,43 @@
           <div class="font-medium">{{ selectedCandidate()?.customerName }}</div>
         </div>
         <div class="col-12">
-          <small class="text-color-secondary block">Fecha y hora de entrevista</small>
+          <small class="text-color-secondary block"
+            >Fecha y hora de entrevista</small
+          >
           <div class="font-medium">
-            {{ selectedCandidate()?.operationsInterviewAt ? (selectedCandidate()?.operationsInterviewAt | date:'dd/MM/yyyy HH:mm') : 'Pendiente de programacion' }}
+            {{ selectedCandidate()?.operationsInterviewAt ?
+            (selectedCandidate()?.operationsInterviewAt | date:'dd/MM/yyyy
+            HH:mm') : 'Pendiente de programacion' }}
           </div>
         </div>
         <div class="col-12">
           <small class="text-color-secondary block">Entrevistador</small>
           <div class="font-medium">
-            {{ selectedCandidate()?.assignedInterviewerName || 'Sin entrevistador asignado' }}
+            {{ selectedCandidate()?.assignedInterviewerName || 'Sin
+            entrevistador asignado' }}
           </div>
         </div>
         <div class="col-12">
           <small class="text-color-secondary block">Tipo de seguimiento</small>
-          <div class="font-medium">{{ selectedCandidate()?.interviewTypeLabel }}</div>
+          <div class="font-medium">
+            {{ selectedCandidate()?.interviewTypeLabel }}
+          </div>
         </div>
         <div class="col-12">
           <small class="text-color-secondary block">Ultimo comentario</small>
           <div class="font-medium">
-            {{ selectedCandidate()?.lastComment || 'Sin comentarios registrados' }}
+            {{ selectedCandidate()?.lastComment || 'Sin comentarios registrados'
+            }}
           </div>
         </div>
         <div class="col-12">
-          <small class="text-color-secondary block">Ultima retroalimentacion</small>
+          <small class="text-color-secondary block"
+            >Ultima retroalimentacion</small
+          >
           <div class="font-medium">
-            {{ selectedCandidate()?.lastFeedbackAt ? (selectedCandidate()?.lastFeedbackAt | date:'dd/MM/yyyy HH:mm') : 'Sin retroalimentacion' }}
+            {{ selectedCandidate()?.lastFeedbackAt ?
+            (selectedCandidate()?.lastFeedbackAt | date:'dd/MM/yyyy HH:mm') :
+            'Sin retroalimentacion' }}
           </div>
         </div>
       </div>
@@ -277,16 +338,14 @@
             severity="info"
             (clicked)="onFeedback(selectedCandidate()!)"
           />
-          }
-          @if (selectedCandidate()?.canMarkNoShow) {
+          } @if (selectedCandidate()?.canMarkNoShow) {
           <il-button
             label="No asistio"
             iconClass="material-symbols-light:person-off"
             severity="warn"
             (clicked)="onMarkNoShow(selectedCandidate()!)"
           />
-          }
-          @if (selectedCandidate()?.canApprove) {
+          } @if (selectedCandidate()?.canApprove) {
           <il-button
             label="Aprobar"
             iconClass="material-symbols-light:check-circle-outline"
@@ -298,7 +357,9 @@
       </div>
       } @else {
       <div class="mt-4 pt-3 border-top-1 surface-border">
-        <div class="font-semibold mb-2">Acciones del entrevistador (Histórico)</div>
+        <div class="font-semibold mb-2">
+          Acciones del entrevistador (Histórico)
+        </div>
         <div class="flex flex-wrap gap-2">
           <il-button
             label="Revertir decisión"
@@ -309,12 +370,12 @@
           />
         </div>
       </div>
-      }
-      } @else {
+      } } @else {
       <div class="text-center py-6">
         <div class="text-lg font-semibold mb-2">Selecciona una entrevista</div>
         <div class="text-color-secondary">
-          Aqui podras revisar la vacante, el CV y las acciones disponibles del candidato asignado.
+          Aqui podras revisar la vacante, el CV y las acciones disponibles del
+          candidato asignado.
         </div>
       </div>
       }

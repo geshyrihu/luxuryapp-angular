@@ -1,4 +1,5 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { provideRouter } from "@angular/router";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
 import { CandidateListMobile } from "./candidate-list-mobile";
@@ -32,6 +33,7 @@ describe("CandidateListMobile", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [CandidateListMobile],
+      providers: [provideRouter([])],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

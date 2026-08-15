@@ -12,21 +12,21 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CandidateInterviewFeedbackCreate } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/interfaces/candidate-interview";
+import { candidateDecisionLabel } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-decision-labels";
 import { CandidateDecisionReasonSelect } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-decision-reason-select";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { CandidateDecision } from "src/app/core/enums/candidate-decision";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { CandidateDecision } from "src/app/core/enums/candidate-decision";
-import { candidateDecisionLabel } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-decision-labels";
-import { CandidateInterviewFeedbackCreate } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/interfaces/candidate-interview";
 
 @Component({
   selector: "app-employee-interview-feedback-form",
@@ -52,7 +52,8 @@ export class EmployeeInterviewFeedbackForm implements OnInit {
   cb_decision = signal<SelectItemDto[]>([]);
   selectedDecision = signal<CandidateDecision | null>(null);
 
-  candidateApplicationId: string | undefined = this.config.data.candidateApplicationId;
+  candidateApplicationId: string | undefined =
+    this.config.data.candidateApplicationId;
   candidateProcessId: string | undefined = this.config.data.candidateProcessId;
 
   form: FormGroup = new FormGroup({
@@ -66,15 +67,17 @@ export class EmployeeInterviewFeedbackForm implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.form.patchValue({
-      candidateApplicationId: this.candidateApplicationId ?? this.candidateProcessId ?? "",
+      candidateApplicationId:
+        this.candidateApplicationId ?? this.candidateProcessId ?? "",
     });
 
     this.cb_decision.set(
       Object.keys(CandidateDecision)
         .filter((key) => Number.isNaN(Number(key)))
         .map((key) => {
-          const decision =
-            CandidateDecision[key as keyof typeof CandidateDecision] as CandidateDecision;
+          const decision = CandidateDecision[
+            key as keyof typeof CandidateDecision
+          ] as CandidateDecision;
           return {
             label: candidateDecisionLabel(decision),
             value: decision as number,
@@ -93,7 +96,9 @@ export class EmployeeInterviewFeedbackForm implements OnInit {
     const payload: CandidateInterviewFeedbackCreate = {
       candidateApplicationId: this.candidateApplicationId ?? "",
       candidateProcessId: this.candidateProcessId,
-      receptionConfirmedAt: this.toIso(this.form.controls["receptionConfirmedAt"].value),
+      receptionConfirmedAt: this.toIso(
+        this.form.controls["receptionConfirmedAt"].value,
+      ),
       interviewAt: this.toIso(this.form.controls["interviewAt"].value),
       decision: decision as CandidateDecision,
       decisionReasonId: this.form.controls["decisionReasonId"].value,

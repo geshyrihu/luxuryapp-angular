@@ -15,8 +15,10 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { InterviewerMatrixService } from "./interviewer-matrix.service";
 import {
   InterviewerMatrixItemDto,
+} from "./interfaces/interviewer-matrix-item.dto";
+import {
   InterviewerMatrixRoleOptionDto,
-} from "./interfaces/interviewer-matrix.dto";
+} from "./interfaces/interviewer-matrix-role-option.dto";
 
 type MatrixCellState = "active" | "inactive" | "empty";
 

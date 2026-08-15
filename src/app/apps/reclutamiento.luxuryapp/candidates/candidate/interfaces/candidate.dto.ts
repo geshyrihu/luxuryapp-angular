@@ -9,6 +9,7 @@ export interface CandidateListItem {
   fullName: string;
   phoneNumber: string;
   email: string;
+  recruitmentSource?: number;
   status: CandidateStatus;
   activeApplicationsCount: number;
   cvFileName: string;
@@ -22,6 +23,7 @@ export interface CandidateAddOrEdit {
   phoneNumber?: string;
   email?: string;
   age?: number;
+  recruitmentSource?: number;
   currentAddress?: string;
   availability?: string;
   salaryExpectation?: number;
@@ -60,4 +62,18 @@ export interface CandidateWorkExperienceAddOrEdit {
   endDate?: string | null;
   monthlyNetSalary?: number | null;
   departureReason?: string | null;
+}
+
+export interface CandidateDeleteImpact {
+  candidateId: string;
+  candidateProcessesCount: number;
+  candidateApplicationsCount: number;
+  candidateInterviewsCount: number;
+  candidateInterviewFeedbacksCount: number;
+  candidateInterviewResultsCount: number;
+  candidateStageHistoryCount: number;
+  candidateWorkExperiencesCount: number;
+  candidateApplicationRolesCount: number;
+  totalRelatedRecordsCount: number;
+  relatedEntities: string[];
 }

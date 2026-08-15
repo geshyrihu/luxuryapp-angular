@@ -1947,7 +1947,7 @@ export class CatalogCoreItem {
   readonly ganttTasks: GanttTask[] = [
     {
       id: "g1",
-      name: "Diseóo de arquitectura",
+      name: "Diseño de arquitectura",
       group: "Planificación",
       startDate: new Date("2026-07-01"),
       endDate: new Date("2026-07-07"),

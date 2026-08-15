@@ -90,6 +90,16 @@
             (confirmed)="archive.emit(item.id)"
           />
           }
+          @if (isSuperUser()) {
+            <iw-button-item
+              size="sm"
+              class="btn--circle"
+              severity="danger"
+              iconClass="material-symbols-light:delete"
+              [attr.aria-label]="'Eliminar definitivamente candidato ' + item.fullName"
+              (clicked)="delete.emit(item.id)"
+            />
+          }
         </div>
       </td>
     </tr>

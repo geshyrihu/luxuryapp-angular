@@ -5,6 +5,7 @@
     (add)="onModalForm({ id: '', title: 'Nuevo Candidato' })"
     (edit)="onModalForm($event)"
     (archive)="onArchive($event)"
+    (delete)="onDelete($event)"
     (detail)="onDetail($event)"
   />
 } @else {
@@ -14,6 +15,7 @@
     (add)="onModalForm({ id: '', title: 'Nuevo Candidato' })"
     (edit)="onModalForm($event)"
     (archive)="onArchive($event)"
+    (delete)="onDelete($event)"
     (detail)="onDetail($event)"
   />
 }

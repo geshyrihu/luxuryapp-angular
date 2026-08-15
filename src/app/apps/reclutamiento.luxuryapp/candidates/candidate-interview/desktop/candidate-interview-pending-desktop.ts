@@ -19,6 +19,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { CandidateApplicationListItem } from "../../candidate-application/interfaces/candidate-application";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
+import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interview-feedback-target.interface";
 
 @Component({
   selector: "app-candidate-interview-pending-desktop",
@@ -41,7 +42,7 @@ export class CandidateInterviewPendingDesktop {
   data = input.required<CandidateApplicationListItem[]>();
   globalFilterFields = input<string[]>([]);
 
-  feedback = output<string>();
+  feedback = output<CandidateInterviewFeedbackTarget>();
 
   loading = signal(true);
   readonly tablePrimeNgRows: number = tablePrimeNgRows();

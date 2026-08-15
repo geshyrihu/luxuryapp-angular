@@ -21,7 +21,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dia
 import { EndpointsAdmin } from "src/app/core/constants/endpoints/admin.endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomerLocationAddOrEditDTO } from "./interfaces/customer-location-add-or-edit.dto";
+import { CustomerLocationAddOrEditDto } from "./interfaces/customer-location-add-or-edit.dto";
 import { CustomerLocationType, CustomerLocationTypeOptions } from "./interfaces/customer-location-type.enum";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 
@@ -101,7 +101,7 @@ export class CustomerLocationForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem<CustomerLocationAddOrEditDTO>(
+      .onGetItem<CustomerLocationAddOrEditDto>(
         EndpointsAdmin.CustomerLocations.getById(this.id),
       )
       .then((result) => {
@@ -116,7 +116,7 @@ export class CustomerLocationForm implements OnInit {
 
     this.submitting.set(true);
 
-    const payload = this.form.getRawValue() as CustomerLocationAddOrEditDTO;
+    const payload = this.form.getRawValue() as CustomerLocationAddOrEditDto;
     const endpoint = !this.id
       ? EndpointsAdmin.CustomerLocations.create
       : EndpointsAdmin.CustomerLocations.update(this.id);

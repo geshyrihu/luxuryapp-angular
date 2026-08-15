@@ -19,17 +19,7 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { VisitorDto } from "src/app/core/interfaces/visitor.dto";
-
-interface IVisitorForm {
-  fullName: FormControl<string>;
-  email: FormControl<string | null>;
-  phone: FormControl<string | null>;
-  company: FormControl<string | null>;
-  vehiclePlate: FormControl<string | null>;
-  documentId: FormControl<string | null>;
-  isBlacklisted: FormControl<boolean>;
-  blacklistReason: FormControl<string | null>;
-}
+import { VisitorFormGroup } from "./interfaces/visitor-form.interface";
 
 @Component({
   selector: "app-visitor-list",
@@ -51,11 +41,11 @@ export class VisitorList implements OnInit {
   submitting = signal(false);
   editingId = signal<string | null>(null);
 
-  form!: FormGroup<IVisitorForm>;
+  form!: FormGroup<VisitorFormGroup>;
 
   ngOnInit(): void {
     this.onLoadData();
-    this.form = this.formB.group<IVisitorForm>({
+    this.form = this.formB.group<VisitorFormGroup>({
       fullName: new FormControl("", {
         validators: [Validators.required],
         nonNullable: true,
