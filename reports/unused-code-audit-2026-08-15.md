@@ -2,7 +2,9 @@
 
 Fecha: 2026-08-15
 Alcance: `D:\repos\luxuryapp-api\client\angular\src` (4244 archivos)
-Modo: **solo lectura**. Ningun archivo fue movido, renombrado ni eliminado.
+Modo original del analisis: **solo lectura**. El detalle de candidatos de este informe corresponde al estado del arbol ANTES de cualquier borrado.
+
+> **Actualizacion 2026-08-15 (post-informe):** con aprobacion explicita del usuario, se ejecuto el borrado de los **68 archivos del Grupo A (23) + Grupo D (45)** — ver Seccion 9. Los grupos B, C, E y F (39 archivos) **siguen intactos**, pendientes de decision de producto o de arreglo (spec roto).
 
 ---
 
@@ -201,6 +203,50 @@ Adaptar `rg`/`Get-ChildItem` a cada archivo especifico antes de decidir su elimi
 ## SECCION 8 — SALIDA ESTRUCTURADA
 
 Ver `reports/unused-code-audit-2026-08-15.json` y `reports/unused-code-audit-2026-08-15.csv` (107 filas, esquema pedido: `filePath, fileType, status, confidence, reason, referencesFound, dynamicUsagePossible, referencedOnlyByTests, referencedOnlyByUnusedFiles, validationSuggested`).
+
+---
+
+## SECCION 9 — REGISTRO DE BORRADO EJECUTADO (2026-08-15)
+
+Con checkpoint de rollback disponible (commit `28124826 fase 3 refactor candidates` previo al borrado) y aprobacion explicita del usuario, se ejecuto:
+
+```
+git rm <68 archivos de Grupo A + Grupo D>
+```
+
+**Validacion post-borrado:**
+
+| Chequeo | Resultado |
+|---|---|
+| `npx tsc --noEmit -p tsconfig.app.json` | Sin errores |
+| `npx ng build --configuration production` | Exitoso (206.9s). Unicos warnings: 3x `NG8113` preexistentes (imports no usados en template) sin relacion con los archivos borrados |
+| `npx vitest run` (suite completa) | 1 fallo detectado en `task-engine/tasks/task-message/task-list.spec.ts` ("onPreviewWeeklyReport should navigate") — **sin relacion** con los 68 archivos borrados (el spec no importa ninguno de ellos; el mismatch es entre la ruta esperada en el test y la ruta real de navegacion). El runner ademas crasheo al final por un `DataCloneError: out of memory` en un worker de Vitest (limite de memoria del pool de threads al serializar resultados de una suite muy grande), un problema de infraestructura del test runner no relacionado con el codigo borrado. Se recomienda re-ejecutar la suite con `--pool=forks` o en lotes si se quiere una confirmacion 100% limpia. |
+
+**No se ejecuto commit de este borrado** — queda en el working tree (`git status`) para que el usuario lo revise y decida el mensaje de commit.
+
+**Ronda 2 (misma fecha, tras confirmacion adicional del usuario):** de los 39 archivos restantes, se re-verificaron todas las referencias (ninguna cambio tras la ronda 1) y se borraron los **22 que no implican perdida de funcionalidad viva** (duplicados cuya version activa vive en otro lado, o prototipos/specs desconectados):
+
+- `system.luxuryapp/system.routes.ts` (1) — duplicado; la funcionalidad real de `database-backup` sigue viva via `admin.luxuryapp`.
+- `contabilidad.luxuryapp/general-ledger/sat-funding/**` (9, TS+HTML) — duplicado confirmado de `fondeos-y-reporteo/sat-funding/` (version activa, intacta). La subcarpeta `interfaces/` de `general-ledger/sat-funding/` **no se toco** por seguir en uso desde la copia activa.
+- `admin.luxuryapp/.../catalog-component-ui/showcase/*.component.ts` (7) — prototipo desconectado, cero referencias en todo el arbol.
+- `catalog-component-ui/interfaces/print-config.interface.ts` + su spec placeholder `print-config.model.spec.ts` (2).
+- `admin.luxuryapp/.../customer-modul/interfaces/customer-modul.dto.spec.ts` (1) — spec placeholder, no probaba nada real.
+- `supplier.luxuryapp/providers/provider/employee-provider-form.spec.ts` (1) — probaba una ruta de carpeta vieja (`providers/`, plural) ya reemplazada por `provider/` (singular).
+- `cobranza.luxuryapp/cobranza-online/image.png` (1) — imagen suelta sin referencias.
+
+**Validacion post-ronda-2:** `npx tsc --noEmit` sin errores; `npx ng build --configuration production` exitoso (160.7s), mismos 3 warnings preexistentes `NG8113` sin relacion con los archivos borrados. No se ejecuto commit de esta ronda — queda en el working tree para revision del usuario.
+
+**Ronda 3 (misma fecha, aprobacion explicita del usuario para borrar los 17 restantes pese a ser candidatos con implicacion de producto):**
+
+- `resident.luxuryapp` — submodulo "Visitas" (`resident.routes.ts` + `access-control/{visit-list,visit-form,visit-detail}.{ts,html}`, 7 archivos). El resto de `resident.luxuryapp` (owner/, property/) queda intacto.
+- `security.luxuryapp` — app completa (`security.routes.ts` + `access-control/{access-scan,active-visits}.{ts,html}`, 5 archivos). Con esto y el `INDEX.ts` ya borrado en ronda 1, la carpeta `apps/security.luxuryapp/` desaparece por completo.
+- `contabilidad.luxuryapp/fondeos-y-reporteo/sat-funding/sat-reconciliation-dialog/*` (2, dentro del arbol ACTIVO de sat-funding): su unica referencia era un `import` comentado en `funding-detail.ts`.
+- `admin.luxuryapp/.../catalog-mobile/{mobile-layout,mobile-page-structure}/*.ts` (2).
+- `app/core/services/pagination.service.spec.ts` (1): spec roto (importaba una clase — `PaginationService` — que ya no existe).
+
+**Validacion post-ronda-3:** `npx tsc --noEmit` sin errores; `npx ng build --configuration production` exitoso (152.6s), mismos 3 warnings preexistentes `NG8113` sin relacion con los archivos borrados. No se ejecuto commit de esta ronda — queda en el working tree para revision del usuario.
+
+**Total acumulado de las 3 rondas: 107/107 candidatos identificados en el informe original fueron eliminados.**
 
 ---
 

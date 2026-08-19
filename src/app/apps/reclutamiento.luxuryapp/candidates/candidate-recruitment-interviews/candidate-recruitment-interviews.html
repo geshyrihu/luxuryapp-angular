@@ -286,10 +286,10 @@
               variant="outline"
               (clicked)="onAction(vacancy, candidate, 'reschedule')"
             />
-            } @if (candidate.canSchedule || candidate.canReschedule) {
+            } @if (candidate.canReschedule) {
             <il-button
-              label="Asignar entrevistador"
-              iconClass="material-symbols-light:person-add"
+              label="Cambiar entrevistador"
+              iconClass="material-symbols-light:sync-alt"
               severity="warn"
               size="small"
               variant="outline"

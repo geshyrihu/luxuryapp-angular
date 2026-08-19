@@ -51,6 +51,10 @@ export class ValidationErrorsCustomInput {
           return `El correo electrónico ya está registrado.`;
         case "phoneExist":
           return `El número telefónico ya está registrado.`;
+        case "minimumAdultAge":
+          return `El candidato debe ser mayor de edad (18 años o más).`;
+        case "invalidDate":
+          return `La fecha ingresada no es válida.`;
         case "customError":
           return `${ctrl.errors[key]}`;
         default:

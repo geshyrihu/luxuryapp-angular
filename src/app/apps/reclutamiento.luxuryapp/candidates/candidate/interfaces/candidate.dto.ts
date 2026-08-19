@@ -1,4 +1,5 @@
 import { CandidateStatus } from "src/app/core/enums/candidate-status";
+import { CandidateInterviewProgressStatus } from "src/app/core/enums/candidate-interview-progress-status";
 import {
   CandidateApplicationListItem,
   CandidateStageHistoryItem,
@@ -12,6 +13,8 @@ export interface CandidateListItem {
   recruitmentSource?: number;
   status: CandidateStatus;
   activeApplicationsCount: number;
+  interviewProgress: CandidateInterviewProgressStatus;
+  currentCandidateProcessId?: string;
   cvFileName: string;
   cvFileUrl: string;
   lastUpdatedAt?: string;
@@ -22,7 +25,7 @@ export interface CandidateAddOrEdit {
   lastName: string;
   phoneNumber?: string;
   email?: string;
-  age?: number;
+  birthDate?: string;
   recruitmentSource?: number;
   currentAddress?: string;
   availability?: string;
@@ -64,12 +67,19 @@ export interface CandidateWorkExperienceAddOrEdit {
   departureReason?: string | null;
 }
 
+export interface CandidatePhoneLookup {
+  id: string;
+  fullName: string;
+  phoneNumber: string;
+  email: string;
+  status: CandidateStatus;
+  activeApplicationsCount: number;
+}
+
 export interface CandidateDeleteImpact {
   candidateId: string;
   candidateProcessesCount: number;
-  candidateApplicationsCount: number;
   candidateInterviewsCount: number;
-  candidateInterviewFeedbacksCount: number;
   candidateInterviewResultsCount: number;
   candidateStageHistoryCount: number;
   candidateWorkExperiencesCount: number;

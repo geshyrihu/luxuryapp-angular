@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   input,
   output,
@@ -15,6 +16,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CandidateStatus } from "src/app/core/enums/candidate-status";
+import { CandidateInterviewProgressStatus } from "src/app/core/enums/candidate-interview-progress-status";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -25,6 +27,7 @@ import {
 import { CandidateListItem } from "../interfaces/candidate.dto";
 import { MappedPTag } from "../../recruitment-shared/mapped-p-tag";
 import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
+import { CANDIDATE_INTERVIEW_PROGRESS_TAG_OPTIONS } from "../candidate-interview-progress-tag-options";
 
 @Component({
   selector: "app-candidate-list-desktop",
@@ -55,6 +58,7 @@ export class CandidateListDesktop {
   archive = output<string>();
   delete = output<string>();
   detail = output<string>();
+  viewInterview = output<string>();
 
   readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
 
@@ -65,4 +69,16 @@ export class CandidateListDesktop {
 
   protected readonly candidateStatus = CandidateStatus;
   protected readonly candidateStatusOptions = CANDIDATE_STATUS_TAG_OPTIONS;
+
+  protected readonly interviewProgress = CandidateInterviewProgressStatus;
+  protected readonly interviewProgressOptions = CANDIDATE_INTERVIEW_PROGRESS_TAG_OPTIONS;
+  readonly interviewProgressFilter = signal<CandidateInterviewProgressStatus | null>(null);
+
+  readonly filteredData = computed(() => {
+    const filter = this.interviewProgressFilter();
+    const data = this.data();
+    return filter === null
+      ? data
+      : data.filter((item) => item.interviewProgress === filter);
+  });
 }

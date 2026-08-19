@@ -1,4 +1,4 @@
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 
 export type RecruitmentBoardAction = "send" | "schedule" | "reschedule" | "assign";
 
@@ -24,7 +24,7 @@ export interface CandidateRecruitmentInterviewBoardItem {
   interviewId?: string | null;
   candidateId: string;
   candidateName: string;
-  currentStage: CandidateApplicationStage;
+  currentStage: CandidateProcessStage;
   applicationDate?: string | null;
   recruitmentInterviewAt?: string | null;
   operationsInterviewAt?: string | null;

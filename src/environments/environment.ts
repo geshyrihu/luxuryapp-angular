@@ -14,15 +14,12 @@ export const environment = {
   HANGFIRE_DASHBOARD_URL: urlApi + "api/hangfire/",
   API_BASE_SIGNALR: urlApi + "ws/notificationHub",
   API_FIREBIRD_URL: "http://localhost:5212/api/",
-  ONESIGNAL_APPID: "deeb5e28-6ebc-4260-967e-1b64331122fc",
-  // NO agregar "http://localhost:4200" aquí. El dashboard de OneSignal tiene activada la
-  // restricción de origen (features.restrict_origin) contra https://luxurybuildingapp.com,
-  // así que init() lanzaría "Can only be used on: https://luxurybuildingapp.com".
-  // Al dejar el origen local fuera de la lista, OneSignalService lo omite antes de init()
-  // y solo registra un log informativo. Consecuencia esperada: no hay push web en local.
-  // Para probar push en desarrollo, crear una app OneSignal aparte con Site URL
-  // http://localhost:4200 y usar su APPID aquí (no reutilizar el de producción).
-  ONESIGNAL_ALLOWED_ORIGINS: ["https://luxurybuildingapp.com"],
+  ONESIGNAL_APPID: "1d454470-eba5-4d7b-82e8-f91b7bed263b",
+  // En desarrollo se usa una app OneSignal aparte (Site URL http://localhost:4200) con
+  // su propio APPID, para no contaminar la app de producción (https://luxurybuildingapp.com).
+  // Por eso localhost:4200 se agrega a ONESIGNAL_ALLOWED_ORIGINS; si no estuviera,
+  // OneSignalService omitiría el init en local y no habría push web en desarrollo.
+  ONESIGNAL_ALLOWED_ORIGINS: ["https://luxurybuildingapp.com", "http://localhost:4200"],
 
   // Firebase
 

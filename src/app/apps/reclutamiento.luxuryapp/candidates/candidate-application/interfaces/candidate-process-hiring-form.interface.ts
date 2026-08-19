@@ -3,12 +3,18 @@ import { FormControl } from "@angular/forms";
 export interface CandidateProcessHiringFormGroup {
   executionDate: FormControl<string | null>;
   firstName: FormControl<string>;
-  paternalLastName: FormControl<string>;
-  maternalLastName: FormControl<string>;
+  email: FormControl<string>;
+  lastName: FormControl<string>;
   birthDate: FormControl<string | null>;
   nss: FormControl<string>;
   rfc: FormControl<string>;
+  rfcPostalCode: FormControl<string>;
   curp: FormControl<string>;
+  maritalStatus: FormControl<number | null>;
+  educationLevel: FormControl<number | null>;
+  hasInfonavitCredit: FormControl<boolean>;
+  infonavitCreditNumber: FormControl<string>;
+  infonavitDiscountFactor: FormControl<string>;
   street: FormControl<string>;
   neighborhood: FormControl<string>;
   municipality: FormControl<string>;
@@ -16,7 +22,7 @@ export interface CandidateProcessHiringFormGroup {
   state: FormControl<string>;
   phoneNumber: FormControl<string>;
   typeContractRegister: FormControl<number | null>;
-  bankName: FormControl<string>;
+  bankId: FormControl<string | null>;
   accountNumber: FormControl<string>;
   clabe: FormControl<string>;
   beneficiaryName: FormControl<string>;
@@ -34,6 +40,5 @@ export interface CandidateProcessHiringFormGroup {
   boss: FormControl<string>;
   customerAddress: FormControl<string>;
   workShift: FormControl<number | null>;
-  recruitmentSource: FormControl<number | null>;
   additionalInformation: FormControl<string>;
 }

@@ -9,6 +9,8 @@ export interface IEmployee {
   workPositionFolio: string;
   workPositionName: string;
   departament: number | null;
+  hasPendingDocuments: boolean;
+  isOverdueDocuments: boolean;
 }
 
 

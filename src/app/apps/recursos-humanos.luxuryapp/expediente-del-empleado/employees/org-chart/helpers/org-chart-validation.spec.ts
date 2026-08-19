@@ -1,5 +1,5 @@
 import { validateReassignment } from "./org-chart-validation";
-import { IWorkPositionOrgChartNode } from "../models/org-chart.interfaces";
+import { IWorkPositionOrgChartNode } from "../interfaces/org-chart.interfaces";
 
 describe("org-chart-validation", () => {
   const createNode = (

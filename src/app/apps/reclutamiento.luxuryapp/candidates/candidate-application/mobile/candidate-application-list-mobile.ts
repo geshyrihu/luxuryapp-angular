@@ -7,7 +7,6 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelTracking } from "@ui/buttons/mobile-label/button-tracking";
 import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import {
@@ -15,7 +14,7 @@ import {
 } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import { CandidateApplicationListItem } from "../interfaces/candidate-application";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
@@ -30,7 +29,6 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
     DataViewMobile,
     MobileActionMenu,
     MobileButtonLabelEdit,
-    MobileButtonLabelTracking,
     MobileButtonLabelViewPdf,
     MobileListItem,
     CustomInputSelectSignal,
@@ -40,25 +38,19 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 export class CandidateApplicationListMobile {
   data = input.required<CandidateApplicationListItem[]>();
   stages = input<SelectItemDto[]>([]);
-  activeStage = input<CandidateApplicationStage | null>(null);
+  activeStage = input<CandidateProcessStage | null>(null);
   globalFilterFields = input<string[]>([]);
 
-  stageChange = output<CandidateApplicationStage | null>();
+  stageChange = output<CandidateProcessStage | null>();
   add = output<{ id: string; title: string }>();
   edit = output<{ id: string; title: string }>();
-  advance = output<{
-    id: string;
-    fromStage: CandidateApplicationStage;
-    customerId: string;
-    requestPositionId: string;
-  }>();
 
   stageControl = new FormControl<number | null>(null);
   private readonly subscription = this.stageControl.valueChanges
     .pipe(takeUntilDestroyed())
     .subscribe((value) =>
       this.stageChange.emit(
-        value !== null ? (value as CandidateApplicationStage) : null,
+        value !== null ? (value as CandidateProcessStage) : null,
       ),
     );
 }

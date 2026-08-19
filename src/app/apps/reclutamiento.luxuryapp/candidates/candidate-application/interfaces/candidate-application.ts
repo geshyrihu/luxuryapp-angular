@@ -1,5 +1,6 @@
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
+import { CandidateProcessKpisDto, FuenteKpiItem } from "./candidate-process-kpis.dto";
 
 export interface CandidateApplicationListItem {
   id: string;
@@ -11,7 +12,13 @@ export interface CandidateApplicationListItem {
   positionName: string;
   customerName: string;
   customerId: string;
-  currentStage: CandidateApplicationStage;
+  currentStage: CandidateProcessStage;
+  processStatus?: number;
+  closureReason?: number | null;
+  selectedForHiring?: boolean;
+  selectedAt?: string | null;
+  hiringRequestedAt?: string | null;
+  hiredEntryDate?: string | null;
   cvFileName: string;
   cvFileUrl: string;
   operationsInterviewAt?: string;
@@ -30,7 +37,7 @@ export interface CandidateRecruitmentAgendaItem {
   positionName: string;
   customerName: string;
   customerId: string;
-  currentStage: CandidateApplicationStage;
+  currentStage: CandidateProcessStage;
   scheduledInterviewAt?: string;
   assignedInterviewerUserId: string;
   assignedInterviewerName: string;
@@ -60,8 +67,8 @@ export interface CandidateApplicationDetail extends CandidateApplicationListItem
 
 export interface CandidateStageHistoryItem {
   id: string;
-  fromStage?: CandidateApplicationStage;
-  toStage: CandidateApplicationStage;
+  fromStage?: CandidateProcessStage;
+  toStage: CandidateProcessStage;
   comment: string;
   changedByUserId: string;
   changedAt: string;
@@ -78,7 +85,7 @@ export interface CandidateApplicationAddOrEdit {
 }
 
 export interface ChangeStageApplicationRequest {
-  toStage: CandidateApplicationStage;
+  toStage: CandidateProcessStage;
   comment: string;
   recruitmentInterviewAt?: string;
   operationsInterviewAt?: string;
@@ -91,44 +98,5 @@ export interface CandidateDecisionRequest {
   comment?: string;
 }
 
-export interface CandidateApplicationKpisDto {
-  vacantesAbiertas: number;
-  vacantesSinPostulacion: number;
-  porcentajeVacantesConPostulacion: number;
-  postulacionesActivas: number;
-  postulacionesEnNuevo: number;
-  postulacionesEnPreFiltro: number;
-  postulacionesEnEspera: number;
-  postulacionesEnEntrevistaReclutamiento: number;
-  postulacionesEnEntrevistaOperaciones: number;
-  postulacionesSeleccionadas: number;
-  postulacionesAltaEnProceso: number;
-  postulacionesContratadas: number;
-  postulacionesRechazadasONoPresentadas: number;
-  entrevistasOperacionesSinEntrevistador: number;
-  entrevistasOperacionesPendientesAgenda: number;
-  entrevistasOperacionesVencidas: number;
-  entrevistasOperacionesAgendadas: number;
-  entrevistasOperacionesConFeedback: number;
-  postulacionesSinFeedbackEnEntrevista: number;
-  promedioDiasHastaEntrevistaOperaciones: number | null;
-  promedioDiasEnEtapaActual: number;
-  tasaSeleccion: number;
-  porFuente: FuenteKpiItem[];
-  postulacionesUltimos7Dias: number;
-  postulacionesUltimos30Dias: number;
-  // V2-F2: Tiempo Vacante -> Primera Postulacion
-  promedioDiasVacanteAPrimeraPostulacion: number | null;
-  medianaDiasVacanteAPrimeraPostulacion: number | null;
-  percentil90DiasVacanteAPrimeraPostulacion: number | null;
-  vacantesConPostulacionEnSla: number;
-  vacantesConPostulacion: number;
-  porcentajeVacantesEnSla: number;
-}
-
-export interface FuenteKpiItem {
-  fuente: string;
-  totalPostulaciones: number;
-  contratados: number;
-  tasaConversion: number;
-}
+export type CandidateApplicationKpisDto = CandidateProcessKpisDto;
+export type { CandidateProcessKpisDto, FuenteKpiItem };

@@ -44,6 +44,9 @@ export class Testsignalr implements OnInit {
   clienteControl = new FormControl("Cliente Prueba");
   solicitaControl = new FormControl("Solicita Prueba");
   resultadoControl = new FormControl("Completada");
+  tareaControl = new FormControl("Revisión de contrato");
+  responsableControl = new FormControl("Equipo legal");
+  fechaLimiteControl = new FormControl("15/08/2026 18:00 h");
 
   async ngOnInit(): Promise<void> {
     await this.onLoadUsers();
@@ -180,6 +183,28 @@ export class Testsignalr implements OnInit {
     );
 
     alert("WhatsApp SolicitudTerminada enviado. Revisa tu consola y celular.");
+    console.log(result);
+  }
+
+  async sendWhatsAppAlertaTareaUrgente(): Promise<void> {
+    if (!this.phoneControl.value) return;
+
+    const body = {
+      tarea: this.tareaControl.value ?? "Revisión de contrato",
+      folio: this.folioControl.value ?? "FOLIO-TEST",
+      responsable: this.responsableControl.value ?? "Equipo legal",
+      fechaLimite: this.fechaLimiteControl.value ?? "15/08/2026 18:00 h",
+      phone: this.phoneControl.value,
+    };
+
+    // Suponiendo que el endpoint base NotificationDiagnostics exista en admin.endpoints.ts
+    // como: testWhatsAppAlertaTareaUrgente: "admin/notification-diagnostics/test-whatsapp-alerta-tarea-urgente"
+    const result: any = await this.apiResponseS.onPost(
+      Endpoints.NotificationDiagnostics.testWhatsAppAlertaTareaUrgente,
+      body,
+    );
+
+    alert("WhatsApp AlertaTareaUrgente enviado. Revisa tu consola y celular.");
     console.log(result);
   }
 }

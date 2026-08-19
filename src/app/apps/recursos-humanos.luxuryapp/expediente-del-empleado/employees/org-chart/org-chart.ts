@@ -17,7 +17,6 @@ import { LxToast } from "@ui/adaptive/toast/toast";
 import { TabItem } from "@ui/base/tabs.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MessageService } from "@ui/web/primeng-api/primeng-api";
-import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -29,6 +28,7 @@ import {
   flattenOrgChartNodes,
   withVirtualRoot,
 } from "./helpers/org-chart-graph-adapter";
+import { groupSiblingsByRole } from "./helpers/org-chart-grouping";
 import {
   flattenOrgChartEditorRows,
   getOrgSiblingContext,
@@ -55,7 +55,6 @@ import {
     LxAvatar,
     WebButtonLabel,
     LxSidebar,
-    SelectButtonModule,
     LxTabs,
     LxTag,
     LxToast,
@@ -87,12 +86,16 @@ export class OrgChart {
     null,
   );
   readonly viewport = signal({ width: 1440, height: 900 });
+  readonly expandedGroupIds = signal<ReadonlySet<string>>(new Set());
 
   readonly canEdit = computed(() =>
     this.aspRoleS.hasRole(ApplicationRole.SuperUsuario),
   );
   readonly editTabDisabled = computed(() => !this.canEdit());
-  readonly graphTree = computed(() => withVirtualRoot(this.tree()));
+  readonly displayTree = computed(() =>
+    groupSiblingsByRole(this.tree(), this.expandedGroupIds()),
+  );
+  readonly graphTree = computed(() => withVirtualRoot(this.displayTree()));
   readonly graphModel = computed(() =>
     buildOrgChartGraph(this.graphTree(), {
       selectedOriginId: this.selectedOrigin()?.workPositionId ?? null,
@@ -131,7 +134,7 @@ export class OrgChart {
     return getOrgSiblingContext(this.tree(), origin.workPositionId);
   });
   readonly editRows = computed<IOrgChartEditorRow[]>(() =>
-    flattenOrgChartEditorRows(this.tree()),
+    flattenOrgChartEditorRows(this.displayTree()),
   );
   readonly canMoveSelectedUp = computed(() => {
     const context = this.selectedOriginContext();
@@ -202,6 +205,11 @@ export class OrgChart {
 
   onGraphNodeClick(node: IWorkPositionOrgChartNode, event?: Event): void {
     event?.stopPropagation();
+
+    if (node.isGroup) {
+      this.toggleGroup(node.workPositionId);
+      return;
+    }
 
     if (!this.editMode()) {
       this.onOpenDetails(node);
@@ -290,6 +298,11 @@ export class OrgChart {
   }
 
   onEditorRowClick(node: IWorkPositionOrgChartNode): void {
+    if (node.isGroup) {
+      this.toggleGroup(node.workPositionId);
+      return;
+    }
+
     if (this.selectedOrigin()?.workPositionId === node.workPositionId) {
       this.clearSelection();
       return;
@@ -368,7 +381,11 @@ export class OrgChart {
   }
 
   onCardDragStart(node: IWorkPositionOrgChartNode, event: DragEvent): void {
-    if (!this.editMode() || node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID) {
+    if (
+      !this.editMode() ||
+      node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID ||
+      node.isGroup
+    ) {
       event.preventDefault();
       return;
     }
@@ -468,7 +485,7 @@ export class OrgChart {
     placement: "before" | "after",
     event: DragEvent,
   ): void {
-    if (!this.editMode()) {
+    if (!this.editMode() || node.isGroup) {
       return;
     }
 
@@ -494,7 +511,7 @@ export class OrgChart {
   ): void {
     event.preventDefault();
 
-    if (!this.editMode()) {
+    if (!this.editMode() || node.isGroup) {
       return;
     }
 
@@ -564,6 +581,17 @@ export class OrgChart {
 
     this.selectedNodeForDetails.set(node);
     this.drawerVisible.set(true);
+  }
+
+  toggleGroup(groupId: string): void {
+    const next = new Set(this.expandedGroupIds());
+    if (next.has(groupId)) {
+      next.delete(groupId);
+    } else {
+      next.add(groupId);
+    }
+
+    this.expandedGroupIds.set(next);
   }
 
   clearSelection(): void {
@@ -672,6 +700,11 @@ export class OrgChart {
       return "Nodo raiz virtual del organigrama.";
     }
 
+    if (node.isGroup) {
+      const state = node.isGroupExpanded ? "Expandido" : "Colapsado";
+      return `Grupo de ${node.groupMemberCount} puestos de ${node.roleDisplayName}${department}. ${state}. Presiona Enter o espacio para ${node.isGroupExpanded ? "colapsar" : "expandir"}.`;
+    }
+
     return `${owner}${role}${department}${modeHint}`;
   }
 
@@ -684,6 +717,7 @@ export class OrgChart {
     return (
       this.editMode() &&
       node.workPositionId !== ORG_CHART_VIRTUAL_ROOT_ID &&
+      !node.isGroup &&
       this.isDraggingAnotherNode(node)
     );
   }

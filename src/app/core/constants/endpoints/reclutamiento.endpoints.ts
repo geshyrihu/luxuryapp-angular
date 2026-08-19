@@ -78,6 +78,7 @@ export const EndpointsReclutamiento = {
   },
   RequestEmployeeRegister: {
     base: "request-employee-register",
+    getById: (id: Id) => `request-employee-register/${id}`,
     getBasicInfo: (id: Id) => `request-employee-register/${id}/basic-info`,
     getEmployeeRegister: (employeeId: Id, customerId: Id) =>
       `request-employee-register/get-employee-register/${employeeId}/${customerId}`,
@@ -87,6 +88,7 @@ export const EndpointsReclutamiento = {
     updateStatus: (id: Id) => `request-employee-register/${id}/status`,
     delete: (id: Id) => `request-employee-register/${id}`,
     exportExcel: "request-employee-register/export-excel",
+    exportPdf: (id: Id) => `request-employee-register/${id}/export-pdf`,
   },
   Candidates: {
     base: "recruitment-candidates",
@@ -95,35 +97,11 @@ export const EndpointsReclutamiento = {
     create: "recruitment-candidates",
     update: (id: Id) => `recruitment-candidates/${id}`,
     archive: (id: Id) => `recruitment-candidates/${id}/archive`,
+    unarchive: (id: Id) => `recruitment-candidates/${id}/unarchive`,
     delete: (id: Id) => `recruitment-candidates/${id}`,
     deleteImpact: (id: Id) => `recruitment-candidates/${id}/delete-impact`,
-  },
-  CandidateApplications: {
-    base: "recruitment-candidate-applications",
-    list: "recruitment-candidate-applications",
-    recruitmentAgenda: "recruitment-candidate-applications/recruitment-agenda",
-    recruitmentInterviewBoard:
-      "recruitment-candidate-applications/recruitment-interview-board",
-    recruitmentSchedule: (id: Id) =>
-      `recruitment-candidate-applications/${id}/recruitment-schedule`,
-    cancelRecruitmentSchedule: (id: Id) =>
-      `recruitment-candidate-applications/${id}/cancel-recruitment-schedule`,
-    kpis: "recruitment-candidate-applications/kpis",
-    runAutomation: "recruitment-candidate-applications/run-automation",
-    interviewerView: "recruitment-candidate-applications/interviewer-view",
-    interviewerQueue: "recruitment-candidate-applications/interviewer-queue",
-    interviewerAction: "recruitment-candidate-applications/interviewer-action",
-    listByStage: (stage: string | number) =>
-      `recruitment-candidate-applications/by-stage/${stage}`,
-    getById: (id: Id) => `recruitment-candidate-applications/${id}`,
-    create: "recruitment-candidate-applications",
-    update: (id: Id) => `recruitment-candidate-applications/${id}`,
-    changeStage: (id: Id) => `recruitment-candidate-applications/${id}/stage`,
-    registerDecision: (id: Id) =>
-      `recruitment-candidate-applications/${id}/decision`,
-    uploadCv: (id: Id) => `recruitment-candidate-applications/${id}/cv`,
-    processHiring: (id: Id) =>
-      `recruitment-candidate-applications/${id}/process-hiring`,
+    searchByPhone: (phone: string) =>
+      `recruitment-candidates/search-by-phone?phone=${encodeURIComponent(phone)}`,
   },
   CandidateProcesses: {
     base: "recruitment-candidate-processes",
@@ -135,6 +113,7 @@ export const EndpointsReclutamiento = {
     updateMultipart: (id: Id) =>
       `recruitment-candidate-processes/${id}/multipart`,
     kpis: "recruitment-candidate-processes/kpis",
+    runAutomation: "recruitment-candidate-processes/run-automation",
     recruitmentAgenda: "recruitment-candidate-processes/recruitment-agenda",
     recruitmentInterviewBoard:
       "recruitment-candidate-processes/recruitment-board",
@@ -151,27 +130,14 @@ export const EndpointsReclutamiento = {
     interviewerAction: "recruitment-candidate-processes/interviewer-action",
     processHiring: (id: Id) =>
       `recruitment-candidate-processes/${id}/process-hiring`,
+    directHire: (requestPositionId: Id) =>
+      `recruitment-candidate-processes/direct-hire/${requestPositionId}`,
+    byRequestPosition: (requestPositionId: Id) =>
+      `recruitment-candidate-processes/request-position/${requestPositionId}`,
     hiringDocuments: (id: Id) =>
       `recruitment-candidate-processes/${id}/hiring-documents`,
     validateHiringDocument: (documentId: Id) =>
       `recruitment-candidate-processes/hiring-documents/${documentId}/validate`,
-  },
-  CandidateInterviews: {
-    base: "recruitment-candidate-interviews",
-    create: "recruitment-candidate-interviews",
-    submitFeedback: "recruitment-candidate-interviews/feedback",
-    byApplication: (candidateApplicationId: Id) =>
-      `recruitment-candidate-interviews/application/${candidateApplicationId}`,
-    byApplicationNew: (candidateApplicationId: Id) =>
-      `recruitment-candidate-interviews/by-application/${candidateApplicationId}`,
-    byWorkPosition: (workPositionId: Id) =>
-      `recruitment-candidate-interviews/by-work-position/${workPositionId}`,
-    byInterviewer: (interviewerUserId: Id) =>
-      `recruitment-candidate-interviews/by-interviewer/${interviewerUserId}`,
-    reschedule: (id: Id) => `recruitment-candidate-interviews/${id}/reschedule`,
-    confirm: (id: Id) => `recruitment-candidate-interviews/${id}/confirm`,
-    cancel: (id: Id) => `recruitment-candidate-interviews/${id}/cancel`,
-    close: (id: Id) => `recruitment-candidate-interviews/${id}/close`,
   },
   CandidateWorkExperiences: {
     base: "recruitment-candidate-work-experiences",
@@ -179,12 +145,6 @@ export const EndpointsReclutamiento = {
       `recruitment-candidate-work-experiences/candidate/${candidateId}`,
     update: (id: Id) => `recruitment-candidate-work-experiences/${id}`,
     delete: (id: Id) => `recruitment-candidate-work-experiences/${id}`,
-  },
-  CandidateDecisionReasons: {
-    base: "recruitment-candidate-decision-reasons",
-    catalog: "recruitment-candidate-decision-reasons",
-    create: "recruitment-candidate-decision-reasons",
-    update: (id: Id) => `recruitment-candidate-decision-reasons/${id}`,
   },
   InterviewerMatrix: {
     base: "recruitment-interviewer-matrix",

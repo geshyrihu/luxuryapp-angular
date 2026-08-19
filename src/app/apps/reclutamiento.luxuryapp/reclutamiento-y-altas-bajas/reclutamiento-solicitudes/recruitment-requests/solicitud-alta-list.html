@@ -25,6 +25,7 @@
       <th>NOMBRE</th>
       <th>PUESTO</th>
       <th pSortableColumn="status">ESTATUS <p-sorticon field="status" /></th>
+      <th class="text-center">DOC.</th>
       <th></th>
     </tr>
   </ng-template>
@@ -55,6 +56,20 @@
           [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'"
         />
       </td>
+      <td class="text-center no-print">
+        <div class="flex gap-1 justify-content-center">
+          <iw-button
+            iconClass="material-symbols-light:folder-open"
+            [disabled]="!item.employeeId"
+            (clicked)="onOpenDocumentValidation(item)"
+          />
+          <iw-button
+            iconClass="material-symbols-light:picture-as-pdf"
+            severity="danger"
+            (clicked)="onDownloadPdf(item)"
+          />
+        </div>
+      </td>
       <td class="no-print">
         <div class="flex gap-1">
           <iw-button-edit (clicked)="onModalForm(item)" />
@@ -64,7 +79,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -95,6 +110,8 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
+          <ili-button (clicked)="onOpenDocumentValidation(item)" label="Documentos" iconClass="material-symbols-light:folder-open" />
+          <ili-button (clicked)="onDownloadPdf(item)" label="Descargar PDF" iconClass="material-symbols-light:picture-as-pdf" />
           <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>

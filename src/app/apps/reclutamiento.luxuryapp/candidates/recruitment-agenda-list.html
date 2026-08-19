@@ -45,10 +45,9 @@
   class="card p-3 mb-2 flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-2"
 >
   <div>
-    <div class="font-semibold mb-1">Agenda operativa de Reclutamiento</div>
+    <div class="font-semibold mb-1">Agenda de entrevistas</div>
     <p class="m-0 text-sm text-color-secondary">
-      Seguimiento de entrevistas de reclutamiento y operaciones en un solo
-      tablero.
+      Seguimiento de entrevistas operativas en un solo tablero.
     </p>
   </div>
 </div>
@@ -72,16 +71,15 @@
     <div class="flex flex-wrap gap-3 align-items-center justify-content-between">
       <div class="flex flex-wrap gap-2">
         <span class="text-sm text-color-secondary align-self-center">Filtrar por estado:</span>
-        @for (opt of agendaStatusOptions; track opt.value) {
-        <button type="button" class="btn btn-sm" [class.btn-primary]="statusFilter() === opt.value" [class.btn-outline]="statusFilter() !== opt.value" (click)="statusFilter.set(statusFilter() === opt.value ? '' : opt.value)" [attr.aria-pressed]="statusFilter() === opt.value">
-          {{ opt.label }}
-        </button>
-        }
-        <button type="button" class="btn btn-sm btn-outline" [class.btn-primary]="statusFilter() === ''" (click)="statusFilter.set('')">
-          Todos
-        </button>
+        <p-selectbutton
+          [options]="filterOptions()"
+          [ngModel]="statusFilter()"
+          (ngModelChange)="statusFilter.set($event || '')"
+          optionLabel="label"
+          optionValue="value"
+        />
       </div>
-      <primeng-custom-caption [dt]="dt" [showAdd]="false" aria-label="Agenda operativa de reclutamiento" />
+      <primeng-custom-caption [dt]="dt" [showAdd]="false" aria-label="Agenda de entrevistas" />
     </div>
   </ng-template>
   <ng-template #header>
@@ -107,6 +105,7 @@
       </th>
       <th>Proxima accion</th>
       <th>CV</th>
+      <th class="no-print">Acciones</th>
     </tr>
   </ng-template>
   <ng-template #body let-item let-rowIndex="rowIndex">
@@ -163,10 +162,24 @@
         <span class="text-color-secondary">Sin CV</span>
         }
       </td>
+      <td class="no-print">
+        @if (canCancelInterview(item)) {
+          <div (click)="$event.stopPropagation()">
+            <iw-button-item
+              size="sm"
+              class="btn--circle"
+              severity="danger"
+              iconClass="material-symbols-light:cancel"
+              [attr.aria-label]="'Cancelar entrevista de ' + item.candidateName"
+              (clicked)="onCancelInterview(item)"
+            />
+          </div>
+        }
+      </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="9" />
+    <primeng-custom-table-emptymessage [colspan]="10" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="filteredData()" />

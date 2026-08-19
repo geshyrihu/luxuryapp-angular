@@ -20,15 +20,16 @@ export interface IWorkPositionOrgChartNode {
   reportsToWorkPositionId?: string;
   state: string;
   children: IWorkPositionOrgChartNode[];
-}
-
-/** Nodo para PrimeNG OrganizationChart */
-export interface IOrgChartTreeNode {
-  type?: "root" | "manager" | "staff" | "vacant";
-  label: string;
-  data: IWorkPositionOrgChartNode;
-  expanded?: boolean;
-  children?: IOrgChartTreeNode[];
+  /**
+   * Presente solo en nodos sintéticos generados por `groupSiblingsByRole`
+   * para representar varios puestos hermanos del mismo rol colapsados en
+   * una sola tarjeta/fila (no corresponde a un WorkPosition real).
+   */
+  isGroup?: boolean;
+  /** Cantidad de puestos reales representados por el nodo-grupo. */
+  groupMemberCount?: number;
+  /** Si el grupo está expandido, sus miembros reales se listan como hermanos. */
+  isGroupExpanded?: boolean;
 }
 
 export interface IOrgChartGraphNodeData {
@@ -79,43 +80,28 @@ export interface ReassignmentValidation {
   reason?: string;
 }
 
-/** Mapeo de colores por departamento */
-export const DEPTO_BORDER_COLORS: Record<string, string> = {
-  Administracion: "border-blue-500",
-  Mantenimiento: "border-orange-500",
-  Limpieza: "border-cyan-500",
-  Operaciones: "border-green-500",
-  Jardineria: "border-emerald-500",
-  Sistemas: "border-indigo-500",
-  Seguridad: "border-red-500",
-  Reclutamiento: "border-purple-500",
-  RecursosHumanos: "border-pink-500",
-  Supervision: "border-yellow-500",
-  Direcciones: "border-amber-500",
-  Legal: "border-slate-500",
-  Contabilidad: "border-teal-500",
-  Constructora: "border-stone-500",
-  Recepcion: "border-lime-500",
-  Mensajeria: "border-violet-500",
-  Ludoteca: "border-fuchsia-500",
-};
-
+/**
+ * Acentos por departamento como referencias a tokens del design system
+ * (--ds-dept-*, definidos en styles/theme/_variables.scss). Se consumen
+ * vía la custom property `--org-node-accent`, por lo que el navegador
+ * resuelve el var() al pintar. (Regla Crítica 8 — sin hex hardcoded)
+ */
 export const DEPTO_ACCENT_COLORS: Record<string, string> = {
-  Administracion: "#3b82f6",
-  Mantenimiento: "#f97316",
-  Limpieza: "#06b6d4",
-  Operaciones: "#22c55e",
-  Jardineria: "#10b981",
-  Sistemas: "#6366f1",
-  Seguridad: "#ef4444",
-  Reclutamiento: "#a855f7",
-  RecursosHumanos: "#ec4899",
-  Supervision: "#eab308",
-  Direcciones: "#f59e0b",
-  Legal: "#64748b",
-  Contabilidad: "#14b8a6",
-  Constructora: "#78716c",
-  Recepcion: "#84cc16",
-  Mensajeria: "#8b5cf6",
-  Ludoteca: "#d946ef",
+  Administracion: "var(--ds-dept-administracion)",
+  Mantenimiento: "var(--ds-dept-mantenimiento)",
+  Limpieza: "var(--ds-dept-limpieza)",
+  Operaciones: "var(--ds-dept-operaciones)",
+  Jardineria: "var(--ds-dept-jardineria)",
+  Sistemas: "var(--ds-dept-sistemas)",
+  Seguridad: "var(--ds-dept-seguridad)",
+  Reclutamiento: "var(--ds-dept-reclutamiento)",
+  RecursosHumanos: "var(--ds-dept-recursos-humanos)",
+  Supervision: "var(--ds-dept-supervision)",
+  Direcciones: "var(--ds-dept-direcciones)",
+  Legal: "var(--ds-dept-legal)",
+  Contabilidad: "var(--ds-dept-contabilidad)",
+  Constructora: "var(--ds-dept-constructora)",
+  Recepcion: "var(--ds-dept-recepcion)",
+  Mensajeria: "var(--ds-dept-mensajeria)",
+  Ludoteca: "var(--ds-dept-ludoteca)",
 };

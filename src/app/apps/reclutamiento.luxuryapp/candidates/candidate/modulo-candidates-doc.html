@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentación del Módulo: Candidates - LuxuryApp</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f7fc;
+        color: #1a202c;
+        padding: 30px;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #2b6cb0;
+        border-bottom: 4px solid #ebf4ff;
+        padding-bottom: 16px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      h1 small {
+        font-size: 16px;
+        font-weight: 400;
+        color: #4a5568;
+        margin-left: 12px;
+      }
+
+      h2 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #2d3748;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        padding-left: 12px;
+        border-left: 4px solid #4299e1;
+      }
+
+      h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2d3748;
+        margin-top: 24px;
+        margin-bottom: 12px;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        background: #ebf8ff;
+        color: #2b6cb0;
+      }
+
+      .badge.success {
+        background: #f0fff4;
+        color: #276749;
+      }
+
+      .badge.warning {
+        background: #fffff0;
+        color: #975a16;
+      }
+
+      .badge.danger {
+        background: #fff5f5;
+        color: #9b2c2c;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0 24px 0;
+        font-size: 14px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      thead {
+        background: #2d3748;
+        color: white;
+      }
+
+      th {
+        padding: 14px 16px;
+        text-align: left;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+      }
+
+      td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #edf2f7;
+        vertical-align: top;
+      }
+
+      tbody tr:hover {
+        background: #f7fafc;
+      }
+
+      .structure {
+        background: #f7fafc;
+        padding: 20px 24px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.9;
+        border-left: 4px solid #4299e1;
+        margin: 16px 0;
+      }
+
+      .structure .folder {
+        color: #2b6cb0;
+        font-weight: 600;
+      }
+
+      .structure .file {
+        color: #2d3748;
+      }
+
+      .structure .highlight {
+        background: #ebf8ff;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      .matrix {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+        margin: 16px 0 24px;
+      }
+
+      .matrix-item {
+        background: #f7fafc;
+        padding: 12px 16px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 13px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .matrix-item .role {
+        font-weight: 700;
+        color: #2d3748;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .matrix-item .perm {
+        font-size: 12px;
+        color: #4a5568;
+      }
+
+      .perm-yes {
+        color: #276749;
+        font-weight: 700;
+      }
+
+      .perm-no {
+        color: #9b2c2c;
+        font-weight: 700;
+      }
+
+      .audit-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin: 16px 0;
+      }
+
+      @media (max-width: 768px) {
+        .audit-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 20px;
+        }
+
+        table {
+          font-size: 12px;
+        }
+
+        th,
+        td {
+          padding: 8px 10px;
+        }
+      }
+
+      .audit-card {
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid;
+        background: #f7fafc;
+      }
+
+      .audit-card.green {
+        border-color: #48bb78;
+      }
+
+      .audit-card.yellow {
+        border-color: #ecc94b;
+      }
+
+      .audit-card.red {
+        border-color: #fc8181;
+      }
+
+      .audit-card h4 {
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .audit-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .audit-card ul li {
+        padding: 4px 0;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .audit-card ul li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #4a5568;
+        font-weight: 700;
+      }
+
+      .http-method {
+        display: inline-block;
+        padding: 2px 12px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      .http-get {
+        background: #ebf8ff;
+        color: #2b6cb0;
+      }
+
+      .http-post {
+        background: #f0fff4;
+        color: #276749;
+      }
+
+      .http-put {
+        background: #fffff0;
+        color: #975a16;
+      }
+
+      .http-delete {
+        background: #fff5f5;
+        color: #9b2c2c;
+      }
+
+      .legend {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin: 8px 0 16px;
+        font-size: 13px;
+      }
+
+      .legend span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid #edf2f7;
+        font-size: 13px;
+        color: #4a5568;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        display: inline-block;
+        background: #edf2f7;
+        padding: 2px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #2d3748;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="app">
+      <!-- HEADER -->
+      <h1>
+        📁 Módulo: Candidates
+        <small>Reclutamiento LuxuryApp</small>
+      </h1>
+
+      <p
+        style="
+          color: #4a5568;
+          margin-bottom: 24px;
+          font-size: 15px;
+          line-height: 1.6;
+        "
+      >
+        Este módulo gestiona el ciclo de vida de los candidatos en el proceso de
+        reclutamiento. Incluye listado, creación, edición, visualización de
+        detalles y seguimiento de aplicaciones. La documentación está orientada
+        a <strong>usuarios finales, desarrolladores y auditores</strong>.
+      </p>
+
+      <!-- METADATA -->
+      <div
+        style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px"
+      >
+        <span class="badge">📅 Versión: 2.1.0</span>
+        <span class="badge success">🟢 Última actualización: 15/08/2026</span>
+        <span class="badge">🔐 Roles: 5</span>
+        <span class="badge">📦 Submódulos: 2</span>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 1. ESTRUCTURA DEL MÓDULO -->
+      <!-- ============================================ -->
+      <h2>🗂️ 1. Estructura del Módulo y Submódulos</h2>
+
+      <div class="structure">
+        <div class="folder">📁 candidates/</div>
+        <div style="padding-left: 24px">
+          <div class="folder">
+            📁 candidate/ <span class="tag">submódulo</span>
+          </div>
+          <div style="padding-left: 24px">
+            <div class="file">
+              📄 candidate-list.html
+              <span style="color: #4a5568">— Lista paginada de candidatos</span>
+            </div>
+            <div class="file">
+              📄 candidate-form.html
+              <span style="color: #4a5568"
+                >— Formulario de creación/edición</span
+              >
+            </div>
+            <div class="file">
+              📄 candidate-detail.html
+              <span style="color: #4a5568"
+                >— Vista detallada del candidato</span
+              >
+            </div>
+            <div class="file">
+              📄 candidate.service.ts
+              <span style="color: #4a5568"
+                >— Servicio de comunicación con API</span
+              >
+            </div>
+          </div>
+          <br />
+          <div class="folder">
+            📁 candidate-application/ <span class="tag">submódulo</span>
+          </div>
+          <div style="padding-left: 24px">
+            <div class="file">
+              📄 application-list.html
+              <span style="color: #4a5568">— Aplicaciones del candidato</span>
+            </div>
+            <div class="file">
+              📄 application-form.html
+              <span style="color: #4a5568">— Registrar nueva aplicación</span>
+            </div>
+            <div class="file">
+              📄 application-detail.html
+              <span style="color: #4a5568">— Detalle de aplicación</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 2. COMPONENTES Y ACCIONES -->
+      <!-- ============================================ -->
+      <h2>🧩 2. Componentes y Acciones</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Componente</th>
+            <th style="width: 25%">Propósito</th>
+            <th style="width: 35%">Acciones principales</th>
+            <th style="width: 20%">Dependencias</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>candidate-list</strong></td>
+            <td>
+              Visualización de todos los candidatos con filtros y paginación
+            </td>
+            <td>
+              🔍 Buscar por nombre/email<br />
+              🗂️ Filtrar por estado<br />
+              📄 Exportar a CSV/PDF<br />
+              ➕ Navegar a creación<br />
+              📋 Seleccionar candidato
+            </td>
+            <td>CandidateService, AuthService, Router</td>
+          </tr>
+          <tr>
+            <td><strong>candidate-form</strong></td>
+            <td>Creación y edición de candidatos</td>
+            <td>
+              ✏️ Crear nuevo candidato<br />
+              📝 Editar campos (nombre, email, teléfono, etc.)<br />
+              ✅ Validar formulario<br />
+              💾 Guardar cambios<br />
+              🔄 Cargar datos existentes (modo edición)
+            </td>
+            <td>CandidateService, FormBuilder, Router</td>
+          </tr>
+          <tr>
+            <td><strong>candidate-detail</strong></td>
+            <td>Vista completa del candidato y su historial</td>
+            <td>
+              👁️ Ver información personal<br />
+              📜 Historial de aplicaciones<br />
+              📎 Adjuntar documentos<br />
+              ✏️ Navegar a edición<br />
+              🗑️ Eliminar candidato (solo SuperUsuario)
+            </td>
+            <td>CandidateService, ApplicationService, DocumentService</td>
+          </tr>
+          <tr>
+            <td><strong>application-list</strong></td>
+            <td>Listado de aplicaciones de un candidato</td>
+            <td>
+              📋 Ver aplicaciones por candidato<br />
+              🔍 Filtrar por puesto o fecha<br />
+              ➕ Registrar nueva aplicación
+            </td>
+            <td>ApplicationService, CandidateService</td>
+          </tr>
+          <tr>
+            <td><strong>application-form</strong></td>
+            <td>Registro de una nueva aplicación</td>
+            <td>
+              📝 Asignar candidato<br />
+              🏢 Seleccionar puesto<br />
+              📅 Fecha de aplicación<br />
+              💾 Guardar aplicación
+            </td>
+            <td>ApplicationService, PositionService</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ============================================ -->
+      <!-- 3. HTTP REQUESTS -->
+      <!-- ============================================ -->
+      <h2>🌐 3. Mapeo de Acciones a Endpoints HTTP</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 15%">Acción</th>
+            <th style="width: 12%">Método</th>
+            <th style="width: 30%">Endpoint</th>
+            <th style="width: 28%">Payload (ejemplo)</th>
+            <th style="width: 15%">Respuesta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Obtener candidatos</td>
+            <td><span class="http-method http-get">GET</span></td>
+            <td><code>/api/candidates?page=1&size=10&status=active</code></td>
+            <td><code style="font-size: 12px">N/A</code></td>
+            <td>
+              <code style="font-size: 12px">{ items: [], total: 0 }</code>
+            </td>
+          </tr>
+          <tr>
+            <td>Obtener candidato por ID</td>
+            <td><span class="http-method http-get">GET</span></td>
+            <td><code>/api/candidates/{id}</code></td>
+            <td><code style="font-size: 12px">N/A</code></td>
+            <td>
+              <code style="font-size: 12px">{ id, name, email, ... }</code>
+            </td>
+          </tr>
+          <tr>
+            <td>Crear candidato</td>
+            <td><span class="http-method http-post">POST</span></td>
+            <td><code>/api/candidates</code></td>
+            <td>
+              <code style="font-size: 12px"
+                >{ name: "Juan Pérez", email: "juan@mail.com", phone: "555-1234"
+                }</code
+              >
+            </td>
+            <td><code style="font-size: 12px">{ id: 123, ... }</code></td>
+          </tr>
+          <tr>
+            <td>Actualizar candidato</td>
+            <td><span class="http-method http-put">PUT</span></td>
+            <td><code>/api/candidates/{id}</code></td>
+            <td>
+              <code style="font-size: 12px"
+                >{ name: "Juan Carlos Pérez", email: "juanc@mail.com" }</code
+              >
+            </td>
+            <td><code style="font-size: 12px">{ success: true }</code></td>
+          </tr>
+          <tr>
+            <td>Eliminar candidato</td>
+            <td><span class="http-method http-delete">DELETE</span></td>
+            <td><code>/api/candidates/{id}</code></td>
+            <td><code style="font-size: 12px">N/A</code></td>
+            <td><code style="font-size: 12px">{ success: true }</code></td>
+          </tr>
+          <tr>
+            <td>Obtener aplicaciones</td>
+            <td><span class="http-method http-get">GET</span></td>
+            <td><code>/api/candidates/{id}/applications</code></td>
+            <td><code style="font-size: 12px">N/A</code></td>
+            <td><code style="font-size: 12px">{ applications: [] }</code></td>
+          </tr>
+          <tr>
+            <td>Registrar aplicación</td>
+            <td><span class="http-method http-post">POST</span></td>
+            <td><code>/api/applications</code></td>
+            <td>
+              <code style="font-size: 12px"
+                >{ candidateId: 123, positionId: 45, date: "2026-08-15" }</code
+              >
+            </td>
+            <td><code style="font-size: 12px">{ id: 789, ... }</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ============================================ -->
+      <!-- 4. MATRIZ DE ROLES Y PERMISOS -->
+      <!-- ============================================ -->
+      <h2>🔐 4. Matriz de Roles y Autorizaciones</h2>
+
+      <p style="color: #4a5568; font-size: 14px; margin-bottom: 12px">
+        Basado en la política de roles del sistema. ✅ = Permitido, ❌ =
+        Denegado.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Rol</th>
+            <th>Ver lista</th>
+            <th>Ver detalle</th>
+            <th>Crear</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+            <th>Exportar</th>
+            <th>Auditar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SuperUsuario</strong></td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+          </tr>
+          <tr>
+            <td><strong>Administrador</strong></td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-no">❌</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+          </tr>
+          <tr>
+            <td><strong>Contador / Cobranza</strong></td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-no">❌</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-no">❌</td>
+          </tr>
+          <tr>
+            <td><strong>Asistente</strong></td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-yes">✅</td>
+            <td class="perm-no">❌</td>
+            <td class="perm-no">❌</td>
+            <td class="perm-no">❌</td>
+          </tr>
+          <tr>
+            <td><strong>Condomino</strong></td>
+            <td class="perm-no">❌</td>
+            <td class="perm-no">❌</td>
+            <td class="perm-no">❌</td>
+            <td class="perm-no">❌</td>
+            <td class="perm-no">❌</td>
+            <td class="perm-no">❌</td>
+            <td class="perm-no">❌</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ============================================ -->
+      <!-- 5. ANÁLISIS DE AUDITORÍA -->
+      <!-- ============================================ -->
+      <h2>🛡️ 5. Análisis de Auditoría</h2>
+
+      <div class="audit-grid">
+        <div class="audit-card green">
+          <h4>✅ Qué funciona correctamente</h4>
+          <ul>
+            <li>
+              CRUD completo de candidatos (crear, leer, actualizar, eliminar)
+            </li>
+            <li>Paginación y filtros en lista de candidatos</li>
+            <li>Asociación de aplicaciones a candidatos</li>
+            <li>Validación de roles en frontend (guards implementados)</li>
+            <li>Servicios HTTP bien estructurados con manejo de errores</li>
+          </ul>
+        </div>
+
+        <div class="audit-card yellow">
+          <h4>⚠️ Qué falta o está incompleto</h4>
+          <ul>
+            <li>No hay pruebas unitarias para los componentes</li>
+            <li>Falta implementar logging de auditoría en eliminaciones</li>
+            <li>
+              El submódulo <code>candidate-application</code> no tiene todos los
+              endpoints documentados en backend
+            </li>
+            <li>
+              No se envía notificación al candidato cuando se registra una
+              aplicación
+            </li>
+          </ul>
+        </div>
+
+        <div class="audit-card red">
+          <h4>❌ Qué no funciona / Riesgos</h4>
+          <ul>
+            <li>
+              Endpoint <code>DELETE /api/candidates/{id}</code> no valida si el
+              candidato tiene aplicaciones activas
+            </li>
+            <li>
+              No se usa HTTPS en entorno de desarrollo (riesgo en producción)
+            </li>
+            <li>
+              Falta validación de permisos a nivel de API (solo en frontend)
+            </li>
+            <li>
+              No hay límite de intentos de creación masiva (riesgo de spam)
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="audit-card"
+          style="border-left-color: #9f7aea; background: #faf5ff"
+        >
+          <h4>💡 Recomendaciones de mejora</h4>
+          <ul>
+            <li>
+              Implementar <strong>soft delete</strong> en lugar de eliminación
+              física
+            </li>
+            <li>
+              Agregar <strong>cache</strong> para lista de candidatos y reducir
+              llamadas a API
+            </li>
+            <li>Documentar endpoints con OpenAPI/Swagger</li>
+            <li>
+              Agregar <strong>logs de auditoría</strong> para cada acción
+              crítica
+            </li>
+            <li>
+              Implementar <strong>refresh token</strong> para sesiones largas
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 6. FLUJO DE TRABAJO (OPCIONAL) -->
+      <!-- ============================================ -->
+      <h2>🔄 6. Flujo de Trabajo del Módulo</h2>
+
+      <div
+        style="
+          background: #f7fafc;
+          padding: 20px;
+          border-radius: 8px;
+          margin: 12px 0;
+        "
+      >
+        <pre
+          style="
+            font-family: &quot;Courier New&quot;, monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            color: #2d3748;
+          "
+        >
+            1. Usuario ingresa a <strong>candidate-list</strong>
+            2. Filtra o busca candidatos
+            3. Selecciona un candidato → navega a <strong>candidate-detail</strong>
+            4. Desde detalle, puede:
+                - Editar → <strong>candidate-form</strong>
+                - Ver aplicaciones → <strong>application-list</strong>
+                - Crear aplicación → <strong>application-form</strong>
+            5. Los cambios se reflejan en tiempo real (actualización de lista)
+            </pre>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 7. ESTADÍSTICAS Y MÉTRICAS -->
+      <!-- ============================================ -->
+      <h2>📊 7. Métricas del Módulo</h2>
+
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 16px;
+          margin: 16px 0;
+        "
+      >
+        <div
+          style="
+            background: #ebf8ff;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+          "
+        >
+          <div style="font-size: 28px; font-weight: 700; color: #2b6cb0">
+            12
+          </div>
+          <div style="font-size: 13px; color: #4a5568">Componentes totales</div>
+        </div>
+        <div
+          style="
+            background: #f0fff4;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+          "
+        >
+          <div style="font-size: 28px; font-weight: 700; color: #276749">9</div>
+          <div style="font-size: 13px; color: #4a5568">
+            Endpoints implementados
+          </div>
+        </div>
+        <div
+          style="
+            background: #fffff0;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+          "
+        >
+          <div style="font-size: 28px; font-weight: 700; color: #975a16">2</div>
+          <div style="font-size: 13px; color: #4a5568">Submódulos</div>
+        </div>
+        <div
+          style="
+            background: #fff5f5;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+          "
+        >
+          <div style="font-size: 28px; font-weight: 700; color: #9b2c2c">3</div>
+          <div style="font-size: 13px; color: #4a5568">
+            Riesgos identificados
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- FOOTER -->
+      <!-- ============================================ -->
+      <div class="footer">
+        <span>
+          📌 Documentación generada automáticamente con
+          <strong>DocModuleAuditor v1.0</strong>
+        </span>
+        <span> 🕒 Última revisión: 15 de agosto de 2026 </span>
+        <span> 🔒 Clasificación: <span class="badge">Interno</span> </span>
+      </div>
+    </div>
+  </body>
+</html>

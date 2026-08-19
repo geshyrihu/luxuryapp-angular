@@ -25,6 +25,48 @@
       El borrador se guarda automaticamente en este navegador.
     </p>
 
+    @if (!hasValidTarget()) {
+    <div class="surface-100 border-round p-3 mb-3 text-orange-700">
+      Esta vacante no tiene una solicitud activa. Solicita la vacante antes de continuar
+      con el alta.
+    </div>
+    } @if (vacancyContext(); as vacancy) {
+    <div class="surface-100 border-round p-3 mb-3">
+      <p class="m-0 font-semibold pb-2">Contexto de la vacante</p>
+      <div class="grid text-sm">
+        <div class="col-12 md:col-4">
+          <span class="text-color-secondary">Empresa: </span>{{ vacancy.customerName }}
+        </div>
+        <div class="col-12 md:col-4">
+          <span class="text-color-secondary">Puesto: </span>{{ vacancy.positionName }}
+        </div>
+        <div class="col-12 md:col-4">
+          <span class="text-color-secondary">Sueldo: </span
+          >{{ vacancy.sueldoBase | currency: "MXN" : "symbol" : "1.0-0" }}
+        </div>
+      </div>
+    </div>
+    } @if (approvedCandidate(); as candidate) {
+    <div
+      class="surface-100 border-round p-3 mb-3 flex align-items-center justify-content-between gap-3 flex-wrap"
+    >
+      <div>
+        <p class="m-0 font-semibold">Candidato aprobado detectado</p>
+        <p class="m-0 text-sm text-color-secondary">
+          {{ candidate.candidateName }} — puedes importar sus datos básicos.
+        </p>
+      </div>
+      <il-button
+        label="Importar datos de candidato aprobado"
+        iconClass="material-symbols-light:download"
+        severity="info"
+        variant="outline"
+        size="small"
+        (clicked)="onImportApprovedCandidate()"
+      />
+    </div>
+    }
+
     <lx-stepper
       [steps]="steps"
       finishLabel="Guardar y procesar alta"
@@ -36,31 +78,16 @@
         <div class="grid">
           <div class="col-12 md:col-6">
             <custom-input-text-signal
+              [control]="form.controls.lastName"
+              label="Apellidos"
+              placeholder="Apellidos"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
               [control]="form.controls.firstName"
               label="Nombre(s)"
               placeholder="Nombre del candidato"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <div class="pb-3">
-              <label class="block text-sm font-medium pb-2">Fuente heredada</label>
-              <div class="surface-ground border-round p-3">
-                {{ recruitmentSourceLabel() }}
-              </div>
-            </div>
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.paternalLastName"
-              label="Apellido paterno"
-              placeholder="Apellido paterno"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.maternalLastName"
-              label="Apellido materno"
-              placeholder="Apellido materno"
             />
           </div>
           <div class="col-12 md:col-6">
@@ -70,10 +97,32 @@
             />
           </div>
           <div class="col-12 md:col-6">
-            <custom-input-text-signal
+            <custom-input-select-signal
+              [control]="form.controls.maritalStatus"
+              label="Estado civil"
+              [data]="maritalStatusOptions()"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.educationLevel"
+              label="Nivel de educacion"
+              [data]="educationLevelOptions()"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-mask-signal
               [control]="form.controls.phoneNumber"
-              label="Telefono principal"
-              placeholder="Telefono"
+              label="Telefono celular"
+              placeholder="(00) 0000-0000"
+              customMask="(00) 0000-0000"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.email"
+              label="Correo electronico"
+              placeholder="correo@ejemplo.com"
             />
           </div>
           <div class="col-12 md:col-4">
@@ -91,12 +140,43 @@
             />
           </div>
           <div class="col-12 md:col-4">
+            <custom-input-mask-signal
+              [control]="form.controls.rfcPostalCode"
+              label="Codigo postal del RFC"
+              placeholder="00000"
+              customMask="00000"
+            />
+          </div>
+          <div class="col-12 md:col-6">
             <custom-input-text-signal
               [control]="form.controls.curp"
               label="CURP"
               placeholder="CURP"
             />
           </div>
+          <div class="col-12 md:col-6">
+            <custom-input-toggle-switch-signal
+              [control]="form.controls.hasInfonavitCredit"
+              label="Cuenta con credito INFONAVIT"
+            />
+          </div>
+          @if (form.controls.hasInfonavitCredit.value) {
+          <div class="col-12 md:col-6">
+            <custom-input-mask-signal
+              [control]="form.controls.infonavitCreditNumber"
+              label="No. Credito"
+              placeholder="0000000000"
+              customMask="0000000000"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.infonavitDiscountFactor"
+              label="FD o % de descuento"
+              placeholder="Factor de descuento o porcentaje"
+            />
+          </div>
+          }
         </div>
       </section>
 
@@ -150,10 +230,11 @@
             />
           </div>
           <div class="col-12 md:col-6">
-            <custom-input-text-signal
+            <custom-input-mask-signal
               [control]="form.controls.emergencyContactPhoneNumber"
               label="Telefono de emergencia"
-              placeholder="Telefono"
+              placeholder="(00) 0000-0000"
+              customMask="(00) 0000-0000"
             />
           </div>
           <div class="col-12 md:col-6">
@@ -172,10 +253,11 @@
             />
           </div>
           <div class="col-12 md:col-6">
-            <custom-input-text-signal
+            <custom-input-mask-signal
               [control]="form.controls.beneficiaryPhoneNumber"
               label="Telefono del beneficiario"
-              placeholder="Telefono"
+              placeholder="(00) 0000-0000"
+              customMask="(00) 0000-0000"
             />
           </div>
           <div class="col-12 md:col-6">
@@ -191,10 +273,11 @@
       <section step="4">
         <div class="grid">
           <div class="col-12 md:col-4">
-            <custom-input-text-signal
-              [control]="form.controls.bankName"
+            <custom-input-select-signal
+              [control]="form.controls.bankId"
               label="Banco"
-              placeholder="Nombre del banco"
+              [data]="bankOptions()"
+              [filter]="true"
             />
           </div>
           <div class="col-12 md:col-4">
@@ -310,10 +393,8 @@
               <p class="m-0 font-semibold pb-2">Resumen personal</p>
               <p class="m-0 pb-1">
                 {{ form.controls.firstName.value }}
-                {{ form.controls.paternalLastName.value }}
-                {{ form.controls.maternalLastName.value }}
+                {{ form.controls.lastName.value }}
               </p>
-              <p class="m-0 pb-1">Fuente: {{ recruitmentSourceLabel() }}</p>
               <p class="m-0 pb-1">Telefono: {{ form.controls.phoneNumber.value }}</p>
               <p class="m-0">CURP: {{ form.controls.curp.value }}</p>
             </div>
@@ -342,7 +423,10 @@
                   )
                 }}
               </p>
-              <p class="m-0">Banco: {{ form.controls.bankName.value }}</p>
+              <p class="m-0">
+                Banco:
+                {{ resolveOptionLabel(bankOptions(), form.controls.bankId.value) }}
+              </p>
             </div>
           </div>
           <div class="col-12">

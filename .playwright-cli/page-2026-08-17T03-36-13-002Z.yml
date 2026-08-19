@@ -1,0 +1,146 @@
+- generic [ref=f1e1]:
+  - link "Saltar al contenido principal" [ref=f1e2] [cursor=pointer]:
+    - /url: "#app-root-outlet"
+  - generic "Aplicación LuxuryApp" [ref=f1e3]:
+    - generic:
+      - alertdialog
+    - main [ref=f1e7]:
+      - generic [ref=f1e10]:
+        - toolbar [ref=f1e14]:
+          - generic [ref=f1e16]:
+            - button "Abrir o cerrar el menú lateral" [ref=f1e17] [cursor=pointer]
+            - button "LUXURY" [ref=f1e22] [cursor=pointer]
+            - navigation [ref=f1e31]:
+              - list [ref=f1e32]:
+                - listitem [ref=f1e33]:
+                  - link "Inicio" [ref=f1e34] [cursor=pointer]:
+                    - /url: /dashboard
+                - listitem [ref=f1e39]
+                - listitem [ref=f1e42]:
+                  - link "Directorio" [ref=f1e43] [cursor=pointer]:
+                    - /url: /directory
+                - listitem [ref=f1e45]
+                - listitem [ref=f1e48]:
+                  - link "Vacantes y Entrevistas" [ref=f1e49] [cursor=pointer]:
+                    - /url: /directory/employee-interviewer-queue
+          - generic [ref=f1e52]:
+            - button "Inicio" [ref=f1e53] [cursor=pointer]
+            - button "Pagina anterior" [ref=f1e58] [cursor=pointer]
+            - button "Pagina siguiente" [ref=f1e63] [cursor=pointer]
+            - button "Actualizar" [ref=f1e68] [cursor=pointer]
+            - button "Mi edificio" [ref=f1e73] [cursor=pointer]
+            - button "Anuncios" [ref=f1e78] [cursor=pointer]
+            - button "Comunicado IA" [ref=f1e83] [cursor=pointer]
+            - button "Telefonos de Emergencia" [ref=f1e88] [cursor=pointer]
+            - button "Configuración" [ref=f1e93] [cursor=pointer]
+            - button "Novedades" [ref=f1e98] [cursor=pointer]
+            - button "Cambiar tema claro u oscuro" [ref=f1e103] [cursor=pointer]
+            - 'button "Alerta de pánico: mantén presionado para activar" [ref=f1e109] [cursor=pointer]'
+            - button "Notificaciones" [ref=f1e116] [cursor=pointer]
+            - button "Abrir menú de usuario" [ref=f1e124] [cursor=pointer]
+        - navigation [ref=f1e134]:
+          - generic [ref=f1e135]:
+            - generic [ref=f1e136]: LuxuryApp
+            - generic [ref=f1e137]: Gestión Inteligente
+          - generic [ref=f1e145]:
+            - heading "Administrador LBG" [level=2] [ref=f1e146]
+            - paragraph [ref=f1e147]: Empleado
+            - heading "LUXURY" [level=3] [ref=f1e149]
+          - generic [ref=f1e150]:
+            - generic [ref=f1e151]: Design System
+            - list [ref=f1e153]:
+              - listitem [ref=f1e154]:
+                - button "Luxury Design System" [ref=f1e155] [cursor=pointer]
+            - separator
+            - list [ref=f1e166]:
+              - listitem [ref=f1e167]:
+                - button "Legal" [ref=f1e168] [cursor=pointer]
+              - listitem [ref=f1e179]:
+                - link "Contabilidad" [ref=f1e180] [cursor=pointer]:
+                  - /url: /contabilidad
+              - listitem [ref=f1e186]:
+                - link "Cobranza Panel" [ref=f1e187] [cursor=pointer]:
+                  - /url: /cobranza-nativa
+              - listitem [ref=f1e193]:
+                - button "Tickets" [ref=f1e194] [cursor=pointer]
+              - listitem [ref=f1e205]:
+                - button "Inspecciones" [ref=f1e206] [cursor=pointer]
+              - listitem [ref=f1e217]:
+                - button "Juntas de comite" [ref=f1e218] [cursor=pointer]
+              - listitem [ref=f1e229]:
+                - button "Compras" [ref=f1e230] [cursor=pointer]
+              - listitem [ref=f1e241]:
+                - button "Bitacoras" [ref=f1e242] [cursor=pointer]
+              - listitem [ref=f1e253]:
+                - button "Almacen" [ref=f1e254] [cursor=pointer]
+              - listitem [ref=f1e265]:
+                - button "Inventarios" [ref=f1e266] [cursor=pointer]
+              - listitem [ref=f1e277]:
+                - button "Biblioteca" [ref=f1e278] [cursor=pointer]
+              - listitem [ref=f1e289]:
+                - button "Calendarios" [ref=f1e290] [cursor=pointer]
+              - listitem [ref=f1e299]:
+                - button "Directorios" [ref=f1e300] [cursor=pointer]
+              - listitem [ref=f1e309]:
+                - link "Supervisión" [ref=f1e310] [cursor=pointer]:
+                  - /url: /supervision
+              - listitem [ref=f1e316]:
+                - button "Reportes" [ref=f1e317] [cursor=pointer]
+              - listitem [ref=f1e326]:
+                - button "Entrega recepción" [ref=f1e327] [cursor=pointer]
+              - listitem [ref=f1e336]:
+                - button "Reclutamiento" [ref=f1e337] [cursor=pointer]
+              - listitem [ref=f1e346]:
+                - generic [ref=f1e347]: Sistemas
+              - listitem [ref=f1e353]:
+                - generic [ref=f1e354]: Reservaciones
+              - listitem [ref=f1e360]:
+                - generic [ref=f1e361]: Pases QR
+              - listitem [ref=f1e367]:
+                - generic [ref=f1e368]: Paqueteria
+              - listitem [ref=f1e374]:
+                - button "Recursos Humanos" [ref=f1e375] [cursor=pointer]
+              - listitem [ref=f1e384]:
+                - link "Anuncios" [ref=f1e385] [cursor=pointer]:
+                  - /url: /announcements/manage
+              - listitem [ref=f1e391]:
+                - button "Utilidades" [ref=f1e392] [cursor=pointer]
+        - generic [ref=f1e404]:
+          - generic [ref=f1e406]:
+            - generic [ref=f1e407]:
+              - heading "Mis vacantes y entrevistas" [level=2] [ref=f1e408]
+              - paragraph [ref=f1e409]: Vacantes pendientes relacionadas contigo como entrevistador y entrevistas agendadas para dar seguimiento.
+            - generic [ref=f1e410]:
+              - generic [ref=f1e411]:
+                - generic [ref=f1e412]: Vacantes
+                - generic [ref=f1e413]: "0"
+              - generic [ref=f1e414]:
+                - generic [ref=f1e415]: Pendientes
+                - generic [ref=f1e416]: "0"
+              - generic [ref=f1e417]:
+                - generic [ref=f1e418]: Vencidas
+                - generic [ref=f1e419]: "0"
+              - generic [ref=f1e420]:
+                - generic [ref=f1e421]: Historico
+                - generic [ref=f1e422]: "0"
+          - generic [ref=f1e424]:
+            - group [ref=f1e426]:
+              - button "Pendientes" [ref=f1e428] [cursor=pointer]
+              - button "Historico" [ref=f1e431] [cursor=pointer]
+              - button "Vencidas" [ref=f1e434] [cursor=pointer]
+              - button "Con feedback" [ref=f1e437] [cursor=pointer]
+              - button "Todo" [ref=f1e440] [cursor=pointer]
+            - textbox "Buscar por vacante, candidato o estado..." [ref=f1e443]
+          - generic [ref=f1e444]:
+            - generic [ref=f1e445]: Sin entrevistas asignadas
+            - generic [ref=f1e446]: No se encontraron vacantes pendientes con entrevistas programadas o activas para este entrevistador.
+  - menu [active] [ref=f1e460]:
+    - menuitem "LUXURY" [ref=f1e461]
+    - menuitem "LA JOLLA" [ref=f1e466]
+    - menuitem "AVIVIA 58" [ref=f1e471]
+    - menuitem "ARMONI" [ref=f1e476]
+    - menuitem "MITIKAH" [ref=f1e481]
+    - menuitem "PARAGON" [ref=f1e486]
+    - menuitem "ISOLA" [ref=f1e491]
+    - menuitem "ROYAL REFORMA" [ref=f1e496]
+    - menuitem "CORE 31" [ref=f1e501]

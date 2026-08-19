@@ -79,6 +79,20 @@
         [control]="resultadoControl"
         label="Resultado (solo SolicitudTerminada)"
       />
+
+      <!-- Nuevos controles para AlertaTareaUrgente -->
+      <custom-input-text-signal
+        [control]="tareaControl"
+        label="Tarea (solo AlertaTareaUrgente)"
+      />
+      <custom-input-text-signal
+        [control]="responsableControl"
+        label="Responsable (solo AlertaTareaUrgente)"
+      />
+      <custom-input-text-signal
+        [control]="fechaLimiteControl"
+        label="Fecha Límite (solo AlertaTareaUrgente)"
+      />
     </div>
     <div class="flex flex-wrap gap-2">
       <il-button
@@ -100,6 +114,13 @@
         [disabled]="!phoneControl.value"
         iconClass="material-symbols-light:check-circle"
         label="Enviar SolicitudTerminada"
+      />
+      <il-button
+        severity="danger"
+        (clicked)="sendWhatsAppAlertaTareaUrgente()"
+        [disabled]="!phoneControl.value"
+        iconClass="material-symbols-light:warning"
+        label="Enviar AlertaTareaUrgente"
       />
     </div>
   </lx-card>

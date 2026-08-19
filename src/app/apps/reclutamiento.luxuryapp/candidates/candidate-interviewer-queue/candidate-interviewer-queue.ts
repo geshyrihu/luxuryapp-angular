@@ -24,7 +24,7 @@ import { CandidateInterviewFeedbackForm } from "../candidate-interview/candidate
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { candidateDecisionLabel } from "../recruitment-shared/candidate-decision-labels";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
-import { InterviewerActionType } from "src/app/core/enums/interviewer-action-type";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 
 
 type QueueMode = "pending" | "history" | "overdue" | "feedback" | "all";
@@ -60,6 +60,7 @@ export class CandidateInterviewerQueue implements OnInit {
   private router = inject(Router);
   private dialogHandlerS = inject(DialogHandlerService);
   private confirmS = inject(ConfirmService);
+  private toastS = inject(CustomToastService);
 
   readonly dataSignal = signal<CandidateInterviewerQueueDto[]>([]);
   readonly loading = signal(false);
@@ -206,39 +207,39 @@ export class CandidateInterviewerQueue implements OnInit {
   }
 
   async onMarkNoShow(candidate: QueueCandidateView): Promise<void> {
+    if (!candidate.candidateProcessId) {
+      this.toastS.showWarn(
+        "Proceso requerido",
+        "El candidato no tiene un proceso activo para responder esta entrevista.",
+      );
+      return;
+    }
+
     const confirmed = await this.confirmS.confirm(`Marcar a ${candidate.candidateName} como "No asistio"?`);
     if (!confirmed) return;
 
     await this.interviewerQueueS.executeAction({
-      candidateApplicationId: candidate.candidateApplicationId,
-      candidateProcessId: candidate.candidateProcessId ?? undefined,
-      action: InterviewerActionType.MarkNoShow,
-      comment: "No asistio a la entrevista programada.",
+      candidateProcessId: candidate.candidateProcessId,
+      decision: CandidateDecision.NoSePresento,
+      additionalComment: "No asistio a la entrevista programada.",
     });
 
     await this.onLoadData();
   }
 
   async onApprove(candidate: QueueCandidateView): Promise<void> {
-    await this.interviewerQueueS.executeAction({
-      candidateApplicationId: candidate.candidateApplicationId,
-      candidateProcessId: candidate.candidateProcessId ?? undefined,
-      action: InterviewerActionType.Approve,
-      comment: "Aprobado por entrevistador para continuar proceso.",
-    });
-
-    await this.onLoadData();
-  }
-
-  async onRevert(candidate: QueueCandidateView): Promise<void> {
-    const confirmed = await this.confirmS.confirm(`¿Revertir decisión para ${candidate.candidateName}?`);
-    if (!confirmed) return;
+    if (!candidate.candidateProcessId) {
+      this.toastS.showWarn(
+        "Proceso requerido",
+        "El candidato no tiene un proceso activo para responder esta entrevista.",
+      );
+      return;
+    }
 
     await this.interviewerQueueS.executeAction({
-      candidateApplicationId: candidate.candidateApplicationId,
-      candidateProcessId: candidate.candidateProcessId ?? undefined,
-      action: InterviewerActionType.RevertDecision,
-      comment: "Decisión revertida.",
+      candidateProcessId: candidate.candidateProcessId,
+      decision: CandidateDecision.Aprobado,
+      additionalComment: "Aprobado por entrevistador para continuar proceso.",
     });
 
     await this.onLoadData();

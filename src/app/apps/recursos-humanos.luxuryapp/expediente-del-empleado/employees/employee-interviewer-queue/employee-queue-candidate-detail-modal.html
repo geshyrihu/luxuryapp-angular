@@ -1,0 +1,144 @@
+@if (loading()) {
+<div class="flex justify-content-center p-5">
+  <span class="text-color-secondary">Cargando...</span>
+</div>
+} @else if (!detail(); as _) {
+<div class="flex flex-column align-items-center p-5 gap-2">
+  <span class="text-color-secondary">No se pudo cargar el candidato.</span>
+  <il-button label="Cerrar" severity="secondary" (clicked)="close()" />
+</div>
+} @else {
+<div class="p-1">
+  <!-- Encabezado: avatar, nombre, estado y acceso directo al CV -->
+  <div
+    class="flex flex-column sm:flex-row sm:align-items-center sm:justify-content-between gap-3 mb-4 pb-3 border-bottom-1 surface-border"
+  >
+    <div class="flex align-items-center gap-3">
+      <lx-avatar [label]="initials()" shape="circle" size="xlarge" styleClass="bg-primary text-white" />
+      <div>
+        <h2 class="font-semibold text-xl m-0">{{ detail()?.fullName }}</h2>
+        <div class="mt-1">
+          <app-mapped-p-tag [value]="detail()?.status" [options]="statusOptions" />
+        </div>
+      </div>
+    </div>
+
+    @if (detail()?.cvFileName) {
+    <il-button-view-pdf
+      [url]="detail()?.cvFileUrl"
+      [fileName]="detail()?.cvFileName"
+      label="Ver CV"
+      severity="danger"
+      variant="outline"
+      class="flex-shrink-0"
+    />
+    } @else {
+    <span class="text-sm text-color-secondary flex-shrink-0">Sin CV disponible</span>
+    }
+  </div>
+
+  <!-- Datos personales -->
+  <div class="grid mb-3">
+    <div class="col-12 md:col-6">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Telefono</small>
+        <div class="font-medium">{{ detail()?.phoneNumber || "Sin registrar" }}</div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Correo</small>
+        <div class="font-medium">{{ detail()?.email || "Sin registrar" }}</div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Fecha de nacimiento</small>
+        <div class="font-medium">
+          {{ detail()?.birthDate ? (detail()?.birthDate | date:'dd/MM/yyyy') : "Sin registrar" }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Fuente de reclutamiento</small>
+        <div class="font-medium">{{ recruitmentSourceLabel() }}</div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Disponibilidad</small>
+        <div class="font-medium">{{ detail()?.availability || "Sin registrar" }}</div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Expectativa salarial</small>
+        <div class="font-medium">
+          {{ detail()?.salaryExpectation ? ("$" + detail()?.salaryExpectation) : "Sin registrar" }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Direccion actual</small>
+        <div class="font-medium">{{ detail()?.currentAddress || "Sin registrar" }}</div>
+      </div>
+    </div>
+    @if (detail()?.experienceSummary) {
+    <div class="col-12">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Resumen de experiencia</small>
+        <div class="font-medium">{{ detail()?.experienceSummary }}</div>
+      </div>
+    </div>
+    }
+    @if (detail()?.generalComments) {
+    <div class="col-12">
+      <div class="card p-3 h-full">
+        <small class="text-color-secondary block mb-1">Comentarios generales</small>
+        <div class="font-medium">{{ detail()?.generalComments }}</div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <!-- Experiencia laboral -->
+  <div class="card p-3 mb-3">
+    <div class="font-semibold mb-3">Experiencia laboral</div>
+    @if (workExperiences().length === 0) {
+    <span class="text-color-secondary">Sin experiencias registradas.</span>
+    } @else {
+    <div class="flex flex-column gap-2">
+      @for (exp of workExperiences(); track exp.id) {
+      <div class="border-1 surface-border border-round p-2">
+        <div class="font-medium">{{ exp.jobPosition }} — {{ exp.companyName }}</div>
+        <div class="text-sm text-color-secondary">
+          {{ exp.startDate | date:'MM/yyyy' }} -
+          {{ exp.endDate ? (exp.endDate | date:'MM/yyyy') : 'Actual' }}
+          @if (exp.departureReason) { · {{ exp.departureReason }} }
+        </div>
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="flex align-items-center justify-content-end gap-2">
+    @if (!canRespond && pendingAction) {
+    <span class="text-sm text-color-secondary mr-auto">
+      Acción pendiente: {{ pendingAction }}
+    </span>
+    }
+    <il-button label="Cerrar" severity="secondary" (clicked)="close()" />
+    <il-button
+      label="Responder entrevista"
+      iconClass="material-symbols-light:more"
+      severity="primary"
+      [disabled]="!canRespond"
+      [attr.title]="!canRespond ? 'Este candidato no tiene una entrevista programada activa.' : null"
+      (clicked)="respondToInterview()"
+    />
+  </div>
+</div>
+}

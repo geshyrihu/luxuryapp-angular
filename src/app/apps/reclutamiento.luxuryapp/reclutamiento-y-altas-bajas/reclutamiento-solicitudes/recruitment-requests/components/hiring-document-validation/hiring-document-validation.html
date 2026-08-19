@@ -1,0 +1,79 @@
+<div class="documents-shell">
+  <div class="flex flex-column gap-2 mb-4">
+    <p class="m-0 font-semibold">Documentación del Expediente</p>
+    <p class="m-0 text-color-secondary">
+      Los documentos son cargados por Recursos Humanos en el expediente del
+      empleado. Revisa y valida cada documento.
+    </p>
+  </div>
+
+  <lx-divider />
+
+  @if (isLoading()) {
+    <p class="m-0 text-color-secondary">Cargando documentos...</p>
+  } @else {
+    <div class="grid mt-3">
+      @for (row of documentRows(); track row.option.value) {
+        <div class="col-12 md:col-3">
+          <lx-fieldset
+            [legend]="row.option.label"
+            [toggleable]="true"
+            [collapsed]="false"
+            class="mb-2"
+          >
+            @if (!row.document?.isSubmitted || !row.document?.fileUrl) {
+              <p class="text-500 text-sm italic m-0">Sin archivo cargado</p>
+            } @else {
+              <div class="document-card">
+                <div class="document-card__row">
+                  <div class="flex align-items-center gap-2 document-card__pdf">
+                    <il-button-view-pdf
+                      [url]="row.document?.fileUrl"
+                      [fileName]="row.option.label"
+                    />
+                  </div>
+                  <lx-tag
+                    [value]="row.document?.isValidated ? 'Validado' : 'Pendiente'"
+                    [severity]="row.document?.isValidated ? 'success' : 'warning'"
+                    class="text-xs"
+                  />
+                </div>
+
+                @if (!row.document?.isValidated) {
+                  <div class="flex gap-2 align-items-center">
+                    <il-button-confirm
+                      label="Validar documento"
+                      variant="solid"
+                      severity="success"
+                      swalText="¿Seguro que deseas validar este documento?"
+                      [disabled]="validatingId() !== null || rejectingId() !== null"
+                      [loading]="validatingId() === row.document?.id"
+                      (confirmed)="onValidate(row.document)"
+                    />
+                    <iw-button
+                      iconClass="material-symbols-light:cancel"
+                      severity="danger"
+                      [disabled]="validatingId() !== null || rejectingId() !== null"
+                      [loading]="rejectingId() === row.document?.id"
+                      (clicked)="onReject(row.document)"
+                    />
+                  </div>
+
+                  @if (row.document?.validationNotes) {
+                    <p class="text-sm text-red-500 m-0">
+                      Motivo del rechazo: {{ row.document?.validationNotes }}
+                    </p>
+                  }
+                } @else {
+                  <p class="text-500 text-sm m-0">
+                    Validado por {{ row.document?.validatedByUserName || "—" }}
+                  </p>
+                }
+              </div>
+            }
+          </lx-fieldset>
+        </div>
+      }
+    </div>
+  }
+</div>

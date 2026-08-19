@@ -87,3 +87,4 @@ service-account*.json
 # Local configuration files
 config.local.ts
 config.local.json
+.aider*

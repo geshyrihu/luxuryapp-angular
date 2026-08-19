@@ -43,12 +43,14 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [readonly]="readonly()"
         [disable]="disable()"
         [mode]="mode()"
+        [monthSelectorType]="'dropdown'"
         [locale]="spanishLocale"
         [altInput]="true"
-        [altFormat]="'d/M/Y'"
+        [altFormat]="'d/m/Y'"
         [convertModelValue]="false"
         [dateFormat]="'Y-m-d'"
         [allowInput]="true"
+        [parseDate]="parseDate"
         fluid
         class="w-full"
       />
@@ -67,6 +69,33 @@ export class WebInputDate extends BaseInputSignal {
   disable = input<Date[]>([]);
   mode = input<"single" | "multiple" | "range">("single");
   protected readonly spanishLocale = Spanish;
+
+  // Parser para permitir tipear dd/mm/yyyy (y seguir aceptando yyyy-mm-dd / Date).
+  // Flatpickr usa config.parseDate para interpretar el texto tipeado en el altInput.
+  parseDate = (date: string | Date): Date | undefined => {
+    if (date == null) return undefined;
+    if (date instanceof Date) return isNaN(date.getTime()) ? undefined : date;
+    if (typeof date !== "string") return undefined;
+
+    const value = date.trim();
+    const dayMonthYear = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (dayMonthYear) {
+      const day = +dayMonthYear[1];
+      const month = +dayMonthYear[2];
+      const year = +dayMonthYear[3];
+      const parsed = new Date(year, month - 1, day);
+      return isNaN(parsed.getTime()) ? undefined : parsed;
+    }
+
+    const iso = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (iso) {
+      const parsed = new Date(+iso[1], +iso[2] - 1, +iso[3]);
+      return isNaN(parsed.getTime()) ? undefined : parsed;
+    }
+
+    const fallback = new Date(value);
+    return isNaN(fallback.getTime()) ? undefined : fallback;
+  };
 
   override writeValue(value: any): void {
     if (value) {

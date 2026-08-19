@@ -3,7 +3,7 @@
     <div>
       <h2 class="org-chart-page__title">Organigrama de Puestos</h2>
       <p class="org-chart-page__subtitle">
-        {{ totalNodes() }} puestos é {{ vacantCount() }} vacantes
+        {{ totalNodes() }} puestos y {{ vacantCount() }} vacantes
       </p>
     </div>
 
@@ -133,9 +133,10 @@
               @for (row of editRows(); track row.node.workPositionId) {
               <tr
                 class="org-editor-row"
+                [class.org-editor-row--group]="row.node.isGroup"
                 [class.org-editor-row--selected]="selectedOrigin()?.workPositionId === row.node.workPositionId"
                 [class.org-editor-row--drop-hover]="dragHoverNodeId() === row.node.workPositionId"
-                [attr.draggable]="true"
+                [attr.draggable]="!row.node.isGroup"
                 [attr.aria-label]="getNodeAriaLabel(row.node)"
                 (click)="onEditorRowClick(row.node)"
                 (dragstart)="onEditorRowDragStart(row.node, $event)"
@@ -152,15 +153,26 @@
                     class="org-editor-node"
                     [style.padding-left]="getEditorRowIndent(row.depth)"
                   >
+                    @if (!row.node.isGroup) {
                     <span
                       class="org-editor-node__drag-handle material-symbols-light:open-in-full"
                       aria-hidden="true"
                     ></span>
+                    }
                     <span class="org-editor-node__tree-guide"></span>
                     <div class="org-editor-node__content">
+                      @if (row.node.isGroup) {
+                      <span class="org-editor-node__folio">
+                        <span class="org-graph-badge org-graph-badge--group">
+                          {{ row.node.groupMemberCount }} puestos
+                        </span>
+                        {{ row.node.isGroupExpanded ? "Clic para colapsar" : "Clic para expandir" }}
+                      </span>
+                      } @else {
                       <span class="org-editor-node__folio">
                         {{ row.node.folio }}
                       </span>
+                      }
                       <span class="org-editor-node__role">
                         {{ row.node.roleDisplayName }}
                       </span>
@@ -172,10 +184,20 @@
                     </div>
                   </div>
                 </td>
-                <td>{{ row.node.employeeName ?? "Vacante" }}</td>
+                <td>{{ row.node.isGroup ? "—" : (row.node.employeeName ?? "Vacante") }}</td>
                 <td>{{ getParentLabel(row) }}</td>
                 <td>{{ row.node.departmentName }}</td>
                 <td>
+                  @if (row.node.isGroup) {
+                  <div class="org-editor-actions">
+                    <il-button
+                      [label]="row.node.isGroupExpanded ? 'Colapsar' : 'Expandir'"
+                      size="small"
+                      variant="text"
+                      (clicked)="toggleGroup(row.node.workPositionId); $event.stopPropagation()"
+                    />
+                  </div>
+                  } @else {
                   <div class="org-editor-actions">
                     <il-button
                       label="Subir"
@@ -199,6 +221,7 @@
                       (clicked)="moveNodeToRoot(row.node); $event.stopPropagation()"
                     />
                   </div>
+                  }
                 </td>
               </tr>
               }
@@ -263,6 +286,7 @@
               class="org-graph-card"
               [class.org-graph-card--root]="node.data.isVirtualRoot"
               [class.org-graph-card--vacant]="node.data.isVacant"
+              [class.org-graph-card--group]="node.data.orgNode.isGroup"
               [class.org-graph-card--interactive]="editMode()"
               [class.org-graph-card--dragging]="
                 draggingNode()?.workPositionId === node.data.orgNode.workPositionId
@@ -290,7 +314,9 @@
               [attr.tabindex]="node.data.isVirtualRoot ? -1 : 0"
               [attr.title]="getNodeAriaLabel(node.data.orgNode)"
               [attr.draggable]="
-                editMode() && !node.data.isVirtualRoot ? true : null
+                editMode() && !node.data.isVirtualRoot && !node.data.orgNode.isGroup
+                  ? true
+                  : null
               "
               (dragstart)="onCardDragStart(node.data.orgNode, $event)"
               (dragend)="onCardDragEnd()"
@@ -319,6 +345,11 @@
                 </div>
                 }
 
+                @if (node.data.orgNode.isGroup) {
+                <div class="org-graph-card__avatar org-graph-card__avatar--group">
+                  <span>{{ node.data.orgNode.groupMemberCount }}</span>
+                </div>
+                } @else {
                 <div
                   class="org-graph-card__avatar"
                   [class.org-graph-card__avatar--photo]="
@@ -334,6 +365,7 @@
                   <span>{{ getNodeInitials(node.data.orgNode) }}</span>
                   }
                 </div>
+                }
 
                 <div class="org-graph-card__content">
                   <div class="org-graph-card__headline">
@@ -343,13 +375,21 @@
                     {{ node.data.orgNode.roleDisplayName }}
                   </div>
                   <div class="org-graph-card__meta">
-                    {{ node.data.orgNode.departmentName }} é {{
+                    @if (node.data.orgNode.isGroup) {
+                    {{ node.data.orgNode.isGroupExpanded ? "Clic para colapsar" : "Clic para expandir" }}
+                    } @else {
+                    {{ node.data.orgNode.departmentName }} · {{
                     node.data.orgNode.folio }}
+                    }
                   </div>
                 </div>
 
                 <div class="org-graph-card__footer">
-                  @if (node.data.isVirtualRoot) {
+                  @if (node.data.orgNode.isGroup) {
+                  <span class="org-graph-badge org-graph-badge--group">
+                    Grupo
+                  </span>
+                  } @else if (node.data.isVirtualRoot) {
                   <span class="org-graph-badge org-graph-badge--neutral">
                     Nodo virtual
                   </span>

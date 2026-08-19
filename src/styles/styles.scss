@@ -94,6 +94,9 @@ body {
 /* 6. SIDEBAR */
 @import "shared/sidebar";
 
+/* 6.1 FLATPICKR — header con color primario de marca (sin capa, vence flatpickr.css) */
+@import "web/flatpickr";
+
 /* 7. FONTS */
 /* Outfit variable self-hosted (src/assets/fonts/) — sin CDN ni FOUT por subset. */
 @import "core/fonts";

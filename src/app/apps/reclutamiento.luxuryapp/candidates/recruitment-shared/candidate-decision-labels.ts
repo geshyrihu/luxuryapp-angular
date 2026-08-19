@@ -5,6 +5,7 @@ export const CANDIDATE_DECISION_LABELS: Record<CandidateDecision, string> = {
   [CandidateDecision.Rechazado]: "Rechazado",
   [CandidateDecision.EnEspera]: "En espera",
   [CandidateDecision.NoSePresento]: "No se presento",
+  [CandidateDecision.Reprogramar]: "Reprogramar",
 };
 
 export function candidateDecisionLabel(decision: CandidateDecision): string {

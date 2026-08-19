@@ -68,9 +68,7 @@ interface VacanteListItem {
 interface RequestPositionDeleteImpact {
   requestPositionId: string;
   candidateProcessesCount: number;
-  candidateApplicationsCount: number;
   candidateInterviewsCount: number;
-  candidateInterviewFeedbacksCount: number;
   candidateInterviewResultsCount: number;
   candidateStageHistoryCount: number;
   requestEmployeeRegistersCount: number;
@@ -174,9 +172,7 @@ onDelete(id: string) {
       html: `Se eliminará permanentemente la vacante y todo lo relacionado en cascada:<br /><br />
         <ul class="text-left" style="display:inline-block">
           <li>Procesos candidato-vacante: <b>${impact.candidateProcessesCount}</b></li>
-          <li>Postulaciones: <b>${impact.candidateApplicationsCount}</b></li>
           <li>Entrevistas: <b>${impact.candidateInterviewsCount}</b></li>
-          <li>Retroalimentaciones de entrevista: <b>${impact.candidateInterviewFeedbacksCount}</b></li>
           <li>Resultados de entrevista: <b>${impact.candidateInterviewResultsCount}</b></li>
           <li>Historial de etapas: <b>${impact.candidateStageHistoryCount}</b></li>
           <li>Registros de alta de empleado: <b>${impact.requestEmployeeRegistersCount}</b></li>

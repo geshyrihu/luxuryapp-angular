@@ -91,19 +91,21 @@ export class PiscinaForm implements OnInit {
   });
 
   ngOnInit(): void {
-    this.onLoadEnumSelectItem();
-    const configId = this.config.data.id;
-    if (configId) {
-      this.id.set(configId);
-      this.onLoadData();
-    }
+    this.onLoadEnumSelectItem().then(() => {
+      const configId = this.config.data.id;
+      if (configId) {
+        this.id.set(configId);
+        this.onLoadData();
+      }
+    });
   }
 
   onLoadData() {
     const urlApi = Endpoints.RefactorMantenimiento.piscinaById(this.id());
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.model.set(result);
-      this.form.patchValue(result);
+      const tipo = this.cb_typePiscina().find((x: any) => x.label === result.typePiscina);
+      this.form.patchValue({ ...result, typePiscina: tipo ? Number(tipo.value) : null });
     });
   }
 
@@ -149,8 +151,8 @@ export class PiscinaForm implements OnInit {
     this.form.patchValue({ pathImage: file });
   }
 
-  onLoadEnumSelectItem() {
-    this.apiResponseS
+  onLoadEnumSelectItem(): Promise<void> {
+    return this.apiResponseS
       .onGetEnumSelectItem(Endpoints.EnumSelectItems.typePiscina)
       .then((result: any) => {
         this.cb_typePiscina.set(result);

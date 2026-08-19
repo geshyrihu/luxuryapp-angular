@@ -1,14 +1,20 @@
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 
 export interface CandidateProcessHiringDto {
   executionDate: string;
   firstName: string;
-  paternalLastName: string;
-  maternalLastName: string;
+  email: string;
+  lastName: string;
   birthDate: string;
   nss: string;
   rfc: string;
+  rfcPostalCode: string;
   curp: string;
+  maritalStatus: number | null;
+  educationLevel: number | null;
+  hasInfonavitCredit: boolean;
+  infonavitCreditNumber: string;
+  infonavitDiscountFactor: string;
   street: string;
   neighborhood: string;
   municipality: string;
@@ -16,7 +22,7 @@ export interface CandidateProcessHiringDto {
   state: string;
   phoneNumber: string;
   typeContractRegister: number;
-  bankName: string;
+  bankId: string;
   accountNumber: string;
   clabe: string;
   beneficiaryName: string;
@@ -34,15 +40,15 @@ export interface CandidateProcessHiringDto {
   boss: string;
   customerAddress: string;
   turnoTrabajo: number;
-  recruitmentSource: number;
   additionalInformation: string;
 }
 
 export interface CandidateProcessHiringDialogData {
-  id: string;
+  id?: string;
   candidateProcessId?: string;
-  toStage: CandidateApplicationStage;
+  candidateId?: string | null;
+  requestPositionId?: string | null;
+  toStage?: CandidateProcessStage;
   candidateFirstName?: string;
   candidateLastName?: string;
-  recruitmentSource?: number | null;
 }

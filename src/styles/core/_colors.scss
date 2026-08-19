@@ -258,6 +258,30 @@ $color-budget-text: inherit !default;
 $color-budget-bg-dark: #78350f !default;
 $color-budget-text-dark: #ffffff !default;
 
+// ── ACENTOS POR DEPARTAMENTO (Organigrama de Puestos) ────────
+// Colores categóricos (identifican departamento, no estado) para las
+// tarjetas del organigrama. Se exponen como --ds-dept-* en
+// theme/_variables.scss. (Auditoría 20260817 · ACCIÓN-004 — antes
+// hardcoded en org-chart.interfaces.ts)
+$dept-administracion: #3b82f6 !default;
+$dept-mantenimiento: #f97316 !default;
+$dept-limpieza: #06b6d4 !default;
+$dept-operaciones: #22c55e !default;
+$dept-jardineria: #10b981 !default;
+$dept-sistemas: #6366f1 !default;
+$dept-seguridad: #ef4444 !default;
+$dept-reclutamiento: #a855f7 !default;
+$dept-recursos-humanos: #ec4899 !default;
+$dept-supervision: #eab308 !default;
+$dept-direcciones: #f59e0b !default;
+$dept-legal: #64748b !default;
+$dept-contabilidad: #14b8a6 !default;
+$dept-constructora: #78716c !default;
+$dept-recepcion: #84cc16 !default;
+$dept-mensajeria: #8b5cf6 !default;
+$dept-ludoteca: #d946ef !default;
+$dept-default: $neutral-400 !default;
+
 // ── SUPERFICIES DARK MODE (PrimeNG) ─────────────────────────
 // Escala navy DS para dark surfaces de PrimeNG, orientación Aura.
 // Rampa monocroma H=204, estrictamente monótona (decreciente en luminancia),

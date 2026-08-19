@@ -1,16 +1,17 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
+import { of } from "rxjs";
 import { vi } from "vitest";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
-import { InterviewerActionType } from "src/app/core/enums/interviewer-action-type";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CandidateInterviewFeedbackForm } from "./candidate-interview-feedback-form";
 
 describe("CandidateInterviewFeedbackForm", () => {
@@ -19,6 +20,7 @@ describe("CandidateInterviewFeedbackForm", () => {
   let apiResponseService: ReturnType<typeof vi.fn>;
   let toastService: ReturnType<typeof vi.fn>;
   let dialogRef: ReturnType<typeof vi.fn>;
+  let enumSelectService: { candidateRejectionReason: ReturnType<typeof vi.fn> };
   let dialogConfig: { data: { candidateApplicationId?: string; candidateProcessId?: string } };
 
   beforeEach(() => {
@@ -35,6 +37,9 @@ describe("CandidateInterviewFeedbackForm", () => {
     };
     dialogRef = {
       close: vi.fn(),
+    };
+    enumSelectService = {
+      candidateRejectionReason: vi.fn().mockReturnValue(of([])),
     };
     dialogConfig = {
       data: {
@@ -55,6 +60,7 @@ describe("CandidateInterviewFeedbackForm", () => {
       providers: [
         { provide: ApiResponseService, useValue: apiResponseService },
         { provide: CustomToastService, useValue: toastService },
+        { provide: EnumSelectService, useValue: enumSelectService },
         { provide: DynamicDialogConfig, useValue: dialogConfig },
         { provide: DynamicDialogRef, useValue: dialogRef },
       ],
@@ -83,9 +89,7 @@ describe("CandidateInterviewFeedbackForm", () => {
     await fixture.whenStable();
 
     component.form.patchValue({
-      receptionConfirmedAt: "2026-08-15T10:00:00",
       decision: CandidateDecision.EnEspera,
-      decisionReasonId: "reason-1",
       additionalComment: "Comentario",
     });
 
@@ -94,11 +98,11 @@ describe("CandidateInterviewFeedbackForm", () => {
     expect(apiResponseService.onPost).toHaveBeenCalledWith(
       EndpointsReclutamiento.CandidateProcesses.interviewerAction,
       expect.objectContaining({
-        candidateApplicationId: "application-1",
         candidateProcessId: "process-1",
-        action: InterviewerActionType.SubmitFeedback,
-        reasonId: "reason-1",
-        comment: "Comentario",
+        decision: CandidateDecision.EnEspera,
+        decisionReason: null,
+        additionalComment: "Comentario",
+        newScheduledAt: null,
       }),
     );
     expect(dialogRef.close).toHaveBeenCalledWith(true);
@@ -118,7 +122,6 @@ describe("CandidateInterviewFeedbackForm", () => {
 
     component.form.patchValue({
       decision: CandidateDecision.EnEspera,
-      decisionReasonId: "reason-1",
     });
 
     await component.onSubmit();

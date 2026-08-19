@@ -1,5 +1,5 @@
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 
 export interface CandidateInterviewerQueueDto {
   requestPositionId: string;
@@ -8,6 +8,7 @@ export interface CandidateInterviewerQueueDto {
   positionName: string;
   customerName: string;
   vacancyStatus: string;
+  requestDate: string;
   candidatesInTrackingCount: number;
   nextInterviewAt?: string;
   pendingCandidatesCount: number;
@@ -17,10 +18,11 @@ export interface CandidateInterviewerQueueDto {
 
 export interface CandidateInterviewerQueueItemDto {
   candidateApplicationId: string;
+  candidateId: string;
   interviewId?: string | null;
   candidateProcessId?: string | null;
   candidateName: string;
-  currentStage: CandidateApplicationStage;
+  currentStage: CandidateProcessStage;
   interviewTypeLabel: string;
   agendaStatusCode: string;
   agendaStatusLabel: string;

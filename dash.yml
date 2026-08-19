@@ -1,0 +1,57 @@
+- generic [active] [ref=e1]:
+  - link "Saltar al contenido principal" [ref=e2] [cursor=pointer]:
+    - /url: "#app-root-outlet"
+  - generic "Aplicación LuxuryApp" [ref=e3]:
+    - generic:
+      - alertdialog
+    - main [ref=e7]:
+      - generic [ref=e74]:
+        - toolbar [ref=e78]:
+          - generic [ref=e80]:
+            - button "Abrir o cerrar el menú lateral" [ref=e81] [cursor=pointer]
+            - button "LUXURY" [ref=e84] [cursor=pointer]
+            - navigation [ref=e91]
+          - generic [ref=e98]:
+            - button "Inicio" [ref=e99] [cursor=pointer]
+            - button "Pagina anterior" [ref=e102] [cursor=pointer]
+            - button "Pagina siguiente" [ref=e105] [cursor=pointer]
+            - button "Actualizar" [ref=e108] [cursor=pointer]
+            - button "Mi edificio" [ref=e111] [cursor=pointer]
+            - button "Anuncios" [ref=e114] [cursor=pointer]
+            - button "Comunicado IA" [ref=e117] [cursor=pointer]
+            - button "Telefonos de Emergencia" [ref=e120] [cursor=pointer]
+            - button "Configuración" [ref=e123] [cursor=pointer]
+            - button "Novedades" [ref=e126] [cursor=pointer]
+            - button "Cambiar tema claro u oscuro" [ref=e131] [cursor=pointer]
+            - 'button "Alerta de pánico: mantén presionado para activar" [ref=e135] [cursor=pointer]'
+            - button "Notificaciones" [ref=e140] [cursor=pointer]
+            - button "Abrir menú de usuario" [ref=e146] [cursor=pointer]
+        - navigation [ref=e154]:
+          - generic [ref=e155]:
+            - generic [ref=e156]: LuxuryApp
+            - generic [ref=e157]: Gestión Inteligente
+          - generic [ref=e165]:
+            - heading "Administrador LBG" [level=2] [ref=e166]
+            - paragraph [ref=e167]: Empleado
+            - heading "LUXURY" [level=3] [ref=e169]
+          - generic [ref=e170]:
+            - generic [ref=e297]: Design System
+            - list [ref=e299]
+            - separator
+            - list [ref=e312]
+        - generic [ref=e182]:
+          - generic [ref=e188]:
+            - generic [ref=e189]
+            - generic [ref=e216]
+          - table [ref=e224]:
+            - rowgroup [ref=e225]
+            - rowgroup [ref=e561]
+          - generic [ref=e252]:
+            - generic [ref=e253]: En total hay 17 registros.
+            - generic [ref=e256]: 1-17 de 17
+            - button "First Page"
+            - button "Previous Page" [disabled]
+            - button "1" [ref=e1179] [cursor=pointer]
+            - button "Next Page" [disabled]
+            - button "Last Page" [disabled]
+            - generic [ref=e1180] [cursor=pointer]

@@ -92,7 +92,7 @@ export class ElevatorSparePartsChangeForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "elevatorsparepartschange",
+      endpoint: "elevator-spare-parts-change",
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

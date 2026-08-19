@@ -8,10 +8,7 @@
       content="Plataforma de gestión inmobiliaria para administración de edificios, mantenimiento, tickets y reportes financieros."
     />
     <base href="/" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- 🔒 Content Security Policy -->
 
@@ -59,19 +56,64 @@
 
   <body>
     <!-- 🔗 Skip-to-content: WCAG 2.4.1 — Permite saltar la navegación con Tab -->
-    <a href="#app-root-outlet" class="skip-link" style="position: absolute; top: -9999px; left: -9999px;">Saltar al contenido principal</a>
-    
+    <a
+      href="#app-root-outlet"
+      class="skip-link"
+      style="position: absolute; top: -9999px; left: -9999px"
+      >Saltar al contenido principal</a
+    >
+
     <app-root aria-label="Aplicación LuxuryApp">
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; width: 100vw; background-color: #f8fafc; font-family: 'Outfit', system-ui, sans-serif;">
-        <img src="assets/images/logo.png" alt="LuxuryApp" style="width: 140px; margin-bottom: 2rem; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;" onerror="this.style.display='none'">
-        <div style="width: 40px; height: 40px; border: 3px solid #e2e8f0; border-top-color: #0b3164; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          width: 100vw;
+          background-color: #f8fafc;
+          font-family: &quot;Outfit&quot;, system-ui, sans-serif;
+        "
+      >
+        <img
+          src="assets/images/logo.png"
+          alt="LuxuryApp"
+          style="
+            width: 140px;
+            margin-bottom: 2rem;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+          "
+          onerror="this.style.display = 'none'"
+        />
+        <div
+          style="
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e2e8f0;
+            border-top-color: #0b3164;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+          "
+        ></div>
         <style>
-          @keyframes spin { to { transform: rotate(360deg); } }
-          @keyframes pulse { 50% { opacity: .5; transform: scale(0.95); } }
+          @keyframes spin {
+            to {
+              transform: rotate(360deg);
+            }
+          }
+          @keyframes pulse {
+            50% {
+              opacity: 0.5;
+              transform: scale(0.95);
+            }
+          }
         </style>
       </div>
     </app-root>
 
-    <noscript>Please enable JavaScript to continue using this application.</noscript>
+    <noscript
+      >Please enable JavaScript to continue using this application.</noscript
+    >
   </body>
 </html>

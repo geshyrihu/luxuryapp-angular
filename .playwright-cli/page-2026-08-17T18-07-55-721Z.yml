@@ -1,0 +1,816 @@
+- generic [active] [ref=e1]:
+  - link "Saltar al contenido principal" [ref=e2] [cursor=pointer]:
+    - /url: "#app-root-outlet"
+  - generic "Aplicación LuxuryApp" [ref=e3]:
+    - generic:
+      - alertdialog
+    - main [ref=e7]:
+      - generic [ref=e74]:
+        - toolbar [ref=e78]:
+          - generic [ref=e80]:
+            - button "Abrir o cerrar el menú lateral" [ref=e81] [cursor=pointer]
+            - button "AVIVIA 58" [ref=e1244] [cursor=pointer]
+            - navigation [ref=e91]:
+              - list [ref=e92]:
+                - listitem [ref=e93]:
+                  - link "Inicio" [ref=e94] [cursor=pointer]:
+                    - /url: /dashboard
+          - generic [ref=e98]:
+            - button "Inicio" [ref=e99] [cursor=pointer]
+            - button "Pagina anterior" [ref=e102] [cursor=pointer]
+            - button "Pagina siguiente" [ref=e105] [cursor=pointer]
+            - button "Actualizar" [ref=e108] [cursor=pointer]
+            - button "Mi edificio" [ref=e111] [cursor=pointer]
+            - button "Anuncios" [ref=e114] [cursor=pointer]
+            - button "Comunicado IA" [ref=e117] [cursor=pointer]
+            - button "Telefonos de Emergencia" [ref=e120] [cursor=pointer]
+            - button "Configuración" [ref=e123] [cursor=pointer]
+            - button "Novedades" [ref=e126] [cursor=pointer]
+            - button "Cambiar tema claro u oscuro" [ref=e131] [cursor=pointer]
+            - 'button "Alerta de pánico: mantén presionado para activar" [ref=e135] [cursor=pointer]'
+            - button "Notificaciones" [ref=e140] [cursor=pointer]
+            - button "Abrir menú de usuario" [ref=e146] [cursor=pointer]
+        - navigation [ref=e154]:
+          - generic [ref=e155]:
+            - generic [ref=e156]: LuxuryApp
+            - generic [ref=e157]: Gestión Inteligente
+          - generic [ref=e165]:
+            - heading "Administrador LBG" [level=2] [ref=e166]
+            - paragraph [ref=e167]: Empleado
+            - heading "AVIVIA 58" [level=3] [ref=e1245]
+          - generic [ref=e170]:
+            - generic [ref=e1246]: Design System
+            - list [ref=e1248]:
+              - listitem [ref=e1249]:
+                - button "Luxury Design System" [ref=e1250] [cursor=pointer]
+            - separator
+            - list [ref=e1261]:
+              - listitem [ref=e1262]:
+                - button "Legal" [ref=e1263] [cursor=pointer]
+              - listitem [ref=e1274]:
+                - link "Contabilidad" [ref=e1275] [cursor=pointer]:
+                  - /url: /contabilidad
+              - listitem [ref=e1281]:
+                - button "Tickets" [ref=e1282] [cursor=pointer]
+              - listitem [ref=e1293]:
+                - button "Inspecciones" [ref=e1294] [cursor=pointer]
+              - listitem [ref=e1305]:
+                - button "Juntas de comite" [ref=e1306] [cursor=pointer]
+              - listitem [ref=e1317]:
+                - button "Compras" [ref=e1318] [cursor=pointer]
+              - listitem [ref=e1329]:
+                - button "Bitacoras" [ref=e1330] [cursor=pointer]
+              - listitem [ref=e1341]:
+                - button "Almacen" [ref=e1342] [cursor=pointer]
+              - listitem [ref=e1353]:
+                - button "Inventarios" [ref=e1354] [cursor=pointer]
+              - listitem [ref=e1365]:
+                - button "Biblioteca" [ref=e1366] [cursor=pointer]
+              - listitem [ref=e1377]:
+                - button "Calendarios" [ref=e1378] [cursor=pointer]
+              - listitem [ref=e1389]:
+                - button "Directorios" [ref=e1390] [cursor=pointer]
+              - listitem [ref=e1397]:
+                - link "Supervisión" [ref=e1398] [cursor=pointer]:
+                  - /url: /supervision
+              - listitem [ref=e1402]:
+                - button "Reportes" [ref=e1403] [cursor=pointer]
+              - listitem [ref=e1410]:
+                - button "Entrega recepción" [ref=e1411] [cursor=pointer]
+              - listitem [ref=e1418]:
+                - button "Reclutamiento" [ref=e1419] [cursor=pointer]
+              - listitem [ref=e1426]:
+                - generic [ref=e1427]: Sistemas
+              - listitem [ref=e1431]:
+                - generic [ref=e1432]: Reservaciones
+              - listitem [ref=e1436]:
+                - generic [ref=e1437]: Pases QR
+              - listitem [ref=e1441]:
+                - generic [ref=e1442]: Paqueteria
+              - listitem [ref=e1446]:
+                - button "Recursos Humanos" [ref=e1447] [cursor=pointer]
+              - listitem [ref=e1454]:
+                - link "Anuncios" [ref=e1455] [cursor=pointer]:
+                  - /url: /announcements/manage
+              - listitem [ref=e1459]:
+                - button "Utilidades" [ref=e1460] [cursor=pointer]
+              - listitem [ref=e1467]:
+                - button "Mesa directiva" [ref=e1468] [cursor=pointer]
+        - generic [ref=e182]:
+          - generic [ref=e188]:
+            - generic [ref=e189]:
+              - generic [ref=e521]:
+                - generic [ref=e522] [cursor=pointer]:
+                  - generic [ref=e527]: Todos
+                  - generic [ref=e528]: "351"
+                - generic [ref=e547] [cursor=pointer]:
+                  - generic [ref=e548]: 📄
+                  - generic [ref=e549]: Polizas
+                  - generic [ref=e550]: "2"
+                - generic [ref=e539] [cursor=pointer]:
+                  - generic [ref=e540]: 🔧
+                  - generic [ref=e541]: Mantenimiento
+                  - generic [ref=e542]: "206"
+                - generic [ref=e531] [cursor=pointer]:
+                  - generic [ref=e532]: 🎫
+                  - generic [ref=e533]: Tickets
+                  - generic [ref=e534]: "131"
+                - generic [ref=e1477] [cursor=pointer]:
+                  - generic [ref=e1478]: 📝
+                  - generic [ref=e1479]: Minutas
+                  - generic [ref=e1480]: "10"
+                - generic [ref=e535] [cursor=pointer]:
+                  - generic [ref=e536]: ⚖️
+                  - generic [ref=e537]: Legal
+                  - generic [ref=e538]: "1"
+                - generic [ref=e1481] [cursor=pointer]:
+                  - generic [ref=e1482]: 🪑
+                  - generic [ref=e1483]: Vacantes
+                  - generic [ref=e1484]: "1"
+              - generic [ref=e191]:
+                - button [ref=e193] [cursor=pointer]
+                - button [ref=e197] [cursor=pointer]
+                - button [ref=e202] [cursor=pointer]
+              - textbox "Buscar aquí..." [ref=e215]
+            - generic [ref=e216]:
+              - generic [ref=e219]: Critico (>8d)
+              - generic [ref=e221]: Alerta (7-8d)
+          - table [ref=e224]:
+            - rowgroup [ref=e225]:
+              - row [ref=e226]:
+                - columnheader [ref=e227] [cursor=pointer]
+                - columnheader [ref=e231] [cursor=pointer]
+                - columnheader [ref=e235] [cursor=pointer]
+                - columnheader [ref=e239] [cursor=pointer]
+                - columnheader "último Seguimiento" [ref=e243]
+                - columnheader [ref=e244] [cursor=pointer]
+                - columnheader [ref=e248] [cursor=pointer]
+            - rowgroup [ref=e561]:
+              - row [ref=e1485] [cursor=pointer]:
+                - cell "Polizas" [ref=e1486]
+                - cell "31 dic 06:00" [ref=e1490]:
+                  - generic [ref=e1491]:
+                    - generic [ref=e1492]: 31 dic
+                    - generic [ref=e1493]: 06:00
+                - cell "AVE FÉNIX PROTECCIÓN CIVIL PLAN DE PROTECCION CIVIL 2024" [ref=e1498]:
+                  - generic [ref=e1499]:
+                    - generic [ref=e1500]: AVE FÉNIX PROTECCIÓN CIVIL
+                    - generic [ref=e1501]: PLAN DE PROTECCION CIVIL 2024
+                - cell "L Legal Asignado" [ref=e1502]:
+                  - generic [ref=e1503]:
+                    - generic [ref=e1504]: L
+                    - generic [ref=e1507]:
+                      - generic [ref=e1508]: Legal
+                      - generic [ref=e1509]: Asignado
+                - cell "PLAN DE PROTECCION CIVIL 2024" [ref=e1510]
+                - cell "Por vencer" [ref=e1517]
+                - cell "-" [ref=e1521]
+              - row [ref=e1522] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1523]
+                - cell "01 feb 06:00" [ref=e1527]:
+                  - generic [ref=e1528]:
+                    - generic [ref=e1529]: 01 feb
+                    - generic [ref=e1530]: 06:00
+                - cell "Preventivo - Filtro de arena tina de agua fría mujeres 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1535]:
+                  - generic [ref=e1536]:
+                    - generic [ref=e1537]: Preventivo - Filtro de arena tina de agua fría mujeres
+                    - generic [ref=e1538]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1539]:
+                  - generic [ref=e1540]:
+                    - generic [ref=e1541]: G
+                    - generic [ref=e1544]:
+                      - generic [ref=e1545]: GOLDEN WATER
+                      - generic [ref=e1546]: Asignado
+                - cell "-- Sin info --" [ref=e1547]
+                - cell "Pendiente" [ref=e1548]
+                - cell "198 días" [ref=e1552]:
+                  - generic [ref=e1553]:
+                    - generic [ref=e1554]: "198"
+                    - generic [ref=e1555]: días
+              - row [ref=e1556] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1557]
+                - cell "01 feb 06:00" [ref=e1561]:
+                  - generic [ref=e1562]:
+                    - generic [ref=e1563]: 01 feb
+                    - generic [ref=e1564]: 06:00
+                - 'cell "Preventivo - Filtro #2 alberca exterior 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1569]':
+                  - generic [ref=e1570]:
+                    - generic [ref=e1571]: "Preventivo - Filtro #2 alberca exterior"
+                    - generic [ref=e1572]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1573]:
+                  - generic [ref=e1574]:
+                    - generic [ref=e1575]: G
+                    - generic [ref=e1578]:
+                      - generic [ref=e1579]: GOLDEN WATER
+                      - generic [ref=e1580]: Asignado
+                - cell "-- Sin info --" [ref=e1581]
+                - cell "Pendiente" [ref=e1582]
+                - cell "198 días" [ref=e1586]:
+                  - generic [ref=e1587]:
+                    - generic [ref=e1588]: "198"
+                    - generic [ref=e1589]: días
+              - row [ref=e1590] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1591]
+                - cell "01 feb 06:00" [ref=e1595]:
+                  - generic [ref=e1596]:
+                    - generic [ref=e1597]: 01 feb
+                    - generic [ref=e1598]: 06:00
+                - cell "Preventivo - Filtro de arena jacuzzi de hombres 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1601]:
+                  - generic [ref=e1602]:
+                    - generic [ref=e1603]: Preventivo - Filtro de arena jacuzzi de hombres
+                    - generic [ref=e1604]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1605]:
+                  - generic [ref=e1606]:
+                    - generic [ref=e1607]: G
+                    - generic [ref=e1610]:
+                      - generic [ref=e1611]: GOLDEN WATER
+                      - generic [ref=e1612]: Asignado
+                - cell "-- Sin info --" [ref=e1613]
+                - cell "Pendiente" [ref=e1614]
+                - cell "198 días" [ref=e1618]:
+                  - generic [ref=e1619]:
+                    - generic [ref=e1620]: "198"
+                    - generic [ref=e1621]: días
+              - row [ref=e1622] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1623]
+                - cell "01 feb 06:00" [ref=e1627]:
+                  - generic [ref=e1628]:
+                    - generic [ref=e1629]: 01 feb
+                    - generic [ref=e1630]: 06:00
+                - cell "Preventivo - Filtro de arena de jacuzzi del spa mujeres 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1633]:
+                  - generic [ref=e1634]:
+                    - generic [ref=e1635]: Preventivo - Filtro de arena de jacuzzi del spa mujeres
+                    - generic [ref=e1636]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1637]:
+                  - generic [ref=e1638]:
+                    - generic [ref=e1639]: G
+                    - generic [ref=e1642]:
+                      - generic [ref=e1643]: GOLDEN WATER
+                      - generic [ref=e1644]: Asignado
+                - cell "-- Sin info --" [ref=e1645]
+                - cell "Pendiente" [ref=e1646]
+                - cell "198 días" [ref=e1650]:
+                  - generic [ref=e1651]:
+                    - generic [ref=e1652]: "198"
+                    - generic [ref=e1653]: días
+              - row [ref=e1654] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1655]
+                - cell "01 feb 06:00" [ref=e1659]:
+                  - generic [ref=e1660]:
+                    - generic [ref=e1661]: 01 feb
+                    - generic [ref=e1662]: 06:00
+                - cell "Preventivo - Filtro de arena tina de agua fría hombres 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1665]:
+                  - generic [ref=e1666]:
+                    - generic [ref=e1667]: Preventivo - Filtro de arena tina de agua fría hombres
+                    - generic [ref=e1668]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1669]:
+                  - generic [ref=e1670]:
+                    - generic [ref=e1671]: G
+                    - generic [ref=e1674]:
+                      - generic [ref=e1675]: GOLDEN WATER
+                      - generic [ref=e1676]: Asignado
+                - cell "-- Sin info --" [ref=e1677]
+                - cell "Pendiente" [ref=e1678]
+                - cell "198 días" [ref=e1682]:
+                  - generic [ref=e1683]:
+                    - generic [ref=e1684]: "198"
+                    - generic [ref=e1685]: días
+              - row [ref=e1686] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1687]
+                - cell "01 feb 06:00" [ref=e1691]:
+                  - generic [ref=e1692]:
+                    - generic [ref=e1693]: 01 feb
+                    - generic [ref=e1694]: 06:00
+                - cell "Preventivo - Filtro jacuzzi exterior 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1697]:
+                  - generic [ref=e1698]:
+                    - generic [ref=e1699]: Preventivo - Filtro jacuzzi exterior
+                    - generic [ref=e1700]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1701]:
+                  - generic [ref=e1702]:
+                    - generic [ref=e1703]: G
+                    - generic [ref=e1706]:
+                      - generic [ref=e1707]: GOLDEN WATER
+                      - generic [ref=e1708]: Asignado
+                - cell "-- Sin info --" [ref=e1709]
+                - cell "Pendiente" [ref=e1710]
+                - cell "198 días" [ref=e1714]:
+                  - generic [ref=e1715]:
+                    - generic [ref=e1716]: "198"
+                    - generic [ref=e1717]: días
+              - row [ref=e1718] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1719]
+                - cell "01 feb 06:00" [ref=e1723]:
+                  - generic [ref=e1724]:
+                    - generic [ref=e1725]: 01 feb
+                    - generic [ref=e1726]: 06:00
+                - 'cell "Preventivo - Filtro #1 alberca exterior 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1729]':
+                  - generic [ref=e1730]:
+                    - generic [ref=e1731]: "Preventivo - Filtro #1 alberca exterior"
+                    - generic [ref=e1732]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1733]:
+                  - generic [ref=e1734]:
+                    - generic [ref=e1735]: G
+                    - generic [ref=e1738]:
+                      - generic [ref=e1739]: GOLDEN WATER
+                      - generic [ref=e1740]: Asignado
+                - cell "-- Sin info --" [ref=e1741]
+                - cell "Pendiente" [ref=e1742]
+                - cell "198 días" [ref=e1746]:
+                  - generic [ref=e1747]:
+                    - generic [ref=e1748]: "198"
+                    - generic [ref=e1749]: días
+              - row [ref=e1750] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1751]
+                - cell "01 feb 06:00" [ref=e1755]:
+                  - generic [ref=e1756]:
+                    - generic [ref=e1757]: 01 feb
+                    - generic [ref=e1758]: 06:00
+                - cell "Preventivo - Filtro alberca techada 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1761]:
+                  - generic [ref=e1762]:
+                    - generic [ref=e1763]: Preventivo - Filtro alberca techada
+                    - generic [ref=e1764]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1765]:
+                  - generic [ref=e1766]:
+                    - generic [ref=e1767]: G
+                    - generic [ref=e1770]:
+                      - generic [ref=e1771]: GOLDEN WATER
+                      - generic [ref=e1772]: Asignado
+                - cell "-- Sin info --" [ref=e1773]
+                - cell "Pendiente" [ref=e1774]
+                - cell "198 días" [ref=e1778]:
+                  - generic [ref=e1779]:
+                    - generic [ref=e1780]: "198"
+                    - generic [ref=e1781]: días
+              - row [ref=e1782] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1783]
+                - cell "01 feb 06:00" [ref=e1787]:
+                  - generic [ref=e1788]:
+                    - generic [ref=e1789]: 01 feb
+                    - generic [ref=e1790]: 06:00
+                - cell "Preventivo - Filtro de arena fuente T-Olivo 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1793]:
+                  - generic [ref=e1794]:
+                    - generic [ref=e1795]: Preventivo - Filtro de arena fuente T-Olivo
+                    - generic [ref=e1796]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1797]:
+                  - generic [ref=e1798]:
+                    - generic [ref=e1799]: G
+                    - generic [ref=e1802]:
+                      - generic [ref=e1803]: GOLDEN WATER
+                      - generic [ref=e1804]: Asignado
+                - cell "-- Sin info --" [ref=e1805]
+                - cell "Pendiente" [ref=e1806]
+                - cell "198 días" [ref=e1810]:
+                  - generic [ref=e1811]:
+                    - generic [ref=e1812]: "198"
+                    - generic [ref=e1813]: días
+              - row [ref=e1814] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1815]
+                - cell "01 feb 06:00" [ref=e1819]:
+                  - generic [ref=e1820]:
+                    - generic [ref=e1821]: 01 feb
+                    - generic [ref=e1822]: 06:00
+                - cell "Preventivo - Filtro de arena fuente T-Ciruelo 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1825]:
+                  - generic [ref=e1826]:
+                    - generic [ref=e1827]: Preventivo - Filtro de arena fuente T-Ciruelo
+                    - generic [ref=e1828]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1829]:
+                  - generic [ref=e1830]:
+                    - generic [ref=e1831]: G
+                    - generic [ref=e1834]:
+                      - generic [ref=e1835]: GOLDEN WATER
+                      - generic [ref=e1836]: Asignado
+                - cell "-- Sin info --" [ref=e1837]
+                - cell "Pendiente" [ref=e1838]
+                - cell "198 días" [ref=e1842]:
+                  - generic [ref=e1843]:
+                    - generic [ref=e1844]: "198"
+                    - generic [ref=e1845]: días
+              - row [ref=e1846] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1847]
+                - cell "01 feb 06:00" [ref=e1851]:
+                  - generic [ref=e1852]:
+                    - generic [ref=e1853]: 01 feb
+                    - generic [ref=e1854]: 06:00
+                - cell "Preventivo - Filtro de arena fuente T-Acacia 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales." [ref=e1857]:
+                  - generic [ref=e1858]:
+                    - generic [ref=e1859]: Preventivo - Filtro de arena fuente T-Acacia
+                    - generic [ref=e1860]: 1- Cambio de arena silica. 2- Revisión del sistema. 3- Revisión de cabezales.
+                - cell "G GOLDEN WATER Asignado" [ref=e1861]:
+                  - generic [ref=e1862]:
+                    - generic [ref=e1863]: G
+                    - generic [ref=e1866]:
+                      - generic [ref=e1867]: GOLDEN WATER
+                      - generic [ref=e1868]: Asignado
+                - cell "-- Sin info --" [ref=e1869]
+                - cell "Pendiente" [ref=e1870]
+                - cell "198 días" [ref=e1874]:
+                  - generic [ref=e1875]:
+                    - generic [ref=e1876]: "198"
+                    - generic [ref=e1877]: días
+              - row [ref=e1878] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1879]
+                - cell "01 mar 06:00" [ref=e1883]:
+                  - generic [ref=e1884]:
+                    - generic [ref=e1885]: 01 mar
+                    - generic [ref=e1886]: 06:00
+                - cell "Preventivo - Interruptor termomagnetico principal Torre Acacia 1.- Ajuste y apriete de tornillería y terminales" [ref=e1889]:
+                  - generic [ref=e1890]:
+                    - generic [ref=e1891]: Preventivo - Interruptor termomagnetico principal Torre Acacia
+                    - generic [ref=e1892]: 1.- Ajuste y apriete de tornillería y terminales
+                - cell "A AVIVIA 58 Asignado" [ref=e1893]:
+                  - generic [ref=e1894]:
+                    - generic [ref=e1895]: A
+                    - generic [ref=e1898]:
+                      - generic [ref=e1899]: AVIVIA 58
+                      - generic [ref=e1900]: Asignado
+                - cell "-- Sin info --" [ref=e1901]
+                - cell "Pendiente" [ref=e1902]
+                - cell "170 días" [ref=e1906]:
+                  - generic [ref=e1907]:
+                    - generic [ref=e1908]: "170"
+                    - generic [ref=e1909]: días
+              - row [ref=e1910] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1911]
+                - cell "01 mar 06:00" [ref=e1915]:
+                  - generic [ref=e1916]:
+                    - generic [ref=e1917]: 01 mar
+                    - generic [ref=e1918]: 06:00
+                - cell "Pintura - Cuarto de planta de emergencia Ciruelo <p class=\"ql-align-justify\">Limpieza y aplicación de pintura en:</p><ul><li class=\"ql-align-justify\">Piso.</li><li class=\"ql-align-justify\">Líneas amarillas limitantes.</li><li class=\"ql-align-justify\">Muros.</li></ul><p><br></p>" [ref=e1921]:
+                  - generic [ref=e1922]:
+                    - generic [ref=e1923]: Pintura - Cuarto de planta de emergencia Ciruelo
+                    - generic [ref=e1924]: <p class="ql-align-justify">Limpieza y aplicación de pintura en:</p><ul><li class="ql-align-justify">Piso.</li><li class="ql-align-justify">Líneas amarillas limitantes.</li><li class="ql-align-justify">Muros.</li></ul><p><br></p>
+                - cell "M MANTENIMIENTO INTERNO Asignado" [ref=e1925]:
+                  - generic [ref=e1926]:
+                    - generic [ref=e1927]: M
+                    - generic [ref=e1930]:
+                      - generic [ref=e1931]: MANTENIMIENTO INTERNO
+                      - generic [ref=e1932]: Asignado
+                - cell "-- Sin info --" [ref=e1933]
+                - cell "Pendiente" [ref=e1934]
+                - cell "170 días" [ref=e1938]:
+                  - generic [ref=e1939]:
+                    - generic [ref=e1940]: "170"
+                    - generic [ref=e1941]: días
+              - row [ref=e1942] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1943]
+                - cell "01 mar 06:00" [ref=e1947]:
+                  - generic [ref=e1948]:
+                    - generic [ref=e1949]: 01 mar
+                    - generic [ref=e1950]: 06:00
+                - cell "Pintura - Cuarto de planta de emergencia Acacia <p>Limpieza y aplicación de pintura en:</p><ul><li> Piso.</li><li>Líneas amarillas limitantes.</li><li>Muros.</li></ul><p><br></p>" [ref=e1953]:
+                  - generic [ref=e1954]:
+                    - generic [ref=e1955]: Pintura - Cuarto de planta de emergencia Acacia
+                    - generic [ref=e1956]: <p>Limpieza y aplicación de pintura en:</p><ul><li> Piso.</li><li>Líneas amarillas limitantes.</li><li>Muros.</li></ul><p><br></p>
+                - cell "M MANTENIMIENTO INTERNO Asignado" [ref=e1957]:
+                  - generic [ref=e1958]:
+                    - generic [ref=e1959]: M
+                    - generic [ref=e1962]:
+                      - generic [ref=e1963]: MANTENIMIENTO INTERNO
+                      - generic [ref=e1964]: Asignado
+                - cell "-- Sin info --" [ref=e1965]
+                - cell "Pendiente" [ref=e1966]
+                - cell "170 días" [ref=e1970]:
+                  - generic [ref=e1971]:
+                    - generic [ref=e1972]: "170"
+                    - generic [ref=e1973]: días
+              - row [ref=e1974] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e1975]
+                - cell "01 mar 06:00" [ref=e1979]:
+                  - generic [ref=e1980]:
+                    - generic [ref=e1981]: 01 mar
+                    - generic [ref=e1982]: 06:00
+                - cell "Preventivo - Planta de tratamiento (Cárcamos) 1.- Revisión de parámetros 2.- Revisión de bandas de motor soplador 1 y 2 3.- Análisis de calidad de agua residual" [ref=e1985]:
+                  - generic [ref=e1986]:
+                    - generic [ref=e1987]: Preventivo - Planta de tratamiento (Cárcamos)
+                    - generic [ref=e1988]: 1.- Revisión de parámetros 2.- Revisión de bandas de motor soplador 1 y 2 3.- Análisis de calidad de agua residual
+                - cell "S SITRATECNO Asignado" [ref=e1989]:
+                  - generic [ref=e1990]:
+                    - generic [ref=e1991]: S
+                    - generic [ref=e1994]:
+                      - generic [ref=e1995]: SITRATECNO
+                      - generic [ref=e1996]: Asignado
+                - cell "-- Sin info --" [ref=e1997]
+                - cell "Pendiente" [ref=e1998]
+                - cell "170 días" [ref=e2002]:
+                  - generic [ref=e2003]:
+                    - generic [ref=e2004]: "170"
+                    - generic [ref=e2005]: días
+              - row [ref=e2006] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2007]
+                - cell "01 mar 06:00" [ref=e2011]:
+                  - generic [ref=e2012]:
+                    - generic [ref=e2013]: 01 mar
+                    - generic [ref=e2014]: 06:00
+                - cell "Preventivo - Sillones individuales - bancas Limpieza y retoque de cera a bancas de terrazas." [ref=e2017]:
+                  - generic [ref=e2018]:
+                    - generic [ref=e2019]: Preventivo - Sillones individuales - bancas
+                    - generic [ref=e2020]: Limpieza y retoque de cera a bancas de terrazas.
+                - cell "M MANTENIMIENTO INTERNO Asignado" [ref=e2021]:
+                  - generic [ref=e2022]:
+                    - generic [ref=e2023]: M
+                    - generic [ref=e2026]:
+                      - generic [ref=e2027]: MANTENIMIENTO INTERNO
+                      - generic [ref=e2028]: Asignado
+                - cell "-- Sin info --" [ref=e2029]
+                - cell "Pendiente" [ref=e2030]
+                - cell "170 días" [ref=e2034]:
+                  - generic [ref=e2035]:
+                    - generic [ref=e2036]: "170"
+                    - generic [ref=e2037]: días
+              - row [ref=e2038] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2039]
+                - cell "01 mar 06:00" [ref=e2043]:
+                  - generic [ref=e2044]:
+                    - generic [ref=e2045]: 01 mar
+                    - generic [ref=e2046]: 06:00
+                - cell "Preventivo - Tablero de control moto bomba torre ciruelo 1-Revisión de componentes. 2-sopleteado del panel. 3-Pruebas de funcionamiento de contactores" [ref=e2049]:
+                  - generic [ref=e2050]:
+                    - generic [ref=e2051]: Preventivo - Tablero de control moto bomba torre ciruelo
+                    - generic [ref=e2052]: 1-Revisión de componentes. 2-sopleteado del panel. 3-Pruebas de funcionamiento de contactores
+                - cell "M MANTENIMIENTO INTERNO Asignado" [ref=e2053]:
+                  - generic [ref=e2054]:
+                    - generic [ref=e2055]: M
+                    - generic [ref=e2058]:
+                      - generic [ref=e2059]: MANTENIMIENTO INTERNO
+                      - generic [ref=e2060]: Asignado
+                - cell "-- Sin info --" [ref=e2061]
+                - cell "Pendiente" [ref=e2062]
+                - cell "170 días" [ref=e2066]:
+                  - generic [ref=e2067]:
+                    - generic [ref=e2068]: "170"
+                    - generic [ref=e2069]: días
+              - row [ref=e2070] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2071]
+                - cell "01 mar 06:00" [ref=e2075]:
+                  - generic [ref=e2076]:
+                    - generic [ref=e2077]: 01 mar
+                    - generic [ref=e2078]: 06:00
+                - cell "Preventivo - Aire acondicionado salón yoga gimnasio 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros." [ref=e2081]:
+                  - generic [ref=e2082]:
+                    - generic [ref=e2083]: Preventivo - Aire acondicionado salón yoga gimnasio
+                    - generic [ref=e2084]: 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros.
+                - cell "A AVIVIA 58 Asignado" [ref=e2085]:
+                  - generic [ref=e2086]:
+                    - generic [ref=e2087]: A
+                    - generic [ref=e2090]:
+                      - generic [ref=e2091]: AVIVIA 58
+                      - generic [ref=e2092]: Asignado
+                - cell "se encuentra en obra" [ref=e2093]
+                - cell "Pendiente" [ref=e2098]
+                - cell "170 días" [ref=e2102]:
+                  - generic [ref=e2103]:
+                    - generic [ref=e2104]: "170"
+                    - generic [ref=e2105]: días
+              - row [ref=e2106] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2107]
+                - cell "01 mar 06:00" [ref=e2111]:
+                  - generic [ref=e2112]:
+                    - generic [ref=e2113]: 01 mar
+                    - generic [ref=e2114]: 06:00
+                - cell "Preventivo - Aire acondicionado oficina administración 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros." [ref=e2117]:
+                  - generic [ref=e2118]:
+                    - generic [ref=e2119]: Preventivo - Aire acondicionado oficina administración
+                    - generic [ref=e2120]: 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros.
+                - cell "M MANTENIMIENTO INTERNO Asignado" [ref=e2121]:
+                  - generic [ref=e2122]:
+                    - generic [ref=e2123]: M
+                    - generic [ref=e2126]:
+                      - generic [ref=e2127]: MANTENIMIENTO INTERNO
+                      - generic [ref=e2128]: Asignado
+                - cell "-- Sin info --" [ref=e2129]
+                - cell "Pendiente" [ref=e2130]
+                - cell "170 días" [ref=e2134]:
+                  - generic [ref=e2135]:
+                    - generic [ref=e2136]: "170"
+                    - generic [ref=e2137]: días
+              - row [ref=e2138] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2139]
+                - cell "01 mar 06:00" [ref=e2143]:
+                  - generic [ref=e2144]:
+                    - generic [ref=e2145]: 01 mar
+                    - generic [ref=e2146]: 06:00
+                - cell "Preventivo - Aire acondicionado (1) spa 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros." [ref=e2149]:
+                  - generic [ref=e2150]:
+                    - generic [ref=e2151]: Preventivo - Aire acondicionado (1) spa
+                    - generic [ref=e2152]: 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros.
+                - cell "T TEMPCONTROL S.A. DE C.V. Asignado" [ref=e2153]:
+                  - generic [ref=e2154]:
+                    - generic [ref=e2155]: T
+                    - generic [ref=e2158]:
+                      - generic [ref=e2159]: TEMPCONTROL S.A. DE C.V.
+                      - generic [ref=e2160]: Asignado
+                - cell "-- Sin info --" [ref=e2161]
+                - cell "Pendiente" [ref=e2162]
+                - cell "170 días" [ref=e2166]:
+                  - generic [ref=e2167]:
+                    - generic [ref=e2168]: "170"
+                    - generic [ref=e2169]: días
+              - row [ref=e2170] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2171]
+                - cell "01 mar 06:00" [ref=e2175]:
+                  - generic [ref=e2176]:
+                    - generic [ref=e2177]: 01 mar
+                    - generic [ref=e2178]: 06:00
+                - cell "Preventivo - Aire acondicionado (2) spa 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros." [ref=e2181]:
+                  - generic [ref=e2182]:
+                    - generic [ref=e2183]: Preventivo - Aire acondicionado (2) spa
+                    - generic [ref=e2184]: 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros.
+                - cell "T TEMPCONTROL S.A. DE C.V. Asignado" [ref=e2185]:
+                  - generic [ref=e2186]:
+                    - generic [ref=e2187]: T
+                    - generic [ref=e2190]:
+                      - generic [ref=e2191]: TEMPCONTROL S.A. DE C.V.
+                      - generic [ref=e2192]: Asignado
+                - cell "-- Sin info --" [ref=e2193]
+                - cell "Pendiente" [ref=e2194]
+                - cell "170 días" [ref=e2198]:
+                  - generic [ref=e2199]:
+                    - generic [ref=e2200]: "170"
+                    - generic [ref=e2201]: días
+              - row [ref=e2202] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2203]
+                - cell "01 mar 06:00" [ref=e2207]:
+                  - generic [ref=e2208]:
+                    - generic [ref=e2209]: 01 mar
+                    - generic [ref=e2210]: 06:00
+                - cell "Preventivo - Aire acondicionado salón spining gimnasio 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros." [ref=e2213]:
+                  - generic [ref=e2214]:
+                    - generic [ref=e2215]: Preventivo - Aire acondicionado salón spining gimnasio
+                    - generic [ref=e2216]: 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros.
+                - cell "M MANTENIMIENTO INTERNO Asignado" [ref=e2217]:
+                  - generic [ref=e2218]:
+                    - generic [ref=e2219]: M
+                    - generic [ref=e2222]:
+                      - generic [ref=e2223]: MANTENIMIENTO INTERNO
+                      - generic [ref=e2224]: Asignado
+                - cell "-- Sin info --" [ref=e2225]
+                - cell "Pendiente" [ref=e2226]
+                - cell "170 días" [ref=e2230]:
+                  - generic [ref=e2231]:
+                    - generic [ref=e2232]: "170"
+                    - generic [ref=e2233]: días
+              - row [ref=e2234] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2235]
+                - cell "01 mar 06:00" [ref=e2239]:
+                  - generic [ref=e2240]:
+                    - generic [ref=e2241]: 01 mar
+                    - generic [ref=e2242]: 06:00
+                - cell "Preventivo - Aire acondicionado barra de jugos 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros." [ref=e2245]:
+                  - generic [ref=e2246]:
+                    - generic [ref=e2247]: Preventivo - Aire acondicionado barra de jugos
+                    - generic [ref=e2248]: 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros.
+                - cell "T TEMPCONTROL S.A. DE C.V. Asignado" [ref=e2249]:
+                  - generic [ref=e2250]:
+                    - generic [ref=e2251]: T
+                    - generic [ref=e2254]:
+                      - generic [ref=e2255]: TEMPCONTROL S.A. DE C.V.
+                      - generic [ref=e2256]: Asignado
+                - cell "-- Sin info --" [ref=e2257]
+                - cell "Pendiente" [ref=e2258]
+                - cell "170 días" [ref=e2262]:
+                  - generic [ref=e2263]:
+                    - generic [ref=e2264]: "170"
+                    - generic [ref=e2265]: días
+              - row [ref=e2266] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2267]
+                - cell "01 mar 06:00" [ref=e2271]:
+                  - generic [ref=e2272]:
+                    - generic [ref=e2273]: 01 mar
+                    - generic [ref=e2274]: 06:00
+                - cell "Preventivo - Aire acondicionado (3) spa 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros." [ref=e2277]:
+                  - generic [ref=e2278]:
+                    - generic [ref=e2279]: Preventivo - Aire acondicionado (3) spa
+                    - generic [ref=e2280]: 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros.
+                - cell "T TEMPCONTROL S.A. DE C.V. Asignado" [ref=e2281]:
+                  - generic [ref=e2282]:
+                    - generic [ref=e2283]: T
+                    - generic [ref=e2286]:
+                      - generic [ref=e2287]: TEMPCONTROL S.A. DE C.V.
+                      - generic [ref=e2288]: Asignado
+                - cell "-- Sin info --" [ref=e2289]
+                - cell "Pendiente" [ref=e2290]
+                - cell "170 días" [ref=e2294]:
+                  - generic [ref=e2295]:
+                    - generic [ref=e2296]: "170"
+                    - generic [ref=e2297]: días
+              - row [ref=e2298] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2299]
+                - cell "01 mar 06:00" [ref=e2303]:
+                  - generic [ref=e2304]:
+                    - generic [ref=e2305]: 01 mar
+                    - generic [ref=e2306]: 06:00
+                - cell "Preventivo - Aire acondicionado site 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros." [ref=e2309]:
+                  - generic [ref=e2310]:
+                    - generic [ref=e2311]: Preventivo - Aire acondicionado site
+                    - generic [ref=e2312]: 1- Lavado de condensador 2- Lavado de evaporador 3- revisión de niveles de refrigerante 4- limpieza de filtros.
+                - cell "M MANTENIMIENTO INTERNO Asignado" [ref=e2313]:
+                  - generic [ref=e2314]:
+                    - generic [ref=e2315]: M
+                    - generic [ref=e2318]:
+                      - generic [ref=e2319]: MANTENIMIENTO INTERNO
+                      - generic [ref=e2320]: Asignado
+                - cell "-- Sin info --" [ref=e2321]
+                - cell "Pendiente" [ref=e2322]
+                - cell "170 días" [ref=e2326]:
+                  - generic [ref=e2327]:
+                    - generic [ref=e2328]: "170"
+                    - generic [ref=e2329]: días
+              - row [ref=e2330] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e2331]
+                - cell "01 mar 06:00" [ref=e2335]:
+                  - generic [ref=e2336]:
+                    - generic [ref=e2337]: 01 mar
+                    - generic [ref=e2338]: 06:00
+                - cell "Preventivo - Área de mascotas Torre Ciruelo <ol><li>Aplicación de pintura en reja.</li><li>Ajuste de piedra. </li></ol><p><br></p>" [ref=e2341]:
+                  - generic [ref=e2342]:
+                    - generic [ref=e2343]: Preventivo - Área de mascotas Torre Ciruelo
+                    - generic [ref=e2344]: <ol><li>Aplicación de pintura en reja.</li><li>Ajuste de piedra. </li></ol><p><br></p>
+                - cell "M MANTENIMIENTO INTERNO Asignado" [ref=e2345]:
+                  - generic [ref=e2346]:
+                    - generic [ref=e2347]: M
+                    - generic [ref=e2350]:
+                      - generic [ref=e2351]: MANTENIMIENTO INTERNO
+                      - generic [ref=e2352]: Asignado
+                - cell "-- Sin info --" [ref=e2353]
+                - cell "Pendiente" [ref=e2354]
+                - cell "170 días" [ref=e2358]:
+                  - generic [ref=e2359]:
+                    - generic [ref=e2360]: "170"
+                    - generic [ref=e2361]: días
+              - row [ref=e2362] [cursor=pointer]:
+                - cell "Tickets" [ref=e2363]
+                - cell "08 mar 19:10" [ref=e2367]:
+                  - generic [ref=e2368]:
+                    - generic [ref=e2369]: 08 mar
+                    - generic [ref=e2370]: 19:10
+                - cell "LIMPIEZA | Spa. Limpieza profunda de regaderas de baños de hombres del spa." [ref=e2373]:
+                  - generic [ref=e2374]:
+                    - generic [ref=e2375]: LIMPIEZA | Spa.
+                    - generic [ref=e2376]: Limpieza profunda de regaderas de baños de hombres del spa.
+                - cell "A Alvaro Obregón Avila Asignado" [ref=e2377]:
+                  - generic [ref=e2378]:
+                    - generic [ref=e2379]: A
+                    - generic [ref=e2382]:
+                      - generic [ref=e2383]: Alvaro Obregón Avila
+                      - generic [ref=e2384]: Asignado
+                - cell "-- Sin info --" [ref=e2385]
+                - cell "No Iniciada" [ref=e2386]
+                - cell "162 días" [ref=e2390]:
+                  - generic [ref=e2391]:
+                    - generic [ref=e2392]: "162"
+                    - generic [ref=e2393]: días
+              - row [ref=e2394] [cursor=pointer]:
+                - cell "Tickets" [ref=e2395]
+                - cell "08 mar 19:11" [ref=e2399]:
+                  - generic [ref=e2400]:
+                    - generic [ref=e2401]: 08 mar
+                    - generic [ref=e2402]: 19:11
+                - cell "LIMPIEZA | Spa. Limpieza profunda de regaderas de baños de mujeres del spa." [ref=e2405]:
+                  - generic [ref=e2406]:
+                    - generic [ref=e2407]: LIMPIEZA | Spa.
+                    - generic [ref=e2408]: Limpieza profunda de regaderas de baños de mujeres del spa.
+                - cell "A Alvaro Obregón Avila Asignado" [ref=e2409]:
+                  - generic [ref=e2410]:
+                    - generic [ref=e2411]: A
+                    - generic [ref=e2414]:
+                      - generic [ref=e2415]: Alvaro Obregón Avila
+                      - generic [ref=e2416]: Asignado
+                - cell "-- Sin info --" [ref=e2417]
+                - cell "No Iniciada" [ref=e2418]
+                - cell "162 días" [ref=e2422]:
+                  - generic [ref=e2423]:
+                    - generic [ref=e2424]: "162"
+                    - generic [ref=e2425]: días
+              - row [ref=e2426] [cursor=pointer]:
+                - cell "Tickets" [ref=e2427]
+                - cell "08 mar 19:13" [ref=e2431]:
+                  - generic [ref=e2432]:
+                    - generic [ref=e2433]: 08 mar
+                    - generic [ref=e2434]: 19:13
+                - cell "LIMPIEZA | Spa. Limpieza profunda en labavos de baños de hombres del spa." [ref=e2437]:
+                  - generic [ref=e2438]:
+                    - generic [ref=e2439]: LIMPIEZA | Spa.
+                    - generic [ref=e2440]: Limpieza profunda en labavos de baños de hombres del spa.
+                - cell "A Alvaro Obregón Avila Asignado" [ref=e2441]:
+                  - generic [ref=e2442]:
+                    - generic [ref=e2443]: A
+                    - generic [ref=e2446]:
+                      - generic [ref=e2447]: Alvaro Obregón Avila
+                      - generic [ref=e2448]: Asignado
+                - cell "-- Sin info --" [ref=e2449]
+                - cell "No Iniciada" [ref=e2450]
+                - cell "162 días" [ref=e2454]:
+                  - generic [ref=e2455]:
+                    - generic [ref=e2456]: "162"
+                    - generic [ref=e2457]: días
+          - generic [ref=e252]:
+            - generic [ref=e253]: En total hay 350 registros.
+            - generic [ref=e256]: 1-17 de 17
+            - button "First Page"
+            - button "Previous Page" [disabled]
+            - button "1" [ref=e1179] [cursor=pointer]
+            - button "Next Page" [disabled]
+            - button "Last Page" [disabled]
+            - generic [ref=e1180] [cursor=pointer]:
+              - combobox "Rows per page" [ref=e1181]: "30"
+              - button "dropdown trigger" [ref=e1182]

@@ -228,9 +228,16 @@
             />
             }
             <div class="flex flex-column min-w-0 flex-grow-1">
-              <span class="font-semibold truncate"
-                >{{ item.applicationUser }}</span
-              >
+              <span class="font-semibold truncate">{{ item.applicationUser }}</span>
+              <div class="mt-1">
+                @if (item.isOverdueDocuments) {
+                  <lx-tag severity="danger" value="Vencido > 24h" icon="material-symbols-light:warning" class="text-xs"></lx-tag>
+                } @else if (item.hasPendingDocuments) {
+                  <lx-tag severity="warning" value="Docs. Pendientes" icon="material-symbols-light:schedule" class="text-xs"></lx-tag>
+                } @else {
+                  <lx-tag severity="success" value="Expediente OK" icon="material-symbols-light:check_circle" class="text-xs"></lx-tag>
+                }
+              </div>
             </div>
             <app-action-menu>
               <ng-container actions>
@@ -261,72 +268,75 @@
             </app-action-menu>
           </div>
           } @else {
-          <!-- -- Puesto vacante é CDK drop zone -- -->
-          <div
-            [id]="'drop-pos-' + item.id"
-            cdkDropList
-            [cdkDropListData]="[]"
-            [cdkDropListConnectedTo]="['employee-pool']"
-            (cdkDropListDropped)="onDropToPosition($event, item)"
-            class="drop-zone flex align-items-center justify-content-between p-2"
-          >
-            <div class="flex align-items-center gap-2">
-              <app-icon
-                [icon]="'material-symbols-light:group'"
-                class="text-400"
-              />
-              <span class="text-sm font-bold">VACANTE</span>
-            </div>
-            <div class="flex gap-1">
-              <iw-button-item
-                iconClass="material-symbols-light:link"
-                lxTooltip="Vincular del pool"
-                (clicked)="onOpenDrawer(item)"
-              />
-              <iw-button-item
-                iconClass="material-symbols-light:person-add"
-                lxTooltip="Registrar nuevo empleado"
-                (clicked)="showModalAddEmployeeFromPosition(item)"
-              />
-            </div>
-          </div>
-          }
-
-          <!-- Indicador de solicitud activa (Badge inferior) -->
-          @if (item.positionRequest) { @if (item.positionRequest.status === 0) {
-          <span
-            class="badge badge-warning text-xs text-center block py-2"
-            lxTooltip="Vacante abierta é esperando alta de colaborador"
-          >
-            🟡 VA-{{ item.positionRequest.folio }} | Vacante abierta
-          </span>
-          } @else {
-          <span
-            class="badge badge-info text-xs text-center block py-2"
-            lxTooltip="Solicitud de alta enviada é en proceso de reclutamiento"
-          >
-            🔵 VA-{{ item.positionRequest.folio }} Alta en proceso
-          </span>
-          } } @if (hasQueueForPosition(item)) {
-          <div
-            class="mt-2 p-2 border-round bg-surface-100 border-1 surface-border"
-          >
+          <div class="vacant-row-inline">
+            <!-- -- Puesto vacante é CDK drop zone -- -->
             <div
-              class="flex flex-wrap align-items-center justify-content-between gap-2"
+              [id]="'drop-pos-' + item.id"
+              cdkDropList
+              [cdkDropListData]="[]"
+              [cdkDropListConnectedTo]="['employee-pool']"
+              (cdkDropListDropped)="onDropToPosition($event, item)"
+              class="drop-zone vacant-drop-zone flex align-items-center justify-content-between p-2"
             >
               <div class="flex align-items-center gap-2">
                 <app-icon
-                  icon="material-symbols-light:manage-search"
-                  class="text-primary"
+                  [icon]="'material-symbols-light:group'"
+                  class="text-400"
                 />
-                <span class="font-semibold text-sm"
-                  >Seguimiento de candidatos</span
-                >
+                <span class="text-sm font-bold">VACANTE</span>
               </div>
-              <span class="badge badge-info">
-                {{ getQueueCountForPosition(item) }} candidato(s)
-              </span>
+              <div class="flex gap-1">
+                <iw-button-item
+                  iconClass="material-symbols-light:link"
+                  lxTooltip="Vincular del pool"
+                  (clicked)="onOpenDrawer(item)"
+                />
+                <iw-button-item
+                  iconClass="material-symbols-light:person-add"
+                  lxTooltip="Registrar nuevo empleado"
+                  (clicked)="showModalAddEmployeeFromPosition(item)"
+                />
+              </div>
             </div>
+
+            <!-- Indicador de solicitud activa (Badge inferior) -->
+            @if (item.positionRequest) { @if (item.positionRequest.status === 0)
+            {
+            <span
+              class="badge badge-warning vacant-inline-badge text-xs text-center block py-2"
+              lxTooltip="Vacante abierta é esperando alta de colaborador"
+            >
+              🟡 VA-{{ item.positionRequest.folio }} | Vacante abierta
+            </span>
+            } @else {
+            <span
+              class="badge badge-info vacant-inline-badge text-xs text-center block py-2"
+              lxTooltip="Solicitud de alta enviada é en proceso de reclutamiento"
+            >
+              🔵 VA-{{ item.positionRequest.folio }} Alta en proceso
+            </span>
+            } } @if (hasQueueForPosition(item)) {
+            <div
+              class="vacant-queue-summary mt-2 p-2 border-round bg-surface-100 border-1 surface-border"
+            >
+              <div
+                class="flex flex-wrap align-items-center justify-content-between gap-2"
+              >
+                <div class="flex align-items-center gap-2">
+                  <app-icon
+                    icon="material-symbols-light:manage-search"
+                    class="text-primary"
+                  />
+                  <span class="font-semibold text-sm"
+                    >Seguimiento de candidatos</span
+                  >
+                </div>
+                <span class="badge badge-info">
+                  {{ getQueueCountForPosition(item) }} candidato(s)
+                </span>
+              </div>
+            </div>
+            }
           </div>
           }
         </div>

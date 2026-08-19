@@ -81,8 +81,10 @@ export function buildOrgChartGraph(
       data: {
         orgNode: node,
         accentColor: getDepartmentAccentColor(node.departmentName),
-        secondaryLabel: node.employeeName ?? "Vacante",
-        isVacant: !node.hasEmployee,
+        secondaryLabel: node.isGroup
+          ? `${node.groupMemberCount} puestos`
+          : (node.employeeName ?? "Vacante"),
+        isVacant: !node.isGroup && !node.hasEmployee,
         isVirtualRoot: node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID,
         selectionState,
       },
@@ -113,10 +115,12 @@ export function buildOrgChartGraph(
   };
 }
 
+const DEPT_ACCENT_FALLBACK = "var(--ds-dept-default)";
+
 export function getDepartmentAccentColor(departmentName?: string): string {
   if (!departmentName) {
-    return "#94a3b8";
+    return DEPT_ACCENT_FALLBACK;
   }
 
-  return DEPTO_ACCENT_COLORS[departmentName] ?? "#94a3b8";
+  return DEPTO_ACCENT_COLORS[departmentName] ?? DEPT_ACCENT_FALLBACK;
 }

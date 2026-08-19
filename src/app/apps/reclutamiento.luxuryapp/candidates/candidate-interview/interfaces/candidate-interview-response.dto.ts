@@ -1,3 +1,4 @@
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import { CandidateInterviewTimelineItem } from "./candidate-interview-timeline-item.interface";
 
 export interface CandidateInterviewResponseDto {
@@ -9,7 +10,7 @@ export interface CandidateInterviewResponseDto {
   positionName: string;
   candidateName: string;
   customerName: string;
-  currentStage: string;
+  currentStage: CandidateProcessStage;
   operationsInterviewAt?: string;
   assignedInterviewerUserId: string;
   assignedInterviewerName: string;

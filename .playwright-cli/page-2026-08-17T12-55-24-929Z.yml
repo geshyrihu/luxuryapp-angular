@@ -1,0 +1,147 @@
+- generic [active] [ref=f1e2]:
+  - link "Saltar al contenido principal" [ref=f1e1] [cursor=pointer]:
+    - /url: "#app-root-outlet"
+  - generic "Aplicación LuxuryApp" [ref=f1e3]:
+    - generic:
+      - alertdialog
+    - main [ref=f1e4]:
+      - generic [ref=f1e7]:
+        - toolbar [ref=f1e11]:
+          - generic [ref=f1e13]:
+            - button "Abrir o cerrar el menú lateral" [ref=f1e14] [cursor=pointer]
+            - button "AVIVIA 58" [ref=f1e517] [cursor=pointer]
+            - navigation [ref=f1e28]:
+              - list [ref=f1e29]:
+                - listitem [ref=f1e30]:
+                  - link "Inicio" [ref=f1e31] [cursor=pointer]:
+                    - /url: /dashboard
+                - listitem [ref=f1e36]
+                - listitem [ref=f1e39]:
+                  - link "Directorio" [ref=f1e40] [cursor=pointer]:
+                    - /url: /directory
+                - listitem [ref=f1e42]
+                - listitem [ref=f1e45]:
+                  - link "Vacantes y Entrevistas" [ref=f1e46] [cursor=pointer]:
+                    - /url: /directory/employee-interviewer-queue
+          - generic [ref=f1e49]:
+            - button "Inicio" [ref=f1e50] [cursor=pointer]
+            - button "Pagina anterior" [ref=f1e55] [cursor=pointer]
+            - button "Pagina siguiente" [ref=f1e60] [cursor=pointer]
+            - button "Actualizar" [ref=f1e65] [cursor=pointer]
+            - button "Mi edificio" [ref=f1e70] [cursor=pointer]
+            - button "Anuncios" [ref=f1e75] [cursor=pointer]
+            - button "Comunicado IA" [ref=f1e80] [cursor=pointer]
+            - button "Telefonos de Emergencia" [ref=f1e85] [cursor=pointer]
+            - button "Configuración" [ref=f1e90] [cursor=pointer]
+            - button "Novedades" [ref=f1e95] [cursor=pointer]
+            - button "Cambiar tema claro u oscuro" [ref=f1e100] [cursor=pointer]
+            - 'button "Alerta de pánico: mantén presionado para activar" [ref=f1e106] [cursor=pointer]'
+            - button "Notificaciones" [ref=f1e113] [cursor=pointer]
+            - button "Abrir menú de usuario" [ref=f1e121] [cursor=pointer]
+        - navigation [ref=f1e131]:
+          - generic [ref=f1e132]:
+            - generic [ref=f1e133]: LuxuryApp
+            - generic [ref=f1e134]: Gestión Inteligente
+          - generic [ref=f1e142]:
+            - heading "Administrador LBG" [level=2] [ref=f1e143]
+            - paragraph [ref=f1e144]: Empleado
+            - heading "AVIVIA 58" [level=3] [ref=f1e518]
+          - generic [ref=f1e147]:
+            - generic [ref=f1e519]: Design System
+            - list [ref=f1e521]:
+              - listitem [ref=f1e522]:
+                - button "Luxury Design System" [ref=f1e523] [cursor=pointer]
+            - separator
+            - list [ref=f1e534]:
+              - listitem [ref=f1e535]:
+                - button "Legal" [ref=f1e536] [cursor=pointer]
+              - listitem [ref=f1e547]:
+                - link "Contabilidad" [ref=f1e548] [cursor=pointer]:
+                  - /url: /contabilidad
+              - listitem [ref=f1e554]:
+                - button "Tickets" [ref=f1e555] [cursor=pointer]
+              - listitem [ref=f1e566]:
+                - button "Inspecciones" [ref=f1e567] [cursor=pointer]
+              - listitem [ref=f1e578]:
+                - button "Juntas de comite" [ref=f1e579] [cursor=pointer]
+              - listitem [ref=f1e590]:
+                - button "Compras" [ref=f1e591] [cursor=pointer]
+              - listitem [ref=f1e602]:
+                - button "Bitacoras" [ref=f1e603] [cursor=pointer]
+              - listitem [ref=f1e614]:
+                - button "Almacen" [ref=f1e615] [cursor=pointer]
+              - listitem [ref=f1e626]:
+                - button "Inventarios" [ref=f1e627] [cursor=pointer]
+              - listitem [ref=f1e638]:
+                - button "Biblioteca" [ref=f1e639] [cursor=pointer]
+              - listitem [ref=f1e650]:
+                - button "Calendarios" [ref=f1e651] [cursor=pointer]
+              - listitem [ref=f1e662]:
+                - button "Directorios" [ref=f1e663] [cursor=pointer]
+              - listitem [ref=f1e670]:
+                - link "Supervisión" [ref=f1e671] [cursor=pointer]:
+                  - /url: /supervision
+              - listitem [ref=f1e675]:
+                - button "Reportes" [ref=f1e676] [cursor=pointer]
+              - listitem [ref=f1e683]:
+                - button "Entrega recepción" [ref=f1e684] [cursor=pointer]
+              - listitem [ref=f1e691]:
+                - button "Reclutamiento" [ref=f1e692] [cursor=pointer]
+              - listitem [ref=f1e699]:
+                - generic [ref=f1e700]: Sistemas
+              - listitem [ref=f1e704]:
+                - generic [ref=f1e705]: Reservaciones
+              - listitem [ref=f1e709]:
+                - generic [ref=f1e710]: Pases QR
+              - listitem [ref=f1e714]:
+                - generic [ref=f1e715]: Paqueteria
+              - listitem [ref=f1e719]:
+                - button "Recursos Humanos" [ref=f1e720] [cursor=pointer]
+              - listitem [ref=f1e727]:
+                - link "Anuncios" [ref=f1e728] [cursor=pointer]:
+                  - /url: /announcements/manage
+              - listitem [ref=f1e732]:
+                - button "Utilidades" [ref=f1e733] [cursor=pointer]
+              - listitem [ref=f1e740]:
+                - button "Mesa directiva" [ref=f1e741] [cursor=pointer]
+        - generic [ref=f1e415]:
+          - generic [ref=f1e417]:
+            - generic [ref=f1e418]:
+              - heading "Mis vacantes y entrevistas" [level=2] [ref=f1e419]
+              - paragraph [ref=f1e420]: Vacantes pendientes relacionadas contigo como entrevistador y entrevistas agendadas para dar seguimiento.
+            - generic [ref=f1e421]:
+              - generic [ref=f1e422]:
+                - generic [ref=f1e423]: Vacantes
+                - generic [ref=f1e424]: "1"
+              - generic [ref=f1e425]:
+                - generic [ref=f1e426]: Pendientes
+                - generic [ref=f1e427]: "1"
+              - generic [ref=f1e428]:
+                - generic [ref=f1e429]: Vencidas
+                - generic [ref=f1e430]: "0"
+              - generic [ref=f1e431]:
+                - generic [ref=f1e432]: Historico
+                - generic [ref=f1e433]: "0"
+          - generic [ref=f1e435]:
+            - group [ref=f1e437]:
+              - button "Pendientes" [ref=f1e439] [cursor=pointer]
+              - button "Historico" [ref=f1e442] [cursor=pointer]
+              - button "Vencidas" [ref=f1e445] [cursor=pointer]
+              - button "Con feedback" [ref=f1e448] [cursor=pointer]
+              - button "Todo" [ref=f1e451] [cursor=pointer]
+            - textbox "Buscar por vacante, candidato o estado..." [ref=f1e454]
+          - generic [ref=f1e752]:
+            - generic [ref=f1e753]:
+              - generic [ref=f1e754]:
+                - generic [ref=f1e755]: VAC00727
+                - generic [ref=f1e756]: Técnico de Mantenimiento
+                - generic [ref=f1e757]: AVIVIA 58
+                - generic [ref=f1e758]: Pendiente
+              - generic [ref=f1e759]:
+                - generic [ref=f1e760]: "Apertura: 10/08/2026"
+                - generic [ref=f1e761]: "Pendientes: 1"
+                - generic [ref=f1e762]: "Vencidas: 0"
+                - generic [ref=f1e763]: "Proxima cita: 01/01/0001 00:00"
+            - generic [ref=f1e764]:
+              - generic [ref=f1e765]: Candidatos
+              - button "Ver detalle de gfhdfghdfg Marquez Escobedo" [ref=f1e766] [cursor=pointer]: "1"

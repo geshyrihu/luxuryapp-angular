@@ -127,6 +127,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         gap: 0.5rem;
       }
     `,
+    `
+      :host ::ng-deep [step] {
+        display: none;
+      }
+    `,
   ],
   encapsulation: ViewEncapsulation.None,
 })

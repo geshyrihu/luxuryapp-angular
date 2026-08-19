@@ -24,17 +24,14 @@
   />
 
   <!-- Filtro de estatus -->
-  <custom-input-select-signal
+  <custom-input-select-button-signal
     id="status-select"
     label="Estatus"
-    placeholder="Mostrar todos"
     [control]="statusRequestControl"
-    [data]="cb_status_request"
-    [showClear]="false"
+    [options]="cb_status_request"
     (selectionChange)="onLoadData()"
     [horizontal]="true"
     [noMargin]="true"
-    [filter]="true"
   />
 
   <!-- Botón de exportar -->

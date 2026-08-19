@@ -99,6 +99,8 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/resync-google-calendar-event-times",
     seedNativeCollectionTestData:
       "admin/system-maintenance/seed-native-collection-test-data",
+    migrateUserActivities:
+      "admin/system-maintenance/migrate-user-activities-to-logs-db",
   },
   AppImplementationTracking: {
     triggerEmployeeValidation:
@@ -122,6 +124,8 @@ export const EndpointsAdmin = {
       "admin/notification-diagnostics/test-whatsapp-solicitud-recibida",
     testWhatsAppSolicitudTerminada:
       "admin/notification-diagnostics/test-whatsapp-solicitud-terminada",
+    testWhatsAppAlertaTareaUrgente:
+      "admin/notification-diagnostics/test-whatsapp-alerta-tarea-urgente",
     testOneSignal: "admin/notification-diagnostics/test-one-signal",
     testOneSignalWeb: "admin/notification-diagnostics/test-one-signal-web",
     testSignalR: (userId: string) =>

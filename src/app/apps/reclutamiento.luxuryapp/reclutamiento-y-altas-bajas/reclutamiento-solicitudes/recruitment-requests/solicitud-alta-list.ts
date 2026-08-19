@@ -11,6 +11,7 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -35,13 +36,16 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { SolicitudAltaStatusForm } from "./solicitud-alta-status-form";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { HiringDocumentValidationModal } from "./components/hiring-document-validation/hiring-document-validation-modal";
 
 interface SolicitudAltaListItem {
   id: string;
+  employeeId: string;
   folio: string;
   folioVacante: string;
   requestDate: string;
@@ -61,9 +65,11 @@ interface SolicitudAltaListItem {
   imports: [
     WebButtonIconEdit,
     WebButtonIconDelete,
+    WebButtonIcon,
     MobileActionMenu,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
+    MobileButtonLabel,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomTableFooter,
@@ -140,7 +146,7 @@ export class SolicitudAltaList implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+onDelete(id: string) {
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestEmployeeRegister.delete(id))
       .then((result: boolean) => {
@@ -150,5 +156,21 @@ export class SolicitudAltaList implements OnInit {
           );
         }
       });
+  }
+
+  onOpenDocumentValidation(data: SolicitudAltaListItem) {
+    this.dialogHandlerS.openDialog(
+      HiringDocumentValidationModal,
+      { employeeId: data.employeeId },
+      "Validación de Documentación",
+      this.dialogHandlerS.sizeLg,
+    );
+  }
+
+  onDownloadPdf(data: SolicitudAltaListItem) {
+    this.apiResponseS.onDownloadFile(
+      EndpointsReclutamiento.RequestEmployeeRegister.exportPdf(data.id),
+      `${data.folio}.pdf`,
+    );
   }
 }

@@ -1,0 +1,131 @@
+- generic [active] [ref=e1]:
+  - link "Saltar al contenido principal" [ref=e2] [cursor=pointer]:
+    - /url: "#app-root-outlet"
+  - generic "Aplicación LuxuryApp" [ref=e3]:
+    - generic:
+      - alertdialog
+    - main [ref=e7]:
+      - generic [ref=e74]:
+        - toolbar [ref=e78]:
+          - generic [ref=e80]:
+            - button "Abrir o cerrar el menú lateral" [ref=e81] [cursor=pointer]
+            - button "LUXURY" [ref=e84] [cursor=pointer]
+            - navigation [ref=e91]:
+              - list [ref=e92]:
+                - listitem [ref=e93]:
+                  - link "Inicio" [ref=e94] [cursor=pointer]:
+                    - /url: /dashboard
+          - generic [ref=e98]:
+            - button "Inicio" [ref=e99] [cursor=pointer]
+            - button "Pagina anterior" [ref=e102] [cursor=pointer]
+            - button "Pagina siguiente" [ref=e105] [cursor=pointer]
+            - button "Actualizar" [ref=e108] [cursor=pointer]
+            - button "Mi edificio" [ref=e111] [cursor=pointer]
+            - button "Anuncios" [ref=e114] [cursor=pointer]
+            - button "Comunicado IA" [ref=e117] [cursor=pointer]
+            - button "Telefonos de Emergencia" [ref=e120] [cursor=pointer]
+            - button "Configuración" [ref=e123] [cursor=pointer]
+            - button "Novedades" [ref=e126] [cursor=pointer]
+            - button "Cambiar tema claro u oscuro" [ref=e131] [cursor=pointer]
+            - 'button "Alerta de pánico: mantén presionado para activar" [ref=e135] [cursor=pointer]'
+            - button "Notificaciones" [ref=e140] [cursor=pointer]
+            - button "Abrir menú de usuario" [ref=e146] [cursor=pointer]
+        - navigation [ref=e154]:
+          - generic [ref=e155]:
+            - generic [ref=e156]: LuxuryApp
+            - generic [ref=e157]: Gestión Inteligente
+          - generic [ref=e165]:
+            - heading "Administrador LBG" [level=2] [ref=e166]
+            - paragraph [ref=e167]: Empleado
+            - heading "LUXURY" [level=3] [ref=e169]
+          - generic [ref=e170]:
+            - generic [ref=e171]: Design System
+            - list [ref=e173]:
+              - listitem [ref=e174]:
+                - button "Luxury Design System" [ref=e175] [cursor=pointer]
+            - separator
+            - list [ref=e182]:
+              - listitem [ref=e183]:
+                - button "Legal" [ref=e184] [cursor=pointer]
+              - listitem [ref=e191]:
+                - link "Contabilidad" [ref=e192] [cursor=pointer]:
+                  - /url: /contabilidad
+              - listitem [ref=e196]:
+                - link "Cobranza Panel" [ref=e197] [cursor=pointer]:
+                  - /url: /cobranza-nativa
+              - listitem [ref=e201]:
+                - button "Tickets" [ref=e202] [cursor=pointer]
+              - listitem [ref=e209]:
+                - button "Inspecciones" [ref=e210] [cursor=pointer]
+              - listitem [ref=e217]:
+                - button "Juntas de comite" [ref=e218] [cursor=pointer]
+              - listitem [ref=e225]:
+                - button "Compras" [ref=e226] [cursor=pointer]
+              - listitem [ref=e233]:
+                - button "Bitacoras" [ref=e234] [cursor=pointer]
+              - listitem [ref=e241]:
+                - button "Almacen" [ref=e242] [cursor=pointer]
+              - listitem [ref=e249]:
+                - button "Inventarios" [ref=e250] [cursor=pointer]
+              - listitem [ref=e257]:
+                - button "Biblioteca" [ref=e258] [cursor=pointer]
+              - listitem [ref=e265]:
+                - button "Calendarios" [ref=e266] [cursor=pointer]
+              - listitem [ref=e273]:
+                - button "Directorios" [ref=e274] [cursor=pointer]
+              - listitem [ref=e281]:
+                - link "Supervisión" [ref=e282] [cursor=pointer]:
+                  - /url: /supervision
+              - listitem [ref=e286]:
+                - button "Reportes" [ref=e287] [cursor=pointer]
+              - listitem [ref=e294]:
+                - button "Entrega recepción" [ref=e295] [cursor=pointer]
+              - listitem [ref=e302]:
+                - button "Reclutamiento" [ref=e303] [cursor=pointer]
+              - listitem [ref=e310]:
+                - generic [ref=e311]: Sistemas
+              - listitem [ref=e315]:
+                - generic [ref=e316]: Reservaciones
+              - listitem [ref=e320]:
+                - generic [ref=e321]: Pases QR
+              - listitem [ref=e325]:
+                - generic [ref=e326]: Paqueteria
+              - listitem [ref=e330]:
+                - button "Recursos Humanos" [ref=e331] [cursor=pointer]
+              - listitem [ref=e338]:
+                - link "Anuncios" [ref=e339] [cursor=pointer]:
+                  - /url: /announcements/manage
+              - listitem [ref=e343]:
+                - button "Utilidades" [ref=e344] [cursor=pointer]
+        - generic [ref=e360]:
+          - generic [ref=e366]:
+            - generic [ref=e367]:
+              - generic [ref=e369]:
+                - button [ref=e371] [cursor=pointer]
+                - button [ref=e375] [cursor=pointer]
+                - button [ref=e380] [cursor=pointer]
+              - textbox "Buscar aquí..." [ref=e393]
+            - generic [ref=e394]:
+              - generic [ref=e397]: Critico (>8d)
+              - generic [ref=e399]: Alerta (7-8d)
+          - table [ref=e402]:
+            - rowgroup [ref=e403]:
+              - row [ref=e404]:
+                - columnheader [ref=e405] [cursor=pointer]
+                - columnheader [ref=e409] [cursor=pointer]
+                - columnheader [ref=e413] [cursor=pointer]
+                - columnheader [ref=e417] [cursor=pointer]
+                - columnheader "último Seguimiento" [ref=e421]
+                - columnheader [ref=e422] [cursor=pointer]
+                - columnheader [ref=e426] [cursor=pointer]
+            - rowgroup
+          - generic [ref=e430]:
+            - generic [ref=e431]: En total hay 0 registros.
+            - generic [ref=e434]: 0-0 de 0
+            - button "First Page"
+            - button "Previous Page" [disabled]
+            - button "Next Page" [disabled]
+            - button "Last Page" [disabled]
+            - generic:
+              - combobox "Rows per page" [disabled]: "30"
+              - button "dropdown trigger"

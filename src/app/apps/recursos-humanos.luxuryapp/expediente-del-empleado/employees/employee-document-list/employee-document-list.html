@@ -1,0 +1,78 @@
+<div class="documents-shell">
+  <div class="flex flex-column gap-2 mb-4">
+    <p class="m-0 font-semibold">Documentación de Empleado</p>
+    <p class="m-0 text-color-secondary">
+      Los documentos se cargan en el expediente del empleado.
+    </p>
+  </div>
+
+  <lx-divider />
+
+  @if (isLoading()) {
+    <p class="m-0 text-color-secondary">Cargando documentos...</p>
+  } @else {
+    <div class="grid mt-3">
+      @for (row of documentRows(); track row.option.value) {
+        <div class="col-12 md:col-3">
+          <lx-fieldset
+            [legend]="row.option.label"
+            [toggleable]="true"
+            [collapsed]="false"
+            class="mb-2"
+          >
+            @if (!row.document?.isSubmitted || !row.document?.fileUrl) {
+              <!-- Input oculto para cargar -->
+              <input type="file" #fileInput class="file-input-hidden" accept=".pdf" (change)="onFileSelected($event, row.option.value)">
+              
+              <div class="flex justify-content-between align-items-center">
+                <p class="text-500 text-sm italic m-0">Sin archivo</p>
+                <il-button
+                  [label]="uploadingType() === row.option.value ? 'Cargando...' : 'Cargar archivo'"
+                  iconClass="material-symbols-light:upload"
+                  size="sm"
+                  [disabled]="uploadingType() === row.option.value"
+                  (clicked)="fileInput.click()"
+                />
+              </div>
+            } @else {
+              <!-- Documento cargado -->
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex align-items-center gap-2 document-row__pdf">
+                  <il-button-view-pdf [url]="row.document?.fileUrl" [pdf]="row.option.label" />
+                </div>
+                
+                <div class="flex gap-2 align-items-center">
+                  <lx-tag
+                    [value]="row.document?.isValidated ? 'Validado' : 'Pendiente'"
+                    [severity]="row.document?.isValidated ? 'success' : 'warning'"
+                    class="text-xs"
+                  />
+                  <!-- Input oculto para actualizar -->
+                  <input type="file" #updateInput class="file-input-hidden" accept=".pdf" (change)="onFileSelected($event, row.option.value)">
+                  <iw-button-edit
+                    [disabled]="uploadingType() === row.option.value"
+                    (clicked)="updateInput.click()"
+                  />
+                </div>
+              </div>
+
+              @if (!row.document?.isValidated && row.document?.validationNotes) {
+                <p class="text-sm text-red-500 m-0 mt-2">
+                  {{ row.document?.validationNotes }}
+                </p>
+              }
+            }
+          </lx-fieldset>
+        </div>
+      }
+    </div>
+
+    <div class="flex justify-content-end mt-3">
+      <il-button-confirm
+        label="Notificar a Reclutamiento"
+        swalText="¿Confirmas que terminaste de cargar los documentos?"
+        (confirmed)="onNotifyRecruitment()"
+      />
+    </div>
+  }
+</div>

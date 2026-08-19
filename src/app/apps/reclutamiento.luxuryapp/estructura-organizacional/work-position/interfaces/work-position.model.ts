@@ -17,6 +17,8 @@ export interface IWorkPosition {
   jobDescriptionId: string | null;
   state: number;
   benefits: string | null;
+  hasPendingDocuments?: boolean;
+  isOverdueDocuments?: boolean;
   positionRequest: {
     id: string | null;
     status: number;

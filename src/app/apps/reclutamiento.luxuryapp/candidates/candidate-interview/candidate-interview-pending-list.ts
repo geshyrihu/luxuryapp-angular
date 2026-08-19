@@ -11,7 +11,7 @@ import { addIcons } from "ionicons";
 import { chatbubblesOutline } from "ionicons/icons";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -78,24 +78,16 @@ export class CandidateInterviewPendingList implements OnInit {
   }
 
   onLoadData() {
-    const stages = [
-      CandidateApplicationStage.EntrevistaReclutamiento,
-      CandidateApplicationStage.EntrevistaOperaciones,
-    ];
-    const tasks = stages.map((stage) =>
-      this.apiResponseS.onGetList<CandidateApplicationListItem[]>(
-        EndpointsReclutamiento.CandidateProcesses.listByStage(stage),
+    this.apiResponseS
+      .onGetList<CandidateApplicationListItem[]>(
+        EndpointsReclutamiento.CandidateProcesses.listByStage(
+          CandidateProcessStage.EntrevistaOperaciones,
+        ),
         { page: 1, recordsNumber: 200 },
-      ),
-    );
-
-    Promise.all(tasks).then((results) => {
-      const merged: CandidateApplicationListItem[] = [];
-      results.forEach((result) => {
-        if (result) merged.push(...result);
+      )
+      .then((result) => {
+        this.dataSignal.set(result ?? []);
       });
-      this.dataSignal.set(merged);
-    });
   }
 
   onFeedback(target: CandidateInterviewFeedbackTarget) {

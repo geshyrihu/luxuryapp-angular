@@ -8,25 +8,28 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { firstValueFrom } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
-  CandidateDecisionReasonItem,
   CandidateInterviewResponseDto,
 } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/interfaces/candidate-interview";
 import { CandidateStageBadge } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-stage-badge";
-import {
-  MappedPTag,
-  MappedTagOption,
-} from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/mapped-p-tag";
+import { MappedPTag } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/mapped-p-tag";
+import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/agenda-status-tag-options";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
+import { CandidateRejectionReason } from "src/app/core/enums/candidate-rejection-reason";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EmployeeInterviewFeedbackForm } from "./employee-interview-feedback-form";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { InterviewerActionRequestDto } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/interfaces/interviewer-action-request.dto";
+import { CandidateInterviewFeedbackForm } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/candidate-interview-feedback-form";
 
 @Component({
   selector: "app-employee-interview-response",
@@ -48,6 +51,8 @@ import { EmployeeInterviewFeedbackForm } from "./employee-interview-feedback-for
 export class EmployeeInterviewResponse implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
+  private enumSelectS = inject(EnumSelectService);
+  private toastS = inject(CustomToastService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
@@ -65,19 +70,15 @@ export class EmployeeInterviewResponse implements OnInit {
   readonly pendingAction = signal<"markNoShow" | "reject" | "approve" | null>(
     null,
   );
-  readonly selectedReasonId = signal<string | null>(null);
-  readonly reasonOptions = signal<CandidateDecisionReasonItem[]>([]);
+  readonly pendingDecision = signal<CandidateDecision | null>(null);
+  readonly selectedReason = signal<number | null>(null);
+  readonly reasonOptions = signal<SelectItemDto[]>([]);
 
-  readonly agendaStatusOptions = computed<MappedTagOption[]>(() => [
-    { value: "PENDIENTE", label: "Pendiente", severity: "warn" },
-    { value: "CONFIRMADO", label: "Confirmado", severity: "info" },
-    { value: "REALIZADA", label: "Realizada", severity: "success" },
-    { value: "CANCELADA", label: "Cancelada", severity: "danger" },
-    { value: "NO_ASISTIO", label: "No asistio", severity: "danger" },
-    { value: "REPROGRAMADA", label: "Reprogramada", severity: "secondary" },
-  ]);
+  readonly agendaStatusOptions = AGENDA_STATUS_TAG_OPTIONS;
 
   ngOnInit(): void {
+    void this.loadReasonOptions();
+
     const identifier =
       this.route.snapshot.queryParamMap.get("candidateProcessId") ??
       this.route.snapshot.queryParamMap.get("applicationId");
@@ -114,7 +115,7 @@ export class EmployeeInterviewResponse implements OnInit {
     const interviewData = this.interviewData();
     this.dialogHandlerS
       .openDialog(
-        EmployeeInterviewFeedbackForm,
+        CandidateInterviewFeedbackForm,
         {
           candidateApplicationId:
             interviewData?.candidateApplicationId ?? this.applicationId(),
@@ -131,61 +132,63 @@ export class EmployeeInterviewResponse implements OnInit {
       });
   }
 
-  private async loadReasonOptions(decision: CandidateDecision): Promise<void> {
-    const result = await this.apiResponseS.onGetList<
-      CandidateDecisionReasonItem[]
-    >(
-      `${EndpointsReclutamiento.CandidateDecisionReasons.catalog}?decision=${decision}&activeOnly=true`,
+  private async loadReasonOptions(): Promise<void> {
+    this.reasonOptions.set(
+      await firstValueFrom(this.enumSelectS.candidateRejectionReason()),
     );
-    if (result) {
-      this.reasonOptions.set(result);
-    }
   }
 
   private async openReasonModal(
     action: "markNoShow" | "reject" | "approve",
     decision: CandidateDecision,
   ): Promise<void> {
-    await this.loadReasonOptions(decision);
     this.pendingAction.set(action);
+    this.pendingDecision.set(decision);
+    this.selectedReason.set(null);
     this.showReasonModal.set(true);
   }
 
   closeReasonModal(): void {
     this.showReasonModal.set(false);
     this.pendingAction.set(null);
-    this.selectedReasonId.set(null);
+    this.pendingDecision.set(null);
+    this.selectedReason.set(null);
   }
 
   async confirmAction(): Promise<void> {
     const action = this.pendingAction();
-    const reasonId = this.selectedReasonId();
+    const decision = this.pendingDecision();
+    const decisionReason = this.selectedReason();
     const interviewData = this.interviewData();
-    const candidateApplicationId =
-      interviewData?.candidateApplicationId ?? this.applicationId();
     const candidateProcessId =
       interviewData?.candidateProcessId ?? this.candidateProcessId();
 
-    if (!action || (!candidateApplicationId && !candidateProcessId)) return;
-    if ((action === "reject" || action === "markNoShow") && !reasonId) return;
+    if (!action || !decision) return;
+    if (!candidateProcessId) {
+      this.toastS.showWarn(
+        "Proceso requerido",
+        "La respuesta de entrevista ahora requiere un CandidateProcess activo.",
+      );
+      return;
+    }
+    if (decision === CandidateDecision.Rechazado && decisionReason === null) return;
 
     this.actionLoading.set(true);
     try {
-      const actionMap: Record<string, string> = {
-        markNoShow: "MarkNoShow",
-        reject: "Reject",
-        approve: "Approve",
+      const payload: InterviewerActionRequestDto = {
+        candidateProcessId,
+        decision,
+        decisionReason:
+          decision === CandidateDecision.Rechazado
+            ? (decisionReason as CandidateRejectionReason | null)
+            : null,
+        additionalComment: "",
+        newScheduledAt: null,
       };
 
       await this.apiResponseS.onPost<boolean>(
         EndpointsReclutamiento.CandidateProcesses.interviewerAction,
-        {
-          candidateApplicationId,
-          candidateProcessId: candidateProcessId || undefined,
-          action: actionMap[action],
-          reasonId: reasonId || undefined,
-          comment: "",
-        },
+        payload,
       );
 
       this.closeReasonModal();

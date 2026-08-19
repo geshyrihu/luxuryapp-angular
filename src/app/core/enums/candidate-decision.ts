@@ -3,4 +3,5 @@ export enum CandidateDecision {
   Rechazado,
   EnEspera,
   NoSePresento,
+  Reprogramar,
 }

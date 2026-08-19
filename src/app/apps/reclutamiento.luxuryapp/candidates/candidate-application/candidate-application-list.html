@@ -7,7 +7,6 @@
     (stageChange)="onStageChange($event)"
     (add)="onModalForm({ id: '', title: 'Nuevo proceso de candidato' })"
     (edit)="onModalForm($event)"
-    (advance)="onChangeStageModal($event)"
   />
 } @else {
   <app-candidate-application-list-desktop
@@ -18,6 +17,5 @@
     (stageChange)="onStageChange($event)"
     (add)="onModalForm({ id: '', title: 'Nuevo proceso de candidato' })"
     (edit)="onModalForm($event)"
-    (advance)="onChangeStageModal($event)"
   />
 }

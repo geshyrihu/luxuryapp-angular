@@ -312,6 +312,18 @@ export const EndpointsRecursosHumanos = {
     validateOpenRequests: (employeeId: string | number) =>
       `employees/validar-solicitudes-abiertas/${employeeId}`,
   },
+  EmployeeDocument: {
+    byEmployee: (employeeId: string | number) =>
+      `employee-documents/${employeeId}`,
+    upload: (employeeId: string | number) =>
+      `employee-documents/${employeeId}/upload`,
+    validate: (documentId: string | number) =>
+      `employee-documents/${documentId}/validate`,
+    reject: (documentId: string | number) =>
+      `employee-documents/${documentId}/reject`,
+    notifyRecruitment: (employeeId: string | number) =>
+      `employee-documents/notify-recruitment/${employeeId}`,
+  },
   EmployeeBankData: {
     base: "employee-bank-data",
     byEmployee: (employeeId: string) =>

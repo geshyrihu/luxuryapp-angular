@@ -10,7 +10,6 @@ export type {
   IOrgChartGraphLink,
   IOrgChartGraphNode,
   IOrgChartGraphNodeData,
-  IOrgChartTreeNode,
   IWorkPositionOrgChartNode,
   IWorkPositionReassignRequest,
   IWorkPositionReassignResponse,
@@ -19,7 +18,6 @@ export type {
 
 export {
   DEPTO_ACCENT_COLORS,
-  DEPTO_BORDER_COLORS,
   ORG_CHART_VIRTUAL_ROOT_ID,
 } from './interfaces/org-chart.interfaces';
 

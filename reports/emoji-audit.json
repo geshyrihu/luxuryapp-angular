@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-15T12:49:15.069Z",
-  "totalMatches": 1863,
-  "userFacingMatches": 338,
+  "generatedAt": "2026-08-18T13:03:27.068Z",
+  "totalMatches": 1924,
+  "userFacingMatches": 428,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/apps",
-      "count": 1160
+      "count": 1220
     },
     {
       "key": "app/shared",
@@ -14,7 +14,7 @@
     },
     {
       "key": "src/styles",
-      "count": 149
+      "count": 150
     },
     {
       "key": "app/routing",
@@ -40,7 +40,7 @@
   "byUserFacingModule": [
     {
       "key": "app/apps",
-      "count": 231
+      "count": 321
     },
     {
       "key": "app/core",
@@ -62,11 +62,15 @@
   "byCategory": [
     {
       "key": "docs",
-      "count": 1064
+      "count": 1035
     },
     {
       "key": "code_string",
-      "count": 214
+      "count": 213
+    },
+    {
+      "key": "template_text",
+      "count": 209
     },
     {
       "key": "code_comment",
@@ -74,15 +78,11 @@
     },
     {
       "key": "template_comment",
-      "count": 179
-    },
-    {
-      "key": "template_text",
-      "count": 118
+      "count": 178
     },
     {
       "key": "style_comment",
-      "count": 51
+      "count": 52
     },
     {
       "key": "code_misc",
@@ -2543,6 +2543,270 @@
         "🔐"
       ],
       "preview": "\"🔐 Cuenta de acceso\","
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 12,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **Preferencias de Notificación** | Configurar independientemente si un dueño/propiedad recibe avisos por SMS, WhatsApp o Email. | 🔴 **Faltante** | - [ ] Backend: Añadir booleano"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 13,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟢"
+      ],
+      "preview": "| **Relación Dueño-Propiedad** | Saber a qué propiedad se le cobra y quién es el responsable de pago. | 🟢 **Existente** | - (Completado) El sistema base ya maneja esta relación. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 22,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **Excepción de Fines de Semana** | Si el vencimiento del descuento cae en sábado/domingo, se traslada al lunes (RN-COB-015). | 🔴 **Faltante** | - [ ] Backend: Inyectar lógica de"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 23,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **Prevención de Descuentos Incompatibles** | Evitar sumar pronto pago + condonaciones especiales. | 🔴 **Faltante** | - [ ] Backend: Validar antes de aplicar abonos. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 24,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟡"
+      ],
+      "preview": "| **Configuración UI** | Pantallas para que el contador asigne las vigencias y % de mora. | 🟡 **Parcial** | - [ ] Frontend: Ajustar `late-fee-policies` a las nuevas reglas. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 33,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟡"
+      ],
+      "preview": "| **Cargos Manuales Restringidos** | Prohibir cargos sin concepto claro (\"cargo genérico\"). | 🟡 **Parcial** | - [ ] Backend: Añadir validación estricta en `ChargeAppService`. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 34,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **Generación Mensual Automática** | Job que corre el día 1 generando cuotas de mantenimiento. | 🔴 **Faltante** | - [ ] Backend: Crear `MonthlyChargeJob` en Hangfire. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 35,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **Recargos Automáticos** | Job diario que castiga saldos vencidos. | 🔴 **Faltante** | - [ ] Backend: Crear `LateFeeCalculationJob` en Hangfire. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 36,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **Triggers de Notificación** | Disparar avisos el día 1 y 3 días antes de vencer el pronto pago. | 🔴 **Faltante** | - [ ] Backend: Conectar el Dispatcher al terminar el Job. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 45,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **Importación Excel (Referencias)** | Cargar referencias bancarias vía Layout Excel y asociarlas a cargos. | 🔴 **Faltante** | - [ ] Backend: Crear `ReferenceImportAppService`.<b"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 46,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **Unicidad de Referencias** | No permitir que una referencia bancaria se asigne dos veces. | 🔴 **Faltante** | - [ ] Backend: Índice UNIQUE en base de datos y validación. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 47,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟡"
+      ],
+      "preview": "| **Pago Manual Estricto** | Exigir PDF/JPG y comprobante antes de guardar. | 🟡 **Parcial** | - [ ] Frontend: Bloquear formulario si no hay adjunto válido. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 48,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **No Borrado de Pagos** | Solo se permite cancelar vía nota de crédito/reverso (RN-COB-001). | 🔴 **Faltante** | - [ ] Backend: Eliminar endpoint DELETE, forzar reverso. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 57,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟡"
+      ],
+      "preview": "| **Vista Global (Administrativa)** | Tabla completa con saldos por edificio, propiedad y mora. | 🟡 **Parcial** | - [ ] Frontend: Optimizar filtros en `native-statement`. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 58,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟡"
+      ],
+      "preview": "| **Vista Aislada (Condómino)** | El usuario solo ve su propia deuda (RN-COB-022). | 🟡 **Parcial** | - [ ] Backend: Asegurar que el DTO filtre forzosamente por Token/Usuario. |"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 67,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **Generador de Layout Aspel** | Generar archivo Excel/TXT compatible con pólizas dinámicas de Aspel. | 🔴 **Faltante** | - [ ] Backend: Crear `AspelExportAppService` que cruce pa"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/04-implementation-plan.md",
+      "line": 68,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "| **Candado de Exportación** | Evitar exportar un mismo cargo dos veces o exportar periodos abiertos. | 🔴 **Faltante** | - [ ] Backend: Marcar `IsExported = true` en los registros"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/docs/05-entity-comparison.md",
+      "line": 11,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "### 🔴 Estructura Actual"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/docs/05-entity-comparison.md",
+      "line": 25,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟢"
+      ],
+      "preview": "### 🟢 Estructura Refactorizada (Lo Nuevo)"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/docs/05-entity-comparison.md",
+      "line": 54,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "### 🔴 Estructura Actual"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/docs/05-entity-comparison.md",
+      "line": 69,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟢"
+      ],
+      "preview": "### 🟢 Estructura Refactorizada (Lo Nuevo)"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/docs/05-entity-comparison.md",
+      "line": 96,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🔴"
+      ],
+      "preview": "### 🔴 Estructura Actual"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/docs/05-entity-comparison.md",
+      "line": 99,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟢"
+      ],
+      "preview": "### 🟢 Estructura Refactorizada (Lo Nuevo)"
+    },
+    {
+      "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/docs/05-entity-comparison.md",
+      "line": 123,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟢"
+      ],
+      "preview": "### 🟢 Estructura Nueva"
     },
     {
       "file": "src/app/apps/cobranza.luxuryapp/cobranza-nativa/docs/20260811-comparativa-cobranza-nativa-vs-online.md",
@@ -7681,1195 +7945,1006 @@
       "preview": "title: \"Tiempo Vacante → 1ª Postulación (Prom.)\","
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 195,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 326,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅",
-        "→"
+        "📁"
       ],
-      "preview": "| Crear postulación nueva desde vacante sin candidato previo | ✅ | `VacanteForm.manageCandidateApplication()` → `CandidateApplicationForm` (id vacío) → POST `api/recruitment-candid"
+      "preview": "📁 Módulo: Candidates"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 196,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 348,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅",
-        "→"
+        "📅"
       ],
-      "preview": "| Editar postulación existente desde vacante con candidato ya ligado | ✅ | `VacanteForm` carga `currentApplicationId` → abre formulario con `id` → PUT `api/recruitment-candidate-ap"
+      "preview": "<span class=\"badge\">📅 Versión: 2.1.0</span>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 197,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| Vacante correcta asociada y bloqueada (`lockRequestPosition: true`) | ✅ | `applyDialogDefaults()` deshabilita `requestPositionId` cuando viene de Vacante |"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 198,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| Registro visible en `Candidates > Applications` | ✅ | Mismo endpoint `GET api/recruitment-candidate-applications` alimenta ambas vistas |"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 199,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| Conservación/reemplazo correcto del CV | ✅ | `UpdateAsync`: si hay nuevo CV, guarda nuevo y borra anterior; si no, conserva el actual |"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 203,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "**Evento disparado:** `CandidateApplicationAppService.CreateAsync()` línea 200 → `candidateNotificationCoordinatorService.NotifyApplicationCreatedAsync(model.Id)`"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 214,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| **In-app / SignalR** | `notificationOrchestratorService.NotifyUserAsync()` | ✅ Funcional |"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 215,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "| **Email** | `recruitmentEmailService.SendCandidateApplicationCreatedEmailAsync()` | ✅ Funcional |"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 216,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "| **Push (OneSignal)** | Vía SignalR que cliente OneSignal escucha | ⚠️ Requiere staging para validar |"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 230,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Postulación no se duplica ni pierde trazabilidad (validación `APPLICATION_EXISTS` + unique index compuesto)"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 231,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Tres roles objetivo notificados al registrar nueva postulación (Admin/GO/GA por `customerId`)"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 232,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Correo llega con información suficiente para accionar (candidato, vacante, puesto, cliente, fecha, stage, link)"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 233,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Gaps no resueltos documentados con causa raíz y siguiente acción"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 262,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| **Etiquetas clarificadas** | \"Retroalimentada\" → \"Con retroalimentación\", \"Validar decision\" → acción más explícita | `agendaStatusOptions`, `ResolvePendingAction` |"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 284,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "1. Si hay feedback → `feedback` (\"Con retroalimentación\", \"Validar decisión\")"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 285,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "2. Sin entrevistador asignado → `missing_interviewer` (\"Sin entrevistador\", \"Asignar entrevistador\")"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 286,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "3. Con entrevistador pero sin fecha → `pending_schedule` (\"Pendiente de agenda\", \"Programar entrevista\")"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 287,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "4. Con fecha pasada → `overdue` (\"Vencida\", \"Solicitar respuesta\")"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 288,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "5. Con fecha futura → `scheduled` (\"Agendada\", \"Monitorear cita\")"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 292,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Dataset real de agenda validado (endpoint + DTO completo)"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 293,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Cada registro muestra: candidato, vacante, cliente, estatus, responsable"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 294,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Casos cubiertos: sin entrevistador, pendiente agenda, programada, vencida, con feedback"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 295,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Textos/acciones pendientes clarificados"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 296,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅",
-        "→"
-      ],
-      "preview": "- ✅ Enlaces cruzados: fila → postulación, botón → bandeja entrevistas"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 297,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Compilación frontend y backend OK"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 298,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Documentación actualizada"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 341,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| KPI \"Tiempo vacante → primera postulación\" | Medio | Alto | Requiere join RequestPosition.CreatedAt con primera CandidateApplication.CreatedAt |"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 349,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "🟢"
       ],
-      "preview": "- ✅ Tablero mínimo de KPIs funcional y expuesto via endpoint dedicado"
+      "preview": "<span class=\"badge success\">🟢 Última actualización: 15/08/2026</span>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 350,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "🔐"
       ],
-      "preview": "- ✅ Vista frontend `Indicadores Reclutamiento` en `/recruitment/candidates/kpis`"
+      "preview": "<span class=\"badge\">🔐 Roles: 5</span>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 351,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📦"
       ],
-      "preview": "- ✅ Automatización diaria existente expuesta para ejecución manual (testing en local)"
+      "preview": "<span class=\"badge\">📦 Submódulos: 2</span>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 352,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 357,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "🗂"
       ],
-      "preview": "- ✅ Quick wins vs cambios mayores clasificados y documentados"
+      "preview": "<h2>🗂️ 1. Estructura del Módulo y Submódulos</h2>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 353,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 360,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📁"
       ],
-      "preview": "- ✅ Compilación frontend y backend OK"
+      "preview": "<div class=\"folder\">📁 candidates/</div>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 354,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 363,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📁"
       ],
-      "preview": "- ✅ 0 mojibake nuevo"
+      "preview": "📁 candidate/ <span class=\"tag\">submódulo</span>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 387,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 367,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "→"
+        "📄"
       ],
-      "preview": "| **Mapper `RequestPositionMapper`** | Mapeo correcto DTO.Fuente → Entity.Fuente (antes intentaba leer de RequestEmployeeRegister) |"
+      "preview": "📄 candidate-list.html"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 401,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 371,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📄"
       ],
-      "preview": "- ✅ Backend compila (solo file lock de API corriendo)"
+      "preview": "📄 candidate-form.html"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 402,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 377,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📄"
       ],
-      "preview": "- ✅ Frontend compila (`npx tsc --noEmit` sin errores)"
+      "preview": "📄 candidate-detail.html"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 383,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📄"
+      ],
+      "preview": "📄 candidate.service.ts"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 391,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📁"
+      ],
+      "preview": "📁 candidate-application/ <span class=\"tag\">submódulo</span>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 395,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📄"
+      ],
+      "preview": "📄 application-list.html"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 399,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📄"
+      ],
+      "preview": "📄 application-form.html"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 403,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
+      "symbols": [
+        "📄"
+      ],
+      "preview": "📄 application-detail.html"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 413,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🧩"
+      ],
+      "preview": "<h2>🧩 2. Componentes y Acciones</h2>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 431,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🔍"
+      ],
+      "preview": "🔍 Buscar por nombre/email<br />"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 432,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🗂"
+      ],
+      "preview": "🗂️ Filtrar por estado<br />"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 433,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📄"
+      ],
+      "preview": "📄 Exportar a CSV/PDF<br />"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 434,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "➕"
+      ],
+      "preview": "➕ Navegar a creación<br />"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 435,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "📋 Seleccionar candidato"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 443,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "✏"
+      ],
+      "preview": "✏️ Crear nuevo candidato<br />"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 444,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📝"
+      ],
+      "preview": "📝 Editar campos (nombre, email, teléfono, etc.)<br />"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 445,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ `scan-mojibake`: 0 mojibake nuevo"
+      "preview": "✅ Validar formulario<br />"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 404,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 446,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "💾"
       ],
-      "preview": "- ✅ Endpoint `GET /api/recruitment-candidate-applications/kpis` ahora retorna `porFuente[]` con datos reales"
+      "preview": "💾 Guardar cambios<br />"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 407,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 447,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "🔄"
       ],
-      "preview": "- ✅ KPI `por fuente` deja de estar vacío"
+      "preview": "🔄 Cargar datos existentes (modo edición)"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 408,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 455,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "👁"
       ],
-      "preview": "- ✅ Valores provienen de entidad persistida (`RequestPosition.Fuente`)"
+      "preview": "👁️ Ver información personal<br />"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 409,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 456,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📜"
       ],
-      "preview": "- ✅ No rompe flujo actual de vacantes/postulaciones"
+      "preview": "📜 Historial de aplicaciones<br />"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 410,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 457,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📎"
       ],
-      "preview": "- ✅ Migración documentada y acotada"
+      "preview": "📎 Adjuntar documentos<br />"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 458,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "✏"
+      ],
+      "preview": "✏️ Navegar a edición<br />"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 459,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🗑"
+      ],
+      "preview": "🗑️ Eliminar candidato (solo SuperUsuario)"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 467,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "📋 Ver aplicaciones por candidato<br />"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 468,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "→"
+        "🔍"
       ],
-      "preview": "| **Componente `CandidateApplicationKpis`** | 2 nuevas tarjetas: \"Tiempo Vacante → 1ª Postulación (Prom.)\" con promedio/mediana/P90/SLA, y \"Vacantes en SLA (≤7 días)\" con conteo y "
+      "preview": "🔍 Filtrar por puesto o fecha<br />"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 485,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 469,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "➕"
       ],
-      "preview": "- ✅ Backend compila (solo file lock de API corriendo)"
+      "preview": "➕ Registrar nueva aplicación"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 486,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 477,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📝"
       ],
-      "preview": "- ✅ Frontend compila (`npx tsc --noEmit` sin errores)"
+      "preview": "📝 Asignar candidato<br />"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 487,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 478,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "🏢"
       ],
-      "preview": "- ✅ `scan-mojibake`: 0 mojibake nuevo"
+      "preview": "🏢 Seleccionar puesto<br />"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 488,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 479,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📅"
       ],
-      "preview": "- ✅ Endpoint `GET /api/recruitment-candidate-applications/kpis` retorna nuevos campos con datos reales"
+      "preview": "📅 Fecha de aplicación<br />"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 491,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 480,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "💾"
       ],
-      "preview": "- ✅ KPI `Tiempo Vacante -> Primera Postulacion` funcional con datos reales"
+      "preview": "💾 Guardar aplicación"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 492,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 490,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "🌐"
       ],
-      "preview": "- ✅ Fecha origen de vacante documentada y justificada (`RequestDate`)"
+      "preview": "<h2>🌐 3. Mapeo de Acciones a Endpoints HTTP</h2>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 493,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 575,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "🔐"
       ],
-      "preview": "- ✅ Primera postulacion calculada desde datos persistidos (`ApplicationDate`)"
+      "preview": "<h2>🔐 4. Matriz de Roles y Autorizaciones</h2>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 494,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 578,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "✅",
+        "❌"
       ],
-      "preview": "- ✅ No rompe flujo actual de vacantes, postulaciones ni KPIs existentes"
+      "preview": "Basado en la política de roles del sistema. ✅ = Permitido, ❌ ="
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 521,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 598,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| **`ResolveDecisionTargetStage`** | Soporta `CandidateDecision.NoSePresento` → `CandidateApplicationStage.NoSePresento` |"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 534,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "1. **Retroalimentacion** → Abre bandeja `Candidates > Entrevistas` con `applicationId` (reutiliza modal oficial)"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 535,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "2. **No asistio** → Ejecuta `MarkNoShow` → Cierra postulacion en etapa `NoSePresento` + notifica"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 536,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "3. **Rechazar** → Navega a bandeja entrevistas con `action=reject` (requiere motivo)"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 537,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "4. **Aprobar** → Ejecuta `Approve` → Transiciona a `EntrevistaOperaciones` o `Seleccionado` segun pipeline + notifica"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 538,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "5. **Ver Agenda** → Navega a `/recruitment/candidates/recruitment-agenda`"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 546,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Backend compila (file lock API)"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 547,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 599,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Frontend compila (`npx tsc --noEmit` sin errores)"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 548,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 600,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ `scan-mojibake`: 0 mojibake nuevo"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 549,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 601,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Endpoints `GET /interviewer-view` y `POST /interviewer-action` registrados"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 550,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 602,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Reutiliza pipeline oficial (`RegisterDecisionAsync`, `ChangeStageAsync`, notificaciones)"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 553,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 603,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ `Staff Board` muestra panel operativo por vacante con datos de entrevista"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 554,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 604,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ No hay duplicidad de reglas con `Candidates` (fuente de verdad)"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 555,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 608,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Feedback, no-show, rechazo, aprobacion impactan pipeline oficial"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 556,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 609,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Entrevistador opera desde contexto RH sin salir forzosamente"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 557,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 610,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Integracion documentada como decision de arquitectura"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 588,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 611,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "→"
+        "✅"
       ],
-      "preview": "| 3 | Tiempo Vacante → 1ª Postulación | Bar + SLA reference | ¿Cumplimos SLA ≤ 7 días? | Prom/Med/P90/SLA |"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 612,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"perm-no\">❌</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 613,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Backend compila (file lock API)"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 614,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Frontend compila (`npx tsc --noEmit` sin errores)"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 615,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 618,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ `scan-mojibake`: 0 mojibake nuevo"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 616,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 619,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Charts usan Design System tokens (colores DS_PALETTE)"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 617,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Reutiliza `ChartWrapper` + `echarts-adapters` existentes"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 620,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Dashboard pasa de numérico a visual sin perder claridad"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 621,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Cada chart responde una necesidad operativa real"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 622,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "❌"
       ],
-      "preview": "- ✅ No rompe KPIs existentes ni contratos"
+      "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
       "line": 623,
-      "category": "docs",
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Listo para uso diario de Reclutamiento"
+      "preview": "<td class=\"perm-yes\">✅</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 666,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 624,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "→"
-      ],
-      "preview": "| `CandidateAutomationService` | Lógica en `ExecuteDailyMonitoringAsync()`: detecta ≥48h overdue sin feedback → escalación |"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 679,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "❌"
       ],
-      "preview": "- ❌ Re-asignación automática (requiere regla aprobada + catálogo reemplazo)"
+      "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 680,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 628,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "<td class=\"perm-yes\">✅</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 629,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "<td class=\"perm-yes\">✅</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 630,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "<td class=\"perm-yes\">✅</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 631,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "<td class=\"perm-yes\">✅</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 632,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
       "symbols": [
         "❌"
       ],
-      "preview": "- ❌ Cambio de etapa automático (requiere decisión humana)"
+      "preview": "<td class=\"perm-no\">❌</td>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 683,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 633,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"perm-no\">❌</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 634,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"perm-no\">❌</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 638,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"perm-no\">❌</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 639,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"perm-no\">❌</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 640,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"perm-no\">❌</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 641,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"perm-no\">❌</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 642,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"perm-no\">❌</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 643,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"perm-no\">❌</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 644,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "<td class=\"perm-no\">❌</td>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 652,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "🛡"
+      ],
+      "preview": "<h2>🛡️ 5. Análisis de Auditoría</h2>"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 656,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
       "symbols": [
         "✅"
       ],
-      "preview": "- ✅ Backend compila (file lock API)"
+      "preview": "<h4>✅ Qué funciona correctamente</h4>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 684,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 669,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Frontend compila (`npx tsc --noEmit`)"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 685,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ `scan-mojibake`: 0 mojibake nuevo"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 686,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ No rompe automatizaciones existentes"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 687,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Logging trazable en `CandidateAutomationService`"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 862,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Inventario explicito de lecturas/escrituras legacy (esta seccion)."
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 863,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Endpoints y componentes afectados mapeados."
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 864,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Orden de migracion recomendado documentado."
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 909,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ `dotnet build` de `LuxuryApp.Infrastructure.Data` y `LuxuryApp.Application` (0 errores)."
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 910,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Migracion generada con `ApplicationDbContextFactory` (host API bloqueado por"
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 912,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Frontend no modificado en esta fase (sin ruptura)."
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 916,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Compila backend."
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 917,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ Migracion generada."
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 918,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ No se rompio frontend."
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 982,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ `dotnet build` de `LuxuryApp.Application` (0 errores)."
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 983,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- ✅ API de entrevistas funcional sin columnas legacy para crear citas."
-    },
-    {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 984,
-      "category": "docs",
-      "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
         "⚠"
       ],
-      "preview": "- ⚠️ `LuxuryApp.Api` no se reconstruye localmente: bin bloqueado por proceso"
+      "preview": "<h4>⚠️ Qué falta o está incompleto</h4>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 988,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 685,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "❌"
       ],
-      "preview": "- ✅ Existe API de entrevistas sin depender de columnas legacy para crear"
+      "preview": "<h4>❌ Qué no funciona / Riesgos</h4>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 1075,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 707,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "💡"
       ],
-      "preview": "- ✅ `dotnet build` `LuxuryApp.Application` = 0 errores."
+      "preview": "<h4>💡 Recomendaciones de mejora</h4>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 1076,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 732,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "🔄"
       ],
-      "preview": "- ✅ `npx tsc --noEmit` `client/angular` = 0 errores (EXIT 0)."
+      "preview": "<h2>🔄 6. Flujo de Trabajo del Módulo</h2>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 1077,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 752,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "→"
       ],
-      "preview": "- ✅ Escaneo de mojibake en feature = 0."
+      "preview": "3. Selecciona un candidato → navega a <strong>candidate-detail</strong>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 1078,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 754,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "→"
       ],
-      "preview": "- ✅ Roles de la matriz consumidos desde `api/select-item-enum/application-roles`"
+      "preview": "- Editar → <strong>candidate-form</strong>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 1080,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 755,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "→"
       ],
-      "preview": "- ✅ Backend de entrevistas ya consume `InterviewerMatrix` como fuente de verdad"
+      "preview": "- Ver aplicaciones → <strong>application-list</strong>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 1087,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 756,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "→"
       ],
-      "preview": "- ✅ `dotnet build` de `LuxuryApp.Application` (0 errores)."
+      "preview": "- Crear aplicación → <strong>application-form</strong>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 1088,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 764,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📊"
       ],
-      "preview": "- ✅ `npx tsc --noEmit` de `client/angular` (0 errores)."
+      "preview": "<h2>📊 7. Métricas del Módulo</h2>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 1089,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 831,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "📌"
       ],
-      "preview": "- ✅ Migracion `ReclutamientoResultadoUnico` generada."
+      "preview": "📌 Documentación generada automáticamente con"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 1140,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 834,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "🕒"
       ],
-      "preview": "- ✅ `dotnet build` de `LuxuryApp.Application` con `0 errores`."
+      "preview": "<span> 🕒 Última revisión: 15 de agosto de 2026 </span>"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/docs/decisiones.md",
-      "line": 1141,
-      "category": "docs",
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/modulo-candidates-doc.html",
+      "line": 835,
+      "category": "template_text",
       "module": "app/apps",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "✅"
+        "🔒"
       ],
-      "preview": "- ✅ Queue, agenda, board, notificaciones y automatizacion ya leen"
+      "preview": "<span> 🔒 Clasificación: <span class=\"badge\">Interno</span> </span>"
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/extructura-global-empelados.md",
@@ -9182,7 +9257,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 8,
+      "line": 11,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9193,7 +9268,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 10,
+      "line": 13,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9204,7 +9279,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 117,
+      "line": 120,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9215,7 +9290,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 122,
+      "line": 125,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9226,7 +9301,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 129,
+      "line": 132,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9237,7 +9312,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 139,
+      "line": 142,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9248,7 +9323,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 140,
+      "line": 143,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9259,7 +9334,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 141,
+      "line": 144,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9270,7 +9345,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 142,
+      "line": 145,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9281,7 +9356,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 143,
+      "line": 146,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9292,7 +9367,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 144,
+      "line": 147,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9303,7 +9378,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 145,
+      "line": 148,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9314,7 +9389,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 146,
+      "line": 149,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9325,7 +9400,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 147,
+      "line": 150,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9336,7 +9411,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 148,
+      "line": 151,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9347,7 +9422,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 149,
+      "line": 152,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9358,7 +9433,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 150,
+      "line": 153,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9369,7 +9444,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 151,
+      "line": 154,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9380,7 +9455,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 152,
+      "line": 155,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9391,7 +9466,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 153,
+      "line": 156,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9402,7 +9477,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 154,
+      "line": 157,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9413,7 +9488,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 155,
+      "line": 158,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9424,7 +9499,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 156,
+      "line": 159,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9435,7 +9510,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 157,
+      "line": 160,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9446,7 +9521,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 158,
+      "line": 161,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9458,7 +9533,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 159,
+      "line": 162,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9469,7 +9544,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 160,
+      "line": 163,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9480,7 +9555,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 161,
+      "line": 164,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9491,7 +9566,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 173,
+      "line": 176,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9502,7 +9577,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 185,
+      "line": 188,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9513,7 +9588,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 193,
+      "line": 196,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9524,7 +9599,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 198,
+      "line": 201,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9535,7 +9610,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 199,
+      "line": 202,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9546,7 +9621,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 200,
+      "line": 203,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9557,7 +9632,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 208,
+      "line": 211,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9568,7 +9643,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 211,
+      "line": 214,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9579,7 +9654,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 214,
+      "line": 217,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9590,7 +9665,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 215,
+      "line": 218,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9601,7 +9676,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 219,
+      "line": 222,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9612,7 +9687,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 222,
+      "line": 225,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9623,7 +9698,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 228,
+      "line": 231,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9634,7 +9709,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 231,
+      "line": 234,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9645,7 +9720,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 233,
+      "line": 236,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9656,7 +9731,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 237,
+      "line": 240,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9667,7 +9742,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 242,
+      "line": 245,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9678,7 +9753,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 244,
+      "line": 247,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9689,7 +9764,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 261,
+      "line": 264,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9700,7 +9775,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 265,
+      "line": 268,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9711,7 +9786,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 266,
+      "line": 269,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9722,7 +9797,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 297,
+      "line": 300,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9733,7 +9808,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 300,
+      "line": 303,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9744,7 +9819,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 304,
+      "line": 307,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9755,7 +9830,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 307,
+      "line": 310,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9767,7 +9842,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 311,
+      "line": 314,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9778,7 +9853,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 322,
+      "line": 325,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9789,7 +9864,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 324,
+      "line": 327,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9800,7 +9875,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 345,
+      "line": 348,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9811,7 +9886,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 350,
+      "line": 353,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9822,7 +9897,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 351,
+      "line": 354,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9833,7 +9908,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 352,
+      "line": 355,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9844,7 +9919,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 353,
+      "line": 356,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9855,7 +9930,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 379,
+      "line": 382,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9866,7 +9941,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 441,
+      "line": 444,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9877,7 +9952,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 442,
+      "line": 445,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9888,7 +9963,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 445,
+      "line": 448,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9899,7 +9974,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 449,
+      "line": 452,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9910,7 +9985,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 457,
+      "line": 460,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9921,7 +9996,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 462,
+      "line": 465,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9932,7 +10007,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 464,
+      "line": 467,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9943,7 +10018,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 468,
+      "line": 471,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9954,7 +10029,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 524,
+      "line": 527,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9966,7 +10041,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 530,
+      "line": 533,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9977,7 +10052,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 541,
+      "line": 544,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9988,7 +10063,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 542,
+      "line": 545,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -9999,7 +10074,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 543,
+      "line": 546,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10010,7 +10085,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 544,
+      "line": 547,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10021,7 +10096,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 545,
+      "line": 548,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10032,7 +10107,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 554,
+      "line": 557,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10043,7 +10118,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 555,
+      "line": 558,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10054,7 +10129,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 556,
+      "line": 559,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10065,7 +10140,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 557,
+      "line": 560,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10076,7 +10151,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 558,
+      "line": 561,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10087,7 +10162,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 559,
+      "line": 562,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10098,7 +10173,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 560,
+      "line": 563,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10109,7 +10184,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 569,
+      "line": 572,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10120,7 +10195,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 571,
+      "line": 574,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10131,7 +10206,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 579,
+      "line": 582,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10142,7 +10217,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 580,
+      "line": 583,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10153,7 +10228,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 581,
+      "line": 584,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10164,7 +10239,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 582,
+      "line": 585,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10175,7 +10250,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 583,
+      "line": 586,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10186,7 +10261,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 595,
+      "line": 598,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10197,7 +10272,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 601,
+      "line": 604,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10208,7 +10283,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 605,
+      "line": 608,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10219,7 +10294,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 612,
+      "line": 615,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10230,7 +10305,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 614,
+      "line": 617,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10241,7 +10316,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 623,
+      "line": 626,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10252,7 +10327,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 627,
+      "line": 630,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10264,7 +10339,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 628,
+      "line": 631,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10276,7 +10351,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 629,
+      "line": 632,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10288,7 +10363,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 630,
+      "line": 633,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10300,7 +10375,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 631,
+      "line": 634,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10312,7 +10387,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 632,
+      "line": 635,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10324,7 +10399,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 633,
+      "line": 636,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10336,7 +10411,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 634,
+      "line": 637,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10348,7 +10423,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 637,
+      "line": 640,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10359,7 +10434,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 654,
+      "line": 657,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10370,7 +10445,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 655,
+      "line": 658,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10381,7 +10456,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 656,
+      "line": 659,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10392,7 +10467,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 664,
+      "line": 667,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10403,7 +10478,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 665,
+      "line": 668,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10414,7 +10489,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 666,
+      "line": 669,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10425,7 +10500,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 667,
+      "line": 670,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10436,7 +10511,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 668,
+      "line": 671,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10447,7 +10522,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 669,
+      "line": 672,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10458,7 +10533,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 670,
+      "line": 673,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10469,7 +10544,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 671,
+      "line": 674,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10480,7 +10555,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 681,
+      "line": 684,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10491,7 +10566,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 683,
+      "line": 686,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10502,7 +10577,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 686,
+      "line": 689,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10513,7 +10588,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 687,
+      "line": 690,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10524,7 +10599,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 688,
+      "line": 691,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10535,7 +10610,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 692,
+      "line": 695,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10546,7 +10621,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 693,
+      "line": 696,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10557,7 +10632,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 694,
+      "line": 697,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10568,7 +10643,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 698,
+      "line": 701,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10579,7 +10654,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 699,
+      "line": 702,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10590,7 +10665,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 700,
+      "line": 703,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10601,7 +10676,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 751,
+      "line": 754,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10612,7 +10687,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 752,
+      "line": 755,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10623,7 +10698,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 767,
+      "line": 770,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10634,7 +10709,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 781,
+      "line": 784,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10645,7 +10720,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 782,
+      "line": 785,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10656,7 +10731,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 786,
+      "line": 789,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10667,7 +10742,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 795,
+      "line": 798,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10678,7 +10753,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 816,
+      "line": 819,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10689,7 +10764,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 819,
+      "line": 822,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10700,7 +10775,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 821,
+      "line": 824,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10711,7 +10786,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 827,
+      "line": 830,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10722,7 +10797,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 832,
+      "line": 835,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10733,7 +10808,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 876,
+      "line": 879,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10744,7 +10819,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 908,
+      "line": 911,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10755,7 +10830,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 910,
+      "line": 913,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10766,7 +10841,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 926,
+      "line": 929,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10777,7 +10852,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 955,
+      "line": 958,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10788,7 +10863,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 969,
+      "line": 972,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10799,7 +10874,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 973,
+      "line": 976,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10810,7 +10885,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 993,
+      "line": 996,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10821,7 +10896,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 994,
+      "line": 997,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10832,7 +10907,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 995,
+      "line": 998,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10843,7 +10918,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1001,
+      "line": 1004,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10854,7 +10929,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1007,
+      "line": 1010,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10865,7 +10940,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1033,
+      "line": 1036,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10876,7 +10951,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1035,
+      "line": 1038,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10887,7 +10962,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1038,
+      "line": 1041,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10898,7 +10973,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1077,
+      "line": 1080,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10909,7 +10984,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1083,
+      "line": 1086,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10920,7 +10995,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1096,
+      "line": 1099,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10931,7 +11006,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1143,
+      "line": 1146,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10942,7 +11017,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1164,
+      "line": 1167,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10953,7 +11028,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1172,
+      "line": 1175,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10964,7 +11039,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1174,
+      "line": 1177,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10975,7 +11050,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1180,
+      "line": 1183,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10986,7 +11061,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1184,
+      "line": 1187,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -10997,7 +11072,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1185,
+      "line": 1188,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11008,7 +11083,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1192,
+      "line": 1195,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11019,7 +11094,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1199,
+      "line": 1202,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11030,7 +11105,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1222,
+      "line": 1225,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11041,7 +11116,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1227,
+      "line": 1230,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11052,7 +11127,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1228,
+      "line": 1231,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11063,7 +11138,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1229,
+      "line": 1232,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11074,7 +11149,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1230,
+      "line": 1233,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11085,7 +11160,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1231,
+      "line": 1234,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11096,7 +11171,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1232,
+      "line": 1235,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11107,7 +11182,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1233,
+      "line": 1236,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11119,7 +11194,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1234,
+      "line": 1237,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11130,7 +11205,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1235,
+      "line": 1238,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11142,7 +11217,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1236,
+      "line": 1239,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11154,7 +11229,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1240,
+      "line": 1243,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11165,7 +11240,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1256,
+      "line": 1259,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11176,7 +11251,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1259,
+      "line": 1262,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11187,7 +11262,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1260,
+      "line": 1263,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11198,7 +11273,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1263,
+      "line": 1266,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11209,7 +11284,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1271,
+      "line": 1274,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11220,7 +11295,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1289,
+      "line": 1292,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11231,7 +11306,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1290,
+      "line": 1293,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11242,7 +11317,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1296,
+      "line": 1299,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11253,7 +11328,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1300,
+      "line": 1303,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11264,7 +11339,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1364,
+      "line": 1367,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11275,7 +11350,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1365,
+      "line": 1368,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11286,7 +11361,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1370,
+      "line": 1373,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11297,7 +11372,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1388,
+      "line": 1391,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11308,7 +11383,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1406,
+      "line": 1409,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11319,7 +11394,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1407,
+      "line": 1410,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11330,7 +11405,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1408,
+      "line": 1411,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11341,7 +11416,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1412,
+      "line": 1415,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11352,7 +11427,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1416,
+      "line": 1419,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11363,7 +11438,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1422,
+      "line": 1425,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11374,7 +11449,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1423,
+      "line": 1426,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11385,7 +11460,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1425,
+      "line": 1428,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11396,7 +11471,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1426,
+      "line": 1429,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11407,7 +11482,7 @@
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
-      "line": 1435,
+      "line": 1438,
       "category": "docs",
       "module": "app/apps",
       "severity": "low",
@@ -11415,6 +11490,617 @@
         "→"
       ],
       "preview": "- **Fase 3 (R.2):** renombrar `candidate-application-kpis` → `candidate-process-kpis` + DTO."
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1447,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅",
+        "🟡",
+        "❌"
+      ],
+      "preview": "> hallazgos con ✅ hecho / 🟡 parcial / ❌ pendiente."
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1453,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **R-01** `Candidate.RecruitmentSource` (enum `FuenteReclutamiento`) | ✅ | `Candidate.cs:90`; `CandidateCreateOrUpdateDto.cs:43`; `CandidateDetailDto.cs:42`; `CandidateListItemDto"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1454,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **R-03** entidad `EmployeeDocument` + enum `RecruitmentDocumentType` | ✅ | `ExpedientedelEmpleado/EmployeeDocument.cs`; migración V2 (líneas 27-99); hub `SelectItemEnum` ruta `re"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1455,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟡"
+      ],
+      "preview": "| **P** `ProcessHiringAsync` (distribución R-02) | 🟡 | Existe `CandidateProcessAppService.cs:195`; falta verificar que distribuya `EmployeeBankData`/`EmployeeClinicalData`/`Employ"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1456,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| **N.1** anti-duplicado candidato (tel/email) | ❌ | No existe `EnsureCandidateNotDuplicateAsync` |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1457,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| **N.3** solapamiento de candidato (mismo día) | ❌ | `EnsureInterviewSchedulingAllowedAsync` (`CandidateProcessAppService.cs:2079`) solo valida conflicto por `InterviewerUserId` ("
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1458,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| **N.4** ventana horaria (Lun-Vie 7-17 / Sáb 7-14 / Dom no) | ❌ | Única validación \"no en pasado\" (líneas 2081-2084) |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1459,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| **N.5** `PresentationStartAt` | ❌ | Campo inexistente en todo el repo (grep `PresentationStartAt` = 0 resultados) |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1460,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| **K.6.2 / N.6** eliminar motivo de decisión | ❌ | `REASON_REQUIRED` sigue en `CandidateProcessAppService.cs:1228` (SubmitFeedback) y `:1310` (Reject); `CandidateDecisionReason` a"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1461,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| **D11** hardcode `Decision = EnEspera` en SubmitFeedback | ❌ | `CandidateProcessAppService.cs:1239` |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1462,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| **K.6.1** legacy `CandidateInterviewFeedback` | ❌ | Entidad `CandidateInterviewFeedback.cs` y `CandidateInterviewAppService.cs` aún activos (no `[Obsolete]`) |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1463,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "⚠"
+      ],
+      "preview": "| **D2** `RegisterDecisionAsync` valida con `CandidateStageValidator` | ⚠️ | No revisado a fondo en esta auditoría |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1469,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **R-01** formulario candidato + `RecruitmentSource` | ✅ | `candidate/candidate-form.ts:86,107,122,141`; `candidate/candidate-detail.ts:105`; `candidate/interfaces/candidate.dto.t"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1470,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| **R-03** modal documentos de alta (subir / validar) | ✅ | `candidate-application/candidate-hiring-documents-modal.ts` + endpoints `hiringDocuments` y `validateHiringDocument` (ví"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1471,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "🟡",
+        "→"
+      ],
+      "preview": "| **N.6** feedback migrado a `ExecuteInterviewerActionAsync` | 🟡 | `candidate-interview/candidate-interview-feedback-form.ts:143` llama `CandidateProcesses.interviewerAction`; **p"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1472,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| **N.5** `PresentationStartAt` en formulario de feedback | ❌ | Sin campo en el formulario |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1473,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| **R.1** `openAltaForm` desacoplar de `EmployeeProviderForm` | ❌ | `candidate-recruitment-interviews/candidate-recruitment-interviews.ts:176` sigue abriendo `EmployeeProviderForm`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1474,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→",
+        "❌"
+      ],
+      "preview": "| **R.2** renombrar `candidate-application-*` → `candidate-process-*` | ❌ | Carpeta `candidate-application/` intacta (`candidate-application-list.ts` sigue; `candidate-process-hiri"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1475,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| **W.3** bandeja `recruitment-alta-tracking` | ❌ | No existe componente |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1484,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "4. **Fase 3 (R.2):** renombres `candidate-application-*` → `candidate-process-*` y `candidateApplicationId` → `candidateProcessId`."
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1513,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| R1 | Etapa de entrada al registrar | ✅ | `CandidateProcess.CurrentStage` por defecto = `EntrevistaReclutamiento` (antes `Nuevo`). |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1514,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| R2 | Motivo = enum `InterviewRejectionReason` | ✅ | 9 valores (FaltaExperiencia, NoCumplePerfil, SalarioFueraPresupuesto, ActitudNoAdecuada, FaltaDocumentacion, MejorCandidatoSel"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1515,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| D-A | CV único en `Candidate` | ✅ | `CandidateApplication.CvFileName` eliminado; fuente = `Candidate.CvFileName`. |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1516,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅",
+        "→"
+      ],
+      "preview": "| D-C | Modalidad de entrevista | ✅ | `CandidateInterviewType` (Reclutamiento/Operaciones) → `CandidateInterviewModality` (Presencial/Virtual). Quién entrevista se infiere de la et"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1517,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→",
+        "✅"
+      ],
+      "preview": "| D-D | `ScheduledAt` → `DateOnly`+`TimeOnly` | ✅ | `CandidateInterview.ScheduledAt` (DateTime) → `ScheduledDate`+`ScheduledTime`. |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1518,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| D-E | Una sola entidad de respuesta | ✅ | `CandidateInterviewFeedback` fusionado en `CandidateInterviewResult` (campos de respuesta del entrevistador + `EvaluatedAt`/`EvaluatedBy"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1519,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| D-F | `CandidateProcess` se mantiene | ✅ | Fuente de verdad operativa (sin cambios de rol). |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1520,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| D-G | `CandidateStageHistory` / `CandidateWorkExperience` / `InterviewerMatrix` | ✅ | Se conservan (bitácora, experiencia, matriz). |"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1525,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- **`CandidateInterview.cs`**: `InterviewType`→`Modality` (`CandidateInterviewModality`); `ScheduledAt`→`ScheduledDate`(DateOnly)+`ScheduledTime`(TimeOnly)."
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1526,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- **`CandidateInterviewResult.cs`**: `DecisionReasonId`(Guid)→`DecisionReason`(`InterviewRejectionReason`); eliminada navegación a catálogo; añadidos `InterviewerUserId`, `Intervie"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1527,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- **`CandidateApplication.cs`**: eliminado `CvFileName`; eliminada colección `InterviewFeedbacks`; `LastDecisionReasonId`(Guid)→`LastDecisionReason`(enum); eliminada navegación `La"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1528,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- **`CandidateProcess.cs`**: `DecisionReasonId`(Guid)→`DecisionReason`(enum); etapa por defecto = `EntrevistaReclutamiento`."
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1532,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- **DTOs**: `CandidateInterviewItemDto`/`CreateDto` → `Modality` + `ScheduledDate`/`ScheduledTime`; `CandidateInterviewResult*Dto` → enum de motivo; `CandidateDecisionRequest`/`Int"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1535,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- **`CandidateApplicationAppService`**: helper `GetLatestFeedback(application)` reemplaza la colección `InterviewFeedbacks` eliminada; `RegisterDecisionAsync`/`ExecuteInterviewerAc"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1541,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- `dotnet build LuxuryApp.Application` → **0 errores**."
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1542,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- `dotnet build LuxuryApp.Api` → **0 errores**."
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1543,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- `dotnet build LuxuryApp.Tests` → **0 errores**."
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV2.md",
+      "line": 1550,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "3. **Frontend:** `CandidateInterviewType`→modalidad, `ScheduledAt`→fecha+hora, motivo→enum hub, quitar `CvFileName` de postulación, y demás ajustes de V3 (Fase frontend)."
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1101,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- `Aprobado` → `Seleccionado`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1102,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- `Rechazado` → `Rechazado`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1103,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- `NoSePresento` → `NoSePresento`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1104,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- `EnEspera` → `EnEspera`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1105,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- `Reprogramar` → sigue en `EntrevistaOperaciones`, pero con nueva entrevista"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1185,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Entrevista → `Realizada`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1186,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Proceso → `Seleccionado`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1197,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Entrevista → `Realizada`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1198,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Proceso → `Rechazado`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1199,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Proceso → `Cerrado`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1208,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Entrevista → `NoAsistio`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1209,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Proceso → `NoSePresento`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1210,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Proceso → `Cerrado`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1219,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Entrevista → `Realizada`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1220,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Proceso → `EnEspera`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1228,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Entrevista actual → `Reprogramada`"
+    },
+    {
+      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nueva-extructuraV3.md",
+      "line": 1229,
+      "category": "docs",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "- Entrevista actual → `ClosedAt = ahora`"
     },
     {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidates/nuevos-requerimientos.md",
@@ -11825,17 +12511,6 @@
       "preview": "1. **Alta**: `RequestEmployeeRegister` → crea `Employee` (EmployeeId) y luego"
     },
     {
-      "file": "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-stage-timeline.ts",
-      "line": 26,
-      "category": "code_string",
-      "module": "app/apps",
-      "severity": "medium",
-      "symbols": [
-        "→"
-      ],
-      "preview": "title: `${this.stageLabel(h.fromStage)} → ${this.stageLabel(h.toStage)}`,"
-    },
-    {
       "file": "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/recruitment-client-requests/solicitudes-cliente-list.html",
       "line": 1,
       "category": "template_comment",
@@ -11903,7 +12578,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/employee-list.html",
-      "line": 123,
+      "line": 134,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -11958,7 +12633,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board.html",
-      "line": 301,
+      "line": 309,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
@@ -11969,7 +12644,7 @@
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board.html",
-      "line": 308,
+      "line": 316,
       "category": "template_text",
       "module": "app/apps",
       "severity": "medium",
@@ -11977,17 +12652,6 @@
         "🔵"
       ],
       "preview": "🔵 VA-{{ item.positionRequest.folio }} Alta en proceso"
-    },
-    {
-      "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/hr-employees/employees/employee-list.html",
-      "line": 123,
-      "category": "template_comment",
-      "module": "app/apps",
-      "severity": "low",
-      "symbols": [
-        "📲"
-      ],
-      "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/admin-vacaciones-balance/admin-vacaciones-balance.html",
@@ -19078,7 +19742,7 @@
     },
     {
       "file": "src/index.html",
-      "line": 16,
+      "line": 13,
       "category": "template_comment",
       "module": "src/root",
       "severity": "low",
@@ -19089,7 +19753,7 @@
     },
     {
       "file": "src/index.html",
-      "line": 61,
+      "line": 58,
       "category": "template_comment",
       "module": "src/root",
       "severity": "low",
@@ -19263,7 +19927,7 @@
     },
     {
       "file": "src/styles/core/_colors.scss",
-      "line": 264,
+      "line": 288,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -20593,7 +21257,7 @@
     },
     {
       "file": "src/styles/styles.scss",
-      "line": 142,
+      "line": 145,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -20650,7 +21314,7 @@
     },
     {
       "file": "src/styles/theme/_variables.scss",
-      "line": 513,
+      "line": 533,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -20661,7 +21325,7 @@
     },
     {
       "file": "src/styles/theme/_variables.scss",
-      "line": 795,
+      "line": 815,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -20691,6 +21355,17 @@
         "→"
       ],
       "preview": "// text   → hover muestra fondo neutro (ds-bg-sunken), solo el texto lleva color"
+    },
+    {
+      "file": "src/styles/web/_flatpickr.scss",
+      "line": 2,
+      "category": "style_comment",
+      "module": "src/styles",
+      "severity": "low",
+      "symbols": [
+        "📅"
+      ],
+      "preview": "// 📅 _flatpickr.scss — Header del calendario con el color primario de marca"
     },
     {
       "file": "src/styles/web/_forms.scss",

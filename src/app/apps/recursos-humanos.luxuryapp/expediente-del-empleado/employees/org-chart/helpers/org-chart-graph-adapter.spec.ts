@@ -7,7 +7,7 @@ import {
 import {
   IWorkPositionOrgChartNode,
   ORG_CHART_VIRTUAL_ROOT_ID,
-} from "../models/org-chart.interfaces";
+} from "../interfaces/org-chart.interfaces";
 
 describe("org-chart-graph-adapter", () => {
   const createNode = (

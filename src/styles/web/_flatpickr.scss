@@ -1,0 +1,74 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// 📅 _flatpickr.scss — Header del calendario con el color primario de marca
+// ═══════════════════════════════════════════════════════════════════════════
+// Aplica $primary-700 (#003152, ancla de marca) al encabezado del calendario
+// Flatpickr: barra de meses, flechas de navegación, selector de mes y año.
+// Se mantiene fuera de @layer para vencer a flatpickr.css (cargado antes en
+// angular.json). Usa variables CSS del Design System, no valores hardcodeados.
+
+.flatpickr-months {
+  background: var(--primary-700);
+  border-radius: 4px 4px 0 0;
+}
+
+/* Flechas < > — misma especificidad que flatpickr.css (.flatpickr-months .flatpickr-prev-month) */
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+  color: var(--ds-on-primary);
+  fill: var(--ds-on-primary);
+  z-index: 1;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+  color: var(--ds-on-primary);
+}
+
+.flatpickr-months .flatpickr-prev-month svg,
+.flatpickr-months .flatpickr-next-month svg {
+  fill: var(--ds-on-primary);
+}
+
+.flatpickr-months .flatpickr-prev-month svg path,
+.flatpickr-months .flatpickr-next-month svg path {
+  fill: inherit;
+}
+
+.flatpickr-month,
+.flatpickr-current-month {
+  color: var(--ds-on-primary);
+}
+
+.flatpickr-monthDropdown-months {
+  background: var(--primary-700);
+  color: var(--ds-on-primary);
+
+  option {
+    background: var(--ds-surface);
+    color: var(--ds-text-primary);
+  }
+}
+
+.numInputWrapper {
+  color: var(--ds-on-primary);
+
+  input {
+    color: var(--ds-on-primary);
+  }
+
+  span.arrowUp,
+  span.arrowDown {
+    border-color: var(--ds-on-primary) transparent;
+  }
+}
+
+.flatpickr-weekdays {
+  background: var(--primary-700);
+  color: var(--ds-on-primary);
+}
+
+/* Nombres de la semana (lun, mar, mié...) — mismo especificidad que flatpickr.css (span.flatpickr-weekday) */
+span.flatpickr-weekday {
+  color: var(--ds-on-primary);
+  opacity: 0.85;
+}

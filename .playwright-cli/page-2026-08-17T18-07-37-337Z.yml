@@ -1,0 +1,534 @@
+- generic [ref=e1]:
+  - link "Saltar al contenido principal" [ref=e2] [cursor=pointer]:
+    - /url: "#app-root-outlet"
+  - generic "Aplicación LuxuryApp" [ref=e3]:
+    - generic:
+      - alertdialog
+    - main [ref=e7]:
+      - generic [ref=e74]:
+        - toolbar [ref=e78]:
+          - generic [ref=e80]:
+            - button "Abrir o cerrar el menú lateral" [ref=e81] [cursor=pointer]
+            - button "LUXURY" [ref=e84] [cursor=pointer]
+            - navigation [ref=e91]:
+              - list [ref=e92]:
+                - listitem [ref=e93]:
+                  - link "Inicio" [ref=e94] [cursor=pointer]:
+                    - /url: /dashboard
+          - generic [ref=e98]:
+            - button "Inicio" [ref=e99] [cursor=pointer]
+            - button "Pagina anterior" [ref=e102] [cursor=pointer]
+            - button "Pagina siguiente" [ref=e105] [cursor=pointer]
+            - button "Actualizar" [ref=e108] [cursor=pointer]
+            - button "Mi edificio" [ref=e111] [cursor=pointer]
+            - button "Anuncios" [ref=e114] [cursor=pointer]
+            - button "Comunicado IA" [ref=e117] [cursor=pointer]
+            - button "Telefonos de Emergencia" [ref=e120] [cursor=pointer]
+            - button "Configuración" [ref=e123] [cursor=pointer]
+            - button "Novedades" [ref=e126] [cursor=pointer]
+            - button "Cambiar tema claro u oscuro" [ref=e131] [cursor=pointer]
+            - 'button "Alerta de pánico: mantén presionado para activar" [ref=e135] [cursor=pointer]'
+            - button "Notificaciones" [ref=e140] [cursor=pointer]
+            - button "Abrir menú de usuario" [ref=e146] [cursor=pointer]
+        - navigation [ref=e154]:
+          - generic [ref=e155]:
+            - generic [ref=e156]: LuxuryApp
+            - generic [ref=e157]: Gestión Inteligente
+          - generic [ref=e165]:
+            - heading "Administrador LBG" [level=2] [ref=e166]
+            - paragraph [ref=e167]: Empleado
+            - heading "LUXURY" [level=3] [ref=e169]
+          - generic [ref=e170]:
+            - generic [ref=e297]: Design System
+            - list [ref=e299]:
+              - listitem [ref=e300]:
+                - button "Luxury Design System" [ref=e301] [cursor=pointer]
+            - separator
+            - list [ref=e312]:
+              - listitem [ref=e313]:
+                - button "Legal" [ref=e314] [cursor=pointer]
+              - listitem [ref=e325]:
+                - link "Contabilidad" [ref=e326] [cursor=pointer]:
+                  - /url: /contabilidad
+              - listitem [ref=e332]:
+                - link "Cobranza Panel" [ref=e333] [cursor=pointer]:
+                  - /url: /cobranza-nativa
+              - listitem [ref=e339]:
+                - button "Tickets" [ref=e340] [cursor=pointer]
+              - listitem [ref=e351]:
+                - button "Inspecciones" [ref=e352] [cursor=pointer]
+              - listitem [ref=e363]:
+                - button "Juntas de comite" [ref=e364] [cursor=pointer]
+              - listitem [ref=e375]:
+                - button "Compras" [ref=e376] [cursor=pointer]
+              - listitem [ref=e387]:
+                - button "Bitacoras" [ref=e388] [cursor=pointer]
+              - listitem [ref=e399]:
+                - button "Almacen" [ref=e400] [cursor=pointer]
+              - listitem [ref=e411]:
+                - button "Inventarios" [ref=e412] [cursor=pointer]
+              - listitem [ref=e423]:
+                - button "Biblioteca" [ref=e424] [cursor=pointer]
+              - listitem [ref=e435]:
+                - button "Calendarios" [ref=e436] [cursor=pointer]
+              - listitem [ref=e443]:
+                - button "Directorios" [ref=e444] [cursor=pointer]
+              - listitem [ref=e451]:
+                - link "Supervisión" [ref=e452] [cursor=pointer]:
+                  - /url: /supervision
+              - listitem [ref=e456]:
+                - button "Reportes" [ref=e457] [cursor=pointer]
+              - listitem [ref=e464]:
+                - button "Entrega recepción" [ref=e465] [cursor=pointer]
+              - listitem [ref=e472]:
+                - button "Reclutamiento" [ref=e473] [cursor=pointer]
+              - listitem [ref=e480]:
+                - generic [ref=e481]: Sistemas
+              - listitem [ref=e485]:
+                - generic [ref=e486]: Reservaciones
+              - listitem [ref=e490]:
+                - generic [ref=e491]: Pases QR
+              - listitem [ref=e495]:
+                - generic [ref=e496]: Paqueteria
+              - listitem [ref=e500]:
+                - button "Recursos Humanos" [ref=e501] [cursor=pointer]
+              - listitem [ref=e508]:
+                - link "Anuncios" [ref=e509] [cursor=pointer]:
+                  - /url: /announcements/manage
+              - listitem [ref=e513]:
+                - button "Utilidades" [ref=e514] [cursor=pointer]
+        - generic [ref=e182]:
+          - generic [ref=e188]:
+            - generic [ref=e189]:
+              - generic [ref=e521]:
+                - generic [ref=e522] [cursor=pointer]:
+                  - generic [ref=e527]: Todos
+                  - generic [ref=e528]: "18"
+                - generic [ref=e531] [cursor=pointer]:
+                  - generic [ref=e532]: 🎫
+                  - generic [ref=e533]: Tickets
+                  - generic [ref=e534]: "9"
+                - generic [ref=e535] [cursor=pointer]:
+                  - generic [ref=e536]: ⚖️
+                  - generic [ref=e537]: Legal
+                  - generic [ref=e538]: "3"
+                - generic [ref=e539] [cursor=pointer]:
+                  - generic [ref=e540]: 🔧
+                  - generic [ref=e541]: Mantenimiento
+                  - generic [ref=e542]: "4"
+                - generic [ref=e543] [cursor=pointer]:
+                  - generic [ref=e544]: 📌
+                  - generic [ref=e545]: Mis Tickets
+                  - generic [ref=e546]: "1"
+                - generic [ref=e547] [cursor=pointer]:
+                  - generic [ref=e548]: 📄
+                  - generic [ref=e549]: Polizas
+                  - generic [ref=e550]: "1"
+              - generic [ref=e191]:
+                - button [ref=e193] [cursor=pointer]
+                - button [ref=e197] [cursor=pointer]
+                - button [ref=e202] [cursor=pointer]
+              - textbox "Buscar aquí..." [ref=e215]
+            - generic [ref=e216]:
+              - generic [ref=e219]: Critico (>8d)
+              - generic [ref=e221]: Alerta (7-8d)
+          - table [ref=e224]:
+            - rowgroup [ref=e225]:
+              - row [ref=e226]:
+                - columnheader [ref=e227] [cursor=pointer]
+                - columnheader [ref=e231] [cursor=pointer]
+                - columnheader [ref=e235] [cursor=pointer]
+                - columnheader [ref=e239] [cursor=pointer]
+                - columnheader "último Seguimiento" [ref=e243]
+                - columnheader [ref=e244] [cursor=pointer]
+                - columnheader [ref=e248] [cursor=pointer]
+            - rowgroup [ref=e561]:
+              - row [ref=e562] [cursor=pointer]:
+                - cell "Tickets" [ref=e563]
+                - cell "08 abr 16:32" [ref=e567]:
+                  - generic [ref=e568]:
+                    - generic [ref=e569]: 08 abr
+                    - generic [ref=e570]: 16:32
+                - cell "LEGAL | Protocolización de actas de asamblea" [ref=e575]
+                - cell "J Jose Carlos Rodríguez Miranda Asignado" [ref=e578]:
+                  - generic [ref=e579]:
+                    - generic [ref=e580]: J
+                    - generic [ref=e583]:
+                      - generic [ref=e584]: Jose Carlos Rodríguez Miranda
+                      - generic [ref=e585]: Asignado
+                - cell "23-jun-26 | se envia reglamento 2026 para aprobación de comite y envio de acta y reglamento junto a protocolización" [ref=e586]
+                - cell "En Proceso" [ref=e593]
+                - cell "132 días" [ref=e597]:
+                  - generic [ref=e598]:
+                    - generic [ref=e599]: "132"
+                    - generic [ref=e600]: días
+              - row [ref=e601] [cursor=pointer]:
+                - cell "Tickets" [ref=e602]
+                - cell "14 may 18:50" [ref=e606]:
+                  - generic [ref=e607]:
+                    - generic [ref=e608]: 14 may
+                    - generic [ref=e609]: 18:50
+                - cell "LEGAL | Otra consulta Donación de alberca a la A.C." [ref=e614]:
+                  - generic [ref=e615]:
+                    - generic [ref=e616]: LEGAL | Otra consulta
+                    - generic [ref=e617]: Donación de alberca a la A.C.
+                - cell "T Teresa Sayegh Asignado" [ref=e618]:
+                  - generic [ref=e619]:
+                    - generic [ref=e620]: T
+                    - generic [ref=e623]:
+                      - generic [ref=e624]: Teresa Sayegh
+                      - generic [ref=e625]: Asignado
+                - cell "23-jun-26 | se envia mail de seguimiento y se le indica a la administradora que por favor ponga el tema en cada junta de comite hasta obtener una respuesta por parte de ellos" [ref=e626]
+                - cell "En Proceso" [ref=e633]
+                - cell "95 días" [ref=e637]:
+                  - generic [ref=e638]:
+                    - generic [ref=e639]: "95"
+                    - generic [ref=e640]: días
+              - row [ref=e641] [cursor=pointer]:
+                - cell "Legal" [ref=e642]
+                - cell "14 may 18:50" [ref=e646]:
+                  - generic [ref=e647]:
+                    - generic [ref=e648]: 14 may
+                    - generic [ref=e649]: 18:50
+                - cell "Otra consulta Donación de alberca a la A.C." [ref=e654]:
+                  - generic [ref=e655]:
+                    - generic [ref=e656]: Otra consulta
+                    - generic [ref=e657]: Donación de alberca a la A.C.
+                - cell "T Teresa Sayegh Asignado" [ref=e658]:
+                  - generic [ref=e659]:
+                    - generic [ref=e660]: T
+                    - generic [ref=e663]:
+                      - generic [ref=e664]: Teresa Sayegh
+                      - generic [ref=e665]: Asignado
+                - cell "Donación de alberca a la A.C." [ref=e666]
+                - cell "InProgress" [ref=e673]
+                - cell "95 días" [ref=e677]:
+                  - generic [ref=e678]:
+                    - generic [ref=e679]: "95"
+                    - generic [ref=e680]: días
+              - row [ref=e681] [cursor=pointer]:
+                - cell "Tickets" [ref=e682]
+                - cell "14 may 19:54" [ref=e686]:
+                  - generic [ref=e687]:
+                    - generic [ref=e688]: 14 may
+                    - generic [ref=e689]: 19:54
+                - cell "LEGAL | Otra consulta Seguimiento a trámite de SEGUIAGUA y juicio contra SACMEX." [ref=e694]:
+                  - generic [ref=e695]:
+                    - generic [ref=e696]: LEGAL | Otra consulta
+                    - generic [ref=e697]: Seguimiento a trámite de SEGUIAGUA y juicio contra SACMEX.
+                - cell "J Jose Carlos Rodríguez Miranda Asignado" [ref=e698]:
+                  - generic [ref=e699]:
+                    - generic [ref=e700]: J
+                    - generic [ref=e703]:
+                      - generic [ref=e704]: Jose Carlos Rodríguez Miranda
+                      - generic [ref=e705]: Asignado
+                - cell "15-may-26 | Se enviaron todos los documentos solicitados para realizar el tramite, seguimos al pendiente por si se requiere información adicional" [ref=e706]
+                - cell "En Proceso" [ref=e713]
+                - cell "95 días" [ref=e717]:
+                  - generic [ref=e718]:
+                    - generic [ref=e719]: "95"
+                    - generic [ref=e720]: días
+              - row [ref=e721] [cursor=pointer]:
+                - cell "Legal" [ref=e722]
+                - cell "14 may 19:54" [ref=e726]:
+                  - generic [ref=e727]:
+                    - generic [ref=e728]: 14 may
+                    - generic [ref=e729]: 19:54
+                - cell "Otra consulta Seguimiento a trámite de SEGUIAGUA y juicio contra SACMEX." [ref=e734]:
+                  - generic [ref=e735]:
+                    - generic [ref=e736]: Otra consulta
+                    - generic [ref=e737]: Seguimiento a trámite de SEGUIAGUA y juicio contra SACMEX.
+                - cell "J Jose Carlos Rodríguez Miranda Asignado" [ref=e738]:
+                  - generic [ref=e739]:
+                    - generic [ref=e740]: J
+                    - generic [ref=e743]:
+                      - generic [ref=e744]: Jose Carlos Rodríguez Miranda
+                      - generic [ref=e745]: Asignado
+                - cell "Seguimiento a trámite de SEGUIAGUA y juicio contra SACMEX." [ref=e746]
+                - cell "InProgress" [ref=e753]
+                - cell "95 días" [ref=e757]:
+                  - generic [ref=e758]:
+                    - generic [ref=e759]: "95"
+                    - generic [ref=e760]: días
+              - row [ref=e761] [cursor=pointer]:
+                - cell "Tickets" [ref=e762]
+                - cell "29 jun 14:30" [ref=e766]:
+                  - generic [ref=e767]:
+                    - generic [ref=e768]: 29 jun
+                    - generic [ref=e769]: 14:30
+                - cell "LEGAL | Revisión de contrato Gestión de contrato por servicio de sellado de vidrios en deptos" [ref=e774]:
+                  - generic [ref=e775]:
+                    - generic [ref=e776]: LEGAL | Revisión de contrato
+                    - generic [ref=e777]: Gestión de contrato por servicio de sellado de vidrios en deptos
+                - cell "R Raquel Cohen Avayou Asignado" [ref=e778]:
+                  - generic [ref=e779]:
+                    - generic [ref=e780]: R
+                    - generic [ref=e783]:
+                      - generic [ref=e784]: Raquel Cohen Avayou
+                      - generic [ref=e785]: Asignado
+                - cell "-- Sin info --" [ref=e786]
+                - cell "Cancelada" [ref=e787]
+                - cell "50 días" [ref=e791]:
+                  - generic [ref=e792]:
+                    - generic [ref=e793]: "50"
+                    - generic [ref=e794]: días
+              - row [ref=e795] [cursor=pointer]:
+                - cell "Tickets" [ref=e796]
+                - cell "23 jul 16:58" [ref=e800]:
+                  - generic [ref=e801]:
+                    - generic [ref=e802]: 23 jul
+                    - generic [ref=e803]: 16:58
+                - cell "LEGAL | Revisión de contrato Elaboración de contrato para el mantenimiento a las subestaciones." [ref=e808]:
+                  - generic [ref=e809]:
+                    - generic [ref=e810]: LEGAL | Revisión de contrato
+                    - generic [ref=e811]: Elaboración de contrato para el mantenimiento a las subestaciones.
+                - cell "J Jose Carlos Rodríguez Miranda Asignado" [ref=e812]:
+                  - generic [ref=e813]:
+                    - generic [ref=e814]: J
+                    - generic [ref=e817]:
+                      - generic [ref=e818]: Jose Carlos Rodríguez Miranda
+                      - generic [ref=e819]: Asignado
+                - cell "-- Sin info --" [ref=e820]
+                - cell "No Iniciada" [ref=e821]
+                - cell "26 días" [ref=e825]:
+                  - generic [ref=e826]:
+                    - generic [ref=e827]: "26"
+                    - generic [ref=e828]: días
+              - row [ref=e829] [cursor=pointer]:
+                - cell "Legal" [ref=e830]
+                - cell "23 jul 16:58" [ref=e834]:
+                  - generic [ref=e835]:
+                    - generic [ref=e836]: 23 jul
+                    - generic [ref=e837]: 16:58
+                - cell "Revisión de contrato Elaboración de contrato para el mantenimiento a las subestaciones." [ref=e842]:
+                  - generic [ref=e843]:
+                    - generic [ref=e844]: Revisión de contrato
+                    - generic [ref=e845]: Elaboración de contrato para el mantenimiento a las subestaciones.
+                - cell "J Jose Carlos Rodríguez Miranda Asignado" [ref=e846]:
+                  - generic [ref=e847]:
+                    - generic [ref=e848]: J
+                    - generic [ref=e851]:
+                      - generic [ref=e852]: Jose Carlos Rodríguez Miranda
+                      - generic [ref=e853]: Asignado
+                - cell "Elaboración de contrato para el mantenimiento a las subestaciones." [ref=e854]
+                - cell "NotStarted" [ref=e861]
+                - cell "26 días" [ref=e865]:
+                  - generic [ref=e866]:
+                    - generic [ref=e867]: "26"
+                    - generic [ref=e868]: días
+              - row [ref=e869] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e870]
+                - cell "01 ago 06:00" [ref=e874]:
+                  - generic [ref=e875]:
+                    - generic [ref=e876]: 01 ago
+                    - generic [ref=e877]: 06:00
+                - cell "Preventivo - MIrage G4 Mitsubishi Vefificación" [ref=e882]:
+                  - generic [ref=e883]:
+                    - generic [ref=e884]: Preventivo - MIrage G4 Mitsubishi
+                    - generic [ref=e885]: Vefificación
+                - cell "M MANTENIMIENTO INTERNO Asignado" [ref=e886]:
+                  - generic [ref=e887]:
+                    - generic [ref=e888]: M
+                    - generic [ref=e891]:
+                      - generic [ref=e892]: MANTENIMIENTO INTERNO
+                      - generic [ref=e893]: Asignado
+                - cell "-- Sin info --" [ref=e894]
+                - cell "Pendiente" [ref=e895]
+                - cell "17 días" [ref=e899]:
+                  - generic [ref=e900]:
+                    - generic [ref=e901]: "17"
+                    - generic [ref=e902]: días
+              - row [ref=e903] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e904]
+                - cell "01 ago 06:00" [ref=e908]:
+                  - generic [ref=e909]:
+                    - generic [ref=e910]: 01 ago
+                    - generic [ref=e911]: 06:00
+                - cell "Preventivo - MIrage G4 Mitsubishi Vefificación" [ref=e916]:
+                  - generic [ref=e917]:
+                    - generic [ref=e918]: Preventivo - MIrage G4 Mitsubishi
+                    - generic [ref=e919]: Vefificación
+                - cell "M MANTENIMIENTO INTERNO Asignado" [ref=e920]:
+                  - generic [ref=e921]:
+                    - generic [ref=e922]: M
+                    - generic [ref=e925]:
+                      - generic [ref=e926]: MANTENIMIENTO INTERNO
+                      - generic [ref=e927]: Asignado
+                - cell "-- Sin info --" [ref=e928]
+                - cell "Pendiente" [ref=e929]
+                - cell "17 días" [ref=e933]:
+                  - generic [ref=e934]:
+                    - generic [ref=e935]: "17"
+                    - generic [ref=e936]: días
+              - row [ref=e937] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e938]
+                - cell "01 ago 06:00" [ref=e942]:
+                  - generic [ref=e943]:
+                    - generic [ref=e944]: 01 ago
+                    - generic [ref=e945]: 06:00
+                - cell "Preventivo - GL 150 CARGO 2 (Activa) Póliza de seguro." [ref=e950]:
+                  - generic [ref=e951]:
+                    - generic [ref=e952]: Preventivo - GL 150 CARGO 2 (Activa)
+                    - generic [ref=e953]: Póliza de seguro.
+                - cell "S SEGUROS QUÁLITAS Asignado" [ref=e954]:
+                  - generic [ref=e955]:
+                    - generic [ref=e956]: S
+                    - generic [ref=e959]:
+                      - generic [ref=e960]: SEGUROS QUÁLITAS
+                      - generic [ref=e961]: Asignado
+                - cell "-- Sin info --" [ref=e962]
+                - cell "Pendiente" [ref=e963]
+                - cell "17 días" [ref=e967]:
+                  - generic [ref=e968]:
+                    - generic [ref=e969]: "17"
+                    - generic [ref=e970]: días
+              - row [ref=e971] [cursor=pointer]:
+                - cell "Mantenimiento" [ref=e972]
+                - cell "01 ago 06:00" [ref=e976]:
+                  - generic [ref=e977]:
+                    - generic [ref=e978]: 01 ago
+                    - generic [ref=e979]: 06:00
+                - cell "Preventivo - GL 150 CARGO 2 (Activa) Póliza de seguro." [ref=e984]:
+                  - generic [ref=e985]:
+                    - generic [ref=e986]: Preventivo - GL 150 CARGO 2 (Activa)
+                    - generic [ref=e987]: Póliza de seguro.
+                - cell "S SEGUROS QUÁLITAS Asignado" [ref=e988]:
+                  - generic [ref=e989]:
+                    - generic [ref=e990]: S
+                    - generic [ref=e993]:
+                      - generic [ref=e994]: SEGUROS QUÁLITAS
+                      - generic [ref=e995]: Asignado
+                - cell "-- Sin info --" [ref=e996]
+                - cell "Pendiente" [ref=e997]
+                - cell "17 días" [ref=e1001]:
+                  - generic [ref=e1002]:
+                    - generic [ref=e1003]: "17"
+                    - generic [ref=e1004]: días
+              - row [ref=e1005] [cursor=pointer]:
+                - cell "Tickets" [ref=e1006]
+                - cell "03 ago 17:11" [ref=e1010]:
+                  - generic [ref=e1011]:
+                    - generic [ref=e1012]: 03 ago
+                    - generic [ref=e1013]: 17:11
+                - 'cell "LEGAL | Revisión de contrato Elaboración de contrato para mtto correctivo mayor a fachada del GYM. Proveedor: Julio Guadalupe García Zaragoza, INNOVA ARQ. Fecha de inicio 03-05-2026" [ref=e1018]':
+                  - generic [ref=e1019]:
+                    - generic [ref=e1020]: LEGAL | Revisión de contrato
+                    - generic [ref=e1021]: "Elaboración de contrato para mtto correctivo mayor a fachada del GYM. Proveedor: Julio Guadalupe García Zaragoza, INNOVA ARQ. Fecha de inicio 03-05-2026"
+                - cell "R Raquel Cohen Avayou Asignado" [ref=e1022]:
+                  - generic [ref=e1023]:
+                    - generic [ref=e1024]: R
+                    - generic [ref=e1027]:
+                      - generic [ref=e1028]: Raquel Cohen Avayou
+                      - generic [ref=e1029]: Asignado
+                - cell "-- Sin info --" [ref=e1030]
+                - cell "No Iniciada" [ref=e1031]
+                - cell "15 días" [ref=e1035]:
+                  - generic [ref=e1036]:
+                    - generic [ref=e1037]: "15"
+                    - generic [ref=e1038]: días
+              - row [ref=e1039] [cursor=pointer]:
+                - cell "Tickets" [ref=e1040]
+                - cell "04 ago 06:10" [ref=e1044]:
+                  - generic [ref=e1045]:
+                    - generic [ref=e1046]: 04 ago
+                    - generic [ref=e1047]: 06:10
+                - cell "SUP. OPERACIONES | cghhb vbvhj" [ref=e1052]:
+                  - generic [ref=e1053]:
+                    - generic [ref=e1054]: SUP. OPERACIONES | cghhb
+                    - generic [ref=e1055]: vbvhj
+                - cell "A Administrador LBG Asignado" [ref=e1056]:
+                  - generic [ref=e1057]:
+                    - generic [ref=e1058]: A
+                    - generic [ref=e1061]:
+                      - generic [ref=e1062]: Administrador LBG
+                      - generic [ref=e1063]: Asignado
+                - cell "-- Sin info --" [ref=e1064]
+                - cell "No Iniciada" [ref=e1065]
+                - cell "14 días" [ref=e1069]:
+                  - generic [ref=e1070]:
+                    - generic [ref=e1071]: "14"
+                    - generic [ref=e1072]: días
+              - row [ref=e1073] [cursor=pointer]:
+                - cell "Tickets" [ref=e1074]
+                - cell "04 ago 15:52" [ref=e1078]:
+                  - generic [ref=e1079]:
+                    - generic [ref=e1080]: 04 ago
+                    - generic [ref=e1081]: 15:52
+                - cell "DESARROLLO APP | aaaaa ndndjdddbd" [ref=e1086]:
+                  - generic [ref=e1087]:
+                    - generic [ref=e1088]: DESARROLLO APP | aaaaa
+                    - generic [ref=e1089]: ndndjdddbd
+                - cell "R Ricardo Márquez Escobedo Asignado" [ref=e1090]:
+                  - generic [ref=e1091]:
+                    - generic [ref=e1092]: R
+                    - generic [ref=e1095]:
+                      - generic [ref=e1096]: Ricardo Márquez Escobedo
+                      - generic [ref=e1097]: Asignado
+                - cell "-- Sin info --" [ref=e1098]
+                - cell "No Iniciada" [ref=e1099]
+                - cell "14 días" [ref=e1103]:
+                  - generic [ref=e1104]:
+                    - generic [ref=e1105]: "14"
+                    - generic [ref=e1106]: días
+              - row [ref=e1107] [cursor=pointer]:
+                - cell "Tickets" [ref=e1108]
+                - cell "08 ago 18:36" [ref=e1112]:
+                  - generic [ref=e1113]:
+                    - generic [ref=e1114]: 08 ago
+                    - generic [ref=e1115]: 18:36
+                - cell "LEGAL | Revisión de contrato Contrato para pelicula en el area de gimnasio." [ref=e1120]:
+                  - generic [ref=e1121]:
+                    - generic [ref=e1122]: LEGAL | Revisión de contrato
+                    - generic [ref=e1123]: Contrato para pelicula en el area de gimnasio.
+                - cell "R Raquel Cohen Avayou Asignado" [ref=e1124]:
+                  - generic [ref=e1125]:
+                    - generic [ref=e1126]: R
+                    - generic [ref=e1129]:
+                      - generic [ref=e1130]: Raquel Cohen Avayou
+                      - generic [ref=e1131]: Asignado
+                - cell "-- Sin info --" [ref=e1132]
+                - cell "No Iniciada" [ref=e1133]
+                - cell "9 días" [ref=e1137]:
+                  - generic [ref=e1138]:
+                    - generic [ref=e1139]: "9"
+                    - generic [ref=e1140]: días
+              - row [ref=e1141] [cursor=pointer]:
+                - cell "Polizas" [ref=e1142]
+                - cell "19 ago 06:00" [ref=e1146]:
+                  - generic [ref=e1147]:
+                    - generic [ref=e1148]: 19 ago
+                    - generic [ref=e1149]: 06:00
+                - cell "QUÁLITAS COMPAÑÍA DE SEGUROS, S.A. DE C.V. Póliza de seguro GL 150 CARGO" [ref=e1154]:
+                  - generic [ref=e1155]:
+                    - generic [ref=e1156]: QUÁLITAS COMPAÑÍA DE SEGUROS, S.A. DE C.V.
+                    - generic [ref=e1157]: Póliza de seguro GL 150 CARGO
+                - cell "L Legal Asignado" [ref=e1158]:
+                  - generic [ref=e1159]:
+                    - generic [ref=e1160]: L
+                    - generic [ref=e1163]:
+                      - generic [ref=e1164]: Legal
+                      - generic [ref=e1165]: Asignado
+                - cell "Póliza de seguro GL 150 CARGO" [ref=e1166]
+                - cell "Por vencer" [ref=e1173]
+                - cell "-" [ref=e1177]
+          - generic [ref=e252]:
+            - generic [ref=e253]: En total hay 17 registros.
+            - generic [ref=e256]: 1-17 de 17
+            - button "First Page"
+            - button "Previous Page" [disabled]
+            - button "1" [ref=e1179] [cursor=pointer]
+            - button "Next Page" [disabled]
+            - button "Last Page" [disabled]
+            - generic [ref=e1180] [cursor=pointer]:
+              - combobox "Rows per page" [ref=e1181]: "30"
+              - button "dropdown trigger" [ref=e1182]
+  - menu [active] [ref=e1198]:
+    - menuitem "LUXURY" [ref=e1199]
+    - menuitem "LA JOLLA" [ref=e1204]
+    - menuitem "AVIVIA 58" [ref=e1209]
+    - menuitem "ARMONI" [ref=e1214]
+    - menuitem "MITIKAH" [ref=e1219]
+    - menuitem "PARAGON" [ref=e1224]
+    - menuitem "ISOLA" [ref=e1229]
+    - menuitem "ROYAL REFORMA" [ref=e1234]
+    - menuitem "CORE 31" [ref=e1239]

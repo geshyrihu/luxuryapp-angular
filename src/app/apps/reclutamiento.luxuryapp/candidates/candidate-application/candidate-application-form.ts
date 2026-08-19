@@ -177,7 +177,7 @@ export class CandidateApplicationForm implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetItem<CandidateApplicationDetail>(
-        EndpointsReclutamiento.CandidateApplications.getById(this.editingId),
+        EndpointsReclutamiento.CandidateProcesses.getById(this.editingId),
       )
       .then((result) => {
         if (result) {

@@ -38,6 +38,14 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
+interface PiscinaDto {
+  id: string;
+  name: string;
+  ubication: string;
+  volumen: number;
+  pathImage?: string;
+  typePiscina: string | number;
+}
 @Component({
   selector: "app-piscina-list",
   templateUrl: "./piscina-list.html",
@@ -58,7 +66,6 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
     DataViewMobile,
     PrimeNgCustomCaption,
-    PrimeNgCustomCaption,
     MobileListItem,
     AppIcon,
   ],
@@ -69,7 +76,7 @@ export class PiscinaList {
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
 
-  dataSignal = signal<any[]>([]);
+  dataSignal = signal<PiscinaDto[]>([]);
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();

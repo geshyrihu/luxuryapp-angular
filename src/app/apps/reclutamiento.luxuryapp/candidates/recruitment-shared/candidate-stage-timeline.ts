@@ -5,9 +5,9 @@ import {
   input,
 } from "@angular/core";
 import { LxTimeline } from "@ui/adaptive/timeline/timeline";
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
-import { candidateStageLabel } from "./candidate-stage-labels";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import { CandidateStageHistoryItem } from "../candidate-application/interfaces/candidate-application";
+import { CANDIDATE_PROCESS_STAGE_LABELS } from "./candidate-stage-labels";
 
 @Component({
   selector: "app-candidate-stage-timeline",
@@ -23,7 +23,7 @@ export class CandidateStageTimeline {
       .slice()
       .reverse()
       .map((h) => ({
-        title: `${this.stageLabel(h.fromStage)} → ${this.stageLabel(h.toStage)}`,
+        title: `${this.stageLabel(h.fromStage)} -> ${this.stageLabel(h.toStage)}`,
         description: h.comment,
         date: this.formatDate(h.changedAt),
         badge: this.stageLabel(h.toStage),
@@ -31,9 +31,14 @@ export class CandidateStageTimeline {
       })),
   );
 
-  private stageLabel(stage: CandidateApplicationStage | undefined): string {
-    if (stage === undefined || stage === null) return "Inicio";
-    return candidateStageLabel(stage);
+  private stageLabel(stage: CandidateProcessStage | string | undefined): string {
+    if (!stage) return "Inicio";
+
+    if (typeof stage === "number") {
+      return CANDIDATE_PROCESS_STAGE_LABELS[stage] ?? stage.toString();
+    }
+
+    return stage;
   }
 
   private formatDate(iso: string): string {

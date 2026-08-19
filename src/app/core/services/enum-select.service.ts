@@ -86,6 +86,24 @@ export class EnumSelectService {
   fuenteReclutamiento = (d?: boolean) =>
     this.onLoadEnumList("fuente-reclutamiento", d);
 
+  candidateProcessStage = (d?: boolean) =>
+    this.onLoadEnumList("candidate-process-stage", d);
+
+  candidateProcessStatus = (d?: boolean) =>
+    this.onLoadEnumList("candidate-process-status", d);
+
+  candidateClosureReason = (d?: boolean) =>
+    this.onLoadEnumList("candidate-closure-reason", d);
+
+  candidateRejectionReason = (d?: boolean) =>
+    this.onLoadEnumList("candidate-rejection-reason", d);
+
+  candidateDecision = (d?: boolean) =>
+    this.onLoadEnumList("candidate-decision", d);
+
+  candidateInterviewStatus = (d?: boolean) =>
+    this.onLoadEnumList("candidate-interview-status", d);
+
   recruitmentDocumentType = (d?: boolean) =>
     this.onLoadEnumList("recruitment-document-type", d);
 

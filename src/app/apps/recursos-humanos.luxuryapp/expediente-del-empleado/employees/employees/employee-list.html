@@ -83,7 +83,18 @@
           (click)="onCardEmployee(item.applicationUserId)"
         />
       </td>
-      <td>{{ item.fullName }}</td>
+      <td>
+        {{ item.fullName }}
+        <div class="mt-1">
+          @if (item.isOverdueDocuments) {
+            <lx-tag severity="danger" value="Vencido > 24h" icon="material-symbols-light:warning" class="text-xs"></lx-tag>
+          } @else if (item.hasPendingDocuments) {
+            <lx-tag severity="warning" value="Docs. Pendientes" icon="material-symbols-light:schedule" class="text-xs"></lx-tag>
+          } @else {
+            <lx-tag severity="success" value="Expediente OK" icon="material-symbols-light:check_circle" class="text-xs"></lx-tag>
+          }
+        </div>
+      </td>
       <td>
         <p class="mb-0 text-sm">{{ item.workPositionFolio }}</p>
         <p>
@@ -142,7 +153,16 @@
         }
       </div>
 
-      <p class="font-semibold m-0 text-color">{{ item.fullName }}</p>
+      <p class="font-semibold m-0 text-color">
+        {{ item.fullName }}
+      </p>
+      <div class="mt-1">
+        @if (item.isOverdueDocuments) {
+          <lx-tag severity="danger" value="Vencido > 24h" icon="material-symbols-light:warning" class="text-xs"></lx-tag>
+        } @else if (item.hasPendingDocuments) {
+          <lx-tag severity="warning" value="Pendientes" icon="material-symbols-light:schedule" class="text-xs"></lx-tag>
+        }
+      </div>
       <p class="text-xs m-0 mt-1 text-color-secondary">
         {{ item.workPositionName }}{{ item.celularPersonal ? ' é ' +
         item.celularPersonal : '' }}

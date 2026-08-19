@@ -5,10 +5,9 @@ import {
   input,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
 import {
-  CANDIDATE_STAGE_CLASSES,
-  CANDIDATE_STAGE_LABELS,
+  CANDIDATE_PROCESS_STAGE_CLASSES,
+  CANDIDATE_PROCESS_STAGE_LABELS,
 } from "./candidate-stage-labels";
 
 @Component({
@@ -24,17 +23,19 @@ import {
   imports: [CommonModule],
 })
 export class CandidateStageBadge {
-  stage = input.required<CandidateApplicationStage | null | undefined>();
+  stage = input.required<number | null | undefined>();
 
   protected label = computed(() => {
     const stage = this.stage();
     if (stage === null || stage === undefined) return "Sin etapa";
-    return CANDIDATE_STAGE_LABELS[stage] ?? "Sin etapa";
+    return CANDIDATE_PROCESS_STAGE_LABELS[stage] ?? "Sin etapa";
   });
 
   protected class = computed(() => {
     const stage = this.stage();
     if (stage === null || stage === undefined) return "bg-gray-200 text-gray-600";
-    return CANDIDATE_STAGE_CLASSES[stage] ?? "bg-gray-200 text-gray-600";
+    return (
+      CANDIDATE_PROCESS_STAGE_CLASSES[stage] ?? "bg-gray-200 text-gray-600"
+    );
   });
 }

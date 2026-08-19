@@ -11,7 +11,7 @@ import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   DialogHandlerService,
@@ -99,10 +99,11 @@ export class CandidateDetail implements OnInit {
         {
           id: app.id,
           candidateProcessId: app.candidateProcessId ?? undefined,
-          toStage: CandidateApplicationStage.AltaEnProceso,
+          candidateId: this.detail()?.id ?? null,
+          requestPositionId: app.requestPositionId ?? null,
+          toStage: CandidateProcessStage.AltaEnProceso,
           candidateFirstName: this.detail()?.firstName,
           candidateLastName: this.detail()?.lastName,
-          recruitmentSource: this.detail()?.recruitmentSource ?? null,
         },
         "Procesar alta",
         this.dialogHandlerS.sizeLg,
@@ -127,13 +128,13 @@ export class CandidateDetail implements OnInit {
     );
   }
 
-  isSelected(stage: CandidateApplicationStage): boolean {
-    return stage === CandidateApplicationStage.Seleccionado;
+  isSelected(stage: CandidateProcessStage): boolean {
+    return stage === CandidateProcessStage.Seleccionado;
   }
 
   canManageHiringDocuments(app: CandidateApplicationListItem): boolean {
     return Boolean(app.candidateProcessId) &&
-      (app.currentStage === CandidateApplicationStage.AltaEnProceso ||
-        app.currentStage === CandidateApplicationStage.Contratado);
+      (app.currentStage === CandidateProcessStage.AltaEnProceso ||
+        app.currentStage === CandidateProcessStage.Contratado);
   }
 }

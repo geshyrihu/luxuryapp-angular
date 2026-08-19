@@ -9,15 +9,14 @@ import {
 import { addIcons } from "ionicons";
 import { appsOutline } from "ionicons/icons";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
-import { candidateStageLabel } from "../recruitment-shared/candidate-stage-labels";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
+import { candidateProcessStageLabel } from "../recruitment-shared/candidate-stage-labels";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { CandidateApplicationForm } from "./candidate-application-form";
-import { CandidateStageChangeModal } from "./candidate-stage-change-modal";
 import {
   CandidateApplicationListItem,
 } from "./interfaces/candidate-application";
@@ -38,7 +37,7 @@ export class CandidateApplicationList implements OnInit {
 
   dataSignal = signal<CandidateApplicationListItem[]>([]);
   stages = signal<SelectItemDto[]>([]);
-  activeStage = signal<CandidateApplicationStage | null>(null);
+  activeStage = signal<CandidateProcessStage | null>(null);
 
   readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -56,15 +55,15 @@ export class CandidateApplicationList implements OnInit {
   }
 
   onLoadStages() {
-    const options: SelectItemDto[] = Object.keys(CandidateApplicationStage)
+    const options: SelectItemDto[] = Object.keys(CandidateProcessStage)
       .filter((key) => Number.isNaN(Number(key)))
       .map((key) => {
         const stage =
-          CandidateApplicationStage[
-            key as keyof typeof CandidateApplicationStage
-          ] as CandidateApplicationStage;
+          CandidateProcessStage[
+            key as keyof typeof CandidateProcessStage
+          ] as CandidateProcessStage;
         return {
-          label: candidateStageLabel(stage),
+          label: candidateProcessStageLabel(stage),
           value: stage as number,
         };
       });
@@ -89,7 +88,7 @@ export class CandidateApplicationList implements OnInit {
       });
   }
 
-  onStageChange(stage: CandidateApplicationStage | null) {
+  onStageChange(stage: CandidateProcessStage | null) {
     this.activeStage.set(stage);
     this.onLoadData();
   }
@@ -100,26 +99,6 @@ export class CandidateApplicationList implements OnInit {
         CandidateApplicationForm,
         data,
         data.title,
-        this.dialogHandlerS.sizeLg,
-      )
-      .then((result: boolean) => {
-        if (result) {
-          this.onLoadData();
-        }
-      });
-  }
-
-  onChangeStageModal(data: {
-    id: string;
-    fromStage: CandidateApplicationStage;
-    customerId: string;
-    requestPositionId: string;
-  }) {
-    this.dialogHandlerS
-      .openDialog(
-        CandidateStageChangeModal,
-        data,
-        "Cambiar etapa del proceso",
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {

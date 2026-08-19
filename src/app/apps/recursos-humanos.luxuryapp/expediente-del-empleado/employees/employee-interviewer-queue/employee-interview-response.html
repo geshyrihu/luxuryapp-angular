@@ -67,7 +67,7 @@
         <small class="text-color-secondary block mb-1">Estatus agenda</small>
         <app-mapped-p-tag
           [value]="interviewData()?.agendaStatusCode"
-          [options]="agendaStatusOptions()"
+          [options]="agendaStatusOptions"
         />
       </div>
     </div>
@@ -167,15 +167,15 @@
       </button>
     </div>
 
-    @if (pendingAction() === "reject" || pendingAction() === "markNoShow") {
+    @if (pendingDecision() === 1) {
     <div class="mb-4">
       <label class="block text-sm font-medium mb-2">Motivo *</label>
       <custom-input-select-signal
-        [options]="reasonOptions()"
-        optionValue="id"
-        optionLabel="name"
-        [(ngModel)]="selectedReasonId"
+        [data]="reasonOptions()"
+        [ngModel]="selectedReason()"
+        (ngModelChange)="selectedReason.set($event)"
         placeholder="Seleccione un motivo"
+        [filter]="true"
       />
     </div>
     }

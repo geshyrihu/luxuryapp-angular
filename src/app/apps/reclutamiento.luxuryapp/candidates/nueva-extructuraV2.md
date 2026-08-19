@@ -1,3 +1,6 @@
+> Ejecutado: `2026-08-16`
+> Referencia: `docs/plans/20260815-candidates-refactor-v3-plan.md`
+
 en la entidad candidatos debe haber una opcion para registrar se el candidato es
 Nuevo campo: RecruitmentSource
 
@@ -1435,3 +1438,122 @@ tel), stepper de Alta (P, completo) y reporte de completitud de empleado. Backen
 - **Fase 3 (R.2):** renombrar `candidate-application-kpis` → `candidate-process-kpis` + DTO.
 - **Fase 5/6:** extender endpoint `CandidateProcesses.kpis` y agregar cards de alta/documentación pendiente y
   tiempo de contratación (X.3.1/X.3.2).
+
+## Y. Estado actual verificado en código (2026-08-15)
+
+> Auditoría real contra el repositorio tras la sesión de redacción (el doc cerró en "plan pendiente de
+> aprobación"). Hay una migración en curso `20260815165234_RefactorCandidatesV2` (tablas ya con prefijo
+> `Recruitment*`), por lo que el código avanzó parcialmente respecto a las secciones S–X. Se marcan los
+> hallazgos con ✅ hecho / 🟡 parcial / ❌ pendiente.
+
+### Y.1 Backend — orquestador `CandidateProcessAppService`
+
+| Ítem (doc) | Estado | Evidencia |
+|---|---|---|
+| **R-01** `Candidate.RecruitmentSource` (enum `FuenteReclutamiento`) | ✅ | `Candidate.cs:90`; `CandidateCreateOrUpdateDto.cs:43`; `CandidateDetailDto.cs:42`; `CandidateListItemDto.cs:18`; se copia a `RequestEmployeeRegister.Fuente` en `RequestEmployeeRegisterAppService.cs:313-335` |
+| **R-03** entidad `EmployeeDocument` + enum `RecruitmentDocumentType` | ✅ | `ExpedientedelEmpleado/EmployeeDocument.cs`; migración V2 (líneas 27-99); hub `SelectItemEnum` ruta `recruitment-document-type` (`SelectItemEnumEndPoints.cs:70`); `IFileWritePathService.RecruitmentEmployeeDocumentDirectory` / `IFileReadPathService.GetRecruitmentEmployeeDocumentFilePath` |
+| **P** `ProcessHiringAsync` (distribución R-02) | 🟡 | Existe `CandidateProcessAppService.cs:195`; falta verificar que distribuya `EmployeeBankData`/`EmployeeClinicalData`/`EmployeeEmergencyContact` (no revisado a fondo) |
+| **N.1** anti-duplicado candidato (tel/email) | ❌ | No existe `EnsureCandidateNotDuplicateAsync` |
+| **N.3** solapamiento de candidato (mismo día) | ❌ | `EnsureInterviewSchedulingAllowedAsync` (`CandidateProcessAppService.cs:2079`) solo valida conflicto por `InterviewerUserId` (líneas 2086-2097), no por `CandidateId` |
+| **N.4** ventana horaria (Lun-Vie 7-17 / Sáb 7-14 / Dom no) | ❌ | Única validación "no en pasado" (líneas 2081-2084) |
+| **N.5** `PresentationStartAt` | ❌ | Campo inexistente en todo el repo (grep `PresentationStartAt` = 0 resultados) |
+| **K.6.2 / N.6** eliminar motivo de decisión | ❌ | `REASON_REQUIRED` sigue en `CandidateProcessAppService.cs:1228` (SubmitFeedback) y `:1310` (Reject); `CandidateDecisionReason` aún se consulta (`:1230`, `:1326`) |
+| **D11** hardcode `Decision = EnEspera` en SubmitFeedback | ❌ | `CandidateProcessAppService.cs:1239` |
+| **K.6.1** legacy `CandidateInterviewFeedback` | ❌ | Entidad `CandidateInterviewFeedback.cs` y `CandidateInterviewAppService.cs` aún activos (no `[Obsolete]`) |
+| **D2** `RegisterDecisionAsync` valida con `CandidateStageValidator` | ⚠️ | No revisado a fondo en esta auditoría |
+
+### Y.2 Frontend — módulo `reclutamiento.luxuryapp`
+
+| Ítem (doc) | Estado | Evidencia |
+|---|---|---|
+| **R-01** formulario candidato + `RecruitmentSource` | ✅ | `candidate/candidate-form.ts:86,107,122,141`; `candidate/candidate-detail.ts:105`; `candidate/interfaces/candidate.dto.ts:12,26`; `candidate/interfaces/candidate-form.interface.ts:10` |
+| **R-03** modal documentos de alta (subir / validar) | ✅ | `candidate-application/candidate-hiring-documents-modal.ts` + endpoints `hiringDocuments` y `validateHiringDocument` (vía `EndpointsReclutamiento.CandidateProcesses`) |
+| **N.6** feedback migrado a `ExecuteInterviewerActionAsync` | 🟡 | `candidate-interview/candidate-interview-feedback-form.ts:143` llama `CandidateProcesses.interviewerAction`; **pero** sigue con `decisionReasonId` `Validators.required` (línea 77) y `CandidateDecisionReasonSelect` (líneas 22, 49) → K.6.2 pendiente en UI |
+| **N.5** `PresentationStartAt` en formulario de feedback | ❌ | Sin campo en el formulario |
+| **R.1** `openAltaForm` desacoplar de `EmployeeProviderForm` | ❌ | `candidate-recruitment-interviews/candidate-recruitment-interviews.ts:176` sigue abriendo `EmployeeProviderForm` (supplier.luxuryapp/provider) |
+| **R.2** renombrar `candidate-application-*` → `candidate-process-*` | ❌ | Carpeta `candidate-application/` intacta (`candidate-application-list.ts` sigue; `candidate-process-hiring-modal.ts` ya existe dentro) |
+| **W.3** bandeja `recruitment-alta-tracking` | ❌ | No existe componente |
+
+### Y.3 Resumen de brechas (lo que AÚN no se implementa)
+
+1. **Fase 1 (reglas de agenda):** N.1, N.3, N.4, N.5 — todas pendientes en backend.
+2. **Fase 1 (respuesta entrevistador):** eliminar `decisionReasonId` (K.6.2) en backend (`:1228`, `:1310`) y
+   frontend (feedback form línea 77); corregir D11 (`:1239`); eliminar legacy `CandidateInterviewFeedback`
+   (K.6.1); verificar D2.
+3. **Fase 0 (R.1):** desacoplar Reclutamiento del form de proveedor en `candidate-recruitment-interviews.ts:176`.
+4. **Fase 3 (R.2):** renombres `candidate-application-*` → `candidate-process-*` y `candidateApplicationId` → `candidateProcessId`.
+5. **Fase 6 (W.3):** bandeja de seguimiento de altas en proceso + KPIs de documentación pendiente.
+
+### Y.4 Lo ya consolidado desde el doc
+
+- R-01 (fuente de reclutamiento en candidato) y R-03 (documentación de contratación en expediente del
+  empleado, `EmployeeDocument`) están **funcionalmente implementados** en backend y frontend.
+- El endpoint de feedback del entrevistador ya apunta a `ExecuteInterviewerActionAsync` (ruta canónica de
+  `CandidateProcess`), cumpliendo la intención de N.6 a nivel de estructura, aunque el **contenido** (motivo)
+  aún no se elimina.
+- Migración `RefactorCandidatesV2` en curso: las **tablas** ya usan prefijo `Recruitment*` (p. ej.
+  `RecruitmentCandidateProcesses`), pero las **clases de entidad** siguen nombradas `Candidate*` (D6 en
+  progreso, no concluido).
+
+> Nota: el plan sigue sin aprobación formal (§3.7). Esta sección Y es solo auditoría de estado, no ejecución.
+
+## Z. Ejecución del refactor de entidades candidato (2026-08-15)
+
+> Documentación de estado **post-ejecución** de las decisiones tomadas en `nueva-extructuraV3.md`
+> (cambios a ejecutar R1/R2 + D-A…D-E). El backend (.NET) **compila con 0 errores**
+> (Application, Api, Tests). Ver `nueva-extructuraV3.md` para el plan completo y las dudas resueltas.
+> La **migración EF la genera el usuario** (Data Migration Protocol): las columnas nuevas aún no
+> existen en BD; las entidades obsoletas (`CandidateDecisionReason`, `CandidateInterviewFeedback`)
+> siguen en el modelo como tablas vivas, ahora inertes/enum-driven, pendientes de borrado + migración.
+
+### Z.1 Decisiones aplicadas (R1, R2 y D-A…D-E)
+
+| # | Decisión | Estado | Detalle |
+|---|----------|--------|---------|
+| R1 | Etapa de entrada al registrar | ✅ | `CandidateProcess.CurrentStage` por defecto = `EntrevistaReclutamiento` (antes `Nuevo`). |
+| R2 | Motivo = enum `InterviewRejectionReason` | ✅ | 9 valores (FaltaExperiencia, NoCumplePerfil, SalarioFueraPresupuesto, ActitudNoAdecuada, FaltaDocumentacion, MejorCandidatoSeleccionado, NoSePresento, DesinteresDelCandidato, Otro). Reemplaza catálogo `CandidateDecisionReason`. |
+| D-A | CV único en `Candidate` | ✅ | `CandidateApplication.CvFileName` eliminado; fuente = `Candidate.CvFileName`. |
+| D-C | Modalidad de entrevista | ✅ | `CandidateInterviewType` (Reclutamiento/Operaciones) → `CandidateInterviewModality` (Presencial/Virtual). Quién entrevista se infiere de la etapa. |
+| D-D | `ScheduledAt` → `DateOnly`+`TimeOnly` | ✅ | `CandidateInterview.ScheduledAt` (DateTime) → `ScheduledDate`+`ScheduledTime`. |
+| D-E | Una sola entidad de respuesta | ✅ | `CandidateInterviewFeedback` fusionado en `CandidateInterviewResult` (campos de respuesta del entrevistador + `EvaluatedAt`/`EvaluatedByUserId` autorregistrados). |
+| D-F | `CandidateProcess` se mantiene | ✅ | Fuente de verdad operativa (sin cambios de rol). |
+| D-G | `CandidateStageHistory` / `CandidateWorkExperience` / `InterviewerMatrix` | ✅ | Se conservan (bitácora, experiencia, matriz). |
+
+### Z.2 Entidades / Enums modificados
+
+- **Nuevos enums** (`api/LuxuryApp.Shared/Enums/`): `InterviewRejectionReason.cs`, `CandidateInterviewModality.cs`.
+- **`CandidateInterview.cs`**: `InterviewType`→`Modality` (`CandidateInterviewModality`); `ScheduledAt`→`ScheduledDate`(DateOnly)+`ScheduledTime`(TimeOnly).
+- **`CandidateInterviewResult.cs`**: `DecisionReasonId`(Guid)→`DecisionReason`(`InterviewRejectionReason`); eliminada navegación a catálogo; añadidos `InterviewerUserId`, `InterviewerRole`, `ReceptionConfirmedAt`, `SentAt`; `EvaluatedAt`/`EvaluatedByUserId` son autorregistrados en el servicio.
+- **`CandidateApplication.cs`**: eliminado `CvFileName`; eliminada colección `InterviewFeedbacks`; `LastDecisionReasonId`(Guid)→`LastDecisionReason`(enum); eliminada navegación `LastDecisionReason`.
+- **`CandidateProcess.cs`**: `DecisionReasonId`(Guid)→`DecisionReason`(enum); etapa por defecto = `EntrevistaReclutamiento`.
+
+### Z.3 DTOs / Servicios reconectados (backend compila)
+
+- **DTOs**: `CandidateInterviewItemDto`/`CreateDto` → `Modality` + `ScheduledDate`/`ScheduledTime`; `CandidateInterviewResult*Dto` → enum de motivo; `CandidateDecisionRequest`/`InterviewerActionRequest` → `DecisionReason` (enum) en vez de `ReasonId` (Guid).
+- **`CandidateInterviewAppService`**: `CreateInterviewAsync`/`BuildInterviewItemFromProcess` usan `Modality` y `DateOnly`/`TimeOnly`; `ResolveInterviewTypeFromStage` ahora devuelve `CandidateInterviewModality` (placeholder Presencial); se eliminó el catálogo `CandidateDecisionReason` del `SubmitFeedbackAsync`.
+- **`CandidateProcessAppService`**: `RegisterDecisionAsync`/`ExecuteInterviewerActionAsync` usan el enum `DecisionReason` (sin catálogo); `RevertDecision` limpia `DecisionReason`.
+- **`CandidateApplicationAppService`**: helper `GetLatestFeedback(application)` reemplaza la colección `InterviewFeedbacks` eliminada; `RegisterDecisionAsync`/`ExecuteInterviewerActionAsync` usan enum; `model.CvFileName` → `model.Candidate.CvFileName`; `interview.ScheduledAt`→`ScheduledDate.ToDateTime(ScheduledTime)`; `interview.InterviewType`→`Modality`; `.Include(x => x.InterviewFeedbacks)` removido.
+- **`CandidateInterviewResultAppService`** (aún `[Obsolete]`, redirige a `CandidateProcess`): usa enum de motivo; `model` usa `DecisionReason` + campos de respuesta.
+- **`ApplicationDbContext` (EF config)**: eliminados los `HasOne` de navegación `DecisionReason` en `CandidateApplication`/`CandidateProcess`/`CandidateInterviewResult` (el enum es value-type, mapea a columna); `CandidateInterviewFeedback` ya no referencia `InterviewFeedbacks`.
+
+### Z.4 Estado de compilación
+
+- `dotnet build LuxuryApp.Application` → **0 errores**.
+- `dotnet build LuxuryApp.Api` → **0 errores**.
+- `dotnet build LuxuryApp.Tests` → **0 errores**.
+- Se corrigieron todos los errores del log previo `data.txt` (CS1061/CS0117/CS0019 por propiedades renombradas/eliminadas y los CS0006 por dll no generado).
+
+### Z.5 Pendiente (NO ejecutado aún)
+
+1. **Migración EF (usuario):** generar migration que materialice `CandidateInterview.Modality` + `ScheduledDate`/`ScheduledTime`, los `DecisionReason` enum en `CandidateProcess`/`CandidateApplication`/`CandidateInterviewResult`, y **elimine** las tablas `RecruitmentCandidateDecisionReasons` y `RecruitmentCandidateInterviewFeedback`.
+2. **Borrado de entidades obsoletas:** `CandidateDecisionReason` (entidad + `DbSet` + servicio + endpoint + DI + DTOs + mapping) y `CandidateInterviewFeedback` (entidad + `DbSet` + servicio + endpoint + email + impact DTOs + DTOs + mapping) aún existen en el modelo y deben eliminarse tras la migración de datos.
+3. **Frontend:** `CandidateInterviewType`→modalidad, `ScheduledAt`→fecha+hora, motivo→enum hub, quitar `CvFileName` de postulación, y demás ajustes de V3 (Fase frontend).
+4. **Hub `SelectItemEnum`:** registrar `interview-rejection-reason` y `interview-modality` para los selectores (el catálogo dinámico de motivos se reemplaza por el enum).
+5. **Reglas de agenda pendientes del V2 (Fase 1):** N.1, N.3, N.4, N.5 aún no implementadas en backend.
+
+### Z.6 Notas de riesgo para el próximo cambio grande
+
+- El modelo de `CandidateInterview` ya NO tiene `ScheduledAt` (DateTime); cualquier código nuevo que agenda debe usar `ScheduledDate`+`ScheduledTime`.
+- `DecisionReason` ya es enum en `CandidateProcess`/`CandidateApplication`/`CandidateInterviewResult`; no existe `DecisionReasonId` (Guid) ni catálogo.
+- `CandidateProcess.CurrentStage` entra en `EntrevistaReclutamiento` por defecto (R1); el validador de transiciones y el stepper de estados deben tolerar esa entrada.
+- `CandidateInterviewFeedback` quedó fusionada en `CandidateInterviewResult`; no crear nuevos flujos sobre la entidad legacy.

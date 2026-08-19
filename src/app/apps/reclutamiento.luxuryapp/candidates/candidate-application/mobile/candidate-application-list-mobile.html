@@ -37,11 +37,6 @@
             [attr.aria-label]="'Ver CV de ' + item.candidateName"
           />
         }
-        <ili-button-tracking
-          (clickTracking)="advance.emit({ id: item.id, fromStage: item.currentStage, customerId: item.customerId, requestPositionId: item.requestPositionId })"
-          label="Avanzar etapa"
-          [attr.aria-label]="'Avanzar etapa del proceso de ' + item.candidateName"
-        />
         <ili-button-edit
           (clicked)="edit.emit({ id: item.id, title: 'Editar proceso de candidato' })"
           label="Editar"

@@ -13,12 +13,6 @@
     />
     <div class="grid">
       <div class="col-12 md:col-6">
-        <custom-input-date-signal
-          [control]="form.controls['receptionConfirmedAt']"
-          label="Recepcion confirmada"
-        />
-      </div>
-      <div class="col-12 md:col-6">
         <custom-input-select-signal
           [control]="form.controls['decision']"
           label="Decision"
@@ -26,10 +20,23 @@
         />
       </div>
       <div class="col-12 md:col-6">
-        <app-candidate-decision-reason-select
-          [control]="form.controls['decisionReasonId']"
-          [decision]="selectedDecision()"
+        @if (selectedDecision() === 1) {
+        <custom-input-select-signal
+          [control]="form.controls['decisionReason']"
+          label="Motivo de la decision"
+          [data]="rejectionReasonOptions()"
+          [filter]="true"
         />
+        }
+      </div>
+      <div class="col-12 md:col-6">
+        @if (selectedDecision() === 4) {
+        <web-custom-input-date-time-signal
+          [control]="form.controls['newScheduledAt']"
+          label="Nueva fecha y hora"
+          placeholder="Selecciona fecha y hora"
+        />
+        }
       </div>
       <div class="col-12">
         <custom-input-textarea-signal

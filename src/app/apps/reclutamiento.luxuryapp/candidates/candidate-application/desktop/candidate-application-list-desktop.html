@@ -82,20 +82,12 @@
         }
       </td>
       <td class="no-print">
-        <div class="flex gap-1">
-          <iw-button-tracking
-            size="sm"
-            class="btn--circle"
-            [attr.aria-label]="'Avanzar etapa del proceso de ' + item.candidateName"
-            (clickTracking)="advance.emit({ id: item.id, fromStage: item.currentStage, customerId: item.customerId, requestPositionId: item.requestPositionId })"
-          />
-          <iw-button-edit
-            size="sm"
-            class="btn--circle"
-            [attr.aria-label]="'Editar proceso de ' + item.candidateName"
-            (clicked)="edit.emit({ id: item.id, title: 'Editar proceso de candidato' })"
-          />
-        </div>
+        <iw-button-edit
+          size="sm"
+          class="btn--circle"
+          [attr.aria-label]="'Editar proceso de ' + item.candidateName"
+          (clicked)="edit.emit({ id: item.id, title: 'Editar proceso de candidato' })"
+        />
       </td>
     </tr>
   </ng-template>

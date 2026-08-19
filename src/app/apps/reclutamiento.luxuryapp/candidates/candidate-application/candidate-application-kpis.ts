@@ -163,13 +163,7 @@ export class CandidateApplicationKpis implements OnInit {
 
     return [
       { label: "Nuevo", value: k.postulacionesEnNuevo, color: "info" },
-      { label: "Pre-Filtro", value: k.postulacionesEnPreFiltro, color: "info" },
       { label: "En Espera", value: k.postulacionesEnEspera, color: "warn" },
-      {
-        label: "Entrevista Reclut.",
-        value: k.postulacionesEnEntrevistaReclutamiento,
-        color: "primary",
-      },
       {
         label: "Entrevista Ops.",
         value: k.postulacionesEnEntrevistaOperaciones,
@@ -286,7 +280,7 @@ export class CandidateApplicationKpis implements OnInit {
   async runAutomation() {
     try {
       await this.apiResponseS.onPost(
-        EndpointsReclutamiento.CandidateApplications.runAutomation,
+        EndpointsReclutamiento.CandidateProcesses.runAutomation,
         {},
       );
       this.onLoadData();
@@ -318,9 +312,7 @@ export class CandidateApplicationKpis implements OnInit {
     return {
       labels: [
         "Nuevo",
-        "Pre-Filtro",
         "En Espera",
-        "Entrevista Reclut.",
         "Entrevista Ops.",
         "Seleccionado",
         "Alta en Proceso",
@@ -332,9 +324,7 @@ export class CandidateApplicationKpis implements OnInit {
           label: "Postulaciones",
           data: [
             k.postulacionesEnNuevo,
-            k.postulacionesEnPreFiltro,
             k.postulacionesEnEspera,
-            k.postulacionesEnEntrevistaReclutamiento,
             k.postulacionesEnEntrevistaOperaciones,
             k.postulacionesSeleccionadas,
             k.postulacionesAltaEnProceso,
@@ -343,9 +333,7 @@ export class CandidateApplicationKpis implements OnInit {
           ],
           backgroundColor: [
             "var(--blue-500)",
-            "var(--blue-500)",
             "var(--yellow-500)",
-            "var(--purple-500)",
             "var(--yellow-500)",
             "var(--green-500)",
             "var(--purple-500)",

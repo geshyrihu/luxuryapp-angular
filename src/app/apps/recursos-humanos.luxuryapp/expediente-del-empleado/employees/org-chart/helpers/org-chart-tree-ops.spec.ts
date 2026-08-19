@@ -5,7 +5,7 @@ import {
   getReorderInstruction,
   getOrgSiblingContext,
 } from "./org-chart-tree-ops";
-import { IWorkPositionOrgChartNode } from "../models/org-chart.interfaces";
+import { IWorkPositionOrgChartNode } from "../interfaces/org-chart.interfaces";
 
 describe("org-chart-tree-ops", () => {
   const createNode = (

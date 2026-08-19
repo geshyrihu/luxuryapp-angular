@@ -228,4 +228,34 @@ export class UpdateDataBase {
         this.loading.set(false);
       });
   }
+
+  runMigrateUserActivitiesToLogsDb() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Migrando UserActivities a LuxuryAppLogs...",
+      "Copia los registros desde enero 2026 en adelante, en lotes de 200. Esto puede tardar.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.migrateUserActivities, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message ||
+            "UserActivities migradas a LuxuryAppLogs correctamente.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La migracion de UserActivities a LuxuryAppLogs fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
 }

@@ -1,29 +1,18 @@
 import { CommonModule, DatePipe } from "@angular/common";
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from "@angular/core";
 import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  signal,
-} from "@angular/core";
-import { Router } from "@angular/router";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+  ButtonGroupOption,
+  IlButtonGroup,
+} from "src/app/shared/ui/buttons/button-group/button-group";
 import {
   CandidateInterviewerQueueDto,
   CandidateInterviewerQueueItemDto,
 } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
-import { candidateDecisionLabel } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-decision-labels";
 import { CandidateStageBadge } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-stage-badge";
-import {
-  MappedPTag,
-  MappedTagOption,
-} from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/mapped-p-tag";
-import { CandidateDecision } from "src/app/core/enums/candidate-decision";
-import { DialogSize } from "src/app/core/enums/dialog-size.enum";
+import { MappedPTag } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/mapped-p-tag";
+import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/agenda-status-tag-options";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EmployeeInterviewFeedbackForm } from "./employee-interview-feedback-form";
+import { EmployeeQueueCandidateDetailModal } from "./employee-queue-candidate-detail-modal";
 import { EmployeeInterviewerQueueService } from "./employee-interviewer-queue.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 
@@ -40,6 +29,14 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
   filteredCandidates: QueueCandidateView[];
 };
 
+const MODE_OPTIONS: ButtonGroupOption<QueueMode>[] = [
+  { label: "Pendientes", value: "pending" },
+  { label: "Historico", value: "history" },
+  { label: "Vencidas", value: "overdue" },
+  { label: "Con feedback", value: "feedback" },
+  { label: "Todo", value: "all" },
+];
+
 @Component({
   selector: "app-employee-interviewer-queue",
   standalone: true,
@@ -48,15 +45,13 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
   imports: [
     CommonModule,
     DatePipe,
-    WebButtonIconViewPdf,
-    WebButtonLabel,
+    IlButtonGroup,
     CandidateStageBadge,
     MappedPTag,
   ],
 })
 export class EmployeeInterviewerQueue {
   private queueS = inject(EmployeeInterviewerQueueService);
-  private router = inject(Router);
   private dialogHandlerS = inject(DialogHandlerService);
   readonly customerIdS = inject(CustomerIdService);
 
@@ -64,26 +59,9 @@ export class EmployeeInterviewerQueue {
   readonly loading = signal(false);
   readonly mode = signal<QueueMode>("pending");
   readonly searchTerm = signal("");
-  readonly selectedCandidate = signal<QueueCandidateView | null>(null);
 
-  readonly agendaStatusOptions = computed<MappedTagOption[]>(() => [
-    {
-      value: "missing_interviewer",
-      label: "Sin entrevistador",
-      severity: "warn",
-    },
-    {
-      value: "pending_schedule",
-      label: "Pendiente de agenda",
-      severity: "contrast",
-    },
-    { value: "scheduled", label: "Agendada", severity: "info" },
-    { value: "overdue", label: "Vencida", severity: "danger" },
-    { value: "feedback", label: "Con retroalimentacion", severity: "success" },
-    { value: "approved", label: "Aprobado", severity: "success" },
-    { value: "rejected", label: "Rechazado", severity: "danger" },
-    { value: "no_show", label: "No asistio", severity: "warn" },
-  ]);
+  readonly agendaStatusOptions = AGENDA_STATUS_TAG_OPTIONS;
+  readonly modeOptions = MODE_OPTIONS;
 
   readonly totalVacancies = computed(() => this.filteredVacancies().length);
   readonly totalCandidates = computed(() => this.flattenedCandidates().length);
@@ -92,16 +70,16 @@ export class EmployeeInterviewerQueue {
       this.flattenedCandidates().filter((candidate) => !candidate.isHistorical)
         .length,
   );
-  readonly historyCount = computed(
-    () =>
-      this.flattenedCandidates().filter((candidate) => candidate.isHistorical)
-        .length,
-  );
   readonly overdueCount = computed(
     () =>
       this.flattenedCandidates().filter(
         (candidate) => candidate.agendaStatusCode === "overdue",
       ).length,
+  );
+  readonly historyCount = computed(
+    () =>
+      this.flattenedCandidates().filter((candidate) => candidate.isHistorical)
+        .length,
   );
   readonly feedbackCount = computed(
     () =>
@@ -181,19 +159,6 @@ export class EmployeeInterviewerQueue {
     try {
       const data = await this.queueS.getQueue(customerId);
       this.dataSignal.set(data);
-
-      const current = this.selectedCandidate();
-      if (current) {
-        const updated = this.flattenedCandidates().find(
-          (candidate) =>
-            candidate.candidateApplicationId === current.candidateApplicationId,
-        );
-        this.selectedCandidate.set(updated ?? null);
-      } else {
-        this.selectedCandidate.set(
-          this.filteredVacancies()[0]?.filteredCandidates[0] ?? null,
-        );
-      }
     } finally {
       this.loading.set(false);
     }
@@ -201,92 +166,28 @@ export class EmployeeInterviewerQueue {
 
   setMode(mode: QueueMode): void {
     this.mode.set(mode);
-    this.selectedCandidate.set(
-      this.filteredVacancies()[0]?.filteredCandidates[0] ?? null,
-    );
   }
 
   onSearchInput(event: Event): void {
     const value = (event.target as HTMLInputElement | null)?.value ?? "";
     this.searchTerm.set(value);
-    this.selectedCandidate.set(
-      this.filteredVacancies()[0]?.filteredCandidates[0] ?? null,
-    );
   }
 
-  selectCandidate(candidate: QueueCandidateView): void {
-    this.selectedCandidate.set(candidate);
-  }
-
-  navigateToQueueResponse(candidate: QueueCandidateView): void {
-    this.router.navigate(["/directory/employee-interviews/respond"], {
-      queryParams: {
-        applicationId: candidate.candidateApplicationId,
-        candidateProcessId: candidate.candidateProcessId ?? undefined,
-      },
-    });
-  }
-
-  async onFeedback(candidate: QueueCandidateView): Promise<void> {
-    const result = await this.dialogHandlerS.openDialog<boolean>(
-      EmployeeInterviewFeedbackForm,
-      {
-        candidateApplicationId: candidate.candidateApplicationId,
-        candidateProcessId: candidate.candidateProcessId ?? undefined,
-      },
-      `Retroalimentacion - ${candidate.candidateName}`,
-      DialogSize.lg,
-    );
-
-    if (result) {
-      await this.onLoadData();
-    }
-  }
-
-  async onMarkNoShow(candidate: QueueCandidateView): Promise<void> {
-    const confirmed = confirm(
-      `Marcar a ${candidate.candidateName} como "No asistio"?`,
-    );
-    if (!confirmed) return;
-
-    await this.queueS.executeAction({
-      candidateApplicationId: candidate.candidateApplicationId,
-      candidateProcessId: candidate.candidateProcessId ?? undefined,
-      action: 1,
-      comment: "No asistio a la entrevista programada.",
-    });
-
-    await this.onLoadData();
-  }
-
-  async onApprove(candidate: QueueCandidateView): Promise<void> {
-    await this.queueS.executeAction({
-      candidateApplicationId: candidate.candidateApplicationId,
-      candidateProcessId: candidate.candidateProcessId ?? undefined,
-      action: 3,
-      comment: "Aprobado por entrevistador para continuar proceso.",
-    });
-
-    await this.onLoadData();
-  }
-
-  async onRevertDecision(candidate: QueueCandidateView): Promise<void> {
-    const confirmed = confirm("¿Estás seguro de revertir la decisión? Esto regresará la entrevista a pendiente.");
-    if (!confirmed) return;
-
-    await this.queueS.executeAction({
-      candidateApplicationId: candidate.candidateApplicationId,
-      candidateProcessId: candidate.candidateProcessId ?? undefined,
-      action: 4, // RevertDecision
-      comment: "Decisión revertida por el entrevistador.",
-    });
-
-    await this.onLoadData();
-  }
-
-  decisionLabel(decision?: CandidateDecision): string {
-    if (decision === undefined || decision === null) return "Sin decision";
-    return candidateDecisionLabel(decision);
+  openCandidateDetail(candidate: QueueCandidateView): void {
+    this.dialogHandlerS
+      .openDialog<boolean>(
+        EmployeeQueueCandidateDetailModal,
+        {
+          candidateId: candidate.candidateId,
+          candidateApplicationId: candidate.candidateApplicationId,
+          candidateProcessId: candidate.candidateProcessId ?? undefined,
+          canRespond: candidate.canSubmitFeedback,
+          pendingAction: candidate.pendingAction,
+        },
+        candidate.candidateName,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then(() => this.onLoadData());
   }
 
   private matchesMode(candidate: QueueCandidateView): boolean {

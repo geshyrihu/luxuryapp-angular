@@ -9,6 +9,10 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { FormsModule } from "@angular/forms";
+import { SelectButtonModule } from "primeng/selectbutton";
+import Swal from "sweetalert2";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -16,6 +20,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -34,6 +39,7 @@ import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DatePipe,
+    WebButtonIconItem,
     WebButtonIconViewPdf,
     WebButtonLabel,
     PrimeNgCustomCaption,
@@ -42,6 +48,8 @@ import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
     TableModule,
     CandidateStageBadge,
     MappedPTag,
+    SelectButtonModule,
+    FormsModule,
   ],
 })
 export class RecruitmentAgendaList implements OnInit {
@@ -71,6 +79,10 @@ export class RecruitmentAgendaList implements OnInit {
   ];
 
   readonly statusFilter = signal<string>("");
+  readonly filterOptions = computed(() => [
+    { value: "", label: "Todos" },
+    ...this.agendaStatusOptions
+  ]);
 
   readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -138,6 +150,37 @@ export class RecruitmentAgendaList implements OnInit {
     this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_APLICACIONES, {
       queryParams: { detail: item.id },
     });
+  }
+
+  canCancelInterview(item: CandidateRecruitmentAgendaItem): boolean {
+    return !!item.scheduledInterviewAt;
+  }
+
+  async onCancelInterview(item: CandidateRecruitmentAgendaItem): Promise<void> {
+    if (!this.canCancelInterview(item)) return;
+
+    const { value: comment } = await Swal.fire({
+      title: "Cancelar entrevista",
+      text: `Se cancelara la entrevista de ${item.candidateName} para la vacante ${item.vacancyFolio}. Se notificara a las partes involucradas.`,
+      icon: SweetAlertIcon.Warning,
+      input: "textarea",
+      inputPlaceholder: "Motivo de la cancelacion (opcional)",
+      inputAttributes: { "aria-label": "Motivo de la cancelacion" },
+      showCancelButton: true,
+      confirmButtonText: "Si, cancelar",
+      cancelButtonText: "Volver",
+      reverseButtons: true,
+      customClass: { container: "my-swal-container" },
+    });
+
+    if (comment === undefined) return;
+
+    const cancelled = await this.apiResponseS.onPost<boolean>(
+      EndpointsReclutamiento.CandidateProcesses.cancelSchedule(item.id),
+      { comment: comment ?? "", cancelInterview: true },
+    );
+
+    if (cancelled) this.onLoadData();
   }
 
   getRowClass(item: CandidateRecruitmentAgendaItem): string {

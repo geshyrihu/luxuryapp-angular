@@ -9,8 +9,8 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
-      :host > td {
-        text-align: center !important;
+      :host {
+        display: contents;
       }
     `,
   ],

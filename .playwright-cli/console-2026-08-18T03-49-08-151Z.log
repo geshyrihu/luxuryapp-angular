@@ -1,0 +1,50 @@
+[    1554ms] [LOG] %c📦 [StorageService] Inicializando servicio de almacenamiento local... color: #3F51B5; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1558ms] [LOG] %c [AuthService] Verificando ruta inicial: /directory/work-position-org-chart | Es publica: false color: #9C27B0; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1559ms] [LOG] %c [AuthService] Ruta no publica. Intentando login silencioso... color: #009688; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1570ms] [LOG] %c🚀 [Initializer] Starting application state initialization... color: purple; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1642ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:7070/api/auth/refresh:0
+[    1644ms] [LOG] %c🚫 Error en refreshToken, forzando logout local. color: red;font-style: italic HttpErrorResponse @ http://localhost:4300/chunk-HED6L54Z.js:72
+[    1645ms] [LOG] %c [AuthTrace] clearSession.before color: #03A9F4; font-style: italic; {at: 2026-08-18T03:49:09.795Z, applicationUserId: null, tokenCustomerId: null, roles: Array(0), customerAccessCount: 0} @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1645ms] [LOG] %c🔍 [StorageService] Recuperando valor para clave: 'customerId' color: #2196F3; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1646ms] [LOG] %c🟡 [StorageService] No se encontró valor para clave 'customerId' o es undefined. color: #FF9800; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1646ms] [LOG] %c [CustomerTrace] clearCustomerData.before color: #FF9800; font-style: italic; {at: 2026-08-18T03:49:09.796Z, state: Object, storedCustomerId: undefined} @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1647ms] [LOG] %c🧹 [StorageService] Limpiando clave específica: 'customerId' color: #FF5722; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1647ms] [LOG] %c✅ [StorageService] Clave 'customerId' ha sido limpiada. color: #9E9E9E; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1647ms] [LOG] %c🔍 [StorageService] Recuperando valor para clave: 'customerId' color: #2196F3; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1647ms] [LOG] %c🟡 [StorageService] No se encontró valor para clave 'customerId' o es undefined. color: #FF9800; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1648ms] [LOG] %c [CustomerTrace] clearCustomerData.after color: #FF9800; font-style: italic; {at: 2026-08-18T03:49:09.798Z, state: Object, storedCustomerId: undefined} @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1657ms] [LOG] %c [AuthTrace] trySilentLogin.finalize color: #8BC34A; font-style: italic; {at: 2026-08-18T03:49:09.808Z, isAuthenticated: false} @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1658ms] [LOG] %c🤷 [Initializer] No user session. Skipping customer state initialization. color: #9E9E9E; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1659ms] [LOG] %c✅ [Initializer] State initialization complete. color: green; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    1789ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:mail-16.json:0
+[    1815ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:alert-24.json:0
+[    1817ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:document-16.json:0
+[    1820ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:add-circle-16.json:0
+[    1870ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:lock-closed-16.json:0
+[    1870ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent:lock-open-16-regular.json:0
+[    1871ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:alert-16.json:0
+[    2136ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:checkmark-circle-16.json:0
+[    2148ms] [LOG] %c🔄 UpdateService: Inicializando servicio de actualizaciones color: blue; font-weight: bold; @ http://localhost:4300/chunk-WEIOKMZ7.js:10
+[    2149ms] [LOG] %c🔄 UpdateService: ❌ Service Worker NO habilitado color: red; font-weight: bold; @ http://localhost:4300/chunk-WEIOKMZ7.js:22
+[    2183ms] [LOG] %c🚀 [App] ¡Aplicación iniciada! Soy más ligero y rápido que nunca. color: #673AB7; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2205ms] [LOG] %c🔐 [SecurityService] Servicio de seguridad inicializado. color: #3F51B5; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2250ms] [LOG] %c [Login] Iniciando.. color: #607D8B; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2251ms] [LOG] %c [Login] Usando / como redireccion por defecto. color: #607D8B; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2251ms] [LOG] %c [Login] URL final de redireccion: / color: #2196F3; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2252ms] [LOG] %c🚪 [SecurityService] Limpiando datos de autenticación... color: #F44336; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2252ms] [LOG] %c🗑️ [StorageService] Eliminando clave: 'userAuthData' color: #F44336; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2252ms] [LOG] %c✅ [StorageService] Clave 'userAuthData' eliminada. color: #9E9E9E; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2252ms] [LOG] %c🗑️ [StorageService] Eliminando clave: 'accessToken' color: #F44336; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2253ms] [LOG] %c✅ [StorageService] Clave 'accessToken' eliminada. color: #9E9E9E; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2253ms] [LOG] %c🧹 [SecurityService] Datos de sesión eliminados: userAuthData y accessToken. color: #9E9E9E; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2253ms] [LOG] %c [Login] Datos de sesion previa eliminados. color: #9E9E9E; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2254ms] [LOG] %c🚪 [SecurityService] Limpiando datos de autenticación... color: #F44336; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2254ms] [LOG] %c🗑️ [StorageService] Eliminando clave: 'userAuthData' color: #F44336; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2254ms] [LOG] %c✅ [StorageService] Clave 'userAuthData' eliminada. color: #9E9E9E; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2254ms] [LOG] %c🗑️ [StorageService] Eliminando clave: 'accessToken' color: #F44336; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2255ms] [LOG] %c✅ [StorageService] Clave 'accessToken' eliminada. color: #9E9E9E; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2255ms] [LOG] %c🧹 [SecurityService] Datos de sesión eliminados: userAuthData y accessToken. color: #9E9E9E; font-style: italic; @ http://localhost:4300/chunk-HED6L54Z.js:59
+[    2384ms] [LOG] Angular is running in development mode. @ http://localhost:4300/@fs/D:/repos/luxuryapp-api/client/angular/.angular/cache/22.0.5/luxury-app/vite/deps/chunk-DBUQFU5K.js?v=3990ee8e:11608
+[    2498ms] [WARNING] NG0913: An image with src http://localhost:4300/assets/images/login/LBG-blanco.png has intrinsic file dimensions much larger than its rendered size. This can negatively impact application loading performance. For more information about addressing or disabling this warning, see https://v22.angular.dev/errors/NG0913. Find more at https://v22.angular.dev/errors/NG0913 @ http://localhost:4300/@fs/D:/repos/luxuryapp-api/client/angular/.angular/cache/22.0.5/luxury-app/vite/deps/chunk-DBUQFU5K.js?v=3990ee8e:21883
+[    2498ms] [WARNING] NG0913: An image with src http://localhost:4300/assets/images/login/LBG-blanco.png has intrinsic file dimensions much larger than its rendered size. This can negatively impact application loading performance. For more information about addressing or disabling this warning, see https://v22.angular.dev/errors/NG0913. Find more at https://v22.angular.dev/errors/NG0913 @ http://localhost:4300/@fs/D:/repos/luxuryapp-api/client/angular/.angular/cache/22.0.5/luxury-app/vite/deps/chunk-DBUQFU5K.js?v=3990ee8e:21883
+[    2502ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:4300/auth/login:0

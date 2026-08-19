@@ -24,6 +24,7 @@ import { UpdateRole } from "src/app/shared/user-account-access/update-role";
 import { IncidentList } from "../../recursos-humanos/incidencias-sanciones/incident/incident-list";
 import { EmployeeBankDataList } from "../employee-bank-data/employee-bank-data-list";
 import { EmployeeClinicalDataList } from "../employee-clinical-data/employee-clinical-data-list";
+import { EmployeeDocumentList } from "../employee-document-list/employee-document-list";
 import { EmployeeEmergencyContactList } from "../employee-emergency-contact/employee-emergency-contact-list";
 import { EmployeeAddressForm } from "../employee-internal/employee-address-form";
 import { EmployeeAvatarForm } from "../employee-internal/employee-avatar-form";
@@ -45,6 +46,7 @@ import { EmployeePrincipalDataForm } from "../employee-internal/employee-princip
     EmployeePersonalDataForm,
     EmployeePrincipalDataForm,
     EmployeeReclutamiento,
+    EmployeeDocumentList,
     IncidentList,
     LxMessage,
     LxPanelMenu,
@@ -204,6 +206,17 @@ export class EmployeeForm implements OnInit {
 
       // Solo quienes gestionan reclutamiento
       {
+        label: "Documentación",
+        icon: "material-symbols-light:folder-open",
+        section: "documents",
+        roles: [
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.Administrador,
+          ApplicationRole.Asistente,
+          ApplicationRole.RecursosHumanos,
+        ],
+      },
+      {
         label: "Reclutamiento",
         icon: "material-symbols-light:format-list-bulleted",
         section: "recruitment",
@@ -257,7 +270,9 @@ export class EmployeeForm implements OnInit {
 
   onValidarAdminAsis() {
     this.apiResponseS
-      .onGetItem(Endpoints.Employees.validateAdminAsis(this.authS.applicationUserId))
+      .onGetItem(
+        Endpoints.Employees.validateAdminAsis(this.authS.applicationUserId),
+      )
       .then((result: any) => {
         this.tienePermiso = result;
       });

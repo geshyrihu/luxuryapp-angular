@@ -236,7 +236,7 @@ export class CandidateWorkPositionCandidates implements OnInit {
       case "reschedule":
         return `Reagendar cita - ${candidate.candidateName}`;
       case "assign":
-        return `Asignar entrevistador - ${candidate.candidateName}`;
+        return `Cambiar entrevistador - ${candidate.candidateName}`;
       default:
         return "Gestionar entrevista";
     }

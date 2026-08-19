@@ -45,6 +45,8 @@
             [applicationUserId]="applicationUserId"
             [roleType]="3"
           />
+          } @case ('documents') {
+          <app-employee-document-list [employeeId]="employeeId" />
           } @case ('recruitment') {
           <employee-reclutamiento [employeeId]="employeeId" />
           } @case ('contracts') {

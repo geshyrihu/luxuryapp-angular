@@ -7,17 +7,42 @@
   [scrollHeight]="scrollHeight()"
   [showCurrentPageReport]="true"
   [tableStyle]="{ 'min-width': '50rem' }"
-  [value]="data()"
+  [value]="filteredData()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   class="custom-table card"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      (add)="add.emit({ id: '', title: 'Nuevo Candidato' })"
-      [dt]="dt"
-      aria-label="Agregar nuevo candidato"
-    />
+    <div class="flex flex-wrap gap-3 align-items-center justify-content-between">
+      <div class="flex flex-wrap gap-2">
+        <span class="text-sm text-color-secondary align-self-center">Filtrar por entrevista:</span>
+        @for (opt of interviewProgressOptions; track opt.value) {
+        <button
+          type="button"
+          class="btn btn-sm"
+          [class.btn-primary]="interviewProgressFilter() === opt.value"
+          [class.btn-outline]="interviewProgressFilter() !== opt.value"
+          [attr.aria-pressed]="interviewProgressFilter() === opt.value"
+          (click)="interviewProgressFilter.set(interviewProgressFilter() === opt.value ? null : opt.value)"
+        >
+          {{ opt.label }}
+        </button>
+        }
+        <button
+          type="button"
+          class="btn btn-sm btn-outline"
+          [class.btn-primary]="interviewProgressFilter() === null"
+          (click)="interviewProgressFilter.set(null)"
+        >
+          Todos
+        </button>
+      </div>
+      <primeng-custom-caption
+        (add)="add.emit({ id: '', title: 'Nuevo Candidato' })"
+        [dt]="dt"
+        aria-label="Agregar nuevo candidato"
+      />
+    </div>
   </ng-template>
   <ng-template #header>
     <tr>
@@ -35,6 +60,10 @@
       </th>
       <th class="text-center">CV</th>
       <th class="text-center">Procesos activos</th>
+      <th pSortableColumn="interviewProgress">
+        Entrevista
+        <p-sorticon field="interviewProgress" />
+      </th>
       <th pSortableColumn="status">
         Estado
         <p-sorticon field="status" />
@@ -63,6 +92,12 @@
       <td class="text-center">{{ item.activeApplicationsCount }}</td>
       <td>
         <app-mapped-p-tag
+          [value]="item.interviewProgress"
+          [options]="interviewProgressOptions"
+        />
+      </td>
+      <td>
+        <app-mapped-p-tag
           [value]="item.status"
           [options]="candidateStatusOptions"
         />
@@ -82,6 +117,15 @@
             [attr.aria-label]="'Ver detalle candidato ' + item.fullName"
             (clicked)="detail.emit(item.id)"
           />
+          @if (item.currentCandidateProcessId) {
+          <iw-button-item
+            size="sm"
+            class="btn--circle"
+            iconClass="material-symbols-light:event-outline"
+            [attr.aria-label]="'Ver detalle de entrevista de ' + item.fullName"
+            (clicked)="viewInterview.emit(item.currentCandidateProcessId)"
+          />
+          }
           @if (item.status === candidateStatus.Active) {
           <iw-button-delete
             size="sm"
@@ -105,7 +149,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="7" />
+    <primeng-custom-table-emptymessage [colspan]="8" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />

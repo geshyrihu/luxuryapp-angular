@@ -1,13 +1,17 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
   OnInit,
   signal,
 } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { firstValueFrom } from "rxjs";
+import { debounceTime, distinctUntilChanged, filter, switchMap } from "rxjs/operators";
 import {
   FormArray,
+  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -16,7 +20,6 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -25,7 +28,9 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { CandidateStatus } from "src/app/core/enums/candidate-status";
 import {
+  DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
@@ -33,10 +38,28 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
 import {
   CandidateDetail,
+  CandidatePhoneLookup,
   CandidateWorkExperienceAddOrEdit,
   CandidateWorkExperienceItem,
 } from "./interfaces/candidate.dto";
 import { CandidateFormGroup } from "./interfaces/candidate-form.interface";
+
+function minimumAdultAgeValidator(control: AbstractControl) {
+  const rawValue = control.value;
+  if (!rawValue) return null;
+
+  const birthDate = new Date(`${rawValue}T00:00:00`);
+  if (Number.isNaN(birthDate.getTime())) return { invalidDate: true };
+
+  const today = new Date();
+  const adultThreshold = new Date(
+    today.getFullYear() - 18,
+    today.getMonth(),
+    today.getDate(),
+  );
+
+  return birthDate <= adultThreshold ? null : { minimumAdultAge: true };
+}
 
 @Component({
   selector: "app-candidate-form",
@@ -51,7 +74,6 @@ import { CandidateFormGroup } from "./interfaces/candidate-form.interface";
     CustomInputTextAreaSignal,
     InputMask,
     InputEmail,
-    CustomInputSelectSignal,
     CandidateCvUpload,
     WebButtonLabel,
     WebButtonLabelSave,
@@ -62,6 +84,8 @@ export class CandidateForm implements OnInit {
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
   enumSelectS = inject(EnumSelectService);
+  dialogHandlerS = inject(DialogHandlerService);
+  private destroyRef = inject(DestroyRef);
 
   id: string = "";
   submitting = signal(false);
@@ -69,6 +93,10 @@ export class CandidateForm implements OnInit {
   recruitmentSourceOptions = signal<SelectItemDto[]>([]);
   selectedFile: File | null = null;
   readonly originalWorkExperienceIds = signal<string[]>([]);
+
+  /** Candidato existente encontrado al capturar un telefono ya registrado (busqueda silenciosa). */
+  duplicateCandidate = signal<CandidatePhoneLookup | null>(null);
+  readonly CandidateStatus = CandidateStatus;
 
   form: FormGroup<CandidateFormGroup> = new FormGroup({
     id: new FormControl({ value: "", disabled: true }),
@@ -82,7 +110,9 @@ export class CandidateForm implements OnInit {
     }),
     phoneNumber: new FormControl<string | null>(null),
     email: new FormControl<string | null>(null),
-    age: new FormControl<number | null>(null),
+    birthDate: new FormControl<string | null>(null, {
+      validators: [Validators.required, minimumAdultAgeValidator],
+    }),
     recruitmentSource: new FormControl<number | null>(null, {
       nonNullable: true,
       validators: [Validators.required],
@@ -101,6 +131,23 @@ export class CandidateForm implements OnInit {
     await this.loadSelectItems();
     if (this.id) this.onLoadData();
     else this.addWorkExperience();
+
+    this.form.controls.phoneNumber.valueChanges
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged(),
+        filter((value): value is string => !!value && value.replace(/\D/g, "").length >= 10),
+        switchMap((phone) =>
+          this.apiResponseS.onGetItem<CandidatePhoneLookup | null>(
+            EndpointsReclutamiento.Candidates.searchByPhone(phone),
+            false,
+          ),
+        ),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe((found) => {
+        this.duplicateCandidate.set(found && found.id !== this.id ? found : null);
+      });
   }
 
   private async loadSelectItems(): Promise<void> {
@@ -126,6 +173,51 @@ export class CandidateForm implements OnInit {
       });
   }
 
+  dismissDuplicateCandidate() {
+    this.duplicateCandidate.set(null);
+  }
+
+  /** Carga al candidato ya registrado dentro de este mismo formulario para revisar/actualizar sus datos. */
+  onLoadDuplicateCandidate() {
+    const found = this.duplicateCandidate();
+    if (!found) return;
+
+    this.id = found.id;
+    this.duplicateCandidate.set(null);
+    this.onLoadData();
+  }
+
+  async onUnarchiveDuplicateCandidate() {
+    const found = this.duplicateCandidate();
+    if (!found) return;
+
+    const result = await this.apiResponseS.onPatch<boolean>(
+      EndpointsReclutamiento.Candidates.unarchive(found.id),
+      {},
+    );
+    if (result) {
+      this.duplicateCandidate.set({ ...found, status: CandidateStatus.Active });
+    }
+  }
+
+  /** Cierra este formulario y abre el de asignacion a entrevista con el candidato preseleccionado. */
+  async onAssignDuplicateCandidateToInterview() {
+    const found = this.duplicateCandidate();
+    if (!found) return;
+
+    const { CandidateApplicationForm } = await import(
+      "../candidate-application/candidate-application-form"
+    );
+
+    this.ref.close();
+    await this.dialogHandlerS.openDialog(
+      CandidateApplicationForm,
+      { candidateId: found.id },
+      "Asignar candidato a entrevista",
+      this.dialogHandlerS.sizeLg,
+    );
+  }
+
   async onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
@@ -134,9 +226,7 @@ export class CandidateForm implements OnInit {
     formData.append("LastName", this.form.controls.lastName.value.trim());
     formData.append("PhoneNumber", this.form.controls.phoneNumber.value ?? "");
     formData.append("Email", this.form.controls.email.value ?? "");
-
-    const age = this.form.controls.age.value;
-    if (age != null) formData.append("Age", String(age));
+    formData.append("BirthDate", this.form.controls.birthDate.value ?? "");
     formData.append(
       "RecruitmentSource",
       String(this.form.controls.recruitmentSource.value),

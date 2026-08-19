@@ -1,0 +1,894 @@
+- generic [ref=f1e1]:
+  - link "Saltar al contenido principal" [ref=f1e2] [cursor=pointer]:
+    - /url: "#app-root-outlet"
+  - generic "Aplicación LuxuryApp" [ref=f1e3]:
+    - generic:
+      - alertdialog
+    - main [ref=f1e7]:
+      - generic [ref=f1e10]:
+        - toolbar [ref=f1e14]:
+          - generic [ref=f1e16]:
+            - button "Abrir o cerrar el menú lateral" [ref=f1e17] [cursor=pointer]
+            - button "AVIVIA 58" [ref=f1e22] [cursor=pointer]
+            - navigation [ref=f1e31]:
+              - list [ref=f1e32]:
+                - listitem [ref=f1e33]:
+                  - link "Inicio" [ref=f1e34] [cursor=pointer]:
+                    - /url: /dashboard
+                - listitem [ref=f1e39]
+                - listitem [ref=f1e42]:
+                  - link "Directorio" [ref=f1e43] [cursor=pointer]:
+                    - /url: /directory
+                - listitem [ref=f1e45]
+                - listitem [ref=f1e48]:
+                  - link "Plantilla y Personal" [ref=f1e49] [cursor=pointer]:
+                    - /url: /directory/staff
+          - generic [ref=f1e52]:
+            - button "Inicio" [ref=f1e53] [cursor=pointer]
+            - button "Pagina anterior" [ref=f1e58] [cursor=pointer]
+            - button "Pagina siguiente" [ref=f1e63] [cursor=pointer]
+            - button "Actualizar" [ref=f1e68] [cursor=pointer]
+            - button "Mi edificio" [ref=f1e73] [cursor=pointer]
+            - button "Anuncios" [ref=f1e78] [cursor=pointer]
+            - button "Comunicado IA" [ref=f1e83] [cursor=pointer]
+            - button "Telefonos de Emergencia" [ref=f1e88] [cursor=pointer]
+            - button "Configuración" [ref=f1e93] [cursor=pointer]
+            - button "Novedades" [ref=f1e98] [cursor=pointer]
+            - button "Cambiar tema claro u oscuro" [ref=f1e103] [cursor=pointer]
+            - 'button "Alerta de pánico: mantén presionado para activar" [ref=f1e109] [cursor=pointer]'
+            - button "Notificaciones" [ref=f1e116] [cursor=pointer]
+            - button "Abrir menú de usuario" [ref=f1e124] [cursor=pointer]
+        - navigation [ref=f1e134]:
+          - generic [ref=f1e135]:
+            - generic [ref=f1e136]: LuxuryApp
+            - generic [ref=f1e137]: Gestión Inteligente
+          - generic [ref=f1e145]:
+            - heading "Administrador LBG" [level=2] [ref=f1e146]
+            - paragraph [ref=f1e147]: Empleado
+            - heading "AVIVIA 58" [level=3] [ref=f1e149]
+          - generic [ref=f1e150]:
+            - generic [ref=f1e151]: Design System
+            - list [ref=f1e153]:
+              - listitem [ref=f1e154]:
+                - button "Luxury Design System" [ref=f1e155] [cursor=pointer]
+            - separator
+            - list [ref=f1e166]:
+              - listitem [ref=f1e167]:
+                - button "Legal" [ref=f1e168] [cursor=pointer]
+              - listitem [ref=f1e179]:
+                - link "Contabilidad" [ref=f1e180] [cursor=pointer]:
+                  - /url: /contabilidad
+              - listitem [ref=f1e186]:
+                - button "Tickets" [ref=f1e187] [cursor=pointer]
+              - listitem [ref=f1e198]:
+                - button "Inspecciones" [ref=f1e199] [cursor=pointer]
+              - listitem [ref=f1e210]:
+                - button "Juntas de comite" [ref=f1e211] [cursor=pointer]
+              - listitem [ref=f1e222]:
+                - button "Compras" [ref=f1e223] [cursor=pointer]
+              - listitem [ref=f1e234]:
+                - button "Bitacoras" [ref=f1e235] [cursor=pointer]
+              - listitem [ref=f1e246]:
+                - button "Almacen" [ref=f1e247] [cursor=pointer]
+              - listitem [ref=f1e258]:
+                - button "Inventarios" [ref=f1e259] [cursor=pointer]
+              - listitem [ref=f1e270]:
+                - button "Biblioteca" [ref=f1e271] [cursor=pointer]
+              - listitem [ref=f1e282]:
+                - button "Calendarios" [ref=f1e283] [cursor=pointer]
+              - listitem [ref=f1e294]:
+                - button "Directorios" [expanded] [ref=f1e295] [cursor=pointer]
+                - list [ref=f1e306]:
+                  - listitem [ref=f1e307]:
+                    - link "Comite de vigilancia" [ref=f1e308] [cursor=pointer]:
+                      - /url: /directory/vigilance-committee
+                  - listitem [ref=f1e310]:
+                    - link "Personal interno" [ref=f1e311] [cursor=pointer]:
+                      - /url: /directory/staff
+                  - listitem [ref=f1e313]:
+                    - link "Personal externo" [ref=f1e314] [cursor=pointer]:
+                      - /url: /directory/external-staff
+                  - listitem [ref=f1e316]:
+                    - link "Proveedores" [ref=f1e317] [cursor=pointer]:
+                      - /url: /directory/provider
+                  - listitem [ref=f1e319]:
+                    - link "Telefonos de emergencia" [ref=f1e320] [cursor=pointer]:
+                      - /url: /directory/emergency-phones
+                  - listitem [ref=f1e322]:
+                    - link "Condominos" [ref=f1e323] [cursor=pointer]:
+                      - /url: /directory/condos
+                  - listitem [ref=f1e325]:
+                    - link "Propiedades" [ref=f1e326] [cursor=pointer]:
+                      - /url: /directory/properties
+              - listitem [ref=f1e328]:
+                - link "Supervisión" [ref=f1e329] [cursor=pointer]:
+                  - /url: /supervision
+              - listitem [ref=f1e335]:
+                - button "Reportes" [ref=f1e336] [cursor=pointer]
+              - listitem [ref=f1e347]:
+                - button "Entrega recepción" [ref=f1e348] [cursor=pointer]
+              - listitem [ref=f1e359]:
+                - button "Reclutamiento" [ref=f1e360] [cursor=pointer]
+              - listitem [ref=f1e371]:
+                - generic [ref=f1e372]: Sistemas
+              - listitem [ref=f1e378]:
+                - generic [ref=f1e379]: Reservaciones
+              - listitem [ref=f1e385]:
+                - generic [ref=f1e386]: Pases QR
+              - listitem [ref=f1e392]:
+                - generic [ref=f1e393]: Paqueteria
+              - listitem [ref=f1e399]:
+                - button "Recursos Humanos" [ref=f1e400] [cursor=pointer]
+              - listitem [ref=f1e411]:
+                - link "Anuncios" [ref=f1e412] [cursor=pointer]:
+                  - /url: /announcements/manage
+              - listitem [ref=f1e418]:
+                - button "Utilidades" [ref=f1e419] [cursor=pointer]
+              - listitem [ref=f1e430]:
+                - button "Mesa directiva" [ref=f1e431] [cursor=pointer]
+        - generic [ref=f1e445]:
+          - generic [ref=f1e446]:
+            - generic [ref=f1e448]:
+              - textbox "Buscar aquí..." [ref=f1e462]
+              - generic [ref=f1e463]:
+                - button "Entrevistas y seguimiento" [ref=f1e465] [cursor=pointer]
+                - button "Agregar Puesto" [ref=f1e472] [cursor=pointer]
+                - button "Exportar Excel" [ref=f1e479] [cursor=pointer]
+                - button "Inactivos" [ref=f1e486] [cursor=pointer]
+                - button "Organigrama" [ref=f1e493] [cursor=pointer]
+            - table [ref=f1e500]:
+              - rowgroup [ref=f1e501]:
+                - row [ref=f1e502]:
+                  - columnheader "GESTIÓN DEL PUESTO DE TRABAJO" [ref=f1e503]
+                  - columnheader "COLABORADOR ASIGNADO" [ref=f1e508]
+                - row [ref=f1e513]:
+                  - columnheader [ref=f1e514] [cursor=pointer]
+                  - columnheader [ref=f1e518] [cursor=pointer]
+                  - columnheader "SUELDOS (PRE / ACT)" [ref=f1e522]
+                  - columnheader "ACCIONES PUESTO" [ref=f1e523]
+                  - columnheader "NOMBRE / PERFIL" [ref=f1e524]
+              - rowgroup [ref=f1e525]:
+                - row [ref=f1e526]:
+                  - cell "Administraci\u0000\u0000n" [ref=f1e527]
+                - row [ref=f1e529]:
+                  - cell [ref=f1e530]:
+                    - generic [ref=f1e531]:
+                      - text: CRA-ADM-3
+                      - paragraph [ref=f1e532]: Administrador
+                  - cell "Matutino" [ref=f1e533]
+                  - 'cell "PRE: $23,000.00 ACT: $26,000.00" [ref=f1e534]':
+                    - generic [ref=f1e535]:
+                      - generic [ref=f1e536]:
+                        - generic [ref=f1e537]: "PRE:"
+                        - generic [ref=f1e538]: $23,000.00
+                      - generic [ref=f1e539]:
+                        - generic [ref=f1e540]: "ACT:"
+                        - generic [ref=f1e541]: $26,000.00
+                  - cell [ref=f1e542]:
+                    - button "Opciones" [ref=f1e546] [cursor=pointer]
+                  - cell "Yadihel Mora Olmos Opciones" [ref=f1e551]:
+                    - generic [ref=f1e553]:
+                      - generic [ref=f1e554] [cursor=pointer]
+                      - generic [ref=f1e558]: Yadihel Mora Olmos
+                      - button "Opciones" [ref=f1e562] [cursor=pointer]
+                - row [ref=f1e567]:
+                  - cell [ref=f1e568]:
+                    - generic [ref=f1e569]:
+                      - text: CRA-ADM
+                      - paragraph [ref=f1e570]: Gerente de Operaciones
+                  - cell "Matutino" [ref=f1e571]
+                  - 'cell "PRE: $22,000.00 ACT: $23,000.00" [ref=f1e572]':
+                    - generic [ref=f1e573]:
+                      - generic [ref=f1e574]:
+                        - generic [ref=f1e575]: "PRE:"
+                        - generic [ref=f1e576]: $22,000.00
+                      - generic [ref=f1e577]:
+                        - generic [ref=f1e578]: "ACT:"
+                        - generic [ref=f1e579]: $23,000.00
+                  - cell [ref=f1e580]:
+                    - button "Opciones" [ref=f1e584] [cursor=pointer]
+                  - cell "Pablo Lopez Cruz Opciones" [ref=f1e589]:
+                    - generic [ref=f1e591]:
+                      - generic [ref=f1e592] [cursor=pointer]
+                      - generic [ref=f1e596]: Pablo Lopez Cruz
+                      - button "Opciones" [ref=f1e600] [cursor=pointer]
+                - row [ref=f1e605]:
+                  - cell [ref=f1e606]:
+                    - generic [ref=f1e607]:
+                      - text: CRA-ADM-2
+                      - paragraph [ref=f1e608]: Gerente de Atención
+                  - cell "Vespertino" [ref=f1e609]
+                  - 'cell "PRE: $20,000.00 ACT: $20,000.00" [ref=f1e610]':
+                    - generic [ref=f1e611]:
+                      - generic [ref=f1e612]:
+                        - generic [ref=f1e613]: "PRE:"
+                        - generic [ref=f1e614]: $20,000.00
+                      - generic [ref=f1e615]:
+                        - generic [ref=f1e616]: "ACT:"
+                        - generic [ref=f1e617]: $20,000.00
+                  - cell [ref=f1e618]:
+                    - button "Opciones" [ref=f1e622] [cursor=pointer]
+                  - cell "Edwin De Jesus Ciau Mazum Opciones" [ref=f1e627]:
+                    - generic [ref=f1e629]:
+                      - generic [ref=f1e630] [cursor=pointer]
+                      - generic [ref=f1e634]: Edwin De Jesus Ciau Mazum
+                      - button "Opciones" [ref=f1e638] [cursor=pointer]
+                - row [ref=f1e643]:
+                  - cell [ref=f1e644]:
+                    - generic [ref=f1e645]:
+                      - text: CRA-ASI-ADM-2
+                      - paragraph [ref=f1e646]: Asistente
+                  - cell "Matutino" [ref=f1e647]
+                  - 'cell "PRE: $11,000.00 ACT: $12,000.00" [ref=f1e648]':
+                    - generic [ref=f1e649]:
+                      - generic [ref=f1e650]:
+                        - generic [ref=f1e651]: "PRE:"
+                        - generic [ref=f1e652]: $11,000.00
+                      - generic [ref=f1e653]:
+                        - generic [ref=f1e654]: "ACT:"
+                        - generic [ref=f1e655]: $12,000.00
+                  - cell [ref=f1e656]:
+                    - button "Opciones" [ref=f1e660] [cursor=pointer]
+                  - cell "Lissette González Estrada Opciones" [ref=f1e665]:
+                    - generic [ref=f1e667]:
+                      - generic [ref=f1e668] [cursor=pointer]
+                      - generic [ref=f1e672]: Lissette González Estrada
+                      - button "Opciones" [ref=f1e676] [cursor=pointer]
+                - row [ref=f1e681]:
+                  - cell [ref=f1e682]:
+                    - generic [ref=f1e683]:
+                      - text: CRA-ASI-ADM
+                      - paragraph [ref=f1e684]: Asistente
+                  - cell "Matutino" [ref=f1e685]
+                  - 'cell "PRE: $11,000.00 ACT: $13,000.00" [ref=f1e686]':
+                    - generic [ref=f1e687]:
+                      - generic [ref=f1e688]:
+                        - generic [ref=f1e689]: "PRE:"
+                        - generic [ref=f1e690]: $11,000.00
+                      - generic [ref=f1e691]:
+                        - generic [ref=f1e692]: "ACT:"
+                        - generic [ref=f1e693]: $13,000.00
+                  - cell [ref=f1e694]:
+                    - button "Opciones" [ref=f1e698] [cursor=pointer]
+                  - cell "Arturo Iván Ordoñez Espinosa Opciones" [ref=f1e703]:
+                    - generic [ref=f1e705]:
+                      - generic [ref=f1e706] [cursor=pointer]
+                      - generic [ref=f1e710]: Arturo Iván Ordoñez Espinosa
+                      - button "Opciones" [ref=f1e714] [cursor=pointer]
+                - row [ref=f1e719]:
+                  - cell [ref=f1e720]:
+                    - generic [ref=f1e721]:
+                      - text: CRA-JEF-ALM
+                      - paragraph [ref=f1e722]: Almacenista
+                  - cell "Matutino" [ref=f1e723]
+                  - 'cell "PRE: $10,000.00 ACT: $10,000.00" [ref=f1e724]':
+                    - generic [ref=f1e725]:
+                      - generic [ref=f1e726]:
+                        - generic [ref=f1e727]: "PRE:"
+                        - generic [ref=f1e728]: $10,000.00
+                      - generic [ref=f1e729]:
+                        - generic [ref=f1e730]: "ACT:"
+                        - generic [ref=f1e731]: $10,000.00
+                  - cell [ref=f1e732]:
+                    - button "Opciones" [ref=f1e736] [cursor=pointer]
+                  - cell "Benjamin Macedonio Mejia Opciones" [ref=f1e741]:
+                    - generic [ref=f1e743]:
+                      - generic [ref=f1e744] [cursor=pointer]
+                      - generic [ref=f1e748]: Benjamin Macedonio Mejia
+                      - button "Opciones" [ref=f1e752] [cursor=pointer]
+                - row [ref=f1e757]:
+                  - cell [ref=f1e758]:
+                    - generic [ref=f1e759]:
+                      - text: CRA-CON
+                      - paragraph [ref=f1e760]: Paquetería
+                  - cell "Matutino" [ref=f1e761]
+                  - 'cell "PRE: $13,669.00 ACT: $13,669.00" [ref=f1e762]':
+                    - generic [ref=f1e763]:
+                      - generic [ref=f1e764]:
+                        - generic [ref=f1e765]: "PRE:"
+                        - generic [ref=f1e766]: $13,669.00
+                      - generic [ref=f1e767]:
+                        - generic [ref=f1e768]: "ACT:"
+                        - generic [ref=f1e769]: $13,669.00
+                  - cell [ref=f1e770]:
+                    - button "Opciones" [ref=f1e774] [cursor=pointer]
+                  - cell "Angel Ismael Mérida Flores Opciones" [ref=f1e779]:
+                    - generic [ref=f1e781]:
+                      - generic [ref=f1e782] [cursor=pointer]
+                      - generic [ref=f1e786]: Angel Ismael Mérida Flores
+                      - button "Opciones" [ref=f1e790] [cursor=pointer]
+                - row [ref=f1e795]:
+                  - cell "Contabilidad" [ref=f1e796]
+                - row [ref=f1e798]:
+                  - cell [ref=f1e799]:
+                    - generic [ref=f1e800]:
+                      - text: CRA--1
+                      - paragraph [ref=f1e801]: Contador
+                  - cell "Matutino" [ref=f1e802]
+                  - 'cell "PRE: $22,000.00 ACT: $24,195.00" [ref=f1e803]':
+                    - generic [ref=f1e804]:
+                      - generic [ref=f1e805]:
+                        - generic [ref=f1e806]: "PRE:"
+                        - generic [ref=f1e807]: $22,000.00
+                      - generic [ref=f1e808]:
+                        - generic [ref=f1e809]: "ACT:"
+                        - generic [ref=f1e810]: $24,195.00
+                  - cell [ref=f1e811]:
+                    - button "Opciones" [ref=f1e815] [cursor=pointer]
+                  - cell "Leonardo Ismael Sanchez Martinez Opciones" [ref=f1e820]:
+                    - generic [ref=f1e822]:
+                      - generic [ref=f1e823] [cursor=pointer]
+                      - generic [ref=f1e827]: Leonardo Ismael Sanchez Martinez
+                      - button "Opciones" [ref=f1e831] [cursor=pointer]
+                - row [ref=f1e836]:
+                  - cell [ref=f1e837]:
+                    - generic [ref=f1e838]:
+                      - text: CRA-COB
+                      - paragraph [ref=f1e839]: Cobranza
+                  - cell "Matutino" [ref=f1e840]
+                  - 'cell "PRE: $18,819.00 ACT: $19,039.00" [ref=f1e841]':
+                    - generic [ref=f1e842]:
+                      - generic [ref=f1e843]:
+                        - generic [ref=f1e844]: "PRE:"
+                        - generic [ref=f1e845]: $18,819.00
+                      - generic [ref=f1e846]:
+                        - generic [ref=f1e847]: "ACT:"
+                        - generic [ref=f1e848]: $19,039.00
+                  - cell [ref=f1e849]:
+                    - button "Opciones" [ref=f1e853] [cursor=pointer]
+                  - cell "Jorge Altamirano Romero Opciones" [ref=f1e858]:
+                    - generic [ref=f1e860]:
+                      - generic [ref=f1e861] [cursor=pointer]
+                      - generic [ref=f1e865]: Jorge Altamirano Romero
+                      - button "Opciones" [ref=f1e869] [cursor=pointer]
+                - row [ref=f1e874]:
+                  - cell "Mantenimiento" [ref=f1e875]
+                - row [ref=f1e877]:
+                  - cell [ref=f1e878]:
+                    - generic [ref=f1e879]:
+                      - text: CRA-JEF-MAN
+                      - paragraph [ref=f1e880]: Jefe de Mantenimiento
+                  - cell "Matutino" [ref=f1e881]
+                  - 'cell "PRE: $14,000.00 ACT: $14,000.00" [ref=f1e882]':
+                    - generic [ref=f1e883]:
+                      - generic [ref=f1e884]:
+                        - generic [ref=f1e885]: "PRE:"
+                        - generic [ref=f1e886]: $14,000.00
+                      - generic [ref=f1e887]:
+                        - generic [ref=f1e888]: "ACT:"
+                        - generic [ref=f1e889]: $14,000.00
+                  - cell [ref=f1e890]:
+                    - button "Opciones" [ref=f1e894] [cursor=pointer]
+                  - cell "José Alberto González López Opciones" [ref=f1e899]:
+                    - generic [ref=f1e901]:
+                      - generic [ref=f1e902] [cursor=pointer]
+                      - generic [ref=f1e906]: José Alberto González López
+                      - button "Opciones" [ref=f1e910] [cursor=pointer]
+                - row [ref=f1e915]:
+                  - cell [ref=f1e916]:
+                    - generic [ref=f1e917]:
+                      - text: CRA-JEF-MAN-2
+                      - paragraph [ref=f1e918]: Jefe de Mantenimiento
+                  - cell "Matutino" [ref=f1e919]
+                  - 'cell "PRE: $17,500.00 ACT: $17,500.00" [ref=f1e920]':
+                    - generic [ref=f1e921]:
+                      - generic [ref=f1e922]:
+                        - generic [ref=f1e923]: "PRE:"
+                        - generic [ref=f1e924]: $17,500.00
+                      - generic [ref=f1e925]:
+                        - generic [ref=f1e926]: "ACT:"
+                        - generic [ref=f1e927]: $17,500.00
+                  - cell [ref=f1e928]:
+                    - button "Opciones" [ref=f1e932] [cursor=pointer]
+                  - cell "Alejandro Cerda Gomez Opciones" [ref=f1e937]:
+                    - generic [ref=f1e939]:
+                      - generic [ref=f1e940] [cursor=pointer]
+                      - generic [ref=f1e944]: Alejandro Cerda Gomez
+                      - button "Opciones" [ref=f1e948] [cursor=pointer]
+                - row [ref=f1e953]:
+                  - cell [ref=f1e954]:
+                    - generic [ref=f1e955]:
+                      - text: CRA-MAN-AYU-6
+                      - paragraph [ref=f1e956]: Técnico de Mantenimiento
+                  - cell "Nocturno" [ref=f1e957]
+                  - 'cell "PRE: $10,000.00 ACT: 0.00" [ref=f1e958]':
+                    - generic [ref=f1e959]:
+                      - generic [ref=f1e960]:
+                        - generic [ref=f1e961]: "PRE:"
+                        - generic [ref=f1e962]: $10,000.00
+                      - generic [ref=f1e963]:
+                        - generic [ref=f1e964]: "ACT:"
+                        - generic [ref=f1e965]: "0.00"
+                  - cell [ref=f1e966]:
+                    - button "Opciones" [ref=f1e970] [cursor=pointer]
+                  - cell "VACANTE 🟡 VA-727 | Vacante abierta Seguimiento de candidatos 2 candidato(s)" [ref=f1e975]:
+                    - generic [ref=f1e977]:
+                      - generic [ref=f1e978]:
+                        - generic [ref=f1e979]: VACANTE
+                        - generic [ref=f1e985]:
+                          - button [ref=f1e987] [cursor=pointer]
+                          - button [ref=f1e993] [cursor=pointer]
+                      - generic [ref=f1e998]: 🟡 VA-727 | Vacante abierta
+                      - generic [ref=f1e1000]:
+                        - generic [ref=f1e1001]: Seguimiento de candidatos
+                        - generic [ref=f1e1007]: 2 candidato(s)
+                - row [ref=f1e1008]:
+                  - cell [ref=f1e1009]:
+                    - generic [ref=f1e1010]:
+                      - text: CRA-MAN-AYU-2
+                      - paragraph [ref=f1e1011]: Técnico de Mantenimiento
+                  - cell "Vespertino" [ref=f1e1012]
+                  - 'cell "PRE: $10,000.00 ACT: $0.00" [ref=f1e1013]':
+                    - generic [ref=f1e1014]:
+                      - generic [ref=f1e1015]:
+                        - generic [ref=f1e1016]: "PRE:"
+                        - generic [ref=f1e1017]: $10,000.00
+                      - generic [ref=f1e1018]:
+                        - generic [ref=f1e1019]: "ACT:"
+                        - generic [ref=f1e1020]: $0.00
+                  - cell [ref=f1e1021]:
+                    - button "Opciones" [ref=f1e1025] [cursor=pointer]
+                  - cell "Juan Adrian Zaragoza Reyes Opciones" [ref=f1e1030]:
+                    - generic [ref=f1e1032]:
+                      - generic [ref=f1e1033] [cursor=pointer]
+                      - generic [ref=f1e1037]: Juan Adrian Zaragoza Reyes
+                      - button "Opciones" [ref=f1e1041] [cursor=pointer]
+                - row [ref=f1e1046]:
+                  - cell [ref=f1e1047]:
+                    - generic [ref=f1e1048]:
+                      - text: CRA-MAN-CAR-2
+                      - paragraph [ref=f1e1049]: Técnico de Mantenimiento
+                  - cell "Matutino" [ref=f1e1050]
+                  - 'cell "PRE: $10,000.00 ACT: $0.00" [ref=f1e1051]':
+                    - generic [ref=f1e1052]:
+                      - generic [ref=f1e1053]:
+                        - generic [ref=f1e1054]: "PRE:"
+                        - generic [ref=f1e1055]: $10,000.00
+                      - generic [ref=f1e1056]:
+                        - generic [ref=f1e1057]: "ACT:"
+                        - generic [ref=f1e1058]: $0.00
+                  - cell [ref=f1e1059]:
+                    - button "Opciones" [ref=f1e1063] [cursor=pointer]
+                  - cell "Josue Giovanny Munguia Guzman Opciones" [ref=f1e1068]:
+                    - generic [ref=f1e1070]:
+                      - generic [ref=f1e1071] [cursor=pointer]
+                      - generic [ref=f1e1075]: Josue Giovanny Munguia Guzman
+                      - button "Opciones" [ref=f1e1079] [cursor=pointer]
+                - row [ref=f1e1084]:
+                  - cell [ref=f1e1085]:
+                    - generic [ref=f1e1086]:
+                      - text: CRA-MAN-AYU-4
+                      - paragraph [ref=f1e1087]: Técnico de Mantenimiento
+                  - cell "Nocturno" [ref=f1e1088]
+                  - 'cell "PRE: $10,000.00 ACT: $0.00" [ref=f1e1089]':
+                    - generic [ref=f1e1090]:
+                      - generic [ref=f1e1091]:
+                        - generic [ref=f1e1092]: "PRE:"
+                        - generic [ref=f1e1093]: $10,000.00
+                      - generic [ref=f1e1094]:
+                        - generic [ref=f1e1095]: "ACT:"
+                        - generic [ref=f1e1096]: $0.00
+                  - cell [ref=f1e1097]:
+                    - button "Opciones" [ref=f1e1101] [cursor=pointer]
+                  - cell "Alejandro Martinez Acosta Opciones" [ref=f1e1106]:
+                    - generic [ref=f1e1108]:
+                      - generic [ref=f1e1109] [cursor=pointer]
+                      - generic [ref=f1e1113]: Alejandro Martinez Acosta
+                      - button "Opciones" [ref=f1e1117] [cursor=pointer]
+                - row [ref=f1e1122]:
+                  - cell [ref=f1e1123]:
+                    - generic [ref=f1e1124]:
+                      - text: CRA-MAN-MTO-011-2
+                      - paragraph [ref=f1e1125]: Técnico de Mantenimiento
+                  - cell "Matutino" [ref=f1e1126]
+                  - 'cell "PRE: $10,000.00 ACT: $10,000.00" [ref=f1e1127]':
+                    - generic [ref=f1e1128]:
+                      - generic [ref=f1e1129]:
+                        - generic [ref=f1e1130]: "PRE:"
+                        - generic [ref=f1e1131]: $10,000.00
+                      - generic [ref=f1e1132]:
+                        - generic [ref=f1e1133]: "ACT:"
+                        - generic [ref=f1e1134]: $10,000.00
+                  - cell [ref=f1e1135]:
+                    - button "Opciones" [ref=f1e1139] [cursor=pointer]
+                  - cell "Alejandro Reyes Pedraza Gonzalez Opciones" [ref=f1e1144]:
+                    - generic [ref=f1e1146]:
+                      - generic [ref=f1e1147] [cursor=pointer]
+                      - generic [ref=f1e1151]: Alejandro Reyes Pedraza Gonzalez
+                      - button "Opciones" [ref=f1e1155] [cursor=pointer]
+                - row [ref=f1e1160]:
+                  - cell [ref=f1e1161]:
+                    - generic [ref=f1e1162]:
+                      - text: CRA-MAN-ALB
+                      - paragraph [ref=f1e1163]: Técnico de Mantenimiento
+                  - cell "Matutino" [ref=f1e1164]
+                  - 'cell "PRE: $10,000.00 ACT: $10,480.00" [ref=f1e1165]':
+                    - generic [ref=f1e1166]:
+                      - generic [ref=f1e1167]:
+                        - generic [ref=f1e1168]: "PRE:"
+                        - generic [ref=f1e1169]: $10,000.00
+                      - generic [ref=f1e1170]:
+                        - generic [ref=f1e1171]: "ACT:"
+                        - generic [ref=f1e1172]: $10,480.00
+                  - cell [ref=f1e1173]:
+                    - button "Opciones" [ref=f1e1177] [cursor=pointer]
+                  - cell "Santos Paz García Opciones" [ref=f1e1182]:
+                    - generic [ref=f1e1184]:
+                      - generic [ref=f1e1185] [cursor=pointer]
+                      - generic [ref=f1e1189]: Santos Paz García
+                      - button "Opciones" [ref=f1e1193] [cursor=pointer]
+                - row [ref=f1e1198]:
+                  - cell [ref=f1e1199]:
+                    - generic [ref=f1e1200]:
+                      - text: CRA-MAN-AYU-8
+                      - paragraph [ref=f1e1201]: Técnico de Mantenimiento
+                  - cell "Matutino" [ref=f1e1202]
+                  - 'cell "PRE: $10,000.00 ACT: $0.00" [ref=f1e1203]':
+                    - generic [ref=f1e1204]:
+                      - generic [ref=f1e1205]:
+                        - generic [ref=f1e1206]: "PRE:"
+                        - generic [ref=f1e1207]: $10,000.00
+                      - generic [ref=f1e1208]:
+                        - generic [ref=f1e1209]: "ACT:"
+                        - generic [ref=f1e1210]: $0.00
+                  - cell [ref=f1e1211]:
+                    - button "Opciones" [ref=f1e1215] [cursor=pointer]
+                  - cell "Javier Lopez Santos Opciones" [ref=f1e1220]:
+                    - generic [ref=f1e1222]:
+                      - generic [ref=f1e1223] [cursor=pointer]
+                      - generic [ref=f1e1227]: Javier Lopez Santos
+                      - button "Opciones" [ref=f1e1231] [cursor=pointer]
+                - row [ref=f1e1236]:
+                  - cell [ref=f1e1237]:
+                    - generic [ref=f1e1238]:
+                      - text: CRA-MAN-AYU-5
+                      - paragraph [ref=f1e1239]: Técnico de Mantenimiento
+                  - cell "Nocturno" [ref=f1e1240]
+                  - 'cell "PRE: $10,000.00 ACT: $0.00" [ref=f1e1241]':
+                    - generic [ref=f1e1242]:
+                      - generic [ref=f1e1243]:
+                        - generic [ref=f1e1244]: "PRE:"
+                        - generic [ref=f1e1245]: $10,000.00
+                      - generic [ref=f1e1246]:
+                        - generic [ref=f1e1247]: "ACT:"
+                        - generic [ref=f1e1248]: $0.00
+                  - cell [ref=f1e1249]:
+                    - button "Opciones" [ref=f1e1253] [cursor=pointer]
+                  - cell "Elias Lopez Lina Opciones" [ref=f1e1258]:
+                    - generic [ref=f1e1260]:
+                      - generic [ref=f1e1261] [cursor=pointer]
+                      - generic [ref=f1e1265]: Elias Lopez Lina
+                      - button "Opciones" [ref=f1e1269] [cursor=pointer]
+                - row [ref=f1e1274]:
+                  - cell [ref=f1e1275]:
+                    - generic [ref=f1e1276]:
+                      - text: CRA-19-15
+                      - paragraph [ref=f1e1277]: Técnico de Mantenimiento
+                  - cell "Vespertino" [ref=f1e1278]
+                  - 'cell "PRE: $10,000.00 ACT: $0.00" [ref=f1e1279]':
+                    - generic [ref=f1e1280]:
+                      - generic [ref=f1e1281]:
+                        - generic [ref=f1e1282]: "PRE:"
+                        - generic [ref=f1e1283]: $10,000.00
+                      - generic [ref=f1e1284]:
+                        - generic [ref=f1e1285]: "ACT:"
+                        - generic [ref=f1e1286]: $0.00
+                  - cell [ref=f1e1287]:
+                    - button "Opciones" [ref=f1e1291] [cursor=pointer]
+                  - cell "Eduardo Salazar Jurado Opciones" [ref=f1e1296]:
+                    - generic [ref=f1e1298]:
+                      - generic [ref=f1e1299] [cursor=pointer]
+                      - generic [ref=f1e1303]: Eduardo Salazar Jurado
+                      - button "Opciones" [ref=f1e1307] [cursor=pointer]
+                - row [ref=f1e1312]:
+                  - cell [ref=f1e1313]:
+                    - generic [ref=f1e1314]:
+                      - text: CRA-MAN-AYU
+                      - paragraph [ref=f1e1315]: Técnico de Mantenimiento
+                  - cell "Nocturno" [ref=f1e1316]
+                  - 'cell "PRE: $10,000.00 ACT: $10,000.00" [ref=f1e1317]':
+                    - generic [ref=f1e1318]:
+                      - generic [ref=f1e1319]:
+                        - generic [ref=f1e1320]: "PRE:"
+                        - generic [ref=f1e1321]: $10,000.00
+                      - generic [ref=f1e1322]:
+                        - generic [ref=f1e1323]: "ACT:"
+                        - generic [ref=f1e1324]: $10,000.00
+                  - cell [ref=f1e1325]:
+                    - button "Opciones" [ref=f1e1329] [cursor=pointer]
+                  - cell "Oscar Raymundo Grajales Opciones" [ref=f1e1334]:
+                    - generic [ref=f1e1336]:
+                      - generic [ref=f1e1337] [cursor=pointer]
+                      - generic [ref=f1e1341]: Oscar Raymundo Grajales
+                      - button "Opciones" [ref=f1e1345] [cursor=pointer]
+                - row [ref=f1e1350]:
+                  - cell [ref=f1e1351]:
+                    - generic [ref=f1e1352]:
+                      - text: CRA-MAN-AYU-10
+                      - paragraph [ref=f1e1353]: Técnico de Mantenimiento
+                  - cell "Matutino" [ref=f1e1354]
+                  - 'cell "PRE: $10,000.00 ACT: $0.00" [ref=f1e1355]':
+                    - generic [ref=f1e1356]:
+                      - generic [ref=f1e1357]:
+                        - generic [ref=f1e1358]: "PRE:"
+                        - generic [ref=f1e1359]: $10,000.00
+                      - generic [ref=f1e1360]:
+                        - generic [ref=f1e1361]: "ACT:"
+                        - generic [ref=f1e1362]: $0.00
+                  - cell [ref=f1e1363]:
+                    - button "Opciones" [ref=f1e1367] [cursor=pointer]
+                  - cell "Ricardo Arturo Aguirre Rivera Opciones" [ref=f1e1372]:
+                    - generic [ref=f1e1374]:
+                      - generic [ref=f1e1375] [cursor=pointer]
+                      - generic [ref=f1e1379]: Ricardo Arturo Aguirre Rivera
+                      - button "Opciones" [ref=f1e1383] [cursor=pointer]
+                - row [ref=f1e1388]:
+                  - cell [ref=f1e1389]:
+                    - generic [ref=f1e1390]:
+                      - text: CRA-MAN-CAR
+                      - paragraph [ref=f1e1391]: Técnico de Mantenimiento
+                  - cell "Matutino" [ref=f1e1392]
+                  - 'cell "PRE: $10,000.00 ACT: $10,732.00" [ref=f1e1393]':
+                    - generic [ref=f1e1394]:
+                      - generic [ref=f1e1395]:
+                        - generic [ref=f1e1396]: "PRE:"
+                        - generic [ref=f1e1397]: $10,000.00
+                      - generic [ref=f1e1398]:
+                        - generic [ref=f1e1399]: "ACT:"
+                        - generic [ref=f1e1400]: $10,732.00
+                  - cell [ref=f1e1401]:
+                    - button "Opciones" [ref=f1e1405] [cursor=pointer]
+                  - cell "Miguel Robelo Morelos Opciones" [ref=f1e1410]:
+                    - generic [ref=f1e1412]:
+                      - generic [ref=f1e1413] [cursor=pointer]
+                      - generic [ref=f1e1417]: Miguel Robelo Morelos
+                      - button "Opciones" [ref=f1e1421] [cursor=pointer]
+                - row [ref=f1e1426]:
+                  - cell [ref=f1e1427]:
+                    - generic [ref=f1e1428]:
+                      - text: CRA-MAN-HER
+                      - paragraph [ref=f1e1429]: Técnico de Mantenimiento
+                  - cell "Vespertino" [ref=f1e1430]
+                  - 'cell "PRE: $10,000.00 ACT: $0.00" [ref=f1e1431]':
+                    - generic [ref=f1e1432]:
+                      - generic [ref=f1e1433]:
+                        - generic [ref=f1e1434]: "PRE:"
+                        - generic [ref=f1e1435]: $10,000.00
+                      - generic [ref=f1e1436]:
+                        - generic [ref=f1e1437]: "ACT:"
+                        - generic [ref=f1e1438]: $0.00
+                  - cell [ref=f1e1439]:
+                    - button "Opciones" [ref=f1e1443] [cursor=pointer]
+                  - cell "Rey David Melgar Tapia Opciones" [ref=f1e1448]:
+                    - generic [ref=f1e1450]:
+                      - generic [ref=f1e1451] [cursor=pointer]
+                      - generic [ref=f1e1455]: Rey David Melgar Tapia
+                      - button "Opciones" [ref=f1e1459] [cursor=pointer]
+                - row [ref=f1e1464]:
+                  - cell [ref=f1e1465]:
+                    - generic [ref=f1e1466]:
+                      - text: CRA-MAN-PLO
+                      - paragraph [ref=f1e1467]: Técnico de Mantenimiento
+                  - cell "Matutino" [ref=f1e1468]
+                  - 'cell "PRE: $10,000.00 ACT: $0.00" [ref=f1e1469]':
+                    - generic [ref=f1e1470]:
+                      - generic [ref=f1e1471]:
+                        - generic [ref=f1e1472]: "PRE:"
+                        - generic [ref=f1e1473]: $10,000.00
+                      - generic [ref=f1e1474]:
+                        - generic [ref=f1e1475]: "ACT:"
+                        - generic [ref=f1e1476]: $0.00
+                  - cell [ref=f1e1477]:
+                    - button "Opciones" [ref=f1e1481] [cursor=pointer]
+                  - cell "Alberto Aldayr Carbajal Hernandez Opciones" [ref=f1e1486]:
+                    - generic [ref=f1e1488]:
+                      - generic [ref=f1e1489] [cursor=pointer]
+                      - generic [ref=f1e1493]: Alberto Aldayr Carbajal Hernandez
+                      - button "Opciones" [ref=f1e1497] [cursor=pointer]
+                - row [ref=f1e1502]:
+                  - cell "Operaciones" [ref=f1e1503]
+                - row [ref=f1e1505]:
+                  - cell [ref=f1e1506]:
+                    - generic [ref=f1e1507]:
+                      - text: CRA-CON-3
+                      - paragraph [ref=f1e1508]: Recepcionista
+                  - cell "Matutino" [ref=f1e1509]
+                  - 'cell "PRE: $10,000.00 ACT: $10,434.00" [ref=f1e1510]':
+                    - generic [ref=f1e1511]:
+                      - generic [ref=f1e1512]:
+                        - generic [ref=f1e1513]: "PRE:"
+                        - generic [ref=f1e1514]: $10,000.00
+                      - generic [ref=f1e1515]:
+                        - generic [ref=f1e1516]: "ACT:"
+                        - generic [ref=f1e1517]: $10,434.00
+                  - cell [ref=f1e1518]:
+                    - button "Opciones" [ref=f1e1522] [cursor=pointer]
+                  - cell "Sainite Rico Viveros Opciones" [ref=f1e1527]:
+                    - generic [ref=f1e1529]:
+                      - generic [ref=f1e1530] [cursor=pointer]
+                      - generic [ref=f1e1534]: Sainite Rico Viveros
+                      - button "Opciones" [ref=f1e1538] [cursor=pointer]
+                - row [ref=f1e1543]:
+                  - cell [ref=f1e1544]:
+                    - generic [ref=f1e1545]:
+                      - text: CRA-CON-2
+                      - paragraph [ref=f1e1546]: Recepcionista
+                  - cell "Matutino" [ref=f1e1547]
+                  - 'cell "PRE: $10,000.00 ACT: $10,000.00" [ref=f1e1548]':
+                    - generic [ref=f1e1549]:
+                      - generic [ref=f1e1550]:
+                        - generic [ref=f1e1551]: "PRE:"
+                        - generic [ref=f1e1552]: $10,000.00
+                      - generic [ref=f1e1553]:
+                        - generic [ref=f1e1554]: "ACT:"
+                        - generic [ref=f1e1555]: $10,000.00
+                  - cell [ref=f1e1556]:
+                    - button "Opciones" [ref=f1e1560] [cursor=pointer]
+                  - cell "Ricardo Rosales Martinez Opciones" [ref=f1e1565]:
+                    - generic [ref=f1e1567]:
+                      - generic [ref=f1e1568] [cursor=pointer]
+                      - generic [ref=f1e1572]: Ricardo Rosales Martinez
+                      - button "Opciones" [ref=f1e1576] [cursor=pointer]
+                - row [ref=f1e1581]:
+                  - cell [ref=f1e1582]:
+                    - generic [ref=f1e1583]:
+                      - text: CRA-CON-10
+                      - paragraph [ref=f1e1584]: Recepcionista
+                  - cell "Matutino" [ref=f1e1585]
+                  - 'cell "PRE: $10,000.00 ACT: $10,000.00" [ref=f1e1586]':
+                    - generic [ref=f1e1587]:
+                      - generic [ref=f1e1588]:
+                        - generic [ref=f1e1589]: "PRE:"
+                        - generic [ref=f1e1590]: $10,000.00
+                      - generic [ref=f1e1591]:
+                        - generic [ref=f1e1592]: "ACT:"
+                        - generic [ref=f1e1593]: $10,000.00
+                  - cell [ref=f1e1594]:
+                    - button "Opciones" [ref=f1e1598] [cursor=pointer]
+                  - cell "María Elena Arreola Santoyo Opciones" [ref=f1e1603]:
+                    - generic [ref=f1e1605]:
+                      - generic [ref=f1e1606] [cursor=pointer]
+                      - generic [ref=f1e1610]: María Elena Arreola Santoyo
+                      - button "Opciones" [ref=f1e1614] [cursor=pointer]
+                - row [ref=f1e1619]:
+                  - cell [ref=f1e1620]:
+                    - generic [ref=f1e1621]:
+                      - text: CRA-CON-12
+                      - paragraph [ref=f1e1622]: Recepcionista
+                  - cell "Matutino" [ref=f1e1623]
+                  - 'cell "PRE: $10,000.00 ACT: $10,000.00" [ref=f1e1624]':
+                    - generic [ref=f1e1625]:
+                      - generic [ref=f1e1626]:
+                        - generic [ref=f1e1627]: "PRE:"
+                        - generic [ref=f1e1628]: $10,000.00
+                      - generic [ref=f1e1629]:
+                        - generic [ref=f1e1630]: "ACT:"
+                        - generic [ref=f1e1631]: $10,000.00
+                  - cell [ref=f1e1632]:
+                    - button "Opciones" [ref=f1e1636] [cursor=pointer]
+                  - cell "Ángel Mauricio Mireles Romero Opciones" [ref=f1e1641]:
+                    - generic [ref=f1e1643]:
+                      - generic [ref=f1e1644] [cursor=pointer]
+                      - generic [ref=f1e1648]: Ángel Mauricio Mireles Romero
+                      - button "Opciones" [ref=f1e1652] [cursor=pointer]
+                - row [ref=f1e1657]:
+                  - cell [ref=f1e1658]:
+                    - generic [ref=f1e1659]:
+                      - text: CRA-CON-5
+                      - paragraph [ref=f1e1660]: Recepcionista
+                  - cell "Vespertino" [ref=f1e1661]
+                  - 'cell "PRE: $9,582.00 ACT: $0.00" [ref=f1e1662]':
+                    - generic [ref=f1e1663]:
+                      - generic [ref=f1e1664]:
+                        - generic [ref=f1e1665]: "PRE:"
+                        - generic [ref=f1e1666]: $9,582.00
+                      - generic [ref=f1e1667]:
+                        - generic [ref=f1e1668]: "ACT:"
+                        - generic [ref=f1e1669]: $0.00
+                  - cell [ref=f1e1670]:
+                    - button "Opciones" [ref=f1e1674] [cursor=pointer]
+                  - cell "Marcelino Romero Alba Opciones" [ref=f1e1679]:
+                    - generic [ref=f1e1681]:
+                      - generic [ref=f1e1682] [cursor=pointer]
+                      - generic [ref=f1e1686]: Marcelino Romero Alba
+                      - button "Opciones" [ref=f1e1690] [cursor=pointer]
+            - generic [ref=f1e1695]:
+              - generic [ref=f1e1696]: En total hay 46 registros.
+              - generic [ref=f1e1699]: Mostrando 1 a 30 de 46 registros
+              - button "First Page"
+              - button "Previous Page" [disabled]
+              - generic [ref=f1e1700]:
+                - button "1" [ref=f1e1701] [cursor=pointer]
+                - button "2" [ref=f1e1702] [cursor=pointer]
+              - button "Next Page" [ref=f1e1703] [cursor=pointer]
+              - button "Last Page" [ref=f1e1706] [cursor=pointer]
+              - generic [ref=f1e1709] [cursor=pointer]:
+                - combobox "Rows per page" [ref=f1e1710]: "30"
+                - button "dropdown trigger" [ref=f1e1711]
+          - generic [ref=f1e1714]:
+            - generic [ref=f1e1716] [cursor=pointer]:
+              - generic [ref=f1e1721]: Sin puesto asignado
+              - generic [ref=f1e1722]: "4"
+            - paragraph [ref=f1e1727]: Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic en para editar sus datos.
+            - generic [ref=f1e1732]:
+              - generic [ref=f1e1733]:
+                - generic: Eduardo Salazar Jurado
+                - button "Ver perfil" [ref=f1e1739] [cursor=pointer]
+                - generic [ref=f1e1745]: ⠿
+              - generic [ref=f1e1746]:
+                - generic:
+                  - generic: Israel Ángeles Rios
+                  - generic: ISRANG90
+                - button "Ver perfil" [ref=f1e1752] [cursor=pointer]
+                - generic [ref=f1e1758]: ⠿
+              - generic [ref=f1e1759]:
+                - generic: Jazmin Soriano Barrera
+                - button "Ver perfil" [ref=f1e1765] [cursor=pointer]
+                - generic [ref=f1e1771]: ⠿
+              - generic [ref=f1e1772]:
+                - generic: Joel Carballo Delgado
+                - button "Ver perfil" [ref=f1e1778] [cursor=pointer]
+                - generic [ref=f1e1784]: ⠿
+  - dialog "Registrar Empleado — CRA-MAN-AYU-6" [ref=f1e1786]:
+    - generic [ref=f1e1789]:
+      - generic [ref=f1e1790]: Registrar Empleado — CRA-MAN-AYU-6
+      - generic [ref=f1e1791]:
+        - button "Maximize" [ref=f1e1792] [cursor=pointer]
+        - button "Close" [ref=f1e1795] [cursor=pointer]
+    - form "Procesar alta" [ref=f1e1801]:
+      - generic [ref=f1e1802]:
+        - generic [ref=f1e1803]:
+          - paragraph [ref=f1e1804]: Proceso de alta
+          - paragraph [ref=f1e1805]: Completa los datos para distribuir el alta al expediente del empleado.
+        - button "Limpiar borrador" [ref=f1e1806] [cursor=pointer]
+      - paragraph [ref=f1e1807]: El borrador se guarda automaticamente en este navegador.
+      - generic [ref=f1e1808]:
+        - generic [ref=f1e1809]:
+          - paragraph [ref=f1e1810]: Candidato aprobado detectado
+          - paragraph [ref=f1e1811]: asdfasdfsad asdfasdf — puedes importar sus datos básicos.
+        - button "Importar datos de candidato aprobado" [ref=f1e1813] [cursor=pointer]
+      - generic [ref=f1e1820]:
+        - tablist [ref=f1e1821]:
+          - generic [ref=f1e1822]:
+            - tab "1 Datos personales" [disabled]:
+              - generic: "1"
+              - generic: Datos personales
+            - tab "2 Direccion" [ref=f1e1931] [cursor=pointer]:
+              - generic [ref=f1e1932]: "2"
+              - generic [ref=f1e1933]: Direccion
+            - tab "3 Contactos" [disabled]:
+              - generic: "3"
+              - generic: Contactos
+            - tab "4 Banco y salud" [disabled]:
+              - generic: "4"
+              - generic: Banco y salud
+            - tab "5 Puesto y turno" [disabled]:
+              - generic: "5"
+              - generic: Puesto y turno
+            - tab "6 Confirmacion" [disabled]:
+              - generic: "6"
+              - generic: Confirmacion
+        - generic [ref=f1e1942]:
+          - generic [ref=f1e1947]:
+            - generic [ref=f1e1948]: Calle *
+            - textbox "Calle *" [ref=f1e1950]:
+              - /placeholder: Calle y referencias
+          - generic [ref=f1e1955]:
+            - generic [ref=f1e1956]: Colonia *
+            - textbox "Colonia *" [ref=f1e1958]:
+              - /placeholder: Colonia
+          - generic [ref=f1e1963]:
+            - generic [ref=f1e1964]: Municipio o alcaldia *
+            - textbox "Municipio o alcaldia *" [ref=f1e1966]:
+              - /placeholder: Municipio
+          - generic [ref=f1e1971]:
+            - generic [ref=f1e1972]: Codigo postal *
+            - textbox "Codigo postal *" [ref=f1e1974]:
+              - /placeholder: Codigo postal
+          - generic [ref=f1e1979]:
+            - generic [ref=f1e1980]: Estado *
+            - textbox "Estado *" [ref=f1e1982]:
+              - /placeholder: Estado
+        - generic [ref=f1e1921]:
+          - button "Anterior" [ref=f1e1984] [cursor=pointer]
+          - button "Siguiente" [active] [ref=f1e1923] [cursor=pointer]

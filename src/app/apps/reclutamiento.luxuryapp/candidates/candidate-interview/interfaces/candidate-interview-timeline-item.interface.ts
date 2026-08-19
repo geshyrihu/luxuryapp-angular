@@ -1,11 +1,11 @@
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 
 export interface CandidateInterviewTimelineItem {
   id: string;
-  fromStage?: CandidateApplicationStage;
-  toStage: CandidateApplicationStage;
+  fromStage?: CandidateProcessStage;
+  toStage: CandidateProcessStage;
   changedByUserId: string;
   changedByUserName: string;
   comment?: string;
-  createdAt: string;
+  changedAt: string;
 }

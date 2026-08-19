@@ -20,6 +20,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { PlatformService } from "src/app/core/services/platform.service";
 import { CandidateForm } from "./candidate-form";
 import { CandidateDetail } from "./candidate-detail";
+import { CandidateInterviewDetailModal } from "./candidate-interview-detail-modal";
 import { CandidateApplicationForm } from "../candidate-application/candidate-application-form";
 import { CandidateListDesktop } from "./desktop/candidate-list-desktop";
 import { CandidateListMobile } from "./mobile/candidate-list-mobile";
@@ -94,9 +95,7 @@ export class CandidateList implements OnInit {
       html: `Se eliminará permanentemente el candidato y todo lo relacionado en cascada:<br /><br />
         <ul class="text-left" style="display:inline-block">
           <li>Procesos: <b>${impact.candidateProcessesCount}</b></li>
-          <li>Postulaciones: <b>${impact.candidateApplicationsCount}</b></li>
           <li>Entrevistas: <b>${impact.candidateInterviewsCount}</b></li>
-          <li>Retroalimentación de entrevistas: <b>${impact.candidateInterviewFeedbacksCount}</b></li>
           <li>Resultados de entrevistas: <b>${impact.candidateInterviewResultsCount}</b></li>
           <li>Historial de etapas: <b>${impact.candidateStageHistoryCount}</b></li>
           <li>Experiencias laborales: <b>${impact.candidateWorkExperiencesCount}</b></li>
@@ -154,6 +153,15 @@ export class CandidateList implements OnInit {
       CandidateDetail,
       { id },
       "Detalle del candidato",
+      this.dialogHandlerS.sizeLg,
+    );
+  }
+
+  onViewInterview(candidateProcessId: string) {
+    this.dialogHandlerS.openDialog(
+      CandidateInterviewDetailModal,
+      { candidateProcessId },
+      "Detalle de entrevista",
       this.dialogHandlerS.sizeLg,
     );
   }

@@ -227,7 +227,6 @@ export interface EmployeeFileRegisterRequestDTO {
   status: string;
   requestDate: string;
   executionDate?: string;
-  fuente: string;
   confirmationFinish: boolean;
 }
 

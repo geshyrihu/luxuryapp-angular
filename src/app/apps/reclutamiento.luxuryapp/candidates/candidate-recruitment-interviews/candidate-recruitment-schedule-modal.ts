@@ -14,13 +14,11 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
@@ -43,7 +41,6 @@ import { ChangeStageApplicationRequest } from "../candidate-application/interfac
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    CustomInputDateSignal,
     CustomInputDateTimeSignal,
     WebButtonLabel,
     WebButtonLabelSave,
@@ -67,8 +64,7 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   readonly scheduleTargetId = this.item.candidateProcessId || this.item.candidateApplicationId;
 
   readonly form: FormGroup = new FormGroup({
-    recruitmentInterviewAt: new FormControl<string | null>(null),
-    operationsInterviewAt: new FormControl<string | null>(null),
+    scheduledAt: new FormControl<string | null>(null),
     operationsInterviewAssignedToUserId: new FormControl<string | null>(null),
     comment: new FormControl<string | null>(null),
   });
@@ -82,7 +78,7 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
       case "reschedule":
         return `Reagendar cita - ${this.item.candidateName}`;
       case "assign":
-        return `Asignar entrevistador - ${this.item.candidateName}`;
+        return `Cambiar entrevistador - ${this.item.candidateName}`;
       default:
         return "Gestionar entrevista";
     }
@@ -97,7 +93,7 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
       case "reschedule":
         return "Reagendar cita";
       case "assign":
-        return "Asignar entrevistador";
+        return "Cambiar entrevistador";
       default:
         return "Guardar";
     }
@@ -111,17 +107,19 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   });
 
   ngOnInit(): void {
-    this.form.controls["recruitmentInterviewAt"].setValue(
-      this.toLocalInput(this.item.recruitmentInterviewAt),
-    );
-    this.form.controls["operationsInterviewAt"].setValue(
-      this.toLocalInput(this.item.operationsInterviewAt),
+    this.form.controls["scheduledAt"].setValue(
+      this.toLocalInput(
+        this.item.operationsInterviewAt ?? this.item.recruitmentInterviewAt,
+      ),
     );
     this.form.controls["operationsInterviewAssignedToUserId"].setValue(
       this.item.assignedInterviewerUserId || null,
     );
 
-    if (this.action === "assign") {
+    // El entrevistador es obligatorio al agendar (primera vez) y al cambiarlo
+    // sobre una entrevista ya activa. "Reagendar" solo toca la fecha y
+    // conserva el entrevistador ya asignado, por eso no exige el campo.
+    if (this.action === "schedule" || this.action === "assign") {
       this.form.controls["operationsInterviewAssignedToUserId"].setValidators(
         Validators.required,
       );
@@ -161,7 +159,7 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-    if (this.isAssignActionBlocked()) return;
+    if (this.isInterviewerSelectionBlocked()) return;
     this.submitting.set(true);
     try {
       const ok = await this.execute();
@@ -176,9 +174,9 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
     }
   }
 
-  isAssignActionBlocked(): boolean {
+  isInterviewerSelectionBlocked(): boolean {
     return (
-      this.action === "assign" &&
+      (this.action === "schedule" || this.action === "assign") &&
       (this.loadingInterviewers() ||
         this.cb_interviewers().length === 0 ||
         !this.form.controls["operationsInterviewAssignedToUserId"].value)
@@ -188,15 +186,13 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   async onCancelInterview(): Promise<void> {
     this.submitting.set(true);
     try {
-      const ok = this.item.interviewId
-        ? await this.boardS.cancelInterview(this.item.interviewId)
-        : await this.boardS.cancelSchedule(
-            this.scheduleTargetId,
-            {
-              comment: this.form.controls["comment"].value ?? "",
-              cancelInterview: true,
-            },
-          );
+      // `cancel-schedule` opera sobre el CandidateProcess (siempre vivo); el
+      // endpoint viejo por interviewId (`recruitment-candidate-interviews/.../cancel`)
+      // fue eliminado en la limpieza de Fase 7 y ya no existe en el backend.
+      const ok = await this.boardS.cancelSchedule(this.scheduleTargetId, {
+        comment: this.form.controls["comment"].value ?? "",
+        cancelInterview: true,
+      });
       if (ok) {
         this.ref.close(true);
       }
@@ -212,46 +208,46 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
 
     if (this.action === "send") {
       const payload: ChangeStageApplicationRequest = {
-        toStage: CandidateApplicationStage.EntrevistaReclutamiento,
+        toStage: CandidateProcessStage.EntrevistaOperaciones,
         comment,
-        recruitmentInterviewAt: this.toIso(
-          this.form.controls["recruitmentInterviewAt"].value,
-        ),
+        operationsInterviewAt: this.toIso(this.form.controls["scheduledAt"].value),
       };
       return this.boardS.sendToInterview(this.scheduleTargetId, payload);
     }
 
-    if (this.action === "reschedule" && this.item.interviewId) {
-      const proposedDate =
-        this.form.controls["operationsInterviewAt"].value ??
-        this.form.controls["recruitmentInterviewAt"].value;
+    if (this.action === "reschedule" || this.action === "assign") {
+      // El backend no permite reagendar/cambiar entrevistador sobre una
+      // entrevista Programada activa en un solo paso (INTERVIEW_ALREADY_SCHEDULED);
+      // el flujo soportado es cancelar la activa y volver a agendar.
+      const scheduledAt = this.toIso(this.form.controls["scheduledAt"].value);
+      if (!scheduledAt) return false;
 
-      if (!proposedDate) {
-        return false;
+      const interviewerUserId =
+        this.action === "assign"
+          ? this.form.controls["operationsInterviewAssignedToUserId"].value
+          : this.item.assignedInterviewerUserId || null;
+
+      if (this.item.interviewId) {
+        const cancelled = await this.boardS.cancelSchedule(this.scheduleTargetId, {
+          comment,
+          cancelInterview: true,
+        });
+        if (!cancelled) return false;
       }
 
-      return this.boardS.rescheduleInterview(this.item.interviewId, {
-        proposedRescheduleAt: this.toIso(proposedDate) ?? "",
-        rescheduleComment: comment,
+      return this.boardS.schedule(this.scheduleTargetId, {
+        operationsInterviewAt: scheduledAt,
+        operationsInterviewAssignedToUserId: interviewerUserId,
+        comment,
       });
     }
 
-    const schedulePayload = {
-      recruitmentInterviewAt: this.toIso(
-        this.form.controls["recruitmentInterviewAt"].value,
-      ),
-      operationsInterviewAt:
-        this.action === "reschedule"
-          ? this.toIso(this.form.controls["operationsInterviewAt"].value)
-          : undefined,
+    return this.boardS.schedule(this.scheduleTargetId, {
+      operationsInterviewAt: this.toIso(this.form.controls["scheduledAt"].value),
       operationsInterviewAssignedToUserId:
-        this.action === "assign"
-          ? this.form.controls["operationsInterviewAssignedToUserId"].value
-          : undefined,
+        this.form.controls["operationsInterviewAssignedToUserId"].value,
       comment,
-    };
-
-    return this.boardS.schedule(this.scheduleTargetId, schedulePayload);
+    });
   }
 
   private toIso(value: string | null): string | undefined {

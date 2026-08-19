@@ -17,7 +17,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { CandidateRecruitmentInterviewsService } from "./candidate-recruitment-interviews.service";
 import { CandidateRecruitmentScheduleModal } from "./candidate-recruitment-schedule-modal";
-import { EmployeeProviderForm } from "src/app/apps/supplier.luxuryapp/provider/employee-provider-form";
+import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import {
   CandidateRecruitmentInterviewBoard,
   CandidateRecruitmentInterviewBoardItem,
@@ -173,11 +174,13 @@ export class CandidateRecruitmentInterviews implements OnInit {
   ): void {
     this.dialogHandlerS
       .openDialog(
-        EmployeeProviderForm,
+        CandidateProcessHiringModal,
         {
-          typePerson: 0,
-          positionRequestId: vacancy.requestPositionId,
+          id: candidate.candidateApplicationId,
+          candidateProcessId: candidate.candidateApplicationId,
           candidateId: candidate.candidateId,
+          requestPositionId: vacancy.requestPositionId,
+          toStage: CandidateProcessStage.AltaEnProceso,
         },
         `Alta de Candidato - ${candidate.candidateName}`,
         this.dialogHandlerS.sizeLg,
@@ -199,7 +202,7 @@ export class CandidateRecruitmentInterviews implements OnInit {
       case "reschedule":
         return `Reagendar cita - ${candidate.candidateName}`;
       case "assign":
-        return `Asignar entrevistador - ${candidate.candidateName}`;
+        return `Cambiar entrevistador - ${candidate.candidateName}`;
       default:
         return "Gestionar entrevista";
     }

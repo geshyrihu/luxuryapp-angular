@@ -10,6 +10,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import saveAs from "file-saver";
@@ -36,6 +37,7 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
     RouterModule,
     WebButtonLabel,
     CustomInputDateSignal,
+    CustomInputSelectButton,
     CustomInputSelectSignal,
     CustomSearchInput,
   ],

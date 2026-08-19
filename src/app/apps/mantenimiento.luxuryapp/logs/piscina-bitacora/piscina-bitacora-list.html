@@ -1,5 +1,4 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
@@ -12,17 +11,36 @@
   class="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
+    <div class="flex align-items-center justify-content-between gap-2 w-full">
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+        [dt]="dt"
+      />
+      <div class="flex gap-2">
+        <button
+          type="button"
+          class="px-3 py-2 rounded-lg border border-primary text-primary text-sm flex align-items-center gap-1"
+          (click)="onExportExcel()"
+        >
+          <app-icon icon="material-symbols-light:download" /> Excel
+        </button>
+        <button
+          type="button"
+          class="px-3 py-2 rounded-lg border border-primary text-primary text-sm flex align-items-center gap-1"
+          (click)="fileInput.click()"
+        >
+          <app-icon icon="material-symbols-light:upload" /> Importar
+        </button>
+        <input #fileInput type="file" accept=".xlsx" class="hidden" (change)="onImportExcel($event)" />
+      </div>
+    </div>
   </ng-template>
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="filtro">
+      <th pSortableColumn="Filtro">
         Fecha
-        <p-sorticon field="filtro" />
+        <p-sorticon field="Filtro" />
       </th>
       <th class="table-col-7">Cl</th>
       <th class="table-col-7">Ph</th>
@@ -120,20 +138,20 @@
       <!-- Mediciones en Grid Compacto -->
       <div class="grid m-0 p-0 text-sm opacity-80 mt-2 mb-2">
         <div class="col-4 p-0 pb-1">
-          <strong class="text-primary">Cl:</strong> {{ item.cl || "é" }}
+          <strong class="text-primary">Cl:</strong> {{ item.cl || "0" }}
         </div>
         <div class="col-4 p-0 pb-1">
-          <strong class="text-primary">Ph:</strong> {{ item.ph || "é" }}
+          <strong class="text-primary">Ph:</strong> {{ item.ph || "0" }}
         </div>
         <div class="col-4 p-0 pb-1">
-          <strong class="text-primary">Alk:</strong> {{ item.alkalinidad || "é"
+          <strong class="text-primary">Alk:</strong> {{ item.alkalinidad || "0"
           }}
         </div>
         <div class="col-4 p-0 pb-1">
-          <strong class="text-primary">Dur:</strong> {{ item.dureza || "é" }}
+          <strong class="text-primary">Dur:</strong> {{ item.dureza || "0" }}
         </div>
         <div class="col-4 p-0 pb-1">
-          <strong class="text-primary">Tem:</strong> {{ item.temperatura || "é"
+          <strong class="text-primary">Tem:</strong> {{ item.temperatura || "0"
           }}
         </div>
       </div>

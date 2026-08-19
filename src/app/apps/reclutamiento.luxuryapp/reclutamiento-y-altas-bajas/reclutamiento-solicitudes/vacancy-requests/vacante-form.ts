@@ -36,7 +36,6 @@ interface RequestPositionDetailDTO {
   entryDate?: string | null;
   observations?: string;
   workPositionId?: string;
-  fuente?: number | string | null;
 }
 
 interface RequestEmployeeRegisterListItem {
@@ -81,7 +80,6 @@ export class VacanteForm implements OnInit {
   submitting = signal(false);
 
   cb_status = signal<SelectItemDto[]>([]);
-  cb_fuente = signal<SelectItemDto[]>([]);
   id: string = "";
   currentCandidateName = signal<string>("");
   currentApplicationId = signal<string>("");
@@ -95,7 +93,6 @@ export class VacanteForm implements OnInit {
     entryDate: [null as string | null],
     observations: [""],
     workPositionId: [this.config.data.workPositionId],
-    fuente: [null as number | string | null],
   });
 
   async ngOnInit() {
@@ -110,9 +107,6 @@ export class VacanteForm implements OnInit {
 
   private async loadSelectItems(): Promise<void> {
     this.cb_status.set(await firstValueFrom(this.enumSelectS.status()));
-    this.cb_fuente.set(
-      await firstValueFrom(this.enumSelectS.fuenteReclutamiento()),
-    );
   }
 
   async onLoadData() {

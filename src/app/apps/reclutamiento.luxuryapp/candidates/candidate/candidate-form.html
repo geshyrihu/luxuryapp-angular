@@ -41,21 +41,89 @@
           placeholder="correo@ejemplo.com"
         />
       </div>
+      @if (duplicateCandidate(); as found) {
+      <div class="col-12">
+        <div class="border-1 border-orange-300 surface-100 border-round p-3">
+          <div class="flex justify-content-between align-items-start gap-2">
+            <div>
+              <div class="font-semibold">
+                Ya existe un candidato registrado con este telefono
+              </div>
+              <div class="text-sm text-color-secondary mt-1">
+                {{ found.fullName }} — {{ found.email }} —
+                {{
+                  found.status === CandidateStatus.Archived
+                    ? "Archivado"
+                    : "Activo"
+                }}
+              </div>
+            </div>
+            <il-button
+              iconClass="material-symbols-light:close"
+              severity="secondary"
+              variant="text"
+              size="small"
+              (clicked)="dismissDuplicateCandidate()"
+            />
+          </div>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <il-button
+              label="Ver / actualizar datos"
+              iconClass="material-symbols-light:edit-outline"
+              severity="secondary"
+              variant="outline"
+              size="small"
+              (clicked)="onLoadDuplicateCandidate()"
+            />
+            <il-button
+              label="Asignar a entrevista"
+              iconClass="material-symbols-light:event-available-outline"
+              severity="secondary"
+              variant="outline"
+              size="small"
+              (clicked)="onAssignDuplicateCandidateToInterview()"
+            />
+            @if (found.status === CandidateStatus.Archived) {
+            <il-button
+              label="Desarchivar"
+              iconClass="material-symbols-light:unarchive-outline"
+              severity="secondary"
+              variant="outline"
+              size="small"
+              (clicked)="onUnarchiveDuplicateCandidate()"
+            />
+            }
+          </div>
+        </div>
+      </div>
+      }
       <div class="col-12 md:col-6">
-        <custom-input-number-signal
-          [control]="form.controls.age"
-          label="Edad"
-          placeholder="Edad"
-          [min]="16"
+        <custom-input-date-signal
+          [control]="form.controls.birthDate"
+          label="Fecha de nacimiento"
         />
       </div>
       <div class="col-12 md:col-6">
-        <custom-input-select-signal
-          [control]="form.controls.recruitmentSource"
-          label="Fuente de reclutamiento"
-          [data]="recruitmentSourceOptions()"
-          [filter]="true"
-        />
+        <label class="block mb-2 font-medium">Fuente de reclutamiento *</label>
+        <div class="flex gap-4">
+          @for (option of recruitmentSourceOptions(); track option.value) {
+          @if (option.value !== null) {
+          <label class="flex align-items-center gap-2 cursor-pointer font-normal">
+            <input
+              type="radio"
+              name="recruitmentSource"
+              [checked]="form.controls.recruitmentSource.value === option.value"
+              (change)="form.controls.recruitmentSource.setValue(option.value)"
+              (blur)="form.controls.recruitmentSource.markAsTouched()"
+            />
+            {{ option.label }}
+          </label>
+          }
+          }
+        </div>
+        @if (form.controls.recruitmentSource.invalid && form.controls.recruitmentSource.touched) {
+        <small class="block mt-1 text-red-500">El campo Fuente de reclutamiento es requerido.</small>
+        }
       </div>
       <div class="col-12 md:col-6">
         <custom-input-number-signal

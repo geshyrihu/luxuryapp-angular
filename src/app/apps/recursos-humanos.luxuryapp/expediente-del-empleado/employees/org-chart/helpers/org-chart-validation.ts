@@ -19,6 +19,13 @@ export function validateReassignment(
   // Destino es el nodo raóz virtual o nulo
   if (!target || target.workPositionId === "0") return { valid: true };
 
+  if (dragged.isGroup || target.isGroup) {
+    return {
+      valid: false,
+      reason: "No puedes reasignar un grupo de puestos: expándelo primero",
+    };
+  }
+
   if (dragged.workPositionId === target.workPositionId) {
     return { valid: false, reason: "No puedes asignar un puesto como su propio jefe" };
   }

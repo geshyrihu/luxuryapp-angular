@@ -27,56 +27,46 @@ export type WizardStep = StepperStep;
           </p-step>
         }
       </p-step-list>
-      <p-step-panels>
-        @for (step of steps(); track step.value) {
-          <p-step-panel [value]="step.value">
-            <ng-template #content let-activateCallback="activateCallback">
-              <div class="wizard-body p-3 surface-ground rounded">
-                <ng-content [select]="'[step=' + step.value + ']'" />
-              </div>
-              <div class="flex justify-content-between mt-3">
-                @if (step.value > 1) {
-                  <p-button
-                    label="Anterior"
-                    severity="secondary"
-                    [outlined]="true"
-                    (onClick)="previous()"
-                  >
-                    <ng-template #icon>
-                      <app-icon icon="material-symbols-light:arrow-back" />
-                    </ng-template>
-                  </p-button>
-                } @else {
-                  <div></div>
-                }
-                @if (step.value < lastStep()) {
-                  <p-button
-                    label="Siguiente"
-                    iconPos="right"
-                    (onClick)="next()"
-                  >
-                    <ng-template #icon>
-                      <app-icon icon="material-symbols-light:arrow-forward" />
-                    </ng-template>
-                  </p-button>
-                } @else {
-                  <p-button
-                    [label]="finishLabel()"
-                    iconPos="right"
-                    severity="success"
-                    (onClick)="finish.emit()"
-                  >
-                    <ng-template #icon>
-                      <app-icon icon="material-symbols-light:check" />
-                    </ng-template>
-                  </p-button>
-                }
-              </div>
-            </ng-template>
-          </p-step-panel>
-        }
-      </p-step-panels>
     </p-stepper>
+
+    <div class="wizard-body p-3 surface-ground rounded mt-3">
+      <ng-content />
+    </div>
+
+    <div class="flex justify-content-between mt-3">
+      @if (activeStep() > 1) {
+        <p-button
+          label="Anterior"
+          severity="secondary"
+          [outlined]="true"
+          (onClick)="previous()"
+        >
+          <ng-template #icon>
+            <app-icon icon="material-symbols-light:arrow-back" />
+          </ng-template>
+        </p-button>
+      } @else {
+        <div></div>
+      }
+      @if (activeStep() < lastStep()) {
+        <p-button label="Siguiente" iconPos="right" (onClick)="next()">
+          <ng-template #icon>
+            <app-icon icon="material-symbols-light:arrow-forward" />
+          </ng-template>
+        </p-button>
+      } @else {
+        <p-button
+          [label]="finishLabel()"
+          iconPos="right"
+          severity="success"
+          (onClick)="finish.emit()"
+        >
+          <ng-template #icon>
+            <app-icon icon="material-symbols-light:check" />
+          </ng-template>
+        </p-button>
+      }
+    </div>
   `,
   styles: [
     `
@@ -85,6 +75,9 @@ export type WizardStep = StepperStep;
       }
       .wizard-body {
         min-height: 200px;
+      }
+      :host ::ng-deep [step] {
+        display: none;
       }
     `,
   ],

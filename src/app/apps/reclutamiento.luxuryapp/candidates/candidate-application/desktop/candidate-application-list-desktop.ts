@@ -10,7 +10,6 @@ import { CommonModule } from "@angular/common";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconTracking } from "@ui/buttons/web-icon/button-tracking";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
@@ -22,7 +21,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { CandidateApplicationStage } from "src/app/core/enums/candidate-application-stage";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CandidateApplicationListItem } from "../interfaces/candidate-application";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
@@ -41,7 +40,6 @@ import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-ba
     PrimeNgCustomTableFooter,
     TableModule,
     WebButtonIconEdit,
-    WebButtonIconTracking,
     WebButtonIconViewPdf,
     CandidateStageBadge,
   ],
@@ -51,18 +49,12 @@ export class CandidateApplicationListDesktop {
 
   data = input.required<CandidateApplicationListItem[]>();
   stages = input<SelectItemDto[]>([]);
-  activeStage = input<CandidateApplicationStage | null>(null);
+  activeStage = input<CandidateProcessStage | null>(null);
   globalFilterFields = input<string[]>([]);
 
-  stageChange = output<CandidateApplicationStage | null>();
+  stageChange = output<CandidateProcessStage | null>();
   add = output<{ id: string; title: string }>();
   edit = output<{ id: string; title: string }>();
-  advance = output<{
-    id: string;
-    fromStage: CandidateApplicationStage;
-    customerId: string;
-    requestPositionId: string;
-  }>();
 
   loading = signal(true);
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
@@ -71,7 +63,7 @@ export class CandidateApplicationListDesktop {
 
   onStageSelected(value: number | null) {
     this.stageChange.emit(
-      value !== null ? (value as CandidateApplicationStage) : null,
+      value !== null ? (value as CandidateProcessStage) : null,
     );
   }
 

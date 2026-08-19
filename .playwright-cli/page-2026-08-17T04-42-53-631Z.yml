@@ -1,0 +1,40 @@
+- generic [ref=e1]:
+  - link "Saltar al contenido principal" [ref=e2] [cursor=pointer]:
+    - /url: "#app-root-outlet"
+  - generic "Aplicación LuxuryApp" [ref=e3]:
+    - generic:
+      - alertdialog
+    - main [ref=e7]:
+      - generic [ref=e11]:
+        - img "Slider Background" [ref=e13]
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e18]:
+              - generic [ref=e19]:
+                - img "Logo Luxury Building Group" [ref=e20]
+                - heading "Bienvenido de nuevo" [level=1] [ref=e21]
+                - paragraph [ref=e22]: Inicia sesión para continuar
+              - generic [ref=e23]:
+                - generic [ref=e28]:
+                  - generic [ref=e29]: Usuario *
+                  - textbox [ref=e31]:
+                    - /placeholder: " "
+                    - text: admin
+                - generic [ref=e36]:
+                  - generic [ref=e37]: Contraseña *
+                  - textbox [active] [ref=e40]:
+                    - /placeholder: " "
+                    - text: Hwtc00--
+                - generic [ref=e43]:
+                  - generic [ref=e48]:
+                    - generic [ref=e49]: Recordarme
+                    - generic [ref=e51]:
+                      - checkbox [checked] [ref=e53] [cursor=pointer]
+                      - generic [ref=e58] [cursor=pointer]: Recordarme
+                  - link "¿Olvidaste tu contraseña?" [ref=e59] [cursor=pointer]:
+                    - /url: /auth/recovery-password
+                - button "INICIAR SESIÓN" [ref=e72] [cursor=pointer]
+            - generic [ref=e62]: © 2026 Luxury Building Group. Todos los derechos reservados.
+          - generic [ref=e64]:
+            - heading "Excelencia Inmobiliaria" [level=1] [ref=e70]
+            - paragraph [ref=e71]: Gestiona recursos, proyectos y operaciones.

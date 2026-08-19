@@ -1,10 +1,10 @@
-import { InterviewerActionType } from "src/app/core/enums/interviewer-action-type";
+import { CandidateDecision } from "src/app/core/enums/candidate-decision";
+import { CandidateRejectionReason } from "src/app/core/enums/candidate-rejection-reason";
 
 export interface InterviewerActionRequestDto {
-  candidateApplicationId: string;
-  candidateProcessId?: string;
-  action: InterviewerActionType;
-  reasonId?: string;
-  comment?: string;
-  receptionConfirmedAt?: string;
+  candidateProcessId: string;
+  decision: CandidateDecision;
+  decisionReason?: CandidateRejectionReason | null;
+  additionalComment: string;
+  newScheduledAt?: string | null;
 }

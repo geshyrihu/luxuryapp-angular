@@ -382,6 +382,26 @@
   --ds-document-ink: #{c.$primary-900};
   --ds-document-surface: #{c.$neutral-0};
 
+  // Acentos por departamento — Organigrama de Puestos (categóricos)
+  --ds-dept-administracion: #{c.$dept-administracion};
+  --ds-dept-mantenimiento: #{c.$dept-mantenimiento};
+  --ds-dept-limpieza: #{c.$dept-limpieza};
+  --ds-dept-operaciones: #{c.$dept-operaciones};
+  --ds-dept-jardineria: #{c.$dept-jardineria};
+  --ds-dept-sistemas: #{c.$dept-sistemas};
+  --ds-dept-seguridad: #{c.$dept-seguridad};
+  --ds-dept-reclutamiento: #{c.$dept-reclutamiento};
+  --ds-dept-recursos-humanos: #{c.$dept-recursos-humanos};
+  --ds-dept-supervision: #{c.$dept-supervision};
+  --ds-dept-direcciones: #{c.$dept-direcciones};
+  --ds-dept-legal: #{c.$dept-legal};
+  --ds-dept-contabilidad: #{c.$dept-contabilidad};
+  --ds-dept-constructora: #{c.$dept-constructora};
+  --ds-dept-recepcion: #{c.$dept-recepcion};
+  --ds-dept-mensajeria: #{c.$dept-mensajeria};
+  --ds-dept-ludoteca: #{c.$dept-ludoteca};
+  --ds-dept-default: #{c.$dept-default};
+
   // Tipografía Documental — Outfit variable (T11)
   --ds-font-family-document:
     "Outfit", "-apple-system", "BlinkMacSystemFont", "Segoe UI Emoji",
