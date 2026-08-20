@@ -130,6 +130,13 @@ export const settingMenu = (aspRoleS: AspRoleService): SettingsMenuItem[] => [
     icon: "material-symbols-light:group",
   },
   {
+    group: "Catalogos Generales",
+    visible: aspRoleS.hasRole(ApplicationRole.SuperUsuario),
+    label: "Catalogo de documentos",
+    routerLink: "/admin/document-catalogs",
+    icon: "material-symbols-light:description",
+  },
+  {
     group: "Catalogos de Tickets y Mantenimiento",
     visible: aspRoleS.hasRole(ApplicationRole.SuperUsuario),
     label: "Entrega Recepcion",

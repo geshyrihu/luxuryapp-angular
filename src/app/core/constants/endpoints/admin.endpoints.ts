@@ -200,6 +200,15 @@ export const EndpointsAdmin = {
       getById: (id: string) => `recruitment-source-catalogs/${id}`,
       update: (id: string) => `recruitment-source-catalogs/${id}`,
     },
+    DocumentCatalog: {
+      create: "admin/general-catalogs/document-catalog",
+      delete: (id: string) => `admin/general-catalogs/document-catalog/${id}`,
+      getAll: "admin/general-catalogs/document-catalog",
+      getById: (id: string) => `admin/general-catalogs/document-catalog/${id}`,
+      update: (id: string) => `admin/general-catalogs/document-catalog/${id}`,
+      updateStatus: (id: string) =>
+        `admin/general-catalogs/document-catalog/${id}/status`,
+    },
   },
   Permission: {
     userAdminByApplicationUser: (applicationUserId: string) =>

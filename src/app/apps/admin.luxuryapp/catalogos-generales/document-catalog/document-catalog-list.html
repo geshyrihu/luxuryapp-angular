@@ -1,0 +1,127 @@
+<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Documento' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-4 text-small" pSortableColumn="name">
+        NOMBRE
+        <p-sorticon field="name" />
+      </th>
+
+      <th class="table-col-3 text-small" pSortableColumn="description">
+        DESCRIPCIÓN
+        <p-sorticon field="description" />
+      </th>
+
+      <th class="table-col-1 text-small" pSortableColumn="isMandatory">
+        OBLIGATORIO
+        <p-sorticon field="isMandatory" />
+      </th>
+
+      <th class="table-col-2 text-small" pSortableColumn="isActive">
+        ESTATUS
+        <p-sorticon field="isActive" />
+      </th>
+
+      <th class="table-col-2 text-small">ACCIONES</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.name }}</td>
+
+      <td>{{ item.description || "—" }}</td>
+
+      <td>
+        <span
+          [class]="'badge ' + (item.isMandatory ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-600')"
+          >{{ item.isMandatory ? 'Obligatorio' : 'Opcional' }}</span
+        >
+      </td>
+
+      <td>
+        <span
+          [class]="'badge ' + (item.isActive ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-600')"
+          >{{ item.isActive ? 'Activo' : 'Inactivo' }}</span
+        >
+      </td>
+
+      <td class="no-print">
+        <div class="flex">
+          <iw-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Documento' })"
+          />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="5" />
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!--📲INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Documento' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        class="w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:description"
+          class="text-xl text-primary"
+        />
+      </div>
+      <div>
+        <p class="mt-0 mb-0">{{ item.name }}</p>
+        <small [class]="item.isMandatory ? 'text-red-600' : 'text-500'">
+          {{ item.isMandatory ? 'Obligatorio' : 'Opcional' }}
+        </small>
+        ·
+        <small [class]="item.isActive ? 'text-green-600' : 'text-500'">
+          {{ item.isActive ? 'Activo' : 'Inactivo' }}
+        </small>
+      </div>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Documento' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

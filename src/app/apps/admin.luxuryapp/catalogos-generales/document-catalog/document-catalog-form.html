@@ -1,0 +1,38 @@
+<div class="p-3">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-text-signal
+      [control]="form.controls.id"
+      hidden
+      label="Id"
+      [readonly]="true"
+    />
+
+    <custom-input-text-signal
+      [control]="form.controls.name"
+      label="Nombre"
+      placeholder="Ej: Acta de Nacimiento"
+    />
+
+    <custom-input-textarea-signal
+      [control]="form.controls.description"
+      label="Descripción"
+      placeholder="Descripción opcional del documento"
+    />
+
+    <custom-input-switch-signal
+      [control]="form.controls.isMandatory"
+      label="Obligatorio"
+    />
+
+    <custom-input-switch-signal
+      [control]="form.controls.isActive"
+      label="Activo"
+    />
+
+    <il-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

@@ -223,6 +223,18 @@ export const adminRoutes: Routes = [
       breadcrumb: "Fuentes de Reclutamiento",
     },
   },
+  {
+    path: "document-catalogs",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/catalogos-generales/document-catalog/document-catalog-list").then(
+        (m) => m.DocumentCatalogList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Catálogo de Documentos",
+      breadcrumb: "Catálogo de Documentos",
+    },
+  },
 
   // Catálogos de Tickets y Mantenimiento
   {

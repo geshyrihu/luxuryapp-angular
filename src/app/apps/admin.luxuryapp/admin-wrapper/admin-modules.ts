@@ -133,6 +133,14 @@ export const ADMIN_MODULES: AdminModuleGroup[] = [
         color: "#0e7490",
         bgColor: "#cffafe",
       },
+      {
+        title: "Catálogo de Documentos",
+        description: "Documentos del expediente de empleados y candidatos.",
+        route: "/admin/document-catalogs",
+        icon: "material-symbols-light:description",
+        color: "#0e7490",
+        bgColor: "#cffafe",
+      },
     ],
   },
   // -------------------------------------------------------------
