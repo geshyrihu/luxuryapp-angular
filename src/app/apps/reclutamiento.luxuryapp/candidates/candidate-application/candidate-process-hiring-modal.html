@@ -204,10 +204,11 @@
             />
           </div>
           <div class="col-12 md:col-6">
-            <custom-input-text-signal
+            <custom-input-mask-signal
               [control]="form.controls.postalCode"
               label="Codigo postal"
               placeholder="Codigo postal"
+              customMask="00000"
             />
           </div>
           <div class="col-12 md:col-6">
@@ -359,6 +360,7 @@
               [control]="form.controls.workShift"
               label="Turno de trabajo"
               [data]="workShiftOptions()"
+              [readonly]="workShiftLocked()"
             />
           </div>
           <div class="col-12 md:col-6">
@@ -373,6 +375,7 @@
               [control]="form.controls.customerAddress"
               label="Direccion del cliente"
               placeholder="Direccion del servicio o cliente"
+              [readonly]="customerAddressLocked()"
             />
           </div>
           <div class="col-12">
@@ -429,6 +432,26 @@
               </p>
             </div>
           </div>
+          @if (vacancyContext(); as vacancy) {
+          <div class="col-12">
+            <div class="surface-ground border-round p-3">
+              <p class="m-0 font-semibold pb-2">Contexto de la vacante</p>
+              <p class="m-0 pb-1">
+                Empresa: {{ vacancy.customerName || "Pendiente" }}
+              </p>
+              <p class="m-0 pb-1">
+                Puesto: {{ vacancy.positionName || "Pendiente" }}
+              </p>
+              <p class="m-0 pb-1">
+                Sueldo: {{ vacancy.sueldoBase | currency: "MXN" : "symbol" : "1.0-0" }}
+              </p>
+              <p class="m-0">
+                Direccion del cliente:
+                {{ form.controls.customerAddress.value || "Pendiente" }}
+              </p>
+            </div>
+          </div>
+          }
           <div class="col-12">
             <div class="surface-ground border-round p-3">
               <p class="m-0 font-semibold pb-2">Confirmacion</p>

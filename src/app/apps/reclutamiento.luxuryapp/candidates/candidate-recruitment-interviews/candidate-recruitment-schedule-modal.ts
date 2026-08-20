@@ -14,7 +14,8 @@ import {
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
@@ -41,7 +42,8 @@ import { ChangeStageApplicationRequest } from "../candidate-application/interfac
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    CustomInputDateTimeSignal,
+    CustomInputDateSignal,
+    CustomInputTime,
     WebButtonLabel,
     WebButtonLabelSave,
   ],
@@ -64,7 +66,8 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   readonly scheduleTargetId = this.item.candidateProcessId || this.item.candidateApplicationId;
 
   readonly form: FormGroup = new FormGroup({
-    scheduledAt: new FormControl<string | null>(null),
+    scheduledDate: new FormControl<string | null>(null, { validators: [Validators.required] }),
+    scheduledTime: new FormControl<string | null>(null, { validators: [Validators.required] }),
     operationsInterviewAssignedToUserId: new FormControl<string | null>(null),
     comment: new FormControl<string | null>(null),
   });
@@ -107,11 +110,15 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   });
 
   ngOnInit(): void {
-    this.form.controls["scheduledAt"].setValue(
-      this.toLocalInput(
-        this.item.operationsInterviewAt ?? this.item.recruitmentInterviewAt,
-      ),
-    );
+    const existing = this.item.operationsInterviewAt ?? this.item.recruitmentInterviewAt;
+    if (existing) {
+      const date = new Date(existing);
+      const offset = date.getTimezoneOffset() * 60000;
+      const local = new Date(date.getTime() - offset);
+      this.form.controls["scheduledDate"].setValue(local.toISOString().slice(0, 10));
+      this.form.controls["scheduledTime"].setValue(local.toTimeString().slice(0, 5));
+    }
+
     this.form.controls["operationsInterviewAssignedToUserId"].setValue(
       this.item.assignedInterviewerUserId || null,
     );
@@ -205,12 +212,17 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
 
   private async execute(): Promise<boolean> {
     const comment = this.form.controls["comment"].value ?? "";
+    const scheduledDate = this.form.controls["scheduledDate"].value;
+    const scheduledTime = this.form.controls["scheduledTime"].value;
+
+    if (!scheduledDate || !scheduledTime) return false;
 
     if (this.action === "send") {
       const payload: ChangeStageApplicationRequest = {
         toStage: CandidateProcessStage.EntrevistaOperaciones,
         comment,
-        operationsInterviewAt: this.toIso(this.form.controls["scheduledAt"].value),
+        scheduledDate,
+        scheduledTime,
       };
       return this.boardS.sendToInterview(this.scheduleTargetId, payload);
     }
@@ -219,8 +231,7 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
       // El backend no permite reagendar/cambiar entrevistador sobre una
       // entrevista Programada activa en un solo paso (INTERVIEW_ALREADY_SCHEDULED);
       // el flujo soportado es cancelar la activa y volver a agendar.
-      const scheduledAt = this.toIso(this.form.controls["scheduledAt"].value);
-      if (!scheduledAt) return false;
+      if (!scheduledDate || !scheduledTime) return false;
 
       const interviewerUserId =
         this.action === "assign"
@@ -236,29 +247,20 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
       }
 
       return this.boardS.schedule(this.scheduleTargetId, {
-        operationsInterviewAt: scheduledAt,
+        scheduledDate,
+        scheduledTime,
         operationsInterviewAssignedToUserId: interviewerUserId,
         comment,
       });
     }
 
     return this.boardS.schedule(this.scheduleTargetId, {
-      operationsInterviewAt: this.toIso(this.form.controls["scheduledAt"].value),
+      scheduledDate,
+      scheduledTime,
       operationsInterviewAssignedToUserId:
         this.form.controls["operationsInterviewAssignedToUserId"].value,
       comment,
     });
   }
 
-  private toIso(value: string | null): string | undefined {
-    return value ? new Date(value).toISOString() : undefined;
   }
-
-  private toLocalInput(value?: string | null): string | null {
-    if (!value) return null;
-    const date = new Date(value);
-    if (isNaN(date.getTime())) return null;
-    const offset = date.getTimezoneOffset() * 60000;
-    return new Date(date.getTime() - offset).toISOString().slice(0, 16);
-  }
-}

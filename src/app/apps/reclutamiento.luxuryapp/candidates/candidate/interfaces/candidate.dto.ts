@@ -11,6 +11,8 @@ export interface CandidateListItem {
   phoneNumber: string;
   email: string;
   recruitmentSource?: number;
+  recruitmentSourceId?: string;
+  photoUrl?: string;
   status: CandidateStatus;
   activeApplicationsCount: number;
   interviewProgress: CandidateInterviewProgressStatus;
@@ -39,6 +41,8 @@ export interface CandidateDetail extends CandidateAddOrEdit {
   fullName: string;
   cvFileName: string;
   cvFileUrl: string;
+  recruitmentSourceId?: string;
+  photoUrl?: string;
   status: CandidateStatus;
   applications: CandidateApplicationListItem[];
   stageHistory: CandidateStageHistoryItem[];
@@ -86,4 +90,19 @@ export interface CandidateDeleteImpact {
   candidateApplicationRolesCount: number;
   totalRelatedRecordsCount: number;
   relatedEntities: string[];
+}
+
+export interface CandidateDuplicateUserData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  curp?: string | null;
+  rfc?: string | null;
+}
+
+export interface CandidateDuplicateCheckResult {
+  matchType: number;
+  message: string;
+  userData: CandidateDuplicateUserData | null;
 }

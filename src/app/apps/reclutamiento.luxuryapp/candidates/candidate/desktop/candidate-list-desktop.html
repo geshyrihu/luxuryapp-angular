@@ -13,9 +13,13 @@
   class="custom-table card"
 >
   <ng-template #caption>
-    <div class="flex flex-wrap gap-3 align-items-center justify-content-between">
+    <div
+      class="flex flex-wrap gap-3 align-items-center justify-content-between"
+    >
       <div class="flex flex-wrap gap-2">
-        <span class="text-sm text-color-secondary align-self-center">Filtrar por entrevista:</span>
+        <span class="text-sm text-color-secondary align-self-center"
+          >Filtrar por entrevista:</span
+        >
         @for (opt of interviewProgressOptions; track opt.value) {
         <button
           type="button"
@@ -47,6 +51,10 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="fullName">
+        Foto
+        <p-sorticon field="fullName" />
+      </th>
+      <th pSortableColumn="fullName">
         Nombre
         <p-sorticon field="fullName" />
       </th>
@@ -73,20 +81,29 @@
   </ng-template>
   <ng-template #body let-item>
     <tr>
+      <td class="text-center w-3rem">
+        @if (item.photoUrl) {
+        <img [src]="item.photoUrl" alt="" class="w-2rem h-2rem border-circle object-cover" />
+        } @else {
+        <div class="w-2rem h-2rem border-circle bg-primary-100 flex align-items-center justify-content-center">
+          <span class="text-primary font-semibold text-sm">{{ item.fullName.charAt(0) }}</span>
+        </div>
+        }
+      </td>
       <td>{{ item.fullName }}</td>
       <td>{{ item.phoneNumber }}</td>
       <td>{{ item.email }}</td>
       <td class="text-center">
         @if (item.cvFileName) {
-          <iw-button-view-pdf
-            size="sm"
-            class="btn--circle"
-            [url]="item.cvFileUrl"
-            [fileName]="item.cvFileName"
-            [attr.aria-label]="'Ver CV de ' + item.fullName"
-          />
+        <iw-button-view-pdf
+          size="sm"
+          class="btn--circle"
+          [url]="item.cvFileUrl"
+          [fileName]="item.cvFileName"
+          [attr.aria-label]="'Ver CV de ' + item.fullName"
+        />
         } @else {
-          <span class="text-color-secondary">-</span>
+        <span class="text-color-secondary">-</span>
         }
       </td>
       <td class="text-center">{{ item.activeApplicationsCount }}</td>
@@ -125,31 +142,29 @@
             [attr.aria-label]="'Ver detalle de entrevista de ' + item.fullName"
             (clicked)="viewInterview.emit(item.currentCandidateProcessId)"
           />
-          }
-          @if (item.status === candidateStatus.Active) {
+          } @if (item.status === candidateStatus.Active) {
           <iw-button-delete
             size="sm"
             class="btn--circle"
             [attr.aria-label]="'Archivar candidato ' + item.fullName"
             (confirmed)="archive.emit(item.id)"
           />
-          }
-          @if (isSuperUser()) {
-            <iw-button-item
-              size="sm"
-              class="btn--circle"
-              severity="danger"
-              iconClass="material-symbols-light:delete"
-              [attr.aria-label]="'Eliminar definitivamente candidato ' + item.fullName"
-              (clicked)="delete.emit(item.id)"
-            />
+          } @if (isSuperUser()) {
+          <iw-button-item
+            size="sm"
+            class="btn--circle"
+            severity="danger"
+            iconClass="material-symbols-light:delete"
+            [attr.aria-label]="'Eliminar definitivamente candidato ' + item.fullName"
+            (clicked)="delete.emit(item.id)"
+          />
           }
         </div>
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="8" />
+    <primeng-custom-table-emptymessage [colspan]="9" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />

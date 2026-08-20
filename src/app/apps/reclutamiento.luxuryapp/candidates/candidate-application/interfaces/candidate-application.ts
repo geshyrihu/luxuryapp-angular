@@ -55,6 +55,8 @@ export interface CandidateRecruitmentAgendaItem {
 export interface CandidateApplicationDetail extends CandidateApplicationListItem {
   applicationDate: string;
   recruitmentInterviewAt?: string;
+  scheduledDate?: string;
+  scheduledTime?: string;
   operationsInterviewAssignedToUserId: string;
   lastDecisionReasonName: string;
   lastDecisionComment: string;
@@ -87,8 +89,8 @@ export interface CandidateApplicationAddOrEdit {
 export interface ChangeStageApplicationRequest {
   toStage: CandidateProcessStage;
   comment: string;
-  recruitmentInterviewAt?: string;
-  operationsInterviewAt?: string;
+  scheduledDate?: string;
+  scheduledTime?: string;
   operationsInterviewAssignedToUserId?: string;
 }
 

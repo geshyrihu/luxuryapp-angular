@@ -125,6 +125,14 @@ export const ADMIN_MODULES: AdminModuleGroup[] = [
         color: "#0e7490",
         bgColor: "#cffafe",
       },
+      {
+        title: "Fuentes de Reclutamiento",
+        description: "Catálogo de canales/medios de reclutamiento.",
+        route: "/admin/recruitment-sources",
+        icon: "material-symbols-light:group",
+        color: "#0e7490",
+        bgColor: "#cffafe",
+      },
     ],
   },
   // -------------------------------------------------------------

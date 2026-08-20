@@ -211,6 +211,18 @@ export const adminRoutes: Routes = [
       breadcrumb: "Lista de Unidades de Medida",
     },
   },
+  {
+    path: "recruitment-sources",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/catalogos-generales/recruitment-sources/recruitment-source-catalog-list").then(
+        (m) => m.RecruitmentSourceCatalogList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Fuentes de Reclutamiento",
+      breadcrumb: "Fuentes de Reclutamiento",
+    },
+  },
 
   // Catálogos de Tickets y Mantenimiento
   {

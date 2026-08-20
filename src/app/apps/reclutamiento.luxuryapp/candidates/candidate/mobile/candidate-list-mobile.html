@@ -5,9 +5,21 @@
   aria-label="Lista de candidatos"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <ili-list-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        @if (item.photoUrl) {
+        <img [src]="item.photoUrl" alt="" class="w-2rem h-2rem border-circle object-cover" />
+        } @else {
+        <app-icon
+          [icon]="'material-symbols-light:person'"
+          class="text-xl text-primary"
+        />
+        }
+      </div>
       <div class="flex flex-column gap-1">
-        <p class="font-semibold m-0 text-color line-height-2">{{ item.fullName }}</p>
         <p class="text-xs m-0 text-color-secondary">
           {{ item.email }} - {{ item.phoneNumber }}
         </p>

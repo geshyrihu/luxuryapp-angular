@@ -1,0 +1,67 @@
+<div class="flex flex-column gap-3 py-3">
+  <lx-card class="shadow-sm rounded-xl overflow-hidden" [elevated]="true">
+    <ng-template #header>
+      <div class="flex align-items-center gap-3 px-4 pt-4 pb-2">
+        <div
+          class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+        >
+          <app-icon
+            [icon]="'material-symbols-light:fact-check'"
+            class="text-primary"
+          />
+        </div>
+        <h4 class="m-0 font-bold text-900">Checklist de onboarding</h4>
+      </div>
+    </ng-template>
+
+    <div class="px-4 pb-4">
+      @if (isLoading()) {
+      <p class="m-0 text-color-secondary">Cargando checklist...</p>
+      } @else if (checklist().length === 0) {
+      <p class="m-0 text-500">
+        No hay tareas de onboarding configuradas para este empleado.
+      </p>
+      } @else {
+      <div class="flex flex-column gap-2">
+        @for (task of checklist(); track task.id) {
+        <div
+          class="flex align-items-center gap-3 surface-50 rounded-lg border-1 border-100 p-3"
+        >
+          <p-checkbox
+            [binary]="true"
+            [ngModel]="task.isCompleted"
+            (ngModelChange)="onToggle(task, $event)"
+            [disabled]="busyTaskId() === task.id"
+          />
+          <div class="flex-1 min-w-0">
+            <div class="flex align-items-center gap-2">
+              <strong class="text-900">{{ task.optionName }}</strong>
+              @if (task.isCompleted) {
+              <lx-tag value="Completado" severity="success" class="text-xs" />
+              }
+            </div>
+            @if (task.description) {
+            <p class="m-0 text-500 text-sm">{{ task.description }}</p>
+            }
+            @if (task.isCompleted) {
+            <p class="m-0 text-xs text-500 mt-1">
+              Completado {{ task.completedAt | date:'dd/MM/yyyy HH:mm' }} por
+              {{ task.completedByUserName || '—' }}
+            </p>
+            }
+            @if (task.notes) {
+            <p class="m-0 text-sm text-600 mt-1 italic">"{{ task.notes }}"</p>
+            }
+          </div>
+          <iw-button-item
+            iconClass="material-symbols-light:edit-note"
+            [disabled]="busyTaskId() === task.id"
+            (clicked)="onEditNotes(task)"
+          />
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </lx-card>
+</div>

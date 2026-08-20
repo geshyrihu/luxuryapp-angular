@@ -1,4 +1,4 @@
-import { Component, forwardRef, ChangeDetectionStrategy } from "@angular/core";
+import { Component, forwardRef, ChangeDetectionStrategy, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonInput } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
@@ -27,6 +27,7 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [formControl]="control() || internalControl"
         [label]="label()"
         [placeholder]="placeholder()"
+        [min]="minDate()"
         label-placement="floating"
         mode="md"
         fill="outline"
@@ -48,6 +49,8 @@ import { BaseIonicInput } from "../base/base-ionic-input";
   ],
 })
 export class IonInputDate extends BaseIonicInput {
+  minDate = input<Date | string | null>(null);
+
   override registerOnChange(fn: any): void {
     this.onChange = fn;
   }

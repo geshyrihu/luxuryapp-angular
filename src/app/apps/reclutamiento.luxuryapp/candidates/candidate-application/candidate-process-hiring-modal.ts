@@ -107,6 +107,8 @@ export class CandidateProcessHiringModal implements OnInit {
   readonly approvedCandidate = signal<ApprovedCandidateOption | null>(null);
   readonly vacancyContext = signal<VacancyContext | null>(null);
   readonly loadingVacancyContext = signal(false);
+  readonly workShiftLocked = signal(false);
+  readonly customerAddressLocked = signal(false);
   readonly hasValidTarget = computed(
     () => !!(this.candidateProcessId ?? this.id) || !!this.requestPositionId,
   );
@@ -168,7 +170,12 @@ export class CandidateProcessHiringModal implements OnInit {
     }),
     postalCode: new FormControl("", {
       nonNullable: true,
-      validators: [Validators.required],
+      validators: [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(5),
+        Validators.pattern("^[0-9]{5}$"),
+      ],
     }),
     state: new FormControl("", {
       nonNullable: true,
@@ -280,6 +287,7 @@ export class CandidateProcessHiringModal implements OnInit {
       if (!this.form.controls.workShift.value) {
         this.form.controls.workShift.setValue(vacancy.turnoTrabajo);
       }
+      this.workShiftLocked.set(!!this.form.controls.workShift.value);
 
       if (vacancy.customerId) {
         await this.loadCustomerAddress(vacancy.customerId);
@@ -306,6 +314,7 @@ export class CandidateProcessHiringModal implements OnInit {
     );
     if (!address || this.form.controls.customerAddress.value) return;
     this.form.controls.customerAddress.setValue(this.buildFullAddress(address));
+    this.customerAddressLocked.set(true);
   }
 
   private buildFullAddress(a: CustomerAddressDto): string {
@@ -492,6 +501,12 @@ export class CandidateProcessHiringModal implements OnInit {
   clearDraft() {
     localStorage.removeItem(this.draftKey());
     this.form.reset();
+    this.applyInitialData();
+    if (this.requestPositionId) {
+      this.workShiftLocked.set(false);
+      this.customerAddressLocked.set(false);
+      this.loadVacancyContext();
+    }
   }
 
   private toDateOnly(value: string | null): string | undefined {

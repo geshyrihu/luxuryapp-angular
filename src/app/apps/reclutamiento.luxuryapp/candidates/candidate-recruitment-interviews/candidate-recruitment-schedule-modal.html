@@ -9,11 +9,18 @@
     <div class="grid">
       @if (action === 'send' || action === 'schedule' || action ===
       'reschedule') {
-      <div class="col-12">
-        <web-custom-input-date-time-signal
-          [control]="form.controls['scheduledAt']"
+      <div class="col-12 md:col-6">
+        <custom-input-date-signal
+          [control]="form.controls['scheduledDate']"
           label="Fecha de entrevista"
-          placeholder="Selecciona fecha y hora"
+          placeholder="Selecciona fecha"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-time
+          [control]="form.controls['scheduledTime']"
+          label="Hora de entrevista"
+          placeholder="Selecciona hora"
         />
       </div>
       } @if (action === 'schedule' || action === 'assign') {

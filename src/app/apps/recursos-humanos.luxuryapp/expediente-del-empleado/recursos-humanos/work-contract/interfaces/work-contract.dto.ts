@@ -1,5 +1,5 @@
 export type EContractType = 'Indeterminado' | 'Determinado' | 'Temporal' | 'ObraDeterminada' | 'Practicas' | 'Outsourcing' | 'Honorarios';
-export type EContractStatus = 'Borrador' | 'Activo' | 'Expirado' | 'Terminado' | 'Cancelado' | 'Suspendido';
+export type EContractStatus = 'Borrador' | 'Activo' | 'Expirado' | 'Terminado' | 'Cancelado' | 'Suspendido' | 'PendienteFirma' | 'Firmado';
 
 export interface WorkContractListDTO {
   id: string;
@@ -22,6 +22,10 @@ export interface WorkContractDetailDTO extends WorkContractListDTO {
   contractTemplateId?: string;
   contractTemplateName?: string;
   documentContent?: string;
+  pdfUrl?: string;
+  signedPdfUrl?: string;
+  signedAt?: string;
+  signedByUserName?: string;
   notes?: string;
 }
 

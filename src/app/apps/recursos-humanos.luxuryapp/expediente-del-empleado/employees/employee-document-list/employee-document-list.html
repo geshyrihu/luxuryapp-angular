@@ -15,11 +15,18 @@
       @for (row of documentRows(); track row.option.value) {
         <div class="col-12 md:col-3">
           <lx-fieldset
-            [legend]="row.option.label"
+            [legend]="row.option.isMandatory ? row.option.label + ' *' : row.option.label"
             [toggleable]="true"
             [collapsed]="false"
             class="mb-2"
           >
+            @if (row.option.isMandatory) {
+              <lx-tag
+                value="Obligatorio"
+                severity="danger"
+                class="text-xs mb-2"
+              />
+            }
             @if (!row.document?.isSubmitted || !row.document?.fileUrl) {
               <!-- Input oculto para cargar -->
               <input type="file" #fileInput class="file-input-hidden" accept=".pdf" (change)="onFileSelected($event, row.option.value)">

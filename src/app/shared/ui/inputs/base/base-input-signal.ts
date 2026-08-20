@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
@@ -8,7 +9,6 @@ import {
   inject,
   input,
   OnInit,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
@@ -18,8 +18,8 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
 
 /**
  * 🧱 BASE INPUT SIGNAL - El cimiento de tus formularios (Web/PrimeNG)
@@ -53,7 +53,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           [class.mb-0]="noMargin()"
         >
           @if (label()) {
-            <label [for]="id()" class="field-label">
+            <label [for]="id()" class="">
               {{ label() }}
               @if (isRequired()) {
                 <span class="text-red-400">*</span>
@@ -64,7 +64,10 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             <ng-container [ngTemplateOutlet]="projected" />
             @if (description()) {
               <small class="block mt-1 text-500 line-height-2 italic px-1">
-                <app-icon [icon]="'material-symbols-light:info'" class="pi mr-1 text-xs" />
+                <app-icon
+                  [icon]="'material-symbols-light:info'"
+                  class="pi mr-1 text-xs"
+                />
                 {{ description() }}
               </small>
             }

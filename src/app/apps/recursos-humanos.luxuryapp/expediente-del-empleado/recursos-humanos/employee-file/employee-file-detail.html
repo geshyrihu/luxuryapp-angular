@@ -500,6 +500,103 @@
 
   <!-- Tab 5: Contratos -->
   <div tab="4">
+    @if (activeContract(); as c) {
+    <lx-card class="shadow-sm rounded-xl overflow-hidden mt-3" [elevated]="true">
+      <ng-template #header>
+        <div class="flex align-items-center justify-content-between px-4 pt-4 pb-2">
+          <div class="flex align-items-center gap-3">
+            <div
+              class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
+            >
+              <app-icon
+                [icon]="'material-symbols-light:description'"
+                class="text-primary"
+              />
+            </div>
+            <div>
+              <h4 class="m-0 font-bold text-900">Contrato Actual</h4>
+              <small class="text-500"
+                >Folio #{{ c.contractNumber }} · {{ c.contractType }}</small
+              >
+            </div>
+          </div>
+          <lx-tag
+            [value]="getFirmaLabel(c.contractStatus)"
+            [severity]="getFirmaSeverity(c.contractStatus)"
+            [rounded]="true"
+          ></lx-tag>
+        </div>
+      </ng-template>
+      <div class="grid row-gap-3 px-4 pb-4">
+        <div class="col-12 sm:col-6 lg:col-4">
+          <label class="text-xs font-bold text-500 uppercase block mb-1"
+            >Fecha Inicio</label
+          >
+          <span class="text-sm font-semibold">{{
+            c.startDate | date: 'dd/MM/yyyy'
+          }}</span>
+        </div>
+        <div class="col-12 sm:col-6 lg:col-4">
+          <label class="text-xs font-bold text-500 uppercase block mb-1"
+            >Fecha Fin</label
+          >
+          <span class="text-sm font-semibold">{{
+            (c.endDate | date: 'dd/MM/yyyy') || 'Indeterminado'
+          }}</span>
+        </div>
+        <div class="col-12 sm:col-6 lg:col-4">
+          <label class="text-xs font-bold text-500 uppercase block mb-1"
+            >Salario Pactado</label
+          >
+          <span class="text-sm font-semibold text-primary">{{
+            c.contractSalary | currency: 'MXN':'symbol':'1.2-2'
+          }}</span>
+        </div>
+        @if (c.signedAt) {
+        <div class="col-12 sm:col-6 lg:col-4">
+          <label class="text-xs font-bold text-500 uppercase block mb-1"
+            >Firmado por</label
+          >
+          <span class="text-sm font-semibold">{{
+            c.signedByUserName || 'Usuario del sistema'
+          }}</span>
+          <small class="block text-500"
+            >{{ c.signedAt | date: 'dd/MM/yyyy HH:mm' }}</small
+          >
+        </div>
+        }
+        <div
+          class="col-12 flex align-items-center justify-content-end gap-2"
+        >
+          @if (c.pdfUrl) {
+          <iw-button-item
+            iconClass="material-symbols-light:download"
+            label="Descargar contrato"
+            severity="primary"
+            variant="outline"
+            (click)="onDownloadContract(c.pdfUrl)"
+          />
+          }
+          @if (c.contractStatus === 'PendienteFirma') {
+          <label class="m-0 cursor-pointer">
+            <input
+              type="file"
+              accept="application/pdf,.pdf"
+              class="hidden"
+              (change)="onUploadSigned($event, c)"
+            />
+            <iw-button-item
+              iconClass="material-symbols-light:upload"
+              label="Subir contrato firmado"
+              severity="success"
+            />
+          </label>
+          }
+        </div>
+      </div>
+    </lx-card>
+    }
+
     @if (contracts().length > 0) {
     <p-table
       [value]="contracts()"
@@ -513,6 +610,7 @@
           <th>Vigencia (Inicio - Fin)</th>
           <th>Salario Pactado</th>
           <th>Notas</th>
+          <th></th>
         </tr>
       </ng-template>
       <ng-template #body let-item>
@@ -545,6 +643,20 @@
             {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
           </td>
           <td><small class="text-500">{{ item.notes || 'é' }}</small></td>
+          <td class="text-center">
+            <div class="flex justify-content-center">
+              @if (item.pdfUrl) {
+              <iw-button-item
+                iconClass="material-symbols-light:picture-as-pdf"
+                lxTooltip="Ver contrato"
+                [size]="'small'"
+                severity="danger"
+                variant="outline"
+                (click)="onDownloadContract(item.pdfUrl)"
+              />
+              }
+            </div>
+          </td>
         </tr>
       </ng-template>
     </p-table>
@@ -1470,6 +1582,12 @@
         }
       </div>
     </div>
+    }
+  </div>
+  <!-- Tab 11: Checklist de onboarding -->
+  <div tab="10">
+    @if (activeTab() === '10') {
+    <app-employee-onboarding-checklist [employeeId]="employeeId()" />
     }
   </div>
 </lx-tabs>

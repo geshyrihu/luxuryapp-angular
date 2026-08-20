@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-18T13:03:27.068Z",
-  "totalMatches": 1924,
+  "generatedAt": "2026-08-19T13:45:58.185Z",
+  "totalMatches": 1926,
   "userFacingMatches": 428,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/apps",
-      "count": 1220
+      "count": 1222
     },
     {
       "key": "app/shared",
@@ -78,7 +78,7 @@
     },
     {
       "key": "template_comment",
-      "count": 178
+      "count": 180
     },
     {
       "key": "style_comment",
@@ -525,7 +525,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin-wrapper/admin-wrapper-menu.ts",
-      "line": 380,
+      "line": 387,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -2095,7 +2095,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin.routes.ts",
-      "line": 311,
+      "line": 323,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -2191,6 +2191,28 @@
         "📲"
       ],
       "preview": "<!--📲INICIO: Componente adaptado para versión mívil -->"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/catalogos-generales/recruitment-sources/recruitment-source-catalog-list.html",
+      "line": 1,
+      "category": "template_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "💻"
+      ],
+      "preview": "<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
+    },
+    {
+      "file": "src/app/apps/admin.luxuryapp/catalogos-generales/recruitment-sources/recruitment-source-catalog-list.html",
+      "line": 67,
+      "category": "template_comment",
+      "module": "app/apps",
+      "severity": "low",
+      "symbols": [
+        "📲"
+      ],
+      "preview": "<!--📲INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/apps/admin.luxuryapp/catalogos-generales/units-of-measurement/unit-of-measurement-list.html",
@@ -6548,7 +6570,7 @@
     },
     {
       "file": "src/app/apps/mantenimiento.luxuryapp/logs/piscina-bitacora/piscina-bitacora-list.html",
-      "line": 97,
+      "line": 115,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",

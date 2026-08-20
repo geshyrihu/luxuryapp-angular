@@ -1,11 +1,10 @@
 import { Component, input, signal, computed, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { lastValueFrom } from 'rxjs';
 import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
-import { EnumSelectService } from 'src/app/core/services/enum-select.service';
 import { CustomToastService } from 'src/app/core/services/custom-toast.service';
 import { EndpointsRecursosHumanos } from 'src/app/core/constants/endpoints/recursos-humanos.endpoints';
+import { Endpoints } from 'src/app/core/constants/endpoints/endpoints';
 import { SelectItemDto } from 'src/app/core/interfaces/select-item.dto';
 import { LxDivider } from '@ui/adaptive/divider/divider';
 import { LxFieldset } from '@ui/adaptive/fieldset/fieldset';
@@ -18,8 +17,9 @@ import { LxTag } from '@ui/adaptive/tag/tag';
 export interface CandidateHiringDocumentListItemDto {
   id: string;
   employeeId: string;
-  documentTypeId: number;
+  documentCatalogId: string;
   documentTypeName: string;
+  isMandatory: boolean;
   fileUrl: string;
   isSubmitted: boolean;
   submittedAt: string | null;
@@ -75,17 +75,16 @@ export class EmployeeDocumentList implements OnInit {
   readonly documentTypes = signal<SelectItemDto[]>([]);
   readonly documents = signal<CandidateHiringDocumentListItemDto[]>([]);
   readonly isLoading = signal(true);
-  readonly uploadingType = signal<number | null>(null);
+  readonly uploadingType = signal<string | null>(null);
 
   private readonly apiResponseS = inject(ApiResponseService);
-  private readonly enumSelectS = inject(EnumSelectService);
   private readonly toastS = inject(CustomToastService);
 
   readonly documentRows = computed(() =>
     this.documentTypes()
       .filter((option) => option.value && option.label && option.value !== '')
       .map((option) => {
-        const doc = this.documents().find((item) => item.documentTypeId === option.value);
+        const doc = this.documents().find((item) => item.documentCatalogId === option.value);
         return {
           option,
           document: doc ?? null,
@@ -101,20 +100,20 @@ export class EmployeeDocumentList implements OnInit {
     this.isLoading.set(true);
     try {
       const [documentTypes, documents] = await Promise.all([
-        lastValueFrom(this.enumSelectS.recruitmentDocumentType()),
+        this.apiResponseS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.documentCatalog),
         this.apiResponseS.onGetList<CandidateHiringDocumentListItemDto[]>(
           EndpointsRecursosHumanos.EmployeeDocument.byEmployee(this.employeeId()),
         ),
       ]);
       
-      this.documentTypes.set(documentTypes);
+      this.documentTypes.set(documentTypes ?? []);
       this.documents.set(documents ?? []);
     } finally {
       this.isLoading.set(false);
     }
   }
 
-  async onFileSelected(event: any, documentTypeId: number) {
+  async onFileSelected(event: any, documentCatalogId: string) {
     const file = event.target?.files?.[0];
     if (!file) return;
 
@@ -124,10 +123,10 @@ export class EmployeeDocumentList implements OnInit {
       return;
     }
 
-    this.uploadingType.set(documentTypeId);
+    this.uploadingType.set(documentCatalogId);
     try {
       const formData = new FormData();
-      formData.append('documentTypeId', documentTypeId.toString());
+      formData.append('documentCatalogId', documentCatalogId);
       formData.append('file', file);
 
       const result = await this.apiResponseS.onPostFile<CandidateHiringDocumentListItemDto>(
@@ -137,7 +136,7 @@ export class EmployeeDocumentList implements OnInit {
 
       if (result) {
         this.documents.update((docs) => {
-          const next = docs.filter((item) => item.documentTypeId !== documentTypeId);
+          const next = docs.filter((item) => item.documentCatalogId !== documentCatalogId);
           next.push(result as CandidateHiringDocumentListItemDto);
           return next;
         });

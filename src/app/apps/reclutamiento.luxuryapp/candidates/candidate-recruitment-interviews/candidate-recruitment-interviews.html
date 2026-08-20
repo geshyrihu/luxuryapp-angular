@@ -289,7 +289,7 @@
             } @if (candidate.canReschedule) {
             <il-button
               label="Cambiar entrevistador"
-              iconClass="material-symbols-light:sync-alt"
+              iconClass="material-symbols-light:sync"
               severity="warn"
               size="small"
               variant="outline"
@@ -299,7 +299,7 @@
             @if (candidate.currentStage === 7 || candidate.currentStage === 8) {
             <il-button
               label="Proceder a Alta"
-              iconClass="material-symbols-light:how-to-reg"
+              iconClass="material-symbols-light:person-add"
               severity="success"
               size="small"
               (clicked)="openAltaForm(vacancy, candidate)"

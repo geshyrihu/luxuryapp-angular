@@ -43,6 +43,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [readonly]="readonly()"
         [disable]="disable()"
         [mode]="mode()"
+        [minDate]="minDate()"
         [monthSelectorType]="'dropdown'"
         [locale]="spanishLocale"
         [altInput]="true"
@@ -68,6 +69,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
 export class WebInputDate extends BaseInputSignal {
   disable = input<Date[]>([]);
   mode = input<"single" | "multiple" | "range">("single");
+  minDate = input<Date | string | null>(null);
   protected readonly spanishLocale = Spanish;
 
   // Parser para permitir tipear dd/mm/yyyy (y seguir aceptando yyyy-mm-dd / Date).

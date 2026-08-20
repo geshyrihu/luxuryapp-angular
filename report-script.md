@@ -49,3 +49,5 @@
 41 src/styles/base\_global.scss
 
 ⚠️ Hay issues CRÍTICOS. Revisar audit-report.json para detalles.
+
+sk-e4e37c2cd8ff88d5-bb8d63-7c7cbb5a

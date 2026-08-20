@@ -5,4 +5,5 @@ export interface SelectItemDto<T = any> {
   group?: string;
   sortOrder?: number;
   image?: string;
+  isMandatory?: boolean;
 }

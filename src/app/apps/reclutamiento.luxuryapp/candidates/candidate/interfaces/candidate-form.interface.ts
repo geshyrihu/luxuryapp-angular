@@ -8,6 +8,8 @@ export interface CandidateFormGroup {
   email: FormControl<string | null>;
   birthDate: FormControl<string | null>;
   recruitmentSource: FormControl<number | null>;
+  recruitmentSourceId: FormControl<string | null>;
+  curp: FormControl<string | null>;
   currentAddress: FormControl<string | null>;
   availability: FormControl<string | null>;
   salaryExpectation: FormControl<number | null>;

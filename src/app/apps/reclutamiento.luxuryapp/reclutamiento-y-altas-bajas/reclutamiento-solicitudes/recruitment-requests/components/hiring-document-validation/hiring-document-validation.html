@@ -16,11 +16,18 @@
       @for (row of documentRows(); track row.option.value) {
         <div class="col-12 md:col-3">
           <lx-fieldset
-            [legend]="row.option.label"
+            [legend]="row.option.isMandatory ? row.option.label + ' *' : row.option.label"
             [toggleable]="true"
             [collapsed]="false"
             class="mb-2"
           >
+            @if (row.option.isMandatory) {
+              <lx-tag
+                value="Obligatorio"
+                severity="danger"
+                class="text-xs mb-2"
+              />
+            }
             @if (!row.document?.isSubmitted || !row.document?.fileUrl) {
               <p class="text-500 text-sm italic m-0">Sin archivo cargado</p>
             } @else {

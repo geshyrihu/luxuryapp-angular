@@ -83,7 +83,7 @@ export const EndpointsReclutamiento = {
     getEmployeeRegister: (employeeId: Id, customerId: Id) =>
       `request-employee-register/get-employee-register/${employeeId}/${customerId}`,
     getVacantes: (customerId: Id) =>
-      `request-employee-register/vacantes/${customerId}`,
+      `select-items/vacantes/${customerId}`,
     list: "request-employee-register/list",
     updateStatus: (id: Id) => `request-employee-register/${id}/status`,
     delete: (id: Id) => `request-employee-register/${id}`,
@@ -102,6 +102,8 @@ export const EndpointsReclutamiento = {
     deleteImpact: (id: Id) => `recruitment-candidates/${id}/delete-impact`,
     searchByPhone: (phone: string) =>
       `recruitment-candidates/search-by-phone?phone=${encodeURIComponent(phone)}`,
+    recruitmentSources: "recruitment-sources",
+    checkDuplicate: "recruitment-candidates/check-duplicate",
   },
   CandidateProcesses: {
     base: "recruitment-candidate-processes",

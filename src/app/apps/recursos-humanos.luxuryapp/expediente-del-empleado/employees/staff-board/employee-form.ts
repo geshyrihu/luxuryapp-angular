@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxPanelMenu } from "@ui/adaptive/panel-menu/panel-menu";
 import { MenuItem } from "@ui/web/primeng-api/primeng-api";
-import { EmployeeReclutamiento } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/employee-reclutamiento";
+import { EmployeeReclutamiento } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/employee-reclutamiento";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";

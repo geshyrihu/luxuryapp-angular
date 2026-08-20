@@ -4,13 +4,13 @@ import { firstValueFrom } from "rxjs";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CandidateInterviewFeedbackForm } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/candidate-interview-feedback-form";
+import { CandidateInterviewFeedbackForm } from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/candidate-interview-feedback-form";
 import {
   CandidateDetail,
   CandidateWorkExperienceItem,
-} from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/interfaces/candidate.dto";
-import { CANDIDATE_STATUS_TAG_OPTIONS } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate/candidate-status-tag-options";
-import { MappedPTag } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/mapped-p-tag";
+} from "src/app/shared/integration/reclutamiento/candidates/candidate/interfaces/candidate.dto";
+import { CANDIDATE_STATUS_TAG_OPTIONS } from "src/app/shared/integration/reclutamiento/candidates/candidate/candidate-status-tag-options";
+import { MappedPTag } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";

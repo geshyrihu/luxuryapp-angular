@@ -16,10 +16,10 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
   CandidateInterviewResponseDto,
-} from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/interfaces/candidate-interview";
-import { CandidateStageBadge } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-stage-badge";
-import { MappedPTag } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/mapped-p-tag";
-import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/agenda-status-tag-options";
+} from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/interfaces/candidate-interview";
+import { CandidateStageBadge } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/candidate-stage-badge";
+import { MappedPTag } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
+import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
 import { CandidateRejectionReason } from "src/app/core/enums/candidate-rejection-reason";
@@ -28,8 +28,8 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { InterviewerActionRequestDto } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/interfaces/interviewer-action-request.dto";
-import { CandidateInterviewFeedbackForm } from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interview/candidate-interview-feedback-form";
+import { InterviewerActionRequestDto } from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/interfaces/interviewer-action-request.dto";
+import { CandidateInterviewFeedbackForm } from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/candidate-interview-feedback-form";
 
 @Component({
   selector: "app-employee-interview-response",

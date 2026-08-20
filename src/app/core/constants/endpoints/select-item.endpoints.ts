@@ -15,6 +15,7 @@ export const EndpointsSelectItem = {
     bank: "banks",
     categories: "categories",
     candidates: "candidates",
+    documentCatalog: "document-catalog",
     useCFDI: "cfdi-uses",
     comiteMinuta: (customerId: string, meetingId: string) =>
       `committee-minutes/${customerId}/${meetingId}`,
@@ -38,6 +39,7 @@ export const EndpointsSelectItem = {
       `machineries-all/${customerId}`,
     measurementUnits: "measurement-units",
     nombreCorto: "nombre-corto",
+    onboardingChecklistOptions: "onboarding-checklist-options",
     operationsInterviewersByCustomer: (customerId: string) =>
       `operations-interviewers/${customerId}`,
     operationsInterviewersByRequestPosition: (requestPositionId: string) =>

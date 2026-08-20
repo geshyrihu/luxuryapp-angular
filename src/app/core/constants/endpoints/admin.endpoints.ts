@@ -99,6 +99,8 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/resync-google-calendar-event-times",
     seedNativeCollectionTestData:
       "admin/system-maintenance/seed-native-collection-test-data",
+    seedRecruitmentSources:
+      "admin/system-maintenance/seed-recruitment-sources",
     migrateUserActivities:
       "admin/system-maintenance/migrate-user-activities-to-logs-db",
   },
@@ -188,6 +190,13 @@ export const EndpointsAdmin = {
       getAll: "unidad-medida",
       getById: (id: string | number) => `unidad-medida/${id}`,
       update: (id: string | number) => `unidad-medida/${id}`,
+    },
+    RecruitmentSources: {
+      create: "recruitment-source-catalogs",
+      delete: (id: string) => `recruitment-source-catalogs/${id}`,
+      getAll: "recruitment-source-catalogs",
+      getById: (id: string) => `recruitment-source-catalogs/${id}`,
+      update: (id: string) => `recruitment-source-catalogs/${id}`,
     },
   },
   Permission: {

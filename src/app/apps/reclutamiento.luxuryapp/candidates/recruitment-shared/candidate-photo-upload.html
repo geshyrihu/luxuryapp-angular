@@ -1,0 +1,38 @@
+<div class="flex flex-column gap-2">
+  <label class="text-sm text-color-secondary font-medium">{{ label() }}</label>
+
+  @if (fileUrl() && !replaceMode() && !previewUrl()) {
+    <div class="photo-current">
+      <app-avatar [image]="fileUrl()" size="xlarge" shape="circle" />
+      <div class="flex flex-column gap-1">
+        <span class="text-sm font-medium text-color">{{ currentFileLabel() }}</span>
+      </div>
+      <button type="button" class="cv-action-button" (click)="enableReplaceMode()">
+        {{ replaceLabel() }}
+      </button>
+    </div>
+  }
+
+  @if (!fileUrl() || replaceMode() || previewUrl()) {
+    <div class="flex align-items-center gap-3">
+      @if (previewUrl()) {
+        <app-avatar [image]="previewUrl()!" size="xlarge" shape="circle" />
+      }
+      <app-file-upload
+        class="w-full"
+        [accept]="'image/*'"
+        [multiple]="false"
+        [autoUpload]="false"
+        (onSelect)="onFileSelect($event)"
+      />
+    </div>
+  }
+
+  @if (previewUrl()) {
+    <div class="flex justify-content-end">
+      <button type="button" class="cv-action-button" (click)="clearReplacement()">
+        Cancelar reemplazo
+      </button>
+    </div>
+  }
+</div>

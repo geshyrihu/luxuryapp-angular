@@ -40,8 +40,8 @@ export interface CandidateRecruitmentInterviewBoardItem {
 }
 
 export interface ScheduleRecruitmentInterviewRequest {
-  recruitmentInterviewAt?: string | null;
-  operationsInterviewAt?: string | null;
+  scheduledDate?: string | null;
+  scheduledTime?: string | null;
   operationsInterviewAssignedToUserId?: string | null;
   comment?: string | null;
   cancelInterview?: boolean;

@@ -31,6 +31,7 @@ const ROUTE_WHITELIST = new Set([
   "/admin/product-category",
   "/admin/machinery-classification",
   "/admin/units-of-measurement",
+  "/admin/recruitment-sources",
   "/admin/audit-entries",
   "/admin/user-activity-history",
   "/admin/incident-types",

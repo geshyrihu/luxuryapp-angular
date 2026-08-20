@@ -101,6 +101,10 @@ export interface EmployeeFileContractDTO {
   terminationDate?: string;
   terminationReason?: string;
   notes?: string;
+  pdfUrl?: string;
+  signedPdfUrl?: string;
+  signedAt?: string;
+  signedByUserName?: string;
   createdAt: string;
 }
 
@@ -216,6 +220,21 @@ export interface EmployeeFileEvaluationDTO {
   status: string;
   finalScore?: number;
   finalComments?: string;
+}
+
+// -- Tab 11: Checklist de onboarding -------------------------------------------------
+
+export interface EmployeeOnboardingChecklistItemDTO {
+  id: string;
+  employeeId: string;
+  checklistOptionCatalogId: string;
+  optionName: string;
+  description: string;
+  isCompleted: boolean;
+  completedAt?: string;
+  completedByUserId?: string;
+  completedByUserName?: string;
+  notes?: string;
 }
 
 // -- Tab 10: Solicitudes -------------------------------------------------------

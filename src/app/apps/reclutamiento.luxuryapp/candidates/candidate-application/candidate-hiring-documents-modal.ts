@@ -7,16 +7,15 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { lastValueFrom } from "rxjs";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
 import { CandidateHiringDocumentDto } from "./interfaces/candidate-hiring-document.dto";
 import { CandidateHiringDocumentsDialogDataDto } from "./interfaces/candidate-hiring-documents-dialog-data.dto";
@@ -150,25 +149,24 @@ import { CandidateHiringDocumentsDialogDataDto } from "./interfaces/candidate-hi
 })
 export class CandidateHiringDocumentsModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
-  private readonly enumSelectS = inject(EnumSelectService);
   private readonly config = inject(DynamicDialogConfig);
   private readonly ref = inject(DynamicDialogRef);
 
   readonly dialogData =
     this.config.data as CandidateHiringDocumentsDialogDataDto;
   readonly loading = signal(false);
-  readonly uploadingType = signal<number | null>(null);
+  readonly uploadingType = signal<string | null>(null);
   readonly validatingDocumentId = signal<string | null>(null);
   readonly documentTypes = signal<SelectItemDto[]>([]);
   readonly documents = signal<CandidateHiringDocumentDto[]>([]);
-  readonly selectedFiles = signal<Record<number, File | null>>({});
+  readonly selectedFiles = signal<Record<string, File | null>>({});
   readonly validationNotes = signal<Record<string, string>>({});
 
   readonly documentRows = computed(() =>
     this.documentTypes().map((option) => ({
       option,
       document:
-        this.documents().find((item) => item.documentTypeId === option.value) ??
+        this.documents().find((item) => item.documentCatalogId === option.value) ??
         null,
       pendingFile: this.selectedFiles()[option.value] ?? null,
       validationNote: "",
@@ -179,7 +177,7 @@ export class CandidateHiringDocumentsModal implements OnInit {
     this.loading.set(true);
     try {
       const [documentTypes, documents] = await Promise.all([
-        lastValueFrom(this.enumSelectS.recruitmentDocumentType()),
+        this.apiResponseS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.documentCatalog),
         this.apiResponseS.onGetList<CandidateHiringDocumentDto[]>(
           EndpointsReclutamiento.CandidateProcesses.hiringDocuments(
             this.dialogData.candidateProcessId,
@@ -187,17 +185,17 @@ export class CandidateHiringDocumentsModal implements OnInit {
         ),
       ]);
 
-      this.documentTypes.set(documentTypes);
+      this.documentTypes.set(documentTypes ?? []);
       this.documents.set(documents ?? []);
     } finally {
       this.loading.set(false);
     }
   }
 
-  onFileChanged(documentTypeId: number, file: File | null) {
+  onFileChanged(documentCatalogId: string, file: File | null) {
     this.selectedFiles.update((current) => ({
       ...current,
-      [documentTypeId]: file,
+      [documentCatalogId]: file,
     }));
   }
 
@@ -208,15 +206,15 @@ export class CandidateHiringDocumentsModal implements OnInit {
     }));
   }
 
-  async onUploadDocument(documentTypeId: number) {
-    const file = this.selectedFiles()[documentTypeId];
+  async onUploadDocument(documentCatalogId: string) {
+    const file = this.selectedFiles()[documentCatalogId];
     if (!file) return;
 
     const formData = new FormData();
-    formData.append("DocumentTypeId", String(documentTypeId));
+    formData.append("DocumentCatalogId", documentCatalogId);
     formData.append("File", file);
 
-    this.uploadingType.set(documentTypeId);
+    this.uploadingType.set(documentCatalogId);
     const result = await this.apiResponseS.onPost<CandidateHiringDocumentDto>(
       EndpointsReclutamiento.CandidateProcesses.hiringDocuments(
         this.dialogData.candidateProcessId,
@@ -230,11 +228,11 @@ export class CandidateHiringDocumentsModal implements OnInit {
     this.documents.update((current) => {
       const next = current.filter((item) => item.id !== result.id);
       next.push(result);
-      return next.sort((a, b) => a.documentTypeId - b.documentTypeId);
+      return next.sort((a, b) => a.documentTypeName.localeCompare(b.documentTypeName));
     });
     this.selectedFiles.update((current) => ({
       ...current,
-      [documentTypeId]: null,
+      [documentCatalogId]: null,
     }));
   }
 
@@ -253,7 +251,7 @@ export class CandidateHiringDocumentsModal implements OnInit {
     this.documents.update((current) =>
       current
         .map((item) => (item.id === result.id ? result : item))
-        .sort((a, b) => a.documentTypeId - b.documentTypeId),
+        .sort((a, b) => a.documentTypeName.localeCompare(b.documentTypeName)),
     );
     this.validationNotes.update((current) => ({
       ...current,
@@ -265,8 +263,8 @@ export class CandidateHiringDocumentsModal implements OnInit {
     this.ref.close(true);
   }
 
-  isUploading(documentTypeId: number): boolean {
-    return this.uploadingType() === documentTypeId;
+  isUploading(documentCatalogId: string): boolean {
+    return this.uploadingType() === documentCatalogId;
   }
 
   isValidating(documentId: string): boolean {

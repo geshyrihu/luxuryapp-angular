@@ -17,7 +17,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
+import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -49,10 +49,10 @@ import { CandidateForm } from "../candidate/candidate-form";
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputDateSignal,
-    CustomInputDateTimeSignal,
-    CustomInputTextSignal,
+    CustomInputTime,
     CustomInputNumberSignal,
     CustomInputTextAreaSignal,
+    CustomInputTextSignal,
     InputMask,
     InputEmail,
     CandidateCvUpload,
@@ -80,6 +80,7 @@ export class CandidateApplicationForm implements OnInit {
   cb_interviewers = signal<SelectItemDto[]>([]);
   loadingInterviewers = signal(false);
   readonly originalWorkExperienceIds = signal<string[]>([]);
+  readonly minDate = new Date();
 
   form: FormGroup = new FormGroup({
     id: new FormControl({ value: "", disabled: true }),
@@ -90,7 +91,8 @@ export class CandidateApplicationForm implements OnInit {
     ),
     cvFileName: new FormControl<string | null>(null),
     applicationDate: new FormControl<string | null>(null),
-    recruitmentInterviewAt: new FormControl<string | null>(null),
+    scheduledDate: new FormControl<string | null>(null),
+    scheduledTime: new FormControl<string | null>(null),
     operationsInterviewAssignedToUserId: new FormControl<string | null>(null),
     initialComment: new FormControl<string | null>(null),
   });
@@ -133,8 +135,13 @@ export class CandidateApplicationForm implements OnInit {
         void this.onLoadInterviewersForRequestPosition(requestPositionId);
       },
     );
-    this.form.controls["recruitmentInterviewAt"].valueChanges.subscribe(() => {
+    this.form.controls["scheduledDate"].valueChanges.subscribe(() => {
       this.applyInterviewerValidators();
+      this.applyInterviewTimeValidation();
+    });
+    this.form.controls["scheduledTime"].valueChanges.subscribe(() => {
+      this.applyInterviewerValidators();
+      this.applyInterviewTimeValidation();
     });
     
     this.applyDialogDefaults();
@@ -191,13 +198,15 @@ export class CandidateApplicationForm implements OnInit {
             requestPositionId: result.requestPositionId,
             cvFileName: result.cvFileName,
             applicationDate: result.applicationDate,
-            recruitmentInterviewAt: result.recruitmentInterviewAt ?? null,
+            scheduledDate: result.scheduledDate ?? null,
+            scheduledTime: result.scheduledTime ?? null,
             operationsInterviewAssignedToUserId:
               result.operationsInterviewAssignedToUserId || null,
             initialComment: null,
           });
           this.currentCvUrl.set(result.cvFileUrl ?? "");
           this.applyInterviewerValidators();
+          this.applyInterviewTimeValidation();
         }
       });
   }
@@ -227,13 +236,13 @@ export class CandidateApplicationForm implements OnInit {
       if (applicationDate) {
         formData.append("ApplicationDate", applicationDate);
       }
-      const recruitmentInterviewAt =
-        this.form.controls["recruitmentInterviewAt"].value;
-      if (recruitmentInterviewAt) {
-        formData.append(
-          "RecruitmentInterviewAt",
-          new Date(recruitmentInterviewAt).toISOString(),
-        );
+      const scheduledDate = this.form.controls["scheduledDate"].value;
+      if (scheduledDate) {
+        formData.append("ScheduledDate", scheduledDate);
+      }
+      const scheduledTime = this.form.controls["scheduledTime"].value;
+      if (scheduledTime) {
+        formData.append("ScheduledTime", scheduledTime);
       }
       const operationsInterviewAssignedToUserId =
         this.form.controls["operationsInterviewAssignedToUserId"].value?.trim();
@@ -514,15 +523,53 @@ export class CandidateApplicationForm implements OnInit {
 
   private applyInterviewerValidators(): void {
     const control = this.form.controls["operationsInterviewAssignedToUserId"];
-    const requiresInterviewer = !!this.form.controls["recruitmentInterviewAt"].value;
+    const requiresInterviewer =
+      !!this.form.controls["scheduledDate"].value &&
+      !!this.form.controls["scheduledTime"].value;
 
     control.setValidators(requiresInterviewer ? [Validators.required] : []);
     control.updateValueAndValidity({ emitEvent: false });
   }
 
+  private applyInterviewTimeValidation(): void {
+    const timeControl = this.form.controls["scheduledTime"];
+    const dateValue = this.form.controls["scheduledDate"].value as
+      | string
+      | null;
+    const timeValue = timeControl.value as string | null;
+
+    if (!dateValue || !timeValue) {
+      if (timeControl.hasError("invalidTime")) {
+        timeControl.setErrors(null);
+      }
+      return;
+    }
+
+    const isToday = dateValue === this.todayDateOnly();
+    if (!isToday) {
+      if (timeControl.hasError("invalidTime")) {
+        timeControl.setErrors(null);
+      }
+      return;
+    }
+
+    const minTime = new Date(Date.now() + 60 * 60 * 1000);
+    const minMinutes =
+      minTime.getHours() * 60 + minTime.getMinutes();
+    const [hours, minutes] = timeValue.split(":").map(Number);
+    const selectedMinutes = hours * 60 + minutes;
+
+    if (selectedMinutes <= minMinutes) {
+      timeControl.setErrors({ invalidTime: true });
+    } else if (timeControl.hasError("invalidTime")) {
+      timeControl.setErrors(null);
+    }
+  }
+
   private isInterviewSchedulingBlocked(): boolean {
     return (
-      !!this.form.controls["recruitmentInterviewAt"].value &&
+      !!this.form.controls["scheduledDate"].value &&
+      !!this.form.controls["scheduledTime"].value &&
       (this.loadingInterviewers() ||
         this.cb_interviewers().length === 0 ||
         !this.form.controls["operationsInterviewAssignedToUserId"].value)

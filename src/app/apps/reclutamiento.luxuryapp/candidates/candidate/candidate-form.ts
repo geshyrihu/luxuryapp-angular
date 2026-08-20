@@ -17,6 +17,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { HttpErrorResponse } from "@angular/common/http";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
@@ -25,8 +26,11 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ApiResponseService, ApiResponseDto } from "src/app/core/http/services/api-response.service";
+import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CandidateStatus } from "src/app/core/enums/candidate-status";
 import {
@@ -34,15 +38,17 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
+import { CandidatePhotoUpload } from "../recruitment-shared/candidate-photo-upload";
 import {
   CandidateDetail,
   CandidatePhoneLookup,
   CandidateWorkExperienceAddOrEdit,
   CandidateWorkExperienceItem,
+  CandidateDuplicateCheckResult,
 } from "./interfaces/candidate.dto";
 import { CandidateFormGroup } from "./interfaces/candidate-form.interface";
+import Swal from "sweetalert2";
 
 function minimumAdultAgeValidator(control: AbstractControl) {
   const rawValue = control.value;
@@ -61,6 +67,13 @@ function minimumAdultAgeValidator(control: AbstractControl) {
   return birthDate <= adultThreshold ? null : { minimumAdultAge: true };
 }
 
+enum DuplicateMatchType {
+  None = 0,
+  Employee = 1,
+  Candidate = 2,
+  User = 3,
+}
+
 @Component({
   selector: "app-candidate-form",
   templateUrl: "./candidate-form.html",
@@ -72,9 +85,12 @@ function minimumAdultAgeValidator(control: AbstractControl) {
     CustomInputTextSignal,
     CustomInputNumberSignal,
     CustomInputTextAreaSignal,
+    CustomInputSelectSignal,
+    LxRadioButton,
     InputMask,
     InputEmail,
     CandidateCvUpload,
+    CandidatePhotoUpload,
     WebButtonLabel,
     WebButtonLabelSave,
   ],
@@ -83,15 +99,19 @@ export class CandidateForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
-  enumSelectS = inject(EnumSelectService);
   dialogHandlerS = inject(DialogHandlerService);
+  private dataConnectorS = inject(DataConnectorService);
   private destroyRef = inject(DestroyRef);
 
   id: string = "";
   submitting = signal(false);
   currentCvUrl = signal("");
+  currentPhotoUrl = signal("");
   recruitmentSourceOptions = signal<SelectItemDto[]>([]);
   selectedFile: File | null = null;
+  selectedPhotoFile: File | null = null;
+  duplicateBlockSave = signal(false);
+  private lastCheckedEmail: string | null = null;
   readonly originalWorkExperienceIds = signal<string[]>([]);
 
   /** Candidato existente encontrado al capturar un telefono ya registrado (busqueda silenciosa). */
@@ -113,10 +133,14 @@ export class CandidateForm implements OnInit {
     birthDate: new FormControl<string | null>(null, {
       validators: [Validators.required, minimumAdultAgeValidator],
     }),
-    recruitmentSource: new FormControl<number | null>(null, {
+    recruitmentSource: new FormControl<number>(0, {
+      nonNullable: true,
+    }),
+    recruitmentSourceId: new FormControl<string | null>(null, {
       nonNullable: true,
       validators: [Validators.required],
     }),
+    curp: new FormControl<string | null>(null),
     currentAddress: new FormControl<string | null>(null),
     availability: new FormControl<string | null>(null),
     salaryExpectation: new FormControl<number | null>(null),
@@ -148,12 +172,20 @@ export class CandidateForm implements OnInit {
       .subscribe((found) => {
         this.duplicateCandidate.set(found && found.id !== this.id ? found : null);
       });
+
+    this.form.controls.email.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.duplicateBlockSave.set(false);
+        this.lastCheckedEmail = null;
+      });
   }
 
   private async loadSelectItems(): Promise<void> {
-    this.recruitmentSourceOptions.set(
-      await firstValueFrom(this.enumSelectS.fuenteReclutamiento()),
+    const options = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+      EndpointsReclutamiento.Candidates.recruitmentSources,
     );
+    this.recruitmentSourceOptions.set(options ?? []);
   }
 
   onLoadData() {
@@ -166,9 +198,11 @@ export class CandidateForm implements OnInit {
 
         this.form.patchValue({
           ...result,
-          recruitmentSource: result.recruitmentSource ?? null,
+          recruitmentSource: result.recruitmentSource ?? 0,
+          recruitmentSourceId: result.recruitmentSourceId ?? null,
         });
         this.currentCvUrl.set(result.cvFileUrl ?? "");
+        this.currentPhotoUrl.set(result.photoUrl ?? "");
         this.setWorkExperiences(result.workExperiences ?? []);
       });
   }
@@ -218,6 +252,112 @@ export class CandidateForm implements OnInit {
     );
   }
 
+  onEmailFocusOut(): void {
+    const email = this.form.controls.email.value?.trim() ?? "";
+    if (!email) {
+      this.duplicateBlockSave.set(false);
+      return;
+    }
+    if (email === this.lastCheckedEmail) return;
+    void this.checkDuplicate();
+  }
+
+  onCurpFocusOut(): void {
+    const email = this.form.controls.email.value?.trim() ?? "";
+    if (!email) return;
+    void this.checkDuplicate();
+  }
+
+  /** Verifica duplicados (empleado/candidato/usuario) contra el backend en POST /api/recruitment-candidates/check-duplicate. */
+  async checkDuplicate(): Promise<void> {
+    const email = this.form.controls.email.value?.trim();
+    if (!email) {
+      this.duplicateBlockSave.set(false);
+      return;
+    }
+
+    const body = {
+      email,
+      curp: this.form.controls.curp.value?.trim() || undefined,
+    };
+
+    try {
+      const responseData = await firstValueFrom(
+        this.dataConnectorS.post<ApiResponseDto<CandidateDuplicateCheckResult>>(
+          EndpointsReclutamiento.Candidates.checkDuplicate,
+          body,
+        ),
+      );
+      this.handleDuplicateResult(responseData.body?.data ?? null);
+    } catch (error: unknown) {
+      const httpError = error as HttpErrorResponse;
+      const body = httpError?.error as
+        | ApiResponseDto<CandidateDuplicateCheckResult>
+        | undefined;
+      if (body?.data) {
+        this.handleDuplicateResult(body.data);
+      } else {
+        this.duplicateBlockSave.set(false);
+      }
+    } finally {
+      this.lastCheckedEmail = email;
+    }
+  }
+
+  private handleDuplicateResult(data: CandidateDuplicateCheckResult | null): void {
+    if (!data) {
+      this.duplicateBlockSave.set(false);
+      return;
+    }
+
+    switch (data.matchType) {
+      case DuplicateMatchType.User:
+        void this.offerUserImport(data);
+        break;
+      case DuplicateMatchType.Employee:
+      case DuplicateMatchType.Candidate:
+        this.duplicateBlockSave.set(true);
+        Swal.fire({
+          icon: "warning",
+          title: "Registro duplicado",
+          text: data.message,
+          confirmButtonText: "Entendido",
+        });
+        break;
+      default:
+        this.duplicateBlockSave.set(false);
+        break;
+    }
+  }
+
+  /** matchType 3 (User): ofrece autocompletar el formulario con los datos del usuario. */
+  private async offerUserImport(data: CandidateDuplicateCheckResult): Promise<void> {
+    const user = data.userData;
+    if (!user) {
+      this.duplicateBlockSave.set(false);
+      return;
+    }
+
+    const result = await Swal.fire({
+      icon: "question",
+      title: "Usuario encontrado",
+      text: "Hemos encontrado un usuario registrado con este correo. ¿Deseas autocompletar el formulario con sus datos?",
+      showCancelButton: true,
+      confirmButtonText: "Autocompletar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (result.isConfirmed) {
+      this.form.patchValue({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+      });
+      this.duplicateBlockSave.set(false);
+    }
+  }
+
   async onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
@@ -227,10 +367,18 @@ export class CandidateForm implements OnInit {
     formData.append("PhoneNumber", this.form.controls.phoneNumber.value ?? "");
     formData.append("Email", this.form.controls.email.value ?? "");
     formData.append("BirthDate", this.form.controls.birthDate.value ?? "");
-    formData.append(
-      "RecruitmentSource",
-      String(this.form.controls.recruitmentSource.value),
-    );
+
+    formData.append("RecruitmentSource", String(this.form.controls.recruitmentSource.value ?? 0));
+
+    const recruitmentSourceId = this.form.controls.recruitmentSourceId.value;
+    if (recruitmentSourceId) {
+      formData.append("RecruitmentSourceId", recruitmentSourceId);
+    }
+
+    const curp = this.form.controls.curp.value?.trim();
+    if (curp) {
+      formData.append("Curp", curp);
+    }
 
     formData.append(
       "CurrentAddress",
@@ -260,6 +408,14 @@ export class CandidateForm implements OnInit {
       formData.append("CvFile", this.selectedFile, this.selectedFile.name);
     }
 
+    if (this.selectedPhotoFile) {
+      formData.append(
+        "PhotoFile",
+        this.selectedPhotoFile,
+        this.selectedPhotoFile.name,
+      );
+    }
+
     this.submitting.set(true);
 
     const result = this.id
@@ -284,6 +440,12 @@ export class CandidateForm implements OnInit {
 
   onCvFile(file: File | null) {
     this.selectedFile = file;
+  }
+
+  onPhotoSelected(_fileName: string | null) {}
+
+  onPhotoFile(file: File | null) {
+    this.selectedPhotoFile = file;
   }
 
   addWorkExperience(value?: Partial<CandidateWorkExperienceAddOrEdit>) {

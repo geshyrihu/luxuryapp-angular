@@ -229,12 +229,12 @@ export class UpdateDataBase {
       });
   }
 
-  runMigrateUserActivitiesToLogsDb() {
+runMigrateUserActivitiesToLogsDb() {
     this.loading.set(true);
     this.result.set(null);
     this.customToastS.showInfo(
       "Migrando UserActivities a LuxuryAppLogs...",
-      "Copia los registros desde enero 2026 en adelante, en lotes de 200. Esto puede tardar.",
+      "Copia los registros con Timestamp desde enero 2026 en adelante hacia la BD aislada de logs, en lotes de 200. Esto puede tardar.",
     );
 
     this.apiResponseS
@@ -256,6 +256,35 @@ export class UpdateDataBase {
           "La migracion de UserActivities a LuxuryAppLogs fallo.",
         );
         this.loading.set(false);
+      });
+  }
+
+  runSeedRecruitmentSources() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Sembrando canales de reclutamiento...",
+      "Crea las fuentes de reclutamiento mas comunes si no existen.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.seedRecruitmentSources, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Fuentes de reclutamiento generadas.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La siembra de canales de reclutamiento fallo.",
+        );
+this.loading.set(false);
       });
   }
 }

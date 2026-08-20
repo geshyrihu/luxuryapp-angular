@@ -20,7 +20,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { firstValueFrom } from "rxjs";
-import { EmployeeInternalService } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-internal/employee-internal.service";
+import { EmployeeInternalService } from "src/app/shared/integration/recursos-humanos";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";

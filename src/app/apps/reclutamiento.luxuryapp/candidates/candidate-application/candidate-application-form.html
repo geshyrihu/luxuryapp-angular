@@ -263,12 +263,31 @@
           [readonly]="true"
         />
       </div>
-      <div class="col-12 md:col-6">
-        <web-custom-input-date-time-signal
-          [control]="form.controls['recruitmentInterviewAt']"
-          label="Fecha y hora de entrevista"
-          placeholder="Selecciona fecha y hora"
+      <div class="col-12 md:col-3">
+        <custom-input-date-signal
+          [control]="form.controls['scheduledDate']"
+          [minDate]="minDate"
+          label="Fecha de entrevista"
+          placeholder="Selecciona fecha"
         />
+      </div>
+      <div class="col-12 md:col-3">
+        <custom-input-time-signal
+          [control]="form.controls['scheduledTime']"
+          label="Hora de entrevista"
+          placeholder="Selecciona hora"
+        />
+        @if (form.controls['scheduledTime'].hasError('invalidTime')) {
+        <small class="block mt-2 text-red-500">
+          La hora debe ser al menos 1 hora mayor a la actual.
+        </small>
+        }
+      </div>
+      <div class="col-12">
+        <small class="block text-color-secondary mt-2">
+          ℹ️ La entrevista no puede ser en fecha pasada. Para hoy, debe haber un
+          margen minimo de 1 hora.
+        </small>
       </div>
       <div class="col-12 md:col-6">
         <custom-input-select-signal
@@ -281,9 +300,8 @@
         />
         @if (interviewersUnavailable()) {
         <small class="block mt-2 text-red-500">
-          No hay entrevistadores elegibles en la matrix para esta vacante. No
-          se puede agendar la entrevista hasta configurar una coincidencia
-          valida.
+          No hay entrevistadores elegibles en la matrix para esta vacante. No se
+          puede agendar la entrevista hasta configurar una coincidencia valida.
         </small>
         }
       </div>
@@ -298,17 +316,17 @@
     </div>
 
     @if (form.controls['candidateId'].value || isCreatingCandidate()) {
-      <div class="grid align-items-start mt-3">
-        <div class="col-12 md:col-8">
-          <app-candidate-cv-upload
-            [fileName]="form.controls['cvFileName'].value"
-            [fileUrl]="currentCvUrl()"
-            (fileSelected)="onCvSelected($event)"
-            (fileEmitted)="onCvFile($event)"
-            label="CV maestro del candidato (PDF)"
-          />
-        </div>
+    <div class="grid align-items-start mt-3">
+      <div class="col-12 md:col-8">
+        <app-candidate-cv-upload
+          [fileName]="form.controls['cvFileName'].value"
+          [fileUrl]="currentCvUrl()"
+          (fileSelected)="onCvSelected($event)"
+          (fileEmitted)="onCvFile($event)"
+          label="CV maestro del candidato (PDF)"
+        />
       </div>
+    </div>
     }
 
     <il-button-save

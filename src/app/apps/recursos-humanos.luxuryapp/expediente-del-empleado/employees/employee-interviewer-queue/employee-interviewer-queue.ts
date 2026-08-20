@@ -7,10 +7,10 @@ import {
 import {
   CandidateInterviewerQueueDto,
   CandidateInterviewerQueueItemDto,
-} from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
-import { CandidateStageBadge } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/candidate-stage-badge";
-import { MappedPTag } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/mapped-p-tag";
-import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/apps/reclutamiento.luxuryapp/candidates/recruitment-shared/agenda-status-tag-options";
+} from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
+import { CandidateStageBadge } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/candidate-stage-badge";
+import { MappedPTag } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
+import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EmployeeQueueCandidateDetailModal } from "./employee-queue-candidate-detail-modal";
 import { EmployeeInterviewerQueueService } from "./employee-interviewer-queue.service";

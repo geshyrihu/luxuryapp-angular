@@ -7,14 +7,12 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { lastValueFrom } from "rxjs";
 import Swal from "sweetalert2";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EndpointsRecursosHumanos } from "src/app/core/constants/endpoints/recursos-humanos.endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -25,8 +23,9 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 export interface CandidateHiringDocumentListItemDto {
   id: string;
   employeeId: string;
-  documentTypeId: number;
+  documentCatalogId: string;
   documentTypeName: string;
+  isMandatory: boolean;
   fileUrl: string;
   isSubmitted: boolean;
   submittedAt: string | null;
@@ -92,7 +91,6 @@ export class HiringDocumentValidation implements OnInit {
   readonly rejectingId = signal<string | null>(null);
 
   private readonly apiResponseS = inject(ApiResponseService);
-  private readonly enumSelectS = inject(EnumSelectService);
   private readonly toastS = inject(CustomToastService);
 
   readonly documentRows = computed(() =>
@@ -100,7 +98,7 @@ export class HiringDocumentValidation implements OnInit {
       .filter((option) => option.value && option.label && option.value !== "")
       .map((option) => {
         const doc = this.documents().find(
-          (item) => item.documentTypeId === option.value,
+          (item) => item.documentCatalogId === option.value,
         );
         return {
           option,
@@ -117,7 +115,7 @@ export class HiringDocumentValidation implements OnInit {
     this.isLoading.set(true);
     try {
       const [documentTypes, documents] = await Promise.all([
-        lastValueFrom(this.enumSelectS.recruitmentDocumentType()),
+        this.apiResponseS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.documentCatalog),
         this.apiResponseS.onGetList<CandidateHiringDocumentListItemDto[]>(
           EndpointsRecursosHumanos.EmployeeDocument.byEmployee(
             this.employeeId(),
@@ -125,7 +123,7 @@ export class HiringDocumentValidation implements OnInit {
         ),
       ]);
 
-      this.documentTypes.set(documentTypes);
+      this.documentTypes.set(documentTypes ?? []);
       this.documents.set(documents ?? []);
     } finally {
       this.isLoading.set(false);

@@ -212,6 +212,7 @@ export const ROUTES = {
     CATEGORIA_PRODUCTO: ["/settings", "product-category"],
     CLASIFICACION_MAQUINARIA: ["/settings", "machinery-classification"],
     UNIDADES_MEDIDA: ["/settings", "units-of-measurement"],
+    FUENTES_RECLUTAMIENTO: ["/settings", "recruitment-sources"],
     AUDITORIA_ENTRADAS: ["/settings", "audit-entries"],
     HISTORIAL_ACTIVIDAD: ["/settings", "user-activity-history"],
     TIPOS_INCIDENCIA: ["/settings", "incident-types"],

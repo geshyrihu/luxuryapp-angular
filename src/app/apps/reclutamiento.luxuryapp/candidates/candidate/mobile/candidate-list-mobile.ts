@@ -12,6 +12,7 @@ import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-p
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CandidateStatus } from "src/app/core/enums/candidate-status";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -33,6 +34,7 @@ import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
     MobileButtonLabelViewPdf,
     MobileListItem,
     MappedPTag,
+    AppIcon,
   ],
 })
 export class CandidateListMobile {

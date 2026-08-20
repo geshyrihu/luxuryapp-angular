@@ -1,8 +1,9 @@
 export interface CandidateHiringDocumentDto {
   id: string;
   employeeId: string;
-  documentTypeId: number;
+  documentCatalogId: string;
   documentTypeName: string;
+  isMandatory: boolean;
   fileName: string;
   fileUrl: string;
   isSubmitted: boolean;

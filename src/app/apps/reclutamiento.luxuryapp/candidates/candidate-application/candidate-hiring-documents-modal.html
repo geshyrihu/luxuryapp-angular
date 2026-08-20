@@ -20,7 +20,12 @@
         <section class="document-card">
           <div class="document-card__header">
             <div>
-              <p class="m-0 font-semibold">{{ row.option.label }}</p>
+              <p class="m-0 font-semibold">
+                {{ row.option.label }}
+                @if (row.option.isMandatory) {
+                  <span class="text-red-500"> *</span>
+                }
+              </p>
               <div class="document-meta pt-2">
                 @if (row.document?.submittedAt) {
                   <span>

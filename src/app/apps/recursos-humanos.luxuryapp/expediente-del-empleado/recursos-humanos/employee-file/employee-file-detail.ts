@@ -2,6 +2,7 @@ import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   model,
   OnInit,
@@ -13,6 +14,7 @@ import { TabItem } from "@ui/base/tabs.base";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
@@ -33,6 +35,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { EmployeeOnboardingChecklist } from "./employee-onboarding-checklist/employee-onboarding-checklist";
 
 @Component({
   selector: "app-employee-file-detail",
@@ -48,10 +51,12 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     CurrencyPipe,
     TableModule,
     AppIcon,
+    EmployeeOnboardingChecklist,
   ],
 })
 export class EmployeeFileDetail implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  customToastS = inject(CustomToastService);
   route = inject(ActivatedRoute);
   router = inject(Router);
 
@@ -68,6 +73,7 @@ export class EmployeeFileDetail implements OnInit {
     { id: "7", label: "Incidencias", icon: "material-symbols-light:warning" },
     { id: "8", label: "Evaluaciones", icon: "material-symbols-light:monitoring" },
     { id: "9", label: "Solicitudes", icon: "material-symbols-light:send" },
+    { id: "10", label: "Checklist", icon: "material-symbols-light:fact-check" },
   ];
   activeTab = model<string>("0");
 
@@ -150,13 +156,7 @@ export class EmployeeFileDetail implements OnInit {
           });
         break;
       case 4:
-        this.apiResponseS
-          .onGetList<EmployeeFileContractDTO[]>(
-            Endpoints.HR.EmployeeFile.contracts(id),
-          )
-          .then((r) => {
-            if (r) this.contracts.set(r);
-          });
+        this.loadContracts();
         break;
       case 5:
         this.apiResponseS
@@ -210,6 +210,48 @@ export class EmployeeFileDetail implements OnInit {
     if (url) window.open(url, "_blank");
   }
 
+  onDownloadContract(url: string | undefined): void {
+    if (url) window.open(url, "_blank");
+  }
+
+  private loadContracts(): void {
+    this.apiResponseS
+      .onGetList<EmployeeFileContractDTO[]>(
+        Endpoints.HR.EmployeeFile.contracts(this.employeeId()),
+      )
+      .then((r) => {
+        if (r) this.contracts.set(r);
+      });
+  }
+
+  async onUploadSigned(event: Event, contract: EmployeeFileContractDTO): Promise<void> {
+    const target = event.target as HTMLInputElement;
+    const file = target?.files?.[0];
+    if (!file) return;
+
+    if (!file.name.toLowerCase().endsWith(".pdf") && file.type !== "application/pdf") {
+      this.customToastS.showError("Solo se permiten archivos PDF");
+      target.value = "";
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const result = await this.apiResponseS.onPostFile<EmployeeFileContractDTO>(
+        Endpoints.HR.WorkContract.uploadSigned(contract.id),
+        formData,
+      );
+
+      if (result) {
+        this.loadContracts();
+      }
+    } finally {
+      target.value = "";
+    }
+  }
+
   goBack(): void {
     this.router.navigate(ROUTES.RECURSOS_HUMANOS.EXPEDIENTES);
   }
@@ -232,7 +274,32 @@ export class EmployeeFileDetail implements OnInit {
       Cancelada: "bg-slate-100 text-slate-600",
       Activa: "bg-green-100 text-green-700",
       Completada: "bg-sky-100 text-sky-700",
+      Activo: "bg-green-100 text-green-700",
+      PendienteFirma: "bg-red-100 text-red-700",
+      Firmado: "bg-green-100 text-green-700",
+      Expirado: "bg-slate-100 text-slate-600",
+      Terminado: "bg-slate-100 text-slate-600",
     };
     return map[status] ?? "bg-slate-100 text-slate-700";
+  }
+
+  activeContract = computed<EmployeeFileContractDTO | null>(
+    () =>
+      this.contracts().find(
+        (c) =>
+          c.contractStatus === "Activo" ||
+          c.contractStatus === "Firmado" ||
+          c.contractStatus === "PendienteFirma",
+      ) ?? null,
+  );
+
+  getFirmaSeverity(status: string): string {
+    if (status === "PendienteFirma") return "danger";
+    if (status === "Firmado") return "success";
+    return "info";
+  }
+
+  getFirmaLabel(status: string): string {
+    return status === "PendienteFirma" ? "Pendiente de Firma" : status;
   }
 }

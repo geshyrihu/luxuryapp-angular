@@ -8,23 +8,27 @@ import {
 } from "@angular/core";
 import { addIcons } from "ionicons";
 import { personOutline } from "ionicons/icons";
-import Swal from "sweetalert2";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { CandidateStatus } from "src/app/core/enums/candidate-status";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { CandidateStatus } from "src/app/core/enums/candidate-status";
 import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { CandidateForm } from "./candidate-form";
-import { CandidateDetail } from "./candidate-detail";
-import { CandidateInterviewDetailModal } from "./candidate-interview-detail-modal";
+import Swal from "sweetalert2";
 import { CandidateApplicationForm } from "../candidate-application/candidate-application-form";
+import { CandidateDetail } from "./candidate-detail";
+import { CandidateForm } from "./candidate-form";
+import { CandidateInterviewDetailModal } from "./candidate-interview-detail-modal";
 import { CandidateListDesktop } from "./desktop/candidate-list-desktop";
+import {
+  CandidateDeleteImpact,
+  CandidateDetail as CandidateDetailDto,
+  CandidateListItem,
+} from "./interfaces/candidate.dto";
 import { CandidateListMobile } from "./mobile/candidate-list-mobile";
-import { CandidateDetail as CandidateDetailDto, CandidateDeleteImpact, CandidateListItem } from "./interfaces/candidate.dto";
 
 @Component({
   selector: "app-candidate-list",
@@ -125,7 +129,7 @@ export class CandidateList implements OnInit {
   async onModalForm(data: { id: string; title: string }) {
     const result = await this.dialogHandlerS.openDialog<
       CandidateDetailDto | boolean
-    >(CandidateForm, data, data.title, this.dialogHandlerS.sizeLg);
+    >(CandidateForm, data, data.title, this.dialogHandlerS.sizeFull);
 
     if (!result) return;
 

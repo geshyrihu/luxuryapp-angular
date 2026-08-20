@@ -54,6 +54,12 @@ export const EndpointsRecursosHumanos = {
       incidents: (id: string) => `hr/employee-files/${id}/incidents`,
       evaluations: (id: string) => `hr/employee-files/${id}/evaluations`,
       requests: (id: string) => `hr/employee-files/${id}/requests`,
+      onboardingChecklist: (employeeId: string) =>
+        `hr/employee-files/${employeeId}/onboarding-checklist`,
+      initializeOnboardingChecklist: (employeeId: string) =>
+        `hr/employee-files/${employeeId}/onboarding-checklist/initialize`,
+      toggleOnboardingChecklistTask: (taskId: string) =>
+        `hr/employee-files/onboarding-checklist/${taskId}/toggle`,
     },
     Incident: {
       getAll: (customerId: string) => `hr/incidents?customer-id=${customerId}`,
@@ -246,6 +252,7 @@ export const EndpointsRecursosHumanos = {
       update: (id: string) => `hr/work-contracts/${id}`,
       terminate: (id: string) => `hr/work-contracts/${id}/terminate`,
       delete: (id: string) => `hr/work-contracts/${id}`,
+      uploadSigned: (id: string) => `hr/work-contracts/${id}/upload-signed`,
       expiring: (days: number) => `hr/work-contracts/expiring/${days}`,
     },
     VacationBalanceAdmin: {
