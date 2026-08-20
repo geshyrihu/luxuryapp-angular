@@ -287,4 +287,33 @@ runMigrateUserActivitiesToLogsDb() {
 this.loading.set(false);
       });
   }
+
+  runSeedDocumentCatalogs() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Sembrando catalogo de documentos...",
+      "Crea los documentos obligatorios del expediente si no existen.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.seedDocuments, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Catalogo de documentos sembrado.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La siembra del catalogo de documentos fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
 }

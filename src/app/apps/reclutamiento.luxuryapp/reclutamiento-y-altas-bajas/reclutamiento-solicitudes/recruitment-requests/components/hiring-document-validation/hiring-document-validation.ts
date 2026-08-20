@@ -19,6 +19,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 export interface CandidateHiringDocumentListItemDto {
   id: string;
@@ -46,6 +47,7 @@ export interface CandidateHiringDocumentListItemDto {
     WebButtonLabelViewPdf,
     WebButtonLabelConfirm,
     WebButtonIcon,
+    WebButtonLabel,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./hiring-document-validation.html",
@@ -89,6 +91,8 @@ export class HiringDocumentValidation implements OnInit {
   readonly isLoading = signal(true);
   readonly validatingId = signal<string | null>(null);
   readonly rejectingId = signal<string | null>(null);
+  readonly uploadingId = signal<string | null>(null);
+  readonly deletingId = signal<string | null>(null);
 
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly toastS = inject(CustomToastService);
@@ -127,6 +131,75 @@ export class HiringDocumentValidation implements OnInit {
       this.documents.set(documents ?? []);
     } finally {
       this.isLoading.set(false);
+    }
+  }
+
+  async onUpload(
+    row: { option: SelectItemDto; document: CandidateHiringDocumentListItemDto | null },
+    event: Event,
+  ) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    if (!file || this.uploadingId()) {
+      inputElement.value = "";
+      return;
+    }
+
+    const catalogId = String(row.option.value);
+    this.uploadingId.set(catalogId);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("documentCatalogId", catalogId);
+
+      const updated =
+        await this.apiResponseS.onPostFile<CandidateHiringDocumentListItemDto>(
+          EndpointsRecursosHumanos.EmployeeDocument.upload(this.employeeId()),
+          formData,
+        );
+      if (updated) {
+        this.documents.update((docs) => {
+          const exists = docs.some((item) => item.id === updated.id);
+          return exists
+            ? docs.map((item) => (item.id === updated.id ? updated : item))
+            : [...docs, updated];
+        });
+      }
+    } finally {
+      this.uploadingId.set(null);
+      inputElement.value = "";
+    }
+  }
+
+  async onDeleteFile(document: CandidateHiringDocumentListItemDto | null) {
+    if (!document || this.deletingId() || document.isValidated) return;
+
+    const { isConfirmed } = await Swal.fire({
+      title: "Eliminar archivo",
+      text: `¿Seguro que deseas eliminar el archivo de "${document.documentTypeName}"? El documento quedará pendiente de carga.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#d9534f",
+      reverseButtons: true,
+      customClass: { container: "my-swal-container" },
+    });
+    if (!isConfirmed) return;
+
+    this.deletingId.set(document.id);
+    try {
+      const deleted = await this.apiResponseS.onDelete(
+        EndpointsRecursosHumanos.EmployeeDocument.removeFile(
+          this.employeeId(),
+          document.id,
+        ),
+      );
+      if (deleted) {
+        await this.loadDocuments();
+      }
+    } finally {
+      this.deletingId.set(null);
     }
   }
 

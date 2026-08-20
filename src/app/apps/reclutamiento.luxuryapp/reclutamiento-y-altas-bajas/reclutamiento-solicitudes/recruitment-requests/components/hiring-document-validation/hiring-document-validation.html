@@ -29,7 +29,23 @@
               />
             }
             @if (!row.document?.isSubmitted || !row.document?.fileUrl) {
-              <p class="text-500 text-sm italic m-0">Sin archivo cargado</p>
+              <div class="flex flex-column gap-2">
+                <p class="text-500 text-sm italic m-0">Sin archivo cargado</p>
+                <input
+                  type="file"
+                  #fileInput
+                  hidden
+                  accept=".pdf,.jpg,.png"
+                  (change)="onUpload(row, $event)"
+                />
+                <il-button
+                  label="Subir archivo"
+                  iconClass="material-symbols-light:upload-file"
+                  [disabled]="uploadingId() !== null"
+                  [loading]="uploadingId() === row.option.value"
+                  (clicked)="fileInput.click()"
+                />
+              </div>
             } @else {
               <div class="document-card">
                 <div class="document-card__row">
@@ -38,6 +54,15 @@
                       [url]="row.document?.fileUrl"
                       [fileName]="row.option.label"
                     />
+                    @if (!row.document?.isValidated) {
+                      <iw-button
+                        iconClass="material-symbols-light:delete"
+                        severity="danger"
+                        [disabled]="deletingId() !== null || validatingId() !== null || rejectingId() !== null"
+                        [loading]="deletingId() === row.document?.id"
+                        (clicked)="onDeleteFile(row.document)"
+                      />
+                    }
                   </div>
                   <lx-tag
                     [value]="row.document?.isValidated ? 'Validado' : 'Pendiente'"

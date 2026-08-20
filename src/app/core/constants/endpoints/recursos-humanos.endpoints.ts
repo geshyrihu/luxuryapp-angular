@@ -328,6 +328,8 @@ export const EndpointsRecursosHumanos = {
       `employee-documents/${documentId}/validate`,
     reject: (documentId: string | number) =>
       `employee-documents/${documentId}/reject`,
+    removeFile: (employeeId: string | number, documentId: string | number) =>
+      `employee-documents/${employeeId}/documents/${documentId}/file`,
     notifyRecruitment: (employeeId: string | number) =>
       `employee-documents/notify-recruitment/${employeeId}`,
   },

@@ -101,6 +101,8 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/seed-native-collection-test-data",
     seedRecruitmentSources:
       "admin/system-maintenance/seed-recruitment-sources",
+    seedDocuments:
+      "admin/system-maintenance/seed-documents",
     migrateUserActivities:
       "admin/system-maintenance/migrate-user-activities-to-logs-db",
   },
