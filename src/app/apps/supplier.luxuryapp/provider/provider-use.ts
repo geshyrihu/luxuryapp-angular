@@ -16,13 +16,13 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 @Component({
   selector: "app-provider-use",
   templateUrl: "./provider-use.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
 })
 export class ProviderUse implements OnInit {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
-  data: any[] = [];
+  data = signal<any[]>([]);
 
   globalFilterFields: string[] = [];
   loading = signal(true);
@@ -35,12 +35,12 @@ export class ProviderUse implements OnInit {
     this.onLoadData(this.providerId);
   }
 
-  onLoadData(providerId: any) {
+  onLoadData(providerId: string) {
     const urlApi = Endpoints.Providers.coincidences(providerId);
     return this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      this.data = result;
+      this.data.set(result);
 
-      this.globalFilterFields = globalFilterFields(this.data);
+      this.globalFilterFields = globalFilterFields(this.data());
     });
   }
 }

@@ -24,6 +24,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -82,6 +83,7 @@ interface IProveedorForm {
     InputAutocomplete,
     CustomInputFile,
     InputImg,
+    LxFieldset,
     WebButtonLabelSave,
   ],
 })
@@ -154,11 +156,6 @@ export class ProveedorForm implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.id = this.config.data.id;
-
-    if (!this.id) {
-      this.form.controls.constanciaFiscal.setValidators(Validators.required);
-      this.form.controls.constanciaFiscal.updateValueAndValidity();
-    }
 
     // Subscribe to RFC changes
     this.form.controls.rfc.valueChanges

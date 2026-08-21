@@ -18,7 +18,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 @Component({
   selector: "app-provider-card",
   templateUrl: "./provider-card.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [LxTag, LxCard, LxFieldset, LxDivider],
 })
 export class TarjetaProveedor implements OnInit {

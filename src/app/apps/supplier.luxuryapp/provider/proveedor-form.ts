@@ -70,7 +70,7 @@ interface IProveedorForm {
 @Component({
   selector: "app-proveedor-form",
   templateUrl: "./proveedor-form.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputSelectSignal,

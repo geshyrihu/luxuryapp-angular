@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
   OnInit,
   signal,
@@ -11,8 +10,6 @@ import {
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LxRating } from "@ui/adaptive/rating/rating";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { addIcons } from "ionicons";
-import { storefrontOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -56,7 +53,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-provider-list",
   templateUrl: "./provider-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     WebButtonIconEdit,
     WebButtonIconItem,
@@ -164,13 +161,6 @@ export class ListProvider implements OnInit {
     this.page = 1;
     this.onLoadData(this.page, this.rows, this.searchTerm);
   }
-  constructor() {
-    addIcons({ storefrontOutline });
-    effect(() => {
-      this.onLoadData();
-    });
-  }
-
   // Carga de datos con paginación y filtros
   onLoadData(
     page: number = 1,

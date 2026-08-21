@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
   OnInit,
   signal,
@@ -14,14 +13,11 @@ import { LxRating } from "@ui/adaptive/rating/rating";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { SegmentedControl } from "@ui/shared/segmented-control/segmented-control";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { addIcons } from "ionicons";
-import { storefrontOutline } from "ionicons/icons";
+import { AppPaginator } from "@ui/web/paginator/paginator";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -53,29 +49,28 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-provider-list",
   templateUrl: "./provider-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconEdit,
-    WebButtonIconItem,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    TableModule,
-    CustomInputSelectSignal,
+    WebButtonLabel,
     CustomSearchInput,
-    LxTooltipDirective,
+    SegmentedControl,
     LxRating,
     LxAvatar,
-    WebButtonLabel,
     DataViewMobile,
     LxTag,
     MobileListItem,
     AppIcon,
+    AppPaginator,
+    MobileActionMenu,
+    MobileButtonLabelEdit,
+    MobileButtonLabelDelete,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LxTooltipDirective,
+    WebButtonIconEdit,
+    WebButtonIconItem,
+    WebButtonIconDelete,
   ],
 })
 export class ListProvider implements OnInit {
@@ -156,13 +151,6 @@ export class ListProvider implements OnInit {
     this.page = 1;
     this.onLoadData(this.page, this.rows, this.searchTerm);
   }
-  constructor() {
-    addIcons({ storefrontOutline });
-    effect(() => {
-      this.onLoadData();
-    });
-  }
-
   // Carga de datos con paginación y filtros
   onLoadData(
     page: number = 1,
@@ -191,11 +179,11 @@ export class ListProvider implements OnInit {
       });
   }
 
-  // Evento de paginación de PrimeNG
-  loadDataLazy(event: any) {
-    this.page = Math.floor(event.first / event.rows) + 1;
+  // Evento de paginación (app-paginator: page 0-based)
+  onPageChange(event: { page: number; rows: number }) {
+    this.page = event.page + 1;
     this.rows = event.rows;
-    this.first = event.first;
+    this.first = event.page * event.rows;
     this.onLoadData(this.page, this.rows, this.searchTerm);
   }
 
@@ -211,6 +199,12 @@ export class ListProvider implements OnInit {
     this.first = 0;
     this.page = 1;
     this.onLoadData(this.page, this.rows, this.searchTerm);
+  }
+
+  // Cambio de tipo de servicio vía segmented control
+  onServiceTypeChange(value: string | null) {
+    this.selectedServiceTypeControl.setValue(value);
+    this.onFilterChange();
   }
 
   // Elimina un proveedor
