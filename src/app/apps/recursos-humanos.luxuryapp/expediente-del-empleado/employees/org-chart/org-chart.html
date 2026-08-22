@@ -1,9 +1,9 @@
 <div class="org-chart-page">
   <div class="org-chart-page__header">
     <div>
-      <h2 class="org-chart-page__title">Organigrama de Puestos</h2>
+      <h2 class="org-chart-page__title">Organigrama de Roles</h2>
       <p class="org-chart-page__subtitle">
-        {{ totalNodes() }} puestos y {{ vacantCount() }} vacantes
+        {{ totalNodes() }} roles y {{ vacantCount() }} vacantes
       </p>
     </div>
 
@@ -22,7 +22,7 @@
         </div>
         } @else if (graphModel().nodes.length === 0) {
         <div class="org-chart-state org-chart-state--empty">
-          <p>No hay puestos definidos.</p>
+          <p>No hay roles definidos.</p>
         </div>
         } @else {
         <ng-container [ngTemplateOutlet]="graphCanvas"></ng-container>
@@ -41,14 +41,14 @@
         } @else {
         <div class="org-chart-toolbar">
           <il-button
-            label="Limpiar seleccion"
+            label="Limpiar selección"
             variant="text"
             (clicked)="clearSelection()"
           />
 
           @if (selectedOrigin()) {
           <il-button
-            label="Mover a raiz"
+            label="Mover a raíz"
             variant="text"
             (clicked)="moveSelectedToRoot()"
           />
@@ -69,37 +69,36 @@
           } @if (selectedOrigin()) {
           <lx-tag
             severity="warn"
-            [value]="'Origen: ' + (selectedOrigin()?.folio ?? '')"
+            [value]="'Origen: ' + (selectedOrigin()?.roleDisplayName ?? '')"
           />
           }
         </div>
 
         <p class="org-chart-help">
-          La edicion ahora se hace en una tabla jerarquica. Arrastra una fila
-          sobre otra para cambiar el jefe inmediato y usa el orden ascendente de
-          la tabla para definir el acomodo horizontal del organigrama.
+          La edición ahora se hace sobre roles. Arrastra una fila sobre otra
+          para cambiar el rol superior y usa el orden ascendente de la tabla
+          para definir el acomodo horizontal del organigrama.
         </p>
 
         <p class="org-chart-help org-chart-help--secondary">
-          Regla de visualizacion: dentro de cada mismo jefe, la posicion 1, 2,
-          3... de esta tabla sera el orden de izquierda a derecha al mostrar el
-          organigrama.
+          Cada rol agrupa sus puestos actuales como miembros. Los miembros no
+          se arrastran individualmente; sólo se reorganiza la relación rol a rol.
         </p>
 
         @if (editMode() && draggingNode()) {
         <div class="org-chart-drag-guide" role="status" aria-live="polite">
-          <span class="org-chart-drag-guide__badge">Jerarquia</span>
+          <span class="org-chart-drag-guide__badge">Jerarquía</span>
           <span>{{ getDragGuideMessage() }}</span>
         </div>
         } @if (selectedOriginContext(); as context) {
         <div class="org-chart-selection-panel">
           <div class="org-chart-selection-panel__title">
-            Contexto del puesto seleccionado
+            Contexto del rol seleccionado
           </div>
           <div class="org-chart-selection-panel__body">
-            <span> Padre: {{ context.parent?.folio ?? "Nivel raiz" }} </span>
+            <span> Superior: {{ context.parent?.roleDisplayName ?? "Nivel raíz" }} </span>
             <span>
-              Posicion: {{ context.index + 1 }} de {{ context.siblings.length }}
+              Posición: {{ context.index + 1 }} de {{ context.siblings.length }}
             </span>
           </div>
         </div>
@@ -113,7 +112,7 @@
           (dragleave)="onRootDragLeave()"
           (drop)="onRootDrop($event)"
         >
-          Suelta aqui para mover el puesto al nivel raiz
+          Suelta aquí para mover el rol al nivel raíz
         </div>
         }
 
@@ -122,21 +121,20 @@
             <thead>
               <tr>
                 <th>Orden</th>
-                <th>Puesto</th>
-                <th>Empleado</th>
-                <th>Jefe inmediato</th>
+                <th>Rol</th>
+                <th>Miembros</th>
+                <th>Rol superior</th>
                 <th>Departamento</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              @for (row of editRows(); track row.node.workPositionId) {
+              @for (row of editRows(); track row.node.roleId) {
               <tr
                 class="org-editor-row"
-                [class.org-editor-row--group]="row.node.isGroup"
-                [class.org-editor-row--selected]="selectedOrigin()?.workPositionId === row.node.workPositionId"
-                [class.org-editor-row--drop-hover]="dragHoverNodeId() === row.node.workPositionId"
-                [attr.draggable]="!row.node.isGroup"
+                [class.org-editor-row--selected]="selectedOrigin()?.roleId === row.node.roleId"
+                [class.org-editor-row--drop-hover]="dragHoverNodeId() === row.node.roleId"
+                [attr.draggable]="true"
                 [attr.aria-label]="getNodeAriaLabel(row.node)"
                 (click)="onEditorRowClick(row.node)"
                 (dragstart)="onEditorRowDragStart(row.node, $event)"
@@ -153,30 +151,19 @@
                     class="org-editor-node"
                     [style.padding-left]="getEditorRowIndent(row.depth)"
                   >
-                    @if (!row.node.isGroup) {
                     <span
                       class="org-editor-node__drag-handle material-symbols-light:open-in-full"
                       aria-hidden="true"
                     ></span>
-                    }
                     <span class="org-editor-node__tree-guide"></span>
                     <div class="org-editor-node__content">
-                      @if (row.node.isGroup) {
                       <span class="org-editor-node__folio">
-                        <span class="org-graph-badge org-graph-badge--group">
-                          {{ row.node.groupMemberCount }} puestos
-                        </span>
-                        {{ row.node.isGroupExpanded ? "Clic para colapsar" : "Clic para expandir" }}
-                      </span>
-                      } @else {
-                      <span class="org-editor-node__folio">
-                        {{ row.node.folio }}
-                      </span>
-                      }
-                      <span class="org-editor-node__role">
                         {{ row.node.roleDisplayName }}
                       </span>
-                      @if (dragHoverNodeId() === row.node.workPositionId) {
+                      <span class="org-editor-node__role">
+                        {{ row.node.departmentName }}
+                      </span>
+                      @if (dragHoverNodeId() === row.node.roleId) {
                       <span class="org-editor-node__drop-hint">
                         {{ getEditorDropMessage(row) }}
                       </span>
@@ -184,20 +171,24 @@
                     </div>
                   </div>
                 </td>
-                <td>{{ row.node.isGroup ? "—" : (row.node.employeeName ?? "Vacante") }}</td>
+                <td>
+                  <div class="org-editor-members">
+                    <span class="org-graph-badge org-graph-badge--neutral">
+                      {{ getMemberCount(row.node) }} miembros
+                    </span>
+                    <span class="org-graph-badge org-graph-badge--warn">
+                      {{ getVacantMemberCount(row.node) }} vacantes
+                    </span>
+                    @if (getPrimaryMember(row.node); as member) {
+                    <span class="org-editor-members__preview">
+                      {{ member.employeeName ?? "Vacante" }} · {{ member.folio }}
+                    </span>
+                    }
+                  </div>
+                </td>
                 <td>{{ getParentLabel(row) }}</td>
                 <td>{{ row.node.departmentName }}</td>
                 <td>
-                  @if (row.node.isGroup) {
-                  <div class="org-editor-actions">
-                    <il-button
-                      [label]="row.node.isGroupExpanded ? 'Colapsar' : 'Expandir'"
-                      size="small"
-                      variant="text"
-                      (clicked)="toggleGroup(row.node.workPositionId); $event.stopPropagation()"
-                    />
-                  </div>
-                  } @else {
                   <div class="org-editor-actions">
                     <il-button
                       label="Subir"
@@ -214,14 +205,13 @@
                       (clicked)="reorderNode(row.node, 1); $event.stopPropagation()"
                     />
                     <il-button
-                      label="A raiz"
+                      label="A raíz"
                       size="small"
                       variant="text"
                       [disabled]="reassignLoading()"
                       (clicked)="moveNodeToRoot(row.node); $event.stopPropagation()"
                     />
                   </div>
-                  }
                 </td>
               </tr>
               }
@@ -286,13 +276,12 @@
               class="org-graph-card"
               [class.org-graph-card--root]="node.data.isVirtualRoot"
               [class.org-graph-card--vacant]="node.data.isVacant"
-              [class.org-graph-card--group]="node.data.orgNode.isGroup"
               [class.org-graph-card--interactive]="editMode()"
               [class.org-graph-card--dragging]="
-                draggingNode()?.workPositionId === node.data.orgNode.workPositionId
+                draggingNode()?.roleId === node.data.orgNode.roleId
               "
               [class.org-graph-card--drop-hover]="
-                dragHoverNodeId() === node.data.orgNode.workPositionId
+                dragHoverNodeId() === node.data.orgNode.roleId
               "
               [class.org-graph-card--drop-candidate]="
                 shouldShowReorderAffordances(node.data.orgNode)
@@ -313,11 +302,7 @@
               "
               [attr.tabindex]="node.data.isVirtualRoot ? -1 : 0"
               [attr.title]="getNodeAriaLabel(node.data.orgNode)"
-              [attr.draggable]="
-                editMode() && !node.data.isVirtualRoot && !node.data.orgNode.isGroup
-                  ? true
-                  : null
-              "
+              [attr.draggable]="editMode() && !node.data.isVirtualRoot ? true : null"
               (dragstart)="onCardDragStart(node.data.orgNode, $event)"
               (dragend)="onCardDragEnd()"
               (keydown)="onGraphNodeKeydown(node.data.orgNode, $event)"
@@ -341,65 +326,38 @@
               <div class="org-graph-card__body">
                 @if (shouldShowReorderAffordances(node.data.orgNode)) {
                 <div class="org-graph-card__center-hint">
-                  Centro = cambiar de jefe
+                  Centro = cambiar superior
                 </div>
                 }
 
-                @if (node.data.orgNode.isGroup) {
-                <div class="org-graph-card__avatar org-graph-card__avatar--group">
-                  <span>{{ node.data.orgNode.groupMemberCount }}</span>
-                </div>
-                } @else {
-                <div
-                  class="org-graph-card__avatar"
-                  [class.org-graph-card__avatar--photo]="
-                    !!node.data.orgNode.employeePhoto
-                  "
-                  [style.background-image]="
-                    node.data.orgNode.employeePhoto
-                      ? 'url(' + node.data.orgNode.employeePhoto + ')'
-                      : null
-                  "
-                >
-                  @if (!node.data.orgNode.employeePhoto) {
+                <div class="org-graph-card__avatar">
                   <span>{{ getNodeInitials(node.data.orgNode) }}</span>
-                  }
                 </div>
-                }
 
                 <div class="org-graph-card__content">
                   <div class="org-graph-card__headline">
-                    {{ node.data.secondaryLabel }}
-                  </div>
-                  <div class="org-graph-card__role">
                     {{ node.data.orgNode.roleDisplayName }}
                   </div>
+                  <div class="org-graph-card__role">
+                    {{ node.data.orgNode.departmentName }}
+                  </div>
                   <div class="org-graph-card__meta">
-                    @if (node.data.orgNode.isGroup) {
-                    {{ node.data.orgNode.isGroupExpanded ? "Clic para colapsar" : "Clic para expandir" }}
-                    } @else {
-                    {{ node.data.orgNode.departmentName }} · {{
-                    node.data.orgNode.folio }}
-                    }
+                    {{ node.data.secondaryLabel }}
                   </div>
                 </div>
 
                 <div class="org-graph-card__footer">
-                  @if (node.data.orgNode.isGroup) {
-                  <span class="org-graph-badge org-graph-badge--group">
-                    Grupo
-                  </span>
-                  } @else if (node.data.isVirtualRoot) {
+                  @if (node.data.isVirtualRoot) {
                   <span class="org-graph-badge org-graph-badge--neutral">
                     Nodo virtual
                   </span>
                   } @else if (node.data.isVacant) {
                   <span class="org-graph-badge org-graph-badge--warn">
-                    Vacante
+                    Sin ocupantes
                   </span>
                   } @else {
                   <span class="org-graph-badge org-graph-badge--ok">
-                    Asignado
+                    {{ getAssignedMemberCount(node.data.orgNode) }} asignados
                   </span>
                   } @if (editMode() && node.data.selectionState === "origin") {
                   <span class="org-graph-badge org-graph-badge--origin">
@@ -435,38 +393,63 @@
 <lx-sidebar
   [visible]="drawerVisible()" (visibleChange)="drawerVisible.set($event)"
   position="right"
-  header="Detalles del Puesto"
+  header="Miembros del rol"
 >
   @if (selectedNodeForDetails(); as node) {
   <div class="org-detail">
     <div class="org-detail__header">
-      @if (node.hasEmployee && node.employeePhoto) {
-      <lx-avatar [image]="node.employeePhoto" shape="circle" size="large" />
-      } @else {
       <lx-avatar
         icon="material-symbols-light:work"
         shape="circle"
         size="large"
         class="surface-300 text-600"
       />
-      }
 
       <div>
         <span class="org-detail__name">
-          {{ node.employeeName ?? "Vacante" }}
+          {{ node.roleDisplayName }}
         </span>
-        <p class="org-detail__role">{{ node.roleDisplayName }}</p>
+        <p class="org-detail__role">
+          {{ node.departmentName }} · {{ getRosterSummary(node) }}
+        </p>
       </div>
     </div>
 
     <div class="org-detail__meta">
-      <p><strong>Folio:</strong> {{ node.folio }}</p>
-      <p><strong>Departamento:</strong> {{ node.departmentName }}</p>
       <p><strong>Nivel:</strong> {{ node.hierarchyLevel }}</p>
-      @if (node.employeeEmail) {
-      <p><strong>Email:</strong> {{ node.employeeEmail }}</p>
-      } @if (node.employeePhone) {
-      <p><strong>Telefono:</strong> {{ node.employeePhone }}</p>
+      <p><strong>Orden:</strong> {{ node.sortOrder }}</p>
+    </div>
+
+    <div class="org-detail__members">
+      @for (member of node.members; track member.workPositionId) {
+      <div class="org-detail-member">
+        @if (member.hasEmployee && member.employeePhoto) {
+        <lx-avatar [image]="member.employeePhoto" shape="circle" size="normal" />
+        } @else {
+        <lx-avatar
+          [label]="getMemberInitials(member)"
+          shape="circle"
+          size="normal"
+          class="surface-300 text-600"
+        />
+        }
+
+        <div class="org-detail-member__body">
+          <span class="org-detail-member__name">
+            {{ member.employeeName ?? "Vacante" }}
+          </span>
+          <span class="org-detail-member__meta">
+            {{ member.folio }} · {{ member.state }}
+          </span>
+          @if (member.employeeEmail) {
+          <span class="org-detail-member__meta">{{ member.employeeEmail }}</span>
+          } @if (member.employeePhone) {
+          <span class="org-detail-member__meta">{{ member.employeePhone }}</span>
+          }
+        </div>
+      </div>
+      } @empty {
+      <p class="org-detail__empty">Este rol no tiene puestos asociados.</p>
       }
     </div>
   </div>

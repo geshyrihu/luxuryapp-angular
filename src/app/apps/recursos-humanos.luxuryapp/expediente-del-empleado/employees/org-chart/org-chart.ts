@@ -28,7 +28,6 @@ import {
   flattenOrgChartNodes,
   withVirtualRoot,
 } from "./helpers/org-chart-graph-adapter";
-import { groupSiblingsByRole } from "./helpers/org-chart-grouping";
 import {
   flattenOrgChartEditorRows,
   getOrgSiblingContext,
@@ -36,8 +35,9 @@ import {
 } from "./helpers/org-chart-tree-ops";
 import { validateReassignment } from "./helpers/org-chart-validation";
 import {
-  IWorkPositionOrgChartNode,
-  IWorkPositionReassignRequest,
+  IRoleOrgChartMember,
+  IRoleOrgChartNode,
+  IRoleOrgChartReassignRequest,
   IWorkPositionReassignResponse,
   ORG_CHART_VIRTUAL_ROOT_ID,
 } from "./interfaces/org-chart.interfaces";
@@ -66,7 +66,7 @@ export class OrgChart {
   readonly aspRoleS = inject(AspRoleService);
   readonly messageS = inject(MessageService);
 
-  readonly tree = signal<IWorkPositionOrgChartNode[]>([]);
+  readonly tree = signal<IRoleOrgChartNode[]>([]);
   readonly loading = signal(false);
   readonly reassignLoading = signal(false);
   readonly tabs = computed<TabItem[]>(() => [
@@ -75,47 +75,38 @@ export class OrgChart {
   ]);
   readonly activeTab = signal<"view" | "edit">("edit");
   readonly editMode = signal(true);
-  readonly selectedOrigin = signal<IWorkPositionOrgChartNode | null>(null);
-  readonly selectedDest = signal<IWorkPositionOrgChartNode | null>(null);
-  readonly draggingNode = signal<IWorkPositionOrgChartNode | null>(null);
+  readonly selectedOrigin = signal<IRoleOrgChartNode | null>(null);
+  readonly selectedDest = signal<IRoleOrgChartNode | null>(null);
+  readonly draggingNode = signal<IRoleOrgChartNode | null>(null);
   readonly dragHoverNodeId = signal<string | null>(null);
   readonly dragHoverEdge = signal<"before" | "after" | null>(null);
   readonly dragHoverRoot = signal(false);
   readonly drawerVisible = signal(false);
-  readonly selectedNodeForDetails = signal<IWorkPositionOrgChartNode | null>(
-    null,
-  );
+  readonly selectedNodeForDetails = signal<IRoleOrgChartNode | null>(null);
   readonly viewport = signal({ width: 1440, height: 900 });
-  readonly expandedGroupIds = signal<ReadonlySet<string>>(new Set());
 
   readonly canEdit = computed(() =>
     this.aspRoleS.hasRole(ApplicationRole.SuperUsuario),
   );
   readonly editTabDisabled = computed(() => !this.canEdit());
-  readonly displayTree = computed(() =>
-    groupSiblingsByRole(this.tree(), this.expandedGroupIds()),
-  );
+  readonly displayTree = computed(() => this.tree());
   readonly graphTree = computed(() => withVirtualRoot(this.displayTree()));
   readonly graphModel = computed(() =>
     buildOrgChartGraph(this.graphTree(), {
-      selectedOriginId: this.selectedOrigin()?.workPositionId ?? null,
-      selectedDestId:
-        this.selectedDest()?.workPositionId ?? this.dragHoverNodeId(),
+      selectedOriginId: this.selectedOrigin()?.roleId ?? null,
+      selectedDestId: this.selectedDest()?.roleId ?? this.dragHoverNodeId(),
     }),
   );
   readonly totalNodes = computed(
     () =>
       flattenOrgChartNodes(this.tree()).filter(
-        (node) => node.workPositionId !== ORG_CHART_VIRTUAL_ROOT_ID,
+        (node) => node.roleId !== ORG_CHART_VIRTUAL_ROOT_ID,
       ).length,
   );
-  readonly vacantCount = computed(
-    () =>
-      flattenOrgChartNodes(this.tree()).filter(
-        (node) =>
-          node.workPositionId !== ORG_CHART_VIRTUAL_ROOT_ID &&
-          !node.hasEmployee,
-      ).length,
+  readonly vacantCount = computed(() =>
+    flattenOrgChartNodes(this.tree())
+      .filter((node) => node.roleId !== ORG_CHART_VIRTUAL_ROOT_ID)
+      .reduce((total, node) => total + this.getVacantMemberCount(node), 0),
   );
   readonly isCompactViewport = computed(() => this.viewport().width < 960);
   readonly graphView = computed<[number, number]>(() => [
@@ -131,7 +122,7 @@ export class OrgChart {
       return null;
     }
 
-    return getOrgSiblingContext(this.tree(), origin.workPositionId);
+    return getOrgSiblingContext(this.tree(), origin.roleId);
   });
   readonly editRows = computed<IOrgChartEditorRow[]>(() =>
     flattenOrgChartEditorRows(this.displayTree()),
@@ -194,7 +185,7 @@ export class OrgChart {
 
     this.loading.set(true);
     try {
-      const data = await this.apiS.onGetList<IWorkPositionOrgChartNode[]>(
+      const data = await this.apiS.onGetList<IRoleOrgChartNode[]>(
         Endpoints.OrgChart.getTree(customerId),
       );
       this.tree.set(data ?? []);
@@ -203,24 +194,19 @@ export class OrgChart {
     }
   }
 
-  onGraphNodeClick(node: IWorkPositionOrgChartNode, event?: Event): void {
+  onGraphNodeClick(node: IRoleOrgChartNode, event?: Event): void {
     event?.stopPropagation();
-
-    if (node.isGroup) {
-      this.toggleGroup(node.workPositionId);
-      return;
-    }
 
     if (!this.editMode()) {
       this.onOpenDetails(node);
       return;
     }
 
-    if (node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID) {
+    if (node.roleId === ORG_CHART_VIRTUAL_ROOT_ID) {
       this.messageS.add({
         severity: "warn",
-        summary: "Accion no permitida",
-        detail: "El nodo raiz virtual no se puede mover.",
+        summary: "Acción no permitida",
+        detail: "El nodo raíz virtual no se puede mover.",
         life: 2500,
       });
       return;
@@ -234,18 +220,18 @@ export class OrgChart {
       this.messageS.add({
         severity: "info",
         summary: "Origen seleccionado",
-        detail: `${node.folio}: ahora selecciona el nuevo jefe.`,
+        detail: `${node.roleDisplayName}: ahora selecciona el nuevo rol superior.`,
         life: 2500,
       });
       return;
     }
 
-    if (origin.workPositionId === node.workPositionId) {
+    if (origin.roleId === node.roleId) {
       this.clearSelection();
       this.messageS.add({
         severity: "info",
-        summary: "Seleccion cancelada",
-        detail: "Se limpio la seleccion actual.",
+        summary: "Selección cancelada",
+        detail: "Se limpió la selección actual.",
         life: 2000,
       });
       return;
@@ -255,7 +241,7 @@ export class OrgChart {
     if (!validation.valid) {
       this.messageS.add({
         severity: "error",
-        summary: "Movimiento invalido",
+        summary: "Movimiento inválido",
         detail: validation.reason,
         life: 4000,
       });
@@ -264,17 +250,12 @@ export class OrgChart {
 
     this.selectedDest.set(node);
     const newParentId =
-      node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID
-        ? null
-        : node.workPositionId;
+      node.roleId === ORG_CHART_VIRTUAL_ROOT_ID ? null : node.roleId;
     const newSortOrder = node.children.length;
-    void this.executeReassign(origin.workPositionId, newParentId, newSortOrder);
+    void this.executeReassign(origin.roleId, newParentId, newSortOrder);
   }
 
-  onGraphNodeKeydown(
-    node: IWorkPositionOrgChartNode,
-    event: KeyboardEvent,
-  ): void {
+  onGraphNodeKeydown(node: IRoleOrgChartNode, event: KeyboardEvent): void {
     if (event.key !== "Enter" && event.key !== " ") {
       return;
     }
@@ -294,16 +275,12 @@ export class OrgChart {
 
     if (this.canEdit()) {
       this.editMode.set(true);
+      this.drawerVisible.set(false);
     }
   }
 
-  onEditorRowClick(node: IWorkPositionOrgChartNode): void {
-    if (node.isGroup) {
-      this.toggleGroup(node.workPositionId);
-      return;
-    }
-
-    if (this.selectedOrigin()?.workPositionId === node.workPositionId) {
+  onEditorRowClick(node: IRoleOrgChartNode): void {
+    if (this.selectedOrigin()?.roleId === node.roleId) {
       this.clearSelection();
       return;
     }
@@ -312,16 +289,13 @@ export class OrgChart {
     this.selectedDest.set(null);
   }
 
-  onEditorRowDragStart(
-    node: IWorkPositionOrgChartNode,
-    event: DragEvent,
-  ): void {
+  onEditorRowDragStart(node: IRoleOrgChartNode, event: DragEvent): void {
     this.onCardDragStart(node, event);
   }
 
   onEditorRowDragOver(row: IOrgChartEditorRow, event: DragEvent): void {
     const origin = this.draggingNode();
-    if (!origin || origin.workPositionId === row.node.workPositionId) {
+    if (!origin || origin.roleId === row.node.roleId) {
       return;
     }
 
@@ -337,12 +311,12 @@ export class OrgChart {
     }
 
     this.dragHoverRoot.set(false);
-    this.dragHoverNodeId.set(row.node.workPositionId);
+    this.dragHoverNodeId.set(row.node.roleId);
     this.dragHoverEdge.set(null);
   }
 
   onEditorRowDragLeave(row: IOrgChartEditorRow): void {
-    if (this.dragHoverNodeId() === row.node.workPositionId) {
+    if (this.dragHoverNodeId() === row.node.roleId) {
       this.dragHoverNodeId.set(null);
     }
   }
@@ -356,7 +330,7 @@ export class OrgChart {
     this.dragHoverNodeId.set(null);
     this.dragHoverEdge.set(null);
 
-    if (!origin || origin.workPositionId === row.node.workPositionId) {
+    if (!origin || origin.roleId === row.node.roleId) {
       return;
     }
 
@@ -364,7 +338,7 @@ export class OrgChart {
     if (!validation.valid) {
       this.messageS.add({
         severity: "error",
-        summary: "Movimiento invalido",
+        summary: "Movimiento inválido",
         detail: validation.reason,
         life: 4000,
       });
@@ -374,18 +348,14 @@ export class OrgChart {
     this.selectedOrigin.set(origin);
     this.selectedDest.set(row.node);
     void this.executeReassign(
-      origin.workPositionId,
-      row.node.workPositionId,
+      origin.roleId,
+      row.node.roleId,
       row.node.children.length,
     );
   }
 
-  onCardDragStart(node: IWorkPositionOrgChartNode, event: DragEvent): void {
-    if (
-      !this.editMode() ||
-      node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID ||
-      node.isGroup
-    ) {
+  onCardDragStart(node: IRoleOrgChartNode, event: DragEvent): void {
+    if (!this.editMode() || node.roleId === ORG_CHART_VIRTUAL_ROOT_ID) {
       event.preventDefault();
       return;
     }
@@ -397,7 +367,7 @@ export class OrgChart {
     this.dragHoverEdge.set(null);
     this.dragHoverRoot.set(false);
 
-    event.dataTransfer?.setData("text/plain", node.workPositionId);
+    event.dataTransfer?.setData("text/plain", node.roleId);
     if (event.dataTransfer) {
       event.dataTransfer.effectAllowed = "move";
     }
@@ -410,13 +380,13 @@ export class OrgChart {
     this.dragHoverRoot.set(false);
   }
 
-  onCardDragOver(node: IWorkPositionOrgChartNode, event: DragEvent): void {
+  onCardDragOver(node: IRoleOrgChartNode, event: DragEvent): void {
     if (!this.editMode()) {
       return;
     }
 
     const origin = this.draggingNode();
-    if (!origin || origin.workPositionId === node.workPositionId) {
+    if (!origin || origin.roleId === node.roleId) {
       return;
     }
 
@@ -431,18 +401,18 @@ export class OrgChart {
     if (event.dataTransfer) {
       event.dataTransfer.dropEffect = "move";
     }
-    this.dragHoverNodeId.set(node.workPositionId);
+    this.dragHoverNodeId.set(node.roleId);
     this.dragHoverEdge.set(null);
   }
 
-  onCardDragLeave(node: IWorkPositionOrgChartNode): void {
-    if (this.dragHoverNodeId() === node.workPositionId) {
+  onCardDragLeave(node: IRoleOrgChartNode): void {
+    if (this.dragHoverNodeId() === node.roleId) {
       this.dragHoverNodeId.set(null);
       this.dragHoverEdge.set(null);
     }
   }
 
-  onCardDrop(node: IWorkPositionOrgChartNode, event: DragEvent): void {
+  onCardDrop(node: IRoleOrgChartNode, event: DragEvent): void {
     event.preventDefault();
 
     if (!this.editMode()) {
@@ -455,7 +425,7 @@ export class OrgChart {
     this.draggingNode.set(null);
     this.dragHoverRoot.set(false);
 
-    if (!origin || origin.workPositionId === node.workPositionId) {
+    if (!origin || origin.roleId === node.roleId) {
       return;
     }
 
@@ -463,7 +433,7 @@ export class OrgChart {
     if (!validation.valid) {
       this.messageS.add({
         severity: "error",
-        summary: "Movimiento invalido",
+        summary: "Movimiento inválido",
         detail: validation.reason,
         life: 4000,
       });
@@ -473,24 +443,22 @@ export class OrgChart {
     this.selectedOrigin.set(origin);
     this.selectedDest.set(node);
     const newParentId =
-      node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID
-        ? null
-        : node.workPositionId;
+      node.roleId === ORG_CHART_VIRTUAL_ROOT_ID ? null : node.roleId;
     const newSortOrder = node.children.length;
-    void this.executeReassign(origin.workPositionId, newParentId, newSortOrder);
+    void this.executeReassign(origin.roleId, newParentId, newSortOrder);
   }
 
   onReorderZoneDragOver(
-    node: IWorkPositionOrgChartNode,
+    node: IRoleOrgChartNode,
     placement: "before" | "after",
     event: DragEvent,
   ): void {
-    if (!this.editMode() || node.isGroup) {
+    if (!this.editMode()) {
       return;
     }
 
     const origin = this.draggingNode();
-    if (!origin || origin.workPositionId === node.workPositionId) {
+    if (!origin || origin.roleId === node.roleId) {
       return;
     }
 
@@ -500,18 +468,18 @@ export class OrgChart {
     }
 
     this.dragHoverRoot.set(false);
-    this.dragHoverNodeId.set(node.workPositionId);
+    this.dragHoverNodeId.set(node.roleId);
     this.dragHoverEdge.set(placement);
   }
 
   onReorderZoneDrop(
-    node: IWorkPositionOrgChartNode,
+    node: IRoleOrgChartNode,
     placement: "before" | "after",
     event: DragEvent,
   ): void {
     event.preventDefault();
 
-    if (!this.editMode() || node.isGroup) {
+    if (!this.editMode()) {
       return;
     }
 
@@ -521,7 +489,7 @@ export class OrgChart {
     this.dragHoverNodeId.set(null);
     this.dragHoverEdge.set(null);
 
-    if (!origin || origin.workPositionId === node.workPositionId) {
+    if (!origin || origin.roleId === node.roleId) {
       return;
     }
 
@@ -571,27 +539,16 @@ export class OrgChart {
 
     this.selectedOrigin.set(origin);
     this.selectedDest.set(null);
-    void this.executeReassign(origin.workPositionId, null, this.tree().length);
+    void this.executeReassign(origin.roleId, null, this.tree().length);
   }
 
-  onOpenDetails(node: IWorkPositionOrgChartNode): void {
-    if (this.editMode() || node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID) {
+  onOpenDetails(node: IRoleOrgChartNode): void {
+    if (this.editMode() || node.roleId === ORG_CHART_VIRTUAL_ROOT_ID) {
       return;
     }
 
     this.selectedNodeForDetails.set(node);
     this.drawerVisible.set(true);
-  }
-
-  toggleGroup(groupId: string): void {
-    const next = new Set(this.expandedGroupIds());
-    if (next.has(groupId)) {
-      next.delete(groupId);
-    } else {
-      next.add(groupId);
-    }
-
-    this.expandedGroupIds.set(next);
   }
 
   clearSelection(): void {
@@ -621,18 +578,18 @@ export class OrgChart {
     this.reorderNode(origin, delta);
   }
 
-  moveNodeToRoot(node: IWorkPositionOrgChartNode): void {
+  moveNodeToRoot(node: IRoleOrgChartNode): void {
     this.selectedOrigin.set(node);
     this.selectedDest.set(null);
-    void this.executeReassign(node.workPositionId, null, this.tree().length);
+    void this.executeReassign(node.roleId, null, this.tree().length);
   }
 
-  reorderNode(node: IWorkPositionOrgChartNode, delta: -1 | 1): void {
+  reorderNode(node: IRoleOrgChartNode, delta: -1 | 1): void {
     const context = this.selectedOriginContext();
     const effectiveContext =
-      context?.node.workPositionId === node.workPositionId
+      context?.node.roleId === node.roleId
         ? context
-        : getOrgSiblingContext(this.tree(), node.workPositionId);
+        : getOrgSiblingContext(this.tree(), node.roleId);
 
     if (!effectiveContext) {
       return;
@@ -646,17 +603,17 @@ export class OrgChart {
     this.selectedOrigin.set(node);
     this.selectedDest.set(null);
 
-    const newParentId = effectiveContext.parent?.workPositionId ?? null;
-    void this.executeReassign(node.workPositionId, newParentId, nextIndex);
+    const newParentId = effectiveContext.parent?.roleId ?? null;
+    void this.executeReassign(node.roleId, newParentId, nextIndex);
   }
 
-  canMoveNodeUp(node: IWorkPositionOrgChartNode): boolean {
-    const context = getOrgSiblingContext(this.tree(), node.workPositionId);
+  canMoveNodeUp(node: IRoleOrgChartNode): boolean {
+    const context = getOrgSiblingContext(this.tree(), node.roleId);
     return !!context && context.index > 0;
   }
 
-  canMoveNodeDown(node: IWorkPositionOrgChartNode): boolean {
-    const context = getOrgSiblingContext(this.tree(), node.workPositionId);
+  canMoveNodeDown(node: IRoleOrgChartNode): boolean {
+    const context = getOrgSiblingContext(this.tree(), node.roleId);
     return !!context && context.index < context.siblings.length - 1;
   }
 
@@ -665,19 +622,35 @@ export class OrgChart {
   }
 
   getParentLabel(row: IOrgChartEditorRow): string {
-    return row.parent?.folio ?? "Nivel raiz";
+    return row.parent?.roleDisplayName ?? "Nivel raíz";
   }
 
   getEditorDropMessage(row: IOrgChartEditorRow): string {
-    return `Soltar aqui para que reporte a ${row.node.folio}`;
+    return `Soltar aquí para que reporte a ${row.node.roleDisplayName}`;
   }
 
-  getNodeInitials(node: IWorkPositionOrgChartNode): string {
-    if (node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID) {
-      return "LA";
-    }
+  getMemberCount(node: IRoleOrgChartNode): number {
+    return node.members.length;
+  }
 
-    const source = node.employeeName ?? node.roleDisplayName ?? node.folio;
+  getAssignedMemberCount(node: IRoleOrgChartNode): number {
+    return node.members.filter((member) => member.hasEmployee).length;
+  }
+
+  getVacantMemberCount(node: IRoleOrgChartNode): number {
+    return node.members.filter((member) => !member.hasEmployee).length;
+  }
+
+  getPrimaryMember(node: IRoleOrgChartNode): IRoleOrgChartMember | null {
+    return (
+      node.members.find((member) => member.hasEmployee) ??
+      node.members[0] ??
+      null
+    );
+  }
+
+  getMemberInitials(member: IRoleOrgChartMember | null): string {
+    const source = member?.employeeName ?? member?.folio ?? "Vacante";
     return source
       .split(" ")
       .filter(Boolean)
@@ -686,48 +659,61 @@ export class OrgChart {
       .join("");
   }
 
-  getNodeAriaLabel(node: IWorkPositionOrgChartNode): string {
-    const owner = node.employeeName ?? "Vacante";
+  getNodeInitials(node: IRoleOrgChartNode): string {
+    if (node.roleId === ORG_CHART_VIRTUAL_ROOT_ID) {
+      return "LA";
+    }
+
+    const source =
+      node.roleDisplayName || this.getPrimaryMember(node)?.folio || "Rol";
+    return source
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase() ?? "")
+      .join("");
+  }
+
+  getRosterSummary(node: IRoleOrgChartNode): string {
+    const memberCount = this.getMemberCount(node);
+    const vacantCount = this.getVacantMemberCount(node);
+    return `${memberCount} ${memberCount === 1 ? "miembro" : "miembros"} · ${vacantCount} vacantes`;
+  }
+
+  getNodeAriaLabel(node: IRoleOrgChartNode): string {
     const department = node.departmentName
       ? `, departamento ${node.departmentName}`
       : "";
-    const role = node.roleDisplayName ? `, puesto ${node.roleDisplayName}` : "";
     const modeHint = this.editMode()
       ? ". Presiona Enter o espacio para seleccionar o reasignar."
-      : ". Presiona Enter o espacio para ver detalles.";
+      : ". Presiona Enter o espacio para ver miembros.";
 
-    if (node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID) {
-      return "Nodo raiz virtual del organigrama.";
+    if (node.roleId === ORG_CHART_VIRTUAL_ROOT_ID) {
+      return "Nodo raíz virtual del organigrama.";
     }
 
-    if (node.isGroup) {
-      const state = node.isGroupExpanded ? "Expandido" : "Colapsado";
-      return `Grupo de ${node.groupMemberCount} puestos de ${node.roleDisplayName}${department}. ${state}. Presiona Enter o espacio para ${node.isGroupExpanded ? "colapsar" : "expandir"}.`;
-    }
-
-    return `${owner}${role}${department}${modeHint}`;
+    return `Rol ${node.roleDisplayName}${department}, ${this.getRosterSummary(node)}${modeHint}`;
   }
 
-  isDraggingAnotherNode(node: IWorkPositionOrgChartNode): boolean {
+  isDraggingAnotherNode(node: IRoleOrgChartNode): boolean {
     const dragging = this.draggingNode();
-    return !!dragging && dragging.workPositionId !== node.workPositionId;
+    return !!dragging && dragging.roleId !== node.roleId;
   }
 
-  shouldShowReorderAffordances(node: IWorkPositionOrgChartNode): boolean {
+  shouldShowReorderAffordances(node: IRoleOrgChartNode): boolean {
     return (
       this.editMode() &&
-      node.workPositionId !== ORG_CHART_VIRTUAL_ROOT_ID &&
-      !node.isGroup &&
+      node.roleId !== ORG_CHART_VIRTUAL_ROOT_ID &&
       this.isDraggingAnotherNode(node)
     );
   }
 
   isReorderHover(
-    node: IWorkPositionOrgChartNode,
+    node: IRoleOrgChartNode,
     placement: "before" | "after",
   ): boolean {
     return (
-      this.dragHoverNodeId() === node.workPositionId &&
+      this.dragHoverNodeId() === node.roleId &&
       this.dragHoverEdge() === placement
     );
   }
@@ -738,25 +724,30 @@ export class OrgChart {
       return "";
     }
 
-    return `Arrastrando ${dragging.folio}: suelta la fila sobre otro puesto para cambiar su jefe inmediato o en la zona raiz para convertirlo en puesto de nivel raiz.`;
+    return `Arrastrando ${dragging.roleDisplayName}: suelta la fila sobre otro rol para cambiar su superior o en la zona raíz para convertirlo en rol de nivel raíz.`;
   }
 
   private async executeReassign(
-    originWorkPositionId: string,
+    originRoleId: string,
     newParentId: string | null,
     newSortOrder: number,
   ): Promise<void> {
+    const customerId = this.customerIdS.customerId();
+    if (!customerId) {
+      return;
+    }
+
     this.reassignLoading.set(true);
 
     try {
-      const payload: IWorkPositionReassignRequest = {
-        workPositionId: originWorkPositionId,
-        newReportsToWorkPositionId: newParentId,
+      const payload: IRoleOrgChartReassignRequest = {
+        roleId: originRoleId,
+        newReportsToRoleId: newParentId,
         sortOrder: newSortOrder,
       };
 
       const res = await this.apiS.onPatch<IWorkPositionReassignResponse>(
-        Endpoints.OrgChart.reassign,
+        Endpoints.OrgChart.reassign(customerId),
         payload,
       );
 
@@ -764,7 +755,7 @@ export class OrgChart {
         this.messageS.add({
           severity: "success",
           summary: "Estructura actualizada",
-          detail: "La jerarquia del organigrama se actualizo correctamente.",
+          detail: "La jerarquía del organigrama se actualizó correctamente.",
         });
         this.clearSelection();
         await this.loadTree();
@@ -775,7 +766,7 @@ export class OrgChart {
         severity: "error",
         summary: "No se pudo actualizar la estructura",
         detail:
-          "La API rechazo el movimiento o no respondio correctamente. La seleccion actual se conserva para reintentar.",
+          "La API rechazó el movimiento o no respondió correctamente. La selección actual se conserva para reintentar.",
         life: 5000,
       });
     } finally {

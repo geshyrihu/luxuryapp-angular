@@ -1,0 +1,115 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Tablero de Cumplimiento Recurrente</h3>
+  </div>
+  <div class="card-body">
+    @if (totalGroupsWithoutTemplates() > 0) {
+      <lx-message
+        severity="warn"
+        class="block mb-3"
+        [text]="
+          totalGroupsWithoutTemplates() +
+          ' grupo(s) sin ninguna obligación recurrente capturada'
+        "
+      />
+    }
+
+    <p-table
+      #dt
+      [value]="groups()"
+      [rows]="10"
+      [paginator]="true"
+      [loading]="loading()"
+      size="small"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      [globalFilterFields]="['workGroupName']"
+      class="hidden md:block custom-table"
+    >
+      <ng-template #caption>
+        <div
+          class="flex flex-column md:flex-row md:align-items-center justify-content-end p-2 gap-2"
+        >
+          <primeng-custom-caption
+            [dt]="dt"
+            [showAdd]="false"
+            [noPadding]="true"
+            [noMargin]="true"
+          />
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>Grupo</th>
+          <th>Plantillas activas</th>
+          <th>Al corriente</th>
+          <th>Vencidas</th>
+          <th>Incumplimiento</th>
+          <th>Arrastre</th>
+          <th>Comprobante en críticas</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-group>
+        <tr>
+          <td>{{ group.workGroupName }}</td>
+          <td>
+            <lx-tag
+              [value]="activeTemplateLabel(group)"
+              [severity]="activeTemplateSeverity(group)"
+            />
+          </td>
+          <td>{{ group.onTimeCount }}</td>
+          <td>{{ group.overdueCount }}</td>
+          <td>{{ group.breachedCount }}</td>
+          <td>{{ group.carriedOverCount }}</td>
+          <td>{{ criticalAttachmentPercentage(group) }}</td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <primeng-custom-table-emptymessage [colspan]="7" />
+      </ng-template>
+    </p-table>
+
+    <app-data-view-mobile
+      [data]="groups()"
+      [loading]="loading()"
+      [showAdd]="false"
+      [dt]="dt"
+      [globalFilterFields]="['workGroupName']"
+      class="block md:hidden"
+    >
+      <ng-template #listItemTemplate let-group>
+        <ili-list-item>
+          <div
+            start
+            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
+          >
+            <app-icon
+              icon="material-symbols-light:monitoring"
+              class="text-xl text-primary"
+            />
+          </div>
+
+          <div class="flex align-items-start justify-content-between gap-2 mb-2">
+            <h5 class="m-0">{{ group.workGroupName }}</h5>
+            <lx-tag
+              [value]="activeTemplateLabel(group)"
+              [severity]="activeTemplateSeverity(group)"
+            />
+          </div>
+          <p class="text-sm text-600">
+            Al corriente: {{ group.onTimeCount }} - Vencidas:
+            {{ group.overdueCount }}
+          </p>
+          <p class="text-sm text-600">
+            Incumplimiento: {{ group.breachedCount }} - Arrastre:
+            {{ group.carriedOverCount }}
+          </p>
+          <p class="text-sm text-600">
+            Comprobante en críticas: {{ criticalAttachmentPercentage(group) }}
+          </p>
+        </ili-list-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>

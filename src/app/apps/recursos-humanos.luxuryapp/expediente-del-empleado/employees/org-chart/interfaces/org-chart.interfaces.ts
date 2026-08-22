@@ -1,39 +1,33 @@
 /**
- * Interfaces para el organigrama jerírquico de puestos.
+ * Interfaces para el organigrama jerárquico de roles.
  */
 
 export const ORG_CHART_VIRTUAL_ROOT_ID = "0";
 
-/** Datos del puesto de trabajo (desde backend) */
-export interface IWorkPositionOrgChartNode {
+export interface IRoleOrgChartMember {
   workPositionId: string;
   folio: string;
-  roleDisplayName: string;
-  departmentName: string;
-  hierarchyLevel: number;
-  sortOrder: number;
   hasEmployee: boolean;
   employeeName?: string;
   employeeEmail?: string;
   employeePhone?: string;
   employeePhoto?: string;
-  reportsToWorkPositionId?: string;
   state: string;
-  children: IWorkPositionOrgChartNode[];
-  /**
-   * Presente solo en nodos sintéticos generados por `groupSiblingsByRole`
-   * para representar varios puestos hermanos del mismo rol colapsados en
-   * una sola tarjeta/fila (no corresponde a un WorkPosition real).
-   */
-  isGroup?: boolean;
-  /** Cantidad de puestos reales representados por el nodo-grupo. */
-  groupMemberCount?: number;
-  /** Si el grupo está expandido, sus miembros reales se listan como hermanos. */
-  isGroupExpanded?: boolean;
+}
+
+/** Datos del rol en el organigrama (desde backend) */
+export interface IRoleOrgChartNode {
+  roleId: string;
+  roleDisplayName: string;
+  departmentName: string;
+  hierarchyLevel: number;
+  sortOrder: number;
+  members: IRoleOrgChartMember[];
+  children: IRoleOrgChartNode[];
 }
 
 export interface IOrgChartGraphNodeData {
-  orgNode: IWorkPositionOrgChartNode;
+  orgNode: IRoleOrgChartNode;
   accentColor: string;
   secondaryLabel: string;
   isVacant: boolean;
@@ -61,10 +55,10 @@ export interface IOrgChartGraphLink {
   };
 }
 
-/** Payload para reasignar un puesto */
-export interface IWorkPositionReassignRequest {
-  workPositionId: string;
-  newReportsToWorkPositionId: string | null;
+/** Payload para reasignar un rol */
+export interface IRoleOrgChartReassignRequest {
+  roleId: string;
+  newReportsToRoleId: string | null;
   sortOrder: number;
 }
 

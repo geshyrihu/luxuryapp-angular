@@ -1,0 +1,158 @@
+<section class="surface-card border-1 surface-border rounded-xl p-4 mb-5">
+  <div class="flex flex-column gap-1 mb-4">
+    <h3 class="text-xl font-bold m-0 border-left-3 border-primary pl-3">
+      Checklist y comprobante
+    </h3>
+    <p class="text-500 m-0">
+      Confirma los pasos requeridos y adjunta evidencia de la tarea.
+    </p>
+  </div>
+
+  @if (isLoading()) {
+    <div class="p-4 surface-ground rounded text-center text-500">
+      Cargando checklist y comprobantes...
+    </div>
+  } @else {
+    <div class="grid">
+      <div class="col-12 lg:col-6">
+        <div class="surface-ground p-3 rounded-lg h-full">
+          <div class="flex justify-content-between align-items-center mb-3">
+            <h4 class="font-bold text-900 m-0">Checklist</h4>
+            <span class="text-sm text-500">
+              {{ checklistItems().length }} item(s)
+            </span>
+          </div>
+
+          @if (checklistItems().length === 0) {
+            <p class="text-500 italic m-0 mb-3">Sin items de checklist.</p>
+          } @else {
+            <div class="flex flex-column gap-2 mb-3">
+              @for (item of checklistItems(); track item.id) {
+                <div
+                  class="surface-card border-1 surface-border rounded p-3 flex justify-content-between gap-3"
+                >
+                  <label class="flex gap-2 align-items-start flex-1 m-0">
+                    <input
+                      type="checkbox"
+                      [checked]="item.isDone"
+                      (change)="onToggleDone(item)"
+                      [attr.aria-label]="'Confirmar ' + item.description"
+                    />
+                    <span>
+                      <span
+                        class="block text-900"
+                        [class.line-through]="item.isDone"
+                      >
+                        {{ item.description }}
+                      </span>
+                      @if (item.isDone) {
+                        <small class="text-500">
+                          Confirmado por {{ item.doneByUserName || "Sin usuario" }}
+                          @if (item.doneAt) {
+                            el {{ item.doneAt }}
+                          }
+                        </small>
+                      }
+                    </span>
+                  </label>
+
+                  <iw-button-delete
+                    [confirmMessage]="'¿Eliminar el item &quot;' + item.description + '&quot;?'"
+                    (confirmed)="onDeleteChecklistItem(item.id)"
+                  />
+                </div>
+              }
+            </div>
+          }
+
+          <div class="flex flex-column sm:flex-row gap-2">
+            <label class="sr-only" for="task-checklist-description">
+              Descripción del item
+            </label>
+            <input
+              id="task-checklist-description"
+              type="text"
+              class="task-checklist-panel__input p-2 flex-1"
+              [ngModel]="newDescription()"
+              (ngModelChange)="newDescription.set($event)"
+              (keydown.enter)="onAddChecklistItem()"
+              placeholder="Nuevo item del checklist"
+            />
+            <il-button
+              label="Agregar"
+              iconClass="material-symbols-light:add"
+              [disabled]="!newDescription().trim() || isAddingChecklistItem()"
+              [loading]="isAddingChecklistItem()"
+              (clicked)="onAddChecklistItem()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 lg:col-6">
+        <div class="surface-ground p-3 rounded-lg h-full">
+          <div class="flex justify-content-between align-items-center mb-3">
+            <h4 class="font-bold text-900 m-0">Comprobantes</h4>
+            <input
+              type="file"
+              #fileInput
+              class="file-input-hidden"
+              accept="application/pdf,image/*"
+              (change)="onFileSelected($event)"
+            />
+            <il-button
+              [label]="isUploadingAttachment() ? 'Cargando...' : 'Subir archivo'"
+              iconClass="material-symbols-light:upload"
+              [disabled]="isUploadingAttachment()"
+              [loading]="isUploadingAttachment()"
+              (clicked)="fileInput.click()"
+            />
+          </div>
+
+          @if (attachments().length === 0) {
+            <p class="text-500 italic m-0">Sin comprobantes cargados.</p>
+          } @else {
+            <div class="flex flex-column gap-2">
+              @for (item of attachments(); track item.id) {
+                <div
+                  class="surface-card border-1 surface-border rounded p-3 flex justify-content-between align-items-center gap-3"
+                >
+                  <div class="flex align-items-center gap-3 flex-1">
+                    @if (isPdf(item)) {
+                      <iw-button-view-pdf
+                        [url]="item.path"
+                        [fileName]="item.fileName"
+                      />
+                    } @else {
+                      <a [href]="item.path" target="_blank" rel="noopener">
+                        <img
+                          class="task-checklist-panel__thumbnail rounded border-1 surface-border"
+                          [src]="item.path"
+                          [alt]="item.fileName"
+                        />
+                      </a>
+                    }
+
+                    <div class="min-w-0">
+                      <p class="m-0 font-semibold text-900 text-overflow-ellipsis overflow-hidden">
+                        {{ item.fileName }}
+                      </p>
+                      <small class="text-500">
+                        {{ item.createdByName || "Sin usuario" }} · {{ item.createdAt }}
+                      </small>
+                    </div>
+                  </div>
+
+                  <iw-button-delete
+                    [confirmMessage]="'¿Eliminar el comprobante &quot;' + item.fileName + '&quot;?'"
+                    (confirmed)="onDeleteAttachment(item.id)"
+                  />
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</section>

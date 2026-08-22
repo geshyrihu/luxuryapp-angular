@@ -5,56 +5,54 @@ import {
   getReorderInstruction,
   getOrgSiblingContext,
 } from "./org-chart-tree-ops";
-import { IWorkPositionOrgChartNode } from "../interfaces/org-chart.interfaces";
+import { IRoleOrgChartNode } from "../interfaces/org-chart.interfaces";
 
 describe("org-chart-tree-ops", () => {
   const createNode = (
-    partial: Partial<IWorkPositionOrgChartNode>,
-  ): IWorkPositionOrgChartNode => ({
-    workPositionId: "",
-    folio: "",
+    partial: Partial<IRoleOrgChartNode>,
+  ): IRoleOrgChartNode => ({
+    roleId: "",
     roleDisplayName: "",
     departmentName: "Operaciones",
     hierarchyLevel: 0,
     sortOrder: 0,
-    hasEmployee: false,
-    state: "Activo",
+    members: [],
     children: [],
     ...partial,
   });
 
   const tree = [
     createNode({
-      workPositionId: "A",
+      roleId: "A",
       children: [
-        createNode({ workPositionId: "B" }),
+        createNode({ roleId: "B" }),
         createNode({
-          workPositionId: "C",
+          roleId: "C",
           children: [
-            createNode({ workPositionId: "D" }),
-            createNode({ workPositionId: "E" }),
+            createNode({ roleId: "D" }),
+            createNode({ roleId: "E" }),
           ],
         }),
       ],
     }),
-    createNode({ workPositionId: "X" }),
+    createNode({ roleId: "X" }),
   ];
 
   it("finds a node by id in deep trees", () => {
-    expect(findOrgNodeById(tree, "D")?.workPositionId).toBe("D");
+    expect(findOrgNodeById(tree, "D")?.roleId).toBe("D");
     expect(findOrgNodeById(tree, "ZZ")).toBeNull();
   });
 
   it("finds the parent of a deep node", () => {
-    expect(findOrgParentNode(tree, "D")?.workPositionId).toBe("C");
+    expect(findOrgParentNode(tree, "D")?.roleId).toBe("C");
     expect(findOrgParentNode(tree, "A")).toBeNull();
   });
 
   it("returns sibling context for nested nodes", () => {
     const context = getOrgSiblingContext(tree, "D");
 
-    expect(context?.parent?.workPositionId).toBe("C");
-    expect(context?.siblings.map((node) => node.workPositionId)).toEqual([
+    expect(context?.parent?.roleId).toBe("C");
+    expect(context?.siblings.map((node) => node.roleId)).toEqual([
       "D",
       "E",
     ]);
@@ -65,7 +63,7 @@ describe("org-chart-tree-ops", () => {
     const context = getOrgSiblingContext(tree, "X");
 
     expect(context?.parent).toBeNull();
-    expect(context?.siblings.map((node) => node.workPositionId)).toEqual([
+    expect(context?.siblings.map((node) => node.roleId)).toEqual([
       "A",
       "X",
     ]);
@@ -113,7 +111,7 @@ describe("org-chart-tree-ops", () => {
   it("flattens the tree into editor rows preserving hierarchy and sibling order", () => {
     const rows = flattenOrgChartEditorRows(tree);
 
-    expect(rows.map((row) => row.node.workPositionId)).toEqual([
+    expect(rows.map((row) => row.node.roleId)).toEqual([
       "A",
       "B",
       "C",
@@ -131,6 +129,6 @@ describe("org-chart-tree-ops", () => {
       siblingIndex: 0,
       siblingCount: 2,
     });
-    expect(rows[3].parent?.workPositionId).toBe("C");
+    expect(rows[3].parent?.roleId).toBe("C");
   });
 });

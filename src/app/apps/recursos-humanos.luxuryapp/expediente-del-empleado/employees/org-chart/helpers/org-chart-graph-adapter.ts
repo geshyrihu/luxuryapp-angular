@@ -2,7 +2,7 @@ import {
   DEPTO_ACCENT_COLORS,
   IOrgChartGraphLink,
   IOrgChartGraphNode,
-  IWorkPositionOrgChartNode,
+  IRoleOrgChartNode,
   ORG_CHART_VIRTUAL_ROOT_ID,
 } from '../interfaces/org-chart.interfaces';
 
@@ -20,29 +20,26 @@ export interface IOrgChartGraphBuildResult {
 }
 
 export function createVirtualRootNode(
-  children: IWorkPositionOrgChartNode[],
-): IWorkPositionOrgChartNode {
+  children: IRoleOrgChartNode[],
+): IRoleOrgChartNode {
   return {
-    workPositionId: ORG_CHART_VIRTUAL_ROOT_ID,
-    folio: "ROOT",
+    roleId: ORG_CHART_VIRTUAL_ROOT_ID,
     roleDisplayName: "Estructura Organizacional",
     departmentName: "Direcciones",
     hierarchyLevel: -1,
     sortOrder: 0,
-    hasEmployee: false,
-    employeeName: "Luxury App",
-    state: "Activo",
+    members: [],
     children,
   };
 }
 
 export function withVirtualRoot(
-  nodes: IWorkPositionOrgChartNode[],
-): IWorkPositionOrgChartNode[] {
+  nodes: IRoleOrgChartNode[],
+): IRoleOrgChartNode[] {
   if (
     nodes.length > 1 ||
     (nodes.length === 1 &&
-      nodes[0].workPositionId !== ORG_CHART_VIRTUAL_ROOT_ID)
+      nodes[0].roleId !== ORG_CHART_VIRTUAL_ROOT_ID)
   ) {
     return [createVirtualRootNode(nodes)];
   }
@@ -51,29 +48,31 @@ export function withVirtualRoot(
 }
 
 export function flattenOrgChartNodes(
-  nodes: IWorkPositionOrgChartNode[],
-): IWorkPositionOrgChartNode[] {
+  nodes: IRoleOrgChartNode[],
+): IRoleOrgChartNode[] {
   return nodes.flatMap((node) => [node, ...flattenOrgChartNodes(node.children)]);
 }
 
 export function buildOrgChartGraph(
-  nodes: IWorkPositionOrgChartNode[],
+  nodes: IRoleOrgChartNode[],
   options: IOrgChartGraphBuildOptions = {},
 ): IOrgChartGraphBuildResult {
   const graphNodes: IOrgChartGraphNode[] = [];
   const graphLinks: IOrgChartGraphLink[] = [];
 
-  const visit = (node: IWorkPositionOrgChartNode): void => {
+  const visit = (node: IRoleOrgChartNode): void => {
+    const memberCount = node.members.length;
+    const vacantCount = node.members.filter((member) => !member.hasEmployee).length;
     const selectionState =
-      node.workPositionId === options.selectedOriginId
+      node.roleId === options.selectedOriginId
         ? "origin"
-        : node.workPositionId === options.selectedDestId
+        : node.roleId === options.selectedDestId
           ? "destination"
           : "none";
 
     graphNodes.push({
-      id: node.workPositionId,
-      label: node.folio,
+      id: node.roleId,
+      label: node.roleDisplayName,
       dimension: {
         width: ORG_CHART_NODE_WIDTH,
         height: ORG_CHART_NODE_HEIGHT,
@@ -81,23 +80,21 @@ export function buildOrgChartGraph(
       data: {
         orgNode: node,
         accentColor: getDepartmentAccentColor(node.departmentName),
-        secondaryLabel: node.isGroup
-          ? `${node.groupMemberCount} puestos`
-          : (node.employeeName ?? "Vacante"),
-        isVacant: !node.isGroup && !node.hasEmployee,
-        isVirtualRoot: node.workPositionId === ORG_CHART_VIRTUAL_ROOT_ID,
+        secondaryLabel: `${memberCount} ${memberCount === 1 ? "miembro" : "miembros"} · ${vacantCount} vacantes`,
+        isVacant: !node.members.some((member) => member.hasEmployee),
+        isVirtualRoot: node.roleId === ORG_CHART_VIRTUAL_ROOT_ID,
         selectionState,
       },
     });
 
     for (const child of node.children) {
       graphLinks.push({
-        id: `${node.workPositionId}__${child.workPositionId}`,
-        source: node.workPositionId,
-        target: child.workPositionId,
+        id: `${node.roleId}__${child.roleId}`,
+        source: node.roleId,
+        target: child.roleId,
         data: {
-          sourceId: node.workPositionId,
-          targetId: child.workPositionId,
+          sourceId: node.roleId,
+          targetId: child.roleId,
         },
       });
 

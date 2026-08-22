@@ -21,6 +21,7 @@ import {
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
@@ -35,7 +36,7 @@ interface IRecurrenceForm {
   interval: FormControl<number | null>;
   byDay: FormControl<string[] | null>;
   monthlyType: FormControl<string | null>;
-  monthDay: FormControl<number | null>;
+  monthDays: FormControl<number[] | null>;
   monthPosition: FormControl<string | null>;
   monthWeekDay: FormControl<string | null>;
   yearMonth: FormControl<number | null>;
@@ -51,6 +52,7 @@ interface IRecurrenceForm {
     LxCheckbox,
     LxRadioButton,
     CustomInputSelectSignal,
+    CustomInputMultiselectSignal,
   ],
   templateUrl: "./recurrence-input.html",
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -88,7 +90,7 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
   weekDays: { label: string; value: string }[] = [
     { label: "Lun", value: "MO" },
     { label: "Mar", value: "TU" },
-    { label: "Mió", value: "WE" },
+    { label: "Mié", value: "WE" },
     { label: "Jue", value: "TH" },
     { label: "Vie", value: "FR" },
     { label: "Sáb", value: "SA" },
@@ -97,6 +99,7 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
 
   monthlyTypes = [
     { label: "Día del mes", value: "dayOfMonth" },
+    { label: "Último día del mes", value: "lastDayOfMonth" },
     { label: "Día de la semana", value: "dayOfWeek" },
   ];
 
@@ -105,7 +108,7 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
     { label: "Segundo", value: "2" },
     { label: "Tercer", value: "3" },
     { label: "Cuarto", value: "4" },
-    { label: "óltimo", value: "-1" },
+    { label: "Último", value: "-1" },
   ];
 
   monthNumbers = Array.from({ length: 31 }, (_, i) => ({
@@ -137,7 +140,7 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
       interval: new FormControl(1, [Validators.required, Validators.min(1)]),
       byDay: new FormControl([]),
       monthlyType: new FormControl("dayOfMonth"),
-      monthDay: new FormControl(1),
+      monthDays: new FormControl([1]),
       monthPosition: new FormControl("1"),
       monthWeekDay: new FormControl("MO"),
       yearMonth: new FormControl(1),
@@ -163,7 +166,7 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
         interval: 1,
         byDay: [],
         monthlyType: "dayOfMonth",
-        monthDay: 1,
+        monthDays: [1],
         monthPosition: "1",
         monthWeekDay: "MO",
         yearMonth: 1,
@@ -209,7 +212,7 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
   }
 
   generateRRule(): void {
-    // Usamos getRawValue() o accedemos a los controles, pero value es suficiente aquó
+    // Usamos getRawValue() o accedemos a los controles, pero value es suficiente aquí
     const val = this.recurrenceForm.value;
     const frequency = val.frequency;
 
@@ -234,7 +237,12 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
 
       case "MONTHLY":
         if (val.monthlyType === "dayOfMonth") {
-          rrule += `;BYMONTHDAY=${val.monthDay}`;
+          const monthDays = val.monthDays ?? [];
+          if (monthDays.length > 0) {
+            rrule += `;BYMONTHDAY=${monthDays.join(",")}`;
+          }
+        } else if (val.monthlyType === "lastDayOfMonth") {
+          rrule += ";BYMONTHDAY=-1";
         } else {
           rrule += `;BYDAY=${val.monthPosition}${val.monthWeekDay}`;
         }
@@ -263,7 +271,7 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
       interval: rrule["INTERVAL"] ? parseInt(rrule["INTERVAL"], 10) : 1,
       byDay: [],
       monthlyType: "dayOfMonth",
-      monthDay: 1,
+      monthDays: [1],
       monthPosition: "1",
       monthWeekDay: "MO",
       yearMonth: 1,
@@ -276,8 +284,13 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
 
     if (rrule["FREQ"] === "MONTHLY") {
       if (rrule["BYMONTHDAY"]) {
-        formValue.monthlyType = "dayOfMonth";
-        formValue.monthDay = parseInt(rrule["BYMONTHDAY"], 10);
+        const monthDays = rrule["BYMONTHDAY"].split(",").map(Number);
+        if (monthDays.length === 1 && monthDays[0] === -1) {
+          formValue.monthlyType = "lastDayOfMonth";
+        } else {
+          formValue.monthlyType = "dayOfMonth";
+          formValue.monthDays = monthDays;
+        }
       } else if (rrule["BYDAY"]) {
         formValue.monthlyType = "dayOfWeek";
         const byDayMatch = rrule["BYDAY"].match(/^(-?\d+)([A-Z]{2})$/);

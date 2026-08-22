@@ -13,7 +13,7 @@ export const EndpointsReclutamiento = {
   },
   OrgChart: {
     getTree: (customerId: Id) => `work-position-org-chart/tree/${customerId}`,
-    reassign: "work-position-org-chart/reassign",
+    reassign: (customerId: Id) => `work-position-org-chart/reassign/${customerId}`,
   },
   JobDescriptions: {
     analyze: "job-descriptions/analyze",

@@ -74,10 +74,32 @@ describe('RecurrenceInput', () => {
       frequency: 'MONTHLY',
       interval: 1,
       monthlyType: 'dayOfMonth',
-      monthDay: 15,
+      monthDays: [15],
     });
     component.generateRRule();
     expect(component.rrulePreview()).toBe('FREQ=MONTHLY;BYMONTHDAY=15');
+  });
+
+  it('should generate monthly rrule with multiple days of month', () => {
+    component.recurrenceForm.patchValue({
+      frequency: 'MONTHLY',
+      interval: 1,
+      monthlyType: 'dayOfMonth',
+      monthDays: [5, 20],
+    });
+    component.generateRRule();
+    expect(component.rrulePreview()).toBe('FREQ=MONTHLY;BYMONTHDAY=5,20');
+  });
+
+  it('should generate monthly rrule for last day of month without mixing monthDays', () => {
+    component.recurrenceForm.patchValue({
+      frequency: 'MONTHLY',
+      interval: 1,
+      monthlyType: 'lastDayOfMonth',
+      monthDays: [5, 20],
+    });
+    component.generateRRule();
+    expect(component.rrulePreview()).toBe('FREQ=MONTHLY;BYMONTHDAY=-1');
   });
 
   it('should generate monthly rrule by day of week', () => {
@@ -114,7 +136,18 @@ describe('RecurrenceInput', () => {
   it('should parse monthly rrule with BYMONTHDAY', () => {
     component.parseRRule('FREQ=MONTHLY;BYMONTHDAY=20');
     expect(component.recurrenceForm.controls.monthlyType.value).toBe('dayOfMonth');
-    expect(component.recurrenceForm.controls.monthDay.value).toBe(20);
+    expect(component.recurrenceForm.controls.monthDays.value).toEqual([20]);
+  });
+
+  it('should parse monthly rrule with multiple BYMONTHDAY values', () => {
+    component.parseRRule('FREQ=MONTHLY;BYMONTHDAY=5,20');
+    expect(component.recurrenceForm.controls.monthlyType.value).toBe('dayOfMonth');
+    expect(component.recurrenceForm.controls.monthDays.value).toEqual([5, 20]);
+  });
+
+  it('should parse monthly rrule with last BYMONTHDAY as lastDayOfMonth', () => {
+    component.parseRRule('FREQ=MONTHLY;BYMONTHDAY=-1');
+    expect(component.recurrenceForm.controls.monthlyType.value).toBe('lastDayOfMonth');
   });
 
   it('should parse monthly rrule with BYDAY position', () => {

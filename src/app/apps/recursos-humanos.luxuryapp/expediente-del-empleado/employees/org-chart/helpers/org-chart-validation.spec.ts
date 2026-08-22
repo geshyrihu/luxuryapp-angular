@@ -1,49 +1,45 @@
 import { validateReassignment } from "./org-chart-validation";
-import { IWorkPositionOrgChartNode } from "../interfaces/org-chart.interfaces";
+import { IRoleOrgChartNode } from "../interfaces/org-chart.interfaces";
 
 describe("org-chart-validation", () => {
   const createNode = (
-    partial: Partial<IWorkPositionOrgChartNode>,
-  ): IWorkPositionOrgChartNode => ({
-    workPositionId: "",
-    folio: "",
+    partial: Partial<IRoleOrgChartNode>,
+  ): IRoleOrgChartNode => ({
+    roleId: "",
     roleDisplayName: "",
     departmentName: "Operaciones",
     hierarchyLevel: 0,
     sortOrder: 0,
-    hasEmployee: false,
-    state: "Activo",
+    members: [],
     children: [],
     ...partial,
   });
 
   it("allows moving a node to the virtual root", () => {
-    const dragged = createNode({ workPositionId: "A" });
-    const target = createNode({ workPositionId: "0" });
+    const dragged = createNode({ roleId: "A" });
+    const target = createNode({ roleId: "0" });
 
     expect(validateReassignment(dragged, target)).toEqual({ valid: true });
   });
 
   it("prevents self assignment", () => {
-    const node = createNode({ workPositionId: "A" });
+    const node = createNode({ roleId: "A" });
 
     expect(validateReassignment(node, node)).toEqual({
       valid: false,
-      reason: "No puedes asignar un puesto como su propio jefe",
+      reason: "No puedes asignar un rol como su propio superior",
     });
   });
 
   it("prevents assigning a node under a deep descendant", () => {
     const dragged = createNode({
-      workPositionId: "A",
+      roleId: "A",
       children: [
         createNode({
-          workPositionId: "B",
-          reportsToWorkPositionId: "A",
+          roleId: "B",
           children: [
             createNode({
-              workPositionId: "C",
-              reportsToWorkPositionId: "B",
+              roleId: "C",
             }),
           ],
         }),
@@ -60,12 +56,12 @@ describe("org-chart-validation", () => {
 
   it("allows moving a node under a different branch", () => {
     const dragged = createNode({
-      workPositionId: "A",
-      children: [createNode({ workPositionId: "B" })],
+      roleId: "A",
+      children: [createNode({ roleId: "B" })],
     });
     const target = createNode({
-      workPositionId: "X",
-      children: [createNode({ workPositionId: "Y" })],
+      roleId: "X",
+      children: [createNode({ roleId: "Y" })],
     });
 
     expect(validateReassignment(dragged, target)).toEqual({ valid: true });

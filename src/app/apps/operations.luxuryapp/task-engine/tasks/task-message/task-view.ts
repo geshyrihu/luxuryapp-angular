@@ -38,12 +38,21 @@ import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskProgram } from "../task-program";
 import { TaskReopen } from "../task-reopen";
+import { TaskChecklistPanel } from "./task-checklist-panel/task-checklist-panel";
 import { TaskForm } from "./task-form";
+import { TaskJustificationPanel } from "./task-justification-panel/task-justification-panel";
 @Component({
   selector: "app-task-view",
   templateUrl: "./task-view.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxTag, AppAvatar, WebButtonLabel, AppIcon],
+  imports: [
+    LxTag,
+    AppAvatar,
+    WebButtonLabel,
+    AppIcon,
+    TaskChecklistPanel,
+    TaskJustificationPanel,
+  ],
 })
 export class TaskView implements OnInit {
   apiResponseS = inject(ApiResponseService);

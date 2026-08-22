@@ -1,5 +1,5 @@
 /**
- * Barrel export del módulo de organigrama jerírquico de puestos.
+ * Barrel export del módulo de organigrama jerárquico de roles.
  */
 
 // Componentes
@@ -10,8 +10,9 @@ export type {
   IOrgChartGraphLink,
   IOrgChartGraphNode,
   IOrgChartGraphNodeData,
-  IWorkPositionOrgChartNode,
-  IWorkPositionReassignRequest,
+  IRoleOrgChartMember,
+  IRoleOrgChartNode,
+  IRoleOrgChartReassignRequest,
   IWorkPositionReassignResponse,
   ReassignmentValidation,
 } from './interfaces/org-chart.interfaces';

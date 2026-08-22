@@ -1,0 +1,111 @@
+<section class="surface-card border-1 surface-border rounded-xl p-4 mb-5">
+  <div class="flex flex-column gap-1 mb-4">
+    <h3 class="text-xl font-bold m-0 border-left-3 border-primary pl-3">
+      Justificación de vencimiento
+    </h3>
+    <p class="text-500 m-0">
+      Solicita, revisa y resuelve las justificaciones vinculadas a esta tarea.
+    </p>
+  </div>
+
+  @if (isLoading()) {
+    <div class="p-4 surface-ground rounded text-center text-500">
+      Cargando justificaciones...
+    </div>
+  } @else {
+    <div class="surface-ground p-3 rounded-lg">
+      <div class="flex justify-content-between align-items-center mb-3">
+        <h4 class="font-bold text-900 m-0">Historial</h4>
+        <span class="text-sm text-500">
+          {{ justifications().length }} registro(s)
+        </span>
+      </div>
+
+      @if (justifications().length === 0) {
+        <p class="text-500 italic m-0 mb-3">
+          Sin justificaciones para esta tarea.
+        </p>
+      } @else {
+        <div class="flex flex-column gap-2 mb-3">
+          @for (j of justifications(); track j.id) {
+            <div class="surface-card border-1 surface-border rounded p-3">
+              <div class="flex justify-content-between gap-3 mb-2">
+                <div class="min-w-0">
+                  <p class="m-0 font-semibold text-900">
+                    {{ stateLabel(j.state) }}
+                  </p>
+                  <small class="text-500">
+                    Solicitada por {{ j.requestedByUserName || "Sin usuario" }}
+                    · {{ j.requestedAt }}
+                  </small>
+                </div>
+
+                @if (
+                  j.state === taskJustificationState.Solicitada &&
+                  j.requestedByUserId !== authS.applicationUserId
+                ) {
+                  <div class="flex gap-2 flex-shrink-0">
+                    <il-button
+                      label="Aprobar"
+                      iconClass="material-symbols-light:check"
+                      severity="success"
+                      variant="outline"
+                      (clicked)="onApprove(j.id)"
+                    />
+                    <il-button
+                      label="Rechazar"
+                      iconClass="material-symbols-light:close"
+                      severity="danger"
+                      variant="outline"
+                      (clicked)="onReject(j.id)"
+                    />
+                  </div>
+                }
+              </div>
+
+              <p class="text-700 line-height-3 m-0">{{ j.reason }}</p>
+
+              @if (j.resolvedAt) {
+                <small class="block text-500 mt-2">
+                  Resuelta por {{ j.approvedByUserName || "Sin usuario" }}
+                  · {{ j.resolvedAt }}
+                </small>
+              }
+            </div>
+          }
+        </div>
+      }
+
+      @if (canRequestJustification()) {
+        <div class="surface-card border-1 surface-border rounded p-3">
+          <label
+            class="block font-semibold text-900 mb-2"
+            for="task-justification-reason"
+          >
+            Motivo de la justificación
+          </label>
+          <textarea
+            id="task-justification-reason"
+            class="task-justification-panel__input w-full p-2 mb-2"
+            rows="3"
+            [ngModel]="newReason()"
+            (ngModelChange)="newReason.set($event)"
+            placeholder="Explica el motivo con al menos 20 caracteres"
+          ></textarea>
+          <div class="flex justify-content-between align-items-center gap-3">
+            <small class="text-500">
+              {{ newReason().trim().length }}/20 caracteres mínimos
+            </small>
+            <il-button
+              label="Solicitar justificación"
+              iconClass="material-symbols-light:assignment-late"
+              [disabled]="newReason().trim().length < 20 || isRequesting()"
+              [loading]="isRequesting()"
+              (clicked)="onRequestJustification()"
+            />
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>

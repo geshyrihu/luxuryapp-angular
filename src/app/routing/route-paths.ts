@@ -923,6 +923,7 @@ export const ROUTES = {
     LISTA: ["/recurring-tasks"],
     ITEMS: (id: string) => ["/recurring-tasks", id, "items"],
     CONFIGURACION_CLIENTE: ["/recurring-tasks", "customer-config"],
+    CUMPLIMIENTO: ["/recurring-tasks", "compliance"],
     MIS_TAREAS: ["/recurring-tasks", "my-tasks"],
   },
 

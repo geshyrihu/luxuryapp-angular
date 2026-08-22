@@ -1,0 +1,92 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <custom-input-select-signal
+    [control]="form.controls.workGroupId"
+    label="Grupo de trabajo"
+    placeholder="Selecciona un grupo"
+    [data]="workGroups()"
+    [filter]="true"
+    (selectionChange)="onWorkGroupChange($event)"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.title"
+    label="Título"
+    placeholder="Título de la plantilla"
+  />
+
+  <custom-input-textarea-signal
+    [control]="form.controls.description"
+    label="Descripción"
+    placeholder="Descripción"
+  />
+
+  <app-recurrence-input
+    [label]="'Regla de Recurrencia'"
+    formControlName="recurrenceRule"
+  ></app-recurrence-input>
+
+  <custom-input-select-signal
+    [control]="form.controls.criticality"
+    label="Criticidad"
+    placeholder="Selecciona la criticidad"
+    [data]="criticalities()"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.expectedDeliverableName"
+    label="Entregable esperado"
+    placeholder="Nombre del entregable"
+  />
+
+  <custom-input-check-signal
+    [control]="form.controls.requiresAttachment"
+    label="Requiere adjunto"
+  />
+
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <web-custom-input-datepicker-signal
+        [control]="form.controls.startDate"
+        label="Fecha de inicio"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <web-custom-input-datepicker-signal
+        [control]="form.controls.endDate"
+        label="Fecha de fin"
+        [showClear]="true"
+      />
+    </div>
+  </div>
+
+  <p-panel header="Avanzado" [toggleable]="true" [collapsed]="true">
+    <custom-input-number-signal
+      [control]="form.controls.advanceNoticeDays"
+      label="Días de aviso previo"
+      [min]="0"
+      [max]="30"
+      [showButtons]="true"
+    />
+
+    <custom-input-select-signal
+      [control]="form.controls.backupUserId"
+      label="Responsable de respaldo"
+      placeholder="Selecciona un responsable"
+      [data]="backupUsers()"
+      [requiredInput]="isBackupRequired()"
+      [filter]="true"
+    />
+
+    @if (form.hasError("backupRequiredForCritical")) {
+      <small class="p-error">
+        Las plantillas críticas requieren responsable de respaldo.
+      </small>
+    }
+  </p-panel>
+
+  <il-button-save
+    [propertyId]="templateId()"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>

@@ -308,6 +308,7 @@ const ROUTE_WHITELIST = new Set([
   "/recursos-humanos/nomina/hoja-incidencias",
   "/recurring-tasks",
   "/recurring-tasks/customer-config",
+  "/recurring-tasks/compliance",
   "/recurring-tasks/my-tasks",
   "/password-manager",
   "/report-financial-statements",

@@ -1,15 +1,15 @@
-import { IWorkPositionOrgChartNode } from '../interfaces/org-chart.interfaces';
+import { IRoleOrgChartNode } from '../interfaces/org-chart.interfaces';
 
 export interface IOrgChartSiblingContext {
-  node: IWorkPositionOrgChartNode;
-  parent: IWorkPositionOrgChartNode | null;
-  siblings: IWorkPositionOrgChartNode[];
+  node: IRoleOrgChartNode;
+  parent: IRoleOrgChartNode | null;
+  siblings: IRoleOrgChartNode[];
   index: number;
 }
 
 export interface IOrgChartEditorRow {
-  node: IWorkPositionOrgChartNode;
-  parent: IWorkPositionOrgChartNode | null;
+  node: IRoleOrgChartNode;
+  parent: IRoleOrgChartNode | null;
   depth: number;
   siblingIndex: number;
   siblingCount: number;
@@ -21,8 +21,8 @@ export interface IOrgChartReorderInstruction {
 }
 
 export function flattenOrgChartEditorRows(
-  nodes: IWorkPositionOrgChartNode[],
-  parent: IWorkPositionOrgChartNode | null = null,
+  nodes: IRoleOrgChartNode[],
+  parent: IRoleOrgChartNode | null = null,
   depth = 0,
 ): IOrgChartEditorRow[] {
   return nodes.flatMap((node, index, siblings) => [
@@ -38,15 +38,15 @@ export function flattenOrgChartEditorRows(
 }
 
 export function findOrgNodeById(
-  nodes: IWorkPositionOrgChartNode[],
-  workPositionId: string,
-): IWorkPositionOrgChartNode | null {
+  nodes: IRoleOrgChartNode[],
+  roleId: string,
+): IRoleOrgChartNode | null {
   for (const node of nodes) {
-    if (node.workPositionId === workPositionId) {
+    if (node.roleId === roleId) {
       return node;
     }
 
-    const nested = findOrgNodeById(node.children, workPositionId);
+    const nested = findOrgNodeById(node.children, roleId);
     if (nested) {
       return nested;
     }
@@ -56,15 +56,15 @@ export function findOrgNodeById(
 }
 
 export function findOrgParentNode(
-  nodes: IWorkPositionOrgChartNode[],
-  workPositionId: string,
-): IWorkPositionOrgChartNode | null {
+  nodes: IRoleOrgChartNode[],
+  roleId: string,
+): IRoleOrgChartNode | null {
   for (const node of nodes) {
-    if (node.children.some((child) => child.workPositionId === workPositionId)) {
+    if (node.children.some((child) => child.roleId === roleId)) {
       return node;
     }
 
-    const nested = findOrgParentNode(node.children, workPositionId);
+    const nested = findOrgParentNode(node.children, roleId);
     if (nested) {
       return nested;
     }
@@ -74,12 +74,12 @@ export function findOrgParentNode(
 }
 
 export function getOrgSiblingContext(
-  nodes: IWorkPositionOrgChartNode[],
-  workPositionId: string,
+  nodes: IRoleOrgChartNode[],
+  roleId: string,
 ): IOrgChartSiblingContext | null {
-  const parent = findOrgParentNode(nodes, workPositionId);
+  const parent = findOrgParentNode(nodes, roleId);
   const siblings = parent ? parent.children : nodes;
-  const index = siblings.findIndex((node) => node.workPositionId === workPositionId);
+  const index = siblings.findIndex((node) => node.roleId === roleId);
 
   if (index === -1) {
     return null;
@@ -98,12 +98,12 @@ export function getReorderInstruction(
   target: IOrgChartSiblingContext,
   placement: "before" | "after",
 ): IOrgChartReorderInstruction {
-  const newParentId = target.parent?.workPositionId ?? null;
+  const newParentId = target.parent?.roleId ?? null;
   let newSortOrder = target.index + (placement === "after" ? 1 : 0);
 
   const sameSiblingCollection =
-    (origin.parent?.workPositionId ?? null) ===
-    (target.parent?.workPositionId ?? null);
+    (origin.parent?.roleId ?? null) ===
+    (target.parent?.roleId ?? null);
 
   if (sameSiblingCollection && origin.index < newSortOrder) {
     newSortOrder -= 1;

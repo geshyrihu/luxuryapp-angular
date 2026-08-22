@@ -96,6 +96,23 @@ export const EndpointsOperations = {
       `tasks/set-predecessor/${taskId}/${predecessorId}`,
     clearDependency: (taskId: string) => `tasks/clear-predecessor/${taskId}`,
   },
+  TaskChecklistItems: {
+    byTask: (tasksId: string) => `task-checklist-items/by-task/${tasksId}`,
+    base: "task-checklist-items",
+    toggleDone: (id: string) => `task-checklist-items/toggle-done/${id}`,
+    delete: (id: string) => `task-checklist-items/${id}`,
+  },
+  TaskAttachments: {
+    byTask: (tasksId: string) => `task-attachments/by-task/${tasksId}`,
+    upload: "task-attachments",
+    delete: (id: string) => `task-attachments/${id}`,
+  },
+  TaskJustifications: {
+    byTask: (tasksId: string) => `task-justifications/by-task/${tasksId}`,
+    request: "task-justifications",
+    approve: (id: string) => `task-justifications/${id}/approve`,
+    reject: (id: string) => `task-justifications/${id}/reject`,
+  },
   TaskFollowUps: {
     byMessage: (id: string) => `task-follow-up/by-message/${id}`,
     create: "task-follow-up",
@@ -127,6 +144,10 @@ export const EndpointsOperations = {
     sendReportPendingAll: "tasks/send-report-pending",
     sendReportPendingByGroup: (id: string) => `tasks/send-report-pending/${id}`,
     toggleStatus: (id: string) => `task-groups/toggle-status/${id}`,
+  },
+  RecurringTaskCompliance: {
+    dashboard: (customerId: string) =>
+      `recurring-task-compliance/dashboard/${customerId}`,
   },
   TaskReads: {
     byMessage: (id: string) => `task-reads/by-message/${id}`,
@@ -177,6 +198,21 @@ export const EndpointsOperations = {
         `recurring-tasks/templates/${templateId}/items/reorder`,
       saveCustomerConfig: "recurring-tasks/templates/config",
     },
+  },
+  RecurringTaskCatalog: {
+    base: "recurring-task-templates",
+    getById: (id: string) => `recurring-task-templates/${id}`,
+    list: (customerId: string, workGroupId?: string, activeOnly?: boolean) => {
+      const params = new URLSearchParams({ customerId });
+
+      if (workGroupId) params.set("workGroupId", workGroupId);
+      if (activeOnly !== undefined) {
+        params.set("activeOnly", String(activeOnly));
+      }
+
+      return `recurring-task-templates?${params.toString()}`;
+    },
+    toggleStatus: (id: string) => `recurring-task-templates/${id}/toggle-status`,
   },
   AiAssistant: {
     // Alias legacy.

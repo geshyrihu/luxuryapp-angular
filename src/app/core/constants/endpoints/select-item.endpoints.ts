@@ -45,6 +45,8 @@ export const EndpointsSelectItem = {
     operationsInterviewersByRequestPosition: (requestPositionId: string) =>
       `operations-interviewers/by-request-position/${requestPositionId}`,
     paymentMethod: "payment-methods",
+    priorityLevel: "priority-level",
+    taskJustificationState: "task-justification-state",
     wayToPay: "payment-ways",
     properties: (customerId: string) => `properties/${customerId}`,
     propertyAccounts: (customerId: string, year: number) =>

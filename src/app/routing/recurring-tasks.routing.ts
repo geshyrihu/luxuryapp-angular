@@ -38,6 +38,18 @@ export const recurringTasksRoutes: Routes = [
     },
   },
   {
+    path: "compliance",
+    loadComponent: () =>
+      import("src/app/apps/operations.luxuryapp/task-engine/recurring-tasks/compliance/recurring-task-compliance-dashboard/recurring-task-compliance-dashboard").then(
+        (m) => m.RecurringTaskComplianceDashboard,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Tablero de Cumplimiento Recurrente",
+      breadcrumb: "Cumplimiento",
+    },
+  },
+  {
     path: "my-tasks",
     loadComponent: () =>
       import("src/app/apps/operations.luxuryapp/task-engine/recurring-tasks/instances/daily-task-list/daily-task-list").then(

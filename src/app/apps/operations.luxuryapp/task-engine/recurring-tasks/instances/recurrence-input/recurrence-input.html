@@ -52,7 +52,7 @@
         }
       </div>
       <small class="p-text-secondary mt-2 block">
-        Selecciona los días en los que se repetiró
+        Selecciona los días en los que se repetirá
       </small>
     </div>
   </div>
@@ -76,27 +76,52 @@
           inputId="dayOfMonth"
         />
         <label for="dayOfMonth" class="font-medium cursor-pointer flex-1 ml-2">
-          Dóa especófico del mes
+          Día específico del mes
         </label>
       </div>
       <div class="flex align-items-end ml-4 flex-wrap gap-2">
-        <span class="pb-1">El día</span>
-        <custom-input-select-signal
-          [control]="recurrenceForm.controls.monthDay"
-          [data]="monthNumbers"
+        <span class="pb-1">Los días</span>
+        <custom-input-multiselect-signal
+          [control]="recurrenceForm.controls.monthDays"
+          [options]="monthNumbers"
           optionLabel="label"
           optionValue="value"
-          placeholder="Día"
+          placeholder="Días"
           [disabled]="monthlyType !== 'dayOfMonth'"
-        ></custom-input-select-signal>
+          selectedItemsLabel="{0} días"
+        ></custom-input-multiselect-signal>
         <span class="pb-1">de cada mes</span>
       </div>
       <small class="p-text-secondary ml-4 mt-1 block">
-        Ejemplo: El día 15 de cada mes
+        Ejemplo: Los días 5 y 20 de cada mes
       </small>
     </div>
 
-    <!-- Option 2: Position + Day of Week -->
+    <!-- Option 2: Last Day of Month -->
+    <div
+      class="p-3 border-1 surface-border rounded mb-3 transition-colors transition-duration-200"
+      [class.surface-50]="monthlyType === 'lastDayOfMonth'"
+      [class.border-primary]="monthlyType === 'lastDayOfMonth'"
+    >
+      <div class="flex align-items-center mb-2">
+        <lx-radio-button
+          value="lastDayOfMonth"
+          [control]="recurrenceForm.controls.monthlyType"
+          inputId="lastDayOfMonth"
+        />
+        <label
+          for="lastDayOfMonth"
+          class="font-medium cursor-pointer flex-1 ml-2"
+        >
+          Último día del mes
+        </label>
+      </div>
+      <small class="p-text-secondary ml-4 mt-1 block">
+        Ejemplo: El último día de cada mes
+      </small>
+    </div>
+
+    <!-- Option 3: Position + Day of Week -->
     <div
       class="p-3 border-1 surface-border rounded transition-colors transition-duration-200"
       [class.surface-50]="monthlyType === 'dayOfWeek'"

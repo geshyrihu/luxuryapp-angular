@@ -1,49 +1,42 @@
-import { IWorkPositionOrgChartNode, ReassignmentValidation } from '../interfaces/org-chart.interfaces';
+import { IRoleOrgChartNode, ORG_CHART_VIRTUAL_ROOT_ID, ReassignmentValidation } from '../interfaces/org-chart.interfaces';
 
 /**
- * Valida si una reasignación de jerarquía de puestos es segura (client-side).
+ * Valida si una reasignación de jerarquía de roles es segura (client-side).
  *
  * Reglas:
- *  1. No auto-asignación (A ? A)
+ *  1. No auto-asignación (A -> A)
  *  2. No ciclos (A reporta a B, B no puede reportar a A)
  *  3. No reasignar a descendiente
  *
- * @param dragged Puesto que esté siendo movido
- * @param target  Puesto destino (null = convertir en root)
+ * @param dragged Rol que está siendo movido
+ * @param target  Rol destino (null = convertir en raíz)
  * @returns Objeto con valid y reason si es inválido
  */
 export function validateReassignment(
-  dragged: IWorkPositionOrgChartNode,
-  target: IWorkPositionOrgChartNode | null
+  dragged: IRoleOrgChartNode,
+  target: IRoleOrgChartNode | null
 ): ReassignmentValidation {
-  // Destino es el nodo raóz virtual o nulo
-  if (!target || target.workPositionId === "0") return { valid: true };
+  // Destino es el nodo raíz virtual o nulo.
+  if (!target || target.roleId === ORG_CHART_VIRTUAL_ROOT_ID) return { valid: true };
 
-  if (dragged.isGroup || target.isGroup) {
-    return {
-      valid: false,
-      reason: "No puedes reasignar un grupo de puestos: expándelo primero",
-    };
-  }
-
-  if (dragged.workPositionId === target.workPositionId) {
-    return { valid: false, reason: "No puedes asignar un puesto como su propio jefe" };
+  if (dragged.roleId === target.roleId) {
+    return { valid: false, reason: "No puedes asignar un rol como su propio superior" };
   }
 
   const hasNodeInSubtree = (
-    node: IWorkPositionOrgChartNode,
-    targetWorkPositionId: string,
+    node: IRoleOrgChartNode,
+    targetRoleId: string,
   ): boolean => {
-    if (node.workPositionId === targetWorkPositionId) {
+    if (node.roleId === targetRoleId) {
       return true;
     }
 
     return node.children.some((child) =>
-      hasNodeInSubtree(child, targetWorkPositionId),
+      hasNodeInSubtree(child, targetRoleId),
     );
   };
 
-  if (hasNodeInSubtree(dragged, target.workPositionId)) {
+  if (hasNodeInSubtree(dragged, target.roleId)) {
     return { valid: false, reason: "No puedes reportar a uno de tus subordinados actuales (ciclo)" };
   }
 

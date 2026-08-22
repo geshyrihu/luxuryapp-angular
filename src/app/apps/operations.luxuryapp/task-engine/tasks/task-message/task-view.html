@@ -181,6 +181,12 @@
       </div>
       }
 
+      <app-task-checklist-panel [tasksId]="t.id" />
+      <app-task-justification-panel
+        [tasksId]="t.id"
+        [assigneeId]="t.assigneeId"
+      />
+
       <!-- Timeline -->
       <h3 class="text-xl font-bold mb-3 border-left-3 border-primary pl-3">
         Bitacora de Seguimiento

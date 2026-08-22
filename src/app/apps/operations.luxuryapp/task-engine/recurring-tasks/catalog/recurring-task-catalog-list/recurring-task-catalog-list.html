@@ -1,0 +1,113 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Catálogo de Tareas Recurrentes</h3>
+  </div>
+  <div class="card-body">
+    <p-table
+      #dt
+      [value]="data()"
+      [rows]="10"
+      [paginator]="true"
+      [loading]="loading()"
+      size="small"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      class="hidden md:block custom-table"
+    >
+      <ng-template #caption>
+        <div
+          class="flex flex-column md:flex-row md:align-items-center justify-content-end p-2 gap-2"
+        >
+          <primeng-custom-caption
+            (add)="showForm()"
+            [dt]="dt"
+            [noPadding]="true"
+            [noMargin]="true"
+          />
+          <div class="flex-shrink-0">
+            <iw-button-active-desactive
+              [state]="activeOnly()"
+              (stateChange)="onChangeState($event)"
+            />
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>Título</th>
+          <th>Grupo</th>
+          <th>Criticidad</th>
+          <th>Estatus</th>
+          <th class="table-col-15">Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-template>
+        <tr>
+          <td>{{ template.title }}</td>
+          <td>{{ template.workGroupName }}</td>
+          <td>{{ template.criticality }}</td>
+          <td>{{ template.status }}</td>
+          <td>
+            <div class="flex">
+              <iw-button-edit (clicked)="showForm(template)" />
+              <iw-button-active-desactive
+                [state]="isActive(template)"
+                lxTooltip="Activar/Pausar"
+                tooltipPosition="top"
+                (stateChange)="onToggleStatus(template.id)"
+              />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <primeng-custom-table-emptymessage [colspan]="5" />
+      </ng-template>
+    </p-table>
+
+    <app-data-view-mobile
+      [data]="data()"
+      (add)="showForm()"
+      [dt]="dt"
+      class="block md:hidden"
+    >
+      <div customFilters>
+        <div class="px-4 py-2">
+          <ili-button-active-desactive
+            fluid
+            [state]="activeOnly()"
+            (stateChange)="onChangeState($event)"
+          />
+        </div>
+      </div>
+      <ng-template #listItemTemplate let-template>
+        <ili-list-item>
+          <div
+            start
+            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
+          >
+            <app-icon
+              icon="material-symbols-light:event-repeat"
+              class="text-xl text-primary"
+            />
+          </div>
+
+          <h5 class="mb-2">{{ template.title }}</h5>
+          <p class="text-sm text-600">Grupo: {{ template.workGroupName }}</p>
+          <p class="text-sm text-600">Estatus: {{ template.status }}</p>
+
+          <ili-action-menu slot="end">
+            <ng-container actions>
+              <ili-button-item label="Editar" (clicked)="showForm(template)" />
+              <ili-button-active-desactive
+                label="Activar/Pausar"
+                [state]="isActive(template)"
+                (stateChange)="onToggleStatus(template.id)"
+              />
+            </ng-container>
+          </ili-action-menu>
+        </ili-list-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>
