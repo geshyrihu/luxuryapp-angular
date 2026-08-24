@@ -87,6 +87,7 @@ export class GastoFijoPresupuesto implements OnInit {
     const urlApi = Endpoints.CatalogoGastosFijosPresupuesto.fixedExpensesCatalog(
       this.customerIdS.customerId(),
       this.intYear,
+      this.catalogoGastosFijosId,
     );
     this.apiResponseS
       .onGetList(urlApi)
@@ -141,6 +142,7 @@ export class GastoFijoPresupuesto implements OnInit {
     const urlApi = Endpoints.CatalogoGastosFijosPresupuesto.fixedExpensesCatalog(
       this.customerIdS.customerId(),
       this.intYear,
+      this.catalogoGastosFijosId,
     );
     this.apiResponseS
       .onGetList(urlApi)

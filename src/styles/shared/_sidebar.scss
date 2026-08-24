@@ -276,7 +276,7 @@ body.theme-dark .p-panelmenu {
     align-items: center !important;
     padding: 0.6rem 1rem !important;
     color: var(--ds-text-primary) !important;
-    border-radius: 2px !important;
+    border-radius: 3px !important;
     border-left: 3px solid transparent !important;
     transition: all 0.2s ease-in-out !important;
     text-decoration: none !important;
@@ -327,7 +327,7 @@ body.theme-dark .p-panelmenu {
     color: var(--ds-text-primary) !important;
     font-size: 0.875rem !important;
     font-weight: 500 !important;
-    border-radius: 2px !important;
+    border-radius: 3px !important;
     transition: background-color 0.2s !important;
 
     &:hover {
@@ -456,7 +456,7 @@ app-header-employee-monitor .customer-selector-btn {
   padding: 0.375rem 0.75rem;
   background: var(--ds-bg-sunken);
   border: 1px solid var(--ds-border-base);
-  border-radius: 6px;
+  border-radius: 3px;
   color: var(--ds-text-primary);
   font-weight: 500;
   font-size: 0.875rem;
@@ -486,7 +486,7 @@ app-header-employee-monitor .customer-selector-btn {
   padding: 0.625rem 1rem;
   background: transparent;
   border: none;
-  border-radius: 6px;
+  border-radius: 3px;
   color: var(--text-color);
   font-size: 0.9rem;
   font-weight: 500;

@@ -62,7 +62,7 @@ export class VaultSecretsList {
   tableScrollHeightS = inject(TableScrollHeightService);
   aspRoleS = inject(AspRoleService);
 
-  readonly isSuperUsuario = this.aspRoleS.roleSignal(
+  readonly isSuperUsuario = this.aspRoleS.canAccessSignal(
     ApplicationRole.SuperUsuario,
   );
 

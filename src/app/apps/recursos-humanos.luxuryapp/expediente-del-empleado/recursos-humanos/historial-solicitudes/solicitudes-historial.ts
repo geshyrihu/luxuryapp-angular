@@ -125,7 +125,7 @@ export class SolicitudesHistorial implements OnInit {
     ApplicationRole.SuperUsuario,
     ApplicationRole.RecursosHumanos,
   ];
-  canCancel = computed(() => this.aspRoleS.hasAny(this.allowedCancellerRoles));
+  canCancel = computed(() => this.aspRoleS.canAccessAny(this.allowedCancellerRoles));
   data = signal<IHistorialSolicitud[]>([]);
   loading = signal(true);
   employees = signal<SelectItemDto[]>([]);

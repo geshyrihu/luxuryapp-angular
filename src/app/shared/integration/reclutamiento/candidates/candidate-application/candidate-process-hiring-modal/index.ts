@@ -1,1 +1,1 @@
-export * from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-application/candidate-process-hiring-modal";
+export * from "src/app/apps/reclutamiento.luxuryapp/candidate-application/candidate-process-hiring-modal";

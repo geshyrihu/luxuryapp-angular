@@ -17,7 +17,7 @@
   z-index: 9999;
 
   background-color: var(--ds-bg-surface);
-  border-radius: 12px;
+  border-radius: 3px;
   box-shadow: var(--ds-shadow-lg);
   padding: 8px;
   border: 1px solid var(--ds-border);
@@ -46,7 +46,7 @@
       display: flex;
       align-items: center;
       padding: 6px 8px;
-      border-radius: 8px;
+      border-radius: 3px;
       transition: background-color 0.2s ease;
 
       &:hover {
@@ -62,7 +62,7 @@
     }
 
     .form-select {
-      border-radius: 8px;
+      border-radius: 3px;
     }
   }
 }
@@ -72,7 +72,7 @@
   display: inline-flex;
   align-items: center;
   background-color: var(--ds-bg-sunken);
-  border-radius: 12px;
+  border-radius: 3px;
   padding: 5px 10px;
   min-height: 40px;
 }

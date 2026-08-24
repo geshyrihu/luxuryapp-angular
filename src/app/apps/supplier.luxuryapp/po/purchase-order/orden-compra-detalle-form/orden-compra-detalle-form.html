@@ -17,9 +17,10 @@
       [maxFractionDigits]="4"
     />
 
-    <custom-input-currency-signal
-      label="Descuento"
+    <custom-input-decimal-signal
+      label="Descuento (%)"
       [control]="form.controls.descuento"
+      suffix="%"
     />
     <custom-input-decimal-signal
       label="IVA (%)"

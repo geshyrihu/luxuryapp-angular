@@ -1,1 +1,1 @@
-export * from "src/app/apps/reclutamiento.luxuryapp/estructura-organizacional/work-position/work-position-hours";
+export * from "src/app/apps/reclutamiento.luxuryapp/work-position/work-position-hours";

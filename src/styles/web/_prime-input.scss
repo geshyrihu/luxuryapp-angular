@@ -6,8 +6,8 @@
 :root {
   --p-inputtext-border-width: var(--ds-control-border-width, 1px);
   --p-textarea-border-width: var(--ds-control-border-width, 1px);
-  --p-inputtext-border-radius: var(--ds-radius-input, 4px);
-  --p-textarea-border-radius: var(--ds-radius-input, 4px);
+  --p-inputtext-border-radius: var(--ds-radius-input, 3px);
+  --p-textarea-border-radius: var(--ds-radius-input, 3px);
 }
 
 body {
@@ -18,7 +18,7 @@ body {
   .p-datepicker-input,
   .p-select,
   .p-multiselect {
-    border-radius: var(--ds-radius-input, 4px);
+    border-radius: var(--ds-radius-input, 3px);
     border-width: var(--ds-control-border-width, 1px);
     border-style: solid;
     border-color: var(--ds-border);

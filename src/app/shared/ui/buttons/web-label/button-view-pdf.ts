@@ -10,7 +10,6 @@ import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "il-button-view-pdf",
-
   imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -20,7 +19,9 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="handleClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:picture-as-pdf'" />
+      <app-icon
+        [icon]="resolvedIconClass() || 'material-symbols-light:picture-as-pdf'"
+      />
       <span>{{ label() || "Ver archivo" }}</span>
     </button>
   `,

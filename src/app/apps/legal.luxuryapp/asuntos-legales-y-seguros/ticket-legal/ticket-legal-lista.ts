@@ -71,7 +71,7 @@ export class TicketLegalLista implements OnInit {
   apiResponseS = inject(ApiResponseService);
   public aspRoleS = inject(AspRoleService);
   private tableScrollHeightS = inject(TableScrollHeightService);
-  isSuperUser = this.aspRoleS.hasRole(ApplicationRole.SuperUsuario);
+  isSuperUser = this.aspRoleS.canAccess(ApplicationRole.SuperUsuario);
 
   dataSignal = signal<any[]>([]);
   cb_customer = signal<SelectItemDto[]>([]);

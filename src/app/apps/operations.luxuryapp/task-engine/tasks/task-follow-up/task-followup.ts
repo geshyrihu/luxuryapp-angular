@@ -60,7 +60,7 @@ export class TaskFollowup implements OnInit, OnDestroy {
   private formB = inject(FormBuilder);
   private ref = inject(DynamicDialogRef);
 
-  readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
+  readonly isSuperUser = this.aspRoleS.canAccessSignal(ApplicationRole.SuperUsuario);
   description = signal<any[]>([]);
   submitting = signal(false);
 

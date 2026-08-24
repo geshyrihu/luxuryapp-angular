@@ -2,7 +2,7 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { of } from "rxjs";
-import { EmployeeInternalService } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-internal/services/employee-internal.service";
+import { EmployeeInternalService } from "src/app/apps/recursos-humanos.luxuryapp/employee/employee-internal.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -245,3 +245,4 @@ describe("EmployeeProviderForm", () => {
     expect(mockEmployeeS.searchExistingPhone).toHaveBeenCalledWith("555-0000");
   });
 });
+

@@ -91,7 +91,7 @@ for (const archivo of recorrer(RAIZ)) {
     // Una línea comentada es código muerto, no un icono que se dibuje.
     if (/^\s*(\/\/|\*|<!--)/.test(linea)) return;
 
-    for (const m of linea.matchAll(/material-symbols-light:[a-z0-9-]+/g)) {
+    for (const m of linea.matchAll(/material-symbols-light:[a-z0-9_-]+/g)) {
       literales++;
       const nombre = m[0];
       if (valores.has(nombre) || PERMITIDOS.has(nombre)) continue;

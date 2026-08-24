@@ -22,7 +22,7 @@ export class ContainerDashboard {
   public componentToRender = computed<Type<any>>(() => {
     // If user has Client-specific roles, show MiEdificio
     if (
-      this.aspRoleS.hasAny([
+      this.aspRoleS.canAccessAny([
         ApplicationRole.Condomino,
         ApplicationRole.Comite,
       ])

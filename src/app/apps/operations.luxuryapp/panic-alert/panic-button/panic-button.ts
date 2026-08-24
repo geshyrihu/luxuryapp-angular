@@ -277,7 +277,7 @@ export class PanicButton implements OnDestroy {
 
   private aspRoleService = inject(AspRoleService);
 
-  visible = computed(() => this.aspRoleService.hasAny(EMITTER_ROLES));
+  visible = computed(() => this.aspRoleService.canAccessAny(EMITTER_ROLES));
 
   isHolding = signal(false);
   isSending = signal(false);

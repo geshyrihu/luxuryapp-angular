@@ -119,44 +119,52 @@
         Busque y agregue los artículos que forman parte de esta orden de compra.
       </p>
       <div class="mt-4">
-        <div class="mb-4">
-          <custom-input-autocomplete-signal
-            id="products-autocomplete"
-            [control]="selectedProductControl"
-            [suggestions]="filteredRichProducts()"
-            (completeMethod)="filterRichProducts($event)"
-            (propagar)="onProductSelect($event)"
-            [dropdown]="true"
-            [forceSelection]="true"
-            optionLabel="label"
-            dataKey="value"
-            placeholder="Escriba para buscar un producto..."
-            [scrollHeight]="'1200px'"
-            [onlyInput]="true"
-            [noMargin]="true"
-          >
-            <ng-template let-product #item>
-              <div class="flex flex-wrap p-1 align-items-center w-full">
-                @if (product.image) {
-                <app-avatar
-                  [src]="product.image"
-                  [alt]=""
-                  styleClass="mr-2"
-                  size="large"
-                />
-                } @else {
-                <app-avatar
-                  icon="material-symbols-light:package"
-                  size="xlarge"
-                  shape="square"
-                ></app-avatar>
-                }
-                <div class="flex-1 flex flex-column">
-                  <span class="font-bold">{{ product.label }}</span>
+        <div class="mb-4 flex align-items-end gap-2">
+          <div class="flex-1">
+            <custom-input-autocomplete-signal
+              id="products-autocomplete"
+              [control]="selectedProductControl"
+              [suggestions]="filteredRichProducts()"
+              (completeMethod)="filterRichProducts($event)"
+              (propagar)="onProductSelect($event)"
+              [dropdown]="true"
+              [forceSelection]="true"
+              optionLabel="label"
+              dataKey="value"
+              placeholder="Escriba para buscar un producto..."
+              [scrollHeight]="'1200px'"
+              [onlyInput]="true"
+              [noMargin]="true"
+            >
+              <ng-template let-product #item>
+                <div class="flex flex-wrap p-1 align-items-center w-full">
+                  @if (product.image) {
+                  <app-avatar
+                    [src]="product.image"
+                    [alt]=""
+                    styleClass="mr-2"
+                    size="large"
+                  />
+                  } @else {
+                  <app-avatar
+                    icon="material-symbols-light:package"
+                    size="xlarge"
+                    shape="square"
+                  ></app-avatar>
+                  }
+                  <div class="flex-1 flex flex-column">
+                    <span class="font-bold">{{ product.label }}</span>
+                  </div>
                 </div>
-              </div>
-            </ng-template>
-          </custom-input-autocomplete-signal>
+              </ng-template>
+            </custom-input-autocomplete-signal>
+          </div>
+          <il-button
+            label="Registrar nuevo producto"
+            iconClass="material-symbols-light:add-circle"
+            variant="outline"
+            (clicked)="onModalForm()"
+          />
         </div>
       </div>
 
@@ -169,29 +177,49 @@
               <th class="text-right">Unidad</th>
               <th class="text-right">Cantidad</th>
               <th class="text-right">Precio Unit.</th>
-              <th class="text-right">Descuento</th>
+              <th class="text-right">Descuento (%)</th>
               <th class="text-right">IVA (%)</th>
+              <th class="text-right">Ret. IVA (%)</th>
+              <th class="text-right">Ret. ISR (%)</th>
               <th class="text-right">Total</th>
               <th class="text-center">Acciones</th>
             </tr>
           </ng-template>
           <ng-template #body let-item let-i="rowIndex">
             <tr>
-              <td>{{ item.productName }}</td>
+              <td
+                class="pointer"
+                (click)="onModalTarjetaProducto(item.productoId)"
+              >
+                {{ item.productName }}
+              </td>
               <td class="text-right">
                 {{ getMeasurementUnitLabel(item.unidadMedidaId) }}
               </td>
               <td class="text-right">{{ item.quantity | number: "1.2-2" }}</td>
               <td class="text-right">{{ item.unitPrice | currency: "MXN" }}</td>
-              <td class="text-right">{{ item.descuento | currency: "MXN" }}</td>
+              <td class="text-right">
+                {{ item.descuento | number: "1.2-2" }}%
+              </td>
               <td class="text-right">
                 {{ item.ivaAplicado | number: "1.2-2" }}%
               </td>
               <td class="text-right">
-                {{ (item.quantity * item.unitPrice - item.descuento) * (1 +
-                item.ivaAplicado / 100) | currency: "MXN" }}
+                {{ item.retencionIVAPorcentaje | number: "1.2-2" }}%
+              </td>
+              <td class="text-right">
+                {{ item.retencionISRPorcentaje | number: "1.2-2" }}%
+              </td>
+              <td class="text-right">
+                {{ calculateItemTotal(item) | currency: "MXN" }}
               </td>
               <td class="text-center">
+                <iw-button
+                  iconClass="material-symbols-light:visibility"
+                  variant="text"
+                  severity="secondary"
+                  (clicked)="onModalTarjetaProducto(item.productoId)"
+                />
                 <iw-button
                   iconClass="material-symbols-light:edit"
                   variant="text"
@@ -389,8 +417,10 @@
               <th class="text-right">Precio Unit.</th>
               <th class="text-right">Unidad de Medida</th>
               <th class="text-right">Subtotal</th>
-              <th class="text-right">Descuento</th>
-              <th class="text-right">IVA</th>
+              <th class="text-right">Descuento (%)</th>
+              <th class="text-right">IVA (%)</th>
+              <th class="text-right">Ret. IVA (%)</th>
+              <th class="text-right">Ret. ISR (%)</th>
               <th class="text-right">Total</th>
             </tr>
           </ng-template>
@@ -403,16 +433,22 @@
                 {{ getMeasurementUnitLabel(item.unidadMedidaId) }}
               </td>
               <td class="text-right">
-                {{ item.quantity * item.unitPrice | currency: "MXN" }}
-              </td>
-              <td class="text-right">{{ item.descuento | currency: "MXN" }}</td>
-              <td class="text-right">
-                {{ (item.quantity * item.unitPrice - item.descuento) *
-                (item.ivaAplicado / 100) | currency: "MXN" }}
+                {{ calculateItemSubtotal(item) | currency: "MXN" }}
               </td>
               <td class="text-right">
-                {{ (item.quantity * item.unitPrice - item.descuento) * (1 +
-                item.ivaAplicado / 100) | currency: "MXN" }}
+                {{ item.descuento | number: "1.2-2" }}%
+              </td>
+              <td class="text-right">
+                {{ item.ivaAplicado | number: "1.2-2" }}%
+              </td>
+              <td class="text-right">
+                {{ item.retencionIVAPorcentaje | number: "1.2-2" }}%
+              </td>
+              <td class="text-right">
+                {{ item.retencionISRPorcentaje | number: "1.2-2" }}%
+              </td>
+              <td class="text-right">
+                {{ calculateItemTotal(item) | currency: "MXN" }}
               </td>
             </tr>
           </ng-template>

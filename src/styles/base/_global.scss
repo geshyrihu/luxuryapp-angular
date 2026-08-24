@@ -17,7 +17,7 @@
   width: 46px;
   height: 40px;
   margin: 0 10px 0 16px;
-  border-radius: var(--ds-radius-sm, 6px);
+  border-radius: var(--ds-radius-sm, 3px);
   overflow: hidden;
   background: var(--ds-bg-sunken, #e8edff);
   display: flex;
@@ -53,7 +53,7 @@ body {
   color: var(--ds-primary-text);
   font-weight: 600;
   font-size: 0.875rem;
-  border-radius: 0 0 0.5rem 0.5rem;
+  border-radius: 0 0 3px 3px;
   text-decoration: none;
   transition: top 0.2s ease;
 

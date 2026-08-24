@@ -1,0 +1,201 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="dataEmergencyContact()"
+  #dt
+  class="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="
+        onModalForm({
+          id: '',
+          title: 'Nuevo Registro',
+          contacOfBeneficiary: 0,
+        })
+      "
+      [showSearch]="dataEmergencyContact().length > 0"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  @if (dataEmergencyContact().length !== 0) {
+  <ng-template #header>
+    <tr>
+      <th>Nombre</th>
+      <th>Parentesco</th>
+      <th>Télefono</th>
+      <th class="table-col-5 no-print"></th>
+    </tr>
+  </ng-template>
+  }
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.nameContact }}</td>
+      <td>{{ item.relation }}</td>
+      <td>{{ item.phoneNumber }}</td>
+
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="flex justify-content-center">
+          @if (!isReadOnly()) { <iw-button
+            iconClass="edit"
+            ngbTooltip="Editar"
+            (clicked)="
+              onModalForm({
+                id: item.id,
+                title: 'Editar',
+                contacOfBeneficiary: 0,
+              })
+            "
+          /> }
+          @if (!isReadOnly()) { <iw-button-confirm
+            icon="trash"
+            ngbTooltip="Eliminar"
+            (confirmed)="onDelete(item.id, 0)"
+          /> }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  @if (dataEmergencyContact().length === 0) {
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="8" />
+  </ng-template>
+  }
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataEmergencyContact()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 0 })"
+ [showAdd]="!isReadOnly()">
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        <app-icon icon="material-symbols-light:call-outline" class="text-xl text-red-500" />
+      </div>
+
+      <h3>{{ item.nameContact }}</h3>
+      <p>{{ item.relation }} é {{ item.phoneNumber }}</p>
+
+      @if (!isReadOnly()) { <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 0 })"
+            label="Editar"
+          />
+          <ili-button-delete
+            (confirmed)="onDelete(item.id, 0)"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu> }
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
+
+<hr />
+
+<p-table
+  #dt
+  [value]="dataBeneficiary()"
+  [globalFilterFields]="globalFilterFields()"
+  class="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="
+        onModalForm({
+          id: '',
+          title: 'Nuevo Registro',
+          contacOfBeneficiary: 1,
+        })
+      "
+      [showSearch]="dataBeneficiary().length > 0"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  @if (dataBeneficiary().length !== 0) {
+  <ng-template #header>
+    <tr>
+      <th>Nombre</th>
+      <th>Parentesco</th>
+      <th>Télefono</th>
+      <th class="table-col-5 no-print"></th>
+    </tr>
+  </ng-template>
+  }
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.nameContact }}</td>
+      <td>{{ item.relation }}</td>
+      <td>{{ item.phoneNumber }}</td>
+
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="flex justify-content-center">
+          @if (!isReadOnly()) { <iw-button
+            iconClass="edit"
+            ngbTooltip="Editar"
+            (clicked)="
+              onModalForm({
+                id: item.id,
+                title: 'Editar',
+                contacOfBeneficiary: 1,
+              })
+            "
+          /> }
+          @if (!isReadOnly()) { <iw-button-confirm
+            icon="trash"
+            ngbTooltip="Eliminar"
+            (confirmed)="onDelete(item.id, 1)"
+          /> }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  @if (dataBeneficiary().length === 0) {
+  <ng-template emptymessage>
+    <tr>
+      <td colspan="4">No hay beneficiarios</td>
+    </tr>
+  </ng-template>
+  }
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataBeneficiary()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 1 })"
+ [showAdd]="!isReadOnly()">
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        <app-icon icon="material-symbols-light:group-outline" />
+      </div>
+
+      <h3>{{ item.nameContact }}</h3>
+      <p>{{ item.relation }} é {{ item.phoneNumber }}</p>
+
+      @if (!isReadOnly()) { <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 1 })"
+            label="Editar"
+          />
+          <ili-button-delete
+            (confirmed)="onDelete(item.id, 1)"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu> }
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
+
+<hr />

@@ -52,8 +52,8 @@ export const directoryRoutes: Routes = [
   {
     path: "staff",
     loadComponent: () =>
-      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board").then(
-        (m) => m.StaffBoard,
+      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board-list").then(
+        (m) => m.StaffBoardList,
       ),
     canActivate: [authGuard],
     data: {
@@ -122,19 +122,6 @@ export const directoryRoutes: Routes = [
     },
   },
   {
-    // Suggested path: 'employee/:employeeId/:applicationUserId'
-    path: "empleado/:employeeId/:applicationUserId",
-    loadComponent: () =>
-      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/employee-form").then(
-        (m) => m.EmployeeForm,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Empleado",
-      breadcrumb: "Empleado",
-    },
-  },
-  {
     path: "emergency-phones", // Ruta anterior: 'telefonos-emergencia'
     loadComponent: () =>
       import("src/app/apps/public.luxuryapp/telefonos-emergencia/telefonos-emergencia").then(
@@ -160,3 +147,5 @@ export const directoryRoutes: Routes = [
     },
   },
 ];
+
+

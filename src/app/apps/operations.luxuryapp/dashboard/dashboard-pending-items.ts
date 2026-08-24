@@ -28,7 +28,7 @@ import { UnifiedPendingDashboardMobile } from "./unified-pending-dashboard-mobil
 })
 export class DashboardPendingItems {
   private aspRoleS = inject(AspRoleService);
-  showMinutes = this.aspRoleS.anyOf([
+  showMinutes = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Administrador,
     ApplicationRole.GerenteOperaciones,
@@ -38,7 +38,7 @@ export class DashboardPendingItems {
 
   showTickets = computed(() => true);
 
-  showMaintenance = this.aspRoleS.anyOf([
+  showMaintenance = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Direccion,
     ApplicationRole.GerenteMantenimiento,
@@ -46,17 +46,17 @@ export class DashboardPendingItems {
     ApplicationRole.Administrador,
   ]);
 
-  showLegal = this.aspRoleS.anyOf([
+  showLegal = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Legal,
   ]);
 
-  showRecruitment = this.aspRoleS.anyOf([
+  showRecruitment = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Reclutamiento,
   ]);
 
-  showLegalStatus = this.aspRoleS.anyOf([
+  showLegalStatus = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Administrador,
     ApplicationRole.GerenteOperaciones,
@@ -64,7 +64,7 @@ export class DashboardPendingItems {
     ApplicationRole.Asistente,
   ]);
 
-  showPolicies = this.aspRoleS.anyOf([
+  showPolicies = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Legal,
   ]);

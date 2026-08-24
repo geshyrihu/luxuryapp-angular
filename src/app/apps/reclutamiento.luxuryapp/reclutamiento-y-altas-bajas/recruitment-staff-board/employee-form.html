@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-header mb-2">
+    <lx-message severity="info"
+      >DATOS DE EMPLEADO: {{ nameEmployee()| uppercase }}</lx-message
+    >
+  </div>
+
+  <div class="card-body">
+    <div class="grid">
+      <!-- 📋 Menú lateral con PrimeNG -->
+      <div class="col-12 md:col-3">
+        <lx-panel-menu [model]="menuItems" styleClass="employee-menu" />
+      </div>
+
+      <!-- 🧾 Contenido principal -->
+      <div class="col-12 md:col-9">
+        <div class="employee-content-wrapper">
+          @switch (activeSection) { @case ('principal') {
+          <employee-principal-data-form
+            [applicationUserId]="applicationUserId"
+          />
+          } @case ('avatar') {
+          <app-employee-avatar-form [applicationUserId]="applicationUserId" />
+          } @case ('personal') {
+          <app-employee-personal-data-form
+            [employeeId]="employeeId.toString()"
+          />
+          } @case ('laboral') {
+          <app-employee-laboral-data-form
+            [applicationUserId]="applicationUserId"
+          />
+          } @case ('address') {
+          <app-employee-address-form [employeeId]="employeeId.toString()" />
+          } @case ('contacts') {
+          <employee-emergency-contact-list [employeeId]="employeeId" />
+          } @case ('bank-data') {
+          <employee-bank-data-list [employeeId]="employeeId" />
+          } @case ('clinical-data') {
+          <employee-clinical-data-list [employeeId]="employeeId" />
+          } @case ('documents') {
+          <app-employee-document-list [employeeId]="employeeId" />
+          } @case ('contracts') {
+          <!-- <app-work-contract-list [employeeId]="employeeId" /> -->
+          } }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

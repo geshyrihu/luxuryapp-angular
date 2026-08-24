@@ -26,9 +26,9 @@
   // táctiles SIN tocar los --ds-radius-* globales (compartidos con PrimeNG/web,
   // que usan 3px a propósito). Todo lo móvil consume estos tokens.
   --ds-m-radius-btn: 3px;
-  --ds-m-radius-input: 10px;
-  --ds-m-radius-sheet: 16px;
-  --ds-m-radius-row: 12px;
+  --ds-m-radius-input: 3px;
+  --ds-m-radius-sheet: 3px;
+  --ds-m-radius-row: 3px;
   --ds-m-btn-height-sm: 38px;
   --ds-m-btn-height: 48px;
   --ds-m-btn-height-lg: 56px;
@@ -78,16 +78,16 @@ ion-list {
   padding: 0 0 8px !important;
 
   > ion-item:first-of-type {
-    --border-radius: 12px 12px 0 0;
+    --border-radius: 3px 3px 0 0;
     overflow: hidden;
   }
   > ion-item:last-of-type {
-    --border-radius: 0 0 12px 12px;
+    --border-radius: 0 0 3px 3px;
     --inner-border-width: 0 !important;
     overflow: hidden;
   }
   > ion-item:only-child {
-    --border-radius: 12px;
+    --border-radius: 3px;
     --inner-border-width: 0 !important;
     overflow: hidden;
   }
@@ -230,7 +230,7 @@ ion-select.ion-disabled {
 // ── 10. ion-searchbar ─────────────────────────────────────────
 ion-searchbar {
   --background: var(--ds-bg-sunken);
-  --border-radius: 10px;
+  --border-radius: 3px;
   --box-shadow: none;
   --placeholder-color: var(--ds-text-muted);
   --icon-color: var(--ds-text-muted);
@@ -243,13 +243,13 @@ ion-searchbar {
 // ── 11. ion-segment ───────────────────────────────────────────
 ion-segment {
   --background: var(--ds-bg-sunken);
-  border-radius: 10px;
+  border-radius: 3px;
   padding: 2px;
   margin: 8px 16px;
 }
 
 ion-segment-button {
-  --border-radius: 8px;
+  --border-radius: 3px;
   --color: var(--ds-text-muted);
   --color-checked: var(--ds-text-primary);
   --indicator-color: var(--ds-bg-surface);

@@ -1,3 +1,4 @@
+import { EmployeeDocumentList } from 'src/app/apps/recursos-humanos.luxuryapp/employee-document/employee-document-list';
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -51,7 +52,7 @@ import { EmployeeOnboardingChecklist } from "./employee-onboarding-checklist/emp
     CurrencyPipe,
     TableModule,
     AppIcon,
-    EmployeeOnboardingChecklist,
+    EmployeeOnboardingChecklist, EmployeeDocumentList,
   ],
 })
 export class EmployeeFileDetail implements OnInit {
@@ -74,6 +75,7 @@ export class EmployeeFileDetail implements OnInit {
     { id: "8", label: "Evaluaciones", icon: "material-symbols-light:monitoring" },
     { id: "9", label: "Solicitudes", icon: "material-symbols-light:send" },
     { id: "10", label: "Checklist", icon: "material-symbols-light:fact-check" },
+    { id: "11", label: "Documentos", icon: "material-symbols-light:folder-open" },
   ];
   activeTab = model<string>("0");
 
@@ -303,3 +305,5 @@ export class EmployeeFileDetail implements OnInit {
     return status === "PendienteFirma" ? "Pendiente de Firma" : status;
   }
 }
+
+

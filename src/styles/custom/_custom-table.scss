@@ -99,17 +99,35 @@
       font-size: 0.9rem;
     }
 
-    /* Match rf-prime-table visual styling from _financial-tables.scss */
+    /* Encabezado azul de marca (2026-08-12).
+       Antes heredaba `--ds-bg-sunken` de `web/_prime-table.scss`, que resuelve
+       a $primary-100 (#ddeaf4): del mismo matiz H=204, pero casi blanco. Se
+       alinea con `_financial-tables.scss`, que ya usaba encabezado oscuro.
+
+       Gana por especificidad, no por !important: este selector aporta 3 clases
+       (.custom-table + .p-datatable + .p-datatable-thead) frente a las 2 de
+       `body .p-datatable …`. Ambas hojas van fuera de capa.
+
+       Los tokens giran solos con el tema: en oscuro `--ds-primary` pasa a
+       $primary-200 y `--ds-primary-text` a $primary-900, así que el encabezado
+       se invierte a azul claro con texto oscuro sin regla aparte. */
     .p-datatable-thead > tr > th {
-      // background: linear-gradient(180deg, #294575 0%, #182946 100%) !important;
-      // color: #ffffff !important;
-      // font-weight: 800;
-      // font-size: 0.9rem;
-      // padding: 0.55rem 0.9rem;
-      // text-transform: uppercase;
-      // letter-spacing: 0.04em;
-      // border: 1px solid var(--rf-line, #d7dfeb) !important;
-      // white-space: nowrap;
+      background-color: var(--ds-primary);
+      color: var(--ds-primary-text);
+      border-color: var(--ds-border-on-dark, var(--ds-border));
+
+      /* Los iconos de orden heredan el color del encabezado */
+      p-sorticon,
+      .p-sortable-column-icon,
+      svg {
+        color: currentColor;
+        fill: currentColor;
+      }
+    }
+
+    .p-datatable-thead > tr > th.p-sortable-column:hover {
+      background-color: var(--ds-primary-hover);
+      color: var(--ds-primary-text);
     }
 
     .p-datatable-tbody > tr > td {

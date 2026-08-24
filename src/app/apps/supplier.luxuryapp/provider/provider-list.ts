@@ -140,7 +140,7 @@ export class ListProvider implements OnInit {
   ngOnInit(): void {
     this.onLoadData();
     // Inicializamos la variable para el botón de agregar
-    this.rolAuth = this.aspRoleS.hasAny([
+    this.rolAuth = this.aspRoleS.canAccessAny([
       ApplicationRole.Asistente,
       ApplicationRole.JefeMantenimiento,
       ApplicationRole.Administrador,
@@ -151,7 +151,7 @@ export class ListProvider implements OnInit {
 
   // Validación de roles para mostrar/ocultar acciones
   validateRole(value: ApplicationRole[]): boolean {
-    return this.aspRoleS.hasAny(value);
+    return this.aspRoleS.canAccessAny(value);
   }
 
   // Este mótodo se llama cada vez que el usuario escribe en el buscador

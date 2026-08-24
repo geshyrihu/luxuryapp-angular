@@ -172,14 +172,14 @@ export class GoogleCalendar {
   readonly scrollHeight = inject(TableScrollHeightService).scrollHeight;
   readonly tablePrimeNgRows = tablePrimeNgRows();
   readonly rowsPerPageOptions = rowsPerPageOptions();
-  readonly canCreate = this.aspRoleS.anyOf([
+  readonly canCreate = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.Administrador,
     ApplicationRole.Asistente,
     ApplicationRole.GerenteOperaciones,
     ApplicationRole.GerenteAtencion,
     ApplicationRole.SuperUsuario,
   ]);
-  readonly canViewAllDetails = this.aspRoleS.anyOf([
+  readonly canViewAllDetails = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Direccion,
     ApplicationRole.GerenteMantenimiento,

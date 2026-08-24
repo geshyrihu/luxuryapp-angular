@@ -398,7 +398,7 @@
 .rf-card {
   background: var(--rf-surface);
   border: 1px solid var(--rf-line);
-  border-radius: 16px;
+  border-radius: 3px;
   overflow: hidden;
   box-shadow: var(--rf-shadow-card);
 }
@@ -785,14 +785,14 @@
   letter-spacing: 0.04em;
   text-align: center;
   padding: 0.55rem 0.9rem;
-  border-radius: 10px;
+  border-radius: 3px;
   margin-bottom: 0.9rem;
 }
 
 .rf-panel-list {
   flex: 1 1 auto;
   border: 1px solid var(--rf-line);
-  border-radius: 12px;
+  border-radius: 3px;
   overflow: hidden;
   background: var(--rf-surface);
 }
@@ -825,7 +825,7 @@
   gap: 1rem;
   margin-top: 0.9rem;
   padding: 0.8rem 0.9rem;
-  border-radius: 12px;
+  border-radius: 3px;
   background: var(--rf-total);
   color: var(--rf-total-ink);
   border: 1px solid var(--rf-line);

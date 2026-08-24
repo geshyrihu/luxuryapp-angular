@@ -89,7 +89,7 @@ export class UserActivityHistory implements OnInit {
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   ngOnInit(): void {
-    this.isUserAdmin = this.aspRoleS.hasAny([
+    this.isUserAdmin = this.aspRoleS.canAccessAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
     ]);

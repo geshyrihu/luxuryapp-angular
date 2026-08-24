@@ -174,7 +174,7 @@ export class TaskList implements OnInit {
 
   // User and Data Setup
   readonly applicationUser = this.authS.applicationUserId;
-  readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
+  readonly isSuperUser = this.aspRoleS.canAccessSignal(ApplicationRole.SuperUsuario);
   readonly ticketGroupId: string =
     this.activatedRoute.snapshot.params.ticketGroupId;
 

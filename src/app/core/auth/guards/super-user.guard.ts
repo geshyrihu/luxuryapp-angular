@@ -24,7 +24,7 @@ export const superUserGuard: CanActivateFn = (route, state) => {
 
   // Verificamos si el usuario tiene alguno de los roles autorizados
   const isAuthorized = authorizedRoles.some((role) =>
-    aspRoleS.roleSignal(role)(),
+    aspRoleS.canAccessSignal(role)(),
   );
 
   if (isAuthorized) {

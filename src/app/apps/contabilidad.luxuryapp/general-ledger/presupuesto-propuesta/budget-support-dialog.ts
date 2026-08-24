@@ -21,7 +21,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
-import { LxListbox } from "@ui/adaptive/listbox/listbox";
+
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import {
   DynamicDialogConfig,
@@ -49,7 +49,6 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     CustomInputFile,
     WebButtonLabel,
     WebButtonLabelViewPdf,
-    LxListbox,
     LxTag,
     LxCard,
     LxMessage,

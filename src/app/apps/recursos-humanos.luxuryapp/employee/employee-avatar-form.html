@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-body text-center m-5">
+    @if (!isReadOnly()) {
+      <custom-input-img-signal
+        (fileSelected)="changeImg($event)"
+        [urlImgCurrent]="imgUpload() ? imgTemp() : photoPath()"
+        label="Foto de perfil"
+        [horizontal]="false"
+      />
+    } @else {
+      <img [src]="imgUpload() ? imgTemp() : photoPath()" class="w-32 h-32 rounded-full object-cover shadow-sm mx-auto" alt="Foto de perfil" />
+    }
+  </div>
+</div>

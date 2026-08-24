@@ -43,6 +43,8 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service"; // Added
+import { ProductosForm } from "src/app/apps/supplier.luxuryapp/product/productos-form";
+import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
 import { OrdenCompraDetalleForm } from "../orden-compra-detalle-form/orden-compra-detalle-form";
 const tipoGastoTitles: { [key: number]: string } = {
   [TipoGasto.Fijo]: "GASTOS FIJOS",
@@ -58,11 +60,26 @@ const tipoGastoTitles: { [key: number]: string } = {
 
 // Interfaces for Typed Forms
 interface IBudgetForm {
-  accountId: FormControl<string | null>;
   accountNumber: FormControl<string | null>;
   accountName: FormControl<string | null>;
   amount: FormControl<number | null>;
 }
+
+// Cuenta presupuestal tal como la entrega `Presupuesto.toPurchaseOrder`
+// (mismo origen que usa el componente de presupuesto de la orden ya creada).
+interface AccountBudgetSelectItem extends SelectItemDto<string> {
+  accountNumber: string;
+  accountName: string;
+  availableBudget: number;
+  budgetSpent: number;
+  budgetMonth: number;
+  pendingPayments: number;
+  hasAvailableBudget: boolean;
+}
+
+// Guid vacío: indica al backend que aún no existe una orden de compra
+// (mismo patrón que usa SolicitudCompraAppService al pedir presupuesto disponible).
+const EMPTY_GUID = "00000000-0000-0000-0000-000000000000";
 
 interface IStep1Form {
   customerId: FormControl<string | null>;
@@ -139,9 +156,10 @@ export class CreateOrdenCompraWizard implements OnInit {
   selectedProductForAutocomplete: any;
 
   // Budget Account signals
-  cb_accounts = signal<SelectItemDto[]>([]);
-  filteredAccounts = signal<SelectItemDto[]>([]);
-  selectedAccountForAutocomplete = new FormControl<SelectItemDto | null>(null);
+  cb_accounts = signal<AccountBudgetSelectItem[]>([]);
+  filteredAccounts = signal<AccountBudgetSelectItem[]>([]);
+  selectedAccountForAutocomplete =
+    new FormControl<AccountBudgetSelectItem | null>(null);
   cb_fiscalYear = signal<SelectItemDto[]>([]);
 
   // Funding signals
@@ -291,18 +309,37 @@ export class CreateOrdenCompraWizard implements OnInit {
       .then((data) => this.cb_measurement_units.set(data));
   }
 
+  // Mismo origen de datos que `orden-compra-presupuesto`: espejo Aspel del
+  // año fiscal seleccionado, con exclusiones/cuentas extra ya resueltas por
+  // ToPurchaseOrderSelectAsync (BudgetAccountRule). Se usa Guid vacío porque
+  // aún no existe OrdenCompraId en este flujo de creación.
   loadAccounts(fiscalYear: number): void {
     const customerId: string = this.customerIdS.customerId();
     if (customerId && fiscalYear) {
-      // Changed from !== 0 to truthy check (non-empty string)
       this.apiResponseS
-        .onGetSelectItem<SelectItemDto[]>(
-          Endpoints.SelectItems.accountingCatalogsByCustomer(
+        .onGetList<any>(
+          Endpoints.Presupuestos.toPurchaseOrder(
             customerId,
+            EMPTY_GUID,
             fiscalYear,
           ),
         )
-        .then((data) => this.cb_accounts.set(data));
+        .then((result: any) => {
+          const accounts: AccountBudgetSelectItem[] = (
+            result?.accounts || []
+          ).map((acc: any) => ({
+            value: acc.accountNumber,
+            label: `${acc.accountNumber} | ${acc.accountName}`,
+            accountNumber: acc.accountNumber,
+            accountName: acc.accountName,
+            availableBudget: acc.availableBudget,
+            budgetSpent: acc.budgetSpent,
+            budgetMonth: acc.budgetMonth,
+            pendingPayments: acc.pendingPayments,
+            hasAvailableBudget: acc.hasAvailableBudget,
+          }));
+          this.cb_accounts.set(accounts);
+        });
     }
   }
 
@@ -380,6 +417,26 @@ export class CreateOrdenCompraWizard implements OnInit {
     this.itemsSignal.update((items) => items.filter((_, i) => i !== index));
   }
 
+  // No cierra el wizard (a diferencia de OrdenCompraDetalleAddProducto):
+  // aquí hay progreso multi-paso en memoria que no se debe perder.
+  onModalForm(): void {
+    this.dialogHandlerS.openDialog(
+      ProductosForm,
+      { id: 0 },
+      "Registrar nuevo Producto",
+      this.dialogHandlerS.sizeLg,
+    );
+  }
+
+  onModalTarjetaProducto(productoId: any): void {
+    this.dialogHandlerS.openDialog(
+      TarjetaProducto,
+      { productoId },
+      "Tarjeta de Producto",
+      this.dialogHandlerS.sizeLg,
+    );
+  }
+
   filterRichProducts(event: { originalEvent: Event; query: string }): void {
     const query = event.query;
     if (query.length < 3) return;
@@ -397,38 +454,49 @@ export class CreateOrdenCompraWizard implements OnInit {
     return this.step3Form.controls.budgets;
   }
 
-  onAccountSelect(selectedAccount: SelectItemDto): void {
+  onAccountSelect(selectedAccount: AccountBudgetSelectItem): void {
     if (!selectedAccount) return;
 
-    const parts = selectedAccount.label.split("|");
-    const code = parts[0]?.trim() || "";
-    const name = parts[1]?.trim() || selectedAccount.label;
-
-    this.addBudget(selectedAccount.value, code, name);
+    this.addBudget(selectedAccount.accountNumber, selectedAccount.accountName);
 
     setTimeout(() => {
       this.selectedAccountForAutocomplete.setValue(null);
     });
   }
 
+  // `descuento`, `ivaAplicado` y las retenciones son PORCENTAJES (0-100),
+  // igual que en OrdenCompraDetalle.SubTotal/Total del backend — no montos.
+  calculateItemSubtotal(item: any): number {
+    const quantity = Number(item.quantity) || 0;
+    const unitPrice = Number(item.unitPrice) || 0;
+    const descuentoMonto =
+      ((Number(item.descuento) || 0) / 100) * unitPrice * quantity;
+    return quantity * unitPrice - descuentoMonto;
+  }
+
+  calculateItemTotal(item: any): number {
+    const subtotal = this.calculateItemSubtotal(item);
+    const iva = subtotal * ((Number(item.ivaAplicado) || 0) / 100);
+    const retencionIva =
+      subtotal * ((Number(item.retencionIVAPorcentaje) || 0) / 100);
+    const retencionIsr =
+      subtotal * ((Number(item.retencionISRPorcentaje) || 0) / 100);
+    return subtotal + iva - retencionIva - retencionIsr;
+  }
+
   calculateTotalProducts(): number {
-    return this.itemsSignal().reduce((acc, item) => {
-      const subtotal =
-        Number(item.quantity) * Number(item.unitPrice) -
-        Number(item.descuento || 0);
-      const total = subtotal * (1 + Number(item.ivaAplicado || 0) / 100);
-      return acc + total;
-    }, 0);
+    return this.itemsSignal().reduce(
+      (acc, item) => acc + this.calculateItemTotal(item),
+      0,
+    );
   }
 
   createBudget(
-    accountId: any,
     accountNumber: string,
     accountName: string,
     initialAmount: number = 0,
   ): FormGroup<IBudgetForm> {
     return new FormGroup<IBudgetForm>({
-      accountId: new FormControl(accountId, Validators.required),
       accountNumber: new FormControl(
         { value: accountNumber, disabled: true },
         Validators.required,
@@ -444,18 +512,14 @@ export class CreateOrdenCompraWizard implements OnInit {
     });
   }
 
-  addBudget(
-    accountId?: any,
-    accountNumber: string = "",
-    accountName: string = "",
-  ): void {
+  addBudget(accountNumber: string = "", accountName: string = ""): void {
     let amount = 0;
     if (this.budgetsFormArray.length === 0) {
       amount = this.calculateTotalProducts();
     }
 
     this.budgetsFormArray.push(
-      this.createBudget(accountId, accountNumber, accountName, amount),
+      this.createBudget(accountNumber, accountName, amount),
     );
   }
 
@@ -622,7 +686,6 @@ export class CreateOrdenCompraWizard implements OnInit {
         retencionISRPorcentaje: Number(item.retencionISRPorcentaje || 0),
       })),
       budgets: step3.budgets.map((b) => ({
-        accountId: b.accountId,
         accountNumber: b.accountNumber,
         accountName: b.accountName,
         amount: Number(b.amount),

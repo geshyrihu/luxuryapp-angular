@@ -121,12 +121,13 @@ typography:
     textTransform: "uppercase"
 
 rounded:
-  xs: 4px # 0.25rem — Botones, inputs
-  sm: 6px # 0.375rem
-  md: 8px # 0.5rem — Tarjetas, modales
-  lg: 12px # 0.75rem
-  xl: 16px # 1rem
-  full: 9999px
+  # Estándar unificado 3px (2026-08-22): todos los radios rectangulares = 3px
+  xs: 3px # Botones, inputs (estándar)
+  sm: 3px
+  md: 3px # Tarjetas, modales (estándar)
+  lg: 3px
+  xl: 3px # Overlays, tablas (estándar)
+  full: 9999px # Circular: avatares, pills, badges
 
 spacing:
   unit: 8px

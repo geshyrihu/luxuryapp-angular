@@ -86,7 +86,7 @@ export class OrgChart {
   readonly viewport = signal({ width: 1440, height: 900 });
 
   readonly canEdit = computed(() =>
-    this.aspRoleS.hasRole(ApplicationRole.SuperUsuario),
+    this.aspRoleS.canAccess(ApplicationRole.SuperUsuario),
   );
   readonly editTabDisabled = computed(() => !this.canEdit());
   readonly displayTree = computed(() => this.tree());

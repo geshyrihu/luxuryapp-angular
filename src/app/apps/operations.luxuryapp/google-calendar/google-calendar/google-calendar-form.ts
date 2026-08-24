@@ -187,7 +187,7 @@ export class GoogleCalendarForm implements OnInit {
   readonly meetingDurationMinutes = signal(
     GoogleCalendarForm.MeetingDurationMinutes,
   );
-  readonly canOverrideScheduleConflicts = this.aspRoleS.anyOf([
+  readonly canOverrideScheduleConflicts = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.SuperUsuario,
   ]);
   readonly isEditMode = computed(() => !!this.id());

@@ -79,7 +79,7 @@ export class WarehouseForm implements OnInit {
 
   // Signals para manejo de usuarios (solo visible para admins)
   cb_users = signal<any[]>([]);
-  isAdmin = this.aspRoleS.anyOf([
+  isAdmin = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.Administrador,
     ApplicationRole.SuperUsuario,
   ]);
@@ -112,7 +112,7 @@ export class WarehouseForm implements OnInit {
     this.id = this.config.data.id;
 
     if (
-      this.aspRoleS.anyOf([
+      this.aspRoleS.canAccessAnySignal([
         ApplicationRole.Administrador,
         ApplicationRole.SuperUsuario,
       ])()
@@ -123,7 +123,7 @@ export class WarehouseForm implements OnInit {
     if (this.id !== "") {
       this.onLoadData(); // Carga los datos del almacón existente
     } else if (
-      this.aspRoleS.anyOf([
+      this.aspRoleS.canAccessAnySignal([
         ApplicationRole.Administrador,
         ApplicationRole.SuperUsuario,
       ])()

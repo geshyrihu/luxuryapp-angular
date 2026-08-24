@@ -82,17 +82,19 @@ export class OrdenCompraDetalleForm implements OnInit {
       ]),
       descuento: new FormControl(this.productData.descuento || 0, [
         Validators.min(0),
+        Validators.max(100),
       ]),
       ivaAplicado: new FormControl(this.productData.ivaAplicado || 0, [
         Validators.min(0),
+        Validators.max(100),
       ]),
       retencionIVAPorcentaje: new FormControl(
         this.productData.retencionIVAPorcentaje || 0,
-        [Validators.min(0)],
+        [Validators.min(0), Validators.max(100)],
       ),
       retencionISRPorcentaje: new FormControl(
         this.productData.retencionISRPorcentaje || 0,
-        [Validators.min(0)],
+        [Validators.min(0), Validators.max(100)],
       ),
     });
   }

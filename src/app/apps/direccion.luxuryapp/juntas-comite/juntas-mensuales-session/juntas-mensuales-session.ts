@@ -144,7 +144,7 @@ export class JuntasMensualesSession {
   readonly items = signal<IJuntaMensualSessionListItem[]>([]);
   readonly selectedId = signal<string | null>(null);
   readonly selectedDetail = signal<IJuntaMensualSessionDetail | null>(null);
-  readonly canViewAllCustomers = this.aspRoleS.anyOf([
+  readonly canViewAllCustomers = this.aspRoleS.canAccessAnySignal([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Direccion,
     ApplicationRole.GerenteMantenimiento,
@@ -223,8 +223,8 @@ export class JuntasMensualesSession {
 
   onOpenPresentations() {
     if (
-      this.aspRoleS.hasRole(ApplicationRole.Contador) &&
-      !this.aspRoleS.hasAny([
+      this.aspRoleS.canAccess(ApplicationRole.Contador) &&
+      !this.aspRoleS.canAccessAny([
         ApplicationRole.SuperUsuario,
         ApplicationRole.Administrador,
         ApplicationRole.GerenteOperaciones,

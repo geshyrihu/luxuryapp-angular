@@ -1,0 +1,90 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="grid">
+        <!-- Ciudad -->
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.city"
+            label="Ciudad"
+            placeholder="Ciudad"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Municipio / Alcaldía -->
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.townHall"
+            label="Municipio / Alcaldía"
+            placeholder="Alcaldía"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Colonia -->
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.district"
+            label="Colonia"
+            placeholder="Colonia"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Calle -->
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.street"
+            label="Calle"
+            placeholder="Calle"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Número -->
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.number"
+            label="Número"
+            placeholder="Número"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Número interior -->
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.unitNumber"
+            label="Número interior"
+            placeholder="Número interior"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Código postal -->
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.zipCode"
+            label="Código postal"
+            placeholder="Código postal"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+
+      @if (!isReadOnly()) {
+        <div class="flex justify-content-end mt-3">
+          <il-button-save [disabled]="form.invalid" [submitting]="submitting()" />
+        </div>
+      }
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+

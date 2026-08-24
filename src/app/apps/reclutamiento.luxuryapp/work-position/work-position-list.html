@@ -1,0 +1,248 @@
+!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <p-table
+    [globalFilterFields]="globalFilterFields"
+    [value]="data()"
+    #dt
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    class="custom-table card hidden md:block"
+  >
+    <ng-template #caption>
+      <div class="grid">
+        <div class="col-12 sm:col-10">
+          <primeng-custom-caption
+            [title]="'Puestos de Trabajo'"
+            (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+            [dt]="dt"
+          />
+        </div>
+        <div class="col-12 sm:col-2">
+          <iw-button-active-desactive
+            [state]="state()"
+            (stateChange)="onSelectActive($event)"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th class="w-8rem" pSortableColumn="folio">
+          CóDIGO <p-sorticon field="folio" />
+        </th>
+        <th class="w-auto" pSortableColumn="applicationRoleName">
+          PUESTO <p-sorticon field="applicationRoleName" />
+        </th>
+        <th class="w-8rem" pSortableColumn="turno">
+          TURNO <p-sorticon field="turno" />
+        </th>
+        @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
+        AspRole.Administrador, AspRole.SuperUsuario])) {
+        <th class="w-10rem" pSortableColumn="sueldoBase">
+          PRESUPUESTADO <p-sorticon field="sueldoBase" />
+        </th>
+        <th class="w-10rem" pSortableColumn="sueldo">
+          ACTUAL <p-sorticon field="sueldo" />
+        </th>
+        }
+        <th class="w-15rem" pSortableColumn="applicationUser">
+          COLABORADOR <p-sorticon field="applicationUser" />
+        </th>
+        <th class="w-12rem text-center">ACCIONES</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.folio }}</td>
+        <td>
+          @if (necesitaActualizacion(item)) {
+          <div class="flex align-items-center">
+            <lx-tag
+              severity="warn"
+              value="Actualizar puesto"
+              icon="material-symbols-light:warning"
+            />
+                          <iw-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
+              lxTooltip="Este puesto requiere que se le asigne un rol"
+            />
+          </div>
+          } @else { {{ item.applicationRoleName }} }
+        </td>
+        <td>{{ item.turno }}</td>
+        @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
+        AspRole.Administrador, AspRole.SuperUsuario])) {
+        <td>{{ item.sueldoBase }}</td>
+        <td>{{ item.sueldo }}</td>
+        }
+        <td>
+          <div class="flex align-items-center">
+            @if (item.applicationUserPhoto) {
+            <app-avatar
+              [image]="item.applicationUserPhoto"
+              shape="circle"
+              size="large"
+              (click)="onCardEmployee(item.applicationUserId)"
+              styleClass="cursor-pointer"
+            />
+            } @else {
+            <app-avatar
+              icon="material-symbols-light:person"
+              shape="circle"
+              size="large"
+            />
+            }
+            <span>{{ item.applicationUser || 'Vacante' }}</span>
+          </div>
+        </td>
+        <td class="text-center">
+          <div class="flex justify-content-center gap-1">
+            <iw-button-item
+              (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
+              iconClass="material-symbols-light:book"
+              lxTooltip="Descripción"
+              tooltipPosition="top"
+              [lxTooltip]="'Descripción de puesto'"
+            />
+            <iw-button-item
+              (clicked)="onModalHoursWorkPosition(item.id)"
+              iconClass="material-symbols-light:schedule"
+              lxTooltip="Horarios"
+              tooltipPosition="top"
+              [lxTooltip]="'Horarios de trabajo'"
+            />
+              @if (item.applicationUserId) {
+              <iw-button-item
+                (clicked)="onAdministerEmployee(item.employeeId, item.applicationUserId)"
+                iconClass="material-symbols-light:manage-accounts"
+                lxTooltip="Administrar Empleado"
+                tooltipPosition="top"
+                [lxTooltip]="'Administrar Empleado'"
+              />
+              }
+                          <iw-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
+            />
+            @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
+            <iw-button-delete (confirmed)="onDelete(item.id)" />
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #summary>
+      <div class="flex align-items-center justify-content-end p-2 font-bold">
+        Total: {{ data()?.length || 0 }} puestos de trabajo.
+      </div>
+    </ng-template>
+    <ng-template #emptymessage>
+      <primeng-custom-table-emptymessage [colspan]="7" />
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- Mobile View -->
+<div class="block md:hidden h-full">
+  <app-data-view-mobile
+    [data]="data()"
+    [globalFilterFields]="['folio', 'applicationRoleName', 'applicationUser']"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  >
+    <div
+      customFilters
+      class="flex justify-content-end p-2 border-bottom-1 surface-border"
+    >
+      <ili-button-active-desactive (stateChange)="onSelectActive($event)" />
+    </div>
+
+    <ng-template #listItemTemplate let-item>
+      <ili-list-item>
+        <div
+          start
+          class="mobile-avatar-slot"
+          (click)="item.applicationUserPhoto ? onCardEmployee(item.applicationUserId) : null"
+        >
+          @if (item.applicationUserPhoto) {
+          <img
+            [src]="item.applicationUserPhoto"
+            [alt]="item.folio"
+            class="mobile-avatar-img"
+          />
+          } @else {
+          <app-icon icon="material-symbols-light:work-outline" />
+          }
+        </div>
+
+        <div class="flex justify-content-between align-items-center mb-1">
+          <span class="text-xs font-bold text-500">{{ item.folio }}</span>
+          <lx-tag severity="secondary" [value]="item.turno" />
+        </div>
+        <h2 class="text-base font-bold m-0 text-900">
+          @if (necesitaActualizacion(item)) {
+          <lx-tag
+            severity="warning"
+            value="Actualizar puesto"
+            icon="material-symbols-light:warning"
+          />
+          } @else { {{ item.applicationRoleName }} }
+        </h2>
+        <p class="text-sm text-600">{{ item.applicationUser || 'Vacante' }}</p>
+
+        @if (item.positionRequest?.status === 0 || item.positionRequest?.status
+        === 3) {
+        <lx-tag
+          severity="danger"
+          class="mt-1"
+          [value]="'Pendiente: ' + (item.positionRequest.status === 0 ? 'Nueva' : 'En Proceso')"
+        />
+        }
+
+        <ili-action-menu slot="end">
+          <ng-container actions>
+            <ili-button-item
+              (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
+              iconName="book-outline"
+              label="Descripción"
+            />
+            <ili-button-item
+              (clicked)="onModalHoursWorkPosition(item.id)"
+              iconName="time-outline"
+              label="Horarios"
+            />
+              @if (item.applicationUserId) {
+              <ili-button-item
+                (clicked)="onAdministerEmployee(item.employeeId, item.applicationUserId)"
+                iconName="person-outline"
+                label="Administrar Empleado"
+              />
+              }
+                          <ili-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+              label="Editar"
+            />
+            @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
+            <ili-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+            />
+            }
+          </ng-container>
+        </ili-action-menu>
+      </ili-list-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>
+
+
+
+
+
+

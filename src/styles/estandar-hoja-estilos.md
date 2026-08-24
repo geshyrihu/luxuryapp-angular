@@ -240,7 +240,7 @@ Cada archivo sobrescribe la apariencia de un componente PrimeNG v21 usando **tok
 | `_prime-input.scss` | `p-inputtext`, `p-textarea`, `p-inputnumber`, `p-password`, `p-datepicker` | Tokens border-width/radius, altura 40px, disabled state (italic + opacity). |
 | `_prime-card.scss` | `p-card` | Border-radius, background, border, shadow. |
 | `_prime-message.scss` | `p-message` | Borde izquierdo 4px, backgrounds suaves por severidad (success, info, warn, error, secondary, contrast). |
-| `_prime-dialog.scss` | `p-dialog` | Border-radius 16px, header/content/footer padding, backdrop-filter blur. |
+| `_prime-dialog.scss` | `p-dialog` | Border-radius 3px (estándar unificado), header/content/footer padding, backdrop-filter blur. |
 | `_prime-tag.scss` | `p-tag` | Border-radius desde token. |
 | `_prime-table.scss` | `p-datatable` | Tokens de colores, padding, header uppercase, hover effect, paginador estilizado. |
 | `_prime-dropdown.scss` | `p-select`, `p-multiselect`, `p-autocomplete` | Tokens border/radius/focus, overlay panel, opciones con hover/selected. |

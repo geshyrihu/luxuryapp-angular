@@ -4,14 +4,14 @@
 // ============================================================
 
 :root {
-  --p-card-border-radius: var(--ds-radius-card, 4px);
+  --p-card-border-radius: var(--ds-radius-card, 3px);
 }
 
 body {
   .p-card {
     background: var(--ds-bg-surface);
     border: 1px solid var(--ds-border);
-    border-radius: var(--ds-radius-card, 4px);
+    border-radius: var(--ds-radius-card, 3px);
     box-shadow: var(--ds-shadow-sm);
     color: var(--ds-text-primary);
     overflow: hidden;

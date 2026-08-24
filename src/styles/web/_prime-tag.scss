@@ -4,12 +4,12 @@
 // ============================================================
 
 :root {
-  --p-tag-border-radius: var(--ds-radius-sm, 4px);
+  --p-tag-border-radius: var(--ds-radius-sm, 3px);
 }
 
 body {
   .p-tag {
-    border-radius: var(--ds-radius-sm, 4px);
+    border-radius: var(--ds-radius-sm, 3px);
   }
 
   // Texto de severidad AA (RN-DS-004) — tokens --ds-accent-text-*

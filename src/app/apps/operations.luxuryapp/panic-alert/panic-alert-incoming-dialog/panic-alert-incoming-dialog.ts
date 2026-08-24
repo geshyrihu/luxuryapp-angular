@@ -265,7 +265,7 @@ export class PanicAlertIncomingDialog implements OnInit {
       });
 
     // Solo escuchar si el usuario tiene rol receptor
-    if (!this.aspRoleS.hasAny(RECIPIENT_ROLES)) return;
+    if (!this.aspRoleS.canAccessAny(RECIPIENT_ROLES)) return;
 
     this.signalRService.panicAlertReceived$
       .pipe(takeUntilDestroyed(this.destroyRef))

@@ -10,7 +10,7 @@
 
 // Override de tokens propios del p-button
 :root {
-  --p-button-border-radius:              var(--ds-radius-btn, 4px);
+  --p-button-border-radius:              var(--ds-radius-btn, 3px);
   --p-button-font-weight:                500;
   --p-button-font-size:                  0.875rem;
   --p-button-padding-y:                  0.5rem;
@@ -41,7 +41,7 @@ body {
     line-height: 1.25;
     border-width: var(--p-button-border-width);
     border-style: solid;
-    border-radius: var(--ds-radius-btn, 4px);
+    border-radius: var(--ds-radius-btn, 3px);
     transition:
       background-color 150ms ease,
       border-color 150ms ease,

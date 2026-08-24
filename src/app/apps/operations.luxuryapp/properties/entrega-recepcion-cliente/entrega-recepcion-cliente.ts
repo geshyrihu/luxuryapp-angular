@@ -108,11 +108,11 @@ export class EntregaRecepcionClienteLista {
   // ¡MEJORA! Este método ahora solo establece el estado inicial del signal.
   private onValidarCargo(): void {
     let initialDept = this.cb_departamento[0].value; // Valor por defecto
-    if (this.aspRoleS.hasRole(ApplicationRole.Contador))
+    if (this.aspRoleS.canAccess(ApplicationRole.Contador))
       initialDept = this.cb_departamento[1].value;
-    if (this.aspRoleS.hasRole(ApplicationRole.Legal))
+    if (this.aspRoleS.canAccess(ApplicationRole.Legal))
       initialDept = this.cb_departamento[0].value;
-    if (this.aspRoleS.hasRole(ApplicationRole.JefeMantenimiento))
+    if (this.aspRoleS.canAccess(ApplicationRole.JefeMantenimiento))
       initialDept = this.cb_departamento[2].value;
     this.departamento.set(initialDept);
   }

@@ -12,23 +12,22 @@ import {
   Router,
   RouterModule,
 } from "@angular/router";
-import { LxDivider } from "@ui/adaptive/divider/divider";
 import { filter } from "rxjs/operators";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import {
   DialogHandlerService,
   DialogSize,
 } from "src/app/core/services/dialog-handler.service";
+import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
 import { AccordionItem } from "src/app/shared/ui/base/accordion.base";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CobranzaDatePickerModalComponent } from "./cobranza-date-picker-modal";
 import { cobranzaOnlineFilterState } from "./state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "./state/cobranza-online-store.service";
-import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
 
 @Component({
   selector: "app-cobranza-online-wrapper",
-  imports: [RouterModule, AppIcon, LxDivider, LxSpinner],
+  imports: [RouterModule, AppIcon, LxSpinner],
   templateUrl: "./cobranza-online-wrapper.html",
   styleUrls: ["./cobranza-online.styles.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -347,7 +347,10 @@
   --ds-on-tertiary-fixed-variant: #{c.$tertiary-700};
 
   // Interactive states (derived from primary scale)
-  --ds-primary-hover: #{c.$primary-700};
+  // Hover del primario. Fue $primary-700 hasta 2026-08-12, identico a --ds-primary:
+  // el hover no cambiaba nada en tema claro. $primary-600 da 7.70:1 con texto
+  // blanco (AA) y DeltaE 20.86 frente al base, sin chocar con --ds-primary-active.
+  --ds-primary-hover: #{c.$primary-600};
   --ds-primary-active: #{c.$primary-800};
   --ds-primary-light: var(--primary-50);
   --ds-primary-text: #{c.$neutral-0};

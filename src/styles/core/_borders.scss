@@ -13,14 +13,14 @@ $border-width-thick: 4px !default;
 // ── BORDER RADIUS ─────────────────────────────────────────────
 // Escala alineada con DESIGN.md rounded tokens
 $radius-none: 0px !default;
-$radius-xs: 4px !default;    // Botones, inputs (DESIGN.md: xs)
-$radius-sm: 6px !default;    // (DESIGN.md: sm)
-$radius-md: 8px !default;    // Tarjetas, modales (DESIGN.md: md)
-$radius-lg: 12px !default;   // (DESIGN.md: lg)
-$radius-xl: 16px !default;   // (DESIGN.md: xl)
-$radius-2xl: 24px !default;
-$radius-3xl: 32px !default;
-$radius-full: 9999px !default; // completamente redondeado (pill)
+$radius-xs: 3px !default;    // Estándar 3px (botones, inputs)
+$radius-sm: 3px !default;
+$radius-md: 3px !default;    // Tarjetas, modales → 3px
+$radius-lg: 3px !default;
+$radius-xl: 3px !default;    // Overlays, tablas → 3px
+$radius-2xl: 3px !default;
+$radius-3xl: 3px !default;
+$radius-full: 9999px !default; // completamente redondeado (pill/avatar)
 
 // ── VARIABLES CSS DE BORDES ───────────────────────────────────
 :root {
@@ -33,9 +33,9 @@ $radius-full: 9999px !default; // completamente redondeado (pill)
   --ds-radius-2xl: #{$radius-2xl};
   --ds-radius-full: #{$radius-full};
 
-  // Radius por defecto de componentes (alineado con DESIGN.md)
-  --ds-radius-btn: var(--ds-radius-xs);      /* 4px — botones/inputs */
-  --ds-radius-input: var(--ds-radius-xs);    /* 4px — inputs */
+  // Radius por defecto de componentes (estándar 3px — botones/inputs)
+  --ds-radius-btn: 3px;      /* 3px — botones/inputs */
+  --ds-radius-input: 3px;   /* 3px — inputs */
   --ds-radius-card: var(--ds-radius-md);     /* 8px — tarjetas */
   --ds-radius-badge: var(--ds-radius-full);
   --ds-radius-modal: var(--ds-radius-md);    /* 8px — modales */

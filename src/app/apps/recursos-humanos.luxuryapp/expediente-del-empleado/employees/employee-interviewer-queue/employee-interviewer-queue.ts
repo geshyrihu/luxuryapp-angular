@@ -1,22 +1,12 @@
-import { CommonModule, DatePipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from "@angular/core";
-import {
-  ButtonGroupOption,
-  IlButtonGroup,
-} from "src/app/shared/ui/buttons/button-group/button-group";
-import {
-  CandidateInterviewerQueueDto,
-  CandidateInterviewerQueueItemDto,
-} from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
-import { CandidateStageBadge } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/candidate-stage-badge";
-import { MappedPTag } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
-import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { EmployeeQueueCandidateDetailModal } from "./employee-queue-candidate-detail-modal";
+import { CommonModule, DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { CustomerIdService } from 'src/app/core/auth/services/customer-id.service';
+import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
+import { CandidateInterviewerQueueDto, CandidateInterviewerQueueItemDto } from 'src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface';
+import { AGENDA_STATUS_TAG_OPTIONS } from 'src/app/shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options';
+import { AppAvatar } from 'src/app/shared/ui/web/avatar/avatar';
 import { EmployeeInterviewerQueueService } from "./employee-interviewer-queue.service";
-import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-
-type QueueMode = "pending" | "history" | "overdue" | "feedback" | "all";
+import { EmployeeQueueCandidateDetailModal } from "./employee-queue-candidate-detail-modal";
 
 type QueueCandidateView = CandidateInterviewerQueueItemDto & {
   vacancyFolio: string;
@@ -29,26 +19,12 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
   filteredCandidates: QueueCandidateView[];
 };
 
-const MODE_OPTIONS: ButtonGroupOption<QueueMode>[] = [
-  { label: "Pendientes", value: "pending" },
-  { label: "Historico", value: "history" },
-  { label: "Vencidas", value: "overdue" },
-  { label: "Con feedback", value: "feedback" },
-  { label: "Todo", value: "all" },
-];
-
 @Component({
   selector: "app-employee-interviewer-queue",
   standalone: true,
   templateUrl: "./employee-interviewer-queue.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CommonModule,
-    DatePipe,
-    IlButtonGroup,
-    CandidateStageBadge,
-    MappedPTag,
-  ],
+  imports: [CommonModule, DatePipe, AppAvatar],
 })
 export class EmployeeInterviewerQueue {
   private queueS = inject(EmployeeInterviewerQueueService);
@@ -57,12 +33,9 @@ export class EmployeeInterviewerQueue {
 
   readonly dataSignal = signal<CandidateInterviewerQueueDto[]>([]);
   readonly loading = signal(false);
-  readonly mode = signal<QueueMode>("pending");
   readonly searchTerm = signal("");
 
   readonly agendaStatusOptions = AGENDA_STATUS_TAG_OPTIONS;
-  readonly modeOptions = MODE_OPTIONS;
-
   readonly totalVacancies = computed(() => this.filteredVacancies().length);
   readonly totalCandidates = computed(() => this.flattenedCandidates().length);
   readonly pendingCount = computed(
@@ -100,11 +73,14 @@ export class EmployeeInterviewerQueue {
     ),
   );
 
-  readonly filteredVacancies = computed<QueueVacancyView[]>(() => {
+    readonly filteredVacancies = computed<QueueVacancyView[]>(() => {
     const term = this.searchTerm().trim().toLowerCase();
-    const mode = this.mode();
 
     return this.dataSignal()
+      .filter((vacancy) => {
+        const status = (vacancy.vacancyStatus || "").toLowerCase();
+        return status.includes("pendiente") || status.includes("proceso");
+      })
       .map((vacancy) => ({
         ...vacancy,
         filteredCandidates: vacancy.candidates
@@ -115,31 +91,21 @@ export class EmployeeInterviewerQueue {
             customerName: vacancy.customerName,
             vacancyStatus: vacancy.vacancyStatus,
           }))
-          .filter(
-            (candidate) =>
-              this.matchesMode(candidate) &&
-              this.matchesSearch(candidate, term),
-          ),
+          .filter((candidate) => this.matchesSearch(candidate, term)),
       }))
       .filter((vacancy) => {
-        // Si tiene candidatos filtrados, la mostramos
         if (vacancy.filteredCandidates.length > 0) return true;
-
-        // Si no tiene candidatos, la mostramos si el modo es 'all' (todo) o 'pending' (para poder enviar feedback).
-        // Y asegurarnos de que la vacante en sí coincida con la búsqueda si hay una
-        if (mode === "all" || mode === "pending") {
-          if (!term) return true;
-          const vacancyHaystack = [
-            vacancy.vacancyFolio,
-            vacancy.positionName,
-            vacancy.customerName,
-          ]
-            .filter(Boolean)
-            .join(" ")
-            .toLowerCase();
-          return vacancyHaystack.includes(term);
-        }
-        return false;
+        if (!term) return true;
+        
+        const vacancyHaystack = [
+          vacancy.vacancyFolio,
+          vacancy.positionName,
+          vacancy.customerName,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        return vacancyHaystack.includes(term);
       });
   });
 
@@ -164,10 +130,6 @@ export class EmployeeInterviewerQueue {
     }
   }
 
-  setMode(mode: QueueMode): void {
-    this.mode.set(mode);
-  }
-
   onSearchInput(event: Event): void {
     const value = (event.target as HTMLInputElement | null)?.value ?? "";
     this.searchTerm.set(value);
@@ -190,21 +152,6 @@ export class EmployeeInterviewerQueue {
       .then(() => this.onLoadData());
   }
 
-  private matchesMode(candidate: QueueCandidateView): boolean {
-    switch (this.mode()) {
-      case "pending":
-        return !candidate.isHistorical;
-      case "history":
-        return candidate.isHistorical;
-      case "overdue":
-        return candidate.agendaStatusCode === "overdue";
-      case "feedback":
-        return candidate.agendaStatusCode === "feedback";
-      default:
-        return true;
-    }
-  }
-
   private matchesSearch(candidate: QueueCandidateView, term: string): boolean {
     if (!term) return true;
 
@@ -225,3 +172,9 @@ export class EmployeeInterviewerQueue {
     return haystack.includes(term);
   }
 }
+
+
+
+
+
+

@@ -2,6 +2,18 @@ import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const recruitmentRoutes: Routes = [
   {
+    path: "staff-board",
+    loadComponent: () =>
+      import("src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/recruitment-staff-board/recruitment-staff-board").then(
+        (m) => m.RecruitmentStaffBoard,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Directorio de Plantilla",
+      breadcrumb: "Directorio de Plantilla",
+    },
+  },
+  {
     path: "",
     pathMatch: "full",
     redirectTo: "plantilla-interna",
@@ -10,7 +22,7 @@ export const recruitmentRoutes: Routes = [
     // Suggested path: 'internal-template'
     path: "plantilla-interna",
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/estructura-organizacional/work-position/work-position-list").then(
+      import("src/app/apps/reclutamiento.luxuryapp/work-position/work-position-list").then(
         (m) => m.WorkPositionList,
       ),
     canActivate: [authGuard],
@@ -40,7 +52,7 @@ export const recruitmentRoutes: Routes = [
     // Suggested path: 'dismissal-request-status'
     path: "status-solicitud-baja",
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/status-request-dismissal").then(
+      import("src/app/apps/reclutamiento.luxuryapp/solicitud-baja/status-request-dismissal").then(
         (m) => m.StatusRequestDismissal,
       ),
     canActivate: [authGuard],
@@ -53,7 +65,7 @@ export const recruitmentRoutes: Routes = [
     // Suggested path: 'salary-modification-request-status'
     path: "status-solicitud-modificacion-salario",
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/status-request-salary-modification").then(
+      import("src/app/apps/reclutamiento.luxuryapp/solicitud-modificacion-sueldo/status-request-salary-modification").then(
         (m) => m.StatusRequestSalaryModification,
       ),
     canActivate: [authGuard],
@@ -79,7 +91,7 @@ export const recruitmentRoutes: Routes = [
     path: "candidates",
     loadChildren: () =>
       import(
-        "src/app/apps/reclutamiento.luxuryapp/candidates/candidates.routing"
+        "src/app/apps/reclutamiento.luxuryapp/candidates.routing"
       ).then((m) => m.candidatesRoutes),
     canActivate: [authGuard],
     data: {
@@ -90,7 +102,7 @@ export const recruitmentRoutes: Routes = [
   {
     path: "dismissal-requests", // Ruta anterior: 'solicitudes-baja'
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/solicitud-baja-list").then(
+      import("src/app/apps/reclutamiento.luxuryapp/solicitud-baja/solicitud-baja-list").then(
         (m) => m.SolicitudBajaList,
       ),
     canActivate: [authGuard],
@@ -99,4 +111,18 @@ export const recruitmentRoutes: Routes = [
       breadcrumb: "Solicitudes de Baja",
     },
   },
+  {
+    path: "empleado/:employeeId/:applicationUserId",
+    loadComponent: () =>
+      import("src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/recruitment-staff-board/employee-form").then(
+        (m) => m.EmployeeForm,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Administrar Empleado",
+      breadcrumb: "Administrar Empleado",
+    },
+  },
 ];
+
+

@@ -77,33 +77,29 @@
   <ng-template #header>
     <div class="px-4 pt-4 font-bold text-lg text-700">Archivos Adjuntos</div>
   </ng-template>
-  <lx-listbox
-    [options]="budgetProposalItem()!.files"
-    optionLabel="fileName"
-    styleClass="compact-listbox border-none"
-  >
-    <ng-template let-file #item>
-      <div class="flex justify-content-between align-items-center w-full py-1">
-        <div class="flex align-items-center gap-2 overflow-hidden">
-          <app-icon
-            [icon]="'material-symbols-light:picture-as-pdf'"
-            class="text-danger text-xl"
-          />
-          <span class="text-sm font-medium truncate">{{ file.fileName }}</span>
-        </div>
-        <div class="flex gap-2">
-          <il-button-view-pdf [url]="file.fileUrl" [fileName]="file.fileName" />
-          <il-button
-            iconClass="material-symbols-light:delete"
-            (clicked)="onDeleteFile(file.id)"
-            label="Eliminar"
-            variant="text"
-            severity="danger"
-          />
-        </div>
+  <div class="p-2">
+    @for (file of budgetProposalItem()!.files; track file.id) {
+    <div class="flex justify-content-between align-items-center w-full py-2 border-bottom-1 surface-border">
+      <div class="flex align-items-center gap-2 overflow-hidden">
+        <app-icon
+          [icon]="'material-symbols-light:picture-as-pdf'"
+          class="text-danger text-xl"
+        />
+        <span class="text-sm font-medium truncate">{{ file.fileName }}</span>
       </div>
-    </ng-template>
-  </lx-listbox>
+      <div class="flex gap-2">
+        <il-button-view-pdf [url]="file.fileUrl" [fileName]="file.fileName" />
+        <il-button
+          iconClass="material-symbols-light:delete"
+          (clicked)="onDeleteFile(file.id)"
+          label="Eliminar"
+          variant="text"
+          severity="danger"
+        />
+      </div>
+    </div>
+    }
+  </div>
 </lx-card>
 } @else if (budgetProposalItem()) {
 <div class="surface-50 rounded p-4 text-center mt-3">

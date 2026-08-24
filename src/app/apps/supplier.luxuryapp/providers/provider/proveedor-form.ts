@@ -24,8 +24,6 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -33,6 +31,10 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 
 interface IProveedorForm {
   id: FormControl<string | null>;
@@ -83,7 +85,6 @@ interface IProveedorForm {
     InputAutocomplete,
     CustomInputFile,
     InputImg,
-    LxFieldset,
     WebButtonLabelSave,
   ],
 })
@@ -184,8 +185,12 @@ export class ProveedorForm implements OnInit {
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.categories,
       ),
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.bank),
-      this.apiResponseS.onGetEnumSelectItem(Endpoints.EnumSelectItems.serviceType),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.bank,
+      ),
+      this.apiResponseS.onGetEnumSelectItem(
+        Endpoints.EnumSelectItems.serviceType,
+      ),
     ]);
 
     this.cb_category.set(categories as SelectItemDto[]);
@@ -228,9 +233,10 @@ export class ProveedorForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: this.id === ""
-        ? Endpoints.Providers.create
-        : Endpoints.Providers.update(this.id),
+      endpoint:
+        this.id === ""
+          ? Endpoints.Providers.create
+          : Endpoints.Providers.update(this.id),
       method: this.id === "" ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,

@@ -2,18 +2,12 @@
 <lx-card>
   <div class="grid">
     <div class="col-12 md:col-4 flex justify-content-center">
-      <img
-        [src]="urlImage()"
-        alt="no-img"
-        class="p-2 rounded w-9rem h-auto"
-      />
+      <img [src]="urlImage()" alt="no-img" class="p-2 rounded w-9rem h-auto" />
     </div>
     <div class="col-12 md:col-8">
       <div class="p-2">
         <div class="flex justify-content-between align-items-start">
-          <h3 class="h4 mt-0 mb-2">
-            {{ applicationUser.fullName }}
-          </h3>
+          <h3 class="h4 mt-0 mb-2">{{ applicationUser.fullName }}</h3>
           <lx-tag
             [value]="applicationUser.active ? 'Activo' : 'Inactivo'"
             [severity]="applicationUser.active ? 'success' : 'danger'"
@@ -36,10 +30,3 @@
   </div>
 </lx-card>
 }
-
-
-
-
-
-
-

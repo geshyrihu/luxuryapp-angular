@@ -18,8 +18,16 @@ export interface PurchaseHistoryDTO {
   accountNumber: string;
   accountName: string;
   amount: number;
-  invoiceUrl: string;
+  invoices: InvoiceFileDTO[];
   notasEspeciales?: string;
+}
+
+export interface InvoiceFileDTO {
+  pdfFile: string;
+  xmlFile: string;
+  factura: string;
+  folioFiscal: string;
+  fechaFactura: string;
 }
 // ... (interfaces existentes)
 

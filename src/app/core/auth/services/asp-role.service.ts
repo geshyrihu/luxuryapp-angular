@@ -54,6 +54,37 @@ export class AspRoleService {
   anyOf = (roles: ApplicationRole[]) =>
     computed(() => roles.some((r) => this.roleChecks[r]()));
 
+  /**
+   * SuperUsuario y Direccion están exentos de todo candado de rol (guards y
+   * visibilidad de UI). Los métodos `hasRole`/`hasAny`/`anyOf`/`roleSignal` de
+   * arriba NO deben cambiar: reflejan la pertenencia real al rol y los usa
+   * lógica de identidad/routing (ej. roleRedirectGuard) que se rompería si
+   * mintieran. Usar `canAccess*` en su lugar para candados de acceso.
+   */
+  private readonly exemptRoles: ApplicationRole[] = [
+    ApplicationRole.SuperUsuario,
+    ApplicationRole.Direccion,
+  ];
+
+  isExempt(): boolean {
+    return this.hasAny(this.exemptRoles);
+  }
+
+  canAccess(role: ApplicationRole): boolean {
+    return this.isExempt() || this.hasRole(role);
+  }
+
+  canAccessAny(roles: ApplicationRole[]): boolean {
+    return this.isExempt() || this.hasAny(roles);
+  }
+
+  canAccessSignal(role: ApplicationRole): Signal<boolean> {
+    return computed(() => this.isExempt() || this.roleChecks[role]());
+  }
+
+  canAccessAnySignal = (roles: ApplicationRole[]) =>
+    computed(() => this.isExempt() || roles.some((r) => this.roleChecks[r]()));
+
   getUserRoles(): string[] {
     return (Object.values(ApplicationRole) as ApplicationRole[]).filter((role) =>
       this.roleChecks[role](),

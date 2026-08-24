@@ -15,7 +15,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
           ApplicationRole.Comite,
@@ -194,7 +194,7 @@ export const humanResourcesRoutes: Routes = [
         (m) => m.AdminVacacionesBalance,
       ),
     canActivate: [
-      () => inject(AspRoleService).hasRole(ApplicationRole.SuperUsuario),
+      () => inject(AspRoleService).canAccess(ApplicationRole.SuperUsuario),
     ],
     data: {
       title: "Administración de Balances",
@@ -210,7 +210,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -232,7 +232,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
           ApplicationRole.Administrador,
@@ -255,7 +255,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -277,7 +277,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -299,7 +299,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -321,7 +321,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -343,7 +343,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -361,7 +361,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
           ApplicationRole.Direccion,
@@ -384,7 +384,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -406,7 +406,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -424,7 +424,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -446,7 +446,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -468,7 +468,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).hasAny([
+        inject(AspRoleService).canAccessAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),

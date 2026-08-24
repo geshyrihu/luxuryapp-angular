@@ -99,8 +99,8 @@ export class TaskGroupList {
   error: string = "";
   dataSignal = signal<any[]>([]);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
-  hasLegal = this.aspRoleS.roleSignal(ApplicationRole.Legal);
-  hasSuperUsuario = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
+  hasLegal = this.aspRoleS.canAccessSignal(ApplicationRole.Legal);
+  hasSuperUsuario = this.aspRoleS.canAccessSignal(ApplicationRole.SuperUsuario);
 
   /*
   /PRIME NG TABLE OPTIONS

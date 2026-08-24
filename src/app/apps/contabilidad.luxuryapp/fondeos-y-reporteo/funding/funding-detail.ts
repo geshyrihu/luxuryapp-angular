@@ -126,9 +126,9 @@ export class FundingDetail {
   fullData = signal<FundingDetailDTO | null>(null);
   ordenesFueraProceso = signal<FundingOrdenDTO[]>([]);
 
-  isRolAdministrador = this.aspRoleS.roleSignal(ApplicationRole.Administrador);
-  isRolSuperUsuario = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
-  isRolContador = this.aspRoleS.roleSignal(ApplicationRole.Contador);
+  isRolAdministrador = this.aspRoleS.canAccessSignal(ApplicationRole.Administrador);
+  isRolSuperUsuario = this.aspRoleS.canAccessSignal(ApplicationRole.SuperUsuario);
+  isRolContador = this.aspRoleS.canAccessSignal(ApplicationRole.Contador);
 
   customerName = signal("");
   customerPhoto = signal("");

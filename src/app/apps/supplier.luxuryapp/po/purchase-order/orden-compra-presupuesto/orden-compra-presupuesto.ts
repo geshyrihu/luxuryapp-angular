@@ -195,7 +195,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   // Determinar si un input de monto esté habilitado ??
   isInputDisabled(item: any): boolean {
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
-    const superUser = this.aspRoleS.hasAny([
+    const superUser = this.aspRoleS.canAccessAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
       ApplicationRole.Asistente,
@@ -215,7 +215,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
 
   // Determinar si el botón de guardar esté habilitado ??
   isSaveDisabled(item: any): boolean {
-    const superUser = this.aspRoleS.hasAny([
+    const superUser = this.aspRoleS.canAccessAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
       ApplicationRole.Asistente,

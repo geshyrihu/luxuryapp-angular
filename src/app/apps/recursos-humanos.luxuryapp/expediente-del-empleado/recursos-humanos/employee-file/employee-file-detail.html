@@ -1,4 +1,4 @@
-<!-- -- Cabecera -------------------------------------------------------------- -->
+!-- -- Cabecera -------------------------------------------------------------- -->
 @if (header()) {
 <div
   class="card mb-4 p-4 rounded-xl shadow-sm border-top-3 border-primary overflow-hidden"
@@ -231,7 +231,7 @@
                   >Telófono Mívil</label
                 >
                 <p class="font-semibold text-900 m-0">
-                  {{ pd.phoneNumberPrefix }} {{ pd.phoneNumber }}
+                  {{ pd.phoneNumber }}
                 </p>
               </div>
               <div class="col-12 sm:col-6">
@@ -1590,4 +1590,13 @@
     <app-employee-onboarding-checklist [employeeId]="employeeId()" />
     }
   </div>
+  <!-- Tab 12: Documentos (id 11) -->
+  <div tab="11">
+    @if (activeTab() === '11') {
+    <app-employee-document-list [employeeId]="employeeId()" [isReadOnly]="true" />
+    }
+  </div>
 </lx-tabs>
+
+
+

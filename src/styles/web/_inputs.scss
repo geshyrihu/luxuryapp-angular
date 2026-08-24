@@ -31,7 +31,7 @@
   // Visual
   background-color: var(--ds-bg-surface);
   border: var(--ds-control-border-width, 1px) solid var(--ds-border);
-  border-radius: var(--ds-radius-input, 6px);
+  border-radius: var(--ds-radius-input, 3px);
   box-shadow: var(--ds-shadow-xs);
 
   // Transición
@@ -305,7 +305,7 @@
       width: 8px;
       height: 2px;
       background-color: var(--ds-primary-text);
-      border-radius: 1px;
+      border-radius: 3px;
     }
   }
 

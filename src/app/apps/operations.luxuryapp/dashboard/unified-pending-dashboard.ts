@@ -41,10 +41,10 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { TicketLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
 import { ServiceOrderForm } from "src/app/apps/operations.luxuryapp/field-service/service-order/service-order-form";
-import { SolicitudAltaStatusForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-requests/solicitud-alta-status-form";
-import { SolicitudBajaUpdateStatus } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/request-dismissal/solicitud-baja-update-status";
-import { ModificacionSalarioForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification/modificacion-salario-form";
-import { VacanteForm } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/vacante-form";
+import { SolicitudAltaStatusForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-alta/solicitud-alta-status-form";
+import { SolicitudBajaUpdateStatus } from "src/app/apps/reclutamiento.luxuryapp/solicitud-baja/solicitud-baja-update-status";
+import { ModificacionSalarioForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-modificacion-sueldo/modificacion-salario-form";
+import { VacanteForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-vacante/vacante-form";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";

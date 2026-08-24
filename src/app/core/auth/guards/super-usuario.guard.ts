@@ -8,7 +8,7 @@ export const superUsuarioGuard: CanActivateFn = () => {
   const aspRoleS = inject(AspRoleService);
   const router = inject(Router);
 
-  if (aspRoleS.hasRole(ApplicationRole.SuperUsuario)) {
+  if (aspRoleS.canAccess(ApplicationRole.SuperUsuario)) {
     return true;
   }
 

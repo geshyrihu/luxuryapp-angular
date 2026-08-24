@@ -64,7 +64,7 @@ export class ProfileUserMobile {
   customerIdS = inject(CustomerIdService);
 
   profileRoute = computed(() =>
-    this.aspRoleS.roleSignal(ApplicationRole.Direccion)()
+    this.aspRoleS.canAccessSignal(ApplicationRole.Direccion)()
       ? "/direccion/profile/update-user-profile"
       : "/profile/update-user-profile",
   );

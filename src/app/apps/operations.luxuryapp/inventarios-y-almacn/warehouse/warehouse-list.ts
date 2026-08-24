@@ -78,7 +78,7 @@ export class WarehouseList implements OnInit {
   // Opciones de la tabla PrimeNG
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  isAdmin = this.aspRoleService.hasAny([
+  isAdmin = this.aspRoleService.canAccessAny([
     ApplicationRole.Administrador,
     ApplicationRole.SuperUsuario,
   ]);

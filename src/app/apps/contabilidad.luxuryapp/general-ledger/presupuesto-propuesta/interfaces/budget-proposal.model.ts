@@ -84,6 +84,7 @@ export interface BudgetProposalItemDTO {
   presupuestoOctubre: number;
   presupuestoNoviembre: number;
   presupuestoDiciembre: number;
+  files: BudgetProposalItemSupportFileDTO[];
 }
 
 export interface BudgetProposalItemHistoryDTO {

@@ -215,8 +215,12 @@ export const EndpointsContabilidad = {
     create: "catalogo-gastos-fijos-presupuesto",
     delete: (id: string) => `catalogo-gastos-fijos-presupuesto/${id}`,
     update: (id: string) => `catalogo-gastos-fijos-presupuesto/${id}`,
-    fixedExpensesCatalog: (customerId: string, fiscalYear: number) =>
-      `presupuesto/fixed-expenses-catalog/${customerId}/${fiscalYear}`,
+    fixedExpensesCatalog: (
+      customerId: string,
+      fiscalYear: number,
+      catalogoGastosFijosId?: string,
+    ) =>
+      `presupuesto/fixed-expenses-catalog/${customerId}/${fiscalYear}${catalogoGastosFijosId ? `?catalogoGastosFijosId=${catalogoGastosFijosId}` : ""}`,
     purchaseOrderBudget: (catalogoGastosFijosId: string) =>
       `catalogo-gastos-fijos-presupuesto/presupuesto-orden-compra-fijos/${catalogoGastosFijosId}`,
   },

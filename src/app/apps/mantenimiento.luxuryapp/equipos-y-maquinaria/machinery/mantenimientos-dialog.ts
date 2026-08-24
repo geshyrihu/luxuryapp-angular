@@ -47,7 +47,7 @@ interface Equipo {
   template: `
     @if (equipo) {
     <div class="flex justify-content-end mb-3">
-      @if (aspRoleS.hasAny([AspRole.JefeMantenimiento, AspRole.Administrador,
+      @if (aspRoleS.canAccessAny([AspRole.JefeMantenimiento, AspRole.Administrador,
       AspRole.SuperUsuario])) {
       <il-button
         label="Agregar"
@@ -67,7 +67,7 @@ interface Equipo {
           <th>RECURRENCIA</th>
           <th>MES</th>
           <th>COSTO</th>
-          @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
+          @if (aspRoleS.canAccessAny([AspRole.JefeMantenimiento,
           AspRole.Administrador, AspRole.SuperUsuario])) {
           <th class="table-col-10"></th>
           }
@@ -88,7 +88,7 @@ interface Equipo {
           <td>{{ order.recurrence }}</td>
           <td>{{ order.month }}</td>
           <td>{{ order.price | CurrencyMexicoPipe }}</td>
-          @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
+          @if (aspRoleS.canAccessAny([AspRole.JefeMantenimiento,
           AspRole.Administrador, AspRole.SuperUsuario])) {
           <td>
             <div class="flex">

@@ -72,13 +72,18 @@
       <td>{{ item.tipoGasto }}</td>
       <td class="text-right font-bold">{{ item.amount | currency: 'MXN' }}</td>
       <td class="text-center">
-        @if (item.invoiceUrl) {
-        <iw-button
-          iconClass="material-symbols-light:download"
-          variant="ghost-text"
-          size="sm"
-          (clicked)="viewPdf(item.invoiceUrl, item.provider)"
-        />
+        @if (item.invoices && item.invoices.length > 0) {
+        <div class="flex flex-wrap gap-1 justify-content-center">
+          @for (inv of item.invoices; track inv.pdfFile) {
+          <iw-button
+            iconClass="material-symbols-light:picture-as-pdf"
+            variant="ghost-text"
+            size="sm"
+            (clicked)="viewPdf(inv.pdfFile, inv.factura || item.provider)"
+            [lxTooltip]="inv.factura || 'Ver factura'"
+          />
+          }
+        </div>
         }
       </td>
     </tr>
@@ -136,13 +141,18 @@
         <span class="text-lg font-semibold text-primary">
           {{ item.amount | currency : "MXN" }}
         </span>
-        @if (item.invoiceUrl) {
-        <iw-button
-          iconClass="material-symbols-light:download"
-          variant="ghost-text"
-          size="sm"
-          (clicked)="viewPdf(item.invoiceUrl, item.provider)"
-        />
+        @if (item.invoices && item.invoices.length > 0) {
+        <div class="flex flex-wrap gap-1 mt-1">
+          @for (inv of item.invoices; track inv.pdfFile) {
+          <iw-button
+            iconClass="material-symbols-light:picture-as-pdf"
+            variant="ghost-text"
+            size="sm"
+            (clicked)="viewPdf(inv.pdfFile, inv.factura || item.provider)"
+            [lxTooltip]="inv.factura || 'Ver factura'"
+          />
+          }
+        </div>
         }
       </div>
     </ili-list-item>
