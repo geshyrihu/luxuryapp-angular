@@ -256,7 +256,15 @@ export class ResetPasswordMobile implements OnInit {
   constructor() {
     this.form = this.fb.group(
       {
-        newPassword: ["", [Validators.required, Validators.minLength(6)]],
+        newPassword: [
+          "",
+          [
+            Validators.required,
+            // RN-CRED-032: mínimo 8 caracteres, 1 mayúscula, 1 minúscula, 1 número.
+            Validators.minLength(8),
+            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/),
+          ],
+        ],
         confirmPassword: ["", [Validators.required]],
       },
       { validators: this.passwordMatchValidator },
@@ -264,8 +272,12 @@ export class ResetPasswordMobile implements OnInit {
   }
 
   ngOnInit() {
-    this.token.set(this.route.snapshot.queryParamMap.get("token") || "");
-    this.email.set(this.route.snapshot.queryParamMap.get("email") || "");
+    // El token llega por query params (flujo solo-link) o por navigation state
+    // (flujo por código); nunca se exponde en la URL cuando viene del código.
+    const stateToken = history.state?.token || "";
+    const stateEmail = history.state?.email || "";
+    this.token.set(this.route.snapshot.queryParamMap.get("token") || stateToken);
+    this.email.set(this.route.snapshot.queryParamMap.get("email") || stateEmail);
 
     if (!this.token() || !this.email()) {
       this.isValidLink.set(false);

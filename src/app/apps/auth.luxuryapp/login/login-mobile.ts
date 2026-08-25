@@ -374,7 +374,7 @@ export class LoginMobile implements OnInit {
   }
 
   goToRecovery(): void {
-    this.router.navigate(ROUTES.AUTH.RECOVERY_PASSWORD);
+    this.router.navigate(ROUTES.AUTH.RECOVERY_CODE);
   }
 
   private buildError(error: unknown): string {

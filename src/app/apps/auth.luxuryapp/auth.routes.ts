@@ -24,17 +24,6 @@ export const authRoutes: Routes = [
     },
   },
   {
-    path: "recovery-password",
-    loadComponent: () =>
-      import("src/app/apps/auth.luxuryapp/recovery-password/recovery-wrapper").then(
-        (m) => m.RecoveryWrapper,
-      ),
-    data: {
-      title: "Recuperar Contraseña", // Ajustado a mayúsculas
-      breadcrumb: "Recuperar Contraseña",
-    },
-  },
-  {
     path: "reset-password",
     loadComponent: () =>
       import("src/app/apps/auth.luxuryapp/reset-password/reset-password-wrapper").then(
@@ -43,6 +32,17 @@ export const authRoutes: Routes = [
     data: {
       title: "Restablecer Contraseña",
       breadcrumb: "Restablecer Contraseña",
+    },
+  },
+  {
+    path: "recovery-code",
+    loadComponent: () =>
+      import("src/app/apps/auth.luxuryapp/recovery-code/recovery-code-wrapper").then(
+        (m) => m.RecoveryCodeWrapper,
+      ),
+    data: {
+      title: "Código de Verificación",
+      breadcrumb: "Código de Verificación",
     },
   },
   {

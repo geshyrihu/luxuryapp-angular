@@ -6,7 +6,7 @@ const ROUTE_WHITELIST = new Set([
   "/unauthorized",
   "/page404",
   "/auth/login",
-  "/auth/recovery-password",
+  "/auth/recovery-code",
   "/auth/reset-password",
   "/committee",
   "/direccion",

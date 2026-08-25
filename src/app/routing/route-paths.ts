@@ -4,7 +4,7 @@ export const ROUTES = {
   // ============================================================
   AUTH: {
     LOGIN: ["/auth", "login"],
-    RECOVERY_PASSWORD: ["/auth", "recovery-password"],
+    RECOVERY_CODE: ["/auth", "recovery-code"],
     RESET_PASSWORD: ["/auth", "reset-password"],
     UPDATE_USER_PROFILE: ["/auth", "update-user-profile"],
   },

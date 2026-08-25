@@ -27,6 +27,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { RECOVERY_BY_CODE_ENABLED } from "../recovery-code/feature-flag";
 import Swal from "sweetalert2";
 
 interface IRecoverPasswordForm {
@@ -59,6 +60,8 @@ interface IRecoverPasswordForm {
 })
 export class RecoverPassword implements OnInit, OnDestroy {
   readonly ROUTES = ROUTES;
+  /** Feature flag del flujo por código (rollback: plan §10 Fase 4). */
+  readonly recoveryByCodeEnabled = RECOVERY_BY_CODE_ENABLED;
   apiResponseS = inject(ApiResponseService);
   dataConnectorS = inject(DataConnectorService);
   formB = inject(FormBuilder);

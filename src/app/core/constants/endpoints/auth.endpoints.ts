@@ -25,6 +25,8 @@ export const EndpointsAuth = {
         `auth/account-recovery/send-new-password-for-email/${id}`,
       sendNewUserNameForEmail: (id: string) =>
         `auth/account-recovery/send-new-user-name-for-email/${id}`,
+      initiateByCode: "auth/account-recovery/initiate-by-code",
+      validateCode: "auth/account-recovery/validate-code",
     },
   },
   ModuleAppRoles: {
