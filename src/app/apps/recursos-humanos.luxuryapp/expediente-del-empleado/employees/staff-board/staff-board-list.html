@@ -1,4 +1,3 @@
-<!-- TABLA DE PUESTOS DE TRABAJO -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="filteredPositions()"
@@ -7,122 +6,123 @@
   groupRowsBy="departament"
   sortField="departament"
   sortMode="single"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
   #dt
 >
   <ng-template #caption>
     <div
-      class="flex flex-wrap align-items-end justify-content-between w-full gap-3"
+      class="flex flex-column xl:flex-row align-items-center justify-content-between gap-3 mb-3 w-full"
     >
-      <div class="flex-grow-1">
-        <primeng-custom-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
-      </div>
-
-      <div class="flex flex-wrap gap-2 align-items-end pb-2">
+      <div
+        class="staff-filter-group flex flex-wrap align-items-center justify-content-center xl:justify-content-start"
+      >
         <il-button
-          (clicked)="onGoToMyPendingInterviews()"
-          iconClass="material-symbols-light:calendar-clock"
-          [label]="interviewerPendingCount() > 0 ? 'Entrevistas y seguimiento (' + interviewerPendingCount() + ')' : 'Entrevistas y seguimiento'"
-          severity="primary"
-          variant="outline"
+          (clicked)="selectedDepartment.set(null)"
+          [label]="'Todos'"
+          [severity]="selectedDepartment() === null ? 'primary' : 'secondary'"
+          variant="outlined"
+          size="small"
         />
-        @if (aspRoleS.hasAny([ AspRole.Administrador, AspRole.SuperUsuario,
-        AspRole.Reclutamiento ])) {
+        @for (dept of uniqueDepartments(); track dept) {
         <il-button
-          (clicked)="onModalForm({ id: '', title: 'Nuevo Puesto de Trabajo' })"
-          iconClass="material-symbols-light:work"
-          label="Agregar Puesto"
-          severity="info"
-          variant="outline"
+          (clicked)="selectedDepartment.set(dept)"
+          [label]="getDepartamentLabel(dept)"
+          [severity]="selectedDepartment() === dept ? 'primary' : 'secondary'"
+          variant="outlined"
+          size="small"
         />
         }
-        <il-button
-          (clicked)="onExportExcel()"
-          iconClass="material-symbols-light:table-view"
-          label="Exportar Excel"
-          severity="info"
-          variant="outline"
-        />
-        <il-button
-          (clicked)="onOrgChart()"
-          iconClass="material-symbols-light:account-tree"
-          label="Organigrama"
-          severity="info"
-          variant="outline"
-        />
       </div>
-    </div>
 
-    <!-- Filtros por departamento (fila separada) -->
-    <div class="flex flex-wrap gap-2 mt-3">
-      <il-button
-        (clicked)="selectedDepartment.set(null)"
-        [label]="'Todos'"
-        [severity]="selectedDepartment() === null ? 'primary' : 'secondary'"
-        variant="outlined"
-        size="small"
-      />
-      @for (dept of uniqueDepartments(); track dept) {
-      <il-button
-        (clicked)="selectedDepartment.set(dept)"
-        [label]="getDepartamentLabel(dept)"
-        [severity]="selectedDepartment() === dept ? 'primary' : 'secondary'"
-        variant="outlined"
-        size="small"
-      />
-      }
+      <div
+        class="flex flex-column md:flex-row align-items-center justify-content-end gap-3 w-full xl:w-auto"
+      >
+        <div class="staff-caption-search w-full md:w-auto">
+          <primeng-custom-caption
+            [dt]="dt"
+            [showAdd]="false"
+            [noMargin]="true"
+          />
+        </div>
+
+        <div
+          class="staff-board-actions flex flex-wrap gap-2 align-items-center justify-content-center md:justify-content-end"
+        >
+          <il-button
+            (clicked)="onGoToMyPendingInterviews()"
+            iconClass="material-symbols-light:calendar-clock"
+            [label]="interviewerPendingCount() > 0 ? 'Entrevistas y seguimiento (' + interviewerPendingCount() + ')' : 'Entrevistas y seguimiento'"
+            severity="primary"
+            variant="outline"
+          />
+          @if (aspRoleS.hasAny([ AspRole.Administrador, AspRole.SuperUsuario,
+          AspRole.Reclutamiento ])) {
+          <il-button
+            (clicked)="onModalForm({ id: '', title: 'Nuevo Puesto de Trabajo' })"
+            iconClass="material-symbols-light:work"
+            label="Agregar Puesto"
+            severity="info"
+            variant="outline"
+          />
+          }
+          <il-button
+            (clicked)="onExportExcel()"
+            iconClass="material-symbols-light:table-view"
+            label="Exportar Excel"
+            severity="info"
+            variant="outline"
+          />
+          <il-button
+            (clicked)="onOrgChart()"
+            iconClass="material-symbols-light:account-tree"
+            label="Organigrama"
+            severity="info"
+            variant="outline"
+          />
+        </div>
+      </div>
     </div>
   </ng-template>
 
   <ng-template #header>
-    <!-- Fila de Títulos de Columna -->
     <tr>
-      <th
-        class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
-      >
+      <th class="staff-board-th text-center font-bold">
         <app-icon
           [icon]="'material-symbols-light:work'"
           class="mr-2"
         />DEPARTAMENTO
       </th>
-      <th pSortableColumn="applicationRoleName">
+      <th class="staff-board-th" pSortableColumn="applicationRoleName">
         PUESTO <p-sorticon field="applicationRoleName" />
       </th>
-      <th class="w-32" pSortableColumn="turno">
+      <th class="staff-board-th w-32" pSortableColumn="turno">
         TURNO <p-sorticon field="turno" />
       </th>
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
       AspRole.Administrador, AspRole.SuperUsuario])) {
-      <th class="w-40 no-print">SUELDOS (PRE / ACT)</th>
+      <th class="staff-board-th w-40 no-print">SUELDOS (PRE / ACT)</th>
       }
-      <th class="w-52 text-center">ACCIONES PUESTO</th>
-      <th class="border-left-2">NOMBRE / PERFIL</th>
+      <th class="staff-board-th w-52 text-center">ACCIONES PUESTO</th>
+      <th class="staff-board-th border-left-2">NOMBRE / PERFIL</th>
     </tr>
   </ng-template>
 
-  <ng-template
-    #body
-    let-item
-    let-rowgroup="rowgroup"
-    let-rowspan="rowspan"
-  >
+  <ng-template #body let-item let-rowgroup="rowgroup" let-rowspan="rowspan">
     <tr [class.row-vacant]="isVacant(item)">
-      <!-- DEPARTAMENTO (solo en inicio de grupo, con rowspan) -->
       @if (rowgroup) {
       <td
         [attr.rowspan]="rowspan"
         class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
       >
-        <app-icon
-          [icon]="'material-symbols-light:work'"
-          class="mr-2"
-        />{{ getDepartamentLabel(item.departament) }}
+        <app-icon [icon]="'material-symbols-light:work'" class="mr-2" />{{
+        getDepartamentLabel(item.departament) }}
       </td>
       }
 
-      <!-- PUESTO -->
       <td>
         @if (necesitaActualizacion(item)) {
-        <div class="flex align-items-center">
+        <div class="flex align-items-center gap-2">
           <lx-tag
             severity="warn"
             value="Actualizar puesto"
@@ -134,17 +134,19 @@
           />
         </div>
         } @else {
-        <div>
-          <small> {{ item.folio }} </small>
-          <p class="mt-1 font-semibold">{{ item.applicationRoleName }}</p>
+        <div class="flex flex-column gap-1">
+          <small class="text-500 font-semibold">{{ item.folio }}</small>
+          <span class="font-semibold text-900"
+            >{{ item.applicationRoleName }}</span
+          >
         </div>
         }
       </td>
 
-      <!-- TURNO -->
-      <td>{{ item.turno }}</td>
+      <td>
+        <span class="text-sm text-700">{{ item.turno }}</span>
+      </td>
 
-      <!-- SUELDOS (rol-guard) -->
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
       AspRole.Administrador, AspRole.SuperUsuario])) {
       <td class="no-print">
@@ -165,9 +167,8 @@
       </td>
       }
 
-      <!-- ACCIONES PUESTO ------------------------------------------------ -->
       <td>
-        <div class="flex align-items-center">
+        <div class="flex align-items-center justify-content-center">
           <app-action-menu>
             <ng-container actions>
               @if (shouldShowVacancyRequest(item)) {
@@ -204,18 +205,16 @@
         </div>
       </td>
 
-      <!-- COLABORADOR ---------------------------------------------------- -->
       <td class="border-left-2">
         <div class="flex flex-column gap-2">
           @if (!isVacant(item)) {
-          <!-- Puesto ocupado -->
-          <div class="flex align-items-center">
+          <div class="flex align-items-center gap-2">
             @if (item.applicationUserPhoto) {
             <lx-avatar
               [image]="item.applicationUserPhoto"
               shape="circle"
               size="large"
-              class="cursor-pointer mr-2 employee-avatar"
+              class="cursor-pointer employee-avatar"
               (click)="onCardEmployee(item.applicationUserId!)"
               lxTooltip="Ver tarjeta"
             />
@@ -224,7 +223,7 @@
               icon="material-symbols-light:person"
               shape="circle"
               size="large"
-              class="mr-2 employee-avatar"
+              class="employee-avatar"
             />
             }
             <div class="flex flex-column min-w-0 flex-grow-1">
@@ -265,7 +264,6 @@
           </div>
           } @else {
           <div class="vacant-row-inline">
-            <!-- Puesto vacante CDK drop zone -->
             <div
               [id]="'drop-pos-' + item.id"
               class="drop-zone vacant-drop-zone flex align-items-center justify-content-between p-2"
@@ -289,7 +287,6 @@
               </div>
             </div>
 
-            <!-- Indicador de solicitud activa (Badge inferior) -->
             @if (item.positionRequest) { @if (item.positionRequest.status === 3)
             {
             <span

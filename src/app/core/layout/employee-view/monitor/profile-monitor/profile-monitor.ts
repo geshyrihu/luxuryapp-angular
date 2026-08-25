@@ -40,7 +40,7 @@ export class ProfileMonitor {
   customerPhotoPath = this.customerIdS.customerPhotoPath();
 
   profileRoute = computed(() =>
-    this.aspRoleS.canAccessSignal(ApplicationRole.Direccion)()
+    this.aspRoleS.roleSignal(ApplicationRole.Direccion)()
       ? "/direccion/profile/update-user-profile"
       : "/profile/update-user-profile",
   );
@@ -76,7 +76,7 @@ export class ProfileMonitor {
 
   onUpdateClick(): void {
     this.consoleLogger.custom(
-      "🔄",
+      "??",
       "color: #FF5722; font-style: italic;",
       "[ProfileMonitor] Botón de actualización de PWA clicado.",
     );

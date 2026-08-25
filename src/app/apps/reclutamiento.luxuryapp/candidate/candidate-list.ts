@@ -87,7 +87,7 @@ export class CandidateList implements OnInit {
   }
 
   async onDelete(id: string) {
-    if (!this.aspRoleS.canAccess(ApplicationRole.SuperUsuario)) return;
+    if (!this.aspRoleS.hasRole(ApplicationRole.SuperUsuario)) return;
 
     const impact = await this.apiResponseS.onGetItem<CandidateDeleteImpact>(
       EndpointsReclutamiento.Candidates.deleteImpact(id),
@@ -96,7 +96,7 @@ export class CandidateList implements OnInit {
 
     const result = await Swal.fire({
       title: "Eliminar candidato",
-      html: `Se eliminará permanentemente el candidato y todo lo relacionado en cascada:<br /><br />
+      html: `Se eliminaré permanentemente el candidato y todo lo relacionado en cascada:<br /><br />
         <ul class="text-left" style="display:inline-block">
           <li>Procesos: <b>${impact.candidateProcessesCount}</b></li>
           <li>Entrevistas: <b>${impact.candidateInterviewsCount}</b></li>

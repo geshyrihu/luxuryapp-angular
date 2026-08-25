@@ -5,10 +5,10 @@ import { ApplicationRole } from "../../enums/asp-net-roles.enum";
 import { AspRoleService } from "../services/asp-role.service";
 
 /**
- * SuperUserGuard: El guardián de las funciones administrativas maestras. 🔐
+ * SuperUserGuard: El guardión de las funciones administrativas maestras. ??
  *
- * Este guardián asegura que solo los usuarios con el rol de SuperUsuario puedan
- * acceder a rutas críticas como el editor de manuales y procesos.
+ * Este guardión asegura que solo los usuarios con el rol de SuperUsuario puedan
+ * acceder a rutas cróticas como el editor de manuales y procesos.
  */
 export const superUserGuard: CanActivateFn = (route, state) => {
   const aspRoleS = inject(AspRoleService);
@@ -24,14 +24,14 @@ export const superUserGuard: CanActivateFn = (route, state) => {
 
   // Verificamos si el usuario tiene alguno de los roles autorizados
   const isAuthorized = authorizedRoles.some((role) =>
-    aspRoleS.canAccessSignal(role)(),
+    aspRoleS.roleSignal(role)(),
   );
 
   if (isAuthorized) {
     return true;
   }
 
-  // Si no está autorizado, lo mandamos a la página de acceso no autorizado
+  // Si no esté autorizado, lo mandamos a la pógina de acceso no autorizado
   console.warn(
     `[Access Denied] Intento de acceso a ruta protegida: ${state.url}`,
   );

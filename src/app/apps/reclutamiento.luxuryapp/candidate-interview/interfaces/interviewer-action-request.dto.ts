@@ -7,4 +7,6 @@ export interface InterviewerActionRequestDto {
   decisionReason?: CandidateRejectionReason | null;
   additionalComment: string;
   newScheduledAt?: string | null;
+  agreedPresentationDate?: string | null;
+  agreedPresentationTime?: string | null;
 }

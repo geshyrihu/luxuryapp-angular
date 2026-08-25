@@ -111,7 +111,11 @@ export class RecurringTaskCatalogForm implements OnInit {
       endDate: new FormControl<string | Date | null>(null),
       advanceNoticeDays: new FormControl(3, {
         nonNullable: true,
-        validators: [Validators.required, Validators.min(0), Validators.max(30)],
+        validators: [
+          Validators.required,
+          Validators.min(0),
+          Validators.max(30),
+        ],
       }),
       backupUserId: new FormControl<string | null>(null),
     },
@@ -151,9 +155,9 @@ export class RecurringTaskCatalogForm implements OnInit {
   }
 
   async loadCriticalities(): Promise<void> {
-    const response = await this.apiResponseS.onGetEnumSelectItem<SelectItemDto[]>(
-      Endpoints.SelectItems.priorityLevel,
-    );
+    const response = await this.apiResponseS.onGetEnumSelectItem<
+      SelectItemDto[]
+    >(Endpoints.SelectItems.priorityLevel);
 
     this.criticalities.set(response ?? []);
   }
@@ -259,7 +263,9 @@ export class RecurringTaskCatalogForm implements OnInit {
     };
   }
 
-  private toDateControlValue(value: string | Date | null): string | Date | null {
+  private toDateControlValue(
+    value: string | Date | null,
+  ): string | Date | null {
     if (!value) return null;
     if (value instanceof Date) return value;
     return new Date(value);

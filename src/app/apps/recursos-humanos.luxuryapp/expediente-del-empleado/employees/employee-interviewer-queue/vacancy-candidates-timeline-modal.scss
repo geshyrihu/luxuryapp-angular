@@ -1,0 +1,40 @@
+.vacancy-timeline-modal {
+  max-height: 32rem;
+  overflow-y: auto;
+  padding-inline: 0.25rem;
+}
+
+.candidate-timeline-grid {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.25rem 0.25rem 0.75rem;
+}
+
+.candidate-timeline-column {
+  flex: 0 0 min(26rem, 88vw);
+  padding: 1rem;
+}
+
+.candidate-timeline-header {
+  border-bottom: 1px solid var(--surface-border);
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.timeline-event-card {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+}
+
+.timeline-marker {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  box-shadow: 0 0 0 4px var(--surface-card);
+}
+
+:host ::ng-deep .p-timeline-event-connector {
+  background: color-mix(in srgb, var(--primary-color) 20%, var(--surface-border));
+  width: 2px;
+}

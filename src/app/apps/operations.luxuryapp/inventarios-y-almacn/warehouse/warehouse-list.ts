@@ -78,11 +78,11 @@ export class WarehouseList implements OnInit {
   // Opciones de la tabla PrimeNG
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  isAdmin = this.aspRoleService.canAccessAny([
+  isAdmin = this.aspRoleService.hasAny([
     ApplicationRole.Administrador,
     ApplicationRole.SuperUsuario,
   ]);
-  // El computed se mantiene, es genórico y funcionaró perfectamente
+  // El computed se mantiene, es genórico y funcionaré perfectamente
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -123,16 +123,16 @@ export class WarehouseList implements OnInit {
   }
 
   onModalForm(data: any) {
-    // CAMBIO: Se pasa el componente correcto 'AlmacenAddOrEditComponent' al diálogo
+    // CAMBIO: Se pasa el componente correcto 'AlmacenAddOrEditComponent' al diólogo
     this.dialogHandlerS
       .openDialog(
         WarehouseForm,
         data,
-        data.title, // El Título se pasa en el objeto 'data'
+        data.title, // El Tótulo se pasa en el objeto 'data'
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
-        // Si el diálogo se cerró con un resultado exitoso, recargamos los datos
+        // Si el diólogo se cerré con un resultado exitoso, recargamos los datos
         if (result) {
           this.onLoadData();
         }
@@ -171,7 +171,7 @@ export class WarehouseList implements OnInit {
       // Group by category
       const groups = sortedData.reduce(
         (acc, item) => {
-          const category = item.category || "SIN CATEGORÍA";
+          const category = item.category || "SIN CATEGORóA";
           if (!acc[category]) acc[category] = [];
           acc[category].push(item);
           return acc;
@@ -224,7 +224,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `Almacén: ${warehouseName}`, generatedAt, "ALMACÉN")}
+  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `Almacón: ${warehouseName}`, generatedAt, "ALMACóN")}
 
   <div class="body-doc">
     <table class="data-table">

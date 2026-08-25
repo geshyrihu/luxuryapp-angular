@@ -33,7 +33,7 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
         <div class="panic-dialog">
           <div class="panic-dialog__header">
             <app-icon icon="material-symbols-light:error" class="panic-dialog__icon" />
-            <span class="panic-dialog__title">Alerta de Pánico</span>
+            <span class="panic-dialog__title">Alerta de Pónico</span>
           </div>
 
           <div class="panic-dialog__body">
@@ -254,18 +254,18 @@ export class PanicAlertIncomingDialog implements OnInit {
 
   ngOnInit(): void {
     // Aviso al emisor cuando alguien atiende su alerta (el servidor solo
-    // envía este evento al usuario que la disparó, sin filtro de rol)
+    // envía este evento al usuario que la disparé, sin filtro de rol)
     this.signalRService.panicAlertAttended$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((alert) => {
         this.customToastS.showInfo(
-          "Tu alerta está siendo atendida",
-          `${alert.triggeredByName} está atendiendo tu alerta de pánico`,
+          "Tu alerta esté siendo atendida",
+          `${alert.triggeredByName} esté atendiendo tu alerta de pónico`,
         );
       });
 
     // Solo escuchar si el usuario tiene rol receptor
-    if (!this.aspRoleS.canAccessAny(RECIPIENT_ROLES)) return;
+    if (!this.aspRoleS.hasAny(RECIPIENT_ROLES)) return;
 
     this.signalRService.panicAlertReceived$
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -316,7 +316,7 @@ export class PanicAlertIncomingDialog implements OnInit {
       }
       this.alertAudio.currentTime = 0;
       this.alertAudio.play().catch(() => {
-        // Autoplay blocked — degrade silently
+        // Autoplay blocked é degrade silently
       });
     } catch {
       // Audio not available

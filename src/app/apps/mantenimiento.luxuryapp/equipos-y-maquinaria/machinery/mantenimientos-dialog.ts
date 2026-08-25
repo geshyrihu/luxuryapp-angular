@@ -47,7 +47,7 @@ interface Equipo {
   template: `
     @if (equipo) {
     <div class="flex justify-content-end mb-3">
-      @if (aspRoleS.canAccessAny([AspRole.JefeMantenimiento, AspRole.Administrador,
+      @if (aspRoleS.hasAny([AspRole.JefeMantenimiento, AspRole.Administrador,
       AspRole.SuperUsuario])) {
       <il-button
         label="Agregar"
@@ -67,7 +67,7 @@ interface Equipo {
           <th>RECURRENCIA</th>
           <th>MES</th>
           <th>COSTO</th>
-          @if (aspRoleS.canAccessAny([AspRole.JefeMantenimiento,
+          @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
           AspRole.Administrador, AspRole.SuperUsuario])) {
           <th class="table-col-10"></th>
           }
@@ -76,7 +76,7 @@ interface Equipo {
       <ng-template #body let-order>
         <tr class="animate__fadeIn">
           <td>
-            <span [innerHTML]="order.hasServiceOrder ? '🛠️' : '⚪'"></span>
+            <span [innerHTML]="order.hasServiceOrder ? '???' : '?'"></span>
           </td>
           <td>
             <p
@@ -88,7 +88,7 @@ interface Equipo {
           <td>{{ order.recurrence }}</td>
           <td>{{ order.month }}</td>
           <td>{{ order.price | CurrencyMexicoPipe }}</td>
-          @if (aspRoleS.canAccessAny([AspRole.JefeMantenimiento,
+          @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
           AspRole.Administrador, AspRole.SuperUsuario])) {
           <td>
             <div class="flex">

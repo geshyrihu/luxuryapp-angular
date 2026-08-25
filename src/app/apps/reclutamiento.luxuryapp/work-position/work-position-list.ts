@@ -16,21 +16,19 @@ import { addIcons } from "ionicons";
 import {
   add,
   bookOutline,
-  createOutline,
   documentTextOutline,
   ellipsisHorizontalOutline,
   personAddOutline,
   personOutline,
   timeOutline,
-  trashOutline,
 } from "ionicons/icons";
 
 import { SolicitudVacanteForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-vacante/solicitud-vacante-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { Department } from "src/app/core/enums/department.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import {
   globalFilterFields as getGlobalFilterFields,
@@ -43,20 +41,15 @@ import { StatusSolicitudVacanteService } from "src/app/core/services/status-soli
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { IWorkPosition } from "./interfaces/work-position.model";
 import { JobDescriptionForm } from "./job-description-form";
-import { WorkPositionForm } from "./work-position-form";
 import { WorkPositionHours } from "./work-position-hours";
 
 import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
@@ -67,15 +60,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconActiveDesactive,
-    WebButtonIconEdit,
     WebButtonIconItem,
-    WebButtonIconDelete,
     LxTooltipDirective,
     MobileActionMenu,
     MobileButtonLabelActiveDesactive,
     MobileButtonLabelItem,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     AppAvatar,
@@ -109,15 +98,33 @@ export class WorkPositionList {
   readonly globalFilterFields = computed(() =>
     getGlobalFilterFields(this.data()),
   );
+  readonly departamentLabels: Record<number, string> = {
+    [Department.Administracion]: "Administración",
+    [Department.Legal]: "Legal",
+    [Department.Contabilidad]: "Contabilidad",
+    [Department.Mantenimiento]: "Mantenimiento",
+    [Department.Limpieza]: "Limpieza",
+    [Department.Operaciones]: "Operaciones",
+    [Department.Jardineria]: "Jardinería",
+    [Department.Sistemas]: "Sistemas",
+    [Department.Seguridad]: "Seguridad",
+    [Department.Constructora]: "Constructora",
+    [Department.Supervision]: "Supervisión",
+    [Department.Direcciones]: "Dirección",
+    [Department.RecursosHumanos]: "Recursos Humanos",
+    [Department.Reclutamiento]: "Reclutamiento",
+    [Department.Recepcion]: "Recepción",
+    [Department.Mensajeria]: "Mensajería",
+    [Department.Ludoteca]: "Ludoteca",
+    [Department.NA]: "Sin Departamento",
+  };
 
   constructor() {
     addIcons({
       add,
-      createOutline,
       documentTextOutline,
       personAddOutline,
       timeOutline,
-      trashOutline,
       bookOutline,
       ellipsisHorizontalOutline,
       personOutline,
@@ -148,22 +155,13 @@ export class WorkPositionList {
     this.data.set(result ?? []);
   }
 
-  async onModalForm(data: { id: string; title: string }) {
-    const component = WorkPositionForm;
-    const res = await this.dialogHandlerS.openDialog<boolean>(
-      component,
-      { id: data.id },
-      data.title,
-      DialogSize.full,
-    );
-
-    if (res) this.onLoadData();
+  getDepartamentLabel(value: number | null | undefined): string {
+    if (value === null || value === undefined) return "Sin Departamento";
+    return this.departamentLabels[value] ?? "Sin Departamento";
   }
 
-  async onDelete(id: string) {
-    // Normalizado a kebab-case
-    const res = await this.apiS.onDelete(Endpoints.WorkPositions.delete(id));
-    if (res) this.onLoadData();
+  isVacant(item: IWorkPosition): boolean {
+    return !item.applicationUserId;
   }
 
     onAdministerEmployee(employeeId: string, userId: string) {
@@ -192,7 +190,12 @@ export class WorkPositionList {
   ) {
     await this.dialogHandlerS.openDialog(
       JobDescriptionForm,
-      { id, jobDescriptionId },
+      {
+        id: jobDescriptionId,
+        workPositionId: id,
+        applicationRoleName: roleName,
+        readOnly: true,
+      },
       "Descripción de puesto: " + roleName,
       DialogSize.md,
     );
@@ -201,7 +204,7 @@ export class WorkPositionList {
   async onModalHoursWorkPosition(id: string) {
     await this.dialogHandlerS.openDialog(
       WorkPositionHours,
-      { id },
+      { id, readOnly: true },
       "Horarios de trabajo",
       DialogSize.md,
     );

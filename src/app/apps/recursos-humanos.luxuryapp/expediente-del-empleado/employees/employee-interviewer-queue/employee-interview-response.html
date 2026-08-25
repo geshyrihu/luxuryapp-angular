@@ -180,6 +180,18 @@
     </div>
     }
 
+    @if (pendingAction() === 'approve') {
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-2">Fecha de Presentación Acordada *</label>
+      <custom-input-date-signal
+        [ngModel]="agreedPresentationDate()"
+        (ngModelChange)="agreedPresentationDate.set($event)"
+        placeholder="Seleccione la fecha de presentación acordada"
+        [minDate]="today"
+      />
+    </div>
+    }
+
     <div class="flex justify-content-end gap-2">
       <il-button
         label="Cancelar"

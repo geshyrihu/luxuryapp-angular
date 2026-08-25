@@ -174,7 +174,7 @@
       iconClass="material-symbols-light:more"
       severity="primary"
       [disabled]="!canRespond"
-      [attr.title]="!canRespond ? 'Este candidato no tiene una entrevista programada activa.' : null"
+      [attr.title]="!canRespond ? (pendingAction || 'Este candidato no tiene una entrevista programada activa.') : null"
       (clicked)="respondToInterview()"
     />
   </div>

@@ -48,6 +48,7 @@ export class JobDescriptionForm implements OnInit {
   submitting = signal(false);
   generatingProposal = signal(false);
   analyzingDescription = signal(false);
+  readOnly = signal(false);
   showAnalysisDialog = signal(false);
   analysisResult = signal("");
   showInstructionsDialog = signal(false);
@@ -73,8 +74,12 @@ export class JobDescriptionForm implements OnInit {
     if (data.id) this.id.set(data.id);
     this.workPositionId.set(data.workPositionId);
     this.applicationRoleName.set(data.applicationRoleName);
+    this.readOnly.set(data.readOnly === true);
 
     this.form.patchValue({ workPositionId: data.workPositionId });
+    if (this.readOnly()) {
+      this.form.disable({ emitEvent: false });
+    }
 
     if (this.id()) {
       this.onLoadData();
@@ -87,14 +92,19 @@ export class JobDescriptionForm implements OnInit {
     );
     if (result) {
       this.form.patchValue(result);
+      if (this.readOnly()) {
+        this.form.disable({ emitEvent: false });
+      }
     }
   }
 
   openInstructionsDialog() {
+    if (this.readOnly()) return;
     this.showInstructionsDialog.set(true);
   }
 
   async generateProposal() {
+    if (this.readOnly()) return;
     this.showInstructionsDialog.set(false);
     this.generatingProposal.set(true);
     try {
@@ -119,6 +129,8 @@ export class JobDescriptionForm implements OnInit {
   }
 
   async analyzeDescription() {
+    if (this.readOnly()) return;
+
     const description = `
       Summary: ${this.form.controls.summary.value}
       Responsibilities: ${this.form.controls.responsibilities.value}
@@ -145,6 +157,8 @@ export class JobDescriptionForm implements OnInit {
   }
 
   onSubmit() {
+    if (this.readOnly()) return;
+
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiS,

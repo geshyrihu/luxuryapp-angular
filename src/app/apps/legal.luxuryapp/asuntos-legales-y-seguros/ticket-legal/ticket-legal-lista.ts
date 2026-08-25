@@ -71,7 +71,7 @@ export class TicketLegalLista implements OnInit {
   apiResponseS = inject(ApiResponseService);
   public aspRoleS = inject(AspRoleService);
   private tableScrollHeightS = inject(TableScrollHeightService);
-  isSuperUser = this.aspRoleS.canAccess(ApplicationRole.SuperUsuario);
+  isSuperUser = this.aspRoleS.hasRole(ApplicationRole.SuperUsuario);
 
   dataSignal = signal<any[]>([]);
   cb_customer = signal<SelectItemDto[]>([]);
@@ -209,7 +209,7 @@ export class TicketLegalLista implements OnInit {
       { header: "RESPONSABLE", key: "assignee", width: 24 },
       { header: "ESTATUS", key: "status", width: 14 },
       { header: "FECHA CONCLUSIóN", key: "completionDate", width: 18 },
-      { header: "DÍAS", key: "dias", width: 8 },
+      { header: "DóAS", key: "dias", width: 8 },
     ];
 
     // Encabezado
@@ -265,7 +265,7 @@ export class TicketLegalLista implements OnInit {
       };
       statusCell.font = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
 
-      // DÍAS en rojo si supera 10
+      // DóAS en rojo si supera 10
       const diasVal = item.diferenciaDias ?? 0;
       if (diasVal > 10) {
         row.getCell("dias").font = {

@@ -174,12 +174,12 @@ export class TaskList implements OnInit {
 
   // User and Data Setup
   readonly applicationUser = this.authS.applicationUserId;
-  readonly isSuperUser = this.aspRoleS.canAccessSignal(ApplicationRole.SuperUsuario);
+  readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
   readonly ticketGroupId: string =
     this.activatedRoute.snapshot.params.ticketGroupId;
 
-  // Task-list tiene caption doble (título + filtros + leyenda) que suma ~170px
-  // adicionales al offset estándar del servicio (240px). Total: ~410px.
+  // Task-list tiene caption doble (tótulo + filtros + leyenda) que suma ~170px
+  // adicionales al offset estóndar del servicio (240px). Total: ~410px.
   private readonly TASK_LIST_OFFSET = 320;
   scrollHeight = signal<string>(this.calcScrollHeight());
 
@@ -466,12 +466,12 @@ export class TaskList implements OnInit {
   onProgress(id: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "Se colocará el ticket en proceso",
+      text: "Se colocaré el ticket en proceso",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#0d3b66",
       cancelButtonColor: "#9B1B30",
-      confirmButtonText: "Sí, en proceso!",
+      confirmButtonText: "Sé, en proceso!",
       cancelButtonText: "Cancelar",
     }).then((responseData) => {
       if (responseData.value) {
@@ -670,7 +670,7 @@ export class TaskList implements OnInit {
   }
 
   onRowReorder(event: { dragIndex: number; dropIndex: number }): void {
-    // PrimeNG mutates the value array before emitting — array already has new order.
+    // PrimeNG mutates the value array before emitting é array already has new order.
     // items[dropIndex] is the item the user dragged.
     let items = [...this.dataSignal().items];
 
@@ -684,9 +684,9 @@ export class TaskList implements OnInit {
       return;
     }
 
-    // BFS: collect ALL transitive dependents —
-    //   • parentTaskId === currentId  (true child tasks)
-    //   • dependsOnTaskId === currentId  (successor in predecessor chain)
+    // BFS: collect ALL transitive dependents é
+    //   é parentTaskId === currentId  (true child tasks)
+    //   é dependsOnTaskId === currentId  (successor in predecessor chain)
     const dependentIds = new Set<string>();
     const queue = [movedItem.id];
     const visited = new Set<string>([movedItem.id]);
@@ -719,7 +719,7 @@ export class TaskList implements OnInit {
     );
   }
 
-  // ═══ Chain step computation (visual Gantt-style ordering) ═══
+  // --- Chain step computation (visual Gantt-style ordering) ---
 
   readonly chainStepMap = computed(() => {
     const items = this.dataSignal().items;
@@ -758,7 +758,7 @@ export class TaskList implements OnInit {
     );
   });
 
-  // ═══ Drag-to-link (asignación de predecesora por arrastre) ═══
+  // --- Drag-to-link (asignación de predecesora por arrastre) ---
 
   readonly linkDragSourceId = signal<string | null>(null);
   readonly linkDragTargetId = signal<string | null>(null);

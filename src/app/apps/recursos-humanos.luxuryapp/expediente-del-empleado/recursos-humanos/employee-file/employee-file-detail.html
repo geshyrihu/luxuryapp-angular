@@ -1,4 +1,3 @@
-!-- -- Cabecera -------------------------------------------------------------- -->
 @if (header()) {
 <div
   class="card mb-4 p-4 rounded-xl shadow-sm border-top-3 border-primary overflow-hidden"
@@ -230,9 +229,7 @@
                 <label class="text-xs font-bold text-500 uppercase block mb-1"
                   >Telófono Mívil</label
                 >
-                <p class="font-semibold text-900 m-0">
-                  {{ pd.phoneNumber }}
-                </p>
+                <p class="font-semibold text-900 m-0">{{ pd.phoneNumber }}</p>
               </div>
               <div class="col-12 sm:col-6">
                 <label class="text-xs font-bold text-500 uppercase block mb-1"
@@ -501,9 +498,14 @@
   <!-- Tab 5: Contratos -->
   <div tab="4">
     @if (activeContract(); as c) {
-    <lx-card class="shadow-sm rounded-xl overflow-hidden mt-3" [elevated]="true">
+    <lx-card
+      class="shadow-sm rounded-xl overflow-hidden mt-3"
+      [elevated]="true"
+    >
       <ng-template #header>
-        <div class="flex align-items-center justify-content-between px-4 pt-4 pb-2">
+        <div
+          class="flex align-items-center justify-content-between px-4 pt-4 pb-2"
+        >
           <div class="flex align-items-center gap-3">
             <div
               class="w-2rem h-2rem rounded-lg bg-primary-100 flex align-items-center justify-content-center flex-shrink-0"
@@ -532,42 +534,40 @@
           <label class="text-xs font-bold text-500 uppercase block mb-1"
             >Fecha Inicio</label
           >
-          <span class="text-sm font-semibold">{{
-            c.startDate | date: 'dd/MM/yyyy'
-          }}</span>
+          <span class="text-sm font-semibold"
+            >{{ c.startDate | date: 'dd/MM/yyyy' }}</span
+          >
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
           <label class="text-xs font-bold text-500 uppercase block mb-1"
             >Fecha Fin</label
           >
-          <span class="text-sm font-semibold">{{
-            (c.endDate | date: 'dd/MM/yyyy') || 'Indeterminado'
-          }}</span>
+          <span class="text-sm font-semibold"
+            >{{ (c.endDate | date: 'dd/MM/yyyy') || 'Indeterminado' }}</span
+          >
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
           <label class="text-xs font-bold text-500 uppercase block mb-1"
             >Salario Pactado</label
           >
-          <span class="text-sm font-semibold text-primary">{{
-            c.contractSalary | currency: 'MXN':'symbol':'1.2-2'
-          }}</span>
+          <span class="text-sm font-semibold text-primary"
+            >{{ c.contractSalary | currency: 'MXN':'symbol':'1.2-2' }}</span
+          >
         </div>
         @if (c.signedAt) {
         <div class="col-12 sm:col-6 lg:col-4">
           <label class="text-xs font-bold text-500 uppercase block mb-1"
             >Firmado por</label
           >
-          <span class="text-sm font-semibold">{{
-            c.signedByUserName || 'Usuario del sistema'
-          }}</span>
+          <span class="text-sm font-semibold"
+            >{{ c.signedByUserName || 'Usuario del sistema' }}</span
+          >
           <small class="block text-500"
             >{{ c.signedAt | date: 'dd/MM/yyyy HH:mm' }}</small
           >
         </div>
         }
-        <div
-          class="col-12 flex align-items-center justify-content-end gap-2"
-        >
+        <div class="col-12 flex align-items-center justify-content-end gap-2">
           @if (c.pdfUrl) {
           <iw-button-item
             iconClass="material-symbols-light:download"
@@ -576,8 +576,7 @@
             variant="outline"
             (click)="onDownloadContract(c.pdfUrl)"
           />
-          }
-          @if (c.contractStatus === 'PendienteFirma') {
+          } @if (c.contractStatus === 'PendienteFirma') {
           <label class="m-0 cursor-pointer">
             <input
               type="file"
@@ -595,9 +594,7 @@
         </div>
       </div>
     </lx-card>
-    }
-
-    @if (contracts().length > 0) {
+    } @if (contracts().length > 0) {
     <p-table
       [value]="contracts()"
       class="p-datatable-sm shadow-sm rounded-xl overflow-hidden mt-3"
@@ -1593,10 +1590,10 @@
   <!-- Tab 12: Documentos (id 11) -->
   <div tab="11">
     @if (activeTab() === '11') {
-    <app-employee-document-list [employeeId]="employeeId()" [isReadOnly]="true" />
+    <app-employee-document-list
+      [employeeId]="employeeId()"
+      [isReadOnly]="true"
+    />
     }
   </div>
 </lx-tabs>
-
-
-

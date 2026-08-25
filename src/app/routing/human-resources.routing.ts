@@ -15,7 +15,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
           ApplicationRole.Comite,
@@ -185,7 +185,7 @@ export const humanResourcesRoutes: Routes = [
   },
 
   // =============================================================
-  // ADMINISTRACIÓN (SOLO SUPERUSUARIO)
+  // ADMINISTRACIóN (SOLO SUPERUSUARIO)
   // =============================================================
   {
     path: "admin-balances-vacaciones",
@@ -194,7 +194,7 @@ export const humanResourcesRoutes: Routes = [
         (m) => m.AdminVacacionesBalance,
       ),
     canActivate: [
-      () => inject(AspRoleService).canAccess(ApplicationRole.SuperUsuario),
+      () => inject(AspRoleService).hasRole(ApplicationRole.SuperUsuario),
     ],
     data: {
       title: "Administración de Balances",
@@ -202,7 +202,7 @@ export const humanResourcesRoutes: Routes = [
     },
   },
   {
-    // Vista de auditoría: ver balance e historial de cualquier empleado del cliente.
+    // Vista de auditoróa: ver balance e historial de cualquier empleado del cliente.
     path: "auditoria-vacaciones",
     loadComponent: () =>
       import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/vacation-balance-admin/vacaciones-admin-auditoria").then(
@@ -210,14 +210,14 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
     ],
     data: {
-      title: "Auditoría de Vacaciones",
-      breadcrumb: "Auditoría Vacaciones",
+      title: "Auditoróa de Vacaciones",
+      breadcrumb: "Auditoróa Vacaciones",
     },
   },
 
@@ -232,7 +232,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
           ApplicationRole.Administrador,
@@ -255,7 +255,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -277,7 +277,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -299,7 +299,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -321,7 +321,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -343,7 +343,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -361,7 +361,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
           ApplicationRole.Direccion,
@@ -384,7 +384,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -404,13 +404,6 @@ export const humanResourcesRoutes: Routes = [
       import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/employee-file-list").then(
         (m) => m.EmployeeFileList,
       ),
-    canActivate: [
-      () =>
-        inject(AspRoleService).canAccessAny([
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
-        ]),
-    ],
     data: {
       title: "Expediente del Empleado",
       breadcrumb: "Expedientes",
@@ -422,13 +415,7 @@ export const humanResourcesRoutes: Routes = [
       import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/employee-file-detail").then(
         (m) => m.EmployeeFileDetail,
       ),
-    canActivate: [
-      () =>
-        inject(AspRoleService).canAccessAny([
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
-        ]),
-    ],
+
     data: {
       title: "Expediente del Empleado",
       breadcrumb: "Detalle de Expediente",
@@ -446,7 +433,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),
@@ -468,7 +455,7 @@ export const humanResourcesRoutes: Routes = [
       ),
     canActivate: [
       () =>
-        inject(AspRoleService).canAccessAny([
+        inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
         ]),

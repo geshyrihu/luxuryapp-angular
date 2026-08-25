@@ -115,11 +115,11 @@ export class ListProvider implements OnInit {
   loading = signal(true);
 
   // Propiedades que antes estaban en el caption y ahora necesita este componente
-  title: string = "Directorio de Proveedores"; // O el Título que prefieras
+  title: string = "Directorio de Proveedores"; // O el Tótulo que prefieras
   label: string = "Agregar";
   rolAuth: boolean = false; // La inicializaremos en ngOnInit
 
-  // Referencia para diálogos
+  // Referencia para diólogos
   ref: DynamicDialogRef;
 
   // Opciones de filtro para tipo de servicio y nivel de acceso
@@ -140,7 +140,7 @@ export class ListProvider implements OnInit {
   ngOnInit(): void {
     this.onLoadData();
     // Inicializamos la variable para el botón de agregar
-    this.rolAuth = this.aspRoleS.canAccessAny([
+    this.rolAuth = this.aspRoleS.hasAny([
       ApplicationRole.Asistente,
       ApplicationRole.JefeMantenimiento,
       ApplicationRole.Administrador,
@@ -151,12 +151,12 @@ export class ListProvider implements OnInit {
 
   // Validación de roles para mostrar/ocultar acciones
   validateRole(value: ApplicationRole[]): boolean {
-    return this.aspRoleS.canAccessAny(value);
+    return this.aspRoleS.hasAny(value);
   }
 
   // Este mótodo se llama cada vez que el usuario escribe en el buscador
   applyGlobalFilter(filterValue: string) {
-    this.searchTerm = filterValue; // Actualizamos el término de bósqueda
+    this.searchTerm = filterValue; // Actualizamos el tórmino de bósqueda
     this.first = 0; // Reiniciamos la paginación a la primera pógina
     this.page = 1;
     this.onLoadData(this.page, this.rows, this.searchTerm);

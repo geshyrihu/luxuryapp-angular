@@ -306,6 +306,14 @@ export const ADMIN_MODULES: AdminModuleGroup[] = [
         bgColor: "#e0e7ff",
       },
       {
+        title: "Catálogo de Tareas Recurrentes",
+        description: "Plantillas de tareas recurrentes: criticidad, aviso previo y respaldo.",
+        route: "/admin/recurring-task-catalog",
+        icon: "material-symbols-light:event-repeat",
+        color: "#4338ca",
+        bgColor: "#e0e7ff",
+      },
+      {
         title: "Configuración ElevenLabs",
         description: "Parámetros de síntesis de voz IA.",
         route: "/admin/eleven-labs",

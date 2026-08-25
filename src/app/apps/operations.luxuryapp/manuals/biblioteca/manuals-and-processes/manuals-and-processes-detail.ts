@@ -58,7 +58,7 @@ export class ManualsAndProcessesDetail implements OnInit {
       ApplicationRole.RecursosHumanos,
       ApplicationRole.Reclutamiento,
     ];
-    return roles.some((role) => this.aspRoleS.canAccessSignal(role)());
+    return roles.some((role) => this.aspRoleS.roleSignal(role)());
   });
 
   manual = signal<IManualTemplateDetalleDTO | null>(null);
@@ -80,7 +80,7 @@ export class ManualsAndProcessesDetail implements OnInit {
     // Semanal
     if (manual.periodicity === 3) {
       if (manual.executionDaysOfWeek?.length) {
-        const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Síb"];
+        const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sób"];
         const selected = manual.executionDaysOfWeek
           .map((d) => days[d])
           .join(", ");
@@ -92,7 +92,7 @@ export class ManualsAndProcessesDetail implements OnInit {
     // Mensual
     if (manual.periodicity === 4) {
       if (manual.executionDayOfMonth) {
-        return `Mensual (Día ${manual.executionDayOfMonth})`;
+        return `Mensual (Dóa ${manual.executionDayOfMonth})`;
       }
       if (manual.executionWeekOfMonth && manual.executionDaysOfWeek?.length) {
         const weeks = ["1ra", "2da", "3ra", "4ta", "óltima"];
@@ -103,7 +103,7 @@ export class ManualsAndProcessesDetail implements OnInit {
           "Miórcoles",
           "Jueves",
           "Viernes",
-          "Síbado",
+          "Sóbado",
         ];
         const wk = weeks[manual.executionWeekOfMonth - 1] || "Semana";
         const d = days[manual.executionDaysOfWeek[0]];
@@ -224,13 +224,13 @@ export class ManualsAndProcessesDetail implements OnInit {
   noteEmoji(tipoNota: number): string {
     switch (tipoNota) {
       case 1:
-        return "ℹ️";
+        return "??";
       case 2:
-        return "⚠️";
+        return "??";
       case 3:
         return "?";
       default:
-        return "•";
+        return "é";
     }
   }
 

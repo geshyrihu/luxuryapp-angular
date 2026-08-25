@@ -33,7 +33,6 @@ import { FilterRequestsService } from "src/app/core/http/services/filter-request
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { SolicitudAltaStatusForm } from "./solicitud-alta-status-form";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
@@ -41,6 +40,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
 import { HiringDocumentValidationModal } from "./components/hiring-document-validation/hiring-document-validation-modal";
 
 interface SolicitudAltaListItem {
@@ -133,12 +133,14 @@ export class SolicitudAltaList implements OnInit {
   onModalForm(data: SolicitudAltaListItem) {
     this.dialogHandlerS
       .openDialog(
-        SolicitudAltaStatusForm,
+        CandidateProcessHiringModal,
         {
           id: data.id,
-          employeeName: data.nameEmployee,
+          candidateProcessId: null,
+          requestPositionId: null,
+          isDraftCompletion: true,
         },
-        "Revisar Solicitud",
+        "Completar Solicitud de Alta",
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {

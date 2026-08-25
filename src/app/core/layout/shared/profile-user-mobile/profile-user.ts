@@ -64,7 +64,7 @@ export class ProfileUserMobile {
   customerIdS = inject(CustomerIdService);
 
   profileRoute = computed(() =>
-    this.aspRoleS.canAccessSignal(ApplicationRole.Direccion)()
+    this.aspRoleS.roleSignal(ApplicationRole.Direccion)()
       ? "/direccion/profile/update-user-profile"
       : "/profile/update-user-profile",
   );
@@ -126,19 +126,19 @@ export class ProfileUserMobile {
     this.consoleLogger.info(
       `[Profile ] Iniciando cambio a customerId: ${newCustomerId}`,
     );
-    // 2. Llama al método Y SE SUSCRIBE para saber cuándo termina.
+    // 2. Llama al mótodo Y SE SUSCRIBE para saber cuóndo termina.
     this.customerIdS.setCustomerId(newCustomerId).subscribe({
       next: (success) => {
         if (success) {
           this.consoleLogger.info(
-            `[Profile ] Cambio a customerId: ${newCustomerId} completado con éxito.`,
+            `[Profile ] Cambio a customerId: ${newCustomerId} completado con óxito.`,
           );
-          // El 'effect' en Sidebar debería haberse disparado.
+          // El 'effect' en Sidebar deberóa haberse disparado.
         } else {
-          this.consoleLogger.error("[Profile ] El cambio de cliente falló.");
+          this.consoleLogger.error("[Profile ] El cambio de cliente fallé.");
         }
       },
-      // 3. Oculta el indicador de carga, tanto si tuvo éxito como si falló.
+      // 3. Oculta el indicador de carga, tanto si tuvo óxito como si fallé.
       complete: () => {
         this.isChangingCustomer = false;
       },
@@ -152,23 +152,23 @@ export class ProfileUserMobile {
   async onForceReload(): Promise<void> {
     try {
       this.consoleLogger.custom(
-        "🧹",
+        "??",
         "color: #E91E63; font-weight: bold;",
         "[Profile] Limpiando caché y recargando...",
       );
 
-      // 1. Eliminar todos los cachés del Service Worker
+      // 1. Eliminar todos los cachós del Service Worker
       if ("caches" in window) {
         const cacheNames = await caches.keys();
         await Promise.all(
           cacheNames.map((cacheName) => caches.delete(cacheName)),
         );
         this.consoleLogger.info(
-          `[Profile] ${cacheNames.length} cachés eliminados`,
+          `[Profile] ${cacheNames.length} cachós eliminados`,
         );
       }
 
-      // 2. Desregistrar el Service Worker (opcional, más agresivo)
+      // 2. Desregistrar el Service Worker (opcional, mós agresivo)
       if ("serviceWorker" in navigator) {
         const registrations = await navigator.serviceWorker.getRegistrations();
         await Promise.all(
@@ -177,7 +177,7 @@ export class ProfileUserMobile {
         this.consoleLogger.info(`[Profile] Service Workers desregistrados`);
       }
 
-      // 3. Recargar la página
+      // 3. Recargar la pógina
       window.location.reload();
     } catch (error) {
       this.consoleLogger.error("[Profile] Error al limpiar caché:", error);

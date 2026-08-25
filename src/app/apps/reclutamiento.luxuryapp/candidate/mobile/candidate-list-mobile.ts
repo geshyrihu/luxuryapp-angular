@@ -49,7 +49,7 @@ export class CandidateListMobile {
   delete = output<string>();
   detail = output<string>();
 
-  readonly isSuperUser = this.aspRoleS.canAccessSignal(ApplicationRole.SuperUsuario);
+  readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
 
   protected readonly candidateStatus = CandidateStatus;
   protected readonly candidateStatusOptions = CANDIDATE_STATUS_TAG_OPTIONS;

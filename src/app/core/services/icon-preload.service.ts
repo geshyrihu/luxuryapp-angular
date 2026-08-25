@@ -1,14 +1,14 @@
 /// Servicio para precargar iconos desde Iconify y registrarlos en el runtime
 export function preloadIconifyIcons(): () => Promise<void> {
   const icons = [
-    "fluent-color:alert-16",
-    "fluent-color:document-16",
-    "fluent-color:mail-16",
+    "fluent-color:alert-20",
+    "fluent-color:document-20",
+    "fluent-color:mail-20",
     "fluent-color:alert-24",
-    "fluent-color:lock-closed-16",
-    "fluent-color:checkmark-circle-16",
-    "fluent-color:add-circle-16",
-    "fluent:lock-open-16-regular",
+    "fluent-color:lock-closed-20",
+    "fluent-color:checkmark-circle-20",
+    "fluent-color:add-circle-20",
+    "fluent:lock-open-20-regular",
   ];
 
   return async () => {

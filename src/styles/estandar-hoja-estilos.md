@@ -190,7 +190,7 @@ Hoja maestra legacy que se carga **después** del DS. Organizada en secciones nu
 4. **Tema Core** → Global, toast, header-mobile, Ionic CSS, auth, dark-mode
 5. **Componentes Custom** → Avatars, list, tables, financial-tables, print
 6. **Sidebar** → `theme/_sidebar.scss`
-7. **Fonts** → Outfit variable self-hosted (`core/_fonts.scss` + `public/assets/fonts/`)
+7. **Fonts** → Figtree variable desde Google Fonts (`core/_fonts.scss`)
 8. **Iconify** → Display inline-block estándar
 9. **Animaciones** → `ds-animate-spin`
 

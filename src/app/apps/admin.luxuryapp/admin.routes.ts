@@ -360,6 +360,18 @@ export const adminRoutes: Routes = [
     },
   },
   {
+    path: "recurring-task-catalog",
+    loadComponent: () =>
+      import("src/app/apps/operations.luxuryapp/task-engine/recurring-tasks/catalog/recurring-task-catalog-list/recurring-task-catalog-list").then(
+        (m) => m.RecurringTaskCatalogList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Catálogo de Tareas Recurrentes",
+      breadcrumb: "Catálogo de Tareas Recurrentes",
+    },
+  },
+  {
     path: "vault-secrets",
     loadComponent: () =>
       import("src/app/apps/system.luxuryapp/configuracion-sistema/vault-secrets/vault-secrets-list").then(

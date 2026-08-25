@@ -26,6 +26,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CandidateProcessHiringModal } from "src/app/shared/integration/reclutamiento/candidates/candidate-application/candidate-process-hiring-modal";
 import { IWorkPosition } from "src/app/shared/integration/reclutamiento/estructura-organizacional/work-position/interfaces/work-position.model";
 import { JobDescriptionForm } from "src/app/shared/integration/reclutamiento/estructura-organizacional/work-position/job-description-form";
@@ -82,6 +83,7 @@ export class StaffBoardList {
   readonly router = inject(Router);
   private excelService = inject(ExcelExportService);
   private interviewerQueueS = inject(CandidateInterviewerQueueService);
+  private tableScrollHeightS = inject(TableScrollHeightService);
 
   readonly AspRole = ApplicationRole;
 
@@ -95,22 +97,22 @@ export class StaffBoardList {
   );
 
   readonly departamentLabels: Record<number, string> = {
-    [Department.Administracion]: "Administracin",
+    [Department.Administracion]: "Administración",
     [Department.Legal]: "Legal",
     [Department.Contabilidad]: "Contabilidad",
     [Department.Mantenimiento]: "Mantenimiento",
     [Department.Limpieza]: "Limpieza",
     [Department.Operaciones]: "Operaciones",
-    [Department.Jardineria]: "Jardinera",
+    [Department.Jardineria]: "Jardinería",
     [Department.Sistemas]: "Sistemas",
     [Department.Seguridad]: "Seguridad",
     [Department.Constructora]: "Constructora",
-    [Department.Supervision]: "Supervisin",
-    [Department.Direcciones]: "Direccin",
+    [Department.Supervision]: "Supervisión",
+    [Department.Direcciones]: "Dirección",
     [Department.RecursosHumanos]: "Recursos Humanos",
     [Department.Reclutamiento]: "Reclutamiento",
-    [Department.Recepcion]: "Recepcin",
-    [Department.Mensajeria]: "Mensajera",
+    [Department.Recepcion]: "Recepción",
+    [Department.Mensajeria]: "Mensajería",
     [Department.Ludoteca]: "Ludoteca",
     [Department.NA]: "Sin Departamento",
   };
@@ -124,6 +126,7 @@ export class StaffBoardList {
   allEmployees = signal<IEmployee[]>([]);
   selectedDepartment = signal<number | null>(null);
   globalFilterFields = computed(() => getGlobalFilterFields(this.positions()));
+  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   uniqueDepartments = computed(() => {
     const depts = new Set<number>();

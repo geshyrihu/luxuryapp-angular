@@ -1,3 +1,33 @@
+// ── Toolbar de plantilla ───────────────────────────────────────────────────
+.staff-caption-search {
+  min-width: min(100%, 22rem);
+}
+
+.staff-board-actions {
+  min-width: max-content;
+}
+
+.staff-filter-group {
+  overflow: hidden;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-xl);
+  background: var(--ds-bg-surface);
+  box-shadow: var(--ds-shadow-sm);
+
+  il-button {
+    margin: 0;
+  }
+}
+
+// ── Cabecera de tabla: una sola franja visual ───────────────────────────────
+.staff-board-th {
+  background: var(--ds-primary) !important;
+  color: var(--ds-text-inverse, #fff) !important;
+  border-color: color-mix(in srgb, var(--ds-primary) 72%, #fff) !important;
+  vertical-align: middle;
+  letter-spacing: 0.04em;
+}
+
 // ── Encabezado de grupo (departamento) ──────────────────────────────────────
 // No existe equivalente en el DS — barra lateral primaria + uppercase
 .group-header-label {

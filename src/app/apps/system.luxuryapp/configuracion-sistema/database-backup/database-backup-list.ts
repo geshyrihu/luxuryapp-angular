@@ -62,7 +62,7 @@ export class DatabaseBackupList {
   tableScrollHeightS = inject(TableScrollHeightService);
   aspRoleS = inject(AspRoleService);
 
-  readonly isSuperUsuario = this.aspRoleS.canAccessSignal(
+  readonly isSuperUsuario = this.aspRoleS.roleSignal(
     ApplicationRole.SuperUsuario,
   );
 

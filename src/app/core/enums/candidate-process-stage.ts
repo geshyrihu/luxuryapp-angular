@@ -7,4 +7,8 @@ export enum CandidateProcessStage {
   Seleccionado,
   AltaEnProceso,
   Contratado,
+  PendingPresentation,
+  ReadyForHire,
+  PresentationRescheduled,
+  PresentationNoShow,
 }

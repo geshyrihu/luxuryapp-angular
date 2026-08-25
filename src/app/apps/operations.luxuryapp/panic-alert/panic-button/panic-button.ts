@@ -78,8 +78,8 @@ const COUNTDOWN_SECONDS = 5;
         (touchend)="onHoldEnd()"
         (touchcancel)="onHoldCancel()"
         [disabled]="isSending()"
-        aria-label="Alerta de pánico: mantén presionado para activar"
-        title="Mantén presionado para activar alerta de pánico"
+        aria-label="Alerta de pónico: mantón presionado para activar"
+        title="Mantón presionado para activar alerta de pónico"
       >
         <div class="panic-btn__ring" [style.--progress]="holdProgress() + '%'">
           <app-icon icon="material-symbols-light:error" class="panic-btn__icon" />
@@ -100,7 +100,7 @@ const COUNTDOWN_SECONDS = 5;
         >
           <div class="panic-countdown">
             <app-icon icon="material-symbols-light:error" class="panic-countdown__icon" />
-            <p class="panic-countdown__title">Enviando alerta de pánico en</p>
+            <p class="panic-countdown__title">Enviando alerta de pónico en</p>
             <p class="panic-countdown__seconds">{{ countdownSeconds() }}</p>
             <button
               type="button"
@@ -277,7 +277,7 @@ export class PanicButton implements OnDestroy {
 
   private aspRoleService = inject(AspRoleService);
 
-  visible = computed(() => this.aspRoleService.canAccessAny(EMITTER_ROLES));
+  visible = computed(() => this.aspRoleService.hasAny(EMITTER_ROLES));
 
   isHolding = signal(false);
   isSending = signal(false);
@@ -294,7 +294,7 @@ export class PanicButton implements OnDestroy {
     viewChild<ElementRef<HTMLDialogElement>>("countdownDialog");
 
   constructor() {
-    // El @if crea el <dialog> al iniciar la cuenta; aquí se abre como modal
+    // El @if crea el <dialog> al iniciar la cuenta; aqué se abre como modal
     // (showModal solo puede llamarse con el elemento ya en el DOM)
     effect(() => {
       const dialog = this.countdownDialog()?.nativeElement;

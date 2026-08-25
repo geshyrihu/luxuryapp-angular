@@ -85,6 +85,7 @@ export const EndpointsReclutamiento = {
     getVacantes: (customerId: Id) =>
       `select-items/vacantes/${customerId}`,
     list: "request-employee-register/list",
+    completeDraft: (id: Id) => `request-employee-register/${id}/complete-draft`,
     updateStatus: (id: Id) => `request-employee-register/${id}/status`,
     delete: (id: Id) => `request-employee-register/${id}`,
     exportExcel: "request-employee-register/export-excel",
@@ -136,6 +137,8 @@ export const EndpointsReclutamiento = {
       `recruitment-candidate-processes/direct-hire/${requestPositionId}`,
     byRequestPosition: (requestPositionId: Id) =>
       `recruitment-candidate-processes/request-position/${requestPositionId}`,
+    timelineByVacancy: (requestPositionId: Id) =>
+      `recruitment-candidate-processes/request-position/${requestPositionId}/timeline`,
     hiringDocuments: (id: Id) =>
       `recruitment-candidate-processes/${id}/hiring-documents`,
     validateHiringDocument: (documentId: Id) =>

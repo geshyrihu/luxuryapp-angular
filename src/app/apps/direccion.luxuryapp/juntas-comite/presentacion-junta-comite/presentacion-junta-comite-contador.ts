@@ -86,7 +86,7 @@ export class PresentacionJuntaComiteContador {
   }
 
   hasRole(roles: ApplicationRole[]): boolean {
-    return this.aspRoleS.canAccessAny(roles);
+    return this.aspRoleS.hasAny(roles);
   }
 
   onValidarId(userId: string): boolean {

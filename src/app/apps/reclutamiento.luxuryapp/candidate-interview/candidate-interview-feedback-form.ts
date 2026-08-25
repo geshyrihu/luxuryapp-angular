@@ -19,6 +19,8 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
@@ -46,6 +48,8 @@ import { InterviewerActionRequestDto } from "./interfaces/interviewer-action-req
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     CustomInputDateTimeSignal,
+    CustomInputDateSignal,
+    CustomInputTime,
     CustomInputTextSignal,
     WebButtonLabelSave,
   ],
@@ -78,6 +82,8 @@ export class CandidateInterviewFeedbackForm implements OnInit {
     decisionReason: new FormControl<number | null>(null),
     additionalComment: new FormControl<string | null>(null),
     newScheduledAt: new FormControl<string | null>(null),
+    agreedPresentationDate: new FormControl<string | null>(null),
+    agreedPresentationTime: new FormControl<string | null>(null),
   });
 
   async ngOnInit(): Promise<void> {
@@ -93,41 +99,51 @@ export class CandidateInterviewFeedbackForm implements OnInit {
             CandidateDecision[key as keyof typeof CandidateDecision] as CandidateDecision;
           return {
             label: candidateDecisionLabel(decision),
-            value: decision as number,
+            value: decision,
           };
         }),
     );
 
     this.form.controls.decision.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((value) => {
-        const decision = value as CandidateDecision | null;
+      .subscribe((decision) => {
         this.selectedDecision.set(decision);
-
-        const requiresReason = decision === CandidateDecision.Rechazado;
-        const requiresSchedule = decision === CandidateDecision.Reprogramar;
-
-        this.form.controls.decisionReason.setValidators(
-          requiresReason ? [Validators.required] : [],
-        );
-        this.form.controls.newScheduledAt.setValidators(
-          requiresSchedule ? [Validators.required] : [],
-        );
-
-        if (!requiresReason) {
+        if (decision === CandidateDecision.Rechazado) {
+          this.form.controls.decisionReason.setValidators([
+            Validators.required,
+          ]);
+        } else {
+          this.form.controls.decisionReason.clearValidators();
           this.form.controls.decisionReason.setValue(null);
         }
 
-        if (!requiresSchedule) {
+        if (decision === CandidateDecision.Reprogramar) {
+          this.form.controls.newScheduledAt.setValidators([
+            Validators.required,
+          ]);
+        } else {
+          this.form.controls.newScheduledAt.clearValidators();
           this.form.controls.newScheduledAt.setValue(null);
         }
 
-        this.form.controls.decisionReason.updateValueAndValidity({
-          emitEvent: false,
-        });
-        this.form.controls.newScheduledAt.updateValueAndValidity({
-          emitEvent: false,
-        });
+        if (decision === CandidateDecision.Aprobado) {
+          this.form.controls.agreedPresentationDate.setValidators([
+            Validators.required,
+          ]);
+          this.form.controls.agreedPresentationTime.setValidators([
+            Validators.required,
+          ]);
+        } else {
+          this.form.controls.agreedPresentationDate.clearValidators();
+          this.form.controls.agreedPresentationDate.setValue(null);
+          this.form.controls.agreedPresentationTime.clearValidators();
+          this.form.controls.agreedPresentationTime.setValue(null);
+        }
+
+        this.form.controls.decisionReason.updateValueAndValidity();
+        this.form.controls.newScheduledAt.updateValueAndValidity();
+        this.form.controls.agreedPresentationDate.updateValueAndValidity();
+        this.form.controls.agreedPresentationTime.updateValueAndValidity();
       });
 
     await this.resolveCandidateProcessId();
@@ -158,6 +174,14 @@ export class CandidateInterviewFeedbackForm implements OnInit {
       newScheduledAt:
         selectedDecision === CandidateDecision.Reprogramar
           ? (this.toIso(this.form.controls.newScheduledAt.value) ?? null)
+          : null,
+      agreedPresentationDate:
+        selectedDecision === CandidateDecision.Aprobado
+          ? (this.toDateOnlyLocal(this.form.controls.agreedPresentationDate.value) ?? null)
+          : null,
+      agreedPresentationTime:
+        selectedDecision === CandidateDecision.Aprobado
+          ? this.form.controls.agreedPresentationTime.value
           : null,
     };
 
@@ -203,5 +227,15 @@ export class CandidateInterviewFeedbackForm implements OnInit {
 
   private toIso(value: string | null): string | null {
     return value ? new Date(value).toISOString() : null;
+  }
+
+  private toDateOnlyLocal(value: string | null): string | null {
+    if (!value) return null;
+    const d = new Date(value);
+    if (isNaN(d.getTime())) return null;
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 }

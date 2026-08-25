@@ -14,6 +14,7 @@
       />
     </div>
 
+    @if (!readOnly()) {
     <div class="flex justify-content-end mb-4">
       <il-button
         label="Criticar con IA"
@@ -34,6 +35,7 @@
         [disabled]="!applicationRoleName()"
       />
     </div>
+    }
 
     <custom-input-textarea-signal
       [control]="form.controls.summary"
@@ -70,6 +72,7 @@
       label="¿Requiere cobertura de fin de semana?"
     />
 
+    @if (!readOnly()) {
     <div class="flex justify-content-end pt-4">
       <il-button-save
         [propertyId]="id() || ''"
@@ -77,6 +80,7 @@
         [submitting]="submitting()"
       />
     </div>
+    }
 
     <lx-modal
       header="Instrucciones para la IA (Opcional)"

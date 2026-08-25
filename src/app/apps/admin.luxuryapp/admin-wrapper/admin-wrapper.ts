@@ -20,13 +20,13 @@ export class AdminWrapper {
   getVisibleGroups(): AdminModuleGroup[] {
     return ADMIN_MODULES.filter((group) => {
       if (!group.roles || group.roles.length === 0) return true;
-      return this.aspRoleS.canAccessAny(group.roles);
+      return this.aspRoleS.hasAny(group.roles);
     })
       .map((group) => ({
         ...group,
         cards: group.cards.filter((card) => {
           if (!card.roles || card.roles.length === 0) return true;
-          return this.aspRoleS.canAccessAny(card.roles);
+          return this.aspRoleS.hasAny(card.roles);
         }),
       }))
       .filter((group) => group.cards.length > 0);

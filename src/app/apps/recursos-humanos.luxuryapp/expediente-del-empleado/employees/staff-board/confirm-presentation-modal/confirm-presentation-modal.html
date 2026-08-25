@@ -12,16 +12,22 @@
     <div class="flex flex-column gap-2">
       <label class="font-semibold">¿Se presentó el candidato?</label>
       <div class="flex gap-4">
-        <lx-radio-button
-          [control]="form.controls.isPresented"
-          label="Sí se presentó"
-          [value]="true"
-        />
-        <lx-radio-button
-          [control]="form.controls.isPresented"
-          label="No se presentó"
-          [value]="false"
-        />
+        <div class="flex align-items-center gap-2">
+          <lx-radio-button
+            [control]="form.controls.isPresented"
+            [value]="true"
+            inputId="rbYes"
+          />
+          <label for="rbYes">Sí se presentó</label>
+        </div>
+        <div class="flex align-items-center gap-2">
+          <lx-radio-button
+            [control]="form.controls.isPresented"
+            [value]="false"
+            inputId="rbNo"
+          />
+          <label for="rbNo">No se presentó</label>
+        </div>
       </div>
     </div>
 
@@ -29,16 +35,22 @@
     <div class="flex flex-column gap-2 p-3 surface-100 border-round">
       <label class="font-semibold">Motivo / Acción</label>
       <div class="flex flex-column gap-3">
-        <lx-radio-button
-          [control]="form.controls.status"
-          label="Cambió fecha de ingreso (Reprogramar)"
-          value="Rescheduled"
-        />
-        <lx-radio-button
-          [control]="form.controls.status"
-          label="Declinó / Abandono"
-          value="NoShow"
-        />
+        <div class="flex align-items-center gap-2">
+          <lx-radio-button
+            [control]="form.controls.status"
+            value="Rescheduled"
+            inputId="rbRescheduled"
+          />
+          <label for="rbRescheduled">Cambió fecha de ingreso (Reprogramar)</label>
+        </div>
+        <div class="flex align-items-center gap-2">
+          <lx-radio-button
+            [control]="form.controls.status"
+            value="NoShow"
+            inputId="rbNoShow"
+          />
+          <label for="rbNoShow">Declinó / Abandono</label>
+        </div>
       </div>
 
       @if (form.controls.status.value === 'Rescheduled') {

@@ -33,6 +33,9 @@ export interface CandidateInterviewerQueueItemDto {
   cvFileUrl: string;
   cvFileName: string;
   pendingAction: string;
+  isVacancyLocked: boolean;
+  vacancyLockMessage: string;
+  canConfirmPresentation: boolean;
   canSubmitFeedback: boolean;
   canMarkNoShow: boolean;
   canReject: boolean;

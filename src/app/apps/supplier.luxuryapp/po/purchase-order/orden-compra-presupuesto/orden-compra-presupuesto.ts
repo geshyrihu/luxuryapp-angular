@@ -62,7 +62,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // 1. INYECCIóN DE DEPENDENCIAS
   //----------------------------------------------------------------
-  // Aqué puro `inject`, nada de constructores kilomítricos ?
+  // Aqué puro `inject`, nada de constructores kilomótricos ?
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
@@ -77,7 +77,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // Datos que vienen de la API (partidas presupuestales)
   dataSignal = signal<any[]>([]);
-  // Año en curso (lo vamos a usar para filtrar info del presupuesto)
+  // Aóo en curso (lo vamos a usar para filtrar info del presupuesto)
   intYearControl = new FormControl<number>(new Date().getFullYear());
   availableYears = [
     { label: "2024", value: 2024 },
@@ -107,7 +107,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   }
 
   //----------------------------------------------------------------
-  // 4. MéTODOS PRINCIPALES
+  // 4. MóTODOS PRINCIPALES
   //----------------------------------------------------------------
   // Cargar data desde la API (las cuentas presupuestales)
   async onLoadData() {
@@ -166,7 +166,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
       amount: dineroUsado,
     };
 
-    // Post a la API y actualización automítica del total ??
+    // Post a la API y actualización automótica del total ??
     this.apiResponseS
       .onPost(Endpoints.PurchaseOrderBudgets.create, purchaseOrderBudget)
       .then(async () => {
@@ -195,7 +195,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   // Determinar si un input de monto esté habilitado ??
   isInputDisabled(item: any): boolean {
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
-    const superUser = this.aspRoleS.canAccessAny([
+    const superUser = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
       ApplicationRole.Asistente,
@@ -215,7 +215,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
 
   // Determinar si el botón de guardar esté habilitado ??
   isSaveDisabled(item: any): boolean {
-    const superUser = this.aspRoleS.canAccessAny([
+    const superUser = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
       ApplicationRole.Asistente,
@@ -241,7 +241,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // 6. LIMPIEZA
   //----------------------------------------------------------------
-  // Al destruir el componente cerramos el diálogo ??
+  // Al destruir el componente cerramos el diólogo ??
   ngOnDestroy(): void {
     this.ref.close(true);
   }

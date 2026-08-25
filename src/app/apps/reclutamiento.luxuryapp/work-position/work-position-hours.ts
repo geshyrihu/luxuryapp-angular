@@ -29,9 +29,11 @@ export class WorkPositionHours implements OnInit {
 
   // --- SIGNALS ---
   data = signal<IWorkPositionHours | null>(null);
+  readOnly = signal(false);
 
   ngOnInit() {
     const id = this.config.data?.id;
+    this.readOnly.set(this.config.data?.readOnly === true);
     if (id) {
       this.onLoadData(id);
     }

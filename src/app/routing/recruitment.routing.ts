@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
+
 export const recruitmentRoutes: Routes = [
   {
     path: "staff-board",
@@ -90,9 +91,9 @@ export const recruitmentRoutes: Routes = [
   {
     path: "candidates",
     loadChildren: () =>
-      import(
-        "src/app/apps/reclutamiento.luxuryapp/candidates.routing"
-      ).then((m) => m.candidatesRoutes),
+      import("src/app/apps/reclutamiento.luxuryapp/candidates.routing").then(
+        (m) => m.candidatesRoutes,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Candidatos",
@@ -124,5 +125,3 @@ export const recruitmentRoutes: Routes = [
     },
   },
 ];
-
-

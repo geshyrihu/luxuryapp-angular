@@ -79,7 +79,7 @@ export class FooterEmployeeMobile implements OnInit {
   }
 
   setFooterItems() {
-    if (this.aspRoleS.canAccess(ApplicationRole.Proveedor)) {
+    if (this.aspRoleS.hasRole(ApplicationRole.Proveedor)) {
       this.footerItems.set([
         {
           label: "Resumen",
@@ -93,7 +93,7 @@ export class FooterEmployeeMobile implements OnInit {
           showNotification: true,
         },
       ]);
-    } else if (this.aspRoleS.canAccess(ApplicationRole.SuperUsuario)) {
+    } else if (this.aspRoleS.hasRole(ApplicationRole.SuperUsuario)) {
       this.footerItems.set([
         {
           label: "Inicio",

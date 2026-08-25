@@ -60,7 +60,7 @@ export class CandidateListDesktop {
   detail = output<string>();
   viewInterview = output<string>();
 
-  readonly isSuperUser = this.aspRoleS.canAccessSignal(ApplicationRole.SuperUsuario);
+  readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
 
   loading = signal(true);
   readonly tablePrimeNgRows: number = tablePrimeNgRows();

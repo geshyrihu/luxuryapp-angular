@@ -112,7 +112,7 @@ export class VacantesList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  readonly isSuperUser = this.aspRoleS.canAccessSignal(ApplicationRole.SuperUsuario);
+  readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
 
   dataSignal = signal<VacanteListItem[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -160,7 +160,7 @@ onDelete(id: string) {
   }
 
   async onDeletePermanente(id: string) {
-    if (!this.aspRoleS.canAccess(ApplicationRole.SuperUsuario)) return;
+    if (!this.aspRoleS.hasRole(ApplicationRole.SuperUsuario)) return;
 
     const impact = await this.apiResponseS.onGetItem<RequestPositionDeleteImpact>(
       EndpointsReclutamiento.RequestPosition.deleteImpact(id),
@@ -169,7 +169,7 @@ onDelete(id: string) {
 
     const result = await Swal.fire({
       title: "Eliminar vacante",
-      html: `Se eliminará permanentemente la vacante y todo lo relacionado en cascada:<br /><br />
+      html: `Se eliminaré permanentemente la vacante y todo lo relacionado en cascada:<br /><br />
         <ul class="text-left" style="display:inline-block">
           <li>Procesos candidato-vacante: <b>${impact.candidateProcessesCount}</b></li>
           <li>Entrevistas: <b>${impact.candidateInterviewsCount}</b></li>

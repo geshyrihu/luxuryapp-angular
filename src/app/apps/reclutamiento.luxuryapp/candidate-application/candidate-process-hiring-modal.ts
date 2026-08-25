@@ -480,13 +480,18 @@ export class CandidateProcessHiringModal implements OnInit {
     );
 
     this.submitting.set(true);
+    const isDraftCompletion = this.dialogData.isDraftCompletion === true;
     const processId = this.candidateProcessId ?? this.id;
-    const targetEndpoint = processId
-      ? EndpointsReclutamiento.CandidateProcesses.processHiring(processId)
-      : EndpointsReclutamiento.CandidateProcesses.directHire(this.requestPositionId!);
+    const targetEndpoint = isDraftCompletion
+      ? EndpointsReclutamiento.RequestEmployeeRegister.completeDraft(this.id!)
+      : processId
+        ? EndpointsReclutamiento.CandidateProcesses.processHiring(processId)
+        : EndpointsReclutamiento.CandidateProcesses.directHire(this.requestPositionId!);
+    const request = isDraftCompletion
+      ? this.apiResponseS.onPut<boolean>(targetEndpoint, formData)
+      : this.apiResponseS.onPost<boolean>(targetEndpoint, formData);
 
-    this.apiResponseS
-      .onPost<boolean>(targetEndpoint, formData)
+    request
       .then((result: boolean | false) => {
         if (result) {
           this.clearDraft();

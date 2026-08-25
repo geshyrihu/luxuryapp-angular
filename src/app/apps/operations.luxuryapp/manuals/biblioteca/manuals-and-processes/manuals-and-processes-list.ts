@@ -71,7 +71,7 @@ export class ManualsAndProcessesList implements OnInit {
       ApplicationRole.RecursosHumanos,
       ApplicationRole.Reclutamiento,
     ];
-    return roles.some((role) => this.aspRoleS.canAccessSignal(role)());
+    return roles.some((role) => this.aspRoleS.roleSignal(role)());
   });
 
   dataSignal = signal<IManualTemplateSimpleDTO[]>([]);

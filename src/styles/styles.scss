@@ -98,7 +98,7 @@ body {
 @import "web/flatpickr";
 
 /* 7. FONTS */
-/* Outfit variable self-hosted (src/assets/fonts/) — sin CDN ni FOUT por subset. */
+/* Figtree variable desde Google Fonts — sin self-hosting, font-display: swap. */
 @import "core/fonts";
 
 body {

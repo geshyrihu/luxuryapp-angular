@@ -79,7 +79,7 @@ export class WarehouseForm implements OnInit {
 
   // Signals para manejo de usuarios (solo visible para admins)
   cb_users = signal<any[]>([]);
-  isAdmin = this.aspRoleS.canAccessAnySignal([
+  isAdmin = this.aspRoleS.anyOf([
     ApplicationRole.Administrador,
     ApplicationRole.SuperUsuario,
   ]);
@@ -94,25 +94,25 @@ export class WarehouseForm implements OnInit {
   // Formulario reactivo
   form: FormGroup<IWarehouseForm> = this.formBuilder.group({
     id: [""],
-    nombre: ["", [Validators.required, Validators.minLength(5)]], // Nombre del almacón (mínimo 5 caracteres)
+    nombre: ["", [Validators.required, Validators.minLength(5)]], // Nombre del almacón (mónimo 5 caracteres)
     ubicacion: ["", Validators.required], // Ubicación del almacón
     customerId: [this.customerIdS.customerId()], // ID del cliente actual
     applicationUserId: [this.authS.applicationUserId], // Usuario que crea/actualiza
     responsablesIds: [[] as string[]], // IDs de los usuarios responsables (solo para admins)
   });
 
-  // Propiedad para almacenar todos los usuarios cargados (para evitar míltiples llamadas)
+  // Propiedad para almacenar todos los usuarios cargados (para evitar móltiples llamadas)
   private allUsers: any[] = [];
 
   /**
-   * Método de inicialización del componente.
+   * Mótodo de inicialización del componente.
    * Carga los datos del almacón si es edición o prepara para creación.
    */
   async ngOnInit(): Promise<void> {
     this.id = this.config.data.id;
 
     if (
-      this.aspRoleS.canAccessAnySignal([
+      this.aspRoleS.anyOf([
         ApplicationRole.Administrador,
         ApplicationRole.SuperUsuario,
       ])()
@@ -123,12 +123,12 @@ export class WarehouseForm implements OnInit {
     if (this.id !== "") {
       this.onLoadData(); // Carga los datos del almacón existente
     } else if (
-      this.aspRoleS.canAccessAnySignal([
+      this.aspRoleS.anyOf([
         ApplicationRole.Administrador,
         ApplicationRole.SuperUsuario,
       ])()
     ) {
-      this.availableUsers = [...this.allUsers]; // Todos los usuarios estén disponibles para nuevo almacón
+      this.availableUsers = [...this.allUsers]; // Todos los usuarios estón disponibles para nuevo almacón
     }
   }
 

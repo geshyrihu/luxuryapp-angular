@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
   CandidateInterviewResponseDto,
@@ -72,7 +73,9 @@ export class EmployeeInterviewResponse implements OnInit {
   );
   readonly pendingDecision = signal<CandidateDecision | null>(null);
   readonly selectedReason = signal<number | null>(null);
+  readonly agreedPresentationDate = signal<string | null>(null);
   readonly reasonOptions = signal<SelectItemDto[]>([]);
+  readonly today = new Date().toISOString().split('T')[0];
 
   readonly agendaStatusOptions = AGENDA_STATUS_TAG_OPTIONS;
 
@@ -153,6 +156,7 @@ export class EmployeeInterviewResponse implements OnInit {
     this.pendingAction.set(null);
     this.pendingDecision.set(null);
     this.selectedReason.set(null);
+    this.agreedPresentationDate.set(null);
   }
 
   async confirmAction(): Promise<void> {
@@ -171,7 +175,12 @@ export class EmployeeInterviewResponse implements OnInit {
       );
       return;
     }
-    if (decision === CandidateDecision.Rechazado && decisionReason === null) return;
+    const decisionValue = decision as CandidateDecision;
+    if (decisionValue === CandidateDecision.Rechazado && decisionReason === null) return;
+    if (decisionValue === CandidateDecision.Aprobado && !this.agreedPresentationDate()) {
+      this.toastS.showWarn("Fecha requerida", "Debe indicar la Fecha de Presentación Acordada para aprobar.");
+      return;
+    }
 
     this.actionLoading.set(true);
     try {
@@ -184,6 +193,7 @@ export class EmployeeInterviewResponse implements OnInit {
             : null,
         additionalComment: "",
         newScheduledAt: null,
+        agreedPresentationDate: this.agreedPresentationDate(),
       };
 
       await this.apiResponseS.onPost<boolean>(

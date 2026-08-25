@@ -60,7 +60,7 @@ export class EmployeeForm implements OnInit {
   // ?? Sección activa
   activeSection: string = "principal";
 
-  // ?? Items del mení
+  // ?? Items del mené
   menuItems: MenuItem[] = [];
 
   paramsSignal = toSignal(this.route.paramMap);
@@ -85,7 +85,7 @@ export class EmployeeForm implements OnInit {
           .then((result: any) => {
             this.nameEmployee.set(`${result.fullName} `);
           });
-        // Inicializar mení despuós de tener los datos
+        // Inicializar mené despuós de tener los datos
         this.initializeMenu();
       }
     });
@@ -211,13 +211,13 @@ export class EmployeeForm implements OnInit {
 
       // Solo quienes pueden ver / registrar incidencias
 
-      // Solo acceso túcnico / sistemas
+      // Solo acceso tócnico / sistemas
 
       ,
     ];
 
     this.menuItems = all
-      .filter((item) => !item.roles || this.aspRoleS.canAccessAny(item.roles))
+      .filter((item) => !item.roles || this.aspRoleS.hasAny(item.roles))
       .map((item) => ({
         label: item.label,
         icon: item.icon,

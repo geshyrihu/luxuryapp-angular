@@ -89,7 +89,7 @@ export class UserActivityHistory implements OnInit {
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   ngOnInit(): void {
-    this.isUserAdmin = this.aspRoleS.canAccessAny([
+    this.isUserAdmin = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
     ]);
@@ -181,7 +181,7 @@ export class UserActivityHistory implements OnInit {
   onPageChange(event: any): void {
     this.rows.set(event.rows);
     this.currentPage.set(event.first / event.rows + 1);
-    this.onLoadData(true); // En la tabla de escritorio, cada cambio de página es una nueva bósqueda
+    this.onLoadData(true); // En la tabla de escritorio, cada cambio de pógina es una nueva bósqueda
   }
 
   onSearch(term: string): void {

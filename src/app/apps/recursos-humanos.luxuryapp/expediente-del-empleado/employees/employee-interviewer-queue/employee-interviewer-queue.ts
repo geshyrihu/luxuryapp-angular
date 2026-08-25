@@ -2,17 +2,22 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { CustomerIdService } from 'src/app/core/auth/services/customer-id.service';
 import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CandidateInterviewerQueueDto, CandidateInterviewerQueueItemDto } from 'src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface';
 import { AGENDA_STATUS_TAG_OPTIONS } from 'src/app/shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options';
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppAvatar } from 'src/app/shared/ui/web/avatar/avatar';
+import { ConfirmPresentationModal } from "../staff-board/confirm-presentation-modal/confirm-presentation-modal";
 import { EmployeeInterviewerQueueService } from "./employee-interviewer-queue.service";
 import { EmployeeQueueCandidateDetailModal } from "./employee-queue-candidate-detail-modal";
+import { VacancyCandidatesTimelineModal } from "./vacancy-candidates-timeline-modal";
 
 type QueueCandidateView = CandidateInterviewerQueueItemDto & {
   vacancyFolio: string;
   positionName: string;
   customerName: string;
   vacancyStatus: string;
+  requestPositionId: string;
 };
 
 type QueueVacancyView = CandidateInterviewerQueueDto & {
@@ -24,11 +29,12 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
   standalone: true,
   templateUrl: "./employee-interviewer-queue.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, DatePipe, AppAvatar],
+  imports: [CommonModule, DatePipe, WebButtonLabel, AppAvatar],
 })
 export class EmployeeInterviewerQueue {
   private queueS = inject(EmployeeInterviewerQueueService);
   private dialogHandlerS = inject(DialogHandlerService);
+  private toastS = inject(CustomToastService);
   readonly customerIdS = inject(CustomerIdService);
 
   readonly dataSignal = signal<CandidateInterviewerQueueDto[]>([]);
@@ -69,6 +75,7 @@ export class EmployeeInterviewerQueue {
         positionName: vacancy.positionName,
         customerName: vacancy.customerName,
         vacancyStatus: vacancy.vacancyStatus,
+        requestPositionId: vacancy.requestPositionId,
       })),
     ),
   );
@@ -90,6 +97,7 @@ export class EmployeeInterviewerQueue {
             positionName: vacancy.positionName,
             customerName: vacancy.customerName,
             vacancyStatus: vacancy.vacancyStatus,
+            requestPositionId: vacancy.requestPositionId,
           }))
           .filter((candidate) => this.matchesSearch(candidate, term)),
       }))
@@ -152,6 +160,25 @@ export class EmployeeInterviewerQueue {
       .then(() => this.onLoadData());
   }
 
+  openVacancyTimeline(vacancy: QueueVacancyView): void {
+    this.dialogHandlerS.openDialog(
+      VacancyCandidatesTimelineModal,
+      {
+        requestPositionId: vacancy.requestPositionId,
+        workPositionId: vacancy.workPositionId,
+        vacancyFolio: vacancy.vacancyFolio,
+        positionName: vacancy.positionName,
+        customerName: vacancy.customerName,
+      },
+      `Línea de tiempo - ${vacancy.vacancyFolio}`,
+      this.dialogHandlerS.sizeMd,
+    );
+  }
+
+  confirmableCandidates(vacancy: QueueVacancyView): QueueCandidateView[] {
+    return vacancy.filteredCandidates.filter((candidate) => candidate.canConfirmPresentation);
+  }
+
   private matchesSearch(candidate: QueueCandidateView, term: string): boolean {
     if (!term) return true;
 
@@ -170,6 +197,30 @@ export class EmployeeInterviewerQueue {
       .toLowerCase();
 
     return haystack.includes(term);
+  }
+
+  openConfirmPresentationModal(candidate: QueueCandidateView): void {
+    if (!candidate.candidateProcessId) return;
+    this.dialogHandlerS
+      .openDialog(
+        ConfirmPresentationModal,
+        {
+          processId: candidate.candidateProcessId,
+          candidateName: candidate.candidateName,
+          vacancyFolio: candidate.vacancyFolio,
+        },
+        "Confirmar Ingreso del Candidato",
+        this.dialogHandlerS.sizeMd,
+      )
+      .then(async (result: boolean) => {
+        if (!result) return;
+
+        await this.onLoadData();
+        this.toastS.showSuccess(
+          "Candidato confirmado",
+          "Se notificó a Reclutamiento para procesar el Alta.",
+        );
+      });
   }
 }
 

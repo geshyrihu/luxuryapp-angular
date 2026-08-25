@@ -11,42 +11,49 @@
       label="Proceso"
       [readonly]="true"
     />
+    <custom-input-select-signal
+      [control]="form.controls['decision']"
+      label="Decision"
+      [data]="cbDecision()"
+    />
+    @if (selectedDecision() === 1) {
+    <custom-input-select-signal
+      [control]="form.controls['decisionReason']"
+      label="Motivo de la decision"
+      [data]="rejectionReasonOptions()"
+      [filter]="true"
+    />
+    } @if (selectedDecision() === 0) {
     <div class="grid">
       <div class="col-12 md:col-6">
-        <custom-input-select-signal
-          [control]="form.controls['decision']"
-          label="Decision"
-          [data]="cbDecision()"
+        <custom-input-date-signal
+          [control]="form.controls['agreedPresentationDate']"
+          label="Fecha de Presentación Acordada"
+          placeholder="Selecciona fecha de presentación"
         />
       </div>
       <div class="col-12 md:col-6">
-        @if (selectedDecision() === 1) {
-        <custom-input-select-signal
-          [control]="form.controls['decisionReason']"
-          label="Motivo de la decision"
-          [data]="rejectionReasonOptions()"
-          [filter]="true"
-        />
-        }
-      </div>
-      <div class="col-12 md:col-6">
-        @if (selectedDecision() === 4) {
-        <web-custom-input-date-time-signal
-          [control]="form.controls['newScheduledAt']"
-          label="Nueva fecha y hora"
-          placeholder="Selecciona fecha y hora"
-        />
-        }
-      </div>
-      <div class="col-12">
-        <custom-input-textarea-signal
-          [control]="form.controls['additionalComment']"
-          label="Comentario"
-          placeholder="Comentario adicional del entrevistador..."
-          [rows]="3"
+        <custom-input-time-signal
+          [control]="form.controls['agreedPresentationTime']"
+          label="Hora de Presentación"
+          placeholder="Selecciona hora de presentación"
         />
       </div>
     </div>
+    } @if (selectedDecision() === 4) {
+    <web-custom-input-date-time-signal
+      [control]="form.controls['newScheduledAt']"
+      label="Nueva fecha y hora"
+      placeholder="Selecciona fecha y hora"
+    />
+    }
+    <custom-input-textarea-signal
+      [control]="form.controls['additionalComment']"
+      label="Comentario"
+      placeholder="Comentario adicional del entrevistador..."
+      [rows]="3"
+    />
+
     <il-button-save
       [propertyId]="targetLabel()"
       [disabled]="form.invalid || resolvingProcess()"

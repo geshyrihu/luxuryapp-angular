@@ -48,6 +48,7 @@ export interface CandidateProcessHiringDialogData {
   candidateProcessId?: string;
   candidateId?: string | null;
   requestPositionId?: string | null;
+  isDraftCompletion?: boolean;
   toStage?: CandidateProcessStage;
   candidateFirstName?: string;
   candidateLastName?: string;

@@ -45,6 +45,7 @@ const ROUTE_WHITELIST = new Set([
   "/admin/ticket-group-category",
   "/admin/assembly-checklist-catalog",
   "/admin/monthly-meetings-reconciliation",
+  "/admin/recurring-task-catalog",
   "/admin/inspection-reviews-catalog",
   "/admin/catalog-asset",
   "/admin/client-delivery-reception",

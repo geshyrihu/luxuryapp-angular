@@ -189,6 +189,12 @@
                     <div class="font-medium">{{ candidate.pendingAction }}</div>
                   </div>
                 </div>
+
+                @if (candidate.isVacancyLocked) {
+                <div class="mt-3 px-3 py-2 border-round bg-yellow-50 text-yellow-800 text-sm font-medium">
+                  {{ candidate.vacancyLockMessage }}
+                </div>
+                }
               </div>
 
               <div class="flex flex-wrap gap-2 lg:justify-content-end" (click)="$event.stopPropagation()">
@@ -296,16 +302,20 @@
       @if (!selectedCandidate()?.isHistorical) {
       <div class="mt-4 pt-3 border-top-1 surface-border">
         <div class="font-semibold mb-2">Acciones del entrevistador</div>
+        @if (selectedCandidate()?.isVacancyLocked) {
+        <div class="mb-3 px-3 py-2 border-round bg-yellow-50 text-yellow-800 text-sm font-medium">
+          {{ selectedCandidate()?.vacancyLockMessage }}
+        </div>
+        }
         <div class="flex flex-wrap gap-2">
-        
-          @if (selectedCandidate()?.canSubmitFeedback) {
           <il-button
-            label="Feedback"
+            label="Responder entrevista"
             iconClass="material-symbols-light:fact-check"
             severity="info"
+            [disabled]="!selectedCandidate()?.canSubmitFeedback"
+            [attr.title]="!selectedCandidate()?.canSubmitFeedback ? (selectedCandidate()?.vacancyLockMessage || 'Este candidato no tiene una entrevista activa para responder.') : null"
             (clicked)="onFeedback(selectedCandidate()!)"
           />
-          }
           @if (selectedCandidate()?.canMarkNoShow) {
           <il-button
             label="No asistio"

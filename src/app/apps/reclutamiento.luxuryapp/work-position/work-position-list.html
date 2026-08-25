@@ -1,8 +1,12 @@
-!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <p-table
-    [globalFilterFields]="globalFilterFields"
+    [globalFilterFields]="globalFilterFields()"
     [value]="data()"
+    rowGroupMode="rowspan"
+    groupRowsBy="departament"
+    sortField="departament"
+    sortMode="single"
     #dt
     [paginator]="true"
     [rows]="tablePrimeNgRows"
@@ -18,7 +22,7 @@
         <div class="col-12 sm:col-10">
           <primeng-custom-caption
             [title]="'Puestos de Trabajo'"
-            (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+            [showAdd]="false"
             [dt]="dt"
           />
         </div>
@@ -33,6 +37,9 @@
 
     <ng-template #header>
       <tr>
+        <th class="w-12rem" pSortableColumn="departament">
+          DEPARTAMENTO <p-sorticon field="departament" />
+        </th>
         <th class="w-8rem" pSortableColumn="folio">
           CóDIGO <p-sorticon field="folio" />
         </th>
@@ -58,8 +65,17 @@
       </tr>
     </ng-template>
 
-    <ng-template #body let-item>
-      <tr>
+    <ng-template #body let-item let-rowgroup="rowgroup" let-rowspan="rowspan">
+      <tr [class.row-vacant]="isVacant(item)">
+        @if (rowgroup) {
+        <td
+          [attr.rowspan]="rowspan"
+          class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
+        >
+          <app-icon [icon]="'material-symbols-light:work'" class="mr-2" />
+          {{ getDepartamentLabel(item.departament) }}
+        </td>
+        }
         <td>{{ item.folio }}</td>
         <td>
           @if (necesitaActualizacion(item)) {
@@ -68,10 +84,6 @@
               severity="warn"
               value="Actualizar puesto"
               icon="material-symbols-light:warning"
-            />
-                          <iw-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
-              lxTooltip="Este puesto requiere que se le asigne un rol"
             />
           </div>
           } @else { {{ item.applicationRoleName }} }
@@ -127,12 +139,6 @@
                 [lxTooltip]="'Administrar Empleado'"
               />
               }
-                          <iw-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
-            />
-            @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <iw-button-delete (confirmed)="onDelete(item.id)" />
-            }
           </div>
         </td>
       </tr>
@@ -144,7 +150,7 @@
       </div>
     </ng-template>
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="7" />
+      <primeng-custom-table-emptymessage [colspan]="8" />
     </ng-template>
   </p-table>
 </div>
@@ -154,7 +160,7 @@
   <app-data-view-mobile
     [data]="data()"
     [globalFilterFields]="['folio', 'applicationRoleName', 'applicationUser']"
-    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    [showAdd]="false"
   >
     <div
       customFilters
@@ -224,16 +230,6 @@
                 label="Administrar Empleado"
               />
               }
-                          <ili-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              label="Editar"
-            />
-            @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <ili-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
-            />
-            }
           </ng-container>
         </ili-action-menu>
       </ili-list-item>

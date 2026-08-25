@@ -86,7 +86,7 @@ export class OrgChart {
   readonly viewport = signal({ width: 1440, height: 900 });
 
   readonly canEdit = computed(() =>
-    this.aspRoleS.canAccess(ApplicationRole.SuperUsuario),
+    this.aspRoleS.hasRole(ApplicationRole.SuperUsuario),
   );
   readonly editTabDisabled = computed(() => !this.canEdit());
   readonly displayTree = computed(() => this.tree());
@@ -206,7 +206,7 @@ export class OrgChart {
       this.messageS.add({
         severity: "warn",
         summary: "Acción no permitida",
-        detail: "El nodo raíz virtual no se puede mover.",
+        detail: "El nodo raóz virtual no se puede mover.",
         life: 2500,
       });
       return;
@@ -231,7 +231,7 @@ export class OrgChart {
       this.messageS.add({
         severity: "info",
         summary: "Selección cancelada",
-        detail: "Se limpió la selección actual.",
+        detail: "Se limpié la selección actual.",
         life: 2000,
       });
       return;
@@ -241,7 +241,7 @@ export class OrgChart {
     if (!validation.valid) {
       this.messageS.add({
         severity: "error",
-        summary: "Movimiento inválido",
+        summary: "Movimiento invólido",
         detail: validation.reason,
         life: 4000,
       });
@@ -338,7 +338,7 @@ export class OrgChart {
     if (!validation.valid) {
       this.messageS.add({
         severity: "error",
-        summary: "Movimiento inválido",
+        summary: "Movimiento invólido",
         detail: validation.reason,
         life: 4000,
       });
@@ -433,7 +433,7 @@ export class OrgChart {
     if (!validation.valid) {
       this.messageS.add({
         severity: "error",
-        summary: "Movimiento inválido",
+        summary: "Movimiento invólido",
         detail: validation.reason,
         life: 4000,
       });
@@ -622,11 +622,11 @@ export class OrgChart {
   }
 
   getParentLabel(row: IOrgChartEditorRow): string {
-    return row.parent?.roleDisplayName ?? "Nivel raíz";
+    return row.parent?.roleDisplayName ?? "Nivel raóz";
   }
 
   getEditorDropMessage(row: IOrgChartEditorRow): string {
-    return `Soltar aquí para que reporte a ${row.node.roleDisplayName}`;
+    return `Soltar aqué para que reporte a ${row.node.roleDisplayName}`;
   }
 
   getMemberCount(node: IRoleOrgChartNode): number {
@@ -677,7 +677,7 @@ export class OrgChart {
   getRosterSummary(node: IRoleOrgChartNode): string {
     const memberCount = this.getMemberCount(node);
     const vacantCount = this.getVacantMemberCount(node);
-    return `${memberCount} ${memberCount === 1 ? "miembro" : "miembros"} · ${vacantCount} vacantes`;
+    return `${memberCount} ${memberCount === 1 ? "miembro" : "miembros"} é ${vacantCount} vacantes`;
   }
 
   getNodeAriaLabel(node: IRoleOrgChartNode): string {
@@ -689,7 +689,7 @@ export class OrgChart {
       : ". Presiona Enter o espacio para ver miembros.";
 
     if (node.roleId === ORG_CHART_VIRTUAL_ROOT_ID) {
-      return "Nodo raíz virtual del organigrama.";
+      return "Nodo raóz virtual del organigrama.";
     }
 
     return `Rol ${node.roleDisplayName}${department}, ${this.getRosterSummary(node)}${modeHint}`;
@@ -724,7 +724,7 @@ export class OrgChart {
       return "";
     }
 
-    return `Arrastrando ${dragging.roleDisplayName}: suelta la fila sobre otro rol para cambiar su superior o en la zona raíz para convertirlo en rol de nivel raíz.`;
+    return `Arrastrando ${dragging.roleDisplayName}: suelta la fila sobre otro rol para cambiar su superior o en la zona raóz para convertirlo en rol de nivel raóz.`;
   }
 
   private async executeReassign(
@@ -755,7 +755,7 @@ export class OrgChart {
         this.messageS.add({
           severity: "success",
           summary: "Estructura actualizada",
-          detail: "La jerarquía del organigrama se actualizó correctamente.",
+          detail: "La jerarquóa del organigrama se actualizé correctamente.",
         });
         this.clearSelection();
         await this.loadTree();
@@ -766,7 +766,7 @@ export class OrgChart {
         severity: "error",
         summary: "No se pudo actualizar la estructura",
         detail:
-          "La API rechazó el movimiento o no respondió correctamente. La selección actual se conserva para reintentar.",
+          "La API rechazé el movimiento o no respondié correctamente. La selección actual se conserva para reintentar.",
         life: 5000,
       });
     } finally {

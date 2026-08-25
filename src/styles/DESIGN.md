@@ -50,7 +50,7 @@ colors:
   shadow: "rgba(0, 49, 82, 0.15)"
 
 typography:
-  font-family: "Outfit, -apple-system, BlinkMacSystemFont, sans-serif"
+  font-family: "Figtree, -apple-system, BlinkMacSystemFont, sans-serif"
 
   display-lg:
     fontSize: 48px

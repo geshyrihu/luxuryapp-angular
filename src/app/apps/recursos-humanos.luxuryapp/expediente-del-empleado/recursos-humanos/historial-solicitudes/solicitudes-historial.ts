@@ -125,7 +125,7 @@ export class SolicitudesHistorial implements OnInit {
     ApplicationRole.SuperUsuario,
     ApplicationRole.RecursosHumanos,
   ];
-  canCancel = computed(() => this.aspRoleS.canAccessAny(this.allowedCancellerRoles));
+  canCancel = computed(() => this.aspRoleS.hasAny(this.allowedCancellerRoles));
   data = signal<IHistorialSolicitud[]>([]);
   loading = signal(true);
   employees = signal<SelectItemDto[]>([]);
@@ -169,7 +169,7 @@ export class SolicitudesHistorial implements OnInit {
       title: "Cancelar Solicitud",
       input: "textarea",
       inputLabel: `Motivo de cancelación para la solicitud ${item.solicitud} de ${item.employeeFullName}:`,
-      inputPlaceholder: "Ingresa el motivo de la cancelación aquó...",
+      inputPlaceholder: "Ingresa el motivo de la cancelación aqué...",
       inputValidator: (value) => {
         if (!value) {
           return "El motivo de la cancelación es obligatorio.";
@@ -288,7 +288,7 @@ export class SolicitudesHistorial implements OnInit {
             status: item.statusName,
             requestDate: item.requestDate,
             requestType: "leave",
-            daysRequested: `${diffDays} día(s)`,
+            daysRequested: `${diffDays} dóa(s)`,
             approverName: item.approverName,
             approvalDate: item.approvalDate,
           };
@@ -308,7 +308,7 @@ export class SolicitudesHistorial implements OnInit {
             status: item.statusName,
             requestDate: item.requestDate,
             requestType: "vacation",
-            daysRequested: `${item.requestedDays} día(s) (${item.seniorityYearDescription})`,
+            daysRequested: `${item.requestedDays} dóa(s) (${item.seniorityYearDescription})`,
             approverName: item.approverName,
             approvalDate: item.approvalDate,
           };

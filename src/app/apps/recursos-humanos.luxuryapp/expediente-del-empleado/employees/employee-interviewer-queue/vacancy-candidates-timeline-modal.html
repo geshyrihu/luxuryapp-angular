@@ -1,0 +1,76 @@
+<div class="vacancy-timeline-modal">
+  @if (loading()) {
+  <div class="p-4 text-center text-500">Cargando línea de tiempo...</div>
+  } @else if (candidateTimelines().length === 0) {
+  <div class="card p-4 text-center">
+    <div class="font-semibold text-lg mb-2">Sin candidatos registrados</div>
+    <div class="text-sm text-500">
+      Esta vacante aún no tiene eventos para mostrar.
+    </div>
+  </div>
+  } @else {
+  <div class="candidate-timeline-grid">
+    @for (candidate of candidateTimelines(); track candidate.candidateProcessId) {
+    <section class="candidate-timeline-column card shadow-1 border-round">
+      <header class="candidate-timeline-header flex align-items-start gap-3">
+        <lx-avatar
+          [image]="candidate.photoUrl"
+          shape="circle"
+          size="xlarge"
+          icon="material-symbols-light:person"
+        />
+        <div class="flex flex-column flex-grow-1">
+          <span class="font-bold text-lg text-primary">{{ candidate.candidateName }}</span>
+          <small class="text-500 mt-1">
+            Registro creado:
+            {{ (candidate.createdAt || candidate.registerDate) | date: "mediumDate" }}
+          </small>
+        </div>
+      </header>
+
+      @if (candidate.events.length === 0) {
+      <div class="p-3 text-sm text-500 text-center">
+        Sin movimientos registrados en bitácora.
+      </div>
+      } @else {
+      <p-timeline [value]="candidate.events" align="left">
+        <ng-template #opposite let-event>
+          <small class="text-500 white-space-nowrap">
+            {{ (event.createdAt || event.eventDate) | date: "mediumDate" }}
+          </small>
+        </ng-template>
+
+        <ng-template #marker let-event>
+          <span
+            class="timeline-marker border-circle"
+            [style.background-color]="event.markerColor"
+          ></span>
+        </ng-template>
+
+        <ng-template #content let-event>
+          <div class="timeline-event-card p-3 mb-3 border-round">
+            <div class="flex align-items-center flex-wrap gap-2">
+              <span class="text-sm text-500">{{ event.fromStageName }}</span>
+              <app-icon icon="material-symbols-light:arrow-right-alt" class="text-500" />
+              <lx-tag [value]="event.stageName" />
+            </div>
+
+            @if (event.comment) {
+            <div class="mt-2 p-2 surface-100 border-round text-sm text-700 font-italic">
+              <app-icon icon="material-symbols-light:chat" class="mr-1 align-middle" />
+              {{ event.comment }}
+            </div>
+            }
+
+            @if (event.changedBy) {
+            <small class="text-500 mt-2 block">Registrado por {{ event.changedBy }}</small>
+            }
+          </div>
+        </ng-template>
+      </p-timeline>
+      }
+    </section>
+    }
+  </div>
+  }
+</div>

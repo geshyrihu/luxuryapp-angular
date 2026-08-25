@@ -54,22 +54,22 @@ const tipoGastoTitles: { [key: number]: string } = {
   [TipoGasto.CajaChica]: "CAJA CHICA",
   [TipoGasto.Extraordinario]: "GASTOS EXTRAORDINARIOS",
   [TipoGasto.Devoluciones]: "DEVOLUCIONES",
-  [TipoGasto.TarjetaDebito]: "TARJETA DE DÉBITO",
+  [TipoGasto.TarjetaDebito]: "TARJETA DE DóBITO",
   [TipoGasto.Proyectos]: "GASTOS DE PROYECTOS",
-  [TipoGasto.Nomina]: "NÓMINA",
+  [TipoGasto.Nomina]: "NóMINA",
   [TipoGasto.Impuestos]: "IMPUESTOS Y CONTRIBUCIONES",
 };
 
 const tipoGastoEmojis: { [key: number]: string } = {
-  [TipoGasto.Fijo]: "🏢",
-  [TipoGasto.Variable]: "💸",
-  [TipoGasto.CajaChica]: "🪙",
-  [TipoGasto.Extraordinario]: "✨",
-  [TipoGasto.Devoluciones]: "↩️",
-  [TipoGasto.TarjetaDebito]: "💳",
-  [TipoGasto.Proyectos]: "🏗️",
-  [TipoGasto.Nomina]: "👥",
-  [TipoGasto.Impuestos]: "⚖️",
+  [TipoGasto.Fijo]: "??",
+  [TipoGasto.Variable]: "??",
+  [TipoGasto.CajaChica]: "??",
+  [TipoGasto.Extraordinario]: "?",
+  [TipoGasto.Devoluciones]: "??",
+  [TipoGasto.TarjetaDebito]: "??",
+  [TipoGasto.Proyectos]: "???",
+  [TipoGasto.Nomina]: "??",
+  [TipoGasto.Impuestos]: "??",
 };
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
@@ -126,9 +126,9 @@ export class FundingDetail {
   fullData = signal<FundingDetailDTO | null>(null);
   ordenesFueraProceso = signal<FundingOrdenDTO[]>([]);
 
-  isRolAdministrador = this.aspRoleS.canAccessSignal(ApplicationRole.Administrador);
-  isRolSuperUsuario = this.aspRoleS.canAccessSignal(ApplicationRole.SuperUsuario);
-  isRolContador = this.aspRoleS.canAccessSignal(ApplicationRole.Contador);
+  isRolAdministrador = this.aspRoleS.roleSignal(ApplicationRole.Administrador);
+  isRolSuperUsuario = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
+  isRolContador = this.aspRoleS.roleSignal(ApplicationRole.Contador);
 
   customerName = signal("");
   customerPhoto = signal("");
@@ -348,7 +348,7 @@ export class FundingDetail {
 
   /**
    * Se dispara cuando el usuario cambia el estado de pago de una orden.
-   * Llama a la API usando el nuevo método onPatch para persistir el cambio.
+   * Llama a la API usando el nuevo mótodo onPatch para persistir el cambio.
    * @param orden El objeto completo de la fila que se esté modificando.
    */
   onPaymentStatusChange(orden: any): void {
@@ -356,15 +356,15 @@ export class FundingDetail {
     const ordenId = orden.ordenCompraId;
 
     console.log(
-      `🔍 Actualizando estado de pago para OC ID: ${ordenId} a: ${nuevoEstado}`,
+      `?? Actualizando estado de pago para OC ID: ${ordenId} a: ${nuevoEstado}`,
     );
 
     // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
     const urlApi = Endpoints.Funding.updatePurchasePaidStatus(ordenId);
     const body = { isPaid: nuevoEstado };
 
-    // 2. Llamamos a nuestro nuevo y flamante método onPatch.
-    //    Tu servicio ya se encarga de los toasts de carga y éxito/error.
+    // 2. Llamamos a nuestro nuevo y flamante mótodo onPatch.
+    //    Tu servicio ya se encarga de los toasts de carga y óxito/error.
     this.apiResponseS.onPatch(urlApi, body).then((success) => {
       // 3. Manejamos el caso de error. Si la API falla, 'success' seré false.
       if (!success) {
@@ -401,12 +401,12 @@ export class FundingDetail {
   onModalAdd() {
     // 1. Obtenemos el valor de la signal (que es el objeto de parómetros)
 
-    // 2. Extraemos el 'tipo' y lo convertimos a número
+    // 2. Extraemos el 'tipo' y lo convertimos a nómero
     const tipoGastoValue = 0;
 
-    // 3. Verificamos que sea un número vólido antes de continuar
+    // 3. Verificamos que sea un nómero vólido antes de continuar
     if (isNaN(tipoGastoValue)) {
-      console.error("El tipo de gasto en la URL no es un número vólido");
+      console.error("El tipo de gasto en la URL no es un nómero vólido");
       // Opcional: Mostrar un mensaje de error al usuario
       return;
     }
@@ -447,16 +447,16 @@ export class FundingDetail {
 
   openCreateOrdenCompraWizard(tipoGasto?: TipoGasto) {
     console.log(
-      "🔍 ~ FundingDetail ~ openCreateOrdenCompraWizard ~ tipoGasto:",
+      "?? ~ FundingDetail ~ openCreateOrdenCompraWizard ~ tipoGasto:",
       tipoGasto,
     );
-    // Si no se proporciona tipoGasto, no abras el diálogo aón
-    // o muestra un mensaje para que seleccionen del mení
+    // Si no se proporciona tipoGasto, no abras el diólogo aón
+    // o muestra un mensaje para que seleccionen del mené
     if (tipoGasto === undefined) {
       // Opción 2: Mostrar un mensaje
       this.customToastService.showInfo(
         "Selecciona tipo de gasto",
-        "Por favor selecciona un tipo de gasto del mení",
+        "Por favor selecciona un tipo de gasto del mené",
       );
       return;
     }

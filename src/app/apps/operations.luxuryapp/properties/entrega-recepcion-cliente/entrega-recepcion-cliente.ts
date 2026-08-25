@@ -74,7 +74,7 @@ export class EntregaRecepcionClienteLista {
   public AspRole = ApplicationRole;
   data = signal<any[]>([]);
   loading = signal(true);
-  // ¡MEJORA! El departamento ahora es un signal.
+  // óMEJORA! El departamento ahora es un signal.
   departamento = signal<string>("");
 
   // --- PROPIEDADES ESTóTICAS (sin cambios) ---
@@ -83,13 +83,13 @@ export class EntregaRecepcionClienteLista {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   cb_departamento = [
     { value: "JURIDICO" },
-    { value: "ADMINISTRACIÓN Y FINANZAS" },
+    { value: "ADMINISTRACIóN Y FINANZAS" },
     { value: "OPERACIONES Y MANTENIMIENTO" },
   ];
   ref: DynamicDialogRef;
 
   constructor() {
-    // 1. Ejecutamos la configuración única para establecer el estado inicial del signal.
+    // 1. Ejecutamos la configuración ónica para establecer el estado inicial del signal.
     this.onValidarCargo();
 
     // 2. Creamos el effect que reacciona a TODOS los cambios de estado relevantes.
@@ -98,27 +98,27 @@ export class EntregaRecepcionClienteLista {
       const customerId: string = this.customerIdS.customerId();
       const depto = this.departamento();
 
-      // El effect se ejecutará si cambia el cliente O el departamento.
+      // El effect se ejecutaré si cambia el cliente O el departamento.
       if (customerId && depto) {
         this.onLoadData();
       }
     });
   }
 
-  // ¡MEJORA! Este método ahora solo establece el estado inicial del signal.
+  // óMEJORA! Este mótodo ahora solo establece el estado inicial del signal.
   private onValidarCargo(): void {
     let initialDept = this.cb_departamento[0].value; // Valor por defecto
-    if (this.aspRoleS.canAccess(ApplicationRole.Contador))
+    if (this.aspRoleS.hasRole(ApplicationRole.Contador))
       initialDept = this.cb_departamento[1].value;
-    if (this.aspRoleS.canAccess(ApplicationRole.Legal))
+    if (this.aspRoleS.hasRole(ApplicationRole.Legal))
       initialDept = this.cb_departamento[0].value;
-    if (this.aspRoleS.canAccess(ApplicationRole.JefeMantenimiento))
+    if (this.aspRoleS.hasRole(ApplicationRole.JefeMantenimiento))
       initialDept = this.cb_departamento[2].value;
     this.departamento.set(initialDept);
   }
 
-  // ¡MEJORA! Este método ahora es súper simple. Solo actualiza el signal.
-  // El effect se encargará de llamar a onLoadData.
+  // óMEJORA! Este mótodo ahora es sóper simple. Solo actualiza el signal.
+  // El effect se encargaré de llamar a onLoadData.
   onChangDepartamento(departamento: string): void {
     this.departamento.set(departamento);
   }
@@ -127,7 +127,7 @@ export class EntregaRecepcionClienteLista {
     // * Peticion para generar los items de entrega recepcion (sin cambios)
     this.apiResponseS.onGetItem(Endpoints.EntregaRecepcionCliente.generateData);
 
-    // ¡CORRECCIÑN! Leemos los valores de los signals con ()
+    // óCORRECCIóN! Leemos los valores de los signals con ()
     const urlApi = Endpoints.EntregaRecepcionCliente.getByCustomerAndDepartment(
       this.customerIdS.customerId(),
       this.departamento(),
@@ -141,8 +141,8 @@ export class EntregaRecepcionClienteLista {
       .finally(() => {});
   }
 
-  // ... El resto de tus métodos (onModalForm, onValidarDocument, etc.) están bien.
-  // Siguen llamando a onLoadData() para recargar la lista después de una acción, lo cual es correcto.
+  // ... El resto de tus mótodos (onModalForm, onValidarDocument, etc.) estón bien.
+  // Siguen llamando a onLoadData() para recargar la lista despuós de una acción, lo cual es correcto.
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(
