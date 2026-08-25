@@ -1,0 +1,125 @@
+:host {
+  display: block;
+}
+
+.recruitment-shell {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--primary-color) 8%, transparent),
+      transparent 34rem
+    ),
+    var(--surface-ground);
+  min-height: 100%;
+  padding: var(--ds-space-md);
+}
+
+.recruitment-shell__header {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-sm);
+  margin-bottom: var(--ds-space-md);
+  padding: var(--ds-space-sm) var(--ds-space-md);
+  position: relative;
+  z-index: 20;
+}
+
+.recruitment-shell__title-group {
+  margin-bottom: var(--ds-space-md);
+}
+
+.recruitment-shell__eyebrow {
+  color: var(--primary-color);
+  display: block;
+  font-size: var(--ds-font-size-caption);
+  font-weight: var(--ds-font-weight-semibold);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--ds-space-xs);
+  text-transform: uppercase;
+}
+
+.recruitment-shell__title {
+  color: var(--ds-text-primary);
+  font-size: var(--ds-font-size-h2);
+  margin: 0;
+}
+
+.recruitment-shell__subtitle {
+  color: var(--ds-text-secondary);
+  font-size: var(--ds-font-size-body);
+  margin: var(--ds-space-xs) 0 0;
+}
+
+.recruitment-shell__command-bar {
+  align-items: center;
+  display: flex;
+  gap: var(--ds-space-md);
+  min-width: 0;
+  width: 100%;
+}
+
+.recruitment-shell__nav {
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 30;
+}
+
+.recruitment-shell__toolbar {
+  border-left: 1px solid var(--surface-border);
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: var(--ds-space-md);
+  position: relative;
+  z-index: 10;
+}
+
+.recruitment-shell__content {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-sm);
+  padding: var(--ds-space-md);
+  position: relative;
+  z-index: 1;
+}
+
+:host ::ng-deep app-menubar .p-menubar {
+  position: relative;
+  z-index: 40;
+}
+
+:host ::ng-deep app-menubar .p-menubar .p-submenu-list {
+  z-index: 1100;
+}
+
+@media (max-width: 1280px) {
+  .recruitment-shell__command-bar {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .recruitment-shell__nav,
+  .recruitment-shell__toolbar {
+    flex: 1 1 100%;
+  }
+
+  .recruitment-shell__toolbar {
+    border-left: 0;
+    border-top: 1px solid var(--surface-border);
+    padding-left: 0;
+    padding-top: var(--ds-space-sm);
+  }
+}
+
+@media (max-width: 768px) {
+  .recruitment-shell {
+    padding: var(--ds-space-sm);
+  }
+
+  .recruitment-shell__header,
+  .recruitment-shell__content {
+    border-radius: var(--ds-radius-md);
+    padding: var(--ds-space-md);
+  }
+}

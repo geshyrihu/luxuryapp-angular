@@ -118,6 +118,19 @@ export class CandidateForm implements OnInit {
   duplicateCandidate = signal<CandidatePhoneLookup | null>(null);
   readonly CandidateStatus = CandidateStatus;
 
+  candidateStatusLabel(status: CandidateStatus): string {
+    switch (status) {
+      case CandidateStatus.Archived:
+        return "Archivado";
+      case CandidateStatus.Contratado:
+        return "Contratado";
+      case CandidateStatus.EmpleadoVinculado:
+        return "Empleado vinculado";
+      default:
+        return "Activo";
+    }
+  }
+
   form: FormGroup<CandidateFormGroup> = new FormGroup({
     id: new FormControl({ value: "", disabled: true }),
     firstName: new FormControl("", {

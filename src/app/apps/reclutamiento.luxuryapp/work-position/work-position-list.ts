@@ -5,13 +5,14 @@ import {
   effect,
   inject,
   signal,
+  ViewChild,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import {
   add,
@@ -36,6 +37,7 @@ import {
   tablePrimeNgRows as getTablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { FilterRequestsService } from "src/app/core/http/services/filter-requests.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -85,11 +87,13 @@ export class WorkPositionList {
   private statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
   public aspRoleS = inject(AspRoleService);
   private tableScrollHeightS = inject(TableScrollHeightService);
+  private filterRequestsService = inject(FilterRequestsService);
 
   // --- SIGNALS Y PROPIEDADES ---
   data = signal<IWorkPosition[]>([]);
   scrollHeight = signal<string>("0px");
   state = signal<boolean>(true);
+  @ViewChild("dt") dt?: Table;
 
   // --- CONSTANTES ---
   readonly AspRole = ApplicationRole;
@@ -134,6 +138,11 @@ export class WorkPositionList {
       if (this.customerIdS.customerId()) {
         this.onLoadData();
       }
+    });
+
+    effect(() => {
+      const term = this.filterRequestsService.searchTerm();
+      this.dt?.filterGlobal(term, "contains");
     });
 
     this.scrollHeight.set(this.tableScrollHeightS.scrollHeight());

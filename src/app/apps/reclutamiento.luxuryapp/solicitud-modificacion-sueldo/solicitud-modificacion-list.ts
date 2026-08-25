@@ -38,6 +38,10 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import {
+  requestStatusBorderColor,
+  requestStatusTagSeverity,
+} from "../recruitment-shared/request-status-style";
 
 interface SolicitudModificacionListItem {
   id: string;
@@ -77,6 +81,8 @@ export class SolicitudModificacionList implements OnInit {
   filterRequestsService = inject(FilterRequestsService);
   statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
   tableScrollHeightS = inject(TableScrollHeightService);
+  readonly requestStatusBorderColor = requestStatusBorderColor;
+  readonly requestStatusTagSeverity = requestStatusTagSeverity;
 
   dataSignal = signal<SolicitudModificacionListItem[]>([]);
 

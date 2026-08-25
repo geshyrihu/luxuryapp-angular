@@ -37,6 +37,7 @@ export interface CandidateRecruitmentInterviewBoardItem {
   canSendToInterview: boolean;
   canSchedule: boolean;
   canReschedule: boolean;
+  canProceedToHiring: boolean;
 }
 
 export interface ScheduleRecruitmentInterviewRequest {

@@ -41,11 +41,22 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
+import {
+  DuplicateEmployeeMatch,
+  DuplicateEmployeeWarningModal,
+} from "./components/duplicate-employee-warning/duplicate-employee-warning-modal";
 import { HiringDocumentValidationModal } from "./components/hiring-document-validation/hiring-document-validation-modal";
+import {
+  requestStatusBorderColor,
+  requestStatusTagSeverity,
+} from "../recruitment-shared/request-status-style";
 
 interface SolicitudAltaListItem {
   id: string;
   employeeId: string;
+  candidateId?: string;
+  candidateProcessId?: string;
+  positionRequestId?: string;
   folio: string;
   folioVacante: string;
   requestDate: string;
@@ -86,6 +97,8 @@ export class SolicitudAltaList implements OnInit {
   authS = inject(AuthService);
   public statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
   tableScrollHeightS = inject(TableScrollHeightService);
+  readonly requestStatusBorderColor = requestStatusBorderColor;
+  readonly requestStatusTagSeverity = requestStatusTagSeverity;
 
   dataSignal = signal<SolicitudAltaListItem[]>([]);
 
@@ -130,7 +143,43 @@ export class SolicitudAltaList implements OnInit {
       });
   }
 
-  onModalForm(data: SolicitudAltaListItem) {
+  async onModalForm(data: SolicitudAltaListItem) {
+    if (data.candidateId && data.candidateProcessId && data.positionRequestId) {
+      const matches = await this.apiResponseS.onGetList<DuplicateEmployeeMatch[]>(
+        EndpointsReclutamiento.RequestEmployeeRegister.checkEmployeeDuplicates(
+          data.candidateId,
+        ),
+        undefined,
+        false,
+      );
+
+      if (matches?.length) {
+        const decision = await this.dialogHandlerS.openDialog<
+          "reactivated" | "continue" | undefined
+        >(
+          DuplicateEmployeeWarningModal,
+          {
+            matches,
+            requestPositionId: data.positionRequestId,
+            candidateProcessId: data.candidateProcessId,
+          },
+          "Posible Reingreso Detectado",
+          this.dialogHandlerS.sizeLg,
+        );
+
+        if (decision === "reactivated") {
+          this.onLoadData();
+          return;
+        }
+
+        if (decision !== "continue") return;
+      }
+    }
+
+    this.openHiringModal(data);
+  }
+
+  private openHiringModal(data: SolicitudAltaListItem) {
     this.dialogHandlerS
       .openDialog(
         CandidateProcessHiringModal,

@@ -65,32 +65,39 @@
       </div>
     </div>
   </div>
-  <p-table
-    [value]="data().empleadosAdministracion"
-    class="custom-table card hidden md:block"
-  >
-    <ng-template #header>
-      <tr>
-        <th colspan="5">Personal Operativo Administrativo</th>
-      </tr>
-    </ng-template>
-    <ng-template #body let-item>
-      <tr>
-        <td>
-          <img
-            [src]="baseUrlImg + item.photoEmployee"
-            alt=""
-            class="rounded w-5rem h-auto"
-            onError="this.style.display='none'"
-          />
-        </td>
-        <td>{{ item.nameEmployee }}</td>
-        <td>{{ item.applicationRole }}</td>
-        <td>{{ item.email }}</td>
-        <td>{{ item.phoneNumber }}</td>
-      </tr>
-    </ng-template>
-  </p-table>
+  @for (group of data().empleadosAdministracion; track group.departament) {
+  <div class="card mb-3">
+    <div class="card-body">
+      <h4 class="mb-3 pb-2 border-bottom-2 border-primary text-primary font-bold">
+        {{ group.departmentDisplayName }}
+      </h4>
+      <div class="grid">
+        @for (item of group.empleados; track item.email) {
+        <div class="col-12 sm:col-6 lg:col-4 xl:col-3">
+          <div class="surface-card p-3 shadow-sm border-round-xl h-full flex align-items-center gap-3">
+            <lx-avatar
+              [image]="item.photoEmployee"
+              icon="material-symbols-light:person"
+              shape="circle"
+              size="large"
+            />
+            <div class="flex flex-column min-w-0">
+              <span class="font-bold white-space-nowrap overflow-hidden text-overflow-ellipsis">{{ item.nameEmployee }}</span>
+              <span class="text-sm text-500">{{ item.applicationRoleName }}</span>
+              @if (item.phoneNumber) {
+              <a [href]="'tel:' + item.phoneNumber" class="text-sm no-underline text-color-secondary">{{ item.phoneNumber }}</a>
+              }
+              @if (item.email) {
+              <a [href]="'mailto:' + item.email" class="text-sm no-underline text-color-secondary white-space-nowrap overflow-hidden text-overflow-ellipsis">{{ item.email }}</a>
+              }
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  }
 </div>
 
 <!-- Mobile View -->

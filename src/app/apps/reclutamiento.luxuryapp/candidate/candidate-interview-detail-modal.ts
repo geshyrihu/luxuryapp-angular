@@ -7,13 +7,11 @@ import {
   signal,
 } from "@angular/core";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
-  DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
 import { CandidateInterviewResponseDto } from "../candidate-interview/interfaces/candidate-interview-response.dto";
 import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
@@ -33,7 +31,6 @@ import { AGENDA_STATUS_TAG_OPTIONS } from "../recruitment-shared/agenda-status-t
   imports: [
     CommonModule,
     DatePipe,
-    WebButtonLabel,
     WebButtonIconViewPdf,
     TableModule,
     CandidateStageBadge,
@@ -43,7 +40,6 @@ import { AGENDA_STATUS_TAG_OPTIONS } from "../recruitment-shared/agenda-status-t
 export class CandidateInterviewDetailModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private config = inject(DynamicDialogConfig);
-  private ref = inject(DynamicDialogRef);
 
   readonly candidateProcessId: string = this.config.data?.candidateProcessId ?? "";
   readonly interviewData = signal<CandidateInterviewResponseDto | null>(null);
@@ -65,9 +61,5 @@ export class CandidateInterviewDetailModal implements OnInit {
       )
       .then((result) => this.interviewData.set(result))
       .finally(() => this.loading.set(false));
-  }
-
-  close(): void {
-    this.ref.close();
   }
 }

@@ -50,7 +50,10 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import {
+  requestStatusBorderColor,
+  requestStatusTagSeverity,
+} from "../recruitment-shared/request-status-style";
 
 interface VacanteListItem {
   id: string;
@@ -99,7 +102,6 @@ interface RequestPositionDeleteImpact {
     MobileListItem,
     AppIcon,
     RouterModule,
-    WebButtonLabel,
   ],
 })
 export class VacantesList implements OnInit {
@@ -113,6 +115,8 @@ export class VacantesList implements OnInit {
   tableScrollHeightS = inject(TableScrollHeightService);
 
   readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
+  readonly requestStatusBorderColor = requestStatusBorderColor;
+  readonly requestStatusTagSeverity = requestStatusTagSeverity;
 
   dataSignal = signal<VacanteListItem[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -231,11 +235,4 @@ onDelete(id: string) {
     });
   }
 
-  goToCandidates() {
-    this.router.navigate(["/recruitment/candidates/candidates"]);
-  }
-
-  goToAgenda() {
-    this.router.navigate(["/recruitment/candidates/recruitment-agenda"]);
-  }
 }

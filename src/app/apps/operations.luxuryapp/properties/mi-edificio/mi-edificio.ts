@@ -5,32 +5,23 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { FichaTecnicaActivo } from "src/app/apps/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import { environment } from "src/environments/environment";
+import { CaratulaDTO } from "./interfaces/caratula.dto";
 import { MiEdificioMobile } from "./mi-edificio-mobile";
 @Component({
   selector: "app-mi-edificio",
   templateUrl: "./mi-edificio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, TableModule, MiEdificioMobile],
+  imports: [AppIcon, LxAvatar, MiEdificioMobile],
 })
 export class MiEdificio {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
-  dialogHandlerS = inject(DialogHandlerService);
-  data = signal<any>(null);
-  baseUrlImg = environment.API_BASE_URL;
-
-  // bread crumb items
-  breadCrumbItems!: Array<{}>;
-  markers: any;
-  zoom: number = 15;
+  data = signal<CaratulaDTO | null>(null);
 
   constructor() {
     effect(() => {
@@ -42,21 +33,8 @@ export class MiEdificio {
     const urlApi = Endpoints.MiEdificio.caratulaByCustomer(
       this.customerIdS.customerId(),
     );
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+    this.apiResponseS.onGetList<CaratulaDTO>(urlApi).then((result) => {
       this.data.set(result);
     });
-  }
-
-  showModalFichatecnica(data: any) {
-    this.dialogHandlerS
-      .openDialog(
-        FichaTecnicaActivo,
-        data,
-        "Ficha Tócnica",
-        this.dialogHandlerS.sizeFull,
-      )
-      .then((result: boolean) => {
-        if (result) this.onLoadData();
-      });
   }
 }

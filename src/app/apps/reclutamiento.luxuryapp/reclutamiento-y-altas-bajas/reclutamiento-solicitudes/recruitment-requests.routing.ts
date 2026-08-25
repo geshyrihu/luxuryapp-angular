@@ -45,14 +45,6 @@ export const recruitmentRequestsRoutes: Routes = [
           ),
         data: { title: "Aumento de Sueldo", breadcrumb: "Aumento de Sueldo" },
       },
-            {
-        path: "work-positions",
-        loadComponent: () =>
-          import("src/app/apps/reclutamiento.luxuryapp/work-position/work-position-list").then(
-            (m) => m.WorkPositionList,
-          ),
-        data: { title: "Plantilla de Trabajo", breadcrumb: "Plantilla de Trabajo" },
-      },
       { path: "vacantes", redirectTo: "vacancies" },
       { path: "altas", redirectTo: "hirings" },
       { path: "bajas", redirectTo: "dismissals" },

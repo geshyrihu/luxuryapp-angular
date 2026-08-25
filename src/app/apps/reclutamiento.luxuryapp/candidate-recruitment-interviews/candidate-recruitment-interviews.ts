@@ -18,12 +18,14 @@ import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { CandidateRecruitmentInterviewsService } from "./candidate-recruitment-interviews.service";
 import { CandidateRecruitmentScheduleModal } from "./candidate-recruitment-schedule-modal";
 import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
+import { CandidateInterviewDetailModal } from "../candidate/candidate-interview-detail-modal";
 import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import {
   CandidateRecruitmentInterviewBoard,
   CandidateRecruitmentInterviewBoardItem,
   RecruitmentBoardAction,
 } from "./candidate-recruitment-interviews.interface";
+import { RecruitmentAgendaList } from "../recruitment-agenda-list";
 
 type BoardStatusFilter =
   | ""
@@ -34,6 +36,8 @@ type BoardStatusFilter =
   | "overdue"
   | "feedback"
   | "closed";
+
+type InterviewViewMode = "board" | "agenda";
 
 @Component({
   selector: "app-candidate-recruitment-interviews",
@@ -47,6 +51,7 @@ type BoardStatusFilter =
     WebButtonLabel,
     CandidateStageBadge,
     MappedPTag,
+    RecruitmentAgendaList,
   ],
 })
 export class CandidateRecruitmentInterviews implements OnInit {
@@ -61,6 +66,7 @@ export class CandidateRecruitmentInterviews implements OnInit {
   readonly searchTerm = signal("");
   readonly focusedRequestPositionId = signal("");
   readonly focusedCandidateApplicationId = signal("");
+  readonly viewMode = signal<InterviewViewMode>("board");
 
   readonly agendaStatusOptions: MappedTagOption[] = [
     { value: "postulada", label: "Postulada", severity: "secondary" },
@@ -132,15 +138,25 @@ export class CandidateRecruitmentInterviews implements OnInit {
     this.statusFilter.set(this.statusFilter() === filter ? "" : filter);
   }
 
+  setViewMode(mode: InterviewViewMode): void {
+    this.viewMode.set(mode);
+  }
+
   onSearchInput(event: Event): void {
     const value = (event.target as HTMLInputElement | null)?.value ?? "";
     this.searchTerm.set(value);
   }
 
-  navigateToApplicationDetail(candidateApplicationId: string): void {
-    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_APLICACIONES, {
-      queryParams: { detail: candidateApplicationId },
-    });
+  openCandidateHistory(candidate: CandidateRecruitmentInterviewBoardItem): void {
+    const candidateProcessId =
+      candidate.candidateProcessId ?? candidate.candidateApplicationId;
+
+    this.dialogHandlerS.openDialog(
+      CandidateInterviewDetailModal,
+      { candidateProcessId },
+      `Historial - ${candidate.candidateName}`,
+      this.dialogHandlerS.sizeLg,
+    );
   }
 
   clearVacancyFocus(): void {
@@ -177,7 +193,8 @@ export class CandidateRecruitmentInterviews implements OnInit {
         CandidateProcessHiringModal,
         {
           id: candidate.candidateApplicationId,
-          candidateProcessId: candidate.candidateApplicationId,
+          candidateProcessId:
+            candidate.candidateProcessId ?? candidate.candidateApplicationId,
           candidateId: candidate.candidateId,
           requestPositionId: vacancy.requestPositionId,
           toStage: CandidateProcessStage.AltaEnProceso,

@@ -5,7 +5,6 @@
 } @else if (!interviewData()) {
 <div class="flex flex-column align-items-center p-5 gap-2">
   <span class="text-color-secondary">Este candidato no tiene un proceso activo.</span>
-  <il-button label="Cerrar" severity="secondary" (clicked)="close()" />
 </div>
 } @else {
 <div class="p-1">
@@ -87,7 +86,7 @@
       </ng-template>
       <ng-template #body let-item>
         <tr>
-          <td>{{ item.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ item.changedAt | date:'dd/MM/yyyy HH:mm' }}</td>
           <td><app-candidate-stage-badge [stage]="item.toStage" /></td>
           <td>{{ item.changedByUserName }}</td>
           <td>{{ item.comment }}</td>
@@ -96,9 +95,5 @@
     </p-table>
   </div>
   }
-
-  <div class="flex justify-content-end">
-    <il-button label="Cerrar" severity="secondary" (clicked)="close()" />
-  </div>
 </div>
 }

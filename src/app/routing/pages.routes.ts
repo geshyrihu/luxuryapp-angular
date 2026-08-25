@@ -307,18 +307,6 @@ export const pagesRoutes: Routes = [
     },
   },
   {
-    path: "recruitment", // Ruta anterior: 'reclutamiento'
-    loadChildren: () =>
-      import("src/app/routing/recruitment.routing").then(
-        (m) => m.recruitmentRoutes,
-      ),
-
-    data: {
-      title: "Reclutamiento",
-      breadcrumb: "Reclutamiento",
-    },
-  },
-  {
     path: "report",
     loadChildren: () =>
       import("src/app/routing/reports.routing").then((m) => m.reportsRoutes),

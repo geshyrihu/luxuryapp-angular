@@ -98,7 +98,7 @@ export class CandidateApplicationKpis implements OnInit {
           k.entrevistasOperacionesPendientesAgenda > 0
             ? "warn"
             : "info",
-        route: "/recruitment/candidates/recruitment-agenda",
+        route: "/recruitment/candidates/recruitment-interviews",
       },
       {
         title: "Vencidas / Overdue",
@@ -109,7 +109,7 @@ export class CandidateApplicationKpis implements OnInit {
             : "Sin vencidas",
         icon: "material-symbols-light:error-outline",
         severity: k.entrevistasOperacionesVencidas > 0 ? "danger" : "success",
-        route: "/recruitment/candidates/recruitment-agenda",
+        route: "/recruitment/candidates/recruitment-interviews",
       },
       {
         title: "Tasa de selección",

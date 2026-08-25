@@ -85,6 +85,9 @@ export const EndpointsReclutamiento = {
     getVacantes: (customerId: Id) =>
       `select-items/vacantes/${customerId}`,
     list: "request-employee-register/list",
+    checkEmployeeDuplicates: (candidateId: Id) =>
+      `request-employee-register/check-duplicates/${candidateId}`,
+    reactivateAndMigrate: "request-employee-register/reactivate-and-migrate",
     completeDraft: (id: Id) => `request-employee-register/${id}/complete-draft`,
     updateStatus: (id: Id) => `request-employee-register/${id}/status`,
     delete: (id: Id) => `request-employee-register/${id}`,
@@ -133,6 +136,8 @@ export const EndpointsReclutamiento = {
     interviewerAction: "recruitment-candidate-processes/interviewer-action",
     processHiring: (id: Id) =>
       `recruitment-candidate-processes/${id}/process-hiring`,
+    completeHiring: (id: Id) =>
+      `recruitment-candidate-processes/${id}/complete-hiring`,
     directHire: (requestPositionId: Id) =>
       `recruitment-candidate-processes/direct-hire/${requestPositionId}`,
     byRequestPosition: (requestPositionId: Id) =>

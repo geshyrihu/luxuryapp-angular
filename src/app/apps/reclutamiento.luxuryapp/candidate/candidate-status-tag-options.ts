@@ -12,4 +12,14 @@ export const CANDIDATE_STATUS_TAG_OPTIONS: MappedTagOption[] = [
     label: "Archivado",
     severity: "secondary",
   },
+  {
+    value: CandidateStatus.Contratado,
+    label: "Contratado",
+    severity: "success",
+  },
+  {
+    value: CandidateStatus.EmpleadoVinculado,
+    label: "Empleado vinculado",
+    severity: "info",
+  },
 ];

@@ -176,8 +176,8 @@
                   Ya existe un candidato registrado con este telefono
                 </div>
                 <div class="text-sm text-color-secondary mt-1">
-                  {{ found.fullName }} — {{ found.email }} — {{ found.status ===
-                  CandidateStatus.Archived ? "Archivado" : "Activo" }}
+                  {{ found.fullName }} — {{ found.email }} —
+                  {{ candidateStatusLabel(found.status) }}
                 </div>
               </div>
               <il-button

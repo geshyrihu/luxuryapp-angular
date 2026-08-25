@@ -1,0 +1,55 @@
+<div class="duplicate-warning">
+  <div class="duplicate-warning__hero">
+    <h2 class="m-0 text-xl font-semibold">Posible Reingreso Detectado</h2>
+    <p class="m-0 mt-2 text-color-secondary">
+      Encontramos empleados existentes con datos similares al candidato. Puedes
+      vincular y reactivar el expediente para evitar crear un duplicado.
+    </p>
+  </div>
+
+  <div class="overflow-auto">
+    <table class="duplicate-warning__table">
+      <thead>
+        <tr>
+          <th>Empleado</th>
+          <th>Email</th>
+          <th>Telefono</th>
+          <th>Estatus</th>
+          <th>Edificio</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (match of matches; track match.id) {
+        <tr>
+          <td class="font-semibold">{{ match.nombreCompleto }}</td>
+          <td>{{ match.email || "Sin correo" }}</td>
+          <td>{{ match.telefono || "Sin telefono" }}</td>
+          <td>{{ match.estatus }}</td>
+          <td>{{ match.nombreEdificio }}</td>
+          <td class="text-right">
+            <il-button
+              label="Vincular y Reactivar"
+              iconClass="material-symbols-light:link"
+              severity="success"
+              size="small"
+              [disabled]="submittingId() !== null"
+              (clicked)="onReactivate(match)"
+            />
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="duplicate-warning__actions">
+    <il-button
+      label="Continuar con alta normal"
+      iconClass="material-symbols-light:arrow-forward"
+      severity="secondary"
+      variant="outline"
+      (clicked)="onContinue()"
+    />
+  </div>
+</div>

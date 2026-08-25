@@ -9,7 +9,23 @@
         candidatos ligados sin depender del rol entrevistador.
       </p>
     </div>
-    <div class="flex flex-wrap gap-2">
+    <div class="flex flex-wrap gap-2 justify-content-end">
+      <il-button
+        label="Lista"
+        iconClass="material-symbols-light:view-list"
+        severity="primary"
+        size="small"
+        [variant]="viewMode() === 'board' ? 'solid' : 'outline'"
+        (clicked)="setViewMode('board')"
+      />
+      <il-button
+        label="Agenda"
+        iconClass="material-symbols-light:calendar-month"
+        severity="primary"
+        size="small"
+        [variant]="viewMode() === 'agenda' ? 'solid' : 'outline'"
+        (clicked)="setViewMode('agenda')"
+      />
       <il-button
         label="Actualizar"
         iconClass="material-symbols-light:refresh"
@@ -43,45 +59,48 @@
 </div>
 }
 
-<div class="grid mb-4">
+@if (viewMode() === 'board') {
+<div class="grid mb-2">
   <div class="col-12 md:col-6 xl:col">
-    <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-1">Vacantes</small>
-      <div class="text-2xl font-semibold">{{ totalVacancies() }}</div>
-      <small class="text-color-secondary"
-        >{{ totalCandidates() }} candidatos ligados</small
-      >
-    </div>
-  </div>
-  <div class="col-12 md:col-6 xl:col">
-    <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-1"
-        >Pendientes de enviar</small
-      >
-      <div class="text-2xl font-semibold text-orange-500">
-        {{ pendingSend() }}
+    <div class="card p-2 h-full flex align-items-center justify-content-between gap-2">
+      <div>
+        <small class="text-color-secondary block">Vacantes</small>
+        <small class="text-color-secondary">{{ totalCandidates() }} candidatos ligados</small>
       </div>
-      <small class="text-color-secondary">Por enviar a entrevista</small>
+      <div class="text-xl font-semibold">{{ totalVacancies() }}</div>
     </div>
   </div>
   <div class="col-12 md:col-6 xl:col">
-    <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-1">Agendadas</small>
-      <div class="text-2xl font-semibold text-blue-500">{{ scheduled() }}</div>
-      <small class="text-color-secondary">Con cita programada</small>
+    <div class="card p-2 h-full flex align-items-center justify-content-between gap-2">
+      <div>
+        <small class="text-color-secondary block">Pendientes de enviar</small>
+        <small class="text-color-secondary">Por enviar a entrevista</small>
+      </div>
+      <div class="text-xl font-semibold text-orange-500">{{ pendingSend() }}</div>
     </div>
   </div>
   <div class="col-12 md:col-6 xl:col">
-    <div class="card p-3 h-full">
-      <small class="text-color-secondary block mb-1">Vencidas</small>
-      <div class="text-2xl font-semibold text-red-500">{{ overdue() }}</div>
-      <small class="text-color-secondary">Sin seguimiento</small>
+    <div class="card p-2 h-full flex align-items-center justify-content-between gap-2">
+      <div>
+        <small class="text-color-secondary block">Agendadas</small>
+        <small class="text-color-secondary">Con cita programada</small>
+      </div>
+      <div class="text-xl font-semibold text-blue-500">{{ scheduled() }}</div>
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col">
+    <div class="card p-2 h-full flex align-items-center justify-content-between gap-2">
+      <div>
+        <small class="text-color-secondary block">Vencidas</small>
+        <small class="text-color-secondary">Sin seguimiento</small>
+      </div>
+      <div class="text-xl font-semibold text-red-500">{{ overdue() }}</div>
     </div>
   </div>
 </div>
 
-<div class="card p-3 mb-4">
-  <div class="flex flex-column lg:flex-row lg:align-items-center gap-3">
+<div class="card p-2 mb-3">
+  <div class="flex flex-column xl:flex-row xl:align-items-center xl:justify-content-between gap-3 w-full">
     <div class="flex flex-wrap gap-2">
       <button
         type="button"
@@ -139,7 +158,7 @@
       </button>
     </div>
 
-    <div class="flex-grow-1">
+    <div class="flex-grow-1 xl:max-w-30rem">
       <input
         type="text"
         class="w-full p-inputtext p-component"
@@ -296,7 +315,7 @@
               (clicked)="onAction(vacancy, candidate, 'assign')"
             />
             }
-            @if (candidate.currentStage === 7 || candidate.currentStage === 8) {
+            @if (candidate.canProceedToHiring) {
             <il-button
               label="Proceder a Alta"
               iconClass="material-symbols-light:person-add"
@@ -311,7 +330,7 @@
               severity="secondary"
               size="small"
               variant="outline"
-              (clicked)="navigateToApplicationDetail(candidate.candidateApplicationId)"
+              (clicked)="openCandidateHistory(candidate)"
             />
           </div>
         </div>
@@ -321,4 +340,7 @@
   </div>
   }
 </div>
+}
+} @else {
+<app-recruitment-agenda-list />
 }

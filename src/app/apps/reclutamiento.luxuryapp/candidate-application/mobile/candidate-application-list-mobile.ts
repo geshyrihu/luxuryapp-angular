@@ -7,6 +7,7 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import {
@@ -29,6 +30,7 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
     DataViewMobile,
     MobileActionMenu,
     MobileButtonLabelEdit,
+    MobileButtonLabelItem,
     MobileButtonLabelViewPdf,
     MobileListItem,
     CustomInputSelectSignal,
@@ -44,6 +46,8 @@ export class CandidateApplicationListMobile {
   stageChange = output<CandidateProcessStage | null>();
   add = output<{ id: string; title: string }>();
   edit = output<{ id: string; title: string }>();
+  completeHiring = output<string>();
+  readonly candidateProcessStage = CandidateProcessStage;
 
   stageControl = new FormControl<number | null>(null);
   private readonly subscription = this.stageControl.valueChanges

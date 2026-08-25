@@ -75,19 +75,6 @@ export const candidatesRoutes: Routes = [
     },
   },
   {
-    path: "recruitment-agenda",
-    loadComponent: () =>
-      import(
-        "src/app/apps/reclutamiento.luxuryapp/recruitment-agenda-list"
-      ).then((m) => m.RecruitmentAgendaList),
-    canActivate: [authGuard, hasRolesGuard],
-    data: {
-      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
-      title: "Agenda Reclutamiento",
-      breadcrumb: "Agenda Reclutamiento",
-    },
-  },
-  {
     path: "work-position/:workPositionId/candidates",
     loadComponent: () =>
       import(
@@ -123,8 +110,8 @@ export const candidatesRoutes: Routes = [
     canActivate: [authGuard, hasRolesGuard],
     data: {
       allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
-      title: "Entrevistas Reclutamiento",
-      breadcrumb: "Entrevistas Reclutamiento",
+      title: "Entrevistas",
+      breadcrumb: "Entrevistas",
     },
   },
 ];

@@ -82,12 +82,25 @@
         }
       </td>
       <td class="no-print">
+        <div class="flex align-items-center gap-2 justify-content-end">
+        @if (item.currentStage === candidateProcessStage.AltaEnProceso) {
+        <il-button-item
+          label="Marcar contratado"
+          iconClass="material-symbols-light:check-circle"
+          severity="success"
+          variant="solid"
+          size="sm"
+          [attr.aria-label]="'Marcar contratado a ' + item.candidateName"
+          (clicked)="completeHiring.emit(item.id)"
+        />
+        }
         <iw-button-edit
           size="sm"
           class="btn--circle"
           [attr.aria-label]="'Editar proceso de ' + item.candidateName"
           (clicked)="edit.emit({ id: item.id, title: 'Editar proceso de candidato' })"
         />
+        </div>
       </td>
     </tr>
   </ng-template>

@@ -37,6 +37,15 @@
             [attr.aria-label]="'Ver CV de ' + item.candidateName"
           />
         }
+        @if (item.currentStage === candidateProcessStage.AltaEnProceso) {
+          <ili-button-item
+            label="Marcar contratado"
+            iconClass="material-symbols-light:check-circle"
+            color="success"
+            [attr.aria-label]="'Marcar contratado a ' + item.candidateName"
+            (clicked)="completeHiring.emit(item.id)"
+          />
+        }
         <ili-button-edit
           (clicked)="edit.emit({ id: item.id, title: 'Editar proceso de candidato' })"
           label="Editar"

@@ -27,30 +27,15 @@
       <th>CANDIDATO</th>
       <th></th>
     </tr>
-    <tr>
-      <td colspan="9" class="p-3 border-top-1 surface-border">
-        <div class="flex justify-content-end gap-2">
-          <il-button
-            label="Gestionar Candidatos"
-            iconClass="material-symbols-light:group"
-            severity="info"
-            size="small"
-            (clicked)="goToCandidates()"
-          />
-          <il-button
-            label="Ver Agenda Reclutamiento"
-            iconClass="material-symbols-light:calendar-clock"
-            severity="secondary"
-            size="small"
-            (clicked)="goToAgenda()"
-          />
-        </div>
-      </td>
-    </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td class="text-center font-semibold">{{ item.folio }}</td>
+      <td
+        class="text-center font-semibold"
+        [style.border-left]="'8px solid ' + requestStatusBorderColor(item.status)"
+      >
+        {{ item.folio }}
+      </td>
       <td>{{ item.requestDate }}</td>
       <td
         class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
@@ -71,7 +56,7 @@
       <td class="text-center">
         <lx-tag
           [value]="item.status"
-          [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'"
+          [severity]="requestStatusTagSeverity(item.status)"
         />
       </td>
       <td class="text-center">

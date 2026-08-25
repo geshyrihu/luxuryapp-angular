@@ -1,48 +1,46 @@
-<div class="flex align-items-center gap-2 flex-wrap">
-  <!-- Menú de navegación -->
-  @for (item of menu; track item) {
-  <a
-    [routerLink]="item.route"
-    class="btn btn-secondary btn-sm mb-0"
-    [class.btn-outline]="isActive(item.activePath)"
-    >{{ item.label }}</a
-  >
-  }
-
+<div
+  class="requests-filter-toolbar flex align-items-center gap-3"
+>
   <!-- Search -->
-  <div class="flex-grow-1">
+  <div class="requests-filter-toolbar__search">
     <custom-search-input-signal (searchChange)="onSearch($event)" />
   </div>
 
+  @if (showRequestFilters()) {
   <!-- Filtro de fecha -->
-  <custom-input-date-signal
-    id="fecha-desde"
-    label="Mostrar desde"
-    [control]="fechaFormateadaControl"
-    [horizontal]="true"
-    [noMargin]="true"
-  />
+  <div class="requests-filter-toolbar__date">
+    <custom-input-date-signal
+      id="fecha-desde"
+      placeholder="Mostrar desde"
+      [control]="fechaFormateadaControl"
+      [horizontal]="false"
+      [noMargin]="true"
+    />
+  </div>
 
   <!-- Filtro de estatus -->
-  <custom-input-select-button-signal
-    id="status-select"
-    label="Estatus"
-    [control]="statusRequestControl"
-    [options]="cb_status_request"
-    (selectionChange)="onLoadData()"
-    [horizontal]="true"
-    [noMargin]="true"
-  />
+  <div class="requests-filter-toolbar__status">
+    <custom-input-select-button-signal
+      id="status-select"
+      [control]="statusRequestControl"
+      [options]="cb_status_request"
+      (selectionChange)="onLoadData()"
+      [horizontal]="false"
+      [noMargin]="true"
+    />
+  </div>
 
   <!-- Botón de exportar -->
-  <il-button
-    customClass="mb-0"
-    iconClass="material-symbols-light:bar-chart"
-    label="Exportar a excel"
-    (clicked)="exportToExcel()"
-    variant="outline"
-    severity="success"
-    size="small"
-  />
+  <div class="requests-filter-toolbar__action">
+    <il-button
+      customClass="requests-filter-toolbar__export-button mb-0"
+      iconClass="material-symbols-light:bar-chart"
+      label="Excel"
+      (clicked)="exportToExcel()"
+      variant="outline"
+      severity="success"
+      size="small"
+    />
+  </div>
+  }
 </div>
-

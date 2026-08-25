@@ -1,0 +1,25 @@
+<section class="recruitment-shell">
+  <header class="recruitment-shell__header">
+    <div class="recruitment-shell__command-bar">
+      <nav
+        class="recruitment-shell__nav"
+        aria-label="Navegación de Reclutamiento"
+      >
+        <app-menubar [items]="navigationItems" />
+      </nav>
+      @if (filterConfig(); as config) {
+      <section class="recruitment-shell__toolbar">
+        <app-filter-requests
+          [apiUrl]="config.apiUrl"
+          [nameFile]="config.nameFile"
+          [showRequestFilters]="config.showRequestFilters ?? false"
+        />
+      </section>
+      }
+    </div>
+  </header>
+
+  <main class="recruitment-shell__content">
+    <router-outlet />
+  </main>
+</section>

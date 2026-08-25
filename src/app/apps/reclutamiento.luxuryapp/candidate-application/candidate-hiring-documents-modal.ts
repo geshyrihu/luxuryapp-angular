@@ -14,7 +14,6 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   DynamicDialogConfig,
-  DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
 import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
 import { CandidateHiringDocumentDto } from "./interfaces/candidate-hiring-document.dto";
@@ -150,7 +149,6 @@ import { CandidateHiringDocumentsDialogDataDto } from "./interfaces/candidate-hi
 export class CandidateHiringDocumentsModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly config = inject(DynamicDialogConfig);
-  private readonly ref = inject(DynamicDialogRef);
 
   readonly dialogData =
     this.config.data as CandidateHiringDocumentsDialogDataDto;
@@ -257,10 +255,6 @@ export class CandidateHiringDocumentsModal implements OnInit {
       ...current,
       [documentId]: result.validationNotes ?? "",
     }));
-  }
-
-  close() {
-    this.ref.close(true);
   }
 
   isUploading(documentCatalogId: string): boolean {

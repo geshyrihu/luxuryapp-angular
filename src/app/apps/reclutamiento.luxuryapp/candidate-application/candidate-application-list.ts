@@ -22,6 +22,8 @@ import {
 } from "./interfaces/candidate-application";
 import { CandidateApplicationListDesktop } from "./desktop/candidate-application-list-desktop";
 import { CandidateApplicationListMobile } from "./mobile/candidate-application-list-mobile";
+import Swal from "sweetalert2";
+import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
 
 @Component({
   selector: "app-candidate-application-list",
@@ -106,5 +108,24 @@ export class CandidateApplicationList implements OnInit {
           this.onLoadData();
         }
       });
+  }
+
+  async onCompleteHiring(id: string) {
+    const result = await Swal.fire({
+      title: "Finalizar contratación",
+      text: "Esta acción marcará el proceso como Contratado. El alta del empleado debe estar previamente en proceso.",
+      icon: SweetAlertIcon.Question,
+      showCancelButton: true,
+      confirmButtonText: "Sí, finalizar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (!result.isConfirmed) return;
+
+    const response = await this.apiResponseS.onPost<boolean>(
+      EndpointsReclutamiento.CandidateProcesses.completeHiring(id),
+    );
+
+    if (response) this.onLoadData();
   }
 }

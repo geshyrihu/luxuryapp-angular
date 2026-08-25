@@ -7,7 +7,6 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { Router, RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
@@ -25,15 +24,98 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
   templateUrl: "./filter-requests.html",
   styles: [
     `
+      :host {
+        display: block;
+        width: 100%;
+      }
+
+      .requests-filter-toolbar {
+        flex-wrap: nowrap;
+        row-gap: var(--ds-space-sm);
+        width: 100%;
+      }
+
+      .requests-filter-toolbar__search {
+        flex: 1 1 14rem;
+        min-width: 12rem;
+      }
+
+      .requests-filter-toolbar__date {
+        flex: 0 0 12rem;
+      }
+
+      .requests-filter-toolbar__status {
+        flex: 1 1 26rem;
+        min-width: 24rem;
+      }
+
+      .requests-filter-toolbar__action {
+        display: flex;
+        flex: 0 0 auto;
+      }
+
       :host ::ng-deep base-input-signal .field {
         margin-bottom: 0;
+      }
+
+      :host ::ng-deep custom-search-input-signal,
+      :host ::ng-deep custom-search-input-signal .field {
+        display: block;
+        margin-bottom: 0;
+        width: 100%;
+      }
+
+      :host ::ng-deep custom-input-date-signal .field-horizontal,
+      :host ::ng-deep custom-input-select-button-signal .field-horizontal {
+        align-items: end;
+        gap: var(--ds-space-sm);
+      }
+
+      :host ::ng-deep custom-input-date-signal .field-content,
+      :host ::ng-deep custom-input-select-button-signal .field-content {
+        display: flex;
+        align-items: center;
+      }
+
+      :host ::ng-deep custom-input-select-button-signal .p-selectbutton {
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+      }
+
+      :host ::ng-deep custom-input-select-button-signal .p-togglebutton {
+        flex: 1 1 auto;
+        justify-content: center;
+        white-space: nowrap;
+      }
+
+      :host ::ng-deep .requests-filter-toolbar__export-button {
+        align-items: center;
+        height: 2.5rem;
+        min-height: 2.5rem;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 1280px) {
+        .requests-filter-toolbar {
+          flex-wrap: wrap;
+        }
+
+        .requests-filter-toolbar__date,
+        .requests-filter-toolbar__status,
+        .requests-filter-toolbar__action {
+          flex: 1 1 100%;
+        }
+
+        .requests-filter-toolbar__action {
+          justify-content: flex-end;
+        }
       }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    RouterModule,
     WebButtonLabel,
     CustomInputDateSignal,
     CustomInputSelectButton,
@@ -43,37 +125,8 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
 export class FilterRequests {
   apiResponseS = inject(ApiResponseService);
   dataConnectorS = inject(DataConnectorService);
-  router = inject(Router);
   filterRequestsService = inject(FilterRequestsService);
   customToastService = inject(CustomToastService);
-
-  menu = [
-    {
-      label: "Vacantes",
-      route: ["/recruitment/requests/vacancies"],
-      activePath: "/recruitment/requests/vacancies",
-    },
-    {
-      label: "Altas",
-      route: ["/recruitment/requests/hirings"],
-      activePath: "/recruitment/requests/hirings",
-    },
-    {
-      label: "Bajas",
-      route: ["/recruitment/requests/dismissals"],
-      activePath: "/recruitment/requests/dismissals",
-    },
-    {
-      label: "Modificacion de salario",
-      route: ["/recruitment/requests/salary-increase"],
-      activePath: "/recruitment/requests/salary-increase",
-    },
-    {
-      label: "Plantilla de trabajo",
-      route: ["/recruitment/requests/work-positions"],
-      activePath: "/recruitment/requests/work-positions",
-    },
-  ];
 
   fechaInicial = new Date(new Date().getFullYear(), 0, 1);
   fechaFormateadaControl = new FormControl<Date>(this.fechaInicial);
@@ -88,8 +141,9 @@ export class FilterRequests {
     { value: "Cancelado", label: "Cancelado" },
   ];
 
-  apiUrl = input.required<string>();
-  nameFile = input.required<string>();
+  apiUrl = input<string>();
+  nameFile = input<string>("Reporte.xlsx");
+  showRequestFilters = input<boolean>(true);
 
   private destroyRef = inject(DestroyRef);
 
@@ -100,8 +154,11 @@ export class FilterRequests {
   }
 
   exportToExcel(): void {
+    const url = this.apiUrl();
+    if (!url) return;
+
     this.dataConnectorS
-      .getFile(this.apiUrl(), this.filterRequestsService.getParams())
+      .getFile(url, this.filterRequestsService.getParams())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (resp: Blob) => {
@@ -150,12 +207,5 @@ export class FilterRequests {
 
   onSearch(term: string) {
     this.filterRequestsService.setSearch(term);
-  }
-
-  currentPath = this.router.url;
-
-  isActive(path: string): boolean {
-    const currentPath = this.router.url;
-    return currentPath.includes(path);
   }
 }

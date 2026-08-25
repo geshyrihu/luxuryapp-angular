@@ -53,21 +53,23 @@
   </div>
 </div>
 
-<h3 class="pl-3 mt-4 mb-2 text-lg font-bold text-700">Personal Operativo</h3>
+@for (group of data().empleadosAdministracion; track group.departament) {
+<h3 class="pl-3 mt-4 mb-2 text-lg font-bold text-700">{{ group.departmentDisplayName }}</h3>
 
 <div class="surface-card mb-3 rounded">
-  @for (item of data().empleadosAdministracion; track $index) {
+  @for (item of group.empleados; track item.email) {
   <div class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center">
     <div class="mr-3">
-      <img
-        [src]="baseUrlImg + item.photoEmployee"
-        alt=""
-        onError="this.style.display='none'"
+      <lx-avatar
+        [image]="item.photoEmployee"
+        icon="material-symbols-light:person"
+        shape="circle"
+        size="large"
       />
     </div>
     <span class="">
       <h2>{{ item.nameEmployee }}</h2>
-      <p>{{ item.applicationRole }}</p>
+      <p>{{ item.applicationRoleName }}</p>
       @if (item.phoneNumber) {
       <p class="text-sm text-500">
         <app-icon icon="material-symbols-light:call-outline" class="vertical-align-middle mr-1" />
@@ -91,4 +93,5 @@
   </div>
   }
 </div>
+}
 }

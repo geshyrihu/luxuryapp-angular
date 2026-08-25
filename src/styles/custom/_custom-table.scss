@@ -130,6 +130,22 @@
       color: var(--ds-primary-text);
     }
 
+    /* Encabezado centrado (2026-08-12).
+       SOLO el encabezado (`<ng-template #header>` → <th>). El cuerpo
+       (`<ng-template #body>` → <td>) NO se toca: los títulos de columna son
+       cortos y de ancho parejo, así que centrados se ven ordenados; el
+       contenido de las filas incluye frases largas (razón social,
+       descripciones) que centradas dejan el borde izquierdo dentado y cuestan
+       de recorrer, y columnas de importes que deben mantener los dígitos
+       alineados a la derecha.
+
+       Las utilidades de PrimeFlex (`.text-left`, `.text-center`,
+       `.text-right`) se declaran con `!important`, así que cualquier <th> que
+       ya traiga alineación escrita a mano sigue mandando sobre esta regla. */
+    .p-datatable-thead > tr > th {
+      text-align: center;
+    }
+
     .p-datatable-tbody > tr > td {
       // padding: 0.55rem 0.9rem;
       // font-size: 0.9rem;

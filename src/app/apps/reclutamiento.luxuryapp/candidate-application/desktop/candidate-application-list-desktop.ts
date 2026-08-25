@@ -11,6 +11,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -41,6 +42,7 @@ import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-ba
     TableModule,
     WebButtonIconEdit,
     WebButtonIconViewPdf,
+    WebButtonLabelItem,
     CandidateStageBadge,
   ],
 })
@@ -55,10 +57,12 @@ export class CandidateApplicationListDesktop {
   stageChange = output<CandidateProcessStage | null>();
   add = output<{ id: string; title: string }>();
   edit = output<{ id: string; title: string }>();
+  completeHiring = output<string>();
 
   loading = signal(true);
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly candidateProcessStage = CandidateProcessStage;
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   onStageSelected(value: number | null) {
