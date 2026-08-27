@@ -79,7 +79,6 @@ type HistorialComprasDateFilterForm = {
 
 @Component({
   selector: "app-historial-compras-list",
-  standalone: true,
   templateUrl: "./historial-compras-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

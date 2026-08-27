@@ -12,19 +12,14 @@ import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { InterviewerMatrixItemDto } from "./interfaces/interviewer-matrix-item.dto";
+import { InterviewerMatrixRoleOptionDto } from "./interfaces/interviewer-matrix-role-option.dto";
 import { InterviewerMatrixService } from "./interviewer-matrix.service";
-import {
-  InterviewerMatrixItemDto,
-} from "./interfaces/interviewer-matrix-item.dto";
-import {
-  InterviewerMatrixRoleOptionDto,
-} from "./interfaces/interviewer-matrix-role-option.dto";
 
 type MatrixCellState = "active" | "inactive" | "empty";
 
 @Component({
   selector: "app-interviewer-matrix",
-  standalone: true,
   templateUrl: "./interviewer-matrix.html",
   styleUrls: ["./interviewer-matrix.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,7 +43,10 @@ export class InterviewerMatrix implements OnInit {
   readonly rulesMap = computed(() => {
     const map = new Map<string, InterviewerMatrixItemDto>();
     for (const rule of this.rules()) {
-      map.set(this.getCellKey(rule.interviewerRole, rule.workPositionRole), rule);
+      map.set(
+        this.getCellKey(rule.interviewerRole, rule.workPositionRole),
+        rule,
+      );
     }
     return map;
   });
@@ -79,7 +77,10 @@ export class InterviewerMatrix implements OnInit {
     const counts = new Map<number, number>();
     for (const rule of this.rules()) {
       if (!rule.isActive) continue;
-      counts.set(rule.workPositionRole, (counts.get(rule.workPositionRole) ?? 0) + 1);
+      counts.set(
+        rule.workPositionRole,
+        (counts.get(rule.workPositionRole) ?? 0) + 1,
+      );
     }
     return counts;
   });
@@ -88,12 +89,18 @@ export class InterviewerMatrix implements OnInit {
     const counts = new Map<number, number>();
     for (const rule of this.rules()) {
       if (!rule.isActive) continue;
-      counts.set(rule.interviewerRole, (counts.get(rule.interviewerRole) ?? 0) + 1);
+      counts.set(
+        rule.interviewerRole,
+        (counts.get(rule.interviewerRole) ?? 0) + 1,
+      );
     }
     return counts;
   });
 
-  private readonly invalidRoleLabels = ["--seleccione una opción--", "--seleccione una opcion--"];
+  private readonly invalidRoleLabels = [
+    "--seleccione una opción--",
+    "--seleccione una opcion--",
+  ];
 
   constructor() {
     effect(() => {
@@ -150,17 +157,27 @@ export class InterviewerMatrix implements OnInit {
     return this.activeColumnCounts().get(interviewerRole) ?? 0;
   }
 
-  getCellState(interviewerRole: number, workPositionRole: number): MatrixCellState {
-    const rule = this.rulesMap().get(this.getCellKey(interviewerRole, workPositionRole));
+  getCellState(
+    interviewerRole: number,
+    workPositionRole: number,
+  ): MatrixCellState {
+    const rule = this.rulesMap().get(
+      this.getCellKey(interviewerRole, workPositionRole),
+    );
     if (!rule) return "empty";
     return rule.isActive ? "active" : "inactive";
   }
 
   isSavingCell(interviewerRole: number, workPositionRole: number): boolean {
-    return this.savingKey() === this.getCellKey(interviewerRole, workPositionRole);
+    return (
+      this.savingKey() === this.getCellKey(interviewerRole, workPositionRole)
+    );
   }
 
-  async toggleCell(interviewerRole: number, workPositionRole: number): Promise<void> {
+  async toggleCell(
+    interviewerRole: number,
+    workPositionRole: number,
+  ): Promise<void> {
     const customerId = this.activeCustomerId();
     if (!customerId) return;
 
@@ -185,7 +202,9 @@ export class InterviewerMatrix implements OnInit {
 
       if (existingRule.isActive) {
         await this.service.remove(existingRule.id);
-        this.rules.update((current) => current.filter((rule) => rule.id !== existingRule.id));
+        this.rules.update((current) =>
+          current.filter((rule) => rule.id !== existingRule.id),
+        );
         return;
       }
 

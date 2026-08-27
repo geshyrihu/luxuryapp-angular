@@ -46,7 +46,6 @@ import { CustomerProviderForm } from "./customer-provider-form";
     MobileListItem,
     AppIcon,
   ],
-
   templateUrl: "./mis-proveedores-list.html",
 })
 export class MisProveedores {

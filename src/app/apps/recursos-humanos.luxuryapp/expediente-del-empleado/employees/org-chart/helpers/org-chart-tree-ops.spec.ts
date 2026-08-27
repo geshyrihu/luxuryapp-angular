@@ -1,5 +1,4 @@
 import {
-  flattenOrgChartEditorRows,
   findOrgNodeById,
   findOrgParentNode,
   getReorderInstruction,
@@ -106,29 +105,5 @@ describe("org-chart-tree-ops", () => {
       newParentId: null,
       newSortOrder: 1,
     });
-  });
-
-  it("flattens the tree into editor rows preserving hierarchy and sibling order", () => {
-    const rows = flattenOrgChartEditorRows(tree);
-
-    expect(rows.map((row) => row.node.roleId)).toEqual([
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "X",
-    ]);
-    expect(rows[0]).toMatchObject({
-      depth: 0,
-      siblingIndex: 0,
-      siblingCount: 2,
-    });
-    expect(rows[3]).toMatchObject({
-      depth: 2,
-      siblingIndex: 0,
-      siblingCount: 2,
-    });
-    expect(rows[3].parent?.roleId).toBe("C");
   });
 });

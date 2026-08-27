@@ -14,7 +14,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 
 @Component({
   selector: "app-confirm-presentation-modal",
-  standalone: true,
+
   imports: [
     ReactiveFormsModule,
     WebButtonLabel,

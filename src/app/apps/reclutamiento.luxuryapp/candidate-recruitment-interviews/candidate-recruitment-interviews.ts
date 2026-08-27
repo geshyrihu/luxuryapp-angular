@@ -1,4 +1,4 @@
-import { ROUTES } from "src/app/routing/route-paths";
+import { CommonModule, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,25 +7,28 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { CommonModule, DatePipe } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
-import { MappedPTag, MappedTagOption } from "../recruitment-shared/mapped-p-tag";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
-import { CandidateRecruitmentInterviewsService } from "./candidate-recruitment-interviews.service";
-import { CandidateRecruitmentScheduleModal } from "./candidate-recruitment-schedule-modal";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
 import { CandidateInterviewDetailModal } from "../candidate/candidate-interview-detail-modal";
-import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
+import { RecruitmentAgendaList } from "../recruitment-agenda-list";
+import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
+import {
+  MappedPTag,
+  MappedTagOption,
+} from "../recruitment-shared/mapped-p-tag";
 import {
   CandidateRecruitmentInterviewBoard,
   CandidateRecruitmentInterviewBoardItem,
   RecruitmentBoardAction,
 } from "./candidate-recruitment-interviews.interface";
-import { RecruitmentAgendaList } from "../recruitment-agenda-list";
+import { CandidateRecruitmentInterviewsService } from "./candidate-recruitment-interviews.service";
+import { CandidateRecruitmentScheduleModal } from "./candidate-recruitment-schedule-modal";
 
 type BoardStatusFilter =
   | ""
@@ -41,7 +44,6 @@ type InterviewViewMode = "board" | "agenda";
 
 @Component({
   selector: "app-candidate-recruitment-interviews",
-  standalone: true,
   templateUrl: "./candidate-recruitment-interviews.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -70,8 +72,16 @@ export class CandidateRecruitmentInterviews implements OnInit {
 
   readonly agendaStatusOptions: MappedTagOption[] = [
     { value: "postulada", label: "Postulada", severity: "secondary" },
-    { value: "pending_schedule", label: "Pendiente de agenda", severity: "contrast" },
-    { value: "missing_interviewer", label: "Sin entrevistador", severity: "warn" },
+    {
+      value: "pending_schedule",
+      label: "Pendiente de agenda",
+      severity: "contrast",
+    },
+    {
+      value: "missing_interviewer",
+      label: "Sin entrevistador",
+      severity: "warn",
+    },
     { value: "scheduled", label: "Agendada", severity: "info" },
     { value: "overdue", label: "Vencida", severity: "danger" },
     { value: "feedback", label: "Con feedback", severity: "success" },
@@ -97,15 +107,17 @@ export class CandidateRecruitmentInterviews implements OnInit {
     const filter = this.statusFilter();
 
     return this.dataSignal()
-      .filter((vacancy) =>
-        !this.focusedRequestPositionId() ||
-        vacancy.requestPositionId === this.focusedRequestPositionId(),
+      .filter(
+        (vacancy) =>
+          !this.focusedRequestPositionId() ||
+          vacancy.requestPositionId === this.focusedRequestPositionId(),
       )
       .map((vacancy) => {
         const filteredCandidates = vacancy.candidates.filter(
           (c) =>
             (!this.focusedCandidateApplicationId() ||
-              c.candidateApplicationId === this.focusedCandidateApplicationId()) &&
+              c.candidateApplicationId ===
+                this.focusedCandidateApplicationId()) &&
             (filter === "" || c.agendaStatusCode === filter) &&
             this.matchesSearch(c, term),
         );
@@ -147,7 +159,9 @@ export class CandidateRecruitmentInterviews implements OnInit {
     this.searchTerm.set(value);
   }
 
-  openCandidateHistory(candidate: CandidateRecruitmentInterviewBoardItem): void {
+  openCandidateHistory(
+    candidate: CandidateRecruitmentInterviewBoardItem,
+  ): void {
     const candidateProcessId =
       candidate.candidateProcessId ?? candidate.candidateApplicationId;
 
@@ -160,7 +174,9 @@ export class CandidateRecruitmentInterviews implements OnInit {
   }
 
   clearVacancyFocus(): void {
-    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS_RECLUTAMIENTO);
+    this.router.navigate(
+      ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS_RECLUTAMIENTO,
+    );
   }
 
   async onAction(
@@ -225,8 +241,11 @@ export class CandidateRecruitmentInterviews implements OnInit {
     }
   }
 
-  interviewDate(candidate: CandidateRecruitmentInterviewBoardItem): string | null {
-    const value = candidate.recruitmentInterviewAt ?? candidate.operationsInterviewAt;
+  interviewDate(
+    candidate: CandidateRecruitmentInterviewBoardItem,
+  ): string | null {
+    const value =
+      candidate.recruitmentInterviewAt ?? candidate.operationsInterviewAt;
     return value ?? null;
   }
 
@@ -247,4 +266,3 @@ export class CandidateRecruitmentInterviews implements OnInit {
     return haystack.includes(term);
   }
 }
-

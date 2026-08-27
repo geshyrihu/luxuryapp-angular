@@ -1,5 +1,11 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { TimelineModule } from "primeng/timeline";
@@ -34,7 +40,6 @@ interface VacancyCandidateTimeline {
 
 @Component({
   selector: "app-vacancy-candidates-timeline-modal",
-  standalone: true,
   templateUrl: "./vacancy-candidates-timeline-modal.html",
   styleUrl: "./vacancy-candidates-timeline-modal.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -57,7 +62,9 @@ export class VacancyCandidatesTimelineModal implements OnInit {
 
     this.loading.set(true);
     try {
-      const candidates = await this.apiResponseS.onGetList<VacancyCandidateTimeline[]>(
+      const candidates = await this.apiResponseS.onGetList<
+        VacancyCandidateTimeline[]
+      >(
         EndpointsReclutamiento.CandidateProcesses.timelineByVacancy(
           this.dialogData.requestPositionId,
         ),

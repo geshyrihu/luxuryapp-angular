@@ -8,20 +8,17 @@ import {
   signal,
 } from "@angular/core";
 import { LxDivider } from "@ui/adaptive/divider/divider";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import {
-  DynamicDialogConfig,
-} from "src/app/core/services/dialog-handler.service";
+import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
 import { CandidateHiringDocumentDto } from "./interfaces/candidate-hiring-document.dto";
 import { CandidateHiringDocumentsDialogDataDto } from "./interfaces/candidate-hiring-documents-dialog-data.dto";
 
 @Component({
   selector: "app-candidate-hiring-documents-modal",
-  standalone: true,
   templateUrl: "./candidate-hiring-documents-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, CandidateCvUpload, LxDivider],
@@ -150,8 +147,8 @@ export class CandidateHiringDocumentsModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly config = inject(DynamicDialogConfig);
 
-  readonly dialogData =
-    this.config.data as CandidateHiringDocumentsDialogDataDto;
+  readonly dialogData = this.config
+    .data as CandidateHiringDocumentsDialogDataDto;
   readonly loading = signal(false);
   readonly uploadingType = signal<string | null>(null);
   readonly validatingDocumentId = signal<string | null>(null);
@@ -164,8 +161,9 @@ export class CandidateHiringDocumentsModal implements OnInit {
     this.documentTypes().map((option) => ({
       option,
       document:
-        this.documents().find((item) => item.documentCatalogId === option.value) ??
-        null,
+        this.documents().find(
+          (item) => item.documentCatalogId === option.value,
+        ) ?? null,
       pendingFile: this.selectedFiles()[option.value] ?? null,
       validationNote: "",
     })),
@@ -175,7 +173,9 @@ export class CandidateHiringDocumentsModal implements OnInit {
     this.loading.set(true);
     try {
       const [documentTypes, documents] = await Promise.all([
-        this.apiResponseS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.documentCatalog),
+        this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+          Endpoints.SelectItems.documentCatalog,
+        ),
         this.apiResponseS.onGetList<CandidateHiringDocumentDto[]>(
           EndpointsReclutamiento.CandidateProcesses.hiringDocuments(
             this.dialogData.candidateProcessId,
@@ -226,7 +226,9 @@ export class CandidateHiringDocumentsModal implements OnInit {
     this.documents.update((current) => {
       const next = current.filter((item) => item.id !== result.id);
       next.push(result);
-      return next.sort((a, b) => a.documentTypeName.localeCompare(b.documentTypeName));
+      return next.sort((a, b) =>
+        a.documentTypeName.localeCompare(b.documentTypeName),
+      );
     });
     this.selectedFiles.update((current) => ({
       ...current,
@@ -237,7 +239,9 @@ export class CandidateHiringDocumentsModal implements OnInit {
   async onValidateDocument(documentId: string) {
     this.validatingDocumentId.set(documentId);
     const result = await this.apiResponseS.onPost<CandidateHiringDocumentDto>(
-      EndpointsReclutamiento.CandidateProcesses.validateHiringDocument(documentId),
+      EndpointsReclutamiento.CandidateProcesses.validateHiringDocument(
+        documentId,
+      ),
       {
         validationNotes: this.validationNotes()[documentId] ?? "",
       },

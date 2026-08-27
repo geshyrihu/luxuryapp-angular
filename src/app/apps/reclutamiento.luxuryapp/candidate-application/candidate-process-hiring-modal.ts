@@ -17,19 +17,19 @@ import {
 } from "@angular/forms";
 import { LxStepper } from "@ui/adaptive/stepper/stepper";
 import { StepperStepSection } from "@ui/base/stepper-step-section.directive";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { lastValueFrom } from "rxjs";
-import Swal from "sweetalert2";
-import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
-import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { EndpointsAdmin } from "src/app/core/constants/endpoints/admin.endpoints";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
+import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
@@ -37,10 +37,10 @@ import {
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import Swal from "sweetalert2";
 import { CandidateDetail } from "../candidate/interfaces/candidate.dto";
-import { CandidateProcessHiringDialogData } from "./interfaces/candidate-process-hiring.dto";
 import { CandidateProcessHiringFormGroup } from "./interfaces/candidate-process-hiring-form.interface";
+import { CandidateProcessHiringDialogData } from "./interfaces/candidate-process-hiring.dto";
 
 interface ApprovedCandidateOption {
   candidateId: string;
@@ -66,7 +66,6 @@ interface CustomerAddressDto {
 
 @Component({
   selector: "app-candidate-process-hiring-modal",
-  standalone: true,
   templateUrl: "./candidate-process-hiring-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -121,7 +120,8 @@ export class CandidateProcessHiringModal implements OnInit {
     { value: 6, label: "Confirmacion" },
   ];
   readonly draftKey = computed(
-    () => `candidate-process-hiring-draft:${this.candidateProcessId ?? this.id}`,
+    () =>
+      `candidate-process-hiring-draft:${this.candidateProcessId ?? this.id}`,
   );
   readonly form = new FormGroup<CandidateProcessHiringFormGroup>({
     executionDate: new FormControl<string | null>(null, Validators.required),
@@ -185,7 +185,10 @@ export class CandidateProcessHiringModal implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    typeContractRegister: new FormControl<number | null>(null, Validators.required),
+    typeContractRegister: new FormControl<number | null>(
+      null,
+      Validators.required,
+    ),
     bankId: new FormControl<string | null>(null, Validators.required),
     accountNumber: new FormControl("", {
       nonNullable: true,
@@ -203,7 +206,10 @@ export class CandidateProcessHiringModal implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    beneficiaryRelation: new FormControl<number | null>(null, Validators.required),
+    beneficiaryRelation: new FormControl<number | null>(
+      null,
+      Validators.required,
+    ),
     emergencyContactName: new FormControl("", {
       nonNullable: true,
       validators: [Validators.required],
@@ -212,7 +218,10 @@ export class CandidateProcessHiringModal implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    emergencyContactRelation: new FormControl<number | null>(null, Validators.required),
+    emergencyContactRelation: new FormControl<number | null>(
+      null,
+      Validators.required,
+    ),
     hasControlledMedication: new FormControl(false, { nonNullable: true }),
     controlledMedicationDetails: new FormControl("", { nonNullable: true }),
     hasMedicationAllergies: new FormControl(false, { nonNullable: true }),
@@ -226,15 +235,23 @@ export class CandidateProcessHiringModal implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    const [contracts, relations, shifts, banks, maritalStatuses, educationLevels] =
-      await Promise.all([
-        lastValueFrom(this.enumSelectS.typeContractRegister()),
-        lastValueFrom(this.enumSelectS.relationEmployee()),
-        lastValueFrom(this.enumSelectS.turnoTrabajo()),
-        this.apiResponseS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.bank),
-        lastValueFrom(this.enumSelectS.maritalStatus()),
-        lastValueFrom(this.enumSelectS.educationLevel()),
-      ]);
+    const [
+      contracts,
+      relations,
+      shifts,
+      banks,
+      maritalStatuses,
+      educationLevels,
+    ] = await Promise.all([
+      lastValueFrom(this.enumSelectS.typeContractRegister()),
+      lastValueFrom(this.enumSelectS.relationEmployee()),
+      lastValueFrom(this.enumSelectS.turnoTrabajo()),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.bank,
+      ),
+      lastValueFrom(this.enumSelectS.maritalStatus()),
+      lastValueFrom(this.enumSelectS.educationLevel()),
+    ]);
 
     this.contractOptions.set(contracts);
     this.relationOptions.set(relations);
@@ -299,7 +316,10 @@ export class CandidateProcessHiringModal implements OnInit {
         );
         this.approvedCandidate.set(
           approved
-            ? { candidateId: approved.candidateId, candidateName: approved.candidateName }
+            ? {
+                candidateId: approved.candidateId,
+                candidateName: approved.candidateName,
+              }
             : null,
         );
       }
@@ -370,7 +390,9 @@ export class CandidateProcessHiringModal implements OnInit {
     if (!this.hasValidTarget()) return;
     if (!this.apiResponseS.validateForm(this.form)) return;
 
-    const executionDate = this.toDateOnly(this.form.controls.executionDate.value);
+    const executionDate = this.toDateOnly(
+      this.form.controls.executionDate.value,
+    );
     const birthDate = this.toDateOnly(this.form.controls.birthDate.value);
     if (!executionDate || !birthDate) return;
 
@@ -378,16 +400,19 @@ export class CandidateProcessHiringModal implements OnInit {
     formData.append("ExecutionDate", executionDate);
     formData.append("FirstName", this.form.controls.firstName.value.trim());
     formData.append("Email", this.form.controls.email.value.trim());
-    formData.append(
-      "LastName",
-      this.form.controls.lastName.value.trim(),
-    );
+    formData.append("LastName", this.form.controls.lastName.value.trim());
     formData.append("BirthDate", birthDate);
     formData.append("Nss", this.form.controls.nss.value.trim());
     formData.append("Rfc", this.form.controls.rfc.value.trim());
-    formData.append("RfcPostalCode", this.form.controls.rfcPostalCode.value.trim());
+    formData.append(
+      "RfcPostalCode",
+      this.form.controls.rfcPostalCode.value.trim(),
+    );
     formData.append("Curp", this.form.controls.curp.value.trim());
-    formData.append("MaritalStatus", String(this.form.controls.maritalStatus.value));
+    formData.append(
+      "MaritalStatus",
+      String(this.form.controls.maritalStatus.value),
+    );
     formData.append(
       "EducationLevel",
       String(this.form.controls.educationLevel.value),
@@ -405,8 +430,14 @@ export class CandidateProcessHiringModal implements OnInit {
       this.form.controls.infonavitDiscountFactor.value.trim(),
     );
     formData.append("Street", this.form.controls.street.value.trim());
-    formData.append("Neighborhood", this.form.controls.neighborhood.value.trim());
-    formData.append("Municipality", this.form.controls.municipality.value.trim());
+    formData.append(
+      "Neighborhood",
+      this.form.controls.neighborhood.value.trim(),
+    );
+    formData.append(
+      "Municipality",
+      this.form.controls.municipality.value.trim(),
+    );
     formData.append("PostalCode", this.form.controls.postalCode.value.trim());
     formData.append("State", this.form.controls.state.value.trim());
     formData.append("PhoneNumber", this.form.controls.phoneNumber.value.trim());
@@ -486,7 +517,9 @@ export class CandidateProcessHiringModal implements OnInit {
       ? EndpointsReclutamiento.RequestEmployeeRegister.completeDraft(this.id!)
       : processId
         ? EndpointsReclutamiento.CandidateProcesses.processHiring(processId)
-        : EndpointsReclutamiento.CandidateProcesses.directHire(this.requestPositionId!);
+        : EndpointsReclutamiento.CandidateProcesses.directHire(
+            this.requestPositionId!,
+          );
     const request = isDraftCompletion
       ? this.apiResponseS.onPut<boolean>(targetEndpoint, formData)
       : this.apiResponseS.onPost<boolean>(targetEndpoint, formData);
@@ -535,9 +568,7 @@ export class CandidateProcessHiringModal implements OnInit {
     if (!rawDraft) return;
 
     try {
-      const draft = JSON.parse(rawDraft) as Partial<
-        Record<string, unknown>
-      >;
+      const draft = JSON.parse(rawDraft) as Partial<Record<string, unknown>>;
       this.form.patchValue(draft as Partial<typeof this.form.value>);
     } catch {
       localStorage.removeItem(this.draftKey());
@@ -566,7 +597,10 @@ export class CandidateProcessHiringModal implements OnInit {
     };
   }
 
-  resolveOptionLabel(options: SelectItemDto[], value: number | string | null): string {
+  resolveOptionLabel(
+    options: SelectItemDto[],
+    value: number | string | null,
+  ): string {
     if (value === null) return "Pendiente";
     return options.find((item) => item.value === value)?.label ?? "Pendiente";
   }

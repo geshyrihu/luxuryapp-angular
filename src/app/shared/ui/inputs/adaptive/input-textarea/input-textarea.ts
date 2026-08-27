@@ -27,6 +27,14 @@ import { WebInputTextarea } from "../../web/input-textarea/input-textarea";
     },
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
+  styles: [
+    `
+      :host {
+        display: block;
+        width: 100%;
+      }
+    `,
+  ],
   template: `
     @if (platform.isMobile()) {
       <ion-input-textarea
@@ -52,6 +60,8 @@ import { WebInputTextarea } from "../../web/input-textarea/input-textarea";
         [required]="requiredInput()"
         [description]="description()"
         [hidden]="hidden()"
+        [onlyInput]="onlyInput()"
+        [noMargin]="noMargin()"
         [rows]="rows()"
         [cols]="cols()"
         [maxLength]="maxLength()"

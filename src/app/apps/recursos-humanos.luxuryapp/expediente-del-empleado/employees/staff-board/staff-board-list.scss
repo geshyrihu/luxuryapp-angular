@@ -7,29 +7,123 @@
   min-width: max-content;
 }
 
-.staff-filter-group {
-  overflow: hidden;
+.staff-directory-guide {
+  padding: 0.875rem 1rem;
   border: 1px solid var(--ds-border);
+  border-left: 0.5rem solid var(--ds-primary);
   border-radius: var(--ds-radius-xl);
-  background: var(--ds-bg-surface);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--ds-primary) 9%, transparent), transparent 46%),
+    var(--ds-bg-surface);
   box-shadow: var(--ds-shadow-sm);
-
-  il-button {
-    margin: 0;
-  }
 }
 
-// ── Cabecera de tabla: una sola franja visual ───────────────────────────────
-.staff-board-th {
-  background: var(--ds-primary) !important;
-  color: var(--ds-text-inverse, #fff) !important;
-  border-color: color-mix(in srgb, var(--ds-primary) 72%, #fff) !important;
-  vertical-align: middle;
-  letter-spacing: 0.04em;
+.staff-directory-guide__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: min(100%, 17rem);
+}
+
+.staff-directory-guide__title-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 2.375rem;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 999px;
+  color: var(--ds-text-inverse, #fff);
+  background: var(--ds-primary);
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--ds-primary) 26%, transparent);
+}
+
+.staff-directory-guide__eyebrow {
+  color: var(--ds-text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.staff-directory-guide__heading {
+  color: var(--ds-text, #0f172a);
+  font-size: clamp(1rem, 1vw, 1.15rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.staff-directory-guide__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.staff-directory-guide__panel {
+  padding: 0.75rem;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  background: color-mix(in srgb, var(--ds-bg-surface) 82%, #fff);
+}
+
+.staff-directory-guide__panel--can {
+  border-color: color-mix(in srgb, var(--ds-success) 28%, var(--ds-border));
+}
+
+.staff-directory-guide__panel--cannot {
+  border-color: color-mix(in srgb, var(--ds-warning) 30%, var(--ds-border));
+}
+
+.staff-directory-guide__panel-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.45rem;
+  color: var(--ds-primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.staff-directory-guide__list {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.staff-directory-guide__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  color: var(--ds-text-muted);
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+.staff-directory-guide__panel--can li app-icon {
+  color: var(--ds-success);
+}
+
+.staff-directory-guide__panel--cannot li app-icon {
+  color: var(--ds-warning);
+}
+
+@media (max-width: 62rem) {
+  .staff-directory-guide__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 // ── Encabezado de grupo (departamento) ──────────────────────────────────────
 // No existe equivalente en el DS — barra lateral primaria + uppercase
+.staff-group-header-cell {
+  background: var(--ds-primary-light);
+  border-bottom: 2px solid var(--ds-primary);
+  padding-block: 0.5rem;
+}
+
 .group-header-label {
   display: inline-flex;
   align-items: center;
@@ -39,15 +133,6 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ds-primary);
-
-  &::before {
-    content: "";
-    display: inline-block;
-    width: 4px;
-    height: 16px;
-    background-color: var(--ds-primary);
-    border-radius: var(--ds-radius-xs);
-  }
 }
 
 // ── Avatar de empleado: centrado verticalmente con el nombre ────────────────
@@ -59,14 +144,9 @@
   align-self: center;
 }
 
-// ── Celda de departamento (rowspan) ─────────────────────────────────────────
-td[rowspan] {
-  vertical-align: middle;
-}
-
 // ── Fila vacante ────────────────────────────────────────────────────────────
 .row-vacant {
-  background-color: color-mix(in srgb, var(--p-orange-100) 25%, transparent) !important;
+  background-color: color-mix(in srgb, var(--ds-warning-light) 25%, transparent) !important;
 }
 
 .vacant-row-inline {
@@ -87,13 +167,6 @@ td[rowspan] {
   border: 2px dashed var(--ds-border-strong);
   border-radius: var(--ds-radius-lg);
   transition: border-color 0.2s ease, background-color 0.2s ease;
-
-  &.cdk-drop-list-dragging,
-  &.cdk-drop-list-receiving {
-    border-color: var(--ds-primary);
-    background-color: var(--ds-primary-light);
-    border-style: solid;
-  }
 }
 
 .vacant-drop-zone {
@@ -141,126 +214,17 @@ td[rowspan] {
   }
 }
 
-@media (max-width: 80rem) {
-  .vacant-row-inline {
-    flex-direction: column;
-    align-items: stretch;
+  @media (max-width: 80rem) {
+    .vacant-row-inline {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .vacant-drop-zone,
+    .vacant-inline-badge,
+    .vacant-queue-summary {
+      width: 100%;
+    }
   }
 
-  .vacant-drop-zone,
-  .vacant-inline-badge,
-  .vacant-queue-summary {
-    width: 100%;
-  }
-}
-
-// ── Pool header (clickable) ──────────────────────────────────────────────────
-.pool-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--ds-border);
-  cursor: pointer;
-  user-select: none;
-  border-radius: var(--ds-radius-xl) var(--ds-radius-xl) 0 0;
-  transition: background-color var(--transition-fast, 100ms ease);
-
-  &:hover {
-    background-color: var(--ds-bg-sunken);
-  }
-}
-
-// ── Pool container (CDK drop list) ───────────────────────────────────────────
-.pool-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 16px;
-  min-height: 88px;
-
-  &.cdk-drop-list-dragging .employee-chip:not(.cdk-drag-placeholder) {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-  }
-}
-
-// ── Chip de empleado (arrastrable) ───────────────────────────────────────────
-// Extiende .card del DS, agrega cursor grab y ancho fijo
-.employee-chip {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  background: var(--ds-bg-surface);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--ds-radius-xl);
-  cursor: grab;
-  width: 220px;
-  transition: box-shadow 0.2s, border-color 0.2s;
-
-  &:hover {
-    box-shadow: var(--ds-shadow-md);
-    border-color: var(--ds-primary);
-  }
-
-  &:active {
-    cursor: grabbing;
-  }
-
-  &.cdk-drag-placeholder {
-    opacity: 0;
-  }
-}
-
-.chip-info {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  flex: 1;
-}
-
-.chip-name {
-  font-weight: 600;
-  font-size: 13px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.chip-sub {
-  font-size: 11px;
-  color: var(--ds-text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.drag-handle {
-  font-size: 16px;
-  flex-shrink: 0;
-  color: var(--ds-text-muted);
-}
-
-// ── Preview flotante (CDK DragPreview) ───────────────────────────────────────
-.chip-preview {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  background: var(--ds-bg-surface);
-  border: 2px solid var(--ds-primary);
-  border-radius: var(--ds-radius-xl);
-  box-shadow: var(--ds-shadow-2xl);
-  font-size: 13px;
-  font-weight: 600;
-  pointer-events: none;
-}
-
-// ── Drawer: tarjeta de puesto — borde izquierdo (no cubre .card--primary del DS)
-.drawer-position-card {
-  padding: 12px 14px;
-  background: var(--ds-bg-sunken);
-  border-radius: var(--ds-radius-lg);
-  border-left: 4px solid var(--ds-primary);
-}
 

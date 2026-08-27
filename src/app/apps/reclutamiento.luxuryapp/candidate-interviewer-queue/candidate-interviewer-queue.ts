@@ -1,4 +1,4 @@
-import { ROUTES } from "src/app/routing/route-paths";
+import { CommonModule, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,25 +7,27 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { CommonModule, DatePipe } from "@angular/common";
 import { Router } from "@angular/router";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CandidateDecision } from "src/app/core/enums/candidate-decision";
+import { DialogSize } from "src/app/core/enums/dialog-size.enum";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ROUTES } from "src/app/routing/route-paths";
+import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
+import { CandidateInterviewFeedbackForm } from "../candidate-interview/candidate-interview-feedback-form";
+import { candidateDecisionLabel } from "../recruitment-shared/candidate-decision-labels";
+import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
+import {
+  MappedPTag,
+  MappedTagOption,
+} from "../recruitment-shared/mapped-p-tag";
 import { CandidateInterviewerQueueService } from "./candidate-interviewer-queue.service";
 import {
   CandidateInterviewerQueueDto,
   CandidateInterviewerQueueItemDto,
 } from "./interfaces/candidate-interviewer-queue.interface";
-import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
-import { MappedPTag, MappedTagOption } from "../recruitment-shared/mapped-p-tag";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
-import { CandidateInterviewFeedbackForm } from "../candidate-interview/candidate-interview-feedback-form";
-import { DialogSize } from "src/app/core/enums/dialog-size.enum";
-import { candidateDecisionLabel } from "../recruitment-shared/candidate-decision-labels";
-import { CandidateDecision } from "src/app/core/enums/candidate-decision";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-
 
 type QueueMode = "pending" | "history" | "overdue" | "feedback" | "all";
 
@@ -43,7 +45,6 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
 
 @Component({
   selector: "app-candidate-interviewer-queue",
-  standalone: true,
   templateUrl: "./candidate-interviewer-queue.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -69,8 +70,16 @@ export class CandidateInterviewerQueue implements OnInit {
   readonly selectedCandidate = signal<QueueCandidateView | null>(null);
 
   readonly agendaStatusOptions = computed<MappedTagOption[]>(() => [
-    { value: "missing_interviewer", label: "Sin entrevistador", severity: "warn" },
-    { value: "pending_schedule", label: "Pendiente de agenda", severity: "contrast" },
+    {
+      value: "missing_interviewer",
+      label: "Sin entrevistador",
+      severity: "warn",
+    },
+    {
+      value: "pending_schedule",
+      label: "Pendiente de agenda",
+      severity: "contrast",
+    },
     { value: "scheduled", label: "Agendada", severity: "info" },
     { value: "overdue", label: "Vencida", severity: "danger" },
     { value: "feedback", label: "Con retroalimentacion", severity: "success" },
@@ -81,19 +90,32 @@ export class CandidateInterviewerQueue implements OnInit {
 
   readonly totalVacancies = computed(() => this.dataSignal().length);
   readonly totalCandidates = computed(() =>
-    this.dataSignal().reduce((sum, vacancy) => sum + vacancy.candidates.length, 0),
+    this.dataSignal().reduce(
+      (sum, vacancy) => sum + vacancy.candidates.length,
+      0,
+    ),
   );
-  readonly pendingCount = computed(() =>
-    this.flattenedCandidates().filter((candidate) => !candidate.isHistorical).length,
+  readonly pendingCount = computed(
+    () =>
+      this.flattenedCandidates().filter((candidate) => !candidate.isHistorical)
+        .length,
   );
-  readonly historyCount = computed(() =>
-    this.flattenedCandidates().filter((candidate) => candidate.isHistorical).length,
+  readonly historyCount = computed(
+    () =>
+      this.flattenedCandidates().filter((candidate) => candidate.isHistorical)
+        .length,
   );
-  readonly overdueCount = computed(() =>
-    this.flattenedCandidates().filter((candidate) => candidate.agendaStatusCode === "overdue").length,
+  readonly overdueCount = computed(
+    () =>
+      this.flattenedCandidates().filter(
+        (candidate) => candidate.agendaStatusCode === "overdue",
+      ).length,
   );
-  readonly feedbackCount = computed(() =>
-    this.flattenedCandidates().filter((candidate) => candidate.agendaStatusCode === "feedback").length,
+  readonly feedbackCount = computed(
+    () =>
+      this.flattenedCandidates().filter(
+        (candidate) => candidate.agendaStatusCode === "feedback",
+      ).length,
   );
 
   readonly flattenedCandidates = computed<QueueCandidateView[]>(() =>
@@ -121,7 +143,11 @@ export class CandidateInterviewerQueue implements OnInit {
             customerName: vacancy.customerName,
             vacancyStatus: vacancy.vacancyStatus,
           }))
-          .filter((candidate) => this.matchesMode(candidate) && this.matchesSearch(candidate, term));
+          .filter(
+            (candidate) =>
+              this.matchesMode(candidate) &&
+              this.matchesSearch(candidate, term),
+          );
 
         const showWithoutCandidates =
           filteredCandidates.length === 0 &&
@@ -134,7 +160,11 @@ export class CandidateInterviewerQueue implements OnInit {
           showWithoutCandidates,
         };
       })
-      .filter((vacancy) => vacancy.filteredCandidates.length > 0 || vacancy.showWithoutCandidates);
+      .filter(
+        (vacancy) =>
+          vacancy.filteredCandidates.length > 0 ||
+          vacancy.showWithoutCandidates,
+      );
   });
 
   ngOnInit(): void {
@@ -150,11 +180,14 @@ export class CandidateInterviewerQueue implements OnInit {
       const current = this.selectedCandidate();
       if (current) {
         const updated = this.flattenedCandidates().find(
-          (candidate) => candidate.candidateApplicationId === current.candidateApplicationId,
+          (candidate) =>
+            candidate.candidateApplicationId === current.candidateApplicationId,
         );
         this.selectedCandidate.set(updated ?? null);
       } else {
-        this.selectedCandidate.set(this.filteredVacancies()[0]?.filteredCandidates[0] ?? null);
+        this.selectedCandidate.set(
+          this.filteredVacancies()[0]?.filteredCandidates[0] ?? null,
+        );
       }
     } finally {
       this.loading.set(false);
@@ -163,13 +196,17 @@ export class CandidateInterviewerQueue implements OnInit {
 
   setMode(mode: QueueMode): void {
     this.mode.set(mode);
-    this.selectedCandidate.set(this.filteredVacancies()[0]?.filteredCandidates[0] ?? null);
+    this.selectedCandidate.set(
+      this.filteredVacancies()[0]?.filteredCandidates[0] ?? null,
+    );
   }
 
   onSearchInput(event: Event): void {
     const value = (event.target as HTMLInputElement | null)?.value ?? "";
     this.searchTerm.set(value);
-    this.selectedCandidate.set(this.filteredVacancies()[0]?.filteredCandidates[0] ?? null);
+    this.selectedCandidate.set(
+      this.filteredVacancies()[0]?.filteredCandidates[0] ?? null,
+    );
   }
 
   selectCandidate(candidate: QueueCandidateView): void {
@@ -177,12 +214,15 @@ export class CandidateInterviewerQueue implements OnInit {
   }
 
   navigateToQueueResponse(candidate: QueueCandidateView): void {
-    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS_RESPONDER, {
-      queryParams: {
-        applicationId: candidate.candidateApplicationId,
-        candidateProcessId: candidate.candidateProcessId ?? undefined,
+    this.router.navigate(
+      ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS_RESPONDER,
+      {
+        queryParams: {
+          applicationId: candidate.candidateApplicationId,
+          candidateProcessId: candidate.candidateProcessId ?? undefined,
+        },
       },
-    });
+    );
   }
 
   navigateToApplicationDetail(candidateApplicationId: string): void {
@@ -215,7 +255,9 @@ export class CandidateInterviewerQueue implements OnInit {
       return;
     }
 
-    const confirmed = await this.confirmS.confirm(`Marcar a ${candidate.candidateName} como "No asistio"?`);
+    const confirmed = await this.confirmS.confirm(
+      `Marcar a ${candidate.candidateName} como "No asistio"?`,
+    );
     if (!confirmed) return;
 
     await this.interviewerQueueS.executeAction({
@@ -310,7 +352,3 @@ export class CandidateInterviewerQueue implements OnInit {
     return haystack.includes(term);
   }
 }
-
-
-
-

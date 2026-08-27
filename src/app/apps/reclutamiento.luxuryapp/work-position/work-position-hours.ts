@@ -22,7 +22,7 @@ import { IWorkPositionHours } from "./interfaces/work-position.model";
   imports: [LxCard, AppIcon],
 })
 export class WorkPositionHours implements OnInit {
-  // --- INYECCIóN DE DEPENDENCIAS ---
+  // --- INYECCIÓN DE DEPENDENCIAS ---
   readonly apiS = inject(ApiResponseService);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
@@ -40,7 +40,6 @@ export class WorkPositionHours implements OnInit {
   }
 
   async onLoadData(id: string) {
-    // Sincronizado con kebab-case
     const result = await this.apiS.onGetItem<IWorkPositionHours>(
       `work-positions/hours/${id}`,
     );

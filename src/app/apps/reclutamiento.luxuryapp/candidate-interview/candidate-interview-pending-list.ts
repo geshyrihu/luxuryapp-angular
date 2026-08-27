@@ -24,7 +24,6 @@ import { CandidateInterviewPendingMobile } from "./mobile/candidate-interview-pe
 
 @Component({
   selector: "app-candidate-interview-pending-list",
-  standalone: true,
   templateUrl: "./candidate-interview-pending-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

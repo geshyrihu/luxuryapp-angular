@@ -2,7 +2,7 @@
   [globalFilterFields]="globalFilterFields()"
   [value]="filteredPositions()"
   class="custom-table card hidden md:block"
-  rowGroupMode="rowspan"
+  rowGroupMode="subheader"
   groupRowsBy="departament"
   sortField="departament"
   sortMode="single"
@@ -11,29 +11,103 @@
   #dt
 >
   <ng-template #caption>
+    <section
+      class="staff-directory-guide mb-3"
+      aria-label="Guía Operativa del Directorio"
+    >
+      <div class="flex flex-column lg:flex-row gap-3 lg:align-items-center">
+        <div class="staff-directory-guide__title">
+          <app-icon
+            icon="material-symbols-light:menu-book"
+            class="staff-directory-guide__title-icon"
+          />
+          <div>
+            <p class="staff-directory-guide__eyebrow mb-1">
+              Administrador · Gerente Operaciones · Gerente Atención · Asistente
+            </p>
+            <h2 class="staff-directory-guide__heading m-0">
+              Guía Operativa del Directorio
+            </h2>
+          </div>
+        </div>
+
+        <div class="staff-directory-guide__grid">
+          <div
+            class="staff-directory-guide__panel staff-directory-guide__panel--can"
+          >
+            <div class="staff-directory-guide__panel-title">
+              <app-icon icon="material-symbols-light:check-circle" />
+              <span>Responsabilidades (Puedes)</span>
+            </div>
+            <ul class="staff-directory-guide__list">
+              <li>
+                <app-icon icon="material-symbols-light:check" />
+                <span
+                  >Crear puestos de trabajo y registrar su descripción
+                  operativa.</span
+                >
+              </li>
+              <li>
+                <app-icon icon="material-symbols-light:check" />
+                <span
+                  >Configurar horarios y prestaciones que ofrece el cliente para
+                  cada puesto.</span
+                >
+              </li>
+              <li>
+                <app-icon icon="material-symbols-light:check" />
+                <span
+                  >Solicitar la baja o modificación salarial de empleados
+                  activos vinculados a un puesto.</span
+                >
+              </li>
+              <li>
+                <app-icon icon="material-symbols-light:check" />
+                <span
+                  >Registrar incidencias administrativas de empleados
+                  activos.</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="staff-directory-guide__panel staff-directory-guide__panel--cannot"
+          >
+            <div class="staff-directory-guide__panel-title">
+              <app-icon icon="material-symbols-light:lock" />
+              <span>Restricciones (No Puedes)</span>
+            </div>
+            <ul class="staff-directory-guide__list">
+              <li>
+                <app-icon icon="material-symbols-light:lock" />
+                <span
+                  >Reclutamiento registra al empleado que cubrirá la vacante y
+                  recauda su documentación.</span
+                >
+              </li>
+              <li>
+                <app-icon icon="material-symbols-light:warning" />
+                <span
+                  >Al quedar activo en un puesto, el empleado recibe
+                  automáticamente sus credenciales de LuxuryApp por email y
+                  WhatsApp.</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div
       class="flex flex-column xl:flex-row align-items-center justify-content-between gap-3 mb-3 w-full"
     >
-      <div
-        class="staff-filter-group flex flex-wrap align-items-center justify-content-center xl:justify-content-start"
-      >
-        <il-button
-          (clicked)="selectedDepartment.set(null)"
-          [label]="'Todos'"
-          [severity]="selectedDepartment() === null ? 'primary' : 'secondary'"
-          variant="outlined"
-          size="small"
-        />
-        @for (dept of uniqueDepartments(); track dept) {
-        <il-button
-          (clicked)="selectedDepartment.set(dept)"
-          [label]="getDepartamentLabel(dept)"
-          [severity]="selectedDepartment() === dept ? 'primary' : 'secondary'"
-          variant="outlined"
-          size="small"
-        />
-        }
-      </div>
+      <app-segmented-control
+        [items]="departmentFilterItems()"
+        [(value)]="selectedDepartment"
+        ariaLabel="Filtrar por departamento"
+      />
 
       <div
         class="flex flex-column md:flex-row align-items-center justify-content-end gap-3 w-full xl:w-auto"
@@ -56,8 +130,7 @@
             severity="primary"
             variant="outline"
           />
-          @if (aspRoleS.hasAny([ AspRole.Administrador, AspRole.SuperUsuario,
-          AspRole.Reclutamiento ])) {
+
           <il-button
             (clicked)="onModalForm({ id: '', title: 'Nuevo Puesto de Trabajo' })"
             iconClass="material-symbols-light:work"
@@ -65,7 +138,6 @@
             severity="info"
             variant="outline"
           />
-          }
           <il-button
             (clicked)="onExportExcel()"
             iconClass="material-symbols-light:table-view"
@@ -80,6 +152,20 @@
             severity="info"
             variant="outline"
           />
+          <il-button
+            (clicked)="onStatusFilterChange('Activo')"
+            label="Activos"
+            [severity]="statusFilter() === 'Activo' ? 'primary' : 'secondary'"
+            variant="outline"
+            size="small"
+          />
+          <il-button
+            (clicked)="onStatusFilterChange('Inactivo')"
+            label="Inactivos"
+            [severity]="statusFilter() === 'Inactivo' ? 'primary' : 'secondary'"
+            variant="outline"
+            size="small"
+          />
         </div>
       </div>
     </div>
@@ -87,39 +173,37 @@
 
   <ng-template #header>
     <tr>
-      <th class="staff-board-th text-center font-bold">
-        <app-icon
-          [icon]="'material-symbols-light:work'"
-          class="mr-2"
-        />DEPARTAMENTO
-      </th>
-      <th class="staff-board-th" pSortableColumn="applicationRoleName">
+      <th pSortableColumn="applicationRoleName">
         PUESTO <p-sorticon field="applicationRoleName" />
       </th>
-      <th class="staff-board-th w-32" pSortableColumn="turno">
+      <th class="w-32" pSortableColumn="turno">
         TURNO <p-sorticon field="turno" />
       </th>
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
       AspRole.Administrador, AspRole.SuperUsuario])) {
-      <th class="staff-board-th w-40 no-print">SUELDOS (PRE / ACT)</th>
+      <th class="w-40 no-print">SUELDOS (PRE / ACT)</th>
       }
-      <th class="staff-board-th w-52 text-center">ACCIONES PUESTO</th>
-      <th class="staff-board-th border-left-2">NOMBRE / PERFIL</th>
+      <th class="w-52 text-center">ACCIONES PUESTO</th>
+      <th class="border-left-2">NOMBRE / PERFIL</th>
     </tr>
   </ng-template>
 
-  <ng-template #body let-item let-rowgroup="rowgroup" let-rowspan="rowspan">
-    <tr [class.row-vacant]="isVacant(item)">
-      @if (rowgroup) {
+  <ng-template #groupheader let-item>
+    <tr pRowGroupHeader>
       <td
-        [attr.rowspan]="rowspan"
-        class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
+        [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 6 : 5"
+        class="staff-group-header-cell"
       >
-        <app-icon [icon]="'material-symbols-light:work'" class="mr-2" />{{
-        getDepartamentLabel(item.departament) }}
+        <span class="group-header-label">
+          <app-icon [icon]="'material-symbols-light:work'" />
+          {{ getDepartamentLabel(item.departament) }}
+        </span>
       </td>
-      }
+    </tr>
+  </ng-template>
 
+  <ng-template #body let-item>
+    <tr [class.row-vacant]="isVacant(item)">
       <td>
         @if (necesitaActualizacion(item)) {
         <div class="flex align-items-center gap-2">
@@ -131,6 +215,7 @@
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
             lxTooltip="Asignar rol al puesto"
+            ariaLabel="Asignar rol al puesto"
           />
         </div>
         } @else {
@@ -147,8 +232,6 @@
         <span class="text-sm text-700">{{ item.turno }}</span>
       </td>
 
-      @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
-      AspRole.Administrador, AspRole.SuperUsuario])) {
       <td class="no-print">
         <div class="flex flex-column gap-1">
           <div
@@ -165,43 +248,42 @@
           </div>
         </div>
       </td>
-      }
 
       <td>
-        <div class="flex align-items-center justify-content-center">
-          <app-action-menu>
-            <ng-container actions>
-              @if (shouldShowVacancyRequest(item)) {
-              <il-button-item
-                iconClass="material-symbols-light:receipt"
-                label="Solicitar Vacante"
-                (clicked)="onModalSolicitudVacante(item.id)"
-              />
-              }
-              <il-button-item
-                iconClass="material-symbols-light:article"
-                label="Editar Descripción"
-                (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
-              />
-              <il-button-item
-                iconClass="material-symbols-light:schedule"
-                label="Editar Horarios"
-                (clicked)="onModalHoursWorkPosition(item.id)"
-              />
-              <il-button-item
-                label="Ajustes Generales"
-                iconClass="material-symbols-light:tune"
-                (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
-              />
-
-              @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-              <il-button-delete
-                (confirmed)="onDelete(item.id)"
-                label="Eliminar"
-              />
-              }
-            </ng-container>
-          </app-action-menu>
+        <div class="flex align-items-center justify-content-center gap-1">
+          @if (shouldShowVacancyRequest(item)) {
+          <iw-button-item
+            iconClass="material-symbols-light:receipt"
+            lxTooltip="Solicitar Vacante"
+            ariaLabel="Solicitar Vacante"
+            tooltipPosition="top"
+            (clicked)="onModalSolicitudVacante(item.id)"
+          />
+          }
+          <iw-button-item
+            iconClass="material-symbols-light:tune"
+            lxTooltip="Ajustes Generales"
+            ariaLabel="Ajustes Generales"
+            tooltipPosition="top"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
+          />
+          <iw-button-item
+            iconClass="material-symbols-light:article"
+            lxTooltip="Editar Descripción"
+            ariaLabel="Editar Descripción"
+            tooltipPosition="top"
+            (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
+          />
+          @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
+          <iw-button-item
+            iconClass="material-symbols-light:delete-outline"
+            severity="danger"
+            lxTooltip="Eliminar"
+            ariaLabel="Eliminar"
+            tooltipPosition="top"
+            (clicked)="onRequestDelete(item)"
+          />
+          }
         </div>
       </td>
 
@@ -215,6 +297,8 @@
               shape="circle"
               size="large"
               class="cursor-pointer employee-avatar"
+              role="button"
+              aria-label="Ver tarjeta"
               (click)="onCardEmployee(item.applicationUserId!)"
               lxTooltip="Ver tarjeta"
             />
@@ -231,36 +315,44 @@
                 >{{ item.applicationUser }}</span
               >
             </div>
-            <app-action-menu>
-              <ng-container actions>
-                <il-button-item
-                  iconClass="material-symbols-light:folder-open"
-                  label="Expediente"
-                  lxTooltip="Ver expediente completo"
-                  (clicked)="onGoToEmployeeFile(item)"
-                />
-                <il-button-item
-                  iconClass="material-symbols-light:gavel"
-                  label="Incidencias Administrativas"
-                  (clicked)="onManageIncidents(item)"
-                />
-                <il-button-item
-                  iconClass="material-symbols-light:manage-accounts"
-                  label="Usuario Luxury App"
-                  (clicked)="onManageUser(item)"
-                />
-                <il-button-item
-                  iconClass="material-symbols-light:person-remove"
-                  label="Solicitar Baja"
-                  (clicked)="onRequestDismissal(item)"
-                />
-                <il-button-item
-                  iconClass="material-symbols-light:request-quote"
-                  label="Solicitar Modif. Salario"
-                  (clicked)="onRequestSalaryMod(item)"
-                />
-              </ng-container>
-            </app-action-menu>
+            <div class="flex align-items-center gap-1">
+              <iw-button-item
+                iconClass="material-symbols-light:folder-open"
+                lxTooltip="Expediente"
+                ariaLabel="Expediente"
+                tooltipPosition="top"
+                (clicked)="onGoToEmployeeFile(item)"
+              />
+              <iw-button-item
+                iconClass="material-symbols-light:gavel"
+                lxTooltip="Incidencias Administrativas"
+                ariaLabel="Incidencias Administrativas"
+                tooltipPosition="top"
+                (clicked)="onManageIncidents(item)"
+              />
+              <iw-button-item
+                iconClass="material-symbols-light:help-outline"
+                lxTooltip="Recuperar Usuario y Contraseña"
+                ariaLabel="Recuperar Usuario y Contraseña"
+                tooltipPosition="top"
+                (clicked)="onShowRecoveryGuide(item)"
+              />
+              <iw-button-item
+                iconClass="material-symbols-light:person-remove"
+                severity="danger"
+                lxTooltip="Solicitar Baja"
+                ariaLabel="Solicitar Baja"
+                tooltipPosition="top"
+                (clicked)="onRequestDismissal(item)"
+              />
+              <iw-button-item
+                iconClass="material-symbols-light:payments"
+                lxTooltip="Solicitar Modif. Salario"
+                ariaLabel="Solicitar Modif. Salario"
+                tooltipPosition="top"
+                (clicked)="onRequestSalaryMod(item)"
+              />
+            </div>
           </div>
           } @else {
           <div class="vacant-row-inline">
@@ -276,33 +368,32 @@
                 <span class="text-sm font-bold">VACANTE</span>
               </div>
               <div class="flex gap-1">
-                @if (item.positionRequest && item.positionRequest.status === 3)
-                {
+                @if (canConfirmIngress(item)) {
                 <iw-button-item
                   iconClass="material-symbols-light:person-check"
                   lxTooltip="Confirmar Ingreso"
+                  ariaLabel="Confirmar Ingreso"
                   (clicked)="openConfirmPresentationModal(item)"
                 />
                 }
               </div>
             </div>
 
-            @if (item.positionRequest) { @if (item.positionRequest.status === 3)
-            {
+            @if (vacancyState(item) === 'open') {
             <span
               class="badge badge-warning vacant-inline-badge text-xs text-center block py-2"
               lxTooltip="Vacante abierta esperando alta de colaborador"
             >
-              VA-{{ item.positionRequest.folio }} | Vacante abierta
+              VA-{{ item.positionRequest!.folio }} | Vacante abierta
             </span>
-            } @else {
+            } @else if (vacancyState(item) === 'inProgress') {
             <span
               class="badge badge-info vacant-inline-badge text-xs text-center block py-2"
               lxTooltip="Solicitud de alta enviada en proceso de reclutamiento"
             >
-              VA-{{ item.positionRequest.folio }} Alta en proceso
+              VA-{{ item.positionRequest!.folio }} Alta en proceso
             </span>
-            } } @if (hasQueueForPosition(item)) {
+            } @let queue = getQueueForPosition(item); @if (queue) {
             <div
               class="vacant-queue-summary mt-2 p-2 border-round bg-surface-100 border-1 surface-border"
             >
@@ -319,7 +410,7 @@
                   >
                 </div>
                 <span class="badge badge-info">
-                  {{ getQueueCountForPosition(item) }} candidato(s)
+                  {{ queue.candidates.length }} candidato(s)
                 </span>
               </div>
             </div>

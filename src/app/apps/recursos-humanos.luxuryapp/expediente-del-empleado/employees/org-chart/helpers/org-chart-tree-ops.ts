@@ -7,34 +7,9 @@ export interface IOrgChartSiblingContext {
   index: number;
 }
 
-export interface IOrgChartEditorRow {
-  node: IRoleOrgChartNode;
-  parent: IRoleOrgChartNode | null;
-  depth: number;
-  siblingIndex: number;
-  siblingCount: number;
-}
-
 export interface IOrgChartReorderInstruction {
   newParentId: string | null;
   newSortOrder: number;
-}
-
-export function flattenOrgChartEditorRows(
-  nodes: IRoleOrgChartNode[],
-  parent: IRoleOrgChartNode | null = null,
-  depth = 0,
-): IOrgChartEditorRow[] {
-  return nodes.flatMap((node, index, siblings) => [
-    {
-      node,
-      parent,
-      depth,
-      siblingIndex: index,
-      siblingCount: siblings.length,
-    },
-    ...flattenOrgChartEditorRows(node.children, node, depth + 1),
-  ]);
 }
 
 export function findOrgNodeById(

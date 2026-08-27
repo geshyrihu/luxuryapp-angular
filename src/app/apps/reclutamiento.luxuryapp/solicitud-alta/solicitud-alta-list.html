@@ -77,7 +77,19 @@
       </td>
       <td class="no-print">
         <div class="flex gap-1">
-          <iw-button-edit (clicked)="onModalForm(item)" />
+          @if (item.isEmployeeLinked && item.status === 'Pendiente') {
+            <il-button
+              label="Concluir Alta"
+              iconClass="material-symbols-light:check"
+              severity="success"
+              variant="solid"
+              (clicked)="onConcludeHiring(item.id)"
+            />
+          } @else if (!item.isEmployeeLinked && item.status === 'Pendiente') {
+            <iw-button-edit (clicked)="onModalForm(item)" />
+          } @else {
+            <iw-button-edit (clicked)="onModalForm(item)" />
+          }
           <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
@@ -117,7 +129,16 @@
         <ng-container actions>
           <ili-button (clicked)="onOpenDocumentValidation(item)" label="Documentos" iconClass="material-symbols-light:folder-open" />
           <ili-button (clicked)="onDownloadPdf(item)" label="Descargar PDF" iconClass="material-symbols-light:picture-as-pdf" />
-          <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
+          @if (item.isEmployeeLinked && item.status === 'Pendiente') {
+            <ili-button
+              (clicked)="onConcludeHiring(item.id)"
+              label="Concluir Alta"
+              iconClass="material-symbols-light:check"
+              color="success"
+            />
+          } @else {
+            <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
+          }
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>

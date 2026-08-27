@@ -7,10 +7,11 @@
 Esta guía rápida sirve como referencia para evitar las malas prácticas bloqueadas por la gobernanza de UI (`audit:design`). Si estás creando un listado CRUD (vista compleja), **DEBES** seguir el Patrón B para respetar el Design System y mantener la compatibilidad móvil y web sin usar estilos locales.
 
 ## ❌ Lo que ya NO se puede hacer
+
 ```html
-<!-- PROHIBIDO: 
+<!-- PROHIBIDO:
  1. Usar style="..." o [style]
- 2. Importar PrimeNG directamente (p-table) en la vista final 
+ 2. Importar PrimeNG directamente (p-table) en la vista final
  3. Ignorar la plataforma móvil -->
 <div style="padding: 20px; background-color: var(--ds-bg-surface);">
   <p-table [value]="data">...</p-table>
@@ -22,15 +23,16 @@ Esta guía rápida sirve como referencia para evitar las malas prácticas bloque
 La vista principal es un **Wrapper** que inyecta la vista correspondiente según el dispositivo.
 
 ### 1. El Wrapper (`feature-wrapper.ts`)
+
 ```typescript
-import { Component, inject } from '@angular/core';
-import { PlatformService } from '@core/services/platform.service';
-import { FeatureWebComponent } from './feature-web.ts';
-import { FeatureMobileComponent } from './feature-mobile.ts';
+import { Component, inject } from "@angular/core";
+import { PlatformService } from "@core/services/platform.service";
+import { FeatureWebComponent } from "./feature-web.ts";
+import { FeatureMobileComponent } from "./feature-mobile.ts";
 
 @Component({
-  selector: 'app-feature-wrapper',
-  standalone: true,
+  selector: "app-feature-wrapper",
+
   imports: [FeatureWebComponent, FeatureMobileComponent],
   template: `
     @if (platform.isMobile()) {
@@ -38,7 +40,7 @@ import { FeatureMobileComponent } from './feature-mobile.ts';
     } @else {
       <app-feature-web />
     }
-  `
+  `,
 })
 export class FeatureWrapper {
   platform = inject(PlatformService);
@@ -46,7 +48,9 @@ export class FeatureWrapper {
 ```
 
 ### 2. Vista Web (`feature-web.html`)
+
 Usa el catálogo `@ui/web` y clases de PrimeFlex. **Nunca** uses estilos inline.
+
 ```html
 <div class="card p-fluid m-3">
   <!-- Layout con PrimeFlex en vez de style="..." -->
@@ -57,31 +61,30 @@ Usa el catálogo `@ui/web` y clases de PrimeFlex. **Nunca** uses estilos inline.
   </div>
 
   <!-- Usar nuestro componente del Design System -->
-  <app-data-table 
-    [data]="items()"
-    [columns]="cols"
-    (onEdit)="edit($event)">
+  <app-data-table [data]="items()" [columns]="cols" (onEdit)="edit($event)">
   </app-data-table>
 </div>
 ```
 
 ### 3. Vista Móvil (`feature-mobile.html`)
+
 Usa el catálogo `@ui/mobile` y PrimeFlex.
+
 ```html
 <!-- Wrapper móvil de nuestro Design System -->
 <app-data-view-mobile [title]="'Gestión de Usuarios'">
   <!-- Iteración de items móvil -->
   @for (item of items(); track item.id) {
-    <ili-list-item>
-      <div class="flex flex-column gap-2">
-        <p class="font-semibold m-0 text-color">{{ item.name }}</p>
-        <p class="text-xs m-0 text-color-secondary">{{ item.role }}</p>
-      </div>
-      <!-- Action Menu debe ir dentro de <div slot="end"> si es Ionic puro, o como dicta @ui -->
-      <ili-action-menu end (onEdit)="edit(item)" />
-    </ili-list-item>
+  <ili-list-item>
+    <div class="flex flex-column gap-2">
+      <p class="font-semibold m-0 text-color">{{ item.name }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.role }}</p>
+    </div>
+    <!-- Action Menu debe ir dentro de <div slot="end"> si es Ionic puro, o como dicta @ui -->
+    <ili-action-menu end (onEdit)="edit(item)" />
+  </ili-list-item>
   } @empty {
-    <app-empty-state message="No hay elementos. Crea el primero." />
+  <app-empty-state message="No hay elementos. Crea el primero." />
   }
 
   <!-- Fab Button nativo -->

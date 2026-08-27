@@ -1,16 +1,11 @@
 import { CommonModule, CurrencyPipe } from "@angular/common";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-} from "@angular/core";
-import type { TagSeverity } from "@ui/base/tag.base";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import type { TagSeverity } from "@ui/base/tag.base";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
 import { TableModule } from "primeng/table";
@@ -19,14 +14,14 @@ import { TooltipModule } from "primeng/tooltip";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service";
 import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-committee-cobranza-web",
-  standalone: true,
+
   imports: [
     CommonModule,
     TableModule,

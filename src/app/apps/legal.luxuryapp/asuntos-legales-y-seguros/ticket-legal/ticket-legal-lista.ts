@@ -29,6 +29,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import Swal from "sweetalert2";
 import { TicketLegalActualizarEstado } from "./ticket-legal-actualizar-estado";
 import { TicketLegalEditar } from "./ticket-legal-editar";
 import { TicketLegalForm } from "./ticket-legal-form";
@@ -72,6 +73,8 @@ export class TicketLegalLista implements OnInit {
   public aspRoleS = inject(AspRoleService);
   private tableScrollHeightS = inject(TableScrollHeightService);
   isSuperUser = this.aspRoleS.hasRole(ApplicationRole.SuperUsuario);
+  canChangeCustomer =
+    this.isSuperUser || this.aspRoleS.hasRole(ApplicationRole.Legal);
 
   dataSignal = signal<any[]>([]);
   cb_customer = signal<SelectItemDto[]>([]);
@@ -103,6 +106,34 @@ export class TicketLegalLista implements OnInit {
         this.dataSignal.set(result ?? []);
         this.loading.set(false);
       });
+  }
+
+  async onReasignarCliente(item: any) {
+    const options: Record<string, string> = {};
+    this.cb_customer().forEach((c) => {
+      options[c.value] = c.label;
+    });
+
+    const { value: newCustomerId } = await Swal.fire({
+      title: "Reasignar Cliente",
+      text: "Se corregirá el cliente asignado a este ticket.",
+      input: "select",
+      inputOptions: options,
+      inputPlaceholder: "Seleccione el cliente correcto",
+      showCancelButton: true,
+      confirmButtonText: "Guardar Corrección",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (newCustomerId) {
+      this.apiResponseS
+        .onPatch(Endpoints.Tasks.updateCustomer(item.id), {
+          customerId: newCustomerId,
+        })
+        .then((res: any) => {
+          if (res) this.onLoadData();
+        });
+    }
   }
 
   onCustomerFilter(customerId: string | undefined) {

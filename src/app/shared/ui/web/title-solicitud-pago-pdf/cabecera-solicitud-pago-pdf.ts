@@ -17,7 +17,6 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
  */
 @Component({
   selector: "app-cabecera-solicitud-pago-pdf",
-
   templateUrl: "./cabecera-solicitud-pago-pdf.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./cabecera-solicitud-pago-pdf.component.scss"],

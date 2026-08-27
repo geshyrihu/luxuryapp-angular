@@ -1,0 +1,93 @@
+<div class="recovery-guide">
+  <p class="rg-intro">
+    @if (employeeName()) {
+      <strong>{{ employeeName() }}</strong>,
+    }
+    si no puedes ingresar a LuxuryApp, sigue estos pasos para recuperar tu
+    usuario y crear una contraseña nueva.
+  </p>
+
+  <div class="rg-note">
+    <app-icon icon="material-symbols-light:info" />
+    <span
+      >Puedes iniciar la recuperación por <b>correo</b> o por tu
+      <b>número de empleado</b>. Da igual cuál uses: el código de verificación te
+      llegará siempre por <b>correo y WhatsApp</b>.</span
+    >
+  </div>
+
+  <ol class="rg-steps">
+    <li class="rg-step rg-step--1">
+      <div class="rg-step__badge"><span class="rg-step__num">1</span></div>
+      <div class="rg-step__body">
+        <div class="rg-step__head">
+          <app-icon icon="material-symbols-light:mail" />
+          <h3 class="rg-step__title">Inicia la recuperación</h3>
+        </div>
+        <p class="rg-step__text">
+          Solicita la recuperación por <b>correo electrónico</b> o por tu
+          <b>número de empleado</b>. El sistema ubicará tu cuenta asociada.
+        </p>
+      </div>
+    </li>
+
+    <li class="rg-step rg-step--2">
+      <div class="rg-step__badge"><span class="rg-step__num">2</span></div>
+      <div class="rg-step__body">
+        <div class="rg-step__head">
+          <app-icon icon="material-symbols-light:pin" />
+          <h3 class="rg-step__title">Recibe tu código</h3>
+        </div>
+        <p class="rg-step__text">
+          Te llegará un <b>código de 6 dígitos</b> a tu correo y a tu WhatsApp.
+          Úsalo para validar tu identidad.
+        </p>
+      </div>
+    </li>
+
+    <li class="rg-step rg-step--3">
+      <div class="rg-step__badge"><span class="rg-step__num">3</span></div>
+      <div class="rg-step__body">
+        <div class="rg-step__head">
+          <app-icon icon="material-symbols-light:lock-reset" />
+          <h3 class="rg-step__title">Crea tu contraseña nueva</h3>
+        </div>
+        <p class="rg-step__text">
+          Con el código validado, define una contraseña nueva (mínimo 8
+          caracteres, con <b>mayúscula</b>, <b>minúscula</b> y <b>número</b>).
+        </p>
+      </div>
+    </li>
+
+    <li class="rg-step rg-step--4">
+      <div class="rg-step__badge"><span class="rg-step__num">4</span></div>
+      <div class="rg-step__body">
+        <div class="rg-step__head">
+          <app-icon icon="material-symbols-light:verified" />
+          <h3 class="rg-step__title">Valida que eres empleado activo</h3>
+        </div>
+        <p class="rg-step__text">
+          El sistema verifica que seas un <b>empleado activo</b> antes de enviar
+          el código. Si tu estatus no está activo, el código no llegará.
+        </p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="rg-callout">
+    <app-icon icon="material-symbols-light:supervised-user-circle" />
+    <div>
+      <strong>¿No recibiste el código?</strong>
+      <p>
+        Revisa en tu <b>Expediente del Empleado</b> que tu <b>correo y
+        teléfono</b> sean correctos. Si están mal, comunícate con
+        <b>Reclutamiento</b> para actualizarlos y así poder recuperar tu usuario
+        y contraseña.
+      </p>
+    </div>
+  </div>
+
+  <div class="rg-footer">
+    <il-button label="Entendido" severity="primary" (clicked)="close()" />
+  </div>
+</div>

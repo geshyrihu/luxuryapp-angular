@@ -1,9 +1,10 @@
 import { Component, computed, inject, input } from "@angular/core";
-import { provideEchartsCore } from "ngx-echarts";
-import type { EChartsCoreOption } from "echarts/core";
 import type { Meta, StoryObj } from "@storybook/angular-vite";
 import { applicationConfig } from "@storybook/angular-vite";
-import { ChartWrapper, ChartType } from "./chart-wrapper";
+import type { EChartsCoreOption } from "echarts/core";
+import { provideEchartsCore } from "ngx-echarts";
+import { ThemeService } from "../../../../core/services/theme.service";
+import { ChartType, ChartWrapper } from "./chart-wrapper";
 import {
   ChartJsData,
   chartJsToCartesianOption,
@@ -11,7 +12,6 @@ import {
   resolveDsColor,
   trackChartTheme,
 } from "./echarts-adapters";
-import { ThemeService } from "../../../../core/services/theme.service";
 
 /**
  * Host mínimo para verificar el repintado por tema (RN-DS-015 / RN-DS-040).
@@ -25,7 +25,7 @@ import { ThemeService } from "../../../../core/services/theme.service";
  */
 @Component({
   selector: "sb-chart-host",
-  standalone: true,
+
   imports: [ChartWrapper],
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem">
@@ -75,7 +75,8 @@ export class ChartHost {
   // momento del repintado. ChartWrapper la re-invoca en cada cambio de tema
   // (RN-DS-040), así que resuelve los tokens frescos y el chart SÍ repinta. Es
   // la vía reactiva frente al escape hatch congelado de `options`.
-  optionsFactory: (() => EChartsCoreOption) | null = () => this.buildStaticOptions();
+  optionsFactory: (() => EChartsCoreOption) | null = () =>
+    this.buildStaticOptions();
 
   constructor() {
     trackChartTheme();
@@ -128,7 +129,12 @@ export class ChartHost {
     dsThemeTick();
     if (this.mode() !== "options") return null;
     const o = chartJsToCartesianOption(this.data(), "bar");
-    console.log("THEMEDOPTIONS recompute, tick=", dsThemeTick(), "series0=", (o as any).series?.[0]?.itemStyle?.color);
+    console.log(
+      "THEMEDOPTIONS recompute, tick=",
+      dsThemeTick(),
+      "series0=",
+      (o as any).series?.[0]?.itemStyle?.color,
+    );
     return o;
   });
 }

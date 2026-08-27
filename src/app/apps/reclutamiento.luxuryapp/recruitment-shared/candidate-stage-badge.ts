@@ -1,10 +1,10 @@
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   input,
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import {
   CANDIDATE_PROCESS_STAGE_CLASSES,
   CANDIDATE_PROCESS_STAGE_LABELS,
@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: "app-candidate-stage-badge",
-  standalone: true,
   template: `<span
     class="inline-flex font-bold text-xs px-2 py-1 border-round"
     [ngClass]="class()"
@@ -33,7 +32,8 @@ export class CandidateStageBadge {
 
   protected class = computed(() => {
     const stage = this.stage();
-    if (stage === null || stage === undefined) return "bg-gray-200 text-gray-600";
+    if (stage === null || stage === undefined)
+      return "bg-gray-200 text-gray-600";
     return (
       CANDIDATE_PROCESS_STAGE_CLASSES[stage] ?? "bg-gray-200 text-gray-600"
     );

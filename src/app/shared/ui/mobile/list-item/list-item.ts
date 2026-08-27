@@ -27,7 +27,6 @@ import {
  */
 @Component({
   selector: "ili-list-item",
-
   template: `
     <article
       class="ili-list-item"
@@ -100,7 +99,7 @@ import {
       .ili-list-item__end:empty {
         display: none;
       }
-      
+
       .ili-list-item.ili-list-item-align-top,
       .ili-list-item.ili-list-item-align-top .ili-list-item__start,
       .ili-list-item.ili-list-item-align-top .ili-list-item__end {

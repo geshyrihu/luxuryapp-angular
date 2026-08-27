@@ -1,25 +1,24 @@
-import { Directive, Input } from '@angular/core';
-import { Tooltip } from 'primeng/tooltip';
+import { Directive } from "@angular/core";
+import { Tooltip } from "primeng/tooltip";
 
 @Directive({
-  selector: '[lxTooltip]',
-  standalone: true,
+  selector: "[lxTooltip]",
+
   hostDirectives: [
     {
       directive: Tooltip,
       inputs: [
-        'pTooltip: lxTooltip',
-        'tooltipPosition',
-        'tooltipDisabled',
-        'tooltipStyleClass',
-        'tooltipEvent',
-        'tooltipZIndex',
-        'escape',
-        'positionStyle',
-        'fitContent'
-      ]
-    }
-  ]
+        "pTooltip: lxTooltip",
+        "tooltipPosition",
+        "tooltipDisabled",
+        "tooltipStyleClass",
+        "tooltipEvent",
+        "tooltipZIndex",
+        "escape",
+        "positionStyle",
+        "fitContent",
+      ],
+    },
+  ],
 })
-export class LxTooltipDirective {
-}
+export class LxTooltipDirective {}

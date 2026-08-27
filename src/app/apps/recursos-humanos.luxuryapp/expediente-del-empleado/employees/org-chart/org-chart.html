@@ -75,14 +75,16 @@
         </div>
 
         <p class="org-chart-help">
-          La edición ahora se hace sobre roles. Arrastra una fila sobre otra
-          para cambiar el rol superior y usa el orden ascendente de la tabla
-          para definir el acomodo horizontal del organigrama.
+          Arrastra una tarjeta sobre otra para cambiar su rol superior, o
+          suéltala en el borde izquierdo o derecho de una tarjeta para
+          reordenar hermanos. También puedes hacer clic en una tarjeta para
+          seleccionarla como origen y luego clic en otra para reasignarla.
         </p>
 
         <p class="org-chart-help org-chart-help--secondary">
-          Cada rol agrupa sus puestos actuales como miembros. Los miembros no
-          se arrastran individualmente; sólo se reorganiza la relación rol a rol.
+          Cada tarjeta representa un rol y agrupa sus puestos actuales como
+          miembros; los miembros no se mueven individualmente, sólo la
+          relación rol a rol.
         </p>
 
         @if (editMode() && draggingNode()) {
@@ -116,108 +118,13 @@
         </div>
         }
 
-        <div class="org-editor-table-shell">
-          <table class="org-editor-table">
-            <thead>
-              <tr>
-                <th>Orden</th>
-                <th>Rol</th>
-                <th>Miembros</th>
-                <th>Rol superior</th>
-                <th>Departamento</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (row of editRows(); track row.node.roleId) {
-              <tr
-                class="org-editor-row"
-                [class.org-editor-row--selected]="selectedOrigin()?.roleId === row.node.roleId"
-                [class.org-editor-row--drop-hover]="dragHoverNodeId() === row.node.roleId"
-                [attr.draggable]="true"
-                [attr.aria-label]="getNodeAriaLabel(row.node)"
-                (click)="onEditorRowClick(row.node)"
-                (dragstart)="onEditorRowDragStart(row.node, $event)"
-                (dragend)="onCardDragEnd()"
-                (dragover)="onEditorRowDragOver(row, $event)"
-                (dragleave)="onEditorRowDragLeave(row)"
-                (drop)="onEditorRowDrop(row, $event)"
-              >
-                <td class="org-editor-table__order">
-                  {{ row.siblingIndex + 1 }} / {{ row.siblingCount }}
-                </td>
-                <td>
-                  <div
-                    class="org-editor-node"
-                    [style.padding-left]="getEditorRowIndent(row.depth)"
-                  >
-                    <span
-                      class="org-editor-node__drag-handle material-symbols-light:open-in-full"
-                      aria-hidden="true"
-                    ></span>
-                    <span class="org-editor-node__tree-guide"></span>
-                    <div class="org-editor-node__content">
-                      <span class="org-editor-node__folio">
-                        {{ row.node.roleDisplayName }}
-                      </span>
-                      <span class="org-editor-node__role">
-                        {{ row.node.departmentName }}
-                      </span>
-                      @if (dragHoverNodeId() === row.node.roleId) {
-                      <span class="org-editor-node__drop-hint">
-                        {{ getEditorDropMessage(row) }}
-                      </span>
-                      }
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="org-editor-members">
-                    <span class="org-graph-badge org-graph-badge--neutral">
-                      {{ getMemberCount(row.node) }} miembros
-                    </span>
-                    <span class="org-graph-badge org-graph-badge--warn">
-                      {{ getVacantMemberCount(row.node) }} vacantes
-                    </span>
-                    @if (getPrimaryMember(row.node); as member) {
-                    <span class="org-editor-members__preview">
-                      {{ member.employeeName ?? "Vacante" }} · {{ member.folio }}
-                    </span>
-                    }
-                  </div>
-                </td>
-                <td>{{ getParentLabel(row) }}</td>
-                <td>{{ row.node.departmentName }}</td>
-                <td>
-                  <div class="org-editor-actions">
-                    <il-button
-                      label="Subir"
-                      size="small"
-                      variant="text"
-                      [disabled]="!canMoveNodeUp(row.node) || reassignLoading()"
-                      (clicked)="reorderNode(row.node, -1); $event.stopPropagation()"
-                    />
-                    <il-button
-                      label="Bajar"
-                      size="small"
-                      variant="text"
-                      [disabled]="!canMoveNodeDown(row.node) || reassignLoading()"
-                      (clicked)="reorderNode(row.node, 1); $event.stopPropagation()"
-                    />
-                    <il-button
-                      label="A raíz"
-                      size="small"
-                      variant="text"
-                      [disabled]="reassignLoading()"
-                      (clicked)="moveNodeToRoot(row.node); $event.stopPropagation()"
-                    />
-                  </div>
-                </td>
-              </tr>
-              }
-            </tbody>
-          </table>
+        @if (graphModel().nodes.length === 0) {
+        <div class="org-chart-state org-chart-state--empty">
+          <p>No hay roles definidos.</p>
         </div>
+        } @else {
+        <ng-container [ngTemplateOutlet]="graphCanvas"></ng-container>
+        }
         }
       </div>
   </lx-tabs>

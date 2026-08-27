@@ -9,37 +9,35 @@ import {
 import { Router } from "@angular/router";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { RecoveryGuideModal } from "./recovery-guide-modal/recovery-guide-modal";
+import { SolicitudBajaForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-baja/solicitud-baja-form";
+import { SolicitudModificacionSalarioForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-modificacion-sueldo/solicitud-modificacion-salario-form";
+import { IncidentFormComponent } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/incident-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { Department } from "src/app/core/enums/department.enum";
+import { PositionRequestStatus } from "src/app/core/enums/position-request-status.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
-import {
-  globalFilterFields as getGlobalFilterFields,
-} from "src/app/core/helpers/table-primeng-option";
+import { globalFilterFields as getGlobalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CandidateProcessHiringModal } from "src/app/shared/integration/reclutamiento/candidates/candidate-application/candidate-process-hiring-modal";
 import { IWorkPosition } from "src/app/shared/integration/reclutamiento/estructura-organizacional/work-position/interfaces/work-position.model";
 import { JobDescriptionForm } from "src/app/shared/integration/reclutamiento/estructura-organizacional/work-position/job-description-form";
 import { WorkPositionForm } from "src/app/shared/integration/reclutamiento/estructura-organizacional/work-position/work-position-form";
-import { WorkPositionHours } from "src/app/shared/integration/reclutamiento/estructura-organizacional/work-position/work-position-hours";
 import { SolicitudVacanteForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
-import { SolicitudBajaForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-baja/solicitud-baja-form";
-import { SolicitudModificacionSalarioForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-modificacion-sueldo/solicitud-modificacion-salario-form";
-import { IncidentFormComponent } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/incident-form";
-import { MdEditAccount } from "src/app/apps/admin.luxuryapp/seguridad-permisos/user-accounts/md-edit-account";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import {
+  SegmentedControl,
+  SegmentItem,
+} from "src/app/shared/ui/shared/segmented-control/segmented-control";
 import { ConfirmPresentationModal } from "./confirm-presentation-modal/confirm-presentation-modal";
-
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -52,7 +50,6 @@ import {
 import { CandidateInterviewerQueueService } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
 import { CandidateInterviewerQueueDto } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { CardEmployee } from "../employees/card-employee";
-import { IEmployee } from "../employees/interfaces/employee.interface";
 
 @Component({
   selector: "app-staff-board-list",
@@ -69,10 +66,8 @@ import { IEmployee } from "../employees/interfaces/employee.interface";
     LxTag,
     PrimeNgCustomCaption,
     WebButtonLabel,
-    WebButtonLabelItem,
-    WebButtonLabelDelete,
-    ActionMenu,
     AppIcon,
+    SegmentedControl,
   ],
 })
 export class StaffBoardList {
@@ -82,13 +77,13 @@ export class StaffBoardList {
   readonly aspRoleS = inject(AspRoleService);
   readonly router = inject(Router);
   private excelService = inject(ExcelExportService);
+  private confirmS = inject(ConfirmService);
   private interviewerQueueS = inject(CandidateInterviewerQueueService);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
   readonly AspRole = ApplicationRole;
 
   readonly interviewerQueue = signal<CandidateInterviewerQueueDto[]>([]);
-  readonly interviewerLoading = signal(false);
   readonly interviewerPendingCount = computed(() =>
     this.interviewerQueue().reduce(
       (sum, vacancy) => sum + vacancy.pendingCandidatesCount,
@@ -114,6 +109,9 @@ export class StaffBoardList {
     [Department.Recepcion]: "Recepción",
     [Department.Mensajeria]: "Mensajería",
     [Department.Ludoteca]: "Ludoteca",
+    [Department.Almacen]: "Almacén",
+    [Department.Amenidades]: "Amenidades",
+    [Department.Asistente]: "Asistente",
     [Department.NA]: "Sin Departamento",
   };
 
@@ -123,8 +121,8 @@ export class StaffBoardList {
   }
 
   positions = signal<IWorkPosition[]>([]);
-  allEmployees = signal<IEmployee[]>([]);
   selectedDepartment = signal<number | null>(null);
+  statusFilter = signal<"Activo" | "Inactivo">("Activo");
   globalFilterFields = computed(() => getGlobalFilterFields(this.positions()));
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
@@ -142,12 +140,21 @@ export class StaffBoardList {
     });
   });
 
+  readonly departmentFilterItems = computed<SegmentItem[]>(() => [
+    { value: null, label: "Todos" },
+    ...this.uniqueDepartments().map((dept) => ({
+      value: dept,
+      label: this.getDepartamentLabel(dept),
+    })),
+  ]);
+
   filteredPositions = computed(() => {
     const selected = this.selectedDepartment();
     const positions = this.positions();
-    let filtered = selected === null
-      ? positions
-      : positions.filter((p) => p.departament === selected);
+    let filtered =
+      selected === null
+        ? positions
+        : positions.filter((p) => p.departament === selected);
     return [...filtered].sort((a, b) => {
       const depA = a.departament ?? -1;
       const depB = b.departament ?? -1;
@@ -178,55 +185,35 @@ export class StaffBoardList {
       });
   }
 
-  showModalAddEmployeeFromPosition(position: IWorkPosition) {
-    this.dialogHandlerS
-      .openDialog(
-        CandidateProcessHiringModal,
-        {
-          requestPositionId: position.positionRequest?.id ?? null,
-        },
-        `Registrar Empleado — ${position.folio}`,
-        this.dialogHandlerS.sizeLg,
-      )
-      .then((result: boolean) => {
-        if (result) this.onLoadData();
-      });
-  }
-
   async onLoadData(): Promise<void> {
     const customerId = this.customerIdS.customerId();
 
-    const [positions, employees] = await Promise.all([
-      this.apiS.onGetList<IWorkPosition[]>(
-        Endpoints.WorkPositions.listByCustomer(customerId, "Activo"),
-      ),
-      this.apiS.onGetList<IEmployee[]>(
-        Endpoints.EmployeeInternal.list(customerId, true),
-      ),
-    ]);
-
-    console.log("POSITIONS DEBUG:", positions);
+    const positions = await this.apiS.onGetList<IWorkPosition[]>(
+      Endpoints.WorkPositions.listByCustomer(customerId, this.statusFilter()),
+    );
 
     this.positions.set(positions ?? []);
-    this.allEmployees.set(employees ?? []);
 
     await this.loadInterviewerQueue();
   }
 
   async loadInterviewerQueue(): Promise<void> {
-    this.interviewerLoading.set(true);
     try {
       const queue = await this.interviewerQueueS.getInterviewerQueue();
       this.interviewerQueue.set(queue);
     } catch {
       // Error ya manejado por ApiResponseService
-    } finally {
-      this.interviewerLoading.set(false);
     }
   }
 
   onOrgChart(): void {
     this.router.navigateByUrl("/directory/work-position-org-chart");
+  }
+
+  onStatusFilterChange(status: "Activo" | "Inactivo"): void {
+    if (this.statusFilter() === status) return;
+    this.statusFilter.set(status);
+    this.onLoadData();
   }
 
   onCardEmployee(userId: string): void {
@@ -261,6 +248,14 @@ export class StaffBoardList {
     if (res) this.onLoadData();
   }
 
+  async onRequestDelete(item: IWorkPosition): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este puesto?",
+      "Confirmar eliminación",
+    );
+    if (ok) this.onDelete(item.id);
+  }
+
   async onModalJobDescription(
     id: string,
     jobDescriptionId: string,
@@ -274,16 +269,7 @@ export class StaffBoardList {
         applicationRoleName: applicationRoleName,
       },
       "DESCRIPCIóN de puesto: " + applicationRoleName,
-      DialogSize.lg,
-    );
-  }
-
-  async onModalHoursWorkPosition(id: string): Promise<void> {
-    await this.dialogHandlerS.openDialog(
-      WorkPositionHours,
-      { id },
-      "Horarios de trabajo",
-      DialogSize.md,
+      DialogSize.full,
     );
   }
 
@@ -311,18 +297,13 @@ export class StaffBoardList {
       });
   }
 
-  onManageUser(item: IWorkPosition): void {
-    if (!item.applicationUserId) return;
-    this.dialogHandlerS
-      .openDialog(
-        MdEditAccount,
-        { applicationUserId: item.applicationUserId },
-        "Administrar Usuario",
-        DialogSize.md,
-      )
-      .then((result: boolean) => {
-        if (result) this.onLoadData();
-      });
+  onShowRecoveryGuide(item: IWorkPosition): void {
+    this.dialogHandlerS.openDialog(
+      RecoveryGuideModal,
+      { employeeName: item.applicationUser || "" },
+      "Recuperar Usuario y Contraseña",
+      DialogSize.md,
+    );
   }
 
   onRequestDismissal(item: IWorkPosition): void {
@@ -355,17 +336,39 @@ export class StaffBoardList {
 
   //  Helpers
 
+  /**
+   * Puesto vacante = sin colaborador asignado (ni FK de usuario ni nombre).
+   * Unifica el criterio: antes solo miraba `applicationUser`, pero los
+   * handlers de empleado usan `applicationUserId`/`employeeId`.
+   */
   isVacant(item: IWorkPosition): boolean {
-    return !item.applicationUser;
+    return !(item.applicationUserId || item.applicationUser);
   }
 
   necesitaActualizacion(item: IWorkPosition): boolean {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
 
-  /** Muestra el bot  n si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
-  shouldShowVacancyRequest(item: any): boolean {
-    return !item.positionRequest;
+  /**
+   * Estado de la solicitud de vacante del puesto, derivado de `positionRequest`.
+   * 'none' = sin solicitud, 'open' = vigente (Abierta), 'inProgress' = alta en proceso.
+   */
+  vacancyState(
+    item: IWorkPosition,
+  ): "none" | "inProgress" | "open" {
+    const status = item.positionRequest?.status;
+    if (status == null) return "none";
+    return status === PositionRequestStatus.Abierta ? "open" : "inProgress";
+  }
+
+  /** Muestra "Solicitar Vacante" solo cuando no hay solicitud activa. */
+  shouldShowVacancyRequest(item: IWorkPosition): boolean {
+    return this.vacancyState(item) === "none";
+  }
+
+  /** Habilita "Confirmar Ingreso": vacante vigente (status Abierta). */
+  canConfirmIngress(item: IWorkPosition): boolean {
+    return this.vacancyState(item) === "open";
   }
 
   onExportExcel(): void {
@@ -401,7 +404,10 @@ export class StaffBoardList {
 
   //  Entrevistador - Helpers
 
-  /** Obtiene la entrevista activa para el puesto actual usando workPositionId y solicitud de vacante. */ getQueueForPosition(
+  /**
+   * Obtiene la entrevista activa para el puesto actual usando workPositionId y solicitud de vacante.
+   */
+  getQueueForPosition(
     item: IWorkPosition,
   ): CandidateInterviewerQueueDto | undefined {
     return this.interviewerQueue().find(
@@ -410,14 +416,6 @@ export class StaffBoardList {
         (!!item.positionRequest?.id &&
           vacancy.requestPositionId === item.positionRequest.id),
     );
-  }
-
-  hasQueueForPosition(item: IWorkPosition): boolean {
-    return this.getQueueForPosition(item) !== undefined;
-  }
-
-  getQueueCountForPosition(item: IWorkPosition): number {
-    return this.getQueueForPosition(item)?.candidates.length ?? 0;
   }
 
   async onGoToMyPendingInterviews(): Promise<void> {

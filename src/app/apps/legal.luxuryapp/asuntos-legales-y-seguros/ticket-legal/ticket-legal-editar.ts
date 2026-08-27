@@ -15,6 +15,7 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { SelectModule } from "@ui/web/primeng-select/primeng-select";
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -22,6 +23,8 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 
 interface ILegalEditarForm {
   id: FormControl<string>;
@@ -47,6 +50,7 @@ interface ILegalEditarForm {
     SelectModule,
     InputAutocomplete,
     CustomInputTextAreaSignal,
+    CustomInputSelectSignal,
     WebButtonLabelSave,
   ],
 })
@@ -56,12 +60,18 @@ export class TicketLegalEditar implements OnInit {
   private authService = inject(AuthService);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
+  private aspRoleS = inject(AspRoleService);
 
   id: string = "";
   submitting = signal(false);
 
   cb_legal_matter = signal<SelectItemDto[]>([]);
   cb_application_user_responsible = signal<SelectItemDto[]>([]);
+  cb_customer = signal<SelectItemDto[]>([]);
+
+  canChangeCustomer =
+    this.aspRoleS.hasRole(ApplicationRole.SuperUsuario) ||
+    this.aspRoleS.hasRole(ApplicationRole.Legal);
 
   form: FormGroup<ILegalEditarForm> = this.formB.group({
     id: new FormControl<string>(
@@ -94,15 +104,19 @@ export class TicketLegalEditar implements OnInit {
     this.id = this.config.data.id;
 
     const LEGAL_WORK_GROUP_ID = "019df32f-4945-71c5-8fd0-ab574ea412cd";
-    const [legalMatters, participants] = await Promise.all([
+    const [legalMatters, participants, customers] = await Promise.all([
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.TaskLegal.selectForAddTicket,
       ),
       this.apiResponseS.onGetList(
         Endpoints.TaskGroupParticipants.listByGroup(LEGAL_WORK_GROUP_ID),
       ),
+      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.customersActiveShortName,
+      ),
     ]);
     this.cb_legal_matter.set(legalMatters as SelectItemDto[]);
+    this.cb_customer.set(customers as SelectItemDto[]);
     this.cb_application_user_responsible.set(
       ((participants as any[]) ?? []).map((p) => ({
         value: p.applicationUserId,

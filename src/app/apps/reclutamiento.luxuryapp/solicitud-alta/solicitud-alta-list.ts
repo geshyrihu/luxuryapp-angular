@@ -35,6 +35,7 @@ import { StatusSolicitudVacanteService } from "src/app/core/services/status-soli
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
@@ -66,6 +67,7 @@ interface SolicitudAltaListItem {
   applicationRole?: string;
   profession?: string;
   status: string;
+  isEmployeeLinked: boolean;
   executionDate: string;
 }
 
@@ -86,6 +88,7 @@ interface SolicitudAltaListItem {
     PrimeNgCustomTableFooter,
     DataViewMobile,
     LxTag,
+    WebButtonLabel,
     MobileListItem,
     AppIcon,
   ],
@@ -193,6 +196,14 @@ export class SolicitudAltaList implements OnInit {
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+
+  onConcludeHiring(id: string) {
+    this.apiResponseS
+      .onPatch<boolean>(EndpointsReclutamiento.RequestEmployeeRegister.conclude(id), {})
+      .then((result) => {
         if (result) this.onLoadData();
       });
   }

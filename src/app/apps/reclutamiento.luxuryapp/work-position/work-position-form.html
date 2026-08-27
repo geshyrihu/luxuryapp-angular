@@ -1,123 +1,120 @@
-<lx-card [padded]="false">
 <form
-      autocomplete="off"
-      (ngSubmit)="onSubmit()"
-      [formGroup]="form"
-      class="flex flex-column"
-    >
-      <div class="grid">
-        <div class="col-12 md:col-6">
-          @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-          <custom-input-text-signal
-            [control]="form.controls.id"
-            hidden
-            label="ID de Puesto"
-            placeholder="id-guid"
-            [readonly]="true"
-            hidden
-          />
-          }
+  autocomplete="off"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  class="flex flex-column"
+>
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        hidden
+        label="ID de Puesto"
+        placeholder="id-guid"
+        [readonly]="true"
+        hidden
+      />
+      }
 
-          <lx-message severity="info"><app-icon [icon]="'material-symbols-light:receipt'" class="mr-2" />Datos de puesto</lx-message>
-          <lx-divider />
-          <!-- Puesto/Rol -->
-          <custom-input-autocomplete-signal
-            (propagar)="saveApplicationRole($event)"
-            [control]="form.controls.applicationRoleName"
-            [data]="cb_applicationRole()"
-            label="Puesto"
-            placeholder="Escriba para buscar puesto..."
-          />
+      <lx-message severity="info">Datos de puesto</lx-message>
+      <!-- Puesto/Rol -->
+      <custom-input-autocomplete-signal
+        (propagar)="saveApplicationRole($event)"
+        [control]="form.controls.applicationRoleName"
+        [data]="cb_applicationRole()"
+        label="Puesto"
+        placeholder="Escriba para buscar puesto..."
+      />
 
-          <!-- Colaborador -->
-          <custom-input-autocomplete-signal
-            (propagar)="saveEmployee($event)"
-            [control]="form.controls.employeeName"
-            [data]="cb_employee()"
-            label="Colaborador"
-            placeholder="Escriba para buscar colaborador..."
-          />
+      <!-- Colaborador -->
+      <custom-input-autocomplete-signal
+        (propagar)="saveEmployee($event)"
+        [control]="form.controls.employeeName"
+        [data]="cb_employee()"
+        label="Colaborador"
+        placeholder="Escriba para buscar colaborador..."
+      />
 
-          <custom-input-number-signal
-            [control]="form.controls.sueldoBase"
-            label="Sueldo Presupuestado"
-            placeholder="0.00"
-            [prefix]="'$ '"
-          />
-          <custom-input-number-signal
-            [control]="form.controls.sueldo"
-            label="Sueldo Actual"
-            placeholder="0.00"
-            [prefix]="'$ '"
-          />
+      <custom-input-number-signal
+        [control]="form.controls.sueldoBase"
+        label="Sueldo Presupuestado"
+        placeholder="0.00"
+        [prefix]="'$ '"
+      />
+      <custom-input-number-signal
+        [control]="form.controls.sueldo"
+        label="Sueldo Actual"
+        placeholder="0.00"
+        [prefix]="'$ '"
+        [readonly]="true"
+      />
 
-          <custom-input-select-signal
-            [control]="form.controls.turnoTrabajo"
-            label="Turno"
-            [data]="cb_turnoTrabajo()"
-            [filter]="true"
-          />
-          <custom-input-select-signal
-            [control]="form.controls.state"
-            label="Estado de Vacante"
-            [data]="cb_state()"
-            [filter]="true"
-          />
-          <custom-input-textarea-signal
-            [control]="form.controls.observationsWorkShift"
-            label="Observaciones"
-            placeholder="Detalles adicionales sobre el horario..."
-            [rows]="3"
-          />
-          <custom-input-textarea-signal
-            [control]="form.controls.benefits"
-            label="Prestaciones"
-            placeholder="Ej. Seguro medico, vales de despensa, fondo de ahorro..."
-            [rows]="3"
-          />
-        </div>
-        <div class="col-12 md:col-6">
-          <!-- Horarios por día -->
-          <!-- <h3 class="text-lg font-semibold mb-1 flex align-items-center">
+      <custom-input-select-signal
+        [control]="form.controls.turnoTrabajo"
+        label="Turno"
+        [data]="cb_turnoTrabajo()"
+        [filter]="true"
+      />
+      <custom-input-select-signal
+        [control]="form.controls.state"
+        label="Estado de Vacante"
+        [data]="cb_state()"
+        [filter]="true"
+      />
+      <custom-input-textarea-signal
+        [control]="form.controls.observationsWorkShift"
+        label="Observaciones"
+        placeholder="Detalles adicionales sobre el horario..."
+        [rows]="3"
+      />
+      <custom-input-textarea-signal
+        [control]="form.controls.benefits"
+        label="Prestaciones"
+        placeholder="Ej. Seguro medico, vales de despensa, fondo de ahorro..."
+        [rows]="3"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <!-- Horarios por día -->
+      <!-- <h3 class="text-lg font-semibold mb-1 flex align-items-center">
             <app-icon [icon]="'material-symbols-light:schedule'" class="mr-2"/> Horario de Trabajo
           </h3> -->
-          <lx-message severity="info"><app-icon [icon]="'material-symbols-light:schedule'" class="mr-2" /> Horario de Trabajo</lx-message>
-          <lx-divider />
-          @for (dia of ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes',
-          'Sábado', 'Domingo']; track dia) {
-          <div class="grid align-items-center">
-            <label class="col-3 font-semibold">{{ dia }}</label>
-            <div class="col-9">
-              <div class="grid">
-                <div class="col-6">
-                  <custom-input-text-signal
-                    [control]="form.get(dia.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() + 'Entrada')!"
-                    type="time"
-                    [horizontal]="false"
-                    placeholder="Entrada"
-                  />
-                </div>
-                <div class="col-6">
-                  <custom-input-text-signal
-                    [control]="form.get(dia.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() + 'Salida')!"
-                    type="time"
-                    [horizontal]="false"
-                    placeholder="Salida"
-                  />
-                </div>
-              </div>
+      <lx-message severity="info">Horario de Trabajo</lx-message>
+      @for (dia of ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes',
+      'Sábado', 'Domingo']; track dia) {
+      <div class="grid align-items-center">
+        <label class="col-3 font-medium">{{ dia }}</label>
+        <div class="col-9">
+          <div class="grid">
+            <div class="col-6">
+              <custom-input-text-signal
+                [control]="form.get(dia.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() + 'Entrada')!"
+                type="time"
+                [horizontal]="false"
+                placeholder="Entrada"
+              />
+            </div>
+            <div class="col-6">
+              <custom-input-text-signal
+                [control]="form.get(dia.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() + 'Salida')!"
+                type="time"
+                [horizontal]="false"
+                placeholder="Salida"
+              />
             </div>
           </div>
-          }
         </div>
       </div>
+      }
+    </div>
+  </div>
 
-      <div class="flex justify-content-end pt-4">
-        <il-button-save
-          [propertyId]="id() || ''"
-          [disabled]="form.invalid"
-          [submitting]="submitting()"
-        />
-      </div>
-    </form>
-</lx-card>
+  <div class="flex justify-content-end pt-4">
+    <il-button-save
+      [propertyId]="id() || ''"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </div>
+</form>

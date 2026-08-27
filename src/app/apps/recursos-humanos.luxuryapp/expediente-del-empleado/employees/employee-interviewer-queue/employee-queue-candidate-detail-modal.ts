@@ -1,25 +1,32 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from "@angular/core";
-import { firstValueFrom } from "rxjs";
-import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CandidateInterviewFeedbackForm } from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/candidate-interview-feedback-form";
 import {
-  CandidateDetail,
-  CandidateWorkExperienceItem,
-} from "src/app/shared/integration/reclutamiento/candidates/candidate/interfaces/candidate.dto";
-import { CANDIDATE_STATUS_TAG_OPTIONS } from "src/app/shared/integration/reclutamiento/candidates/candidate/candidate-status-tag-options";
-import { MappedPTag } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { firstValueFrom } from "rxjs";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { CandidateInterviewFeedbackForm } from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/candidate-interview-feedback-form";
+import { CANDIDATE_STATUS_TAG_OPTIONS } from "src/app/shared/integration/reclutamiento/candidates/candidate/candidate-status-tag-options";
+import {
+  CandidateDetail,
+  CandidateWorkExperienceItem,
+} from "src/app/shared/integration/reclutamiento/candidates/candidate/interfaces/candidate.dto";
+import { MappedPTag } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
 
 /**
  * Detalle completo de un candidato de la cola de entrevistador (info personal,
@@ -28,10 +35,16 @@ import {
  */
 @Component({
   selector: "app-employee-queue-candidate-detail-modal",
-  standalone: true,
   templateUrl: "./employee-queue-candidate-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, DatePipe, LxAvatar, MappedPTag, WebButtonLabel, WebButtonLabelViewPdf],
+  imports: [
+    CommonModule,
+    DatePipe,
+    LxAvatar,
+    MappedPTag,
+    WebButtonLabel,
+    WebButtonLabelViewPdf,
+  ],
 })
 export class EmployeeQueueCandidateDetailModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -7,17 +7,16 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TaskAttachmentInterface } from "src/app/core/interfaces/tasks/task-attachment.interface";
 import { TaskChecklistItemInterface } from "src/app/core/interfaces/tasks/task-checklist-item.interface";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 
 @Component({
   selector: "app-task-checklist-panel",
-  standalone: true,
   templateUrl: "./task-checklist-panel.html",
   imports: [
     FormsModule,
@@ -92,11 +91,10 @@ export class TaskChecklistPanel implements OnInit {
   }
 
   async onToggleDone(item: TaskChecklistItemInterface) {
-    const result =
-      await this.apiResponseS.onPatch<TaskChecklistItemInterface>(
-        Endpoints.TaskChecklistItems.toggleDone(item.id),
-        {},
-      );
+    const result = await this.apiResponseS.onPatch<TaskChecklistItemInterface>(
+      Endpoints.TaskChecklistItems.toggleDone(item.id),
+      {},
+    );
 
     if (!result) return;
 

@@ -1,0 +1,18 @@
+// ── Encabezado de grupo (departamento) ──────────────────────────────────────
+// Mismas clases que staff-board para consistencia visual del DS
+.staff-group-header-cell {
+  background: var(--ds-primary-light);
+  border-bottom: 2px solid var(--ds-primary);
+  padding-block: 0.5rem;
+}
+
+.group-header-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ds-primary);
+}

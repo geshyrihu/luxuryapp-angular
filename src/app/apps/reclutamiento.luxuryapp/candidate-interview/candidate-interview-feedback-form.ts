@@ -1,27 +1,27 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  DestroyRef,
   computed,
+  DestroyRef,
   inject,
   OnInit,
   signal,
 } from "@angular/core";
-import { firstValueFrom } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { firstValueFrom } from "rxjs";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
 import { CandidateRejectionReason } from "src/app/core/enums/candidate-rejection-reason";
@@ -40,7 +40,6 @@ import { InterviewerActionRequestDto } from "./interfaces/interviewer-action-req
 
 @Component({
   selector: "app-candidate-interview-feedback-form",
-  standalone: true,
   templateUrl: "./candidate-interview-feedback-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -69,9 +68,14 @@ export class CandidateInterviewFeedbackForm implements OnInit {
   readonly rejectionReasonOptions = signal<SelectItemDto[]>([]);
   readonly selectedDecision = signal<CandidateDecision | null>(null);
 
-  readonly dialogData = (this.config.data ?? {}) as CandidateInterviewFeedbackFormDialogData;
-  readonly candidateApplicationId = signal(this.dialogData.candidateApplicationId ?? "");
-  readonly candidateProcessId = signal(this.dialogData.candidateProcessId ?? "");
+  readonly dialogData = (this.config.data ??
+    {}) as CandidateInterviewFeedbackFormDialogData;
+  readonly candidateApplicationId = signal(
+    this.dialogData.candidateApplicationId ?? "",
+  );
+  readonly candidateProcessId = signal(
+    this.dialogData.candidateProcessId ?? "",
+  );
   readonly targetLabel = computed(
     () => this.candidateProcessId() || this.candidateApplicationId(),
   );
@@ -95,8 +99,9 @@ export class CandidateInterviewFeedbackForm implements OnInit {
       Object.keys(CandidateDecision)
         .filter((key) => Number.isNaN(Number(key)))
         .map((key) => {
-          const decision =
-            CandidateDecision[key as keyof typeof CandidateDecision] as CandidateDecision;
+          const decision = CandidateDecision[
+            key as keyof typeof CandidateDecision
+          ] as CandidateDecision;
           return {
             label: candidateDecisionLabel(decision),
             value: decision,
@@ -162,13 +167,15 @@ export class CandidateInterviewFeedbackForm implements OnInit {
       return;
     }
 
-    const selectedDecision = this.form.controls.decision.value as CandidateDecision;
+    const selectedDecision = this.form.controls.decision
+      .value as CandidateDecision;
     const payload: InterviewerActionRequestDto = {
       candidateProcessId,
       decision: selectedDecision,
       decisionReason:
         selectedDecision === CandidateDecision.Rechazado
-          ? (this.form.controls.decisionReason.value as CandidateRejectionReason | null)
+          ? (this.form.controls.decisionReason
+              .value as CandidateRejectionReason | null)
           : null,
       additionalComment: this.form.controls.additionalComment.value ?? "",
       newScheduledAt:
@@ -177,7 +184,9 @@ export class CandidateInterviewFeedbackForm implements OnInit {
           : null,
       agreedPresentationDate:
         selectedDecision === CandidateDecision.Aprobado
-          ? (this.toDateOnlyLocal(this.form.controls.agreedPresentationDate.value) ?? null)
+          ? (this.toDateOnlyLocal(
+              this.form.controls.agreedPresentationDate.value,
+            ) ?? null)
           : null,
       agreedPresentationTime:
         selectedDecision === CandidateDecision.Aprobado
@@ -204,12 +213,13 @@ export class CandidateInterviewFeedbackForm implements OnInit {
 
     this.resolvingProcess.set(true);
     try {
-      const result = await this.apiResponseS.onGetItem<CandidateInterviewResponseDto>(
-        EndpointsReclutamiento.CandidateProcesses.interviewResponse(
-          this.candidateApplicationId(),
-        ),
-        false,
-      );
+      const result =
+        await this.apiResponseS.onGetItem<CandidateInterviewResponseDto>(
+          EndpointsReclutamiento.CandidateProcesses.interviewResponse(
+            this.candidateApplicationId(),
+          ),
+          false,
+        );
       if (result?.candidateProcessId) {
         this.candidateProcessId.set(result.candidateProcessId);
         this.form.patchValue({ targetId: result.candidateProcessId });
@@ -234,8 +244,8 @@ export class CandidateInterviewFeedbackForm implements OnInit {
     const d = new Date(value);
     if (isNaN(d.getTime())) return null;
     const year = d.getFullYear();
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   }
 }

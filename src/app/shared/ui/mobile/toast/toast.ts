@@ -12,7 +12,6 @@ import { ToastBase } from "../../base/toast.base";
 
 @Component({
   selector: "ili-toast",
-
   template: ``,
   changeDetection: ChangeDetectionStrategy.Eager,
 })

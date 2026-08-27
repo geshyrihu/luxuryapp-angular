@@ -7,19 +7,19 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import Swal from "sweetalert2";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { EndpointsRecursosHumanos } from "src/app/core/constants/endpoints/recursos-humanos.endpoints";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { EndpointsRecursosHumanos } from "src/app/core/constants/endpoints/recursos-humanos.endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import Swal from "sweetalert2";
 
 export interface CandidateHiringDocumentListItemDto {
   id: string;
@@ -39,7 +39,7 @@ export interface CandidateHiringDocumentListItemDto {
 
 @Component({
   selector: "app-hiring-document-validation",
-  standalone: true,
+
   imports: [
     LxDivider,
     LxFieldset,
@@ -119,7 +119,9 @@ export class HiringDocumentValidation implements OnInit {
     this.isLoading.set(true);
     try {
       const [documentTypes, documents] = await Promise.all([
-        this.apiResponseS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.documentCatalog),
+        this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+          Endpoints.SelectItems.documentCatalog,
+        ),
         this.apiResponseS.onGetList<CandidateHiringDocumentListItemDto[]>(
           EndpointsRecursosHumanos.EmployeeDocument.byEmployee(
             this.employeeId(),
@@ -135,7 +137,10 @@ export class HiringDocumentValidation implements OnInit {
   }
 
   async onUpload(
-    row: { option: SelectItemDto; document: CandidateHiringDocumentListItemDto | null },
+    row: {
+      option: SelectItemDto;
+      document: CandidateHiringDocumentListItemDto | null;
+    },
     event: Event,
   ) {
     const inputElement = event.target as HTMLInputElement;

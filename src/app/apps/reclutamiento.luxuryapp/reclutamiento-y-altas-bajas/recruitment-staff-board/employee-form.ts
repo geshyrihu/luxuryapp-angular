@@ -12,11 +12,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxPanelMenu } from "@ui/adaptive/panel-menu/panel-menu";
 import { MenuItem } from "@ui/web/primeng-api/primeng-api";
-import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { AuthService } from "src/app/core/auth/services/auth.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EmployeeBankDataList } from "../../../recursos-humanos.luxuryapp/employee-bank-data/employee-bank-data-list";
 import { EmployeeClinicalDataList } from "../../../recursos-humanos.luxuryapp/employee-clinical-data/employee-clinical-data-list";
@@ -48,14 +45,11 @@ import { EmployeePrincipalDataForm } from "../../../recursos-humanos.luxuryapp/e
 })
 export class EmployeeForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
-  authS = inject(AuthService);
-  aspRoleS = inject(AspRoleService);
   router = inject(Router);
   route = inject(ActivatedRoute);
   applicationUserId: string = "";
   employeeId: string = "";
   nameEmployee = signal("");
-  tienePermiso: boolean = true;
 
   // ?? Sección activa
   activeSection: string = "principal";
@@ -100,142 +94,64 @@ export class EmployeeForm implements OnInit {
       label: string;
       icon: string;
       section: string;
-      roles?: ApplicationRole[];
     };
 
     const all: MenuDef[] = [
-      // Sin restricción de rol é visible para cualquier usuario autorizado
       {
         label: "Datos principales",
         icon: "material-symbols-light:person",
         section: "principal",
-        roles: [
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.Administrador,
-          ApplicationRole.Asistente,
-          ApplicationRole.RecursosHumanos,
-        ],
       },
       {
         label: "Foto de perfil",
         icon: "material-symbols-light:photo",
         section: "avatar",
-        roles: [
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.Administrador,
-          ApplicationRole.Asistente,
-          ApplicationRole.RecursosHumanos,
-        ],
       },
       {
         label: "Datos personales",
         icon: "material-symbols-light:badge",
         section: "personal",
-        roles: [
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.Administrador,
-          ApplicationRole.Asistente,
-          ApplicationRole.RecursosHumanos,
-        ],
       },
       {
         label: "Dirección",
         icon: "material-symbols-light:location-on",
         section: "address",
-        roles: [
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.Administrador,
-          ApplicationRole.Asistente,
-          ApplicationRole.RecursosHumanos,
-        ],
       },
       {
         label: "Contactos",
         icon: "material-symbols-light:call",
         section: "contacts",
-        roles: [
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.Administrador,
-          ApplicationRole.Asistente,
-          ApplicationRole.RecursosHumanos,
-        ],
       },
       {
         label: "Datos bancarios y beneficiario",
         icon: "material-symbols-light:credit-card",
         section: "bank-data",
-        roles: [
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.Administrador,
-          ApplicationRole.Asistente,
-          ApplicationRole.RecursosHumanos,
-        ],
       },
       {
         label: "Datos clinicos",
         icon: "material-symbols-light:favorite-outline",
         section: "clinical-data",
-        roles: [
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.Administrador,
-          ApplicationRole.Asistente,
-          ApplicationRole.RecursosHumanos,
-        ],
       },
-
-      // Solo gestión interna RR.HH.
       {
         label: "Datos laborales",
         icon: "material-symbols-light:work",
         section: "laboral",
-        roles: [
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.Administrador,
-          ApplicationRole.Asistente,
-          ApplicationRole.RecursosHumanos,
-        ],
       },
-
-      // Solo quienes gestionan reclutamiento
       {
         label: "Documentación",
         icon: "material-symbols-light:folder-open",
         section: "documents",
-        roles: [
-          ApplicationRole.SuperUsuario,
-          ApplicationRole.Administrador,
-          ApplicationRole.Asistente,
-          ApplicationRole.RecursosHumanos,
-        ],
       },
-
-      // Solo quienes pueden ver / registrar incidencias
-
-      // Solo acceso tócnico / sistemas
-
-      ,
     ];
 
-    this.menuItems = all
-      .filter((item) => !item.roles || this.aspRoleS.hasAny(item.roles))
-      .map((item) => ({
-        label: item.label,
-        icon: item.icon,
-        command: () => this.changeSection(item.section),
-      }));
+    this.menuItems = all.map((item) => ({
+      label: item.label,
+      icon: item.icon,
+      command: () => this.changeSection(item.section),
+    }));
   }
 
   changeSection(section: string) {
     this.activeSection = section;
-  }
-
-  onValidarAdminAsis() {
-    this.apiResponseS
-      .onGetItem(
-        Endpoints.Employees.validateAdminAsis(this.authS.applicationUserId),
-      )
-      .then((result: any) => {
-        this.tienePermiso = result;
-      });
   }
 }

@@ -1,0 +1,107 @@
+- generic [active] [ref=f1e1]:
+  - link "Saltar al contenido principal" [ref=f1e2] [cursor=pointer]:
+    - /url: "#app-root-outlet"
+  - generic "Aplicación LuxuryApp" [ref=f1e3]:
+    - generic:
+      - alertdialog
+    - main [ref=f1e7]:
+      - generic [ref=f1e10]:
+        - toolbar [ref=f1e14]:
+          - generic [ref=f1e16]:
+            - button "Abrir o cerrar el menú lateral" [ref=f1e17] [cursor=pointer]
+            - button "AVIVIA 58" [ref=f1e465] [cursor=pointer]
+            - navigation [ref=f1e31]:
+              - list [ref=f1e32]:
+                - listitem [ref=f1e33]:
+                  - link "Inicio" [ref=f1e34] [cursor=pointer]:
+                    - /url: /dashboard
+                - listitem [ref=f1e39]
+                - listitem [ref=f1e42]:
+                  - link "Tablero Principal de Contabilidad" [ref=f1e43] [cursor=pointer]:
+                    - /url: /contabilidad
+                - listitem [ref=f1e45]
+                - listitem [ref=f1e48]:
+                  - link "Presupuesto propuesta" [ref=f1e49] [cursor=pointer]:
+                    - /url: /contabilidad/budget-proposal
+          - generic [ref=f1e52]:
+            - button "Inicio" [ref=f1e53] [cursor=pointer]
+            - button "Pagina anterior" [ref=f1e58] [cursor=pointer]
+            - button "Pagina siguiente" [ref=f1e63] [cursor=pointer]
+            - button "Actualizar" [ref=f1e68] [cursor=pointer]
+            - button "Mi edificio" [ref=f1e73] [cursor=pointer]
+            - button "Anuncios" [ref=f1e78] [cursor=pointer]
+            - button "Comunicado IA" [ref=f1e83] [cursor=pointer]
+            - button "Telefonos de Emergencia" [ref=f1e88] [cursor=pointer]
+            - button "Configuración" [ref=f1e93] [cursor=pointer]
+            - button "Novedades" [ref=f1e98] [cursor=pointer]
+            - button "Cambiar tema claro u oscuro" [ref=f1e103] [cursor=pointer]
+            - 'button "Alerta de pónico: mantón presionado para activar" [ref=f1e109] [cursor=pointer]'
+            - button "Notificaciones" [ref=f1e116] [cursor=pointer]
+            - button "Abrir menú de usuario" [ref=f1e124] [cursor=pointer]
+        - navigation [ref=f1e134]:
+          - generic [ref=f1e135]:
+            - generic [ref=f1e136]: LuxuryApp
+            - generic [ref=f1e137]: Gestión Inteligente
+          - generic [ref=f1e145]:
+            - heading "Administrador LBG" [level=2] [ref=f1e146]
+            - paragraph [ref=f1e147]: Empleado
+            - heading "AVIVIA 58" [level=3] [ref=f1e466]
+          - generic [ref=f1e150]:
+            - generic [ref=f1e467]: Design System
+            - list [ref=f1e469]:
+              - listitem [ref=f1e470]:
+                - button "Luxury Design System" [ref=f1e471] [cursor=pointer]
+            - separator
+            - list [ref=f1e482]:
+              - listitem [ref=f1e483]:
+                - button "Legal" [ref=f1e484] [cursor=pointer]
+              - listitem [ref=f1e495]:
+                - link "Contabilidad" [ref=f1e496] [cursor=pointer]:
+                  - /url: /contabilidad
+              - listitem [ref=f1e502]:
+                - button "Tickets" [ref=f1e503] [cursor=pointer]
+              - listitem [ref=f1e514]:
+                - button "Inspecciones" [ref=f1e515] [cursor=pointer]
+              - listitem [ref=f1e526]:
+                - button "Juntas de comite" [ref=f1e527] [cursor=pointer]
+              - listitem [ref=f1e538]:
+                - button "Compras" [ref=f1e539] [cursor=pointer]
+              - listitem [ref=f1e550]:
+                - button "Bitacoras" [ref=f1e551] [cursor=pointer]
+              - listitem [ref=f1e562]:
+                - button "Almacen" [ref=f1e563] [cursor=pointer]
+              - listitem [ref=f1e574]:
+                - button "Inventarios" [ref=f1e575] [cursor=pointer]
+              - listitem [ref=f1e586]:
+                - button "Biblioteca" [ref=f1e587] [cursor=pointer]
+              - listitem [ref=f1e598]:
+                - button "Calendarios" [ref=f1e599] [cursor=pointer]
+              - listitem [ref=f1e610]:
+                - button "Directorios" [ref=f1e611] [cursor=pointer]
+              - listitem [ref=f1e618]:
+                - link "Supervisión" [ref=f1e619] [cursor=pointer]:
+                  - /url: /supervision
+              - listitem [ref=f1e623]:
+                - button "Reportes" [ref=f1e624] [cursor=pointer]
+              - listitem [ref=f1e631]:
+                - button "Entrega recepción" [ref=f1e632] [cursor=pointer]
+              - listitem [ref=f1e639]:
+                - button "Reclutamiento" [ref=f1e640] [cursor=pointer]
+              - listitem [ref=f1e647]:
+                - generic [ref=f1e648]: Sistemas
+              - listitem [ref=f1e652]:
+                - generic [ref=f1e653]: Reservaciones
+              - listitem [ref=f1e657]:
+                - generic [ref=f1e658]: Pases QR
+              - listitem [ref=f1e662]:
+                - generic [ref=f1e663]: Paqueteria
+              - listitem [ref=f1e667]:
+                - button "Recursos Humanos" [ref=f1e668] [cursor=pointer]
+              - listitem [ref=f1e675]:
+                - link "Anuncios" [ref=f1e676] [cursor=pointer]:
+                  - /url: /announcements/manage
+              - listitem [ref=f1e680]:
+                - button "Utilidades" [ref=f1e681] [cursor=pointer]
+              - listitem [ref=f1e688]:
+                - button "Mesa directiva" [ref=f1e689] [cursor=pointer]
+        - generic [ref=f1e401]: No se encontró una propuesta para el Año fiscal seleccionado.

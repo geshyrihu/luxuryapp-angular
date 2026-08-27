@@ -1,3 +1,5 @@
+// Mantener sincronizado con api/LuxuryApp.Shared/Enums/Departament.cs.
+// Si se agrega, elimina o reordena un valor aqui, actualizar tambien el enum del backend.
 export enum Department {
   Administracion = 0,
   Legal,
@@ -16,5 +18,8 @@ export enum Department {
   Recepcion,
   Mensajeria,
   Ludoteca,
+  Almacen,
+  Amenidades,
+  Asistente,
   NA,
 }

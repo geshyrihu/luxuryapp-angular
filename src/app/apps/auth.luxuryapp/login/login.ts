@@ -38,7 +38,6 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-login",
-
   templateUrl: "./login.html",
   animations: [
     trigger("slideAnimation", [

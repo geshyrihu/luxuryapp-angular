@@ -24,7 +24,24 @@
           [data]="cb_candidates()"
           [filter]="true"
           [readonly]="isCreatingCandidate()"
-        />
+        >
+          <ng-template #item let-item>
+            <div class="flex align-items-center gap-2">
+              <span>{{ item.label }}</span>
+              @if (item.isActiveEmployee) {
+                <lx-tag value="Empleado Activo" severity="info" />
+              }
+            </div>
+          </ng-template>
+          <ng-template #selectedItem let-item>
+            <div class="flex align-items-center gap-2">
+              <span>{{ item.label }}</span>
+              @if (item.isActiveEmployee) {
+                <lx-tag value="Empleado Activo" severity="info" />
+              }
+            </div>
+          </ng-template>
+        </custom-input-select-signal>
       </div>
       @if (allowCreateCandidate) {
       <div class="col-12 md:col-4 flex align-items-end">

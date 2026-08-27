@@ -33,7 +33,6 @@ import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
 
 @Component({
   selector: "app-recruitment-agenda-list",
-  standalone: true,
   templateUrl: "./recruitment-agenda-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

@@ -32,7 +32,6 @@ import { DateService } from "src/app/core/services/date.service";
 import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-realizar-evaluacion",
-
   templateUrl: "./realizar-evaluacion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
@@ -283,10 +282,7 @@ export class RealizarEvaluacion implements OnInit {
 
     if (this.isEditMode && this.evaluationId) {
       this.apiResponseS
-        .onPut(
-          Endpoints.PerformanceEvaluations.update(this.evaluationId),
-          DTO,
-        )
+        .onPut(Endpoints.PerformanceEvaluations.update(this.evaluationId), DTO)
         .then((result: any) => {
           if (result) {
             this.submitting.set(false);
@@ -294,10 +290,7 @@ export class RealizarEvaluacion implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPost(
-          Endpoints.PerformanceEvaluations.create,
-          DTO,
-        )
+        .onPost(Endpoints.PerformanceEvaluations.create, DTO)
         .then((result: any) => {
           if (result) {
             this.route.navigate(

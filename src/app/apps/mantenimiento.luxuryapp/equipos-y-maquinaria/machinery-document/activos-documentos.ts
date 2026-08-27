@@ -26,7 +26,6 @@ import {
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-activos-documentos",
-
   templateUrl: "./activos-documentos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [AppIcon, NgbTooltipModule, WebButtonLabelConfirm, WebButtonLabel],

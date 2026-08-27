@@ -11,6 +11,7 @@ import { BaseButton } from "../base/base-button";
     <button
       type="button"
       [class]="buttonClasses()"
+      [attr.aria-label]="ariaLabel() || null"
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >

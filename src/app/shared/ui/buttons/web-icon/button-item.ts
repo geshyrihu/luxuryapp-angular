@@ -4,13 +4,14 @@ import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "iw-button-item",
-  standalone: true,
+
   imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       type="button"
       [class]="buttonClasses()"
+      [attr.aria-label]="ariaLabel() || label() || null"
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >

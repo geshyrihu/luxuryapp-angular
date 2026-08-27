@@ -74,6 +74,7 @@ export const EndpointsOperations = {
       status: string,
       customerId: string,
     ) => `tasks/my-request/${applicationUserId}/${status}/${customerId}`,
+
     myTicketProgramation: (id: string) => `tasks/my-ticket/programation/${id}`,
     participants: (ticketGroupId: string) => `tasks/participant/${ticketGroupId}`,
     programation: (id: string) => `tasks/programation/${id}`,
@@ -87,6 +88,7 @@ export const EndpointsOperations = {
     updateRelevance: (id: string) => `tasks/update-relevance/${id}`,
     updateRelevanceLegacy: (id: string) => `tasks/update-relevance/${id}`,
     updateStatus: (id: string) => `tasks/${id}/status`,
+    updateCustomer: (id: string) => `tasks/${id}/customer`,
     view: (id: string) => `tasks/view/${id}`,
     availablePredecessors: (groupId: string, excludeId?: string) =>
       excludeId

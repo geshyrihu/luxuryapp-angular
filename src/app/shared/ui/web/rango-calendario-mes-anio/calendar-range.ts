@@ -1,9 +1,9 @@
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { InputTextModule } from "primeng/inputtext";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 
@@ -15,7 +15,6 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
  */
 @Component({
   selector: "app-calendar-range",
-
   templateUrl: "./calendar-range.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
@@ -41,12 +40,3 @@ export class CalendarRange {
     this.filtroCalendarService.SetFechasMonth(fechaInicial, fechaFinal);
   }
 }
-
-
-
-
-
-
-
-
-

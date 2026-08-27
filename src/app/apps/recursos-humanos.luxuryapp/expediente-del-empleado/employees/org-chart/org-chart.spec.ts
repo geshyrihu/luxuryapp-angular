@@ -223,7 +223,7 @@ describe("OrgChart", () => {
     );
   });
 
-  it("describes row drag guidance while dragging another role", () => {
+  it("describes card drag guidance while dragging another role", () => {
     const component = fixture.componentInstance;
     const origin = createNode({
       roleId: "role-origin",
@@ -242,7 +242,7 @@ describe("OrgChart", () => {
     expect(component.shouldShowReorderAffordances(target)).toBe(true);
     expect(component.isReorderHover(target, "before")).toBe(true);
     expect(component.getDragGuideMessage()).toContain("Gerencia");
-    expect(component.getDragGuideMessage()).toContain("fila");
+    expect(component.getDragGuideMessage()).toContain("tarjeta");
     expect(component.getDragGuideMessage()).toContain("zona raíz");
   });
 });

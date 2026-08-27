@@ -8,19 +8,12 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { firstValueFrom } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import {
-  CandidateInterviewResponseDto,
-} from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/interfaces/candidate-interview";
-import { CandidateStageBadge } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/candidate-stage-badge";
-import { MappedPTag } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
-import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
+import { firstValueFrom } from "rxjs";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
 import { CandidateRejectionReason } from "src/app/core/enums/candidate-rejection-reason";
@@ -29,12 +22,15 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { InterviewerActionRequestDto } from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/interfaces/interviewer-action-request.dto";
 import { CandidateInterviewFeedbackForm } from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/candidate-interview-feedback-form";
+import { CandidateInterviewResponseDto } from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/interfaces/candidate-interview";
+import { InterviewerActionRequestDto } from "src/app/shared/integration/reclutamiento/candidates/candidate-interview/interfaces/interviewer-action-request.dto";
+import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
+import { CandidateStageBadge } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/candidate-stage-badge";
+import { MappedPTag } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
 
 @Component({
   selector: "app-employee-interview-response",
-  standalone: true,
   templateUrl: "./employee-interview-response.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -75,7 +71,7 @@ export class EmployeeInterviewResponse implements OnInit {
   readonly selectedReason = signal<number | null>(null);
   readonly agreedPresentationDate = signal<string | null>(null);
   readonly reasonOptions = signal<SelectItemDto[]>([]);
-  readonly today = new Date().toISOString().split('T')[0];
+  readonly today = new Date().toISOString().split("T")[0];
 
   readonly agendaStatusOptions = AGENDA_STATUS_TAG_OPTIONS;
 
@@ -176,9 +172,19 @@ export class EmployeeInterviewResponse implements OnInit {
       return;
     }
     const decisionValue = decision as CandidateDecision;
-    if (decisionValue === CandidateDecision.Rechazado && decisionReason === null) return;
-    if (decisionValue === CandidateDecision.Aprobado && !this.agreedPresentationDate()) {
-      this.toastS.showWarn("Fecha requerida", "Debe indicar la Fecha de Presentación Acordada para aprobar.");
+    if (
+      decisionValue === CandidateDecision.Rechazado &&
+      decisionReason === null
+    )
+      return;
+    if (
+      decisionValue === CandidateDecision.Aprobado &&
+      !this.agreedPresentationDate()
+    ) {
+      this.toastS.showWarn(
+        "Fecha requerida",
+        "Debe indicar la Fecha de Presentación Acordada para aprobar.",
+      );
       return;
     }
 

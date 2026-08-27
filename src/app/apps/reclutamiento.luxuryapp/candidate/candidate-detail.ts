@@ -28,8 +28,14 @@ import { CandidateDetail as CandidateDetailDto } from "./interfaces/candidate.dt
   selector: "app-candidate-detail",
   templateUrl: "./candidate-detail.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [CommonModule, LxTabs, LxDivider, CandidateStageBadge, WebButtonLabel],
+
+  imports: [
+    CommonModule,
+    LxTabs,
+    LxDivider,
+    CandidateStageBadge,
+    WebButtonLabel,
+  ],
 })
 export class CandidateDetail implements OnInit {
   private config = inject(DynamicDialogConfig);
@@ -133,8 +139,10 @@ export class CandidateDetail implements OnInit {
   }
 
   canManageHiringDocuments(app: CandidateApplicationListItem): boolean {
-    return Boolean(app.candidateProcessId) &&
+    return (
+      Boolean(app.candidateProcessId) &&
       (app.currentStage === CandidateProcessStage.AltaEnProceso ||
-        app.currentStage === CandidateProcessStage.Contratado);
+        app.currentStage === CandidateProcessStage.Contratado)
+    );
   }
 }

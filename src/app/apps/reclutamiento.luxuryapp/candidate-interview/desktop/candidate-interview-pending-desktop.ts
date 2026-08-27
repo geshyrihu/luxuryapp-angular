@@ -12,18 +12,17 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CandidateApplicationListItem } from "../../candidate-application/interfaces/candidate-application";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interview-feedback-target.interface";
 
 @Component({
   selector: "app-candidate-interview-pending-desktop",
-  standalone: true,
   templateUrl: "./candidate-interview-pending-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

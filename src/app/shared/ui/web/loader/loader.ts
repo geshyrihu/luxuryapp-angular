@@ -3,7 +3,6 @@ import { LoaderBase } from "../../base/loader.base";
 
 @Component({
   selector: "app-loader",
-
   template: `
     @if (isLoading()) {
       <div class="loader-container">

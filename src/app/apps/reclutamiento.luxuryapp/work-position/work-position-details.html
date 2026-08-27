@@ -1,0 +1,129 @@
+<div class="flex flex-column gap-3 p-3">
+  <header class="flex align-items-center justify-content-between gap-2">
+    <div>
+      <small class="text-500">{{ folio() }}</small>
+      <h2 class="m-0">{{ applicationRoleName() }}</h2>
+      <small class="text-500">{{ departamentLabel() }}</small>
+    </div>
+    <il-button (clicked)="close()" label="Cerrar" variant="outline" size="small" />
+  </header>
+
+  <div class="flex gap-3 border-bottom-1 surface-border">
+    <button
+      type="button"
+      class="bg-transparent border-none cursor-pointer pb-2 border-bottom-2 transition-colors"
+      [class.border-primary]="activeTab() === 'description'"
+      [class.text-primary]="activeTab() === 'description'"
+      [class.text-500]="activeTab() !== 'description'"
+      (click)="activeTab.set('description')"
+    >
+      Descripción del puesto
+    </button>
+    <button
+      type="button"
+      class="bg-transparent border-none cursor-pointer pb-2 border-bottom-2 transition-colors"
+      [class.border-primary]="activeTab() === 'general'"
+      [class.text-primary]="activeTab() === 'general'"
+      [class.text-500]="activeTab() !== 'general'"
+      (click)="activeTab.set('general')"
+    >
+      Datos generales
+    </button>
+  </div>
+
+  @if (activeTab() === 'description') {
+  <lx-card [padded]="false">
+    @if (description(); as d) {
+    <div class="flex flex-column gap-3 p-3">
+      <div>
+        <span class="text-500 font-bold">Resumen</span>
+        <p class="mt-1">{{ d.summary }}</p>
+      </div>
+      <div>
+        <span class="text-500 font-bold">Responsabilidades</span>
+        <p class="mt-1">{{ d.responsibilities }}</p>
+      </div>
+      <div>
+        <span class="text-500 font-bold">Habilidades</span>
+        <p class="mt-1">{{ d.skills }}</p>
+      </div>
+      <div>
+        <span class="text-500 font-bold">Requisitos adicionales</span>
+        <p class="mt-1">{{ d.additionalRequirements }}</p>
+      </div>
+      <div>
+        <span class="text-500 font-bold">Entorno de trabajo</span>
+        <p class="mt-1">{{ d.workEnvironment }}</p>
+      </div>
+      <lx-tag
+        [severity]="d.requiresWeekendShift ? 'warn' : 'success'"
+        [value]="d.requiresWeekendShift ? 'Requiere turno fin de semana' : 'Sin turno fin de semana'"
+      />
+    </div>
+    } @else {
+    <p class="p-3 text-500">Este puesto no tiene descripción registrada.</p>
+    }
+  </lx-card>
+  } @else {
+  <div class="flex flex-column gap-3">
+    <lx-card [padded]="false">
+      <div class="flex flex-column gap-2 p-3">
+        <h3 class="m-0">Datos generales</h3>
+        @if (general(); as g) {
+        <div class="flex flex-column gap-1">
+          <div class="flex justify-content-between">
+            <span class="text-500">Turno</span>
+            <span>{{ g.turno ?? g.turnoTrabajo }}</span>
+          </div>
+          <div class="flex justify-content-between">
+            <span class="text-500">Sueldo base</span>
+            <span>{{ g.sueldoBase }}</span>
+          </div>
+          <div class="flex justify-content-between">
+            <span class="text-500">Sueldo</span>
+            <span>{{ g.sueldo }}</span>
+          </div>
+          <div class="flex justify-content-between">
+            <span class="text-500">Prestaciones</span>
+            <span>{{ g.benefits }}</span>
+          </div>
+          <div class="flex justify-content-between">
+            <span class="text-500">Observaciones</span>
+            <span>{{ g.observationsWorkShift }}</span>
+          </div>
+          <div class="flex justify-content-between">
+            <span class="text-500">Estado</span>
+            <span>{{ g.state ? 'Activo' : 'Inactivo' }}</span>
+          </div>
+        </div>
+        } @else {
+        <p class="text-500">Cargando...</p>
+        }
+      </div>
+    </lx-card>
+
+    <lx-card [padded]="false">
+      <div class="p-3">
+        <h3 class="mt-0">Horarios de trabajo</h3>
+        @if (hours(); as h) {
+        <p class="mb-2"><strong>Turno:</strong> {{ h.turnoTrabajo }}</p>
+        <div class="flex flex-column gap-1">
+          @for (dia of [ { n: 'Lunes', e: h.lunesEntrada, s: h.lunesSalida }, { n: 'Martes', e: h.martesEntrada, s: h.martesSalida }, { n: 'Miércoles', e: h.miercolesEntrada, s: h.miercolesSalida }, { n: 'Jueves', e: h.juevesEntrada, s: h.juevesSalida }, { n: 'Viernes', e: h.viernesEntrada, s: h.viernesSalida }, { n: 'Sábado', e: h.sabadoEntrada, s: h.sabadoSalida }, { n: 'Domingo', e: h.domingoEntrada, s: h.domingoSalida } ]; track dia.n) {
+          <div class="flex justify-content-between">
+            <span class="font-semibold">{{ dia.n }}</span>
+            @if (dia.e && dia.s) {
+            <span>{{ dia.e }} - {{ dia.s }}</span>
+            } @else {
+            <span class="text-400 font-italic">Descanso</span>
+            }
+          </div>
+          }
+        </div>
+        } @else {
+        <p class="text-500">Sin horarios registrados.</p>
+        }
+      </div>
+    </lx-card>
+  </div>
+  }
+</div>

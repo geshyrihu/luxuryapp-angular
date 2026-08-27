@@ -34,7 +34,6 @@ import { CandidateRecruitmentInterviewsService } from "./candidate-recruitment-i
 
 @Component({
   selector: "app-candidate-recruitment-schedule-modal",
-  standalone: true,
   templateUrl: "./candidate-recruitment-schedule-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

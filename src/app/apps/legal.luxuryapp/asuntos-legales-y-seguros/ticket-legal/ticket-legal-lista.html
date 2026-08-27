@@ -1,17 +1,3 @@
-<div class="flex align-items-center gap-3 mb-3">
-  <label class="font-semibold text-sm text-600 white-space-nowrap"
-    >Filtrar por cliente:</label
-  >
-  <custom-input-select-signal
-    [data]="cb_customer()"
-    optionLabel="label"
-    optionValue="value"
-    placeholder="-- Todos los clientes --"
-    [showClear]="true"
-    (selectionChange)="onCustomerFilter($event.value)"
-  />
-</div>
-
 <!-- ??? Pantallas medianas y grandes -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -39,6 +25,19 @@
         lxTooltip="Descargar Excel para PowerPoint"
         tooltipPosition="bottom"
       />
+      <div class="flex align-items-center gap-3 mb-3">
+        <label class="font-semibold text-sm text-600 white-space-nowrap"
+          >Filtrar por cliente:</label
+        >
+        <custom-input-select-signal
+          [data]="cb_customer()"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="-- Todos los clientes --"
+          [showClear]="true"
+          (selectionChange)="onCustomerFilter($event.value)"
+        />
+      </div>
     </div>
   </ng-template>
   <ng-template #colgroup>
@@ -81,14 +80,27 @@
     <tr>
       <td>{{ item.folio }}</td>
       <td>{{ item.requestDate }}</td>
-      <td>{{ item.customer }}</td>
+      <td>
+        <div class="flex align-items-center justify-content-between">
+          <span>{{ item.customer }}</span>
+          <button
+            *ngIf="canChangeCustomer"
+            (click)="onReasignarCliente(item)"
+            class="p-link text-primary ml-2"
+            lxTooltip="Corregir Cliente"
+          >
+            <app-icon icon="material-symbols-light:edit-square" />
+          </button>
+        </div>
+      </td>
       <td>
         {{ item.title }}
         <br />
         <small>{{ item.description }}</small>
       </td>
       <td>
-        <app-icon [icon]="'material-symbols-light:person'" class="mr-2" />{{ item.assignee }}
+        <app-icon [icon]="'material-symbols-light:person'" class="mr-2" />{{
+        item.assignee }}
       </td>
       <td class="text-center">
         <lx-tag
@@ -149,7 +161,10 @@
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:confirmation-number" class="text-xl text-primary" />
+        <app-icon
+          icon="material-symbols-light:confirmation-number"
+          class="text-xl text-primary"
+        />
       </div>
 
       <div class="flex justify-content-between align-items-center mb-1">
@@ -175,6 +190,13 @@
 
       <ili-action-menu end>
         <ng-container actions>
+          <ili-button-item
+            *ngIf="canChangeCustomer"
+            iconName="sync-outline"
+            label="Corregir Cliente"
+            (clicked)="onReasignarCliente(item)"
+            []="true"
+          />
           <ili-button-item
             iconName="clipboard-outline"
             label="Seguimiento"

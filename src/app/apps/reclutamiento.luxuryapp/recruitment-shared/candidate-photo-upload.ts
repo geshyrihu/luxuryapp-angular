@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,14 +7,12 @@ import {
   output,
   signal,
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { PlatformService } from "src/app/core/services/platform.service";
 import { AppAvatar } from "src/app/shared/ui/web/avatar/avatar";
 import { FileUpload } from "src/app/shared/ui/web/file-upload/file-upload";
 
 @Component({
   selector: "app-candidate-photo-upload",
-  standalone: true,
   templateUrl: "./candidate-photo-upload.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, FileUpload, AppAvatar],

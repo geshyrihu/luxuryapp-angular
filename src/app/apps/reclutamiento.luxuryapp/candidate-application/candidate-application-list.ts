@@ -10,24 +10,21 @@ import { addIcons } from "ionicons";
 import { appsOutline } from "ionicons/icons";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
-import { candidateProcessStageLabel } from "../recruitment-shared/candidate-stage-labels";
+import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { CandidateApplicationForm } from "./candidate-application-form";
-import {
-  CandidateApplicationListItem,
-} from "./interfaces/candidate-application";
-import { CandidateApplicationListDesktop } from "./desktop/candidate-application-list-desktop";
-import { CandidateApplicationListMobile } from "./mobile/candidate-application-list-mobile";
 import Swal from "sweetalert2";
-import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
+import { candidateProcessStageLabel } from "../recruitment-shared/candidate-stage-labels";
+import { CandidateApplicationForm } from "./candidate-application-form";
+import { CandidateApplicationListDesktop } from "./desktop/candidate-application-list-desktop";
+import { CandidateApplicationListItem } from "./interfaces/candidate-application";
+import { CandidateApplicationListMobile } from "./mobile/candidate-application-list-mobile";
 
 @Component({
   selector: "app-candidate-application-list",
-  standalone: true,
   templateUrl: "./candidate-application-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CandidateApplicationListDesktop, CandidateApplicationListMobile],
@@ -60,10 +57,9 @@ export class CandidateApplicationList implements OnInit {
     const options: SelectItemDto[] = Object.keys(CandidateProcessStage)
       .filter((key) => Number.isNaN(Number(key)))
       .map((key) => {
-        const stage =
-          CandidateProcessStage[
-            key as keyof typeof CandidateProcessStage
-          ] as CandidateProcessStage;
+        const stage = CandidateProcessStage[
+          key as keyof typeof CandidateProcessStage
+        ] as CandidateProcessStage;
         return {
           label: candidateProcessStageLabel(stage),
           value: stage as number,
@@ -73,15 +69,17 @@ export class CandidateApplicationList implements OnInit {
   }
 
   onLoadData() {
-    const query = this.activeStage() !== null
-      ? { page: 1, recordsNumber: 200 }
-      : { page: 1, recordsNumber: 200 };
+    const query =
+      this.activeStage() !== null
+        ? { page: 1, recordsNumber: 200 }
+        : { page: 1, recordsNumber: 200 };
 
-    const endpoint = this.activeStage() !== null
-      ? EndpointsReclutamiento.CandidateProcesses.listByStage(
-          this.activeStage()!,
-        )
-      : EndpointsReclutamiento.CandidateProcesses.list;
+    const endpoint =
+      this.activeStage() !== null
+        ? EndpointsReclutamiento.CandidateProcesses.listByStage(
+            this.activeStage()!,
+          )
+        : EndpointsReclutamiento.CandidateProcesses.list;
 
     this.apiResponseS
       .onGetList<CandidateApplicationListItem[]>(endpoint, query)

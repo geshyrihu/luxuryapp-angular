@@ -7,7 +7,6 @@ import { FieldsetBase } from "@ui/base/fieldset.base";
 
 @Component({
   selector: "ili-fieldset",
-
   template: `
     <fieldset class="ili-fieldset">
       @if (legend()) {

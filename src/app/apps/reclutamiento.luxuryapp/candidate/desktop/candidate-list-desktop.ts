@@ -15,25 +15,25 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { CandidateStatus } from "src/app/core/enums/candidate-status";
-import { CandidateInterviewProgressStatus } from "src/app/core/enums/candidate-interview-progress-status";
-import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { CandidateInterviewProgressStatus } from "src/app/core/enums/candidate-interview-progress-status";
+import { CandidateStatus } from "src/app/core/enums/candidate-status";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { CandidateListItem } from "../interfaces/candidate.dto";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MappedPTag } from "../../recruitment-shared/mapped-p-tag";
-import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
 import { CANDIDATE_INTERVIEW_PROGRESS_TAG_OPTIONS } from "../candidate-interview-progress-tag-options";
+import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
+import { CandidateListItem } from "../interfaces/candidate.dto";
 
 @Component({
   selector: "app-candidate-list-desktop",
   templateUrl: "./candidate-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
+
   imports: [
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
@@ -71,8 +71,10 @@ export class CandidateListDesktop {
   protected readonly candidateStatusOptions = CANDIDATE_STATUS_TAG_OPTIONS;
 
   protected readonly interviewProgress = CandidateInterviewProgressStatus;
-  protected readonly interviewProgressOptions = CANDIDATE_INTERVIEW_PROGRESS_TAG_OPTIONS;
-  readonly interviewProgressFilter = signal<CandidateInterviewProgressStatus | null>(null);
+  protected readonly interviewProgressOptions =
+    CANDIDATE_INTERVIEW_PROGRESS_TAG_OPTIONS;
+  readonly interviewProgressFilter =
+    signal<CandidateInterviewProgressStatus | null>(null);
 
   readonly filteredData = computed(() => {
     const filter = this.interviewProgressFilter();

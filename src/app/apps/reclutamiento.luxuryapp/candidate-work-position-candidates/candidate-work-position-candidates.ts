@@ -1,4 +1,3 @@
-import { ROUTES } from "src/app/routing/route-paths";
 import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -16,6 +15,7 @@ import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/recluta
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ROUTES } from "src/app/routing/route-paths";
 import {
   CandidateRecruitmentInterviewBoard,
   CandidateRecruitmentInterviewBoardItem,
@@ -37,7 +37,6 @@ type VacancyView = CandidateRecruitmentInterviewBoard & {
 
 @Component({
   selector: "app-candidate-work-position-candidates",
-  standalone: true,
   templateUrl: "./candidate-work-position-candidates.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -221,7 +220,9 @@ export class CandidateWorkPositionCandidates implements OnInit {
   }
 
   goBackToBoard(): void {
-    this.router.navigate(ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS_RECLUTAMIENTO);
+    this.router.navigate(
+      ROUTES.RECLUTAMIENTO.CANDIDATOS_ENTREVISTAS_RECLUTAMIENTO,
+    );
   }
 
   private modalTitle(
@@ -242,4 +243,3 @@ export class CandidateWorkPositionCandidates implements OnInit {
     }
   }
 }
-

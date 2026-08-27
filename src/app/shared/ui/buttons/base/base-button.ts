@@ -10,7 +10,8 @@ type ButtonSeverity =
   | "warn"
   | "danger"
   | "help"
-  | "contrast";
+  | "contrast"
+  | "ai";
 type ButtonVariant = "solid" | "outline" | "ghost" | "text" | "link";
 type ButtonSize = "small" | "large" | "sm" | "md" | "lg";
 
@@ -33,6 +34,7 @@ export abstract class BaseButton {
   block = input<boolean>(false);
   fluid = input<boolean>(false);
   type = input<"button" | "submit" | "reset">("button");
+  ariaLabel = input<string>("");
   clicked = output<Event>();
   protected normalizedSeverity = computed(() =>
     this.severity() === "warn" ? "warning" : this.severity(),

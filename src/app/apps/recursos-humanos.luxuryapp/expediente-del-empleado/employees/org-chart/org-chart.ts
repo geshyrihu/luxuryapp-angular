@@ -28,11 +28,7 @@ import {
   flattenOrgChartNodes,
   withVirtualRoot,
 } from "./helpers/org-chart-graph-adapter";
-import {
-  flattenOrgChartEditorRows,
-  getOrgSiblingContext,
-  IOrgChartEditorRow,
-} from "./helpers/org-chart-tree-ops";
+import { getOrgSiblingContext } from "./helpers/org-chart-tree-ops";
 import { validateReassignment } from "./helpers/org-chart-validation";
 import {
   IRoleOrgChartMember,
@@ -124,9 +120,6 @@ export class OrgChart {
 
     return getOrgSiblingContext(this.tree(), origin.roleId);
   });
-  readonly editRows = computed<IOrgChartEditorRow[]>(() =>
-    flattenOrgChartEditorRows(this.displayTree()),
-  );
   readonly canMoveSelectedUp = computed(() => {
     const context = this.selectedOriginContext();
     return !!context && context.index > 0;
@@ -206,7 +199,7 @@ export class OrgChart {
       this.messageS.add({
         severity: "warn",
         summary: "Acción no permitida",
-        detail: "El nodo raóz virtual no se puede mover.",
+        detail: "El nodo raíz virtual no se puede mover.",
         life: 2500,
       });
       return;
@@ -231,7 +224,7 @@ export class OrgChart {
       this.messageS.add({
         severity: "info",
         summary: "Selección cancelada",
-        detail: "Se limpié la selección actual.",
+        detail: "Se limpió la selección actual.",
         life: 2000,
       });
       return;
@@ -241,7 +234,7 @@ export class OrgChart {
     if (!validation.valid) {
       this.messageS.add({
         severity: "error",
-        summary: "Movimiento invólido",
+        summary: "Movimiento inválido",
         detail: validation.reason,
         life: 4000,
       });
@@ -277,81 +270,6 @@ export class OrgChart {
       this.editMode.set(true);
       this.drawerVisible.set(false);
     }
-  }
-
-  onEditorRowClick(node: IRoleOrgChartNode): void {
-    if (this.selectedOrigin()?.roleId === node.roleId) {
-      this.clearSelection();
-      return;
-    }
-
-    this.selectedOrigin.set(node);
-    this.selectedDest.set(null);
-  }
-
-  onEditorRowDragStart(node: IRoleOrgChartNode, event: DragEvent): void {
-    this.onCardDragStart(node, event);
-  }
-
-  onEditorRowDragOver(row: IOrgChartEditorRow, event: DragEvent): void {
-    const origin = this.draggingNode();
-    if (!origin || origin.roleId === row.node.roleId) {
-      return;
-    }
-
-    const validation = validateReassignment(origin, row.node);
-    if (!validation.valid) {
-      this.dragHoverNodeId.set(null);
-      return;
-    }
-
-    event.preventDefault();
-    if (event.dataTransfer) {
-      event.dataTransfer.dropEffect = "move";
-    }
-
-    this.dragHoverRoot.set(false);
-    this.dragHoverNodeId.set(row.node.roleId);
-    this.dragHoverEdge.set(null);
-  }
-
-  onEditorRowDragLeave(row: IOrgChartEditorRow): void {
-    if (this.dragHoverNodeId() === row.node.roleId) {
-      this.dragHoverNodeId.set(null);
-    }
-  }
-
-  onEditorRowDrop(row: IOrgChartEditorRow, event: DragEvent): void {
-    event.preventDefault();
-
-    const origin = this.draggingNode();
-    this.draggingNode.set(null);
-    this.dragHoverRoot.set(false);
-    this.dragHoverNodeId.set(null);
-    this.dragHoverEdge.set(null);
-
-    if (!origin || origin.roleId === row.node.roleId) {
-      return;
-    }
-
-    const validation = validateReassignment(origin, row.node);
-    if (!validation.valid) {
-      this.messageS.add({
-        severity: "error",
-        summary: "Movimiento invólido",
-        detail: validation.reason,
-        life: 4000,
-      });
-      return;
-    }
-
-    this.selectedOrigin.set(origin);
-    this.selectedDest.set(row.node);
-    void this.executeReassign(
-      origin.roleId,
-      row.node.roleId,
-      row.node.children.length,
-    );
   }
 
   onCardDragStart(node: IRoleOrgChartNode, event: DragEvent): void {
@@ -433,7 +351,7 @@ export class OrgChart {
     if (!validation.valid) {
       this.messageS.add({
         severity: "error",
-        summary: "Movimiento invólido",
+        summary: "Movimiento inválido",
         detail: validation.reason,
         life: 4000,
       });
@@ -607,28 +525,6 @@ export class OrgChart {
     void this.executeReassign(node.roleId, newParentId, nextIndex);
   }
 
-  canMoveNodeUp(node: IRoleOrgChartNode): boolean {
-    const context = getOrgSiblingContext(this.tree(), node.roleId);
-    return !!context && context.index > 0;
-  }
-
-  canMoveNodeDown(node: IRoleOrgChartNode): boolean {
-    const context = getOrgSiblingContext(this.tree(), node.roleId);
-    return !!context && context.index < context.siblings.length - 1;
-  }
-
-  getEditorRowIndent(depth: number): string {
-    return `${depth * 1.25}rem`;
-  }
-
-  getParentLabel(row: IOrgChartEditorRow): string {
-    return row.parent?.roleDisplayName ?? "Nivel raóz";
-  }
-
-  getEditorDropMessage(row: IOrgChartEditorRow): string {
-    return `Soltar aqué para que reporte a ${row.node.roleDisplayName}`;
-  }
-
   getMemberCount(node: IRoleOrgChartNode): number {
     return node.members.length;
   }
@@ -677,7 +573,7 @@ export class OrgChart {
   getRosterSummary(node: IRoleOrgChartNode): string {
     const memberCount = this.getMemberCount(node);
     const vacantCount = this.getVacantMemberCount(node);
-    return `${memberCount} ${memberCount === 1 ? "miembro" : "miembros"} é ${vacantCount} vacantes`;
+    return `${memberCount} ${memberCount === 1 ? "miembro" : "miembros"} · ${vacantCount} vacantes`;
   }
 
   getNodeAriaLabel(node: IRoleOrgChartNode): string {
@@ -689,7 +585,7 @@ export class OrgChart {
       : ". Presiona Enter o espacio para ver miembros.";
 
     if (node.roleId === ORG_CHART_VIRTUAL_ROOT_ID) {
-      return "Nodo raóz virtual del organigrama.";
+      return "Nodo raíz virtual del organigrama.";
     }
 
     return `Rol ${node.roleDisplayName}${department}, ${this.getRosterSummary(node)}${modeHint}`;
@@ -724,7 +620,7 @@ export class OrgChart {
       return "";
     }
 
-    return `Arrastrando ${dragging.roleDisplayName}: suelta la fila sobre otro rol para cambiar su superior o en la zona raóz para convertirlo en rol de nivel raóz.`;
+    return `Arrastrando ${dragging.roleDisplayName}: suelta la tarjeta sobre otro rol para cambiar su superior o en la zona raíz para convertirlo en rol de nivel raíz.`;
   }
 
   private async executeReassign(
@@ -755,7 +651,7 @@ export class OrgChart {
         this.messageS.add({
           severity: "success",
           summary: "Estructura actualizada",
-          detail: "La jerarquóa del organigrama se actualizé correctamente.",
+          detail: "La jerarquía del organigrama se actualizó correctamente.",
         });
         this.clearSelection();
         await this.loadTree();
@@ -766,7 +662,7 @@ export class OrgChart {
         severity: "error",
         summary: "No se pudo actualizar la estructura",
         detail:
-          "La API rechazé el movimiento o no respondié correctamente. La selección actual se conserva para reintentar.",
+          "La API rechazó el movimiento o no respondió correctamente. La selección actual se conserva para reintentar.",
         life: 5000,
       });
     } finally {

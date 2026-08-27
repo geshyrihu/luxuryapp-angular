@@ -218,6 +218,29 @@
   }
 }
 
+// AI (Moradino IA)
+.btn-ai {
+  @extend .btn;
+  background-color: var(--ds-ai);
+  color: var(--ds-ai-text);
+  border-color: var(--ds-ai);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-ai-hover);
+    border-color: var(--ds-ai-hover);
+  }
+
+  &:active:not(:disabled):not(.is-disabled) {
+    background-color: var(--ds-ai-active);
+    border-color: var(--ds-ai-active);
+  }
+
+  &.is-loading::after {
+    border-color: color-mix(in srgb, var(--ds-ai-text) 30%, transparent);
+    border-top-color: var(--ds-ai-text);
+  }
+}
+
 // Contrast (Negro/Blanco)
 .btn-contrast {
   @extend .btn;
@@ -258,6 +281,19 @@
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
     background-color: var(--ds-help-light);
     border-color: var(--ds-help);
+  }
+}
+
+.btn-outline-ai {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-ai);
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--ds-ai) 50%, transparent);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-ai-light);
+    border-color: var(--ds-ai);
   }
 }
 
@@ -349,6 +385,17 @@
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
     background-color: var(--ds-help-light);
+  }
+}
+
+.btn-ghost-ai {
+  @extend .btn;
+  background-color: color-mix(in srgb, var(--ds-ai), transparent 92%);
+  color: var(--ds-ai);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-ai-light);
   }
 }
 

@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +15,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
 @Component({
   selector: "web-input-textarea",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, TextareaModule],
+  imports: [CommonModule, BaseInputSignal, ReactiveFormsModule, TextareaModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -27,6 +28,8 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [required]="requiredInput()"
       [description]="description()"
       [hidden]="hidden()"
+      [onlyInput]="onlyInput()"
+      [noMargin]="noMargin()"
     >
       <textarea
         pTextarea
@@ -39,12 +42,20 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [maxlength]="maxLength()"
         [autoResize]="!disableResize()"
         [style]="{ resize: disableResize() ? 'none' : 'vertical' }"
-        [class]="customClass()"
+        [ngClass]="customClass()"
         [invalid]="isInvalid()"
         [fluid]="fluid()"
       ></textarea>
     </base-input-signal>
   `,
+  styles: [
+    `
+      :host {
+        display: block;
+        width: 100%;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {

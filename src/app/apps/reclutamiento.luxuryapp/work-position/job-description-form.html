@@ -1,121 +1,150 @@
 <div class="card">
-  <form
-    autocomplete="off"
-    (ngSubmit)="onSubmit()"
-    [formGroup]="form"
-    class="flex flex-column"
-  >
-    <div class="hidden">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
-    </div>
-
-    @if (!readOnly()) {
-    <div class="flex justify-content-end mb-4">
-      <il-button
-        label="Criticar con IA"
-        iconClass="material-symbols-light:bolt"
-        variant="ghost-text"
-        severity="help"
-        (clicked)="analyzeDescription()"
-        [loading]="analyzingDescription()"
-        [disabled]="!applicationRoleName()"
-      />
-      <il-button
-        label="Generar con IA"
-        iconClass="material-symbols-light:auto-awesome-motion"
-        variant="ghost-text"
-        severity="help"
-        (clicked)="openInstructionsDialog()"
-        [loading]="generatingProposal()"
-        [disabled]="!applicationRoleName()"
-      />
-    </div>
-    }
-
-    <custom-input-textarea-signal
-      [control]="form.controls.summary"
-      label="Resumen"
-      placeholder="Descripción breve del puesto..."
-      [rows]="3"
-    />
-    <custom-input-textarea-signal
-      [control]="form.controls.responsibilities"
-      label="Responsabilidades"
-      placeholder="Principales funciones y responsabilidades..."
-      [rows]="4"
-    />
-    <custom-input-textarea-signal
-      [control]="form.controls.skills"
-      label="Habilidades Requeridas"
-      placeholder="Competencias y habilidades necesarias..."
-      [rows]="4"
-    />
-    <custom-input-textarea-signal
-      [control]="form.controls.additionalRequirements"
-      label="Requisitos Adicionales"
-      placeholder="Escolaridad, certificaciones, experiencia..."
-      [rows]="3"
-    />
-    <custom-input-textarea-signal
-      [control]="form.controls.workEnvironment"
-      label="Entorno de Trabajo"
-      placeholder="Condiciones y ambiente laboral..."
-      [rows]="3"
-    />
-    <custom-input-switch-signal
-      [control]="form.controls.requiresWeekendShift"
-      label="¿Requiere cobertura de fin de semana?"
-    />
-
-    @if (!readOnly()) {
-    <div class="flex justify-content-end pt-4">
-      <il-button-save
-        [propertyId]="id() || ''"
-        [disabled]="form.invalid"
-        [submitting]="submitting()"
-      />
-    </div>
-    }
-
-    <lx-modal
-      header="Instrucciones para la IA (Opcional)"
-      [visible]="showInstructionsDialog()"
-      (visibleChange)="showInstructionsDialog.set($event)"
+  <div class="card-body">
+    <form
+      autocomplete="off"
+      (ngSubmit)="onSubmit()"
+      [formGroup]="form"
+      class="flex flex-column gap-3"
     >
-      <p class="mb-3 text-600 text-sm">
-        Agrega contexto adicional para que la IA genere una mejor propuesta.
-      </p>
-      <custom-input-textarea-signal
-        [rows]="5"
-        [(ngModel)]="customInstructions"
-        [ngModelOptions]="{standalone: true}"
-        placeholder="Ej: Enfocarse en atención de lujo, requiere nivel bilingüe..."
-        [onlyInput]="true"
-        [noMargin]="true"
-        customClass="w-full"
-      />
-
-      <div class="flex justify-content-end gap-2 mt-3">
-        <il-button
-          label="Cancelar"
-          iconClass="material-symbols-light:close"
-          variant="ghost-text"
-          severity="secondary"
-          (clicked)="showInstructionsDialog.set(false)"
-        />
-        <il-button
-          label="Generar"
-          iconClass="material-symbols-light:check"
-          severity="help"
-          [loading]="generatingProposal()"
-          (clicked)="generateProposal()"
+      <div class="hidden">
+        <custom-input-text-signal
+          [control]="form.controls.id"
+          hidden
+          label="Id"
+          [readonly]="true"
+          [horizontal]="false"
         />
       </div>
-    </lx-modal>
-  </form>
+
+      @if (!readOnly()) {
+      <div class="flex justify-content-end gap-2 mb-2">
+        <il-button
+          label="Criticar con IA"
+          iconClass="material-symbols-light:psychology"
+          variant="ghost"
+          severity="ai"
+          (clicked)="analyzeDescription()"
+          [loading]="analyzingDescription()"
+          [disabled]="!applicationRoleName()"
+        />
+        <il-button
+          label="Generar con IA"
+          iconClass="material-symbols-light:auto-awesome-motion"
+          variant="ghost"
+          severity="ai"
+          (clicked)="openInstructionsDialog()"
+          [loading]="generatingProposal()"
+          [disabled]="!applicationRoleName()"
+        />
+      </div>
+      }
+
+      <div class="grid">
+        <div class="col-12">
+          <custom-input-textarea-signal
+            [control]="form.controls.summary"
+            label="Resumen"
+            placeholder="Descripción breve del puesto..."
+            [rows]="3"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.responsibilities"
+            label="Responsabilidades"
+            placeholder="Principales funciones y responsabilidades..."
+            [rows]="4"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.skills"
+            label="Habilidades Requeridas"
+            placeholder="Competencias y habilidades necesarias..."
+            [rows]="4"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.additionalRequirements"
+            label="Requisitos Adicionales"
+            placeholder="Escolaridad, certificaciones, experiencia..."
+            [rows]="3"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.workEnvironment"
+            label="Entorno de Trabajo"
+            placeholder="Condiciones y ambiente laboral..."
+            [rows]="3"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12">
+          <custom-input-switch-signal
+            [control]="form.controls.requiresWeekendShift"
+            label="¿Requiere cobertura de fin de semana?"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+
+      @if (!readOnly()) {
+      <div class="flex justify-content-end pt-3">
+        <il-button-save
+          [propertyId]="id() || ''"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+      }
+
+      <lx-modal
+        header="Instrucciones para la IA (Opcional)"
+        [visible]="showInstructionsDialog()"
+        (visibleChange)="showInstructionsDialog.set($event)"
+      >
+        <p class="mb-3 text-600 text-sm">
+          Agrega contexto adicional para que la IA genere una mejor propuesta.
+        </p>
+        <custom-input-textarea-signal
+          [rows]="5"
+          [(ngModel)]="customInstructions"
+          [ngModelOptions]="{standalone: true}"
+          placeholder="Ej: Enfocarse en atención de lujo, requiere nivel bilingüe..."
+          [onlyInput]="true"
+          [noMargin]="true"
+          customClass="w-full"
+          [horizontal]="false"
+        />
+
+        <div class="flex justify-content-end gap-2 mt-3">
+          <il-button
+            label="Cancelar"
+            iconClass="material-symbols-light:close"
+            variant="ghost"
+            severity="secondary"
+            (clicked)="showInstructionsDialog.set(false)"
+          />
+          <il-button
+            label="Generar"
+            iconClass="material-symbols-light:check"
+            severity="ai"
+            [loading]="generatingProposal()"
+            (clicked)="generateProposal()"
+          />
+        </div>
+      </lx-modal>
+    </form>
+  </div>
 </div>

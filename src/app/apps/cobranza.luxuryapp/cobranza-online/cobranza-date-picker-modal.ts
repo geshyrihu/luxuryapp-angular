@@ -1,12 +1,12 @@
 import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 
 @Component({
   selector: "app-cobranza-date-picker-modal",
-  standalone: true,
+
   imports: [CustomInputDateSignal, ReactiveFormsModule, WebButtonLabel],
   template: `
     <div class="p-4">
@@ -24,11 +24,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
           type="secondary"
           size="small"
         />
-        <il-button
-          [label]="'Aceptar'"
-          (clicked)="onAccept()"
-          size="small"
-        />
+        <il-button [label]="'Aceptar'" (clicked)="onAccept()" size="small" />
       </div>
     </div>
   `,
@@ -37,7 +33,8 @@ export class CobranzaDatePickerModalComponent {
   private ref = inject(DynamicDialogRef);
   private config = inject(DynamicDialogConfig);
 
-  readonly dateControl: FormControl = this.config.data?.dateControl || new FormControl();
+  readonly dateControl: FormControl =
+    this.config.data?.dateControl || new FormControl();
 
   onAccept() {
     this.ref.close(this.dateControl.value);

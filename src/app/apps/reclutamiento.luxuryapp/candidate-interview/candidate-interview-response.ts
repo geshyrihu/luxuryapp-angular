@@ -1,4 +1,4 @@
-import { ROUTES } from "src/app/routing/route-paths";
+import { CommonModule, DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,32 +7,31 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { CommonModule, DatePipe } from "@angular/common";
-import { firstValueFrom } from "rxjs";
+import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { CandidateInterviewFeedbackForm } from "./candidate-interview-feedback-form";
+import { firstValueFrom } from "rxjs";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "src/app/core/enums/candidate-decision";
 import { CandidateRejectionReason } from "src/app/core/enums/candidate-rejection-reason";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { FormsModule } from "@angular/forms";
-import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
-import { MappedPTag } from "../recruitment-shared/mapped-p-tag";
-import { AGENDA_STATUS_TAG_OPTIONS } from "../recruitment-shared/agenda-status-tag-options";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { ROUTES } from "src/app/routing/route-paths";
+import { AGENDA_STATUS_TAG_OPTIONS } from "../recruitment-shared/agenda-status-tag-options";
+import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
+import { MappedPTag } from "../recruitment-shared/mapped-p-tag";
+import { CandidateInterviewFeedbackForm } from "./candidate-interview-feedback-form";
 import { CandidateInterviewResponseDto } from "./interfaces/candidate-interview-response.dto";
 import { InterviewerActionRequestDto } from "./interfaces/interviewer-action-request.dto";
 
 @Component({
   selector: "app-candidate-interview-response",
-  standalone: true,
   templateUrl: "./candidate-interview-response.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -68,7 +67,9 @@ export class CandidateInterviewResponse implements OnInit {
   readonly loading = signal(true);
   readonly actionLoading = signal(false);
   readonly showReasonModal = signal(false);
-  readonly pendingAction = signal<"markNoShow" | "reject" | "approve" | null>(null);
+  readonly pendingAction = signal<"markNoShow" | "reject" | "approve" | null>(
+    null,
+  );
   readonly pendingDecision = signal<CandidateDecision | null>(null);
   readonly selectedReason = signal<number | null>(null);
   readonly reasonOptions = signal<SelectItemDto[]>([]);
@@ -93,7 +94,9 @@ export class CandidateInterviewResponse implements OnInit {
     try {
       const result =
         await this.apiResponseS.onGetItem<CandidateInterviewResponseDto>(
-          EndpointsReclutamiento.CandidateProcesses.interviewResponse(applicationId),
+          EndpointsReclutamiento.CandidateProcesses.interviewResponse(
+            applicationId,
+          ),
         );
       if (result) {
         this.interviewData.set(result);
@@ -117,8 +120,10 @@ export class CandidateInterviewResponse implements OnInit {
       .openDialog(
         CandidateInterviewFeedbackForm,
         {
-          candidateApplicationId: interviewData?.candidateApplicationId ?? this.applicationId(),
-          candidateProcessId: interviewData?.candidateProcessId ?? this.candidateProcessId(),
+          candidateApplicationId:
+            interviewData?.candidateApplicationId ?? this.applicationId(),
+          candidateProcessId:
+            interviewData?.candidateProcessId ?? this.candidateProcessId(),
         },
         "Retroalimentación de entrevista",
         this.dialogHandlerS.sizeLg,
@@ -229,4 +234,3 @@ export class CandidateInterviewResponse implements OnInit {
     this.loadInterviewResponse(identifier);
   }
 }
-

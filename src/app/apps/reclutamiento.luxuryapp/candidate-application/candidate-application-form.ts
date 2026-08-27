@@ -6,22 +6,23 @@ import {
   signal,
 } from "@angular/core";
 import {
+  FormArray,
   FormControl,
   FormGroup,
-  FormArray,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -31,18 +32,17 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
-import { CandidateApplicationDetail } from "./interfaces/candidate-application";
+import { CandidateForm } from "../candidate/candidate-form";
 import {
   CandidateDetail,
   CandidateWorkExperienceAddOrEdit,
   CandidateWorkExperienceItem,
 } from "../candidate/interfaces/candidate.dto";
-import { CandidateForm } from "../candidate/candidate-form";
+import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
+import { CandidateApplicationDetail } from "./interfaces/candidate-application";
 
 @Component({
   selector: "app-candidate-application-form",
-  standalone: true,
   templateUrl: "./candidate-application-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -58,6 +58,7 @@ import { CandidateForm } from "../candidate/candidate-form";
     CandidateCvUpload,
     WebButtonLabelSave,
     WebButtonLabel,
+    LxTag,
   ],
 })
 export class CandidateApplicationForm implements OnInit {
@@ -143,7 +144,7 @@ export class CandidateApplicationForm implements OnInit {
       this.applyInterviewerValidators();
       this.applyInterviewTimeValidation();
     });
-    
+
     this.applyDialogDefaults();
 
     if (!this.editingId) {
@@ -151,7 +152,7 @@ export class CandidateApplicationForm implements OnInit {
     }
     this.form.controls["applicationDate"].disable({ emitEvent: false });
     this.applyInterviewerValidators();
-    
+
     // We can remove the manual check for requestPositionId here since applyDialogDefaults will trigger the subscription.
     // However, if the subscription uses async/await, it's fine.
     // Actually, if requestPositionId was set in applyDialogDefaults, it will trigger onLoadInterviewersForRequestPosition.
@@ -178,7 +179,6 @@ export class CandidateApplicationForm implements OnInit {
     if (vacancies) {
       this.cb_vacancies.set(vacancies);
     }
-
   }
 
   onLoadData() {
@@ -499,9 +499,7 @@ export class CandidateApplicationForm implements OnInit {
 
     this.loadingInterviewers.set(true);
     try {
-      const interviewers = await this.apiResponseS.onGetItem<
-        SelectItemDto[]
-      >(
+      const interviewers = await this.apiResponseS.onGetItem<SelectItemDto[]>(
         EndpointsReclutamiento.InterviewerMatrix.eligibleInterviewersByRequestPosition(
           requestPositionId,
         ),
@@ -513,7 +511,9 @@ export class CandidateApplicationForm implements OnInit {
       const currentValue =
         this.form.controls["operationsInterviewAssignedToUserId"].value;
       if (!options.some((item) => item.value === currentValue)) {
-        this.form.controls["operationsInterviewAssignedToUserId"].setValue(null);
+        this.form.controls["operationsInterviewAssignedToUserId"].setValue(
+          null,
+        );
       }
     } finally {
       this.loadingInterviewers.set(false);
@@ -534,8 +534,7 @@ export class CandidateApplicationForm implements OnInit {
   private applyInterviewTimeValidation(): void {
     const timeControl = this.form.controls["scheduledTime"];
     const dateValue = this.form.controls["scheduledDate"].value as
-      | string
-      | null;
+      string | null;
     const timeValue = timeControl.value as string | null;
 
     if (!dateValue || !timeValue) {
@@ -554,8 +553,7 @@ export class CandidateApplicationForm implements OnInit {
     }
 
     const minTime = new Date(Date.now() + 60 * 60 * 1000);
-    const minMinutes =
-      minTime.getHours() * 60 + minTime.getMinutes();
+    const minMinutes = minTime.getHours() * 60 + minTime.getMinutes();
     const [hours, minutes] = timeValue.split(":").map(Number);
     const selectedMinutes = hours * 60 + minutes;
 
@@ -694,7 +692,8 @@ export class CandidateApplicationForm implements OnInit {
     const validRows = this.candidateWorkExperienceControls
       .map((group) => group.getRawValue())
       .filter(
-        (row) => row.companyName?.trim() && row.jobPosition?.trim() && row.startDate,
+        (row) =>
+          row.companyName?.trim() && row.jobPosition?.trim() && row.startDate,
       );
 
     for (const row of validRows) {

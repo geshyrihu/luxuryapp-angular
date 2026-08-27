@@ -1,19 +1,27 @@
-import { Component, input, signal, computed, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ApiResponseService } from 'src/app/core/http/services/api-response.service';
-import { CustomToastService } from 'src/app/core/services/custom-toast.service';
-import { EndpointsRecursosHumanos } from 'src/app/core/constants/endpoints/recursos-humanos.endpoints';
-import { Endpoints } from 'src/app/core/constants/endpoints/endpoints';
-import { SelectItemDto } from 'src/app/core/interfaces/select-item.dto';
-import { LxDivider } from '@ui/adaptive/divider/divider';
-import { LxFieldset } from '@ui/adaptive/fieldset/fieldset';
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonIcon, WebButtonIconEdit } from "@ui/buttons/web-icon";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { WebButtonIconEdit, WebButtonIcon } from "@ui/buttons/web-icon";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { EndpointsRecursosHumanos } from "src/app/core/constants/endpoints/recursos-humanos.endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import Swal from "sweetalert2";
-import { LxTag } from '@ui/adaptive/tag/tag';
 
 export interface CandidateHiringDocumentListItemDto {
   id: string;
@@ -32,8 +40,8 @@ export interface CandidateHiringDocumentListItemDto {
 }
 
 @Component({
-  selector: 'app-employee-document-list',
-  standalone: true,
+  selector: "app-employee-document-list",
+
   imports: [
     CommonModule,
     FormsModule,
@@ -44,12 +52,13 @@ export interface CandidateHiringDocumentListItemDto {
     WebButtonLabelConfirm,
     WebButtonIconEdit,
     WebButtonIcon,
-    LxTag
+    LxTag,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './employee-document-list.html',  styles: [
-    ':host { display: block; } .documents-shell { display: flex; flex-direction: column; gap: var(--ds-space-lg); padding: var(--ds-space-md); } .file-input-hidden { display: none; } .document-row__pdf { max-width: 60%; }'
-  ]
+  templateUrl: "./employee-document-list.html",
+  styles: [
+    ":host { display: block; } .documents-shell { display: flex; flex-direction: column; gap: var(--ds-space-lg); padding: var(--ds-space-md); } .file-input-hidden { display: none; } .document-row__pdf { max-width: 60%; }",
+  ],
 })
 export class EmployeeDocumentList implements OnInit {
   isReadOnly = input<boolean>(false);
@@ -58,7 +67,7 @@ export class EmployeeDocumentList implements OnInit {
   readonly documentTypes = signal<SelectItemDto[]>([]);
   readonly documents = signal<CandidateHiringDocumentListItemDto[]>([]);
   readonly isLoading = signal(true);
-  
+
   readonly uploadingType = signal<string | null>(null);
   readonly validatingId = signal<string | null>(null);
   readonly rejectingId = signal<string | null>(null);
@@ -73,17 +82,25 @@ export class EmployeeDocumentList implements OnInit {
 
   readonly availableDocumentTypes = computed(() => {
     const docs = this.documents();
-    return this.documentTypes().filter((option) => !docs.some(d => d.documentCatalogId === option.value));
+    return this.documentTypes().filter(
+      (option) => !docs.some((d) => d.documentCatalogId === option.value),
+    );
   });
 
   readonly documentRows = computed(() =>
     this.documents().map((doc) => {
-      const option = this.documentTypes().find((item) => item.value === doc.documentCatalogId);
+      const option = this.documentTypes().find(
+        (item) => item.value === doc.documentCatalogId,
+      );
       return {
-        option: option ?? { label: doc.documentTypeName, value: doc.documentCatalogId, isMandatory: false },
-        document: doc
+        option: option ?? {
+          label: doc.documentTypeName,
+          value: doc.documentCatalogId,
+          isMandatory: false,
+        },
+        document: doc,
       };
-    })
+    }),
   );
 
   async ngOnInit() {
@@ -94,12 +111,16 @@ export class EmployeeDocumentList implements OnInit {
     this.isLoading.set(true);
     try {
       const [documentTypes, documents] = await Promise.all([
-        this.apiResponseS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.documentCatalog),
+        this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+          Endpoints.SelectItems.documentCatalog,
+        ),
         this.apiResponseS.onGetList<CandidateHiringDocumentListItemDto[]>(
-          EndpointsRecursosHumanos.EmployeeDocument.byEmployee(this.employeeId()),
+          EndpointsRecursosHumanos.EmployeeDocument.byEmployee(
+            this.employeeId(),
+          ),
         ),
       ]);
-      
+
       this.documentTypes.set(documentTypes ?? []);
       this.documents.set(documents ?? []);
     } finally {
@@ -113,9 +134,12 @@ export class EmployeeDocumentList implements OnInit {
       this.selectedFile.set(null);
       return;
     }
-    if (!file.name.toLowerCase().endsWith('.pdf') && file.type !== 'application/pdf') {
+    if (
+      !file.name.toLowerCase().endsWith(".pdf") &&
+      file.type !== "application/pdf"
+    ) {
       this.toastS.showError("Solo se permiten archivos PDF");
-      event.target.value = '';
+      event.target.value = "";
       this.selectedFile.set(null);
       return;
     }
@@ -130,13 +154,14 @@ export class EmployeeDocumentList implements OnInit {
     this.isUploadingNew.set(true);
     try {
       const formData = new FormData();
-      formData.append('documentCatalogId', catalogId);
-      formData.append('file', file);
+      formData.append("documentCatalogId", catalogId);
+      formData.append("file", file);
 
-      const result = await this.apiResponseS.onPostFile<CandidateHiringDocumentListItemDto>(
-        EndpointsRecursosHumanos.EmployeeDocument.upload(this.employeeId()),
-        formData
-      );
+      const result =
+        await this.apiResponseS.onPostFile<CandidateHiringDocumentListItemDto>(
+          EndpointsRecursosHumanos.EmployeeDocument.upload(this.employeeId()),
+          formData,
+        );
 
       if (result) {
         this.documents.update((docs) => {
@@ -157,26 +182,32 @@ export class EmployeeDocumentList implements OnInit {
     const file = event.target?.files?.[0];
     if (!file) return;
 
-    if (!file.name.toLowerCase().endsWith('.pdf') && file.type !== 'application/pdf') {
+    if (
+      !file.name.toLowerCase().endsWith(".pdf") &&
+      file.type !== "application/pdf"
+    ) {
       this.toastS.showError("Solo se permiten archivos PDF");
-      if (event.target) event.target.value = '';
+      if (event.target) event.target.value = "";
       return;
     }
 
     this.uploadingType.set(documentCatalogId);
     try {
       const formData = new FormData();
-      formData.append('documentCatalogId', documentCatalogId);
-      formData.append('file', file);
+      formData.append("documentCatalogId", documentCatalogId);
+      formData.append("file", file);
 
-      const result = await this.apiResponseS.onPostFile<CandidateHiringDocumentListItemDto>(
-        EndpointsRecursosHumanos.EmployeeDocument.upload(this.employeeId()),
-        formData
-      );
+      const result =
+        await this.apiResponseS.onPostFile<CandidateHiringDocumentListItemDto>(
+          EndpointsRecursosHumanos.EmployeeDocument.upload(this.employeeId()),
+          formData,
+        );
 
       if (result) {
         this.documents.update((docs) => {
-          const next = docs.filter((item) => item.documentCatalogId !== documentCatalogId);
+          const next = docs.filter(
+            (item) => item.documentCatalogId !== documentCatalogId,
+          );
           next.push(result as CandidateHiringDocumentListItemDto);
           return next;
         });
@@ -185,17 +216,26 @@ export class EmployeeDocumentList implements OnInit {
     } finally {
       this.uploadingType.set(null);
       if (event.target) {
-          event.target.value = '';
+        event.target.value = "";
       }
     }
   }
 
   async onDeleteFile(document: CandidateHiringDocumentListItemDto | null) {
-    if (!document || this.deletingId() || this.validatingId() || this.rejectingId()) return;
+    if (
+      !document ||
+      this.deletingId() ||
+      this.validatingId() ||
+      this.rejectingId()
+    )
+      return;
 
     const { isConfirmed } = await Swal.fire({
       title: "Eliminar documento",
-      text: "Estas seguro de eliminar el archivo de " + document.documentTypeName + "?",
+      text:
+        "Estas seguro de eliminar el archivo de " +
+        document.documentTypeName +
+        "?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "S, eliminar",
@@ -282,6 +322,3 @@ export class EmployeeDocumentList implements OnInit {
     }
   }
 }
-
-
-

@@ -24,7 +24,6 @@ import {
   timeOutline,
 } from "ionicons/icons";
 
-import { SolicitudVacanteForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-vacante/solicitud-vacante-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -42,12 +41,13 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { IWorkPosition } from "./interfaces/work-position.model";
-import { JobDescriptionForm } from "./job-description-form";
-import { WorkPositionHours } from "./work-position-hours";
+import { WorkPositionDetails } from "./work-position-details";
+import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
 
 import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -59,12 +59,14 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-work-position-list",
   templateUrl: "./work-position-list.html",
+  styleUrl: "./work-position-list.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIconActiveDesactive,
     WebButtonIconItem,
     LxTooltipDirective,
     MobileActionMenu,
+    WebButtonLabel,
     MobileButtonLabelActiveDesactive,
     MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
@@ -88,12 +90,40 @@ export class WorkPositionList {
   public aspRoleS = inject(AspRoleService);
   private tableScrollHeightS = inject(TableScrollHeightService);
   private filterRequestsService = inject(FilterRequestsService);
+  private confirmS = inject(ConfirmService);
 
   // --- SIGNALS Y PROPIEDADES ---
   data = signal<IWorkPosition[]>([]);
   scrollHeight = signal<string>("0px");
   state = signal<boolean>(true);
+  selectedDepartment = signal<number | null>(null);
   @ViewChild("dt") dt?: Table;
+
+  readonly uniqueDepartments = computed<number[]>(() => {
+    const depts = new Set<number>();
+    this.data().forEach((p) => {
+      if (p.departament !== null && p.departament !== undefined) {
+        depts.add(p.departament);
+      }
+    });
+    return Array.from(depts).sort((a, b) =>
+      this.getDepartamentLabel(a).localeCompare(this.getDepartamentLabel(b)),
+    );
+  });
+
+  readonly filteredData = computed<IWorkPosition[]>(() => {
+    const selected = this.selectedDepartment();
+    const positions = this.data();
+    const filtered =
+      selected === null
+        ? positions
+        : positions.filter((p) => p.departament === selected);
+    return [...filtered].sort((a, b) => {
+      const depA = a.departament ?? -1;
+      const depB = b.departament ?? -1;
+      return depA - depB;
+    });
+  });
 
   // --- CONSTANTES ---
   readonly AspRole = ApplicationRole;
@@ -120,6 +150,9 @@ export class WorkPositionList {
     [Department.Recepcion]: "Recepción",
     [Department.Mensajeria]: "Mensajería",
     [Department.Ludoteca]: "Ludoteca",
+    [Department.Almacen]: "Almacén",
+    [Department.Amenidades]: "Amenidades",
+    [Department.Asistente]: "Asistente",
     [Department.NA]: "Sin Departamento",
   };
 
@@ -173,7 +206,7 @@ export class WorkPositionList {
     return !item.applicationUserId;
   }
 
-    onAdministerEmployee(employeeId: string, userId: string) {
+  onAdministerEmployee(employeeId: string, userId: string) {
     this.router.navigate(["/recruitment/empleado", employeeId || "0", userId]);
   }
 
@@ -182,41 +215,32 @@ export class WorkPositionList {
     this.router.navigate(["/directory/empleado", "0", userId]);
   }
 
-  async onModalSolicitudVacante(workPositionId: string) {
+  async onModalDetails(item: IWorkPosition) {
     await this.dialogHandlerS.openDialog(
-      SolicitudVacanteForm,
-      { workPositionId },
-      "Solicitar vacante",
-      DialogSize.md,
-    );
-    this.onLoadData();
-  }
-
-  async onModalJobDescription(
-    id: string,
-    jobDescriptionId: string,
-    roleName: string,
-  ) {
-    await this.dialogHandlerS.openDialog(
-      JobDescriptionForm,
+      WorkPositionDetails,
       {
-        id: jobDescriptionId,
-        workPositionId: id,
-        applicationRoleName: roleName,
-        readOnly: true,
+        id: item.id,
+        jobDescriptionId: item.jobDescriptionId,
+        applicationRoleName: item.applicationRoleName,
+        folio: item.folio,
+        departamentLabel: this.getDepartamentLabel(item.departament),
       },
-      "Descripción de puesto: " + roleName,
-      DialogSize.md,
+      "Detalles del puesto: " + item.applicationRoleName,
+      DialogSize.full,
     );
   }
 
-  async onModalHoursWorkPosition(id: string) {
-    await this.dialogHandlerS.openDialog(
-      WorkPositionHours,
-      { id, readOnly: true },
-      "Horarios de trabajo",
-      DialogSize.md,
+  async onRequestDelete(item: IWorkPosition): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este puesto?",
+      "Confirmar eliminación",
     );
+    if (ok) this.onDelete(item.id);
+  }
+
+  async onDelete(id: string): Promise<void> {
+    const res = await this.apiS.onDelete(`work-positions/${id}`);
+    if (res) this.onLoadData();
   }
 
   /** Retorna true cuando el puesto no tiene rol asignado (requiere actualización). */
@@ -240,14 +264,4 @@ export class WorkPositionList {
     // Lígica para mostrar ticket vigente
     return true;
   }
-
-  shouldShowVacancyRequest(item: IWorkPosition): boolean {
-    const isBlockingStatus =
-      item.positionRequest?.status === 0 || // Pendiente
-      item.positionRequest?.status === 3; // Proceso
-    return !isBlockingStatus;
-  }
 }
-
-
-

@@ -8,13 +8,13 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { fromEvent } from "rxjs";
-import { CommitteeCobranzaWeb } from "./committee-cobranza-web";
-import { CommitteeCobranzaMobile } from "./committee-cobranza-mobile";
 import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service";
+import { CommitteeCobranzaMobile } from "./committee-cobranza-mobile";
+import { CommitteeCobranzaWeb } from "./committee-cobranza-web";
 
 @Component({
   selector: "app-committee-cobranza-wrapper",
-  standalone: true,
+
   imports: [CommitteeCobranzaWeb, CommitteeCobranzaMobile],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

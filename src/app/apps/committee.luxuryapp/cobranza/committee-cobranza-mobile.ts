@@ -13,7 +13,7 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
 
 @Component({
   selector: "app-committee-cobranza-mobile",
-  standalone: true,
+
   imports: [CurrencyPipe, CommonModule, AppIcon, AppProgressBar, LxTag],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-cobranza-mobile.html",

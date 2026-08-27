@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -24,7 +29,6 @@ interface DuplicateEmployeeWarningDialogData {
 
 @Component({
   selector: "app-duplicate-employee-warning-modal",
-  standalone: true,
   templateUrl: "./duplicate-employee-warning-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [WebButtonLabel],
@@ -41,7 +45,11 @@ interface DuplicateEmployeeWarningDialogData {
       }
 
       .duplicate-warning__hero {
-        background: color-mix(in srgb, var(--orange-500) 12%, var(--surface-card));
+        background: color-mix(
+          in srgb,
+          var(--orange-500) 12%,
+          var(--surface-card)
+        );
         border-bottom: 1px solid var(--surface-border);
         padding: var(--ds-space-md);
       }

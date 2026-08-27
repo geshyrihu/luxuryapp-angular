@@ -1,11 +1,16 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { Menubar } from "@ui/web/menubar/menubar";
 import { MenuItem } from "@ui/web/primeng-api/primeng-api";
 import { filter, map, startWith } from "rxjs/operators";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { FilterRequests } from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/recruitment-shared/filter-requests";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 
 type ShellFilterConfig = {
   apiUrl?: string;
@@ -42,7 +47,6 @@ const SEARCH_ONLY_FILTER_CONFIG: ShellFilterConfig = {
 
 @Component({
   selector: "app-recruitment-shell",
-  standalone: true,
   templateUrl: "./recruitment-shell.html",
   styleUrl: "./recruitment-shell.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

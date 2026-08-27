@@ -89,6 +89,7 @@ export const EndpointsReclutamiento = {
       `request-employee-register/check-duplicates/${candidateId}`,
     reactivateAndMigrate: "request-employee-register/reactivate-and-migrate",
     completeDraft: (id: Id) => `request-employee-register/${id}/complete-draft`,
+    conclude: (id: Id) => `request-employee-register/${id}/conclude`,
     updateStatus: (id: Id) => `request-employee-register/${id}/status`,
     delete: (id: Id) => `request-employee-register/${id}`,
     exportExcel: "request-employee-register/export-excel",

@@ -275,6 +275,30 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     return item.percentageIncrease > 5;
   }
 
+  /**
+   * Diferencia entre el monto propuesto y el gasto promedio mensual ejecutado (columna DIF).
+   * A diferencia de `item.difference` (que compara contra el presupuesto base/año anterior),
+   * esta comparación usa la misma base que `isDeficit` y la columna "PROM MENSUAL".
+   * @param item Partida a evaluar
+   */
+  getItemDifference(item: BudgetProposalItemDTO): number {
+    if (item.esFilaAgrupadora) return 0;
+    return item.proposedAmount - this.getAverageMonthlyExpense(item);
+  }
+
+  /**
+   * Porcentaje de variación del monto propuesto respecto al gasto promedio mensual ejecutado (columna %).
+   * @param item Partida a evaluar
+   */
+  getItemPercentageIncrease(item: BudgetProposalItemDTO): number {
+    if (item.esFilaAgrupadora) return 0;
+    const avgExpense = this.getAverageMonthlyExpense(item);
+    if (avgExpense === 0) {
+      return item.proposedAmount > 0 ? 100 : 0;
+    }
+    return ((item.proposedAmount - avgExpense) / avgExpense) * 100;
+  }
+
   /** Número de filas por página para la tabla. */
   tablePrimeNgRows: number = tablePrimeNgRows();
   /** Opciones de número de filas por página. */
@@ -669,10 +693,12 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   // --------------------------------------------------------------------------------
 
   /**
-   * Recalcula el monto total de la propuesta sumando los `proposedAmount` de las partidas visibles.
+   * Recalcula el monto total de la propuesta sumando los `proposedAmount` de TODAS las partidas
+   * (allProposalItems), no solo las visibles, para que ocultar Extraordinarios/Proyectos
+   * con los toggles no subestime el total mostrado en el footer.
    */
   recalculateTotals(): void {
-    const newTotal = this.proposalItems().reduce((sum, i) => {
+    const newTotal = this.allProposalItems().reduce((sum, i) => {
       return sum + (i.esFilaAgrupadora ? 0 : Number(i.proposedAmount) || 0);
     }, 0);
 
@@ -957,7 +983,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   //   return `${change > 0 ? "+" : ""}${change.toFixed(0)}%`;
   // }
   getTotalPercentageChange(): number {
-    const currentTotal = this.getSumaTotalPresupuestoActual();
+    const currentTotal = this.getTotalAverageMonthlyExpense();
     const proposeDTOtal = this.currentProposal()?.totalAmount;
 
     if (currentTotal === null || proposeDTOtal === null || currentTotal === 0) {
@@ -966,6 +992,15 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
     const change = ((proposeDTOtal - currentTotal) / currentTotal) * 100;
     return Math.round(change); // O change si prefieres sin redondear
+  }
+
+  /**
+   * Diferencia total entre el monto propuesto y el gasto promedio mensual ejecutado (footer DIF).
+   * Misma base de comparación que `getItemDifference` a nivel de fila.
+   */
+  getTotalDifferenceVsAverage(): number {
+    const proposeDTOtal = this.currentProposal()?.totalAmount ?? 0;
+    return proposeDTOtal - this.getTotalAverageMonthlyExpense();
   }
 
   // --------------------------------------------------------------------------------

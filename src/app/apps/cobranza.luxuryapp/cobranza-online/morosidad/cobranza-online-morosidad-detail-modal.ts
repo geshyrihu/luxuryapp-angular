@@ -1,26 +1,24 @@
-import { CommonModule } from "@angular/common";
+import { CommonModule, NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  computed,
-  signal,
   OnInit,
+  signal,
 } from "@angular/core";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { SharedModule } from "@ui/web/primeng-api/primeng-api";
-import { CobranzaOnlineDashboardDepartment } from "../interfaces/cobranza-online-dashboard.model";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { EndpointsCobranza } from "src/app/core/constants/endpoints/cobranza.endpoints";
-import { AspelCobranzaDetalleResponse } from "../../aspel-cobranza-haus/aspel-cobranza-haus.models";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { NgClass } from "@angular/common";
+import { SharedModule } from "@ui/web/primeng-api/primeng-api";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { EndpointsCobranza } from "src/app/core/constants/endpoints/cobranza.endpoints";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AspelCobranzaDetalleResponse } from "../../aspel-cobranza-haus/aspel-cobranza-haus.models";
+import { CobranzaOnlineDashboardDepartment } from "../interfaces/cobranza-online-dashboard.model";
 
 @Component({
   selector: "app-cobranza-online-morosidad-detail-modal",
-  standalone: true,
+
   imports: [CommonModule, SharedModule, LxTag, NgClass, LxSpinner, AppIcon],
   templateUrl: "./cobranza-online-morosidad-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,12 +43,18 @@ export class CobranzaOnlineMorosidadDetailModalComponent implements OnInit {
       const numCta = this.data.accountNumber;
 
       if (!customerId || !numCta) {
-        throw new Error("Faltan parámetros para consultar el detalle de cobranza");
+        throw new Error(
+          "Faltan parámetros para consultar el detalle de cobranza",
+        );
       }
 
-      const res = await this.apiResponseS.onGetItem<AspelCobranzaDetalleResponse>(
-        EndpointsCobranza.AspelCobranza.detalleCobranzaRango(customerId, numCta)
-      );
+      const res =
+        await this.apiResponseS.onGetItem<AspelCobranzaDetalleResponse>(
+          EndpointsCobranza.AspelCobranza.detalleCobranzaRango(
+            customerId,
+            numCta,
+          ),
+        );
       this.detail.set(res || null);
     } catch (e) {
       console.error("Error cargando detalle de cobranza", e);
@@ -63,11 +67,13 @@ export class CobranzaOnlineMorosidadDetailModalComponent implements OnInit {
     concepto: string,
   ): "success" | "info" | "warn" | "danger" | "secondary" | "contrast" {
     const normalized = concepto.toUpperCase();
-    if (normalized.includes("MTTO") || normalized.includes("MANTENIMIENTO")) return "info";
+    if (normalized.includes("MTTO") || normalized.includes("MANTENIMIENTO"))
+      return "info";
     if (normalized.includes("EXTRA")) return "warn";
     if (normalized.includes("RESERVA")) return "success";
     if (normalized.includes("TARJETA")) return "contrast";
-    if (normalized.includes("PENA") || normalized.includes("MORATORIO")) return "danger";
+    if (normalized.includes("PENA") || normalized.includes("MORATORIO"))
+      return "danger";
     return "secondary";
   }
 

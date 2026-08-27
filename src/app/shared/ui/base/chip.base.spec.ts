@@ -4,7 +4,6 @@ import { ChipBase } from "./chip.base";
 
 @Component({
   selector: "test-chip",
-
   template: "",
 })
 class TestChip extends ChipBase {}

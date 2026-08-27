@@ -15,7 +15,6 @@ import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interv
 
 @Component({
   selector: "app-candidate-interview-pending-mobile",
-  standalone: true,
   templateUrl: "./candidate-interview-pending-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

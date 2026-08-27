@@ -7,7 +7,6 @@ import { PanelBase } from "@ui/base/panel.base";
 
 @Component({
   selector: "ili-panel",
-
   template: `
     <div class="ili-panel">
       @if (header()) {

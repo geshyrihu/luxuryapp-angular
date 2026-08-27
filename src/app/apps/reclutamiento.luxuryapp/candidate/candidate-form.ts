@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,48 +8,55 @@ import {
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { firstValueFrom } from "rxjs";
-import { debounceTime, distinctUntilChanged, filter, switchMap } from "rxjs/operators";
 import {
-  FormArray,
   AbstractControl,
+  FormArray,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { HttpErrorResponse } from "@angular/common/http";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
+import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
+import { firstValueFrom } from "rxjs";
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  switchMap,
+} from "rxjs/operators";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { ApiResponseService, ApiResponseDto } from "src/app/core/http/services/api-response.service";
-import { DataConnectorService } from "src/app/core/services/data-connector.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CandidateStatus } from "src/app/core/enums/candidate-status";
+import {
+  ApiResponseDto,
+  ApiResponseService,
+} from "src/app/core/http/services/api-response.service";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
+import Swal from "sweetalert2";
 import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
 import { CandidatePhotoUpload } from "../recruitment-shared/candidate-photo-upload";
+import { CandidateFormGroup } from "./interfaces/candidate-form.interface";
 import {
   CandidateDetail,
+  CandidateDuplicateCheckResult,
   CandidatePhoneLookup,
   CandidateWorkExperienceAddOrEdit,
   CandidateWorkExperienceItem,
-  CandidateDuplicateCheckResult,
 } from "./interfaces/candidate.dto";
-import { CandidateFormGroup } from "./interfaces/candidate-form.interface";
-import Swal from "sweetalert2";
 
 function minimumAdultAgeValidator(control: AbstractControl) {
   const rawValue = control.value;
@@ -78,7 +86,7 @@ enum DuplicateMatchType {
   selector: "app-candidate-form",
   templateUrl: "./candidate-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
+
   imports: [
     ReactiveFormsModule,
     CustomInputDateSignal,
@@ -173,7 +181,10 @@ export class CandidateForm implements OnInit {
       .pipe(
         debounceTime(400),
         distinctUntilChanged(),
-        filter((value): value is string => !!value && value.replace(/\D/g, "").length >= 10),
+        filter(
+          (value): value is string =>
+            !!value && value.replace(/\D/g, "").length >= 10,
+        ),
         switchMap((phone) =>
           this.apiResponseS.onGetItem<CandidatePhoneLookup | null>(
             EndpointsReclutamiento.Candidates.searchByPhone(phone),
@@ -183,7 +194,9 @@ export class CandidateForm implements OnInit {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((found) => {
-        this.duplicateCandidate.set(found && found.id !== this.id ? found : null);
+        this.duplicateCandidate.set(
+          found && found.id !== this.id ? found : null,
+        );
       });
 
     this.form.controls.email.valueChanges
@@ -252,9 +265,8 @@ export class CandidateForm implements OnInit {
     const found = this.duplicateCandidate();
     if (!found) return;
 
-    const { CandidateApplicationForm } = await import(
-      "../candidate-application/candidate-application-form"
-    );
+    const { CandidateApplicationForm } =
+      await import("../candidate-application/candidate-application-form");
 
     this.ref.close();
     await this.dialogHandlerS.openDialog(
@@ -305,8 +317,7 @@ export class CandidateForm implements OnInit {
     } catch (error: unknown) {
       const httpError = error as HttpErrorResponse;
       const body = httpError?.error as
-        | ApiResponseDto<CandidateDuplicateCheckResult>
-        | undefined;
+        ApiResponseDto<CandidateDuplicateCheckResult> | undefined;
       if (body?.data) {
         this.handleDuplicateResult(body.data);
       } else {
@@ -317,7 +328,9 @@ export class CandidateForm implements OnInit {
     }
   }
 
-  private handleDuplicateResult(data: CandidateDuplicateCheckResult | null): void {
+  private handleDuplicateResult(
+    data: CandidateDuplicateCheckResult | null,
+  ): void {
     if (!data) {
       this.duplicateBlockSave.set(false);
       return;
@@ -344,7 +357,9 @@ export class CandidateForm implements OnInit {
   }
 
   /** matchType 3 (User): ofrece autocompletar el formulario con los datos del usuario. */
-  private async offerUserImport(data: CandidateDuplicateCheckResult): Promise<void> {
+  private async offerUserImport(
+    data: CandidateDuplicateCheckResult,
+  ): Promise<void> {
     const user = data.userData;
     if (!user) {
       this.duplicateBlockSave.set(false);
@@ -381,7 +396,10 @@ export class CandidateForm implements OnInit {
     formData.append("Email", this.form.controls.email.value ?? "");
     formData.append("BirthDate", this.form.controls.birthDate.value ?? "");
 
-    formData.append("RecruitmentSource", String(this.form.controls.recruitmentSource.value ?? 0));
+    formData.append(
+      "RecruitmentSource",
+      String(this.form.controls.recruitmentSource.value ?? 0),
+    );
 
     const recruitmentSourceId = this.form.controls.recruitmentSourceId.value;
     if (recruitmentSourceId) {
@@ -521,7 +539,10 @@ export class CandidateForm implements OnInit {
   private async syncWorkExperiences(candidateId: string) {
     const validRows = this.workExperienceControls
       .map((group) => group.getRawValue())
-      .filter((row) => row.companyName?.trim() && row.jobPosition?.trim() && row.startDate);
+      .filter(
+        (row) =>
+          row.companyName?.trim() && row.jobPosition?.trim() && row.startDate,
+      );
 
     const keptIds = new Set<string>();
 

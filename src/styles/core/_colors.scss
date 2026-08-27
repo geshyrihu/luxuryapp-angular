@@ -112,6 +112,19 @@ $help-800: $info-800 !default;
 $help-900: $info-900 !default;
 $help-950: $info-950 !default;
 
+// AI (Violeta Moradino — identidad IA) — rampa Tailwind Violet, ancla 600 #7c3aed
+$ai-50: #f5f3ff !default;
+$ai-100: #ede9fe !default;
+$ai-200: #ddd6fe !default;
+$ai-300: #c4b5fd !default;
+$ai-400: #a78bfa !default;
+$ai-500: #8b5cf6 !default;
+$ai-600: #7c3aed !default; // AI · ANCLA MORADINA
+$ai-700: #6d28d9 !default;
+$ai-800: #5b21b6 !default;
+$ai-900: #4c1d95 !default;
+$ai-950: #2e1065 !default;
+
 // Terciario (Cyan)
 $tertiary-50: $info-50 !default;
 $tertiary-100: $info-100 !default;
@@ -204,6 +217,13 @@ $color-info-light: $info-50 !default;
 $color-help: $help-600 !default;
 $color-help-hover: $help-700 !default;
 $color-help-light: $help-50 !default;
+
+// Estados interactivos — AI (Moradino IA)
+$color-ai: $ai-600 !default;
+$color-ai-hover: $ai-700 !default;
+$color-ai-active: $ai-800 !default;
+$color-ai-light: $ai-50 !default;
+$color-ai-text: $neutral-0 !default;
 
 // Estados interactivos — Contrast
 $color-contrast: $neutral-950 !default;

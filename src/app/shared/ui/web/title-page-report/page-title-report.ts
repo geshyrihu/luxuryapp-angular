@@ -20,7 +20,6 @@ import { PeriodMonthService } from "src/app/core/services/periodo-month.service"
  */
 @Component({
   selector: "page-title-report",
-
   template: `
     <div class="grid align-items-center">
       <!-- Logo Cliente -->

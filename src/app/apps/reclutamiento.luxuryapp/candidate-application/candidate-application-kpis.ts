@@ -14,17 +14,16 @@ import { ChartJsData } from "@ui/web/charts/echarts-adapters";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   MappedPTag,
   MappedTagOption,
 } from "../recruitment-shared/mapped-p-tag";
 import { CandidateApplicationKpisDto } from "./interfaces/candidate-application";
-import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
 
 @Component({
   selector: "app-candidate-application-kpis",
-  standalone: true,
   templateUrl: "./candidate-application-kpis.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -403,7 +402,11 @@ export class CandidateApplicationKpis implements OnInit {
               : mediana <= sla * 2
                 ? "var(--yellow-500)"
                 : "var(--red-500)",
-            p90 <= sla ? "var(--green-500)" : p90 <= sla * 2 ? "var(--yellow-500)" : "var(--red-500)",
+            p90 <= sla
+              ? "var(--green-500)"
+              : p90 <= sla * 2
+                ? "var(--yellow-500)"
+                : "var(--red-500)",
             "var(--blue-500)",
           ],
         },
@@ -449,4 +452,3 @@ export class CandidateApplicationKpis implements OnInit {
     };
   });
 }
-

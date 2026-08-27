@@ -6,4 +6,5 @@ export interface SelectItemDto<T = any> {
   sortOrder?: number;
   image?: string;
   isMandatory?: boolean;
+  isActiveEmployee?: boolean;
 }

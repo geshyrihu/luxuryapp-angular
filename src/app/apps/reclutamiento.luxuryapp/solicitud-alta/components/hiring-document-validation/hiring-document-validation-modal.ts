@@ -4,7 +4,7 @@ import { HiringDocumentValidation } from "./hiring-document-validation";
 
 @Component({
   selector: "app-hiring-document-validation-modal",
-  standalone: true,
+
   imports: [HiringDocumentValidation],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./hiring-document-validation-modal.html",

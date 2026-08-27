@@ -77,6 +77,19 @@
   --help-900: #{c.$help-900};
   --help-950: #{c.$help-950};
 
+  // Paleta AI (Moradina — identidad IA)
+  --ai-50: #{c.$ai-50};
+  --ai-100: #{c.$ai-100};
+  --ai-200: #{c.$ai-200};
+  --ai-300: #{c.$ai-300};
+  --ai-400: #{c.$ai-400};
+  --ai-500: #{c.$ai-500};
+  --ai-600: #{c.$ai-600};
+  --ai-700: #{c.$ai-700};
+  --ai-800: #{c.$ai-800};
+  --ai-900: #{c.$ai-900};
+  --ai-950: #{c.$ai-950};
+
   // Contrast (desde core/_colors.scss)
   --contrast-0: #{c.$contrast-0};
   --contrast-500: #{c.$contrast-500};
@@ -87,6 +100,13 @@
   --ds-help-hover: #{c.$help-700};
   --ds-help-active: #{c.$help-800};
   --ds-help-light: #{c.$help-50};
+
+  // AI (Moradina — identidad IA)
+  --ds-ai: #{c.$ai-600};
+  --ds-ai-hover: #{c.$ai-700};
+  --ds-ai-active: #{c.$ai-800};
+  --ds-ai-light: #{c.$ai-50};
+  --ds-ai-text: #{c.$neutral-0};
 
   // Contrast — DS tokens
   --ds-contrast: #{c.$contrast-500};
@@ -706,6 +726,11 @@ body.theme-dark {
   --ds-info: #{c.$info-300};
   --ds-info-hover: #{c.$info-200};
   --ds-info-light: color-mix(in srgb, #{c.$info-400}, transparent 88%);
+
+  --ds-ai: #{c.$ai-300};
+  --ds-ai-hover: #{c.$ai-200};
+  --ds-ai-light: color-mix(in srgb, #{c.$ai-400}, transparent 88%);
+  --ds-ai-text: #{c.$ai-900};
 
   // Acentos AA como texto / estados — dark (variantes 200, claras sobre navy)
   --ds-accent-text-success: #{c.$success-200};

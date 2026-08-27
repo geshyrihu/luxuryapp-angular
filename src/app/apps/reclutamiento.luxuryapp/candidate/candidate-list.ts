@@ -34,7 +34,7 @@ import { CandidateListMobile } from "./mobile/candidate-list-mobile";
   selector: "app-candidate-list",
   templateUrl: "./candidate-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
+
   imports: [CandidateListDesktop, CandidateListMobile],
 })
 export class CandidateList implements OnInit {

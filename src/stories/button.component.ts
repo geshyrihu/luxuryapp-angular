@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from "@angular/common";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 @Component({
-  selector: 'storybook-button',
-  standalone: true,
+  selector: "storybook-button",
+
   imports: [CommonModule],
   template: `
     <button
@@ -15,7 +15,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
       {{ label }}
     </button>
   `,
-  styleUrls: ['./button.css'],
+  styleUrls: ["./button.css"],
 })
 export class ButtonComponent {
   /** Is this the principal call to action on the page? */
@@ -28,7 +28,7 @@ export class ButtonComponent {
 
   /** How large should the button be? */
   @Input()
-  size: 'small' | 'medium' | 'large' = 'medium';
+  size: "small" | "medium" | "large" = "medium";
 
   /**
    * Button contents
@@ -36,15 +36,17 @@ export class ButtonComponent {
    * @required
    */
   @Input()
-  label = 'Button';
+  label = "Button";
 
   /** Optional click handler */
   @Output()
   onClick = new EventEmitter<Event>();
 
   public get classes(): string[] {
-    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+    const mode = this.primary
+      ? "storybook-button--primary"
+      : "storybook-button--secondary";
 
-    return ['storybook-button', `storybook-button--${this.size}`, mode];
+    return ["storybook-button", `storybook-button--${this.size}`, mode];
   }
 }

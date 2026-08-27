@@ -18,7 +18,7 @@ import { InspectionEdit } from "../models/inspection.model";
 
 @Component({
   selector: "app-inspection-detalle",
-  standalone: true,
+
   imports: [CommonModule, RouterModule, AppCard],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

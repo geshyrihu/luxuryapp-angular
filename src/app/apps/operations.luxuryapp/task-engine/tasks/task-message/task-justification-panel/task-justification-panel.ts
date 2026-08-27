@@ -8,12 +8,12 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { TaskJustificationInterface } from "src/app/core/interfaces/tasks/task-justification.interface";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 
 const TASK_JUSTIFICATION_STATE = {
   Solicitada: 0,
@@ -23,7 +23,6 @@ const TASK_JUSTIFICATION_STATE = {
 
 @Component({
   selector: "app-task-justification-panel",
-  standalone: true,
   templateUrl: "./task-justification-panel.html",
   imports: [FormsModule, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,

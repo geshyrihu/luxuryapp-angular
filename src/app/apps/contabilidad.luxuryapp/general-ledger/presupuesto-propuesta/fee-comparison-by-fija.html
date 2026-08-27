@@ -100,7 +100,7 @@
       </div>
     </div>
 
-    <!-- Card: Cobro Mensual de Cuota Propuesto -->
+    <!-- Card: Cobro Mensual de Cuota (Vigente vs Propuesto) -->
     <div class="mt-5 mb-5 overflow-hidden shadow-sm border-1 surface-border">
       <!-- Card Header -->
       <div
@@ -108,65 +108,113 @@
       >
         <div
           class="w-1 h-2rem surface-ground rounded-xl"
-          
+
         ></div>
         <h5
           class="m-0 text-sm uppercase font-bold text-primary tracking-widest"
         >
-          Cobro Mensual de Cuota Propuesto
+          Cobro Mensual de Cuota
         </h5>
       </div>
 
-      <!-- Table Header -->
-      <div
-        class="flex align-items-center text-white px-4 py-2 font-bold uppercase tracking-widest text-xs"
-        
-      >
-        <div class="flex-flex-grow-1-1">Concepto</div>
-        <div class="w-12rem text-right">Monto Mensual</div>
-      </div>
-
-      <!-- Fila Cuota Ordinaria -->
-      <div
-        class="flex align-items-center px-4 py-4 surface-section border-bottom-1 surface-border"
-      >
-        <div class="flex-flex-grow-1-1 text-700 font-medium text-lg">
-          Cuota de mantenimiento mensual
-        </div>
-        <div
-          class="w-12rem text-right text-xl text-500 font-semibold"
-          
-        >
-          {{ data.newMonthlyFee + 1000 | currency: "MXN" : "symbol" : "1.0-0" }}
-        </div>
-      </div>
-
-      <!-- Fila Pronto Pago (Featured) -->
-      <div
-        class="flex align-items-center px-4 py-4 surface-100 border-bottom-1 surface-border"
-        
-      >
-        <div class="flex-flex-grow-1-1 pl-2">
-          <div class="flex align-items-center mb-1 flex-wrap">
-            <span
-              class="inline-flex px-2 py-1 rounded-xl text-xs font-bold text-white uppercase tracking-widest"
-              
+      <div class="flex flex-column md:flex-row">
+        <!-- Columna Vigente -->
+        <div class="w-full md:w-1/2 md:border-right-1 surface-border">
+          <div class="px-4 py-2 surface-100 text-center">
+            <span class="text-xs uppercase font-bold text-700 tracking-widest"
+              >Vigente</span
             >
-              Pronto Pago
-            </span>
-            <span class="font-bold text-900 text-lg">Cuota con Descuento</span>
           </div>
-          <p class="m-0 text-600 text-sm font-italic">
-            Aplica realizando el pago dentro de los primeros días del mes
-          </p>
+
+          <!-- Fila Cuota Ordinaria -->
+          <div
+            class="flex align-items-center px-4 py-4 surface-section border-bottom-1 surface-border"
+          >
+            <div class="flex-flex-grow-1-1 text-700 font-medium">
+              Cuota de mantenimiento mensual
+            </div>
+            <div class="w-9rem text-right text-lg text-500 font-semibold">
+              {{ data.currentMonthlyFee + 1000 | currency: "MXN" : "symbol" :
+              "1.0-0" }}
+            </div>
+          </div>
+
+          <!-- Fila Pronto Pago -->
+          <div
+            class="flex align-items-center px-4 py-4 surface-100 border-bottom-1 surface-border"
+          >
+            <div class="flex-flex-grow-1-1 pl-2">
+              <div class="flex align-items-center mb-1 flex-wrap">
+                <span
+                  class="inline-flex px-2 py-1 rounded-xl text-xs font-bold text-white uppercase tracking-widest"
+                >
+                  Pronto Pago
+                </span>
+                <span class="font-bold text-900">Cuota con Descuento</span>
+              </div>
+              <p class="m-0 text-600 text-sm font-italic">
+                Aplica realizando el pago dentro de los primeros días del mes
+              </p>
+            </div>
+            <div class="w-9rem text-right flex-shrink-0">
+              <span class="text-2xl font-bold text-700">
+                {{ data.currentMonthlyFee | currency: "MXN" : "symbol" :
+                "1.0-0" }}
+              </span>
+              <p class="m-0 mt-1 text-xs font-semibold text-green-600">
+                Ahorro: {{ 1000 | currency: "MXN" : "symbol" : "1.0-0" }}
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="w-12rem text-right flex-shrink-0">
-          <span class="text-3xl font-bold text-primary">
-            {{ data.newMonthlyFee | currency: "MXN" : "symbol" : "1.0-0" }}
-          </span>
-          <p class="m-0 mt-1 text-xs font-semibold text-green-600">
-            Ahorro: {{ 1000 | currency: "MXN" : "symbol" : "1.0-0" }}
-          </p>
+
+        <!-- Columna Propuesto -->
+        <div class="w-full md:w-1/2 surface-50">
+          <div class="px-4 py-2 surface-100 text-center">
+            <span class="text-xs uppercase font-bold text-primary tracking-widest"
+              >Propuesto</span
+            >
+          </div>
+
+          <!-- Fila Cuota Ordinaria -->
+          <div
+            class="flex align-items-center px-4 py-4 surface-section border-bottom-1 surface-border"
+          >
+            <div class="flex-flex-grow-1-1 text-700 font-medium">
+              Cuota de mantenimiento mensual
+            </div>
+            <div class="w-9rem text-right text-lg text-500 font-semibold">
+              {{ data.newMonthlyFee + 1000 | currency: "MXN" : "symbol" :
+              "1.0-0" }}
+            </div>
+          </div>
+
+          <!-- Fila Pronto Pago (Featured) -->
+          <div
+            class="flex align-items-center px-4 py-4 surface-100 border-bottom-1 surface-border"
+          >
+            <div class="flex-flex-grow-1-1 pl-2">
+              <div class="flex align-items-center mb-1 flex-wrap">
+                <span
+                  class="inline-flex px-2 py-1 rounded-xl text-xs font-bold text-white uppercase tracking-widest"
+                >
+                  Pronto Pago
+                </span>
+                <span class="font-bold text-900">Cuota con Descuento</span>
+              </div>
+              <p class="m-0 text-600 text-sm font-italic">
+                Aplica realizando el pago dentro de los primeros días del mes
+              </p>
+            </div>
+            <div class="w-9rem text-right flex-shrink-0">
+              <span class="text-2xl font-bold text-primary">
+                {{ data.newMonthlyFee | currency: "MXN" : "symbol" : "1.0-0" }}
+              </span>
+              <p class="m-0 mt-1 text-xs font-semibold text-green-600">
+                Ahorro: {{ 1000 | currency: "MXN" : "symbol" : "1.0-0" }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

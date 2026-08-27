@@ -1,12 +1,22 @@
-import { CommonModule, DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
-import { CustomerIdService } from 'src/app/core/auth/services/customer-id.service';
-import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CandidateInterviewerQueueDto, CandidateInterviewerQueueItemDto } from 'src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface';
-import { AGENDA_STATUS_TAG_OPTIONS } from 'src/app/shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options';
+import { CommonModule, DatePipe } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppAvatar } from 'src/app/shared/ui/web/avatar/avatar';
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  CandidateInterviewerQueueDto,
+  CandidateInterviewerQueueItemDto,
+} from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
+import { AGENDA_STATUS_TAG_OPTIONS } from "src/app/shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
+import { AppAvatar } from "src/app/shared/ui/web/avatar/avatar";
 import { ConfirmPresentationModal } from "../staff-board/confirm-presentation-modal/confirm-presentation-modal";
 import { EmployeeInterviewerQueueService } from "./employee-interviewer-queue.service";
 import { EmployeeQueueCandidateDetailModal } from "./employee-queue-candidate-detail-modal";
@@ -26,7 +36,6 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
 
 @Component({
   selector: "app-employee-interviewer-queue",
-  standalone: true,
   templateUrl: "./employee-interviewer-queue.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, DatePipe, WebButtonLabel, AppAvatar],
@@ -80,7 +89,7 @@ export class EmployeeInterviewerQueue {
     ),
   );
 
-    readonly filteredVacancies = computed<QueueVacancyView[]>(() => {
+  readonly filteredVacancies = computed<QueueVacancyView[]>(() => {
     const term = this.searchTerm().trim().toLowerCase();
 
     return this.dataSignal()
@@ -104,7 +113,7 @@ export class EmployeeInterviewerQueue {
       .filter((vacancy) => {
         if (vacancy.filteredCandidates.length > 0) return true;
         if (!term) return true;
-        
+
         const vacancyHaystack = [
           vacancy.vacancyFolio,
           vacancy.positionName,
@@ -176,7 +185,9 @@ export class EmployeeInterviewerQueue {
   }
 
   confirmableCandidates(vacancy: QueueVacancyView): QueueCandidateView[] {
-    return vacancy.filteredCandidates.filter((candidate) => candidate.canConfirmPresentation);
+    return vacancy.filteredCandidates.filter(
+      (candidate) => candidate.canConfirmPresentation,
+    );
   }
 
   private matchesSearch(candidate: QueueCandidateView, term: string): boolean {
@@ -223,9 +234,3 @@ export class EmployeeInterviewerQueue {
       });
   }
 }
-
-
-
-
-
-

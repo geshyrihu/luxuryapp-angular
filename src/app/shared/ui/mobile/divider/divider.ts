@@ -9,7 +9,6 @@ import { DividerBase } from "@ui/base/divider.base";
 @Component({
   imports: [NgTemplateOutlet],
   selector: "ili-divider",
-
   template: `
     <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
@@ -20,7 +19,9 @@ import { DividerBase } from "@ui/base/divider.base";
       role="separator"
     >
       @if (layout() !== "vertical") {
-        <span class="ili-divider-content"><ng-container [ngTemplateOutlet]="projected" /></span>
+        <span class="ili-divider-content"
+          ><ng-container [ngTemplateOutlet]="projected"
+        /></span>
       } @else {
         <ng-container [ngTemplateOutlet]="projected" />
       }

@@ -1,11 +1,11 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import { ButtonComponent } from "./button.component";
 import type { User } from "./user";
 
 @Component({
   selector: "storybook-header",
-  standalone: true,
+
   imports: [ButtonComponent],
   template: `
     <header>
