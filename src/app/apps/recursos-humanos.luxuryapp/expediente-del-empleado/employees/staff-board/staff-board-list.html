@@ -152,20 +152,23 @@
             severity="info"
             variant="outline"
           />
-          <il-button
-            (clicked)="onStatusFilterChange('Activo')"
-            label="Activos"
-            [severity]="statusFilter() === 'Activo' ? 'primary' : 'secondary'"
-            variant="outline"
-            size="small"
-          />
+          @if (statusFilter() === 'Activo') {
           <il-button
             (clicked)="onStatusFilterChange('Inactivo')"
             label="Inactivos"
-            [severity]="statusFilter() === 'Inactivo' ? 'primary' : 'secondary'"
-            variant="outline"
-            size="small"
+            iconClass="material-symbols-light:visibility-off"
+            severity="danger"
+            variant="outlined"
           />
+          } @else {
+          <il-button
+            (clicked)="onStatusFilterChange('Activo')"
+            label="Activos"
+            iconClass="material-symbols-light:visibility"
+            severity="success"
+            variant="outlined"
+          />
+          }
         </div>
       </div>
     </div>

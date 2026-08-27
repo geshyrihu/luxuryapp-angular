@@ -1,0 +1,364 @@
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+  @if (invalidFields().length) {
+  <div
+    class="employee-validation-summary surface-50 border-1 border-red-200 border-round p-3 mb-3"
+  >
+    <p class="text-red-700 font-bold mb-2">
+      Revisa los datos antes de guardar.
+    </p>
+    <p class="text-700 mb-2">
+      Hay campos obligatorios faltantes o con formato incorrecto:
+    </p>
+    <div class="flex flex-wrap gap-2">
+      @for (field of invalidFields(); track field) {
+      <span class="px-2 py-1 border-round bg-red-50 text-red-700 text-sm">
+        {{ field }}
+      </span>
+      }
+    </div>
+  </div>
+  }
+
+  <div class="employee-identity-grid mb-3">
+    <div class="card employee-photo-card">
+      <div
+        class="card-body text-center flex flex-column justify-content-center"
+      >
+        <custom-input-img-signal
+          (fileSelected)="changeImg($event)"
+          [urlImgCurrent]="imgUpload() ? imgTemp() : photoPath()"
+          label="Foto de perfil"
+          [horizontal]="false"
+        />
+        <p class="text-500 text-sm mt-3 mb-0">
+          La foto se guarda al seleccionarla; el resto de datos se guarda con
+          el botón principal.
+        </p>
+      </div>
+    </div>
+
+    <div class="card employee-identity-card">
+      <div class="card-body">
+        <h3 class="h3 mb-3">Identidad y contacto</h3>
+        <div class="grid">
+          <div class="col-12 md:col-6 lg:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.firstName"
+              label="Nombre"
+              placeholder="Nombre"
+              [horizontal]="false"
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.lastName"
+              label="Apellidos"
+              placeholder="Apellidos"
+              [horizontal]="false"
+            />
+          </div>
+          <div class="col-12 md:col-3 lg:col-2">
+            <web-custom-input-phone-prefix
+              [control]="form.controls.phoneNumberPrefix"
+              label="Prefijo"
+              [horizontal]="false"
+            />
+          </div>
+          <div class="col-12 md:col-9 lg:col-3">
+            <custom-input-mask-signal
+              [control]="form.controls.phoneNumber"
+              label="Tél. celular"
+              placeholder="(00) 0000-0000"
+              customMask="(00) 0000-0000"
+              [horizontal]="false"
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-3">
+            <custom-input-mask-signal
+              [control]="form.controls.localPhone"
+              label="Tél. local"
+              placeholder="(00) 0000-0000"
+              customMask="(00) 0000-0000"
+              [horizontal]="false"
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-4">
+            <custom-input-text-signal
+              [control]="form.controls.email"
+              label="Email personal"
+              placeholder="correo@dominio.com"
+              [horizontal]="false"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col-12">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="h3 mb-3">Datos personales</h3>
+          <div class="grid">
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-select-signal
+                [control]="form.controls.sex"
+                label="Sexo"
+                [data]="cb_sex()"
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-date-signal
+                [control]="form.controls.birth"
+                label="Fecha de nacimiento"
+                placeholder="Fecha de nacimiento"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-autocomplete-signal
+                [control]="form.controls.nationality"
+                [data]="cb_nationality()"
+                label="Nacionalidad"
+                placeholder="Escribir para buscar"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.curp"
+                label="CURP"
+                placeholder="CURP"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.rfc"
+                label="RFC"
+                placeholder="RFC"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-mask-signal
+                [control]="form.controls.rfcPostalCode"
+                label="Código postal RFC"
+                placeholder="00000"
+                customMask="00000"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.nss"
+                label="NSS"
+                placeholder="NSS"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-select-signal
+                [control]="form.controls.maritalStatus"
+                label="Estado civil"
+                [data]="cb_marital_status()"
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-select-signal
+                [control]="form.controls.bloodType"
+                label="Tipo de sangre"
+                [data]="cb_blood_type()"
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-toggle-switch-signal
+                [control]="form.controls.hasInfonavitCredit"
+                label="Crédito INFONAVIT"
+                placeholder="Cuenta con crédito"
+                [horizontal]="false"
+              />
+            </div>
+            @if (form.controls.hasInfonavitCredit.value) {
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-mask-signal
+                [control]="form.controls.infonavitCreditNumber"
+                label="No. crédito INFONAVIT"
+                placeholder="0000000000"
+                customMask="0000000000"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.infonavitDiscountFactor"
+                label="FD o % descuento"
+                placeholder="Factor o porcentaje"
+                [horizontal]="false"
+              />
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="h3 mb-3">Dirección</h3>
+          <div class="grid">
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.city"
+                label="Ciudad"
+                placeholder="Ciudad"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.townHall"
+                label="Municipio / Alcaldía"
+                placeholder="Municipio / Alcaldía"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.district"
+                label="Colonia"
+                placeholder="Colonia"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.zipCode"
+                label="Código postal"
+                placeholder="Código postal"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.street"
+                label="Calle"
+                placeholder="Calle"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.number"
+                label="Número"
+                placeholder="Número"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.unitNumber"
+                label="Número interior"
+                placeholder="Número interior"
+                [horizontal]="false"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h3 class="h3 mb-3">Datos laborales</h3>
+          <div class="grid">
+            <div class="col-12 md:col-4 lg:col-3">
+              <custom-input-select-signal
+                [control]="form.controls.typePerson"
+                label="Contrato"
+                [data]="cb_type_contract()"
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 md:col-4 lg:col-3">
+              <custom-input-select-signal
+                [control]="form.controls.active"
+                label="Estatus"
+                [data]="cb_state()"
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 md:col-4 lg:col-3">
+              <custom-input-select-signal
+                [control]="form.controls.educationLevel"
+                label="Nivel educativo"
+                [data]="cb_education_level()"
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 md:col-4 lg:col-3">
+              <custom-input-date-signal
+                [control]="form.controls.dateAdmission"
+                label="Fecha de ingreso"
+                placeholder="Fecha de ingreso"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-4 lg:col-3">
+              <custom-input-currency-signal
+                [control]="form.controls.salary"
+                label="Sueldo mensual neto"
+                placeholder="Sueldo mensual neto"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-4 lg:col-3">
+              <custom-input-currency-signal
+                [control]="form.controls.dailySalary"
+                label="Sueldo diario"
+                placeholder="Sueldo diario"
+                [horizontal]="false"
+                [readonly]="true"
+              />
+            </div>
+            <div class="col-12 md:col-4 lg:col-3">
+              <custom-input-number-signal
+                [control]="form.controls.numberEmployee"
+                label="Número de empleado"
+                placeholder="Ej. 1042"
+                [horizontal]="false"
+                helperText="Número asignado por RRHH"
+                [min]="1"
+                [max]="9999"
+                [useGrouping]="false"
+              />
+            </div>
+            @if(canChangeCustomer()){
+            <div class="col-12 md:col-4 lg:col-3">
+              <custom-input-select-signal
+                [control]="form.controls.customerId"
+                label="Cliente"
+                [data]="cb_customer()"
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-content-end mt-3">
+        <il-button-save [disabled]="submitting()" [submitting]="submitting()" />
+      </div>
+    </div>
+  </div>
+</form>

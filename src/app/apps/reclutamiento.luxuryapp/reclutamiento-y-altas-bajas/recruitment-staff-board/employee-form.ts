@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   effect,
   inject,
   OnInit,
@@ -10,8 +11,10 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { LxPanelMenu } from "@ui/adaptive/panel-menu/panel-menu";
-import { MenuItem } from "@ui/web/primeng-api/primeng-api";
+import {
+  LxSectionNav,
+  type LxSectionNavItem,
+} from "@ui/web/section-nav/section-nav";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -19,28 +22,38 @@ import { EmployeeBankDataList } from "../../../recursos-humanos.luxuryapp/employ
 import { EmployeeClinicalDataList } from "../../../recursos-humanos.luxuryapp/employee-clinical-data/employee-clinical-data-list";
 import { EmployeeDocumentList } from "../../../recursos-humanos.luxuryapp/employee-document/employee-document-list";
 import { EmployeeEmergencyContactList } from "../../../recursos-humanos.luxuryapp/employee-emergen-contact/employee-emergency-contact-list";
-import { EmployeeAddressForm } from "../../../recursos-humanos.luxuryapp/employee/employee-address-form";
-import { EmployeeAvatarForm } from "../../../recursos-humanos.luxuryapp/employee/employee-avatar-form";
-import { EmployeeLaboralDataForm } from "../../../recursos-humanos.luxuryapp/employee/employee-laboral-data-form";
-import { EmployeePersonalDataForm } from "../../../recursos-humanos.luxuryapp/employee/employee-personal-data-form";
-import { EmployeePrincipalDataForm } from "../../../recursos-humanos.luxuryapp/employee/employee-principal-data-form";
+import { EmployeeUnifiedProfileForm } from "./employee-unified-profile-form";
+
 @Component({
   selector: "app-employee-form",
   templateUrl: "./employee-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: [
+    `
+      .employee-shell-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .employee-shell-header lx-section-nav {
+        flex: 1 1 720px;
+      }
+
+    `,
+  ],
   imports: [
     CommonModule,
-    EmployeeAddressForm,
-    EmployeeAvatarForm,
     EmployeeBankDataList,
     EmployeeClinicalDataList,
     EmployeeEmergencyContactList,
-    EmployeeLaboralDataForm,
-    EmployeePersonalDataForm,
-    EmployeePrincipalDataForm,
+    EmployeeUnifiedProfileForm,
     EmployeeDocumentList,
     LxMessage,
-    LxPanelMenu,
+    LxSectionNav,
   ],
 })
 export class EmployeeForm implements OnInit {
@@ -52,10 +65,10 @@ export class EmployeeForm implements OnInit {
   nameEmployee = signal("");
 
   // ?? Sección activa
-  activeSection: string = "principal";
+  activeSection: string = "profile";
 
   // ?? Items del mené
-  menuItems: MenuItem[] = [];
+  menuItems: LxSectionNavItem[] = [];
 
   paramsSignal = toSignal(this.route.paramMap);
 
@@ -93,62 +106,38 @@ export class EmployeeForm implements OnInit {
     type MenuDef = {
       label: string;
       icon: string;
-      section: string;
+      value: string;
     };
 
     const all: MenuDef[] = [
       {
-        label: "Datos principales",
+        label: "Ficha de empleado",
         icon: "material-symbols-light:person",
-        section: "principal",
-      },
-      {
-        label: "Foto de perfil",
-        icon: "material-symbols-light:photo",
-        section: "avatar",
-      },
-      {
-        label: "Datos personales",
-        icon: "material-symbols-light:badge",
-        section: "personal",
-      },
-      {
-        label: "Dirección",
-        icon: "material-symbols-light:location-on",
-        section: "address",
+        value: "profile",
       },
       {
         label: "Contactos",
         icon: "material-symbols-light:call",
-        section: "contacts",
+        value: "contacts",
       },
       {
         label: "Datos bancarios y beneficiario",
         icon: "material-symbols-light:credit-card",
-        section: "bank-data",
+        value: "bank-data",
       },
       {
-        label: "Datos clinicos",
+        label: "Datos clínicos",
         icon: "material-symbols-light:favorite-outline",
-        section: "clinical-data",
-      },
-      {
-        label: "Datos laborales",
-        icon: "material-symbols-light:work",
-        section: "laboral",
+        value: "clinical-data",
       },
       {
         label: "Documentación",
         icon: "material-symbols-light:folder-open",
-        section: "documents",
+        value: "documents",
       },
     ];
 
-    this.menuItems = all.map((item) => ({
-      label: item.label,
-      icon: item.icon,
-      command: () => this.changeSection(item.section),
-    }));
+    this.menuItems = all;
   }
 
   changeSection(section: string) {

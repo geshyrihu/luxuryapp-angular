@@ -7,14 +7,9 @@
 <p-table
   #dt
   [value]="filteredData()"
-  [paginator]="true"
-  [rows]="tablePrimeNgRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
   [globalFilterFields]="globalFilterFields()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   rowGroupMode="subheader"
   groupRowsBy="departament"
   sortField="departament"
@@ -23,44 +18,46 @@
 >
   <ng-template #caption>
     <div
-      class="flex flex-wrap align-items-center justify-content-between gap-3 w-full"
+      class="flex flex-column xl:flex-row align-items-center justify-content-between gap-3 mb-3 w-full"
     >
-      <div class="staff-filter-group flex flex-wrap align-items-center gap-2">
-        <il-button
-          (clicked)="selectedDepartment.set(null)"
-          [label]="'Todos'"
-          [severity]="selectedDepartment() === null ? 'primary' : 'secondary'"
-          variant="outlined"
-          size="small"
-        />
-        @for (dept of uniqueDepartments(); track dept) {
-        <il-button
-          (clicked)="selectedDepartment.set(dept)"
-          [label]="getDepartamentLabel(dept)"
-          [severity]="selectedDepartment() === dept ? 'primary' : 'secondary'"
-          variant="outlined"
-          size="small"
-        />
-        }
-      </div>
+      <app-segmented-control
+        [items]="departmentFilterItems()"
+        [(value)]="selectedDepartment"
+        ariaLabel="Filtrar por departamento"
+      />
 
-      <primeng-custom-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
+      <div
+        class="flex flex-column md:flex-row align-items-center justify-content-end gap-3 w-full xl:w-auto"
+      >
+        <div class="staff-caption-search w-full md:w-auto">
+          <primeng-custom-caption
+            [dt]="dt"
+            [showAdd]="false"
+            [noMargin]="true"
+          />
+        </div>
 
-      <div class="flex flex-wrap gap-2 align-items-end pb-2">
-        <iw-button-item
-          iconClass="material-symbols-light:check-circle"
-          label="Activos"
-          [severity]="state() ? 'primary' : 'secondary'"
-          [variant]="state() ? 'solid' : 'outline'"
-          (clicked)="onSelectActive(true)"
-        />
-        <iw-button-item
-          iconClass="material-symbols-light:cancel"
-          label="Inactivos"
-          [severity]="!state() ? 'primary' : 'secondary'"
-          [variant]="!state() ? 'solid' : 'outline'"
-          (clicked)="onSelectActive(false)"
-        />
+        <div
+          class="staff-board-actions flex flex-wrap gap-2 align-items-center justify-content-center md:justify-content-end"
+        >
+          @if (statusFilter() === 'Activo') {
+          <il-button
+            (clicked)="onStatusFilterChange('Inactivo')"
+            label="Inactivos"
+            iconClass="material-symbols-light:visibility-off"
+            severity="danger"
+            variant="outlined"
+          />
+          } @else {
+          <il-button
+            (clicked)="onStatusFilterChange('Activo')"
+            label="Activos"
+            iconClass="material-symbols-light:visibility"
+            severity="success"
+            variant="outlined"
+          />
+          }
+        </div>
       </div>
     </div>
   </ng-template>
@@ -81,7 +78,12 @@
 
   <ng-template #groupheader let-item>
     <tr pRowGroupHeader>
-      <td [attr.colspan]="5" class="staff-group-header-cell"></td>
+      <td [attr.colspan]="5" class="staff-group-header-cell">
+        <span class="group-header-label">
+          <app-icon [icon]="'material-symbols-light:work'" />
+          {{ getDepartamentLabel(item.departament) }}
+        </span>
+      </td>
     </tr>
   </ng-template>
 
@@ -101,9 +103,6 @@
         <div>
           <small class="text-500">{{ item.folio }}</small>
           <p class="mt-1 font-semibold">{{ item.applicationRoleName }}</p>
-          <small class="text-500"
-            >{{ getDepartamentLabel(item.departament) }}</small
-          >
         </div>
         }
       </td>
@@ -163,7 +162,9 @@
             class="mr-2"
           />
           }
-          <span class="font-semibold truncate flex-1 min-w-0">{{ item.applicationUser }}</span>
+          <span class="font-semibold truncate flex-1 min-w-0"
+            >{{ item.applicationUser }}</span
+          >
           @if (item.employeeId) {
           <iw-button-item
             iconClass="material-symbols-light:manage-accounts"

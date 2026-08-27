@@ -192,7 +192,13 @@ export class StaffBoardList {
       Endpoints.WorkPositions.listByCustomer(customerId, this.statusFilter()),
     );
 
-    this.positions.set(positions ?? []);
+    // Normalizar departamentos null a Department.NA para que se agrupen correctamente
+    const normalizedPositions = (positions ?? []).map((p) => ({
+      ...p,
+      departament: p.departament ?? Department.NA,
+    }));
+
+    this.positions.set(normalizedPositions);
 
     await this.loadInterviewerQueue();
   }

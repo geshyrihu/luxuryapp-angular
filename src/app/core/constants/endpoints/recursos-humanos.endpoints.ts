@@ -297,6 +297,8 @@ export const EndpointsRecursosHumanos = {
       `employee-internal/photo-path/${applicationUserId}`,
     principalData: (applicationUserId: string) =>
       `employee-internal/principal-data/${applicationUserId}`,
+    unifiedProfile: (employeeId: string | number, applicationUserId: string) =>
+      `employee-internal/unified-profile/${employeeId}/${applicationUserId}`,
     updateAddressData: (addressId: string) =>
       `employee-internal/update-address-data/${addressId}`,
     updateImage: (applicationUserId: string) =>
@@ -307,6 +309,10 @@ export const EndpointsRecursosHumanos = {
       `employee-internal/update-personal-data/${employeeId}`,
     updatePrincipalData: (applicationUserId: string) =>
       `employee-internal/update-principal-data/${applicationUserId}`,
+    updateUnifiedProfile: (
+      employeeId: string | number,
+      applicationUserId: string,
+    ) => `employee-internal/unified-profile/${employeeId}/${applicationUserId}`,
   },
   Employees: {
     birthday: (customerId: string, month: number) =>

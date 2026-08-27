@@ -32,8 +32,6 @@ import { Department } from "src/app/core/enums/department.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import {
   globalFilterFields as getGlobalFilterFields,
-  rowsPerPageOptions as getRowsPerPageOptions,
-  tablePrimeNgRows as getTablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { FilterRequestsService } from "src/app/core/http/services/filter-requests.service";
@@ -55,6 +53,10 @@ import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import {
+  SegmentedControl,
+  SegmentItem,
+} from "src/app/shared/ui/shared/segmented-control/segmented-control";
 
 @Component({
   selector: "app-work-position-list",
@@ -77,6 +79,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     LxTag,
     MobileListItem,
     AppIcon,
+    SegmentedControl,
   ],
 })
 export class WorkPositionList {
@@ -95,7 +98,7 @@ export class WorkPositionList {
   // --- SIGNALS Y PROPIEDADES ---
   data = signal<IWorkPosition[]>([]);
   scrollHeight = signal<string>("0px");
-  state = signal<boolean>(true);
+  statusFilter = signal<"Activo" | "Inactivo">("Activo");
   selectedDepartment = signal<number | null>(null);
   @ViewChild("dt") dt?: Table;
 
@@ -110,6 +113,14 @@ export class WorkPositionList {
       this.getDepartamentLabel(a).localeCompare(this.getDepartamentLabel(b)),
     );
   });
+
+  readonly departmentFilterItems = computed<SegmentItem[]>(() => [
+    { value: null, label: "Todos" },
+    ...this.uniqueDepartments().map((dept) => ({
+      value: dept,
+      label: this.getDepartamentLabel(dept),
+    })),
+  ]);
 
   readonly filteredData = computed<IWorkPosition[]>(() => {
     const selected = this.selectedDepartment();
@@ -127,8 +138,6 @@ export class WorkPositionList {
 
   // --- CONSTANTES ---
   readonly AspRole = ApplicationRole;
-  readonly rowsPerPageOptions = getRowsPerPageOptions();
-  readonly tablePrimeNgRows = getTablePrimeNgRows();
   readonly globalFilterFields = computed(() =>
     getGlobalFilterFields(this.data()),
   );
@@ -181,20 +190,28 @@ export class WorkPositionList {
     this.scrollHeight.set(this.tableScrollHeightS.scrollHeight());
   }
 
-  onSelectActive(state: boolean): void {
-    this.state.set(state);
+  onStatusFilterChange(status: "Activo" | "Inactivo"): void {
+    if (this.statusFilter() === status) return;
+    this.statusFilter.set(status);
     this.onLoadData();
   }
 
   async onLoadData() {
     const customerId = this.customerIdS.customerId();
-    const stateStr = this.state() ? "Activo" : "Inactivo";
+    const stateStr = this.statusFilter();
 
     // Normalizado a kebab-case y sincronizado con el backend refactorizado
     const result = await this.apiS.onGetList<IWorkPosition[]>(
       `work-positions/list-by-customer/${customerId}/${stateStr}`,
     );
-    this.data.set(result ?? []);
+
+    // Normalizar departamentos null a Department.NA para que se agrupen correctamente
+    const normalized = (result ?? []).map((p) => ({
+      ...p,
+      departament: p.departament ?? Department.NA,
+    }));
+
+    this.data.set(normalized);
   }
 
   getDepartamentLabel(value: number | null | undefined): string {
