@@ -43,7 +43,7 @@
               />
             </td>
             <td>{{ task.priorityDescription }}</td>
-            <td>{{ task.scheduledDate | date : "shortTime" }}</td>
+            <td>{{ task.scheduledDate | apiDate : "shortTime" }}</td>
             <td>
               <il-button
                 label="Completar"
@@ -79,7 +79,7 @@
                   <div class="flex justify-content-between align-items-start">
                     <h6 class="font-bold m-0">{{ task.title }}</h6>
                     <span class="text-sm font-semibold text-color-secondary"
-                      >{{ task.scheduledDate | date : "shortTime" }}</span
+                      >{{ task.scheduledDate | apiDate : "shortTime" }}</span
                     >
                   </div>
                   <p class="text-sm text-600 mt-1 mb-3">

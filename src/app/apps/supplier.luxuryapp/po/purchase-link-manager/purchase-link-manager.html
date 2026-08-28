@@ -106,7 +106,7 @@
                       class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
                     >
                       <app-icon [icon]="'material-symbols-light:event-busy'" class="mr-1" />{{
-                      sc.fechaSolicitud | date:'dd-MMM-yy':'UTC' }}
+                      sc.fechaSolicitud | apiDate:'dd-MMM-yy' }}
                     </span>
                   </div>
                   <span class="font-bold text-900 text-lg line-height-2"
@@ -230,7 +230,7 @@
                       class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
                     >
                       <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1" />{{
-                      oc.fechaSolicitud | date:'dd-MMM-yy':'UTC' }}
+                      oc.fechaSolicitud | apiDate:'dd-MMM-yy' }}
                     </span>
                   </div>
                   <span class="font-bold text-900 text-lg line-height-2"

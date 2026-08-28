@@ -1,37 +1,68 @@
-@if (!loading()) {
-  @if (requestData(); as data) {
-    <p>
-      <strong>Empleado:</strong>
-      {{ data.employeeFullName }}
-    </p>
-    <p>
-      <strong>Periodo:</strong>
-      {{ data.period }}
-    </p>
-    <p>
-      <strong>Estado:</strong>
-      <lx-tag [value]="data.status" [severity]="getStatusSeverity(data.status)" />
-    </p>
-    @if (data.approverFullName) {
-      <p>
-        <strong>Aprobado por:</strong>
-        {{ data.approverFullName }}
-      </p>
-    }
-    @if (data.approvalDate) {
-      <p>
-        <strong>Fecha de aprobación:</strong>
-        {{ data.approvalDate }}
-      </p>
-    }
-  }
+@if (loading()) {
+  <div class="detail-loading">
+    <lx-spinner [strokeWidth]="6" [ariaLabel]="'Cargando detalle de vacaciones'" />
+  </div>
+} @else if (requestData(); as data) {
+  <section class="detail-modal">
+    <header class="detail-hero">
+      <p class="detail-kicker">Vacaciones aprobadas</p>
+      <h2 class="detail-title">{{ displayValue(data.employeeFullName) }}</h2>
+      <p class="detail-subtitle">{{ displayValue(data.period) }}</p>
+    </header>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">Estado</span>
+        <lx-tag
+          [value]="displayStatus(data.status)"
+          [severity]="getStatusSeverity(displayStatus(data.status))"
+          [rounded]="true"
+        />
+      </div>
+
+      @if (data.requestedDays !== undefined) {
+        <div class="detail-item">
+          <span class="detail-label">Dias solicitados</span>
+          <p class="detail-value">{{ data.requestedDays }}</p>
+        </div>
+      }
+
+      @if (data.requestDate) {
+        <div class="detail-item">
+          <span class="detail-label">Fecha de solicitud</span>
+          <p class="detail-value">{{ data.requestDate }}</p>
+        </div>
+      }
+
+      @if (data.approverFullName) {
+        <div class="detail-item">
+          <span class="detail-label">Aprobado por</span>
+          <p class="detail-value">{{ data.approverFullName }}</p>
+        </div>
+      }
+
+      @if (data.approvalDate) {
+        <div class="detail-item">
+          <span class="detail-label">Fecha de aprobacion</span>
+          <p class="detail-value">{{ data.approvalDate }}</p>
+        </div>
+      }
+
+      <div class="detail-note">
+        <span class="detail-label">Periodo</span>
+        <p class="detail-value">{{ displayValue(data.period) }}</p>
+      </div>
+
+      @if (data.reason) {
+        <div class="detail-note">
+          <span class="detail-label">Motivo</span>
+          <p class="detail-value">{{ data.reason }}</p>
+        </div>
+      }
+    </div>
+  </section>
 } @else {
-  <p>Cargando...</p>
+  <div class="detail-empty">
+    No se pudo cargar el detalle de vacaciones.
+  </div>
 }
-
-
-
-
-
-
-

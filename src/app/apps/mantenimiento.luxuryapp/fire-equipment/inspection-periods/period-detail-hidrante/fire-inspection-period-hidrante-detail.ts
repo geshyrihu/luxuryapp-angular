@@ -1,4 +1,5 @@
-import { CommonModule, Location } from "@angular/common";
+import { Location } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -31,7 +32,7 @@ declare class BarcodeDetector {
   templateUrl: "./fire-inspection-period-hidrante-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
+    ApiDatePipe,
     FormsModule,
     LxTag,
     WebButtonLabel,

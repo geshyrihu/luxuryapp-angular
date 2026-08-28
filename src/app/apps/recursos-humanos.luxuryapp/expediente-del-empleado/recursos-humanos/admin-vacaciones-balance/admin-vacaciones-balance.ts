@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -42,7 +42,7 @@ import { VacationBalanceAdminViewDto } from "../interfaces/vacation-balance-admi
     MobileListItem,
     WebButtonIconEdit,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
+    ApiDatePipe,
     TableModule,
     WebButtonLabel,
     LxTag,

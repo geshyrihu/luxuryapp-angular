@@ -30,7 +30,7 @@
     <tr class="cursor-pointer" (click)="onViewDetail(item.id)">
       <td>{{ item.name }}</td>
       <td>{{ item.frecuencia }}</td>
-      <td>{{ item.startDate | date:'dd-MMM-yy' }}</td>
+      <td>{{ item.startDate | apiDate:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.totalItems }}</td>
       <td class="text-center">
         <app-icon
@@ -75,7 +75,7 @@
       <h3>{{ item.name }}</h3>
       <p>
         {{ item.frecuencia }} &bull; Inicio: {{ item.startDate |
-        date:'dd-MMM-yy' }} &bull; Items: {{ item.totalItems }}
+        apiDate:'dd-MMM-yy' }} &bull; Items: {{ item.totalItems }}
       </p>
 
       <ili-action-menu end>

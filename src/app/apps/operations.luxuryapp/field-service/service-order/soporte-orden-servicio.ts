@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -17,7 +17,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   selector: "app-soporte-orden-servicio",
   templateUrl: "./soporte-orden-servicio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, CommonModule, SanitizeHtmlPipe],
+  imports: [AppIcon, ApiDatePipe, SanitizeHtmlPipe],
 })
 export class SoporteOrdenServicio implements OnInit {
   apiResponseS = inject(ApiResponseService);

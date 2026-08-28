@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -63,7 +63,7 @@ export interface VacationRequestMyDTO extends VacationRequestHistoryDTO {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AppIcon,
-    CommonModule,
+    ApiDatePipe,
     ReactiveFormsModule,
     LxCard,
     LxSpinner,
@@ -71,7 +71,6 @@ export interface VacationRequestMyDTO extends VacationRequestHistoryDTO {
     LxMessage,
     TableModule,
     LxTag,
-    DatePipe,
   ],
 })
 export class VacacionesSaldo implements OnInit {

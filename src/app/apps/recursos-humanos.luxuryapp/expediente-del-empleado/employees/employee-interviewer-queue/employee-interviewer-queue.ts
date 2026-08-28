@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -38,7 +38,7 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
   selector: "app-employee-interviewer-queue",
   templateUrl: "./employee-interviewer-queue.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, DatePipe, WebButtonLabel, AppAvatar],
+  imports: [ApiDatePipe, WebButtonLabel, AppAvatar],
 })
 export class EmployeeInterviewerQueue {
   private queueS = inject(EmployeeInterviewerQueueService);
@@ -49,6 +49,7 @@ export class EmployeeInterviewerQueue {
   readonly dataSignal = signal<CandidateInterviewerQueueDto[]>([]);
   readonly loading = signal(false);
   readonly searchTerm = signal("");
+  readonly reconfirmingProcessId = signal("");
 
   readonly agendaStatusOptions = AGENDA_STATUS_TAG_OPTIONS;
   readonly totalVacancies = computed(() => this.filteredVacancies().length);
@@ -190,6 +191,14 @@ export class EmployeeInterviewerQueue {
     );
   }
 
+  hiringRequestCandidates(vacancy: QueueVacancyView): QueueCandidateView[] {
+    return vacancy.filteredCandidates.filter(
+      (candidate) =>
+        !candidate.canConfirmPresentation &&
+        (candidate.hasHiringRequest || candidate.canReconfirmPresentation),
+    );
+  }
+
   private matchesSearch(candidate: QueueCandidateView, term: string): boolean {
     if (!term) return true;
 
@@ -232,5 +241,27 @@ export class EmployeeInterviewerQueue {
           "Se notificó a Reclutamiento para procesar el Alta.",
         );
       });
+  }
+
+  async reconfirmPresentation(candidate: QueueCandidateView): Promise<void> {
+    const candidateProcessId =
+      candidate.candidateProcessId ?? candidate.candidateApplicationId;
+
+    this.reconfirmingProcessId.set(candidateProcessId);
+    try {
+      const result =
+        await this.queueS.reconfirmPresentation(candidateProcessId);
+      if (result) {
+        await this.onLoadData();
+        this.toastS.showSuccess(
+          candidate.hasHiringRequest ? "Notificación reenviada" : "Alta reparada",
+          candidate.hasHiringRequest
+            ? "Se reenvió el correo de solicitud de alta a Reclutamiento."
+            : "Se generó la solicitud de alta y se notificó a Reclutamiento.",
+        );
+      }
+    } finally {
+      this.reconfirmingProcessId.set("");
+    }
   }
 }

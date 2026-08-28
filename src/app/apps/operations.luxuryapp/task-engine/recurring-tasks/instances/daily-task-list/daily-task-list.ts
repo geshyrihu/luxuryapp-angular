@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +22,7 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
   templateUrl: "./daily-task-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
+    ApiDatePipe,
     ReactiveFormsModule,
     CustomInputDateSignal,
     WebButtonLabel,

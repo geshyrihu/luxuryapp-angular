@@ -171,7 +171,7 @@
     <ng-template #body let-item let-ri="rowIndex">
       <tr>
         <td>{{ ri + 1 }}</td>
-        <td>{{ item.fechaSolicitud | date:'dd/MM/yyyy':'UTC' }}</td>
+        <td>{{ item.fechaSolicitud | apiDate }}</td>
         <td>{{ item.folio }}</td>
         <td>{{ item.tipoOrdenLabel }}</td>
         <td>{{ item.factura }}</td>
@@ -213,8 +213,7 @@
       <p>Folio: {{ item.folio }} | {{ item.tipoOrdenLabel }}</p>
       <p>Factura: {{ item.factura }}</p>
       <p>
-        Total: {{ item.total | number:'1.2-2' }} | {{ item.fechaSolicitud |
-        date:'dd/MM/yyyy':'UTC' }}
+        Total: {{ item.total | number:'1.2-2' }} | {{ item.fechaSolicitud | apiDate }}
       </p>
       <ili-action-menu slot="end">
         <ng-container actions>

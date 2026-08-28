@@ -1,5 +1,5 @@
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +26,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   selector: "app-purchase-link-manager",
   templateUrl: "./purchase-link-manager.html",
   imports: [
-    CommonModule,
+    ApiDatePipe,
     ReactiveFormsModule,
     TableModule,
     WebButtonLabel,

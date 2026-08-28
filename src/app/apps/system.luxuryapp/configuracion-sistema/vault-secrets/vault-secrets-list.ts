@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -43,7 +43,7 @@ import { VaultSecretForm } from "./vault-secret-form";
     AppIcon,
     MobileListItem,
     PrimeNgCustomTableEmptyMessage,
-    DatePipe,
+    ApiDatePipe,
     TableModule,
     WebButtonIcon,
     WebButtonIconEdit,

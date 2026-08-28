@@ -1,4 +1,5 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -30,7 +31,7 @@ import {
     CustomInputDateSignal,
     WebButtonLabelSave,
     CurrencyPipe,
-    DatePipe,
+    ApiDatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./issue-fine-charge-form.html",

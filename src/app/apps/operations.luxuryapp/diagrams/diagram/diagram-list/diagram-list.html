@@ -44,7 +44,7 @@
       <tr>
         <td class="font-medium text-700">{{ diagram.name }}</td>
         <td class="text-500">
-          {{ diagram.updateAt | date: 'dd/MM/yyyy HH:mm' }}
+          {{ diagram.updateAt | apiDate: 'dd/MM/yyyy HH:mm' }}
         </td>
         <td>
           <div class="flex justify-content-center gap-2">
@@ -109,7 +109,7 @@
       </div>
 
       <h3 class="font-bold text-700">{{ diagram.name }}</h3>
-      <p class="text-500">{{ diagram.updateAt | date:'dd/MM/yyyy HH:mm' }}</p>
+      <p class="text-500">{{ diagram.updateAt | apiDate:'dd/MM/yyyy HH:mm' }}</p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

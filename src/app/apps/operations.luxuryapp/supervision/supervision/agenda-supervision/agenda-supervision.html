@@ -153,11 +153,11 @@
         <img alt="..." [src]="item.photoPath" width="32" />
         <span class="image-text"> {{ item.name.label }} </span>
       </td>
-      <td>{{ item.fechaSolicitud | date: "dd/MM/yyyy" : "UTC" }}</td>
+      <td>{{ item.fechaSolicitud | apiDate: "dd/MM/yyyy" }}</td>
       <td>{{ item.customer.label }}</td>
       <td class="text-justify">{{ item.problema }}</td>
       <td class="text-justify">{{ item.solucion }}</td>
-      <td>{{ item.fechaConclusion | date: "dd/MM/yyyy" : "UTC" }}</td>
+      <td>{{ item.fechaConclusion | apiDate: "dd/MM/yyyy" }}</td>
       <td class="text-center">
         @if (item.duracion > 0) {
         <small>{{ item.duracion }}</small>

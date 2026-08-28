@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -120,13 +120,12 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
+    ApiDatePipe,
     RouterModule,
     TableModule,
     LxTag,
     WebButtonLabel,
     WebButtonLabelDelete,
-    DatePipe,
   ],
 })
 export class JuntasMensualesSession {

@@ -79,7 +79,7 @@
     <ng-template #body let-entry>
       <tr>
         <td class="text-center text-sm">
-          {{ entry.effectiveDate | date:"dd/MM/yyyy" }}
+          {{ entry.effectiveDate | apiDate:"dd/MM/yyyy" }}
         </td>
         <td class="text-center">
           <lx-tag
@@ -135,7 +135,7 @@
         <h3>{{ eventTypeLabel(entry.eventType) }}</h3>
         <p>{{ entry.description }}</p>
         <p>
-          {{ entry.effectiveDate | date:"dd/MM/yyyy" }} ·
+          {{ entry.effectiveDate | apiDate:"dd/MM/yyyy" }} ·
           {{ entry.createdBy }}
         </p>
         <div end class="pr-3 text-right">

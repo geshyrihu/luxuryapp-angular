@@ -49,7 +49,7 @@
       </ng-template>
       <ng-template #body let-item>
         <tr>
-          <td>| {{ item.fechaEntrada | date:'mediumDate':'UTC' }}</td>
+          <td>| {{ item.fechaEntrada | apiDate:'mediumDate' }}</td>
           <td>{{ item.nombreProducto }}</td>
           <td>{{ item.cantidad }}</td>
           <td>{{ item.unidadMedida }}</td>
@@ -103,8 +103,8 @@
           {{ item.cantidad }} {{ item.unidadMedida }} - {{ item.provider }}
         </small>
         <small class="text-color-secondary">
-          Factura: {{ item.numeroFactura }} | {{ item.fechaEntrada |
-          date:'mediumDate':'UTC' }}
+           Factura: {{ item.numeroFactura }} | {{ item.fechaEntrada |
+           apiDate:'mediumDate' }}
         </small>
       </div>
 

@@ -93,11 +93,11 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <small>{{ item.horaLlegada | date: 'dd/MM/yy HH:mm' : 'UTC' }}</small>
+        <small>{{ item.horaLlegada | apiDate: 'dd/MM/yy HH:mm' }}</small>
       </td>
       <td>
         @if (item.horaTermino) {
-        <small>{{ item.horaTermino | date: 'dd/MM/yy HH:mm' : 'UTC' }}</small>
+        <small>{{ item.horaTermino | apiDate: 'dd/MM/yy HH:mm' }}</small>
         } @else {
         <span class="badge badge-warning text-xs">En curso</span>
         }
@@ -276,9 +276,9 @@
       <p class="text-500">{{ item.empresa }}</p>
       }
       <p>
-        {{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' : 'UTC' }} @if
+        {{ item.horaLlegada | apiDate: 'dd/MM/yyyy HH:mm' }} @if
         (item.horaTermino) {
-        <span> é {{ item.horaTermino | date: 'HH:mm' : 'UTC' }}</span>
+        <span> é {{ item.horaTermino | apiDate: 'HH:mm' }}</span>
         } @if (!item.horaTermino) {
         <span class="text-orange-500"> (en curso)</span>
         }

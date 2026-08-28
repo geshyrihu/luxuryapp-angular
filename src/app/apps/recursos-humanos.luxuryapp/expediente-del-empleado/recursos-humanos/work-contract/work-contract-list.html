@@ -32,8 +32,8 @@
       <tr>
         <td>{{ item.contractNumber }}</td>
         <td>{{ item.contractType }}</td>
-        <td>{{ item.startDate | date:'dd/MM/yyyy' }}</td>
-        <td>{{ item.endDate ? (item.endDate | date:'dd/MM/yyyy') : 'é' }}</td>
+        <td>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</td>
+        <td>{{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') : 'é' }}</td>
         <td class="text-right">
           {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
         </td>
@@ -78,8 +78,8 @@
           <h2 class="font-bold">{{ item.contractNumber }}</h2>
           <p class="text-sm text-500">{{ item.contractType }}</p>
           <p class="text-sm text-500">
-            {{ item.startDate | date:'dd/MM/yyyy' }} é {{ item.endDate ?
-            (item.endDate | date:'dd/MM/yyyy') : 'Indefinido' }}
+            {{ item.startDate | apiDate:'dd/MM/yyyy' }} é {{ item.endDate ?
+            (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}
           </p>
           <p class="text-sm">
             <span [class]="'badge ' + getStatusBadge(item.contractStatus)"

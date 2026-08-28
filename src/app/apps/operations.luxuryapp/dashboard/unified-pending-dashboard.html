@@ -171,11 +171,11 @@
           <td class="text-center vertical-align-middle">
             <div class="flex flex-column align-items-center">
               <span class="font-bold text-800 text-base mb-1"
-                >{{ item.date | date: 'dd MMM' : 'UTC' }}</span
+                >{{ item.date | apiDate: 'dd MMM' }}</span
               >
               <span class="text-500 text-xs flex align-items-center gap-1"
                 ><app-icon [icon]="'material-symbols-light:schedule'" class="text-xs" /> {{
-                item.date | date: 'HH:mm' : 'UTC' }}</span
+                item.date | apiDate: 'HH:mm' }}</span
               >
             </div>
           </td>

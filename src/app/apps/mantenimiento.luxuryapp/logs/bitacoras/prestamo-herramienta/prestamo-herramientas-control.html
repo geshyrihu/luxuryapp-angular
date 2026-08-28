@@ -52,7 +52,7 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <small> {{ item.fechaSalida | date: "medium" }} </small>
+        <small> {{ item.fechaSalida | apiDate: "medium" }} </small>
       </td>
       <td>
         <small> {{ item.tool }} </small>
@@ -61,7 +61,7 @@
         <small> {{ item.applicationUser }} </small>
       </td>
       <td>
-        <small> {{ item.fechaRegreso | date: "medium" }} </small>
+        <small> {{ item.fechaRegreso | apiDate: "medium" }} </small>
       </td>
       <td>
         <small> {{ item.observaciones }} </small>
@@ -122,14 +122,14 @@
         <div class="p-0">
           <span class="text-500 block">Salida</span>
           <span class="font-bold"
-            >{{ item.fechaSalida | date: 'dd/MM/yy HH:mm' }}</span
+            >{{ item.fechaSalida | apiDate: 'dd/MM/yy HH:mm' }}</span
           >
         </div>
         @if (item.fechaRegreso) {
         <div class="p-0">
           <span class="text-500 block">Regreso</span>
           <span class="font-bold text-green-500"
-            >{{ item.fechaRegreso | date: 'dd/MM/yy HH:mm' }}</span
+            >{{ item.fechaRegreso | apiDate: 'dd/MM/yy HH:mm' }}</span
           >
         </div>
         }

@@ -41,9 +41,9 @@
             >{{ item.addendumStatus }}</span
           >
         </td>
-        <td>{{ item.effectiveDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ item.effectiveDate | apiDate:'dd/MM/yyyy' }}</td>
         <td>
-          {{ item.signedDate ? (item.signedDate | date:'dd/MM/yyyy') : 'é' }}
+          {{ item.signedDate ? (item.signedDate | apiDate:'dd/MM/yyyy') : 'é' }}
         </td>
         <td class="text-center">
           @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
@@ -98,7 +98,7 @@
           </h2>
           <p class="text-sm text-500">{{ item.addendumType }}</p>
           <p class="text-sm text-500">
-            Efectiva: {{ item.effectiveDate | date:'dd/MM/yyyy' }}
+            Efectiva: {{ item.effectiveDate | apiDate:'dd/MM/yyyy' }}
           </p>
           <p class="text-sm">
             <span [class]="'badge ' + getStatusBadge(item.addendumStatus)"

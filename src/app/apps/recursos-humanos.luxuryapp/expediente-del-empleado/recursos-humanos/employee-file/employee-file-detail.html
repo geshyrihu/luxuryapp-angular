@@ -80,7 +80,7 @@
           />
           <span class="text-500">Ingreso:</span>
           <strong class="text-800"
-            >{{ header()!.dateAdmission | date:'dd/MM/yyyy' }}</strong
+            >{{ header()!.dateAdmission | apiDate:'dd/MM/yyyy' }}</strong
           >
         </div>
         }
@@ -151,7 +151,7 @@
               >Fecha de Nacimiento</label
             >
             <p class="font-semibold text-900 m-0">
-              {{ (pd.birth | date:'dd/MM/yyyy':'UTC') || 'é' }}
+              {{ (pd.birth | apiDate:'dd/MM/yyyy') || 'é' }}
             </p>
           </div>
           <div class="col-12 sm:col-6 lg:col-4">
@@ -244,7 +244,7 @@
                   >Fecha de Ingreso</label
                 >
                 <p class="font-semibold text-900 m-0">
-                  {{ (pd.dateAdmission | date:'dd/MM/yyyy':'UTC') || 'é' }}
+                  {{ (pd.dateAdmission | apiDate:'dd/MM/yyyy') || 'é' }}
                 </p>
               </div>
             </div>
@@ -535,7 +535,7 @@
             >Fecha Inicio</label
           >
           <span class="text-sm font-semibold"
-            >{{ c.startDate | date: 'dd/MM/yyyy' }}</span
+            >{{ c.startDate | apiDate: 'dd/MM/yyyy' }}</span
           >
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
@@ -543,7 +543,7 @@
             >Fecha Fin</label
           >
           <span class="text-sm font-semibold"
-            >{{ (c.endDate | date: 'dd/MM/yyyy') || 'Indeterminado' }}</span
+            >{{ (c.endDate | apiDate: 'dd/MM/yyyy') || 'Indeterminado' }}</span
           >
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
@@ -563,7 +563,7 @@
             >{{ c.signedByUserName || 'Usuario del sistema' }}</span
           >
           <small class="block text-500"
-            >{{ c.signedAt | date: 'dd/MM/yyyy HH:mm' }}</small
+            >{{ c.signedAt | apiDate: 'dd/MM/yyyy HH:mm' }}</small
           >
         </div>
         }
@@ -625,13 +625,13 @@
           </td>
           <td>
             <div class="flex align-items-center gap-2 text-sm">
-              <span>{{ item.startDate | date:'dd/MM/yyyy' }}</span>
+              <span>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</span>
               <app-icon
                 [icon]="'material-symbols-light:arrow-forward'"
                 class="text-xs text-400"
               />
               <span
-                >{{ (item.endDate | date:'dd/MM/yyyy') || 'Indeterminado'
+                >{{ (item.endDate | apiDate:'dd/MM/yyyy') || 'Indeterminado'
                 }}</span
               >
             </div>
@@ -906,7 +906,7 @@
                   >
                 </div>
               </td>
-              <td>{{ item.executionDate | date:'dd/MM/yyyy' }}</td>
+              <td>{{ item.executionDate | apiDate:'dd/MM/yyyy' }}</td>
               <td>
                 <span [class]="'badge ' + getStatusBadge(item.status)"
                   >{{ item.status }}</span
@@ -1033,15 +1033,15 @@
           <ng-template #body let-item>
             <tr>
               <td class="font-semibold">
-                {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate |
-                date:'dd/MM/yyyy' }}
+                {{ item.startDate | apiDate:'dd/MM/yyyy' }} - {{ item.endDate |
+                apiDate:'dd/MM/yyyy' }}
               </td>
               <td>
                 <span [class]="'badge ' + getStatusBadge(item.status)"
                   >{{ item.status }}</span
                 >
               </td>
-              <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
+              <td>{{ item.requestDate | apiDate:'dd/MM/yyyy' }}</td>
               <td class="text-center">
                 @if (item.paidVacationBonus) {
                 <lx-tag
@@ -1097,8 +1097,8 @@
             <tr>
               <td class="font-semibold text-primary">{{ item.leaveType }}</td>
               <td>
-                {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate |
-                date:'dd/MM/yyyy' }}
+                {{ item.startDate | apiDate:'dd/MM/yyyy' }} - {{ item.endDate |
+                apiDate:'dd/MM/yyyy' }}
               </td>
               <td>
                 <span [class]="'badge ' + getStatusBadge(item.status)"
@@ -1111,7 +1111,7 @@
                   >{{ item.paidStatus }}</span
                 >
               </td>
-              <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
+              <td>{{ item.requestDate | apiDate:'dd/MM/yyyy' }}</td>
             </tr>
           </ng-template>
         </p-table>
@@ -1164,7 +1164,7 @@
             >
           </td>
           <td class="font-medium text-sm">
-            {{ item.incidentDateTime | date:'dd/MM/yyyy HH:mm' }}
+            {{ item.incidentDateTime | apiDate:'dd/MM/yyyy HH:mm' }}
           </td>
           <td>
             @if (item.sanction) {
@@ -1173,7 +1173,7 @@
                 >{{ item.sanction.sanctionTypeName }}</span
               >
               <small class="text-500"
-                >Desde: {{ item.sanction.effectiveStartDate | date:'dd/MM/yyyy'
+                >Desde: {{ item.sanction.effectiveStartDate | apiDate:'dd/MM/yyyy'
                 }}</small
               >
             </div>
@@ -1263,7 +1263,7 @@
                 >{{ eval.status }}</span
               >
               <small class="text-500"
-                >{{ eval.evaluationDate | date:'dd/MM/yyyy':'UTC' }}</small
+                >{{ eval.evaluationDate | apiDate:'dd/MM/yyyy' }}</small
               >
             </div>
           </div>
@@ -1349,7 +1349,7 @@
                 >Solicitado el</span
               >
               <span class="font-medium"
-                >{{ r.requestDate | date:'dd/MM/yyyy' }}</span
+                >{{ r.requestDate | apiDate:'dd/MM/yyyy' }}</span
               >
             </div>
             <div class="col-6">
@@ -1357,7 +1357,7 @@
                 >Ejecutado el</span
               >
               <span class="font-medium"
-                >{{ (r.executionDate | date:'dd/MM/yyyy') || 'Pendiente'
+                >{{ (r.executionDate | apiDate:'dd/MM/yyyy') || 'Pendiente'
                 }}</span
               >
             </div>
@@ -1415,7 +1415,7 @@
                   class="text-green-500"
                 />
                 <span class="text-sm font-medium text-green-700"
-                  >{{ d.legalAuthorizationDate | date:'dd/MM/yyyy' }}</span
+                  >{{ d.legalAuthorizationDate | apiDate:'dd/MM/yyyy' }}</span
                 >
               </div>
               } @else {
@@ -1439,7 +1439,7 @@
                   class="text-green-500"
                 />
                 <span class="text-sm font-medium text-green-700"
-                  >{{ d.payrollAuthorizationDate | date:'dd/MM/yyyy' }}</span
+                  >{{ d.payrollAuthorizationDate | apiDate:'dd/MM/yyyy' }}</span
                 >
               </div>
               } @else {
@@ -1484,7 +1484,7 @@
                 >óltimo día</span
               >
               <span class="font-bold text-900"
-                >{{ (d.lastDayOfWork | date:'dd/MM/yyyy') || 'é' }}</span
+                >{{ (d.lastDayOfWork | apiDate:'dd/MM/yyyy') || 'é' }}</span
               >
             </div>
           </div>
@@ -1533,7 +1533,7 @@
                   class="border-1 border-300 rounded-lg p-2 surface-0 text-sm"
                 >
                   <strong>{{ acta.incidentTypeName }}</strong> - {{
-                  acta.incidentDateTime | date:'dd/MM/yyyy' }} @if
+                  acta.incidentDateTime | apiDate:'dd/MM/yyyy' }} @if
                   (acta.administrativeActPdfUrl) {
                   <a
                     [href]="acta.administrativeActPdfUrl"
@@ -1558,7 +1558,7 @@
                   class="border-1 border-300 rounded-lg p-2 surface-0 text-sm"
                 >
                   <strong>{{ eval.templateName }}</strong> - {{
-                  eval.evaluationDate | date:'dd/MM/yyyy' }}
+                  eval.evaluationDate | apiDate:'dd/MM/yyyy' }}
                   <span class="ml-2 text-500"
                     >Calificación: {{ eval.finalScore | number:'1.0-2' }}</span
                   >

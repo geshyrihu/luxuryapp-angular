@@ -1,4 +1,5 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -43,7 +44,7 @@ interface UnallocatedPayment {
     DataViewMobile,
     MobileListItem,
     AppIcon,
-    DatePipe,
+    ApiDatePipe,
     CurrencyPipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

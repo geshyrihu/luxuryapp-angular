@@ -127,7 +127,7 @@
       <h2 class="font-normal m-0">{{ item.requestTypeName }}</h2>
       <p class="mt-0 mb-0">{{ item.userName }}</p>
       <p class="text-color-secondary font-size-12 mt-0 mb-0">
-        {{ item.startDate | date: "dd/MM/yyyy" }} - {{ item.endDate | date:
+        {{ item.startDate | apiDate: "dd/MM/yyyy" }} - {{ item.endDate | apiDate:
         "dd/MM/yyyy" }}
       </p>
       <p class="text-color-secondary font-size-12 mt-0 mb-0">

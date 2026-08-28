@@ -45,7 +45,7 @@
             }
             @if (task.isCompleted) {
             <p class="m-0 text-xs text-500 mt-1">
-              Completado {{ task.completedAt | date:'dd/MM/yyyy HH:mm' }} por
+              Completado {{ task.completedAt | apiDate:'dd/MM/yyyy HH:mm' }} por
               {{ task.completedByUserName || '—' }}
             </p>
             }

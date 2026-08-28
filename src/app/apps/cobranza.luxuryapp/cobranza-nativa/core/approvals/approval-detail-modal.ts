@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,7 +29,7 @@ import { FinancialApprovalResponseDTO } from "../../interfaces/financial-approva
     ReactiveFormsModule,
     WebButtonLabel,
     CustomInputTextAreaSignal,
-    DatePipe,
+    ApiDatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./approval-detail-modal.html",

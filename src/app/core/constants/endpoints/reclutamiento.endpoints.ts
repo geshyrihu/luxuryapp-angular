@@ -139,6 +139,8 @@ export const EndpointsReclutamiento = {
       `recruitment-candidate-processes/${id}/process-hiring`,
     completeHiring: (id: Id) =>
       `recruitment-candidate-processes/${id}/complete-hiring`,
+    reconfirmPresentation: (id: Id) =>
+      `recruitment-candidate-processes/${id}/reconfirm-presentation`,
     directHire: (requestPositionId: Id) =>
       `recruitment-candidate-processes/direct-hire/${requestPositionId}`,
     byRequestPosition: (requestPositionId: Id) =>

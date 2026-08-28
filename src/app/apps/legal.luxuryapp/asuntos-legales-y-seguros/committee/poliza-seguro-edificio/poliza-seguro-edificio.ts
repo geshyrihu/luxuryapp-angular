@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { Component, effect, inject, signal } from "@angular/core";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
@@ -18,7 +18,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-poliza-seguro-edificio",
-  imports: [CommonModule, WebButtonLabelViewPdf, AppIcon],
+  imports: [ApiDatePipe, WebButtonLabelViewPdf, AppIcon],
   templateUrl: "./poliza-seguro-edificio.html",
 })
 export class PolizaSeguroEdificio {

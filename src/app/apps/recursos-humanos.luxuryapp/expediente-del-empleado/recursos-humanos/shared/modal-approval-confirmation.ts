@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -28,11 +28,10 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-approval-confirmation-modal",
   imports: [
-    CommonModule,
+    ApiDatePipe,
     ReactiveFormsModule,
     LxSpinner,
     WebButtonLabel,
-    DatePipe,
     LxDivider,
     LxMessage,
     LxTag,
@@ -136,9 +135,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                       </span>
                       <lx-tag
                         [value]="
-                          (req.startDate | date: 'dd MMM') +
+                          (req.startDate | apiDate: 'dd MMM') +
                           ' - ' +
-                          (req.endDate | date: 'dd MMM')
+                          (req.endDate | apiDate: 'dd MMM')
                         "
                         severity="warning"
                       />
@@ -169,9 +168,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                       </span>
                       <lx-tag
                         [value]="
-                          (req.startDate | date: 'dd MMM') +
+                          (req.startDate | apiDate: 'dd MMM') +
                           ' - ' +
-                          (req.endDate | date: 'dd MMM')
+                          (req.endDate | apiDate: 'dd MMM')
                         "
                         severity="warning"
                       />

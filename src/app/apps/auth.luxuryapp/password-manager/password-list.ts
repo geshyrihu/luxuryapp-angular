@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -51,7 +51,7 @@ import { PasswordForm } from "./password-form";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     MobileListItem,
-    DatePipe,
+    ApiDatePipe,
     AppIcon,
     ButtonModule,
     LxTooltipDirective,

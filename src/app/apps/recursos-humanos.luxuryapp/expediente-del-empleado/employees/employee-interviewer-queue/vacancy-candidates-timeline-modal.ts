@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -43,7 +43,7 @@ interface VacancyCandidateTimeline {
   templateUrl: "./vacancy-candidates-timeline-modal.html",
   styleUrl: "./vacancy-candidates-timeline-modal.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, DatePipe, LxAvatar, LxTag, TimelineModule, AppIcon],
+  imports: [ApiDatePipe, LxAvatar, LxTag, TimelineModule, AppIcon],
 })
 export class VacancyCandidatesTimelineModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);

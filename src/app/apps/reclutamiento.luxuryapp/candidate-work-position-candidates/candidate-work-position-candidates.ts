@@ -1,4 +1,5 @@
-import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -40,8 +41,7 @@ type VacancyView = CandidateRecruitmentInterviewBoard & {
   templateUrl: "./candidate-work-position-candidates.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
-    DatePipe,
+    ApiDatePipe,
     CurrencyPipe,
     WebButtonIconViewPdf,
     WebButtonLabel,

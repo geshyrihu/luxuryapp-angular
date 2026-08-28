@@ -74,7 +74,7 @@
       >
       @if (delinquentSince) {
       <span class="text-500 text-sm"
-        >desde {{ delinquentSince | date:'dd/MM/yyyy' }}</span
+        >desde {{ delinquentSince | apiDate }}</span
       >
       } } @else {
       <span

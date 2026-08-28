@@ -68,7 +68,7 @@
       </td>
       <td><code>{{ item.cronExpression }}</code></td>
       <td>{{ item.retentionDays }} dias</td>
-      <td>{{ item.lastRunAt | date: "dd-MMM-yy HH:mm" }}</td>
+      <td>{{ item.lastRunAt | apiDate: "dd-MMM-yy HH:mm" }}</td>
       <td>
         @if (item.lastRunStatus) {
         <span class="badge {{ statusBadge(item.lastRunStatus) }}"

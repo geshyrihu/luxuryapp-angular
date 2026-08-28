@@ -23,6 +23,7 @@ import {
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { ApiDatePipe } from "../../../../../../../shared/pipes/api-date.pipe";
 
 @Component({
   selector: "app-modal-dias-no-habiles",
@@ -35,6 +36,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputDateSignal,
     CustomInputTextSignal,
     CustomInputSwitch,
+    ApiDatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-dias-no-habiles.html",

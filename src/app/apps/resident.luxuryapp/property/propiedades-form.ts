@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -45,7 +45,7 @@ interface IPropiedadesForm {
   templateUrl: "./propiedades-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    DatePipe,
+    ApiDatePipe,
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputNumberSignal,

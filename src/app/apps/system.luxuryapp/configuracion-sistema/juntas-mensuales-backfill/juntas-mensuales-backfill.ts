@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,12 +26,11 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
   imports: [
     WebButtonIconConfirm,
     LxTooltipDirective,
-    CommonModule,
+    ApiDatePipe,
     TableModule,
     LxTag,
     WebButtonLabel,
 
-    DatePipe,
   ],
 })
 export class JuntasMensualesBackfill {

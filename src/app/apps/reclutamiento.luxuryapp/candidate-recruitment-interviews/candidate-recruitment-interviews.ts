@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -47,8 +47,7 @@ type InterviewViewMode = "board" | "agenda";
   templateUrl: "./candidate-recruitment-interviews.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
-    DatePipe,
+    ApiDatePipe,
     WebButtonIconViewPdf,
     WebButtonLabel,
     CandidateStageBadge,
@@ -69,6 +68,7 @@ export class CandidateRecruitmentInterviews implements OnInit {
   readonly focusedRequestPositionId = signal("");
   readonly focusedCandidateApplicationId = signal("");
   readonly viewMode = signal<InterviewViewMode>("board");
+  readonly reconfirmingProcessId = signal("");
 
   readonly agendaStatusOptions: MappedTagOption[] = [
     { value: "postulada", label: "Postulada", severity: "secondary" },
@@ -221,6 +221,24 @@ export class CandidateRecruitmentInterviews implements OnInit {
       .then((res) => {
         if (res) this.onLoadData();
       });
+  }
+
+  async reconfirmPresentation(
+    candidate: CandidateRecruitmentInterviewBoardItem,
+  ): Promise<void> {
+    const candidateProcessId =
+      candidate.candidateProcessId ?? candidate.candidateApplicationId;
+
+    this.reconfirmingProcessId.set(candidateProcessId);
+    try {
+      const result =
+        await this.boardS.reconfirmPresentation(candidateProcessId);
+      if (result) {
+        await this.onLoadData();
+      }
+    } finally {
+      this.reconfirmingProcessId.set("");
+    }
   }
 
   private modalTitle(

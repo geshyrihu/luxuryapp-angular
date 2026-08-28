@@ -42,7 +42,7 @@
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td>{{ item.date | date:'dd-MMM-yy' }}</td>
+      <td>{{ item.date | apiDate:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
         <app-icon
@@ -133,7 +133,7 @@
         <app-icon icon="material-symbols-light:precision-manufacturing" />
       </div>
 
-      <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
+      <h3>{{ item.date | apiDate:'dd-MMM-yy' }} {{ item.hour }}</h3>
       <p>{{ item.cabinetState }}</p>
       <div class="flex gap-2 mt-1">
         <small [class]="item.labelPresent ? 'text-green-600' : 'text-red-600'"

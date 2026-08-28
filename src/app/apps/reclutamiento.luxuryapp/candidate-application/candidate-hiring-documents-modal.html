@@ -29,7 +29,7 @@
               <div class="document-meta pt-2">
                 @if (row.document?.submittedAt) {
                   <span>
-                    Entregado: {{ row.document?.submittedAt | date: "dd/MM/yyyy HH:mm" }}
+                    Entregado: {{ row.document?.submittedAt | apiDate: "dd/MM/yyyy HH:mm" }}
                   </span>
                 } @else {
                   <span>Pendiente de entrega</span>
@@ -38,7 +38,7 @@
                   <span>
                     Validado por {{ row.document?.validatedByUserName || "usuario" }}
                     el
-                    {{ row.document?.validatedAt | date: "dd/MM/yyyy HH:mm" }}
+                    {{ row.document?.validatedAt | apiDate: "dd/MM/yyyy HH:mm" }}
                   </span>
                 }
               </div>

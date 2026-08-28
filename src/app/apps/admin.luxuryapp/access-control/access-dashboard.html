@@ -53,7 +53,7 @@
     <tr>
       <td>{{ visit.visitorName }}</td>
       <td>{{ visit.propertyDisplay }}</td>
-      <td>{{ visit.actualCheckIn | date: "dd/MM/yyyy HH:mm" }}</td>
+      <td>{{ visit.actualCheckIn | apiDate: "dd/MM/yyyy HH:mm" }}</td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>

@@ -114,7 +114,7 @@
       </ng-template>
       <ng-template #body let-item>
         <tr>
-          <td>{{ item.timestamp | date: 'dd/MM/yyyy h:mm:ss a' }}</td>
+          <td>{{ item.timestamp | apiDate: 'dd/MM/yyyy h:mm:ss a' }}</td>
           <td>{{ item.userName }}</td>
           <td>
             <lx-tag [value]="item.userType"></lx-tag>
@@ -162,7 +162,7 @@
 
           <p class="text-medium text-500 m-0 text-sm mb-1">
             <app-icon [icon]="'material-symbols-light:schedule'" class="mr-1 text-xs" /> {{
-            item.timestamp | date: "dd/MM/yyyy h:mm a" }}
+            item.timestamp | apiDate: "dd/MM/yyyy h:mm a" }}
           </p>
 
           <div class="flex align-items-center gap-2 mb-1">

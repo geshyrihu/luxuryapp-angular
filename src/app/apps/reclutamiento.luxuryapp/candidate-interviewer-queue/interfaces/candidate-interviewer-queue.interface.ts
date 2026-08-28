@@ -36,6 +36,11 @@ export interface CandidateInterviewerQueueItemDto {
   isVacancyLocked: boolean;
   vacancyLockMessage: string;
   canConfirmPresentation: boolean;
+  hasHiringRequest: boolean;
+  hiringRequestId?: string | null;
+  hiringRequestFolio: string;
+  hiringRequestStatus: string;
+  canReconfirmPresentation: boolean;
   canSubmitFeedback: boolean;
   canMarkNoShow: boolean;
   canReject: boolean;

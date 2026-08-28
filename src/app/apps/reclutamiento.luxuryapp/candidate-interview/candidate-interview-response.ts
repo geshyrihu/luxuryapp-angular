@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,8 +35,7 @@ import { InterviewerActionRequestDto } from "./interfaces/interviewer-action-req
   templateUrl: "./candidate-interview-response.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
-    DatePipe,
+    ApiDatePipe,
     WebButtonLabel,
     WebButtonIconViewPdf,
     TableModule,

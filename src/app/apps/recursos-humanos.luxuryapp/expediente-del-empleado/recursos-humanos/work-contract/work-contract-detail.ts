@@ -1,4 +1,5 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +17,7 @@ import { WorkContractDetailDTO } from "./interfaces/work-contract.dto";
   selector: "app-work-contract-detail",
   templateUrl: "./work-contract-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, DatePipe, CurrencyPipe],
+  imports: [AppIcon, ApiDatePipe, CurrencyPipe],
 })
 export class WorkContractDetailComponent implements OnInit {
   apiS = inject(ApiResponseService);

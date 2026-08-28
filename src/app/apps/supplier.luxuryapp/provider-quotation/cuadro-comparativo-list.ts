@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   Component,
   effect,
@@ -42,7 +42,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   imports: [
     WebButtonIcon,
     WebButtonIconViewPdf,
-    CommonModule,
+    ApiDatePipe,
     ReactiveFormsModule,
     TableModule,
     DividerModule,

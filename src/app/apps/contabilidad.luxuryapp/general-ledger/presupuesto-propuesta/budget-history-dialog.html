@@ -30,7 +30,7 @@
   </ng-template>
   <ng-template #body let-record>
     <tr>
-      <td>{{ record.changedAt | date: "short" }}</td>
+      <td>{{ record.changedAt | apiDate: "short" }}</td>
       <td>{{ record.changedByUserName }}</td>
       <td class="text-right">{{ record.oldAmount | number: "1.0-0" }}</td>
       <td class="text-right">{{ record.newAmount | number: "1.0-0" }}</td>

@@ -114,7 +114,7 @@
             />
             }
           </td>
-          <td>{{ item.changedAt | date: 'dd/MM/yyyy h:mm:ss a' }}</td>
+          <td>{{ item.changedAt | apiDate: 'dd/MM/yyyy h:mm:ss a' }}</td>
           <td>{{ item.entityName }}</td>
           <td>
             <lx-tag
@@ -186,7 +186,7 @@
             </div>
             <p class="text-medium text-500 m-0 text-sm">
               <app-icon [icon]="'material-symbols-light:schedule'" class="mr-1 text-xs" />
-              {{ item.changedAt | date: "dd/MM/yyyy h:mm a" }}
+              {{ item.changedAt | apiDate: "dd/MM/yyyy h:mm a" }}
             </p>
           </div>
           <p class="text-sm text-color-secondary m-0 mb-1">

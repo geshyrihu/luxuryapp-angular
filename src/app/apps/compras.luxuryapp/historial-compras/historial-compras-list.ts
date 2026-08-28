@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -87,6 +88,7 @@ type HistorialComprasDateFilterForm = {
     MobileButtonLabelEdit,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
+    ApiDatePipe,
     ReactiveFormsModule,
     TableModule,
     PrimeNgCustomCaption,

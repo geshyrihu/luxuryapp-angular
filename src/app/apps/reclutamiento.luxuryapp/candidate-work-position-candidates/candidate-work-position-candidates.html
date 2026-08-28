@@ -167,7 +167,7 @@
           <span>Vencidas: {{ vacancy.overdueCount }}</span>
           @if (vacancy.nextInterviewAt) {
           <span
-            >Proxima cita: {{ vacancy.nextInterviewAt | date: "dd/MM/yyyy HH:mm"
+            >Proxima cita: {{ vacancy.nextInterviewAt | apiDate: "dd/MM/yyyy HH:mm"
             }}</span
           >
           }
@@ -216,7 +216,7 @@
                   <small class="text-color-secondary block">Registro</small>
                   <div class="font-medium">
                     @if (candidate.applicationDate) { {{
-                    candidate.applicationDate | date: "dd/MM/yyyy" }} } @else {
+                    candidate.applicationDate | apiDate: "dd/MM/yyyy" }} } @else {
                     <span class="text-color-secondary">Sin fecha</span>
                     }
                   </div>
@@ -227,7 +227,7 @@
                   >
                   <div class="font-medium">
                     @if (candidate.recruitmentInterviewAt) { {{
-                    candidate.recruitmentInterviewAt | date: "dd/MM/yyyy HH:mm"
+                    candidate.recruitmentInterviewAt | apiDate: "dd/MM/yyyy HH:mm"
                     }} } @else {
                     <span class="text-color-secondary">Sin fecha</span>
                     }
@@ -239,7 +239,7 @@
                   >
                   <div class="font-medium">
                     @if (candidate.operationsInterviewAt) { {{
-                    candidate.operationsInterviewAt | date: "dd/MM/yyyy HH:mm"
+                    candidate.operationsInterviewAt | apiDate: "dd/MM/yyyy HH:mm"
                     }} } @else {
                     <span class="text-color-secondary">Sin fecha</span>
                     }
@@ -347,7 +347,7 @@
                   <small class="text-color-secondary block">Registro</small>
                   <div class="font-medium">
                     @if (candidate.applicationDate) { {{
-                    candidate.applicationDate | date: "dd/MM/yyyy" }} } @else {
+                    candidate.applicationDate | apiDate: "dd/MM/yyyy" }} } @else {
                     <span class="text-color-secondary">Sin fecha</span>
                     }
                   </div>
@@ -360,7 +360,7 @@
                     @if (candidate.operationsInterviewAt ||
                     candidate.recruitmentInterviewAt) { {{
                     (candidate.operationsInterviewAt ||
-                    candidate.recruitmentInterviewAt) | date: "dd/MM/yyyy HH:mm"
+                    candidate.recruitmentInterviewAt) | apiDate: "dd/MM/yyyy HH:mm"
                     }} } @else {
                     <span class="text-color-secondary">Sin fecha</span>
                     }

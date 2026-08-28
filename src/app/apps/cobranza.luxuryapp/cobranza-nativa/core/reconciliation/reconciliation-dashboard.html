@@ -58,7 +58,7 @@
     <ng-template #body let-pay>
       <tr>
         <td class="text-center text-sm">
-          {{ pay.paymentDate | date:'dd/MM/yyyy' }}
+          {{ pay.paymentDate | apiDate:'dd/MM/yyyy' }}
         </td>
         <td class="text-right font-bold text-orange-700">
           {{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}
@@ -97,7 +97,7 @@
         <div class="flex-1 min-w-0">
           <h3>{{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</h3>
           <p>
-            {{ pay.paymentDate | date:'dd/MM/yyyy' }} &middot; {{ pay.status }}
+            {{ pay.paymentDate | apiDate:'dd/MM/yyyy' }} &middot; {{ pay.status }}
           </p>
           <p>{{ pay.reference || 'Sin referencia' }}</p>
         </div>

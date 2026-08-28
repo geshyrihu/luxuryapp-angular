@@ -29,8 +29,8 @@
   <ng-template #body let-item>
     <tr>
       <td>{{ item.periodName }}</td>
-      <td>{{ item.periodStart | date:'dd-MMM-yy' }}</td>
-      <td>{{ item.periodEnd | date:'dd-MMM-yy' }}</td>
+      <td>{{ item.periodStart | apiDate:'dd-MMM-yy' }}</td>
+      <td>{{ item.periodEnd | apiDate:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.totalItems }}</td>
       <td class="text-center">{{ item.pendingItems }}</td>
       <td class="text-center">{{ item.completedItems }}</td>
@@ -68,8 +68,8 @@
 
       <h3>{{ item.periodName }}</h3>
       <p>
-        {{ item.periodStart | date:'dd-MMM-yy' }} &mdash; {{ item.periodEnd |
-        date:'dd-MMM-yy' }}
+        {{ item.periodStart | apiDate:'dd-MMM-yy' }} &mdash; {{ item.periodEnd |
+        apiDate:'dd-MMM-yy' }}
       </p>
       <p>
         <span [class]="statusClass(item.status)">{{ item.status }}</span>

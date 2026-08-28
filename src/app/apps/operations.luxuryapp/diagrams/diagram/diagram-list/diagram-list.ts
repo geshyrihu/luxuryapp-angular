@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -49,7 +49,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
+    ApiDatePipe,
     TableModule,
     WebButtonLabel,
     NgbTooltipModule,

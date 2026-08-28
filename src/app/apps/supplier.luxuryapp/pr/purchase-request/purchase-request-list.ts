@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { Component, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -44,7 +44,7 @@ import { PurchaseRequestForm } from "./purchase-request-form";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
+    ApiDatePipe,
     RouterModule,
     TableModule,
     WebButtonLabel,

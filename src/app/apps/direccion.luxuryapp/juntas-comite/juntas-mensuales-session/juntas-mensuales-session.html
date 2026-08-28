@@ -179,7 +179,7 @@
             </p>
             @if (detail.presentation) {
             <small class="text-color-secondary">
-              Junta: {{ detail.presentation.fechaJunta | date: "dd/MM/yyyy" }}
+              Junta: {{ detail.presentation.fechaJunta | apiDate: "dd/MM/yyyy" }}
             </small>
             }
           </div>

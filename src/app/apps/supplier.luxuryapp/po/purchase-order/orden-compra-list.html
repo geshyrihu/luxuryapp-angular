@@ -179,7 +179,7 @@
         <br />
         <span class="text-xs text-600">
           <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1" />
-          {{ item.fechaSolicitud | date : 'd MMM yyyy' : 'UTC' }}
+          {{ item.fechaSolicitud | apiDate : 'd MMM yyyy' }}
         </span>
       </td>
       <td class="text-sm oc-cell-wrap">
@@ -209,7 +209,7 @@
       <td class="text-sm oc-cell-wrap">
         <div class="font-medium">{{ item.fullName }}</div>
         <div class="text-xs text-500">
-          {{ item.fechaAutorizacion | date : 'short' }}
+          {{ item.fechaAutorizacion | apiDate : 'short' }}
         </div>
       </td>
       }
@@ -342,7 +342,7 @@
       <p>{{ item.proveedor }} é Folio: {{ item.folio }}</p>
       <p>
         Total: ${{ item.total | number:'1.2-2' }} é {{ item.fechaSolicitud |
-        date:'d MMM yyyy':'UTC' }}
+        apiDate:'d MMM yyyy' }}
       </p>
 
       <ili-action-menu slot="end">

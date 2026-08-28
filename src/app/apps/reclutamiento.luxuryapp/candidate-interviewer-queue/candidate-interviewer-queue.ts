@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -48,8 +48,7 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
   templateUrl: "./candidate-interviewer-queue.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
-    DatePipe,
+    ApiDatePipe,
     WebButtonIconViewPdf,
     WebButtonLabel,
     CandidateStageBadge,

@@ -43,7 +43,7 @@
     </ng-template>
     <ng-template #body let-dia>
       <tr>
-        <td>{{ dia.fecha | date: "dd/MM/yyyy" : "UTC" }}</td>
+        <td>{{ dia.fecha | apiDate: "dd/MM/yyyy" }}</td>
         <td>{{ dia.descripcion }}</td>
         <td>
           <lx-tag

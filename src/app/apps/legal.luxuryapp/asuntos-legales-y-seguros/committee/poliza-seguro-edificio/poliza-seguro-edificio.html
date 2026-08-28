@@ -30,7 +30,7 @@
             <app-icon icon="material-symbols-light:event" /> Fecha de Inicio
           </span>
           <span class="committee-field__value"
-            >{{ policy.startDate | date: 'dd/MM/yyyy' }}</span
+            >{{ policy.startDate | apiDate: 'dd/MM/yyyy' }}</span
           >
         </div>
         <div class="committee-field">
@@ -38,7 +38,7 @@
             <app-icon icon="material-symbols-light:event-upcoming" /> Fecha de Fin
           </span>
           <span class="committee-field__value"
-            >{{ policy.endDate | date: 'dd/MM/yyyy' }}</span
+            >{{ policy.endDate | apiDate: 'dd/MM/yyyy' }}</span
           >
         </div>
       </div>

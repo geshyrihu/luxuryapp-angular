@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +19,7 @@ import { IAnnouncementAnalyticsDTO } from "./announcement.model";
 @Component({
   selector: "app-announcement-analytics",
   imports: [
-    CommonModule,
+    ApiDatePipe,
     RouterModule,
     DataGrid,
     DataViewMobile,

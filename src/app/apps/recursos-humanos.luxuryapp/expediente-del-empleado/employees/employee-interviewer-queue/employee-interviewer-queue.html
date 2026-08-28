@@ -79,12 +79,12 @@
           <span class="badge badge-secondary">{{ vacancy.vacancyStatus }}</span>
         </div>
         <div class="flex flex-wrap gap-2 text-sm text-color-secondary">
-          <span>Apertura: {{ vacancy.requestDate | date:'dd/MM/yyyy' }}</span>
+          <span>Apertura: {{ vacancy.requestDate | apiDate:'dd/MM/yyyy' }}</span>
           <span>Pendientes: {{ vacancy.pendingCandidatesCount }}</span>
           <span>Vencidas: {{ vacancy.overdueCandidatesCount }}</span>
           @if (vacancy.nextInterviewAt) {
           <span
-            >Proxima cita: {{ vacancy.nextInterviewAt | date:'dd/MM/yyyy
+            >Proxima cita: {{ vacancy.nextInterviewAt | apiDate:'dd/MM/yyyy
             HH:mm' }}</span
           >
           }
@@ -141,6 +141,52 @@
           severity="success"
           (clicked)="openConfirmPresentationModal(candidate)"
         />
+        }
+      </div>
+    </div>
+    }
+
+    @if (hiringRequestCandidates(vacancy).length > 0) {
+    <div class="mt-3 p-3 border-1 border-blue-200 border-round bg-blue-50">
+      <div class="font-semibold text-blue-900 mb-1">Seguimiento de alta</div>
+      <div class="text-sm text-blue-800 mb-3">
+        El candidato ya fue presentado. Desde aquí puedes ver si la solicitud de alta existe y reenviar la notificación a Reclutamiento si hace falta.
+      </div>
+      <div class="flex flex-column gap-2">
+        @for (candidate of hiringRequestCandidates(vacancy); track candidate.candidateApplicationId) {
+        <div class="flex flex-column xl:flex-row xl:align-items-center xl:justify-content-between gap-3 p-3 border-1 border-blue-100 border-round bg-white">
+          <div class="flex flex-column gap-2">
+            <div class="flex flex-wrap align-items-center gap-2">
+              <span class="font-semibold text-bluegray-900">{{ candidate.candidateName }}</span>
+              @if (candidate.hasHiringRequest) {
+              <span class="badge badge-info">
+                {{ candidate.hiringRequestFolio || 'Alta generada' }}
+              </span>
+              <span class="badge badge-secondary">
+                {{ candidate.hiringRequestStatus || 'Estatus pendiente' }}
+              </span>
+              } @else {
+              <span class="badge badge-warning">Presentación confirmada</span>
+              <span class="badge badge-secondary">Alta pendiente de reparar</span>
+              }
+            </div>
+            <div class="text-sm text-color-secondary">
+              @if (candidate.hasHiringRequest) {
+              La solicitud de alta ya está registrada para esta vacante; puedes reenviar el correo de solicitud.
+              } @else {
+              No se encontró una solicitud de alta activa para este candidato y vacante; puedes reintentar el envío sin crear otra vacante.
+              }
+            </div>
+          </div>
+          <il-button
+            [label]="candidate.hasHiringRequest ? 'Reenviar notificación de alta' : 'Reintentar solicitud de alta'"
+            iconClass="material-symbols-light:outgoing-mail"
+            severity="info"
+            variant="outline"
+            [loading]="reconfirmingProcessId() === (candidate.candidateProcessId ?? candidate.candidateApplicationId)"
+            (clicked)="reconfirmPresentation(candidate)"
+          />
+        </div>
         }
       </div>
     </div>

@@ -35,7 +35,7 @@ unassignedData().length > 0) {
       <ng-template #body let-ticket>
         <tr>
           <td>{{ ticket.folio }}</td>
-          <td>{{ ticket.requestDate | date: "dd/MM/yyyy" }}</td>
+          <td>{{ ticket.requestDate | apiDate: "dd/MM/yyyy" }}</td>
           <td>{{ ticket.nombreCorto }}</td>
           <td [innerHTML]="ticket.request"></td>
           <td>{{ ticket.fullName }}</td>
@@ -85,7 +85,7 @@ unassignedData().length > 0) {
       <ng-template #body let-ticket>
         <tr>
           <td>{{ ticket.folio }}</td>
-          <td>{{ ticket.requestDate | date: "dd/MM/yyyy" }}</td>
+          <td>{{ ticket.requestDate | apiDate: "dd/MM/yyyy" }}</td>
           <td>{{ ticket.nombreCorto }}</td>
           <td [innerHTML]="ticket.request"></td>
           <td>{{ ticket.fullName }}</td>
@@ -135,7 +135,7 @@ unassignedData().length > 0) {
       <ng-template #body let-ticket>
         <tr>
           <td>{{ ticket.folio }}</td>
-          <td>{{ ticket.requestDate | date: "dd/MM/yyyy" }}</td>
+          <td>{{ ticket.requestDate | apiDate: "dd/MM/yyyy" }}</td>
           <td>{{ ticket.nombreCorto }}</td>
           <td [innerHTML]="ticket.request"></td>
           <td>{{ ticket.fullName }}</td>
@@ -184,7 +184,7 @@ unassignedData().length > 0) {
           
             <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
             <p class="mt-0 mb-1">
-              <strong>Fecha:</strong> {{ ticket.requestDate | date: "dd/MM/yyyy"
+              <strong>Fecha:</strong> {{ ticket.requestDate | apiDate: "dd/MM/yyyy"
               }}
             </p>
             <p class="mt-0 mb-1">
@@ -246,7 +246,7 @@ unassignedData().length > 0) {
           
             <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
             <p class="mt-0 mb-1">
-              <strong>Fecha:</strong> {{ ticket.requestDate | date: "dd/MM/yyyy"
+              <strong>Fecha:</strong> {{ ticket.requestDate | apiDate: "dd/MM/yyyy"
               }}
             </p>
             <p class="mt-0 mb-1">
@@ -308,7 +308,7 @@ unassignedData().length > 0) {
           
             <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
             <p class="mt-0 mb-1">
-              <strong>Fecha:</strong> {{ ticket.requestDate | date: "dd/MM/yyyy"
+              <strong>Fecha:</strong> {{ ticket.requestDate | apiDate: "dd/MM/yyyy"
               }}
             </p>
             <p class="mt-0 mb-1">

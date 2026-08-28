@@ -42,6 +42,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
+import { CandidateDetail } from "../candidate/candidate-detail";
 import {
   DuplicateEmployeeMatch,
   DuplicateEmployeeWarningModal,
@@ -233,6 +234,17 @@ onDelete(id: string) {
     this.apiResponseS.onDownloadFile(
       EndpointsReclutamiento.RequestEmployeeRegister.exportPdf(data.id),
       `${data.folio}.pdf`,
+    );
+  }
+
+  onViewCandidate(data: SolicitudAltaListItem) {
+    if (!data.candidateId) return;
+
+    this.dialogHandlerS.openDialog(
+      CandidateDetail,
+      { id: data.candidateId },
+      "Datos del candidato",
+      this.dialogHandlerS.sizeLg,
     );
   }
 }

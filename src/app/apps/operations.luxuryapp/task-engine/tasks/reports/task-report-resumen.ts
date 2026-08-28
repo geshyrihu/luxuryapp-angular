@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TaskDateRangeSelector } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task-date-range-selector/task-date-range-selector";
@@ -13,7 +13,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
   selector: "app-task-report-resumen",
   templateUrl: "./task-report-resumen.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [TaskDateRangeSelector, CommonModule, TableModule],
+  imports: [TaskDateRangeSelector, ApiDatePipe, TableModule],
 })
 export class TaskMessageReportResumen {
   apiResponseS = inject(ApiResponseService);

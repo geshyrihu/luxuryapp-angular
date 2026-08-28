@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,9 +21,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   templateUrl: "./ticket-legal-reportes-pendientes.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CommonModule,
+    ApiDatePipe,
     TableModule,
-    DatePipe,
     AppIcon,
     DataViewMobile,
     LxEmptyState,

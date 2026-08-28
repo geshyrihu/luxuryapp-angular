@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -33,7 +33,7 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RangoCalendarioyyyymmdd,
-    CommonModule,
+    ApiDatePipe,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

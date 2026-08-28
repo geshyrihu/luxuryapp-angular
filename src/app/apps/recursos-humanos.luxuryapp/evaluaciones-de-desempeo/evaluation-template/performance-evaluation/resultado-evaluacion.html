@@ -23,7 +23,7 @@
             Fecha de Evaluación:
           </div>
           <p class="text-lg m-0">
-            {{ evaluationResult()!.evaluationDate | date: "dd/MM/yyyy" : "UTC"
+            {{ evaluationResult()!.evaluationDate | apiDate: "dd/MM/yyyy"
             }}
           </p>
         </div>
@@ -170,7 +170,7 @@
   <!-- PIE DE PÁGINA PARA IMPRESIÓN -->
   <div class="print-footer text-center mt-4 pt-3 border-top-1 surface-border">
     <p class="mb-1">
-      Documento generado el {{ today() | date: "dd/MM/yyyy HH:mm" }}
+      Documento generado el {{ today() | apiDate: "dd/MM/yyyy HH:mm" }}
     </p>
     <p class="text-sm text-color-secondary m-0">Confidencial - Uso interno</p>
   </div>

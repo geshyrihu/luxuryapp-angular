@@ -34,10 +34,10 @@
     <td class="table-col-40">
       <div class="div">
         <p class="m-0 font-size-11">
-          Fecha de Solicitud: {{ item.fechaSolicitud | date : "dd-MMM-yyyy" }}
+          Fecha de Solicitud: {{ item.fechaSolicitud | apiDate : "dd-MMM-yyyy" }}
         </p>
         <p class="m-0 font-size-11">
-          Fecha de Ejecución: {{ item.fechaTermino | date : "dd-MMM-yyyy" }}
+          Fecha de Ejecución: {{ item.fechaTermino | apiDate : "dd-MMM-yyyy" }}
         </p>
         <p class="m-0 font-size-11">
           Tipo de servicio:

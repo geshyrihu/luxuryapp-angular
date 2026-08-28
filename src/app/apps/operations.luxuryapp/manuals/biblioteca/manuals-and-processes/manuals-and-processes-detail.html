@@ -450,7 +450,7 @@
                 </span>
                 <div class="flex-1">
                   <div class="text-xs text-color-secondary mb-2">
-                    {{ v.fechaCambio | date:'dd/MM/yyyy' }} | {{ v.autor }}
+                    {{ v.fechaCambio | apiDate:'dd/MM/yyyy' }} | {{ v.autor }}
                   </div>
                   @if (v.descripcionCambio) {
                   <p

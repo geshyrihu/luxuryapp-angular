@@ -1,4 +1,5 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +27,7 @@ import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto"
     ReactiveFormsModule,
     WebButtonLabel,
     CustomInputTextAreaSignal,
-    DatePipe,
+    ApiDatePipe,
     CurrencyPipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

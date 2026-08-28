@@ -52,7 +52,7 @@
   <ng-template #body let-item>
     <tr [class.p-datatable-discrepant]="item.isDiscrepant">
       <td>{{ item.fullName }}</td>
-      <td>{{ item.hireDate | date: "dd/MM/yyyy" }}</td>
+      <td>{{ item.hireDate | apiDate: "dd/MM/yyyy" }}</td>
       <td>{{ item.seniorityYears }} años</td>
       <td>{{ item.entitledDaysByLaw }}</td>
       <td>{{ item.takenDays }}</td>
@@ -102,7 +102,7 @@
 
       <h2 class="font-normal m-0">{{ item.fullName }}</h2>
       <p class="text-xs m-0">
-        Contratado: {{ item.hireDate | date: "dd/MM/yyyy" }}
+        Contratado: {{ item.hireDate | apiDate: "dd/MM/yyyy" }}
       </p>
       @if (item.isEligibleForAdvance) {
       <div class="mt-1">

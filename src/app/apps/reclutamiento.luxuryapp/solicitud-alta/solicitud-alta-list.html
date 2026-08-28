@@ -77,6 +77,11 @@
       </td>
       <td class="no-print">
         <div class="flex gap-1">
+          <iw-button
+            iconClass="material-symbols-light:person-search"
+            [disabled]="!item.candidateId"
+            (clicked)="onViewCandidate(item)"
+          />
           @if (item.isEmployeeLinked && item.status === 'Pendiente') {
             <il-button
               label="Concluir Alta"
@@ -127,6 +132,9 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
+          @if (item.candidateId) {
+            <ili-button (clicked)="onViewCandidate(item)" label="Ver candidato" iconClass="material-symbols-light:person-search" />
+          }
           <ili-button (clicked)="onOpenDocumentValidation(item)" label="Documentos" iconClass="material-symbols-light:folder-open" />
           <ili-button (clicked)="onDownloadPdf(item)" label="Descargar PDF" iconClass="material-symbols-light:picture-as-pdf" />
           @if (item.isEmployeeLinked && item.status === 'Pendiente') {

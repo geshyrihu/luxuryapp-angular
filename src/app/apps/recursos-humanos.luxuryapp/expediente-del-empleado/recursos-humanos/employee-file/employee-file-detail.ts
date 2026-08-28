@@ -1,5 +1,6 @@
 import { EmployeeDocumentList } from 'src/app/apps/recursos-humanos.luxuryapp/employee-document/employee-document-list';
-import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -48,7 +49,7 @@ import { EmployeeOnboardingChecklist } from "./employee-onboarding-checklist/emp
     LxTabs,
     WebButtonIconItem,
     LxTooltipDirective,
-    DatePipe,
+    ApiDatePipe,
     CurrencyPipe,
     TableModule,
     AppIcon,

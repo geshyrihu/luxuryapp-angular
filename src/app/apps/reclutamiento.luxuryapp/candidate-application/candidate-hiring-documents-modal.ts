@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +21,7 @@ import { CandidateHiringDocumentsDialogDataDto } from "./interfaces/candidate-hi
   selector: "app-candidate-hiring-documents-modal",
   templateUrl: "./candidate-hiring-documents-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, CandidateCvUpload, LxDivider],
+  imports: [ApiDatePipe, CandidateCvUpload, LxDivider],
   styles: [
     `
       :host {

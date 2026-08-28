@@ -22,7 +22,7 @@
             <div class="grid align-items-center">
               <div class="col-12 sm:col-6">
                 <p class="m-0 font-bold">
-                  {{ item.fechaRegistro | date: 'EEEE d MMM y h:mm ' }}
+                  {{ item.fechaRegistro | apiDate: 'EEEE d MMM y h:mm ' }}
                 </p>
               </div>
               <div class="col-12 sm:col-6 text-right no-print">
@@ -76,7 +76,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <p class="font-semibold m-0 text-color">{{ item.descripcion }}</p>
-      <p class="text-xs m-0 text-color-secondary">{{ item.machinery }} · {{ item.fechaRegistro | date:'short' }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.machinery }} · {{ item.fechaRegistro | apiDate:'short' }}</p>
 
       <ili-action-menu end>
         <ng-container actions>

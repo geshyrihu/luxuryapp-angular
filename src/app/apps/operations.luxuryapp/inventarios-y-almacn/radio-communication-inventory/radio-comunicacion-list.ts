@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -57,7 +57,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    DatePipe,
+    ApiDatePipe,
     MobileListItem,
     AppIcon,
   ],

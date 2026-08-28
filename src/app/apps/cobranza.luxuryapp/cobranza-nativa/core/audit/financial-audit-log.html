@@ -70,7 +70,7 @@
     <ng-template #body let-log>
       <tr>
         <td class="text-center text-sm">
-          {{ log.occurredAt | date:'dd/MM/yyyy HH:mm' }}
+          {{ log.occurredAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </td>
         <td class="text-xs font-medium text-500">{{ log.operationType }}</td>
         <td class="text-sm">{{ log.summary }}</td>
@@ -114,7 +114,7 @@
           <h3>{{ log.operationType }}</h3>
           <p>{{ log.summary }}</p>
           <p>
-            {{ log.actor }} · {{ log.occurredAt | date:'dd/MM/yyyy HH:mm' }}
+            {{ log.actor }} · {{ log.occurredAt | apiDate:'dd/MM/yyyy HH:mm' }}
           </p>
         </div>
       </ili-list-item>

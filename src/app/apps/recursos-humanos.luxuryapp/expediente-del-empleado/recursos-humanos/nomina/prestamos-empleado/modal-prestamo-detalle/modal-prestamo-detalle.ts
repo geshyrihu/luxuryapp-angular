@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,6 +27,7 @@ import {
   selector: "app-modal-prestamo-detalle",
   imports: [
     CommonModule,
+    ApiDatePipe,
     ReactiveFormsModule,
     TableModule,
     LxTag,

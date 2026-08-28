@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -50,7 +50,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DataViewMobile,
     MobileActionMenu,
     MobileButtonLabelEdit,
-    DatePipe,
+    ApiDatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./approval-inbox.html",

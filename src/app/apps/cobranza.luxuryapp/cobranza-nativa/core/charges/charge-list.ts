@@ -1,4 +1,5 @@
-import { DatePipe, DecimalPipe } from "@angular/common";
+import { DecimalPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -60,7 +61,7 @@ import { downloadInitialBalanceTemplate } from "./initial-balance-template.helpe
     PrimeNgCustomCaption,
     WebButtonLabel,
     DecimalPipe,
-    DatePipe,
+    ApiDatePipe,
     DataViewMobile,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

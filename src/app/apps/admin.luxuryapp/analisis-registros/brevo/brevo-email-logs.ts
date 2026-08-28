@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +24,7 @@ import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";
 @Component({
   selector: "app-brevo-email-logs",
   imports: [
-    CommonModule,
+    ApiDatePipe,
     FormsModule,
     ReactiveFormsModule,
     TableModule,

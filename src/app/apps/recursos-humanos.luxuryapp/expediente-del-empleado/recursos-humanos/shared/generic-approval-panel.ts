@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,7 +29,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
 @Component({
   selector: "app-generic-approval-panel",
   imports: [
-    CommonModule,
+    ApiDatePipe,
     TableModule,
     WebButtonLabel,
     WebButtonLabelViewPdf,
@@ -73,7 +73,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
           @for (col of columns(); track col.field) {
             <td>
               @if (col.isDate) {
-                {{ request[col.field] | date: "dd/MM/yyyy" }}
+                {{ request[col.field] | apiDate: "dd/MM/yyyy" }}
               } @else {
                 {{ request[col.field] }}
               }

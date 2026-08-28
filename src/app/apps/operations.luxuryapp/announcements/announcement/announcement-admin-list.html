@@ -121,8 +121,8 @@
         />
       </td>
       <td>{{ item.customerName }}</td>
-      <td>{{ item.publishedAt | date: "dd/MM/yyyy" }}</td>
-      <td>{{ item.expirationDate | date: "dd/MM/yyyy":"UTC" }}</td>
+      <td>{{ item.publishedAt | apiDate: "dd/MM/yyyy" }}</td>
+      <td>{{ item.expirationDate | apiDate: "dd/MM/yyyy" }}</td>
       <td>
         <div class="flex">
           <iw-button-edit (clicked)="onModalForm(item)" />
@@ -224,7 +224,7 @@
           [icon]="'material-symbols-light:calendar-today'"
           class="mr-1"
         />
-        Publicado: {{ item.publishedAt | date: "dd/MM/yyyy" }}
+        Publicado: {{ item.publishedAt | apiDate: "dd/MM/yyyy" }}
       </p>
       <p class="text-medium text-500 m-0 text-sm">
         <app-icon [icon]="'material-symbols-light:apartment'" class="mr-1" />

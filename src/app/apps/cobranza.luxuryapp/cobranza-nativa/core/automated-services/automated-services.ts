@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -33,7 +33,7 @@ interface JobResult {
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     ReactiveFormsModule,
-    DatePipe,
+    ApiDatePipe,
     LxCard,
     AppIcon,
   ],

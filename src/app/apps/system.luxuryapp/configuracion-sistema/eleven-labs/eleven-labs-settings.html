@@ -171,7 +171,7 @@
           </div>
           <div class="mb-3">
             <strong>Próximo corte:</strong>
-            {{ sub.nextBillingDate ? (sub.nextBillingDate | date: "mediumDate") : "N/D" }}
+            {{ sub.nextBillingDate ? (sub.nextBillingDate | apiDate: "mediumDate") : "N/D" }}
           </div>
           <il-button
             label="Actualizar estado"

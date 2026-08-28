@@ -72,7 +72,7 @@
               >Fecha de nacimiento</small
             >
             <div class="font-medium">
-              {{ detail()?.birthDate ? (detail()?.birthDate | date:'dd/MM/yyyy') :
+              {{ detail()?.birthDate ? (detail()?.birthDate | apiDate:'dd/MM/yyyy') :
               "Sin registrar" }}
             </div>
           </div>
@@ -150,8 +150,7 @@
               {{ exp.jobPosition }} — {{ exp.companyName }}
             </div>
             <div class="text-sm text-color-secondary">
-              {{ exp.startDate | date:'MM/yyyy' }} - {{ exp.endDate ? (exp.endDate |
-              date:'MM/yyyy') : 'Actual' }} @if (exp.departureReason) { · {{
+              {{ exp.startDate | apiDate:'MM/yyyy' }} - {{ exp.endDate ? (exp.endDate | apiDate:'MM/yyyy') : 'Actual' }} @if (exp.departureReason) { · {{
               exp.departureReason }} }
             </div>
           </div>

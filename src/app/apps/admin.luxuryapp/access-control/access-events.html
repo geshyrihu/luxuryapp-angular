@@ -20,7 +20,7 @@
   </ng-template>
   <ng-template #body let-e>
     <tr>
-      <td>{{ e.occurredAt | date: "dd/MM/yyyy HH:mm:ss" }}</td>
+      <td>{{ e.occurredAt | apiDate: "dd/MM/yyyy HH:mm:ss" }}</td>
       <td>{{ e.eventType }}</td>
       <td>
         <span [class.text-green-600]="e.wasSuccessful" [class.text-red-600]="!e.wasSuccessful">

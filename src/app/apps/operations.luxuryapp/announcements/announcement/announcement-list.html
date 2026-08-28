@@ -40,7 +40,7 @@
             </div>
             <div class="text-color-secondary mb-3">
               <div class="text-sm text-color-secondary mb-2">
-                <span>{{ anuncio.publishedAt | date: 'dd/MM/yyyy' }}</span>
+                <span>{{ anuncio.publishedAt | apiDate: 'dd/MM/yyyy' }}</span>
               </div>
             </div>
 
@@ -88,7 +88,7 @@
       <div class="p-3">
         <div class="text-lg font-bold text-900 mb-1">{{ anuncio.title }}</div>
         <div class="text-sm text-500 mb-2">
-          {{ anuncio.publishedAt | date: 'dd/MM/yyyy' }}
+          {{ anuncio.publishedAt | apiDate: 'dd/MM/yyyy' }}
         </div>
         <p class="text-sm text-700 m-0 line-height-3">
           {{ stripHtml(anuncio.content) | slice:0:100 }}...

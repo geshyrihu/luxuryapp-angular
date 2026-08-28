@@ -1,4 +1,5 @@
-import { DatePipe, DecimalPipe } from "@angular/common";
+import { DecimalPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -50,7 +51,7 @@ import { PaymentForm } from "./payment-form";
     WebButtonLabel,
     WebButtonLabelEdit,
     DecimalPipe,
-    DatePipe,
+    ApiDatePipe,
     DataViewMobile,
     MobileListItem,
     AppIcon,

@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -44,7 +44,7 @@ import { PeriodClosureResponseDTO } from "../../interfaces/period-closure.dto";
     WebButtonLabel,
     DataViewMobile,
     MobileListItem,
-    DatePipe,
+    ApiDatePipe,
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,

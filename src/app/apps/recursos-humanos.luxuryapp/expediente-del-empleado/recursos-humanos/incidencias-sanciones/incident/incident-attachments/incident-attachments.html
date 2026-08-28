@@ -101,7 +101,7 @@
             </a>
           </td>
           <td>{{ formatFileSize(attachment.fileSizeKB) }}</td>
-          <td>{{ attachment.createdAt | date : "dd/MM/yyyy" }}</td>
+          <td>{{ attachment.createdAt | apiDate : "dd/MM/yyyy" }}</td>
           <td>
             <iw-button-delete (confirmed)="deleteAttachment(attachment)" />
           </td>

@@ -92,7 +92,7 @@
   <ng-template #body let-item>
     <tr>
       <td>{{ item.folio }}</td>
-      <td>{{ item.requestDate | date }}</td>
+      <td>{{ item.requestDate | apiDate }}</td>
       <td>{{ item.requestedBy }}</td>
       <td>{{ item.area }}</td>
       <td>{{ item.expenseJustification }}</td>
@@ -145,7 +145,7 @@
 
       <h3>{{ item.requestedBy }}</h3>
       <p>{{ item.area }} é Folio: {{ item.folio }}</p>
-      <p>{{ item.requestDate | date }}</p>
+      <p>{{ item.requestDate | apiDate }}</p>
 
       <ili-action-menu slot="end">
         <ili-button-edit

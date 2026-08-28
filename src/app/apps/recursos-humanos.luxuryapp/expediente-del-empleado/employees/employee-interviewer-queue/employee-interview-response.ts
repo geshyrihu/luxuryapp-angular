@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -34,8 +34,8 @@ import { MappedPTag } from "src/app/shared/integration/reclutamiento/candidates/
   templateUrl: "./employee-interview-response.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
-    DatePipe,
+    ApiDatePipe,
+
     FormsModule,
     TableModule,
     WebButtonLabel,

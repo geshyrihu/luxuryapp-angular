@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +17,7 @@ import { PagedResultDto } from "src/app/core/interfaces/paged-result.dto";
   selector: "app-access-events",
   templateUrl: "./access-events.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DatePipe, TableModule, WebButtonLabel],
+  imports: [ApiDatePipe, TableModule, WebButtonLabel],
 })
 export class AccessEvents implements OnInit {
   private apiResponseS = inject(ApiResponseService);

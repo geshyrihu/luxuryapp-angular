@@ -129,7 +129,7 @@
         />
       </td>
       <td>
-        @if (item.scheduledInterviewAt) { {{ item.scheduledInterviewAt | date:
+        @if (item.scheduledInterviewAt) { {{ item.scheduledInterviewAt | apiDate:
         "dd/MM/yyyy HH:mm" }} } @else {
         <span class="text-color-secondary">Sin fecha</span>
         }

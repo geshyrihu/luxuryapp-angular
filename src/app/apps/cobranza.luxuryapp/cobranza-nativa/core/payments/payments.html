@@ -148,7 +148,7 @@
                   </td>
                   <td>
                     <div class="flex flex-column">
-                      <span class="font-medium text-700">{{ charge.dueDate | date:'dd/MMM/yyyy' }}</span>
+                      <span class="font-medium text-700">{{ charge.dueDate | apiDate:'dd/MMM/yyyy' }}</span>
                       @if (charge.daysOverdue > 0) {
                       <span class="text-xs font-bold text-red-600">{{ charge.daysOverdue }} días vencido</span>
                       } @else {

@@ -76,7 +76,7 @@
           }
         </td>
         <td class="text-center text-sm">
-          {{ item.startDate | date:"dd/MM/yyyy":"UTC" }}
+          {{ item.startDate | apiDate:"dd/MM/yyyy" }}
         </td>
         <td class="text-center">
           <lx-tag
@@ -136,7 +136,7 @@
       <h3>{{ item.userName }}</h3>
       <p>{{ item.propertyName }} · {{ item.accountNumber }}</p>
       <p>{{ rolLabel(item.memberRole) }} · {{ item.email }}</p>
-      <p>Desde: {{ item.startDate | date:"dd/MM/yyyy":"UTC" }}</p>
+      <p>Desde: {{ item.startDate | apiDate:"dd/MM/yyyy" }}</p>
 
       @if (item.isFinancialResponsible) {
       <lx-tag end value="Responsable" severity="success" />

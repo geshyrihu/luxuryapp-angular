@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +24,7 @@ import { ResumenOrdenesServicioGrafico } from "./resumen-ordenes-servicio-grafic
   selector: "app-resumen-ordenes-servicio",
   templateUrl: "./resumen-ordenes-servicio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, TableModule, ResumenOrdenesServicioGrafico, LxTag],
+  imports: [ApiDatePipe, TableModule, ResumenOrdenesServicioGrafico, LxTag],
 })
 export class ResumenOrdenesServicio implements OnInit {
   apiResponseS = inject(ApiResponseService);

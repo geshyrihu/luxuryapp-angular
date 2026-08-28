@@ -87,7 +87,7 @@
         {{ data.totalConsumo | number: "1.0-2" }}
       </div>
       <div class="text-500 text-sm mt-2">
-        {{ data.fechaInicio | date: "dd/MM/yyyy" }} al {{ data.fechaFin | date:
+        {{ data.fechaInicio | apiDate: "dd/MM/yyyy" }} al {{ data.fechaFin | apiDate:
         "dd/MM/yyyy" }}
       </div>
     </div>

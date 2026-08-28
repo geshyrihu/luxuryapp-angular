@@ -1,4 +1,5 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { HttpParams } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -41,7 +42,7 @@ import { FinancialLedgerEntryDTO } from "../../interfaces/ledger.dto";
     LxCard,
     LxTag,
     DataViewMobile,
-    DatePipe,
+    ApiDatePipe,
     CurrencyPipe,
     ReactiveFormsModule,
     CustomInputSelectSignal,

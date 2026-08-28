@@ -48,7 +48,7 @@
     <ng-template #body let-item>
       <tr>
         <td class="font-medium">
-          {{ item.paymentDate | date: "dd/MM/yyyy":"UTC" }}
+          {{ item.paymentDate | apiDate: "dd/MM/yyyy" }}
         </td>
         <td class="font-bold text-800">{{ item.propertyFullName || "N/A" }}</td>
         <td class="text-xs">{{ paymentMethodLabel(item.method) }}</td>
@@ -129,7 +129,7 @@
       <div class="flex-1 min-w-0">
         <h3>{{ item.propertyFullName || "N/A" }}</h3>
         <p>
-          {{ item.paymentDate | date:"dd/MM/yyyy":"UTC" }} · {{ item.amount |
+          {{ item.paymentDate | apiDate:"dd/MM/yyyy" }} · {{ item.amount |
           number:"1.2-2" }}
         </p>
         <p>

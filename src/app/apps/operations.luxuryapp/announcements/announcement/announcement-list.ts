@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +16,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IAnnouncementList } from "./announcement.model";
 @Component({
   selector: "app-announcement-list",
-  imports: [CommonModule, RouterModule, LxTooltipDirective, AppIcon],
+  imports: [CommonModule, ApiDatePipe, RouterModule, LxTooltipDirective, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-list.html",
 })

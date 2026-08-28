@@ -1,4 +1,4 @@
-import { CommonModule, formatDate } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -50,7 +50,7 @@ import { AuthService } from "../../../../../core/auth/services/auth.service";
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
+    ApiDatePipe,
     TableModule,
     DataViewMobile,
     PrimeNgCustomCaption,
@@ -66,6 +66,7 @@ export class MedidorLecturaList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   route = inject(ActivatedRoute);
+  private apiDatePipe = inject(ApiDatePipe);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -102,7 +103,7 @@ export class MedidorLecturaList implements OnInit {
         Medidor: item.medidor || "",
         "Número de Medidor": item.numeroMedidor || "",
         Fecha: item.fechaRegistro
-          ? formatDate(item.fechaRegistro, "dd-MMM-yyyy", "en-US", "UTC")
+          ? this.apiDatePipe.transform(item.fechaRegistro, "dd-MMM-yyyy")
           : "",
         Lectura: item.lectura || 0,
       }));

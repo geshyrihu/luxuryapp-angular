@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -20,6 +21,7 @@ import { PurchaseRequestProducts } from "./purchase-request-products";
   imports: [
     WebButtonLabelItem,
     CommonModule,
+    ApiDatePipe,
     ActionMenu,
     PurchaseRequestAddProduct,
     PurchaseRequestProducts,

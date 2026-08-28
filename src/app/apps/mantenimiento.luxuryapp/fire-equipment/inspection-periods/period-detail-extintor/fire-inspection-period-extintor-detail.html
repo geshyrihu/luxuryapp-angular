@@ -10,7 +10,7 @@
   </div>
 
   @if (period()) {
-    <p class="text-600 mb-3">{{ period().frecuencia }} &bull; Inicio: {{ period().startDate | date:'dd/MM/yyyy' }}</p>
+    <p class="text-600 mb-3">{{ period().frecuencia }} &bull; Inicio: {{ period().startDate | apiDate:'dd/MM/yyyy' }}</p>
   }
 
   <div class="card mb-3">
@@ -19,7 +19,7 @@
       <div class="flex align-items-center gap-3">
         <lx-tag [value]="activeCycle().status" [severity]="activeCycle().status === 'Completado' ? 'success' : activeCycle().status === 'Vencido' ? 'danger' : 'info'"  />
         <span class="text-600">
-          {{ activeCycle().periodStart | date:'dd/MM/yyyy' }} — {{ activeCycle().periodEnd | date:'dd/MM/yyyy' }}
+          {{ activeCycle().periodStart | apiDate:'dd/MM/yyyy' }} — {{ activeCycle().periodEnd | apiDate:'dd/MM/yyyy' }}
         </span>
         <span class="text-600">
           {{ activeCycle().items?.length ?? 0 }} equipos

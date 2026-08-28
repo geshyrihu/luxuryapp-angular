@@ -31,7 +31,7 @@
         <td>{{ item.name }}</td>
         <td>{{ item.addendumType }}</td>
         <td>v{{ item.version }}</td>
-        <td>{{ item.createdAt | date:'dd/MM/yyyy' }}</td>
+        <td>{{ item.createdAt | apiDate:'dd/MM/yyyy' }}</td>
         <td class="text-center">
           @if (item.isActive) {
           <span class="badge badge-success">Activo</span>
@@ -80,7 +80,7 @@
             {{ item.addendumType }} é v{{ item.version }}
           </p>
           <p class="text-sm text-500">
-            {{ item.createdAt | date:'dd/MM/yyyy' }}
+            {{ item.createdAt | apiDate:'dd/MM/yyyy' }}
           </p>
           <p class="text-sm">
             @if (item.isActive) {

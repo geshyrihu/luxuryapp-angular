@@ -67,10 +67,10 @@
         </td>
         <td>
           <div class="font-medium">
-            {{ item.incidentDateTime | date:'dd/MM/yyyy' }}
+            {{ item.incidentDateTime | apiDate:'dd/MM/yyyy' }}
           </div>
           <div class="text-xs text-500">
-            {{ item.incidentDateTime | date:'HH:mm' }}
+            {{ item.incidentDateTime | apiDate:'HH:mm' }}
           </div>
         </td>
         <td class="text-center">
@@ -186,7 +186,7 @@
               >{{ item.investigationStatus }}</span
             >
             <span class="text-xs text-500"
-              >{{ item.incidentDateTime | date:'dd/MM/yyyy HH:mm' }}</span
+              >{{ item.incidentDateTime | apiDate:'dd/MM/yyyy HH:mm' }}</span
             >
           </div>
         

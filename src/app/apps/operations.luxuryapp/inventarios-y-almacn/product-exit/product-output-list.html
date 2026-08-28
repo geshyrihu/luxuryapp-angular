@@ -101,7 +101,7 @@
     </ng-template>
     <ng-template #body let-item>
       <tr>
-        <td>{{ item.fechaSalida | date:'mediumDate':'UTC' }}</td>
+        <td>{{ item.fechaSalida | apiDate:'mediumDate' }}</td>
         <td>{{ item.producto }}</td>
         <td>{{ item.cantidad }}</td>
         <td>{{ item.unidadMedida }}</td>
@@ -165,8 +165,8 @@
           {{ item.cantidad }} {{ item.unidadMedida }} - {{ item.quienUso }}
         </small>
         <small class="text-color-secondary">
-          Uso: {{ item.usoPrducto }} | {{ item.fechaSalida |
-          date:'mediumDate':'UTC' }}
+           Uso: {{ item.usoPrducto }} | {{ item.fechaSalida |
+           apiDate:'mediumDate' }}
         </small>
       </div>
 

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -53,7 +53,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   selector: "app-unified-pending-dashboard",
   imports: [
     WebButtonIcon,
-    CommonModule,
+    ApiDatePipe,
     TableModule,
     LxTag,
     InputTextModule,

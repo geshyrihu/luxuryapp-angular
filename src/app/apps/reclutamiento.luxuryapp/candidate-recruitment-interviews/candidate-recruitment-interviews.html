@@ -204,7 +204,7 @@
           <span>Vencidas: {{ vacancy.overdueCount }}</span>
           @if (vacancy.nextInterviewAt) {
           <span
-            >Proxima cita: {{ vacancy.nextInterviewAt | date: "dd/MM/yyyy HH:mm"
+            >Proxima cita: {{ vacancy.nextInterviewAt | apiDate: "dd/MM/yyyy HH:mm"
             }}</span
           >
           }
@@ -242,7 +242,7 @@
                 >
                 <div class="font-medium">
                   @if (candidate.applicationDate) { {{ candidate.applicationDate
-                  | date: "dd/MM/yyyy" }} } @else {
+                  | apiDate: "dd/MM/yyyy" }} } @else {
                   <span class="text-color-secondary">Sin fecha</span>
                   }
                 </div>
@@ -251,7 +251,7 @@
                 <small class="text-color-secondary block">Cita</small>
                 <div class="font-medium">
                   @if (interviewDate(candidate)) { {{ interviewDate(candidate) |
-                  date: "dd/MM/yyyy HH:mm" }} } @else {
+                  apiDate: "dd/MM/yyyy HH:mm" }} } @else {
                   <span class="text-color-secondary">Sin fecha</span>
                   }
                 </div>
@@ -322,6 +322,22 @@
               severity="success"
               size="small"
               (clicked)="openAltaForm(vacancy, candidate)"
+            />
+            }
+            @if (candidate.canReconfirmPresentation) {
+            <il-button
+              [label]="
+                candidate.hasHiringRequest ? 'Reenviar alta' : 'Reintentar alta'
+              "
+              iconClass="material-symbols-light:published-with-changes"
+              severity="warn"
+              size="small"
+              variant="outline"
+              [loading]="
+                reconfirmingProcessId() ===
+                (candidate.candidateProcessId ?? candidate.candidateApplicationId)
+              "
+              (clicked)="reconfirmPresentation(candidate)"
             />
             }
             <il-button

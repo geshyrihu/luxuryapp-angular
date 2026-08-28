@@ -26,7 +26,7 @@
           <div class="text-sm text-color-secondary mb-4">
             <span
               ><app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-2" />Publicado: {{
-              announcement().publishedAt | date: 'fullDate' }}</span
+              announcement().publishedAt | apiDate: 'fullDate' }}</span
             >
           </div>
 
@@ -94,7 +94,7 @@
       <div class="border-1 surface-border shadow-sm rounded-xl">
         <div class="border-1 surface-border shadow-sm rounded-xl">{{ announcement().title }}</div>
         <div class="border-1 surface-border shadow-sm rounded-xl">
-          {{ announcement().publishedAt | date: 'mediumDate' }}
+          {{ announcement().publishedAt | apiDate: 'mediumDate' }}
         </div>
       </div>
 

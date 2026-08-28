@@ -115,7 +115,7 @@
         <tr>
           <td class="text-center">{{ rowIndex + 1 }}</td>
           <td class="text-center">{{ ticket.folio }}</td>
-          <td class="text-center">{{ ticket.fecha | date: "dd/MM/yyyy" }}</td>
+          <td class="text-center">{{ ticket.fecha | apiDate: "dd/MM/yyyy" }}</td>
           <td class="text-center">{{ ticket.cliente }}</td>
           <td>{{ ticket.asunto }}<br />{{ ticket.descripcion }}</td>
           <td
@@ -266,7 +266,7 @@
               <lx-tag [value]="ticket.dias + ' días'" severity="danger"></lx-tag>
             </div>
             <small 
-              >{{ ticket.fecha | date: "dd/MM/yyyy" }} — {{ ticket.cliente
+              >{{ ticket.fecha | apiDate: "dd/MM/yyyy" }} — {{ ticket.cliente
               }}</small
             >
             <p class="mt-2 mb-1">

@@ -1,4 +1,5 @@
 import { CommonModule, formatDate } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -38,6 +39,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     WebButtonIconDownload,
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
+    ApiDatePipe,
     FormsModule,
     InputDatepicker,
     TableModule,
@@ -50,6 +52,7 @@ export class RecepcionPipasAguaReporte implements OnInit {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   htmlPrintS = inject(HtmlPrintService);
+  private apiDatePipe = inject(ApiDatePipe);
 
   dataSignal = signal<IRecepcionPipaAgua[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -295,10 +298,10 @@ ${this.htmlPrintS.getStandardCss()}
           Placas: item.placasCamion,
           "Cap. (L)": item.capacidadPipa,
           Llegada: item.horaLlegada
-            ? formatDate(item.horaLlegada, "dd/MM/yyyy HH:mm", "es-MX")
+            ? this.apiDatePipe.transform(item.horaLlegada, "dd/MM/yyyy HH:mm")
             : "",
           Termino: item.horaTermino
-            ? formatDate(item.horaTermino, "dd/MM/yyyy HH:mm", "es-MX")
+            ? this.apiDatePipe.transform(item.horaTermino, "dd/MM/yyyy HH:mm")
             : "En curso",
           "Cisterna antes (%)": item.nivelCisternaAntes,
           "Cisterna despues (%)": item.nivelCisternaDespues,

@@ -7,7 +7,7 @@
         <div class="card-body">
           <div class="font-size-18 text-justify">{{ detalles.activity }}</div>
           <div class="mt-1 font-size-16 text-color-secondary">
-            Solicitado el: {{ detalles.dateRequest | date : "fullDate" }}
+            Solicitado el: {{ detalles.dateRequest | apiDate : "fullDate" }}
           </div>
         </div>
         <img

@@ -10,7 +10,7 @@
       </div>
       <div class="w-full">
         <div ></div>
-        <p>Reporte del {{ inicio | date }} al {{ final | date }}</p>
+        <p>Reporte del {{ inicio | apiDate }} al {{ final | apiDate }}</p>
       </div>
     </div>
     @for (area of data.reportes; track area) {

@@ -98,7 +98,7 @@
               </div>
               <div class="text-sm text-color-secondary">
                 {{ item.sessionTypeDisplayName }} |
-                {{ item.scheduledAt | date: "dd/MM/yyyy HH:mm" }}
+                {{ item.scheduledAt | apiDate: "dd/MM/yyyy HH:mm" }}
               </div>
               <div class="flex gap-2 flex-wrap mt-2">
                 <lx-tag [value]="item.statusDisplayName" severity="info"  />
@@ -117,7 +117,7 @@
               @if (item.suggestedPresentation; as presentation) {
               <div class="font-semibold">{{ presentation.title }}</div>
               <div class="text-sm text-color-secondary">
-                {{ presentation.relevantDate | date: "dd/MM/yyyy" }}
+                {{ presentation.relevantDate | apiDate: "dd/MM/yyyy" }}
               </div>
               <div class="flex gap-2 align-items-center mt-2">
                 <lx-tag
@@ -140,7 +140,7 @@
               @if (item.suggestedMeeting; as meeting) {
               <div class="font-semibold">{{ meeting.title }}</div>
               <div class="text-sm text-color-secondary">
-                {{ meeting.relevantDate | date: "dd/MM/yyyy" }}
+                {{ meeting.relevantDate | apiDate: "dd/MM/yyyy" }}
               </div>
               <div class="flex gap-2 align-items-center mt-2">
                 <lx-tag

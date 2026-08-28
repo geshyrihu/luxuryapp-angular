@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -36,7 +36,7 @@ import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
   templateUrl: "./recruitment-agenda-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DatePipe,
+    ApiDatePipe,
     WebButtonIconItem,
     WebButtonIconViewPdf,
     PrimeNgCustomCaption,

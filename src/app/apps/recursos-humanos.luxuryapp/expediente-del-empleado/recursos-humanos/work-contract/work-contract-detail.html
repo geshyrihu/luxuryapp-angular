@@ -24,12 +24,12 @@
   </div>
   <div class="col-12 md:col-6">
     <p class="text-color-secondary text-sm">Fecha de Inicio</p>
-    <p class="font-bold">{{ item()!.startDate | date:'dd/MM/yyyy' }}</p>
+    <p class="font-bold">{{ item()!.startDate | apiDate:'dd/MM/yyyy' }}</p>
   </div>
   <div class="col-12 md:col-6">
     <p class="text-color-secondary text-sm">Fecha de Fin</p>
     <p class="font-bold">
-      {{ item()!.endDate ? (item()!.endDate | date:'dd/MM/yyyy') : 'Indefinido'
+      {{ item()!.endDate ? (item()!.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido'
       }}
     </p>
   </div>

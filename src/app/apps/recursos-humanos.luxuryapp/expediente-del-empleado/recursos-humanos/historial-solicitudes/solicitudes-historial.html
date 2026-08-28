@@ -147,8 +147,8 @@
             <td>{{ item.employeeFullName }}</td>
             <td>{{ item.roleName }}</td>
             <td>{{ item.daysRequested }}</td>
-            <td>{{ item.startDate | date: "dd/MM/yyyy" }}</td>
-            <td>{{ item.endDate | date: "dd/MM/yyyy" }}</td>
+            <td>{{ item.startDate | apiDate: "dd/MM/yyyy" }}</td>
+            <td>{{ item.endDate | apiDate: "dd/MM/yyyy" }}</td>
             <td>
               <lx-tag
                 [value]="item.status"
@@ -163,10 +163,10 @@
                 "
               ></lx-tag>
             </td>
-            <td>{{ item.requestDate | date: "dd/MM/yyyy HH:mm" }}</td>
+            <td>{{ item.requestDate | apiDate: "dd/MM/yyyy HH:mm" }}</td>
             <td>{{ item.approverName || '—' }}</td>
             <td>
-              {{ item.approvalDate ? (item.approvalDate | date: "dd/MM/yyyy
+              {{ item.approvalDate ? (item.approvalDate | apiDate: "dd/MM/yyyy
               HH:mm") : '—' }}
             </td>
             <td class="text-center">
@@ -216,8 +216,8 @@
 
             <h2 class="font-normal m-0">{{ item.employeeFullName }}</h2>
             <p class="text-color-secondary text-sm m-0">
-              {{ item.solicitud }} | {{ item.startDate | date: "dd/MM/yy" }} -
-              {{ item.endDate | date: "dd/MM/yy" }}
+              {{ item.solicitud }} | {{ item.startDate | apiDate: "dd/MM/yy" }} -
+              {{ item.endDate | apiDate: "dd/MM/yy" }}
             </p>
             <p class="text-color-secondary text-sm m-0">
               {{ item.daysRequested }}

@@ -76,7 +76,7 @@
           />
         </td>
         <td class="text-center text-sm">
-          {{ inv.timbreAt | date:'dd/MM/yyyy HH:mm' }}
+          {{ inv.timbreAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </td>
         <td class="text-center">
           <div class="flex gap-1 justify-content-center">
@@ -127,7 +127,7 @@
         </div>
         <div class="flex-1 min-w-0">
           <h3>{{ inv.uuid | slice:0:18 }}...</h3>
-          <p>{{ inv.status }} · {{ inv.timbreAt | date:'dd/MM/yyyy' }}</p>
+          <p>{{ inv.status }} · {{ inv.timbreAt | apiDate:'dd/MM/yyyy' }}</p>
           <p>Serie: {{ inv.serie || "—" }} · Folio: {{ inv.folio || "—" }}</p>
         </div>
       </ili-list-item>

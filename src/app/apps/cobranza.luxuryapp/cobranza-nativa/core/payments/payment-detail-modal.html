@@ -12,7 +12,7 @@
           {{ payment()!.propertyFullName || "N/A" }}
         </div>
         <div class="text-sm text-500 mt-2">
-          {{ payment()!.paymentDate | date:'dd/MM/yyyy':'UTC' }}
+          {{ payment()!.paymentDate | apiDate:'dd/MM/yyyy' }}
         </div>
       </lx-card>
     </div>
@@ -103,7 +103,7 @@
           </td>
           <td>{{ item.appliedBy || "Sistema" }}</td>
           <td class="text-center">
-            {{ item.appliedAt | date:'dd/MM/yyyy HH:mm' }}
+            {{ item.appliedAt | apiDate:'dd/MM/yyyy HH:mm' }}
           </td>
           <td class="text-center">
             <iw-button

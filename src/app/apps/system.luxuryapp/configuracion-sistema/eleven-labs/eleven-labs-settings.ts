@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import {
   FormBuilder,
@@ -29,6 +30,7 @@ import { ElevenLabsSettingsFormGroup } from "./interfaces/eleven-labs-settings.i
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
+    ApiDatePipe,
     ReactiveFormsModule,
     LxCard,
     WebButtonLabel,

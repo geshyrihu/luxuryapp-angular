@@ -31,10 +31,10 @@
       <tr>
         <td>{{ item.sanctionTypeName }}</td>
         <td>{{ item.severityLevel }}</td>
-        <td>{{ item.appliedDate | date:'dd/MM/yyyy':'UTC' }}</td>
+        <td>{{ item.appliedDate | apiDate:'dd/MM/yyyy' }}</td>
         <td>
           {{ item.effectiveEndDate ? (item.effectiveEndDate |
-          date:'dd/MM/yyyy':'UTC') : '-' }}
+          apiDate:'dd/MM/yyyy') : '-' }}
         </td>
         <td class="text-center">
           <span
@@ -46,7 +46,7 @@
         <td class="text-center">
           @if (item.allowAppeal && item.appealDeadline) {
           <span class="text-color-secondary"
-            >{{ item.appealDeadline | date:'dd/MM/yyyy':'UTC' }}</span
+            >{{ item.appealDeadline | apiDate:'dd/MM/yyyy' }}</span
           >
           } @else {
           <span class="text-color-secondary">-</span>
@@ -85,8 +85,8 @@
         
           <h2 class="font-bold">{{ item.sanctionTypeName }}</h2>
           <p class="text-sm text-500">
-            {{ item.severityLevel }} | {{ item.appliedDate |
-            date:'dd/MM/yyyy':'UTC' }}
+            {{ item.severityLevel }} |             {{ item.appliedDate |
+            apiDate:'dd/MM/yyyy' }}
           </p>
           <p class="text-sm">
             <span

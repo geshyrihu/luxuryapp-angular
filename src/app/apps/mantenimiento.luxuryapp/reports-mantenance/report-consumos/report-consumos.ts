@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -84,6 +85,7 @@ interface IWeeklyExecutiveReport {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
+    ApiDatePipe,
     ReactiveFormsModule,
     TableModule,
     PageTitleReportMaintenance,

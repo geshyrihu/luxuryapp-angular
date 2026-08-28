@@ -49,10 +49,10 @@
     <tr>
       <td>{{ item.quincenaDisplay }}</td>
       <td>{{ item.anio }}</td>
-      <td>{{ item.fechaInicio | date: "dd/MM/yyyy" : "UTC" }}</td>
-      <td>{{ item.fechaFin | date: "dd/MM/yyyy" : "UTC" }}</td>
+      <td>{{ item.fechaInicio | apiDate: "dd/MM/yyyy" }}</td>
+      <td>{{ item.fechaFin | apiDate: "dd/MM/yyyy" }}</td>
       <td>
-        {{ item.fechaPago ? (item.fechaPago | date: "dd/MM/yyyy" : "UTC") : "-"
+        {{ item.fechaPago ? (item.fechaPago | apiDate: "dd/MM/yyyy") : "-"
         }}
       </td>
       <td>{{ item.diasHabiles }}</td>
@@ -103,8 +103,8 @@
         {{ item.quincenaDisplay }} {{ item.anio }}
       </h2>
       <p class="text-xs m-0">
-        {{ item.fechaInicio | date: "dd/MM/yyyy" : "UTC" }} - {{ item.fechaFin |
-        date: "dd/MM/yyyy" : "UTC" }}
+        {{ item.fechaInicio | apiDate: "dd/MM/yyyy" }} - {{ item.fechaFin |
+        apiDate: "dd/MM/yyyy" }}
       </p>
       <div class="flex align-items-center gap-2 mt-1">
         <lx-tag

@@ -75,10 +75,10 @@
             }
           </td>
           <td>
-            <div>{{ item.dueDate | date: "dd/MM/yyyy" }}</div>
+            <div>{{ item.dueDate | apiDate: "dd/MM/yyyy" }}</div>
             @if (item.completedAt) {
             <small class="text-color-secondary">
-              Completado: {{ item.completedAt | date: "dd/MM/yyyy HH:mm" }}
+              Completado: {{ item.completedAt | apiDate: "dd/MM/yyyy HH:mm" }}
             </small>
             }
           </td>

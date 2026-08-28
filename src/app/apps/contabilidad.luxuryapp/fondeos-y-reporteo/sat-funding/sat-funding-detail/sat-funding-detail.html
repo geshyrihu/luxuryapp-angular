@@ -136,7 +136,7 @@
             <td>
               <p-tablecheckbox [value]="invoice"></p-tablecheckbox>
             </td>
-            <td>{{ invoice.fechaEmision | date: 'short' }}</td>
+            <td>{{ invoice.fechaEmision | apiDate: 'short' }}</td>
             <td>{{ invoice.emisorNombre }}</td>
             <td>{{ invoice.total | number:'1.2-2' }}</td>
             <td>{{ invoice.bankShortName }}</td>

@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
 import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
@@ -18,7 +18,7 @@ import { EmployeeOnboardingChecklistItemDTO } from "../interfaces/employee-file.
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
-    DatePipe,
+    ApiDatePipe,
     LxCard,
     LxTag,
     AppIcon,

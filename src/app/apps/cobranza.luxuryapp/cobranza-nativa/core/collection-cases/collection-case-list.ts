@@ -1,4 +1,5 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -47,7 +48,7 @@ import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto"
     PrimeNgCustomCaption,
     WebButtonLabel,
     DataViewMobile,
-    DatePipe,
+    ApiDatePipe,
     CurrencyPipe,
     ReactiveFormsModule,
   ],

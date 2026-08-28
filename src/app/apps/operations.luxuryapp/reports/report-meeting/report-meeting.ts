@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +19,7 @@ import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
   templateUrl: "./report-meeting.html",
   styleUrls: ["./report-meeting.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, SanitizeHtmlPipe, TableModule, AppSpinner],
+  imports: [ApiDatePipe, SanitizeHtmlPipe, TableModule, AppSpinner],
 })
 export class ReportMeeting {
   apiResponseS = inject(ApiResponseService);

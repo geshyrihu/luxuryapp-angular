@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -61,13 +61,12 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   imports: [
     WebButtonIcon,
     LxTooltipDirective,
-    CommonModule,
+    ApiDatePipe,
     FormsModule,
     TableModule,
     CustomInputSelectSignal,
     WebButtonLabel,
     LxTag,
-    DatePipe,
   ],
 })
 export class JuntaMensualSessionChecklistDialog {

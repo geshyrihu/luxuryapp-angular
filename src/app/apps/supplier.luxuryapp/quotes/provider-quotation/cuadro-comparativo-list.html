@@ -171,7 +171,7 @@
           <span class="font-semibold text-sm">Junta de comite:</span>
           @if (solicitudCompra?.comiteEvento) {
           <span class="text-sm text-color-secondary">
-            {{ solicitudCompra.comiteEvento.startAt | date:'dd MMM yyyy' }}
+            {{ solicitudCompra.comiteEvento.startAt | apiDate:'dd MMM yyyy' }}
             &mdash; {{ solicitudCompra.comiteEvento.title }}
           </span>
           @if (!cleanView) {

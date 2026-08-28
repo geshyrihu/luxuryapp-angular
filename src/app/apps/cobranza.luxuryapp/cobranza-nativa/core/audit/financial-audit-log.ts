@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { HttpParams } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -39,7 +39,7 @@ import { FinancialAuditLogDTO } from "../../interfaces/financial-audit.dto";
     LxTag,
     DataViewMobile,
     MobileListItem,
-    DatePipe,
+    ApiDatePipe,
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputDateSignal,

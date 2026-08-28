@@ -1,9 +1,9 @@
 import {
   CommonModule,
   CurrencyPipe,
-  DatePipe,
   UpperCasePipe,
 } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -48,8 +48,9 @@ import {
     UpperCasePipe,
     WebButtonLabel,
     AppIcon,
+    ApiDatePipe,
   ],
-  providers: [DatePipe, CurrencyPipe],
+  providers: [CurrencyPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./native-statement.html",
 })

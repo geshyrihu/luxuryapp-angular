@@ -39,7 +39,7 @@
         <td class="text-sm">{{ item.summary }}</td>
         <td class="text-sm font-medium">{{ item.requestedBy }}</td>
         <td class="text-center text-sm">
-          {{ item.requestedAt | date:'dd/MM/yyyy HH:mm' }}
+          {{ item.requestedAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </td>
         <td class="text-center">
           <lx-tag
@@ -89,7 +89,7 @@
         <p>{{ item.summary }}</p>
         <p>
           Por: {{ item.requestedBy }} &middot; {{ item.requestedAt |
-          date:'dd/MM/yyyy' }}
+          apiDate:'dd/MM/yyyy' }}
         </p>
       </div>
       @if (item.status === EFinancialApprovalStatus.Pendiente) {

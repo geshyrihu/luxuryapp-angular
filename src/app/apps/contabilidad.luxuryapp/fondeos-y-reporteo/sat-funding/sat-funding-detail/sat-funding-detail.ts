@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -47,6 +48,7 @@ import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-f
     WebButtonIconConfirm,
     WebButtonIconEdit,
     CommonModule,
+    ApiDatePipe,
     FormsModule,
     ReactiveFormsModule,
     TableModule,

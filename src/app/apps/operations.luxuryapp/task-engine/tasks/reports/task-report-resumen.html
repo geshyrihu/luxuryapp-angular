@@ -42,8 +42,8 @@
             <tr>
               <td>{{ ticket.Folio }}</td>
               <td>{{ ticket.Title }}</td>
-              <td>{{ ticket.CreatedAt | date: "short" }}</td>
-              <td>{{ ticket.ClosedAt | date: "short" }}</td>
+              <td>{{ ticket.CreatedAt | apiDate: "short" }}</td>
+              <td>{{ ticket.ClosedAt | apiDate: "short" }}</td>
               <td>{{ ticket.Status }}</td>
             </tr>
           </ng-template>

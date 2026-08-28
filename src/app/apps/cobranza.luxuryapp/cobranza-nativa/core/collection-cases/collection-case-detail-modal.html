@@ -28,11 +28,11 @@
       <div class="p-2 surface-50 rounded border-1 surface-border text-sm">
         <div class="flex justify-content-between mb-1">
           <span class="font-medium"
-            >{{ act.activityDate | date:'dd/MM/yyyy HH:mm' }}</span
+            >{{ act.activityDate | apiDate:'dd/MM/yyyy HH:mm' }}</span
           >
           @if (act.promisedDate) {
           <span class="text-500"
-            >Promesa: {{ act.promisedDate | date:'dd/MM/yyyy' }}</span
+            >Promesa: {{ act.promisedDate | apiDate:'dd/MM/yyyy' }}</span
           >
           }
         </div>

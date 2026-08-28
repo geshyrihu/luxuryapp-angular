@@ -23,7 +23,7 @@
           <span class="font-bold text-lg text-primary">{{ candidate.candidateName }}</span>
           <small class="text-500 mt-1">
             Registro creado:
-            {{ (candidate.createdAt || candidate.registerDate) | date: "mediumDate" }}
+            {{ (candidate.createdAt || candidate.registerDate) | apiDate: "mediumDate" }}
           </small>
         </div>
       </header>
@@ -36,7 +36,7 @@
       <p-timeline [value]="candidate.events" align="left">
         <ng-template #opposite let-event>
           <small class="text-500 white-space-nowrap">
-            {{ (event.createdAt || event.eventDate) | date: "mediumDate" }}
+            {{ (event.createdAt || event.eventDate) | apiDate: "mediumDate" }}
           </small>
         </ng-template>
 

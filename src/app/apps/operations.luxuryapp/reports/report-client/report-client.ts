@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +13,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
   selector: "app-report-client",
   templateUrl: "./report-client.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule],
+  imports: [ApiDatePipe],
 })
 export class ReportClient implements OnInit {
   apiResponseS = inject(ApiResponseService);

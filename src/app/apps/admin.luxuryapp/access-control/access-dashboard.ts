@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +17,7 @@ import { OccupancyDto } from "src/app/core/interfaces/occupancy.dto";
   selector: "app-access-dashboard",
   templateUrl: "./access-dashboard.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DatePipe, TableModule, WebButtonLabel],
+  imports: [ApiDatePipe, TableModule, WebButtonLabel],
 })
 export class AccessDashboard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

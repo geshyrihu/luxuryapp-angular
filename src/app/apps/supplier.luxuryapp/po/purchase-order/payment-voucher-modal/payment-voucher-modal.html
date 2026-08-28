@@ -12,7 +12,7 @@
     <ng-template #body let-item>
       <tr>
         <td>{{ item.fileName }}</td>
-        <td>{{ item.uploadDate | date: "short" }}</td>
+        <td>{{ item.uploadDate | apiDate: "short" }}</td>
         <td class="text-center">
           <div class="flex justify-content-center">
             <iw-button

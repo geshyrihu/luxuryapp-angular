@@ -12,6 +12,7 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +27,7 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 @Component({
   selector: "app-budget-history-dialog",
-  imports: [CommonModule, TableModule],
+  imports: [CommonModule, TableModule, ApiDatePipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-history-dialog.html",
 })

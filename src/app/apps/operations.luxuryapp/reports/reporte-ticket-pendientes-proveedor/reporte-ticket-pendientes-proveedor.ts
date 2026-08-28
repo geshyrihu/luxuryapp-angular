@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +20,7 @@ import { ReportService } from "src/app/core/services/report.service";
   selector: "app-reporte-ticket-pendientes-proveedor",
   templateUrl: "./reporte-ticket-pendientes-proveedor.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule],
+  imports: [ApiDatePipe],
 })
 export class ReporteTicketPendientesProveedor implements OnInit {
   authS = inject(AuthService);

@@ -536,7 +536,7 @@
             <div class="flex align-items-center gap-2 mb-1">
               <span class="font-bold text-primary">v{{ v.version }}</span>
               <span class="text-500 text-xs"
-                >{{ v.fechaCambio | date: 'dd/MM/yyyy' }}</span
+                >{{ v.fechaCambio | apiDate: 'dd/MM/yyyy' }}</span
               >
               @if (v.autor) {
               <span class="text-xs text-700">por {{ v.autor }}</span>

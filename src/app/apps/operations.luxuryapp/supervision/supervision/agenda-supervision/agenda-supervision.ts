@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -50,7 +50,7 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
     PrimeNgCustomTableEmptyMessage,
     WebButtonLabelDelete,
     WebButtonLabelEdit,
-    CommonModule,
+    ApiDatePipe,
     FormsModule,
     TableModule,
     LxMultiSelect,

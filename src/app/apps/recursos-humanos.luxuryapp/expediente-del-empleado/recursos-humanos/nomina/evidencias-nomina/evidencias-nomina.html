@@ -88,7 +88,7 @@
         <p class="text-xs text-500 text-center m-0">{{ ev.descripcion }}</p>
         }
         <p class="text-xs text-400 m-0">
-          {{ ev.createdAt | date: "dd/MM/yyyy" }}
+          {{ ev.createdAt | apiDate: "dd/MM/yyyy" }}
         </p>
         <div class="flex gap-2">
           <iw-button

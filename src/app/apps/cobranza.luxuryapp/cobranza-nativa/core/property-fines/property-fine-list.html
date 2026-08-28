@@ -43,7 +43,7 @@
           }
         </td>
         <td class="text-xs text-700">{{ item.description }}</td>
-        <td class="text-center text-xs">{{ item.infractionDate | date: 'dd/MM/yyyy' : 'UTC' }}</td>
+        <td class="text-center text-xs">{{ item.infractionDate | apiDate: 'dd/MM/yyyy' }}</td>
         <td class="text-right font-semibold text-red-600">{{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }}</td>
         <td class="text-center">
           <lx-tag [value]="fineStatusLabel(item.status)" [severity]="fineStatusSeverity(item.status)" />

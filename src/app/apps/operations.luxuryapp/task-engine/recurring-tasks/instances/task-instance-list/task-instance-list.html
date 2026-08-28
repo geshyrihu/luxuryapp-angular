@@ -50,7 +50,7 @@
             [status]="task.statusDescription"
           />
         </td>
-        <td>{{ task.scheduledDate | date : "medium" }}</td>
+        <td>{{ task.scheduledDate | apiDate : "medium" }}</td>
         <td>
           <iw-button
             (clicked)="onCompleteTask(task)"
@@ -104,7 +104,7 @@
         
           <h5 class="mb-2">{{ task.title }}</h5>
           <p class="text-sm text-gray-500">
-            {{ task.scheduledDate | date : "medium" }}
+            {{ task.scheduledDate | apiDate : "medium" }}
           </p>
           <app-status-badge
             [value]="task.status"

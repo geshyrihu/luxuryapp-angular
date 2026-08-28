@@ -98,7 +98,7 @@
                 <span class="text-500 text-sm uppercase font-semibold"
                   >Fecha de Ingreso</span
                 ><br />
-                {{ balance()?.employeeAdmissionDate | date: 'dd/MM/yyyy' }}
+                {{ balance()?.employeeAdmissionDate | apiDate: 'dd/MM/yyyy' }}
               </p>
             </div>
             <div class="col-12 md:col-3">
@@ -300,8 +300,8 @@
           </ng-template>
           <ng-template #body let-req>
             <tr>
-              <td>{{ req.startDate | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ req.endDate | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ req.startDate | apiDate: 'dd/MM/yyyy' }}</td>
+              <td>{{ req.endDate | apiDate: 'dd/MM/yyyy' }}</td>
               <td class="text-center">
                 <lx-tag
                   severity="info"
@@ -317,7 +317,7 @@
               </td>
               <td>{{ req.approverName || '—' }}</td>
               <td>
-                {{ req.requestDate ? (req.requestDate | date: 'dd/MM/yyyy') :
+                {{ req.requestDate ? (req.requestDate | apiDate: 'dd/MM/yyyy') :
                 '—' }}
               </td>
               <td>

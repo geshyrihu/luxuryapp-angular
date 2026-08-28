@@ -1,4 +1,5 @@
-import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -24,10 +25,10 @@ import { ChargeForm } from "../charges/charge-form";
 @Component({
   selector: "app-payment-detail-modal",
   imports: [
-    CommonModule,
+    ApiDatePipe,
     TableModule,
     CurrencyPipe,
-    DatePipe,
+
     LxCard,
     LxTag,
     MobileListItem,

@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -49,7 +49,7 @@ import { PropertyMemberResponseDTO } from "../../interfaces/property-member.dto"
     TableModule,
     PrimeNgCustomCaption,
     DataViewMobile,
-    DatePipe,
+    ApiDatePipe,
     MobileListItem,
     AppIcon,
   ],

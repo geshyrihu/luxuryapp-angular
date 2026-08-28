@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,7 +28,7 @@ declare class BarcodeDetector {
   selector: "app-fire-inspection-cycle-detail",
   templateUrl: "./fire-inspection-cycle-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, WebButtonLabel, LxTag, MobileListItem],
+  imports: [ApiDatePipe, WebButtonLabel, LxTag, MobileListItem],
 })
 export class FireInspectionCycleDetail implements OnInit, OnDestroy {
   apiResponseS = inject(ApiResponseService);

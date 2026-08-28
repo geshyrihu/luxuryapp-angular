@@ -19,7 +19,7 @@
         @if(balance(); as b){
         <lx-message
           severity="info"
-          [text]="'Fecha de Ingreso: ' + (b.employeeAdmissionDate | date:'dd-MM-yyyy')"
+          [text]="'Fecha de Ingreso: ' + (b.employeeAdmissionDate | apiDate:'dd-MM-yyyy')"
         ></lx-message>
 
         @if (eligibilityStatus() === 'not-yet-6-months') {
@@ -178,10 +178,10 @@
         </ng-template>
         <ng-template #body let-request>
           <tr>
-            <td>{{ request.requestDate | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ request.requestDate | apiDate: 'dd/MM/yyyy' }}</td>
             <td>
-              {{ request.startDate | date: 'dd/MM/yyyy' }} - {{ request.endDate
-              | date: 'dd/MM/yyyy' }}
+              {{ request.startDate | apiDate: 'dd/MM/yyyy' }} - {{ request.endDate
+              | apiDate: 'dd/MM/yyyy' }}
             </td>
             <td>{{ request.seniorityYearDescription }}</td>
             <td>{{ request.requestedDays }}</td>

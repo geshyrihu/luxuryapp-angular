@@ -22,4 +22,12 @@ export class EmployeeInterviewerQueueService {
     );
     return result ?? false;
   }
+
+  async reconfirmPresentation(id: string): Promise<boolean> {
+    const result = await this.apiResponseS.onPost<boolean>(
+      EndpointsReclutamiento.CandidateProcesses.reconfirmPresentation(id),
+      {},
+    );
+    return result ?? false;
+  }
 }

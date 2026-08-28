@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +24,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-poliza-seguro-edificio",
-  imports: [CommonModule, WebButtonLabelViewPdf, AppIcon],
+  imports: [ApiDatePipe, WebButtonLabelViewPdf, AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./poliza-seguro-edificio.html",
 })

@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +32,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
     PrimeNgCustomTableEmptyMessage,
     ReactiveFormsModule,
     TableModule,
-    DatePipe,
+    ApiDatePipe,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelAdd,

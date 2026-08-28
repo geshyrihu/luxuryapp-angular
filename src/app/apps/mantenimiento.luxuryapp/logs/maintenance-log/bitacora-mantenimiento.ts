@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 
@@ -34,7 +34,7 @@ import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
     RangoCalendarioyyyymmdd,
     WebButtonIconConfirm,
     PrimeNgCustomTableEmptyMessage,
-    CommonModule,
+    ApiDatePipe,
     TableModule,
     WebButtonLabelDelete,
     WebButtonLabelEdit,

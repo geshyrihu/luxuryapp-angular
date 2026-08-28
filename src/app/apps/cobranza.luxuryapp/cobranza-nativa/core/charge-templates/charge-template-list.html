@@ -74,10 +74,10 @@
         </td>
         <td class="text-center text-xs">
           <div class="flex flex-column">
-            <span>{{ item.startDate | date:'dd/MM/yyyy':'UTC' }}</span>
+            <span>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</span>
             <span class="text-400">a</span>
             <span
-              >{{ item.endDate ? (item.endDate | date:'dd/MM/yyyy':'UTC') :
+              >{{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') :
               'Indefinido' }}</span
             >
           </div>
@@ -121,8 +121,8 @@
         <h3>{{ item.name }}</h3>
         <p>{{ item.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</p>
         <p>
-          {{ item.startDate | date:'dd/MM/yyyy':'UTC' }} a {{ item.endDate ?
-          (item.endDate | date:'dd/MM/yyyy':'UTC') : 'Indefinido' }}
+          {{ item.startDate | apiDate:'dd/MM/yyyy' }} a {{ item.endDate ?
+          (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}
         </p>
       </div>
       <ili-action-menu slot="end">

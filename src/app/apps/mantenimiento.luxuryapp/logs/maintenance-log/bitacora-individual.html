@@ -28,8 +28,8 @@
     <div class="card surface-100 mb-2 border-1 surface-border">
       <div class="card-header border-bottom-1 surface-border p-2">
         <p class="m-0 font-bold">
-          {{ item.fechaRegistro | date : "fullDate" }}, {{ item.fechaRegistro |
-          date : "shortTime" }}
+          {{ item.fechaRegistro | apiDate : "fullDate" }}, {{ item.fechaRegistro |
+          apiDate : "shortTime" }}
         </p>
       </div>
       <div class="card-body p-3">
@@ -63,7 +63,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item (click)="onCardEmployee(item.applicationUserId)">
       <p class="font-semibold m-0 text-color">{{ item.descripcion }}</p>
-      <p class="text-xs m-0 text-color-secondary">{{ item.fechaRegistro | date:'short' }} · {{ item.userName }}</p>
+      <p class="text-xs m-0 text-color-secondary">{{ item.fechaRegistro | apiDate:'short' }} · {{ item.userName }}</p>
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>

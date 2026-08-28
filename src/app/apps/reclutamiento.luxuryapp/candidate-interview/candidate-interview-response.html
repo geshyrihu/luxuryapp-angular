@@ -55,7 +55,7 @@
           >Entrevista programada</small
         >
         <div class="font-semibold">
-          {{ interviewData()?.operationsInterviewAt | date:'dd/MM/yyyy HH:mm' }}
+          {{ interviewData()?.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </div>
       </div>
     </div>
@@ -147,7 +147,7 @@
       </ng-template>
       <ng-template #body let-item>
         <tr>
-          <td>{{ item.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ item.createdAt | apiDate:'dd/MM/yyyy HH:mm' }}</td>
           <td>
             <app-candidate-stage-badge [stage]="item.toStage" />
           </td>

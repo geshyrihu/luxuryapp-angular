@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -36,6 +37,7 @@ import { LogEntry } from "./interfaces/log-entry.interface";
   imports: [
     PrimeNgCustomTableEmptyMessage,
     CommonModule,
+    ApiDatePipe,
     ReactiveFormsModule,
     TableModule,
     LxCard,

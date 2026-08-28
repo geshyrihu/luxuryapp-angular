@@ -125,7 +125,7 @@ type CalendarEventKind = "vacation" | "permission" | "holiday" | "default";
     }
 
     :host ::ng-deep .fc-event.event-permission {
-      background: linear-gradient(135deg, var(--orange-400), var(--orange-600));
+      background: linear-gradient(135deg, var(--orange-400, #f59e0b), var(--orange-600, #d97706));
       color: var(--primary-color-text);
     }
 
@@ -176,17 +176,25 @@ export class CalendarioVacacionesPermisos {
   readonly calendarEvents = computed<EventInput[]>(() => {
     const events = this.rawEvents();
     console.log('🔷 calendarEvents computed - rawEvents:', events);
-    const mapped = events.map((event) => ({
-      id: event.id,
-      title: event.title,
-      start: event.start,
-      end: event.end || event.start,
-      allDay: event.allDay,
-      classNames: [`event-${this.getEventKind(event)}`],
-      extendedProps: {
-        eventKind: this.getEventKind(event),
-      },
-    }));
+    const mapped = events.map((event) => {
+      const eventKind = this.getEventKind(event);
+      const colors = this.getEventColors(eventKind);
+
+      return {
+        id: event.id,
+        title: event.title,
+        start: event.start,
+        end: event.end || event.start,
+        allDay: event.allDay,
+        backgroundColor: colors.backgroundColor,
+        borderColor: colors.backgroundColor,
+        textColor: colors.textColor,
+        classNames: [`event-${eventKind}`],
+        extendedProps: {
+          eventKind,
+        },
+      };
+    });
     console.log('🔷 calendarEvents mapped result:', mapped);
     return mapped;
   });
@@ -302,8 +310,26 @@ export class CalendarioVacacionesPermisos {
     if (event.backgroundColor === "#28a745") return "holiday";
 
     const normalizedTitle = event.title.trim().toLowerCase();
+    if (normalizedTitle.startsWith("per |")) return "permission";
+    if (normalizedTitle.startsWith("va |")) return "vacation";
     if (normalizedTitle.includes("festivo")) return "holiday";
     return "default";
+  }
+
+  private getEventColors(eventKind: CalendarEventKind): {
+    backgroundColor: string;
+    textColor: string;
+  } {
+    switch (eventKind) {
+      case "permission":
+        return { backgroundColor: "#f59e0b", textColor: "#ffffff" };
+      case "holiday":
+        return { backgroundColor: "#28a745", textColor: "#ffffff" };
+      case "vacation":
+        return { backgroundColor: "#0b76bc", textColor: "#ffffff" };
+      default:
+        return { backgroundColor: "#64748b", textColor: "#ffffff" };
+    }
   }
 
   handleEventClick(arg: EventClickArg): void {

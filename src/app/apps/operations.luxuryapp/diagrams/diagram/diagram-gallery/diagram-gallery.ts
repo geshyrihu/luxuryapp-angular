@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +19,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-gallery",
-  imports: [CommonModule, WebButtonLabel, AppIcon, CustomInputTextSignal],
+  imports: [ApiDatePipe, WebButtonLabel, AppIcon, CustomInputTextSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="card p-4">
@@ -53,7 +53,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                 <span class="card-title">{{ diagram.name }}</span>
                 <span class="card-subtitle"
                   >Actualizado:
-                  {{ diagram.updateAt | date: "dd/MM/yyyy" }}</span
+                  {{ diagram.updateAt | apiDate: "dd/MM/yyyy" }}</span
                 >
               </div>
               <div

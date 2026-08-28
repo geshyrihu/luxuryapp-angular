@@ -45,7 +45,7 @@
   <ng-template #body let-item>
     <tr>
       <td>{{ item.nombreEmpleado }}</td>
-      <td>{{ item.fecha | date: "dd/MM/yyyy" : "UTC" }}</td>
+      <td>{{ item.fecha | apiDate: "dd/MM/yyyy" }}</td>
       <td class="text-right">{{ item.horasSimples }}</td>
       <td class="text-right">{{ item.horasDobles }}</td>
       <td class="text-right">
@@ -103,7 +103,7 @@
 
       <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
       <p class="text-xs m-0">
-        {{ item.fecha | date: "dd/MM/yyyy" : "UTC" }} | {{ item.horasSimples +
+        {{ item.fecha | apiDate: "dd/MM/yyyy" }} | {{ item.horasSimples +
         item.horasDobles }}h total
       </p>
       <div class="flex align-items-center gap-2 mt-1">

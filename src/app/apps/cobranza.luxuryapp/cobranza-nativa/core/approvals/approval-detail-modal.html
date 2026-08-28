@@ -7,7 +7,7 @@
         <div class="font-bold text-lg">{{ operationLabel(req.operationType) }}</div>
         <div class="text-500 text-sm">
           Solicitado por {{ req.requestedBy }} el
-          {{ req.requestedAt | date:'dd/MM/yyyy HH:mm' }}
+          {{ req.requestedAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </div>
       </div>
     </div>

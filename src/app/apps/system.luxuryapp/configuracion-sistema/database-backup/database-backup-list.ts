@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -44,7 +44,7 @@ import { DatabaseBackupConfig } from "./interfaces/database-backup.interface";
     AppIcon,
     MobileListItem,
     PrimeNgCustomTableEmptyMessage,
-    DatePipe,
+    ApiDatePipe,
     TableModule,
     WebButtonIconEdit,
     WebButtonIconDelete,

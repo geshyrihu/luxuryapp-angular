@@ -22,7 +22,7 @@
         <ng-template #body let-item>
           <tr>
             <td>{{ item.nameMachinery }}</td>
-            <td>{{ item.executionDate | date:'dd/MM/yyyy':'UTC' }}</td>
+            <td>{{ item.executionDate | apiDate:'dd/MM/yyyy' }}</td>
             <td>
               <lx-tag
                 [value]="item.status"

@@ -1,4 +1,5 @@
-import { CurrencyPipe, DatePipe, NgClass } from "@angular/common";
+import { CurrencyPipe, NgClass } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -46,7 +47,7 @@ import { ChargeTemplateForm } from "./charge-template-form";
     AppIcon,
     CurrencyPipe,
     DataViewMobile,
-    DatePipe,
+    ApiDatePipe,
     NgClass,
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomCaption,

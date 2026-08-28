@@ -114,7 +114,7 @@
                     class="text-primary text-xs"
                   />
                   <span class="font-bold text-xs text-primary-700 uppercase">
-                    {{ item.meetingDertailsSeguimientos[0].fecha | date:
+                    {{ item.meetingDertailsSeguimientos[0].fecha | apiDate:
                     'mediumDate' }}
                   </span>
                 </div>
@@ -152,7 +152,7 @@
                 class="flex align-items-center gap-2 text-red-600 bg-red-50 px-2 py-1 rounded-sm font-semibold text-xs border-1 border-red-100"
               >
                 <app-icon [icon]="'material-symbols-light:event-busy'" />
-                <span>Vence: {{ item.deliveryDate | date: 'shortDate' }}</span>
+                <span>Vence: {{ item.deliveryDate | apiDate: 'shortDate' }}</span>
               </div>
               } @if (item.status === 1) {
               <div

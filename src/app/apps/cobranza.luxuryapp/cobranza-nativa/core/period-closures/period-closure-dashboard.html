@@ -98,7 +98,7 @@
           <lx-tag value="Abierto" severity="success" icon="material-symbols-light:lock-open" />
           }
         </td>
-        <td class="text-center text-sm">{{ item.closedAt | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td class="text-center text-sm">{{ item.closedAt | apiDate:'dd/MM/yyyy HH:mm' }}</td>
         <td class="text-sm">{{ item.closedBy }}</td>
         <td class="text-sm text-500">{{ item.closureNotes }}</td>
         <td class="text-center">
@@ -145,7 +145,7 @@
           <h3>{{ monthName(item.month) }} {{ item.year }}</h3>
           <p>{{ item.isClosed ? 'Cerrado' : 'Abierto' }}{{ item.closedBy ? ' por ' + item.closedBy : '' }}</p>
           @if (item.closedAt) {
-          <p>{{ item.closedAt | date:'dd/MM/yyyy HH:mm' }}</p>
+          <p>{{ item.closedAt | apiDate:'dd/MM/yyyy HH:mm' }}</p>
           }
         </div>
         @if (item.isClosed) {

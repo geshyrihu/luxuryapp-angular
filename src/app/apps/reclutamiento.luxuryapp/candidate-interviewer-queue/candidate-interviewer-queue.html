@@ -131,7 +131,7 @@
               <span>Vencidas: {{ vacancy.overdueCandidatesCount }}</span>
               @if (vacancy.nextInterviewAt) {
               <span>
-                Proxima cita: {{ vacancy.nextInterviewAt | date:'dd/MM/yyyy HH:mm' }}
+                Proxima cita: {{ vacancy.nextInterviewAt | apiDate:'dd/MM/yyyy HH:mm' }}
               </span>
               }
             </div>
@@ -171,7 +171,7 @@
                   <div class="col-12 md:col-6">
                     <small class="text-color-secondary block">Junta</small>
                     <div class="font-medium">
-                      {{ candidate.operationsInterviewAt ? (candidate.operationsInterviewAt | date:'dd/MM/yyyy HH:mm') : 'Sin fecha programada' }}
+                      {{ candidate.operationsInterviewAt ? (candidate.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm') : 'Sin fecha programada' }}
                     </div>
                   </div>
                   <div class="col-12 md:col-6">
@@ -257,7 +257,7 @@
         <div class="col-12">
           <small class="text-color-secondary block">Fecha y hora de junta</small>
           <div class="font-medium">
-            {{ selectedCandidate()?.operationsInterviewAt ? (selectedCandidate()?.operationsInterviewAt | date:'dd/MM/yyyy HH:mm') : 'Pendiente de programacion' }}
+            {{ selectedCandidate()?.operationsInterviewAt ? (selectedCandidate()?.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm') : 'Pendiente de programacion' }}
           </div>
         </div>
         <div class="col-12">
@@ -279,7 +279,7 @@
         <div class="col-12">
           <small class="text-color-secondary block">Ultima retroalimentacion</small>
           <div class="font-medium">
-            {{ selectedCandidate()?.lastFeedbackAt ? (selectedCandidate()?.lastFeedbackAt | date:'dd/MM/yyyy HH:mm') : 'Sin retroalimentacion' }}
+            {{ selectedCandidate()?.lastFeedbackAt ? (selectedCandidate()?.lastFeedbackAt | apiDate:'dd/MM/yyyy HH:mm') : 'Sin retroalimentacion' }}
           </div>
         </div>
       </div>

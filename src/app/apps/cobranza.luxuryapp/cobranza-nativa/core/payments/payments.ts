@@ -1,4 +1,5 @@
-import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
+import { CurrencyPipe, DatePipe } from "@angular/common";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -59,7 +60,7 @@ interface IPaymentForm {
 @Component({
   selector: "app-cobranza-payments",
   imports: [
-    CommonModule,
+    ApiDatePipe,
     CurrencyPipe,
     FormsModule,
     ReactiveFormsModule,

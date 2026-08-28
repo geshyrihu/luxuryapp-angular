@@ -120,7 +120,7 @@
       </td>
       }
       <td>{{ item.folio }}</td>
-      <td>{{ item.fechaSolicitud | date }}</td>
+      <td>{{ item.fechaSolicitud | apiDate }}</td>
       <td>{{ item.solicita }}</td>
       <td class="table-col-description">
         <div class="font-bold truncate">{{ item.equipoOInstalacion }}</div>
@@ -209,7 +209,7 @@
 
       <h3>{{ item.equipoOInstalacion }}</h3>
       <p>{{ item.solicita }} é Folio: {{ item.folio }}</p>
-      <p>{{ item.fechaSolicitud | date }}</p>
+      <p>{{ item.fechaSolicitud | apiDate }}</p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

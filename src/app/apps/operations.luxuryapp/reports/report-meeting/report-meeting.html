@@ -25,7 +25,7 @@
         </h2>
         } @if (data.minuta?.date) {
         <p class="text-sm md:text-base text-500 mt-2 md:mt-3 m-0">
-          {{ data.minuta.date | date : "longDate" }}
+          {{ data.minuta.date | apiDate : "longDate" }}
         </p>
         }
       </div>
