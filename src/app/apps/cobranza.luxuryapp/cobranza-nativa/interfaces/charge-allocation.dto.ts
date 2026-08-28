@@ -10,13 +10,13 @@ export interface PendingChargeDTO {
     amount: number;
     amountPaid: number;
     balance: number;
-    dueDate: string | Date;
-    periodStart?: string | Date;
-    periodEnd?: string | Date;
+    dueDate: string;
+    periodStart?: string;
+    periodEnd?: string;
     status: EChargeStatus;
     daysOverdue: number;
     discountAvailable?: number;
-    discountDeadline?: string | Date;
+    discountDeadline?: string;
 
     // UI helper: true if selected to apply payment to
     _selected?: boolean;

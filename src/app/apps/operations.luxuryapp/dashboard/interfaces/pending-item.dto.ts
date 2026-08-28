@@ -10,7 +10,7 @@ export interface PendingItemDTO {
   urlRoute: string; // Frontend route
   priority: number;
   lastFollowup?: string;
-  lastFollowupDate?: string | Date; // Date from backend comes as string usually unless mapped
+  lastFollowupDate?: string;
   metadata?: { [key: string]: string };
   daysOpen?: number;
 }

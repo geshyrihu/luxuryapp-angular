@@ -53,8 +53,8 @@ interface RequestDismissalDraftDTO {
   profession?: string | null;
   applicationRoleName?: string | null;
   professionKey?: string | null;
-  executionDate?: string | Date | null;
-  lastdayofwork?: string | Date | null;
+  executionDate?: string | null;
+  lastdayofwork?: string | null;
   typeOfDeparture?: number | null;
   reasonForLeaving?: string | null;
   lawyerAssistance?: boolean;

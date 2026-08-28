@@ -19,18 +19,19 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { DateService } from "src/app/core/services/date.service";
 
 interface RequestSalaryModificationStatusFormDTO {
   id: string;
   employeeId: string;
   workPositionId: string;
-  requestDate: Date | string | null;
+  requestDate: string | null;
   soport?: string | null;
   applicationRoleCurrentId: number;
   applicationRoleNewId: number;
   currentSalary: number;
   finalSalary: number;
-  executionDate: Date | string | null;
+  executionDate: string | null;
   folio: string;
   retroactive: boolean;
   status: number;
@@ -57,6 +58,7 @@ export class StatusRequestSalaryModificationForm implements OnInit {
   private ref = inject(DynamicDialogRef);
   private config = inject(DynamicDialogConfig);
   private enumSelectS = inject(EnumSelectService);
+  private dateS = inject(DateService);
   submitting = signal(false);
 
   id: string = "";
@@ -116,7 +118,11 @@ export class StatusRequestSalaryModificationForm implements OnInit {
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
-      transformPayload: () => this.form.getRawValue(),
+      transformPayload: () => ({
+        ...this.form.getRawValue(),
+        requestDate: this.dateS.getDateFormat(this.form.getRawValue().requestDate),
+        executionDate: this.dateS.getDateFormat(this.form.getRawValue().executionDate),
+      }),
     });
   }
   onApplicationRoleSelectItem() {

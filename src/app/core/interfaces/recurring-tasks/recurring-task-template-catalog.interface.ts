@@ -7,8 +7,8 @@ export interface RecurringTaskTemplateCatalogAddOrEdit {
   recurrenceRule: string;
   criticality: RecurringTaskCatalogCriticality;
   advanceNoticeDays: number;
-  startDate: string | Date | null;
-  endDate: string | Date | null;
+  startDate: string | null;
+  endDate: string | null;
   workGroupId: string;
   backupUserId: string | null;
   expectedDeliverableName: string;

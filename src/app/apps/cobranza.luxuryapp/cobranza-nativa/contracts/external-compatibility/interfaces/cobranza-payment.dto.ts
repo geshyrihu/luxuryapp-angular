@@ -8,7 +8,7 @@ export interface CobranzaPaymentResponseDTO {
   amount: number;
   allocatedAmount: number;
   unappliedAmount: number;
-  paymentDate: Date | string;
+  paymentDate: string;
   method: EPaymentMethod;
   reference?: string;
   status: EPaymentStatus;
@@ -26,7 +26,7 @@ export interface CobranzaPaymentAllocationDetailDTO {
   chargeTypeAccountNumber?: string | null;
   chargeConcept: string;
   amountApplied: number;
-  appliedAt: string | Date;
+  appliedAt: string;
   appliedBy?: string | null;
 }
 
@@ -34,7 +34,7 @@ export interface CreateCobranzaPaymentDTO {
   customerId: string;
   propertyId: string;
   amount: number;
-  paymentDate: Date | string;
+  paymentDate: string;
   method: EPaymentMethod;
   reference?: string;
   status: EPaymentStatus;
@@ -46,7 +46,7 @@ export interface UpdateCobranzaPaymentDTO {
   id: string;
   propertyId: string;
   amount: number;
-  paymentDate: Date | string;
+  paymentDate: string;
   method: EPaymentMethod;
   reference?: string;
   status: EPaymentStatus;

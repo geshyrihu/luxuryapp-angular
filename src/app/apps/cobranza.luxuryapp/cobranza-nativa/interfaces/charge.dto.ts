@@ -12,15 +12,15 @@ export interface ChargeResponseDTO {
   chargeTypeAccountNumber?: string | null;
   concept: string;
   amount: number;
-  dueDate: Date | string;
-  periodStart?: Date | string | null;
-  periodEnd?: Date | string | null;
+  dueDate: string;
+  periodStart?: string | null;
+  periodEnd?: string | null;
   status: EChargeStatus;
   generatedAutomatically: boolean;
   sourcePolicyId?: string | null;
   chargeTemplateId?: string | null;
   discountAvailable?: number | null;
-  discountDeadline?: Date | string | null;
+  discountDeadline?: string | null;
 }
 
 export interface CreateChargeDTO {
@@ -29,15 +29,15 @@ export interface CreateChargeDTO {
   chargeTypeId?: string | null;
   concept: string;
   amount: number;
-  dueDate: Date | string;
-  periodStart?: Date | string | null;
-  periodEnd?: Date | string | null;
+  dueDate: string;
+  periodStart?: string | null;
+  periodEnd?: string | null;
   status: EChargeStatus;
   generatedAutomatically: boolean;
   sourcePolicyId?: string | null;
   chargeTemplateId?: string | null;
   discountAvailable?: number | null;
-  discountDeadline?: Date | string | null;
+  discountDeadline?: string | null;
 }
 
 export interface UpdateChargeDTO {
@@ -46,15 +46,15 @@ export interface UpdateChargeDTO {
   chargeTypeId?: string | null;
   concept: string;
   amount: number;
-  dueDate: Date | string;
-  periodStart?: Date | string | null;
-  periodEnd?: Date | string | null;
+  dueDate: string;
+  periodStart?: string | null;
+  periodEnd?: string | null;
   status: EChargeStatus;
   generatedAutomatically: boolean;
   sourcePolicyId?: string | null;
   chargeTemplateId?: string | null;
   discountAvailable?: number | null;
-  discountDeadline?: Date | string | null;
+  discountDeadline?: string | null;
 }
 
 export interface PropertyInitialBalanceDTO {
@@ -69,7 +69,7 @@ export interface PropertyInitialBalanceDTO {
 export interface SetInitialBalanceItemDTO {
   propertyId: string;
   amount: number;
-  dueDate?: Date | string | null;
+  dueDate?: string | null;
 }
 
 export interface BulkSetInitialBalanceDTO {

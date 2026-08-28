@@ -67,6 +67,19 @@
     </div>
     }
 
+    @if (validationErrors().length) {
+    <div class="surface-50 border-1 border-red-200 border-round p-3 mb-3">
+      <p class="m-0 font-semibold text-red-700">
+        Revisa estos datos antes de guardar
+      </p>
+      <ul class="m-0 mt-2 pl-3 text-red-700 line-height-3">
+        @for (error of validationErrors(); track error) {
+        <li>{{ error }}</li>
+        }
+      </ul>
+    </div>
+    }
+
     <lx-stepper
       [steps]="steps"
       finishLabel="Guardar y procesar alta"

@@ -31,14 +31,14 @@ export interface CreateChargeTemplateDTO {
     amount: number;
     recurrence: Recurrence;
     dayOfMonth: number;
-    startDate: string | Date;
-    endDate?: string | Date | null;
+    startDate: string;
+    endDate?: string | null;
     earlyPaymentDiscount?: number | null;
     earlyPaymentDiscountType?: EDiscountType | null;
     earlyPaymentGraceDays?: number | null;
     applyToAllProperties: boolean;
     isRetroactive: boolean;
-    retroactiveStartDate?: string | Date | null;
+    retroactiveStartDate?: string | null;
     isActive: boolean;
 }
 
@@ -50,14 +50,14 @@ export interface UpdateChargeTemplateDTO {
     amount: number;
     recurrence: Recurrence;
     dayOfMonth: number;
-    startDate: string | Date;
-    endDate?: string | Date | null;
+    startDate: string;
+    endDate?: string | null;
     earlyPaymentDiscount?: number | null;
     earlyPaymentDiscountType?: EDiscountType | null;
     earlyPaymentGraceDays?: number | null;
     applyToAllProperties: boolean;
     isRetroactive: boolean;
-    retroactiveStartDate?: string | Date | null;
+    retroactiveStartDate?: string | null;
     isActive: boolean;
 }
 

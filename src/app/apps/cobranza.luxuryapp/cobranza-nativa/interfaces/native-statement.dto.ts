@@ -26,7 +26,7 @@ export interface StatementSummaryDTO {
 
 export interface LedgerEntryDTO {
     id: string;
-    date: Date | string;
+    date: string;
     concept: string;
     type: string;
     cargo: number;

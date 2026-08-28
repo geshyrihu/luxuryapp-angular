@@ -41,7 +41,7 @@ interface RequestSalaryModificationSeedDTO {
   applicationRoleNewId?: string | null;
   applicationRoleNew?: string | null;
   finalSalary?: number | null;
-  executionDate?: Date | string | null;
+  executionDate?: string | null;
   retroactive?: boolean;
   additionalInformation?: string | null;
   vacancyId?: string | null;

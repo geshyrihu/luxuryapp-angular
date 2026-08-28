@@ -189,8 +189,9 @@ export class SolicitudAltaList implements OnInit {
         CandidateProcessHiringModal,
         {
           id: data.id,
-          candidateProcessId: null,
-          requestPositionId: null,
+          candidateProcessId: data.candidateProcessId ?? null,
+          candidateId: data.candidateId ?? null,
+          requestPositionId: data.positionRequestId ?? null,
           isDraftCompletion: true,
         },
         "Completar Solicitud de Alta",

@@ -10,9 +10,11 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from "@angular/forms";
 import { LxStepper } from "@ui/adaptive/stepper/stepper";
@@ -36,6 +38,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
+import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import Swal from "sweetalert2";
 import { CandidateDetail } from "../candidate/interfaces/candidate.dto";
@@ -88,9 +91,11 @@ export class CandidateProcessHiringModal implements OnInit {
   private readonly ref = inject(DynamicDialogRef);
   private readonly enumSelectS = inject(EnumSelectService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly dateS = inject(DateService);
 
   readonly submitting = signal(false);
   readonly activeStep = signal(1);
+  readonly validationErrors = signal<string[]>([]);
   readonly dialogData = this.config.data as CandidateProcessHiringDialogData;
   readonly id = this.dialogData.id;
   readonly candidateProcessId = this.dialogData.candidateProcessId;
@@ -119,12 +124,74 @@ export class CandidateProcessHiringModal implements OnInit {
     { value: 5, label: "Puesto y turno" },
     { value: 6, label: "Confirmacion" },
   ];
+  private readonly fieldLabels: Record<string, string> = {
+    executionDate: "Fecha de alta",
+    firstName: "Nombre(s)",
+    email: "Correo electronico",
+    lastName: "Apellidos",
+    birthDate: "Fecha de nacimiento",
+    nss: "NSS",
+    rfc: "RFC",
+    rfcPostalCode: "Codigo postal del RFC",
+    curp: "CURP",
+    maritalStatus: "Estado civil",
+    educationLevel: "Nivel de educacion",
+    street: "Calle",
+    neighborhood: "Colonia",
+    municipality: "Municipio o alcaldia",
+    postalCode: "Codigo postal",
+    state: "Estado",
+    phoneNumber: "Telefono celular",
+    typeContractRegister: "Tipo de contrato",
+    bankId: "Banco",
+    accountNumber: "Cuenta bancaria",
+    clabe: "CLABE",
+    beneficiaryName: "Beneficiario",
+    beneficiaryPhoneNumber: "Telefono del beneficiario",
+    beneficiaryRelation: "Parentesco del beneficiario",
+    emergencyContactName: "Contacto de emergencia",
+    emergencyContactPhoneNumber: "Telefono de emergencia",
+    emergencyContactRelation: "Parentesco de emergencia",
+    workShift: "Turno de trabajo",
+  };
+  private readonly fieldSteps: Record<string, number> = {
+    lastName: 1,
+    firstName: 1,
+    birthDate: 1,
+    maritalStatus: 1,
+    educationLevel: 1,
+    phoneNumber: 1,
+    email: 1,
+    nss: 1,
+    rfc: 1,
+    curp: 1,
+    street: 2,
+    neighborhood: 2,
+    municipality: 2,
+    postalCode: 2,
+    state: 2,
+    emergencyContactName: 3,
+    emergencyContactPhoneNumber: 3,
+    emergencyContactRelation: 3,
+    beneficiaryName: 3,
+    beneficiaryPhoneNumber: 3,
+    beneficiaryRelation: 3,
+    bankId: 4,
+    accountNumber: 4,
+    clabe: 4,
+    executionDate: 5,
+    typeContractRegister: 5,
+    workShift: 5,
+  };
   readonly draftKey = computed(
     () =>
       `candidate-process-hiring-draft:${this.candidateProcessId ?? this.id}`,
   );
   readonly form = new FormGroup<CandidateProcessHiringFormGroup>({
-    executionDate: new FormControl<string | null>(null, Validators.required),
+    executionDate: new FormControl<string | null>(null, [
+      Validators.required,
+      (control) => this.dateOnlyValidator(control),
+    ]),
     firstName: new FormControl("", {
       nonNullable: true,
       validators: [Validators.required],
@@ -137,7 +204,10 @@ export class CandidateProcessHiringModal implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    birthDate: new FormControl<string | null>(null, Validators.required),
+    birthDate: new FormControl<string | null>(null, [
+      Validators.required,
+      (control) => this.birthDateValidator(control),
+    ]),
     nss: new FormControl("", {
       nonNullable: true,
       validators: [Validators.required],
@@ -388,13 +458,23 @@ export class CandidateProcessHiringModal implements OnInit {
   onSubmit() {
     if (this.submitting()) return;
     if (!this.hasValidTarget()) return;
-    if (!this.apiResponseS.validateForm(this.form)) return;
+    this.validationErrors.set([]);
+    if (!this.apiResponseS.validateForm(this.form)) {
+      this.showValidationFeedback();
+      return;
+    }
 
-    const executionDate = this.toDateOnly(
+    const executionDate = this.getValidDateOnly(
       this.form.controls.executionDate.value,
     );
-    const birthDate = this.toDateOnly(this.form.controls.birthDate.value);
-    if (!executionDate || !birthDate) return;
+    const birthDate = this.getValidDateOnly(this.form.controls.birthDate.value);
+    if (!executionDate || !birthDate) {
+      this.validationErrors.set([
+        "Revisa las fechas: deben ser fechas reales en formato dia/mes/anio o anio-mes-dia.",
+      ]);
+      this.activeStep.set(!birthDate ? 1 : 5);
+      return;
+    }
 
     const formData = new FormData();
     formData.append("ExecutionDate", executionDate);
@@ -547,13 +627,71 @@ export class CandidateProcessHiringModal implements OnInit {
     }
   }
 
-  private toDateOnly(value: string | null): string | undefined {
-    if (!value) return undefined;
-    const d = new Date(value);
-    const year = d.getFullYear();
-    const month = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
+  private dateOnlyValidator(
+    control: AbstractControl,
+  ): ValidationErrors | null {
+    return !control.value || this.getValidDateOnly(control.value)
+      ? null
+      : { invalidDate: true };
+  }
+
+  private birthDateValidator(
+    control: AbstractControl,
+  ): ValidationErrors | null {
+    if (!control.value) return null;
+    const value = this.getValidDateOnly(control.value);
+    if (!value) return { invalidDate: true };
+
+    const birthDate = this.dateS.parseDate(value);
+    const today = new Date();
+    if (birthDate && birthDate > today) {
+      return { customError: "La fecha de nacimiento no puede ser futura." };
+    }
+
+    return null;
+  }
+
+  private getValidDateOnly(value: unknown): string | undefined {
+    const formatted = this.dateS.getDateFormat(value);
+    const match = formatted?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!match) return undefined;
+
+    const year = Number(match[1]);
+    if (year < 1900 || year > 2100) return undefined;
+
+    return formatted;
+  }
+
+  private showValidationFeedback(): void {
+    const invalidFields = Object.entries(
+      this.form.controls as unknown as Record<string, AbstractControl>,
+    ).filter(([, control]) => control.invalid);
+
+    const firstInvalidField = invalidFields[0]?.[0];
+    this.activeStep.set(
+      firstInvalidField ? (this.fieldSteps[firstInvalidField] ?? 1) : 1,
+    );
+
+    this.validationErrors.set(
+      invalidFields
+        .slice(0, 8)
+        .map(
+          ([field, control]) =>
+            `${this.fieldLabels[field] ?? field}: ${this.getControlErrorMessage(control)}`,
+        ),
+    );
+  }
+
+  private getControlErrorMessage(control: AbstractControl): string {
+    const errors = control.errors ?? {};
+    if (errors["required"]) return "es requerido.";
+    if (errors["email"]) return "ingresa un correo valido.";
+    if (errors["pattern"]) return "el formato es invalido.";
+    if (errors["minlength"]) return "no cumple la longitud minima.";
+    if (errors["maxlength"]) return "supera la longitud maxima.";
+    if (errors["invalidDate"]) return "la fecha ingresada no es valida.";
+    if (errors["customError"]) return String(errors["customError"]);
+    return "revisa el valor capturado.";
   }
 
   private applyInitialData(): void {

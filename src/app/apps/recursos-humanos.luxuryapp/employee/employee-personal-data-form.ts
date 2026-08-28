@@ -27,6 +27,7 @@ import { ECountry } from "src/app/core/enums/paises.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { DateService } from "src/app/core/services/date.service";
 import { IEmployeePersonalDataForm } from "./interfaces/employee-personal-data-form.interface";
 
 @Component({
@@ -49,6 +50,7 @@ export class EmployeePersonalDataForm implements OnInit {
   authS = inject(AuthService);
   formB = inject(FormBuilder);
   enumSelectS = inject(EnumSelectService);
+  dateS = inject(DateService);
   employeeId = input<string>("");
   isReadOnly = input<boolean>(false);
 
@@ -164,7 +166,7 @@ export class EmployeePersonalDataForm implements OnInit {
 
     // Construir payload limpio
     const payload = {
-      birth: this.form.get("birth")?.value,
+      birth: this.dateS.getDateFormat(this.form.get("birth")?.value),
       bloodType: this.form.get("bloodType")?.value,
       curp: this.form.get("curp")?.value,
       localPhone: this.form.get("localPhone")?.value,
