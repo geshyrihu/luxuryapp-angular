@@ -1,9 +1,9 @@
 # Emoji Audit
 
-- Generated at: 2026-08-19T13:45:58.185Z
+- Generated at: 2026-08-29T02:33:29.268Z
 - Scope: `src/`
-- Total matches: 1926
-- User-facing matches: 428
+- Total matches: 1619
+- User-facing matches: 412
 - Button emoji inputs: 0
 
 ## Priority Order
@@ -15,34 +15,34 @@
 
 ## Top Modules
 
-- app/apps: 1222
+- app/apps: 914
 - app/shared: 249
-- src/styles: 150
+- src/styles: 154
 - app/routing: 136
-- app/core: 122
+- app/core: 119
 - app/root: 38
 - src/environments: 5
 - src/root: 4
 
 ## Top User-Facing Modules
 
-- app/apps: 321
-- app/core: 64
+- app/apps: 307
+- app/core: 62
 - app/shared: 23
 - app/root: 14
 - src/styles: 6
 
 ## Top Categories
 
-- docs: 1035
-- code_string: 213
-- template_text: 209
+- docs: 740
+- template_text: 210
 - code_comment: 198
+- code_string: 196
 - template_comment: 180
 - style_comment: 52
 - code_misc: 24
+- style_text: 10
 - style_content: 6
-- style_text: 6
 - config: 3
 
 ## Highest Priority Files

@@ -1,0 +1,116 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Horario de Puesto' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-2 text-small" pSortableColumn="name">
+        NOMBRE
+        <p-sorticon field="name" />
+      </th>
+      <th class="table-col-2 text-small" pSortableColumn="turnoTrabajoName">
+        TURNO
+        <p-sorticon field="turnoTrabajoName" />
+      </th>
+      <th class="table-col-4 text-small">HORARIO</th>
+      <th class="table-col-2 text-small" pSortableColumn="isActive">
+        ESTATUS
+        <p-sorticon field="isActive" />
+      </th>
+      <th class="table-col-2 text-small">ACCIONES</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <strong>{{ item.name }}</strong>
+        <div class="text-500 text-xs">{{ item.description || "—" }}</div>
+      </td>
+      <td>
+        {{ item.turnoTrabajoName }}
+        @if (item.tipoTurnoEspecial) {
+          <span class="badge bg-blue-100 text-blue-700 ml-2">
+            {{ item.tipoTurnoEspecial }}
+          </span>
+        }
+      </td>
+      <td>{{ formatSchedule(item) }}</td>
+      <td>
+        <span
+          [class]="'badge ' + (item.isActive ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-600')"
+        >
+          {{ item.isActive ? "Activo" : "Inactivo" }}
+        </span>
+      </td>
+      <td class="no-print">
+        <div class="flex">
+          <iw-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Horario de Puesto' })"
+          />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #emptymessage>
+    <primeng-custom-table-emptymessage [colspan]="5" />
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Horario de Puesto' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:schedule"
+          class="text-xl text-primary"
+        />
+      </div>
+      <div>
+        <p class="mt-0 mb-0">{{ item.name }}</p>
+        <small>{{ item.turnoTrabajoName }}</small>
+        <small class="text-500"> · {{ formatSchedule(item) }}</small>
+      </div>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Horario de Puesto' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

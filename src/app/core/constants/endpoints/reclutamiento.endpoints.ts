@@ -107,6 +107,9 @@ export const EndpointsReclutamiento = {
     deleteImpact: (id: Id) => `recruitment-candidates/${id}/delete-impact`,
     searchByPhone: (phone: string) =>
       `recruitment-candidates/search-by-phone?phone=${encodeURIComponent(phone)}`,
+    formerEmployees: "recruitment-candidates/former-employees",
+    ensureFromFormerEmployee: (employeeId: Id) =>
+      `recruitment-candidates/former-employees/${employeeId}/ensure-candidate`,
     recruitmentSources: "recruitment-sources",
     checkDuplicate: "recruitment-candidates/check-duplicate",
   },

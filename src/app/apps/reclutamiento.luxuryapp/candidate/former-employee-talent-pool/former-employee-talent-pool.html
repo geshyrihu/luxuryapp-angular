@@ -1,0 +1,133 @@
+<section class="former-employee-pool">
+  <div class="pool-hero card">
+    <div>
+      <p class="eyebrow">Reingresos</p>
+      <h2>Pool de talento de ex-empleados</h2>
+      <p>
+        Consulta empleados inactivos y reutiliza su informacion para postularlos
+        nuevamente a una vacante sin recapturar la ficha desde cero.
+      </p>
+    </div>
+    <div class="hero-stat">
+      <span>{{ totalRecords() }}</span>
+      <small>ex-empleados</small>
+    </div>
+  </div>
+
+  <p-table
+    #dt
+    class="custom-table card"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [globalFilterFields]="globalFilterFields()"
+    [loading]="loading()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    [showCurrentPageReport]="true"
+    [value]="dataSignal()"
+  >
+    <ng-template #caption>
+      <div class="pool-toolbar">
+        <div class="search-box">
+          <app-icon icon="material-symbols-light:search" />
+          <input
+            pInputText
+            type="text"
+            placeholder="Buscar por nombre, correo, telefono, cliente o puesto..."
+            (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+          />
+        </div>
+        <custom-input-select-signal
+          class="customer-filter"
+          label="Cliente"
+          [control]="customerControl"
+          [data]="customers()"
+          [filter]="true"
+          [noMargin]="true"
+          (selectionChange)="onCustomerChange()"
+        />
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="fullName">
+          Ex-empleado
+          <p-sorticon field="fullName" />
+        </th>
+        <th pSortableColumn="customerName">
+          Cliente
+          <p-sorticon field="customerName" />
+        </th>
+        <th pSortableColumn="workPositionName">
+          Puesto anterior
+          <p-sorticon field="workPositionName" />
+        </th>
+        <th>Contacto</th>
+        <th pSortableColumn="dateAdmission">
+          Ingreso
+          <p-sorticon field="dateAdmission" />
+        </th>
+        <th class="text-center">Candidato</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td>
+          <div class="font-semibold">{{ item.fullName }}</div>
+          <small class="text-color-secondary">{{ item.applicationUserId }}</small>
+        </td>
+        <td>{{ item.customerName || "Sin cliente" }}</td>
+        <td>
+          <div>{{ item.workPositionName || "Sin puesto" }}</div>
+          <small class="text-color-secondary">{{ item.workPositionFolio }}</small>
+        </td>
+        <td>
+          <div>{{ item.email }}</div>
+          <small class="text-color-secondary">{{ item.phoneNumber }}</small>
+        </td>
+        <td>{{ item.dateAdmission | date: "dd/MM/yyyy" }}</td>
+        <td class="text-center">
+          @if (item.hasCandidate) {
+            <span class="status-pill ready">Ya existe</span>
+          } @else {
+            <span class="status-pill pending">Pendiente</span>
+          }
+        </td>
+        <td>
+          <div class="actions">
+            @if (item.hasCandidate) {
+              <il-button
+                label="Ver candidato"
+                iconClass="material-symbols-light:person-search"
+                severity="secondary"
+                variant="outline"
+                size="sm"
+                (clicked)="onViewCandidate(item)"
+              />
+            }
+            <il-button
+              label="Postular a vacante"
+              iconClass="material-symbols-light:person-add"
+              severity="success"
+              variant="solid"
+              size="sm"
+              (clicked)="onPostulate(item)"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <primeng-custom-table-emptymessage [colspan]="7" />
+    </ng-template>
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="dataSignal()" />
+    </ng-template>
+  </p-table>
+</section>

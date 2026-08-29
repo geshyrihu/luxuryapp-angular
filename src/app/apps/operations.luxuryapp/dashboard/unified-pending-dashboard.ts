@@ -42,8 +42,8 @@ import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comit
 import { TicketLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
 import { ServiceOrderForm } from "src/app/apps/operations.luxuryapp/field-service/service-order/service-order-form";
 import { SolicitudAltaStatusForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-alta/solicitud-alta-status-form";
-import { SolicitudBajaUpdateStatus } from "src/app/apps/reclutamiento.luxuryapp/solicitud-baja/solicitud-baja-update-status";
-import { ModificacionSalarioForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-modificacion-sueldo/modificacion-salario-form";
+import { SolicitudBajaUpdateStatus } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-update-status";
+import { ModificacionSalarioForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/modificacion-salario-form";
 import { VacanteForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-vacante/vacante-form";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 

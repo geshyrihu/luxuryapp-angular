@@ -1,0 +1,85 @@
+<div class="p-3">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-text-signal
+      [control]="form.controls.id"
+      hidden
+      label="Id"
+      [readonly]="true"
+    />
+
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.name"
+          label="Nombre"
+          placeholder="Ej: Matutino administrativo"
+        />
+      </div>
+      <div class="col-12 md:col-3">
+        <custom-input-select-signal
+          [control]="form.controls.turnoTrabajo"
+          label="Turno"
+          [data]="cb_turnoTrabajo()"
+          [filter]="true"
+        />
+      </div>
+      <div class="col-12 md:col-3">
+        <custom-input-select-signal
+          [control]="form.controls.tipoTurnoEspecial"
+          label="Tipo especial"
+          [data]="specialShiftTypes"
+          [filter]="true"
+        />
+      </div>
+    </div>
+
+    <custom-input-textarea-signal
+      [control]="form.controls.description"
+      label="Descripción"
+      placeholder="Describe para que puestos aplica este horario"
+      [rows]="2"
+    />
+
+    <div class="grid">
+      @for (day of days; track day.label) {
+        <div class="col-12 md:col-6">
+          <div class="surface-50 border-1 border-200 rounded-lg p-3">
+            <h4 class="mt-0 mb-2 text-sm">{{ day.label }}</h4>
+            <div class="grid">
+              <div class="col-6">
+                <custom-input-time-signal
+                  [control]="getControl(day.entry)"
+                  label="Entrada"
+                />
+              </div>
+              <div class="col-6">
+                <custom-input-time-signal
+                  [control]="getControl(day.exit)"
+                  label="Salida"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <custom-input-textarea-signal
+      [control]="form.controls.observationsWorkShift"
+      label="Observaciones"
+      placeholder="Notas operativas del turno, descansos o reglas especiales"
+      [rows]="3"
+    />
+
+    <custom-input-switch-signal
+      [control]="form.controls.isActive"
+      label="Activo"
+    />
+
+    <il-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

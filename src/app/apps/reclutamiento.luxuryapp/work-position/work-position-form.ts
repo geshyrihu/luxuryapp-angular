@@ -1,20 +1,19 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   OnInit,
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
-import { LxDivider } from "@ui/adaptive/divider/divider";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
 
-import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
@@ -32,7 +31,6 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-work-position-form",
@@ -47,10 +45,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,
-    LxCard,
-    AppIcon,
     LxMessage,
-    LxDivider,
   ],
 })
 export class WorkPositionForm implements OnInit {
@@ -70,10 +65,28 @@ export class WorkPositionForm implements OnInit {
 
   cb_applicationRole = signal<SelectItemDto[]>([]);
   cb_employee = signal<SelectItemDto[]>([]);
-  cb_turnoTrabajo = signal<SelectItemDto[]>([]);
+  cb_workPositionSchedule = signal<SelectItemDto[]>([]);
+  workPositionSchedules = signal<WorkPositionScheduleOption[]>([]);
+  selectedSchedule = signal<WorkPositionScheduleOption | null>(null);
   cb_state = signal<SelectItemDto[]>([]);
 
   readonly AspRole = ApplicationRole;
+  readonly canEditCurrentSalary = computed(() =>
+    this.aspRoleS.hasAny([ApplicationRole.RecursosHumanos, ApplicationRole.SuperUsuario]),
+  );
+  readonly scheduleDays = computed(() => {
+    const schedule = this.selectedSchedule();
+
+    return [
+      { day: "Lunes", entry: schedule?.lunesEntrada, exit: schedule?.lunesSalida },
+      { day: "Martes", entry: schedule?.martesEntrada, exit: schedule?.martesSalida },
+      { day: "Miercoles", entry: schedule?.miercolesEntrada, exit: schedule?.miercolesSalida },
+      { day: "Jueves", entry: schedule?.juevesEntrada, exit: schedule?.juevesSalida },
+      { day: "Viernes", entry: schedule?.viernesEntrada, exit: schedule?.viernesSalida },
+      { day: "Sabado", entry: schedule?.sabadoEntrada, exit: schedule?.sabadoSalida },
+      { day: "Domingo", entry: schedule?.domingoEntrada, exit: schedule?.domingoSalida },
+    ];
+  });
 
   // --- FORMULARIO REACTIVO ---
   // Se define sin el genórico explicito en .group para que FormBuilder
@@ -89,24 +102,9 @@ export class WorkPositionForm implements OnInit {
     state: [true as boolean | null, Validators.required],
     employeeId: [null as string | null],
     employeeName: [null as string | null],
-    turnoTrabajo: [0, Validators.required],
-    lunesEntrada: [""],
-    lunesSalida: [""],
-    martesEntrada: [""],
-    martesSalida: [""],
-    miercolesEntrada: [""],
-    miercolesSalida: [""],
-    juevesEntrada: [""],
-    juevesSalida: [""],
-    viernesEntrada: [""],
-    viernesSalida: [""],
-    sabadoEntrada: [""],
-    sabadoSalida: [""],
-    domingoEntrada: [""],
-    domingoSalida: [""],
     jobDescriptionId: [null as string | null],
-    workScheduleId: [null as string | null],
-    observationsWorkShift: [""],
+    workPositionScheduleId: [null as string | null],
+    workPositionScheduleName: [null as string | null],
     benefits: [""],
   });
 
@@ -119,13 +117,16 @@ export class WorkPositionForm implements OnInit {
     if (this.id()) {
       await this.onLoadData();
     }
+
+    this.form.controls.workPositionScheduleId.valueChanges.subscribe((scheduleId) => {
+      this.setSelectedSchedule(scheduleId);
+    });
   }
 
   async onLoadSelectItems(): Promise<void> {
     const customerId = this.customerIdS.customerId();
-    const [turnoTrabajo, state, applicationRoles, employees] =
+    const [state, applicationRoles, employees, schedules] =
       await Promise.all([
-        lastValueFrom(this.enumSelectS.turnoTrabajo()),
         lastValueFrom(this.enumSelectS.state()),
         this.apiS.onGetSelectItem<SelectItemDto[]>(
           Endpoints.SelectItems.applicationRolesToAdministrator,
@@ -133,12 +134,24 @@ export class WorkPositionForm implements OnInit {
         this.apiS.onGetSelectItem<SelectItemDto[]>(
           Endpoints.SelectItems.employeesByCustomer(customerId),
         ),
+        this.apiS.onGetList<WorkPositionScheduleOption[]>(
+          Endpoints.Catalogs.WorkPositionSchedule.getAll,
+        ),
       ]);
 
-    this.cb_turnoTrabajo.set(turnoTrabajo);
     this.cb_state.set(state);
     this.cb_applicationRole.set(applicationRoles ?? []);
     this.cb_employee.set(employees ?? []);
+    this.workPositionSchedules.set(schedules ?? []);
+    this.cb_workPositionSchedule.set(
+      (schedules ?? [])
+        .filter((schedule) => schedule.isActive)
+        .map((schedule) => ({
+          label: schedule.name,
+          value: schedule.id,
+        })),
+    );
+    this.setSelectedSchedule(this.form.controls.workPositionScheduleId.value);
   }
 
   async onLoadData(): Promise<void> {
@@ -162,7 +175,17 @@ export class WorkPositionForm implements OnInit {
         );
         if (emp) this.form.patchValue({ employeeName: emp.label });
       }
+      this.setSelectedSchedule(result.workPositionScheduleId ?? null);
     }
+  }
+
+  setSelectedSchedule(scheduleId: string | null): void {
+    const selected = this.workPositionSchedules().find((schedule) => schedule.id === scheduleId) ?? null;
+    this.selectedSchedule.set(selected);
+    this.form.patchValue(
+      { workPositionScheduleName: selected?.name ?? null },
+      { emitEvent: false },
+    );
   }
 
   saveEmployee = (item: SelectItemDto) => {
@@ -189,4 +212,27 @@ export class WorkPositionForm implements OnInit {
       submitting: this.submitting,
     });
   }
+}
+
+interface WorkPositionScheduleOption {
+  id: string;
+  name: string;
+  isActive: boolean;
+  turnoTrabajoName: string;
+  tipoTurnoEspecial: string;
+  lunesEntrada: string | null;
+  lunesSalida: string | null;
+  martesEntrada: string | null;
+  martesSalida: string | null;
+  miercolesEntrada: string | null;
+  miercolesSalida: string | null;
+  juevesEntrada: string | null;
+  juevesSalida: string | null;
+  viernesEntrada: string | null;
+  viernesSalida: string | null;
+  sabadoEntrada: string | null;
+  sabadoSalida: string | null;
+  domingoEntrada: string | null;
+  domingoSalida: string | null;
+  observationsWorkShift: string;
 }

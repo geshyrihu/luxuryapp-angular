@@ -14,8 +14,6 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { RecoveryGuideModal } from "./recovery-guide-modal/recovery-guide-modal";
-import { SolicitudBajaForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-baja/solicitud-baja-form";
-import { SolicitudModificacionSalarioForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-modificacion-sueldo/solicitud-modificacion-salario-form";
 import { IncidentFormComponent } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/incident-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
@@ -31,6 +29,8 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { IWorkPosition } from "src/app/shared/integration/reclutamiento/estructura-organizacional/work-position/interfaces/work-position.model";
 import { JobDescriptionForm } from "src/app/shared/integration/reclutamiento/estructura-organizacional/work-position/job-description-form";
 import { WorkPositionForm } from "src/app/shared/integration/reclutamiento/estructura-organizacional/work-position/work-position-form";
+import { SolicitudBajaForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
+import { SolicitudModificacionSalarioForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
 import { SolicitudVacanteForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {

@@ -235,6 +235,18 @@ export const adminRoutes: Routes = [
       breadcrumb: "Catálogo de Documentos",
     },
   },
+  {
+    path: "work-position-schedules",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/catalogos-generales/work-position-schedule/work-position-schedule-list").then(
+        (m) => m.WorkPositionScheduleList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Horarios de Puesto",
+      breadcrumb: "Horarios de Puesto",
+    },
+  },
 
   // Catálogos de Tickets y Mantenimiento
   {

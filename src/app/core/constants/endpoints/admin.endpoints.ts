@@ -209,6 +209,18 @@ export const EndpointsAdmin = {
       updateStatus: (id: string) =>
         `admin/general-catalogs/document-catalog/${id}/status`,
     },
+    WorkPositionSchedule: {
+      create: "admin/general-catalogs/work-position-schedule",
+      delete: (id: string) =>
+        `admin/general-catalogs/work-position-schedule/${id}`,
+      getAll: "admin/general-catalogs/work-position-schedule",
+      getById: (id: string) =>
+        `admin/general-catalogs/work-position-schedule/${id}`,
+      update: (id: string) =>
+        `admin/general-catalogs/work-position-schedule/${id}`,
+      updateStatus: (id: string) =>
+        `admin/general-catalogs/work-position-schedule/${id}/status`,
+    },
   },
   Permission: {
     userAdminByApplicationUser: (applicationUserId: string) =>

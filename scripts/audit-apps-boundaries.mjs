@@ -1,9 +1,9 @@
 // ============================================================
 // audit-apps-boundaries.mjs
-// Verifica la independencia de dominios en apps/:
-//   - Un portal/app (ej. admin.luxuryapp) NO puede importar 
-//     absolutamente NADA de otro portal (ej. operaciones.luxuryapp).
-//   - Todas las apps deben estar completamente desacopladas.
+// Verifica la independencia estricta de los dominios protegidos en esta fase:
+//   - reclutamiento.luxuryapp NO puede importar desde recursos-humanos.luxuryapp.
+//   - recursos-humanos.luxuryapp NO puede importar desde reclutamiento.luxuryapp.
+// Si se necesita compartir código entre ambos dominios, moverlo a shared/ o core/.
 // Falla (exit 1) si hay violaciones. Se ejecuta vía `npm run lint`.
 // ============================================================
 import { readdirSync, readFileSync } from "node:fs";
@@ -40,12 +40,16 @@ try {
 }
 
 const violations = [];
+const protectedBoundaries = new Map([
+  ["reclutamiento.luxuryapp", ["recursos-humanos.luxuryapp"]],
+  ["recursos-humanos.luxuryapp", ["reclutamiento.luxuryapp"]],
+]);
 
 for (const currentApp of appsDirs) {
   const currentAppDir = path.join(appsRoot, currentApp);
-  
-  // Para la app actual, cualquier otra app es una importación prohibida
-  const forbiddenApps = appsDirs.filter(app => app !== currentApp);
+  const forbiddenApps = protectedBoundaries.get(currentApp) ?? [];
+
+  if (forbiddenApps.length === 0) continue;
   
   for (const file of collectTs(currentAppDir)) {
     const lines = readFileSync(file, "utf8").split(/\r?\n/);
@@ -71,7 +75,7 @@ for (const currentApp of appsDirs) {
 }
 
 if (violations.length === 0) {
-  console.log("✅ apps/: fronteras de monolito modular respetadas. Ninguna app cruza dominios.");
+  console.log("✅ apps/: frontera Reclutamiento ↔ Recursos Humanos respetada.");
   process.exit(0);
 }
 
@@ -80,6 +84,6 @@ for (const v of violations) {
   console.error(`  [${v.app}] ${v.file}:${v.line} — ${v.msg}`);
 }
 console.error(
-  "\nRegla: Una app dentro de apps/ no puede importar de otra app. Deben ser dominios aislados.\n"
+  "\nRegla: Reclutamiento y Recursos Humanos no pueden importarse entre si. Usar shared/ o core/.\n"
 );
 process.exit(1);

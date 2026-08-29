@@ -47,13 +47,13 @@
         label="Sueldo Actual"
         placeholder="0.00"
         [prefix]="'$ '"
-        [readonly]="true"
+        [readonly]="!canEditCurrentSalary()"
       />
 
       <custom-input-select-signal
-        [control]="form.controls.turnoTrabajo"
-        label="Turno"
-        [data]="cb_turnoTrabajo()"
+        [control]="form.controls.workPositionScheduleId"
+        label="Horario de catalogo"
+        [data]="cb_workPositionSchedule()"
         [filter]="true"
       />
       <custom-input-select-signal
@@ -63,12 +63,6 @@
         [filter]="true"
       />
       <custom-input-textarea-signal
-        [control]="form.controls.observationsWorkShift"
-        label="Observaciones"
-        placeholder="Detalles adicionales sobre el horario..."
-        [rows]="3"
-      />
-      <custom-input-textarea-signal
         [control]="form.controls.benefits"
         label="Prestaciones"
         placeholder="Ej. Seguro medico, vales de despensa, fondo de ahorro..."
@@ -76,36 +70,40 @@
       />
     </div>
     <div class="col-12 md:col-6">
-      <!-- Horarios por día -->
-      <!-- <h3 class="text-lg font-semibold mb-1 flex align-items-center">
-            <app-icon [icon]="'material-symbols-light:schedule'" class="mr-2"/> Horario de Trabajo
-          </h3> -->
       <lx-message severity="info">Horario de Trabajo</lx-message>
-      @for (dia of ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes',
-      'Sábado', 'Domingo']; track dia) {
-      <div class="grid align-items-center">
-        <label class="col-3 font-medium">{{ dia }}</label>
-        <div class="col-9">
-          <div class="grid">
-            <div class="col-6">
-              <custom-input-text-signal
-                [control]="form.get(dia.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() + 'Entrada')!"
-                type="time"
-                [horizontal]="false"
-                placeholder="Entrada"
-              />
-            </div>
-            <div class="col-6">
-              <custom-input-text-signal
-                [control]="form.get(dia.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() + 'Salida')!"
-                type="time"
-                [horizontal]="false"
-                placeholder="Salida"
-              />
-            </div>
+      @if (selectedSchedule(); as schedule) {
+        <div class="surface-50 border-1 border-200 rounded-lg p-3 mb-3">
+          <div class="font-bold text-900">{{ schedule.name }}</div>
+          <div class="text-sm text-600">
+            {{ schedule.turnoTrabajoName || "Sin turno" }} | {{ schedule.tipoTurnoEspecial || "Turno fijo" }}
           </div>
         </div>
-      </div>
+
+        <div class="flex flex-column gap-2">
+          @for (dia of scheduleDays(); track dia.day) {
+            <div class="flex justify-content-between align-items-center border-bottom-1 border-100 py-2">
+              <span class="font-medium text-700">{{ dia.day }}</span>
+              <span class="text-900">
+                @if (dia.entry && dia.exit) {
+                  {{ dia.entry }} - {{ dia.exit }}
+                } @else {
+                  Descanso
+                }
+              </span>
+            </div>
+          }
+        </div>
+
+        @if (schedule.observationsWorkShift) {
+          <div class="mt-3 text-sm text-600">
+            <span class="font-semibold">Observaciones:</span>
+            {{ schedule.observationsWorkShift }}
+          </div>
+        }
+      } @else {
+        <div class="surface-50 border-1 border-200 rounded-lg p-4 text-center text-600">
+          Selecciona un horario de catalogo para ver aqui sus dias y horas.
+        </div>
       }
     </div>
   </div>

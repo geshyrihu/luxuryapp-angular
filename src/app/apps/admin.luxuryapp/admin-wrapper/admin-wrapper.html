@@ -3,13 +3,18 @@
   <!-- Encabezado -->
   <div class="mb-6">
     <div class="flex align-items-center gap-3 mb-2">
-      <div class="flex align-items-center justify-content-center rounded-xl shadow-sm">
+      <div
+        class="flex align-items-center justify-content-center rounded-xl shadow-sm"
+      >
         <app-icon icon="material-symbols-light:settings-outline" />
       </div>
       <div>
-        <h1 class="ds-heading text-3xl font-bold text-900 m-0">Administración</h1>
+        <h1 class="ds-heading text-3xl font-bold text-900 m-0">
+          Administración
+        </h1>
         <p class="ds-text-secondary text-base m-0">
-          Panel central de configuración: seguridad, catálogos, sistema, RR.HH. y herramientas
+          Panel central de configuración: seguridad, catálogos, sistema, RR.HH.
+          y herramientas
         </p>
       </div>
     </div>
@@ -19,24 +24,39 @@
   @for (group of getVisibleGroups(); track group.label) {
   <div class="flex align-items-center gap-2 mb-4 mt-6">
     <app-icon [icon]="group.icon" />
-    <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase">{{ group.label }}</h2>
+    <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase">
+      {{ group.label }}
+    </h2>
     <div class="flex-grow-1 border-bottom-1 surface-border ml-3"></div>
   </div>
 
   <div class="grid">
     @for (module of group.cards; track module.route) {
     <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2">
-      <lx-card class="card card--interactive card--elevated h-full" (click)="navigateTo(module.route)">
+      <lx-card
+        class="card card--interactive card--elevated h-full"
+        (click)="navigateTo(module.route)"
+      >
         <div class="flex flex-column gap-3">
           <div class="flex align-items-center justify-content-between">
-            <div class="flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0" [style.backgroundColor]="module.bgColor">
+            <div
+              class="flex align-items-center justify-content-center rounded-lg text-2xl flex-shrink-0"
+              [style.backgroundColor]="module.bgColor"
+            >
               <app-icon [icon]="module.icon" [style.color]="module.color" />
             </div>
-            <app-icon icon="material-symbols-light:north-east" class="text-400" />
+            <app-icon
+              icon="material-symbols-light:north-east"
+              class="text-400"
+            />
           </div>
           <div>
-            <h3 class="m-0 font-bold text-900 line-height-2 text-base">{{ module.title }}</h3>
-            <p class="text-sm text-secondary m-0 mt-2 line-height-3">{{ module.description }}</p>
+            <h3 class="m-0 font-bold text-900 line-height-2 text-base">
+              {{ module.title }}
+            </h3>
+            <p class="text-sm text-secondary m-0 mt-2 line-height-3">
+              {{ module.description }}
+            </p>
           </div>
         </div>
       </lx-card>
@@ -49,8 +69,12 @@
 <!-- ─── MOBILE (< md) ─────────────────────────────────────────── -->
 <div class="block md:hidden fadein">
   <!-- Header compacto -->
-  <div class="flex align-items-center gap-3 px-3 py-3 border-bottom-1 surface-border">
-    <div class="flex align-items-center justify-content-center rounded-lg flex-shrink-0">
+  <div
+    class="flex align-items-center gap-3 px-3 py-3 border-bottom-1 surface-border"
+  >
+    <div
+      class="flex align-items-center justify-content-center rounded-lg flex-shrink-0"
+    >
       <app-icon icon="material-symbols-light:settings-outline" />
     </div>
     <div>
@@ -72,11 +96,17 @@
 
     @for (module of group.cards; track module.route) {
     <ili-list-item class="ion-no-padding" (click)="navigateTo(module.route)">
-      <div start class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg" [style.backgroundColor]="module.bgColor">
+      <div
+        start
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
+        [style.backgroundColor]="module.bgColor"
+      >
         <app-icon [icon]="module.icon" [style.color]="module.color" />
       </div>
       <h3 class="font-semibold m-0 text-color">{{ module.title }}</h3>
-      <p class="text-xs m-0 mt-1 text-color-secondary">{{ module.description }}</p>
+      <p class="text-xs m-0 mt-1 text-color-secondary">
+        {{ module.description }}
+      </p>
     </ili-list-item>
     }
   </div>

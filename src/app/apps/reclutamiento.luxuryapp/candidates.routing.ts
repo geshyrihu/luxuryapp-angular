@@ -36,6 +36,19 @@ export const candidatesRoutes: Routes = [
     },
   },
   {
+    path: "former-employees",
+    loadComponent: () =>
+      import(
+        "src/app/apps/reclutamiento.luxuryapp/candidate/former-employee-talent-pool/former-employee-talent-pool"
+      ).then((m) => m.FormerEmployeeTalentPool),
+    canActivate: [authGuard, hasRolesGuard],
+    data: {
+      allowedRoles: ['Reclutamiento', 'Administrador', 'GerenteOperaciones', 'GerenteAtencion', 'Contador', 'Legal', 'RecursosHumanos', 'GerenteMantenimiento', 'SupervisionOperativa', 'SuperUsuario'],
+      title: "Pool de Talento",
+      breadcrumb: "Ex-empleados",
+    },
+  },
+  {
     path: "interviews",
     loadComponent: () =>
       import(

@@ -115,11 +115,11 @@ export class ListProvider implements OnInit {
   loading = signal(true);
 
   // Propiedades que antes estaban en el caption y ahora necesita este componente
-  title: string = "Directorio de Proveedores"; // O el Tótulo que prefieras
+  title: string = "Directorio de Proveedores"; // O el titulo que prefieras.
   label: string = "Agregar";
   rolAuth: boolean = false; // La inicializaremos en ngOnInit
 
-  // Referencia para diólogos
+  // Referencia para dialogos.
   ref: DynamicDialogRef;
 
   // Opciones de filtro para tipo de servicio y nivel de acceso

@@ -59,7 +59,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
-import { CardEmployee } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
+import { CardEmployee } from "src/app/shared/integration/recursos-humanos";
 import { PrintService } from "src/app/core/services/print.service";
 
 import Swal from "sweetalert2";

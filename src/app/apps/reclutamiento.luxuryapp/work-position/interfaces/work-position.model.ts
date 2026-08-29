@@ -36,24 +36,9 @@ export interface IWorkPositionForm {
   state: boolean | null;
   employeeId: string | null;
   employeeName: string | null;
-  turnoTrabajo: number;
-  lunesEntrada: string;
-  lunesSalida: string;
-  martesEntrada: string;
-  martesSalida: string;
-  miercolesEntrada: string;
-  miercolesSalida: string;
-  juevesEntrada: string;
-  juevesSalida: string;
-  viernesEntrada: string;
-  viernesSalida: string;
-  sabadoEntrada: string;
-  sabadoSalida: string;
-  domingoEntrada: string;
-  domingoSalida: string;
   jobDescriptionId: string | null;
-  workScheduleId: string | null;
-  observationsWorkShift: string;
+  workPositionScheduleId: string | null;
+  workPositionScheduleName: string | null;
   benefits: string;
 }
 

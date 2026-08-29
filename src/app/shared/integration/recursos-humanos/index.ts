@@ -4,5 +4,6 @@
 // supplier) necesitan consumir, SIN cruzar la frontera de apps/.
 // ═══════════════════════════════════════════════════════════════════
 export * from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
+export * from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/interfaces/employee.interface";
 export * from "src/app/apps/recursos-humanos.luxuryapp/employee/employee-internal.service";
 

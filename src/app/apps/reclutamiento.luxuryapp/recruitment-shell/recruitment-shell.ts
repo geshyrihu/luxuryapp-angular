@@ -98,6 +98,10 @@ export class RecruitmentShellComponent {
           routerLink: ["/recruitment/candidates/candidates"],
         },
         {
+          label: "Ex-empleados",
+          routerLink: ["/recruitment/candidates/former-employees"],
+        },
+        {
           label: "Procesos Activos",
           routerLink: ["/recruitment/candidates/applications"],
         },

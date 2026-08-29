@@ -1,5 +1,4 @@
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { ROUTES } from "src/app/routing/route-paths";
 import { AdminModuleGroup } from "./interfaces/admin-module-group.interface";
 
 export const ADMIN_MODULES: AdminModuleGroup[] = [
@@ -138,6 +137,14 @@ export const ADMIN_MODULES: AdminModuleGroup[] = [
         description: "Documentos del expediente de empleados y candidatos.",
         route: "/admin/document-catalogs",
         icon: "material-symbols-light:description",
+        color: "#0e7490",
+        bgColor: "#cffafe",
+      },
+      {
+        title: "Horarios de Puesto",
+        description: "Catálogo de turnos y horarios disponibles para puestos de trabajo.",
+        route: "/admin/work-position-schedules",
+        icon: "material-symbols-light:schedule",
         color: "#0e7490",
         bgColor: "#cffafe",
       },
@@ -307,7 +314,8 @@ export const ADMIN_MODULES: AdminModuleGroup[] = [
       },
       {
         title: "Catálogo de Tareas Recurrentes",
-        description: "Plantillas de tareas recurrentes: criticidad, aviso previo y respaldo.",
+        description:
+          "Plantillas de tareas recurrentes: criticidad, aviso previo y respaldo.",
         route: "/admin/recurring-task-catalog",
         icon: "material-symbols-light:event-repeat",
         color: "#4338ca",

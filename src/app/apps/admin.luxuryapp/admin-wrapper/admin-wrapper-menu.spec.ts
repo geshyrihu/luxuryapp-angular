@@ -1,6 +1,0 @@
-describe('settings-menu', () => {
-  it('should exist', () => {
-    expect(true).toBe(true);
-  });
-});
-

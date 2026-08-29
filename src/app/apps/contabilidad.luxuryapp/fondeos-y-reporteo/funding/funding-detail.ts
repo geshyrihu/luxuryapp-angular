@@ -450,13 +450,13 @@ export class FundingDetail {
       "?? ~ FundingDetail ~ openCreateOrdenCompraWizard ~ tipoGasto:",
       tipoGasto,
     );
-    // Si no se proporciona tipoGasto, no abras el diólogo aón
-    // o muestra un mensaje para que seleccionen del mené
+    // Si no se proporciona tipoGasto, no abras el dialogo aun.
+    // O muestra un mensaje para que seleccionen del menu.
     if (tipoGasto === undefined) {
       // Opción 2: Mostrar un mensaje
       this.customToastService.showInfo(
         "Selecciona tipo de gasto",
-        "Por favor selecciona un tipo de gasto del mené",
+        "Por favor selecciona un tipo de gasto del menu",
       );
       return;
     }
