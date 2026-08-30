@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,13 +25,14 @@ import { confirmAction } from "../shared/confirm";
       (click)="handleConfirm($event)"
     >
       <app-icon
-        [icon]="resolvedIconClass() || 'material-symbols-light:check-circle-outline'"
+        [icon]="resolvedIconClass() || IconCatalog.CheckCircleOutline"
         slot="icon-only"
       />
     </ion-button>
   `,
 })
 export class MobileButtonIconConfirm extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;
   swalText = input<string>("Estas seguro de continuar?");
   confirmed = output<void>();
 

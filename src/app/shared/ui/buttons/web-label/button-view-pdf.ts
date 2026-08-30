@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,13 +21,14 @@ import { BaseButton } from "../base/base-button";
       (click)="handleClick($event)"
     >
       <app-icon
-        [icon]="resolvedIconClass() || 'material-symbols-light:picture-as-pdf'"
+        [icon]="resolvedIconClass() || IconCatalog.FilePdf"
       />
       <span>{{ label() || "Ver archivo" }}</span>
     </button>
   `,
 })
 export class WebButtonLabelViewPdf extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   url = input<string>("");
   fileName = input<string>("");
 

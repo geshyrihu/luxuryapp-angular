@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../shared/app-icon/app-icon.catalog";
 import { Directive, computed, input } from "@angular/core";
 import type { AppIconName } from "../shared/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
@@ -23,6 +24,7 @@ type IonFill = "clear" | "outline" | "solid" | "default";
  */
 @Directive()
 export abstract class MobileButtonBase extends BaseIonicButton {
+  protected readonly IconCatalog = AppIconCatalog;
   /** Variante semántica (ver variantMap). Tiene prioridad sobre fill/color.
    *  Tipo `string` para tolerar alias web; valores desconocidos caen a fill/color. */
   variant = input<IliButtonVariant | (string & {})>("");

@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +21,7 @@ import { TrackingEvent } from "../shared/tracking";
       [disabled]="disabled() || loading()"
       (click)="onTrackingClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:notifications-outline'" />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" />
       <span>{{ label() || "Seguimiento" }}</span>
       @if (badgeCount() && badgeCount()! > 0) {
         <span
@@ -34,6 +35,7 @@ import { TrackingEvent } from "../shared/tracking";
   `,
 })
 export class WebButtonLabelTracking extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   badgeCount = input<number | null | undefined>(undefined);
   ticketId = input<string | number | null>(null);
   trackingTitle = input<string>("Seguimiento");

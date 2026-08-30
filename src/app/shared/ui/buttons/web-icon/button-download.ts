@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { BaseButton } from "../base/base-button";
@@ -14,11 +15,12 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:download'" />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.Download" />
     </button>
   `,
 })
 export class WebButtonIconDownload extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   override variant = input<"solid" | "outline" | "ghost" | "text" | "link">(
     "ghost",
   );

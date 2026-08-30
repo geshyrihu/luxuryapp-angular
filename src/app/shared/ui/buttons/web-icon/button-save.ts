@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,12 +21,13 @@ import { BaseButton } from "../base/base-button";
       (click)="emitClick($event)"
     >
       <app-icon
-        [icon]="propertyId() ? 'material-symbols-light:save' : 'material-symbols-light:save'"
+        [icon]="propertyId() ? IconCatalog.Save : IconCatalog.Save"
       />
     </button>
   `,
 })
 export class WebButtonIconSave extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   propertyId = input<string | number | null>(null);
   submitting = input<boolean>(false);
 

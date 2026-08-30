@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +33,7 @@ import { TrackingEvent } from "../shared/tracking";
         }"
         [badgeDisabled]="badgeCount() === 0"
       >
-        <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:warning'" />
+        <app-icon [icon]="resolvedIconClass() || IconCatalog.Alert" />
       </p-overlaybadge>
     </button>
   `,
@@ -62,6 +63,7 @@ import { TrackingEvent } from "../shared/tracking";
   ],
 })
 export class WebButtonIconTracking extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   badgeCount = input<number | null | undefined>(undefined);
   ticketId = input<string | number | null>(null);
   trackingTitle = input<string>("Seguimiento");

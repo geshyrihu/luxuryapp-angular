@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,12 +26,13 @@ import { ConfirmService } from "../shared/confirm.service";
       [class]="styleClass()"
       (click)="confirmDelete($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:delete-outline'" slot="start" />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.DeleteOutline" slot="start" />
       {{ label() || "Eliminar" }}
     </ion-button>
   `,
 })
 export class MobileButtonLabelDelete extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;
   override color = input<string>("danger");
   confirmHeader = input<string>("Confirmar eliminacion");
   confirmMessage = input<string>("Estas seguro de eliminar este registro?");

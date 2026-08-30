@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,13 +24,14 @@ import { MobileButtonBase } from "../mobile-button-base";
       (click)="toggleState()"
     >
       <app-icon
-        [icon]="state() ? 'material-symbols-light:lock-open-outline' : 'material-symbols-light:lock-open-outline'"
+        [icon]="state() ? IconCatalog.LockOpenOutline : IconCatalog.LockOpenOutline"
         slot="icon-only"
       />
     </ion-button>
   `,
 })
 export class MobileButtonIconActiveDesactive extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;
   state = input<boolean>(true);
 
   stateChange = output<boolean>();

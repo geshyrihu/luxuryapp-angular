@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,11 +21,12 @@ import { confirmAction } from "../shared/confirm";
       [disabled]="disabled() || loading()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:mail'" />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.Email" />
     </button>
   `,
 })
 export class WebButtonIconSendEmail extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   confirmMessage = input<string>("Deseas enviar el correo electronico ahora?");
   confirmed = output<void>();
 

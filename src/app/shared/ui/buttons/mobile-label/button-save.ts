@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,8 +27,8 @@ import { MobileButtonBase } from "../mobile-button-base";
       <app-icon
         [icon]="
           propertyId()
-            ? 'material-symbols-light:edit-note'
-            : 'material-symbols-light:save-outline'
+            ? IconCatalog.FileSign
+            : IconCatalog.ContentSaveOutline
         "
         slot="start"
       />
@@ -36,6 +37,7 @@ import { MobileButtonBase } from "../mobile-button-base";
   `,
 })
 export class MobileButtonLabelSave extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;
   override color = input<string>("primary");
   propertyId = input<string | number | null>(null);
   submitting = input<boolean>(false);

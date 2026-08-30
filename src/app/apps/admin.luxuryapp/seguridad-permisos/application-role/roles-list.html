@@ -28,6 +28,7 @@
       <th pSortableColumn="displayName">
         Nombre para Mostrar <p-sorticon field="displayName" />
       </th>
+      <th pSortableColumn="code">Código <p-sorticon field="code" /></th>
       <th pSortableColumn="departament">
         Departamento <p-sorticon field="departament" />
       </th>
@@ -37,7 +38,7 @@
   </ng-template>
   <ng-template #groupheader let-item>
     <tr class="p-rowgroup-header">
-      <td colspan="6">
+      <td colspan="7">
         <span class="font-bold">{{ item.roleType }}</span>
       </td>
     </tr>
@@ -47,6 +48,19 @@
       <td>{{ item.sortOrder }}</td>
       <td>{{ item.name }}</td>
       <td>{{ item.displayName }}</td>
+      <td>
+        @if (item.code) {
+          <span
+            [ngStyle]="{
+              'background-color': item.colorHex || '#64748b',
+              color: '#fff',
+            }"
+            class="px-2 py-1 border-round text-sm font-semibold"
+          >
+            {{ item.code }}
+          </span>
+        }
+      </td>
       <td>{{ item.departament }}</td>
       <td class="text-center">
         <custom-input-check-signal
@@ -67,7 +81,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="6" />
+    <primeng-custom-table-emptymessage [colspan]="7" />
   </ng-template>
 </p-table>
 
@@ -89,7 +103,20 @@
           class="text-xl text-primary"
         />
       </div>
-      <h2 class="font-bold m-0">{{ item.displayName || item.name }}</h2>
+      <h2 class="font-bold m-0 flex align-items-center gap-2">
+        {{ item.displayName || item.name }}
+        @if (item.code) {
+          <span
+            [ngStyle]="{
+              'background-color': item.colorHex || '#64748b',
+              color: '#fff',
+            }"
+            class="px-2 py-1 border-round text-xs font-semibold"
+          >
+            {{ item.code }}
+          </span>
+        }
+      </h2>
       <p class="text-sm text-500 m-0">
         {{ item.roleType }} - {{ item.departament }}
       </p>

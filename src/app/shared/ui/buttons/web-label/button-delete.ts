@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,12 +22,13 @@ import { ConfirmService } from "../shared/confirm.service";
       [disabled]="disabled() || loading()"
       (click)="confirmDelete($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:delete-outline'" />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.DeleteOutline" />
       <span>{{ label() || "Eliminar" }}</span>
     </button>
   `,
 })
 export class WebButtonLabelDelete extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   confirmHeader = input<string>("Confirmar eliminacion");
   confirmMessage = input<string>("Estas seguro de eliminar este registro?");
   confirmed = output<void>();

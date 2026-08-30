@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,7 +26,7 @@ import { confirmAction } from "../shared/confirm";
       (click)="handleConfirm($event)"
     >
       <app-icon
-        [icon]="resolvedIconClass() || 'material-symbols-light:check-circle-outline'"
+        [icon]="resolvedIconClass() || IconCatalog.CheckCircleOutline"
         slot="start"
       />
       {{ label() || "Confirmar" }}
@@ -33,6 +34,7 @@ import { confirmAction } from "../shared/confirm";
   `,
 })
 export class MobileButtonLabelConfirm extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;
   swalText = input<string>("Estas seguro de continuar?");
   confirmed = output<void>();
 

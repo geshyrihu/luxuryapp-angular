@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -44,10 +45,10 @@ import { BaseButton } from "../base/base-button";
       <app-icon
         [icon]="
           submitting()
-            ? 'material-symbols-light:progress-activity'
+            ? IconCatalog.Loading
             : propertyId()
-              ? 'material-symbols-light:edit-note'
-              : 'material-symbols-light:save-outline'
+              ? IconCatalog.FileSign
+              : IconCatalog.ContentSaveOutline
         "
         [class.spinner]="submitting()"
       />
@@ -58,6 +59,7 @@ import { BaseButton } from "../base/base-button";
   `,
 })
 export class WebButtonLabelSave extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   propertyId = input<string | number | null>(null);
   submitting = input<boolean>(false);
 

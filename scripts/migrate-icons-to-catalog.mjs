@@ -1,20 +1,29 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// 🔧 migrate-icons-to-catalog.mjs — Literales material-symbols-light → AppIcon.Clave
-// ═══════════════════════════════════════════════════════════════════════════
-// Convierte todos los literales `material-symbols-light:X` del código en
-// referencias tipadas `AppIcon.Clave`, exponiendo la constante del catálogo en
-// cada componente. Deja intactos: el propio catálogo, el resolver icon-mapping
-// (usa literales a propósito) y los archivos de documentación/pruebas.
+// 🔧 migrate-icons-to-catalog.mjs — migración CONTROLADA y IDEMPOTENTE
+//    literales material-symbols-light → constante tipada del catálogo.
 //
-// Uso:  node scripts/migrate-icons-to-catalog.mjs          (dry-run)
-//       node scripts/migrate-icons-to-catalog.mjs --apply  (escribe)
+// Correcciones respecto a la primera versión (incidentada):
+//   • Campo de nombre FIJO y no colisionable: `IconCatalog`
+//     (nunca `AppIcon`, que colisiona con el componente AppIcon).
+//   • El import se inserta al INICIO del archivo (antes del primer `import`),
+//     nunca dentro de un bloque import multilínea.
+//   • El regex de inserción del campo admite `extends` e `implements`.
+//   • Se IGNORAN líneas de `p-button`/`pButton` y contextos `class=`/`[class]`
+//     (se tratan aparte en Fase 3); no se toca lo que no es binding de icono.
+//   • Idempotente: re-ejecutar sobre lo ya migrado no cambia nada.
+//   • Acepta un argumento de ruta para migrar por LOTES.
+//
+// Uso:
+//   node scripts/migrate-icons-to-catalog.mjs                (dry-run, todo src)
+//   node scripts/migrate-icons-to-catalog.mjs --apply        (aplica, todo src)
+//   node scripts/migrate-icons-to-catalog.mjs src/app/apps/admin.luxuryapp --apply
 // ═══════════════════════════════════════════════════════════════════════════
 
 import fs from "fs";
 import path from "path";
 
 const APPLY = process.argv.includes("--apply");
-const ROOT = "src";
+const ROOT = process.argv[2] || "src";
 const CATALOG = "src/app/shared/ui/shared/app-icon/app-icon.catalog.ts";
 
 const IGNORE = new Set([
@@ -66,20 +75,22 @@ const litCount = (s) => (s.match(new RegExp(LIT.source, "g")) || []).length;
 const isCommentLine = (line) => /^\s*(\/\/|\*|<!--|\/\*)/.test(line);
 
 function transform(line, fieldTok) {
-  if (isCommentLine(line) || !LIT.test(line)) return line;
+  if (isCommentLine(line)) return line;
+  // p-button / pButton: bugs aparte (PrimeNG no renderiza Iconify). Fase 3.
+  if (/\bp-button\b|\bpButton\b/.test(line)) return line;
+  // contextos de clase CSS: no son binding de icono.
+  if (/\[class\]|\bclass="/.test(line)) return line;
+  if (!LIT.test(line)) return line;
   LIT.lastIndex = 0;
   let out = line;
-  // Patrón A: atributo de icono sin corchetes (permite texto extra tras el icono)
   out = out.replace(
     /(icon|iconClass|fallbackIcon)="material-symbols-light:([a-z0-9_-]+)([^"]*)"/g,
     (_m, attr, name) => `[${attr}]="${fieldTok}.${reverse["material-symbols-light:" + name]}"`
   );
-  // Patrón B: corchetes con literal entrecomillado
   out = out.replace(
     /\[(\w+)\]=\s*["'](['"]?)material-symbols-light:([a-z0-9_-]+)\2["']/g,
     (_m, attr, _q, name) => `[${attr}]="${fieldTok}.${reverse["material-symbols-light:" + name]}"`
   );
-  // Patrón C: cualquier literal entrecomillado restante (ternarios, datos .ts, defaults)
   out = out.replace(
     /['"]material-symbols-light:([a-z0-9_-]+)['"]/g,
     (_m, name) => `${fieldTok}.${reverse["material-symbols-light:" + name]}`
@@ -91,13 +102,37 @@ function transform(line, fieldTok) {
 const allFiles = walk(ROOT).map((f) => f.replace(/\\/g, "/")).filter((rel) => !isIgnored(rel));
 const allTs = allFiles.filter((f) => f.endsWith(".ts"));
 
-// Mapa basename-de-template -> .ts que lo declara vía templateUrl
+// ── Precompute: quién ya expone `IconCatalog` (propio o por herencia) ────────
+// Algunas clases base (p.ej. MobileButtonBase) ya declaran `IconCatalog`, así
+// que sus subclases lo heredan y NO deben redeclararlo (TS4114).
+const classParent = new Map();
+const classFile = new Map();
+const fileHasIconCatalog = new Set();
+// Escanea TODO src (no solo el lote) para resolver la cadena de herencia.
+for (const tsRel of walk("src").map((f) => f.replace(/\\/g, "/")).filter((f) => f.endsWith(".ts"))) {
+  const c = fs.readFileSync(path.join(process.cwd(), tsRel), "utf8");
+  if (/(?:readonly\s+)?\bIconCatalog\s*[:=]/.test(c)) fileHasIconCatalog.add(tsRel);
+  for (const m of c.matchAll(/\bclass\s+(\w+)(?:\s*<[^>]*>)?(?:\s+extends\s+([\w$]+))?/g)) {
+    classParent.set(m[1], m[2] || null);
+    classFile.set(m[1], tsRel);
+  }
+}
+function providesIconCatalog(cls) {
+  const seen = new Set();
+  let cur = cls;
+  while (cur && !seen.has(cur)) {
+    seen.add(cur);
+    if (fileHasIconCatalog.has(classFile.get(cur))) return true;
+    cur = classParent.get(cur) || null;
+  }
+  return false;
+}
+
 const templateUrlMap = {};
-for (const tsRel of allTs) {
+for (const tsRel of walk("src").map((f) => f.replace(/\\/g, "/")).filter((f) => f.endsWith(".ts"))) {
   const c = fs.readFileSync(path.join(process.cwd(), tsRel), "utf8");
   for (const m of c.matchAll(/templateUrl\s*:\s*["'`]([^"'`]+)["'`]/g)) {
-    const target = m[1];
-    const base = path.basename(target);
+    const base = path.basename(m[1]);
     if (base.endsWith(".html")) templateUrlMap[base] = tsRel;
   }
 }
@@ -120,7 +155,7 @@ for (const rel of allFiles) {
   } else {
     const tsHost = hostForHtml(rel);
     if (!tsHost) {
-      console.warn("⚠️ HTML sin host (no migrado): " + rel);
+      console.warn("⚠️ HTML sin host (tratar manual en Fase 3): " + rel);
       continue;
     }
     const h = hosts.get(tsHost) || { files: new Set(), moduleScope: false, needsField: false };
@@ -134,6 +169,7 @@ let totalReplaced = 0;
 let fieldsAdded = 0;
 let importsAdded = 0;
 const leftover = [];
+const noHost = [];
 
 for (const [hostRel, h] of hosts) {
   const hostPath = path.join(process.cwd(), hostRel);
@@ -142,12 +178,7 @@ for (const [hostRel, h] of hosts) {
   const hasClass = /\b(class|abstract class)\s+\w+/.test(hostContent);
   h.moduleScope = !hasClass;
 
-  let fieldTok = "AppIcon";
-  // Colisión real: el archivo importa el COMPONENTE `AppIcon` (ruta .../app-icon["']),
-  // no el alias `AppIcon as AppIconCatalog`. En ese caso renombramos el field a `AppIcons`.
-  const importsAppIconComponent = /import\s*\{[^}]*\bAppIcon\b[^}]*\}\s*from\s*["'][^"']*app-icon["']/.test(hostContent);
-  if (importsAppIconComponent) fieldTok = "AppIcons";
-  if (h.moduleScope) fieldTok = "AppIconCatalog";
+  const fieldTok = h.moduleScope ? "AppIconCatalog" : "IconCatalog";
 
   let hostHasLiteral = false;
   for (const f of h.files) {
@@ -167,37 +198,40 @@ for (const [hostRel, h] of hosts) {
     h.needsField = !h.moduleScope;
   }
 
-    if (h.needsField || (h.moduleScope && hostHasLiteral)) {
-      let hc = writes.get(hostRel) || hostContent;
-      const relPath = path
-        .relative(path.dirname(hostPath), path.join(process.cwd(), CATALOG))
-        .replace(/\\/g, "/")
-        .replace(/\.ts$/, "");
-      if (!hc.includes("AppIcon as AppIconCatalog")) {
-        const lines = hc.split("\n");
-        let firstImport = -1;
-        for (let i = 0; i < lines.length; i++) {
-          if (/^\s*import\s/.test(lines[i])) { firstImport = i; break; }
-        }
-        const imp = `import { AppIcon as AppIconCatalog } from "${relPath}";`;
-        if (firstImport >= 0) lines.splice(firstImport, 0, imp);
-        else lines.unshift(imp);
-        hc = lines.join("\n");
-        importsAdded++;
-      }
-      if (!h.moduleScope) {
-        // Auto-cura: quita cualquier field AppIcon/AppIcons previo inconsistente.
-        hc = hc.replace(/^[ \t]*readonly[ \t]+(?:AppIcon|AppIcons)[ \t]*=[ \t]*AppIconCatalog;[ \t]*\r?\n/m, "");
-        if (!new RegExp(`readonly\\s+${fieldTok}\\s*=`).test(hc)) {
-          hc = hc.replace(
-            /(class\s+[\w$]+(?:\s*<[^>]*>)?(?:\s+extends\s+[\w$]+(?:\s*<[^>]*>)?)?(?:\s+implements\s+[^\{]+)?\s*\{)/,
-            (m) => `${m}\n  readonly ${fieldTok} = AppIconCatalog;`
-          );
-          fieldsAdded++;
-        }
-      }
-      writes.set(hostRel, hc);
+  if (h.needsField || (h.moduleScope && hostHasLiteral)) {
+    const clsMatch = hostContent.match(/\bclass\s+(\w+)/);
+    const clsName = clsMatch ? clsMatch[1] : null;
+    const inheritedCatalog = clsName && providesIconCatalog(clsName);
+    if (inheritedCatalog) {
+      // El catálogo ya está disponible vía herencia; no redeclarar.
+      continue;
     }
+    let hc = writes.get(hostRel) || hostContent;
+    const relPath = path
+      .relative(path.dirname(hostPath), path.join(process.cwd(), CATALOG))
+      .replace(/\\/g, "/")
+      .replace(/\.ts$/, "");
+    if (!hc.includes("AppIcon as AppIconCatalog")) {
+      const lines = hc.split("\n");
+      let firstImport = -1;
+      for (let i = 0; i < lines.length; i++) {
+        if (/^\s*import\s/.test(lines[i])) { firstImport = i; break; }
+      }
+      const imp = `import { AppIcon as AppIconCatalog } from "${relPath}";`;
+      if (firstImport >= 0) lines.splice(firstImport, 0, imp);
+      else lines.unshift(imp);
+      hc = lines.join("\n");
+      importsAdded++;
+    }
+    if (!h.moduleScope && !/readonly\s+IconCatalog\s*=/.test(hc)) {
+      hc = hc.replace(
+        /(class\s+[\w$]+(?:\s*<[^>]*>)?(?:\s+extends\s+[\w$]+(?:\s*<[^>]*>)?)?(?:\s+implements\s+[^\{]+)?\s*\{)/,
+        (m) => `${m}\n  protected readonly IconCatalog = AppIconCatalog;`
+      );
+      fieldsAdded++;
+    }
+    writes.set(hostRel, hc);
+  }
 }
 
 if (APPLY) {

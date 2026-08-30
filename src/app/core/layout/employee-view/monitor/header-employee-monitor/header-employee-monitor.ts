@@ -100,7 +100,7 @@ export class HeaderEmployeeMonitor implements OnInit {
     enable?: boolean;
   } = {};
   public title: string = "";
-  public breadcrumbItems: MenuItem[] = [];
+  public breadcrumbItems = signal<MenuItem[]>([]);
 
   // Class properties
   public AspRole = ApplicationRole;
@@ -179,10 +179,10 @@ export class HeaderEmployeeMonitor implements OnInit {
         this.breadcrumbs = {}; // Keep this for now, as the HTML still uses it
         this.title = title;
 
-        this.breadcrumbItems = []; // Clear previous items
+        const items: MenuItem[] = [];
 
         // Home item
-        this.breadcrumbItems.push({
+        items.push({
           icon: "material-symbols-light:home", // PrimeNG icon class
           routerLink: "/dashboard",
         });
@@ -206,13 +206,15 @@ export class HeaderEmployeeMonitor implements OnInit {
           if (breadcrumb) {
             // Only add if it's not a duplicate of Dashboard or Inicio
             if (breadcrumb !== "Dashboard" && breadcrumb !== "Inicio") {
-              this.breadcrumbItems.push({
+              items.push({
                 label: breadcrumb,
                 routerLink: url,
               });
             }
           }
         }
+
+        this.breadcrumbItems.set(items);
       }
     });
 

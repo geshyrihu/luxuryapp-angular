@@ -8,4 +8,7 @@ export interface ApplicationRoleDto {
   roleType: string;
   roleTypeOrder: number;
   departament: string;
+  code: string;
+  colorHex: string;
+  systemRole: number | null;
 }

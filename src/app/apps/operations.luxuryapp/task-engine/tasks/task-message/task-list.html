@@ -1,4 +1,4 @@
-@if (dataSignal().items && dataSignal().items !== undefined) {
+@if (dataSignal().items) {
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -6,6 +6,7 @@
   [showCurrentPageReport]="true"
   (onLazyLoad)="loadDataLazy($event)"
   [lazy]="true"
+  [loading]="loading()"
   [reorderableRows]="true"
   (onRowReorder)="onRowReorder($event)"
   [rowsPerPageOptions]="rowsPerPageOptions"
@@ -29,8 +30,6 @@
         <primeng-custom-caption
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
           [dt]="dt"
-          [(searchTerm)]="searchTerm"
-          (searchTermChange)="applyFilter()"
         />
         <app-task-status (statusChange)="onStatusChange($event)" />
       </div>
@@ -112,25 +111,37 @@
         <span
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
-          <span></span>
+          <span
+            class="inline-block border-round-sm w-1rem h-1rem"
+            [style.background]="'var(--task-not-started)'"
+          ></span>
           No iniciado
         </span>
         <span
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
-          <span></span>
+          <span
+            class="inline-block border-round-sm w-1rem h-1rem"
+            [style.background]="'var(--task-in-progress)'"
+          ></span>
           En proceso
         </span>
         <span
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
-          <span></span>
+          <span
+            class="inline-block border-round-sm w-1rem h-1rem"
+            [style.background]="'var(--task-completed)'"
+          ></span>
           Completado
         </span>
         <span
           class="flex align-items-center gap-1 text-xs text-color-secondary"
         >
-          <span></span>
+          <span
+            class="inline-block border-round-sm w-1rem h-1rem"
+            [style.background]="'var(--task-reopened)'"
+          ></span>
           Reabierto
         </span>
 
@@ -139,8 +150,9 @@
           label="?"
           variant="ghost"
           size="small"
-          class="border-circle border-1 border-300 bg-white text-500 hover:text-primary hover:border-primary transition-colors transition-duration-200 task-help-btn"
-          title="Ayuda de interacciones"
+          class="border-circle border-1 border-300 surface-card text-500 hover:text-primary hover:border-primary transition-colors transition-duration-200 task-help-btn"
+          lxTooltip="Ayuda de interacciones"
+          tooltipPosition="top"
           (clicked)="helpPopover.toggle($event)"
         />
 
@@ -195,7 +207,7 @@
                     Asignar predecesora
                   </p>
                   <p class="m-0 text-xs text-600 mt-1 line-height-3">
-                    Arrastra el icono <strong>&var(--ds-info);</strong> de una
+                    Arrastra el icono <strong>&#128279;</strong> de una
                     tarea y sueltalo sobre otra para marcarla como predecesora.
                     La tarea arrastrada no puede iniciar hasta que la
                     predecesora este completa.
@@ -271,7 +283,6 @@
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr
       [pReorderableRow]="rowIndex"
-      [style.background-color]="item.priority === 'High' ? 'var(--ds-danger-light)' : (item.daysDifference > 15 && !item.scheduledAt) ? 'var(--ds-warning-light)' : null"
       [class.task-link-source]="linkDragSourceId() === item.id"
       [class.task-link-target]="linkDragTargetId() === item.id"
       [class.task-chain-member]="chainedTaskIds().has(item.id)"
@@ -289,6 +300,8 @@
             [icon]="'material-symbols-light:menu'"
             class="cursor-move text-400"
             pReorderableRowHandle
+            lxTooltip="Arrastra para reordenar la tarea"
+            tooltipPosition="top"
           />
           <app-icon
             [icon]="'material-symbols-light:link'"
@@ -365,7 +378,7 @@
               <app-icon
                 [icon]="'material-symbols-light:schedule'"
                 class="text-orange-600"
-                lxTooltip="Urgente: Mís de 15 días sin programar"
+                lxTooltip="Urgente: Más de 15 días sin programar"
               />
               } @if (item.priority === 'High') {
               <app-icon
@@ -534,6 +547,7 @@
 <app-data-view-mobile
   class="block md:hidden"
   [data]="dataSignal().items"
+  [loading]="loading()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
   [globalFilterFields]="['title', 'description', 'folio']"
   [dt]="dt"
@@ -615,8 +629,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item
       [alignTop]="true"
-      [style.--background]="item.priority === 'High' ? 'var(--ds-danger-light)' : (item.daysDifference > 15 && !item.scheduledAt) ? 'var(--ds-warning-light)' : 'transparent'"
-      [style.border-top]="item.priority === 'High' ? '4px solid var(--ds-danger)' : 'none'"
+      [style.border-left]="'5px solid ' + statusBorderVar(item.status)"
     >
       <div class="flex flex-column w-full gap-1 min-w-0">
         <!-- Cabecera de la Tarjeta (Top Row) -->
@@ -766,7 +779,7 @@
 </app-data-view-mobile>
 
 <!-- ================================================================
-     REPORTE EJECUTIVO DE TAREAS PENDIENTES é solo visible al imprimir
+     REPORTE EJECUTIVO DE TAREAS PENDIENTES — solo visible al imprimir
      ================================================================ -->
 <div class="print-task-report">
   <div class="print-report-header">
@@ -822,21 +835,21 @@
           <div class="print-desc">{{ item.description }}</div>
           }
         </td>
-        <td>{{ item.assignee || 'é' }}</td>
-        <td>{{ item.scheduledAt || 'é' }}</td>
+        <td>{{ item.assignee || '—' }}</td>
+        <td>{{ item.scheduledAt || '—' }}</td>
         <td>
           <span class="print-status-pill">
             {{ statusLabel(item.status) }}
           </span>
         </td>
         <td>{{ item.daysDifference }}</td>
-        <td>@if (item.beforeWork || item.afterWork) { ? } @else { é }</td>
+        <td>@if (item.beforeWork || item.afterWork) { ✓ } @else { — }</td>
         <td>
           @if (item.lastFollowUp) {
           <span>{{ item.lastFollowUpDate }}</span>
           <p class="print-followup">{{ item.lastFollowUp }}</p>
           } @else {
-          <span>é</span>
+          <span>—</span>
           }
         </td>
       </tr>
@@ -845,7 +858,7 @@
   </table>
 
   <div class="print-report-footer">
-    <span>Luxury Building Group é Sistema de Gestion Operativa</span>
+    <span>Luxury Building Group — Sistema de Gestión Operativa</span>
     <span>Generado el {{ today }}</span>
   </div>
 </div>

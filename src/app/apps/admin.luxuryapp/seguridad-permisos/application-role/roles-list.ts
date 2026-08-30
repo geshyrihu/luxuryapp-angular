@@ -1,3 +1,4 @@
+import { NgStyle } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -36,6 +37,7 @@ import { RoleForm } from "./role-form";
   selector: "app-roles",
   imports: [
     AppIcon,
+    NgStyle,
     PrimeNgCustomTableEmptyMessage,
     FormsModule,
     TableModule,

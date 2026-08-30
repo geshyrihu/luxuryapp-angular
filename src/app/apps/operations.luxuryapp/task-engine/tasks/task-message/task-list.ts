@@ -178,8 +178,8 @@ export class TaskList implements OnInit {
   readonly ticketGroupId: string =
     this.activatedRoute.snapshot.params.ticketGroupId;
 
-  // Task-list tiene caption doble (tótulo + filtros + leyenda) que suma ~170px
-  // adicionales al offset estóndar del servicio (240px). Total: ~410px.
+  // Task-list tiene caption doble (título + filtros + leyenda), de ahí el
+  // offset mayor al estándar del servicio.
   private readonly TASK_LIST_OFFSET = 320;
   scrollHeight = signal<string>(this.calcScrollHeight());
 
@@ -223,6 +223,16 @@ export class TaskList implements OnInit {
       Reopened: "td-status-reopened",
     };
     return map[status] ?? "";
+  }
+
+  statusBorderVar(status: string): string {
+    const map: Record<string, string> = {
+      NotStarted: "var(--task-not-started)",
+      InProgress: "var(--task-in-progress)",
+      Reopened: "var(--task-reopened)",
+      Completed: "var(--task-completed)",
+    };
+    return map[status] ?? "transparent";
   }
 
   printReport(): void {
@@ -286,9 +296,11 @@ export class TaskList implements OnInit {
       gridOutline,
     });
 
-    window.addEventListener("resize", () => {
-      this.scrollHeight.set(this.calcScrollHeight());
-    });
+    const onResize = () => this.scrollHeight.set(this.calcScrollHeight());
+    window.addEventListener("resize", onResize);
+    this.destroyRef.onDestroy(() =>
+      window.removeEventListener("resize", onResize),
+    );
   }
 
   ngOnInit(): void {
@@ -466,12 +478,12 @@ export class TaskList implements OnInit {
   onProgress(id: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "Se colocaré el ticket en proceso",
+      text: "Se colocará el ticket en proceso",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#0d3b66",
-      cancelButtonColor: "#9B1B30",
-      confirmButtonText: "Sé, en proceso!",
+      confirmButtonColor: "var(--ds-primary)",
+      cancelButtonColor: "var(--ds-danger)",
+      confirmButtonText: "Sí, en proceso!",
       cancelButtonText: "Cancelar",
     }).then((responseData) => {
       if (responseData.value) {
@@ -670,7 +682,7 @@ export class TaskList implements OnInit {
   }
 
   onRowReorder(event: { dragIndex: number; dropIndex: number }): void {
-    // PrimeNG mutates the value array before emitting é array already has new order.
+    // PrimeNG mutates the value array before emitting — array already has new order.
     // items[dropIndex] is the item the user dragged.
     let items = [...this.dataSignal().items];
 
@@ -684,9 +696,9 @@ export class TaskList implements OnInit {
       return;
     }
 
-    // BFS: collect ALL transitive dependents é
-    //   é parentTaskId === currentId  (true child tasks)
-    //   é dependsOnTaskId === currentId  (successor in predecessor chain)
+    // BFS: collect ALL transitive dependents —
+    //   parentTaskId === currentId  (true child tasks)
+    //   dependsOnTaskId === currentId  (successor in predecessor chain)
     const dependentIds = new Set<string>();
     const queue = [movedItem.id];
     const visited = new Set<string>([movedItem.id]);

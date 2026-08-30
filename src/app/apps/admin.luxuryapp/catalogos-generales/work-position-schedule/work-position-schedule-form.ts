@@ -1,10 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  DestroyRef,
   inject,
   OnInit,
   signal,
 } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
   FormControl,
@@ -51,6 +54,7 @@ export class WorkPositionScheduleForm implements OnInit {
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
   private enumSelectS = inject(EnumSelectService);
+  private destroyRef = inject(DestroyRef);
 
   submitting = signal(false);
   cb_turnoTrabajo = signal<SelectItemDto[]>([]);
@@ -110,10 +114,36 @@ export class WorkPositionScheduleForm implements OnInit {
     { label: "Domingo", entry: "domingoEntrada", exit: "domingoSalida" },
   ] as const;
 
+  // Espejo en signal del valor de tipoTurnoEspecial: el FormControl no es un signal,
+  // asi que se sincroniza via valueChanges para poder derivar isSpecialShift de forma reactiva.
+  private readonly tipoTurnoEspecialValue = signal(
+    this.form.controls.tipoTurnoEspecial.value,
+  );
+  readonly isSpecialShift = computed(() => !!this.tipoTurnoEspecialValue());
+
   async ngOnInit(): Promise<void> {
     this.id = this.config.data?.id ?? "";
     this.cb_turnoTrabajo.set(await lastValueFrom(this.enumSelectS.turnoTrabajo()));
     if (this.id) this.onLoadData();
+
+    this.form.controls.tipoTurnoEspecial.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        this.tipoTurnoEspecialValue.set(value);
+
+        // Turno especial y turno fijo son mutuamente excluyentes: si el usuario elige
+        // un turno especial, los horarios por dia capturados previamente ya no aplican.
+        if (value) {
+          this.resetDayControls();
+        }
+      });
+  }
+
+  private resetDayControls(): void {
+    for (const day of this.days) {
+      this.form.get(day.entry)?.setValue(null, { emitEvent: false });
+      this.form.get(day.exit)?.setValue(null, { emitEvent: false });
+    }
   }
 
   onLoadData() {

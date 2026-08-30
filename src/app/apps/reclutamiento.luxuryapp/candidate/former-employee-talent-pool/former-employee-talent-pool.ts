@@ -14,8 +14,10 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import Swal from "sweetalert2";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -142,6 +144,17 @@ export class FormerEmployeeTalentPool implements OnInit {
   }
 
   async onPostulate(item: FormerEmployeeTalentPoolItem): Promise<void> {
+    const confirmation = await Swal.fire({
+      title: "Postular a vacante",
+      text: `¿Deseas postular a ${item.fullName} para reingreso? Se creará o reutilizará su ficha de candidato con la información de su expediente anterior.`,
+      icon: SweetAlertIcon.Question,
+      showCancelButton: true,
+      confirmButtonText: "Sí, postular",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (!confirmation.isConfirmed) return;
+
     const candidateId = await this.ensureCandidate(item);
     if (!candidateId) return;
 

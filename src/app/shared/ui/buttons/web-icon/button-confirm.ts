@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,12 +24,13 @@ import { confirmAction } from "../shared/confirm";
       @if (emoji()) {
         <span>{{ emoji() }}</span>
       } @else {
-        <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:check-circle'" />
+        <app-icon [icon]="resolvedIconClass() || IconCatalog.CheckCircle" />
       }
     </button>
   `,
 })
 export class WebButtonIconConfirm extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   swalText = input<string>("Estas seguro de continuar?");
   confirmed = output<void>();
 

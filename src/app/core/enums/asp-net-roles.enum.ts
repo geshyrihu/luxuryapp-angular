@@ -23,6 +23,7 @@ export enum ApplicationRole {
   Cobranza = "Cobranza",
   JefeMantenimiento = "JefeMantenimiento",
   TecnicoMantenimiento = "TecnicoMantenimiento",
+  MttoNocturno = "MttoNocturno",
   Recepcionista = "Recepcionista",
   MasterConcierge = "MasterConcierge",
   Concierge = "Concierge",

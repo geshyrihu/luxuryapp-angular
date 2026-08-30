@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon";
@@ -17,8 +18,9 @@ import { MobileButtonBase } from "../mobile-button-base";
       [class]="styleClass()"
       (click)="onClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:download'" slot="icon-only" />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.Download" slot="icon-only" />
     </ion-button>
   `,
 })
-export class MobileButtonIconDownload extends MobileButtonBase {}
+export class MobileButtonIconDownload extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;}

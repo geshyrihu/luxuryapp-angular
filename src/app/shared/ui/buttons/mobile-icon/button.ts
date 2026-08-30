@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon";
@@ -19,8 +20,9 @@ import { MobileButtonBase } from "../mobile-button-base";
       [attr.aria-label]="ariaLabel() || title() || label() || null"
       (click)="onClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:touch-app'" slot="icon-only" />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.GestureTap" slot="icon-only" />
     </ion-button>
   `,
 })
-export class MobileButtonIcon extends MobileButtonBase {}
+export class MobileButtonIcon extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;}

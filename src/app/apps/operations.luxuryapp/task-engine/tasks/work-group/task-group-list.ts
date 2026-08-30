@@ -9,10 +9,10 @@ import {
 import { Router } from "@angular/router";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DataViewModule } from "@ui/web/primeng-dataview/primeng-dataview";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import {
   chatbubblesOutline,
@@ -77,10 +77,10 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     MobileButtonLabelItem,
     MobileButtonLabelEdit,
     MobileButtonLabelDelete,
-    PrimeNgCustomTableEmptyMessage,
+    EmptyState,
+    CustomSearchInput,
     NgbDropdownModule,
     DataViewModule,
-    TableModule,
     PrimeNgCustomTableFooter,
     DataViewMobile,
 
@@ -108,6 +108,19 @@ export class TaskGroupList {
   readonly globalFilterFields = computed(() =>
     globalFilterFields(this.dataSignal()),
   );
+  readonly searchTerm = signal<string>("");
+  readonly filteredData = computed(() => {
+    const data = this.dataSignal();
+    const term = this.searchTerm().trim().toLowerCase();
+    if (!term) return data;
+
+    const fields = this.globalFilterFields();
+    return data.filter((item) =>
+      fields.some((field) =>
+        String(item[field] ?? "").toLowerCase().includes(term),
+      ),
+    );
+  });
   loading = signal(true);
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();

@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon";
@@ -20,8 +21,8 @@ import { MobileButtonBase } from "../mobile-button-base";
       <app-icon
         [icon]="
           propertyId()
-            ? 'material-symbols-light:edit-note'
-            : 'material-symbols-light:save-outline'
+            ? IconCatalog.FileSign
+            : IconCatalog.ContentSaveOutline
         "
         slot="icon-only"
       />
@@ -29,6 +30,7 @@ import { MobileButtonBase } from "../mobile-button-base";
   `,
 })
 export class MobileButtonIconSave extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;
   propertyId = input<string | number | null>(null);
   submitting = input<boolean>(false);
 }

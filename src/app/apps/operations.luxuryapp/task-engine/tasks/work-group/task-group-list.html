@@ -1,84 +1,78 @@
 <!-- Desktop View -->
 <div class="hidden md:block">
-  <p-table
-    #dt
-    [value]="dataSignal()"
-    [globalFilterFields]="globalFilterFields()"
-    [paginator]="true"
-    [rows]="10"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-    class="custom-table card"
+  <div
+    class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2"
   >
-    <ng-template #caption>
-      <div
-        class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2"
-      >
-        <div class="flex-grow-1">
-          <primeng-custom-caption
-            [title]="'Grupos de Trabajo'"
-            (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-            [dt]="dt"
-            [noPadding]="true"
-            [noMargin]="true"
-            [showAdd]="hasSuperUsuario()"
-          />
-        </div>
-        <div class="flex-shrink-0">
-          <iw-button-active-desactive
-            [state]="value()"
-            (stateChange)="onChange($event)"
-          />
-        </div>
+    <div class="flex-grow-1">
+      <primeng-custom-caption
+        [title]="'Grupos de Trabajo'"
+        (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+        [noPadding]="true"
+        [noMargin]="true"
+        [showAdd]="hasSuperUsuario()"
+        [showSearch]="false"
+      />
+    </div>
+    <div class="flex align-items-center gap-2 flex-shrink-0">
+      <div class="flex-shrink-0" style="max-width: 260px">
+        <custom-search-input-signal
+          placeholder="Buscar grupo..."
+          (searchChange)="searchTerm.set($event)"
+        />
       </div>
-    </ng-template>
+      <iw-button-active-desactive
+        [state]="value()"
+        (stateChange)="onChange($event)"
+      />
+    </div>
+  </div>
 
-    <ng-template #header>
-      <tr>
-        <th class="table-col-10 text-center">GRUPO</th>
-        <th pSortableColumn="nameGroup">
-          NOMBRE <p-sorticon field="nameGroup" />
-        </th>
-        <th pSortableColumn="visibility">
-          VISIBILIDAD <p-sorticon field="visibility" />
-        </th>
-        <th class="table-col-15 text-center">PENDIENTES</th>
-        <th class="table-col-20 no-print text-right">ACCIONES</th>
-      </tr>
-    </ng-template>
-
-    <ng-template #body let-item>
-      <tr>
-        <td class="text-center">
+  @if (filteredData().length === 0) {
+  <app-empty-state
+    icon="material-symbols-light:database-off-outline"
+    title="Sin registros"
+    message="No hay grupos de trabajo que coincidan con la búsqueda."
+  />
+  } @else {
+  <div class="grid">
+    @for (item of filteredData(); track item.id) {
+    <div class="col-12 md:col-6 xl:col-3">
+      <div
+        class="surface-card border-round-xl shadow-1 hover:shadow-3 transition-duration-150 p-3 h-full flex flex-column gap-3"
+      >
+        <!-- Encabezado: avatar + nombre + visibilidad -->
+        <div class="flex align-items-start gap-3">
           <div
-            class="flex align-items-center justify-content-center rounded flex-shrink-0 w-3rem h-3rem mx-auto"
+            class="flex align-items-center justify-content-center border-round-lg flex-shrink-0 w-3rem h-3rem"
             [style.backgroundColor]="item.color || 'var(--ds-primary)'"
           >
             <span class="text-white text-xl">{{ item.emoji || '??' }}</span>
           </div>
-        </td>
-        <td>
-          <div class="flex align-items-center gap-2">
-            <h3 class="m-0 font-semibold text-900 text-sm">
-              {{ item.nameGroup }}
-            </h3>
-            @if (item.isLegalGroup) {
-            <lx-tag value="Legal" severity="warn" />
-            }
+          <div class="flex-1 min-w-0">
+            <div class="flex align-items-center gap-2 flex-wrap">
+              <h3 class="m-0 font-semibold text-900 text-base line-height-3">
+                {{ item.nameGroup }}
+              </h3>
+              @if (item.isLegalGroup) {
+              <lx-tag value="Legal" severity="warn" />
+              }
+            </div>
+            <app-status-badge
+              class="inline-block mt-2"
+              [status]="item.visibility"
+              [isVisibility]="true"
+              [clickable]="false"
+            />
           </div>
-        </td>
-        <td>
-          <app-status-badge
-            [status]="item.visibility"
-            [isVisibility]="true"
-            [clickable]="false"
-          />
-        </td>
-        <td class="text-center">
-          <div
-            class="inline-flex align-items-center justify-content-center gap-2 px-3 py-1 rounded surface-50 cursor-pointer hover:surface-100 transition-colors"
-            (click)="onNavigateMessage(item.id, 0)"
-          >
+        </div>
+
+        <!-- Cuerpo: pendientes -->
+        <div
+          class="flex align-items-center justify-content-between gap-2 px-3 py-2 border-round-lg surface-50 cursor-pointer hover:surface-100 transition-colors"
+          (click)="onNavigateMessage(item.id, 0)"
+        >
+          <span class="text-sm text-600 font-medium">Pendientes</span>
+          <div class="flex align-items-center gap-2">
             <span
               class="text-sm font-bold"
               [class.text-orange-500]="(item.open + item.inProgress + item.reopened) > 0"
@@ -86,51 +80,55 @@
             >
               {{ item.open + item.inProgress + item.reopened }}
             </span>
-            <app-icon [icon]="'material-symbols-light:move-to-inbox'" class="text-500" />
+            <app-icon
+              icon="material-symbols-light:move-to-inbox"
+              class="text-500"
+            />
           </div>
-        </td>
-        <td class="no-print">
-          <div class="flex justify-content-end">
-            @if (item.customerId === customerIdS.customerId()) {
-            <iw-button-item
-              (clicked)="onModalParticipants(item)"
-              iconClass="material-symbols-light:group"
-              lxTooltip="Integrantes"
-              tooltipPosition="top"
-              variant="text"
-            />
-            } @if (hasSuperUsuario()) {
-            <iw-button-item
-              (clicked)="SendReportPendingTicketGroupAsync(item)"
-              iconClass="material-symbols-light:mail-outline"
-              lxTooltip="Reporte"
-              tooltipPosition="top"
-              variant="text"
-            />
-            }
-            <iw-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            />
-            <iw-button
-              [iconClass]="item.active ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
-              (click)="onToggleStatus(item.id)"
-              [ngbTooltip]="item.active ? 'Bloquear' : 'Desbloquear'"
-              variant="text"
-              [severity]="item.active ? 'warn' : 'success'"
-            />
-            <iw-button-delete (confirmed)="onDelete(item.id)" />
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="5" />
-    </ng-template>
+        </div>
 
-    <ng-template #paginatorleft>
-      <primeng-custom-table-footer [data]="dataSignal()" />
-    </ng-template>
-  </p-table>
+        <!-- Pie: acciones -->
+        <div
+          class="flex align-items-center justify-content-end gap-1 mt-auto pt-2 border-top-1 surface-border no-print"
+        >
+          @if (item.customerId === customerIdS.customerId()) {
+          <iw-button-item
+            (clicked)="onModalParticipants(item)"
+            iconClass="material-symbols-light:group"
+            lxTooltip="Integrantes"
+            tooltipPosition="top"
+            variant="text"
+          />
+          } @if (hasSuperUsuario()) {
+          <iw-button-item
+            (clicked)="SendReportPendingTicketGroupAsync(item)"
+            iconClass="material-symbols-light:mail-outline"
+            lxTooltip="Reporte"
+            tooltipPosition="top"
+            variant="text"
+          />
+          }
+          <iw-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button
+            [iconClass]="item.active ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
+            (click)="onToggleStatus(item.id)"
+            [ngbTooltip]="item.active ? 'Bloquear' : 'Desbloquear'"
+            variant="text"
+            [severity]="item.active ? 'warn' : 'success'"
+          />
+          <iw-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="text-sm text-600 px-2 pt-3">
+    <primeng-custom-table-footer [data]="filteredData()" />
+  </div>
+  }
 </div>
 
 <!-- Contenido para pantallas pequenas -->
@@ -181,7 +179,10 @@
             <span class="font-semibold text-sm">
               {{ item.open + item.inProgress + item.reopened }}
             </span>
-            <app-icon icon="material-symbols-light:forum-outline" class="text-base" />
+            <app-icon
+              icon="material-symbols-light:forum-outline"
+              class="text-base"
+            />
           </div>
 
           <ili-action-menu slot="end">

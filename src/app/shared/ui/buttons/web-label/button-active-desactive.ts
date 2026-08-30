@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,13 +21,14 @@ import { BaseButton } from "../base/base-button";
       (click)="toggleState()"
     >
       <app-icon
-        [icon]="state() ? 'material-symbols-light:lock-open-outline' : 'material-symbols-light:lock-open-outline'"
+        [icon]="state() ? IconCatalog.LockOpenOutline : IconCatalog.LockOpenOutline"
       />
       <span>{{ state() ? inactivasLabel() : activasLabel() }}</span>
     </button>
   `,
 })
 export class WebButtonLabelActiveDesactive extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   state = input<boolean>(true);
   activasLabel = input<string>("Activos");
   inactivasLabel = input<string>("Inactivos");

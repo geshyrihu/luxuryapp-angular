@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +25,7 @@ import { TrackingEvent } from "../shared/tracking";
       [class]="styleClass()"
       (click)="onTrackingClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:notifications-outline'" slot="start" />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" slot="start" />
       {{ label() || "Seguimiento" }}
       @if (badgeCount() && badgeCount()! > 0) {
         <ion-badge color="danger" slot="end">
@@ -35,6 +36,7 @@ import { TrackingEvent } from "../shared/tracking";
   `,
 })
 export class MobileButtonLabelTracking extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;
   badgeCount = input<number | null | undefined>(undefined);
   ticketId = input<string | number | null>(null);
   trackingTitle = input<string>("Seguimiento");

@@ -47,7 +47,7 @@
         label="Sueldo Actual"
         placeholder="0.00"
         [prefix]="'$ '"
-        [readonly]="!canEditCurrentSalary()"
+        [disabled]="!canEditCurrentSalary()"
       />
 
       <custom-input-select-signal

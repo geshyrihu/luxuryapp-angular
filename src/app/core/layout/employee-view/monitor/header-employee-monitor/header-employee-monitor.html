@@ -72,7 +72,7 @@
                PrimeNG como CLASE CSS, y aquí se usa Material Symbols, que no
                es una clase. Por eso el icono de inicio salía vacío. -->
           <p-breadcrumb
-            [model]="breadcrumbItems"
+            [model]="breadcrumbItems()"
             styleClass="header-breadcrumb"
           >
             <ng-template #item let-item>

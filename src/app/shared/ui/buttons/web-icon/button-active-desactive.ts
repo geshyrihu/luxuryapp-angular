@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,11 +20,12 @@ import { BaseButton } from "../base/base-button";
       [disabled]="disabled() || loading()"
       (click)="toggleState()"
     >
-      <app-icon [icon]="state() ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'" />
+      <app-icon [icon]="state() ? IconCatalog.Lock : IconCatalog.LockOpen" />
     </button>
   `,
 })
 export class WebButtonIconActiveDesactive extends BaseButton {
+  protected readonly IconCatalog = AppIconCatalog;
   state = input<boolean>(true);
 
   stateChange = output<boolean>();

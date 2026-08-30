@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +25,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       (click)="toggleState()"
     >
       <app-icon
-        [icon]="state() ? 'material-symbols-light:lock-open-outline' : 'material-symbols-light:lock-open-outline'"
+        [icon]="state() ? IconCatalog.LockOpenOutline : IconCatalog.LockOpenOutline"
         slot="start"
       />
       {{ state() ? inactivasLabel() : activasLabel() }}
@@ -32,6 +33,7 @@ import { MobileButtonBase } from "../mobile-button-base";
   `,
 })
 export class MobileButtonLabelActiveDesactive extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;
   state = input<boolean>(true);
   activasLabel = input<string>("Activos");
   inactivasLabel = input<string>("Inactivos");

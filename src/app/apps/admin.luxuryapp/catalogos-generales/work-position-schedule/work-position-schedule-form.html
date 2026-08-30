@@ -40,29 +40,31 @@
       [rows]="2"
     />
 
-    <div class="grid">
-      @for (day of days; track day.label) {
-        <div class="col-12 md:col-6">
-          <div class="surface-50 border-1 border-200 rounded-lg p-3">
-            <h4 class="mt-0 mb-2 text-sm">{{ day.label }}</h4>
-            <div class="grid">
-              <div class="col-6">
-                <custom-input-time-signal
-                  [control]="getControl(day.entry)"
-                  label="Entrada"
-                />
-              </div>
-              <div class="col-6">
-                <custom-input-time-signal
-                  [control]="getControl(day.exit)"
-                  label="Salida"
-                />
+    @if (!isSpecialShift()) {
+      <div class="grid">
+        @for (day of days; track day.label) {
+          <div class="col-12 md:col-6">
+            <div class="surface-50 border-1 border-200 rounded-lg p-3">
+              <h4 class="mt-0 mb-2 text-sm">{{ day.label }}</h4>
+              <div class="grid">
+                <div class="col-6">
+                  <custom-input-time-signal
+                    [control]="getControl(day.entry)"
+                    label="Entrada"
+                  />
+                </div>
+                <div class="col-6">
+                  <custom-input-time-signal
+                    [control]="getControl(day.exit)"
+                    label="Salida"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      }
-    </div>
+        }
+      </div>
+    }
 
     <custom-input-textarea-signal
       [control]="form.controls.observationsWorkShift"

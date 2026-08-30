@@ -1,3 +1,4 @@
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,11 +24,12 @@ import { confirmAction } from "../shared/confirm";
       [class]="styleClass()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:mail-outline'" slot="icon-only" />
+      <app-icon [icon]="resolvedIconClass() || IconCatalog.EmailOutline" slot="icon-only" />
     </ion-button>
   `,
 })
 export class MobileButtonIconSendEmail extends MobileButtonBase {
+  protected readonly IconCatalog = AppIconCatalog;
   confirmMessage = input<string>("Deseas enviar el correo electronico ahora?");
   confirmed = output<void>();
 
