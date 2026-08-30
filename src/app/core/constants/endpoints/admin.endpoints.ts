@@ -105,6 +105,8 @@ export const EndpointsAdmin = {
       "admin/system-maintenance/seed-documents",
     migrateUserActivities:
       "admin/system-maintenance/migrate-user-activities-to-logs-db",
+    recalculateWorkPositionFolios:
+      "admin/system-maintenance/recalculate-work-position-folios",
   },
   AppImplementationTracking: {
     triggerEmployeeValidation:

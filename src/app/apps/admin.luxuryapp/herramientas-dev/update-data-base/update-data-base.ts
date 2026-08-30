@@ -288,6 +288,35 @@ this.loading.set(false);
       });
   }
 
+  runRecalculateWorkPositionFolios() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Recalculando folios de puestos de trabajo...",
+      "Se renumerara el consecutivo de folio para cada Customer + Rol usando el codigo de rol vigente.",
+    );
+
+    this.apiResponseS
+      .onPost(Endpoints.UpdateDataBase.recalculateWorkPositionFolios, {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Folios de puestos de trabajo recalculados.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "El recalculo de folios de puestos de trabajo fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
+
   runSeedDocumentCatalogs() {
     this.loading.set(true);
     this.result.set(null);
