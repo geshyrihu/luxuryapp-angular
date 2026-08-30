@@ -35,6 +35,7 @@ export class SolicitudAltaStatusForm implements OnInit {
   private config = inject(DynamicDialogConfig);
   private enumSelectS = inject(EnumSelectService);
   id: string = "";
+  readOnly = false;
   submitting = signal(false);
 
   statusOptions = signal<SelectItemDto[]>([]);
@@ -49,8 +50,12 @@ export class SolicitudAltaStatusForm implements OnInit {
 
   async ngOnInit() {
     this.id = this.config.data.id;
+    this.readOnly = this.config.data?.readOnly === true;
     this.form.patchValue({ employeeName: this.config.data.employeeName });
     this.statusOptions.set(await firstValueFrom(this.enumSelectS.status()));
+    if (this.readOnly) {
+      this.form.controls.status.disable();
+    }
 
     if (this.id) {
       this.onLoadData();
@@ -74,6 +79,7 @@ export class SolicitudAltaStatusForm implements OnInit {
   }
 
   onSubmit() {
+    if (this.readOnly) return;
     if (this.submitting()) return;
     if (!this.apiResponseS.validateForm(this.form)) return;
 

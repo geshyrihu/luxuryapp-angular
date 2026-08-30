@@ -62,3 +62,9 @@ export const EndpointsLegal = {
       `task-legal/update-status/${id}/${status}`,
   },
 } as const;
+
+export const EndpointsLegalEmployees = {
+    Employees: {
+        getActiveByCustomer: (customerId: string) => `legal/employees/customer/${customerId}`,
+    },
+} as const;

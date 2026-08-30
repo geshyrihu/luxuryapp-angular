@@ -34,7 +34,7 @@
           type="file" 
           class="p-inputtext p-component w-full" 
           style="padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc; max-width: 300px;"
-          accept=".pdf" 
+          accept="application/pdf,.pdf"
           (change)="onNewFileSelected($event)" 
         />
       </div>
@@ -92,7 +92,7 @@
               type="file"
               #updateInput
               class="file-input-hidden"
-              accept=".pdf"
+              accept="application/pdf,.pdf"
               (change)="onFileSelected($event, row.option.value)"
             />
             <iw-button-edit

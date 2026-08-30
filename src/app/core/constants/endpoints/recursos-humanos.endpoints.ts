@@ -28,6 +28,18 @@ export const EndpointsRecursosHumanos = {
       preview: "hr/contract-templates/preview",
       delete: (id: string) => `hr/contract-templates/${id}`,
     },
+    ContractRenewal: {
+      getAll: "hr/contract-renewals",
+      getById: (id: string) => `hr/contract-renewals/${id}`,
+      getByContract: (contractId: string) =>
+        `hr/contract-renewals/by-contract/${contractId}`,
+      create: "hr/contract-renewals",
+      update: (id: string) => `hr/contract-renewals/${id}`,
+      registerDecision: (id: string) => `hr/contract-renewals/${id}/decision`,
+      linkPerformanceEvaluation: (id: string) =>
+        `hr/contract-renewals/${id}/link-performance-evaluation`,
+      delete: (id: string) => `hr/contract-renewals/${id}`,
+    },
     EmployeeBankData: {
       getAll: (customerId: string) => `employee-bank-data/list/${customerId}`,
       getById: (id: string) => `employee-bank-data/${id}`,
@@ -243,17 +255,18 @@ export const EndpointsRecursosHumanos = {
       reject: (id: string) => `hr/vacations/approvals/${id}/reject`,
       cancel: (id: string) => `hr/vacations/approvals/${id}/cancel`,
     },
-    WorkContract: {
+    EmployeeWorkContract: {
+      byCustomer: (customerId: string) =>
+        `hr/employee-work-contracts/customer/${customerId}`,
       byEmployee: (employeeId: string) =>
-        `hr/work-contracts/by-employee/${employeeId}`,
-      getAll: "hr/work-contracts",
-      getById: (id: string) => `hr/work-contracts/${id}`,
-      create: "hr/work-contracts",
-      update: (id: string) => `hr/work-contracts/${id}`,
-      terminate: (id: string) => `hr/work-contracts/${id}/terminate`,
-      delete: (id: string) => `hr/work-contracts/${id}`,
-      uploadSigned: (id: string) => `hr/work-contracts/${id}/upload-signed`,
-      expiring: (days: number) => `hr/work-contracts/expiring/${days}`,
+        `hr/employee-work-contracts/by-employee/${employeeId}`,
+      getById: (id: string) => `hr/employee-work-contracts/${id}`,
+      create: "hr/employee-work-contracts",
+      update: (id: string) => `hr/employee-work-contracts/${id}`,
+      terminate: (id: string) => `hr/employee-work-contracts/${id}/terminate`,
+      delete: (id: string) => `hr/employee-work-contracts/${id}`,
+      uploadSigned: (id: string) =>
+        `hr/employee-work-contracts/${id}/upload-signed`,
     },
     VacationBalanceAdmin: {
       byCustomer: (customerId: string) =>

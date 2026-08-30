@@ -5,25 +5,13 @@
     [formGroup]="form"
     aria-label="Procesar alta"
   >
-    <div class="flex justify-content-between align-items-start gap-3 pb-3">
-      <div>
-        <p class="m-0 font-semibold">Proceso de alta</p>
-        <p class="m-0 text-color-secondary">
-          Completa los datos para distribuir el alta al expediente del empleado.
-        </p>
-      </div>
-      <button
-        type="button"
-        class="border-none bg-transparent text-primary cursor-pointer p-0 font-medium"
-        (click)="clearDraft()"
-      >
-        Limpiar borrador
-      </button>
+    <div class="pb-3">
+      <p class="m-0 font-semibold">Proceso de alta</p>
+      <p class="m-0 text-color-secondary">
+        Captura solo los datos base y, si ya existe un perfil, decide si debe reingresar o
+        si debe crearse como alta nueva.
+      </p>
     </div>
-
-    <p class="m-0 pb-3 text-color-secondary text-sm">
-      El borrador se guarda automaticamente en este navegador.
-    </p>
 
     @if (!hasValidTarget()) {
     <div class="surface-100 border-round p-3 mb-3 text-orange-700">
@@ -53,7 +41,7 @@
       <div>
         <p class="m-0 font-semibold">Candidato aprobado detectado</p>
         <p class="m-0 text-sm text-color-secondary">
-          {{ candidate.candidateName }} — puedes importar sus datos básicos.
+          {{ candidate.candidateName }} - puedes importar sus datos básicos.
         </p>
       </div>
       <il-button
@@ -80,403 +68,135 @@
     </div>
     }
 
-    <lx-stepper
-      [steps]="steps"
-      finishLabel="Guardar y procesar alta"
-      [activeStep]="activeStep()"
-      (activeStepChange)="activeStep.set($event)"
-      (finish)="onSubmit()"
-    >
-      <section step="1">
-        <div class="grid">
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.lastName"
-              label="Apellidos"
-              placeholder="Apellidos"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.firstName"
-              label="Nombre(s)"
-              placeholder="Nombre del candidato"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-date-signal
-              [control]="form.controls.birthDate"
-              label="Fecha de nacimiento"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-select-signal
-              [control]="form.controls.maritalStatus"
-              label="Estado civil"
-              [data]="maritalStatusOptions()"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-select-signal
-              [control]="form.controls.educationLevel"
-              label="Nivel de educacion"
-              [data]="educationLevelOptions()"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-mask-signal
-              [control]="form.controls.phoneNumber"
-              label="Telefono celular"
-              placeholder="(00) 0000-0000"
-              customMask="(00) 0000-0000"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.email"
-              label="Correo electronico"
-              placeholder="correo@ejemplo.com"
-            />
-          </div>
-          <div class="col-12 md:col-4">
-            <custom-input-text-signal
-              [control]="form.controls.nss"
-              label="NSS"
-              placeholder="Numero de seguro social"
-            />
-          </div>
-          <div class="col-12 md:col-4">
-            <custom-input-text-signal
-              [control]="form.controls.rfc"
-              label="RFC"
-              placeholder="RFC"
-            />
-          </div>
-          <div class="col-12 md:col-4">
-            <custom-input-mask-signal
-              [control]="form.controls.rfcPostalCode"
-              label="Codigo postal del RFC"
-              placeholder="00000"
-              customMask="00000"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.curp"
-              label="CURP"
-              placeholder="CURP"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-toggle-switch-signal
-              [control]="form.controls.hasInfonavitCredit"
-              label="Cuenta con credito INFONAVIT"
-            />
-          </div>
-          @if (form.controls.hasInfonavitCredit.value) {
-          <div class="col-12 md:col-6">
-            <custom-input-mask-signal
-              [control]="form.controls.infonavitCreditNumber"
-              label="No. Credito"
-              placeholder="0000000000"
-              customMask="0000000000"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.infonavitDiscountFactor"
-              label="FD o % de descuento"
-              placeholder="Factor de descuento o porcentaje"
-            />
-          </div>
-          }
-        </div>
-      </section>
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.firstName"
+          label="Nombre(s)"
+          placeholder="Nombre(s)"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.lastName"
+          label="Apellidos"
+          placeholder="Apellidos"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-date-signal
+          [control]="form.controls.birthDate"
+          label="Fecha de nacimiento"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.phoneNumber"
+          label="Telefono celular"
+          placeholder="5512345678"
+        />
+      </div>
+      <div class="col-12">
+        <custom-input-text-signal
+          [control]="form.controls.email"
+          label="Correo electronico"
+          placeholder="correo@ejemplo.com"
+        />
+      </div>
+    </div>
 
-      <section step="2">
-        <div class="grid">
-          <div class="col-12">
-            <custom-input-text-signal
-              [control]="form.controls.street"
-              label="Calle"
-              placeholder="Calle y referencias"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.neighborhood"
-              label="Colonia"
-              placeholder="Colonia"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.municipality"
-              label="Municipio o alcaldia"
-              placeholder="Municipio"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-mask-signal
-              [control]="form.controls.postalCode"
-              label="Codigo postal"
-              placeholder="Codigo postal"
-              customMask="00000"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.state"
-              label="Estado"
-              placeholder="Estado"
-            />
-          </div>
-        </div>
-      </section>
+    @if (searchingDuplicates()) {
+    <div class="surface-100 border-round p-3 mt-3 text-color-secondary">
+      Validando coincidencias de empleado existente...
+    </div>
+    }
 
-      <section step="3">
-        <div class="grid">
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.emergencyContactName"
-              label="Contacto de emergencia"
-              placeholder="Nombre completo"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-mask-signal
-              [control]="form.controls.emergencyContactPhoneNumber"
-              label="Telefono de emergencia"
-              placeholder="(00) 0000-0000"
-              customMask="(00) 0000-0000"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-select-signal
-              [control]="form.controls.emergencyContactRelation"
-              label="Parentesco de emergencia"
-              [data]="relationOptions()"
-            />
-          </div>
-          <div class="col-12 md:col-6"></div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.beneficiaryName"
-              label="Beneficiario"
-              placeholder="Nombre del beneficiario"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-mask-signal
-              [control]="form.controls.beneficiaryPhoneNumber"
-              label="Telefono del beneficiario"
-              placeholder="(00) 0000-0000"
-              customMask="(00) 0000-0000"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-select-signal
-              [control]="form.controls.beneficiaryRelation"
-              label="Parentesco del beneficiario"
-              [data]="relationOptions()"
-            />
-          </div>
-        </div>
-      </section>
+    @if (duplicateMatches().length) {
+    <div class="surface-50 border-1 surface-border border-round p-3 mt-3">
+      <p class="m-0 font-semibold">Coincidencias encontradas</p>
+      <p class="m-0 mt-2 text-sm text-color-secondary">
+        Si la persona ya existe, seleccionala para reingresarla o migrarla al cliente de
+        este puesto. Si no corresponde, puedes continuar con un alta nueva.
+      </p>
 
-      <section step="4">
-        <div class="grid">
-          <div class="col-12 md:col-4">
-            <custom-input-select-signal
-              [control]="form.controls.bankId"
-              label="Banco"
-              [data]="bankOptions()"
-              [filter]="true"
-            />
-          </div>
-          <div class="col-12 md:col-4">
-            <custom-input-text-signal
-              [control]="form.controls.accountNumber"
-              label="Cuenta bancaria"
-              placeholder="Cuenta"
-            />
-          </div>
-          <div class="col-12 md:col-4">
-            <custom-input-text-signal
-              [control]="form.controls.clabe"
-              label="CLABE"
-              placeholder="CLABE"
-            />
-          </div>
-          <div class="col-12 md:col-4">
-            <custom-input-toggle-switch-signal
-              [control]="form.controls.hasControlledMedication"
-              label="Medicacion controlada"
-            />
-          </div>
-          <div class="col-12 md:col-8">
-            <custom-input-textarea-signal
-              [control]="form.controls.controlledMedicationDetails"
-              label="Detalle de medicacion"
-              placeholder="Medicamento o control"
-              [rows]="2"
-            />
-          </div>
-          <div class="col-12 md:col-4">
-            <custom-input-toggle-switch-signal
-              [control]="form.controls.hasMedicationAllergies"
-              label="Alergias a medicamentos"
-            />
-          </div>
-          <div class="col-12 md:col-8">
-            <custom-input-textarea-signal
-              [control]="form.controls.medicationAllergiesDetails"
-              label="Detalle de alergias"
-              placeholder="Alergias o reacciones"
-              [rows]="2"
-            />
-          </div>
-          <div class="col-12 md:col-4">
-            <custom-input-toggle-switch-signal
-              [control]="form.controls.hasChronicDiseases"
-              label="Enfermedades cronicas"
-            />
-          </div>
-          <div class="col-12 md:col-8">
-            <custom-input-textarea-signal
-              [control]="form.controls.chronicDiseasesDetails"
-              label="Detalle de cronicas"
-              placeholder="Condiciones cronicas relevantes"
-              [rows]="2"
-            />
-          </div>
-        </div>
-      </section>
+      <div class="overflow-auto mt-3">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="text-left">
+              <th class="pb-2 pr-3">Empleado</th>
+              <th class="pb-2 pr-3">Correo</th>
+              <th class="pb-2 pr-3">Telefono</th>
+              <th class="pb-2 pr-3">Estatus</th>
+              <th class="pb-2 pr-3">Cliente actual</th>
+              <th class="pb-2">Accion</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (match of duplicateMatches(); track match.userId) {
+            <tr class="border-top-1 surface-border">
+              <td class="py-2 pr-3">{{ match.nombreCompleto }}</td>
+              <td class="py-2 pr-3">{{ match.email || "Sin correo" }}</td>
+              <td class="py-2 pr-3">{{ match.telefono || "Sin telefono" }}</td>
+              <td class="py-2 pr-3">{{ match.estatus }}</td>
+              <td class="py-2 pr-3">{{ match.nombreEdificio }}</td>
+              <td class="py-2">
+                <button
+                  type="button"
+                  class="border-none border-round px-3 py-2 cursor-pointer"
+                  [class.bg-primary]="isSelectedMatch(match.userId)"
+                  [class.text-white]="isSelectedMatch(match.userId)"
+                  [class.surface-200]="!isSelectedMatch(match.userId)"
+                  (click)="selectMatchedUser(match)"
+                >
+                  {{ isSelectedMatch(match.userId) ? "Seleccionado" : "Usar este perfil" }}
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
 
-      <section step="5">
-        <div class="grid">
-          <div class="col-12 md:col-6">
-            <custom-input-date-signal
-              [control]="form.controls.executionDate"
-              label="Fecha de alta"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-select-signal
-              [control]="form.controls.typeContractRegister"
-              label="Tipo de contrato"
-              [data]="contractOptions()"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-select-signal
-              [control]="form.controls.workShift"
-              label="Turno de trabajo"
-              [data]="workShiftOptions()"
-              [readonly]="workShiftLocked()"
-            />
-          </div>
-          <div class="col-12 md:col-6">
-            <custom-input-text-signal
-              [control]="form.controls.boss"
-              label="Jefe inmediato"
-              placeholder="Nombre del jefe inmediato"
-            />
-          </div>
-          <div class="col-12">
-            <custom-input-text-signal
-              [control]="form.controls.customerAddress"
-              label="Direccion del cliente"
-              placeholder="Direccion del servicio o cliente"
-              [readonly]="customerAddressLocked()"
-            />
-          </div>
-          <div class="col-12">
-            <custom-input-textarea-signal
-              [control]="form.controls.additionalInformation"
-              label="Informacion adicional"
-              placeholder="Detalles operativos del alta"
-              [rows]="3"
-            />
-          </div>
-        </div>
-      </section>
+      <div class="mt-3">
+        <button
+          type="button"
+          class="border-none border-round px-3 py-2 cursor-pointer"
+          [class.bg-primary]="isCreateNewSelected()"
+          [class.text-white]="isCreateNewSelected()"
+          [class.surface-200]="!isCreateNewSelected()"
+          (click)="selectCreateNew()"
+        >
+          {{ isCreateNewSelected() ? "Alta nueva seleccionada" : "Crear alta nueva de todos modos" }}
+        </button>
+      </div>
 
-      <section step="6">
-        <div class="grid">
-          <div class="col-12 md:col-6">
-            <div class="surface-ground border-round p-3 h-full">
-              <p class="m-0 font-semibold pb-2">Resumen personal</p>
-              <p class="m-0 pb-1">
-                {{ form.controls.firstName.value }}
-                {{ form.controls.lastName.value }}
-              </p>
-              <p class="m-0 pb-1">Telefono: {{ form.controls.phoneNumber.value }}</p>
-              <p class="m-0">CURP: {{ form.controls.curp.value }}</p>
-            </div>
-          </div>
-          <div class="col-12 md:col-6">
-            <div class="surface-ground border-round p-3 h-full">
-              <p class="m-0 font-semibold pb-2">Resumen de alta</p>
-              <p class="m-0 pb-1">
-                Fecha: {{ form.controls.executionDate.value || "Pendiente" }}
-              </p>
-              <p class="m-0 pb-1">
-                Contrato:
-                {{
-                  resolveOptionLabel(
-                    contractOptions(),
-                    form.controls.typeContractRegister.value
-                  )
-                }}
-              </p>
-              <p class="m-0 pb-1">
-                Turno:
-                {{
-                  resolveOptionLabel(
-                    workShiftOptions(),
-                    form.controls.workShift.value
-                  )
-                }}
-              </p>
-              <p class="m-0">
-                Banco:
-                {{ resolveOptionLabel(bankOptions(), form.controls.bankId.value) }}
-              </p>
-            </div>
-          </div>
-          @if (vacancyContext(); as vacancy) {
-          <div class="col-12">
-            <div class="surface-ground border-round p-3">
-              <p class="m-0 font-semibold pb-2">Contexto de la vacante</p>
-              <p class="m-0 pb-1">
-                Empresa: {{ vacancy.customerName || "Pendiente" }}
-              </p>
-              <p class="m-0 pb-1">
-                Puesto: {{ vacancy.positionName || "Pendiente" }}
-              </p>
-              <p class="m-0 pb-1">
-                Sueldo: {{ vacancy.sueldoBase | currency: "MXN" : "symbol" : "1.0-0" }}
-              </p>
-              <p class="m-0">
-                Direccion del cliente:
-                {{ form.controls.customerAddress.value || "Pendiente" }}
-              </p>
-            </div>
-          </div>
-          }
-          <div class="col-12">
-            <div class="surface-ground border-round p-3">
-              <p class="m-0 font-semibold pb-2">Confirmacion</p>
-              <p class="m-0 text-color-secondary">
-                Al finalizar, el sistema distribuira esta informacion al empleado,
-                expediente, contactos, banco, salud y solicitud de alta en una sola
-                operacion.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </lx-stepper>
+      @if (duplicateResolution() && duplicateResolution() !== "new") {
+      <div class="surface-100 border-round p-3 mt-3 text-sm">
+        Al guardar, este perfil quedara vinculado al cliente del puesto actual. Si su
+        rol es Staff, conservara acceso unicamente a ese cliente.
+      </div>
+      } @else if (isCreateNewSelected()) {
+      <div class="surface-100 border-round p-3 mt-3 text-sm">
+        Se creara un usuario nuevo aunque exista una coincidencia previa.
+      </div>
+      }
+    </div>
+    }
+
+    <div class="flex justify-content-end gap-2 mt-4">
+      <il-button
+        label="Cancelar"
+        severity="secondary"
+        variant="outline"
+        (clicked)="onCancel()"
+      />
+      <il-button
+        [label]="saveLabel()"
+        iconClass="material-symbols-light:save-outline"
+        [loading]="submitting() || searchingDuplicates()"
+        [disabled]="submitting() || searchingDuplicates() || !hasValidTarget()"
+        (clicked)="onSubmit()"
+      />
+    </div>
   </form>
 </div>

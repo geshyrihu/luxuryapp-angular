@@ -9,8 +9,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { Router } from "@angular/router";
 import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -19,6 +18,7 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { Table, TableModule } from "@ui/web/primeng-table/primeng-table";
 import { addIcons } from "ionicons";
 import { personAddOutline } from "ionicons/icons";
+import Swal from "sweetalert2";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 
 import { AuthService } from "src/app/core/auth/services/auth.service";
@@ -30,35 +30,32 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { FilterRequestsService } from "src/app/core/http/services/filter-requests.service";
+import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { EStatus } from "src/app/shared/ui/base/status-badge.base";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
 import { CandidateDetail } from "../candidate/candidate-detail";
 import {
-  DuplicateEmployeeMatch,
-  DuplicateEmployeeWarningModal,
-} from "./components/duplicate-employee-warning/duplicate-employee-warning-modal";
-import { HiringDocumentValidationModal } from "./components/hiring-document-validation/hiring-document-validation-modal";
-import {
   requestStatusBorderColor,
   requestStatusTagSeverity,
 } from "../recruitment-shared/request-status-style";
+import { SolicitudAltaStatusForm } from "./solicitud-alta-status-form";
 
 interface SolicitudAltaListItem {
   id: string;
-  employeeId: string;
+  employeeId: string | null;
+  applicationUserId?: string | null;
   candidateId?: string;
   candidateProcessId?: string;
   positionRequestId?: string;
+  workPositionId?: string | null;
   folio: string;
   folioVacante: string;
   requestDate: string;
@@ -69,6 +66,8 @@ interface SolicitudAltaListItem {
   profession?: string;
   status: string;
   isEmployeeLinked: boolean;
+  isDocumentationSent: boolean;
+  documentationSentAt: string | Date | null;
   executionDate: string;
 }
 
@@ -77,12 +76,7 @@ interface SolicitudAltaListItem {
   templateUrl: "./solicitud-alta-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    WebButtonIcon,
     MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
     MobileButtonLabel,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
@@ -97,7 +91,9 @@ interface SolicitudAltaListItem {
 export class SolicitudAltaList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
+  dateS = inject(DateService);
   private filterRequestsService = inject(FilterRequestsService);
+  private router = inject(Router);
   authS = inject(AuthService);
   public statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
   tableScrollHeightS = inject(TableScrollHeightService);
@@ -148,38 +144,6 @@ export class SolicitudAltaList implements OnInit {
   }
 
   async onModalForm(data: SolicitudAltaListItem) {
-    if (data.candidateId && data.candidateProcessId && data.positionRequestId) {
-      const matches = await this.apiResponseS.onGetList<DuplicateEmployeeMatch[]>(
-        EndpointsReclutamiento.RequestEmployeeRegister.checkEmployeeDuplicates(
-          data.candidateId,
-        ),
-        undefined,
-        false,
-      );
-
-      if (matches?.length) {
-        const decision = await this.dialogHandlerS.openDialog<
-          "reactivated" | "continue" | undefined
-        >(
-          DuplicateEmployeeWarningModal,
-          {
-            matches,
-            requestPositionId: data.positionRequestId,
-            candidateProcessId: data.candidateProcessId,
-          },
-          "Posible Reingreso Detectado",
-          this.dialogHandlerS.sizeLg,
-        );
-
-        if (decision === "reactivated") {
-          this.onLoadData();
-          return;
-        }
-
-        if (decision !== "continue") return;
-      }
-    }
-
     this.openHiringModal(data);
   }
 
@@ -204,13 +168,30 @@ export class SolicitudAltaList implements OnInit {
 
   onConcludeHiring(id: string) {
     this.apiResponseS
-      .onPatch<boolean>(EndpointsReclutamiento.RequestEmployeeRegister.conclude(id), {})
+      .onPatch<boolean>(
+        EndpointsReclutamiento.RequestEmployeeRegister.conclude(id),
+        {},
+      )
       .then((result) => {
         if (result) this.onLoadData();
       });
   }
 
-onDelete(id: string) {
+  onAbortHiring(item: SolicitudAltaListItem) {
+    this.apiResponseS
+      .onPut<boolean>(
+        EndpointsReclutamiento.RequestEmployeeRegister.updateStatus(item.id),
+        {
+          status: EStatus.Cancelado,
+          confirmationFinish: false,
+        },
+      )
+      .then((result) => {
+        if (result) this.onLoadData();
+      });
+  }
+
+  onDelete(id: string) {
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestEmployeeRegister.delete(id))
       .then((result: boolean) => {
@@ -222,20 +203,60 @@ onDelete(id: string) {
       });
   }
 
-  onOpenDocumentValidation(data: SolicitudAltaListItem) {
-    this.dialogHandlerS.openDialog(
-      HiringDocumentValidationModal,
-      { employeeId: data.employeeId },
-      "Validación de Documentación",
-      this.dialogHandlerS.sizeLg,
-    );
+  onGoToEmployeeFile(item: SolicitudAltaListItem) {
+    if (!item.employeeId || !item.applicationUserId) return;
+
+    void this.router.navigate([
+      "/recruitment/empleado",
+      item.employeeId,
+      item.applicationUserId,
+    ]);
   }
 
-  onDownloadPdf(data: SolicitudAltaListItem) {
-    this.apiResponseS.onDownloadFile(
-      EndpointsReclutamiento.RequestEmployeeRegister.exportPdf(data.id),
-      `${data.folio}.pdf`,
-    );
+  async onSendHiringDocs(item: SolicitudAltaListItem) {
+    const sendButtonText = item.isDocumentationSent
+      ? "Confirmar Reenvío"
+      : "Confirmar Envío";
+    const result = await Swal.fire({
+      title: "Expediente de alta",
+      text: "Puedes enviarlo por correo o revisar antes la previsualización del PDF unificado.",
+      icon: "question",
+      showConfirmButton: true,
+      confirmButtonText: sendButtonText,
+      confirmButtonColor: "#16a34a",
+      showDenyButton: true,
+      denyButtonText: "Previsualizar PDF",
+      denyButtonColor: "#475569",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+    });
+
+    if (result.isConfirmed) {
+      const wasSent = await this.apiResponseS.onPost<boolean>(
+        EndpointsReclutamiento.RequestEmployeeRegister.sendMergedPdf(item.id),
+        {},
+      );
+      if (wasSent) this.onLoadData();
+      return;
+    }
+
+    if (result.isDenied) {
+      await this.apiResponseS.onPreviewPdf(
+        EndpointsReclutamiento.RequestEmployeeRegister.exportMergedPdf(item.id),
+      );
+    }
+  }
+
+  documentationSentTooltip(item: SolicitudAltaListItem): string {
+    if (!item.isDocumentationSent) return "Documentación pendiente de envío";
+
+    const sentAt = item.documentationSentAt
+      ? this.dateS.formatDateTime(new Date(item.documentationSentAt))
+      : "";
+
+    return sentAt
+      ? `Documentación enviada el ${sentAt}`
+      : "Documentación enviada";
   }
 
   onViewCandidate(data: SolicitudAltaListItem) {
@@ -247,5 +268,34 @@ onDelete(id: string) {
       "Datos del candidato",
       this.dialogHandlerS.sizeLg,
     );
+  }
+
+  onViewRequestDetails(item: SolicitudAltaListItem) {
+    this.dialogHandlerS.openDialog(
+      SolicitudAltaStatusForm,
+      {
+        id: item.id,
+        employeeName: item.nameEmployee,
+        readOnly: true,
+      },
+      "Detalle de Solicitud de Alta",
+      this.dialogHandlerS.sizeMd,
+    );
+  }
+
+  canCompleteAlta(item: SolicitudAltaListItem): boolean {
+    return !item.isEmployeeLinked && item.status === "Pendiente";
+  }
+
+  canManageLinkedAlta(item: SolicitudAltaListItem): boolean {
+    return item.isEmployeeLinked && item.status === "Proceso";
+  }
+
+  canOpenCompletedFile(item: SolicitudAltaListItem): boolean {
+    return item.status === "Concluido" && !!item.employeeId && !!item.applicationUserId;
+  }
+
+  isCancelled(item: SolicitudAltaListItem): boolean {
+    return item.status === "Cancelado";
   }
 }

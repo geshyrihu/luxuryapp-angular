@@ -333,6 +333,29 @@ export const humanResourcesRoutes: Routes = [
   },
 
   // =============================================================
+  // RENOVACIONES DE CONTRATOS (FASE 4)
+  // =============================================================
+  {
+    path: "contract-renewals",
+    loadComponent: () =>
+      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/contract-renewal-list").then(
+        (m) => m.ContractRenewalListComponent,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+          ApplicationRole.GerenteOperaciones,
+        ]),
+    ],
+    data: {
+      title: "Renovaciones de Contratos",
+      breadcrumb: "Renovaciones",
+    },
+  },
+
+  // =============================================================
   // INCIDENCIAS DISCIPLINARIAS
   // =============================================================
   {

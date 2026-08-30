@@ -24,12 +24,15 @@
         placeholder="Seleccione un estatus"
         [showClear]="true"
         [filter]="true"
+        [readonly]="readOnly"
       />
+      @if (!readOnly) {
       <il-button-save
         [propertyId]="id"
         [disabled]="form.invalid"
         [submitting]="submitting()"
       />
+      }
     </form>
   </div>
 </div>

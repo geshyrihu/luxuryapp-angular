@@ -125,6 +125,7 @@ export interface EmployeeFileSalaryModDTO {
 
 export interface EmployeeFileWorkPositionDTO {
   puesto: string;
+  workPositionId?: string;
   departamento: string;
   managerName: string;
   folio?: string;

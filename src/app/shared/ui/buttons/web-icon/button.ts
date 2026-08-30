@@ -11,6 +11,8 @@ import { BaseButton } from "../base/base-button";
       type="button"
       [class]="buttonClasses()"
       [disabled]="disabled() || loading()"
+      [attr.title]="title() || ariaLabel() || label() || null"
+      [attr.aria-label]="ariaLabel() || title() || label() || null"
       (click)="emitClick($event)"
     >
       @if (emoji()) {

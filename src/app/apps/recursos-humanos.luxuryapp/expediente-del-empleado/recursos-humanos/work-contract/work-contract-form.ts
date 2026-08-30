@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   OnInit,
   signal,
@@ -10,42 +11,38 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
+import { CurrencyPipe } from "@angular/common";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import {
   EContractType,
-  WorkContractAddOrEditDTO,
-  WorkContractDetailDTO,
+  EmployeeWorkContractDetailDTO,
 } from "./interfaces/work-contract.dto";
+import { EmployeeFileWorkPositionDTO } from "../employee-file/interfaces/employee-file.interfaces";
 
 interface IWorkContractForm {
-  employeeId: import("@angular/forms").FormControl<string>;
   contractType: import("@angular/forms").FormControl<EContractType>;
   startDate: import("@angular/forms").FormControl<Date | null>;
   endDate: import("@angular/forms").FormControl<Date | null>;
-  probationEndDate: import("@angular/forms").FormControl<Date | null>;
-  contractSalary: import("@angular/forms").FormControl<number>;
   notes: import("@angular/forms").FormControl<string>;
 }
 
 @Component({
   selector: "app-work-contract-form",
   templateUrl: "./work-contract-form.html",
+  styleUrl: "./work-contract-form.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
+    CurrencyPipe,
     CustomInputDateSignal,
-    CustomInputCurrencySignal,
+    CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     WebButtonLabelSave,
   ],
@@ -57,14 +54,28 @@ export class WorkContractFormComponent implements OnInit {
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
 
-  item = signal<Partial<WorkContractDetailDTO> | null>(null);
+  item = signal<Partial<EmployeeWorkContractDetailDTO> | null>(null);
   isEdit = signal(false);
-  employeeId = signal<string>("");
+  employeeContext = signal(false);
+  contextEmployeeId = signal<string>("");
   submitting = signal(false);
+  pdfFile = signal<File | null>(null);
 
-  form!: FormGroup<IWorkContractForm>;
+  activePosition = signal<EmployeeFileWorkPositionDTO | null>(null);
 
-  cb_contractType: SelectItemDto[] = [
+  positionLabel = computed(() =>
+    this.isEdit()
+      ? (this.item()?.workPositionName ?? "")
+      : (this.activePosition()?.puesto ?? ""),
+  );
+
+  salaryValue = computed(() =>
+    this.isEdit()
+      ? (this.item()?.salaryAtContract ?? 0)
+      : (this.activePosition()?.sueldoBase ?? 0),
+  );
+
+  cb_contractType = [
     { value: "Indeterminado", label: "Indeterminado" },
     { value: "Determinado", label: "Determinado" },
     { value: "Temporal", label: "Temporal / Estacional" },
@@ -74,55 +85,87 @@ export class WorkContractFormComponent implements OnInit {
     { value: "Honorarios", label: "Honorarios" },
   ];
 
+  form!: FormGroup<IWorkContractForm>;
+
   ngOnInit(): void {
-    const data = this.config.data
-      ?.item as Partial<WorkContractDetailDTO> | null;
+    const data = this.config.data?.item as Partial<EmployeeWorkContractDetailDTO> | null;
     const empId = this.config.data?.employeeId as string;
     this.item.set(data);
     this.isEdit.set(!!data);
-    this.employeeId.set(empId);
+    this.contextEmployeeId.set(empId ?? "");
+    this.employeeContext.set(!!empId);
 
     this.form = this.fb.group<IWorkContractForm>({
-      employeeId: this.fb.control(empId),
-      contractType: this.fb.control<EContractType>(
-        data?.contractType ?? "Indeterminado",
-      ),
-      startDate: this.fb.control<Date | null>(
-        this.dateS.parseDate(data?.startDate),
-      ),
-      endDate: this.fb.control<Date | null>(
-        this.dateS.parseDate(data?.endDate),
-      ),
-      probationEndDate: this.fb.control<Date | null>(
-        this.dateS.parseDate(data?.probationEndDate),
-      ),
-      contractSalary: this.fb.control(data?.contractSalary ?? 0),
-      notes: this.fb.control(""),
+      contractType: this.fb.control<EContractType>(data?.contractType ?? "Indeterminado"),
+      startDate: this.fb.control<Date | null>(this.dateS.parseDate(data?.startDate)),
+      endDate: this.fb.control<Date | null>(this.dateS.parseDate(data?.endDate)),
+      notes: this.fb.control(data?.notes ?? ""),
     });
+
+    if (empId && !data) {
+      this.loadActivePosition(empId);
+    }
+  }
+
+  private loadActivePosition(employeeId: string): void {
+    this.apiS
+      .onGetItem<EmployeeFileWorkPositionDTO>(
+        Endpoints.HR.EmployeeFile.workPosition(employeeId),
+      )
+      .then((resp) => {
+        if (resp) this.activePosition.set(resp);
+      });
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.pdfFile.set(input?.files?.[0] ?? null);
   }
 
   onSubmit(): void {
-    FormHelper.submitCrud({
-      form: this.form,
-      api: this.apiS,
-      endpoint: Endpoints.HR.WorkContract.create.split("/")[0],
-      id: this.item()?.id ?? null,
-      ref: this.ref,
-      submitting: this.submitting,
-      transformPayload: (value) => {
-        const dto: WorkContractAddOrEditDTO = {
-          employeeId: value.employeeId,
-          contractType: value.contractType,
-          startDate: this.dateS.getDateFormat(value.startDate) ?? "",
-          endDate: this.dateS.getDateFormat(value.endDate) ?? undefined,
-          probationEndDate:
-            this.dateS.getDateFormat(value.probationEndDate) ?? undefined,
-          contractSalary: value.contractSalary,
-          notes: value.notes,
-        };
-        return dto;
-      },
-    });
+    if (!this.apiS.validateForm(this.form)) return;
+    this.submitting.set(true);
+
+    const value = this.form.value;
+    const employeeId = this.isEdit()
+      ? (this.item()?.employeeId ?? "")
+      : this.contextEmployeeId();
+    const workPositionId = this.isEdit()
+      ? (this.item()?.workPositionId ?? "")
+      : (this.activePosition()?.workPositionId ?? "");
+    const salaryAtContract = this.isEdit()
+      ? (this.item()?.salaryAtContract ?? 0)
+      : (this.activePosition()?.sueldoBase ?? 0);
+    const contractNumber = this.item()?.contractNumber ?? "";
+
+    const formData = new FormData();
+    formData.append("employeeId", employeeId);
+    formData.append("workPositionId", workPositionId);
+    formData.append("contractNumber", contractNumber);
+    formData.append("contractType", value.contractType ?? "Indeterminado");
+    formData.append("startDate", this.dateS.getDateFormat(value.startDate) ?? "");
+    if (value.endDate) {
+      formData.append("endDate", this.dateS.getDateFormat(value.endDate) ?? "");
+    }
+    formData.append("salaryAtContract", String(salaryAtContract ?? 0));
+    formData.append("notes", value.notes ?? "");
+
+    const file = this.pdfFile();
+    if (file) {
+      formData.append("pdfFile", file, file.name);
+    }
+
+    const id = this.item()?.id ?? null;
+    const url = id
+      ? Endpoints.HR.EmployeeWorkContract.update(id)
+      : Endpoints.HR.EmployeeWorkContract.create;
+
+    this.apiS
+      .onPostFile<EmployeeWorkContractDetailDTO>(url, formData)
+      .then((result) => {
+        this.submitting.set(false);
+        if (result !== false) this.ref.close(true);
+      });
   }
 
   onCancel(): void {

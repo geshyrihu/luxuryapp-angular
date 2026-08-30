@@ -18,6 +18,7 @@ type ButtonSize = "small" | "large" | "sm" | "md" | "lg";
 @Directive()
 export abstract class BaseButton {
   label = input<string>("");
+  title = input<string>("");
   icon = input<string>("");
   iconClass = input<string>("");
   emoji = input<string>("");

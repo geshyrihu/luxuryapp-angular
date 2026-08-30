@@ -17,6 +17,8 @@ import { MobileButtonBase } from "../mobile-button-base";
       [size]="size()"
       [disabled]="disabled() || loading()"
       [class]="styleClass()"
+      [attr.title]="title() || ariaLabel() || label() || null"
+      [attr.aria-label]="ariaLabel() || title() || label() || null"
       (click)="onClick($event)"
     >
       @if (loading()) {

@@ -85,8 +85,7 @@ export const EndpointsReclutamiento = {
     getVacantes: (customerId: Id) =>
       `select-items/vacantes/${customerId}`,
     list: "request-employee-register/list",
-    checkEmployeeDuplicates: (candidateId: Id) =>
-      `request-employee-register/check-duplicates/${candidateId}`,
+    searchEmployeeDuplicates: "request-employee-register/search-duplicates",
     reactivateAndMigrate: "request-employee-register/reactivate-and-migrate",
     completeDraft: (id: Id) => `request-employee-register/${id}/complete-draft`,
     conclude: (id: Id) => `request-employee-register/${id}/conclude`,
@@ -94,6 +93,10 @@ export const EndpointsReclutamiento = {
     delete: (id: Id) => `request-employee-register/${id}`,
     exportExcel: "request-employee-register/export-excel",
     exportPdf: (id: Id) => `request-employee-register/${id}/export-pdf`,
+    exportMergedPdf: (id: Id) =>
+      `request-employee-register/${id}/export-merged-pdf`,
+    sendMergedPdf: (id: Id) =>
+      `request-employee-register/${id}/send-merged-pdf`,
   },
   Candidates: {
     base: "recruitment-candidates",

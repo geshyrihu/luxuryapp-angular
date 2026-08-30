@@ -1,14 +1,22 @@
 <div class="md:p-3">
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="contract-readonly surface-card border-round p-3 mb-3">
+      <p class="text-500 text-sm mb-1">Posición Laboral (heredada de Operaciones)</p>
+      <p class="font-bold text-900 m-0">{{ positionLabel() || "—" }}</p>
+    </div>
+
+    <div class="contract-readonly surface-card border-round p-3 mb-3">
+      <p class="text-500 text-sm mb-1">Salario Contractual (heredado del puesto)</p>
+      <p class="font-bold text-900 m-0">
+        {{ salaryValue() | currency: 'MXN' : 'symbol' : '1.2-2' }}
+      </p>
+    </div>
+
     <custom-input-select-signal
       [control]="form.controls.contractType"
       label="Tipo de Contrato"
       [data]="cb_contractType"
       [filter]="true"
-    />
-    <custom-input-currency-signal
-      [control]="form.controls.contractSalary"
-      label="Salario Contractual"
     />
     <custom-input-date-signal
       [control]="form.controls.startDate"
@@ -18,15 +26,23 @@
       [control]="form.controls.endDate"
       label="Fecha de Fin (contratos temporales)"
     />
-    <custom-input-date-signal
-      [control]="form.controls.probationEndDate"
-      label="Fin del Periodo de Prueba"
-    />
     <custom-input-textarea-signal
       [control]="form.controls.notes"
       label="Notas Internas"
       [rows]="3"
     />
+    <div class="field mb-3">
+      <label class="block text-900 font-medium mb-2">PDF del Contrato</label>
+      <input
+        type="file"
+        accept="application/pdf"
+        class="w-full"
+        (change)="onFileSelected($event)"
+      />
+      @if (pdfFile()) {
+      <small class="text-500">{{ pdfFile()!.name }}</small>
+      }
+    </div>
     <div class="flex justify-content-end mt-2">
       <il-button-save
         [propertyId]="item()?.id"

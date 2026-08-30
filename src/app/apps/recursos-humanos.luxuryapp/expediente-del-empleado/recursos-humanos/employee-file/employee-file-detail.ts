@@ -243,7 +243,7 @@ export class EmployeeFileDetail implements OnInit {
       formData.append("file", file);
 
       const result = await this.apiResponseS.onPostFile<EmployeeFileContractDTO>(
-        Endpoints.HR.WorkContract.uploadSigned(contract.id),
+        Endpoints.HR.EmployeeWorkContract.uploadSigned(contract.id),
         formData,
       );
 

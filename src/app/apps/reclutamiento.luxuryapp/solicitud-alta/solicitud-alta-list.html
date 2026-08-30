@@ -1,3 +1,21 @@
+<div class="surface-ground border-round p-3 mb-3">
+  <div class="font-semibold mb-2">Guía rápida de estatus</div>
+  <div class="grid text-sm">
+    <div class="col-12 md:col-3">
+      <strong>PENDIENTE:</strong> Falta completar datos exprés.
+    </div>
+    <div class="col-12 md:col-3">
+      <strong>PROCESO:</strong> Ya se creó el empleado, falta llenar su Expediente y Concluir.
+    </div>
+    <div class="col-12 md:col-3">
+      <strong>CONCLUIDO:</strong> Alta finalizada exitosamente.
+    </div>
+    <div class="col-12 md:col-3">
+      <strong>CANCELADO:</strong> Trámite abortado.
+    </div>
+  </div>
+</div>
+
 @if (dataSignal()) {
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -25,6 +43,7 @@
       <th>NOMBRE</th>
       <th>PUESTO</th>
       <th pSortableColumn="status">ESTATUS <p-sorticon field="status" /></th>
+      <th class="text-center">ENVÍO</th>
       <th class="text-center">DOC.</th>
       <th></th>
     </tr>
@@ -61,47 +80,94 @@
           [severity]="requestStatusTagSeverity(item.status)"
         />
       </td>
+      <td class="text-center">
+        <div class="flex justify-content-center">
+          @if (item.isDocumentationSent) {
+          <lx-tag
+            value="Enviado a RRHH"
+            severity="success"
+            icon="material-symbols-light:mark-email-read"
+            [tooltip]="documentationSentTooltip(item)"
+          />
+          } @else {
+          <lx-tag
+            value="No enviado"
+            severity="warning"
+            icon="material-symbols-light:send"
+            [tooltip]="documentationSentTooltip(item)"
+          />
+          }
+        </div>
+      </td>
       <td class="text-center no-print">
         <div class="flex gap-1 justify-content-center">
-          <iw-button
-            iconClass="material-symbols-light:folder-open"
-            [disabled]="!item.employeeId"
-            (clicked)="onOpenDocumentValidation(item)"
-          />
-          <iw-button
-            iconClass="material-symbols-light:picture-as-pdf"
-            severity="danger"
-            (clicked)="onDownloadPdf(item)"
+          <il-button
+            [label]="item.isDocumentationSent ? 'Reenviar Expediente' : 'Enviar Expediente'"
+            iconClass="material-symbols-light:send"
+            variant="outline"
+            [severity]="item.isDocumentationSent ? 'secondary' : 'primary'"
+            (clicked)="onSendHiringDocs(item)"
           />
         </div>
       </td>
       <td class="no-print">
         <div class="flex gap-1">
-          <iw-button
-            iconClass="material-symbols-light:person-search"
-            [disabled]="!item.candidateId"
-            (clicked)="onViewCandidate(item)"
+          @if (canCompleteAlta(item)) {
+          <il-button
+            label="Completar Alta"
+            iconClass="material-symbols-light:person-add"
+            variant="solid"
+            (clicked)="onModalForm(item)"
           />
-          @if (item.isEmployeeLinked && item.status === 'Pendiente') {
-            <il-button
-              label="Concluir Alta"
-              iconClass="material-symbols-light:check"
-              severity="success"
-              variant="solid"
-              (clicked)="onConcludeHiring(item.id)"
-            />
-          } @else if (!item.isEmployeeLinked && item.status === 'Pendiente') {
-            <iw-button-edit (clicked)="onModalForm(item)" />
-          } @else {
-            <iw-button-edit (clicked)="onModalForm(item)" />
+          <il-button
+            label="Cancelar"
+            iconClass="material-symbols-light:cancel"
+            severity="danger"
+            variant="solid"
+            (clicked)="onAbortHiring(item)"
+          />
+          } @else if (canManageLinkedAlta(item)) {
+          <il-button
+            label="Ir al Expediente"
+            iconClass="material-symbols-light:badge"
+            variant="outline"
+            (clicked)="onGoToEmployeeFile(item)"
+          />
+          <il-button
+            label="Concluir Alta"
+            iconClass="material-symbols-light:check"
+            severity="success"
+            variant="solid"
+            (clicked)="onConcludeHiring(item.id)"
+          />
+          <il-button
+            label="Abortar Alta"
+            iconClass="material-symbols-light:cancel"
+            severity="danger"
+            variant="solid"
+            (clicked)="onAbortHiring(item)"
+          />
+          } @else if (canOpenCompletedFile(item)) {
+          <il-button
+            label="Ir al Expediente"
+            iconClass="material-symbols-light:badge"
+            variant="outline"
+            (clicked)="onGoToEmployeeFile(item)"
+          />
+          } @else if (isCancelled(item)) {
+          <il-button
+            label="Ver Detalles"
+            iconClass="material-symbols-light:visibility"
+            variant="outline"
+            (clicked)="onViewRequestDetails(item)"
+          />
           }
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="9" />
+    <primeng-custom-table-emptymessage [colspan]="10" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -127,27 +193,62 @@
       </div>
 
       <h3>{{ item.nameEmployee }}</h3>
-      <p>{{ item.nameCustomer }} - {{ item.profession || item.applicationRole }}</p>
+      <p>
+        {{ item.nameCustomer }} - {{ item.profession || item.applicationRole }}
+      </p>
       <p>{{ item.executionDate }} - {{ item.status }}</p>
+      <p>{{ documentationSentTooltip(item) }}</p>
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          @if (item.candidateId) {
-            <ili-button (clicked)="onViewCandidate(item)" label="Ver candidato" iconClass="material-symbols-light:person-search" />
+          <ili-button
+            (clicked)="onSendHiringDocs(item)"
+            [label]="item.isDocumentationSent ? 'Reenviar Expediente' : 'Enviar Expediente'"
+            iconClass="material-symbols-light:send"
+          />
+          @if (canCompleteAlta(item)) {
+          <ili-button
+            (clicked)="onModalForm(item)"
+            label="Completar Alta"
+            iconClass="material-symbols-light:person-add"
+          />
+          <ili-button
+            (clicked)="onAbortHiring(item)"
+            label="Cancelar"
+            iconClass="material-symbols-light:cancel"
+            color="danger"
+          />
+          } @else if (canManageLinkedAlta(item)) {
+          <ili-button
+            (clicked)="onGoToEmployeeFile(item)"
+            label="Ir al Expediente"
+            iconClass="material-symbols-light:badge"
+          />
+          <ili-button
+            (clicked)="onConcludeHiring(item.id)"
+            label="Concluir Alta"
+            iconClass="material-symbols-light:check"
+            color="success"
+          />
+          <ili-button
+            (clicked)="onAbortHiring(item)"
+            label="Abortar Alta"
+            iconClass="material-symbols-light:cancel"
+            color="danger"
+          />
+          } @else if (canOpenCompletedFile(item)) {
+          <ili-button
+            (clicked)="onGoToEmployeeFile(item)"
+            label="Ir al Expediente"
+            iconClass="material-symbols-light:badge"
+          />
+          } @else if (isCancelled(item)) {
+          <ili-button
+            (clicked)="onViewRequestDetails(item)"
+            label="Ver Detalles"
+            iconClass="material-symbols-light:visibility"
+          />
           }
-          <ili-button (clicked)="onOpenDocumentValidation(item)" label="Documentos" iconClass="material-symbols-light:folder-open" />
-          <ili-button (clicked)="onDownloadPdf(item)" label="Descargar PDF" iconClass="material-symbols-light:picture-as-pdf" />
-          @if (item.isEmployeeLinked && item.status === 'Pendiente') {
-            <ili-button
-              (clicked)="onConcludeHiring(item.id)"
-              label="Concluir Alta"
-              iconClass="material-symbols-light:check"
-              color="success"
-            />
-          } @else {
-            <ili-button-edit (clicked)="onModalForm(item)" label="Editar" />
-          }
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

@@ -20,6 +20,7 @@
     <ng-template #header>
       <tr>
         <th class="table-col-md">Número</th>
+        <th class="table-col-md">Empleado</th>
         <th class="table-col-md">Tipo</th>
         <th class="table-col-sm">Inicio</th>
         <th class="table-col-sm">Fin</th>
@@ -31,20 +32,34 @@
     <ng-template #body let-item>
       <tr>
         <td>{{ item.contractNumber }}</td>
+        <td>
+          <div class="flex flex-column">
+            <span class="font-semibold">{{ item.employeeName }}</span>
+            <small class="text-500">{{ item.workPositionName }}</small>
+          </div>
+        </td>
         <td>{{ item.contractType }}</td>
         <td>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</td>
-        <td>{{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') : 'é' }}</td>
+        <td>{{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}</td>
         <td class="text-right">
-          {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
+          {{ item.salaryAtContract | currency:'MXN':'symbol':'1.2-2' }}
         </td>
         <td class="text-center">
-          <span [class]="'badge ' + getStatusBadge(item.contractStatus)"
-            >{{ item.contractStatus }}</span
+          <span [class]="'badge ' + getStatusBadge(item.status)"
+            >{{ item.status }}</span
           >
         </td>
         <td class="text-center">
           <iw-button-item icon="material-symbols-light:visibility-outline" (click)="onViewDetail(item)" />
           <iw-button-edit (click)="onEdit(item)" />
+          @if (item.pdfUrl) {
+          <iw-button-view-pdf [url]="item.pdfUrl" fileName="Contrato" />
+          }
+          <iw-button-item
+            icon="material-symbols-light:cancel"
+            lxTooltip="Terminar"
+            (click)="onTerminate(item)"
+          />
           <iw-button-delete (click)="onDelete(item.id)" />
         </td>
       </tr>
@@ -53,7 +68,7 @@
       <primeng-custom-table-footer [totalRecords]="items().length" />
     </ng-template>
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="7" />
+      <primeng-custom-table-emptymessage [colspan]="8" />
     </ng-template>
   </p-table>
 
@@ -74,19 +89,20 @@
             class="text-xl text-primary"
           />
         </div>
-        
+
           <h2 class="font-bold">{{ item.contractNumber }}</h2>
+          <p class="text-sm text-500">{{ item.employeeName }}</p>
           <p class="text-sm text-500">{{ item.contractType }}</p>
           <p class="text-sm text-500">
-            {{ item.startDate | apiDate:'dd/MM/yyyy' }} é {{ item.endDate ?
-            (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}
+            {{ item.startDate | apiDate:'dd/MM/yyyy' }} -
+            {{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}
           </p>
           <p class="text-sm">
-            <span [class]="'badge ' + getStatusBadge(item.contractStatus)"
-              >{{ item.contractStatus }}</span
+            <span [class]="'badge ' + getStatusBadge(item.status)"
+              >{{ item.status }}</span
             >
           </p>
-        
+
         <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item

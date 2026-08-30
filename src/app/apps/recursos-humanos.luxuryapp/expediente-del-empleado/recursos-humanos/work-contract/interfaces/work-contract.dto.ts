@@ -1,51 +1,53 @@
-export type EContractType = 'Indeterminado' | 'Determinado' | 'Temporal' | 'ObraDeterminada' | 'Practicas' | 'Outsourcing' | 'Honorarios';
-export type EContractStatus = 'Borrador' | 'Activo' | 'Expirado' | 'Terminado' | 'Cancelado' | 'Suspendido' | 'PendienteFirma' | 'Firmado';
+export type EContractType =
+  | 'Indeterminado'
+  | 'Determinado'
+  | 'Temporal'
+  | 'ObraDeterminada'
+  | 'Practicas'
+  | 'Outsourcing'
+  | 'Honorarios';
 
-export interface WorkContractListDTO {
+export type EContractStatus =
+  | 'Borrador'
+  | 'Activo'
+  | 'Expirado'
+  | 'Terminado'
+  | 'Cancelado'
+  | 'Suspendido'
+  | 'PendienteFirma'
+  | 'Firmado';
+
+export interface EmployeeWorkContractListDTO {
   id: string;
-  contractNumber: string;
+  employeeId: string;
   employeeName: string;
+  workPositionId: string;
+  workPositionName: string;
+  contractNumber: string;
+  pdfFilePath: string;
+  pdfUrl: string;
   contractType: EContractType;
-  contractStatus: EContractStatus;
+  status: EContractStatus;
   startDate: string;
   endDate?: string;
-  contractSalary: number;
+  salaryAtContract: number;
+  notes: string;
   createdAt: string;
 }
 
-export interface WorkContractDetailDTO extends WorkContractListDTO {
-  employeeId: string;
-  probationEndDate?: string;
-  terminationDate?: string;
-  terminationReason?: string;
-  lftArticle?: string;
-  contractTemplateId?: string;
-  contractTemplateName?: string;
-  documentContent?: string;
-  pdfUrl?: string;
-  signedPdfUrl?: string;
-  signedAt?: string;
-  signedByUserName?: string;
-  notes?: string;
-}
+export interface EmployeeWorkContractDetailDTO extends EmployeeWorkContractListDTO {}
 
-export interface WorkContractExpiringDTO extends WorkContractListDTO {
-  daysRemaining: number;
-}
-
-export interface WorkContractAddOrEditDTO {
+export interface EmployeeWorkContractAddOrEditDTO {
   employeeId: string;
+  workPositionId: string;
+  contractNumber: string;
   contractType: EContractType;
   startDate: string;
   endDate?: string;
-  probationEndDate?: string;
-  contractSalary: number;
-  contractTemplateId?: string;
+  salaryAtContract: number;
   notes?: string;
 }
 
-export interface WorkContractTerminateDTO {
-  terminationDate: string;
+export interface EmployeeWorkContractTerminateDTO {
   terminationReason: string;
-  lftArticle?: string;
 }

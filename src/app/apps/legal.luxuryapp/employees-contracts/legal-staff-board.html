@@ -1,0 +1,116 @@
+<div class="legal-staff-board">
+  <div class="flex flex-column lg:flex-row align-items-center justify-content-between gap-3 mb-3">
+    <div>
+      <h2 class="m-0 text-xl font-semibold">Empleados Activos y Contratos</h2>
+      <p class="text-500 m-0 text-sm">
+        Directorio legal de colaboradores activos con estatus de contrato.
+      </p>
+    </div>
+  </div>
+
+  <p-table
+    [value]="employees()"
+    class="custom-table card"
+    rowGroupMode="subheader"
+    groupRowsBy="department"
+    sortField="department"
+    sortMode="single"
+    [loading]="loading()"
+    #dt
+  >
+    <ng-template #header>
+      <tr>
+        <th>EMPLEADO</th>
+        <th class="w-15rem text-center">ESTATUS DE CONTRATO</th>
+        <th class="w-20rem text-center">ACCIONES</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #groupheader let-item>
+      <tr pRowGroupHeader>
+        <td colspan="3" class="staff-group-header-cell">
+          <span class="group-header-label">
+            <app-icon icon="material-symbols-light:work" />
+            {{ item.department }}
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td>
+          <div class="flex align-items-center gap-2">
+            @if (item.photoUrl) {
+            <lx-avatar
+              [image]="item.photoUrl"
+              shape="circle"
+              size="large"
+            />
+            } @else {
+            <lx-avatar
+              icon="material-symbols-light:person"
+              shape="circle"
+              size="large"
+            />
+            }
+            <div class="flex flex-column">
+              <span class="font-semibold">{{ item.fullName }}</span>
+              @if (item.workPositionName) {
+              <small class="text-500">{{ item.workPositionName }}</small>
+              }
+            </div>
+          </div>
+        </td>
+
+        <td class="text-center">
+          @if (item.hasActiveContract) {
+          <lx-tag
+            severity="success"
+            value="Contrato Activo"
+            icon="material-symbols-light:check-circle"
+            rounded
+          />
+          } @else {
+          <lx-tag
+            severity="secondary"
+            value="Sin Contrato Activo"
+            icon="material-symbols-light:help-outline"
+            rounded
+          />
+          }
+        </td>
+
+        <td>
+          <div class="flex align-items-center justify-content-center gap-1">
+            <iw-button-item
+              iconClass="material-symbols-light:folder-open"
+              lxTooltip="Ver Expediente"
+              ariaLabel="Ver Expediente"
+              tooltipPosition="top"
+              (clicked)="onViewFile(item)"
+            />
+            <iw-button-item
+              iconClass="material-symbols-light:gavel"
+              lxTooltip="Gestionar Contrato"
+              ariaLabel="Gestionar Contrato"
+              tooltipPosition="top"
+              (clicked)="onManageContract(item)"
+            />
+            <iw-button-item
+              iconClass="material-symbols-light:description"
+              lxTooltip="Administrar Adéndums"
+              ariaLabel="Administrar Adéndums"
+              tooltipPosition="top"
+              (clicked)="onManageAddendums(item)"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <primeng-custom-table-emptymessage [colspan]="3" />
+    </ng-template>
+  </p-table>
+</div>

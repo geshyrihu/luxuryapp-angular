@@ -3,10 +3,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  input,
   OnInit,
   signal,
 } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -20,9 +20,13 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { WorkContractListDTO } from "./interfaces/work-contract.dto";
+import {
+  EmployeeWorkContractListDTO,
+  EmployeeWorkContractTerminateDTO,
+} from "./interfaces/work-contract.dto";
 import { WorkContractDetailComponent } from "./work-contract-detail";
 import { WorkContractFormComponent } from "./work-contract-form";
 
@@ -32,6 +36,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
@@ -53,16 +58,19 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
+    WebButtonIconViewPdf,
   ],
 })
 export class WorkContractList implements OnInit {
-  employeeId = input<string>();
+  employeeId = signal<string | null>(null);
+  private route = inject(ActivatedRoute);
 
   apiS = inject(ApiResponseService);
   dialogS = inject(DialogHandlerService);
   tableScrollH = inject(TableScrollHeightService);
+  customerIdS = inject(CustomerIdService);
 
-  items = signal<WorkContractListDTO[]>([]);
+  items = signal<EmployeeWorkContractListDTO[]>([]);
   globalFilter = signal<string>("");
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
@@ -70,20 +78,38 @@ export class WorkContractList implements OnInit {
     "contractNumber",
     "employeeName",
     "contractType",
-    "contractStatus",
+    "status",
   ]);
 
   ngOnInit(): void {
+    const qp = this.route.snapshot.queryParamMap.get("employeeId");
+    this.employeeId.set(qp ?? null);
     this.onLoadData();
   }
 
   onLoadData(): void {
-    const endpoint = this.employeeId()
-      ? Endpoints.HR.WorkContract.byEmployee(this.employeeId())
-      : Endpoints.HR.WorkContract.getAll;
-    this.apiS.onGetList<WorkContractListDTO[]>(endpoint).then((resp) => {
-      if (resp) this.items.set(resp);
-    });
+    const employeeId = this.employeeId();
+    if (employeeId) {
+      this.apiS
+        .onGetList<EmployeeWorkContractListDTO[]>(
+          Endpoints.HR.EmployeeWorkContract.byEmployee(employeeId),
+        )
+        .then((resp) => {
+          if (resp) this.items.set(resp);
+        });
+      return;
+    }
+
+    const customerId = this.customerIdS.customerId();
+    if (!customerId) return;
+
+    this.apiS
+      .onGetList<EmployeeWorkContractListDTO[]>(
+        Endpoints.HR.EmployeeWorkContract.byCustomer(customerId),
+      )
+      .then((resp) => {
+        if (resp) this.items.set(resp);
+      });
   }
 
   onModalForm(data: { id: string; title: string }): void {
@@ -93,14 +119,14 @@ export class WorkContractList implements OnInit {
     this.dialogS
       .openDialog(
         WorkContractFormComponent,
-        { data: { item: prefilledItem, employeeId: this.employeeId() } },
+        { data: { item: prefilledItem, employeeId: this.employeeId() ?? undefined } },
         data.title,
         DialogSize.lg,
       )
       .then(() => this.onLoadData());
   }
 
-  onEdit(item: WorkContractListDTO): void {
+  onEdit(item: EmployeeWorkContractListDTO): void {
     this.dialogS
       .openDialog(
         WorkContractFormComponent,
@@ -111,7 +137,7 @@ export class WorkContractList implements OnInit {
       .then(() => this.onLoadData());
   }
 
-  onViewDetail(item: WorkContractListDTO): void {
+  onViewDetail(item: EmployeeWorkContractListDTO): void {
     this.dialogS.openDialog(
       WorkContractDetailComponent,
       { data: { id: item.id } },
@@ -122,7 +148,16 @@ export class WorkContractList implements OnInit {
 
   onDelete(id: string): void {
     this.apiS
-      .onDelete(Endpoints.HR.WorkContract.delete(id))
+      .onDelete(Endpoints.HR.EmployeeWorkContract.delete(id))
+      .then(() => this.onLoadData());
+  }
+
+  onTerminate(item: EmployeeWorkContractListDTO): void {
+    const dto: EmployeeWorkContractTerminateDTO = {
+      terminationReason: "",
+    };
+    this.apiS
+      .onPost(Endpoints.HR.EmployeeWorkContract.terminate(item.id), dto)
       .then(() => this.onLoadData());
   }
 
@@ -134,6 +169,8 @@ export class WorkContractList implements OnInit {
       Terminado: "badge-danger",
       Cancelado: "badge-danger",
       Suspendido: "badge-warning",
+      PendienteFirma: "badge-info",
+      Firmado: "badge-success",
     };
     return map[status] ?? "badge-neutral";
   }

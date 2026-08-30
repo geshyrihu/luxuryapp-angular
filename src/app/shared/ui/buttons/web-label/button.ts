@@ -13,6 +13,8 @@ import { BaseButton } from "../base/base-button";
       [type]="type()"
       [class]="buttonClasses()"
       [disabled]="disabled() || loading()"
+      [attr.title]="title() || ariaLabel() || label() || null"
+      [attr.aria-label]="ariaLabel() || title() || label() || null"
       (click)="emitClick($event)"
     >
       @if (loading()) {

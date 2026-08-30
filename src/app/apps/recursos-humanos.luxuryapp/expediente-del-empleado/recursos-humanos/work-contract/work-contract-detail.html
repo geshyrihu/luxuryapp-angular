@@ -6,7 +6,20 @@
 <div class="grid p-3">
   <div class="col-12 md:col-6">
     <p class="text-color-secondary text-sm">Número de Contrato</p>
-    <p class="font-bold">{{ item()!.contractNumber }}</p>
+    <div class="flex align-items-center gap-2">
+      <span class="font-bold">{{ item()!.contractNumber }}</span>
+      @if (item()!.pdfUrl) {
+      <iw-button-view-pdf [url]="item()!.pdfUrl" fileName="Contrato" />
+      }
+    </div>
+  </div>
+  <div class="col-12 md:col-6">
+    <p class="text-color-secondary text-sm">Empleado</p>
+    <p class="font-bold">{{ item()!.employeeName }}</p>
+  </div>
+  <div class="col-12 md:col-6">
+    <p class="text-color-secondary text-sm">Posición Laboral</p>
+    <p class="font-bold">{{ item()!.workPositionName }}</p>
   </div>
   <div class="col-12 md:col-6">
     <p class="text-color-secondary text-sm">Tipo de Contrato</p>
@@ -14,12 +27,12 @@
   </div>
   <div class="col-12 md:col-6">
     <p class="text-color-secondary text-sm">Estatus</p>
-    <p class="font-bold">{{ item()!.contractStatus }}</p>
+    <p class="font-bold">{{ item()!.status }}</p>
   </div>
   <div class="col-12 md:col-6">
     <p class="text-color-secondary text-sm">Salario Contractual</p>
     <p class="font-bold">
-      {{ item()!.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
+      {{ item()!.salaryAtContract | currency:'MXN':'symbol':'1.2-2' }}
     </p>
   </div>
   <div class="col-12 md:col-6">
@@ -29,16 +42,10 @@
   <div class="col-12 md:col-6">
     <p class="text-color-secondary text-sm">Fecha de Fin</p>
     <p class="font-bold">
-      {{ item()!.endDate ? (item()!.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido'
-      }}
+      {{ item()!.endDate ? (item()!.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}
     </p>
   </div>
-  @if (item()!.terminationReason) {
-  <div class="col-12">
-    <p class="text-color-secondary text-sm">Motivo de Terminación</p>
-    <p class="font-bold">{{ item()!.terminationReason }}</p>
-  </div>
-  } @if (item()!.notes) {
+  @if (item()!.notes) {
   <div class="col-12">
     <p class="text-color-secondary text-sm">Notas</p>
     <p>{{ item()!.notes }}</p>

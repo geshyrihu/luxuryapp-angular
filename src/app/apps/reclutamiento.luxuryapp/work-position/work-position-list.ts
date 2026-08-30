@@ -30,22 +30,20 @@ import { CustomerIdService } from "src/app/core/auth/services/customer-id.servic
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { Department } from "src/app/core/enums/department.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
-import {
-  globalFilterFields as getGlobalFilterFields,
-} from "src/app/core/helpers/table-primeng-option";
+import { globalFilterFields as getGlobalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { FilterRequestsService } from "src/app/core/http/services/filter-requests.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
 import { IWorkPosition } from "./interfaces/work-position.model";
 import { WorkPositionDetails } from "./work-position-details";
-import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
 
 import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
