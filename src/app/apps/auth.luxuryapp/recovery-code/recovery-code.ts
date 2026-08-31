@@ -127,7 +127,7 @@ export class RecoveryCode {
       )
       .subscribe({
         next: () => {
-          // Respuesta genérica anti-enumeración: se avanza igual (RN-CRED-021).
+          // 200 solo cuando el usuario existe, está activo y el código ya se envió.
           this.identifier.set(identifierValue);
           this.step.set("code");
           this.startCountdown();

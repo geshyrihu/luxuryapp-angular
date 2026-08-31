@@ -30,7 +30,7 @@ import { MobileButtonBase } from "../mobile-button-base";
   `,
 })
 export class MobileButtonIconSave extends MobileButtonBase {
-  protected readonly IconCatalog = AppIconCatalog;
+  protected override readonly IconCatalog = AppIconCatalog;
   propertyId = input<string | number | null>(null);
   submitting = input<boolean>(false);
 }

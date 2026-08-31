@@ -25,4 +25,4 @@ import { MobileButtonBase } from "../mobile-button-base";
   `,
 })
 export class MobileButtonIcon extends MobileButtonBase {
-  protected readonly IconCatalog = AppIconCatalog;}
+  protected override readonly IconCatalog = AppIconCatalog;}

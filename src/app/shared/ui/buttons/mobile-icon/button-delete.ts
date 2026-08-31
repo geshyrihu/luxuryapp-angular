@@ -30,7 +30,7 @@ import { ConfirmService } from "../shared/confirm.service";
   `,
 })
 export class MobileButtonIconDelete extends MobileButtonBase {
-  protected readonly IconCatalog = AppIconCatalog;
+  protected override readonly IconCatalog = AppIconCatalog;
   override color = input<string>("danger");
   confirmHeader = input<string>("Confirmar eliminacion");
   confirmMessage = input<string>("Estas seguro de eliminar este registro?");

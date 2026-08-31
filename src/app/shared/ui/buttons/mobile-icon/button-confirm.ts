@@ -32,7 +32,7 @@ import { confirmAction } from "../shared/confirm";
   `,
 })
 export class MobileButtonIconConfirm extends MobileButtonBase {
-  protected readonly IconCatalog = AppIconCatalog;
+  protected override readonly IconCatalog = AppIconCatalog;
   swalText = input<string>("Estas seguro de continuar?");
   confirmed = output<void>();
 

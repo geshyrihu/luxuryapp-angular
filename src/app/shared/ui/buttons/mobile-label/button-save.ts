@@ -1,4 +1,3 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +6,7 @@ import {
 } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { MobileButtonBase } from "../mobile-button-base";
 
 @Component({
@@ -26,9 +26,7 @@ import { MobileButtonBase } from "../mobile-button-base";
     >
       <app-icon
         [icon]="
-          propertyId()
-            ? IconCatalog.FileSign
-            : IconCatalog.ContentSaveOutline
+          propertyId() ? IconCatalog.FileSign : IconCatalog.ContentSaveOutline
         "
         slot="start"
       />
@@ -37,7 +35,7 @@ import { MobileButtonBase } from "../mobile-button-base";
   `,
 })
 export class MobileButtonLabelSave extends MobileButtonBase {
-  protected readonly IconCatalog = AppIconCatalog;
+  protected override readonly IconCatalog = AppIconCatalog;
   override color = input<string>("primary");
   propertyId = input<string | number | null>(null);
   submitting = input<boolean>(false);

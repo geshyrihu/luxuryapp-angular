@@ -1,4 +1,3 @@
-import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +6,7 @@ import {
 } from "@angular/core";
 import { IonBadge, IonButton } from "@ionic/angular/standalone";
 import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { MobileButtonBase } from "../mobile-button-base";
 import { TrackingEvent } from "../shared/tracking";
 
@@ -25,7 +25,10 @@ import { TrackingEvent } from "../shared/tracking";
       [class]="styleClass()"
       (click)="onTrackingClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" slot="start" />
+      <app-icon
+        [icon]="resolvedIconClass() || IconCatalog.BellOutline"
+        slot="start"
+      />
       {{ label() || "Seguimiento" }}
       @if (badgeCount() && badgeCount()! > 0) {
         <ion-badge color="danger" slot="end">
@@ -36,7 +39,7 @@ import { TrackingEvent } from "../shared/tracking";
   `,
 })
 export class MobileButtonLabelTracking extends MobileButtonBase {
-  protected readonly IconCatalog = AppIconCatalog;
+  protected override readonly IconCatalog = AppIconCatalog;
   badgeCount = input<number | null | undefined>(undefined);
   ticketId = input<string | number | null>(null);
   trackingTitle = input<string>("Seguimiento");

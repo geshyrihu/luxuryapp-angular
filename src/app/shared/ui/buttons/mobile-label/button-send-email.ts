@@ -31,7 +31,7 @@ import { confirmAction } from "../shared/confirm";
   `,
 })
 export class MobileButtonLabelSendEmail extends MobileButtonBase {
-  protected readonly IconCatalog = AppIconCatalog;
+  protected override readonly IconCatalog = AppIconCatalog;
   confirmMessage = input<string>("Deseas enviar el correo electronico ahora?");
   confirmed = output<void>();
 

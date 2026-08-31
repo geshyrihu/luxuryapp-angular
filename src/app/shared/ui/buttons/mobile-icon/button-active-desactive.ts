@@ -31,7 +31,7 @@ import { MobileButtonBase } from "../mobile-button-base";
   `,
 })
 export class MobileButtonIconActiveDesactive extends MobileButtonBase {
-  protected readonly IconCatalog = AppIconCatalog;
+  protected override readonly IconCatalog = AppIconCatalog;
   state = input<boolean>(true);
 
   stateChange = output<boolean>();

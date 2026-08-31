@@ -34,7 +34,7 @@ import { TrackingEvent } from "../shared/tracking";
   `,
 })
 export class MobileButtonIconTracking extends MobileButtonBase {
-  protected readonly IconCatalog = AppIconCatalog;
+  protected override readonly IconCatalog = AppIconCatalog;
   badgeCount = input<number | null | undefined>(undefined);
   ticketId = input<string | number | null>(null);
   trackingTitle = input<string>("Seguimiento");

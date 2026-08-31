@@ -26,7 +26,7 @@ import { openPdf } from "../shared/pdf";
   `,
 })
 export class MobileButtonLabelViewPdf extends MobileButtonBase {
-  protected readonly IconCatalog = AppIconCatalog;
+  protected override readonly IconCatalog = AppIconCatalog;
   url = input<string>("");
   fileName = input<string>("");
 
