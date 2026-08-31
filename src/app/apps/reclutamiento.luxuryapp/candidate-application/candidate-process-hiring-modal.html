@@ -8,29 +8,31 @@
     <div class="pb-3">
       <p class="m-0 font-semibold">Proceso de alta</p>
       <p class="m-0 text-color-secondary">
-        Captura solo los datos base y, si ya existe un perfil, decide si debe reingresar o
-        si debe crearse como alta nueva.
+        Captura solo los datos base y, si ya existe un perfil, decide si debe
+        reingresar o si debe crearse como alta nueva.
       </p>
     </div>
 
     @if (!hasValidTarget()) {
     <div class="surface-100 border-round p-3 mb-3 text-orange-700">
-      Esta vacante no tiene una solicitud activa. Solicita la vacante antes de continuar
-      con el alta.
+      Esta vacante no tiene una solicitud activa. Solicita la vacante antes de
+      continuar con el alta.
     </div>
     } @if (vacancyContext(); as vacancy) {
     <div class="surface-100 border-round p-3 mb-3">
       <p class="m-0 font-semibold pb-2">Contexto de la vacante</p>
       <div class="grid text-sm">
         <div class="col-12 md:col-4">
-          <span class="text-color-secondary">Empresa: </span>{{ vacancy.customerName }}
+          <span class="text-color-secondary">Empresa: </span>{{
+          vacancy.customerName }}
         </div>
         <div class="col-12 md:col-4">
-          <span class="text-color-secondary">Puesto: </span>{{ vacancy.positionName }}
+          <span class="text-color-secondary">Puesto: </span>{{
+          vacancy.positionName }}
         </div>
         <div class="col-12 md:col-4">
-          <span class="text-color-secondary">Sueldo: </span
-          >{{ vacancy.sueldoBase | currency: "MXN" : "symbol" : "1.0-0" }}
+          <span class="text-color-secondary">Sueldo: </span>{{
+          vacancy.sueldoBase | currency: "MXN" : "symbol" : "1.0-0" }}
         </div>
       </div>
     </div>
@@ -53,9 +55,7 @@
         (clicked)="onImportApprovedCandidate()"
       />
     </div>
-    }
-
-    @if (validationErrors().length) {
+    } @if (validationErrors().length) {
     <div class="surface-50 border-1 border-red-200 border-round p-3 mb-3">
       <p class="m-0 font-semibold text-red-700">
         Revisa estos datos antes de guardar
@@ -103,20 +103,54 @@
           placeholder="correo@ejemplo.com"
         />
       </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.street"
+          label="Calle"
+          placeholder="Av. Principal 123"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.neighborhood"
+          label="Colonia"
+          placeholder="Centro"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.municipality"
+          label="Municipio/Alcaldía"
+          placeholder="Cuauhtémoc"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.postalCode"
+          label="Código Postal"
+          placeholder="01000"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.state"
+          label="Estado"
+          placeholder="CDMX"
+        />
+      </div>
     </div>
 
     @if (searchingDuplicates()) {
     <div class="surface-100 border-round p-3 mt-3 text-color-secondary">
       Validando coincidencias de empleado existente...
     </div>
-    }
-
-    @if (duplicateMatches().length) {
+    } @if (duplicateMatches().length) {
     <div class="surface-50 border-1 surface-border border-round p-3 mt-3">
       <p class="m-0 font-semibold">Coincidencias encontradas</p>
       <p class="m-0 mt-2 text-sm text-color-secondary">
-        Si la persona ya existe, seleccionala para reingresarla o migrarla al cliente de
-        este puesto. Si no corresponde, puedes continuar con un alta nueva.
+        Si la persona ya existe, seleccionala para reingresarla o migrarla al
+        cliente de este puesto. Si no corresponde, puedes continuar con un alta
+        nueva.
       </p>
 
       <div class="overflow-auto mt-3">
@@ -148,7 +182,8 @@
                   [class.surface-200]="!isSelectedMatch(match.userId)"
                   (click)="selectMatchedUser(match)"
                 >
-                  {{ isSelectedMatch(match.userId) ? "Seleccionado" : "Usar este perfil" }}
+                  {{ isSelectedMatch(match.userId) ? "Seleccionado" : "Usar este
+                  perfil" }}
                 </button>
               </td>
             </tr>
@@ -166,14 +201,15 @@
           [class.surface-200]="!isCreateNewSelected()"
           (click)="selectCreateNew()"
         >
-          {{ isCreateNewSelected() ? "Alta nueva seleccionada" : "Crear alta nueva de todos modos" }}
+          {{ isCreateNewSelected() ? "Alta nueva seleccionada" : "Crear alta
+          nueva de todos modos" }}
         </button>
       </div>
 
       @if (duplicateResolution() && duplicateResolution() !== "new") {
       <div class="surface-100 border-round p-3 mt-3 text-sm">
-        Al guardar, este perfil quedara vinculado al cliente del puesto actual. Si su
-        rol es Staff, conservara acceso unicamente a ese cliente.
+        Al guardar, este perfil quedara vinculado al cliente del puesto actual.
+        Si su rol es Staff, conservara acceso unicamente a ese cliente.
       </div>
       } @else if (isCreateNewSelected()) {
       <div class="surface-100 border-round p-3 mt-3 text-sm">

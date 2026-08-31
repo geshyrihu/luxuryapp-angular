@@ -102,19 +102,39 @@ export class CandidateProcessHiringModal implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    email: new FormControl("", {
-      nonNullable: true,
-      validators: [Validators.required, Validators.email],
-    }),
     lastName: new FormControl("", {
       nonNullable: true,
       validators: [Validators.required],
+    }),
+    email: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
     }),
     birthDate: new FormControl<string | null>(null, [
       Validators.required,
       (control) => this.birthDateValidator(control),
     ]),
     phoneNumber: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    street: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    neighborhood: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    municipality: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    postalCode: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    state: new FormControl("", {
       nonNullable: true,
       validators: [Validators.required],
     }),
@@ -176,6 +196,11 @@ export class CandidateProcessHiringModal implements OnInit {
     formData.append("Email", dto.email);
     formData.append("BirthDate", dto.birthDate);
     formData.append("PhoneNumber", dto.phoneNumber);
+    formData.append("Street", dto.street);
+    formData.append("Neighborhood", dto.neighborhood);
+    formData.append("Municipality", dto.municipality);
+    formData.append("PostalCode", dto.postalCode);
+    formData.append("State", dto.state);
     if (dto.matchedUserId) {
       formData.append("MatchedUserId", dto.matchedUserId);
     }
@@ -285,6 +310,11 @@ export class CandidateProcessHiringModal implements OnInit {
       email: this.form.controls.email.value.trim().toLowerCase(),
       birthDate,
       phoneNumber: this.form.controls.phoneNumber.value.trim(),
+      street: this.form.controls.street.value.trim(),
+      neighborhood: this.form.controls.neighborhood.value.trim(),
+      municipality: this.form.controls.municipality.value.trim(),
+      postalCode: this.form.controls.postalCode.value.trim(),
+      state: this.form.controls.state.value.trim(),
     };
   }
 

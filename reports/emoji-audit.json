@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-29T02:33:29.268Z",
-  "totalMatches": 1619,
-  "userFacingMatches": 412,
+  "generatedAt": "2026-08-31T17:37:46.508Z",
+  "totalMatches": 1621,
+  "userFacingMatches": 414,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/apps",
-      "count": 914
+      "count": 916
     },
     {
       "key": "app/shared",
@@ -40,7 +40,7 @@
   "byUserFacingModule": [
     {
       "key": "app/apps",
-      "count": 307
+      "count": 309
     },
     {
       "key": "app/core",
@@ -66,7 +66,7 @@
     },
     {
       "key": "template_text",
-      "count": 210
+      "count": 211
     },
     {
       "key": "code_comment",
@@ -74,7 +74,7 @@
     },
     {
       "key": "code_string",
-      "count": 196
+      "count": 197
     },
     {
       "key": "template_comment",
@@ -2084,7 +2084,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/admin.routes.ts",
-      "line": 347,
+      "line": 359,
       "category": "code_string",
       "module": "app/apps",
       "severity": "medium",
@@ -2381,7 +2381,7 @@
     },
     {
       "file": "src/app/apps/admin.luxuryapp/seguridad-permisos/application-role/roles-list.html",
-      "line": 74,
+      "line": 88,
       "category": "template_comment",
       "module": "app/apps",
       "severity": "low",
@@ -8120,6 +8120,17 @@
       "preview": "<!-- 📱 MOBILE -->"
     },
     {
+      "file": "src/app/apps/operations.luxuryapp/task-engine/tasks/task-message/task-list.html",
+      "line": 846,
+      "category": "template_text",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "✓"
+      ],
+      "preview": "<td>@if (item.beforeWork || item.afterWork) { ✓ } @else { — }</td>"
+    },
+    {
       "file": "src/app/apps/reclutamiento.luxuryapp/candidate-application/candidate-application-form.html",
       "line": 305,
       "category": "template_text",
@@ -9252,6 +9263,18 @@
         "❓"
       ],
       "preview": "<label>❓| {{ question.questionText }}</label>"
+    },
+    {
+      "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/contract-renewal-form.ts",
+      "line": 83,
+      "category": "code_string",
+      "module": "app/apps",
+      "severity": "medium",
+      "symbols": [
+        "✓",
+        "⚠"
+      ],
+      "preview": "{{ isPerformanceCompleted() ? \"Completada ✓\" : \"Pendiente ⚠\" }}"
     },
     {
       "file": "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/employee-list.html",
@@ -10927,7 +10950,7 @@
     },
     {
       "file": "src/app/core/enums/asp-net-roles.enum.ts",
-      "line": 41,
+      "line": 42,
       "category": "code_misc",
       "module": "app/core",
       "severity": "low",
@@ -10938,7 +10961,7 @@
     },
     {
       "file": "src/app/core/enums/asp-net-roles.enum.ts",
-      "line": 43,
+      "line": 44,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -10949,7 +10972,7 @@
     },
     {
       "file": "src/app/core/enums/asp-net-roles.enum.ts",
-      "line": 47,
+      "line": 48,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",

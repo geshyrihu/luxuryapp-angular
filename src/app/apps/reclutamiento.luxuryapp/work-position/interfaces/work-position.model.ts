@@ -1,11 +1,14 @@
 export interface IWorkPosition {
   id: string;
-  folio: string;
+  /** Null cuando el usuario autenticado no tiene canViewSensitiveData (motor de políticas RRHH). */
+  folio: string | null;
   applicationRoleId: string;
   applicationRoleName: string;
   turno: string;
-  sueldoBase: string;
-  sueldo: string;
+  /** Null cuando el usuario autenticado no tiene canViewSensitiveData (motor de políticas RRHH). */
+  sueldoBase: string | null;
+  /** Null cuando el usuario autenticado no tiene canViewSensitiveData (motor de políticas RRHH). */
+  sueldo: string | null;
   /** ID del ApplicationUser asignado al puesto (Employee.UserId). */
   applicationUserId: string | null;
   applicationUser: string | null;
@@ -22,7 +25,13 @@ export interface IWorkPosition {
   positionRequest: {
     id: string | null;
     status: number;
+    folio: number | null;
   } | null;
+  /** Backend-Driven UI (motor de políticas RRHH) — Angular solo obedece estos booleanos, nunca calcula permisos por rol. */
+  canRequestDismissal: boolean;
+  canRequestVacancy: boolean;
+  canModifySalary: boolean;
+  canViewSensitiveData: boolean;
 }
 
 export interface IWorkPositionForm {

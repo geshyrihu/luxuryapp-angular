@@ -10,7 +10,6 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
-import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -52,7 +51,6 @@ export class SolicitudVacanteForm implements OnInit {
   private formB = inject(FormBuilder);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
-  private authS = inject(AuthService);
   private enumSelectS = inject(EnumSelectService);
   workPositionId: string = this.config.data.workPositionId;
 
@@ -110,9 +108,7 @@ export class SolicitudVacanteForm implements OnInit {
 
     this.apiResponseS
       .onPost(
-        EndpointsReclutamiento.RecruitmentRequests.solicitudVacante(
-          this.authS.infoUserAuth.applicationUserId,
-        ),
+        EndpointsReclutamiento.RecruitmentRequests.solicitudVacante(),
         this.form.getRawValue(),
       )
       .then((result: boolean) => {

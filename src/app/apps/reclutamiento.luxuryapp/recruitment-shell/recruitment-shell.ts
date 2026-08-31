@@ -67,26 +67,27 @@ export class RecruitmentShellComponent {
   readonly navigationItems: MenuItem[] = [
     {
       label: "Plantilla Interna",
-      routerLink: ["/recruitment/plantilla-interna"],
+      command: () => this.navigate("/recruitment/plantilla-interna"),
     },
     {
       label: "Solicitudes",
       items: [
         {
           label: "Vacantes",
-          routerLink: ["/recruitment/requests/vacancies"],
+          command: () => this.navigate("/recruitment/requests/vacancies"),
         },
         {
           label: "Altas",
-          routerLink: ["/recruitment/requests/hirings"],
+          command: () => this.navigate("/recruitment/requests/hirings"),
         },
         {
           label: "Bajas",
-          routerLink: ["/recruitment/requests/dismissals"],
+          command: () => this.navigate("/recruitment/requests/dismissals"),
         },
         {
           label: "Aumento de Sueldo",
-          routerLink: ["/recruitment/requests/salary-increase"],
+          command: () =>
+            this.navigate("/recruitment/requests/salary-increase"),
         },
       ],
     },
@@ -95,33 +96,35 @@ export class RecruitmentShellComponent {
       items: [
         {
           label: "Directorio de Talento",
-          routerLink: ["/recruitment/candidates/candidates"],
+          command: () => this.navigate("/recruitment/candidates/candidates"),
         },
         {
           label: "Ex-empleados",
-          routerLink: ["/recruitment/candidates/former-employees"],
+          command: () =>
+            this.navigate("/recruitment/candidates/former-employees"),
         },
         {
           label: "Procesos Activos",
-          routerLink: ["/recruitment/candidates/applications"],
+          command: () => this.navigate("/recruitment/candidates/applications"),
         },
         {
           label: "Entrevistas",
-          routerLink: ["/recruitment/candidates/recruitment-interviews"],
+          command: () =>
+            this.navigate("/recruitment/candidates/recruitment-interviews"),
         },
         {
           label: "Indicadores",
-          routerLink: ["/recruitment/candidates/kpis"],
+          command: () => this.navigate("/recruitment/candidates/kpis"),
         },
       ],
     },
     {
       label: "Solicitudes por Cliente",
-      routerLink: ["/recruitment/solicitudes_cliente"],
+      command: () => this.navigate("/recruitment/solicitudes_cliente"),
     },
     {
       label: "Documentos",
-      routerLink: ["/recruitment/document-catalog"],
+      command: () => this.navigate("/recruitment/document-catalog"),
     },
   ];
 
@@ -140,4 +143,8 @@ export class RecruitmentShellComponent {
 
     return segment ? REQUEST_FILTER_CONFIG[segment] : null;
   });
+
+  private navigate(url: string): void {
+    void this.router.navigateByUrl(url);
+  }
 }

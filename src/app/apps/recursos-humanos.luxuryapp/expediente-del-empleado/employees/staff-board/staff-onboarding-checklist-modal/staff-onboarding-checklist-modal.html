@@ -1,0 +1,121 @@
+<div class="staff-checklist-modal">
+  <lx-card [elevated]="true" class="staff-checklist-modal__card">
+    <ng-template #header>
+      <div class="staff-checklist-modal__header">
+        <div class="staff-checklist-modal__identity">
+          <div class="staff-checklist-modal__icon">
+            <app-icon icon="material-symbols-light:checklist" />
+          </div>
+          <div>
+            <p class="staff-checklist-modal__eyebrow m-0">Plantilla interna</p>
+            <h3 class="staff-checklist-modal__title m-0">{{ employeeName }}</h3>
+            <p class="staff-checklist-modal__subtitle m-0">
+              {{ workPositionName }}
+            </p>
+          </div>
+        </div>
+
+        <div class="staff-checklist-modal__summary">
+          <div class="staff-checklist-modal__summary-item">
+            <span class="label">Tareas</span>
+            <strong>{{ summary().total }}</strong>
+          </div>
+          <div class="staff-checklist-modal__summary-item">
+            <span class="label">Completadas</span>
+            <strong>{{ summary().completed }}</strong>
+          </div>
+          <div class="staff-checklist-modal__summary-item">
+            <span class="label">Vencidas</span>
+            <strong>{{ summary().overdue }}</strong>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="staff-checklist-modal__content">
+      @if (loading()) {
+      <p class="m-0 text-color-secondary">
+        Cargando checklist de onboarding...
+      </p>
+      } @else if (tasks().length === 0) {
+      <div class="staff-checklist-modal__empty">
+        <app-icon icon="material-symbols-light:fact-check" />
+        <p class="m-0">No hay tareas configuradas para este colaborador.</p>
+      </div>
+      } @else {
+      <div class="staff-checklist-modal__list">
+        @for (task of tasks(); track task.id) {
+        <article class="staff-checklist-modal__task">
+          <div class="staff-checklist-modal__task-main">
+            <div class="staff-checklist-modal__task-head">
+              <div>
+                <div class="staff-checklist-modal__task-title">
+                  {{ task.optionName }}
+                </div>
+                @if (task.description) {
+                <p class="staff-checklist-modal__task-description m-0">
+                  {{ task.description }}
+                </p>
+                }
+              </div>
+
+              <div class="staff-checklist-modal__badges">
+                <lx-tag
+                  [value]="getDeadlineLabel(task)"
+                  [severity]="getDeadlineSeverity(task)"
+                />
+                <lx-tag
+                  [value]="task.deadline | apiDate:'dd/MM/yyyy'"
+                  [severity]="getDeadlineSeverity(task)"
+                />
+              </div>
+            </div>
+
+            <label class="staff-checklist-modal__toggle">
+              <span>Completado</span>
+              <p-checkbox
+                [binary]="true"
+                [(ngModel)]="task.draftCompleted"
+                [disabled]="busyTaskId() === task.id || saving()"
+              />
+            </label>
+
+            <div class="staff-checklist-modal__notes">
+              <label [for]="'task-notes-' + task.id">Notas</label>
+              <textarea
+                [id]="'task-notes-' + task.id"
+                [(ngModel)]="task.draftNotes"
+                [disabled]="busyTaskId() === task.id || saving()"
+                rows="4"
+                class="w-full p-inputtext p-inputtextarea"
+                placeholder="Captura observaciones, evidencia o seguimiento"
+              ></textarea>
+            </div>
+
+            @if (task.completedAt) {
+            <p class="staff-checklist-modal__meta m-0">
+              Última actualización: {{ task.completedAt | apiDate:'dd/MM/yyyy
+              HH:mm' }} @if (task.completedByUserName) {
+              <span>por {{ task.completedByUserName }}</span>
+              }
+            </p>
+            }
+          </div>
+        </article>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="staff-checklist-modal__actions">
+      <il-button
+        label="Guardar checklist"
+        severity="success"
+        iconClass="material-symbols-light:save"
+        [loading]="saving()"
+        [disabled]="loading() || tasks().length === 0"
+        (clicked)="onSaveAll()"
+      />
+    </div>
+  </lx-card>
+</div>

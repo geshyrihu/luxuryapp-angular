@@ -1,0 +1,49 @@
+<div class="p-3">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="grid">
+      <div class="col-12 md:col-8">
+        <custom-input-text-signal
+          [control]="form.controls.name"
+          label="Nombre"
+          placeholder="Ej. Uniforme entregado"
+        />
+      </div>
+
+      <div class="col-12 md:col-4">
+        <custom-input-number-signal
+          [control]="form.controls.diasSla"
+          [useGrouping]="false"
+          label="Días SLA"
+          placeholder="0"
+        />
+      </div>
+
+      <div class="col-12">
+        <custom-input-multiselect-signal
+          [control]="form.controls.roles"
+          [options]="roleOptions()"
+          label="Roles"
+          placeholder="Selecciona uno o más roles"
+          [showClear]="true"
+          [filter]="true"
+          [selectedItemsLabel]="'roles seleccionados'"
+        />
+      </div>
+
+      <div class="col-12">
+        <custom-input-textarea-signal
+          [control]="form.controls.description"
+          [rows]="4"
+          label="Descripción"
+          placeholder="Detalle operativo de la tarea de onboarding"
+        />
+      </div>
+    </div>
+
+    <il-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

@@ -6,6 +6,8 @@ export const EndpointsSelectItem = {
       `administration-minutes/${customerId}/${meetingId}`,
     almacenes: (customerId: string) => `almacenes/${customerId}`,
     applicationRoles: "application-roles",
+    applicationRolesByRoleType: (roleType: number) =>
+      `roles-by-role-type/${roleType}`,
     applicationRolesToAdministrator: "application-roles-to-administrator",
     applicationRolesToProvider: "application-roles-to-provider",
     applicationUserProvider: "application-user-providers",

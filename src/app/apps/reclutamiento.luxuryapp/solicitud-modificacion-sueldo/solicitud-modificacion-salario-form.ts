@@ -21,7 +21,6 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
-import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
@@ -87,7 +86,6 @@ private config = inject(DynamicDialogConfig);
   private customerIdS = inject(CustomerIdService);
   private dateS = inject(DateService);
   private ref = inject(DynamicDialogRef);
-  private authS = inject(AuthService);
   private enumSelectS = inject(EnumSelectService);
   employeeId: string = this.config.data.employeeId;
   submitting = signal(false);
@@ -261,7 +259,6 @@ async onLoadData(): Promise<RequestSalaryModificationSeedDTO | null> {
       .onPost(
         EndpointsReclutamiento.RecruitmentRequests.solicitudModificacionSalario(
           this.customerIdS.customerId(),
-          this.authS.infoUserAuth.applicationUserId,
         ),
         model,
       )

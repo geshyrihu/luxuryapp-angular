@@ -182,8 +182,7 @@
       <th class="w-32" pSortableColumn="turno">
         TURNO <p-sorticon field="turno" />
       </th>
-      @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
-      AspRole.Administrador, AspRole.SuperUsuario])) {
+      @if (showSalaryColumn()) {
       <th class="w-40 no-print">SUELDOS (PRE / ACT)</th>
       }
       <th class="w-52 text-center">ACCIONES PUESTO</th>
@@ -194,7 +193,7 @@
   <ng-template #groupheader let-item>
     <tr pRowGroupHeader>
       <td
-        [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 6 : 5"
+        [attr.colspan]="showSalaryColumn() ? 6 : 5"
         class="staff-group-header-cell"
       >
         <span class="group-header-label">
@@ -235,6 +234,7 @@
         <span class="text-sm text-700">{{ item.turno }}</span>
       </td>
 
+      @if (showSalaryColumn()) {
       <td class="no-print">
         <div class="flex flex-column gap-1">
           <div
@@ -251,10 +251,11 @@
           </div>
         </div>
       </td>
+      }
 
       <td>
         <div class="flex align-items-center justify-content-center gap-1">
-          @if (shouldShowVacancyRequest(item)) {
+          @if (item.canRequestVacancy && shouldShowVacancyRequest(item)) {
           <iw-button-item
             iconClass="material-symbols-light:receipt"
             lxTooltip="Solicitar Vacante"
@@ -327,6 +328,13 @@
                 (clicked)="onGoToEmployeeFile(item)"
               />
               <iw-button-item
+                iconClass="material-symbols-light:checklist"
+                lxTooltip="Checklist de onboarding"
+                ariaLabel="Checklist de onboarding"
+                tooltipPosition="top"
+                (clicked)="onOpenOnboardingChecklist(item)"
+              />
+              <iw-button-item
                 iconClass="material-symbols-light:gavel"
                 lxTooltip="Incidencias Administrativas"
                 ariaLabel="Incidencias Administrativas"
@@ -340,6 +348,7 @@
                 tooltipPosition="top"
                 (clicked)="onShowRecoveryGuide(item)"
               />
+              @if (item.canRequestDismissal) {
               <iw-button-item
                 iconClass="material-symbols-light:person-remove"
                 severity="danger"
@@ -348,6 +357,8 @@
                 tooltipPosition="top"
                 (clicked)="onRequestDismissal(item)"
               />
+              }
+              @if (item.canModifySalary) {
               <iw-button-item
                 iconClass="material-symbols-light:payments"
                 lxTooltip="Solicitar Modif. Salario"
@@ -355,6 +366,7 @@
                 tooltipPosition="top"
                 (clicked)="onRequestSalaryMod(item)"
               />
+              }
             </div>
           </div>
           } @else {
@@ -427,7 +439,7 @@
 
   <ng-template #emptymessage>
     <primeng-custom-table-emptymessage
-      [colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 6 : 5"
+      [colspan]="showSalaryColumn() ? 6 : 5"
     />
   </ng-template>
 </p-table>

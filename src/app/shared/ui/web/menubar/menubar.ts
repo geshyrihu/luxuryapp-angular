@@ -3,13 +3,14 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
+import { RouterModule } from "@angular/router";
 import { MenubarBase } from "@ui/base/menubar.base";
 import { MenubarModule } from "primeng/menubar";
 
 @Component({
   selector: "app-menubar",
 
-  imports: [MenubarModule],
+  imports: [MenubarModule, RouterModule],
   template: `
     <p-menubar
       [model]="items()"

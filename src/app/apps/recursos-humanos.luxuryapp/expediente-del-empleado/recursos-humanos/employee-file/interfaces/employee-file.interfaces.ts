@@ -232,6 +232,7 @@ export interface EmployeeOnboardingChecklistItemDTO {
   optionName: string;
   description: string;
   isCompleted: boolean;
+  deadline: string;
   completedAt?: string;
   completedByUserId?: string;
   completedByUserName?: string;

@@ -236,6 +236,18 @@ export const adminRoutes: Routes = [
     },
   },
   {
+    path: "onboarding-checklist-options",
+    loadComponent: () =>
+      import("src/app/apps/admin.luxuryapp/catalogos-generales/onboarding-checklist-options/onboarding-checklist-option-list").then(
+        (m) => m.OnboardingChecklistOptionList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Checklist de Onboarding",
+      breadcrumb: "Checklist de Onboarding",
+    },
+  },
+  {
     path: "work-position-schedules",
     loadComponent: () =>
       import("src/app/apps/admin.luxuryapp/catalogos-generales/work-position-schedule/work-position-schedule-list").then(

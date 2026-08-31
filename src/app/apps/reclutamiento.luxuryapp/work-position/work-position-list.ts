@@ -139,6 +139,13 @@ export class WorkPositionList {
   readonly globalFilterFields = computed(() =>
     getGlobalFilterFields(this.data()),
   );
+  /**
+   * Backend-Driven UI (motor de políticas RRHH): la política es la misma para todo el listado
+   * de un mismo usuario autenticado, por lo que basta con leer el booleano de cualquier fila cargada.
+   */
+  readonly showSalaryColumn = computed(() =>
+    this.data().some((p) => p.canViewSensitiveData),
+  );
   readonly departamentLabels: Record<number, string> = {
     [Department.Administracion]: "Administración",
     [Department.Legal]: "Legal",

@@ -355,7 +355,6 @@ export class SolicitudBajaForm implements OnInit {
         EndpointsReclutamiento.RecruitmentRequests.solicitudBaja(
           this.customerIdS.customerId(),
           this.employeeId,
-          this.authS.infoUserAuth.applicationUserId,
         ),
         model,
       )

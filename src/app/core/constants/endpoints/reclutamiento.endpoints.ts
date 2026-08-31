@@ -39,12 +39,11 @@ export const EndpointsReclutamiento = {
   },
   RecruitmentRequests: {
     sendReportVacants: "solicitudesreclutamiento/sendreportvacants",
-    solicitudVacante: (applicationUserId: Id) =>
-      `recruitment-requests/solicitud-vacante/${applicationUserId}`,
-    solicitudModificacionSalario: (customerId: Id, applicationUserId: Id) =>
-      `recruitment-requests/solicitud-modificacion-salario/${customerId}/${applicationUserId}`,
-    solicitudBaja: (customerId: Id, employeeId: Id, applicationUserId: Id) =>
-      `recruitment-requests/solicitud-baja/${customerId}/${employeeId}/${applicationUserId}`,
+    solicitudVacante: () => `recruitment-requests/solicitud-vacante`,
+    solicitudModificacionSalario: (customerId: Id) =>
+      `recruitment-requests/solicitud-modificacion-salario/${customerId}`,
+    solicitudBaja: (customerId: Id, employeeId: Id) =>
+      `recruitment-requests/solicitud-baja/${customerId}/${employeeId}`,
     solicitudAlta: (applicationUserId: Id) =>
       `recruitment-requests/solicitud-alta/${applicationUserId}`,
     solicitudesPorCliente: (customerId: Id, applicationUserId: Id) =>

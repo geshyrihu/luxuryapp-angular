@@ -50,6 +50,7 @@ import {
 import { CandidateInterviewerQueueService } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
 import { CandidateInterviewerQueueDto } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { CardEmployee } from "../employees/card-employee";
+import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-modal/staff-onboarding-checklist-modal";
 
 @Component({
   selector: "app-staff-board-list",
@@ -125,6 +126,14 @@ export class StaffBoardList {
   statusFilter = signal<"Activo" | "Inactivo">("Activo");
   globalFilterFields = computed(() => getGlobalFilterFields(this.positions()));
   scrollHeight = this.tableScrollHeightS.scrollHeight;
+
+  /**
+   * Backend-Driven UI (motor de políticas RRHH): la política es la misma para todo el listado
+   * de un mismo usuario autenticado, por lo que basta con leer el booleano de cualquier fila cargada.
+   */
+  showSalaryColumn = computed(() =>
+    this.positions().some((p) => p.canViewSensitiveData),
+  );
 
   uniqueDepartments = computed(() => {
     const depts = new Set<number>();
@@ -309,6 +318,21 @@ export class StaffBoardList {
       { employeeName: item.applicationUser || "" },
       "Recuperar Usuario y Contraseña",
       DialogSize.md,
+    );
+  }
+
+  onOpenOnboardingChecklist(item: IWorkPosition): void {
+    if (!item.employeeId) return;
+
+    this.dialogHandlerS.openDialog(
+      StaffOnboardingChecklistModal,
+      {
+        employeeId: item.employeeId,
+        employeeName: item.applicationUser || item.applicationRoleName,
+        workPositionName: item.applicationRoleName,
+      },
+      "Checklist de onboarding",
+      DialogSize.lg,
     );
   }
 

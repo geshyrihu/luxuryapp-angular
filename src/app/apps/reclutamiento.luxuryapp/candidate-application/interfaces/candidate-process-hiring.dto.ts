@@ -6,6 +6,11 @@ export interface CandidateProcessHiringDto {
   lastName: string;
   birthDate: string;
   phoneNumber: string;
+  street: string;
+  neighborhood: string;
+  municipality: string;
+  postalCode: string;
+  state: string;
   matchedUserId?: string | null;
 }
 

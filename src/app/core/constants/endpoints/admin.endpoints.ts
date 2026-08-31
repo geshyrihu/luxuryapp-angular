@@ -211,6 +211,13 @@ export const EndpointsAdmin = {
       updateStatus: (id: string) =>
         `admin/general-catalogs/document-catalog/${id}/status`,
     },
+    OnboardingChecklistOptions: {
+      create: "checklist-options",
+      delete: (id: string) => `checklist-options/${id}`,
+      getAll: "checklist-options",
+      getById: (id: string) => `checklist-options/${id}`,
+      update: (id: string) => `checklist-options/${id}`,
+    },
     WorkPositionSchedule: {
       create: "admin/general-catalogs/work-position-schedule",
       delete: (id: string) =>

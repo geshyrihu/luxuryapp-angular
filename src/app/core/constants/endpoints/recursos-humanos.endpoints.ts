@@ -70,6 +70,8 @@ export const EndpointsRecursosHumanos = {
         `hr/employee-files/${employeeId}/onboarding-checklist`,
       initializeOnboardingChecklist: (employeeId: string) =>
         `hr/employee-files/${employeeId}/onboarding-checklist/initialize`,
+      updateOnboardingChecklistTask: (taskId: string) =>
+        `hr/employee-files/onboarding-checklist/${taskId}`,
       toggleOnboardingChecklistTask: (taskId: string) =>
         `hr/employee-files/onboarding-checklist/${taskId}/toggle`,
     },
