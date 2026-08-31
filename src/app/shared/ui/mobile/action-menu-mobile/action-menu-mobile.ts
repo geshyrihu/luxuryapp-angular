@@ -12,7 +12,7 @@ import {
   input,
   viewChild,
 } from "@angular/core";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 /**
  * 🍔 ILI ACTION MENU (móvil)
@@ -36,7 +36,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "ili-action-menu",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <button
       type="button"
@@ -44,7 +44,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       (click)="openSheet()"
       aria-label="Opciones"
     >
-      <app-icon icon="material-symbols-light:more-vert" />
+      <ili-icon icon="material-symbols-light:more-vert" />
     </button>
 
     <ng-template #sheetTpl>

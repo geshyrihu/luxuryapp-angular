@@ -1,13 +1,13 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { SwipeActionsBase } from "@ui/base/swipe-actions.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 export type { SwipeAction } from "@ui/base/swipe-actions.base";
 
 @Component({
   selector: "ili-swipe-actions",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div
       class="swipe-root"
@@ -23,7 +23,7 @@ export type { SwipeAction } from "@ui/base/swipe-actions.base";
             [style.background]="action.color"
             (click)="action.action(); reset()"
           >
-            <app-icon [icon]="action.icon" class="text-white" />
+            <ili-icon [icon]="action.icon" class="text-white" />
             <span>{{ action.label }}</span>
           </button>
         }

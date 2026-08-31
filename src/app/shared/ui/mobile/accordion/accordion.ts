@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { AccordionBase } from "@ui/base/accordion.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-accordion",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-accordion">
       @for (item of items(); track item.id) {
@@ -19,10 +19,10 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             (click)="toggle(item.id)"
           >
             @if (item.icon) {
-              <app-icon [icon]="item.icon" class="ili-accordion-header-icon" />
+              <ili-icon [icon]="item.icon" class="ili-accordion-header-icon" />
             }
             <span class="ili-accordion-header-title">{{ item.title }}</span>
-            <app-icon
+            <ili-icon
               [icon]="
                 isExpanded(item.id) ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:keyboard-arrow-down'
               "

@@ -32,7 +32,7 @@ import {
   IonSearchbar,
 } from "@ionic/angular/standalone";
 import { filter, map, startWith } from "rxjs";
-import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppIconMobile } from "../app-icon/app-icon";
 import { MobileEmptyState } from "../empty-state/empty-state";
 import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
@@ -66,7 +66,7 @@ export interface IMobileBreadcrumbItem {
     IonButton,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
-    AppIcon,
+    AppIconMobile,
     MobileEmptyState,
   ],
 })

@@ -1,11 +1,11 @@
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { GalleryBase } from "@ui/base/gallery.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-gallery",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-gallery">
       @if (images().length > 0) {
@@ -38,7 +38,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             (click)="prev()"
             [disabled]="currentIndex() === 0"
           >
-            <app-icon icon="material-symbols-light:chevron-left" />
+            <ili-icon icon="material-symbols-light:chevron-left" />
           </button>
           <span class="ili-gallery-counter"
             >{{ currentIndex() + 1 }} / {{ images().length }}</span
@@ -48,7 +48,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             (click)="next()"
             [disabled]="currentIndex() === images().length - 1"
           >
-            <app-icon icon="material-symbols-light:chevron-right" />
+            <ili-icon icon="material-symbols-light:chevron-right" />
           </button>
         </div>
 

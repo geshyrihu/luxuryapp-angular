@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { ContextMenuBase } from "@ui/base/context-menu.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-context-menu",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div
       class="ili-ctx-host"
@@ -33,7 +33,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               (click)="onItemClick(item)"
             >
               @if (item.icon) {
-                <app-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="ili-ctx-item-icon" />
+                <ili-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="ili-ctx-item-icon" />
               }
               <span>{{ item.label }}</span>
             </button>

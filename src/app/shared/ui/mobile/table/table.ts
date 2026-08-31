@@ -8,7 +8,7 @@ import {
 } from "@ionic/angular/standalone";
 import { TableBase } from "@ui/base/table.base";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-table",
@@ -19,7 +19,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     IonCardHeader,
     IonCardTitle,
     IonProgressBar,
-    AppIcon,
+    AppIconMobile,
     MobileEmptyState,
   ],
   template: `
@@ -44,7 +44,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 @if ($first) {
                   <ion-card-title class="ili-table-card-title">
                     @if (col.icon) {
-                      <app-icon [icon]="col.icon" class="ili-table-card-icon" />
+                      <ili-icon [icon]="col.icon" class="ili-table-card-icon" />
                     }
                     {{ row[col.field] }}
                   </ion-card-title>

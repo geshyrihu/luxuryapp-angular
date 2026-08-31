@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { OrderListBase } from "@ui/base/order-list.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-order-list",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-order-list">
       <div class="ili-order-list-items">
@@ -17,7 +17,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               [disabled]="$index === 0"
               title="Mover arriba"
             >
-              <app-icon icon="material-symbols-light:keyboard-arrow-up" />
+              <ili-icon icon="material-symbols-light:keyboard-arrow-up" />
             </button>
             <div class="ili-order-list-content">
               <ng-content [select]="'[orderListItem]'" />
@@ -28,7 +28,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               [disabled]="$index === value().length - 1"
               title="Mover abajo"
             >
-              <app-icon icon="material-symbols-light:keyboard-arrow-down" />
+              <ili-icon icon="material-symbols-light:keyboard-arrow-down" />
             </button>
           </div>
         }

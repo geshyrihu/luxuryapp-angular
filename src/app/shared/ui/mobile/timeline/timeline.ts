@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { TimelineBase } from "@ui/base/timeline.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-timeline",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-tl">
       @for (event of events(); track $index; let last = $last) {
@@ -16,7 +16,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               [style.background]="event.color || 'var(--ds-primary)'"
             >
               @if (event.icon) {
-                <app-icon [icon]="event.icon" class="text-white" />
+                <ili-icon [icon]="event.icon" class="text-white" />
               }
             </div>
             @if (!last) {

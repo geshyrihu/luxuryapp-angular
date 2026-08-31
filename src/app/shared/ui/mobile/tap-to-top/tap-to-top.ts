@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { TapToTopBase } from "@ui/base/tap-to-top.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-tap-to-top",
 
-  imports: [CommonModule, AppIcon],
+  imports: [CommonModule, AppIconMobile],
   encapsulation: ViewEncapsulation.None,
   template: `
     <div
@@ -14,7 +14,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       (click)="tapToTop()"
       [ngStyle]="{ display: show ? 'block' : 'none' }"
     >
-      <app-icon icon="material-symbols-light:arrow-upward" class="m-0 icon icon-" />
+      <ili-icon icon="material-symbols-light:arrow-upward" class="m-0 icon icon-" />
     </div>
   `,
   styles: [

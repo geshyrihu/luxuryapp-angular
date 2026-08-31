@@ -21,7 +21,7 @@
         @for (item of breadcrumbItems(); track $index; let last = $last) {
         <div class="flex align-items-center">
           @if (item.icon) {
-          <app-icon
+          <ili-icon
             [icon]="item.icon"
             [routerLink]="item.routerLink"
             class="cursor-pointer text-lg text-primary hover:scale-110 transition-transform"
@@ -35,7 +35,7 @@
             {{ item.label }}
           </span>
           } @if (!last) {
-          <app-icon icon="material-symbols-light:chevron-right" class="text-300 text-xs mx-1" />
+          <ili-icon icon="material-symbols-light:chevron-right" class="text-300 text-xs mx-1" />
           }
         </div>
         }
@@ -58,7 +58,7 @@
       <!-- Inline Add Button -->
       @if (showAdd()) {
       <ion-button fill="clear" (click)="onAdd($event)" class="ion-button-touch-target">
-        <app-icon icon="material-symbols-light:add-circle" slot="icon-only" class="text-4xl" />
+        <ili-icon icon="material-symbols-light:add-circle" slot="icon-only" class="text-4xl" />
       </ion-button>
       }
     </div>

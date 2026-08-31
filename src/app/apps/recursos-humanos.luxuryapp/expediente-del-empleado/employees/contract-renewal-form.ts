@@ -24,6 +24,7 @@ import {
   ContractRenewalStatus,
 } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/interfaces/contract-renewal.dto";
 import { AppIcon } from "@ui/shared/app-icon/app-icon";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 type StatusSeverity = "info" | "success" | "warn" | "danger" | "secondary" | "contrast";
@@ -42,6 +43,7 @@ interface DecisionOption {
     ButtonModule,
     TagModule,
     AppIcon,
+    LxSpinner,
     CustomInputSelectSignal,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -167,16 +169,26 @@ interface DecisionOption {
         <p-button
           type="button"
           label="Cancelar"
-          icon="pi pi-times"
           class="p-button-text"
           (click)="onCancel()"
-        />
+        >
+          <ng-template #icon>
+            <app-icon icon="material-symbols-light:close" />
+          </ng-template>
+        </p-button>
         <p-button
           type="submit"
           [label]="isSubmitting() ? 'Guardando...' : 'Guardar Decisión'"
-          [icon]="isSubmitting() ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
           [disabled]="form.invalid || isSubmitDisabled() || isSubmitting()"
-        />
+        >
+          <ng-template #icon>
+            @if (isSubmitting()) {
+              <lx-spinner [size]="16" />
+            } @else {
+              <app-icon icon="material-symbols-light:check" />
+            }
+          </ng-template>
+        </p-button>
       </div>
     </form>
   `,

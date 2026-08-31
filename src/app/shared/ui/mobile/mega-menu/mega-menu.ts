@@ -1,22 +1,22 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { MegaMenuBase } from "@ui/base/mega-menu.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-mega-menu",
 
-  imports: [RouterModule, AppIcon],
+  imports: [RouterModule, AppIconMobile],
   template: `
     <div class="ili-megamenu">
       @for (category of items(); track $index) {
         <div class="ili-megamenu-category">
           <button class="ili-megamenu-trigger" (click)="toggleCategory($index)">
             @if (category.icon) {
-              <app-icon [icon]="iconName(category.icon) || 'material-symbols-light:folder-outline'" class="ili-megamenu-cat-icon" />
+              <ili-icon [icon]="iconName(category.icon) || 'material-symbols-light:folder-outline'" class="ili-megamenu-cat-icon" />
             }
             <span>{{ category.label }}</span>
-            <app-icon
+            <ili-icon
               [icon]="
                 expandedCategory() === $index
                   ? 'material-symbols-light:keyboard-arrow-up'
@@ -41,7 +41,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                       (click)="runCommand(item)"
                     >
                       @if (item.icon) {
-                        <app-icon
+                        <ili-icon
                           [icon]="iconName(item.icon) || 'material-symbols-light:circle'"
                           class="ili-megamenu-item-icon"
                         />

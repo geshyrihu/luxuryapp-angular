@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { MenubarBase } from "@ui/base/menubar.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-menubar",
 
-  imports: [RouterModule, AppIcon],
+  imports: [RouterModule, AppIconMobile],
   template: `
     <div class="ili-menubar">
       <button
@@ -14,7 +14,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         (click)="toggleOpen()"
         aria-label="Menú"
       >
-        <app-icon icon="material-symbols-light:menu" />
+        <ili-icon icon="material-symbols-light:menu" />
       </button>
       @if (isOpen()) {
         <div class="ili-menubar-backdrop" (click)="close()"></div>
@@ -30,11 +30,11 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 (click)="onItemClick(item)"
               >
                 @if (item.icon) {
-                  <app-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="ili-menubar-item-icon" />
+                  <ili-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="ili-menubar-item-icon" />
                 }
                 <span>{{ item.label }}</span>
                 @if (item.items?.length) {
-                  <app-icon
+                  <ili-icon
                     icon="material-symbols-light:chevron-right"
                     class="ili-menubar-chevron"
                   />

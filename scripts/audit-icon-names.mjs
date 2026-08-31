@@ -14,11 +14,11 @@
 //   fallar no es un control. Este cierra el hueco.
 //
 // Qué comprueba:
-//   Todo literal `material-symbols-light:*` del código debe ser uno de los
-//   valores declarados en `app-icon.catalog.ts`. El catálogo es la lista de
-//   nombres revisados uno a uno contra el set real de Iconify; validar contra
-//   él es offline, determinista y además obliga a que las altas pasen por la
-//   traducción curada en vez de inventar nombres.
+//   1. Todo literal `material-symbols-light:*` del código debe ser uno de los
+//      valores declarados en `app-icon.catalog.ts`.
+//   2. No hay clases `pi pi-*` fuera de la lista de permitidos.
+//   3. Componentes con `<ili-icon>` en template declaran `AppIconMobile` en
+//      imports; componentes con `<app-icon>` declaran `AppIcon`.
 //
 // Lo que NO puede ver (declarado a propósito):
 //   Los nombres que se arman en ejecución — concatenaciones y el último
@@ -168,15 +168,63 @@ if (pi.length > 0) {
     if (casos.length > 10) console.error(`     … y ${casos.length - 10} más`);
     console.error('');
   }
-  console.error(`   💡 Usa <app-icon> con un valor del catálogo. Si el icono va dentro`);
+  console.error(`   💡 Usa <app-icon> o <ili-icon> con un valor del catálogo. Si el icono va dentro`);
   console.error(`      de un componente PrimeNG, pásalo por <ng-template #icon>:`);
   console.error(`      su input \`icon\` espera una clase CSS y no entiende Iconify.`);
   process.exit(1);
 }
 
-if (hallazgos.size === 0) {
+// ── Comprobación 3: imports de componentes de iconos ──────────────────────
+// <ili-icon> requiere AppIconMobile en imports; <app-icon> requiere AppIcon.
+// Con strictTemplates:false el compilador no lo ve, así que este gate lo
+// detecta escaneando templates inline (.ts) y archivos .html.
+const IMPORTS缺IDOS = [];
+
+function extraerTemplate(lineas) {
+  // Unifica líneas de template inline y archivos .html en un solo string
+  return lineas.join('\n');
+}
+
+for (const archivo of recorrer(RAIZ)) {
+  const rel = archivo.replace(/\\/g, '/');
+  const contenido = fs.readFileSync(archivo, 'utf-8');
+  const lineas = contenido.split('\n');
+  const template = extraerTemplate(lineas);
+
+  const usaIliIcon = /<ili-icon[\s>]/.test(template);
+  const usaAppIcon = /<app-icon[\s>]/.test(template);
+
+  if (!usaIliIcon && !usaAppIcon) continue;
+
+  const importLineas = lineas.filter(l => /^import\s/.test(l.trim()));
+  const importText = importLineas.join('\n');
+
+  if (usaIliIcon && !/AppIconMobile/.test(importText)) {
+    IMPORTS缺IDOS.push({ archivo: rel, falta: 'AppIconMobile', tag: '<ili-icon>' });
+  }
+  if (usaAppIcon && !/\bAppIcon\b/.test(importText.replace(/AppIconMobile/g, ''))) {
+    IMPORTS缺IDOS.push({ archivo: rel, falta: 'AppIcon', tag: '<app-icon>' });
+  }
+}
+
+if (IMPORTS缺IDOS.length > 0) {
+  console.error(`❌ ${IMPORTS缺IDOS.length} componente(s) usan icono sin declararlo en imports:\n`);
+  for (const { archivo, falta, tag } of IMPORTS缺IDOS.slice(0, 15)) {
+    console.error(`   ${archivo}  usa ${tag} pero no importa ${falta}`);
+  }
+  if (IMPORTS缺IDOS.length > 15) console.error(`   … y ${IMPORTS缺IDOS.length - 15} más`);
+  console.error('');
+  console.error(`   💡 Agrega ${IMPORTS缺IDOS[0]?.falta} al arreglo imports del componente.`);
+  console.error(`      Sin declararlo, Angular no instancia el componente y no hay icono.`);
+  // No exit aquí — es un warning, no fatal. Los literales son el gate crítico.
+}
+
+if (hallazgos.size === 0 && pi.length === 0) {
   console.log('✅ Auditoría superada: todo icono usado existe en el catálogo');
   console.log('   y no quedan clases de PrimeIcons.');
+  if (IMPORTS缺IDOS.length > 0) {
+    console.log(`   ⚠️  ${IMPORTS缺IDOS.length} componente(s) con imports faltantes (ver arriba).`);
+  }
   process.exit(0);
 }
 

@@ -5,7 +5,7 @@ import {
   output,
   ViewEncapsulation,
 } from "@angular/core";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 export interface TabBarItem {
@@ -24,7 +24,7 @@ export interface TabBarItem {
 @Component({
   selector: "app-tab-bar",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="tab-bar" role="tablist" [class.tab-bar-compact]="compact()">
       @for (tab of tabs(); track tab.id) {
@@ -40,7 +40,7 @@ export interface TabBarItem {
           (click)="select(tab)"
         >
           @if (tab.icon) {
-            <app-icon [icon]="tab.icon" class="tab-bar-icon" />
+            <ili-icon [icon]="tab.icon" class="tab-bar-icon" />
           }
           <span>{{ tab.label }}</span>
           @if (tab.badge && tab.badge > 0) {

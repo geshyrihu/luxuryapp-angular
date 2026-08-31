@@ -1,15 +1,15 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonToggle } from "@ionic/angular/standalone";
 import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-theme-switcher",
 
-  imports: [IonToggle, AppIcon],
+  imports: [IonToggle, AppIconMobile],
   template: `
     <div class="ili-theme">
-      <app-icon
+      <ili-icon
         [icon]="theme() === 'dark' ? 'material-symbols-light:nightlight' : 'material-symbols-light:sunny'"
         class="text-xl"
       />

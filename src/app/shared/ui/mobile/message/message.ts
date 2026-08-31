@@ -4,12 +4,12 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { MessageBase } from "@ui/base/message.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-message",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div
       class="ili-message"
@@ -17,7 +17,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       [style.color]="colors().text"
       [style.border-color]="colors().border"
     >
-      <app-icon [icon]="displayIcon()" class="ili-message-icon" />
+      <ili-icon [icon]="displayIcon()" class="ili-message-icon" />
       <div class="ili-message-content">
         @if (text()) {
           {{ text() }}
@@ -33,7 +33,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           (click)="onClose()"
           aria-label="Cerrar"
         >
-          <app-icon icon="material-symbols-light:close" />
+          <ili-icon icon="material-symbols-light:close" />
         </button>
       }
     </div>

@@ -1,21 +1,21 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { TreeSelectBase } from "@ui/base/tree-select.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-tree-select",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-tree-select-root">
       <button class="ili-tree-select-trigger" (click)="toggleOpen()">
         <span class="ili-tree-select-label">{{ displayText() }}</span>
-        <app-icon icon="material-symbols-light:keyboard-arrow-down" />
+        <ili-icon icon="material-symbols-light:keyboard-arrow-down" />
       </button>
       @if (isOpen()) {
         <div class="ili-tree-select-overlay">
           <div class="ili-tree-select-header">
-            <app-icon icon="material-symbols-light:close" (click)="close()" />
+            <ili-icon icon="material-symbols-light:close" (click)="close()" />
           </div>
           <div class="ili-tree-select-tree">
             @for (node of options(); track $index) {
@@ -51,7 +51,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 >
                   <span>{{ getLabel(node) }}</span>
                   @if (node.children) {
-                    <app-icon icon="material-symbols-light:chevron-right" />
+                    <ili-icon icon="material-symbols-light:chevron-right" />
                   }
                 </div>
                 @if (node.children && expandedNode() === node) {

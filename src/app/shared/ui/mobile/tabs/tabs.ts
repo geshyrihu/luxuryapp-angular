@@ -6,12 +6,12 @@ import {
   viewChild,
 } from "@angular/core";
 import { TabsBase } from "@ui/base/tabs.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-tabs",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-tabs" role="tablist">
       @for (tab of tabs(); track tab.id) {
@@ -25,7 +25,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           (click)="select(tab)"
         >
           @if (tab.icon) {
-            <app-icon [icon]="tab.icon" class="ili-tab-icon" />
+            <ili-icon [icon]="tab.icon" class="ili-tab-icon" />
           }
           <span class="ili-tab-label">{{ tab.label }}</span>
           @if (tab.badge && tab.badge > 0) {

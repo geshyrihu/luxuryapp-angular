@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { StatusBadgeBase } from "@ui/base/status-badge.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-status-badge",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <span
       class="ili-status-badge"
@@ -16,7 +16,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       (click)="onStatusClick()"
     >
       @if (showIcon()) {
-        <app-icon [icon]="getIcon()" class="ili-status-badge-icon" />
+        <ili-icon [icon]="getIcon()" class="ili-status-badge-icon" />
       }
       {{ getStatusText() }}
     </span>

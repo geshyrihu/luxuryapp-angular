@@ -1,11 +1,11 @@
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { TagInputBase } from "@ui/base/tag-input.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-tag-input",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-tag-root">
       @if (label()) {
@@ -21,7 +21,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               class="ili-tag-chip-x"
               (click)="removeTag(tag)"
             >
-              <app-icon icon="material-symbols-light:close" />
+              <ili-icon icon="material-symbols-light:close" />
             </button>
           </span>
         }

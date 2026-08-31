@@ -5,12 +5,12 @@ import {
   IonSelectOption,
 } from "@ionic/angular/standalone";
 import { PaginatorBase } from "@ui/base/paginator.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-paginator",
 
-  imports: [IonButton, IonSelect, IonSelectOption, AppIcon],
+  imports: [IonButton, IonSelect, IonSelectOption, AppIconMobile],
   template: `
     <div class="ili-paginator">
       <div class="ili-paginator-info">
@@ -25,7 +25,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             [disabled]="isFirstPage()"
             (click)="onPageChange(0)"
           >
-            <app-icon icon="material-symbols-light:first-page" />
+            <ili-icon icon="material-symbols-light:first-page" />
           </ion-button>
         }
 
@@ -35,7 +35,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           [disabled]="isFirstPage()"
           (click)="onPageChange(page() - 1)"
         >
-          <app-icon icon="material-symbols-light:chevron-left" />
+          <ili-icon icon="material-symbols-light:chevron-left" />
         </ion-button>
 
         <span class="ili-paginator-current"
@@ -48,7 +48,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           [disabled]="isLastPage()"
           (click)="onPageChange(page() + 1)"
         >
-          <app-icon icon="material-symbols-light:chevron-right" />
+          <ili-icon icon="material-symbols-light:chevron-right" />
         </ion-button>
 
         @if (showFirstLast()) {
@@ -58,7 +58,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             [disabled]="isLastPage()"
             (click)="onPageChange(totalPages() - 1)"
           >
-            <app-icon icon="material-symbols-light:last-page" />
+            <ili-icon icon="material-symbols-light:last-page" />
           </ion-button>
         }
       </div>

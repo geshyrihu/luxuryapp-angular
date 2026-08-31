@@ -1,17 +1,17 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-confirm-dialog",
 
-  imports: [IonButton, AppIcon],
+  imports: [IonButton, AppIconMobile],
   template: `
     @if (visible()) {
       <div class="ili-confirm-backdrop" (click)="onCancel()">
         <div class="ili-confirm-sheet" (click)="$event.stopPropagation()">
-          <app-icon
+          <ili-icon
             [icon]="config().icon"
             class="ili-confirm-icon"
             [style.color]="config().color"

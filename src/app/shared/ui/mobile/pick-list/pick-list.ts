@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { PickListBase } from "@ui/base/pick-list.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-pick-list",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-pick-list">
       <div class="ili-pick-list-column">
@@ -21,7 +21,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 (click)="moveToTarget($index)"
                 title="Mover a destino"
               >
-                <app-icon icon="material-symbols-light:chevron-right" />
+                <ili-icon icon="material-symbols-light:chevron-right" />
               </button>
             </div>
           }
@@ -40,7 +40,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 (click)="moveToSource($index)"
                 title="Mover a origen"
               >
-                <app-icon icon="material-symbols-light:chevron-left" />
+                <ili-icon icon="material-symbols-light:chevron-left" />
               </button>
               <span class="ili-pick-list-label">{{
                 item.label || item.name || item

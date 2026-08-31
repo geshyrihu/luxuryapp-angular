@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonChip, IonLabel } from "@ionic/angular/standalone";
 import { ChipBase } from "@ui/base/chip.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 /**
  * MobileChip — Chip táctil sobre `ion-chip`. Icono/imagen opcional al inicio,
@@ -10,7 +10,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "ili-chip",
 
-  imports: [IonChip, IonLabel, AppIcon],
+  imports: [IonChip, IonLabel, AppIconMobile],
   template: `
     <ion-chip
       [color]="ionColor()"
@@ -21,7 +21,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       @if (image()) {
         <img class="ili-chip-img" [src]="image()" alt="" />
       } @else if (icon()) {
-        <app-icon [icon]="icon()" class="ili-chip-icon" />
+        <ili-icon [icon]="icon()" class="ili-chip-icon" />
       }
 
       <ion-label>{{ label() }}</ion-label>
@@ -33,7 +33,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           aria-label="Quitar"
           (click)="onRemove(); $event.stopPropagation()"
         >
-          <app-icon icon="material-symbols-light:cancel" />
+          <ili-icon icon="material-symbols-light:cancel" />
         </button>
       }
     </ion-chip>

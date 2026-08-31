@@ -1,16 +1,16 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { ConfirmPopupBase } from "@ui/base/confirm-popup.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-confirm-popup",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     @if (visible()) {
       <div class="ili-cp-backdrop" (click)="close()">
         <div class="ili-cp-sheet" (click)="$event.stopPropagation()">
-          <app-icon
+          <ili-icon
             [icon]="severityConfig().icon"
             class="ili-cp-icon"
             [style.color]="severityConfig().color"

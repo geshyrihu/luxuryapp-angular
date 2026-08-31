@@ -5,18 +5,18 @@ import {
 } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { EmptyStateBase } from "@ui/base/empty-state.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-empty-state",
 
-  imports: [IonButton, AppIcon],
+  imports: [IonButton, AppIconMobile],
   template: `
     <div class="ili-empty-state">
       @if (tag()) {
         <span class="ili-empty-tag">{{ tag() }}</span>
       }
-      <app-icon
+      <ili-icon
         [icon]="icon()"
         class="ili-empty-icon"
         [style.color]="iconColor()"
@@ -30,7 +30,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           size="small"
           (click)="action.emit()"
         >
-          <app-icon [icon]="actionIcon()" slot="start" />
+          <ili-icon [icon]="actionIcon()" slot="start" />
           {{ actionLabel() }}
         </ion-button>
       }

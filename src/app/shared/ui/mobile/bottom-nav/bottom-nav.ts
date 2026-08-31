@@ -1,13 +1,13 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { BottomNavBase } from "@ui/base/bottom-nav.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 export type { BottomNavItem } from "@ui/base/bottom-nav.base";
 
 @Component({
   selector: "ili-bottom-nav",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <nav class="bottom-nav" role="tablist" [attr.aria-label]="ariaLabel()">
       @for (item of items(); track item.id) {
@@ -20,7 +20,7 @@ export type { BottomNavItem } from "@ui/base/bottom-nav.base";
           (click)="select(item.id)"
         >
           <div class="bottom-nav-icon-wrap">
-            <app-icon
+            <ili-icon
               [icon]="
                 activeId() === item.id && item.activeIcon
                   ? item.activeIcon

@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonButton } from "@ionic/angular/standalone";
 import { StepperBase } from "@ui/base/stepper.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-stepper",
 
-  imports: [IonButton, AppIcon],
+  imports: [IonButton, AppIconMobile],
   template: `
     <div class="ili-stepper">
       <div class="ili-stepper-steps">
@@ -18,13 +18,13 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           >
             <div class="ili-stepper-indicator">
               @if (step.value < activeStep()) {
-                <app-icon icon="material-symbols-light:check" />
+                <ili-icon icon="material-symbols-light:check" />
               } @else {
                 <span>{{ step.value }}</span>
               }
             </div>
             @if (step.icon) {
-              <app-icon [icon]="step.icon" class="ili-stepper-step-icon" />
+              <ili-icon [icon]="step.icon" class="ili-stepper-step-icon" />
             }
             <span class="ili-stepper-step-label">{{ step.label }}</span>
           </div>
@@ -36,18 +36,18 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       <div class="ili-stepper-actions">
         @if (activeStep() > 1) {
           <ion-button fill="clear" color="medium" (click)="previous()">
-            <app-icon icon="material-symbols-light:arrow-back" slot="start" />
+            <ili-icon icon="material-symbols-light:arrow-back" slot="start" />
             Anterior
           </ion-button>
         }
         @if (activeStep() < lastStep()) {
           <ion-button (click)="next()">
             Siguiente
-            <app-icon icon="material-symbols-light:arrow-forward" slot="end" />
+            <ili-icon icon="material-symbols-light:arrow-forward" slot="end" />
           </ion-button>
         } @else {
           <ion-button color="success" (click)="finish.emit()">
-            <app-icon icon="material-symbols-light:check" slot="start" />
+            <ili-icon icon="material-symbols-light:check" slot="start" />
             {{ finishLabel() }}
           </ion-button>
         }

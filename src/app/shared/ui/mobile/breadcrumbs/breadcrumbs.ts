@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { BreadcrumbsBase } from "@ui/base/breadcrumbs.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-breadcrumbs",
 
-  imports: [RouterModule, AppIcon],
+  imports: [RouterModule, AppIconMobile],
   template: `
     <nav class="ili-bc">
       @if (home(); as h) {
@@ -15,9 +15,9 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           [routerLink]="h.routerLink"
           (click)="runCommand(h, $event)"
         >
-          <app-icon [icon]="iconName(h.icon) || 'material-symbols-light:home'" />
+          <ili-icon [icon]="iconName(h.icon) || 'material-symbols-light:home'" />
         </a>
-        <app-icon icon="material-symbols-light:chevron-right" class="ili-bc-sep" />
+          <ili-icon icon="material-symbols-light:chevron-right" class="ili-bc-sep" />
       }
       @for (item of items(); track $index; let last = $last) {
         <a
@@ -27,12 +27,12 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           (click)="runCommand(item, $event)"
         >
           @if (item.icon) {
-            <app-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" />
+            <ili-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" />
           }
           {{ item.label }}
         </a>
         @if (!last) {
-          <app-icon icon="material-symbols-light:chevron-right" class="ili-bc-sep" />
+        <ili-icon icon="material-symbols-light:chevron-right" class="ili-bc-sep" />
         }
       }
     </nav>

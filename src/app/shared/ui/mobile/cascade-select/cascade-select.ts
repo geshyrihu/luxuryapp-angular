@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { CascadeSelectBase } from "@ui/base/cascade-select.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 interface FlatOption {
   label: string;
@@ -11,12 +11,12 @@ interface FlatOption {
 @Component({
   selector: "ili-cascade-select",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-cascade-select-root">
       <button class="ili-cascade-select-trigger" (click)="toggleOpen()">
         <span class="ili-cascade-select-label">{{ displayText() }}</span>
-        <app-icon icon="material-symbols-light:keyboard-arrow-down" />
+        <ili-icon icon="material-symbols-light:keyboard-arrow-down" />
       </button>
       @if (isOpen()) {
         <div class="ili-cascade-select-dropdown">
@@ -27,7 +27,7 @@ interface FlatOption {
             >
               <span>{{ option[optionLabel()] }}</span>
               @if (hasChildren(option)) {
-                <app-icon icon="material-symbols-light:chevron-right" />
+                <ili-icon icon="material-symbols-light:chevron-right" />
               }
             </div>
           }

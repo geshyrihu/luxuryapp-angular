@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { PullToRefreshBase } from "@ui/base/pull-to-refresh.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-pull-to-refresh",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div
       class="ptr-root"
@@ -16,7 +16,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       @if (pulling()) {
         <div class="ptr-indicator" [style.height.px]="pullDistance()">
           <div class="ptr-spinner" [class.ptr-spinning]="refreshing()">
-            <app-icon
+            <ili-icon
               [icon]="refreshing() ? 'material-symbols-light:arrow-downward' : 'material-symbols-light:arrow-downward'"
             />
           </div>

@@ -2,17 +2,17 @@ import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonButton, IonTextarea } from "@ionic/angular/standalone";
 import { CommentThreadBase } from "@ui/base/comment-thread.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-comment-thread",
 
-  imports: [FormsModule, IonButton, IonTextarea, AppIcon],
+  imports: [FormsModule, IonButton, IonTextarea, AppIconMobile],
   template: `
     <div class="ili-ct">
       @if (title()) {
         <h4 class="ili-ct-title">
-          <app-icon icon="material-symbols-light:forum-outline" />
+          <ili-icon icon="material-symbols-light:forum-outline" />
           {{ title() }}
           @if (comments().length > 0) {
             ({{ comments().length }})
@@ -22,7 +22,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
       @if (comments().length === 0) {
         <div class="ili-ct-empty">
-          <app-icon icon="material-symbols-light:comment-outline" class="text-2xl" />
+          <ili-icon icon="material-symbols-light:comment-outline" class="text-2xl" />
           <span>Sin comentarios aún. Sé el primero.</span>
         </div>
       } @else {
@@ -86,7 +86,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             [disabled]="!newText.trim() || submitting()"
             (click)="submitComment()"
           >
-            <app-icon icon="material-symbols-light:send" slot="start" />
+            <ili-icon icon="material-symbols-light:send" slot="start" />
             Comentar
           </ion-button>
         </div>

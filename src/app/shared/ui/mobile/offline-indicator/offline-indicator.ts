@@ -1,15 +1,15 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { OfflineIndicatorBase } from "@ui/base/offline-indicator.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-offline-indicator",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     @if (showBanner()) {
       <div class="offline-banner" [class.offline-banner-online]="online()">
-        <app-icon
+        <ili-icon
           [icon]="online() ? 'material-symbols-light:wifi' : 'material-symbols-light:wifi-off'"
           class="offline-icon"
         />

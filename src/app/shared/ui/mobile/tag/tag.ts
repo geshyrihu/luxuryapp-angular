@@ -4,12 +4,12 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { TagBase } from "@ui/base/tag.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-tag",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <span
       class="ili-tag"
@@ -20,7 +20,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       [attr.title]="tooltip()"
     >
       @if (icon()) {
-        <app-icon [icon]="icon()" class="ili-tag-icon" />
+        <ili-icon [icon]="icon()" class="ili-tag-icon" />
       }
       {{ displayValue() }}
     </span>

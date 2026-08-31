@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { DockBase } from "@ui/base/dock.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-dock",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-dock" [class.ili-dock-top]="position() === 'top'">
       @for (item of items(); track $index) {
@@ -15,7 +15,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           (click)="runCommand(item)"
         >
           @if (item.icon) {
-            <app-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="ili-dock-icon" />
+            <ili-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="ili-dock-icon" />
           }
           @if (item.label && position() !== "bottom") {
             <span class="ili-dock-label">{{ item.label }}</span>

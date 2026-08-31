@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { TreeBase, TreeNode } from "@ui/base/tree.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-tree",
 
-  imports: [CommonModule, AppIcon],
+  imports: [CommonModule, AppIconMobile],
   template: `
     <div class="ili-tree">
       @for (node of value(); track node.key || $index) {
@@ -27,7 +27,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               class="ili-tree-node-toggle"
               (click)="toggleNode(node); $event.stopPropagation()"
             >
-              <app-icon
+              <ili-icon
                 [icon]="
                   isExpanded(node) ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'
                 "
@@ -42,7 +42,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               class="ili-tree-checkbox"
               (click)="toggleCheck(node); $event.stopPropagation()"
             >
-              <app-icon
+              <ili-icon
                 [icon]="
                   isChecked(node)
                     ? 'material-symbols-light:check-box'
@@ -55,7 +55,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
           }
 
           @if (node.icon) {
-            <app-icon [icon]="node.icon" class="ili-tree-node-icon" />
+            <ili-icon [icon]="node.icon" class="ili-tree-node-icon" />
           }
 
           <span

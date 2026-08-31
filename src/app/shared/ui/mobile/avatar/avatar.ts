@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { AvatarBase } from "@ui/base/avatar.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 /**
  * MobileAvatar — Wrapper sobre `ion-avatar`. Prioridad image > label > icono.
@@ -9,7 +9,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "ili-avatar",
 
-  imports: [IonAvatar, AppIcon],
+  imports: [IonAvatar, AppIconMobile],
   template: `
     <ion-avatar
       [class]="'ili-avatar ' + styleClass()"
@@ -22,7 +22,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
       } @else if (label()) {
         <span class="ili-avatar-label">{{ label() }}</span>
       } @else if (icon()) {
-        <app-icon [icon]="icon()" class="ili-avatar-icon" />
+        <ili-icon [icon]="icon()" class="ili-avatar-icon" />
       }
     </ion-avatar>
   `,

@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SidebarBase } from "@ui/base/sidebar.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-sidebar",
 
-  imports: [RouterModule, AppIcon],
+  imports: [RouterModule, AppIconMobile],
   template: `
     @if (visible()) {
       <div class="ili-sidebar-backdrop" (click)="onBackdropClick()"></div>
@@ -22,7 +22,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               (click)="onHide()"
               aria-label="Cerrar"
             >
-              <app-icon icon="material-symbols-light:close" />
+              <ili-icon icon="material-symbols-light:close" />
             </button>
           }
         </div>

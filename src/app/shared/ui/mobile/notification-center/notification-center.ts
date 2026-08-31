@@ -1,14 +1,14 @@
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { NotificationCenterBase } from "@ui/base/notification-center.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-notification-center",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <button type="button" class="ili-nc-bell" (click)="open.set(true)">
-      <app-icon icon="material-symbols-light:notifications-outline" class="text-xl" />
+      <ili-icon icon="material-symbols-light:notifications-outline" class="text-xl" />
       @if (unreadCount() > 0) {
         <span class="ili-nc-badge">{{ unreadCount() }}</span>
       }
@@ -37,7 +37,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 [class.ili-nc-unread]="!item.read"
                 (click)="onItemClick(item); open.set(false)"
               >
-                <app-icon
+                <ili-icon
                   [icon]="item.icon"
                   class="text-lg"
                   [style.color]="
@@ -57,7 +57,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               </div>
             } @empty {
               <div class="ili-nc-empty">
-                <app-icon icon="material-symbols-light:notifications-off-outline" class="text-3xl" />
+                <ili-icon icon="material-symbols-light:notifications-off-outline" class="text-3xl" />
                 <span>Sin notificaciones</span>
               </div>
             }

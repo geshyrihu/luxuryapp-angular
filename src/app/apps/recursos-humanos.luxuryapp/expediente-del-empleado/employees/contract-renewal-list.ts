@@ -44,11 +44,14 @@ import { DialogSize } from "src/app/core/services/dialog-handler.service";
         <div class="header-actions">
           <p-button
             label="Actualizar"
-            icon="pi pi-refresh"
             (onClick)="loadRenewals(true)"
             [loading]="renewalService.isLoading()"
             styleClass="p-button-outlined"
-          />
+          >
+            <ng-template #icon>
+              <app-icon icon="material-symbols-light:refresh" />
+            </ng-template>
+          </p-button>
         </div>
       </div>
 
@@ -153,12 +156,12 @@ import { DialogSize } from "src/app/core/services/dialog-handler.service";
                 <button
                   pButton
                   type="button"
-                  icon="pi pi-eye"
                   class="p-button-text p-button-sm"
                   pTooltip="Ver detalles"
                   (click)="openDecisionModal(renewal)"
                   [disabled]="renewal.status === 'Decidido'"
                 >
+                  <app-icon icon="material-symbols-light:visibility" />
                 </button>
               </div>
             </td>

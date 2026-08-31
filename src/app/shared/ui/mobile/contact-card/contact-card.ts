@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { ContactCardBase, ContactSeverity } from "@ui/base/contact-card.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
   success: { bg: "var(--ds-success-light)", text: "var(--ds-success)" },
@@ -12,7 +12,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
 @Component({
   selector: "ili-contact-card",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div
       class="ili-contact-card"
@@ -49,7 +49,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
         }
         @if (company()) {
           <span class="ili-contact-company">
-            <app-icon icon="material-symbols-light:apartment" class="text-xs" />
+            <ili-icon icon="material-symbols-light:apartment" class="text-xs" />
             {{ company() }}
           </span>
         }
@@ -62,7 +62,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
             class="ili-contact-action"
             (click)="$event.stopPropagation()"
           >
-            <app-icon icon="material-symbols-light:mail-outline" />
+            <ili-icon icon="material-symbols-light:mail-outline" />
           </a>
         }
         @if (phone()) {
@@ -71,7 +71,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
             class="ili-contact-action"
             (click)="$event.stopPropagation()"
           >
-            <app-icon icon="material-symbols-light:call-outline" />
+            <ili-icon icon="material-symbols-light:call-outline" />
           </a>
         }
         <button
@@ -79,7 +79,7 @@ const SEVERITY_COLORS: Record<ContactSeverity, { bg: string; text: string }> = {
           class="ili-contact-action"
           (click)="$event.stopPropagation(); meetingClick.emit()"
         >
-          <app-icon icon="material-symbols-light:event-note" />
+          <ili-icon icon="material-symbols-light:event-note" />
         </button>
       </div>
     </div>

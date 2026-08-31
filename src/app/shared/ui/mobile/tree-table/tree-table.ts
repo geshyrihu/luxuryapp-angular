@@ -3,12 +3,12 @@ import { Component, ViewEncapsulation } from "@angular/core";
 import { IonButton, IonProgressBar } from "@ionic/angular/standalone";
 import { TreeNodeBase, TreeTableBase } from "@ui/base/tree-table.base";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-tree-table",
 
-  imports: [CommonModule, IonButton, IonProgressBar, AppIcon, MobileEmptyState],
+  imports: [CommonModule, IonButton, IonProgressBar, AppIconMobile, MobileEmptyState],
   template: `
     <div class="ili-tree-table-root">
       @if (headerTitle()) {
@@ -49,7 +49,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
                 size="small"
                 class="ili-tree-node-toggle"
               >
-                <app-icon
+                <ili-icon
                   [icon]="
                     node.expanded ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'
                   "
@@ -60,7 +60,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             }
 
             @if (node.icon) {
-              <app-icon [icon]="node.icon" class="ili-tree-node-icon" />
+              <ili-icon [icon]="node.icon" class="ili-tree-node-icon" />
             }
 
             <span

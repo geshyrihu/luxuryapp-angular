@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { RatingBase } from "@ui/base/rating.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-rating",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-rating-root">
       @if (label()) {
@@ -23,7 +23,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
             [disabled]="readonly() || disabled()"
             (click)="setValue(s)"
           >
-            <app-icon
+            <ili-icon
               [icon]="(value() ?? 0) >= s ? 'material-symbols-light:star' : 'material-symbols-light:star-outline'"
             />
           </button>

@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { ProfileCardBase } from "@ui/base/profile-card.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-profile-card",
 
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   template: `
     <div class="ili-profile-card" [class.ili-profile-compact]="compact()">
       <div class="ili-profile-avatar" [style.background]="avatarBg()">
@@ -39,19 +39,19 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         }
         @if (email()) {
           <a [href]="'mailto:' + email()" class="ili-profile-line">
-            <app-icon icon="material-symbols-light:mail-outline" class="text-xs" />
+            <ili-icon icon="material-symbols-light:mail-outline" class="text-xs" />
             {{ email() }}
           </a>
         }
         @if (phone()) {
           <a [href]="'tel:' + phone()" class="ili-profile-line">
-            <app-icon icon="material-symbols-light:call-outline" class="text-xs" />
+            <ili-icon icon="material-symbols-light:call-outline" class="text-xs" />
             {{ phone() }}
           </a>
         }
         @if (company()) {
           <span class="ili-profile-line">
-            <app-icon icon="material-symbols-light:apartment" class="text-xs" />
+            <ili-icon icon="material-symbols-light:apartment" class="text-xs" />
             {{ company() }}
           </span>
         }
@@ -65,7 +65,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               class="ili-profile-action"
               (click)="actionClick.emit(act.action)"
             >
-              <app-icon [icon]="act.icon" />
+              <ili-icon [icon]="act.icon" />
             </button>
           }
         </div>

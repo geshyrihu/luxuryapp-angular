@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { ProcessingOverlayBase } from "@ui/base/processing-overlay.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 /**
  * Overlay de procesamiento para mobile (Ionic).
@@ -8,7 +8,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
  */
 @Component({
   selector: "ili-processing-overlay",
-  imports: [AppIcon],
+  imports: [AppIconMobile],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (isProcessing()) {
@@ -18,7 +18,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         <div class="bg-white rounded-xl shadow-xl p-6 mx-3 w-full max-w-xs">
           <!-- Spinner -->
           <div class="animate-spin mb-3 inline-block w-full text-center">
-            <app-icon icon="material-symbols-light:progress-activity" class="text-2xl text-primary-500" />
+            <ili-icon icon="material-symbols-light:progress-activity" class="text-2xl text-primary-500" />
           </div>
 
           <!-- Mensaje principal -->

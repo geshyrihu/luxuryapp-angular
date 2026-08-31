@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { OrgChartBase, OrgChartNode } from "@ui/base/org-chart.base";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 
 @Component({
   selector: "ili-org-chart",
 
-  imports: [CommonModule, AppIcon],
+  imports: [CommonModule, AppIconMobile],
   template: `
     <div class="ili-org-chart">
       @for (node of value(); track $index) {
@@ -31,7 +31,7 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
               class="ili-org-node-toggle"
               (click)="toggleNode(node); $event.stopPropagation()"
             >
-              <app-icon
+              <ili-icon
                 [icon]="
                   isExpanded(node) ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'
                 "
