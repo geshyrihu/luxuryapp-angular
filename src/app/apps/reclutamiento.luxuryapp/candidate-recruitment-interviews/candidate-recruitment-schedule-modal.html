@@ -1,5 +1,13 @@
 <div class="md:p-3">
   <div class="font-semibold mb-3">{{ title() }}</div>
+  @if (hasExistingInterview) {
+  <div class="mb-3 p-3 border-1 blue-500 border-round surface-50">
+    <small class="block text-color-secondary">
+      Este candidato ya tiene una entrevista agendada. Al guardar, se cancelara
+      la cita actual y se creara una nueva con la fecha y hora indicadas.
+    </small>
+  </div>
+  }
   <form
     autocomplete="off"
     (ngSubmit)="onSubmit()"
@@ -17,13 +25,13 @@
         />
       </div>
       <div class="col-12 md:col-6">
-        <custom-input-time
+        <custom-input-time-signal
           [control]="form.controls['scheduledTime']"
           label="Hora de entrevista"
           placeholder="Selecciona hora"
         />
       </div>
-      } @if (action === 'schedule' || action === 'assign') {
+      } @if (action === 'send' || action === 'schedule' || action === 'assign') {
       <div class="col-12">
         <custom-input-select-signal
           [control]="form.controls['operationsInterviewAssignedToUserId']"

@@ -12,7 +12,6 @@
  * ============================================================================
  */
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,11 +19,15 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { BudgetProposalItemHistoryDTO } from "src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-propuesta/interfaces/budget-proposal.model";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 @Component({
   selector: "app-budget-history-dialog",
   imports: [CommonModule, TableModule, ApiDatePipe],

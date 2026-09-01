@@ -63,7 +63,9 @@
         <div class="col-12 md:col-6">
           <div class="card p-3 h-full">
             <small class="text-color-secondary block mb-1">Correo</small>
-            <div class="font-medium">{{ detail()?.email || "Sin registrar" }}</div>
+            <div class="font-medium">
+              {{ detail()?.email || "Sin registrar" }}
+            </div>
           </div>
         </div>
         <div class="col-12 md:col-6">
@@ -72,8 +74,8 @@
               >Fecha de nacimiento</small
             >
             <div class="font-medium">
-              {{ detail()?.birthDate ? (detail()?.birthDate | apiDate:'dd/MM/yyyy') :
-              "Sin registrar" }}
+              {{ detail()?.birthDate ? (detail()?.birthDate |
+              apiDate:'dd/MM/yyyy') : "Sin registrar" }}
             </div>
           </div>
         </div>
@@ -87,7 +89,9 @@
         </div>
         <div class="col-12 md:col-6">
           <div class="card p-3 h-full">
-            <small class="text-color-secondary block mb-1">Disponibilidad</small>
+            <small class="text-color-secondary block mb-1"
+              >Disponibilidad</small
+            >
             <div class="font-medium">
               {{ detail()?.availability || "Sin registrar" }}
             </div>
@@ -99,14 +103,16 @@
               >Expectativa salarial</small
             >
             <div class="font-medium">
-              {{ detail()?.salaryExpectation ? ("$" + detail()?.salaryExpectation) :
-              "Sin registrar" }}
+              {{ detail()?.salaryExpectation ? ("$" +
+              detail()?.salaryExpectation) : "Sin registrar" }}
             </div>
           </div>
         </div>
         <div class="col-12">
           <div class="card p-3 h-full">
-            <small class="text-color-secondary block mb-1">Direccion actual</small>
+            <small class="text-color-secondary block mb-1"
+              >Direccion actual</small
+            >
             <div class="font-medium">
               {{ detail()?.currentAddress || "Sin registrar" }}
             </div>
@@ -150,8 +156,9 @@
               {{ exp.jobPosition }} — {{ exp.companyName }}
             </div>
             <div class="text-sm text-color-secondary">
-              {{ exp.startDate | apiDate:'MM/yyyy' }} - {{ exp.endDate ? (exp.endDate | apiDate:'MM/yyyy') : 'Actual' }} @if (exp.departureReason) { · {{
-              exp.departureReason }} }
+              {{ exp.startDate | apiDate:'MM/yyyy' }} - {{ exp.endDate ?
+              (exp.endDate | apiDate:'MM/yyyy') : 'Actual' }} @if
+              (exp.departureReason) { · {{ exp.departureReason }} }
             </div>
           </div>
           }
@@ -167,7 +174,6 @@
       Acción pendiente: {{ pendingAction }}
     </span>
     }
-    <il-button label="Cerrar" severity="secondary" (clicked)="close()" />
     <il-button
       label="Responder entrevista"
       iconClass="material-symbols-light:more"

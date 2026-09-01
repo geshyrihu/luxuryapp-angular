@@ -17,6 +17,7 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -41,6 +42,7 @@ import { CandidateRecruitmentInterviewsService } from "./candidate-recruitment-i
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     CustomInputDateSignal,
+    CustomInputTime,
     WebButtonLabel,
     WebButtonLabelSave,
   ],
@@ -56,11 +58,16 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   readonly cb_interviewers = signal<SelectItemDto[]>([]);
 
   readonly item: CandidateRecruitmentInterviewBoardItem = this.config.data.item;
-  readonly action: RecruitmentBoardAction = this.config.data.action;
-  readonly customerId: string = this.config.data.customerId;
   readonly requestPositionId: string = this.config.data.requestPositionId;
   readonly scheduleTargetId =
     this.item.candidateProcessId || this.item.candidateApplicationId;
+
+  readonly hasExistingInterview = !!this.item.interviewId;
+  readonly effectiveAction: RecruitmentBoardAction =
+    this.config.data.action === "send" && this.hasExistingInterview
+      ? "reschedule"
+      : this.config.data.action;
+  readonly action = this.effectiveAction;
 
   readonly form: FormGroup = new FormGroup({
     scheduledDate: new FormControl<string | null>(null, {
@@ -74,21 +81,26 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   });
 
   readonly title = computed(() => {
+    const name = this.item.candidateName;
+    if (this.config.data.action === "send" && this.hasExistingInterview)
+      return `Actualizar entrevista - ${name}`;
     switch (this.action) {
       case "send":
-        return `Enviar a entrevista - ${this.item.candidateName}`;
+        return `Enviar a entrevista - ${name}`;
       case "schedule":
-        return `Agendar cita - ${this.item.candidateName}`;
+        return `Agendar cita - ${name}`;
       case "reschedule":
-        return `Reagendar cita - ${this.item.candidateName}`;
+        return `Reagendar cita - ${name}`;
       case "assign":
-        return `Cambiar entrevistador - ${this.item.candidateName}`;
+        return `Cambiar entrevistador - ${name}`;
       default:
         return "Gestionar entrevista";
     }
   });
 
   readonly submitLabel = computed(() => {
+    if (this.config.data.action === "send" && this.hasExistingInterview)
+      return "Actualizar entrevista";
     switch (this.action) {
       case "send":
         return "Enviar a entrevista";
@@ -129,10 +141,18 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
       this.item.assignedInterviewerUserId || null,
     );
 
-    // El entrevistador es obligatorio al agendar (primera vez) y al cambiarlo
-    // sobre una entrevista ya activa. "Reagendar" solo toca la fecha y
-    // conserva el entrevistador ya asignado, por eso no exige el campo.
-    if (this.action === "schedule" || this.action === "assign") {
+    // El entrevistador es obligatorio al agendar (primera vez), enviar a
+    // entrevista y al cambiarlo sobre una entrevista ya activa. "Reagendar"
+    // solo toca la fecha y conserva el entrevistador ya asignado, pero si
+    // viene de un auto-switch (send→reschedule) también cargamos la lista
+    // para que el usuario pueda cambiarlo si desea.
+    const needsInterviewers =
+      this.action === "send" ||
+      this.action === "schedule" ||
+      this.action === "assign" ||
+      (this.action === "reschedule" && this.config.data.action === "send");
+
+    if (needsInterviewers) {
       this.form.controls["operationsInterviewAssignedToUserId"].setValidators(
         Validators.required,
       );
@@ -190,8 +210,13 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
   }
 
   isInterviewerSelectionBlocked(): boolean {
+    const isSendOrSchedule =
+      this.action === "send" ||
+      this.action === "schedule" ||
+      this.action === "assign" ||
+      (this.action === "reschedule" && this.config.data.action === "send");
     return (
-      (this.action === "schedule" || this.action === "assign") &&
+      isSendOrSchedule &&
       (this.loadingInterviewers() ||
         this.cb_interviewers().length === 0 ||
         !this.form.controls["operationsInterviewAssignedToUserId"].value)
@@ -231,6 +256,8 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
         comment,
         scheduledDate,
         scheduledTime,
+        operationsInterviewAssignedToUserId:
+          this.form.controls["operationsInterviewAssignedToUserId"].value,
       };
       return this.boardS.sendToInterview(this.scheduleTargetId, payload);
     }

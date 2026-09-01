@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,6 +13,7 @@ import { DataGrid, DataGridColumn } from "@ui/web/data-grid/data-grid";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IAnnouncementAnalyticsDTO } from "./announcement.model";
 @Component({

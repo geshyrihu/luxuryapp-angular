@@ -1,5 +1,4 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,6 +24,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DateService } from "src/app/core/services/date.service";
 import { ReportService } from "src/app/core/services/report.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 

@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { Component, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
@@ -33,6 +32,7 @@ import {
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { PurchaseRequestForm } from "./purchase-request-form";
 

@@ -1,5 +1,4 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,11 +11,18 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { IAnnouncementList } from "./announcement.model";
 @Component({
   selector: "app-announcement-list",
-  imports: [CommonModule, ApiDatePipe, RouterModule, LxTooltipDirective, AppIcon],
+  imports: [
+    CommonModule,
+    ApiDatePipe,
+    RouterModule,
+    LxTooltipDirective,
+    AppIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-list.html",
 })

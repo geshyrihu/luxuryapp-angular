@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,11 +7,12 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
-import { AppSpinner } from "@ui/web/spinner/spinner";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
+import { AppSpinner } from "@ui/web/spinner/spinner";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-report-meeting",

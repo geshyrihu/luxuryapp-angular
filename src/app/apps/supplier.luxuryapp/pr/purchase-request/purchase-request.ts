@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";

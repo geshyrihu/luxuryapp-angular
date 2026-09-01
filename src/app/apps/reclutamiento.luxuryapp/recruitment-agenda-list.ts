@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,6 +25,7 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import Swal from "sweetalert2";
 import { CandidateRecruitmentAgendaItem } from "./candidate-application/interfaces/candidate-application";
 import { CandidateStageBadge } from "./recruitment-shared/candidate-stage-badge";

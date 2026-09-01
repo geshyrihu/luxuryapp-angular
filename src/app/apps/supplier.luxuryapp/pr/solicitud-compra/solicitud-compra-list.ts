@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -36,6 +35,7 @@ import {
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { SolicitudCompraService } from "src/app/core/services/solicitud-compra.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 import { PurchaseLinkManager } from "../../po/purchase-link-manager/purchase-link-manager";

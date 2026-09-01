@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,6 +13,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { BrevoEmailLogDto } from "./interfaces/brevo-email-log.interface";
 import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";

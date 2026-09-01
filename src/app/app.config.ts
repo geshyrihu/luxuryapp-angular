@@ -51,8 +51,8 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { providePrimeNG, type PrimeNGConfigType } from "primeng/config";
 import { DialogService } from "primeng/dynamicdialog";
 // Importaciones de Archivos del Proyecto
-import { jwtInterceptor } from "src/app/core/http/interceptors/jwt.interceptor.fn";
 import { imageFormDataInterceptor } from "src/app/core/http/interceptors/image-form-data.interceptor.fn";
+import { jwtInterceptor } from "src/app/core/http/interceptors/jwt.interceptor.fn";
 import { offlineInterceptorFn } from "src/app/core/http/interceptors/offline.interceptor.fn";
 import { preloadIconifyIcons } from "src/app/core/services/icon-preload.service";
 import { MessagingService } from "src/app/core/services/notification-messaging.service";
@@ -60,6 +60,7 @@ import { PrimeNgSpanishLocale } from "src/app/mypreset";
 import { LuxuryPreset } from "src/styles/theme/mypreset";
 import { initializeAppState } from "./app-initializer";
 import { appRoutes } from "./app.routes";
+import { registerIonicons } from "./core/services/ionicons-registry";
 // Registrar datos locales para el pipe de fecha en español
 registerLocaleData(localeEs);
 
@@ -92,6 +93,7 @@ export const appConfig: ApplicationConfig = {
 
     provideAppInitializer(initializeAppState),
     provideAppInitializer(preloadIconifyIcons()),
+    provideAppInitializer(registerIonicons()),
 
     provideHttpClient(
       withInterceptors([

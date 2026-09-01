@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,6 +11,7 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DashboardStatsDto } from "src/app/core/interfaces/dashboard-stats.dto";
 import { OccupancyDto } from "src/app/core/interfaces/occupancy.dto";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 @Component({
   selector: "app-access-dashboard",

@@ -1,5 +1,4 @@
 import { CurrencyPipe } from "@angular/common";
-import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,6 +16,7 @@ import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import {
   CandidateRecruitmentInterviewBoard,
   CandidateRecruitmentInterviewBoardItem,

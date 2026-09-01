@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -30,6 +29,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { ProductEntryForm } from "./product-entry-form";
 
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";

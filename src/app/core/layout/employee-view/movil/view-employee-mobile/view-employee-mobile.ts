@@ -1,4 +1,9 @@
-import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import {
   IonApp,
@@ -10,13 +15,13 @@ import {
   MenuController,
 } from "@ionic/angular/standalone";
 import { LxLoader } from "@ui/adaptive/loader/loader";
+import { PanicButton } from "src/app/apps/operations.luxuryapp/panic-alert/panic-button/panic-button";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";
 import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
 import { FooterEmployeeMobile } from "../footer-employee-mobile/footer-employee-mobile";
 import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
-import { PanicButton } from "src/app/apps/operations.luxuryapp/panic-alert/panic-button/panic-button";
 @Component({
   selector: "app-view-employee-mobile",
   imports: [
@@ -73,4 +78,3 @@ export class ViewEmployeeMobile implements OnInit {
     return this.layout.config.settings.sidebar_type + "";
   }
 }
-

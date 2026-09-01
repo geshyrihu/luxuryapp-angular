@@ -1,5 +1,4 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,6 +11,7 @@ import { Router, RouterModule } from "@angular/router";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";

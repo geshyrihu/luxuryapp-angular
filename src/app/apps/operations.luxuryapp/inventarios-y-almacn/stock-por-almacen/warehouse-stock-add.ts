@@ -45,7 +45,7 @@ interface IWarehouseStockRowForm {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { TableLazyLoadEvent } from "@ui/web/primeng-table/primeng-table";
-import { PrimeNgCustomCaption } from "../../../../shared/ui/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomCaption } from "src/app/shared/ui/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
   selector: "app-warehouse-stock-add",

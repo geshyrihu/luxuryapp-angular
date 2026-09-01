@@ -12,9 +12,9 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import Swal from "sweetalert2";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
@@ -27,8 +27,10 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { WebButtonLabelActiveDesactive } from "src/app/shared/ui/buttons";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import { CandidateProcessHiringModal } from "../../candidate-application/candidate-process-hiring-modal";
+import Swal from "sweetalert2";
+import { CandidateApplicationForm } from "../../candidate-application/candidate-application-form";
 import { CandidateDetail } from "../candidate-detail";
 
 interface FormerEmployeeTalentPoolItem {
@@ -66,11 +68,13 @@ interface FormerEmployeeCandidateResult {
     CommonModule,
     CustomInputSelectSignal,
     InputTextModule,
+    PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
     PrimeNgCustomTableFooter,
     ReactiveFormsModule,
     TableModule,
     WebButtonLabel,
+    WebButtonLabelActiveDesactive,
   ],
 })
 export class FormerEmployeeTalentPool implements OnInit {
@@ -85,8 +89,11 @@ export class FormerEmployeeTalentPool implements OnInit {
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
-  readonly globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
+  readonly globalFilterFields = computed(() =>
+    globalFilterFields(this.dataSignal()),
+  );
   readonly totalRecords = signal(0);
+  readonly employeeState = signal<boolean>(false);
 
   ngOnInit(): void {
     void this.loadCustomers();
@@ -106,19 +113,24 @@ export class FormerEmployeeTalentPool implements OnInit {
 
   async onLoadData(): Promise<void> {
     this.loading.set(true);
-    const params: { page: number; recordsNumber: number; customerId?: string } = {
+    const params: {
+      page: number;
+      recordsNumber: number;
+      customerId?: string;
+      isActive?: boolean;
+    } = {
       page: 1,
       recordsNumber: 300,
+      isActive: this.employeeState(),
     };
     const customerId = this.customerControl.value;
     if (customerId) {
       params.customerId = customerId;
     }
 
-    const response = await this.apiResponseS.onGetPaged<FormerEmployeeTalentPoolItem[]>(
-      EndpointsReclutamiento.Candidates.formerEmployees,
-      params,
-    );
+    const response = await this.apiResponseS.onGetPaged<
+      FormerEmployeeTalentPoolItem[]
+    >(EndpointsReclutamiento.Candidates.formerEmployees, params);
 
     this.loading.set(false);
     if (!response) return;
@@ -128,6 +140,11 @@ export class FormerEmployeeTalentPool implements OnInit {
   }
 
   async onCustomerChange(): Promise<void> {
+    await this.onLoadData();
+  }
+
+  async onSelectActive(active: boolean): Promise<void> {
+    this.employeeState.set(active);
     await this.onLoadData();
   }
 
@@ -159,12 +176,10 @@ export class FormerEmployeeTalentPool implements OnInit {
     if (!candidateId) return;
 
     await this.dialogHandlerS.openDialog(
-      CandidateProcessHiringModal,
+      CandidateApplicationForm,
       {
         id: "",
         candidateId,
-        candidateFirstName: item.firstName,
-        candidateLastName: item.lastName,
         allowCreateCandidate: false,
       },
       `Postular a vacante - ${item.fullName}`,
@@ -174,13 +189,18 @@ export class FormerEmployeeTalentPool implements OnInit {
     await this.onLoadData();
   }
 
-  private async ensureCandidate(item: FormerEmployeeTalentPoolItem): Promise<string | null> {
+  private async ensureCandidate(
+    item: FormerEmployeeTalentPoolItem,
+  ): Promise<string | null> {
     if (item.candidateId) return item.candidateId;
 
-    const result = await this.apiResponseS.onPost<FormerEmployeeCandidateResult>(
-      EndpointsReclutamiento.Candidates.ensureFromFormerEmployee(item.employeeId),
-      {},
-    );
+    const result =
+      await this.apiResponseS.onPost<FormerEmployeeCandidateResult>(
+        EndpointsReclutamiento.Candidates.ensureFromFormerEmployee(
+          item.employeeId,
+        ),
+        {},
+      );
 
     if (!result) return null;
 

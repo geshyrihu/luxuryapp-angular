@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,6 +13,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 // import { Subscription } from "rxjs"; // Removed
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";

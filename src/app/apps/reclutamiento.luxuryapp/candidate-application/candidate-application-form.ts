@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   inject,
   OnInit,
@@ -66,6 +67,7 @@ export class CandidateApplicationForm implements OnInit {
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
   dialogHandlerS = inject(DialogHandlerService);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   id: string = "";
   candidateProcessId: string = "";
@@ -81,6 +83,7 @@ export class CandidateApplicationForm implements OnInit {
   cb_interviewers = signal<SelectItemDto[]>([]);
   loadingInterviewers = signal(false);
   readonly originalWorkExperienceIds = signal<string[]>([]);
+  readonly initialized = signal(false);
   readonly minDate = new Date();
 
   form: FormGroup = new FormGroup({
@@ -163,6 +166,9 @@ export class CandidateApplicationForm implements OnInit {
       );
     }
     if (this.editingId) this.onLoadData();
+
+    this.initialized.set(true);
+    this.cdr.markForCheck();
   }
 
   async onLoadSelectItems(): Promise<void> {

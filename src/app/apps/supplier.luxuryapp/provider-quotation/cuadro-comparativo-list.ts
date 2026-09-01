@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   Component,
   effect,
@@ -10,12 +9,12 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { AppImage } from "@ui/web/image/image";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -25,7 +24,10 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import Swal from "sweetalert2";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";

@@ -1,5 +1,4 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,10 +13,10 @@ import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { PageTitleReportMaintenance } from "@ui/web/title-page-report-maintenance/page-title-report-maintenance";
 import * as FileSaver from "file-saver";
-import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -25,6 +24,7 @@ import { Medidor } from "src/app/core/interfaces/medidor.interface";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DateService } from "src/app/core/services/date.service";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 interface IExecutiveReportFilters {
   medidorIds: FormControl<string[]>;
@@ -245,8 +245,11 @@ export class ReportConsumos {
       const worksheet = workbook.addWorksheet("data");
 
       if (dataToExport.length > 0) {
-        worksheet.columns = Object.keys(dataToExport[0]).map(key => ({ header: key, key }));
-        dataToExport.forEach(item => worksheet.addRow(item));
+        worksheet.columns = Object.keys(dataToExport[0]).map((key) => ({
+          header: key,
+          key,
+        }));
+        dataToExport.forEach((item) => worksheet.addRow(item));
       }
 
       const excelBuffer = await workbook.xlsx.writeBuffer();

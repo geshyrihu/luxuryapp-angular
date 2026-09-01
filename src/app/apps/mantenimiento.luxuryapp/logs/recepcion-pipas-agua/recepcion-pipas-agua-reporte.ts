@@ -1,5 +1,4 @@
 import { CommonModule, formatDate } from "@angular/common";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,6 +23,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
 import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";

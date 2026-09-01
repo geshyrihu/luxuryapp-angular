@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,6 +15,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { ReportService } from "src/app/core/services/report.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 @Component({
   selector: "app-reporte-ticket-pendientes-proveedor",
   templateUrl: "./reporte-ticket-pendientes-proveedor.html",

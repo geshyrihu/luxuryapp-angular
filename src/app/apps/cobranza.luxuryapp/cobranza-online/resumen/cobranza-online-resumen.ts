@@ -3,25 +3,20 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
-  signal,
 } from "@angular/core";
 import { PieChart } from "@ui/web/charts/pie-chart";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { SharedModule } from "../../../../shared/ui/web/primeng-api/primeng-api";
+import { SharedModule } from "src/app/shared/ui/web/primeng-api/primeng-api";
 import { ChargeTemplateForm } from "../../cobranza-nativa/core/charge-templates/charge-template-form";
 import { clasificarCuenta } from "../helpers/cobranza-clasificacion";
-import type { CobranzaOnlineDashboardResponse } from "../interfaces/cobranza-online-dashboard.model";
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "../state/cobranza-online-store.service";
 import {
@@ -31,12 +26,7 @@ import {
 
 @Component({
   selector: "app-cobranza-online-resumen",
-  imports: [
-    CommonModule,
-    TableModule,
-    SharedModule,
-    PieChart,
-  ],
+  imports: [CommonModule, TableModule, SharedModule, PieChart],
   templateUrl: "./cobranza-online-resumen.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -216,7 +206,6 @@ export class CobranzaOnlineResumen {
     };
   });
 
-
   readonly maintenanceMetrics = computed(() => {
     return this.dashboard()?.currentCharges?.maintenance;
   });
@@ -314,7 +303,7 @@ export class CobranzaOnlineResumen {
             this.currentYear(),
             this.currentMonth(),
             this.currentDay(),
-            true
+            true,
           );
         }
       });

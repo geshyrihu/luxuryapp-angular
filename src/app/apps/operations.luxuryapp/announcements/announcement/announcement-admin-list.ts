@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -34,6 +33,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { AnnouncementAdminForm } from "./announcement-admin-form";
 import { IAnnouncementAdminList } from "./announcement.model";

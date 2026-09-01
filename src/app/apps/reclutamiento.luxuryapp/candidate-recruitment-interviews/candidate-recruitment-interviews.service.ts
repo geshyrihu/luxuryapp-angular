@@ -22,11 +22,27 @@ export class CandidateRecruitmentInterviewsService {
     id: string,
     payload: ChangeStageApplicationRequest,
   ): Promise<boolean> {
-    const result = await this.apiResponseS.onPost<boolean>(
+    const stageChanged = await this.apiResponseS.onPost<boolean>(
       EndpointsReclutamiento.CandidateProcesses.changeStage(id),
       payload,
     );
-    return result ?? false;
+    if (!stageChanged) return false;
+
+    if (payload.scheduledDate && payload.scheduledTime) {
+      const scheduled = await this.apiResponseS.onPost<boolean>(
+        EndpointsReclutamiento.CandidateProcesses.schedule(id),
+        {
+          scheduledDate: payload.scheduledDate,
+          scheduledTime: payload.scheduledTime,
+          operationsInterviewAssignedToUserId:
+            payload.operationsInterviewAssignedToUserId || null,
+          comment: payload.comment || "",
+        },
+      );
+      return scheduled ?? false;
+    }
+
+    return true;
   }
 
   async schedule(

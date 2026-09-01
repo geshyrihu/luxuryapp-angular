@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +12,7 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { BackfillSelectionState } from "./interfaces/backfill-selection-state.interface";
 import { JuntaMensualSessionBackfillCandidate } from "./interfaces/junta-mensual-session-backfill-candidate.interface";
 
@@ -30,7 +30,6 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
     TableModule,
     LxTag,
     WebButtonLabel,
-
   ],
 })
 export class JuntasMensualesBackfill {

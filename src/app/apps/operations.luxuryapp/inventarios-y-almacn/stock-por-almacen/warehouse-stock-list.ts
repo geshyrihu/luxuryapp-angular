@@ -14,7 +14,6 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { ProductOutputForm } from "src/app/apps/operations.luxuryapp/inventarios-y-almacn/product-exit/product-output-form";
 import { TarjetaProducto } from "src/app/apps/supplier.luxuryapp/product/tarjeta-producto";
@@ -29,7 +28,10 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { ProductEntryForm } from "../product-entry/product-entry-form";
 import { WarehouseStockAdd } from "./warehouse-stock-add";
 import { WarehouseStockEdit } from "./warehouse-stock-edit";
@@ -38,7 +40,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { AppAvatar } from "../../../../shared/ui/web/avatar/avatar";
+import { AppAvatar } from "src/app/shared/ui/web/avatar/avatar";
 
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 

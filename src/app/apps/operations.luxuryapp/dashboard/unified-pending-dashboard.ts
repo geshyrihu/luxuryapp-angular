@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -31,6 +30,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { AiService } from "src/app/core/services/ai.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
@@ -42,10 +42,10 @@ import { MinutaDetalleForm } from "src/app/apps/direccion.luxuryapp/juntas-comit
 import { TicketLegalForm } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
 import { ServiceOrderForm } from "src/app/apps/operations.luxuryapp/field-service/service-order/service-order-form";
 import { SolicitudAltaStatusForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-alta/solicitud-alta-status-form";
-import { SolicitudBajaUpdateStatus } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-update-status";
-import { ModificacionSalarioForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/modificacion-salario-form";
 import { VacanteForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-vacante/vacante-form";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { SolicitudBajaUpdateStatus } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-update-status";
+import { ModificacionSalarioForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/modificacion-salario-form";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 

@@ -8,10 +8,12 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+} from "src/app/core/services/dialog-handler.service";
 import { EquipmentInspectionQrForm } from "./equipment-inspection-qr-form";
 import { EquipmentInspectionQrPrintService } from "./equipment-inspection-qr-print.service";
 import {
@@ -20,9 +22,9 @@ import {
 } from "./equipment-inspection.models";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { PrimeNgCustomCaption } from "../../../../shared/ui/web/primeng-custom-caption/primeng-custom-caption";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { PrimeNgCustomCaption } from "src/app/shared/ui/web/primeng-custom-caption/primeng-custom-caption";
 
 @Component({
   selector: "app-equipment-inspection-qr-list",

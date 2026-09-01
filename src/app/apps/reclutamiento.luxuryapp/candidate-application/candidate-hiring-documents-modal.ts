@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +12,7 @@ import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/recluta
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
 import { CandidateHiringDocumentDto } from "./interfaces/candidate-hiring-document.dto";
 import { CandidateHiringDocumentsDialogDataDto } from "./interfaces/candidate-hiring-documents-dialog-data.dto";

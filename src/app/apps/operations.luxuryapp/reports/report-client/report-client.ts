@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,6 +8,7 @@ import { ActivatedRoute } from "@angular/router";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 @Component({
   selector: "app-report-client",
   templateUrl: "./report-client.html",

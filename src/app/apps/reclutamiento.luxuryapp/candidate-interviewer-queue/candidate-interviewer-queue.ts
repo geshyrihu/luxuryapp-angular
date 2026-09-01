@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,6 +14,7 @@ import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
 import { CandidateInterviewFeedbackForm } from "../candidate-interview/candidate-interview-feedback-form";
 import { candidateDecisionLabel } from "../recruitment-shared/candidate-decision-labels";

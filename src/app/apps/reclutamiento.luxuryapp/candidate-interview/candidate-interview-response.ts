@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,6 +22,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AGENDA_STATUS_TAG_OPTIONS } from "../recruitment-shared/agenda-status-tag-options";
 import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
 import { MappedPTag } from "../recruitment-shared/mapped-p-tag";

@@ -1,5 +1,4 @@
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,6 +11,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";

@@ -31,7 +31,7 @@ import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileButtonLabel } from "../../../../shared/ui/buttons";
+import { MobileButtonLabel } from "src/app/shared/ui/buttons";
 
 @Component({
   selector: "app-lista-inspecciones",

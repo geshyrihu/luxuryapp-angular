@@ -1,18 +1,3 @@
-<section class="former-employee-pool">
-  <div class="pool-hero card">
-    <div>
-      <p class="eyebrow">Reingresos</p>
-      <h2>Pool de talento de ex-empleados</h2>
-      <p>
-        Consulta empleados inactivos y reutiliza su informacion para postularlos
-        nuevamente a una vacante sin recapturar la ficha desde cero.
-      </p>
-    </div>
-    <div class="hero-stat">
-      <span>{{ totalRecords() }}</span>
-      <small>ex-empleados</small>
-    </div>
-  </div>
 
   <p-table
     #dt
@@ -26,28 +11,39 @@
     [scrollable]="true"
     [scrollHeight]="scrollHeight()"
     [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
     [value]="dataSignal()"
   >
     <ng-template #caption>
-      <div class="pool-toolbar">
-        <div class="search-box">
-          <app-icon icon="material-symbols-light:search" />
-          <input
-            pInputText
-            type="text"
-            placeholder="Buscar por nombre, correo, telefono, cliente o puesto..."
-            (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+      <div class="flex flex-column lg:flex-row lg:align-items-center justify-content-between p-2 gap-3">
+        <!-- Parte Izquierda: Búsqueda -->
+        <div class="flex-grow-1">
+          <primeng-custom-caption
+            [dt]="dt"
+            [showAdd]="false"
+            [noPadding]="true"
+            [noMargin]="true"
           />
         </div>
-        <custom-input-select-signal
-          class="customer-filter"
-          label="Cliente"
-          [control]="customerControl"
-          [data]="customers()"
-          [filter]="true"
-          [noMargin]="true"
-          (selectionChange)="onCustomerChange()"
-        />
+
+        <!-- Parte Derecha: Filtros adicionales -->
+        <div class="flex flex-column sm:flex-row align-items-center gap-2">
+          <custom-input-select-signal
+            class="customer-filter"
+            label="Cliente"
+            [control]="customerControl"
+            [data]="customers()"
+            [filter]="true"
+            [noMargin]="true"
+            (selectionChange)="onCustomerChange()"
+          />
+          <div>
+            <il-button-active-desactive
+              [state]="employeeState()"
+              (stateChange)="onSelectActive($event)"
+            />
+          </div>
+        </div>
       </div>
     </ng-template>
 
@@ -79,12 +75,16 @@
       <tr>
         <td>
           <div class="font-semibold">{{ item.fullName }}</div>
-          <small class="text-color-secondary">{{ item.applicationUserId }}</small>
+          <small class="text-color-secondary"
+            >{{ item.applicationUserId }}</small
+          >
         </td>
         <td>{{ item.customerName || "Sin cliente" }}</td>
         <td>
           <div>{{ item.workPositionName || "Sin puesto" }}</div>
-          <small class="text-color-secondary">{{ item.workPositionFolio }}</small>
+          <small class="text-color-secondary"
+            >{{ item.workPositionFolio }}</small
+          >
         </td>
         <td>
           <div>{{ item.email }}</div>
@@ -93,22 +93,22 @@
         <td>{{ item.dateAdmission | date: "dd/MM/yyyy" }}</td>
         <td class="text-center">
           @if (item.hasCandidate) {
-            <span class="status-pill ready">Ya existe</span>
+          <span class="status-pill ready">Ya existe</span>
           } @else {
-            <span class="status-pill pending">Pendiente</span>
+          <span class="status-pill pending">Pendiente</span>
           }
         </td>
         <td>
-          <div class="actions">
+          <div class="flex gap-1 justify-content-center">
             @if (item.hasCandidate) {
-              <il-button
-                label="Ver candidato"
-                iconClass="material-symbols-light:person-search"
-                severity="secondary"
-                variant="outline"
-                size="sm"
-                (clicked)="onViewCandidate(item)"
-              />
+            <il-button
+              label="Ver candidato"
+              iconClass="material-symbols-light:person-search"
+              severity="secondary"
+              variant="outline"
+              size="sm"
+              (clicked)="onViewCandidate(item)"
+            />
             }
             <il-button
               label="Postular a vacante"
@@ -130,4 +130,4 @@
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
   </p-table>
-</section>
+

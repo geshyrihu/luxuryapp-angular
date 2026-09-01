@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,6 +10,7 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { CandidateInterviewResponseDto } from "../candidate-interview/interfaces/candidate-interview-response.dto";
 import { AGENDA_STATUS_TAG_OPTIONS } from "../recruitment-shared/agenda-status-tag-options";
 import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";

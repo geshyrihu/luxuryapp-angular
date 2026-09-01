@@ -1,6 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
-import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,13 +13,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { LxCard } from "@ui/adaptive/card/card";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import {
   ElevenLabsSettingsService,
@@ -22,6 +27,7 @@ import {
   ElevenLabsVoiceOption,
 } from "src/app/core/services/eleven-labs-settings.service";
 import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { ElevenLabsSettingsFormGroup } from "./interfaces/eleven-labs-settings.interface";
 
 @Component({

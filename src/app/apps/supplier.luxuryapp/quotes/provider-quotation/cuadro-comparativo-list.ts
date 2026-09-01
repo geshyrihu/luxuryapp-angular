@@ -1,5 +1,4 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -30,6 +29,7 @@ import {
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import Swal from "sweetalert2";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
