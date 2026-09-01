@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from "@angular/animations";
 import { HttpErrorResponse } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -8,7 +7,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
 import {
   AbstractControl,
   FormBuilder,
@@ -22,7 +20,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
-import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -45,61 +42,33 @@ interface IResetPasswordForm {
     AppIcon,
   ],
   template: `
-    <!-- Contenedor principal de la página de restablecer contraseña (Split Layout) -->
-    <div class="relative flex h-screen w-full overflow-hidden surface-ground">
-      <!-- =============================== -->
-      <!-- 1. FULL SCREEN BACKGROUND IMAGE -->
-      <!-- =============================== -->
-      <div class="absolute top-0 left-0 w-full h-full z-0 bg-black-alpha-90">
-        @for (image of visibleImages(); track image) {
-          <div
-            class="absolute top-0 left-0 w-full h-full"
-            [@slideAnimation]
-            [style.background-image]="'url(' + image + ')'"
-            style="background-size: cover; background-position: center; opacity: 0.9;"
-          ></div>
-        }
-        <div
-          class="absolute top-0 left-0 w-full h-full"
-          style="background: linear-gradient(135deg, rgba(27, 54, 93, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);"
-        ></div>
-      </div>
+    <!-- Página de restablecer contraseña — dos paneles claros -->
+    <div class="auth-two-panel">
+      <!-- Panel izquierdo: formulario -->
+      <div class="auth-panel-form">
+        <header class="px-4 md:px-6 py-4">
+          <img
+            src="assets/images/login/LBG-negro.png"
+            alt="Logo Luxury Building Group"
+            class="h-5rem w-auto"
+            width="266"
+            height="80"
+          />
+        </header>
 
-      <!-- =============================== -->
-      <!-- 2. CONTENT (OVER BACKGROUND)    -->
-      <!-- =============================== -->
-      <div class="relative z-10 flex w-full h-full">
-        <!-- Lado Izquierdo: Formulario -->
-        <div
-          class="w-full lg:w-5 flex flex-column align-items-center justify-content-center relative px-4 md:px-6 py-8 z-20 shadow-lg auth-dark-panel"
-        >
-          <!-- Barra superior dorada (Accent) -->
-          <div
-            class="absolute top-0 left-0 w-full h-1rem"
-            style="background-color: var(--ds-secondary);"
-          ></div>
+        <main class="flex-1 flex align-items-center px-4 md:px-6 py-6">
+          <div class="w-full mx-auto" style="max-width: 400px;">
+            <div class="auth-gold-tick mb-4"></div>
+            <h2
+              class="text-2xl font-bold mb-1 tracking-tight"
+              style="color: var(--ds-primary);"
+            >
+              Restablecer Contraseña
+            </h2>
+            @if (email()) {
+              <p class="text-base m-0 mb-5" style="color: var(--ds-text-secondary);">Para: {{ email() }}</p>
+            }
 
-          <div
-            class="w-full max-w-25rem relative z-10 fadein animation-duration-500"
-          >
-            <!-- Logo y Bienvenida -->
-            <div class="text-center mb-6">
-              <img
-                class="mx-auto mb-4 w-12rem md:w-15rem h-auto drop-shadow-md"
-                src="assets/images/login/LBG-blanco.png"
-                alt="Logo Luxury Building Group"
-                width="240"
-                height="92"
-              />
-              <h2 class="text-2xl md:text-3xl font-bold mb-2 tracking-tight">
-                Restablecer Contraseña
-              </h2>
-              @if (email()) {
-                <p class="text-base m-0 font-light">Para: {{ email() }}</p>
-              }
-            </div>
-
-            <!-- Formulario -->
             <form
               class="flex flex-column gap-4"
               [formGroup]="form"
@@ -140,8 +109,7 @@ interface IResetPasswordForm {
                   [disabled]="form.invalid || submitting()"
                   icon="material-symbols-light:lock-reset"
                   [fluid]="true"
-                  severity="warning"
-                  customClass="shadow"
+                  severity="primary"
                 />
               </div>
 
@@ -166,93 +134,55 @@ interface IResetPasswordForm {
                 <a
                   [routerLink]="['/auth/login']"
                   class="font-semibold text-sm transition-colors"
-                  style="color: var(--ds-secondary); text-decoration: none;"
+                  style="color: var(--ds-text-secondary); text-decoration: none;"
                 >
                   Volver al Login
                 </a>
               </div>
             </form>
           </div>
+        </main>
 
-          <!-- Footer / Copyright -->
-          <div
-            class="absolute bottom-0 left-0 w-full text-center pb-4 text-400 text-xs"
-          >
-            &copy; 2026 Luxury Building Group. Todos los derechos reservados.
-          </div>
-        </div>
+        <footer class="px-4 md:px-6 py-4 text-sm" style="color: var(--ds-text-secondary);">
+          &copy; 2026 Luxury Building Group. Todos los derechos reservados.
+        </footer>
+      </div>
 
-        <!-- Lado Derecho: Imagen y Branding (Oculto en pantallas pequeñas, visible en lg) -->
-        <div
-          class="hidden lg:flex lg:w-7 relative align-items-center justify-content-center"
-        >
-          <!-- Contenido Branding Flotante -->
-          <div
-            class="relative z-10 text-white max-w-30rem text-center fadein animation-duration-1000"
-          >
-            <div
-              class="mb-5 inline-flex align-items-center justify-content-center w-5rem h-5rem border-circle shadow-md"
-              style="background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2);"
-            >
-              <app-icon
-                icon="material-symbols-light:star"
-                class="text-4xl"
-                style="color: var(--ds-secondary);"
-              />
-            </div>
-            <h1
-              class="text-6xl font-bold mb-4 line-height-2 text-white drop-shadow-lg"
-            >
-              Excelencia <br />
-              <span style="color: var(--ds-secondary);">Inmobiliaria</span>
-            </h1>
-            <p
-              class="text-xl line-height-3 text-200 mt-4 px-4 font-light drop-shadow-md"
-            >
-              Gestiona recursos, proyectos y operaciones con la suite
-              tecnológica definitiva diseñada para líderes de la industria.
-            </p>
+      <!-- Panel derecho: marca (oculto en pantallas angostas) -->
+      <div class="auth-panel-brand">
+        <svg class="auth-brand-icon-watermark" viewBox="0 0 512 512" fill="none">
+          <rect x="60" y="60" width="392" height="392" rx="8" stroke="#003152" stroke-width="16"/>
+          <path d="M150 400 V220 L256 130 L362 220" stroke="#003152" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M160 260 L340 200 M160 300 L340 240 M160 340 L340 280 M160 380 L340 320" stroke="#003152" stroke-width="14" stroke-linecap="round"/>
+        </svg>
+        <div class="relative text-center px-6" style="max-width: 460px; z-index: 1;">
+          <div class="auth-brand-badge mx-auto">
+            <app-icon icon="material-symbols-light:apartment" class="text-2xl" style="color: var(--ds-primary);" />
           </div>
+          <!-- Slogan provisional: pendiente de definición final del negocio. -->
+          <h2 class="text-5xl font-extrabold mb-3" style="color: var(--ds-primary); line-height: 1.15;">
+            Excelencia <span style="color: var(--ds-warning);">Inmobiliaria</span>
+          </h2>
+          <p class="text-base line-height-3" style="color: var(--ds-text-secondary);">
+            Gestiona recursos, proyectos y operaciones con la suite tecnológica
+            definitiva diseñada para líderes de la industria.
+          </p>
         </div>
       </div>
     </div>
   `,
-  styles: [
-    `
-      :host {
-        display: block;
-        height: 100vh;
-        width: 100vw;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger("slideAnimation", [
-      transition(":enter", [
-        style({ opacity: 0 }),
-        animate("1500ms ease-in-out", style({ opacity: 1 })),
-      ]),
-      transition(":leave", [
-        animate("1500ms ease-in-out", style({ opacity: 0 })),
-      ]),
-    ]),
-  ],
 })
 export class ResetPassword implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private dataConnectorS = inject(DataConnectorService);
-  private sliderService = inject(LoginSliderService);
 
   token = signal("");
   email = signal("");
   submitting = signal(false);
   errorMessage = signal("");
-  visibleImages = toSignal(this.sliderService.getVisibleImages$(), {
-    initialValue: [],
-  });
   private destroy$ = new Subject<void>();
 
   form: FormGroup<IResetPasswordForm> = this.fb.group(
@@ -291,8 +221,6 @@ export class ResetPassword implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
-  // private initializeSlider(): void { ... } // Removed
 
   passwordMatchValidator(control: AbstractControl) {
     const password = control.get("newPassword")?.value;

@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from "@angular/animations";
 import { HttpErrorResponse } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -6,7 +5,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
   FormControl,
@@ -18,7 +16,6 @@ import { Router, RouterModule } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { catchError, finalize, throwError } from "rxjs";
-import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
@@ -43,17 +40,6 @@ interface ICodeForm {
 @Component({
   selector: "app-recovery-code",
   templateUrl: "./recovery-code.html",
-  animations: [
-    trigger("slideAnimation", [
-      transition(":enter", [
-        style({ opacity: 0 }),
-        animate("1500ms ease-in-out", style({ opacity: 1 })),
-      ]),
-      transition(":leave", [
-        animate("1500ms ease-in-out", style({ opacity: 0 })),
-      ]),
-    ]),
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
@@ -68,7 +54,6 @@ export class RecoveryCode {
   apiResponseS = inject(ApiResponseService);
   dataConnectorS = inject(DataConnectorService);
   formB = inject(FormBuilder);
-  sliderService = inject(LoginSliderService);
   private router = inject(Router);
 
   /** Paso del flujo: identificador → código (RN-CRED-010). */
@@ -78,10 +63,6 @@ export class RecoveryCode {
   submitting = signal(false);
   countdown = signal(0);
   private countdownInterval?: ReturnType<typeof setInterval>;
-
-  visibleImages = toSignal(this.sliderService.getVisibleImages$(), {
-    initialValue: [],
-  });
 
   formIdentifier: FormGroup<IIdentifierForm> = this.formB.group({
     identifier: new FormControl("", {

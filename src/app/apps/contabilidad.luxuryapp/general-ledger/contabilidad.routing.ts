@@ -232,6 +232,17 @@ export const CONTABILIDAD_ROUTES: Routes = [
   },
 
   {
+    path: "mock-aspel",
+    loadChildren: () =>
+      import("../mock-aspel/mock-aspel.routes").then((m) => m.MOCK_ASPEL_ROUTES),
+    canActivate: [authGuard],
+    data: {
+      title: "Simulador Aspel COI",
+      breadcrumb: "Mock Aspel",
+    },
+  },
+
+  {
     path: "espejo-aspel-full",
     loadComponent: () =>
       import("./espejo-aspel-full/espejo-aspel-full").then(

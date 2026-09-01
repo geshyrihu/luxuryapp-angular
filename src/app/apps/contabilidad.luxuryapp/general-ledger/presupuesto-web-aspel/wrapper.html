@@ -130,6 +130,16 @@
           class="w-15rem"
         />
 
+         <!-- Botón para navegar a la guía del módulo -->
+         <iw-button
+           iconClass="material-symbols-light:menu_book"
+           label="Guía del Módulo"
+           ngbTooltip="Abrir guía de flujo y componentes del módulo"
+           variant="outline"
+           severity="info"
+           (clicked)="this.openModuleGuide()"
+         />
+
         <div class="flex align-items-center gap-1" role="toolbar">
           @if (activeTabValue() === 'presupuesto') {
           <iw-button

@@ -1,5 +1,3 @@
-import { animate, style, transition, trigger } from "@angular/animations";
-import { NgOptimizedImage } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -27,7 +25,6 @@ import { catchError, finalize, of, startWith, switchMap } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
 import { SecurityService } from "src/app/core/auth/services/security.service";
 import { UserTokenDto } from "src/app/core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
@@ -39,17 +36,6 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-login",
   templateUrl: "./login.html",
-  animations: [
-    trigger("slideAnimation", [
-      transition(":enter", [
-        style({ opacity: 0 }),
-        animate("1500ms ease-in-out", style({ opacity: 1 })),
-      ]),
-      transition(":leave", [
-        animate("1500ms ease-in-out", style({ opacity: 0 })),
-      ]),
-    ]),
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
@@ -59,7 +45,6 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     CustomInputCheckSignal,
     CustomInputTextSignal,
     CustomInputPassword,
-    NgOptimizedImage,
     AppIcon,
   ],
 })
@@ -74,15 +59,11 @@ export class LoginComponent implements OnInit {
   private customerIdS = inject(CustomerIdService);
   private loaderService = inject(LoaderService);
   private consoleLogger = inject(ConsoleLoggerService);
-  private sliderService = inject(LoginSliderService);
   private destroyRef = inject(DestroyRef);
 
   public readonly loading = signal(false);
   public readonly errorMessage = signal("");
   public show: boolean = false;
-  public sliderImages = toSignal(this.sliderService.getVisibleImages$(), {
-    initialValue: [],
-  });
   loginForm: FormGroup = this.formBuilder.group({
     userName: ["", [Validators.required]],
     password: ["", [Validators.required]],

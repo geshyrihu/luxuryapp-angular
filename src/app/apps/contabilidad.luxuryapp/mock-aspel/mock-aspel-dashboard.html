@@ -1,0 +1,400 @@
+<section class="mock-aspel-shell">
+  <header class="control-header">
+    <div>
+      <p class="eyebrow">Aspel COI · Entorno de pruebas</p>
+      <h1>Mesa de control contable</h1>
+      <p class="lede">
+        Consulta el libro auxiliar y confirma el efecto de cada póliza sobre los
+        saldos.
+      </p>
+    </div>
+    <a routerLink="nueva-poliza" class="new-policy-link">
+      <app-icon icon="material-symbols-light:add-notes" /> Nueva póliza
+    </a>
+    <button type="button" class="sync-button" (click)="openSyncPanel()">
+      <app-icon icon="material-symbols-light:sync" /> Sincronizar datos reales
+    </button>
+  </header>
+
+  <div class="filter-rail">
+    <label
+      >Año
+      <input
+        type="number"
+        [ngModel]="year()"
+        (ngModelChange)="onYearChanged($event)"
+        min="2000"
+        max="2100"
+    /></label>
+    <label
+      >Periodo
+      <select [ngModel]="period()" (ngModelChange)="onPeriodChanged($event)">
+        @for (month of months; track $index) {
+        <option [ngValue]="$index + 1">{{ month }}</option>
+        }
+      </select>
+    </label>
+    <custom-input-select-signal
+      class="filter-select"
+      [control]="nivelControl"
+      label="Nivel"
+      placeholder="Todos los niveles"
+      [data]="niveles()"
+      [noMargin]="true"
+      [showClear]="true"
+      (selectionChange)="onNivelChanged($event.value)"
+    />
+    <custom-input-select-signal
+      class="filter-select account-parent-select"
+      [control]="cuentaPadreControl"
+      label="Cuenta padre"
+      placeholder="Selecciona primero un nivel"
+      [data]="cuentasPadre()"
+      [noMargin]="true"
+      [showClear]="true"
+      [filter]="true"
+      [disabled]="!nivel() || loadingFilterOptions()"
+      (selectionChange)="onCuentaPadreChanged($event.value)"
+    />
+    <il-button
+      label="Actualizar corte"
+      iconClass="material-symbols-light:refresh"
+      size="small"
+      [loading]="loading()"
+      (clicked)="refresh()"
+    />
+    <span class="movement-count"
+      >{{ movimientos().totalCount | number }} movimientos</span
+    >
+  </div>
+
+  @if (error()) {
+  <div class="status-banner error">
+    <app-icon icon="material-symbols-light:error" />{{ error() }}
+  </div>
+  } @if (notice()) {
+  <div class="status-banner success">
+    <app-icon icon="material-symbols-light:check-circle" />{{ notice() }}
+  </div>
+  }
+
+  <div class="balance-grid">
+    @for (saldo of saldos(); track saldo.id) {
+    <article class="balance-card" [ngClass]="budgetStatusClass(saldo)">
+      <span>{{ saldo.numCta }}</span>
+      <small>{{ saldo.nombre }}</small>
+      <strong>{{ saldo.realMes | number: "1.2-2" }}</strong>
+      <div class="budget-lines">
+        <small>Presupuesto {{ saldo.presupuestoMes | number: "1.2-2" }}</small>
+        <small>Variación {{ saldo.variacion | number: "1.2-2" }}</small>
+      </div>
+      <span class="budget-pill">{{ budgetStatusLabel(saldo) }}</span>
+    </article>
+    } @empty {
+    <article class="balance-card empty">
+      Los saldos del periodo aparecerán aquí.
+    </article>
+    }
+  </div>
+
+  <div class="view-switch" role="group" aria-label="Vista del corte contable">
+    <button
+      type="button"
+      [class.active]="activeView() === 'budget'"
+      (click)="showBudgetView()"
+    >
+      <app-icon icon="material-symbols-light:monitoring" />
+      Real vs presupuesto
+    </button>
+    <button
+      type="button"
+      [class.active]="activeView() === 'ledger'"
+      (click)="showLedgerView()"
+    >
+      <app-icon icon="material-symbols-light:receipt-long" />
+      Libro auxiliar
+    </button>
+  </div>
+
+  @if (activeView() === 'budget') {
+  <section class="budget-summary">
+    <div class="ledger-title">
+      <div>
+        <p class="eyebrow">Ejecución presupuestal</p>
+        <h2>Real vs presupuesto del periodo</h2>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Cuenta</th>
+            <th>Nombre</th>
+            <th>Real</th>
+            <th>Presupuesto</th>
+            <th>Variación</th>
+            <th>Ejecución</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (saldo of saldos(); track saldo.id) {
+          <tr>
+            <td class="account">{{ saldo.numCta }}</td>
+            <td>{{ saldo.nombre }}</td>
+            <td>{{ saldo.realMes | number: "1.2-2" }}</td>
+            <td>{{ saldo.presupuestoMes | number: "1.2-2" }}</td>
+            <td>{{ saldo.variacion | number: "1.2-2" }}</td>
+            <td>
+              <span class="budget-pill" [ngClass]="budgetStatusClass(saldo)">
+                {{ budgetStatusLabel(saldo) }}
+              </span>
+            </td>
+          </tr>
+          } @empty {
+          <tr>
+            <td colspan="6" class="empty-row">
+              El resumen presupuestal aparecerá al consultar un corte.
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+  }
+
+  @if (activeView() === 'ledger') {
+  <lx-card>
+    <div class="ledger-title">
+      <div>
+        <p class="eyebrow">Libro auxiliar</p>
+        <h2>Movimientos del corte</h2>
+      </div>
+      <span
+        >Página {{ movimientos().page }} de {{ movimientos().totalPages || 1
+        }}</span
+      >
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Póliza</th>
+            <th>Cuenta</th>
+            <th>Concepto</th>
+            <th>Debe</th>
+            <th>Haber</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (movimiento of movimientos().items; track trackMovimiento($index,
+          movimiento)) {
+          <tr>
+            <td>{{ movimiento.fechaPol | date: "dd/MM/yyyy" }}</td>
+            <td><b>{{ movimiento.tipoPoli }}</b> {{ movimiento.numPoliz }}</td>
+            <td class="account">{{ movimiento.numCta }}</td>
+            <td>{{ movimiento.concepPo }}</td>
+            <td>
+              {{ movimiento.debeHaber === "D" ? (movimiento.montoMov | number:
+              "1.2-2") : "—" }}
+            </td>
+            <td>
+              {{ movimiento.debeHaber === "H" ? (movimiento.montoMov | number:
+              "1.2-2") : "—" }}
+            </td>
+            <td>
+              @if (movimiento.tipoCuenta === "D") {
+              <button
+                class="statement-button"
+                type="button"
+                (click)="openEstadoDeCuenta(movimiento)"
+              >
+                Ver estado
+              </button>
+              }
+            </td>
+          </tr>
+          } @empty {
+          <tr>
+            <td colspan="7" class="empty-row">
+              No hay movimientos para los filtros seleccionados.
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <footer class="pager">
+      <button
+        type="button"
+        [disabled]="page() === 1"
+        (click)="changePage(page() - 1)"
+      >
+        Anterior</button
+      ><span>{{ page() }} / {{ movimientos().totalPages || 1 }}</span
+      ><button
+        type="button"
+        [disabled]="page() >= movimientos().totalPages"
+        (click)="changePage(page() + 1)"
+      >
+        Siguiente
+      </button>
+    </footer>
+  </lx-card>
+  }
+
+  @if (loadingEstadoCuenta()) {
+  <div class="statement-backdrop">
+    <section class="statement-panel statement-loading" aria-live="polite">
+      Consultando estado de cuenta...
+    </section>
+  </div>
+  } @if (estadoCuenta()) {
+  <div class="statement-backdrop" (click)="closeEstadoDeCuenta()">
+    <section class="statement-panel" (click)="$event.stopPropagation()">
+      <div class="statement-head">
+        <div>
+          <p class="eyebrow">Estado de cuenta</p>
+          <h2>
+            {{ estadoCuenta()!.cuenta.numCta }} · {{
+            estadoCuenta()!.cuenta.nombre }}
+          </h2>
+        </div>
+        <button type="button" (click)="closeEstadoDeCuenta()">Cerrar</button>
+      </div>
+      <div class="statement-opening">
+        Saldo inicial
+        <strong>{{ estadoCuenta()!.saldoInicial | number: "1.2-2" }}</strong>
+      </div>
+      @if (estadoCuentaPresupuesto()) {
+      <div class="statement-budget">
+        <span>
+          Real del periodo
+          <strong
+            >{{ estadoCuentaPresupuesto()!.realMes | number: "1.2-2"
+            }}</strong
+          >
+        </span>
+        <span>
+          Presupuesto
+          <strong
+            >{{ estadoCuentaPresupuesto()!.presupuestoMes | number: "1.2-2"
+            }}</strong
+          >
+        </span>
+        <span>
+          Variación
+          <strong
+            >{{ estadoCuentaPresupuesto()!.variacion | number: "1.2-2"
+            }}</strong
+          >
+        </span>
+        <span>
+          Ejecución
+          <strong>{{ budgetStatusLabel(estadoCuentaPresupuesto()!) }}</strong>
+        </span>
+      </div>
+      }
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Póliza</th>
+              <th>Concepto</th>
+              <th>Debe</th>
+              <th>Haber</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (line of estadoCuenta()!.movimientos; track line.tipoPoli + '-'
+            + line.numPoliz + '-' + line.numPart + '-' + line.fechaPol) {
+            <tr>
+              <td>{{ line.fechaPol | date: "dd/MM/yyyy" }}</td>
+              <td>{{ line.tipoPoli }} {{ line.numPoliz }}</td>
+              <td>{{ line.conceptoPoliza }}</td>
+              <td>
+                {{ line.debeHaber === "D" ? (line.montoMov | number: "1.2-2")
+                : "—" }}
+              </td>
+              <td>
+                {{ line.debeHaber === "H" ? (line.montoMov | number: "1.2-2")
+                : "—" }}
+              </td>
+            </tr>
+            } @empty {
+            <tr>
+              <td colspan="5" class="empty-row">
+                Esta cuenta no tiene movimientos en el año seleccionado.
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  } @if (syncPanelOpen()) {
+  <div class="sync-backdrop" (click)="closeSyncPanel()">
+    <section
+      class="sync-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="sync-title"
+      (click)="$event.stopPropagation()"
+    >
+      <p class="eyebrow">Importación en caliente</p>
+      <h2 id="sync-title">Sincronizar datos reales</h2>
+      <p>
+        El simulador reemplazará su memoria con el corte real de Aspel para el
+        cliente y año seleccionados.
+      </p>
+      <label
+        >Cliente / Condominio
+        <select
+          [ngModel]="selectedSyncCustomerId()"
+          (ngModelChange)="selectedSyncCustomerId.set($event)"
+        >
+          <option value="">Selecciona un cliente</option>
+          @for (customer of syncCustomers(); track customer.customerId) {
+          <option [value]="customer.customerId">
+            {{ customer.customerName }}
+          </option>
+          }
+        </select>
+      </label>
+      <label
+        >Año
+        <input
+          type="number"
+          [ngModel]="year()"
+          (ngModelChange)="year.set(+$event)"
+          min="2000"
+          max="2100"
+      /></label>
+      @if (syncError()) {
+      <div class="sync-error">{{ syncError() }}</div>
+      }
+      <footer>
+        <button
+          type="button"
+          class="cancel-button"
+          [disabled]="syncLoading()"
+          (click)="closeSyncPanel()"
+        >
+          Cancelar</button
+        ><button
+          type="button"
+          class="confirm-button"
+          [disabled]="syncLoading()"
+          (click)="syncRealData()"
+        >
+          {{ syncLoading() ? "Sincronizando..." : "Traer datos de Aspel" }}
+        </button>
+      </footer>
+    </section>
+  </div>
+  }
+</section>

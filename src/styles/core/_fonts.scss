@@ -1,9 +1,9 @@
 // ============================================================
 // _fonts.scss
 // Design System | Angular 21 + PrimeNG 21 | SCSS Puro
-// Fuente única: Figtree variable (wght 300–900) desde Google Fonts.
+// Fuente única: Figtree variable (wght 300–900) self-hosted.
 // Subset latin (lengua de la app: es).
-// Cargada vía Google Fonts API con font-display: swap.
+// CSP-safe: sin dependencia externa.
 // ============================================================
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 300 900;
   font-display: swap;
-  src: url('https://fonts.gstatic.com/s/figtree/v9/ec15vcNDTcsxNlcxNICU6mhJtvzLzRlZqOU.woff2') format('woff2');
+  src: url('/assets/fonts/figtree-latin-var.woff2') format('woff2');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,

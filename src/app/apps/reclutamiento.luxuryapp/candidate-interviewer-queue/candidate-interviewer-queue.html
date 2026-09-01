@@ -129,11 +129,9 @@
               <span>{{ vacancy.filteredCandidates.length }} candidato(s)</span>
               <span>Pendientes: {{ vacancy.pendingCandidatesCount }}</span>
               <span>Vencidas: {{ vacancy.overdueCandidatesCount }}</span>
-              @if (vacancy.nextInterviewAt) {
               <span>
-                Proxima cita: {{ vacancy.nextInterviewAt | apiDate:'dd/MM/yyyy HH:mm' }}
+                Proxima cita: {{ vacancy.nextInterviewAt ? (vacancy.nextInterviewAt | apiDate:'dd/MM/yyyy HH:mm') : "Sin cita agendada" }}
               </span>
-              }
             </div>
           </div>
         </div>

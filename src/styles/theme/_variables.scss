@@ -382,6 +382,10 @@
   --ds-warning: var(--warning-color);
   --ds-warning-hover: #{c.$warning-700};
   --ds-warning-light: var(--warning-bg);
+  // Texto para botones de fondo sólido --ds-warning. Distinto de
+  // --ds-accent-text-warning (calibrado para texto sobre blanco, no sobre
+  // el propio dorado); medido: 7.24:1 contra --ds-warning (#D4A74A).
+  --ds-warning-text: #{c.$warning-950};
   --ds-danger: var(--danger-color);
   --ds-danger-hover: #{c.$danger-700};
   --ds-danger-light: var(--danger-bg);
@@ -720,6 +724,7 @@ body.theme-dark {
   --ds-warning: #{c.$warning-300};
   --ds-warning-hover: #{c.$warning-200};
   --ds-warning-light: color-mix(in srgb, #{c.$warning-400}, transparent 88%);
+  --ds-warning-text: #{c.$warning-950};
   --ds-danger: #{c.$danger-300};
   --ds-danger-hover: #{c.$danger-200};
   --ds-danger-light: color-mix(in srgb, #{c.$danger-400}, transparent 88%);

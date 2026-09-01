@@ -46,6 +46,15 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         ],
       },
       {
+        title: "Simulador Aspel COI",
+        description: "Consulta movimientos de prueba y registra pólizas con cuadre contable.",
+        route: "/contabilidad/mock-aspel",
+        icon: "material-symbols-light:account-balance",
+        color: "#0f766e",
+        bgColor: "#ccfbf1",
+        roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
+      },
+      {
         title: "Reporte General de envío Edos. Financieros",
         description: "Configuración de envío de reportes a financieros.",
         route: "/contabilidad/financial-report-sending",

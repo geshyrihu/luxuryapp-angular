@@ -62,11 +62,7 @@ export class PresupuestoWebAspelWrapper {
     this.presupuestoComp()?.analyzeFinancialData();
   }
 
-  exportExcel(): void {
-    if (this.activeTabValue() === "presupuesto") {
-      this.presupuestoComp()?.exportExcel();
-    } else {
-      this.extraComp()?.exportExcel();
-    }
+  openModuleGuide(): void {
+    window.open('/app/guide/presupuesto-web-aspel', '_blank');
   }
 }

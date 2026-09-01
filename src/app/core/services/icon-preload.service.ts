@@ -27,7 +27,9 @@ export function preloadIconifyIcons(): () => Promise<void> {
     await Promise.all(
       icons.map(async (full) => {
         try {
-          const url = `https://api.iconify.design/${full}.json`;
+          const [prefix, ...rest] = full.split(":");
+          const icon = rest.join(":");
+          const url = `https://api.iconify.design/${prefix}.json?icons=${icon}`;
           const res = await fetch(url, { cache: "force-cache" });
           if (!res.ok) return;
           const data = await res.json();

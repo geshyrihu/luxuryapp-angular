@@ -1,120 +1,78 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   🔐 _auth.scss — Pantalla de Autenticación (Glassmorphism)
+   🔐 _auth.scss — Pantallas de Autenticación (login, recovery-code,
+   recovery-password, reset-password — vista Desktop)
    ═══════════════════════════════════════════════════════════════════════════
-   Diseño intencionalmente theme-independent: la tarjeta de login siempre
-   usa fondo semitransparente oscuro con texto blanco, sin importar el tema.
-   Los valores rgba están hardcodeados a propósito — son parte del efecto
-   glassmorphism y NO deben reemplazarse con variables del tema.
+   Diseño "quiet luxury" (BRAND.md): dos paneles, ambos en tonos claros —
+   izquierdo blanco con el formulario, derecho con gradiente sutil navy/gold
+   y el mensaje de marca. CTA navy sólido (--ds-primary, combo AAA 13.45:1
+   documentado en BRAND.md), gold (--ds-warning) como acento de firma
+   (<15% de uso). Reemplaza el split-screen con fotografía y overlay oscuro
+   (retirado 2026-08-31: no alineado con la identidad de marca — ver
+   BRAND.md §7, referencias Notion/Linear y banca privada).
    ═══════════════════════════════════════════════════════════════════════════ */
 
-@use "../core/colors" as c;
+.auth-two-panel {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
 
-.glass-auth-card {
-  /* Vista Móvil (Nativa): Sin bordes, sombras ni fondo cristal para integrarse con la pantalla completa */
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  color: var(--ds-on-dark);
+.auth-panel-form {
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
 
-  /* Vista Escritorio: Efecto de cristal flotante */
-  @media screen and (min-width: 768px) {
-    background: var(--ds-surface-glass) !important;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--ds-border-on-dark) !important;
-    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.5) !important;
-    border-radius: 3px !important;
+  @media screen and (min-width: 992px) {
+    width: 42%;
+    min-width: 480px;
   }
 }
 
-/* Texto blanco solo en elementos tipográficos, no en controles de formulario */
-.glass-auth-card h4,
-.glass-auth-card p {
-  color: var(--ds-on-dark-default) !important;
+.auth-panel-brand {
+  display: none;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid var(--ds-border);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(0, 49, 82, 0.07), transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(212, 167, 74, 0.16), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(0, 49, 82, 0.05), transparent 35%),
+    #f7f8fa;
+
+  @media screen and (min-width: 992px) {
+    display: flex;
+  }
 }
 
-.glass-auth-card .text-600 {
-  color: var(--ds-on-dark-soft) !important;
+.auth-brand-icon-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 640px;
+  height: 640px;
+  opacity: 0.06;
+  transform: translate(-50%, -50%);
 }
 
-.glass-auth-card .text-900 {
-  color: var(--ds-on-dark) !important;
+.auth-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 49, 82, 0.12);
+  margin-bottom: 28px;
 }
 
-/* Labels de campo en blanco para contraste sobre el fondo oscuro */
-.glass-auth-card .field-label {
-  color: var(--ds-on-dark-label) !important;
-}
-
-/* Inputs y textareas: texto oscuro sobre fondo blanco del control */
-.glass-auth-card input,
-.glass-auth-card textarea {
-  color: var(--ds-text-primary) !important;
-}
-
-// ── AUTH DARK PANEL (login, reset-password, recover-password) ─────────────
-.auth-dark-panel {
-  background: rgba(var(--ds-bg-auth-panel-rgb), 0.4);
-  color: var(--ds-on-dark-strong);
-}
-
-.auth-dark-panel label,
-.auth-dark-panel h2,
-.auth-dark-panel p,
-.auth-dark-panel .text-900,
-.auth-dark-panel .text-700,
-.auth-dark-panel .text-600 {
-  color: var(--ds-on-dark-default) !important;
-}
-
-// Inputs: fondo semi-transparente más visible sobre el panel oscuro
-.auth-dark-panel input,
-.auth-dark-panel .p-select,
-.auth-dark-panel .p-inputtext {
-  background: var(--ds-border-on-dark) !important;
-  border-color: var(--ds-border-on-dark-strong) !important;
-  color: var(--ds-on-dark) !important;
-}
-
-.auth-dark-panel input::placeholder,
-.auth-dark-panel .p-select-label.p-placeholder {
-  color: var(--ds-on-dark-subtle) !important;
-}
-
-// FloatLabel: label blanca sobre el panel oscuro (variant="on")
-.auth-dark-panel .p-floatlabel label {
-  color: var(--ds-on-dark-muted) !important;
-  background: transparent !important;
-}
-
-// FloatLabel: cuando el campo tiene valor o está enfocado, label sube al borde
-.auth-dark-panel .p-floatlabel:has(input:not(:placeholder-shown)) label,
-.auth-dark-panel .p-floatlabel:has(input:focus) label {
-  color: var(--ds-on-dark-strong) !important;
-}
-
-// Password: icono de mostrar/ocultar (PrimeNG 21 usa button, no <i> directo)
-.auth-dark-panel .p-password button,
-.auth-dark-panel .p-password-mask-toggle-button {
-  color: var(--ds-on-dark-muted) !important;
-  &:hover { color: var(--ds-on-dark) !important; }
-}
-
-// Fallback para versiones anteriores de PrimeNG con <i>
-.auth-dark-panel .p-password i,
-.auth-dark-panel .p-password .p-icon {
-  color: var(--ds-on-dark-muted) !important;
-}
-
-.auth-dark-panel .p-password-meter {
-  background: var(--ds-surface-dark-emphasis) !important;
-}
-
-// Bordes en foco: primary ligero sobre fondo oscuro
-.auth-dark-panel input:focus,
-.auth-dark-panel .p-inputtext:focus {
-  border-color: var(--ds-border-focus) !important;
-  outline: 2px solid var(--ds-border-focus);
-  outline-offset: 0;
+.auth-gold-tick {
+  width: 36px;
+  height: 3px;
+  background: var(--ds-warning);
+  border-radius: 2px;
 }

@@ -1,0 +1,21 @@
+[     119ms] [ERROR] Loading the font 'https://fonts.gstatic.com/s/figtree/v9/ec15vcNDTcsxNlcxNICU6mhJtvzLzRlZqOU.woff2' violates the following Content Security Policy directive: "font-src 'self' data:". The action has been blocked. @ http://localhost:4200/auth/recovery-code:0
+[     270ms] [LOG] %c📦 [StorageService] Inicializando servicio de almacenamiento local... color: #3F51B5; font-style: italic; @ http://localhost:4200/chunk-ASCJNTW4.js:59
+[     271ms] [LOG] %c [AuthService] Verificando ruta inicial: /auth/recovery-code | Es publica: true color: #9C27B0; font-style: italic; @ http://localhost:4200/chunk-ASCJNTW4.js:59
+[     272ms] [LOG] %c [AuthService] Ruta publica detectada. Omitiendo login silencioso. color: #FFC107; font-style: italic; @ http://localhost:4200/chunk-ASCJNTW4.js:59
+[     272ms] [LOG] %c🚀 [Initializer] Starting application state initialization... color: purple; font-style: italic; @ http://localhost:4200/chunk-ASCJNTW4.js:59
+[     273ms] [LOG] %c🤷 [Initializer] No user session. Skipping customer state initialization. color: #9E9E9E; font-style: italic; @ http://localhost:4200/chunk-ASCJNTW4.js:59
+[     273ms] [LOG] %c✅ [Initializer] State initialization complete. color: green; font-style: italic; @ http://localhost:4200/chunk-ASCJNTW4.js:59
+[     328ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:alert-20.json:0
+[     328ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:document-20.json:0
+[     329ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:mail-20.json:0
+[     329ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:alert-24.json:0
+[     329ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:lock-closed-20.json:0
+[     330ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:checkmark-circle-20.json:0
+[     330ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent-color:add-circle-20.json:0
+[     330ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://api.iconify.design/fluent:lock-open-20-regular.json:0
+[     339ms] [LOG] %c🔄 UpdateService: Inicializando servicio de actualizaciones color: blue; font-weight: bold; @ http://localhost:4200/chunk-WEIOKMZ7.js:10
+[     339ms] [LOG] %c🔄 UpdateService: ❌ Service Worker NO habilitado color: red; font-weight: bold; @ http://localhost:4200/chunk-WEIOKMZ7.js:22
+[     348ms] [LOG] %c🚀 [App] ¡Aplicación iniciada! Soy más ligero y rápido que nunca. color: #673AB7; font-style: italic; @ http://localhost:4200/chunk-ASCJNTW4.js:59
+[     366ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/D:/repos/luxuryapp-api/client/angular/.angular/cache/22.0.5/luxury-app/vite/deps/chunk-DBUQFU5K.js?v=3990ee8e:11608
+[     596ms] [WARNING] NG0913: An image with src http://localhost:4200/assets/images/login/LBG-negro.png has intrinsic file dimensions much larger than its rendered size. This can negatively impact application loading performance. For more information about addressing or disabling this warning, see https://v22.angular.dev/errors/NG0913. Find more at https://v22.angular.dev/errors/NG0913 @ http://localhost:4200/@fs/D:/repos/luxuryapp-api/client/angular/.angular/cache/22.0.5/luxury-app/vite/deps/chunk-DBUQFU5K.js?v=3990ee8e:21883
+[    3657ms] [WARNING] The resource http://localhost:4200/assets/fonts/outfit-latin-var.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:4200/auth/recovery-code:0

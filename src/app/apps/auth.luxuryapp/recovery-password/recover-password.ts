@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from "@angular/animations";
 import { HttpErrorResponse } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -8,7 +7,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
   FormControl,
@@ -21,7 +19,6 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
-import { LoginSliderService } from "src/app/core/auth/services/login-slider.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
@@ -37,17 +34,6 @@ interface IRecoverPasswordForm {
 @Component({
   selector: "app-recover-password",
   templateUrl: "./recover-password.html",
-  animations: [
-    trigger("slideAnimation", [
-      transition(":enter", [
-        style({ opacity: 0 }),
-        animate("1500ms ease-in-out", style({ opacity: 1 })),
-      ]),
-      transition(":leave", [
-        animate("1500ms ease-in-out", style({ opacity: 0 })),
-      ]),
-    ]),
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
@@ -65,7 +51,6 @@ export class RecoverPassword implements OnInit, OnDestroy {
   apiResponseS = inject(ApiResponseService);
   dataConnectorS = inject(DataConnectorService);
   formB = inject(FormBuilder);
-  sliderService = inject(LoginSliderService);
 
   form: FormGroup<IRecoverPasswordForm> = this.formB.group({
     email: new FormControl("", {
@@ -78,21 +63,14 @@ export class RecoverPassword implements OnInit, OnDestroy {
   successMessage = signal<string>("");
   submitting = signal(false);
   countdown = signal<number>(0);
-  visibleImages = toSignal(this.sliderService.getVisibleImages$(), {
-    initialValue: [],
-  });
   private destroy$ = new Subject<void>();
 
-  ngOnInit(): void {
-    // this.initializeSlider(); // Handled by signal
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
-  // private initializeSlider(): void { ... } // Removed
 
   onSubmit() {
     if (this.form.invalid) {
