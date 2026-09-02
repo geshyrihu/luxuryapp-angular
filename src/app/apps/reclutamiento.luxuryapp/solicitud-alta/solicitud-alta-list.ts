@@ -11,6 +11,7 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
+import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
@@ -37,6 +38,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { EStatus } from "src/app/shared/ui/base/status-badge.base";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
@@ -77,13 +79,13 @@ interface SolicitudAltaListItem {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MobileActionMenu,
-    MobileButtonLabel,
+    MobileButtonLabel, MobileButtonLabelConfirm,
     PrimeNgCustomTableEmptyMessage,
     TableModule,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     LxTag,
-    WebButtonLabel,
+    WebButtonLabel, WebButtonLabelConfirm,
     MobileListItem,
     AppIcon,
   ],
@@ -284,7 +286,7 @@ export class SolicitudAltaList implements OnInit {
   }
 
   canCompleteAlta(item: SolicitudAltaListItem): boolean {
-    return !item.isEmployeeLinked && item.status === "Pendiente";
+    return item.status === "Pendiente";
   }
 
   canManageLinkedAlta(item: SolicitudAltaListItem): boolean {
@@ -299,3 +301,5 @@ export class SolicitudAltaList implements OnInit {
     return item.status === "Cancelado";
   }
 }
+
+

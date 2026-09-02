@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { Observable, map } from "rxjs";
-import { environment } from "src/environments/environment";
+import { Observable } from "rxjs";
 
 export interface MovimientosQueryRequest {
   ejercicio: number;
@@ -25,6 +24,7 @@ export interface MovimientoResponse {
   numCta: string;
   debeHaber: string;
   montoMov: number;
+  tipoEmpresa: string;
   periodo: number;
   ejercicio: number;
   fechaPol: string;
@@ -63,6 +63,7 @@ export interface SaldoQueryRequest {
   ejercicio: number;
   numCta?: string;
   periodo?: number;
+  tipoEmpresa?: string;
   nivel?: number;
   numCtaPapa?: string;
   page?: number;
@@ -75,6 +76,7 @@ export interface MovimientoFilterOption<T> {
 }
 
 export interface MovimientoFilterOptionsResponse {
+  tiposEmpresa: MovimientoFilterOption<string>[];
   niveles: MovimientoFilterOption<number>[];
   cuentasPadre: MovimientoFilterOption<string>[];
 }
@@ -127,16 +129,6 @@ export interface MockAspelSyncCustomer {
   customerName: string;
 }
 
-interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-}
-
-interface AspelCustomerEmpresaSelectItem {
-  label: string;
-  value: string;
-}
-
 export interface MockAspelSyncResult {
   customerId: string;
   customerName: string;
@@ -169,7 +161,7 @@ export class MockAspelService {
     );
   }
 
-  getMovimientoFilterOptions(query: Pick<MovimientosQueryRequest, "ejercicio" | "periodo" | "nivel">): Observable<MovimientoFilterOptionsResponse> {
+  getMovimientoFilterOptions(query: Pick<MovimientosQueryRequest, "ejercicio" | "periodo" | "tipoEmpresa" | "nivel">): Observable<MovimientoFilterOptionsResponse> {
     return this.http.get<MovimientoFilterOptionsResponse>(
       `${this.baseUrl}/Query/FilterOptions`,
       { params: this.toParams(query) },
@@ -180,7 +172,7 @@ export class MockAspelService {
     return this.http.get<MockCuentaResponse[]>(`${this.baseUrl}/Cuentas`);
   }
 
-  getEstadoDeCuenta(numCta: string, query: Pick<MovimientosQueryRequest, "ejercicio" | "fechaInicio" | "fechaFin">): Observable<EstadoDeCuentaResponse> {
+  getEstadoDeCuenta(numCta: string, query: Pick<MovimientosQueryRequest, "ejercicio" | "fechaInicio" | "fechaFin" | "tipoEmpresa">): Observable<EstadoDeCuentaResponse> {
     return this.http.get<EstadoDeCuentaResponse>(`${this.baseUrl}/Query/EstadoDeCuenta/${encodeURIComponent(numCta)}`, { params: this.toParams(query) });
   }
 
@@ -189,16 +181,7 @@ export class MockAspelService {
   }
 
   getSyncCustomers(): Observable<MockAspelSyncCustomer[]> {
-    return this.http
-      .get<ApiResponse<AspelCustomerEmpresaSelectItem[]>>(
-        `${environment.API_BASE_URL}select-items/aspel-customer-empresa`,
-      )
-      .pipe(
-        map((response) => response.success
-          ? response.data
-            .map((item) => ({ customerId: item.value, customerName: item.label }))
-          : []),
-      );
+    return this.http.get<MockAspelSyncCustomer[]>(`${this.baseUrl}/Admin/Customers`);
   }
 
   syncRealData(customerId: string, ejercicio: number): Observable<MockAspelSyncResult> {

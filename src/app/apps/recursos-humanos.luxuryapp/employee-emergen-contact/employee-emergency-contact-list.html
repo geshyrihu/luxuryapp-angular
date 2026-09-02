@@ -50,7 +50,8 @@
             "
           /> }
           @if (!isReadOnly()) { <iw-button-confirm
-            icon="trash"
+            iconClass="trash"
+            severity="danger"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id, 0)"
           /> }
@@ -150,7 +151,8 @@
             "
           /> }
           @if (!isReadOnly()) { <iw-button-confirm
-            icon="trash"
+            iconClass="trash"
+            severity="danger"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id, 1)"
           /> }

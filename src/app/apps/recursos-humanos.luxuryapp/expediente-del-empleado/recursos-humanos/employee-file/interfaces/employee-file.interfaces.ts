@@ -44,6 +44,9 @@ export interface EmployeeFilePersonalDataDTO {
   bloodType?: string;
   nationality?: string;
   maritalStatus?: string;
+  hasFonacotCredit: boolean;
+  fonacotCreditNumber?: string;
+  fonacotDiscountFactor?: string;
   educationLevel?: string;
   dateAdmission?: string;
   salary: number;

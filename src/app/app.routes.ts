@@ -105,21 +105,20 @@ export const appRoutes: Routes = [
        ),
    },
 
-   // --- Ruta para Guía de Módulos ---
+   // --- Ruta para Guía de Módulos (standalone, sin guard) ---
    {
-     path: "guide",
+     path: "guide/:module",
      loadComponent: () =>
        import("src/app/shared/ui/web/module-guide/module-guide").then(
          (m) => m.ModuleGuide,
        ),
-     canActivate: [authGuard],
      data: {
        title: "Guía del Módulo",
        breadcrumb: "Guía del Módulo",
      },
    },
 
-  // --- Rutas de Empleado (Full Layout) ---
+   // --- Rutas de Empleado (Full Layout) ---
   // Esta será la ruta por defecto para usuarios no-comité.
   // Captura la raíz y todas las demás rutas (dashboard, home, etc.) definidas en pages.routing.
   {

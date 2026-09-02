@@ -19,7 +19,7 @@
 
 .auth-panel-form {
   width: 100%;
-  background: #ffffff;
+  background: var(--ds-surface);
   display: flex;
   flex-direction: column;
 
@@ -65,7 +65,7 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: #ffffff;
+  background: var(--ds-surface);
   box-shadow: 0 8px 24px rgba(0, 49, 82, 0.12);
   margin-bottom: 28px;
 }

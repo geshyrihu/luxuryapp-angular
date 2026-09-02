@@ -32,7 +32,7 @@ import { WorkPositionForm } from "src/app/shared/integration/reclutamiento/estru
 import { SolicitudBajaForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
 import { SolicitudVacanteForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppIcon, type AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   SegmentedControl,
   SegmentItem,
@@ -399,6 +399,72 @@ export class StaffBoardList {
   /** Habilita "Confirmar Ingreso": vacante vigente (status Abierta). */
   canConfirmIngress(item: IWorkPosition): boolean {
     return this.vacancyState(item) === "open";
+  }
+
+  /**
+   * Tipos de ticket abierto para mostrar como badge en la fila.
+   * Vacante: `positionRequest` con status distinta de `None` (Abierta o EnProceso).
+   * Baja/Salario: el backend expone `requestDismissal` y `requestSalaryModification`
+   * como marcadores en el payload del endpoint (no están en `IWorkPosition` declarado,
+   * pero llegan en runtime).
+   */
+  openTickets(
+    item: IWorkPosition,
+  ): Array<{
+    type: "vacante" | "baja" | "salario";
+    severity: "warn" | "info" | "danger";
+    icon: AppIconName;
+    label: string;
+    folio: string | null;
+  }> {
+    const tickets: Array<{
+      type: "vacante" | "baja" | "salario";
+      severity: "warn" | "info" | "danger";
+      icon: AppIconName;
+      label: string;
+      folio: string | null;
+    }> = [];
+    const positionRequest = item.positionRequest;
+    if (positionRequest && positionRequest.status != null) {
+      tickets.push({
+        type: "vacante",
+        severity: "warn",
+        icon: "material-symbols-light:confirmation-number",
+        label:
+          this.vacancyState(item) === "open"
+            ? "Ticket Vacante · Abierta"
+            : "Ticket Vacante · Alta en proceso",
+        folio: positionRequest.folio?.toString() ?? null,
+      });
+    }
+    const requestDismissal = (item as { requestDismissal?: unknown })
+      .requestDismissal;
+    if (requestDismissal) {
+      tickets.push({
+        type: "baja",
+        severity: "danger",
+        icon: "material-symbols-light:airplane-ticket",
+        label: "Ticket Baja · En validación RRHH",
+        folio: null,
+      });
+    }
+    const requestSalaryModification = (
+      item as { requestSalaryModification?: unknown }
+    ).requestSalaryModification;
+    if (requestSalaryModification) {
+      tickets.push({
+        type: "salario",
+        severity: "info",
+        icon: "material-symbols-light:local-activity",
+        label: "Ticket Salario · Pendiente de aprobación",
+        folio: null,
+      });
+    }
+    return tickets;
+  }
+
+  hasOpenTicket(item: IWorkPosition): boolean {
+    return this.openTickets(item).length > 0;
   }
 
   onExportExcel(): void {

@@ -23,467 +23,438 @@
       </div>
     </div>
     @if (analysis()?.metadata) {
-    <div class="metadata">
-      <span>
-        <span class="material-symbols-light">schedule</span>
-        Generado: {{ analysis()!.metadata!.generatedAt | date : 'dd/MM/yyyy HH:mm' }}
-      </span>
-      <span>
-        <span class="material-symbols-light">smart_toy</span>
-        Por: {{ analysis()!.metadata!.generatedBy }}
-      </span>
-    </div>
+      <div class="metadata">
+        <span>
+          <span class="material-symbols-light">schedule</span>
+          Generado: {{ analysis()!.metadata!.generatedAt | date : 'dd/MM/yyyy HH:mm' }}
+        </span>
+        <span>
+          <span class="material-symbols-light">smart_toy</span>
+          Por: {{ analysis()!.metadata!.generatedBy }}
+        </span>
+      </div>
     }
   </header>
 
   @if (loading()) {
-  <div class="loading-state">
-    <div class="spinner"></div>
-    <p>Cargando análisis del módulo...</p>
-  </div>
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Cargando análisis del módulo...</p>
+    </div>
   } @else if (loadError()) {
-  <div class="error-state">
-    <span class="material-symbols-light">error</span>
-    <h2>Error al cargar</h2>
-    <p>{{ loadError() }}</p>
-    <button class="retry-btn" (click)="loadAnalysis()">
-      <span class="material-symbols-light">refresh</span>
-      Reintentar
-    </button>
-  </div>
+    <div class="error-state">
+      <span class="material-symbols-light">error</span>
+      <h2>Error al cargar</h2>
+      <p>{{ loadError() }}</p>
+      <button class="retry-btn" (click)="loadAnalysis()">
+        <span class="material-symbols-light">refresh</span>
+        Reintentar
+      </button>
+    </div>
   } @else if (analysis()) {
-  <!-- Search -->
-  <div class="search-container">
-    <span class="material-symbols-light search-icon">search</span>
-    <input
-      type="text"
-      [(ngModel)]="searchQuery"
-      placeholder="🔍 Buscar flujos, endpoints, componentes, eventos..."
-      class="search-input"
-      [attr.aria-label]="'Buscar en ' + activeTab()"
-    />
-    @if (searchQuery()) {
-    <button class="clear-search" (click)="searchQuery.set('')" aria-label="Limpiar búsqueda">
-      <span class="material-symbols-light">close</span>
-    </button>
-    }
-  </div>
-
-  <!-- Tabs -->
-  <nav class="tabs" role="tablist" aria-label="Secciones de la guía">
-    <button
-      role="tab"
-      [class.active]="activeTab() === 'overview'"
-      (click)="setActiveTab('overview')"
-      [attr.aria-selected]="activeTab() === 'overview'"
-    >
-      <span class="material-symbols-light">dashboard</span>
-      Resumen
-      <span class="tab-count">{{ analysis()?.flows?.length || 0 }} flujos</span>
-    </button>
-    <button
-      role="tab"
-      [class.active]="activeTab() === 'flows'"
-      (click)="setActiveTab('flows')"
-      [attr.aria-selected]="activeTab() === 'flows'"
-    >
-      <span class="material-symbols-light">sync_alt</span>
-      Flujos
-      <span class="tab-count">{{ filteredFlows().length }}</span>
-    </button>
-    <button
-      role="tab"
-      [class.active]="activeTab() === 'endpoints'"
-      (click)="setActiveTab('endpoints')"
-      [attr.aria-selected]="activeTab() === 'endpoints'"
-    >
-      <span class="material-symbols-light">api</span>
-      Endpoints
-      <span class="tab-count">{{ filteredEndpoints().length }}</span>
-    </button>
-    <button
-      role="tab"
-      [class.active]="activeTab() === 'components'"
-      (click)="setActiveTab('components')"
-      [attr.aria-selected]="activeTab() === 'components'"
-    >
-      <span class="material-symbols-light">extension</span>
-      Componentes
-      <span class="tab-count">{{ filteredComponents().length }}</span>
-    </button>
-    <button
-      role="tab"
-      [class.active]="activeTab() === 'events'"
-      (click)="setActiveTab('events')"
-      [attr.aria-selected]="activeTab() === 'events'"
-    >
-      <span class="material-symbols-light">flash_on</span>
-      Eventos
-      <span class="tab-count">{{ filteredEvents().length }}</span>
-    </button>
-  </nav>
-
-  <!-- Content -->
-  <main class="content" role="tabpanel">
-    <!-- Overview Tab -->
-    @if (activeTab() === 'overview') {
-    <section class="overview">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span class="material-symbols-light stat-icon">sync_alt</span>
-          <h3>Flujos</h3>
-          <span class="stat-number">{{ analysis()?.flows?.length || 0 }}</span>
-        </div>
-        <div class="stat-card">
-          <span class="material-symbols-light stat-icon">api</span>
-          <h3>Endpoints</h3>
-          <span class="stat-number">{{ analysis()?.endpoints?.length || 0 }}</span>
-        </div>
-        <div class="stat-card">
-          <span class="material-symbols-light stat-icon">extension</span>
-          <h3>Componentes</h3>
-          <span class="stat-number">{{ analysis()?.components?.length || 0 }}</span>
-        </div>
-        <div class="stat-card">
-          <span class="material-symbols-light stat-icon">flash_on</span>
-          <h3>Eventos</h3>
-          <span class="stat-number">{{ analysis()?.domainEvents?.length || 0 }}</span>
-        </div>
-      </div>
-
-      <div class="quick-links">
-        <h2>
-          <span class="material-symbols-light">rocket_launch</span>
-          Acceso Rápido a Flujos
-        </h2>
-        <div class="links-grid">
-          @for (flow of analysis()?.flows; track flow.id) {
-          <button (click)="selectFlow(flow)" class="flow-link">
-            <div class="flow-link-header">
-              <strong>{{ flow.name }}</strong>
-              <span class="flow-trigger">{{ flow.trigger }}</span>
-            </div>
-            <p>{{ flow.description }}</p>
-            <div class="flow-meta">
-              <span><span class="material-symbols-light">group</span> {{ flow.actors.length }} actores</span>
-              <span><span class="material-symbols-light">list_alt</span> {{ flow.steps.length }} pasos</span>
-              <span><span class="material-symbols-light">notifications</span> {{ flow.notifications.length }} notifs</span>
-            </div>
-          </button>
-          }
-        </div>
-      </div>
-    </section>
-    }
-
-    <!-- Flows Tab -->
-    @if (activeTab() === 'flows') {
-    <section class="flows">
-      @if (selectedFlow()) {
-      <div class="flow-detail">
-        <button class="back-btn" (click)="selectedFlow.set(null)">
-          <span class="material-symbols-light">arrow_back</span>
-          Volver a la lista
+    <!-- Search -->
+    <div class="search-container">
+      <span class="material-symbols-light search-icon">search</span>
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        placeholder="🔍 Buscar flujos, endpoints, componentes, eventos..."
+        class="search-input"
+        [attr.aria-label]="'Buscar en ' + activeTab()"
+      />
+      @if (searchQuery()) {
+        <button class="clear-search" (click)="searchQuery.set('')" aria-label="Limpiar búsqueda">
+          <span class="material-symbols-light">close</span>
         </button>
-        <h2>
-          <span class="material-symbols-light">sync_alt</span>
-          {{ selectedFlow()?.name }}
-        </h2>
-        <p class="flow-description">{{ selectedFlow()?.description }}</p>
+      }
+    </div>
 
-        <div class="flow-info-grid">
-          <div class="info-block">
-            <h3><span class="material-symbols-light">play_circle</span> Trigger</h3>
-            <code>{{ selectedFlow()?.trigger }}</code>
+    <!-- Tabs -->
+    <nav class="tabs" role="tablist" aria-label="Secciones de la guía">
+      <button role="tab" [class.active]="activeTab() === 'overview'" (click)="setActiveTab('overview')" [attr.aria-selected]="activeTab() === 'overview'">
+        <span class="material-symbols-light">dashboard</span>
+        Resumen
+        <span class="tab-count">{{ analysis()?.flows?.length || 0 }} flujos</span>
+      </button>
+      <button role="tab" [class.active]="activeTab() === 'flows'" (click)="setActiveTab('flows')" [attr.aria-selected]="activeTab() === 'flows'">
+        <span class="material-symbols-light">sync_alt</span>
+        Flujos
+        <span class="tab-count">{{ filteredFlows().length }}</span>
+      </button>
+      <button role="tab" [class.active]="activeTab() === 'endpoints'" (click)="setActiveTab('endpoints')" [attr.aria-selected]="activeTab() === 'endpoints'">
+        <span class="material-symbols-light">api</span>
+        Endpoints
+        <span class="tab-count">{{ filteredEndpoints().length }}</span>
+      </button>
+      <button role="tab" [class.active]="activeTab() === 'components'" (click)="setActiveTab('components')" [attr.aria-selected]="activeTab() === 'components'">
+        <span class="material-symbols-light">extension</span>
+        Componentes
+        <span class="tab-count">{{ filteredComponents().length }}</span>
+      </button>
+      <button role="tab" [class.active]="activeTab() === 'events'" (click)="setActiveTab('events')" [attr.aria-selected]="activeTab() === 'events'">
+        <span class="material-symbols-light">flash_on</span>
+        Eventos
+        <span class="tab-count">{{ filteredEvents().length }}</span>
+      </button>
+    </nav>
+
+    <!-- Content -->
+    <main class="content" role="tabpanel">
+      @if (activeTab() === 'overview') {
+        <section class="overview">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="material-symbols-light stat-icon">sync_alt</span>
+              <h3>Flujos</h3>
+              <span class="stat-number">{{ analysis()?.flows?.length || 0 }}</span>
+            </div>
+            <div class="stat-card">
+              <span class="material-symbols-light stat-icon">api</span>
+              <h3>Endpoints</h3>
+              <span class="stat-number">{{ analysis()?.endpoints?.length || 0 }}</span>
+            </div>
+            <div class="stat-card">
+              <span class="material-symbols-light stat-icon">extension</span>
+              <h3>Componentes</h3>
+              <span class="stat-number">{{ analysis()?.components?.length || 0 }}</span>
+            </div>
+            <div class="stat-card">
+              <span class="material-symbols-light stat-icon">flash_on</span>
+              <h3>Eventos</h3>
+              <span class="stat-number">{{ analysis()?.domainEvents?.length || 0 }}</span>
+            </div>
           </div>
-          <div class="info-block">
-            <h3><span class="material-symbols-light">group</span> Actores</h3>
-            <ul>
-              @for (actor of selectedFlow()?.actors; track actor) {
-              <li>
-                <span class="actor-badge" [style.background-color]="getActorColor(actor)">{{ actor }}</span>
-              </li>
+
+          <div class="quick-links">
+            <h2>
+              <span class="material-symbols-light">rocket_launch</span>
+              Acceso Rápido a Flujos
+            </h2>
+            <div class="links-grid">
+              @for (flow of analysis()?.flows; track flow.id) {
+                <button (click)="selectFlow(flow)" class="flow-link">
+                  <div class="flow-link-header">
+                    <strong>{{ flow.name }}</strong>
+                    <span class="flow-trigger">{{ flow.trigger }}</span>
+                  </div>
+                  <p>{{ flow.description }}</p>
+                  <div class="flow-meta">
+                    <span><span class="material-symbols-light">group</span> {{ flow.actors.length }} actores</span>
+                    <span><span class="material-symbols-light">list_alt</span> {{ flow.steps.length }} pasos</span>
+                    <span><span class="material-symbols-light">notifications</span> {{ flow.notifications.length }} notifs</span>
+                  </div>
+                </button>
               }
-            </ul>
+            </div>
           </div>
-        </div>
+        </section>
+      }
 
-        <h3><span class="material-symbols-light">list_alt</span> Pasos del Flujo</h3>
-        <div class="steps-timeline">
-          @for (step of selectedFlow()?.steps; track step.order) {
-          <div class="step-card">
-            <div class="step-number">{{ step.order }}</div>
-            <div class="step-content">
-              <div class="step-header">
-                <h4>{{ step.action }}</h4>
-                <span class="method-badge" [style.background-color]="getMethodColor(step.method)">{{ step.method }}</span>
+      @if (activeTab() === 'flows') {
+        <section class="flows">
+          @if (selectedFlow()) {
+            <div class="flow-detail">
+              <button class="back-btn" (click)="selectedFlow.set(null)">
+                <span class="material-symbols-light">arrow_back</span>
+                Volver a la lista
+              </button>
+              <h2>
+                <span class="material-symbols-light">sync_alt</span>
+                {{ selectedFlow()?.name }}
+              </h2>
+              <p class="flow-description">{{ selectedFlow()?.description }}</p>
+
+              <div class="flow-info-grid">
+                <div class="info-block">
+                  <h3><span class="material-symbols-light">play_circle</span> Trigger</h3>
+                  <code>{{ selectedFlow()?.trigger }}</code>
+                </div>
+                <div class="info-block">
+                  <h3><span class="material-symbols-light">group</span> Actores</h3>
+                  <ul>
+                    @for (actor of selectedFlow()?.actors; track actor) {
+                      <li>
+                        <span class="actor-badge" [style.background-color]="getActorColor(actor)">{{ actor }}</span>
+                      </li>
+                    }
+                  </ul>
+                </div>
               </div>
-              <div class="step-meta">
-                <span><strong>Actor:</strong> <span class="actor-badge" [style.background-color]="getActorColor(step.actor)">{{ step.actor }}</span></span>
-                <span><strong>Endpoint:</strong> <code>{{ step.endpoint }}</code></span>
-                <span><strong>Request:</strong> <code>{{ step.requestType }}</code></span>
-                <span><strong>Response:</strong> <code>{{ step.responseType }}</code></span>
-                @if (step.durationEstimateMs) {
-                <span><strong>Duración est.:</strong> {{ formatDuration(step.durationEstimateMs) }}</span>
+
+              <h3><span class="material-symbols-light">list_alt</span> Pasos del Flujo</h3>
+              <div class="steps-timeline">
+                @for (step of selectedFlow()?.steps; track step.order) {
+                  <div class="step-card">
+                    <div class="step-number">{{ step.order }}</div>
+                    <div class="step-content">
+                      <div class="step-header">
+                        <h4>{{ step.action }}</h4>
+                        <span class="method-badge" [style.background-color]="getMethodColor(step.method)">{{ step.method }}</span>
+                      </div>
+                      <div class="step-meta">
+                        <span><strong>Actor:</strong> <span class="actor-badge" [style.background-color]="getActorColor(step.actor)">{{ step.actor }}</span></span>
+                        <span><strong>Endpoint:</strong> <code>{{ step.endpoint }}</code></span>
+                        <span><strong>Request:</strong> <code>{{ step.requestType }}</code></span>
+                        <span><strong>Response:</strong> <code>{{ step.responseType }}</code></span>
+                        @if (step.durationEstimateMs) {
+                          <span><strong>Duración est.:</strong> {{ formatDuration(step.durationEstimateMs) }}</span>
+                        }
+                      </div>
+
+                      @if (step.validations.length > 0) {
+                        <div class="validations">
+                          <strong><span class="material-symbols-light">verified</span> Validaciones:</strong>
+                          <ul>
+                            @for (v of step.validations; track v) {
+                              <li>{{ v }}</li>
+                            }
+                          </ul>
+                        </div>
+                      }
+
+                      @if (step.sideEffects.length > 0) {
+                        <div class="side-effects">
+                          <strong><span class="material-symbols-light">bolt</span> Efectos secundarios:</strong>
+                          <ul>
+                            @for (s of step.sideEffects; track s) {
+                              <li>{{ s }}</li>
+                            }
+                          </ul>
+                        </div>
+                      }
+                    </div>
+                  </div>
                 }
               </div>
 
-              @if (step.validations.length > 0) {
-              <div class="validations">
-                <strong><span class="material-symbols-light">verified</span> Validaciones:</strong>
-                <ul>
-                  @for (v of step.validations; track v) {
-                  <li>{{ v }}</li>
+              @if (selectedFlow()?.notifications && selectedFlow()!.notifications.length > 0) {
+                <h3><span class="material-symbols-light">notifications</span> Notificaciones</h3>
+                <div class="notifications-grid">
+                  @for (notif of selectedFlow()?.notifications; track notif.trigger) {
+                    <div class="notif-card">
+                      <span class="notif-channel" [style.background-color]="getChannelColor(notif.channel)">{{ notif.channel }}</span>
+                      <p><strong>Para:</strong> {{ notif.recipient }}</p>
+                      <p><strong>Cuando:</strong> {{ notif.trigger }}</p>
+                      @if (notif.template) {
+                        <p><strong>Plantilla:</strong> <code>{{ notif.template }}</code></p>
+                      }
+                    </div>
                   }
-                </ul>
-              </div>
+                </div>
               }
 
-              @if (step.sideEffects.length > 0) {
-              <div class="side-effects">
-                <strong><span class="material-symbols-light">bolt</span> Efectos secundarios:</strong>
-                <ul>
-                  @for (s of step.sideEffects; track s) {
-                  <li>{{ s }}</li>
+              @if (selectedFlow()?.stateChanges && selectedFlow()!.stateChanges.length > 0) {
+                <h3><span class="material-symbols-light">swap_horiz</span> Cambios de Estado</h3>
+                <div class="state-changes">
+                  @for (change of selectedFlow()?.stateChanges; track change.entity) {
+                    <div class="state-change-card">
+                      <strong>{{ change.entity }}</strong>
+                      <span class="state-from">{{ change.from }}</span>
+                      <span class="material-symbols-light arrow">arrow_forward</span>
+                      <span class="state-to">{{ change.to }}</span>
+                      <p class="trigger"><span class="material-symbols-light">trigger</span> Trigger: {{ change.trigger }}</p>
+                    </div>
                   }
-                </ul>
-              </div>
+                </div>
               }
             </div>
-          </div>
+          } @else {
+            <div class="flows-list">
+              @for (flow of filteredFlows(); track flow.id) {
+                <div class="flow-card" (click)="selectFlow(flow)" tabindex="0" role="button" (keydown.enter)="selectFlow(flow)">
+                  <div class="flow-card-header">
+                    <h3>{{ flow.name }}</h3>
+                    <span class="flow-id">{{ flow.id }}</span>
+                  </div>
+                  <p>{{ flow.description }}</p>
+                  <div class="flow-trigger-inline">
+                    <span class="material-symbols-light">play_circle</span>
+                    <code>{{ flow.trigger }}</code>
+                  </div>
+                  <div class="flow-meta">
+                    <span><span class="material-symbols-light">group</span> {{ flow.actors.length }} actores</span>
+                    <span><span class="material-symbols-light">list_alt</span> {{ flow.steps.length }} pasos</span>
+                    <span><span class="material-symbols-light">notifications</span> {{ flow.notifications.length }} notifs</span>
+                    <span><span class="material-symbols-light">swap_horiz</span> {{ flow.stateChanges.length }} estados</span>
+                  </div>
+                </div>
+              }
+              @if (filteredFlows().length === 0) {
+                <div class="empty-state">
+                  <span class="material-symbols-light">search_off</span>
+                  <p>No se encontraron flujos que coincidan con "{{ searchQuery() }}"</p>
+                </div>
+              }
+            </div>
           }
-        </div>
-
-        @if (selectedFlow()?.notifications && selectedFlow()!.notifications.length > 0) {
-        <h3><span class="material-symbols-light">notifications</span> Notificaciones</h3>
-        <div class="notifications-grid">
-          @for (notif of selectedFlow()?.notifications; track notif.trigger) {
-          <div class="notif-card">
-            <span class="notif-channel" [style.background-color]="getChannelColor(notif.channel)">{{ notif.channel }}</span>
-            <p><strong>Para:</strong> {{ notif.recipient }}</p>
-            <p><strong>Cuando:</strong> {{ notif.trigger }}</p>
-            @if (notif.template) {
-            <p><strong>Plantilla:</strong> <code>{{ notif.template }}</code></p>
-            }
-          </div>
-          }
-        </div>
-        }
-
-        @if (selectedFlow()?.stateChanges && selectedFlow()!.stateChanges.length > 0) {
-        <h3><span class="material-symbols-light">swap_horiz</span> Cambios de Estado</h3>
-        <div class="state-changes">
-          @for (change of selectedFlow()?.stateChanges; track change.entity) {
-          <div class="state-change-card">
-            <strong>{{ change.entity }}</strong>
-            <span class="state-from">{{ change.from }}</span>
-            <span class="material-symbols-light arrow">arrow_forward</span>
-            <span class="state-to">{{ change.to }}</span>
-            <p class="trigger"><span class="material-symbols-light">trigger</span> Trigger: {{ change.trigger }}</p>
-          </div>
-          }
-        </div>
-        }
-      </div>
-      } @else {
-      <div class="flows-list">
-        @for (flow of filteredFlows(); track flow.id) {
-        <div class="flow-card" (click)="selectFlow(flow)" tabindex="0" role="button" (keydown.enter)="selectFlow(flow)">
-          <div class="flow-card-header">
-            <h3>{{ flow.name }}</h3>
-            <span class="flow-id">{{ flow.id }}</span>
-          </div>
-          <p>{{ flow.description }}</p>
-          <div class="flow-trigger-inline">
-            <span class="material-symbols-light">play_circle</span>
-            <code>{{ flow.trigger }}</code>
-          </div>
-          <div class="flow-meta">
-            <span><span class="material-symbols-light">group</span> {{ flow.actors.length }} actores</span>
-            <span><span class="material-symbols-light">list_alt</span> {{ flow.steps.length }} pasos</span>
-            <span><span class="material-symbols-light">notifications</span> {{ flow.notifications.length }} notifs</span>
-            <span><span class="material-symbols-light">swap_horiz</span> {{ flow.stateChanges.length }} estados</span>
-          </div>
-        </div>
-        }
-        @if (filteredFlows().length === 0) {
-        <div class="empty-state">
-          <span class="material-symbols-light">search_off</span>
-          <p>No se encontraron flujos que coincidan con "{{ searchQuery() }}"</p>
-        </div>
-        }
-      </div>
+        </section>
       }
-    </section>
-    }
 
-    <!-- Endpoints Tab -->
-    @if (activeTab() === 'endpoints') {
-    <section class="endpoints">
-      <h2><span class="material-symbols-light">api</span> Endpoints API</h2>
-      <div class="endpoints-list">
-        @for (endpoint of filteredEndpoints(); track endpoint.path) {
-        <div class="endpoint-card">
-          <div class="endpoint-header">
-            <span class="method-badge" [style.background-color]="getMethodColor(endpoint.method)">{{ endpoint.method }}</span>
-            <code class="endpoint-path">{{ endpoint.path }}</code>
-            @if (endpoint.deprecated) {
-            <span class="deprecated-badge">Deprecated</span>
+      @if (activeTab() === 'endpoints') {
+        <section class="endpoints">
+          <h2><span class="material-symbols-light">api</span> Endpoints API</h2>
+          <div class="endpoints-list">
+            @for (endpoint of filteredEndpoints(); track endpoint.path) {
+              <div class="endpoint-card">
+                <div class="endpoint-header">
+                  <span class="method-badge" [style.background-color]="getMethodColor(endpoint.method)">{{ endpoint.method }}</span>
+                  <code class="endpoint-path">{{ endpoint.path }}</code>
+                  @if (endpoint.deprecated) {
+                    <span class="deprecated-badge">Deprecated</span>
+                  }
+                </div>
+                <p class="endpoint-description">{{ endpoint.description }}</p>
+                <div class="endpoint-details">
+                  <div class="detail-block">
+                    <strong><span class="material-symbols-light">security</span> Auth:</strong>
+                    <code>{{ endpoint.auth }}</code>
+                  </div>
+                  <div class="detail-block">
+                    <strong><span class="material-symbols-light">input</span> Request:</strong>
+                    <code>{{ endpoint.requestType }}</code>
+                  </div>
+                  <div class="detail-block">
+                    <strong><span class="material-symbols-light">output</span> Response:</strong>
+                    <code>{{ endpoint.responseType }}</code>
+                  </div>
+                  @if (endpoint.group) {
+                    <div class="detail-block">
+                      <strong><span class="material-symbols-light">folder</span> Grupo:</strong>
+                      <code>{{ endpoint.group }}</code>
+                    </div>
+                  }
+                  @if (endpoint.rateLimit) {
+                    <div class="detail-block">
+                      <strong><span class="material-symbols-light">speed</span> Rate Limit:</strong>
+                      <code>{{ endpoint.rateLimit }}</code>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+            @if (filteredEndpoints().length === 0) {
+              <div class="empty-state">
+                <span class="material-symbols-light">search_off</span>
+                <p>No se encontraron endpoints que coincidan con "{{ searchQuery() }}"</p>
+              </div>
             }
           </div>
-          <p class="endpoint-description">{{ endpoint.description }}</p>
-          <div class="endpoint-details">
-            <div class="detail-block">
-              <strong><span class="material-symbols-light">security</span> Auth:</strong>
-              <code>{{ endpoint.auth }}</code>
-            </div>
-            <div class="detail-block">
-              <strong><span class="material-symbols-light">input</span> Request:</strong>
-              <code>{{ endpoint.requestType }}</code>
-            </div>
-            <div class="detail-block">
-              <strong><span class="material-symbols-light">output</span> Response:</strong>
-              <code>{{ endpoint.responseType }}</code>
-            </div>
-            @if (endpoint.group) {
-            <div class="detail-block">
-              <strong><span class="material-symbols-light">folder</span> Grupo:</strong>
-              <code>{{ endpoint.group }}</code>
-            </div>
+        </section>
+      }
+
+      @if (activeTab() === 'components') {
+        <section class="components">
+          <h2><span class="material-symbols-light">extension</span> Componentes Frontend</h2>
+          <div class="components-grid">
+            @for (comp of filteredComponents(); track comp.name) {
+              <div class="component-card">
+                <div class="component-header">
+                  <h3>{{ comp.name }}</h3>
+                  <code class="component-selector">{{ comp.selector }}</code>
+                </div>
+                <code class="component-path">{{ comp.path }}</code>
+                <p class="component-purpose">{{ comp.purpose }}</p>
+
+                @if (comp.inputs.length > 0) {
+                  <div class="component-section">
+                    <h4><span class="material-symbols-light">input</span> Inputs</h4>
+                    <ul>
+                      @for (input of comp.inputs; track input) {
+                        <li><code>{{ input }}</code></li>
+                      }
+                    </ul>
+                  </div>
+                }
+
+                @if (comp.outputs.length > 0) {
+                  <div class="component-section">
+                    <h4><span class="material-symbols-light">output</span> Outputs</h4>
+                    <ul>
+                      @for (output of comp.outputs; track output) {
+                        <li><code>{{ output }}</code></li>
+                      }
+                    </ul>
+                  </div>
+                }
+
+                @if (comp.services.length > 0) {
+                  <div class="component-section">
+                    <h4><span class="material-symbols-light">build</span> Servicios</h4>
+                    <ul>
+                      @for (service of comp.services; track service) {
+                        <li>{{ service }}</li>
+                      }
+                    </ul>
+                  </div>
+                }
+
+                @if (comp.signals.length > 0) {
+                  <div class="component-section">
+                    <h4><span class="material-symbols-light">psychology</span> Signals</h4>
+                    <ul>
+                      @for (sig of comp.signals; track sig) {
+                        <li><code>{{ sig }}</code></li>
+                      }
+                    </ul>
+                  </div>
+                }
+
+                <div class="component-flags">
+                  @if (comp.usesResource) {
+                    <span class="flag resource"><span class="material-symbols-light">cloud_download</span> resource()</span>
+                  }
+                  @if (comp.usesHttpResource) {
+                    <span class="flag http-resource"><span class="material-symbols-light">cloud</span> httpResource()</span>
+                  }
+                </div>
+              </div>
             }
-            @if (endpoint.rateLimit) {
-            <div class="detail-block">
-              <strong><span class="material-symbols-light">speed</span> Rate Limit:</strong>
-              <code>{{ endpoint.rateLimit }}</code>
-            </div>
-            }
-          </div>
-        </div>
-        }
-        @if (filteredEndpoints().length === 0) {
-        <div class="empty-state">
-          <span class="material-symbols-light">search_off</span>
-          <p>No se encontraron endpoints que coincidan con "{{ searchQuery() }}"</p>
-        </div>
-        }
-      </div>
-    </section>
-    }
-
-    <!-- Components Tab -->
-    @if (activeTab() === 'components') {
-    <section class="components">
-      <h2><span class="material-symbols-light">extension</span> Componentes Frontend</h2>
-      <div class="components-grid">
-        @for (comp of filteredComponents(); track comp.name) {
-        <div class="component-card">
-          <div class="component-header">
-            <h3>{{ comp.name }}</h3>
-            <code class="component-selector">{{ comp.selector }}</code>
-          </div>
-          <code class="component-path">{{ comp.path }}</code>
-          <p class="component-purpose">{{ comp.purpose }}</p>
-
-          @if (comp.inputs.length > 0) {
-          <div class="component-section">
-            <h4><span class="material-symbols-light">input</span> Inputs</h4>
-            <ul>
-              @for (input of comp.inputs; track input) {
-              <li><code>{{ input }}</code></li>
-              }
-            </ul>
-          </div>
-          }
-
-          @if (comp.outputs.length > 0) {
-          <div class="component-section">
-            <h4><span class="material-symbols-light">output</span> Outputs</h4>
-            <ul>
-              @for (output of comp.outputs; track output) {
-              <li><code>{{ output }}</code></li>
-              }
-            </ul>
-          </div>
-          }
-
-          @if (comp.services.length > 0) {
-          <div class="component-section">
-            <h4><span class="material-symbols-light">build</span> Servicios</h4>
-            <ul>
-              @for (service of comp.services; track service) {
-              <li>{{ service }}</li>
-              }
-            </ul>
-          </div>
-          }
-
-          @if (comp.signals.length > 0) {
-          <div class="component-section">
-            <h4><span class="material-symbols-light">psychology</span> Signals</h4>
-            <ul>
-              @for (sig of comp.signals; track sig) {
-              <li><code>{{ sig }}</code></li>
-              }
-            </ul>
-          </div>
-          }
-
-          <div class="component-flags">
-            @if (comp.usesResource) {
-            <span class="flag resource"><span class="material-symbols-light">cloud_download</span> resource()</span>
-            }
-            @if (comp.usesHttpResource) {
-            <span class="flag http-resource"><span class="material-symbols-light">cloud</span> httpResource()</span>
+            @if (filteredComponents().length === 0) {
+              <div class="empty-state">
+                <span class="material-symbols-light">search_off</span>
+                <p>No se encontraron componentes que coincidan con "{{ searchQuery() }}"</p>
+              </div>
             }
           </div>
-        </div>
-        }
-        @if (filteredComponents().length === 0) {
-        <div class="empty-state">
-          <span class="material-symbols-light">search_off</span>
-          <p>No se encontraron componentes que coincidan con "{{ searchQuery() }}"</p>
-        </div>
-        }
-      </div>
-    </section>
-    }
+        </section>
+      }
 
-    <!-- Events Tab -->
-    @if (activeTab() === 'events') {
-    <section class="events">
-      <h2><span class="material-symbols-light">flash_on</span> Domain Events</h2>
-      <div class="events-list">
-        @for (event of filteredEvents(); track event.name) {
-        <div class="event-card">
-          <div class="event-header">
-            <h3>{{ event.name }}</h3>
-            <span class="event-type">Domain Event</span>
+      @if (activeTab() === 'events') {
+        <section class="events">
+          <h2><span class="material-symbols-light">flash_on</span> Domain Events</h2>
+          <div class="events-list">
+            @for (event of filteredEvents(); track event.name) {
+              <div class="event-card">
+                <div class="event-header">
+                  <h3>{{ event.name }}</h3>
+                  <span class="event-type">Domain Event</span>
+                </div>
+                <p><strong>Handler:</strong> <code>{{ event.handler }}</code></p>
+                @if (event.publishedBy && event.publishedBy.length > 0) {
+                  <p><strong>Publicado por:</strong> <code>{{ event.publishedBy.join(', ') }}</code></p>
+                }
+                @if (event.subscribers && event.subscribers.length > 0) {
+                  <p><strong>Suscriptores:</strong> <code>{{ event.subscribers.join(', ') }}</code></p>
+                }
+                <div class="event-actions">
+                  <h4><span class="material-symbols-light">bolt</span> Acciones disparadas:</h4>
+                  <ul>
+                    @for (action of event.actions; track action) {
+                      <li>{{ action }}</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            }
+            @if (filteredEvents().length === 0) {
+              <div class="empty-state">
+                <span class="material-symbols-light">flash_off</span>
+                <p>No se encontraron eventos de dominio</p>
+              </div>
+            }
           </div>
-          <p><strong>Handler:</strong> <code>{{ event.handler }}</code></p>
-          @if (event.publishedBy && event.publishedBy.length > 0) {
-          <p><strong>Publicado por:</strong> <code>{{ event.publishedBy.join(', ') }}</code></p>
-          }
-          @if (event.subscribers && event.subscribers.length > 0) {
-          <p><strong>Suscriptores:</strong> <code>{{ event.subscribers.join(', ') }}</code></p>
-          }
-          <div class="event-actions">
-            <h4><span class="material-symbols-light">bolt</span> Acciones disparadas:</h4>
-            <ul>
-              @for (action of event.actions; track action) {
-              <li>{{ action }}</li>
-              }
-            </ul>
-          </div>
-        </div>
-        }
-        @if (filteredEvents().length === 0) {
-        <div class="empty-state">
-          <span class="material-symbols-light">flash_off</span>
-          <p>No se encontraron eventos de dominio</p>
-        </div>
-        }
-      </div>
-    </section>
-    }
-  </main>
+        </section>
+      }
+    </main>
+  }
 </div>

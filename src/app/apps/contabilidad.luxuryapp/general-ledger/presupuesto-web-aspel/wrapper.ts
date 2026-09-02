@@ -63,6 +63,6 @@ export class PresupuestoWebAspelWrapper {
   }
 
   openModuleGuide(): void {
-    window.open('/app/guide/presupuesto-web-aspel', '_blank');
+    window.open('/guide/presupuesto-web-aspel', '_blank');
   }
 }

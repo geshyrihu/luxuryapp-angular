@@ -198,6 +198,34 @@
               {{ pd.educationLevel || 'é' }}
             </p>
           </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Crédito FONACOT</label
+            >
+            <lx-tag
+              [value]="pd.hasFonacotCredit ? 'Sí' : 'No'"
+              [severity]="pd.hasFonacotCredit ? 'success' : 'secondary'"
+              [rounded]="true"
+            ></lx-tag>
+          </div>
+          @if (pd.hasFonacotCredit) {
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >No. crédito FONACOT</label
+            >
+            <p class="font-semibold text-900 m-0 font-mono text-sm">
+              {{ pd.fonacotCreditNumber || 'é' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >FD o % descuento FONACOT</label
+            >
+            <p class="font-semibold text-900 m-0">
+              {{ pd.fonacotDiscountFactor || 'é' }}
+            </p>
+          </div>
+          }
         </div>
       </lx-card>
 

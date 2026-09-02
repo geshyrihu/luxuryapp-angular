@@ -1,14 +1,9 @@
-// ── Toolbar de plantilla ───────────────────────────────────────────────────
-.staff-caption-search {
-  min-width: min(100%, 22rem);
-}
-
-.staff-board-actions {
-  min-width: max-content;
-}
-
+// ── Guía operativa (eyebrow + heading + 3 paneles en grid) ────────────────
 .staff-directory-guide {
-  padding: 0.875rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-md);
+  padding: var(--ds-space-md) var(--ds-space-lg);
   border: 1px solid var(--ds-border);
   border-left: 0.5rem solid var(--ds-primary);
   border-radius: var(--ds-radius-xl);
@@ -18,20 +13,40 @@
   box-shadow: var(--ds-shadow-sm);
 }
 
-.staff-directory-guide__title {
+// Fila 1: encabezado (icono + eyebrow + heading) — todo en una sola fila
+.staff-directory-guide__header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  min-width: min(100%, 17rem);
+  flex-wrap: wrap;
+  gap: var(--ds-space-md);
+  min-width: 0;
+}
+
+.staff-directory-guide__title-text {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  gap: var(--ds-space-sm);
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.staff-directory-guide__heading::before {
+  content: "·";
+  margin-inline-end: var(--ds-space-sm);
+  color: var(--ds-text-muted);
+  font-weight: 700;
+  line-height: 1;
 }
 
 .staff-directory-guide__title-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 2.375rem;
-  width: 2.375rem;
-  height: 2.375rem;
+  flex: 0 0 var(--ds-space-2xl, 2rem);
+  width: var(--ds-space-2xl, 2rem);
+  height: var(--ds-space-2xl, 2rem);
   border-radius: 999px;
   color: var(--ds-text-inverse, #fff);
   background: var(--ds-primary);
@@ -39,29 +54,35 @@
 }
 
 .staff-directory-guide__eyebrow {
+  margin: 0;
   color: var(--ds-text-muted);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .staff-directory-guide__heading {
+  margin: 0;
   color: var(--ds-text, #0f172a);
   font-size: clamp(1rem, 1vw, 1.15rem);
   font-weight: 800;
   line-height: 1.15;
 }
 
+// Fila 2: 3 columnas iguales
 .staff-directory-guide__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: 0.75rem;
-  flex: 1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ds-space-md);
 }
 
 .staff-directory-guide__panel {
-  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-sm);
+  padding: var(--ds-space-md);
   border: 1px solid var(--ds-border);
   border-radius: var(--ds-radius-lg);
   background: color-mix(in srgb, var(--ds-bg-surface) 82%, #fff);
@@ -78,8 +99,7 @@
 .staff-directory-guide__panel-title {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.45rem;
+  gap: var(--ds-space-xs);
   color: var(--ds-primary);
   font-size: 0.8rem;
   font-weight: 800;
@@ -87,7 +107,7 @@
 
 .staff-directory-guide__list {
   display: grid;
-  gap: 0.35rem;
+  gap: var(--ds-space-xs);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -96,7 +116,7 @@
 .staff-directory-guide__list li {
   display: flex;
   align-items: flex-start;
-  gap: 0.4rem;
+  gap: var(--ds-space-xs);
   color: var(--ds-text-muted);
   font-size: 0.76rem;
   line-height: 1.3;

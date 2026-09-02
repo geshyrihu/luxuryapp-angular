@@ -36,10 +36,11 @@ export class MobileButtonIconConfirm extends MobileButtonBase {
   swalText = input<string>("Estas seguro de continuar?");
   confirmed = output<void>();
 
-  protected handleConfirm(event: Event): void {
+  protected async handleConfirm(event: Event): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (confirmAction(this.swalText())) {
+    if (await confirmAction(this.swalText())) {
       this.confirmed.emit();
     }
   }
 }
+

@@ -46,10 +46,10 @@ export interface LxSectionNavItem {
 
       .lx-section-nav__button {
         align-items: center;
-        background: var(--surface-card, #fff);
-        border: 2px solid var(--bluegray-500, #64748b);
+        background: var(--ds-surface);
+        border: 2px solid var(--ds-border);
         border-radius: 0.75rem;
-        color: var(--text-color, #0f172a);
+        color: var(--ds-text-primary);
         cursor: pointer;
         display: inline-flex;
         font-weight: 700;
@@ -68,19 +68,19 @@ export interface LxSectionNavItem {
       }
 
       .lx-section-nav__button:hover:not(:disabled) {
-        border-color: var(--primary-color, #0b4f79);
+        border-color: var(--ds-primary);
         box-shadow: 0 8px 18px rgb(15 23 42 / 0.1);
         transform: translateY(-1px);
       }
 
       .lx-section-nav__button--active {
-        background: color-mix(in srgb, var(--primary-color, #0b4f79) 10%, #fff);
-        border-color: var(--primary-color, #0b4f79);
-        box-shadow: inset 0 0 0 1px var(--primary-color, #0b4f79);
+        background: color-mix(in srgb, var(--ds-primary) 10%, var(--ds-surface));
+        border-color: var(--ds-primary);
+        box-shadow: inset 0 0 0 1px var(--ds-primary);
       }
 
       .lx-section-nav__button:focus-visible {
-        outline: 3px solid color-mix(in srgb, var(--primary-color, #0b4f79) 30%, transparent);
+        outline: 3px solid color-mix(in srgb, var(--ds-primary) 30%, transparent);
         outline-offset: 2px;
       }
 

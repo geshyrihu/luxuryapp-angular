@@ -205,6 +205,32 @@
               />
             </div>
             }
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-toggle-switch-signal
+                [control]="form.controls.hasFonacotCredit"
+                label="Crédito FONACOT"
+                placeholder="Cuenta con crédito"
+                [horizontal]="false"
+              />
+            </div>
+            @if (form.controls.hasFonacotCredit.value) {
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.fonacotCreditNumber"
+                label="No. crédito FONACOT"
+                placeholder="Número de crédito"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+              <custom-input-text-signal
+                [control]="form.controls.fonacotDiscountFactor"
+                label="FD o % descuento FONACOT"
+                placeholder="Factor o porcentaje"
+                [horizontal]="false"
+              />
+            </div>
+            }
           </div>
         </div>
       </div>

@@ -34,6 +34,18 @@
         }
       </select>
     </label>
+    <label
+      >Empresa
+      <select
+        [ngModel]="tipoEmpresa()"
+        (ngModelChange)="onTipoEmpresaChanged($event)"
+      >
+        <option value="">Todas</option>
+        @for (option of tiposEmpresa(); track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </label>
     <custom-input-select-signal
       class="filter-select"
       [control]="nivelControl"
@@ -123,6 +135,10 @@
         <p class="eyebrow">Ejecución presupuestal</p>
         <h2>Real vs presupuesto del periodo</h2>
       </div>
+      <span
+        >{{ budgetRows().totalCount | number }} cuentas · Página {{
+        budgetRows().page }} de {{ budgetRows().totalPages || 1 }}</span
+      >
     </div>
     <div class="table-wrap">
       <table>
@@ -137,7 +153,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (saldo of saldos(); track saldo.id) {
+          @for (saldo of budgetRows().items; track saldo.id) {
           <tr>
             <td class="account">{{ saldo.numCta }}</td>
             <td>{{ saldo.nombre }}</td>
@@ -160,6 +176,22 @@
         </tbody>
       </table>
     </div>
+    <footer class="pager">
+      <button
+        type="button"
+        [disabled]="budgetPage() === 1"
+        (click)="changeBudgetPage(budgetPage() - 1)"
+      >
+        Anterior</button
+      ><span>{{ budgetPage() }} / {{ budgetRows().totalPages || 1 }}</span
+      ><button
+        type="button"
+        [disabled]="budgetPage() >= budgetRows().totalPages"
+        (click)="changeBudgetPage(budgetPage() + 1)"
+      >
+        Siguiente
+      </button>
+    </footer>
   </section>
   }
 

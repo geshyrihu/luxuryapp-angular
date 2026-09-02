@@ -12,90 +12,127 @@
 >
   <ng-template #caption>
     <section
-      class="staff-directory-guide mb-3"
+      class="staff-directory-guide"
       aria-label="Guía Operativa del Directorio"
     >
-      <div class="flex flex-column lg:flex-row gap-3 lg:align-items-center">
-        <div class="staff-directory-guide__title">
-          <app-icon
-            icon="material-symbols-light:menu-book"
-            class="staff-directory-guide__title-icon"
-          />
-          <div>
-            <p class="staff-directory-guide__eyebrow mb-1">
-              Administrador · Gerente Operaciones · Gerente Atención · Asistente
-            </p>
-            <h2 class="staff-directory-guide__heading m-0">
-              Guía Operativa del Directorio
-            </h2>
+      <div class="staff-directory-guide__header">
+        <app-icon
+          icon="material-symbols-light:menu-book"
+          class="staff-directory-guide__title-icon"
+        />
+        <div class="staff-directory-guide__title-text">
+          <p class="staff-directory-guide__eyebrow">
+            Administrador · Gerente Operaciones · Gerente Atención · Asistente
+          </p>
+          <h2 class="staff-directory-guide__heading">
+            Guía Operativa del Directorio
+          </h2>
+        </div>
+      </div>
+
+      <div class="staff-directory-guide__grid">
+        <div class="staff-directory-guide__panel">
+          <div class="staff-directory-guide__panel-title">
+            <app-icon icon="material-symbols-light:confirmation-number" />
+            <span>Significado de Tickets Abiertos</span>
           </div>
+          <ul class="staff-directory-guide__list">
+            <li>
+              <app-icon
+                icon="material-symbols-light:confirmation-number"
+                class="text-warning"
+              />
+              <span
+                ><strong class="text-warning">Ticket Vacante:</strong> Hay una
+                solicitud activa en proceso por reclutamiento.</span
+              >
+            </li>
+            <li>
+              <app-icon
+                icon="material-symbols-light:airplane-ticket"
+                class="text-danger"
+              />
+              <span
+                ><strong class="text-danger">Ticket Baja:</strong> Hay una
+                solicitud de baja en validación por RRHH.</span
+              >
+            </li>
+            <li>
+              <app-icon
+                icon="material-symbols-light:local-activity"
+                class="text-info"
+              />
+              <span
+                ><strong class="text-info">Ticket Salario:</strong> Hay una
+                modificación salarial pendiente de aprobación.</span
+              >
+            </li>
+          </ul>
         </div>
 
-        <div class="staff-directory-guide__grid">
-          <div
-            class="staff-directory-guide__panel staff-directory-guide__panel--can"
-          >
-            <div class="staff-directory-guide__panel-title">
-              <app-icon icon="material-symbols-light:check-circle" />
-              <span>Responsabilidades (Puedes)</span>
-            </div>
-            <ul class="staff-directory-guide__list">
-              <li>
-                <app-icon icon="material-symbols-light:check" />
-                <span
-                  >Crear puestos de trabajo y registrar su descripción
-                  operativa.</span
-                >
-              </li>
-              <li>
-                <app-icon icon="material-symbols-light:check" />
-                <span
-                  >Configurar horarios y prestaciones que ofrece el cliente para
-                  cada puesto.</span
-                >
-              </li>
-              <li>
-                <app-icon icon="material-symbols-light:check" />
-                <span
-                  >Solicitar la baja o modificación salarial de empleados
-                  activos vinculados a un puesto.</span
-                >
-              </li>
-              <li>
-                <app-icon icon="material-symbols-light:check" />
-                <span
-                  >Registrar incidencias administrativas de empleados
-                  activos.</span
-                >
-              </li>
-            </ul>
+        <div
+          class="staff-directory-guide__panel staff-directory-guide__panel--can"
+        >
+          <div class="staff-directory-guide__panel-title">
+            <app-icon icon="material-symbols-light:check-circle" />
+            <span>Responsabilidades (Puedes)</span>
           </div>
+          <ul class="staff-directory-guide__list">
+            <li>
+              <app-icon icon="material-symbols-light:check" />
+              <span
+                >Crear puestos de trabajo y registrar su descripción
+                operativa.</span
+              >
+            </li>
+            <li>
+              <app-icon icon="material-symbols-light:check" />
+              <span
+                >Configurar horarios y prestaciones que ofrece el cliente para
+                cada puesto.</span
+              >
+            </li>
+            <li>
+              <app-icon icon="material-symbols-light:check" />
+              <span
+                >Solicitar la baja o modificación salarial de empleados
+                activos vinculados a un puesto.</span
+              >
+            </li>
+            <li>
+              <app-icon icon="material-symbols-light:check" />
+              <span
+                >Registrar incidencias administrativas de empleados
+                activos.</span
+              >
+            </li>
+          </ul>
+        </div>
 
-          <div
-            class="staff-directory-guide__panel staff-directory-guide__panel--cannot"
-          >
-            <div class="staff-directory-guide__panel-title">
-              <app-icon icon="material-symbols-light:lock" />
-              <span>Restricciones (No Puedes)</span>
-            </div>
-            <ul class="staff-directory-guide__list">
-              <li>
-                <app-icon icon="material-symbols-light:lock" />
-                <span
-                  >Reclutamiento registra al empleado que cubrirá la vacante y
-                  recauda su documentación.</span
-                >
-              </li>
-              <li>
-                <app-icon icon="material-symbols-light:warning" />
-                <span
-                  >Al quedar activo en un puesto, el empleado recibe
-                  automáticamente sus credenciales de LuxuryApp por email y
-                  WhatsApp.</span
-                >
-              </li>
-            </ul>
+        <div
+          class="staff-directory-guide__panel staff-directory-guide__panel--cannot"
+        >
+          <div class="staff-directory-guide__panel-title">
+            <app-icon icon="material-symbols-light:lock" />
+            <span>Restricciones (No Puedes)</span>
           </div>
+          <ul class="staff-directory-guide__list">
+            <li>
+              <app-icon icon="material-symbols-light:lock" />
+              <span
+                >Reclutamiento registra al empleado que cubrirá la vacante y
+                recauda su documentación.</span
+              >
+            </li>
+            <li>
+              <app-icon icon="material-symbols-light:warning" />
+              <span
+                >Al quedar activo en un puesto, el empleado recibe
+                automáticamente sus credenciales de LuxuryApp por email y
+                WhatsApp.</span
+              >
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -197,7 +234,7 @@
         class="staff-group-header-cell"
       >
         <span class="group-header-label">
-          <app-icon [icon]="'material-symbols-light:work'" />
+          <app-icon icon="material-symbols-light:work" />
           {{ getDepartamentLabel(item.departament) }}
         </span>
       </td>
@@ -255,12 +292,14 @@
 
       <td>
         <div class="flex align-items-center justify-content-center gap-1">
-          @if (item.canRequestVacancy && shouldShowVacancyRequest(item)) {
+          @if (item.canRequestVacancy) {
           <iw-button-item
-            iconClass="material-symbols-light:receipt"
-            lxTooltip="Solicitar Vacante"
-            ariaLabel="Solicitar Vacante"
+            iconClass="material-symbols-light:confirmation-number"
+            severity="warning"
+            [lxTooltip]="shouldShowVacancyRequest(item) ? 'Solicitar Vacante' : 'Ticket Vacante abierto'"
+            [ariaLabel]="shouldShowVacancyRequest(item) ? 'Solicitar Vacante' : 'Ticket Vacante abierto'"
             tooltipPosition="top"
+            [disabled]="!shouldShowVacancyRequest(item)"
             (clicked)="onModalSolicitudVacante(item.id)"
           />
           }
@@ -272,7 +311,7 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
           />
           <iw-button-item
-            iconClass="material-symbols-light:article"
+            iconClass="material-symbols-light:description"
             lxTooltip="Editar Descripción"
             ariaLabel="Editar Descripción"
             tooltipPosition="top"
@@ -318,6 +357,18 @@
               <span class="font-semibold truncate"
                 >{{ item.applicationUser }}</span
               >
+              @let tickets = openTickets(item); @if (tickets.length > 0) {
+              <div class="flex flex-wrap gap-1 mt-1">
+                @for (ticket of tickets; track ticket.type) {
+                <lx-tag
+                  [value]="ticket.folio ? 'VA-' + ticket.folio : ticket.label"
+                  [severity]="ticket.severity"
+                  [icon]="ticket.icon"
+                  [tooltip]="ticket.label"
+                />
+                }
+              </div>
+              }
             </div>
             <div class="flex align-items-center gap-1">
               <iw-button-item
@@ -350,20 +401,22 @@
               />
               @if (item.canRequestDismissal) {
               <iw-button-item
-                iconClass="material-symbols-light:person-remove"
+                iconClass="material-symbols-light:airplane-ticket"
                 severity="danger"
-                lxTooltip="Solicitar Baja"
-                ariaLabel="Solicitar Baja"
+                [lxTooltip]="!item.requestDismissal ? 'Solicitar Baja' : 'Ticket Baja abierto'"
+                [ariaLabel]="!item.requestDismissal ? 'Solicitar Baja' : 'Ticket Baja abierto'"
                 tooltipPosition="top"
+                [disabled]="!!item.requestDismissal"
                 (clicked)="onRequestDismissal(item)"
               />
-              }
-              @if (item.canModifySalary) {
+              } @if (item.canModifySalary) {
               <iw-button-item
-                iconClass="material-symbols-light:payments"
-                lxTooltip="Solicitar Modif. Salario"
-                ariaLabel="Solicitar Modif. Salario"
+                iconClass="material-symbols-light:local-activity"
+                severity="info"
+                [lxTooltip]="!item.requestSalaryModification ? 'Solicitar Modif. Salario' : 'Ticket Salario abierto'"
+                [ariaLabel]="!item.requestSalaryModification ? 'Solicitar Modif. Salario' : 'Ticket Salario abierto'"
                 tooltipPosition="top"
+                [disabled]="!!item.requestSalaryModification"
                 (clicked)="onRequestSalaryMod(item)"
               />
               }
@@ -377,7 +430,7 @@
             >
               <div class="flex align-items-center gap-2">
                 <app-icon
-                  [icon]="'material-symbols-light:group'"
+                  icon="material-symbols-light:group"
                   class="text-400"
                 />
                 <span class="text-sm font-bold">VACANTE</span>
@@ -395,6 +448,12 @@
             </div>
 
             @if (vacancyState(item) === 'open') {
+            <lx-tag
+              severity="warn"
+              value="Ticket Vacante"
+              icon="material-symbols-light:confirmation-number"
+              [tooltip]="'VA-' + (item.positionRequest?.folio ?? '') + ' · Vacante abierta'"
+            />
             <span
               class="badge badge-warning vacant-inline-badge text-xs text-center block py-2"
               lxTooltip="Vacante abierta esperando alta de colaborador"
@@ -402,6 +461,12 @@
               VA-{{ item.positionRequest!.folio }} | Vacante abierta
             </span>
             } @else if (vacancyState(item) === 'inProgress') {
+            <lx-tag
+              severity="info"
+              value="Ticket Vacante"
+              icon="material-symbols-light:confirmation-number"
+              [tooltip]="'VA-' + (item.positionRequest?.folio ?? '') + ' · Alta en proceso'"
+            />
             <span
               class="badge badge-info vacant-inline-badge text-xs text-center block py-2"
               lxTooltip="Solicitud de alta enviada en proceso de reclutamiento"
@@ -438,8 +503,6 @@
   </ng-template>
 
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage
-      [colspan]="showSalaryColumn() ? 6 : 5"
-    />
+    <primeng-custom-table-emptymessage [colspan]="showSalaryColumn() ? 6 : 5" />
   </ng-template>
 </p-table>

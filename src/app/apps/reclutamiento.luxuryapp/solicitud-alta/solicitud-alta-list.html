@@ -133,13 +133,7 @@
             variant="outline"
             (clicked)="onGoToEmployeeFile(item)"
           />
-          <il-button
-            label="Concluir Alta"
-            iconClass="material-symbols-light:check"
-            severity="success"
-            variant="solid"
-            (clicked)="onConcludeHiring(item.id)"
-          />
+          <il-button-confirm label="Concluir Alta" iconClass="material-symbols-light:check" severity="success" variant="solid" swalText="¿Estás seguro de concluir el alta del empleado administrativamente?" (confirmed)="onConcludeHiring(item.id)" />
           <il-button
             label="Abortar Alta"
             iconClass="material-symbols-light:cancel"
@@ -224,12 +218,7 @@
             label="Ir al Expediente"
             iconClass="material-symbols-light:badge"
           />
-          <ili-button
-            (clicked)="onConcludeHiring(item.id)"
-            label="Concluir Alta"
-            iconClass="material-symbols-light:check"
-            color="success"
-          />
+          <ili-button-confirm (confirmed)="onConcludeHiring(item.id)" swalText="¿Estás seguro de concluir el alta del empleado administrativamente?" label="Concluir Alta" iconClass="material-symbols-light:check" color="success" />
           <ili-button
             (clicked)="onAbortHiring(item)"
             label="Abortar Alta"
@@ -254,3 +243,4 @@
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
+

@@ -54,6 +54,9 @@ interface EmployeeUnifiedProfileFormControls {
   hasInfonavitCredit: FormControl<boolean>;
   infonavitCreditNumber: FormControl<string>;
   infonavitDiscountFactor: FormControl<string>;
+  hasFonacotCredit: FormControl<boolean>;
+  fonacotCreditNumber: FormControl<string>;
+  fonacotDiscountFactor: FormControl<string>;
   city: FormControl<string>;
   district: FormControl<string>;
   townHall: FormControl<string>;
@@ -162,6 +165,9 @@ export class EmployeeUnifiedProfileForm implements OnInit {
     rfc: "RFC",
     rfcPostalCode: "Código postal RFC",
     sex: "Sexo",
+    hasFonacotCredit: "Crédito FONACOT",
+    fonacotCreditNumber: "No. crédito FONACOT",
+    fonacotDiscountFactor: "FD o % descuento FONACOT",
     city: "Ciudad",
     district: "Colonia",
     townHall: "Municipio / Alcaldía",
@@ -241,6 +247,15 @@ export class EmployeeUnifiedProfileForm implements OnInit {
       nonNullable: true,
     }),
     infonavitDiscountFactor: new FormControl("", {
+      nonNullable: true,
+    }),
+    hasFonacotCredit: new FormControl(false, {
+      nonNullable: true,
+    }),
+    fonacotCreditNumber: new FormControl("", {
+      nonNullable: true,
+    }),
+    fonacotDiscountFactor: new FormControl("", {
       nonNullable: true,
     }),
     city: new FormControl("", {
@@ -364,8 +379,11 @@ export class EmployeeUnifiedProfileForm implements OnInit {
       rfcPostalCode: result.rfcPostalCode,
       sex: this.extractValue(result.sex),
       hasInfonavitCredit: result.hasInfonavitCredit === true,
-      infonavitCreditNumber: result.infonavitCreditNumber,
-      infonavitDiscountFactor: result.infonavitDiscountFactor,
+      infonavitCreditNumber: result.infonavitCreditNumber ?? "",
+      infonavitDiscountFactor: result.infonavitDiscountFactor ?? "",
+      hasFonacotCredit: result.hasFonacotCredit === true,
+      fonacotCreditNumber: result.fonacotCreditNumber ?? "",
+      fonacotDiscountFactor: result.fonacotDiscountFactor ?? "",
       city: result.city,
       district: result.district,
       townHall: result.townHall,

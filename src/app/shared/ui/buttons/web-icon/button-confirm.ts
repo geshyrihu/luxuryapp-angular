@@ -39,10 +39,11 @@ export class WebButtonIconConfirm extends BaseButton {
   );
   override severity = input<any>("success");
 
-  protected handleConfirm(event: Event): void {
+  protected async handleConfirm(event: Event): Promise<void> {
     if (this.disabled() || this.loading()) return;
-    if (confirmAction(this.swalText())) {
+    if (await confirmAction(this.swalText())) {
       this.confirmed.emit();
     }
   }
 }
+

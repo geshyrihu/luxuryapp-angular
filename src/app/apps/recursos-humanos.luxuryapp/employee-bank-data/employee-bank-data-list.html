@@ -37,16 +37,20 @@
       <td>{{ item.relacionName }}</td>
       <td class="no-print">
         <div class="flex justify-content-center">
-          @if (!isReadOnly()) { <iw-button
+          @if (!isReadOnly()) {
+          <iw-button
             iconClass="edit"
             ngbTooltip="Editar"
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Bancario y Beneficiario' })"
-          /> }
-          @if (!isReadOnly()) { <iw-button-confirm
-            icon="trash"
+          />
+          } @if (!isReadOnly()) {
+          <iw-button-confirm
+            iconClass="trash"
+            severity="danger"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id)"
-          /> }
+          />
+          }
         </div>
       </td>
     </tr>
@@ -63,7 +67,8 @@
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro Bancario y Beneficiario' })"
- [showAdd]="!isReadOnly()">
+  [showAdd]="!isReadOnly()"
+>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div
@@ -76,13 +81,14 @@
           class="text-xl text-primary"
         />
       </div>
-      
-        <h3>{{ item.bankName }}</h3>
-        <p>{{ item.bankAccount }} | {{ item.bankKey }}</p>
-        <p>Beneficiario: {{ item.nameContact }}</p>
-        <p>{{ item.relacionName }} | {{ item.phoneNumber }}</p>
-      
-      @if (!isReadOnly()) { <ili-action-menu slot="end">
+
+      <h3>{{ item.bankName }}</h3>
+      <p>{{ item.bankAccount }} | {{ item.bankKey }}</p>
+      <p>Beneficiario: {{ item.nameContact }}</p>
+      <p>{{ item.relacionName }} | {{ item.phoneNumber }}</p>
+
+      @if (!isReadOnly()) {
+      <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Bancario y Beneficiario' })"
@@ -90,7 +96,8 @@
           />
           <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
-      </ili-action-menu> }
+      </ili-action-menu>
+      }
     </ili-list-item>
   </ng-template>
 </app-data-view-mobile>
