@@ -79,7 +79,8 @@ export class DocumentCatalogList implements OnInit {
       )
       .then((result) => {
         if (result) this.dataSignal.set(result);
-      });
+      })
+      .finally(() => this.loading.set(false));
   }
 
   onDelete(id: string) {
@@ -101,5 +102,13 @@ export class DocumentCatalogList implements OnInit {
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
+  }
+
+  onRowReorder(event: { dragIndex: number; dropIndex: number }) {
+    const orderedIds = this.dataSignal().map((item) => item.id);
+    this.apiResponseS.onPut(
+      Endpoints.Catalogs.DocumentCatalog.updateOrder,
+      { orderedIds },
+    );
   }
 }

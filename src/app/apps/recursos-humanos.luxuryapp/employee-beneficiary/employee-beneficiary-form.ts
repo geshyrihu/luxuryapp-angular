@@ -15,19 +15,23 @@ import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { EmployeeInternalService } from "src/app/apps/recursos-humanos.luxuryapp/employee/employee-internal.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { EmployeeInternalService } from "src/app/apps/recursos-humanos.luxuryapp/employee/employee-internal.service";
-import { IEmployeeBankDataForm } from "./interfaces/employee-bank-data.interface";
+import { IEmployeeBeneficiaryForm } from "./interfaces/employee-beneficiary.interface";
 
 @Component({
-  selector: "app-employee-bank-data-form",
-  templateUrl: "./employee-bank-data-form.html",
+  selector: "app-employee-beneficiary-form",
+  templateUrl: "./employee-beneficiary-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
@@ -37,8 +41,9 @@ import { IEmployeeBankDataForm } from "./interfaces/employee-bank-data.interface
     WebButtonLabelSave,
   ],
 })
-export class EmployeeBankDataForm implements OnInit {
+export class EmployeeBeneficiaryForm implements OnInit {
   private readonly employeeInternalS = inject(EmployeeInternalService);
+  private readonly customerIdS = inject(CustomerIdService);
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly enumSelectS = inject(EnumSelectService);
 
@@ -47,7 +52,8 @@ export class EmployeeBankDataForm implements OnInit {
 
   id = this.config.data?.id || "";
   submitting = signal(false);
-  cbBanks = signal<SelectItemDto[]>([]);
+  
+  cbRelations = signal<SelectItemDto[]>([]);
 
   form = new FormGroup({
     id: new FormControl<string>(this.id, { nonNullable: true }),
@@ -55,19 +61,15 @@ export class EmployeeBankDataForm implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    bankId: new FormControl<string | null>(null, Validators.required),
-    bankAccount: new FormControl<string>("", {
+    fullName: new FormControl<string>("", {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    bankKey: new FormControl<string>("", {
+    phoneNumber: new FormControl<string>("", {
       nonNullable: true,
-      validators: [
-        Validators.required,
-        Validators.minLength(18),
-        Validators.maxLength(18),
-      ],
+      validators: [Validators.required],
     }),
+    relation: new FormControl<number | null>(null),
   });
 
   get f() {
@@ -83,17 +85,12 @@ export class EmployeeBankDataForm implements OnInit {
   }
 
   async onLoadCombos() {
-    const [banks] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.bank,
-      ),
-    ]);
-
-    this.cbBanks.set(banks ?? []);
+    const relations = await firstValueFrom(this.enumSelectS.relationEmployee());
+    this.cbRelations.set(relations ?? []);
   }
 
   onLoadData() {
-    this.employeeInternalS.getBankDataById(this.id).then((result) => {
+    this.employeeInternalS.getBeneficiaryById(this.id).then((result) => {
       if (result) {
         this.form.patchValue(result);
       }
@@ -104,14 +101,16 @@ export class EmployeeBankDataForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form as FormGroup,
       api: this.apiResponseS,
-      endpoint: Endpoints.EmployeeBankData.base,
+      endpoint: Endpoints.EmployeeBeneficiary.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
-      transformPayload: (value: IEmployeeBankDataForm) => ({
+      transformPayload: (value: IEmployeeBeneficiaryForm) => ({
         ...value,
         employeeId: this.config.data.employeeId,
       }),
     });
   }
 }
+
+

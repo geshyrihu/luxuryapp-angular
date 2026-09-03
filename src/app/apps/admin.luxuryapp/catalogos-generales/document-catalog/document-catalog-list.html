@@ -1,4 +1,5 @@
 <!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -8,6 +9,8 @@
   [value]="dataSignal()"
   [scrollable]="true"
   [scrollHeight]="scrollHeight()"
+  [reorderableColumns]="true"
+  (onRowReorder)="onRowReorder($event)"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   class="custom-table hidden md:block"
@@ -21,6 +24,7 @@
 
   <ng-template #header>
     <tr>
+      <th class="table-col-3rem"></th>
       <th class="table-col-4 text-small" pSortableColumn="name">
         NOMBRE
         <p-sorticon field="name" />
@@ -44,8 +48,15 @@
       <th class="table-col-2 text-small">ACCIONES</th>
     </tr>
   </ng-template>
-  <ng-template #body let-item>
-    <tr>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr [pReorderableRow]="rowIndex">
+      <td>
+        <app-icon
+          [icon]="'material-symbols-light:menu'"
+          pReorderableRowHandle
+          class="cursor-move"
+        />
+      </td>
       <td>{{ item.name }}</td>
 
       <td>{{ item.description || "—" }}</td>
@@ -75,7 +86,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="5" />
+    <primeng-custom-table-emptymessage [colspan]="6" />
   </ng-template>
 
   <ng-template #paginatorleft>

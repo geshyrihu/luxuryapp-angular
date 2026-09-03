@@ -16,11 +16,14 @@ import { WebButtonIcon, WebButtonIconEdit } from "@ui/buttons/web-icon";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
+import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
+import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsRecursosHumanos } from "src/app/core/constants/endpoints/recursos-humanos.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 
 export interface CandidateHiringDocumentListItemDto {
@@ -37,6 +40,7 @@ export interface CandidateHiringDocumentListItemDto {
   validatedByUserId: string | null;
   validatedByUserName: string | null;
   validationNotes: string | null;
+  sortOrder: number;
 }
 
 @Component({
@@ -53,6 +57,9 @@ export interface CandidateHiringDocumentListItemDto {
     WebButtonIconEdit,
     WebButtonIcon,
     LxTag,
+    TableModule,
+    PrimeNgCustomTableEmptyMessage,
+    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./employee-document-list.html",
@@ -126,6 +133,19 @@ export class EmployeeDocumentList implements OnInit {
     } finally {
       this.isLoading.set(false);
     }
+  }
+
+  onRowReorder(event: { dragIndex: number; dropIndex: number }) {
+    const orderedIds = this.documents().map((d) => d.id);
+    this.apiResponseS
+      .onPut(
+        EndpointsRecursosHumanos.EmployeeDocument.reorder(this.employeeId()),
+        { orderedIds },
+      )
+      .then(() => {})
+      .catch(() => {
+        this.toastS.showError("Error al guardar el orden");
+      });
   }
 
   onNewFileSelected(event: any) {

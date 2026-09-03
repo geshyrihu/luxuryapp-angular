@@ -6,7 +6,10 @@
         class="flex flex-column xl:flex-row xl:align-items-center xl:justify-content-between gap-4"
       >
         <div class="cobranza-header-title flex align-items-center gap-3">
-          <app-icon [icon]="'material-symbols-light:monitoring'" class="text-2xl" />
+          <app-icon
+            [icon]="'material-symbols-light:monitoring'"
+            class="text-2xl"
+          />
           <div class="min-w-0">
             <h2 class="m-0 text-xl font-semibold">{{ pageTitle() }}</h2>
             @if (pageDescription()) {
@@ -20,96 +23,192 @@
         </div>
 
         <!-- Mobile Tabs Navigation -->
-        <div class="flex overflow-x-auto flex-nowrap w-full pb-0 mt-3 xl:mt-0" style="border-bottom: 2px solid var(--ds-border); scrollbar-width: none;">
+        <div
+          class="flex overflow-x-auto flex-nowrap w-full pb-0 mt-3 xl:mt-0"
+          style="
+            border-bottom: 2px solid var(--ds-border);
+            scrollbar-width: none;
+          "
+        >
           <a
             routerLink="/cobranza/aspel-online"
             [routerLinkActiveOptions]="{ exact: true }"
             routerLinkActive="!text-primary !border-primary"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
-            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:dashboard-outline" class="text-base"></app-icon>
+            <app-icon
+              icon="material-symbols-light:dashboard-outline"
+              class="text-base"
+            ></app-icon>
             <span class="text-sm">Resumen</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/analysis"
             routerLinkActive="!text-primary !border-primary"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
-            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:pie-chart" class="text-base"></app-icon>
+            <app-icon
+              icon="material-symbols-light:pie-chart"
+              class="text-base"
+            ></app-icon>
             <span class="text-sm">Análisis</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/detalle-condominos"
             routerLinkActive="!text-primary !border-primary"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
-            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:group-outline" class="text-base"></app-icon>
+            <app-icon
+              icon="material-symbols-light:group-outline"
+              class="text-base"
+            ></app-icon>
             <span class="text-sm">Detalle Condóminos</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/morosidad"
             routerLinkActive="!text-primary !border-primary"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
-            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:warning-outline" class="text-base"></app-icon>
+            <app-icon
+              icon="material-symbols-light:warning-outline"
+              class="text-base"
+            ></app-icon>
             <span class="text-sm">Morosidad</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/otros-cargos"
             routerLinkActive="!text-primary !border-primary"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
-            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:add-card" class="text-base"></app-icon>
+            <app-icon
+              icon="material-symbols-light:add-card"
+              class="text-base"
+            ></app-icon>
             <span class="text-sm">Otros Cargos</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/movimientos"
             routerLinkActive="!text-primary !border-primary"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
-            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:swap-horiz" class="text-base"></app-icon>
+            <app-icon
+              icon="material-symbols-light:swap-horiz"
+              class="text-base"
+            ></app-icon>
             <span class="text-sm">Movimientos del Mes</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/advances"
             routerLinkActive="!text-primary !border-primary"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
-            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:payments" class="text-base"></app-icon>
+            <app-icon
+              icon="material-symbols-light:payments"
+              class="text-base"
+            ></app-icon>
             <span class="text-sm">Adelantos</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/towers"
             routerLinkActive="!text-primary !border-primary"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
-            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:apartment" class="text-base"></app-icon>
+            <app-icon
+              icon="material-symbols-light:apartment"
+              class="text-base"
+            ></app-icon>
             <span class="text-sm">Torres</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/exclusions"
             routerLinkActive="!text-primary !border-primary"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
-            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:person-off" class="text-base"></app-icon>
+            <app-icon
+              icon="material-symbols-light:person-off"
+              class="text-base"
+            ></app-icon>
             <span class="text-sm">Cuentas omitidas</span>
           </a>
           <a
             routerLink="/cobranza/aspel-online/inspection"
             routerLinkActive="!text-primary !border-primary"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0"
-            style="border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:format-list-bulleted" class="text-base"></app-icon>
+            <app-icon
+              icon="material-symbols-light:format-list-bulleted"
+              class="text-base"
+            ></app-icon>
             <span class="text-sm">Listado Base</span>
           </a>
           <button
@@ -117,10 +216,22 @@
             (click)="onSyncNow()"
             [disabled]="syncRunning()"
             class="flex align-items-center gap-2 px-3 py-3 text-color-secondary no-underline font-medium flex-shrink-0 bg-transparent cursor-pointer"
-            style="border: none; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;"
+            style="
+              border: none;
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
+              transition:
+                color 0.15s,
+                border-color 0.15s;
+            "
           >
-            <app-icon icon="material-symbols-light:refresh" class="text-base"></app-icon>
-            <span class="text-sm">{{ syncRunning() ? "Sync..." : "Refrescar" }}</span>
+            <app-icon
+              icon="material-symbols-light:refresh"
+              class="text-base"
+            ></app-icon>
+            <span class="text-sm"
+              >{{ syncRunning() ? "Sync..." : "Refrescar" }}</span
+            >
           </button>
         </div>
       </div>
@@ -139,31 +250,51 @@
       </div>
       }
     </div>
-    
+
     <!-- Datos de contexto (Compact Mobile Accordion) -->
     @if (hasCustomer() && syncStatus()) {
-    <div class="border-top-1 surface-border p-3 md:p-4">
-      <ili-accordion [items]="contextAccordionItems()">
-        <div accordion="context">
+    <div
+      class="border-top-1 surface-border p-3 md:p-4 md:pr-6 flex flex-wrap md:flex-nowrap gap-3 align-items-center"
+    >
+      <ili-accordion [items]="contextAccordionItems()" class="flex-1">
+        <div accordion="context" class="flex flex-wrap gap-3 md:gap-4">
           <ili-list-item [noPadding]="true">
-            <app-icon start icon="material-symbols-light:database" class="text-lg text-color-secondary" />
-            <span class="font-medium text-sm">Origen</span>
-            <span end class="text-xs text-color-secondary font-mono">{{ syncStatus()?.dataSource }}</span>
+            <app-icon
+              start
+              icon="material-symbols-light:database"
+              class="text-xl text-color-secondary"
+            />
+            <span class="font-medium text-base"> Origen </span>
+            <span end class="text-sm text-color-secondary font-mono"
+              >{{ syncStatus()?.dataSource }}</span
+            >
           </ili-list-item>
           <ili-list-item [noPadding]="true">
-            <app-icon start icon="material-symbols-light:schedule" class="text-lg text-color-secondary" />
-            <span class="font-medium text-sm">Última Act.</span>
-            <span end class="text-xs text-color-secondary font-mono">{{ formattedLastSync() }}</span>
+            <app-icon
+              start
+              icon="material-symbols-light:schedule"
+              class="text-xl text-color-secondary"
+            />
+            <span class="font-medium text-base"> Última Act. </span>
+            <span end class="text-sm text-color-secondary font-mono"
+              >{{ formattedLastSync() }}</span
+            >
           </ili-list-item>
           <ili-list-item [noPadding]="true" [divider]="false">
-            <app-icon start icon="material-symbols-light:group-outline" class="text-lg text-color-secondary" />
-            <span class="font-medium text-sm">Condóminos</span>
-            <span end class="text-xs text-color-secondary font-mono">{{ totalCondominos() }}</span>
+            <app-icon
+              start
+              icon="material-symbols-light:group-outline"
+              class="text-xl text-color-secondary"
+            />
+            <span class="font-medium text-base"> Condóminos </span>
+            <span end class="text-sm text-color-secondary font-mono"
+              >{{ totalCondominos() }}</span
+            >
           </ili-list-item>
         </div>
       </ili-accordion>
-      
-      <div class="mt-4 flex justify-content-end">
+
+      <div class="ml-auto flex-shrink-0">
         <button
           type="button"
           (click)="onOpenDatePickerDialog()"

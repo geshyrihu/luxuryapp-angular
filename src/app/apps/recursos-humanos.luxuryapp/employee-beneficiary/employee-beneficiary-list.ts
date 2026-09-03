@@ -15,8 +15,8 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EmployeeInternalService } from "src/app/apps/recursos-humanos.luxuryapp/employee/employee-internal.service";
-import { EmployeeBankDataForm } from "./employee-bank-data-form";
-import { IEmployeeBankData } from "./interfaces/employee-bank-data.interface";
+import { EmployeeBeneficiaryForm } from "./employee-beneficiary-form";
+import { IEmployeeBeneficiary } from "./interfaces/employee-beneficiary.interface";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -28,8 +28,8 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
-  selector: "employee-bank-data-list",
-  templateUrl: "./employee-bank-data-list.html",
+  selector: "employee-beneficiary-list",
+  templateUrl: "./employee-beneficiary-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AppIcon,
@@ -44,14 +44,14 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     DataViewMobile,
   ],
 })
-export class EmployeeBankDataList {
+export class EmployeeBeneficiaryList {
   isReadOnly = input<boolean>(false);
   private readonly employeeInternalS = inject(EmployeeInternalService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
 
   employeeId = input.required<string>();
 
-  dataSignal = signal<IEmployeeBankData[]>([]);
+  dataSignal = signal<IEmployeeBeneficiary[]>([]);
   loading = signal(false);
 
   globalFilterFields = computed(() => {
@@ -70,7 +70,7 @@ export class EmployeeBankDataList {
 
   onLoadData(employeeId = this.employeeId()) {
     this.loading.set(true);
-    this.employeeInternalS.getBankData(employeeId).then((result) => {
+    this.employeeInternalS.getBeneficiaries(employeeId).then((result) => {
       this.dataSignal.set(result ?? []);
       this.loading.set(false);
     });
@@ -79,7 +79,7 @@ export class EmployeeBankDataList {
   onModalForm(data: { id: string; title: string }) {
     this.dialogHandlerS
       .openDialog(
-        EmployeeBankDataForm,
+        EmployeeBeneficiaryForm,
         {
           id: data.id,
           employeeId: this.employeeId(),
@@ -95,7 +95,7 @@ export class EmployeeBankDataList {
   }
 
   onDelete(id: string) {
-    this.employeeInternalS.deleteBankData(id).then((result: boolean) => {
+    this.employeeInternalS.deleteBeneficiary(id).then((result: boolean) => {
       if (result) {
         this.dataSignal.update((items) =>
           items.filter((item) => item.id !== id),

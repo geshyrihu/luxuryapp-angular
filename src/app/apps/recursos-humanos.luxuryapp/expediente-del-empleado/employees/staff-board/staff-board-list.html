@@ -292,14 +292,13 @@
 
       <td>
         <div class="flex align-items-center justify-content-center gap-1">
-          @if (item.canRequestVacancy) {
+          @if (item.canRequestVacancy && shouldShowVacancyRequest(item)) {
           <iw-button-item
             iconClass="material-symbols-light:confirmation-number"
             severity="warning"
-            [lxTooltip]="shouldShowVacancyRequest(item) ? 'Solicitar Vacante' : 'Ticket Vacante abierto'"
-            [ariaLabel]="shouldShowVacancyRequest(item) ? 'Solicitar Vacante' : 'Ticket Vacante abierto'"
+            lxTooltip="Solicitar Vacante"
+            ariaLabel="Solicitar Vacante"
             tooltipPosition="top"
-            [disabled]="!shouldShowVacancyRequest(item)"
             (clicked)="onModalSolicitudVacante(item.id)"
           />
           }
@@ -399,24 +398,22 @@
                 tooltipPosition="top"
                 (clicked)="onShowRecoveryGuide(item)"
               />
-              @if (item.canRequestDismissal) {
+              @if (item.canRequestDismissal && !item.requestDismissal) {
               <iw-button-item
                 iconClass="material-symbols-light:airplane-ticket"
                 severity="danger"
-                [lxTooltip]="!item.requestDismissal ? 'Solicitar Baja' : 'Ticket Baja abierto'"
-                [ariaLabel]="!item.requestDismissal ? 'Solicitar Baja' : 'Ticket Baja abierto'"
+                lxTooltip="Solicitar Baja"
+                ariaLabel="Solicitar Baja"
                 tooltipPosition="top"
-                [disabled]="!!item.requestDismissal"
                 (clicked)="onRequestDismissal(item)"
               />
-              } @if (item.canModifySalary) {
+              } @if (item.canModifySalary && !item.requestSalaryModification) {
               <iw-button-item
                 iconClass="material-symbols-light:local-activity"
                 severity="info"
-                [lxTooltip]="!item.requestSalaryModification ? 'Solicitar Modif. Salario' : 'Ticket Salario abierto'"
-                [ariaLabel]="!item.requestSalaryModification ? 'Solicitar Modif. Salario' : 'Ticket Salario abierto'"
+                lxTooltip="Solicitar Modif. Salario"
+                ariaLabel="Solicitar Modif. Salario"
                 tooltipPosition="top"
-                [disabled]="!!item.requestSalaryModification"
                 (clicked)="onRequestSalaryMod(item)"
               />
               }

@@ -189,6 +189,33 @@ export class EmployeeInternalService {
   }
 
   // ==========================================================================
+  // EMPLOYEE BENEFICIARY
+  // ==========================================================================
+
+  getBeneficiaries(employeeId: string) {
+    return this._apiResponseS.onGetList<any[]>(
+      Endpoints.EmployeeBeneficiary.byEmployee(employeeId),
+    );
+  }
+
+  getBeneficiaryById(id: string) {
+    return this._apiResponseS.onGetItem<any>(
+      Endpoints.EmployeeBeneficiary.getById(id),
+    );
+  }
+
+  createBeneficiary(data: any) {
+    return this._apiResponseS.onPost<any>(
+      Endpoints.EmployeeBeneficiary.base,
+      data,
+    );
+  }
+
+  deleteBeneficiary(id: string) {
+    return this._apiResponseS.onDelete(Endpoints.EmployeeBeneficiary.delete(id));
+  }
+
+  // ==========================================================================
   // CATALOGS / SELECTS
   // ==========================================================================
 

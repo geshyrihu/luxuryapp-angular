@@ -21,8 +21,8 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { EmployeeBankDataFormComponent } from "./employee-bank-data-form";
-import { EmployeeBankDataDTO } from "./interfaces/employee-bank-data.interfaces";
+import { EmployeeBeneficiaryFormComponent } from "./employee-beneficiary-form";
+import { EmployeeBeneficiaryDTO } from "./interfaces/employee-beneficiary.interfaces";
 
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -33,8 +33,8 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
-  selector: "app-employee-bank-data-list",
-  templateUrl: "./employee-bank-data-list.html",
+  selector: "app-employee-beneficiary-list",
+  templateUrl: "./employee-beneficiary-list.html",
 
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
@@ -51,13 +51,13 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     DataViewMobile,
   ],
 })
-export class EmployeeBankDataList implements OnInit {
+export class EmployeeBeneficiaryList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  dataSignal = signal<EmployeeBankDataDTO[]>([]);
+  dataSignal = signal<EmployeeBeneficiaryDTO[]>([]);
   loading = signal(true);
   tablePrimeNgRows = tablePrimeNgRows();
   rowsPerPageOptions = rowsPerPageOptions();
@@ -76,8 +76,8 @@ export class EmployeeBankDataList implements OnInit {
   onLoadData(): void {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList<EmployeeBankDataDTO[]>(
-        Endpoints.HR.EmployeeBankData.getAll(this.customerIdS.customerId()),
+      .onGetList<EmployeeBeneficiaryDTO[]>(
+        Endpoints.HR.EmployeeBeneficiary.getAll(this.customerIdS.customerId()),
       )
       .then((result) => {
         if (result) this.dataSignal.set(result);
@@ -88,7 +88,7 @@ export class EmployeeBankDataList implements OnInit {
   onModalForm(data: { id: string; title: string }) {
     this.dialogHandlerS
       .openDialog(
-        EmployeeBankDataFormComponent,
+        EmployeeBeneficiaryFormComponent,
         { id: data.id },
         data.title,
         this.dialogHandlerS.sizeMd,
@@ -100,7 +100,7 @@ export class EmployeeBankDataList implements OnInit {
 
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(Endpoints.HR.EmployeeBankData.delete(id))
+      .onDelete(Endpoints.HR.EmployeeBeneficiary.delete(id))
       .then((success) => {
         if (success) {
           this.dataSignal.update((curr) => curr.filter((x) => x.id !== id));

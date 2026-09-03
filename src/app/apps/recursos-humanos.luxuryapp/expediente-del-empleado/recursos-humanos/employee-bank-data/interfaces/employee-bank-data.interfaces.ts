@@ -7,10 +7,6 @@ export interface EmployeeBankDataDTO {
   bankName: string;
   bankAccount: string;
   bankKey: string;
-  nameContact: string;
-  phoneNumber: string;
-  relacion: number | null;
-  relacionName: string;
 }
 
 export interface EmployeeBankDataAddOrEditDTO {
@@ -19,7 +15,4 @@ export interface EmployeeBankDataAddOrEditDTO {
   bankId: string;
   bankAccount: string;
   bankKey: string;
-  nameContact: string;
-  phoneNumber: string;
-  relacion: number | null;
 }

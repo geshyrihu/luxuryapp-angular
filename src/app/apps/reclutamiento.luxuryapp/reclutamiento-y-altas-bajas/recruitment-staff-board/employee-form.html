@@ -21,7 +21,9 @@
       } @case ('contacts') {
       <employee-emergency-contact-list [employeeId]="employeeId" />
       } @case ('bank-data') {
-      <employee-bank-data-list [employeeId]="employeeId" />
+        <employee-bank-data-list [employeeId]="employeeId" />
+        } @case ('beneficiary') {
+      <employee-beneficiary-list [employeeId]="employeeId" />
       } @case ('clinical-data') {
       <employee-clinical-data-list [employeeId]="employeeId" />
       } @case ('documents') {
@@ -32,3 +34,5 @@
     </div>
   </div>
 </div>
+
+

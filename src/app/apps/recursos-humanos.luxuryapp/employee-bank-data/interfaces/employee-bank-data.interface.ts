@@ -7,10 +7,6 @@ export interface IEmployeeBankData {
   bankName: string;
   bankAccount: string;
   bankKey: string;
-  nameContact: string;
-  phoneNumber: string;
-  relacion: number | null;
-  relacionName: string;
 }
 
 export interface IEmployeeBankDataForm {
@@ -19,7 +15,4 @@ export interface IEmployeeBankDataForm {
   bankId: string | null;
   bankAccount: string;
   bankKey: string;
-  nameContact: string;
-  phoneNumber: string;
-  relacion: number | null;
 }

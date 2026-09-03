@@ -15,23 +15,24 @@
   >
     <ng-template #caption>
       <primeng-custom-caption
-        (add)="onModalForm({ id: '', title: 'Agregar Datos Bancarios' })"
+        (add)="onModalForm({ id: '', title: 'Agregar Beneficiario' })"
         [dt]="dt"
       />
     </ng-template>
 
     <ng-template #header>
       <tr>
-        <th>Banco</th>
-        <th>No. Cuenta</th>
-        <th>CLABE</th>
-        <th></th>
+        <th>Empleado</th>
+        <th>Nombre del Beneficiario</th>
+        <th>Teléfono</th>
+        <th>Parentesco</th>
+        <th ></th>
       </tr>
     </ng-template>
 
     <ng-template #groupheader let-item>
       <tr pRowGroupHeader>
-        <td colspan="4">
+        <td colspan="5">
           <span class="font-bold ml-2">
             ?? {{ item.employeeName }} ({{ item.numberEmployee }})
           </span>
@@ -41,13 +42,14 @@
 
     <ng-template #body let-item>
       <tr>
-        <td>{{ item.bankName }}</td>
-        <td>{{ item.bankAccount }}</td>
-        <td>{{ item.bankKey }}</td>
+        <td>{{ item.employeeName }}</td>
+        <td>{{ item.fullName }}</td>
+        <td>{{ item.phoneNumber }}</td>
+        <td>{{ item.relationName }}</td>
         <td class="text-center">
           <div class="flex gap-2">
             <iw-button-edit
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Datos Bancarios' })"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Beneficiario' })"
             />
             <iw-button-delete (confirmed)="onDelete(item.id)" />
           </div>
@@ -55,7 +57,7 @@
       </tr>
     </ng-template>
     <ng-template #emptymessage>
-      <primeng-custom-table-emptymessage [colspan]="4" />
+      <primeng-custom-table-emptymessage [colspan]="5" />
     </ng-template>
 
     <ng-template #paginatorleft>
@@ -67,7 +69,7 @@
   <app-data-view-mobile
     [dt]="dt"
     [data]="dataSignal()"
-    (add)="onModalForm({ id: '', title: 'Agregar Datos Bancarios' })"
+    (add)="onModalForm({ id: '', title: 'Agregar Beneficiario' })"
   >
     <ng-template #listItemTemplate let-item>
       <ili-list-item>
@@ -77,20 +79,23 @@
           class="w-3rem h-3rem bg-primary-50"
         >
           <app-icon
-            icon="material-symbols-light:account-balance-outline"
+            icon="material-symbols-light:person-outline"
             class="text-xl text-primary"
           />
         </div>
         
           <h2 class="font-bold">{{ item.employeeName }}</h2>
           <p class="text-sm text-500">
-            ?? {{ item.bankName }} | {{ item.bankAccount }}
+            ?? {{ item.fullName }}
+          </p>
+          <p class="text-sm text-500">
+            ?? {{ item.relationName }} | {{ item.phoneNumber }}
           </p>
         
         <ili-action-menu slot="end">
           <ng-container actions>
             <ili-button-item
-              (clicked)="onModalForm({ id: item.id, title: 'Editar Datos Bancarios' })"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Beneficiario' })"
               label="Editar"
               iconName="create-outline"
             />

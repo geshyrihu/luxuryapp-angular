@@ -85,9 +85,15 @@ export interface EmployeeFileBankDataDTO {
   bankName: string;
   bankAccount: string;
   bankKey: string;
-  nameContact: string;
+}
+
+// -- Tab 5: Beneficiarios ------------------------------------------------------
+
+export interface EmployeeFileBeneficiaryDTO {
+  id: string;
+  fullName: string;
   phoneNumber: string;
-  relacion?: string;
+  relation?: string;
 }
 
 // -- Tab 5: Contratos ----------------------------------------------------------

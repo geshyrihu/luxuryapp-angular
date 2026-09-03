@@ -11,33 +11,33 @@
       />
     </div>
 
-    <!-- Banco -->
+    <!-- Parentesco / Relación -->
     <div class="col-12 md:col-6">
       <custom-input-select-signal
-        label="Banco"
-        [control]="f.bankId"
-        [data]="cbBanks()"
-        placeholder="Seleccione un banco"
+        label="Parentesco"
+        [control]="f.relation"
+        [data]="cbRelations()"
+        placeholder="Seleccione una opción"
         [filter]="true"
       />
     </div>
 
-    <!-- No. Cuenta -->
+    <!-- Nombre del Beneficiario -->
     <div class="col-12 md:col-6">
       <custom-input-text-signal
-        label="Número de Cuenta"
-        [control]="f.bankAccount"
-        placeholder="Ej. 1234567890"
+        label="Nombre del Beneficiario"
+        [control]="f.fullName"
+        placeholder="Nombre completo"
       />
     </div>
 
-    <!-- CLABE -->
+    <!-- Teléfono -->
     <div class="col-12 md:col-6">
       <custom-input-mask-signal
-        label="CLABE Interbancaria (18 dígitos)"
-        [control]="f.bankKey"
-        customMask="000000000000000000"
-        placeholder="Ej. 012345678901234567"
+        label="Teléfono del Beneficiario"
+        [control]="f.phoneNumber"
+        customMask="000 000 0000"
+        placeholder="10 dígitos"
       />
     </div>
 

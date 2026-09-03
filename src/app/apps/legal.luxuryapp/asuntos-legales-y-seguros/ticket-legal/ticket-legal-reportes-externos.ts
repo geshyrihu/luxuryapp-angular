@@ -26,7 +26,6 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
-    DatePipe,
     ApiDatePipe,
     TableModule,
     AppIcon,

@@ -35,6 +35,7 @@ export interface CandidateHiringDocumentListItemDto {
   validatedByUserId: string | null;
   validatedByUserName: string | null;
   validationNotes: string | null;
+  sortOrder: number;
 }
 
 @Component({

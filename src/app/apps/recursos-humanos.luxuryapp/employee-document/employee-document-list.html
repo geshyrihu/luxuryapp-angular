@@ -2,7 +2,7 @@
   <div class="flex flex-column gap-2 mb-4">
     <p class="m-0 font-semibold">Documentacin de Empleado</p>
     <p class="m-0 text-color-secondary">
-      Los documentos se cargan en el expediente del empleado.
+      Los documentos se cargan en el expediente del empleado. Arrastra las filas para reordenar el orden en el PDF.
     </p>
   </div>
 
@@ -51,93 +51,127 @@
   </lx-fieldset>
   }
 
-  <div class="grid mt-3">
-    @for (row of documentRows(); track row.option.value) {
-    <div class="col-12 md:col-3">
-      <lx-fieldset
-        [legend]="row.option.isMandatory ? row.option.label + ' *' : row.option.label"
-        [toggleable]="true"
-        [collapsed]="false"
-        class="mb-2"
-      >
-        @if (row.option.isMandatory) {
-        <lx-tag value="Obligatorio" severity="danger" class="text-xs mb-2" />
-        }
-        <div class="flex justify-content-between align-items-center mb-2">
-          <div class="flex align-items-center gap-2 document-row__pdf">
+  <p-table
+    [value]="documents()"
+    [reorderableColumns]="true"
+    (onRowReorder)="onRowReorder($event)"
+    [tableStyle]="{ 'min-width': '60rem' }"
+    [rowHover]="true"
+    [responsive]="true"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template #header>
+      <tr>
+        <th style="width: 3rem"></th>
+        <th>Documento</th>
+        <th style="width: 8rem">Estado</th>
+        <th style="width: 10rem">Validacin</th>
+        <th style="width: 14rem">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-doc let-rowIndex="rowIndex">
+      <tr [pReorderableRow]="rowIndex">
+        <td>
+          @if (!isReadOnly()) {
+          <app-icon
+            [icon]="'material-symbols-light:menu'"
+            pReorderableRowHandle
+            class="cursor-move"
+          />
+          }
+        </td>
+        <td>
+          <div class="flex align-items-center gap-2">
+            <span class="font-semibold">{{ doc.documentTypeName }}</span>
+            @if (doc.isMandatory) {
+              <lx-tag value="Obligatorio" severity="danger" class="text-xs" />
+            }
+          </div>
+          @if (doc.fileUrl) {
             <il-button-view-pdf
-              [url]="row.document?.fileUrl"
-              [pdf]="row.option.label"
+              [url]="doc.fileUrl"
+              [pdf]="doc.documentTypeName"
             />
-            @if (!row.document?.isValidated && !isReadOnly()) {
+          }
+        </td>
+        <td>
+          <lx-tag
+            [value]="doc.isSubmitted ? 'Cargado' : 'Pendiente'"
+            [severity]="doc.isSubmitted ? 'success' : 'warn'"
+            class="text-xs"
+          />
+        </td>
+        <td>
+          <lx-tag
+            [value]="doc.isValidated ? 'Validado' : 'Pendiente'"
+            [severity]="doc.isValidated ? 'success' : 'warning'"
+            class="text-xs"
+          />
+          @if (doc.isValidated) {
+            <p class="text-500 text-xs m-0 mt-1">
+              {{ doc.validatedByUserName || "N/A" }}
+            </p>
+          }
+          @if (!doc.isValidated && doc.validationNotes) {
+            <p class="text-xs text-red-500 m-0 mt-1">
+              Rechazado: {{ doc.validationNotes }}
+            </p>
+          }
+        </td>
+        <td>
+          @if (!isReadOnly()) {
+          <div class="flex gap-2 align-items-center flex-wrap">
+            @if (!doc.isValidated) {
+              <input
+                type="file"
+                #updateInput
+                class="file-input-hidden"
+                accept="application/pdf,.pdf"
+                (change)="onFileSelected($event, doc.documentCatalogId)"
+              />
+              <iw-button-edit
+                [disabled]="uploadingType() === doc.documentCatalogId"
+                (clicked)="updateInput.click()"
+              />
+              <il-button-confirm
+                label="Validar"
+                variant="solid"
+                severity="success"
+                swalText="Seguro que deseas validar este documento?"
+                [disabled]="validatingId() !== null || rejectingId() !== null"
+                [loading]="validatingId() === doc.id"
+                (confirmed)="onValidate(doc)"
+              />
+              <iw-button
+                iconClass="material-symbols-light:cancel"
+                severity="danger"
+                [disabled]="validatingId() !== null || rejectingId() !== null"
+                [loading]="rejectingId() === doc.id"
+                (clicked)="onReject(doc)"
+              />
+            }
+            @if (!doc.isValidated) {
               <iw-button
                 iconClass="material-symbols-light:delete"
                 severity="danger"
                 [disabled]="deletingId() !== null || validatingId() !== null || rejectingId() !== null"
-                [loading]="deletingId() === row.document?.id"
-                (clicked)="onDeleteFile(row.document)"
+                [loading]="deletingId() === doc.id"
+                (clicked)="onDeleteFile(doc)"
               />
             }
           </div>
-
-          <div class="flex gap-2 align-items-center">
-            <lx-tag
-              [value]="row.document?.isValidated ? 'Validado' : 'Pendiente'"
-              [severity]="row.document?.isValidated ? 'success' : 'warning'"
-              class="text-xs"
-            />
-            @if (!isReadOnly()) {
-            <!-- Input oculto para actualizar -->
-            <input
-              type="file"
-              #updateInput
-              class="file-input-hidden"
-              accept="application/pdf,.pdf"
-              (change)="onFileSelected($event, row.option.value)"
-            />
-            <iw-button-edit
-              [disabled]="uploadingType() === row.option.value"
-              (clicked)="updateInput.click()"
-            />
-            }
-          </div>
-        </div>
-
-        @if (!row.document?.isValidated && !isReadOnly()) {
-          <div class="flex gap-2 align-items-center mt-2">
-            <il-button-confirm
-              label="Validar"
-              variant="solid"
-              severity="success"
-              swalText="Seguro que deseas validar este documento?"
-              [disabled]="validatingId() !== null || rejectingId() !== null"
-              [loading]="validatingId() === row.document?.id"
-              (confirmed)="onValidate(row.document)"
-            />
-            <iw-button
-              iconClass="material-symbols-light:cancel"
-              severity="danger"
-              [disabled]="validatingId() !== null || rejectingId() !== null"
-              [loading]="rejectingId() === row.document?.id"
-              (clicked)="onReject(row.document)"
-            />
-          </div>
-        } @else if (row.document?.isValidated) {
-          <p class="text-500 text-sm m-0 mt-2">
-            Validado por {{ row.document?.validatedByUserName || "N/A" }}
-          </p>
-        }
-
-        @if (!row.document?.isValidated && row.document?.validationNotes) {
-        <p class="text-sm text-red-500 m-0 mt-2">
-          Rechazado: {{ row.document?.validationNotes }}
-        </p>
-        }
-      </lx-fieldset>
-    </div>
-    }
-  </div>
+          }
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="5" class="text-center text-color-secondary py-4">
+          No hay documentos en el expediente.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 
   }
 </div>
-

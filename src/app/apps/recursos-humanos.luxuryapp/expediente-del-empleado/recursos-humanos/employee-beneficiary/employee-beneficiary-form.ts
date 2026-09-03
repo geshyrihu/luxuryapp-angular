@@ -21,11 +21,11 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { EmployeeBankDataDTO } from "./interfaces/employee-bank-data.interfaces";
+import { EmployeeBeneficiaryDTO } from "./interfaces/employee-beneficiary.interfaces";
 
 @Component({
-  selector: "app-employee-bank-data-form",
-  templateUrl: "./employee-bank-data-form.html",
+  selector: "app-employee-beneficiary-form",
+  templateUrl: "./employee-beneficiary-form.html",
 
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
@@ -36,7 +36,7 @@ import { EmployeeBankDataDTO } from "./interfaces/employee-bank-data.interfaces"
     WebButtonLabelSave,
   ],
 })
-export class EmployeeBankDataFormComponent implements OnInit {
+export class EmployeeBeneficiaryFormComponent implements OnInit {
   fb = inject(FormBuilder);
   ref = inject(DynamicDialogRef);
   config = inject(DynamicDialogConfig);
@@ -48,7 +48,7 @@ export class EmployeeBankDataFormComponent implements OnInit {
   submitting = signal(false);
 
   cbEmployees = signal<SelectItemDto[]>([]);
-  cbBanks = signal<SelectItemDto[]>([]);
+  cbRelations = signal<SelectItemDto[]>([]);
 
   get f() {
     return this.form.controls as any;
@@ -58,16 +58,9 @@ export class EmployeeBankDataFormComponent implements OnInit {
     this.form = this.fb.group({
       id: [this.id],
       employeeId: [null, Validators.required],
-      bankId: [null, Validators.required],
-      bankAccount: ["", [Validators.required]],
-      bankKey: [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(18),
-          Validators.maxLength(18),
-        ],
-      ],
+      fullName: ["", [Validators.required, Validators.maxLength(50)]],
+      phoneNumber: ["", [Validators.required, Validators.maxLength(16)]],
+      relation: [null],
     });
   }
 
@@ -90,18 +83,20 @@ export class EmployeeBankDataFormComponent implements OnInit {
         if (res) this.cbEmployees.set(res);
       });
 
-    // Cargar Bancos
+    // Cargar Relaciones (Enum)
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.bank)
+      .onGetEnumSelectItem<SelectItemDto[]>(
+        Endpoints.EnumSelectItems.relationEmployee,
+      )
       .then((res) => {
-        if (res) this.cbBanks.set(res);
+        if (res) this.cbRelations.set(res);
       });
   }
 
   onLoadData(): void {
     this.apiResponseS
-      .onGetItem<EmployeeBankDataDTO>(
-        Endpoints.HR.EmployeeBankData.getById(this.id),
+      .onGetItem<EmployeeBeneficiaryDTO>(
+        Endpoints.HR.EmployeeBeneficiary.getById(this.id),
       )
       .then((result) => {
         if (result) {
@@ -114,7 +109,7 @@ export class EmployeeBankDataFormComponent implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.HR.EmployeeBankData.upsert,
+      endpoint: Endpoints.HR.EmployeeBeneficiary.upsert,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

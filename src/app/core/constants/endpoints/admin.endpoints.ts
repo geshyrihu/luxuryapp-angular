@@ -210,6 +210,7 @@ export const EndpointsAdmin = {
       update: (id: string) => `admin/general-catalogs/document-catalog/${id}`,
       updateStatus: (id: string) =>
         `admin/general-catalogs/document-catalog/${id}/status`,
+      updateOrder: "admin/general-catalogs/document-catalog/order",
     },
     OnboardingChecklistOptions: {
       create: "checklist-options",

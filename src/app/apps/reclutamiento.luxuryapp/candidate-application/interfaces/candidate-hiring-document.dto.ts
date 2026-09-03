@@ -13,4 +13,5 @@ export interface CandidateHiringDocumentDto {
   validatedByUserId?: string | null;
   validatedByUserName?: string | null;
   validationNotes?: string | null;
+  sortOrder: number;
 }

@@ -31,6 +31,7 @@ import {
   EmployeeFileRequestsDTO,
   EmployeeFileVacationsLeavesDTO,
   EmployeeFileWorkPositionDTO,
+  EmployeeFileBeneficiaryDTO,
 } from "./interfaces/employee-file.interfaces";
 
 import { LxCard } from "@ui/adaptive/card/card";
@@ -69,14 +70,15 @@ export class EmployeeFileDetail implements OnInit {
     { id: "1", label: "Emergencia", icon: "material-symbols-light:call" },
     { id: "2", label: "Clínicos", icon: "material-symbols-light:favorite-outline" },
     { id: "3", label: "Bancarios", icon: "material-symbols-light:wallet" },
-    { id: "4", label: "Contratos", icon: "material-symbols-light:description" },
-    { id: "5", label: "Puesto", icon: "material-symbols-light:work" },
-    { id: "6", label: "Vacaciones", icon: "material-symbols-light:event-note" },
-    { id: "7", label: "Incidencias", icon: "material-symbols-light:warning" },
-    { id: "8", label: "Evaluaciones", icon: "material-symbols-light:monitoring" },
-    { id: "9", label: "Solicitudes", icon: "material-symbols-light:send" },
-    { id: "10", label: "Checklist", icon: "material-symbols-light:fact-check" },
-    { id: "11", label: "Documentos", icon: "material-symbols-light:folder-open" },
+    { id: "4", label: "Beneficiarios", icon: "material-symbols-light:person-add" },
+    { id: "5", label: "Contratos", icon: "material-symbols-light:description" },
+    { id: "6", label: "Puesto", icon: "material-symbols-light:work" },
+    { id: "7", label: "Vacaciones", icon: "material-symbols-light:event-note" },
+    { id: "8", label: "Incidencias", icon: "material-symbols-light:warning" },
+    { id: "9", label: "Evaluaciones", icon: "material-symbols-light:monitoring" },
+    { id: "10", label: "Solicitudes", icon: "material-symbols-light:send" },
+    { id: "11", label: "Checklist", icon: "material-symbols-light:fact-check" },
+    { id: "12", label: "Documentos", icon: "material-symbols-light:folder-open" },
   ];
   activeTab = model<string>("0");
 
@@ -88,6 +90,7 @@ export class EmployeeFileDetail implements OnInit {
   emergencyContacts = signal<EmployeeFileEmergencyContactDTO[]>([]);
   clinicalData = signal<EmployeeFileClinicalDataDTO[]>([]);
   bankData = signal<EmployeeFileBankDataDTO[]>([]);
+  beneficiaries = signal<EmployeeFileBeneficiaryDTO[]>([]);
   contracts = signal<EmployeeFileContractDTO[]>([]);
   workPosition = signal<EmployeeFileWorkPositionDTO | null>(null);
   vacationsLeaves = signal<EmployeeFileVacationsLeavesDTO | null>(null);
@@ -159,9 +162,18 @@ export class EmployeeFileDetail implements OnInit {
           });
         break;
       case 4:
-        this.loadContracts();
+        this.apiResponseS
+          .onGetList<EmployeeFileBeneficiaryDTO[]>(
+            Endpoints.HR.EmployeeFile.beneficiaries(id),
+          )
+          .then((r) => {
+            if (r) this.beneficiaries.set(r);
+          });
         break;
       case 5:
+        this.loadContracts();
+        break;
+      case 6:
         this.apiResponseS
           .onGetItem<EmployeeFileWorkPositionDTO>(
             Endpoints.HR.EmployeeFile.workPosition(id),
@@ -170,7 +182,7 @@ export class EmployeeFileDetail implements OnInit {
             if (r) this.workPosition.set(r);
           });
         break;
-      case 6:
+      case 7:
         this.apiResponseS
           .onGetItem<EmployeeFileVacationsLeavesDTO>(
             Endpoints.HR.EmployeeFile.vacationsLeaves(id),
@@ -179,7 +191,7 @@ export class EmployeeFileDetail implements OnInit {
             if (r) this.vacationsLeaves.set(r);
           });
         break;
-      case 7:
+      case 8:
         this.apiResponseS
           .onGetList<EmployeeFileIncidentDTO[]>(
             Endpoints.HR.EmployeeFile.incidents(id),
@@ -188,7 +200,7 @@ export class EmployeeFileDetail implements OnInit {
             if (r) this.incidents.set(r);
           });
         break;
-      case 8:
+      case 9:
         this.apiResponseS
           .onGetList<EmployeeFileEvaluationDTO[]>(
             Endpoints.HR.EmployeeFile.evaluations(id),
@@ -197,7 +209,7 @@ export class EmployeeFileDetail implements OnInit {
             if (r) this.evaluations.set(r);
           });
         break;
-      case 9:
+      case 10:
         this.apiResponseS
           .onGetItem<EmployeeFileRequestsDTO>(
             Endpoints.HR.EmployeeFile.requests(id),

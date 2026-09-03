@@ -404,9 +404,8 @@ export class StaffBoardList {
   /**
    * Tipos de ticket abierto para mostrar como badge en la fila.
    * Vacante: `positionRequest` con status distinta de `None` (Abierta o EnProceso).
-   * Baja/Salario: el backend expone `requestDismissal` y `requestSalaryModification`
-   * como marcadores en el payload del endpoint (no están en `IWorkPosition` declarado,
-   * pero llegan en runtime).
+   * Baja/Salario: el backend proyecta la solicitud vigente como
+   * `{ id, status, statusName, folio }` en `requestDismissal` y `requestSalaryModification`.
    */
   openTickets(
     item: IWorkPosition,
@@ -424,42 +423,52 @@ export class StaffBoardList {
       label: string;
       folio: string | null;
     }> = [];
+
     const positionRequest = item.positionRequest;
     if (positionRequest && positionRequest.status != null) {
+      const folioStr = positionRequest.folio != null ? `VA-${positionRequest.folio}` : null;
       tickets.push({
         type: "vacante",
         severity: "warn",
         icon: "material-symbols-light:confirmation-number",
         label:
           this.vacancyState(item) === "open"
-            ? "Ticket Vacante · Abierta"
-            : "Ticket Vacante · Alta en proceso",
-        folio: positionRequest.folio?.toString() ?? null,
+            ? `Ticket Vacante · Abierta${folioStr ? " · " + folioStr : ""}`
+            : `Ticket Vacante · Alta en proceso${folioStr ? " · " + folioStr : ""}`,
+        folio: folioStr,
       });
     }
-    const requestDismissal = (item as { requestDismissal?: unknown })
-      .requestDismissal;
+
+    const requestDismissal = item.requestDismissal;
     if (requestDismissal) {
+      const folioStr =
+        requestDismissal.folio != null
+          ? `BAJ${String(requestDismissal.folio).padStart(5, "0")}`
+          : null;
       tickets.push({
         type: "baja",
         severity: "danger",
         icon: "material-symbols-light:airplane-ticket",
-        label: "Ticket Baja · En validación RRHH",
-        folio: null,
+        label: `Ticket Baja · ${requestDismissal.statusName}${folioStr ? " · " + folioStr : ""}`,
+        folio: folioStr,
       });
     }
-    const requestSalaryModification = (
-      item as { requestSalaryModification?: unknown }
-    ).requestSalaryModification;
+
+    const requestSalaryModification = item.requestSalaryModification;
     if (requestSalaryModification) {
+      const folioStr =
+        requestSalaryModification.folio != null
+          ? `MS${String(requestSalaryModification.folio).padStart(5, "0")}`
+          : null;
       tickets.push({
         type: "salario",
         severity: "info",
         icon: "material-symbols-light:local-activity",
-        label: "Ticket Salario · Pendiente de aprobación",
-        folio: null,
+        label: `Ticket Salario · ${requestSalaryModification.statusName}${folioStr ? " · " + folioStr : ""}`,
+        folio: folioStr,
       });
     }
+
     return tickets;
   }
 

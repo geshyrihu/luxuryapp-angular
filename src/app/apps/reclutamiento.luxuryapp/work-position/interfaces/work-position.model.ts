@@ -27,6 +27,20 @@ export interface IWorkPosition {
     status: number;
     folio: number | null;
   } | null;
+  /** Solicitud de baja vigente (Pendiente/Proceso) asociada al puesto. Folio puede ser null cuando el usuario no puede ver datos confidenciales. */
+  requestDismissal: {
+    id: string;
+    status: number;
+    statusName: string;
+    folio: number | null;
+  } | null;
+  /** Solicitud de modificación salarial vigente (Pendiente/Proceso) asociada al puesto. Folio puede ser null cuando el usuario no puede ver datos confidenciales. */
+  requestSalaryModification: {
+    id: string;
+    status: number;
+    statusName: string;
+    folio: number | null;
+  } | null;
   /** Backend-Driven UI (motor de políticas RRHH) — Angular solo obedece estos booleanos, nunca calcula permisos por rol. */
   canRequestDismissal: boolean;
   canRequestVacancy: boolean;

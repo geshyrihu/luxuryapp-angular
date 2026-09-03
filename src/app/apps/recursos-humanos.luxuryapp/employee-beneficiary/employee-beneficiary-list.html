@@ -7,7 +7,7 @@
 >
   <ng-template #caption>
     <primeng-custom-caption
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro Bancario' })"
+      (add)="onModalForm({ id: '', title: 'Nuevo Beneficiario' })"
       [showSearch]="dataSignal().length > 0"
       [dt]="dt"
     />
@@ -16,9 +16,10 @@
   @if (dataSignal().length !== 0) {
   <ng-template #header>
     <tr>
-      <th>Banco</th>
-      <th>No. Cuenta</th>
-      <th>CLABE</th>
+      <th>Empleado</th>
+      <th>Nombre del Beneficiario</th>
+      <th>Teléfono</th>
+      <th>Parentesco</th>
       <th class="table-col-5 no-print"></th>
     </tr>
   </ng-template>
@@ -26,16 +27,17 @@
 
   <ng-template #body let-item>
     <tr>
-      <td>{{ item.bankName }}</td>
-      <td>{{ item.bankAccount }}</td>
-      <td>{{ item.bankKey }}</td>
+      <td>{{ item.employeeName }}</td>
+      <td>{{ item.fullName }}</td>
+      <td>{{ item.phoneNumber }}</td>
+      <td>{{ item.relationName }}</td>
       <td class="no-print">
         <div class="flex justify-content-center">
           @if (!isReadOnly()) {
           <iw-button
             iconClass="edit"
             ngbTooltip="Editar"
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Bancario' })"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Beneficiario' })"
           />
           } @if (!isReadOnly()) {
           <iw-button-confirm
@@ -52,7 +54,7 @@
 
   @if (dataSignal().length === 0) {
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="4" />
+    <primeng-custom-table-emptymessage [colspan]="5" />
   </ng-template>
   }
 </p-table>
@@ -60,7 +62,7 @@
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro Bancario' })"
+  (add)="onModalForm({ id: '', title: 'Nuevo Beneficiario' })"
   [showAdd]="!isReadOnly()"
 >
   <ng-template #listItemTemplate let-item>
@@ -71,19 +73,20 @@
         class="w-3rem h-3rem bg-primary-50"
       >
         <app-icon
-          icon="material-symbols-light:account-balance-outline"
+          icon="material-symbols-light:person-outline"
           class="text-xl text-primary"
         />
       </div>
 
-      <h3>{{ item.bankName }}</h3>
-      <p>{{ item.bankAccount }} | {{ item.bankKey }}</p>
+      <h3>{{ item.employeeName }}</h3>
+      <p>{{ item.fullName }}</p>
+      <p>{{ item.relationName }} | {{ item.phoneNumber }}</p>
 
       @if (!isReadOnly()) {
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Bancario' })"
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Beneficiario' })"
             label="Editar"
             iconName="create-outline"
           />

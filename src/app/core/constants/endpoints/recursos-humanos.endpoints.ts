@@ -46,6 +46,12 @@ export const EndpointsRecursosHumanos = {
       upsert: "employee-bank-data",
       delete: (id: string) => `employee-bank-data/${id}`,
     },
+    EmployeeBeneficiary: {
+      getAll: (customerId: string) => `employee-beneficiary/list/${customerId}`,
+      getById: (id: string) => `employee-beneficiary/${id}`,
+      upsert: "employee-beneficiary",
+      delete: (id: string) => `employee-beneficiary/${id}`,
+    },
     EmployeeFile: {
       getAll: (customerId: string, isActive?: boolean | null) => {
         let url = `hr/employee-files?customer-id=${customerId}`;
@@ -59,6 +65,7 @@ export const EndpointsRecursosHumanos = {
         `hr/employee-files/${id}/emergency-contacts`,
       clinicalData: (id: string) => `hr/employee-files/${id}/clinical-data`,
       bankData: (id: string) => `hr/employee-files/${id}/bank-data`,
+      beneficiaries: (id: string) => `hr/employee-files/${id}/beneficiaries`,
       contracts: (id: string) => `hr/employee-files/${id}/contracts`,
       workPosition: (id: string) => `hr/employee-files/${id}/work-position`,
       vacationsLeaves: (id: string) =>
@@ -353,6 +360,8 @@ export const EndpointsRecursosHumanos = {
       `employee-documents/${employeeId}/documents/${documentId}/file`,
     notifyRecruitment: (employeeId: string | number) =>
       `employee-documents/notify-recruitment/${employeeId}`,
+    reorder: (employeeId: string | number) =>
+      `employee-documents/${employeeId}/reorder`,
   },
   EmployeeBankData: {
     base: "employee-bank-data",
@@ -362,6 +371,15 @@ export const EndpointsRecursosHumanos = {
     getAll: (customerId: string) => `employee-bank-data/list/${customerId}`,
     getById: (id: string) => `employee-bank-data/${id}`,
     upsert: "employee-bank-data",
+  },
+  EmployeeBeneficiary: {
+    base: "employee-beneficiary",
+    byEmployee: (employeeId: string) =>
+      `employee-beneficiary/employee/${employeeId}`,
+    delete: (id: string) => `employee-beneficiary/${id}`,
+    getAll: (customerId: string) => `employee-beneficiary/list/${customerId}`,
+    getById: (id: string) => `employee-beneficiary/${id}`,
+    upsert: "employee-beneficiary",
   },
   EmployeeClinicalData: {
     base: "employee-clinical-data",
