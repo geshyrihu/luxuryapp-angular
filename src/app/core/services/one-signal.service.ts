@@ -19,6 +19,7 @@ export class OneSignalService {
   private consoleLogger = inject(ConsoleLoggerService);
 
   private appId = environment.ONESIGNAL_APPID;
+  private safariWebId = environment.ONESIGNAL_SAFARI_WEB_ID;
   private allowedOrigins = environment.ONESIGNAL_ALLOWED_ORIGINS ?? [];
   private isInitialized = false;
   private listenersRegistered = false;
@@ -54,10 +55,14 @@ export class OneSignalService {
       this.consoleLogger.custom("ok", "green", "[OneSignal] SDK listo");
 
       if (!this.isInitialized) {
-        await oneSignal.init({
+        const config: any = {
           appId: this.appId,
           allowLocalhostAsSecureOrigin: !environment.production,
-        });
+        };
+        if (this.safariWebId) {
+          config.safari_web_id = this.safariWebId;
+        }
+        await oneSignal.init(config);
         this.isInitialized = true;
         this.consoleLogger.custom(
           "pkg",

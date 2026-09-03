@@ -60,7 +60,7 @@ import { ROUTES } from "src/app/routing/route-paths";
             class="lm-header flex-1 flex flex-column align-items-center justify-content-center fadein animation-duration-1000"
           >
             <img
-              src="assets/images/login/LBG-blanco.png"
+              src="assets/oficial/Logo%20Files/png/White%20logo%20-%20no%20background.png"
               alt="Logo Luxury Building Group"
               class="lm-logo drop-shadow-lg"
             />

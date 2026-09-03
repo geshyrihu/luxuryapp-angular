@@ -1,4 +1,13 @@
 /* Module Guide Component Styles */
+
+/* ── Tokens con alcance de módulo (RN-DS-041) ──────────────────
+   Gradiente de marca del header: no existe en la paleta DS global.
+   Valores decorativos propios de este componente. */
+.module-guide {
+  --mg-gradient-start: #667eea;
+  --mg-gradient-end: #764ba2;
+}
+
 .module-guide {
   max-width: 1400px;
   margin: 0 auto;
@@ -7,8 +16,8 @@
 }
 
 .guide-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--mg-gradient-start) 0%, var(--mg-gradient-end) 100%);
+  color: var(--ds-text-inverse);
   padding: 2rem;
   border-radius: 12px;
   margin-bottom: 2rem;
@@ -20,7 +29,7 @@
   border: none;
   border-radius: 8px;
   padding: 0.5rem 1rem;
-  color: white;
+  color: var(--ds-text-inverse);
   cursor: pointer;
   font-size: 1rem;
   margin-bottom: 1rem;
@@ -75,16 +84,16 @@
 .loading-state, .error-state {
   text-align: center;
   padding: 4rem;
-  background: white;
+  background: var(--ds-bg-surface);
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: var(--ds-shadow-sm);
 }
 
 .loading-state .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #667eea;
+  border: 4px solid var(--secondary-100);
+  border-top: 4px solid var(--mg-gradient-start);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto 1rem;
@@ -96,7 +105,7 @@
 }
 
 .error-state {
-  color: #dc2626;
+  color: var(--ds-danger);
 }
 
 .error-state .material-symbols-light {
@@ -105,8 +114,8 @@
 }
 
 .retry-btn {
-  background: #dc2626;
-  color: white;
+  background: var(--ds-danger);
+  color: var(--ds-text-inverse);
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -117,7 +126,7 @@
 }
 
 .retry-btn:hover {
-  background: #b91c1c;
+  background: var(--ds-danger-hover);
 }
 
 .search-container {
@@ -130,14 +139,14 @@
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #6b7280;
+  color: var(--secondary-500);
   font-size: 1.25rem;
 }
 
 .search-input {
   width: 100%;
   padding: 1rem 1rem 1rem 3rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--secondary-200);
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.3s;
@@ -145,7 +154,7 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--mg-gradient-start);
 }
 
 clear-search {
@@ -156,20 +165,20 @@ clear-search {
   background: none;
   border: none;
   cursor: pointer;
-  color: #6b7280;
+  color: var(--secondary-500);
   padding: 0.25rem;
   border-radius: 4px;
 }
 
 clear-search:hover {
-  background: #e5e7eb;
+  background: var(--secondary-200);
 }
 
 tabs {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 2rem;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--secondary-200);
   flex-wrap: wrap;
 }
 
@@ -180,7 +189,7 @@ tabs button {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  color: #666;
+  color: var(--secondary-600);
   transition: all 0.3s;
   border-bottom: 3px solid transparent;
   white-space: nowrap;
@@ -190,18 +199,18 @@ tabs button {
 }
 
 tabs button:hover {
-  color: #667eea;
-  background: #f8fafc;
+  color: var(--mg-gradient-start);
+  background: var(--secondary-50);
 }
 
 tabs button.active {
-  color: #667eea;
-  border-bottom-color: #667eea;
+  color: var(--mg-gradient-start);
+  border-bottom-color: var(--mg-gradient-start);
 }
 
 .tab-count {
-  background: #e0e0e0;
-  color: #666;
+  background: var(--secondary-200);
+  color: var(--secondary-600);
   padding: 0.125rem 0.5rem;
   border-radius: 12px;
   font-size: 0.75rem;
@@ -216,23 +225,23 @@ tabs button.active {
 }
 
 .stat-card {
-  background: white;
+  background: var(--ds-bg-surface);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: var(--ds-shadow-sm);
   text-align: center;
 }
 
 .stat-icon {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  color: #667eea;
+  color: var(--mg-gradient-start);
 }
 
 .stat-number {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #667eea;
+  color: var(--mg-gradient-start);
 }
 
 .quick-links h2 {
@@ -249,8 +258,8 @@ tabs button.active {
 }
 
 .flow-link {
-  background: white;
-  border: 2px solid #e0e0e0;
+  background: var(--ds-bg-surface);
+  border: 2px solid var(--secondary-200);
   padding: 1rem;
   border-radius: 8px;
   cursor: pointer;
@@ -259,7 +268,7 @@ tabs button.active {
 }
 
 .flow-link:hover {
-  border-color: #667eea;
+  border-color: var(--mg-gradient-start);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102,126,234,0.2);
 }
@@ -274,10 +283,10 @@ tabs button.active {
 .flow-trigger {
   font-family: 'Courier New', monospace;
   font-size: 0.75rem;
-  background: #f3f4f6;
+  background: var(--secondary-100);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
-  color: #666;
+  color: var(--secondary-600);
 }
 
 .flow-meta {
@@ -285,7 +294,7 @@ tabs button.active {
   gap: 1rem;
   margin-top: 0.5rem;
   font-size: 0.875rem;
-  color: #666;
+  color: var(--secondary-600);
 }
 
 .flow-meta span {
@@ -296,10 +305,10 @@ tabs button.active {
 
 /* Tab content styles */
 .overview, .flows, .endpoints, .components, .events {
-  background: white;
+  background: var(--ds-bg-surface);
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: var(--ds-shadow-sm);
 }
 
 .flow-detail {
@@ -308,7 +317,7 @@ tabs button.active {
 }
 
 .flow-description {
-  background: #f8fafc;
+  background: var(--secondary-50);
   padding: 1rem;
   border-radius: 8px;
   margin: 1rem 0;
@@ -323,7 +332,7 @@ tabs button.active {
 }
 
 .info-block {
-  background: #f8fafc;
+  background: var(--secondary-50);
   padding: 1.5rem;
   border-radius: 8px;
 }
@@ -337,7 +346,7 @@ tabs button.active {
 }
 
 .info-block code {
-  background: white;
+  background: var(--ds-bg-surface);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-family: 'Courier New', monospace;
@@ -354,15 +363,15 @@ tabs button.active {
 .step-card {
   display: flex;
   gap: 1rem;
-  background: white;
+  background: var(--ds-bg-surface);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: var(--ds-shadow-sm);
 }
 
 .step-number {
-  background: #667eea;
-  color: white;
+  background: var(--mg-gradient-start);
+  color: var(--ds-text-inverse);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -385,7 +394,7 @@ tabs button.active {
 }
 
 .method-badge {
-  color: white;
+  color: var(--ds-text-inverse);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-weight: bold;
@@ -402,8 +411,8 @@ tabs button.active {
 }
 
 .validations, .side-effects {
-  background: #fef3c7;
-  border: 1px solid #fde68a;
+  background: var(--ds-warning-light);
+  border: 1px solid var(--ds-warning);
   padding: 1rem;
   border-radius: 8px;
   margin: 1rem 0;
@@ -438,10 +447,10 @@ tabs button.active {
 }
 
 .notif-card, .component-card, .event-card {
-  background: white;
+  background: var(--ds-bg-surface);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: var(--ds-shadow-sm);
 }
 
 .notif-channel {
@@ -461,7 +470,7 @@ tabs button.active {
 }
 
 .state-change-card {
-  background: white;
+  background: var(--ds-bg-surface);
   padding: 1rem;
   border-radius: 8px;
   display: flex;
@@ -478,13 +487,13 @@ tabs button.active {
 
 .arrow {
   font-size: 1.5rem;
-  color: #666;
+  color: var(--secondary-600);
 }
 
 .empty-state {
   text-align: center;
   padding: 3rem;
-  color: #666;
+  color: var(--secondary-600);
 }
 
 .empty-state .material-symbols-light {

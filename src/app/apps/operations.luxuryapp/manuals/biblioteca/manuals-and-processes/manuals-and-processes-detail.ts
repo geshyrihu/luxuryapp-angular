@@ -49,7 +49,8 @@ export class ManualsAndProcessesDetail implements OnInit {
   public aspRoleS = inject(AspRoleService);
 
   readonly ApplicationRole = ApplicationRole;
-  readonly logoPath = "assets/images/LBG-negro.png";
+  readonly logoPath =
+    "assets/oficial/Logo%20Files/png/Color%20logo%20-%20no%20background.png";
 
   isAdmin = computed(() => {
     const roles = [

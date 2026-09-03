@@ -11,7 +11,9 @@ export const environment = {
   ONESIGNAL_ALLOWED_ORIGINS: ["https://luxurybuildingapp.com"],
   HANGFIRE_DASHBOARD_URL: "/api/hangfire/",
   API_FIREBIRD_URL: "http://localhost:5212/api/",
-  ONESIGNAL_APPID: "deeb5e28-6ebc-4260-967e-1b64331122fc",
+  // OneSignal — Producción
+  ONESIGNAL_APPID: "a4cdd6bf-373a-4dc6-b4d6-d34bf971c622",
+  ONESIGNAL_SAFARI_WEB_ID: undefined, // Configurar si es requerido en Safari
 
   firebase: {
     projectId: "onesignalwebproduction",

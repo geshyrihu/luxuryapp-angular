@@ -14,12 +14,11 @@ export const environment = {
   HANGFIRE_DASHBOARD_URL: urlApi + "api/hangfire/",
   API_BASE_SIGNALR: urlApi + "ws/notificationHub",
   API_FIREBIRD_URL: "http://localhost:5212/api/",
-  ONESIGNAL_APPID: "1d454470-eba5-4d7b-82e8-f91b7bed263b",
-  // En desarrollo se usa una app OneSignal aparte (Site URL http://localhost:4200) con
-  // su propio APPID, para no contaminar la app de producción (https://luxurybuildingapp.com).
-  // Por eso localhost:4200 se agrega a ONESIGNAL_ALLOWED_ORIGINS; si no estuviera,
-  // OneSignalService omitiría el init en local y no habría push web en desarrollo.
-  ONESIGNAL_ALLOWED_ORIGINS: ["https://luxurybuildingapp.com", "http://localhost:4200"],
+  // OneSignal — Desarrollo
+  // App ID separado para dev (no contamina producción)
+  ONESIGNAL_APPID: "3d1f1ce3-638f-4a30-b093-ab617baf91a8",
+  ONESIGNAL_SAFARI_WEB_ID: "web.onesignal.auto.0b3c1e09-f01e-4f75-a6ff-3f857f927766",
+  ONESIGNAL_ALLOWED_ORIGINS: ["http://localhost:4200"],
 
   // Firebase
 
