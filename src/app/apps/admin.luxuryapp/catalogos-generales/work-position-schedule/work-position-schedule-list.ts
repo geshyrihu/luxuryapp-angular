@@ -32,6 +32,21 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { WorkPositionScheduleDto } from "./interfaces/work-position-schedule.dto";
 import { WorkPositionScheduleForm } from "./work-position-schedule-form";
+import {
+  ReplaceUsageResult,
+  WorkPositionScheduleReplaceUsageForm,
+} from "./work-position-schedule-replace-usage-form";
+
+interface WorkPositionScheduleUsageResponse {
+  scheduleId: string;
+  positionsCount: number;
+}
+
+interface WorkPositionScheduleDeleteWithReplacementResponse {
+  deletedScheduleId: string;
+  replacementScheduleId: string;
+  reassignedPositionsCount: number;
+}
 
 @Component({
   selector: "app-work-position-schedule-list",
@@ -84,12 +99,21 @@ export class WorkPositionScheduleList implements OnInit {
       .finally(() => this.loading.set(false));
   }
 
-  onDelete(id: string) {
-    this.apiResponseS
-      .onDelete(Endpoints.Catalogs.WorkPositionSchedule.delete(id))
-      .then((result) => {
-        if (result) this.onLoadData();
-      });
+  async onRequestDelete(item: WorkPositionScheduleDto): Promise<void> {
+    const usage = await this.fetchUsageCount(item.id);
+
+    // Si no hay puestos asociados, ejecutar el borrado directo (la app service
+    // ya devuelve la confirmacion con la desactivacion si encuentra FK en carrera).
+    if (!usage || usage.positionsCount <= 0) {
+      await this.deleteSchedule(item.id);
+      return;
+    }
+
+    // Hay puestos: abrir el modal de reasignacion + borrado.
+    const result = await this.openReplaceUsageModal(item, usage.positionsCount);
+    if (!result) return;
+
+    await this.deleteWithReplacement(item.id, result.replacementScheduleId);
   }
 
   onModalForm(data: { id: string; title: string }) {
@@ -126,5 +150,44 @@ export class WorkPositionScheduleList implements OnInit {
 
   private formatTime(value: string): string {
     return value.slice(0, 5);
+  }
+
+  private async fetchUsageCount(
+    id: string,
+  ): Promise<WorkPositionScheduleUsageResponse | null> {
+    return this.apiResponseS.onGetItem<WorkPositionScheduleUsageResponse>(
+      Endpoints.Catalogs.WorkPositionSchedule.getUsageCount(id),
+    );
+  }
+
+  private async deleteSchedule(id: string): Promise<void> {
+    const ok = await this.apiResponseS.onDelete(
+      Endpoints.Catalogs.WorkPositionSchedule.delete(id),
+    );
+    if (ok) this.onLoadData();
+  }
+
+  private async openReplaceUsageModal(
+    schedule: WorkPositionScheduleDto,
+    positionsCount: number,
+  ): Promise<ReplaceUsageResult | null> {
+    return this.dialogHandlerS.openDialog<ReplaceUsageResult | undefined>(
+      WorkPositionScheduleReplaceUsageForm,
+      { schedule, positionsCount },
+      "Reemplazar horario en uso",
+      this.dialogHandlerS.sizeMd,
+    );
+  }
+
+  private async deleteWithReplacement(
+    id: string,
+    replacementScheduleId: string,
+  ): Promise<void> {
+    const result =
+      await this.apiResponseS.onPost<WorkPositionScheduleDeleteWithReplacementResponse>(
+        Endpoints.Catalogs.WorkPositionSchedule.replaceUsage(id),
+        { replacementScheduleId },
+      );
+    if (result) this.onLoadData();
   }
 }

@@ -1,0 +1,61 @@
+<div class="flex flex-column gap-3">
+  <div class="flex align-items-center gap-2 text-orange-700">
+    <app-icon icon="material-symbols-light:warning" class="text-xl" />
+    <strong>El horario esta siendo utilizado por puestos de trabajo.</strong>
+  </div>
+
+  <p class="text-700 m-0 line-height-3">
+    El horario
+    <strong>"{{ schedule?.name }}"</strong>
+    esta asignado a
+    <strong>{{ positionsCount }}</strong>
+    puesto(s) de trabajo. Para eliminarlo definitivamente, primero
+    reasigna esos puestos a otro horario de catalogo.
+  </p>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-column gap-3"
+  >
+    <custom-input-select-signal
+      formControlName="replacementScheduleId"
+      label="Reemplazar por"
+      [data]="cb_replacementSchedules()"
+      placeholder="Selecciona un horario de reemplazo"
+      optionLabel="label"
+      optionValue="value"
+      [required]="true"
+      [showClear]="false"
+      [filter]="true"
+      filterBy="label"
+    />
+
+    @if (!hasReplacementOptions() && schedules().length > 0) {
+      <small class="text-500">
+        Solo se muestran horarios activos. Para reasignar primero necesitas
+        dar de alta o activar otro horario.
+      </small>
+    } @else if (schedules().length === 0) {
+      <small class="text-500">Cargando horarios disponibles...</small>
+    }
+
+    <div class="flex justify-content-end gap-2 mt-2">
+      <button
+        type="button"
+        class="p-button p-button-text"
+        (click)="onCancel()"
+        [disabled]="submitting()"
+      >
+        Cancelar
+      </button>
+      <il-button-save
+        label="Reemplazar y eliminar"
+        severity="danger"
+        (clicked)="onSubmit()"
+        [submitting]="submitting()"
+        [disabled]="form.invalid"
+      />
+    </div>
+  </form>
+</div>

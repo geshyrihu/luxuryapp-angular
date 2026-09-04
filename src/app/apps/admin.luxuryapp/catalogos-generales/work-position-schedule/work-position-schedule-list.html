@@ -64,7 +64,11 @@
           <iw-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Horario de Puesto' })"
           />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
+          <iw-button-delete
+            confirmHeader="Eliminar horario de puesto"
+            confirmMessage="Si este horario esta siendo usado por puestos de trabajo, se te pedira reemplazarlo antes de eliminarlo."
+            (confirmed)="onRequestDelete(item)"
+          />
         </div>
       </td>
     </tr>
@@ -108,7 +112,12 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar Horario de Puesto' })"
             label="Editar"
           />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+          <ili-button-delete
+            confirmHeader="Eliminar horario de puesto"
+            confirmMessage="Si este horario esta siendo usado por puestos de trabajo, se te pedira reemplazarlo antes de eliminarlo."
+            (confirmed)="onRequestDelete(item)"
+            label="Eliminar"
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

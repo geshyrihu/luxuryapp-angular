@@ -1,3 +1,4 @@
+import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,9 +20,9 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 interface WorkPositionDetailDTO {
   id?: string;
   applicationRoleName: string;
-  sueldo: string;
-  sueldoBase: string;
-  turnoTrabajo: number | null;
+  sueldo: number;
+  sueldoBase: number;
+  turnoTrabajo?: number | null;
   lunesEntrada?: string;
   lunesSalida?: string;
   martesEntrada?: string;
@@ -44,7 +45,7 @@ interface WorkPositionDetailDTO {
   selector: "app-solicitud-vacante",
   templateUrl: "./solicitud-vacante-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, WebButtonLabelSave, CustomInputTextAreaSignal],
+  imports: [ReactiveFormsModule, WebButtonLabelSave, CustomInputTextAreaSignal, CurrencyPipe],
 })
 export class SolicitudVacanteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -64,8 +65,8 @@ export class SolicitudVacanteForm implements OnInit {
   form = this.formB.nonNullable.group({
     id: [this.config.data.workPositionId],
     applicationRoleName: ["", Validators.required],
-    sueldo: ["", [Validators.required, Validators.minLength(4)]],
-    sueldoBase: ["", [Validators.required, Validators.minLength(4)]],
+    sueldo: [0 as number, [Validators.required, Validators.min(0)]],
+    sueldoBase: [0 as number, [Validators.required, Validators.min(0)]],
     turnoTrabajo: [null as number | null, Validators.required],
     lunesEntrada: [""],
     lunesSalida: [""],

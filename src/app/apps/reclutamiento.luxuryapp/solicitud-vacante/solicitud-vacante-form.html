@@ -32,7 +32,11 @@
           >
             <span class="font-semibold text-700">Sueldo mensual neto</span>
             <span class="text-primary font-bold text-lg">
-              {{ data?.sueldoBase || "No definido" }}
+              {{
+                data?.sueldoBase != null
+                  ? (data.sueldoBase | currency: "MXN" : "symbol" : "1.2-2")
+                  : "No definido"
+              }}
             </span>
           </div>
         </div>

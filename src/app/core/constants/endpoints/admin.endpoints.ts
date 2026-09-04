@@ -230,6 +230,10 @@ export const EndpointsAdmin = {
         `admin/general-catalogs/work-position-schedule/${id}`,
       updateStatus: (id: string) =>
         `admin/general-catalogs/work-position-schedule/${id}/status`,
+      getUsageCount: (id: string) =>
+        `admin/general-catalogs/work-position-schedule/${id}/usage`,
+      replaceUsage: (id: string) =>
+        `admin/general-catalogs/work-position-schedule/${id}/replace-usage`,
     },
   },
   Permission: {
