@@ -48,17 +48,13 @@ export class VacanteDetailModal implements OnInit {
   jobDescription = signal<IJobDescription | null>(null);
 
   dias = [
-    { n: "Lunes", e: "lunesEntrada" as const, s: "lunesSalida" as const },
-    { n: "Martes", e: "martesEntrada" as const, s: "martesSalida" as const },
-    {
-      n: "Miórcoles",
-      e: "miercolesEntrada" as const,
-      s: "miercolesSalida" as const,
-    },
-    { n: "Jueves", e: "juevesEntrada" as const, s: "juevesSalida" as const },
-    { n: "Viernes", e: "viernesEntrada" as const, s: "viernesSalida" as const },
-    { n: "Sóbado", e: "sabadoEntrada" as const, s: "sabadoSalida" as const },
-    { n: "Domingo", e: "domingoEntrada" as const, s: "domingoSalida" as const },
+    { n: "Lunes", dw: 1 },
+    { n: "Martes", dw: 2 },
+    { n: "Miércoles", dw: 3 },
+    { n: "Jueves", dw: 4 },
+    { n: "Viernes", dw: 5 },
+    { n: "Sábado", dw: 6 },
+    { n: "Domingo", dw: 0 },
   ];
 
   ngOnInit() {

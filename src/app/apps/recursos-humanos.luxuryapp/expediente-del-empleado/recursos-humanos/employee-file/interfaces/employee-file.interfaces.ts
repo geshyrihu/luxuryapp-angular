@@ -1,4 +1,4 @@
-// -- Listado -------------------------------------------------------------------
+﻿// -- Listado -------------------------------------------------------------------
 
 export interface EmployeeFileSummaryDTO {
   id: string;
@@ -132,6 +132,8 @@ export interface EmployeeFileSalaryModDTO {
   status: string;
 }
 
+import { DiaDeTrabajoDto } from "src/app/apps/reclutamiento.luxuryapp/work-position/interfaces/work-position.model";
+
 export interface EmployeeFileWorkPositionDTO {
   puesto: string;
   workPositionId?: string;
@@ -139,22 +141,11 @@ export interface EmployeeFileWorkPositionDTO {
   managerName: string;
   folio?: string;
   sueldoBase: number;
-  turnoTrabajo: string;
+  tipoJornadaName: string;
+  observaciones?: string;
+  duracionCicloSemanas?: number;
+  diasDeTrabajo?: DiaDeTrabajoDto[];
   state: string;
-  lunesEntrada?: string;
-  lunesSalida?: string;
-  martesEntrada?: string;
-  martesSalida?: string;
-  miercolesEntrada?: string;
-  miercolesSalida?: string;
-  juevesEntrada?: string;
-  juevesSalida?: string;
-  viernesEntrada?: string;
-  viernesSalida?: string;
-  sabadoEntrada?: string;
-  sabadoSalida?: string;
-  domingoEntrada?: string;
-  domingoSalida?: string;
   salaryModifications: EmployeeFileSalaryModDTO[];
 }
 

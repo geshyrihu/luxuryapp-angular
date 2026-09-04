@@ -37,6 +37,16 @@ export class WorkPositionDetails implements OnInit {
 
   activeTab = signal<"description" | "general">("description");
 
+  dias = [
+    { n: "Lunes", dw: 1 },
+    { n: "Martes", dw: 2 },
+    { n: "Miércoles", dw: 3 },
+    { n: "Jueves", dw: 4 },
+    { n: "Viernes", dw: 5 },
+    { n: "Sábado", dw: 6 },
+    { n: "Domingo", dw: 0 },
+  ];
+
   ngOnInit(): void {
     const data = this.config.data ?? {};
     this.folio.set(data.folio ?? "");

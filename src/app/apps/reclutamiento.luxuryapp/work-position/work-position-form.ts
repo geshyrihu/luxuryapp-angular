@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -31,6 +31,7 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import type { DiaDeTrabajoDto } from "./interfaces/work-position.model";
 
 @Component({
   selector: "app-work-position-form",
@@ -76,15 +77,16 @@ export class WorkPositionForm implements OnInit {
   );
   readonly scheduleDays = computed(() => {
     const schedule = this.selectedSchedule();
+    const findDay = (dw: number) => schedule?.diasDeTrabajo?.find((d) => d.diaSemana === dw);
 
     return [
-      { day: "Lunes", entry: schedule?.lunesEntrada, exit: schedule?.lunesSalida },
-      { day: "Martes", entry: schedule?.martesEntrada, exit: schedule?.martesSalida },
-      { day: "Miercoles", entry: schedule?.miercolesEntrada, exit: schedule?.miercolesSalida },
-      { day: "Jueves", entry: schedule?.juevesEntrada, exit: schedule?.juevesSalida },
-      { day: "Viernes", entry: schedule?.viernesEntrada, exit: schedule?.viernesSalida },
-      { day: "Sabado", entry: schedule?.sabadoEntrada, exit: schedule?.sabadoSalida },
-      { day: "Domingo", entry: schedule?.domingoEntrada, exit: schedule?.domingoSalida },
+      { day: "Lunes", entry: findDay(1)?.horaEntrada ?? null, exit: findDay(1)?.horaSalida ?? null },
+      { day: "Martes", entry: findDay(2)?.horaEntrada ?? null, exit: findDay(2)?.horaSalida ?? null },
+      { day: "Miercoles", entry: findDay(3)?.horaEntrada ?? null, exit: findDay(3)?.horaSalida ?? null },
+      { day: "Jueves", entry: findDay(4)?.horaEntrada ?? null, exit: findDay(4)?.horaSalida ?? null },
+      { day: "Viernes", entry: findDay(5)?.horaEntrada ?? null, exit: findDay(5)?.horaSalida ?? null },
+      { day: "Sabado", entry: findDay(6)?.horaEntrada ?? null, exit: findDay(6)?.horaSalida ?? null },
+      { day: "Domingo", entry: findDay(7)?.horaEntrada ?? null, exit: findDay(7)?.horaSalida ?? null },
     ];
   });
 
@@ -218,21 +220,7 @@ interface WorkPositionScheduleOption {
   id: string;
   name: string;
   isActive: boolean;
-  turnoTrabajoName: string;
-  tipoTurnoEspecial: string;
-  lunesEntrada: string | null;
-  lunesSalida: string | null;
-  martesEntrada: string | null;
-  martesSalida: string | null;
-  miercolesEntrada: string | null;
-  miercolesSalida: string | null;
-  juevesEntrada: string | null;
-  juevesSalida: string | null;
-  viernesEntrada: string | null;
-  viernesSalida: string | null;
-  sabadoEntrada: string | null;
-  sabadoSalida: string | null;
-  domingoEntrada: string | null;
-  domingoSalida: string | null;
-  observationsWorkShift: string;
+  tipoJornadaName: string;
+  diasDeTrabajo: DiaDeTrabajoDto[] | null;
+  observaciones: string;
 }

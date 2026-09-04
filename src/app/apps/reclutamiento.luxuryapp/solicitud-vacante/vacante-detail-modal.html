@@ -11,7 +11,7 @@
         <app-icon [icon]="'material-symbols-light:schedule'" class="text-2xl text-600" />
         <div>
           <div class="font-bold text-800">Turno de trabajo</div>
-          <div class="text-sm text-500">{{ wp.turnoTrabajo }}</div>
+          <div class="text-sm text-500">{{ wp.tipoJornadaName }}</div>
         </div>
       </div>
 
@@ -35,8 +35,7 @@
         {{ schedulePresentationS.hoursSummary(wp) }}
       </div>
 
-      @for (dia of dias; track dia.n) { @let entrada = wp[dia.e]; @let salida
-      = wp[dia.s];
+      @for (dia of dias; track dia.n) { @let entrada = wp.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaEntrada ?? null; @let salida = wp.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaSalida ?? null;
       <div
         class="flex justify-content-between align-items-center p-2 border-bottom-1 surface-border rounded hover:surface-50"
       >
@@ -55,14 +54,14 @@
         >
         }
       </div>
-      } @if (wp.observationsWorkShift) {
+      } @if (wp.observaciones) {
       <div class="p-3 surface-50 rounded mt-2">
         <div class="font-semibold text-600 mb-1">
           <app-icon [icon]="'material-symbols-light:info'" class="mr-1" />Observaciones de
           horario
         </div>
         <p class="m-0 text-sm text-700 white-space-pre-line">
-          {{ wp.observationsWorkShift }}
+          {{ wp.observaciones }}
         </p>
       </div>
       }

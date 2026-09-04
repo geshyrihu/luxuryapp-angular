@@ -1,4 +1,4 @@
-export interface DiaDeTrabajoDto {
+﻿export interface DiaDeTrabajoDto {
   diaSemana: number;
   numeroSemanaCiclo: number;
   horaEntrada: string | null;
@@ -29,21 +29,8 @@ export interface IWorkPosition {
   workPositionScheduleId?: string | null;
   workPositionScheduleName?: string | null;
   duracionCicloSemanas?: number | null;
-  lunesEntrada?: string | null;
-  lunesSalida?: string | null;
-  martesEntrada?: string | null;
-  martesSalida?: string | null;
-  miercolesEntrada?: string | null;
-  miercolesSalida?: string | null;
-  juevesEntrada?: string | null;
-  juevesSalida?: string | null;
-  viernesEntrada?: string | null;
-  viernesSalida?: string | null;
-  sabadoEntrada?: string | null;
-  sabadoSalida?: string | null;
-  domingoEntrada?: string | null;
-  domingoSalida?: string | null;
   diasDeTrabajo?: DiaDeTrabajoDto[];
+  observaciones?: string | null;
   state: number;
   benefits: string | null;
   hasPendingDocuments?: boolean;
@@ -88,40 +75,15 @@ export interface IWorkPositionForm {
   jobDescriptionId: string | null;
   workPositionScheduleId: string | null;
   workPositionScheduleName: string | null;
+  tipoJornadaName?: string | null;
+  observaciones?: string | null;
   duracionCicloSemanas?: number | null;
-  lunesEntrada?: string | null;
-  lunesSalida?: string | null;
-  martesEntrada?: string | null;
-  martesSalida?: string | null;
-  miercolesEntrada?: string | null;
-  miercolesSalida?: string | null;
-  juevesEntrada?: string | null;
-  juevesSalida?: string | null;
-  viernesEntrada?: string | null;
-  viernesSalida?: string | null;
-  sabadoEntrada?: string | null;
-  sabadoSalida?: string | null;
-  domingoEntrada?: string | null;
-  domingoSalida?: string | null;
   diasDeTrabajo?: DiaDeTrabajoDto[];
-  observationsWorkShift?: string | null;
   benefits: string;
 }
 
 export interface IWorkPositionHours {
-  turnoTrabajo: string;
-  lunesEntrada: string | null;
-  lunesSalida: string | null;
-  martesEntrada: string | null;
-  martesSalida: string | null;
-  miercolesEntrada: string | null;
-  miercolesSalida: string | null;
-  juevesEntrada: string | null;
-  juevesSalida: string | null;
-  viernesEntrada: string | null;
-  viernesSalida: string | null;
-  sabadoEntrada: string | null;
-  sabadoSalida: string | null;
-  domingoEntrada: string | null;
-  domingoSalida: string | null;
+  tipoJornadaName: string;
+  observaciones: string;
+  diasDeTrabajo: DiaDeTrabajoDto[];
 }

@@ -93,6 +93,15 @@ export class EmployeeFileDetail implements OnInit {
   beneficiaries = signal<EmployeeFileBeneficiaryDTO[]>([]);
   contracts = signal<EmployeeFileContractDTO[]>([]);
   workPosition = signal<EmployeeFileWorkPositionDTO | null>(null);
+  readonly dias = [
+    { n: "Lunes", dw: 1 },
+    { n: "Martes", dw: 2 },
+    { n: "Miércoles", dw: 3 },
+    { n: "Jueves", dw: 4 },
+    { n: "Viernes", dw: 5 },
+    { n: "Sábado", dw: 6 },
+    { n: "Domingo", dw: 0 },
+  ];
   vacationsLeaves = signal<EmployeeFileVacationsLeavesDTO | null>(null);
   incidents = signal<EmployeeFileIncidentDTO[]>([]);
   evaluations = signal<EmployeeFileEvaluationDTO[]>([]);

@@ -31,6 +31,16 @@ export class WorkPositionHours implements OnInit {
   data = signal<IWorkPositionHours | null>(null);
   readOnly = signal(false);
 
+  dias = [
+    { n: "Lunes", dw: 1 },
+    { n: "Martes", dw: 2 },
+    { n: "Miércoles", dw: 3 },
+    { n: "Jueves", dw: 4 },
+    { n: "Viernes", dw: 5 },
+    { n: "Sábado", dw: 6 },
+    { n: "Domingo", dw: 0 },
+  ];
+
   ngOnInit() {
     const id = this.config.data?.id;
     this.readOnly.set(this.config.data?.readOnly === true);

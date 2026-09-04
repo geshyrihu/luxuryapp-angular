@@ -24,9 +24,9 @@
         NOMBRE
         <p-sorticon field="name" />
       </th>
-      <th class="table-col-2 text-small" pSortableColumn="turnoTrabajoName">
+      <th class="table-col-2 text-small" pSortableColumn="tipoJornadaName">
         TURNO
-        <p-sorticon field="turnoTrabajoName" />
+        <p-sorticon field="tipoJornadaName" />
       </th>
       <th class="table-col-4 text-small">HORARIO</th>
       <th class="table-col-2 text-small" pSortableColumn="isActive">
@@ -46,12 +46,7 @@
         </div>
       </td>
       <td>
-        {{ item.turnoTrabajoName }}
-        @if (item.tipoTurnoEspecial) {
-          <span class="badge bg-blue-100 text-blue-700 ml-2">
-            {{ item.tipoTurnoEspecial }}
-          </span>
-        }
+        {{ item.tipoJornadaName }}
       </td>
       <td>
         {{ formatSchedule(item) }}
@@ -130,7 +125,7 @@
       </div>
       <div>
         <p class="mt-0 mb-0">{{ item.name }}</p>
-        <small>{{ item.turnoTrabajoName }}</small>
+        <small>{{ item.tipoJornadaName }}</small>
         <small class="text-500"> · {{ formatSchedule(item) }}</small>
         <div class="flex flex-wrap gap-1 mt-1">
           @for (day of schedulePresentationS.indicators(item); track day.label) {

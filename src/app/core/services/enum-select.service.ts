@@ -1,4 +1,4 @@
-import { inject, Injectable } from "@angular/core";
+﻿import { inject, Injectable } from "@angular/core";
 import { from, Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -133,7 +133,6 @@ export class EnumSelectService {
 
   tipoGasto = (d?: boolean) => this.onLoadEnumList("tipo-gasto", d);
 
-  turnoTrabajo = (d?: boolean) => this.onLoadEnumList("turno-trabajo", d);
 
   tipoJornada = (d?: boolean) => this.onLoadEnumList("tipo-jornada", d);
 

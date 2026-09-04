@@ -1,4 +1,4 @@
-import { CurrencyPipe } from "@angular/common";
+﻿import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -47,30 +47,15 @@ export class SolicitudVacanteForm implements OnInit {
 
   id: string = "";
 
-  cb_turnoTrabajo = signal<SelectItemDto[]>([]);
+  cb_tipoJornada = signal<SelectItemDto[]>([]);
   readonly dayColumns = [
-    { label: "Lunes", value: 1, entry: "lunesEntrada", exit: "lunesSalida" },
-    { label: "Martes", value: 2, entry: "martesEntrada", exit: "martesSalida" },
-    {
-      label: "Miércoles",
-      value: 3,
-      entry: "miercolesEntrada",
-      exit: "miercolesSalida",
-    },
-    { label: "Jueves", value: 4, entry: "juevesEntrada", exit: "juevesSalida" },
-    {
-      label: "Viernes",
-      value: 5,
-      entry: "viernesEntrada",
-      exit: "viernesSalida",
-    },
-    { label: "Sábado", value: 6, entry: "sabadoEntrada", exit: "sabadoSalida" },
-    {
-      label: "Domingo",
-      value: 0,
-      entry: "domingoEntrada",
-      exit: "domingoSalida",
-    },
+    { label: "Lunes", value: 1 },
+    { label: "Martes", value: 2 },
+    { label: "Miércoles", value: 3 },
+    { label: "Jueves", value: 4 },
+    { label: "Viernes", value: 5 },
+    { label: "Sábado", value: 6 },
+    { label: "Domingo", value: 0 },
   ] as const;
 
   form = this.formB.nonNullable.group({
@@ -78,27 +63,13 @@ export class SolicitudVacanteForm implements OnInit {
     applicationRoleName: ["", Validators.required],
     sueldo: [0 as number, [Validators.required, Validators.min(0)]],
     sueldoBase: [0 as number, [Validators.required, Validators.min(0)]],
-    turnoTrabajo: [null as number | null, Validators.required],
-    lunesEntrada: [""],
-    lunesSalida: [""],
-    martesEntrada: [""],
-    martesSalida: [""],
-    miercolesEntrada: [""],
-    miercolesSalida: [""],
-    juevesEntrada: [""],
-    juevesSalida: [""],
-    viernesEntrada: [""],
-    viernesSalida: [""],
-    sabadoEntrada: [""],
-    sabadoSalida: [""],
-    domingoEntrada: [""],
-    domingoSalida: [""],
+    tipoJornada: [null as number | null, Validators.required],
     additionalInformation: [""],
   });
 
   async ngOnInit() {
-    this.cb_turnoTrabajo.set(
-      await firstValueFrom(this.enumSelectS.turnoTrabajo()),
+    this.cb_tipoJornada.set(
+      await firstValueFrom(this.enumSelectS.tipoJornada()),
     );
     this.onLoadData();
   }
@@ -113,12 +84,12 @@ export class SolicitudVacanteForm implements OnInit {
       });
   }
 
-  turnoTrabajoDisplay(): string {
-    const value = this.data?.tipoJornada ?? this.data?.turnoTrabajo;
+  tipoJornadaNameDisplay(): string {
+    const value = this.data?.tipoJornada;
     const labelFromDto = this.data?.tipoJornadaName?.trim();
     if (labelFromDto) return labelFromDto;
 
-    const option = this.cb_turnoTrabajo().find(
+    const option = this.cb_tipoJornada().find(
       (item) => `${item.value}` === `${value}`,
     );
     return option?.label ?? (value != null ? `${value}` : "No definido");
@@ -134,11 +105,7 @@ export class SolicitudVacanteForm implements OnInit {
   }
 
   scheduleObservations(): string {
-    return (
-      this.data?.observaciones?.trim() ||
-      this.data?.observationsWorkShift?.trim() ||
-      ""
-    );
+    return this.data?.observaciones?.trim() ?? "";
   }
 
   formatHoursSummary(multiplier: number): string {
@@ -160,16 +127,7 @@ export class SolicitudVacanteForm implements OnInit {
       field === "entry" ? day?.horaEntrada : day?.horaSalida;
     if (normalizedValue) return this.formatHour(normalizedValue);
 
-    if (week !== 1) return "-";
-
-    const legacyDay = this.dayColumns.find((item) => item.value === dayOfWeek);
-    const legacyKey = field === "entry" ? legacyDay?.entry : legacyDay?.exit;
-    const legacyValue = legacyKey
-      ? (this.data?.[legacyKey as keyof WorkPositionDetailDTO] as
-          string | undefined)
-      : null;
-
-    return legacyValue ? this.formatHour(legacyValue) : "-";
+    return "-";
   }
 
   private formatHour(value: string): string {

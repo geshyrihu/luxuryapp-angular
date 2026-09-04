@@ -80,15 +80,15 @@
             <div class="col-4">Salida (mismo día o siguiente)</div>
             <div class="col-1"></div>
           </div>
-          @for (day of days; track day.label) {
-          <div class="surface-50 border-1 border-200 border-round p-2">
+          @for (day of weekDays(); track day.dw) {
+          <div class="surface-50 border-1 border-200 rounded p-2">
             <div class="grid align-items-center">
               <div class="col-12 md:col-3">
                 <span class="font-semibold text-sm">{{ day.label }}</span>
               </div>
               <div class="col-12 md:col-4">
                 <custom-input-select-signal
-                  [control]="getControl(day.entry)"
+                  [control]="day.entry"
                   [data]="timeOptions"
                   [filter]="true"
                   [horizontal]="false"
@@ -97,7 +97,7 @@
               </div>
               <div class="col-12 md:col-4">
                 <custom-input-select-signal
-                  [control]="getControl(day.exit)"
+                  [control]="day.exit"
                   [data]="timeOptions"
                   [filter]="true"
                   [horizontal]="false"

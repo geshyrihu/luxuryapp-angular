@@ -5,28 +5,21 @@
         <app-icon [icon]="'material-symbols-light:schedule'" class="text-2xl text-600" />
         <div>
           <h3 class="text-lg font-bold text-800 m-0">Horarios de Trabajo</h3>
-          <p class="text-sm text-500 m-0">Turno: {{ data()?.turnoTrabajo }}</p>
+          <p class="text-sm text-500 m-0">Turno: {{ data()?.tipoJornadaName }}</p>
         </div>
       </div>
 
       <div class="flex flex-column gap-1">
-        @for (dia of [ { n: 'Lunes', e: data()?.lunesEntrada, s:
-        data()?.lunesSalida }, { n: 'Martes', e: data()?.martesEntrada, s:
-        data()?.martesSalida }, { n: 'Miércoles', e: data()?.miercolesEntrada,
-        s: data()?.miercolesSalida }, { n: 'Jueves', e: data()?.juevesEntrada,
-        s: data()?.juevesSalida }, { n: 'Viernes', e: data()?.viernesEntrada, s:
-        data()?.viernesSalida }, { n: 'Sábado', e: data()?.sabadoEntrada, s:
-        data()?.sabadoSalida }, { n: 'Domingo', e: data()?.domingoEntrada, s:
-        data()?.domingoSalida } ]; track dia.n) {
-        <div
-          class="flex justify-content-between align-items-center p-3 border-bottom-1 surface-border hover:surface-50 transition-colors transition-duration-200 rounded"
-        >
+        @for (dia of dias; track dia.n) {
+        <div class="flex justify-content-between align-items-center p-3 border-bottom-1 surface-border hover:surface-50 transition-colors transition-duration-200 rounded">
           <span class="font-semibold text-700 w-6rem">{{ dia.n }}</span>
           <div class="flex align-items-center">
-            @if (dia.e && dia.s) {
-            <span class="text-primary font-monospace">{{ dia.e }}</span>
+            @let entry = data()?.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaEntrada ?? null;
+            @let exit = data()?.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaSalida ?? null;
+            @if (entry && exit) {
+            <span class="text-primary font-monospace">{{ entry }}</span>
             <app-icon [icon]="'material-symbols-light:arrow-forward'" class="text-300 text-xs" />
-            <span class="text-primary font-monospace">{{ dia.s }}</span>
+            <span class="text-primary font-monospace">{{ exit }}</span>
             } @else {
             <span class="text-400 font-italic">Descanso / Sin asignar</span>
             }

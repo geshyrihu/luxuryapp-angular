@@ -73,7 +73,7 @@
         <div class="flex flex-column gap-1">
           <div class="flex justify-content-between">
             <span class="text-500">Turno</span>
-            <span>{{ g.turno ?? g.turnoTrabajo }}</span>
+            <span>            {{ g.turno }}</span>
           </div>
           <div class="flex justify-content-between">
             <span class="text-500">Sueldo base</span>
@@ -86,10 +86,6 @@
           <div class="flex justify-content-between">
             <span class="text-500">Prestaciones</span>
             <span class="white-space-pre-line text-right">{{ g.benefits }}</span>
-          </div>
-          <div class="flex justify-content-between">
-            <span class="text-500">Observaciones</span>
-            <span class="white-space-pre-line text-right">{{ g.observationsWorkShift }}</span>
           </div>
           <div class="flex justify-content-between">
             <span class="text-500">Estado</span>
@@ -106,13 +102,18 @@
       <div class="p-3">
         <h3 class="mt-0">Horarios de trabajo</h3>
         @if (hours(); as h) {
-        <p class="mb-2"><strong>Turno:</strong> {{ h.turnoTrabajo }}</p>
+        <p class="mb-2"><strong>Turno:</strong> {{ h.tipoJornadaName }}</p>
+        @if (h.observaciones) {
+          <p class="mb-2"><strong>Observaciones:</strong> {{ h.observaciones }}</p>
+        }
         <div class="flex flex-column gap-1">
-          @for (dia of [ { n: 'Lunes', e: h.lunesEntrada, s: h.lunesSalida }, { n: 'Martes', e: h.martesEntrada, s: h.martesSalida }, { n: 'Miércoles', e: h.miercolesEntrada, s: h.miercolesSalida }, { n: 'Jueves', e: h.juevesEntrada, s: h.juevesSalida }, { n: 'Viernes', e: h.viernesEntrada, s: h.viernesSalida }, { n: 'Sábado', e: h.sabadoEntrada, s: h.sabadoSalida }, { n: 'Domingo', e: h.domingoEntrada, s: h.domingoSalida } ]; track dia.n) {
+          @for (dia of dias; track dia.n) {
           <div class="flex justify-content-between">
             <span class="font-semibold">{{ dia.n }}</span>
-            @if (dia.e && dia.s) {
-            <span>{{ dia.e }} - {{ dia.s }}</span>
+            @let entry = h.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaEntrada ?? null;
+            @let exit = h.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaSalida ?? null;
+            @if (entry && exit) {
+            <span>{{ entry }} - {{ exit }}</span>
             } @else {
             <span class="text-400 font-italic">Descanso</span>
             }
