@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 
 export async function confirmAction(message: string): Promise<boolean> {
   const result = await Swal.fire({
-    title: 'Confirmación',
+    title: 'ConfirmaciÃ³n',
     text: message,
     icon: 'warning',
     showCancelButton: true,
