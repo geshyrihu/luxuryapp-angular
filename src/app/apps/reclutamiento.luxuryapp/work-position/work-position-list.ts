@@ -40,14 +40,12 @@ import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service
 import { IWorkPosition } from "./interfaces/work-position.model";
 import { WorkPositionDetails } from "./work-position-details";
 
-import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
@@ -62,12 +60,10 @@ import {
   styleUrl: "./work-position-list.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconActiveDesactive,
     WebButtonIconItem,
     LxTooltipDirective,
     MobileActionMenu,
     WebButtonLabel,
-    MobileButtonLabelActiveDesactive,
     MobileButtonLabelItem,
     PrimeNgCustomTableEmptyMessage,
     TableModule,

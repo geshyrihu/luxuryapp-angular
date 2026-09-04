@@ -1,12 +1,29 @@
-import { FormControl } from "@angular/forms";
+import { FormArray, FormControl, FormGroup } from "@angular/forms";
 
-export interface WorkPositionScheduleFormGroup {
+export interface DiaDeTrabajoControls {
+  diaSemana: FormControl<number>;
+  numeroSemanaCiclo: FormControl<number>;
+  horaEntrada: FormControl<string | null>;
+  horaSalida: FormControl<string | null>;
+  esDescanso: FormControl<boolean>;
+}
+
+export type DiaDeTrabajoFormGroup = FormGroup<DiaDeTrabajoControls>;
+
+export interface WorkPositionScheduleControls {
   id: FormControl<string | null>;
   name: FormControl<string>;
   description: FormControl<string>;
   isActive: FormControl<boolean>;
+
+  // Modelo normalizado
+  tipoJornada: FormControl<number>;
+  duracionCicloSemanas: FormControl<number>;
+  observaciones: FormControl<string>;
+  diasDeTrabajo: FormArray<DiaDeTrabajoFormGroup>;
+
+  // [LEGACY] Mantener hasta migrar el form de edicion.
   turnoTrabajo: FormControl<number>;
-  tipoTurnoEspecial: FormControl<string>;
   lunesEntrada: FormControl<string | null>;
   lunesSalida: FormControl<string | null>;
   martesEntrada: FormControl<string | null>;
@@ -23,3 +40,5 @@ export interface WorkPositionScheduleFormGroup {
   domingoSalida: FormControl<string | null>;
   observationsWorkShift: FormControl<string>;
 }
+
+export type WorkPositionScheduleFormGroup = FormGroup<WorkPositionScheduleControls>;

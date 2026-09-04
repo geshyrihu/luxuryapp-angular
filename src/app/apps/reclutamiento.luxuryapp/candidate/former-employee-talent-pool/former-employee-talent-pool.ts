@@ -10,9 +10,9 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -28,7 +28,6 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { WebButtonLabelActiveDesactive } from "src/app/shared/ui/buttons";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import Swal from "sweetalert2";
 import { CandidateApplicationForm } from "../../candidate-application/candidate-application-form";
 import { CandidateDetail } from "../candidate-detail";
@@ -64,7 +63,6 @@ interface FormerEmployeeCandidateResult {
   styleUrl: "./former-employee-talent-pool.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AppIcon,
     CommonModule,
     CustomInputSelectSignal,
     InputTextModule,

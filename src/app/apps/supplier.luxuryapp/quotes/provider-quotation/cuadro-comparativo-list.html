@@ -453,39 +453,6 @@
     </ng-template>
   </p-table>
 </div>
-<lx-modal header="Agregar presupuesto" [(visible)]="showBudgetModal">
-  <div class="pt-2">
-    <custom-input-select-signal
-      [control]="budgetAccountControl"
-      [data]="budgetSelectOptionsSignal()"
-      label="Cuenta presupuestal"
-      placeholder="Busca y selecciona una cuenta"
-      [filter]="true"
-      filterBy="label"
-      [showClear]="true"
-    />
-  </div>
-
-  <ng-template #footer>
-    <div class="flex justify-content-end gap-2">
-      <il-button
-        label="Cancelar"
-        severity="secondary"
-        variant="outline"
-        size="small"
-        (clicked)="onCancelAddBudgetModal()"
-      />
-      <il-button
-        label="Continuar"
-        iconClass="material-symbols-light:arrow-forward"
-        severity="contrast"
-        size="small"
-        (clicked)="onConfirmAddBudgetModal()"
-      />
-    </div>
-  </ng-template>
-</lx-modal>
-
 <lx-modal header="Auditoria de Compras - Analisis IA" [(visible)]="showAiModal">
   <div class="surface-card p-4 rounded shadow-sm">
     <div
@@ -494,7 +461,7 @@
     ></div>
   </div>
 
-  <ng-template #footer>
+  <ng-template pTemplate="footer">
     <div class="flex justify-content-end pt-3">
       <il-button
         label="Cerrar Reporte"

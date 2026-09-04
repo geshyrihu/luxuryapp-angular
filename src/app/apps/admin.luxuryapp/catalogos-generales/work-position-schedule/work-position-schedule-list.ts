@@ -29,6 +29,7 @@ import {
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { WorkSchedulePresentationService } from "src/app/core/services/work-schedule-presentation.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { WorkPositionScheduleDto } from "./interfaces/work-position-schedule.dto";
 import { WorkPositionScheduleForm } from "./work-position-schedule-form";
@@ -71,6 +72,7 @@ export class WorkPositionScheduleList implements OnInit {
   private dialogHandlerS = inject(DialogHandlerService);
   private apiResponseS = inject(ApiResponseService);
   private tableScrollHeightS = inject(TableScrollHeightService);
+  readonly schedulePresentationS = inject(WorkSchedulePresentationService);
 
   dataSignal = signal<WorkPositionScheduleDto[]>([]);
   loading = signal(true);
@@ -143,9 +145,28 @@ export class WorkPositionScheduleList implements OnInit {
     return days.length ? days.join(" · ") : "Sin horas definidas";
   }
 
+  formatHoursSummary(item: WorkPositionScheduleDto): string {
+    return this.schedulePresentationS.hoursSummary(item);
+  }
+
+  hasOvernightShift(item: WorkPositionScheduleDto): boolean {
+    return [
+      [item.lunesEntrada, item.lunesSalida],
+      [item.martesEntrada, item.martesSalida],
+      [item.miercolesEntrada, item.miercolesSalida],
+      [item.juevesEntrada, item.juevesSalida],
+      [item.viernesEntrada, item.viernesSalida],
+      [item.sabadoEntrada, item.sabadoSalida],
+      [item.domingoEntrada, item.domingoSalida],
+    ].some(([entry, exit]) => !!entry && !!exit && this.formatTime(exit) <= this.formatTime(entry));
+  }
+
   private formatDay(day: string, entry: string | null, exit: string | null) {
     if (!entry || !exit) return "";
-    return `${day} ${this.formatTime(entry)}-${this.formatTime(exit)}`;
+    const entryTime = this.formatTime(entry);
+    const exitTime = this.formatTime(exit);
+    const nextDay = exitTime <= entryTime ? " +1 día" : "";
+    return `${day} ${entryTime}-${exitTime}${nextDay}`;
   }
 
   private formatTime(value: string): string {

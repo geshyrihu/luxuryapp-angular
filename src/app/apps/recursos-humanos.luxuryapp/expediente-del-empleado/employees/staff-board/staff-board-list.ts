@@ -9,19 +9,17 @@ import {
 import { Router } from "@angular/router";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { RecoveryGuideModal } from "./recovery-guide-modal/recovery-guide-modal";
 import { IncidentFormComponent } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/incident-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { Department } from "src/app/core/enums/department.enum";
-import { PositionRequestStatus } from "src/app/core/enums/position-request-status.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
+import { PositionRequestStatus } from "src/app/core/enums/position-request-status.enum";
 import { globalFilterFields as getGlobalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -32,12 +30,17 @@ import { WorkPositionForm } from "src/app/shared/integration/reclutamiento/estru
 import { SolicitudBajaForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
 import { SolicitudModificacionSalarioForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
 import { SolicitudVacanteForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
-import { AppIcon, type AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
+import {
+  AppIcon,
+  type AppIconName,
+} from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   SegmentedControl,
   SegmentItem,
 } from "src/app/shared/ui/shared/segmented-control/segmented-control";
 import { ConfirmPresentationModal } from "./confirm-presentation-modal/confirm-presentation-modal";
+import { RecoveryGuideModal } from "./recovery-guide-modal/recovery-guide-modal";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -47,6 +50,7 @@ import {
   ExcelColumn,
   ExcelExportService,
 } from "src/app/core/services/excel-export.service";
+import { WorkSchedulePresentationService } from "src/app/core/services/work-schedule-presentation.service";
 import { CandidateInterviewerQueueService } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
 import { CandidateInterviewerQueueDto } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { CardEmployee } from "../employees/card-employee";
@@ -81,6 +85,7 @@ export class StaffBoardList {
   private confirmS = inject(ConfirmService);
   private interviewerQueueS = inject(CandidateInterviewerQueueService);
   private tableScrollHeightS = inject(TableScrollHeightService);
+  readonly schedulePresentationS = inject(WorkSchedulePresentationService);
 
   readonly AspRole = ApplicationRole;
 
@@ -293,7 +298,7 @@ export class StaffBoardList {
       SolicitudVacanteForm,
       { workPositionId },
       "Solicitar vacante",
-      DialogSize.lg,
+      DialogSize.full,
     );
     await this.onLoadData();
   }
@@ -383,9 +388,7 @@ export class StaffBoardList {
    * Estado de la solicitud de vacante del puesto, derivado de `positionRequest`.
    * 'none' = sin solicitud, 'open' = vigente (Abierta), 'inProgress' = alta en proceso.
    */
-  vacancyState(
-    item: IWorkPosition,
-  ): "none" | "inProgress" | "open" {
+  vacancyState(item: IWorkPosition): "none" | "inProgress" | "open" {
     const status = item.positionRequest?.status;
     if (status == null) return "none";
     return status === PositionRequestStatus.Abierta ? "open" : "inProgress";
@@ -407,9 +410,7 @@ export class StaffBoardList {
    * Baja/Salario: el backend proyecta la solicitud vigente como
    * `{ id, status, statusName, folio }` en `requestDismissal` y `requestSalaryModification`.
    */
-  openTickets(
-    item: IWorkPosition,
-  ): Array<{
+  openTickets(item: IWorkPosition): Array<{
     type: "vacante" | "baja" | "salario";
     severity: "warn" | "info" | "danger";
     icon: AppIconName;
@@ -426,7 +427,8 @@ export class StaffBoardList {
 
     const positionRequest = item.positionRequest;
     if (positionRequest && positionRequest.status != null) {
-      const folioStr = positionRequest.folio != null ? `VA-${positionRequest.folio}` : null;
+      const folioStr =
+        positionRequest.folio != null ? `VA-${positionRequest.folio}` : null;
       tickets.push({
         type: "vacante",
         severity: "warn",

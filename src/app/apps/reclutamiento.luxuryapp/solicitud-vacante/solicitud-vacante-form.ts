@@ -9,43 +9,29 @@ import {
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-
-interface WorkPositionDetailDTO {
-  id?: string;
-  applicationRoleName: string;
-  sueldo: number;
-  sueldoBase: number;
-  turnoTrabajo?: number | null;
-  lunesEntrada?: string;
-  lunesSalida?: string;
-  martesEntrada?: string;
-  martesSalida?: string;
-  miercolesEntrada?: string;
-  miercolesSalida?: string;
-  juevesEntrada?: string;
-  juevesSalida?: string;
-  viernesEntrada?: string;
-  viernesSalida?: string;
-  sabadoEntrada?: string;
-  sabadoSalida?: string;
-  domingoEntrada?: string;
-  domingoSalida?: string;
-  observationsWorkShift?: string;
-  additionalInformation?: string;
-}
+import { WorkSchedulePresentationService } from "src/app/core/services/work-schedule-presentation.service";
+import { WorkPositionDetailDTO } from "./WorkPositionDetailDTO";
 
 @Component({
   selector: "app-solicitud-vacante",
   templateUrl: "./solicitud-vacante-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, WebButtonLabelSave, CustomInputTextAreaSignal, CurrencyPipe],
+  imports: [
+    ReactiveFormsModule,
+    WebButtonLabelSave,
+    CustomInputTextAreaSignal,
+    CurrencyPipe,
+  ],
 })
 export class SolicitudVacanteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -53,6 +39,7 @@ export class SolicitudVacanteForm implements OnInit {
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
   private enumSelectS = inject(EnumSelectService);
+  private schedulePresentationS = inject(WorkSchedulePresentationService);
   workPositionId: string = this.config.data.workPositionId;
 
   data: WorkPositionDetailDTO | null = null;
@@ -61,6 +48,30 @@ export class SolicitudVacanteForm implements OnInit {
   id: string = "";
 
   cb_turnoTrabajo = signal<SelectItemDto[]>([]);
+  readonly dayColumns = [
+    { label: "Lunes", value: 1, entry: "lunesEntrada", exit: "lunesSalida" },
+    { label: "Martes", value: 2, entry: "martesEntrada", exit: "martesSalida" },
+    {
+      label: "Miércoles",
+      value: 3,
+      entry: "miercolesEntrada",
+      exit: "miercolesSalida",
+    },
+    { label: "Jueves", value: 4, entry: "juevesEntrada", exit: "juevesSalida" },
+    {
+      label: "Viernes",
+      value: 5,
+      entry: "viernesEntrada",
+      exit: "viernesSalida",
+    },
+    { label: "Sábado", value: 6, entry: "sabadoEntrada", exit: "sabadoSalida" },
+    {
+      label: "Domingo",
+      value: 0,
+      entry: "domingoEntrada",
+      exit: "domingoSalida",
+    },
+  ] as const;
 
   form = this.formB.nonNullable.group({
     id: [this.config.data.workPositionId],
@@ -93,13 +104,80 @@ export class SolicitudVacanteForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = Endpoints.WorkPositions.getById(
-      this.workPositionId,
+    const urlApi = Endpoints.WorkPositions.getById(this.workPositionId);
+    this.apiResponseS
+      .onGetItem<WorkPositionDetailDTO>(urlApi)
+      .then((result) => {
+        this.data = result;
+        this.form.patchValue(result);
+      });
+  }
+
+  turnoTrabajoDisplay(): string {
+    const value = this.data?.tipoJornada ?? this.data?.turnoTrabajo;
+    const labelFromDto = this.data?.tipoJornadaName?.trim();
+    if (labelFromDto) return labelFromDto;
+
+    const option = this.cb_turnoTrabajo().find(
+      (item) => `${item.value}` === `${value}`,
     );
-    this.apiResponseS.onGetItem<WorkPositionDetailDTO>(urlApi).then((result) => {
-      this.data = result;
-      this.form.patchValue(result);
-    });
+    return option?.label ?? (value != null ? `${value}` : "No definido");
+  }
+
+  scheduleWeeks(): number[] {
+    const days = this.data?.diasDeTrabajo ?? [];
+    const maxWeek = days.length
+      ? Math.max(...days.map((day) => day.numeroSemanaCiclo))
+      : (this.data?.duracionCicloSemanas ?? 1);
+
+    return Array.from({ length: maxWeek }, (_, index) => index + 1);
+  }
+
+  scheduleObservations(): string {
+    return (
+      this.data?.observaciones?.trim() ||
+      this.data?.observationsWorkShift?.trim() ||
+      ""
+    );
+  }
+
+  formatHoursSummary(multiplier: number): string {
+    return this.formatHours(this.schedulePresentationS.weeklyAverageHours(this.data ?? {}) * multiplier);
+  }
+
+  scheduleCell(
+    week: number,
+    dayOfWeek: number,
+    field: "entry" | "exit",
+  ): string {
+    const day = this.data?.diasDeTrabajo?.find(
+      (item) => item.numeroSemanaCiclo === week && item.diaSemana === dayOfWeek,
+    );
+
+    if (day?.esDescanso) return "Descanso";
+
+    const normalizedValue =
+      field === "entry" ? day?.horaEntrada : day?.horaSalida;
+    if (normalizedValue) return this.formatHour(normalizedValue);
+
+    if (week !== 1) return "-";
+
+    const legacyDay = this.dayColumns.find((item) => item.value === dayOfWeek);
+    const legacyKey = field === "entry" ? legacyDay?.entry : legacyDay?.exit;
+    const legacyValue = legacyKey
+      ? (this.data?.[legacyKey as keyof WorkPositionDetailDTO] as
+          string | undefined)
+      : null;
+
+    return legacyValue ? this.formatHour(legacyValue) : "-";
+  }
+
+  private formatHour(value: string): string {
+    return value.substring(0, 5);
+  }
+
+  private formatHours(value: number): string {
+    return `${Number.isInteger(value) ? value : value.toFixed(1)} h`;
   }
 
   onSubmit() {

@@ -9,10 +9,9 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppImage } from "@ui/web/image/image";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -31,6 +30,7 @@ import {
 import { SwalService } from "src/app/core/services/swal.service";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import Swal from "sweetalert2";
+import { CuadroComparativoAddBudget } from "./cuadro-comparativo-add-budget";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 
@@ -38,6 +38,7 @@ import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 
 @Component({
   selector: "app-cuadro-comparativo-list",
@@ -53,7 +54,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     DividerModule,
     AppImage,
     WebButtonLabel,
-    CustomInputSelectSignal,
     LxModal,
   ],
 })
@@ -117,9 +117,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
   comiteEventsSignal = signal<any[]>([]);
   selectedEvidenceFiles: File[] = [];
   selectedEvidencePreviewUrls: string[] = [];
-  showBudgetModal = false;
   budgetSelectOptionsSignal = signal<SelectItemDto[]>([]);
-  budgetAccountControl = new FormControl<string | null>(null);
 
   paramsSignal = toSignal(this.routeActive.params);
 
@@ -563,26 +561,19 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       return;
     }
 
-    this.budgetAccountControl.setValue(null);
-    this.showBudgetModal = true;
-  }
+    const selectedAccountNumber = await this.dialogHandlerS.openDialog<string>(
+      CuadroComparativoAddBudget,
+      { budgetOptions: this.budgetSelectOptionsSignal() },
+      "Agregar presupuesto",
+      DialogSize.sm,
+    );
 
-  async onConfirmAddBudgetModal() {
-    const selectedAccountNumber = this.budgetAccountControl.value;
-    if (!selectedAccountNumber) {
-      this.customToastService.showInfo(
-        "Cuenta requerida",
-        "Selecciona una cuenta presupuestal para continuar.",
-      );
-      return;
-    }
+    if (!selectedAccountNumber) return;
 
     const budgetData = this.availableBudgetSignal().find(
       (item) => item.accountNumber === selectedAccountNumber,
     );
     if (!budgetData) return;
-
-    this.showBudgetModal = false;
 
     const amountModal = await this.swalService.fire({
       title: "Monto a usar",
@@ -628,11 +619,6 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
           this.onLoadData();
         }
       });
-  }
-
-  onCancelAddBudgetModal() {
-    this.showBudgetModal = false;
-    this.budgetAccountControl.setValue(null);
   }
 
   onDeleteBudget(budgetId: string) {

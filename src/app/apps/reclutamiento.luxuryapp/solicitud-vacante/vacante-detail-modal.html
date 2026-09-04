@@ -15,6 +15,26 @@
         </div>
       </div>
 
+      <div class="flex flex-wrap gap-1 mb-2">
+        @for (day of schedulePresentationS.indicators(wp); track day.label) {
+        <span
+          class="border-1 border-round px-1 py-0 text-xs font-bold line-height-2"
+          [class.bg-green-100]="day.worked"
+          [class.text-green-800]="day.worked"
+          [class.border-green-300]="day.worked"
+          [class.bg-red-50]="!day.worked"
+          [class.text-red-700]="!day.worked"
+          [class.border-red-200]="!day.worked"
+          [title]="day.tooltip"
+        >
+          {{ day.label }}
+        </span>
+        }
+      </div>
+      <div class="text-primary text-sm font-semibold mb-2">
+        {{ schedulePresentationS.hoursSummary(wp) }}
+      </div>
+
       @for (dia of dias; track dia.n) { @let entrada = wp[dia.e]; @let salida
       = wp[dia.s];
       <div
@@ -41,7 +61,9 @@
           <app-icon [icon]="'material-symbols-light:info'" class="mr-1" />Observaciones de
           horario
         </div>
-        <p class="m-0 text-sm text-700">{{ wp.observationsWorkShift }}</p>
+        <p class="m-0 text-sm text-700 white-space-pre-line">
+          {{ wp.observationsWorkShift }}
+        </p>
       </div>
       }
     </div>

@@ -1,11 +1,28 @@
+export interface DiaDeTrabajoDto {
+  diaSemana: number;
+  numeroSemanaCiclo: number;
+  horaEntrada: string | null;
+  horaSalida: string | null;
+  esDescanso: boolean;
+}
+
 export interface WorkPositionScheduleDto {
   id: string;
   name: string;
   description: string;
   isActive: boolean;
+
+  // Modelo normalizado
+  tipoJornada: number;
+  tipoJornadaName: string;
+  duracionCicloSemanas: number;
+  observaciones: string;
+  diasDeTrabajo: DiaDeTrabajoDto[];
+
+  // [LEGACY] Mantener lectura hasta migrar el formulario de edicion
+  // (el backend los sigue devolviendo derivados de la semana 1).
   turnoTrabajo: number;
   turnoTrabajoName: string;
-  tipoTurnoEspecial: string;
   lunesEntrada: string | null;
   lunesSalida: string | null;
   martesEntrada: string | null;
@@ -27,8 +44,16 @@ export interface WorkPositionScheduleAddOrEdit {
   name: string;
   description: string;
   isActive: boolean;
+
+  // Modelo normalizado
+  tipoJornada: number;
+  duracionCicloSemanas: number;
+  observaciones: string;
+  diasDeTrabajo: DiaDeTrabajoDto[];
+
+  // [LEGACY] Mantener campos en el payload para no romper el form actual.
+  // El backend los ignora y deriva de diasDeTrabajo.
   turnoTrabajo: number;
-  tipoTurnoEspecial: string;
   lunesEntrada: string | null;
   lunesSalida: string | null;
   martesEntrada: string | null;

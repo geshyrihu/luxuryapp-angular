@@ -14,6 +14,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { IWorkPositionForm } from "src/app/apps/reclutamiento.luxuryapp/work-position/interfaces/work-position.model";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { WorkSchedulePresentationService } from "src/app/core/services/work-schedule-presentation.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 interface IJobDescription {
@@ -41,6 +42,7 @@ export class VacanteDetailModal implements OnInit {
     { id: "prestaciones", label: "Prestaciones y observaciones" },
   ];
   private apiS = inject(ApiResponseService);
+  readonly schedulePresentationS = inject(WorkSchedulePresentationService);
 
   workPosition = signal<IWorkPositionForm | null>(null);
   jobDescription = signal<IJobDescription | null>(null);

@@ -1,3 +1,11 @@
+export interface DiaDeTrabajoDto {
+  diaSemana: number;
+  numeroSemanaCiclo: number;
+  horaEntrada: string | null;
+  horaSalida: string | null;
+  esDescanso: boolean;
+}
+
 export interface IWorkPosition {
   id: string;
   /** Null cuando el usuario autenticado no tiene canViewSensitiveData (motor de políticas RRHH). */
@@ -18,6 +26,24 @@ export interface IWorkPosition {
   /** Departament como entero. Null si el puesto no tiene ApplicationRole asignado. */
   departament: number | null;
   jobDescriptionId: string | null;
+  workPositionScheduleId?: string | null;
+  workPositionScheduleName?: string | null;
+  duracionCicloSemanas?: number | null;
+  lunesEntrada?: string | null;
+  lunesSalida?: string | null;
+  martesEntrada?: string | null;
+  martesSalida?: string | null;
+  miercolesEntrada?: string | null;
+  miercolesSalida?: string | null;
+  juevesEntrada?: string | null;
+  juevesSalida?: string | null;
+  viernesEntrada?: string | null;
+  viernesSalida?: string | null;
+  sabadoEntrada?: string | null;
+  sabadoSalida?: string | null;
+  domingoEntrada?: string | null;
+  domingoSalida?: string | null;
+  diasDeTrabajo?: DiaDeTrabajoDto[];
   state: number;
   benefits: string | null;
   hasPendingDocuments?: boolean;
@@ -62,6 +88,23 @@ export interface IWorkPositionForm {
   jobDescriptionId: string | null;
   workPositionScheduleId: string | null;
   workPositionScheduleName: string | null;
+  duracionCicloSemanas?: number | null;
+  lunesEntrada?: string | null;
+  lunesSalida?: string | null;
+  martesEntrada?: string | null;
+  martesSalida?: string | null;
+  miercolesEntrada?: string | null;
+  miercolesSalida?: string | null;
+  juevesEntrada?: string | null;
+  juevesSalida?: string | null;
+  viernesEntrada?: string | null;
+  viernesSalida?: string | null;
+  sabadoEntrada?: string | null;
+  sabadoSalida?: string | null;
+  domingoEntrada?: string | null;
+  domingoSalida?: string | null;
+  diasDeTrabajo?: DiaDeTrabajoDto[];
+  observationsWorkShift?: string | null;
   benefits: string;
 }
 

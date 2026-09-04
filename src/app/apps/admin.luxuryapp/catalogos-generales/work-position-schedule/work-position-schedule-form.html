@@ -8,80 +8,139 @@
     />
 
     <div class="grid">
-      <div class="col-12 md:col-6">
-        <custom-input-text-signal
-          [control]="form.controls.name"
-          label="Nombre"
-          placeholder="Ej: Matutino administrativo"
-        />
+      <div class="col-12 lg:col-5">
+        <div class="grid">
+          <div class="col-12">
+            <custom-input-text-signal
+              [control]="form.controls.name"
+              label="Nombre"
+              placeholder="Ej: Matutino administrativo"
+              [horizontal]="false"
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-12">
+            <custom-input-select-signal
+              [control]="form.controls.tipoJornada"
+              label="Tipo de jornada"
+              [data]="cb_tipoJornada()"
+              [filter]="true"
+              [horizontal]="false"
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-12">
+            <custom-input-select-signal
+              [control]="form.controls.duracionCicloSemanas"
+              label="Ciclo (semanas)"
+              [data]="duracionCicloOptions"
+              [filter]="false"
+              [horizontal]="false"
+            />
+          </div>
+          <div class="col-12">
+            <custom-input-textarea-signal
+              [control]="form.controls.description"
+              label="Descripción"
+              placeholder="Describe para que puestos aplica este horario"
+              [rows]="3"
+              [horizontal]="false"
+            />
+          </div>
+          <div class="col-12">
+            <custom-input-textarea-signal
+              [control]="form.controls.observaciones"
+              label="Observaciones"
+              placeholder="Notas operativas del turno, descansos o reglas especiales"
+              [rows]="3"
+              [horizontal]="false"
+            />
+          </div>
+          <div class="col-12">
+            <custom-input-switch-signal
+              [control]="form.controls.isActive"
+              label="Activo"
+            />
+          </div>
+        </div>
       </div>
-      <div class="col-12 md:col-3">
-        <custom-input-select-signal
-          [control]="form.controls.turnoTrabajo"
-          label="Turno"
-          [data]="cb_turnoTrabajo()"
-          [filter]="true"
-        />
-      </div>
-      <div class="col-12 md:col-3">
-        <custom-input-select-signal
-          [control]="form.controls.tipoTurnoEspecial"
-          label="Tipo especial"
-          [data]="specialShiftTypes"
-          [filter]="true"
-        />
-      </div>
-    </div>
 
-    <custom-input-textarea-signal
-      [control]="form.controls.description"
-      label="Descripción"
-      placeholder="Describe para que puestos aplica este horario"
-      [rows]="2"
-    />
-
-    @if (!isSpecialShift()) {
-      <div class="grid">
-        @for (day of days; track day.label) {
-          <div class="col-12 md:col-6">
-            <div class="surface-50 border-1 border-200 rounded-lg p-3">
-              <h4 class="mt-0 mb-2 text-sm">{{ day.label }}</h4>
-              <div class="grid">
-                <div class="col-6">
-                  <custom-input-time-signal
-                    [control]="getControl(day.entry)"
-                    label="Entrada"
-                  />
-                </div>
-                <div class="col-6">
-                  <custom-input-time-signal
-                    [control]="getControl(day.exit)"
-                    label="Salida"
-                  />
-                </div>
+      <div class="col-12 lg:col-7">
+        <div class="flex align-items-center justify-content-between mb-2">
+          <h3 class="m-0 text-sm">Horario semanal</h3>
+          <small class="text-color-secondary">
+            {{ cantidadDias() }} dia(s) a capturar ({{ duracionCicloValue() }}
+            semana(s) x 7)
+          </small>
+        </div>
+        <div class="flex flex-column gap-2">
+          <div
+            class="hidden md:grid grid align-items-center px-2 text-sm font-semibold text-color-secondary"
+          >
+            <div class="col-3"></div>
+            <div class="col-4">Entrada</div>
+            <div class="col-4">Salida (mismo día o siguiente)</div>
+            <div class="col-1"></div>
+          </div>
+          @for (day of days; track day.label) {
+          <div class="surface-50 border-1 border-200 border-round p-2">
+            <div class="grid align-items-center">
+              <div class="col-12 md:col-3">
+                <span class="font-semibold text-sm">{{ day.label }}</span>
+              </div>
+              <div class="col-12 md:col-4">
+                <custom-input-select-signal
+                  [control]="getControl(day.entry)"
+                  [data]="timeOptions"
+                  [filter]="true"
+                  [horizontal]="false"
+                  placeholder="Seleccionar"
+                />
+              </div>
+              <div class="col-12 md:col-4">
+                <custom-input-select-signal
+                  [control]="getControl(day.exit)"
+                  [data]="timeOptions"
+                  [filter]="true"
+                  [horizontal]="false"
+                  placeholder="Seleccionar"
+                />
+              </div>
+              <div class="col-12 md:col-1 flex justify-content-end">
+                <p-button
+                  type="button"
+                  [text]="true"
+                  [rounded]="true"
+                  size="small"
+                  severity="secondary"
+                  icon="pi pi-copy"
+                  pTooltip="Copiar horarios del dia anterior"
+                  tooltipPosition="top"
+                  [disabled]="$first"
+                  (onClick)="copiarDelDiaAnterior(day.dw)"
+                />
               </div>
             </div>
           </div>
-        }
+          }
+        </div>
       </div>
+    </div>
+
+    @if (form.hasError('incompleteWorkDay')) {
+    <div
+      class="mt-3 p-3 border-1 border-red-300 border-round bg-red-50 text-red-700"
+      role="alert"
+    >
+      Para los días laborables, captura entrada y salida en el mismo renglón. Si
+      el turno termina al día siguiente, registra la hora de salida ahí mismo.
+    </div>
     }
 
-    <custom-input-textarea-signal
-      [control]="form.controls.observationsWorkShift"
-      label="Observaciones"
-      placeholder="Notas operativas del turno, descansos o reglas especiales"
-      [rows]="3"
-    />
-
-    <custom-input-switch-signal
-      [control]="form.controls.isActive"
-      label="Activo"
-    />
-
-    <il-button-save
-      [propertyId]="id"
-      [disabled]="form.invalid"
-      [submitting]="submitting()"
-    />
+    <div class="mt-3 flex justify-content-end">
+      <il-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </div>
   </form>
 </div>

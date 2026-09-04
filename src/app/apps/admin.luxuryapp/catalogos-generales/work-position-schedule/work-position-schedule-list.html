@@ -41,7 +41,9 @@
     <tr>
       <td>
         <strong>{{ item.name }}</strong>
-        <div class="text-500 text-xs">{{ item.description || "—" }}</div>
+        <div class="text-500 text-xs white-space-pre-line">
+          {{ item.description || "—" }}
+        </div>
       </td>
       <td>
         {{ item.turnoTrabajoName }}
@@ -51,7 +53,33 @@
           </span>
         }
       </td>
-      <td>{{ formatSchedule(item) }}</td>
+      <td>
+        {{ formatSchedule(item) }}
+        <div class="flex flex-wrap gap-1 mt-2">
+          @for (day of schedulePresentationS.indicators(item); track day.label) {
+          <span
+            class="border-1 border-round px-1 py-0 text-xs font-bold line-height-2"
+            [class.bg-green-100]="day.worked"
+            [class.text-green-800]="day.worked"
+            [class.border-green-300]="day.worked"
+            [class.bg-red-50]="!day.worked"
+            [class.text-red-700]="!day.worked"
+            [class.border-red-200]="!day.worked"
+            [title]="day.tooltip"
+          >
+            {{ day.label }}
+          </span>
+          }
+        </div>
+        <div class="text-primary text-xs font-semibold mt-1">
+          {{ formatHoursSummary(item) }}
+        </div>
+        @if (hasOvernightShift(item)) {
+          <div class="text-500 text-xs mt-1">
+            +1 día indica salida al día siguiente.
+          </div>
+        }
+      </td>
       <td>
         <span
           [class]="'badge ' + (item.isActive ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-600')"
@@ -104,6 +132,28 @@
         <p class="mt-0 mb-0">{{ item.name }}</p>
         <small>{{ item.turnoTrabajoName }}</small>
         <small class="text-500"> · {{ formatSchedule(item) }}</small>
+        <div class="flex flex-wrap gap-1 mt-1">
+          @for (day of schedulePresentationS.indicators(item); track day.label) {
+          <span
+            class="border-1 border-round px-1 py-0 text-xs font-bold line-height-2"
+            [class.bg-green-100]="day.worked"
+            [class.text-green-800]="day.worked"
+            [class.border-green-300]="day.worked"
+            [class.bg-red-50]="!day.worked"
+            [class.text-red-700]="!day.worked"
+            [class.border-red-200]="!day.worked"
+            [title]="day.tooltip"
+          >
+            {{ day.label }}
+          </span>
+          }
+        </div>
+        <small class="block text-primary font-semibold text-xs mt-1">
+          {{ formatHoursSummary(item) }}
+        </small>
+        @if (hasOvernightShift(item)) {
+          <small class="block text-500">+1 día: salida al día siguiente</small>
+        }
       </div>
 
       <ili-action-menu slot="end">

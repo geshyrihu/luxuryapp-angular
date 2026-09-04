@@ -16,7 +16,6 @@ import { WebButtonIcon, WebButtonIconEdit } from "@ui/buttons/web-icon";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { EndpointsRecursosHumanos } from "src/app/core/constants/endpoints/recursos-humanos.endpoints";
@@ -58,7 +57,6 @@ export interface CandidateHiringDocumentListItemDto {
     WebButtonIcon,
     LxTag,
     TableModule,
-    PrimeNgCustomTableEmptyMessage,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

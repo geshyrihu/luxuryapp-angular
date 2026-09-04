@@ -1,0 +1,28 @@
+<div class="pt-2 pb-2">
+  <custom-input-select-signal
+    [control]="budgetAccountControl"
+    [data]="budgetSelectOptions"
+    label="Cuenta presupuestal"
+    placeholder="Busca y selecciona una cuenta"
+    [filter]="true"
+    filterBy="label"
+    [showClear]="true"
+  />
+</div>
+
+<div class="flex justify-content-end gap-2 mt-4 pt-3 border-top-1 surface-border">
+  <il-button
+    label="Cancelar"
+    severity="secondary"
+    variant="outline"
+    size="small"
+    (clicked)="onCancel()"
+  />
+  <il-button
+    label="Continuar"
+    iconClass="material-symbols-light:arrow-forward"
+    severity="contrast"
+    size="small"
+    (clicked)="onConfirm()"
+  />
+</div>

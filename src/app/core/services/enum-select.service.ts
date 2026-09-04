@@ -135,6 +135,8 @@ export class EnumSelectService {
 
   turnoTrabajo = (d?: boolean) => this.onLoadEnumList("turno-trabajo", d);
 
+  tipoJornada = (d?: boolean) => this.onLoadEnumList("tipo-jornada", d);
+
   typeContract = (d?: boolean) => this.onLoadEnumList("type-contract", d);
 
   typePiscina = (d?: boolean) => this.onLoadEnumList("type-piscina", d);

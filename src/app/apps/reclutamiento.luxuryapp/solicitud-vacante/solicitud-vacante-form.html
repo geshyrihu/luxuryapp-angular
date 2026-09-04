@@ -41,31 +41,41 @@
           </div>
         </div>
 
-        @if (data?.turnoTrabajo != undefined) {
         <div class="col-12 md:col-6 xl:col-4">
           <div
             class="card flex flex-column gap-1 p-4 h-full surface-100 border-none"
           >
             <span class="font-semibold text-700">Turno de trabajo</span>
             <span class="text-primary text-sm line-height-3">
-              {{ data?.turnoTrabajo }}
+              {{ turnoTrabajoDisplay() }}
             </span>
           </div>
         </div>
-        } @if (data?.observationsWorkShift) {
+
+        @if (data?.workPositionScheduleName) {
         <div class="col-12 md:col-6 xl:col-4">
           <div
             class="card flex flex-column gap-1 p-4 h-full surface-100 border-none"
           >
-            <span class="font-semibold text-700">
-              Observaciones del horario
-            </span>
+            <span class="font-semibold text-700">Horario asignado</span>
             <span class="text-primary text-sm line-height-3">
-              {{ data?.observationsWorkShift }}
+              {{ data?.workPositionScheduleName }}
             </span>
           </div>
         </div>
         }
+
+        <div class="col-12 md:col-6 xl:col-4">
+          <div
+            class="card flex flex-column gap-1 p-4 h-full surface-100 border-none"
+          >
+            <span class="font-semibold text-700">Ciclo del horario</span>
+            <span class="text-primary text-sm line-height-3">
+              {{ data?.duracionCicloSemanas || 1 }}
+              {{ (data?.duracionCicloSemanas || 1) === 1 ? "semana" : "semanas" }}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -79,74 +89,102 @@
     </div>
 
     <div class="card-body">
+      <div class="grid mb-3">
+        <div class="col-12 md:col-4">
+          <div class="surface-100 border-1 surface-border border-round p-3 h-full">
+            <div class="text-500 text-xs font-semibold uppercase">Horas por semana</div>
+            <div class="text-primary font-bold text-xl mt-1">
+              {{ formatHoursSummary(1) }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-4">
+          <div class="surface-100 border-1 surface-border border-round p-3 h-full">
+            <div class="text-500 text-xs font-semibold uppercase">Horas por quincena</div>
+            <div class="text-primary font-bold text-xl mt-1">
+              {{ formatHoursSummary(2) }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-4">
+          <div class="surface-100 border-1 surface-border border-round p-3 h-full">
+            <div class="text-500 text-xs font-semibold uppercase">Horas por 4 semanas</div>
+            <div class="text-primary font-bold text-xl mt-1">
+              {{ formatHoursSummary(4) }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      @if (data?.workPositionScheduleDescription || scheduleObservations()) {
+      <div class="grid mb-3">
+        @if (data?.workPositionScheduleDescription) {
+        <div class="col-12 md:col-6">
+          <div class="surface-50 border-1 surface-border border-round p-3 h-full">
+            <div class="font-semibold text-700 mb-2">Descripción del horario</div>
+            <p class="text-600 line-height-3 m-0 white-space-pre-line">
+              {{ data?.workPositionScheduleDescription }}
+            </p>
+          </div>
+        </div>
+        }
+
+        @if (scheduleObservations()) {
+        <div class="col-12 md:col-6">
+          <div class="surface-50 border-1 surface-border border-round p-3 h-full">
+            <div class="font-semibold text-700 mb-2">Observaciones del horario</div>
+            <p class="text-600 line-height-3 m-0 white-space-pre-line">
+              {{ scheduleObservations() }}
+            </p>
+          </div>
+        </div>
+        }
+      </div>
+      }
+
       <div class="overflow-x-auto">
         <table class="w-full border-collapse surface-border border-1">
           <thead>
             <tr class="surface-100">
+              <th class="p-3 text-left border-1 surface-border">Ciclo</th>
               <th class="p-3 text-left border-1 surface-border">Evento</th>
-              <th class="p-3 text-center border-1 surface-border">Lunes</th>
-              <th class="p-3 text-center border-1 surface-border">Martes</th>
-              <th class="p-3 text-center border-1 surface-border">Miércoles</th>
-              <th class="p-3 text-center border-1 surface-border">Jueves</th>
-              <th class="p-3 text-center border-1 surface-border">Viernes</th>
-              <th class="p-3 text-center border-1 surface-border">Sábado</th>
-              <th class="p-3 text-center border-1 surface-border">Domingo</th>
+              @for (day of dayColumns; track day.value) {
+              <th class="p-3 text-center border-1 surface-border">
+                {{ day.label }}
+              </th>
+              }
             </tr>
           </thead>
 
           <tbody>
+            @for (week of scheduleWeeks(); track week) {
             <tr>
+              <td
+                class="p-3 font-semibold text-700 border-1 surface-border"
+                rowspan="2"
+              >
+                Semana {{ week }}
+              </td>
               <td class="p-3 font-bold text-primary border-1 surface-border">
                 Entrada
               </td>
+              @for (day of dayColumns; track day.value) {
               <td class="p-3 text-center border-1 surface-border">
-                {{ data?.lunesEntrada || "-" }}
+                {{ scheduleCell(week, day.value, "entry") }}
               </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.martesEntrada || "-" }}
-              </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.miercolesEntrada || "-" }}
-              </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.juevesEntrada || "-" }}
-              </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.viernesEntrada || "-" }}
-              </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.sabadoEntrada || "-" }}
-              </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.domingoEntrada || "-" }}
-              </td>
+              }
             </tr>
             <tr>
               <td class="p-3 font-bold text-primary border-1 surface-border">
                 Salida
               </td>
+              @for (day of dayColumns; track day.value) {
               <td class="p-3 text-center border-1 surface-border">
-                {{ data?.lunesSalida || "-" }}
+                {{ scheduleCell(week, day.value, "exit") }}
               </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.martesSalida || "-" }}
-              </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.miercolesSalida || "-" }}
-              </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.juevesSalida || "-" }}
-              </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.viernesSalida || "-" }}
-              </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.sabadoSalida || "-" }}
-              </td>
-              <td class="p-3 text-center border-1 surface-border">
-                {{ data?.domingoSalida || "-" }}
-              </td>
+              }
             </tr>
+            }
           </tbody>
         </table>
       </div>
