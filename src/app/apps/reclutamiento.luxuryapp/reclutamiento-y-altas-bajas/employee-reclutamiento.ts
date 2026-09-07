@@ -10,8 +10,8 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { SolicitudAltaForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-alta/solicitud-alta-form";
-import { SolicitudBajaForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-baja/solicitud-baja-form";
-import { SolicitudModificacionSalarioForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-modificacion-sueldo/solicitud-modificacion-salario-form";
+import { SolicitudBajaForm } from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
+import { SolicitudModificacionSalarioForm } from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";

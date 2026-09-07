@@ -11,7 +11,7 @@ import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { IWorkPositionForm } from "src/app/apps/reclutamiento.luxuryapp/work-position/interfaces/work-position.model";
+import { IWorkPositionForm } from "src/app/apps/operations.luxuryapp/work-position/interfaces/work-position.model";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { WorkSchedulePresentationService } from "src/app/core/services/work-schedule-presentation.service";

@@ -60,6 +60,8 @@ export class RecoveryCode {
   step = signal<"identifier" | "code">("identifier");
   identifier = signal("");
   errorMessage = signal("");
+  /** Confirma por qué canal(es) llegó el código; el backend puede reportar éxito parcial. */
+  deliveryMessage = signal("");
   submitting = signal(false);
   countdown = signal(0);
   private countdownInterval?: ReturnType<typeof setInterval>;
@@ -107,9 +109,10 @@ export class RecoveryCode {
         finalize(() => this.submitting.set(false)),
       )
       .subscribe({
-        next: () => {
+        next: (response: any) => {
           // 200 solo cuando el usuario existe, está activo y el código ya se envió.
           this.identifier.set(identifierValue);
+          this.deliveryMessage.set(response?.body?.message ?? "");
           this.step.set("code");
           this.startCountdown();
         },
@@ -191,13 +194,17 @@ export class RecoveryCode {
         finalize(() => this.submitting.set(false)),
       )
       .subscribe({
-        next: () => this.startCountdown(),
+        next: (response: any) => {
+          this.deliveryMessage.set(response?.body?.message ?? "");
+          this.startCountdown();
+        },
       });
   }
 
   goBackToIdentifier() {
     this.step.set("identifier");
     this.errorMessage.set("");
+    this.deliveryMessage.set("");
     if (this.countdownInterval) clearInterval(this.countdownInterval);
   }
 

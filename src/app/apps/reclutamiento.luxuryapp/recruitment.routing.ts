@@ -1,4 +1,7 @@
+import { inject } from "@angular/core";
 import { Routes } from "@angular/router";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
 
 export const recruitmentRoutes: Routes = [
@@ -29,7 +32,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "plantilla-interna",
         loadComponent: () =>
-          import("src/app/apps/reclutamiento.luxuryapp/work-position/work-position-list").then(
+          import("src/app/apps/operations.luxuryapp/work-position/work-position-list").then(
             (m) => m.WorkPositionList,
           ),
         data: {
@@ -127,6 +130,83 @@ export const recruitmentRoutes: Routes = [
           breadcrumb: "Administrar Empleado",
         },
       },
+  // =============================================================
+  // RENOVACIONES DE CONTRATOS (FASE 4)
+  // =============================================================
+  {
+    path: "contract-renewals",
+    loadComponent: () =>
+      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/contract-renewal-list").then(
+        (m) => m.ContractRenewalListComponent,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+          ApplicationRole.GerenteOperaciones,
+        ]),
+    ],
+    data: {
+      title: "Renovaciones de Contratos",
+      breadcrumb: "Renovaciones",
+    },
+  },
+
+
+
+  // =============================================================
+  // EXPEDIENTE DEL EMPLEADO
+  // =============================================================
+  {
+    path: "employee-files",
+    loadComponent: () =>
+      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/employee-file-list").then(
+        (m) => m.EmployeeFileList,
+      ),
+    data: {
+      title: "Expediente del Empleado",
+      breadcrumb: "Expedientes",
+    },
+  },
+  {
+    path: "employee-files/:employeeId",
+    loadComponent: () =>
+      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/employee-file-detail").then(
+        (m) => m.EmployeeFileDetail,
+      ),
+
+    data: {
+      title: "Expediente del Empleado",
+      breadcrumb: "Detalle de Expediente",
+    },
+  },
+
+
+
+  // =============================================================
+  // DATOS BANCARIOS DE EMPLEADOS
+  // =============================================================
+  {
+    path: "bank-data",
+    loadComponent: () =>
+      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/recursos-humanos/employee-bank-data/employee-bank-data-list").then(
+        (m) => m.EmployeeBankDataList,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+        ]),
+    ],
+    data: {
+      title: "Datos Bancarios de Empleados",
+      breadcrumb: "Datos Bancarios",
+    },
+  },
+
+
     ],
   },
 ];

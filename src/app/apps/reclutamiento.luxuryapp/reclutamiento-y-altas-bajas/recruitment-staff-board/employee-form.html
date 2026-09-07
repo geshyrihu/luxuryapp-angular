@@ -1,8 +1,8 @@
 <div class="card">
+  <lx-message severity="info"
+    >DATOS DE EMPLEADO: {{ nameEmployee()| uppercase }}</lx-message
+  >
   <div class="card-header employee-shell-header mb-2">
-    <lx-message severity="info"
-      >DATOS DE EMPLEADO: {{ nameEmployee()| uppercase }}</lx-message
-    >
     <lx-section-nav
       [items]="menuItems"
       [activeValue]="activeSection"
@@ -21,8 +21,8 @@
       } @case ('contacts') {
       <employee-emergency-contact-list [employeeId]="employeeId" />
       } @case ('bank-data') {
-        <employee-bank-data-list [employeeId]="employeeId" />
-        } @case ('beneficiary') {
+      <employee-bank-data-list [employeeId]="employeeId" />
+      } @case ('beneficiary') {
       <employee-beneficiary-list [employeeId]="employeeId" />
       } @case ('clinical-data') {
       <employee-clinical-data-list [employeeId]="employeeId" />
@@ -34,5 +34,3 @@
     </div>
   </div>
 </div>
-
-

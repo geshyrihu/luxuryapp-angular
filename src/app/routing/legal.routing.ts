@@ -1,4 +1,7 @@
+import { inject } from "@angular/core";
 import { Routes } from "@angular/router";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
 import { documentTypeRoutesConfig } from "src/app/apps/legal.luxuryapp/asuntos-legales-y-seguros/interfaces/documentTypeRoutesConfig";
 // Importa el componente de forma perezosa
@@ -129,6 +132,95 @@ export const legalRoutes: Routes = [
     },
   },
 
+// =============================================================
+  // CONTRATOS LABORALES
+  // =============================================================
+  {
+    path: "contracts",
+    loadComponent: () =>
+      import("src/app/apps/legal.luxuryapp/employees-contracts/work-contract/work-contract-list").then(
+        (m) => m.WorkContractList,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+        ]),
+    ],
+    data: {
+      title: "Contratos Laborales",
+      breadcrumb: "Contratos Laborales",
+    },
+  },
+
+  // =============================================================
+  // PLANTILLAS DE CONTRATOS
+  // =============================================================
+  {
+    path: "contract-templates",
+    loadComponent: () =>
+      import("src/app/apps/legal.luxuryapp/employees-contracts/contract-template/contract-template-list").then(
+        (m) => m.ContractTemplateList,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+        ]),
+    ],
+    data: {
+      title: "Machotes de Contratos",
+      breadcrumb: "Machotes de Contratos",
+    },
+  },
+
+  // =============================================================
+  // ADENDAS A CONTRATOS
+  // =============================================================
+  {
+    path: "contract-addendums",
+    loadComponent: () =>
+      import("src/app/apps/legal.luxuryapp/employees-contracts/contract-addendum/contract-addendum-list").then(
+        (m) => m.ContractAddendumList,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+        ]),
+    ],
+    data: {
+      title: "Adendas a Contratos",
+      breadcrumb: "Adendas",
+    },
+  },
+
+  // =============================================================
+  // PLANTILLAS DE ADENDAS
+  // =============================================================
+  {
+    path: "addendum-templates",
+    loadComponent: () =>
+      import("src/app/apps/legal.luxuryapp/employees-contracts/addendum-template/addendum-template-list").then(
+        (m) => m.AddendumTemplateList,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+        ]),
+    ],
+    data: {
+      title: "Machotes de Adendas",
+      breadcrumb: "Machotes de Adendas",
+    },
+  },
+
+  
   // Rutas para los documentos...
   {
     path: "documents", // Una ruta padre para agrupar todos los documentos

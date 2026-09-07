@@ -37,18 +37,18 @@ export class LegalStaffBoard {
   }
 
   onViewFile(employee: LegalEmployeeDTO): void {
-    this.router.navigateByUrl(`/recursos-humanos/employee-files/${employee.employeeId}`);
+    this.router.navigateByUrl(`/recruitment/employee-files/${employee.employeeId}`);
   }
 
   onManageContract(employee: LegalEmployeeDTO): void {
     this.router.navigateByUrl(
-      `/recursos-humanos/contracts?employeeId=${employee.employeeId}`,
+      `/legal/contracts?employeeId=${employee.employeeId}`,
     );
   }
 
   onManageAddendums(employee: LegalEmployeeDTO): void {
     this.router.navigateByUrl(
-      `/recursos-humanos/contract-addendums?employeeId=${employee.employeeId}`,
+      `/legal/contract-addendums?employeeId=${employee.employeeId}`,
     );
   }
 }

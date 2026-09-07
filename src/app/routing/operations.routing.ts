@@ -1,6 +1,108 @@
+import { inject } from "@angular/core";
 import { Routes } from "@angular/router";
+import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
+import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const operationsRoutes: Routes = [
+
+  {
+    path: "staff",
+    loadComponent: () =>
+      import("src/app/apps/operations.luxuryapp/staff-board/staff-board-list").then(
+        (m) => m.StaffBoardList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Plantilla y Personal",
+      breadcrumb: "Plantilla y Personal",
+    },
+  },
+// =============================================================
+  // INCIDENCIAS DISCIPLINARIAS
+  // =============================================================
+  {
+    path: "incidents",
+    loadComponent: () =>
+      import("src/app/apps/operations.luxuryapp/incidencias-sanciones/incident/incident-list").then(
+        (m) => m.IncidentList,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+        ]),
+    ],
+    data: {
+      title: "Incidencias Disciplinarias",
+      breadcrumb: "Incidencias",
+    },
+  },
+  {
+    path: "incident-dashboard",
+    loadComponent: () =>
+      import("src/app/apps/operations.luxuryapp/incidencias-sanciones/incident/incident-dashboard/incident-dashboard").then(
+        (m) => m.IncidentDashboardComponent,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+          ApplicationRole.Direccion,
+        ]),
+    ],
+    data: {
+      title: "Dashboard de Incidencias",
+      breadcrumb: "Dashboard",
+    },
+  },
+
+  // =============================================================
+  // REPORTES DE INCIDENCIAS
+  // =============================================================
+  {
+    path: "incident-reports",
+    loadComponent: () =>
+      import("src/app/apps/operations.luxuryapp/incidencias-sanciones/incident-report/incident-report").then(
+        (m) => m.IncidentReport,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+        ]),
+    ],
+    data: {
+      title: "Reportes de Incidencias",
+      breadcrumb: "Reportes de Incidencias",
+    },
+  },
+
+  // =============================================================
+  // SANCIONES
+  // =============================================================
+  {
+    path: "sanctions",
+    loadComponent: () =>
+      import("src/app/apps/operations.luxuryapp/incidencias-sanciones/sanction/sanction-list").then(
+        (m) => m.SanctionList,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          ApplicationRole.SuperUsuario,
+          ApplicationRole.RecursosHumanos,
+        ]),
+    ],
+    data: {
+      title: "Sanciones",
+      breadcrumb: "Sanciones",
+    },
+  },
+
+  
   {
     path: "my-building", // Ruta anterior: 'mi-edificio'
     loadComponent: () =>

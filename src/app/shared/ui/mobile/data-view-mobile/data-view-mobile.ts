@@ -32,7 +32,7 @@ import {
   IonSearchbar,
 } from "@ionic/angular/standalone";
 import { filter, map, startWith } from "rxjs";
-import { AppIconMobile } from "../app-icon/app-icon";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { MobileEmptyState } from "../empty-state/empty-state";
 import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
@@ -66,7 +66,7 @@ export interface IMobileBreadcrumbItem {
     IonButton,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
-    AppIconMobile,
+    AppIcon,
     MobileEmptyState,
   ],
 })
@@ -209,14 +209,12 @@ export class DataViewMobile implements OnInit {
     if (!item) return index;
     const prop = this.trackByProperty();
 
-    // 1. Si se especificó trackByProperty, usarla
     if (prop && item.hasOwnProperty(prop)) {
       const key = item[prop];
       if (key != null && key !== "00000000-0000-0000-0000-000000000000")
-        return key;
+        return `${key}-${index}`;
     }
 
-    // 2. Intentar propiedades comunes de ID
     const commonIdProps = [
       "id",
       "employeeId",
@@ -232,11 +230,10 @@ export class DataViewMobile implements OnInit {
         item[p] != null &&
         item[p] !== "00000000-0000-0000-0000-000000000000"
       ) {
-        return item[p];
+        return `${item[p]}-${index}`;
       }
     }
 
-    // 3. Fallback: usar índice
     return index;
   }
 

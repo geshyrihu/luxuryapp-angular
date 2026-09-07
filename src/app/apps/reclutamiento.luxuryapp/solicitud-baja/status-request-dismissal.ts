@@ -11,7 +11,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { SolicitudBajaForm } from "src/app/apps/reclutamiento.luxuryapp/solicitud-baja/solicitud-baja-form";
+import { SolicitudBajaForm } from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
 import { CardEmployee } from "src/app/shared/integration/recursos-humanos";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { AuthService } from "src/app/core/auth/services/auth.service";

@@ -18,11 +18,11 @@ import {
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ROUTES } from "src/app/routing/route-paths";
-import { EmployeeBeneficiaryList } from "../../../recursos-humanos.luxuryapp/employee-beneficiary/employee-beneficiary-list";
-import { EmployeeBankDataList } from "../../../recursos-humanos.luxuryapp/employee-bank-data/employee-bank-data-list";
-import { EmployeeClinicalDataList } from "../../../recursos-humanos.luxuryapp/employee-clinical-data/employee-clinical-data-list";
-import { EmployeeDocumentList } from "../../../recursos-humanos.luxuryapp/employee-document/employee-document-list";
-import { EmployeeEmergencyContactList } from "../../../recursos-humanos.luxuryapp/employee-emergen-contact/employee-emergency-contact-list";
+import { EmployeeBeneficiaryList } from "../../../reclutamiento.luxuryapp/employee-beneficiary/employee-beneficiary-list";
+import { EmployeeBankDataList } from "../../../reclutamiento.luxuryapp/employee-bank-data/employee-bank-data-list";
+import { EmployeeClinicalDataList } from "../../../reclutamiento.luxuryapp/employee-clinical-data/employee-clinical-data-list";
+import { EmployeeDocumentList } from "../../../reclutamiento.luxuryapp/employee-document/employee-document-list";
+import { EmployeeEmergencyContactList } from "../../../reclutamiento.luxuryapp/employee-emergen-contact/employee-emergency-contact-list";
 import { EmployeeUnifiedProfileForm } from "./employee-unified-profile-form";
 
 @Component({

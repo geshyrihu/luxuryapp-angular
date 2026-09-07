@@ -12,20 +12,19 @@
   >
     <!-- 🧭 Breadcrumb Premium -->
     @if (viewchildBreadcrumb() && breadcrumbItems().length > 0) {
-    <div
-      class="flex justify-content-center px-3 py-1 bg-transparent"
-    >
+    <div class="flex justify-content-center px-3 py-1 bg-transparent">
       <div
         class="flex align-items-center gap-1 overflow-x-auto no-scrollbar max-w-full"
       >
         @for (item of breadcrumbItems(); track $index; let last = $last) {
         <div class="flex align-items-center">
           @if (item.icon) {
-          <ili-icon
-            [icon]="item.icon"
-            [routerLink]="item.routerLink"
-            class="cursor-pointer text-lg text-primary hover:scale-110 transition-transform"
-          />
+          <a [routerLink]="item.routerLink">
+            <app-icon
+              [icon]="item.icon"
+              class="cursor-pointer text-lg text-primary hover:scale-110 transition-transform"
+            />
+          </a>
           } @else {
           <span
             class="text-xs font-bold px-1 whitespace-nowrap"
@@ -35,7 +34,10 @@
             {{ item.label }}
           </span>
           } @if (!last) {
-          <ili-icon icon="material-symbols-light:chevron-right" class="text-300 text-xs mx-1" />
+          <app-icon
+            icon="material-symbols-light:chevron-right"
+            class="text-300 text-xs mx-1"
+          />
           }
         </div>
         }
@@ -57,8 +59,14 @@
 
       <!-- Inline Add Button -->
       @if (showAdd()) {
-      <ion-button fill="clear" (click)="onAdd($event)" class="ion-button-touch-target">
-        <ili-icon icon="material-symbols-light:add-circle" slot="icon-only" class="text-4xl" />
+      <ion-button
+        fill="clear"
+        icon-only
+        color="primary"
+        (click)="onAdd($event)"
+        class="ion-button-touch-target ion-add-button"
+      >
+        <app-icon icon="material-symbols-light:add-circle" slot="icon-only" style="color: var(--ds-color-primary, #3880ff); font-size: 2rem;" />
       </ion-button>
       }
     </div>
@@ -73,33 +81,35 @@
   <div class="flex-grow-1 relative overflow-y-auto min-h-0">
     @if (isGrouped()) {
     <div class="pb-4">
-      @for (group of objectKeys(groupedData()); track group) { 
-        @if (groupedData()[group]?.length > 0) {
-        
-        <!-- Group Header Premium -->
-        <div 
-          class="sticky z-2 flex align-items-center justify-content-between px-3 py-2 surface-100 border-y-1 surface-border shadow-sm mb-2 mt-2 mx-2 rounded"
-          style="top: 0;"
-        >
-          <span class="text-sm font-bold text-800 uppercase tracking-wider">{{ group }}</span>
-          <span class="text-xs font-medium text-500 bg-surface-200 px-2 py-1 rounded-xl">
-            {{ groupedData()[group].length }}
-          </span>
-        </div>
+      @for (group of objectKeys(groupedData()); track group) { @if
+      (groupedData()[group]?.length > 0) {
 
-        <!-- Group Items -->
-        <div>
-          @for (item of groupedData()[group]; track trackByFn($index, item)) { 
-            @if (item.visible !== false) {
-            <ng-container
-              *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate; context: { $implicit: item, item: item }"
-            ></ng-container>
-            } 
-          }
-        </div>
-        
-        } 
-      }
+      <!-- Group Header Premium -->
+      <div
+        class="sticky z-2 flex align-items-center justify-content-between px-3 py-2 surface-100 border-y-1 surface-border shadow-sm mb-2 mt-2 mx-2 rounded"
+        style="top: 0"
+      >
+        <span class="text-sm font-bold text-800 uppercase tracking-wider"
+          >{{ group }}</span
+        >
+        <span
+          class="text-xs font-medium text-500 bg-surface-200 px-2 py-1 rounded-xl"
+        >
+          {{ groupedData()[group].length }}
+        </span>
+      </div>
+
+      <!-- Group Items -->
+      <div>
+        @for (item of groupedData()[group]; track trackByFn($index, item)) { @if
+        (item.visible !== false) {
+        <ng-container
+          *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate; context: { $implicit: item, item: item }"
+        ></ng-container>
+        } }
+      </div>
+
+      } }
     </div>
     } @else {
     <!-- Loading Indicator -->
@@ -108,7 +118,6 @@
       <ion-progress-bar type="indeterminate"></ion-progress-bar>
     </div>
     }
-
 
     <!-- Data List -->
     @if (filteredData().length > 0) {
@@ -142,8 +151,7 @@
       >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
-    }
-    }
+    } }
   </div>
 
   <!-- Default Template (Fallback) -->

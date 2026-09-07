@@ -370,6 +370,7 @@ export const AppIconIonicon: Record<string, string> = {
   MinusBox: "remove-circle-outline",
   MinusCircle: "remove-circle",
   MinusCircleOutline: "remove-circle-outline",
+  "more-vert": "ellipsis-vertical",
   Monitor: "desktop-outline",
   MonitorCellphone: "phone-portrait-outline",
   NotePlusOutline: "add-circle-outline",

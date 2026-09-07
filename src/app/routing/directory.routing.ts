@@ -50,21 +50,9 @@ export const directoryRoutes: Routes = [
     },
   },
   {
-    path: "staff",
-    loadComponent: () =>
-      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/staff-board/staff-board-list").then(
-        (m) => m.StaffBoardList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Plantilla y Personal",
-      breadcrumb: "Plantilla y Personal",
-    },
-  },
-  {
     path: "work-position-org-chart",
     loadComponent: () =>
-      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/org-chart/org-chart").then(
+      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/org-chart/org-chart").then(
         (m) => m.OrgChart,
       ),
     canActivate: [authGuard],
@@ -76,7 +64,7 @@ export const directoryRoutes: Routes = [
   {
     path: "internal-staff", // Ruta anterior: 'personal-interno'
     loadComponent: () =>
-      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employees/employee-list").then(
+      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/employees/employee-list").then(
         (m) => m.EmployeeList,
       ),
     canActivate: [authGuard],
@@ -88,7 +76,7 @@ export const directoryRoutes: Routes = [
   {
     path: "employee-interviewer-queue",
     loadComponent: () =>
-      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interviewer-queue").then(
+      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interviewer-queue").then(
         (m) => m.EmployeeInterviewerQueue,
       ),
     canActivate: [authGuard],
@@ -100,7 +88,7 @@ export const directoryRoutes: Routes = [
   {
     path: "employee-interviews/respond",
     loadComponent: () =>
-      import("src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interview-response").then(
+      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interview-response").then(
         (m) => m.EmployeeInterviewResponse,
       ),
     canActivate: [authGuard],
@@ -112,7 +100,7 @@ export const directoryRoutes: Routes = [
   {
     path: "external-staff", // Ruta anterior: 'personal-externo'
     loadComponent: () =>
-      import("src/app/apps/recursos-humanos.luxuryapp/employee-external/employee-external-list").then(
+      import("src/app/apps/reclutamiento.luxuryapp/employee-external/employee-external-list").then(
         (m) => m.EmployeeExternalList,
       ),
     canActivate: [authGuard],

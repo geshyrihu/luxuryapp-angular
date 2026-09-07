@@ -33,10 +33,6 @@ import { WorkSchedulePresentationService } from "src/app/core/services/work-sche
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { WorkPositionScheduleDto } from "./interfaces/work-position-schedule.dto";
 import { WorkPositionScheduleForm } from "./work-position-schedule-form";
-import {
-  ReplaceUsageResult,
-  WorkPositionScheduleReplaceUsageForm,
-} from "./work-position-schedule-replace-usage-form";
 
 interface WorkPositionScheduleUsageResponse {
   scheduleId: string;
@@ -107,15 +103,16 @@ export class WorkPositionScheduleList implements OnInit {
     // Si no hay puestos asociados, ejecutar el borrado directo (la app service
     // ya devuelve la confirmacion con la desactivacion si encuentra FK en carrera).
     if (!usage || usage.positionsCount <= 0) {
-      await this.deleteSchedule(item.id);
-      return;
     }
+    await this.deleteSchedule(item.id);
+    this.onLoadData();
+    return;
 
     // Hay puestos: abrir el modal de reasignacion + borrado.
-    const result = await this.openReplaceUsageModal(item, usage.positionsCount);
-    if (!result) return;
+    // const result = await this.openReplaceUsageModal(item, usage.positionsCount);
+    // if (!result) return;
 
-    await this.deleteWithReplacement(item.id, result.replacementScheduleId);
+    // await this.deleteWithReplacement(item.id, result.replacementScheduleId);
   }
 
   onModalForm(data: { id: string; title: string }) {
@@ -133,13 +130,41 @@ export class WorkPositionScheduleList implements OnInit {
 
   formatSchedule(item: WorkPositionScheduleDto): string {
     const days = [
-      this.formatDay("Lun", this.getDayEntry(item, 1), this.getDayExit(item, 1)),
-      this.formatDay("Mar", this.getDayEntry(item, 2), this.getDayExit(item, 2)),
-      this.formatDay("Mie", this.getDayEntry(item, 3), this.getDayExit(item, 3)),
-      this.formatDay("Jue", this.getDayEntry(item, 4), this.getDayExit(item, 4)),
-      this.formatDay("Vie", this.getDayEntry(item, 5), this.getDayExit(item, 5)),
-      this.formatDay("Sab", this.getDayEntry(item, 6), this.getDayExit(item, 6)),
-      this.formatDay("Dom", this.getDayEntry(item, 0), this.getDayExit(item, 0)),
+      this.formatDay(
+        "Lun",
+        this.getDayEntry(item, 1),
+        this.getDayExit(item, 1),
+      ),
+      this.formatDay(
+        "Mar",
+        this.getDayEntry(item, 2),
+        this.getDayExit(item, 2),
+      ),
+      this.formatDay(
+        "Mie",
+        this.getDayEntry(item, 3),
+        this.getDayExit(item, 3),
+      ),
+      this.formatDay(
+        "Jue",
+        this.getDayEntry(item, 4),
+        this.getDayExit(item, 4),
+      ),
+      this.formatDay(
+        "Vie",
+        this.getDayEntry(item, 5),
+        this.getDayExit(item, 5),
+      ),
+      this.formatDay(
+        "Sab",
+        this.getDayEntry(item, 6),
+        this.getDayExit(item, 6),
+      ),
+      this.formatDay(
+        "Dom",
+        this.getDayEntry(item, 0),
+        this.getDayExit(item, 0),
+      ),
     ].filter(Boolean);
 
     return days.length ? days.join(" · ") : "Sin horas definidas";
@@ -150,19 +175,30 @@ export class WorkPositionScheduleList implements OnInit {
   }
 
   hasOvernightShift(item: WorkPositionScheduleDto): boolean {
-    return item.diasDeTrabajo?.some((d) => {
-      const entry = d.horaEntrada;
-      const exit = d.horaSalida;
-      return !!entry && !!exit && this.formatTime(exit) <= this.formatTime(entry);
-    }) ?? false;
+    return (
+      item.diasDeTrabajo?.some((d) => {
+        const entry = d.horaEntrada;
+        const exit = d.horaSalida;
+        return (
+          !!entry && !!exit && this.formatTime(exit) <= this.formatTime(entry)
+        );
+      }) ?? false
+    );
   }
 
-  private getDayEntry(item: WorkPositionScheduleDto, dw: number): string | null {
-    return item.diasDeTrabajo?.find((d) => d.diaSemana === dw)?.horaEntrada ?? null;
+  private getDayEntry(
+    item: WorkPositionScheduleDto,
+    dw: number,
+  ): string | null {
+    return (
+      item.diasDeTrabajo?.find((d) => d.diaSemana === dw)?.horaEntrada ?? null
+    );
   }
 
   private getDayExit(item: WorkPositionScheduleDto, dw: number): string | null {
-    return item.diasDeTrabajo?.find((d) => d.diaSemana === dw)?.horaSalida ?? null;
+    return (
+      item.diasDeTrabajo?.find((d) => d.diaSemana === dw)?.horaSalida ?? null
+    );
   }
 
   private formatDay(day: string, entry: string | null, exit: string | null) {
@@ -192,17 +228,17 @@ export class WorkPositionScheduleList implements OnInit {
     if (ok) this.onLoadData();
   }
 
-  private async openReplaceUsageModal(
-    schedule: WorkPositionScheduleDto,
-    positionsCount: number,
-  ): Promise<ReplaceUsageResult | null> {
-    return this.dialogHandlerS.openDialog<ReplaceUsageResult | undefined>(
-      WorkPositionScheduleReplaceUsageForm,
-      { schedule, positionsCount },
-      "Reemplazar horario en uso",
-      this.dialogHandlerS.sizeMd,
-    );
-  }
+  // private async openReplaceUsageModal(
+  //   schedule: WorkPositionScheduleDto,
+  //   positionsCount: number,
+  // ): Promise<ReplaceUsageResult | null> {
+  //   return this.dialogHandlerS.openDialog<ReplaceUsageResult | undefined>(
+  //     WorkPositionScheduleReplaceUsageForm,
+  //     { schedule, positionsCount },
+  //     "Reemplazar horario en uso",
+  //     this.dialogHandlerS.sizeMd,
+  //   );
+  // }
 
   private async deleteWithReplacement(
     id: string,

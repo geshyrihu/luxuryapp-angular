@@ -21,3 +21,20 @@
     outline-offset: 2px;
   }
 }
+
+// Add button - ensure icon is always visible
+.ion-add-button {
+  --color: var(--ds-color-primary, #3880ff);
+  --box-shadow: none;
+
+  app-icon {
+    color: var(--ds-color-primary, #3880ff);
+    font-size: 28px;
+  }
+
+  &:hover app-icon,
+  &:active app-icon {
+    color: var(--ds-color-primary-dark, #2a6edb);
+    opacity: 0.8;
+  }
+}

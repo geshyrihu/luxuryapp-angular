@@ -10,7 +10,7 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { IWorkPosition } from "src/app/apps/reclutamiento.luxuryapp/work-position/interfaces/work-position.model";
+import { IWorkPosition } from "src/app/apps/operations.luxuryapp/work-position/interfaces/work-position.model";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";

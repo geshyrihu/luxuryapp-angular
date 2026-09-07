@@ -250,7 +250,7 @@ export class HRDashboard {
           title: "Contratos Laborales",
           description:
             "Gestión de contratos de trabajo, historial laboral y documentación contractual de empleados.",
-          route: "/recursos-humanos/contracts",
+          route: "/legal/contracts",
           emoji: "??",
           color: "#1e40af",
           bgColor: "#dbeafe",
@@ -264,7 +264,7 @@ export class HRDashboard {
           title: "Machotes de Contratos",
           description:
             "Plantillas reutilizables para generación rópida de contratos con variables dinámicas.",
-          route: "/recursos-humanos/contract-templates",
+          route: "/legal/contract-templates",
           emoji: "??",
           color: "#059669",
           bgColor: "#d1fae5",
@@ -277,7 +277,7 @@ export class HRDashboard {
           title: "Adendas a Contratos",
           description:
             "Modificaciones formales a contratos existentes: salarios, puestos, extensiones y condiciones.",
-          route: "/recursos-humanos/contract-addendums",
+          route: "/legal/contract-addendums",
           emoji: "??",
           color: "#7c3aed",
           bgColor: "#ede9fe",
@@ -291,7 +291,7 @@ export class HRDashboard {
           title: "Machotes de Adendas",
           description:
             "Plantillas estandarizadas para adendas de modificación salarial, cambio de puesto y mós.",
-          route: "/recursos-humanos/addendum-templates",
+          route: "/legal/addendum-templates",
           emoji: "??",
           color: "#ea580c",
           bgColor: "#ffedd5",
