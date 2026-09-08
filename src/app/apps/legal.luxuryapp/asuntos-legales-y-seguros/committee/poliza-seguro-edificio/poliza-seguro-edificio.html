@@ -6,7 +6,9 @@
         <app-icon icon="material-symbols-light:shield" />
       </span>
       <div class="committee-card-panel__titles">
-        <h3 class="committee-card-panel__title">Póliza de Seguro del Edificio</h3>
+        <h3 class="committee-card-panel__title">
+          Póliza de Seguro del Edificio
+        </h3>
         <p class="committee-card-panel__subtitle">{{ policy.providerName }}</p>
       </div>
     </div>
@@ -21,7 +23,7 @@
         </div>
         <div class="committee-field">
           <span class="committee-field__label">
-            <app-icon icon="material-symbols-light:description" /> Descripción
+            <app-icon icon="material-symbols-light:description" /> DESCRIPCIÓN
           </span>
           <span class="committee-field__value">{{ policy.description }}</span>
         </div>
@@ -35,7 +37,8 @@
         </div>
         <div class="committee-field">
           <span class="committee-field__label">
-            <app-icon icon="material-symbols-light:event-upcoming" /> Fecha de Fin
+            <app-icon icon="material-symbols-light:event-upcoming" /> Fecha de
+            Fin
           </span>
           <span class="committee-field__value"
             >{{ policy.endDate | apiDate: 'dd/MM/yyyy' }}</span
@@ -55,7 +58,10 @@
   </div>
   } @else {
   <div class="committee-doc-empty">
-    <app-icon icon="material-symbols-light:folder-open" class="committee-doc-empty__icon" />
+    <app-icon
+      icon="material-symbols-light:folder-open"
+      class="committee-doc-empty__icon"
+    />
     <p class="committee-doc-empty__text">No hay póliza disponible</p>
   </div>
   }

@@ -1,7 +1,7 @@
 # 📋 BITÁCORA DE CAMBIOS - MÓDULO PRESUPUESTO PROPUESTA
 
-**Propósito:** Registro de instrucciones, cambios y mejoras a realizar en el módulo.  
-**Estado:** ABIERTA PARA NUEVAS INSTRUCCIONES  
+**Propósito:** Registro de instrucciones, cambios y mejoras a realizar en el módulo.
+**Estado:** ABIERTA PARA NUEVAS INSTRUCCIONES
 **Última Actualización:** 2026-09-03
 
 ---
@@ -13,28 +13,33 @@ Cuando agregues una instrucción nueva, usa este formato:
 ```markdown
 ## [NÚMERO]. [CATEGORÍA] - [TÍTULO CORTO]
 
-**Fecha Agregada:** 2026-09-03  
-**Prioridad:** 🔴 CRÍTICA | 🟠 ALTA | 🟡 MEDIA | 🟢 BAJA  
-**Autor de Instrucción:** [Tu nombre]  
-**Agente Asignado:** [Si aplica]  
+**Fecha Agregada:** 2026-09-03
+**Prioridad:** 🔴 CRÍTICA | 🟠 ALTA | 🟡 MEDIA | 🟢 BAJA
+**Autor de Instrucción:** [Tu nombre]
+**Agente Asignado:** [Si aplica]
 **Estado:** ⏳ PENDIENTE | 🔄 EN PROGRESO | ✅ COMPLETADO
 
-### Descripción
+### DESCRIPCIÓN
+
 [Explicar qué se debe hacer y por qué]
 
 ### Archivos Afectados
+
 - `archivo1.ts` (línea X-Y)
 - `archivo2.cs` (línea X-Y)
 
 ### Detalles Técnicos
+
 [Especificaciones técnicas, reglas a considerar, edge cases]
 
 ### Criterios de Éxito
+
 - [ ] Criterio 1
 - [ ] Criterio 2
 - [ ] Criterio 3
 
 ### Notas
+
 [Cualquier observación adicional]
 
 ---
@@ -44,18 +49,18 @@ Cuando agregues una instrucción nueva, usa este formato:
 
 ## 📊 RESUMEN DE INSTRUCCIONES
 
-| # | Categoría | Título | Prioridad | Estado |
-|---|-----------|--------|-----------|--------|
-| — | — | — | — | — |
+| #   | Categoría | Título | Prioridad | Estado |
+| --- | --------- | ------ | --------- | ------ |
+| —   | —         | —      | —         | —      |
 
-**Total:** 0 instrucciones registradas  
+**Total:** 0 instrucciones registradas
 **Pendientes:** 0 | **En Progreso:** 0 | **Completadas:** 0
 
 ---
 
 ## 🔍 INSTRUCCIONES INGRESADAS
 
-*(Las nuevas instrucciones irán aquí)*
+_(Las nuevas instrucciones irán aquí)_
 
 ---
 
@@ -82,6 +87,7 @@ Para clasificar instrucciones:
 ### Frontend (presupuesto-propuesta.ts)
 
 **Gancho:** Constructor y ngOnInit
+
 ```typescript
 constructor() {
     effect(() => {
@@ -97,10 +103,12 @@ ngOnInit() {
 ```
 
 **Para agregar lógica personalizada:**
+
 - ❌ NO modificar onLoadData() (sincronización crítica)
 - ✅ Extender en nuevo método que se llame DESPUÉS de onLoadData()
 
 **Gancho:** onProposedAmountChange(item)
+
 ```typescript
 onProposedAmountChange(item: BudgetProposalItemDTO): void {
     // ... cálculos
@@ -112,6 +120,7 @@ onProposedAmountChange(item: BudgetProposalItemDTO): void {
 ### Backend (BudgetProposalService.cs)
 
 **Gancho:** GetProposalsAsync() - Paso 5 (Enriquecimiento)
+
 ```csharp
 // Línea ~240-273: Enriquecimiento con gastos mensuales
 foreach (var item in resultDTO.Items) {
@@ -124,6 +133,7 @@ foreach (var item in resultDTO.Items) {
 ```
 
 **Gancho:** UpdateProposalItemAsync() - Antes de SaveChanges
+
 ```csharp
 // Línea ~468-478: Actualizar item
 item.ProposedAmount = DTO.ProposedAmount;
@@ -132,6 +142,7 @@ await dbContext.SaveChangesAsync();
 ```
 
 **Gancho:** GetFeeComparisonAsync() - Antes de retornar
+
 ```csharp
 // Línea ~831-843: Calcular cuota
 var result = new UniformFeeComparisonDTO { ... };
@@ -146,7 +157,7 @@ return ApiResponseDTO<UniformFeeComparisonDTO>.SuccessResult(result, ...);
 1. **Tú escribes instrucción** en este documento
    - Sección "INSTRUCCIONES INGRESADAS"
    - Copias plantilla de arriba
-   - Llenando: Descripción, Archivos, Detalles, Criterios de Éxito
+   - Llenando: DESCRIPCIÓN, Archivos, Detalles, Criterios de Éxito
 
 2. **Asignas a agente externo**
    - Envías instrucción + enlace a ANALISIS_EXHAUSTIVO.md
@@ -168,24 +179,27 @@ return ApiResponseDTO<UniformFeeComparisonDTO>.SuccessResult(result, ...);
 
 Supongamos que quieres agregar una validación:
 
-```markdown
+````markdown
 ## 1. VALIDACIÓN - Restringir monto máximo por partida
 
-**Fecha Agregada:** 2026-09-03  
-**Prioridad:** 🟡 MEDIA  
-**Autor de Instrucción:** [Tu nombre]  
+**Fecha Agregada:** 2026-09-03
+**Prioridad:** 🟡 MEDIA
+**Autor de Instrucción:** [Tu nombre]
 **Estado:** ⏳ PENDIENTE
 
-### Descripción
+### DESCRIPCIÓN
+
 El sistema debe validar que ninguna partida tenga un monto propuesto mayor a $1,000,000.
-Si el usuario intenta editar a $1,000,001, debe mostrar error: 
+Si el usuario intenta editar a $1,000,001, debe mostrar error:
 "Monto máximo permitido es $1,000,000".
 
 ### Archivos Afectados
+
 - `presupuesto-propuesta.ts` (método onProposedAmountChange, ~línea 849)
 - `BudgetProposalService.cs` (método UpdateProposalItemAsync, ~línea 430)
 
 ### Detalles Técnicos
+
 - Validación Frontend (toast de error antes de enviar)
 - Validación Backend (BusinessException si supera $1,000,000)
 - Código validación:
@@ -193,22 +207,26 @@ Si el usuario intenta editar a $1,000,001, debe mostrar error:
   if (proposedAmount > 1000000) {
     this.customToastService.showError(
       "Monto Inválido",
-      "Monto máximo permitido es $1,000,000"
+      "Monto máximo permitido es $1,000,000",
     );
     return;
   }
   ```
+````
 
 ### Criterios de Éxito
+
 - [ ] Frontend valida y muestra error
 - [ ] Backend valida y lanza BusinessException
 - [ ] Toast muestra mensaje correcto
 - [ ] Tabla no se actualiza si monto es inválido
 
 ### Notas
+
 - Esta validación no debe aplicar a cuentas agrupadoras (EsFilaAgrupadora = true)
 - Considerar campos decimales con redondeo
-```
+
+````
 
 ---
 
@@ -258,7 +276,7 @@ Si el usuario intenta editar a $1,000,001, debe mostrar error:
            this.dialogHandlerS.sizeLg
        );
    }
-   ```
+````
 
 ---
 
@@ -273,12 +291,12 @@ Si el usuario intenta editar a $1,000,001, debe mostrar error:
 
 ## 📊 HISTORIAL DE CAMBIOS
 
-| Versión | Fecha | Cambios |
-|---------|-------|---------|
-| 1.0 | 2026-09-03 | Creación inicial |
+| Versión | Fecha      | Cambios          |
+| ------- | ---------- | ---------------- |
+| 1.0     | 2026-09-03 | Creación inicial |
 
 ---
 
 **Estado General:** 🟢 LISTO PARA RECIBIR INSTRUCCIONES
 
-*Próximo paso: Agrega tus instrucciones debajo en la sección "INSTRUCCIONES INGRESADAS"*
+_Próximo paso: Agrega tus instrucciones debajo en la sección "INSTRUCCIONES INGRESADAS"_

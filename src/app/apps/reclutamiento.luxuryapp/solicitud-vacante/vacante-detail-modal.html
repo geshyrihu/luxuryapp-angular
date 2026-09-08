@@ -8,7 +8,10 @@
       <div
         class="flex align-items-center gap-3 p-3 surface-100 rounded-lg mb-2"
       >
-        <app-icon [icon]="'material-symbols-light:schedule'" class="text-2xl text-600" />
+        <app-icon
+          [icon]="'material-symbols-light:schedule'"
+          class="text-2xl text-600"
+        />
         <div>
           <div class="font-bold text-800">Turno de trabajo</div>
           <div class="text-sm text-500">{{ wp.tipoJornadaName }}</div>
@@ -35,30 +38,37 @@
         {{ schedulePresentationS.hoursSummary(wp) }}
       </div>
 
-      @for (dia of dias; track dia.n) { @let entrada = wp.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaEntrada ?? null; @let salida = wp.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaSalida ?? null;
+      @for (dia of dias; track dia.n) { @let entrada = wp.diasDeTrabajo?.find(d
+      => d.diaSemana === dia.dw)?.horaEntrada ?? null; @let salida =
+      wp.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaSalida ?? null;
       <div
         class="flex justify-content-between align-items-center p-2 border-bottom-1 surface-border rounded hover:surface-50"
       >
         <span class="font-semibold text-700 w-7rem">{{ dia.n }}</span>
         @if (entrada && salida) {
-        <span
-          class="flex align-items-center gap-2 text-primary font-semibold"
-        >
-          <app-icon [icon]="'material-symbols-light:login'" class="text-xs" />{{ entrada }}
-          <app-icon [icon]="'material-symbols-light:arrow-forward'" class="text-xs text-300" />
-          <app-icon [icon]="'material-symbols-light:logout'" class="text-xs" />{{ salida }}
+        <span class="flex align-items-center gap-2 text-primary font-semibold">
+          <app-icon [icon]="'material-symbols-light:login'" class="text-xs" />{{
+          entrada }}
+          <app-icon
+            [icon]="'material-symbols-light:arrow-forward'"
+            class="text-xs text-300"
+          />
+          <app-icon
+            [icon]="'material-symbols-light:logout'"
+            class="text-xs"
+          />{{ salida }}
         </span>
         } @else {
-        <span class="text-400 font-italic text-sm"
-          >Descanso / Sin asignar</span
-        >
+        <span class="text-400 font-italic text-sm">Descanso / Sin asignar</span>
         }
       </div>
       } @if (wp.observaciones) {
       <div class="p-3 surface-50 rounded mt-2">
         <div class="font-semibold text-600 mb-1">
-          <app-icon [icon]="'material-symbols-light:info'" class="mr-1" />Observaciones de
-          horario
+          <app-icon
+            [icon]="'material-symbols-light:info'"
+            class="mr-1"
+          />Observaciones de horario
         </div>
         <p class="m-0 text-sm text-700 white-space-pre-line">
           {{ wp.observaciones }}
@@ -68,7 +78,11 @@
     </div>
     } @else {
     <div class="flex align-items-center justify-content-center p-6 text-400">
-      <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-2xl mr-2" /> Cargando...
+      <app-icon
+        [icon]="'material-symbols-light:progress-activity'"
+        class="text-2xl mr-2"
+      />
+      Cargando...
     </div>
     }
   </div>
@@ -117,13 +131,19 @@
 
       <div class="flex align-items-center gap-2">
         <span class="font-bold text-700">Requiere fin de semana:</span>
-        <lx-tag [value]="jd.requiresWeekendShift ? 'Sí' : 'No'" [severity]="jd.requiresWeekendShift ? 'warn' : 'success'" />
+        <lx-tag
+          [value]="jd.requiresWeekendShift ? 'Sí' : 'No'"
+          [severity]="jd.requiresWeekendShift ? 'warn' : 'success'"
+        />
       </div>
     </div>
     } @else {
     <div class="flex align-items-center justify-content-center p-6 text-400">
-      <app-icon [icon]="'material-symbols-light:note-alt'" class="text-2xl mr-2" />
-      <span>No hay descripción de puesto registrada.</span>
+      <app-icon
+        [icon]="'material-symbols-light:note-alt'"
+        class="text-2xl mr-2"
+      />
+      <span>No hay DESCRIPCIÓN de puesto registrada.</span>
     </div>
     }
   </div>
@@ -132,10 +152,11 @@
   <div tab="prestaciones">
     @if (wp) {
     <div class="flex flex-column gap-3">
-      <div
-        class="flex align-items-center gap-3 p-3 surface-100 rounded-lg"
-      >
-        <app-icon [icon]="'material-symbols-light:attach-money'" class="text-2xl text-600" />
+      <div class="flex align-items-center gap-3 p-3 surface-100 rounded-lg">
+        <app-icon
+          [icon]="'material-symbols-light:attach-money'"
+          class="text-2xl text-600"
+        />
         <div>
           <div class="text-xs text-500">Sueldo base presupuestado</div>
           <div class="font-bold text-800 text-lg">
@@ -147,21 +168,26 @@
       @if (wp.benefits) {
       <div>
         <div class="font-bold text-700 mb-1">
-          <app-icon [icon]="'material-symbols-light:redeem'" class="mr-1" />Prestaciones
+          <app-icon
+            [icon]="'material-symbols-light:redeem'"
+            class="mr-1"
+          />Prestaciones
         </div>
         <p class="m-0 text-sm line-height-3 text-800 white-space-pre-line">
           {{ wp.benefits }}
         </p>
       </div>
       } @else {
-      <p class="text-400 font-italic text-sm">
-        Sin prestaciones registradas.
-      </p>
+      <p class="text-400 font-italic text-sm">Sin prestaciones registradas.</p>
       }
     </div>
     } @else {
     <div class="flex align-items-center justify-content-center p-6 text-400">
-      <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-2xl mr-2" /> Cargando...
+      <app-icon
+        [icon]="'material-symbols-light:progress-activity'"
+        class="text-2xl mr-2"
+      />
+      Cargando...
     </div>
     }
   </div>

@@ -11,6 +11,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import * as FileSaver from "file-saver";
@@ -83,15 +84,15 @@ export class CronogramaAnualMantenimiento {
 
   // Usamos la interfaz para el array de filtros
   filtroEquipos: FiltroEquipo[] = [
-    { emoji: "??", id: "", nombre: "todos" },
-    { emoji: "✨", id: 2, nombre: "amenidades" },
-    { emoji: "🏢", id: 8, nombre: "A. Comunes" },
-    { emoji: "📦", id: 7, nombre: "bodegas" },
-    { emoji: "⚙️", id: 1, nombre: "equipos" },
-    { emoji: "🏋️", id: 5, nombre: "gimnasio" },
-    { emoji: "??", id: 6, nombre: "sistemas" },
-    { emoji: "🖌️", id: 9, nombre: "pintura" },
-    { emoji: "🪚", id: 11, nombre: "Carpinteria" },
+    { emoji: "material-symbols-light:grid-view", id: "", nombre: "todos" },
+    { emoji: "material-symbols-light:spa", id: 2, nombre: "amenidades" },
+    { emoji: "material-symbols-light:apartment", id: 8, nombre: "A. Comunes" },
+    { emoji: "material-symbols-light:package", id: 7, nombre: "bodegas" },
+    { emoji: "material-symbols-light:settings", id: 1, nombre: "equipos" },
+    { emoji: "material-symbols-light:fitness-center", id: 5, nombre: "gimnasio" },
+    { emoji: "material-symbols-light:dns", id: 6, nombre: "sistemas" },
+    { emoji: "material-symbols-light:palette", id: 9, nombre: "pintura" },
+    { emoji: "material-symbols-light:carpenter", id: 11, nombre: "Carpinteria" },
   ];
 
   // Nombres de los meses

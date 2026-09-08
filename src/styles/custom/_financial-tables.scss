@@ -236,6 +236,23 @@
   font-size: 0.8rem;
 }
 
+// Presupuesto propuesta comparte la tipografía ERP de Espejo Aspel.
+// La clase numeric-column conserva la alineación tabular, pero no debe
+// cambiar la familia ni reducir el tamaño de los importes a monospace.
+.proposal-budget-table {
+  .p-datatable-table,
+  .p-datatable-thead,
+  .p-datatable-tbody,
+  .p-datatable-tfoot {
+    font-family: var(--ds-font-family-base);
+  }
+
+  .numeric-column {
+    font-family: inherit;
+    font-size: inherit;
+  }
+}
+
 .amount-total {
   font-weight: 700;
   font-size: 0.8rem;

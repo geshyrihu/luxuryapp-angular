@@ -57,10 +57,15 @@ export class GeneralAnualMantenimiento {
 
   onLoadData() {
     this.dataSignal.set([]);
+    const providerId = this.providerIdControl.value || "";
+    if (!providerId) {
+      this.dataSignal.set([]);
+      return;
+    }
     const url =
       Endpoints.MaintenanceCalendars.generalMaintenanceByCustomerAndProvider(
         this.customerIdS.customerId(),
-        this.providerIdControl.value || "",
+        providerId,
       );
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.dataSignal.set(result || []);

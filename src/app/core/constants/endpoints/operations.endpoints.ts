@@ -498,10 +498,16 @@ resumenGastosByCustomer: (customerId: string) =>
     scheduleAnnualByCustomer: (
       customerId: string,
       filterId?: string | number,
-    ) =>
-      filterId === undefined || filterId === null || filterId === ""
+      year?: number,
+    ) => {
+      const base = filterId === undefined || filterId === null || filterId === ""
         ? `maintenance-calendars/cronograma-anual/${customerId}`
-        : `maintenance-calendars/cronograma-anual/${customerId}/${filterId}`,
+        : `maintenance-calendars/cronograma-anual/${customerId}/${filterId}`;
+      const params = new URLSearchParams();
+      if (year) params.set("year", String(year));
+      const qs = params.toString();
+      return qs ? `${base}?${qs}` : base;
+    },
   },
   InventarioProducto: {
     create: "inventario-producto",

@@ -17,7 +17,7 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import { DynamicDialogConfig, DynamicDialogRef, DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -28,6 +28,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
+import { GastoFijoDetalleEdit } from "./gasto-fijo-detalle-edit";
 
 @Component({
   selector: "app-gasto-fijo-servicios",
@@ -52,7 +53,8 @@ export class GastoFijoServicios implements OnInit {
   authS = inject(AuthService);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
-  cdr = inject(ChangeDetectorRef); // Inject ChangeDetectorRef
+  cdr = inject(ChangeDetectorRef);
+  dialogHandlerS = inject(DialogHandlerService);
   catalogoGastosFijosId: string = "";
 
   productos = signal<any[]>([]);
@@ -135,7 +137,21 @@ export class GastoFijoServicios implements OnInit {
         this.mensajeError = false;
         this.onLoadProducts();
         this.onLoadProductsAgregados();
-        this.cdr.detectChanges(); // Update view after successful update
+        this.cdr.detectChanges();
+      });
+  }
+
+  onEditDetalle(item: any) {
+    this.dialogHandlerS
+      .openDialog(
+        GastoFijoDetalleEdit,
+        { id: item.id },
+        "Editar Producto o Servicio",
+        this.dialogHandlerS.sizeMd,
+      )
+      .then(() => {
+        this.onLoadProducts();
+        this.onLoadProductsAgregados();
       });
   }
 }

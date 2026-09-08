@@ -14,7 +14,7 @@
   }
 }
 
-// Máximo 2 líneas de descripción; el resto se recorta con elipsis
+// Máximo 2 líneas de DESCRIPCIÓN; el resto se recorta con elipsis
 .cobranza-header-description {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -43,7 +43,11 @@
 // surface-card / surface-border / text-color) porque esas llevan !important
 // y ganarían sobre el estado activo.
 .cobranza-nav-card {
-  background: linear-gradient(145deg, var(--ds-surface) 0%, var(--surface-card) 100%);
+  background: linear-gradient(
+    145deg,
+    var(--ds-surface) 0%,
+    var(--surface-card) 100%
+  );
   border: 1px solid var(--surface-border);
   color: var(--text-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -53,9 +57,12 @@
 
   // Efecto sutil de brillo en el borde (micro-interacción)
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: inherit;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
     opacity: 0;
@@ -64,14 +71,16 @@
   }
 
   app-icon {
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
   }
 
   &:hover:not(.cobranza-nav-card--active) {
     border-color: var(--ds-primary);
     box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.15);
     transform: translateY(-2px);
-    
+
     app-icon {
       color: var(--ds-primary);
       transform: scale(1.1);
@@ -84,17 +93,21 @@
   }
 
   &--active {
-    background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--primary-50) 0%,
+      var(--primary-100) 100%
+    );
     border-color: var(--ds-primary);
     color: var(--ds-primary);
     box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.2);
     font-weight: 700;
-    
+
     app-icon {
       color: var(--ds-primary);
       transform: scale(1.15);
     }
-    
+
     &::before {
       opacity: 1;
     }
@@ -102,7 +115,11 @@
 
   /* Dark mode overrides if needed via global dark mode class */
   :host-context(.layout-theme-dark) &--active {
-    background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.15) 0%, rgba(var(--primary-color-rgb), 0.25) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(var(--primary-color-rgb), 0.15) 0%,
+      rgba(var(--primary-color-rgb), 0.25) 100%
+    );
   }
 }
 
@@ -151,7 +168,7 @@
         shadow-lg font-bold;
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -4px;
         left: 0;

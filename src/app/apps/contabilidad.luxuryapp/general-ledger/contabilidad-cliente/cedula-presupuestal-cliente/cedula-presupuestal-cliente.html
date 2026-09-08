@@ -53,7 +53,10 @@
           <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.acum)">
             {{ fmt(fila.acum) }}
           </td>
-          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.presupAnual)">
+          <td
+            class="rf-td-number--total"
+            [class.rf-neg]="isNeg(fila.presupAnual)"
+          >
             {{ fmt(fila.presupAnual) }}
           </td>
           <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.restante)">
@@ -87,10 +90,7 @@
           >
             {{ fmt(fila.presupAnual) }}
           </td>
-          <td
-            class="rf-td-number--total"
-            [class.rf-neg]="isNeg(fila.restante)"
-          >
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.restante)">
             {{ fmt(fila.restante) }}
           </td>
         </tr>
@@ -121,10 +121,7 @@
           >
             {{ fmt(fila.presupAnual) }}
           </td>
-          <td
-            class="rf-td-number--total"
-            [class.rf-neg]="isNeg(fila.restante)"
-          >
+          <td class="rf-td-number--total" [class.rf-neg]="isNeg(fila.restante)">
             {{ fmt(fila.restante) }}
           </td>
         </tr>

@@ -70,7 +70,11 @@ export class AutitoriaCuentasAspelExportService {
         pattern: "solid",
         fgColor: { argb: "FF1E3A8A" },
       };
-      cell.alignment = { vertical: "middle", horizontal: "center", wrapText: true };
+      cell.alignment = {
+        vertical: "middle",
+        horizontal: "center",
+        wrapText: true,
+      };
       cell.border = border;
       cell.font = { ...headerFont, color: { argb: "FFFFFFFF" } };
     });
@@ -106,7 +110,10 @@ export class AutitoriaCuentasAspelExportService {
         cell.font = font;
         cell.alignment =
           colNumber <= 4
-            ? { vertical: "middle", horizontal: colNumber === 1 ? "center" : "left" }
+            ? {
+                vertical: "middle",
+                horizontal: colNumber === 1 ? "center" : "left",
+              }
             : { vertical: "middle", horizontal: "center" };
       });
 
@@ -136,7 +143,14 @@ export class AutitoriaCuentasAspelExportService {
   ): Promise<void> {
     const logo = await this.htmlPrintS.getLogoDataUrl();
     const generatedAt = new Date();
-    const html = this.buildCatalogoPdfHtml(cuentas, customers, year, empresa, logo, generatedAt);
+    const html = this.buildCatalogoPdfHtml(
+      cuentas,
+      customers,
+      year,
+      empresa,
+      logo,
+      generatedAt,
+    );
     const fileName = `CatalogoGeneralComparativo-${empresa}-${year}`;
     this.htmlPrintS.printHtml(html, fileName);
   }
@@ -147,26 +161,34 @@ export class AutitoriaCuentasAspelExportService {
     year: number,
     empresa: string,
     logo: string | null,
-    generatedAt: Date
+    generatedAt: Date,
   ): string {
-    const customerHeaders = customers.map(c => `<th>${this.htmlPrintS.esc(c.customerShortName)}</th>`).join("");
+    const customerHeaders = customers
+      .map((c) => `<th>${this.htmlPrintS.esc(c.customerShortName)}</th>`)
+      .join("");
 
-    const rows = cuentas.map(cuenta => {
-      const presencias = customers.map(c => {
-        const p = cuenta.presencias.find(item => item.customerId === c.customerId);
-        return this.buildPresenceHtmlCell(p);
-      }).join("");
+    const rows = cuentas
+      .map((cuenta) => {
+        const presencias = customers
+          .map((c) => {
+            const p = cuenta.presencias.find(
+              (item) => item.customerId === c.customerId,
+            );
+            return this.buildPresenceHtmlCell(p);
+          })
+          .join("");
 
-      return `
+        return `
         <tr>
           <td class="text-center bold" style="background-color: ${this.getLevelFillColor(cuenta.nivelReferencia)} !important; color: ${this.getLevelTextColor(cuenta.nivelReferencia)};">${cuenta.nivelReferencia}</td>
           <td class="bold" style="background-color: ${this.getLevelFillColor(cuenta.nivelReferencia)} !important; color: ${this.getLevelTextColor(cuenta.nivelReferencia)};">${this.htmlPrintS.esc(cuenta.numCta)}</td>
           <td class="text-center" style="color:#374151;">${this.formatNaturaleza(cuenta.naturalezaReferencia)}</td>
-          <td style="color: ${cuenta.tieneDiferenciaEstructural ? '#D97706' : '#111827'}; font-weight: ${cuenta.tieneDiferenciaEstructural ? 'bold' : 'normal'};">${this.htmlPrintS.esc(cuenta.nombreReferencia || "-")}</td>
+          <td style="color: ${cuenta.tieneDiferenciaEstructural ? "#D97706" : "#111827"}; font-weight: ${cuenta.tieneDiferenciaEstructural ? "bold" : "normal"};">${this.htmlPrintS.esc(cuenta.nombreReferencia || "-")}</td>
           ${presencias}
         </tr>
       `;
-    }).join("");
+      })
+      .join("");
 
     return `<!doctype html>
 <html lang="es"><head><meta charset="UTF-8">
@@ -192,7 +214,7 @@ ${this.htmlPrintS.getStandardCss()}
 </head><body>
 <div class="container">
   ${this.htmlPrintS.buildStandardHeader(logo, "Catálogo Comparativo Aspel", `EJERCICIO ${year}`, generatedAt, "AUDITORíA", `Empresa base: ${empresa}`)}
-  
+
   <div class="body-doc">
     <div class="legend">
       <div style="color:#15803D; font-weight:bold;">SI = Existe</div>
@@ -207,7 +229,7 @@ ${this.htmlPrintS.getStandardCss()}
           <th style="width: 40px;">Nivel</th>
           <th style="width: 100px;">No. Cuenta</th>
           <th style="width: 80px;">Naturaleza</th>
-          <th>Descripción</th>
+          <th>DESCRIPCIÓN</th>
           ${customerHeaders}
         </tr>
       </thead>
@@ -221,8 +243,9 @@ ${this.htmlPrintS.getStandardCss()}
 </body></html>`;
   }
 
-
-  private buildPresenceHtmlCell(presencia?: IAutitoriaCuentaAspelPresenciaDTO): string {
+  private buildPresenceHtmlCell(
+    presencia?: IAutitoriaCuentaAspelPresenciaDTO,
+  ): string {
     if (!presencia || !presencia.presente) {
       return `<td class="text-center bold" style="color: #DC2626; background-color: #FEF2F2 !important;">NO</td>`;
     }

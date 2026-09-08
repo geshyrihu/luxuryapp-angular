@@ -116,7 +116,12 @@
           <th>Producto</th>
           <th class="text-right">Cantidad</th>
           <th class="text-right">Precio</th>
+          <th class="text-right">Descuento</th>
+          <th class="text-right">IVA</th>
+          <th class="text-right">Ret. IVA</th>
+          <th class="text-right">Ret. ISR</th>
           <th class="text-right">Subtotal</th>
+          <th></th>
         </tr>
       </ng-template>
       <ng-template #body let-item let-i="rowIndex">
@@ -127,19 +132,38 @@
             {{ item.precio | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
           </td>
           <td class="text-right">
-            {{ item.cantidad * item.precio | currency: "MXN" : "symbol" :
-            "1.2-2" : "es-MX" }}
+            {{ item.descuento }}%
+          </td>
+          <td class="text-right">
+            {{ item.ivaAplicado }}%
+          </td>
+          <td class="text-right">
+            {{ item.retencionIVAPorcentaje }}%
+          </td>
+          <td class="text-right">
+            {{ item.retencionISRPorcentaje }}%
+          </td>
+          <td class="text-right">
+            {{ calcularSubtotal(item) | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
+          </td>
+          <td>
+            <div class="flex justify-content-center">
+              <iw-button-item
+                iconClass="material-symbols-light:edit"
+                (clicked)="onEditDetalle(item)"
+              />
+            </div>
           </td>
         </tr>
       </ng-template>
       <ng-template emptymessage>
         <tr>
-          <td colspan="4">No hay productos o servicios agregados.</td>
+          <td colspan="9">No hay productos o servicios agregados.</td>
         </tr>
       </ng-template>
       <ng-template #footer>
         <tr>
-          <td colspan="3" class="text-right font-bold">Total</td>
+          <td colspan="8" class="text-right font-bold">Total</td>
           <td class="text-right font-bold">
             {{ total() | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
           </td>

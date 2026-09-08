@@ -12,10 +12,14 @@
   <ng-template #header>
     <tr>
       <th class="table-col-10"></th>
-      <th class="table-col-40">Descripción</th>
-      <th class="table-col-15">Cantidad</th>
-      <th class="table-col-15">Unidad</th>
-      <th class="table-col-15">Precio</th>
+      <th class="table-col-25">DESCRIPCIÓN</th>
+      <th class="table-col-8">Cantidad</th>
+      <th class="table-col-10">Unidad</th>
+      <th class="table-col-10">Precio</th>
+      <th class="table-col-10">Descuento</th>
+      <th class="table-col-9">Iva Aplicado</th>
+      <th class="table-col-9">Ret. IVA (%)</th>
+      <th class="table-col-9">Ret. ISR (%)</th>
       <th class="table-col-5"></th>
     </tr>
   </ng-template>
@@ -58,9 +62,41 @@
           [horizontal]="false"
         />
       </td>
+      <td>
+        <custom-input-decimal-signal
+          [(ngModel)]="item.descuento"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
+      <td>
+        <custom-input-decimal-signal
+          [(ngModel)]="item.ivaAplicado"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
+      <td>
+        <custom-input-decimal-signal
+          [(ngModel)]="item.retencionIVAPorcentaje"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
+      <td>
+        <custom-input-decimal-signal
+          [(ngModel)]="item.retencionISRPorcentaje"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
       <!-- Opciones -->
       <td>
         <div class="flex justify-content-center">
+          <iw-button-item
+            iconClass="material-symbols-light:edit"
+            (clicked)="onEditDetalle(item)"
+          />
           <iw-button-item
             iconClass="material-symbols-light:save"
             (clicked)="onUpdateProductoAgregado(item)"
@@ -91,10 +127,14 @@
   <ng-template #header>
     <tr>
       <th class="table-col-10"></th>
-      <th class="table-col-40">Descripción</th>
-      <th class="table-col-15">Cantidad</th>
-      <th class="table-col-15">Unidad</th>
-      <th class="table-col-15">Precio</th>
+      <th class="table-col-25">DESCRIPCIÓN</th>
+      <th class="table-col-8">Cantidad</th>
+      <th class="table-col-10">Unidad</th>
+      <th class="table-col-10">Precio</th>
+      <th class="table-col-10">Descuento</th>
+      <th class="table-col-9">Iva Aplicado</th>
+      <th class="table-col-9">Ret. IVA (%)</th>
+      <th class="table-col-9">Ret. ISR (%)</th>
       <th class="table-col-5"></th>
     </tr>
   </ng-template>
@@ -130,13 +170,36 @@
         </custom-input-select-signal>
       </td>
       <td>
-        <!-- <custom-input-number-signal
+        <custom-input-decimal-signal
           [(ngModel)]="item.precio"
           [ngModelOptions]="{ standalone: true }"
           [horizontal]="false"
-        /> -->
+        />
+      </td>
+      <td>
         <custom-input-decimal-signal
-          [(ngModel)]="item.precio"
+          [(ngModel)]="item.descuento"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
+      <td>
+        <custom-input-decimal-signal
+          [(ngModel)]="item.ivaAplicado"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
+      <td>
+        <custom-input-decimal-signal
+          [(ngModel)]="item.retencionIVAPorcentaje"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
+      <td>
+        <custom-input-decimal-signal
+          [(ngModel)]="item.retencionISRPorcentaje"
           [ngModelOptions]="{ standalone: true }"
           [horizontal]="false"
         />

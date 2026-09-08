@@ -33,7 +33,10 @@
             />
             } @if (item.medidorCategoriaId ===
             '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
-            <app-icon [icon]="'material-symbols-light:filter'" class="text-blue-500 text-6xl" />
+            <app-icon
+              [icon]="'material-symbols-light:filter'"
+              class="text-blue-500 text-6xl"
+            />
             } @if (item.medidorCategoriaId ===
             '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
             <app-icon
@@ -42,9 +45,7 @@
             />
             }
             <hr class="my-3" />
-            <h6 class="mb-2 text-color-secondary">
-              {{ item.numeroMedidor }}
-            </h6>
+            <h6 class="mb-2 text-color-secondary">{{ item.numeroMedidor }}</h6>
             <p>{{ item.descripcion }}</p>
             <p>Consumo Máx: {{ item.consumoDiarioMaximo }}</p>
           </div>
@@ -139,7 +140,7 @@
           </ili-action-menu>
         </div>
 
-        <!-- Descripción -->
+        <!-- DESCRIPCIÓN -->
         <p class="text-sm m-0 text-600 line-height-3 mb-3">
           {{ item.descripcion }}
         </p>
@@ -149,16 +150,27 @@
           class="flex align-items-center justify-content-between pt-3 border-top-1 surface-border"
         >
           <div class="flex align-items-center">
-            @if (item.medidorCategoriaId === '019c6c01-bbcf-76a2-a863-43569af55a55') {
+            @if (item.medidorCategoriaId ===
+            '019c6c01-bbcf-76a2-a863-43569af55a55') {
             <app-icon
               icon="material-symbols-light:sunny"
               color="warning"
               class="text-2xl mr-2"
             />
-            } @if (item.medidorCategoriaId === '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
-            <app-icon icon="material-symbols-light:filter-alt" color="primary" class="text-2xl mr-2" />
-            } @if (item.medidorCategoriaId === '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
-            <app-icon icon="material-symbols-light:flash-on" color="success" class="text-2xl mr-2" />
+            } @if (item.medidorCategoriaId ===
+            '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
+            <app-icon
+              icon="material-symbols-light:filter-alt"
+              color="primary"
+              class="text-2xl mr-2"
+            />
+            } @if (item.medidorCategoriaId ===
+            '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
+            <app-icon
+              icon="material-symbols-light:flash-on"
+              color="success"
+              class="text-2xl mr-2"
+            />
             }
             <div class="flex flex-column">
               <span class="text-xs text-500 uppercase font-bold">Máximo</span>
@@ -172,7 +184,10 @@
             class="p-button p-button-rounded p-button-text p-button-sm p-button-primary"
             (click)="modalMedidorLecturaAddEdit(item)"
           >
-            <app-icon icon="material-symbols-light:add-circle-outline" slot="start" />
+            <app-icon
+              icon="material-symbols-light:add-circle-outline"
+              slot="start"
+            />
             Registrar
           </button>
         </div>

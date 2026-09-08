@@ -170,7 +170,7 @@ export class ListadoAnualMantenimiento {
   }
   onLoadEnumSelectItem() {
     this.apiResponseS
-      .onGetEnumSelectItem(`e-month/${false}`)
+      .onGetEnumSelectItem(`month/${false}`)
       .then((result: any) => {
         const sorted = (result || []).sort((a, b) => a.value - b.value);
         this.months.set([{ label: "Todos", value: "" } as any, ...sorted]);

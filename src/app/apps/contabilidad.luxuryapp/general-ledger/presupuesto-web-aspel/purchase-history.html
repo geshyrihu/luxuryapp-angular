@@ -22,7 +22,7 @@
         <p-sorticon field="creationAt" />
       </th>
       <th pSortableColumn="description">
-        Descripción
+        DESCRIPCIÓN
         <p-sorticon field="description" />
       </th>
       <th pSortableColumn="provider">
@@ -51,7 +51,10 @@
         class="text-center pointer"
         (click)="onShowPurchaseDetails(item.ordenCompraId)"
       >
-        <app-icon [icon]="'material-symbols-light:edit'" class="text-color-secondary" />
+        <app-icon
+          [icon]="'material-symbols-light:edit'"
+          class="text-color-secondary"
+        />
       </td>
       <td>{{ item.creationAt }}</td>
       <td>

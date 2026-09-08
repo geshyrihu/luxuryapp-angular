@@ -174,7 +174,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
         this.availableBudgetSignal.set(accounts);
         this.budgetSelectOptionsSignal.set(
           accounts.map((item: any) => ({
-            label: `${item.accountNumber} | ${item.accountName} | Restante ${this.formatCurrency(item.availableBudget)}`,
+            label: `${item.accountNumber} | ${item.accountName} | Restante ${this.formatCurrency(item.availableBudget - item.pendingPayments)}`,
             value: item.accountNumber,
           })),
         );
@@ -575,10 +575,13 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     );
     if (!budgetData) return;
 
+    const restanteReal =
+      Number(budgetData.availableBudget) - Number(budgetData.pendingPayments || 0);
+
     const amountModal = await this.swalService.fire({
       title: "Monto a usar",
       input: "number",
-      inputLabel: `${budgetData.accountNumber} | Restante ${this.formatCurrency(budgetData.availableBudget)}`,
+      inputLabel: `${budgetData.accountNumber} | Restante ${this.formatCurrency(restanteReal)}`,
       inputValue: String(this.getCheapestQuotationTotal()),
       inputAttributes: {
         min: "0.01",
@@ -591,9 +594,6 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
         const amount = Number(value);
         if (!value || Number.isNaN(amount) || amount <= 0) {
           return "Ingresa un monto v\u00e1lido.";
-        }
-        if (amount > Number(budgetData.availableBudget)) {
-          return "El monto excede el presupuesto restante.";
         }
         return null;
       },

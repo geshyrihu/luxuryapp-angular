@@ -132,7 +132,7 @@
         <p-sorticon field="fechaSolicitud" />
       </th>
       <th pSortableColumn="equipoOInstalacion">
-        DESCRIPCIóN
+        DESCRIPCIÓN
         <p-sorticon field="equipoOInstalacion" />
       </th>
       <th pSortableColumn="justificacionGasto">
@@ -178,7 +178,10 @@
         }
         <br />
         <span class="text-xs text-600">
-          <app-icon [icon]="'material-symbols-light:calendar-today'" class="mr-1" />
+          <app-icon
+            [icon]="'material-symbols-light:calendar-today'"
+            class="mr-1"
+          />
           {{ item.fechaSolicitud | apiDate : 'd MMM yyyy' }}
         </span>
       </td>
@@ -335,7 +338,10 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon [icon]="'material-symbols-light:shopping-bag'" class="text-xl text-yellow-700" />
+        <app-icon
+          [icon]="'material-symbols-light:shopping-bag'"
+          class="text-xl text-yellow-700"
+        />
       </div>
 
       <h3>{{ item.equipoOInstalacion }}</h3>

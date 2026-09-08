@@ -130,7 +130,7 @@ ${this.htmlPrintS.getStandardCss()}
       <thead>
         <tr>
           <th style="text-align: center; width: 50px;">#</th>
-          <th>DESCRIPCIóN</th>
+          <th>DESCRIPCIÓN</th>
           <th style="text-align: center; width: 100px;">CANTIDAD</th>
           <th style="text-align: center; width: 100px;">UNIDAD</th>
         </tr>

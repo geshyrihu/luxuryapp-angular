@@ -9,7 +9,10 @@
         <div
           class="flex align-items-center justify-content-center bg-blue-50 rounded-xl flex-shrink-0"
         >
-          <app-icon [icon]="'material-symbols-light:book'" class="text-3xl text-blue-600" />
+          <app-icon
+            [icon]="'material-symbols-light:book'"
+            class="text-3xl text-blue-600"
+          />
         </div>
         <div>
           <h1 class="text-3xl font-bold text-900 m-0">Manuales y Procesos</h1>
@@ -49,7 +52,10 @@
   <!-- Sin datos -->
   @else if (!groupedData().length) {
   <div class="text-center py-8">
-    <app-icon [icon]="'material-symbols-light:book'" class="text-5xl text-400 mb-3 block" />
+    <app-icon
+      [icon]="'material-symbols-light:book'"
+      class="text-5xl text-400 mb-3 block"
+    />
     <p class="text-600 font-medium m-0">Sin manuales registrados</p>
     <p class="text-500 text-sm mt-1 m-0">
       Agrega el primer manual para comenzar.
@@ -125,7 +131,7 @@
               {{ manual.folio }}
             </span>
 
-            <!-- Descripción/Tútulo del Manual -->
+            <!-- DESCRIPCIÓN/Tútulo del Manual -->
             <span class="text-base text-700 font-semibold truncate">
               {{ manual.description || 'é' }}
             </span>
@@ -142,9 +148,7 @@
             (click)="$event.stopPropagation()"
           >
             <!-- Versión -->
-            <span
-              class="text-xs font-mono text-500 bg-100 rounded px-2 py-1"
-            >
+            <span class="text-xs font-mono text-500 bg-100 rounded px-2 py-1">
               v{{ manual.currentVersion }}
             </span>
 

@@ -81,7 +81,7 @@
             <li>
               <app-icon icon="material-symbols-light:check" />
               <span
-                >Crear puestos de trabajo y registrar su descripción
+                >Crear puestos de trabajo y registrar su DESCRIPCIÓN
                 operativa.</span
               >
             </li>
@@ -95,8 +95,8 @@
             <li>
               <app-icon icon="material-symbols-light:check" />
               <span
-                >Solicitar la baja o modificación salarial de empleados
-                activos vinculados a un puesto.</span
+                >Solicitar la baja o modificación salarial de empleados activos
+                vinculados a un puesto.</span
               >
             </li>
             <li>
@@ -311,8 +311,8 @@
           />
           <iw-button-item
             iconClass="material-symbols-light:description"
-            lxTooltip="Editar Descripción"
-            ariaLabel="Editar Descripción"
+            lxTooltip="Editar DESCRIPCIÓN"
+            ariaLabel="Editar DESCRIPCIÓN"
             tooltipPosition="top"
             (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
           />
@@ -369,7 +369,8 @@
               </div>
               }
               <div class="flex flex-wrap align-items-center gap-1 mt-1">
-                @for (day of schedulePresentationS.indicators(item); track day.label) {
+                @for (day of schedulePresentationS.indicators(item); track
+                day.label) {
                 <span
                   class="border-1 border-round px-1 py-0 text-xs font-bold line-height-2"
                   [class.bg-green-100]="day.worked"
@@ -383,7 +384,9 @@
                   {{ day.label }}
                 </span>
                 }
-                <small class="block w-full text-primary font-semibold text-xs mt-1">
+                <small
+                  class="block w-full text-primary font-semibold text-xs mt-1"
+                >
                   {{ schedulePresentationS.hoursSummary(item) }}
                 </small>
               </div>

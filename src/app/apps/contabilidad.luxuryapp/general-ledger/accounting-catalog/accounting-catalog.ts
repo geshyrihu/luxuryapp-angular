@@ -51,7 +51,7 @@ export class AccountingCatalog {
 
   // Seóales
   groupedDataSignal = signal<GroupedAccountingCatalogDTO[]>([]);
-  // ? flattenedData con descripción del padre é listo para agrupar en p-table
+  // ? flattenedData con DESCRIPCIÓN del padre é listo para agrupar en p-table
   flattenedDataSignal = computed<AccountingCatalogWithParent[]>(() => {
     return this.groupedDataSignal()
       .flatMap((group) =>
@@ -59,18 +59,18 @@ export class AccountingCatalog {
           ...child,
           cuentaPadre: group.cuentaPadre, // ej: "601-001-000"
           // cuentaPadreDescripcion:
-          //   group.descripcionCuentaPadre || "[Sin descripción]",
+          //   group.descripcionCuentaPadre || "[Sin DESCRIPCIÓN]",
         })),
       )
       .sort((a, b) => (a.cuentaPadre || "").localeCompare(b.cuentaPadre || ""));
   });
 
-  // ? Datos agrupados para mobile (clave = "código é descripción")
+  // ? Datos agrupados para mobile (clave = "código é DESCRIPCIÓN")
   mobileGroupedData = computed<{ [key: string]: AccountingCatalogDTO[] }>(
     () => {
       const result: { [key: string]: AccountingCatalogDTO[] } = {};
       for (const group of this.groupedDataSignal()) {
-        const key = `${group.cuentaPadre}  || "[Sin descripción]"}`;
+        const key = `${group.cuentaPadre}  || "[Sin DESCRIPCIÓN]"}`;
         result[key] = group.childAccounts;
       }
       return result;
@@ -134,7 +134,7 @@ export class AccountingCatalog {
     const columns = [
       { header: "Cuenta Padre", key: "cuentaPadre", width: 25 },
       { header: "Código", key: "codigoCuenta", width: 25 },
-      { header: "Descripción", key: "descripcionCuenta", width: 50 }
+      { header: "DESCRIPCIÓN", key: "descripcionCuenta", width: 50 }
     ];
     this.excelService.exportToExcel(
       dataToExport,

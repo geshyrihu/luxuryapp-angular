@@ -31,7 +31,7 @@ cb_departamento; track item) {
     <tr>
       <th class="table-col-4">ID</th>
       <th class="table-col-6">ESTATUS</th>
-      <th class="table-col-30">DESCRIPCIóN</th>
+      <th class="table-col-30">DESCRIPCIÓN</th>
       <th class="table-col-25">OBSERVACION</th>
       <th class="table-col-9">ARCHIVO</th>
       <th class="table-col-9">SUBIO</th>
@@ -58,9 +58,15 @@ cb_departamento; track item) {
           [class.bg-success]="item.estatus === 1"
         >
           @if (item.estatus === 0) {
-          <app-icon [icon]="'material-symbols-light:close'" class="icon icon-" />
+          <app-icon
+            [icon]="'material-symbols-light:close'"
+            class="icon icon-"
+          />
           } @if (item.estatus === 1) {
-          <app-icon [icon]="'material-symbols-light:check'" class="icon icon-" />
+          <app-icon
+            [icon]="'material-symbols-light:check'"
+            class="icon icon-"
+          />
           }
         </span>
       </td>
@@ -148,7 +154,10 @@ cb_departamento; track item) {
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <p class="font-semibold m-0 text-color">{{ item.descripcion }}</p>
-      <p class="text-xs m-0 text-color-secondary">{{ item.observaciones }} · {{ item.estatus === 1 ? 'Activo' : 'Inactivo' }}</p>
+      <p class="text-xs m-0 text-color-secondary">
+        {{ item.observaciones }} · {{ item.estatus === 1 ? 'Activo' : 'Inactivo'
+        }}
+      </p>
 
       <ili-action-menu end>
         <ng-container actions>
@@ -162,15 +171,13 @@ cb_departamento; track item) {
             label="Validar"
             (clicked)="onValidarDocument(item.id)"
           />
-          }
-          @if (item.archivo && item.superviso !== '') {
+          } @if (item.archivo && item.superviso !== '') {
           <ili-button-item
             iconClass="material-symbols-light:arrow-back"
             label="Revocar"
             (clicked)="onInvalidarDocument(item.id)"
           />
-          }
-          @if (item.archivo !== '') {
+          } @if (item.archivo !== '') {
           <ili-button-delete
             label="Eliminar archivo"
             (confirmed)="onDeleteFile(item.id)"

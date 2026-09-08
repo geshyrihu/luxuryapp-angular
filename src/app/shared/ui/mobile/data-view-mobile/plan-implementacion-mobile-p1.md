@@ -58,13 +58,14 @@ Columnas mínimas (2-7), sin paginator complejo, sin agrupaciones.
 
 ### 1.1 `equipment-inspection-definitions-list.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 6 columnas: Nombre, Frecuencia, Criterios, Responsables, Estado | **Línea 1:** `item.title` (font-semibold) |
-| 4 acciones: play-circle, power, edit, delete | **Línea 2:** `item.frequency` · `item.status` |
-| Sin paginator | **Acciones:** iniciar, activar, editar, eliminar |
+| Web actual                                                      | Mobile propuesto                                 |
+| --------------------------------------------------------------- | ------------------------------------------------ |
+| 6 columnas: Nombre, Frecuencia, Criterios, Responsables, Estado | **Línea 1:** `item.title` (font-semibold)        |
+| 4 acciones: play-circle, power, edit, delete                    | **Línea 2:** `item.frequency` · `item.status`    |
+| Sin paginator                                                   | **Acciones:** iniciar, activar, editar, eliminar |
 
 **Pasos:**
+
 1. Envolver `<p-table>` en `<div class="hidden md:block">`
 2. Agregar `<app-data-view-mobile>` debajo con `[data]="data()"` y `(add)="..."` si aplica
 3. Crear `#listItemTemplate` con ili-list-item, 2 líneas de texto, ili-action-menu end
@@ -72,13 +73,14 @@ Columnas mínimas (2-7), sin paginator complejo, sin agrupaciones.
 
 ### 1.2 `equipment-inspection-execution-history-list.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 7 columnas: Inspeccion, Fecha, Asignado, Avance, Estado, Hallazgo | **Línea 1:** `item.inspectionName` |
-| 2 acciones: eye (ver), check-circle (completar) | **Línea 2:** `item.assignedTo` · `item.status` |
-| Sin paginator, showAdd=false | **Acciones:** ver, completar |
+| Web actual                                                        | Mobile propuesto                               |
+| ----------------------------------------------------------------- | ---------------------------------------------- |
+| 7 columnas: Inspeccion, Fecha, Asignado, Avance, Estado, Hallazgo | **Línea 1:** `item.inspectionName`             |
+| 2 acciones: eye (ver), check-circle (completar)                   | **Línea 2:** `item.assignedTo` · `item.status` |
+| Sin paginator, showAdd=false                                      | **Acciones:** ver, completar                   |
 
 **Pasos:**
+
 1. Envolver `<p-table>` en `<div class="hidden md:block">`
 2. Agregar `<app-data-view-mobile [showAdd]="false">`
 3. Template: nombre inspección + asignado/estado
@@ -86,13 +88,14 @@ Columnas mínimas (2-7), sin paginator complejo, sin agrupaciones.
 
 ### 1.3 `equipment-inspection-qr-list.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 7 columnas: Nombre, Tipo, Codigo, Deep link, Estado, Ultima impresion | **Línea 1:** `item.name` |
-| 2 acciones: printer (imprimir), refresh (regenerar) | **Línea 2:** `item.type` · `item.code` |
-| Sin paginator, showAdd=false | **Acciones:** imprimir, regenerar |
+| Web actual                                                            | Mobile propuesto                       |
+| --------------------------------------------------------------------- | -------------------------------------- |
+| 7 columnas: Nombre, Tipo, Codigo, Deep link, Estado, Ultima impresion | **Línea 1:** `item.name`               |
+| 2 acciones: printer (imprimir), refresh (regenerar)                   | **Línea 2:** `item.type` · `item.code` |
+| Sin paginator, showAdd=false                                          | **Acciones:** imprimir, regenerar      |
 
 **Pasos:**
+
 1. Envolver `<p-table>` en `<div class="hidden md:block">`
 2. Agregar `<app-data-view-mobile [showAdd]="false">`
 3. Template: nombre + tipo/código
@@ -100,13 +103,14 @@ Columnas mínimas (2-7), sin paginator complejo, sin agrupaciones.
 
 ### 1.4 `filtro-minutas-area.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 7 columnas: #, Area, Titulo, Asunto, Estatus, Entrega, Seguimiento | **Línea 1:** `item.title` |
-| Sin acciones | **Línea 2:** `item.areaEmpresa` · `item.status` |
-| Paginator con footer | **Sin acciones** (solo lectura) |
+| Web actual                                                         | Mobile propuesto                                |
+| ------------------------------------------------------------------ | ----------------------------------------------- |
+| 7 columnas: #, Area, Titulo, Asunto, Estatus, Entrega, Seguimiento | **Línea 1:** `item.title`                       |
+| Sin acciones                                                       | **Línea 2:** `item.areaEmpresa` · `item.status` |
+| Paginator con footer                                               | **Sin acciones** (solo lectura)                 |
 
 **Pasos:**
+
 1. Envolver `<p-table>` en `<div class="hidden md:block">`
 2. Agregar `<app-data-view-mobile [showAdd]="false">`
 3. Template: título + área/estado
@@ -114,13 +118,14 @@ Columnas mínimas (2-7), sin paginator complejo, sin agrupaciones.
 
 ### 1.5 `resultado-general-evaluacion-areas-detalle.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 7 columnas: #, Cliente, Titulo, Asunto, Estatus, Entrega, Seguimiento | **Línea 1:** `item.title` |
-| Sin acciones | **Línea 2:** `item.customer` · `item.status` |
-| Sin paginator | **Sin acciones** (solo lectura) |
+| Web actual                                                            | Mobile propuesto                             |
+| --------------------------------------------------------------------- | -------------------------------------------- |
+| 7 columnas: #, Cliente, Titulo, Asunto, Estatus, Entrega, Seguimiento | **Línea 1:** `item.title`                    |
+| Sin acciones                                                          | **Línea 2:** `item.customer` · `item.status` |
+| Sin paginator                                                         | **Sin acciones** (solo lectura)              |
 
 **Pasos:**
+
 1. Envolver `<p-table>` en `<div class="hidden md:block">`
 2. Agregar `<app-data-view-mobile [showAdd]="false">`
 3. Template: título + cliente/estado
@@ -128,13 +133,14 @@ Columnas mínimas (2-7), sin paginator complejo, sin agrupaciones.
 
 ### 1.6 `calendario-maestro-equipo.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 2 columnas: Nombre Equipo, Clasificacion | **Línea 1:** `item.nombreEquipo` |
-| 2 acciones: edit, delete | **Línea 2:** `item.equipoClasificacion` |
-| Paginator con footer | **Acciones:** editar, eliminar |
+| Web actual                               | Mobile propuesto                        |
+| ---------------------------------------- | --------------------------------------- |
+| 2 columnas: Nombre Equipo, Clasificacion | **Línea 1:** `item.nombreEquipo`        |
+| 2 acciones: edit, delete                 | **Línea 2:** `item.equipoClasificacion` |
+| Paginator con footer                     | **Acciones:** editar, eliminar          |
 
 **Pasos:**
+
 1. Verificar que ya tiene `hidden md:block` (sí)
 2. Agregar `<app-data-view-mobile>` con `(add)="onModalForm(...)"`
 3. Template: nombre + clasificación
@@ -142,13 +148,14 @@ Columnas mínimas (2-7), sin paginator complejo, sin agrupaciones.
 
 ### 1.7 `resumen-minuta.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 3 columnas: Requerimiento, Ultimo Seguimiento, Estatus | **Línea 1:** `item.title` |
-| Sin acciones (solo lectura) | **Línea 2:** `item.status` |
-| Paginator con footer | **Sin acciones** |
+| Web actual                                             | Mobile propuesto           |
+| ------------------------------------------------------ | -------------------------- |
+| 3 columnas: Requerimiento, Ultimo Seguimiento, Estatus | **Línea 1:** `item.title`  |
+| Sin acciones (solo lectura)                            | **Línea 2:** `item.status` |
+| Paginator con footer                                   | **Sin acciones**           |
 
 **Pasos:**
+
 1. Envolver `<p-table>` en `<div class="hidden md:block">`
 2. Agregar `<app-data-view-mobile [showAdd]="false">`
 3. Template: título + estado
@@ -162,27 +169,29 @@ Más columnas, filtros, paginator, acciones condicionales.
 
 ### 2.1 `contracts-policies.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 6 columnas: #, Proveedor, Descripcion, Fecha Contratacion, Fecha Termino, Documento | **Línea 1:** `item.descripcion` |
-| 1 acción: view-pdf | **Línea 2:** `item.proveedor` · `item.fechaTermino` |
-| Paginator con footer, globalFilterFields | **Acciones:** ver PDF |
+| Web actual                                                                          | Mobile propuesto                                    |
+| ----------------------------------------------------------------------------------- | --------------------------------------------------- |
+| 6 columnas: #, Proveedor, Descripcion, Fecha Contratacion, Fecha Termino, Documento | **Línea 1:** `item.descripcion`                     |
+| 1 acción: view-pdf                                                                  | **Línea 2:** `item.proveedor` · `item.fechaTermino` |
+| Paginator con footer, globalFilterFields                                            | **Acciones:** ver PDF                               |
 
 **Pasos:**
+
 1. Verificar `hidden md:block` (sí, en p-table)
 2. Agregar `<app-data-view-mobile [showAdd]="false" [globalFilterFields]="globalFilterFields()" [dt]="dt">`
-3. Template: descripción + proveedor/fecha
+3. Template: DESCRIPCIÓN + proveedor/fecha
 4. Acción: `ili-button-item` con icono material-symbols-light:file-document para ver PDF
 
 ### 2.2 `task-operation-report.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 8 columnas: FOLIO, FECHA, SOLICITUD, EVIDENCIA, CIERRE, Evidencia, Reporte Semanal | **Línea 1:** `item.folio` |
-| 2 acciones: tracking (con badge), custom-input-switch | **Línea 2:** `item.responsibleArea` · `item.dateFinished` |
-| Filtros complejos (status, actions, date-range) | **Acciones:** tracking |
+| Web actual                                                                         | Mobile propuesto                                          |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| 8 columnas: FOLIO, FECHA, SOLICITUD, EVIDENCIA, CIERRE, Evidencia, Reporte Semanal | **Línea 1:** `item.folio`                                 |
+| 2 acciones: tracking (con badge), custom-input-switch                              | **Línea 2:** `item.responsibleArea` · `item.dateFinished` |
+| Filtros complejos (status, actions, date-range)                                    | **Acciones:** tracking                                    |
 
 **Pasos:**
+
 1. Verificar `hidden md:block` (sí)
 2. Agregar `<app-data-view-mobile [showAdd]="false">`
 3. Mover filtros a `[customFilters]` slot
@@ -191,13 +200,14 @@ Más columnas, filtros, paginator, acciones condicionales.
 
 ### 2.3 `task-report-work-plan.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 8 columnas: FOLIO, SOLICITUD, EVIDENCIA, PRIORIDAD, ASIGNADO A, PROGRAMADO, DIAS | **Línea 1:** `item.folio` |
-| Sin acciones activas | **Línea 2:** `item.responsibleArea` · `item.responsableNombre` |
-| Filtro de assignee | **Sin acciones** |
+| Web actual                                                                       | Mobile propuesto                                               |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| 8 columnas: FOLIO, SOLICITUD, EVIDENCIA, PRIORIDAD, ASIGNADO A, PROGRAMADO, DIAS | **Línea 1:** `item.folio`                                      |
+| Sin acciones activas                                                             | **Línea 2:** `item.responsibleArea` · `item.responsableNombre` |
+| Filtro de assignee                                                               | **Sin acciones**                                               |
 
 **Pasos:**
+
 1. Verificar `hidden md:block` (sí)
 2. Agregar `<app-data-view-mobile [showAdd]="false">`
 3. Mover filtro de assignee a `[customFilters]`
@@ -206,13 +216,14 @@ Más columnas, filtros, paginator, acciones condicionales.
 
 ### 2.4 `unified-pending-dashboard.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 7 columnas: Modulo, Fecha, Actividad, Responsable, Ultimo Seguimiento, Estatus, Dias | **Línea 1:** `item.title` |
-| Sin acciones (row click navega) | **Línea 2:** `item.module` · `item.responsible` |
-| Filtros de módulo (chips), paginator | **Click:** navegar a detalle |
+| Web actual                                                                           | Mobile propuesto                                |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| 7 columnas: Modulo, Fecha, Actividad, Responsable, Ultimo Seguimiento, Estatus, Dias | **Línea 1:** `item.title`                       |
+| Sin acciones (row click navega)                                                      | **Línea 2:** `item.module` · `item.responsible` |
+| Filtros de módulo (chips), paginator                                                 | **Click:** navegar a detalle                    |
 
 **Pasos:**
+
 1. Envolver `<p-table>` en `<div class="hidden md:block">`
 2. Agregar `<app-data-view-mobile [showAdd]="false">`
 3. Mover chips de filtro a `[customFilters]`
@@ -221,13 +232,14 @@ Más columnas, filtros, paginator, acciones condicionales.
 
 ### 2.5 `agenda-supervision.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 9 columnas: SUPERVISOR, SOLICITUD, CLIENTE, PROBLEMA, SOLUCION, CONCLUSION, DIAS, ESTATUS | **Línea 1:** `item.problema` |
-| 2 acciones: edit, delete (condicional) | **Línea 2:** `item.name.label` · `item.estatus` |
-| Filtros complejos (multi-select, calendar), paginator | **Acciones:** editar, eliminar |
+| Web actual                                                                                | Mobile propuesto                                |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| 9 columnas: SUPERVISOR, SOLICITUD, CLIENTE, PROBLEMA, SOLUCION, CONCLUSION, DIAS, ESTATUS | **Línea 1:** `item.problema`                    |
+| 2 acciones: edit, delete (condicional)                                                    | **Línea 2:** `item.name.label` · `item.estatus` |
+| Filtros complejos (multi-select, calendar), paginator                                     | **Acciones:** editar, eliminar                  |
 
 **Pasos:**
+
 1. Verificar `hidden md:block` (sí)
 2. Agregar `<app-data-view-mobile [showAdd]="false">`
 3. Mover filtros a `[customFilters]`
@@ -242,14 +254,15 @@ Agrupaciones, layout especial, o múltiples acciones.
 
 ### 3.1 `entrega-recepcion-cliente.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| 8 columnas agrupadas por `grupo` (rowGroupMode="subheader") | **Grupo:** `item.grupo` como divider |
-| 3 acciones: edit, valid/revocar, delete | **Línea 1:** `item.descripcion` |
-| Filtros por departamento | **Línea 2:** `item.observacion` · `item.estatus` |
-| Sin paginator | **Acciones:** editar, validar/revocar, eliminar |
+| Web actual                                                  | Mobile propuesto                                 |
+| ----------------------------------------------------------- | ------------------------------------------------ |
+| 8 columnas agrupadas por `grupo` (rowGroupMode="subheader") | **Grupo:** `item.grupo` como divider             |
+| 3 acciones: edit, valid/revocar, delete                     | **Línea 1:** `item.descripcion`                  |
+| Filtros por departamento                                    | **Línea 2:** `item.observacion` · `item.estatus` |
+| Sin paginator                                               | **Acciones:** editar, validar/revocar, eliminar  |
 
 **Pasos:**
+
 1. Verificar `hidden md:block` (sí)
 2. Agregar `<app-data-view-mobile>` con `isGrouped=true` y `[groupedData]="groupedData()"`
 3. Usar `ion-item-divider` para los grupos (el componente ya lo soporta)
@@ -258,32 +271,34 @@ Agrupaciones, layout especial, o múltiples acciones.
 
 ### 3.2 `bitacora-individual.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| Layout de cards (no columnas tradicionales) | **Línea 1:** `item.descripcion` |
-| Sin acciones (click en userName navega) | **Línea 2:** `item.fechaRegistro` · `item.userName` |
-| Filtro de fecha, paginator | **Click:** navegar a empleado |
+| Web actual                                  | Mobile propuesto                                    |
+| ------------------------------------------- | --------------------------------------------------- |
+| Layout de cards (no columnas tradicionales) | **Línea 1:** `item.descripcion`                     |
+| Sin acciones (click en userName navega)     | **Línea 2:** `item.fechaRegistro` · `item.userName` |
+| Filtro de fecha, paginator                  | **Click:** navegar a empleado                       |
 
 **Pasos:**
+
 1. Verificar `hidden md:block` (sí)
 2. Agregar `<app-data-view-mobile [showAdd]="false">`
 3. Mover filtro de fecha a `[customFilters]`
-4. Template: descripción + fecha/usuario
+4. Template: DESCRIPCIÓN + fecha/usuario
 5. Sin ili-action-menu (click en ili-list-item para navegar)
 
 ### 3.3 `bitacora-mantenimiento.html`
 
-| Web actual | Mobile propuesto |
-|------------|-----------------|
-| Layout de cards (una fila por registro) | **Línea 1:** `item.descripcion` |
+| Web actual                                       | Mobile propuesto                                     |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| Layout de cards (una fila por registro)          | **Línea 1:** `item.descripcion`                      |
 | 1 acción: delete (condicional JefeMantenimiento) | **Línea 2:** `item.machinery` · `item.fechaRegistro` |
-| Filtro de fecha, add button | **Acciones:** eliminar |
+| Filtro de fecha, add button                      | **Acciones:** eliminar                               |
 
 **Pasos:**
+
 1. Verificar `hidden md:block` (sí)
 2. Agregar `<app-data-view-mobile>` con `(add)="onModalFormBiacora(...)"`
 3. Mover filtro de fecha a `[customFilters]`
-4. Template: descripción + maquinaria/fecha
+4. Template: DESCRIPCIÓN + maquinaria/fecha
 5. Acción: ili-button-delete condicional
 
 ---

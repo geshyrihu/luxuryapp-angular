@@ -16,8 +16,8 @@
 
   <custom-input-textarea-signal
     [control]="form.controls.description"
-    label="Descripción"
-    placeholder="Descripción"
+    label="DESCRIPCIÓN"
+    placeholder="DESCRIPCIÓN"
   />
 
   <app-recurrence-input
@@ -78,9 +78,9 @@
     />
 
     @if (form.hasError("backupRequiredForCritical")) {
-      <small class="p-error">
-        Las plantillas críticas requieren responsable de respaldo.
-      </small>
+    <small class="p-error">
+      Las plantillas críticas requieren responsable de respaldo.
+    </small>
     }
   </p-panel>
 

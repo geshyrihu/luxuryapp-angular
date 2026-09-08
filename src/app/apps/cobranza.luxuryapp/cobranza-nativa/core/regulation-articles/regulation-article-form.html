@@ -1,5 +1,4 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column gap-2">
-
   <custom-input-text-signal
     [control]="form.controls.articleNumber"
     label="Número de Artículo"
@@ -10,7 +9,7 @@
   <custom-input-text-signal
     [control]="form.controls.title"
     label="Título"
-    placeholder="Descripción breve de la infracción"
+    placeholder="DESCRIPCIÓN breve de la infracción"
     required
   />
 
@@ -36,7 +35,9 @@
   </div>
 
   <div class="flex justify-content-end mt-3">
-    <il-button-save [disabled]="form.invalid || submitting()" [submitting]="submitting()" />
+    <il-button-save
+      [disabled]="form.invalid || submitting()"
+      [submitting]="submitting()"
+    />
   </div>
-
 </form>

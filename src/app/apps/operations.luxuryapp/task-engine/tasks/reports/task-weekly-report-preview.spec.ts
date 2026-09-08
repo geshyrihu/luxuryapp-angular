@@ -1,10 +1,10 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { DateRangeStorageService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/services/date-range-storage.service";
+import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DateRangeStorageService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/services/date-range-storage.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
-import { TaskGroupService } from "src/app/apps/operations.luxuryapp/task-engine/tasks/task.service";
 import { vi } from "vitest";
 import { TaskWeeklyReportPreview } from "./task-weekly-report-preview";
 
@@ -87,7 +87,7 @@ describe("TaskWeeklyReportPreview", () => {
       tickets: [
         {
           title: "Ticket 1",
-          description: "Descripción 1",
+          description: "DESCRIPCIÓN 1",
           beforeWork: "http://before.png",
           afterWork: null,
         },

@@ -158,15 +158,13 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
         overflow: hidden;
       }
 
-      .provider-card {
-        border-radius: 18px;
-        padding: 1rem 1.1rem;
-        border: 1px solid var(--surface-border);
+      .provider-footer-row td {
         background: #f8fafc;
+        font-size: 0.8rem;
       }
 
-      .provider-metric {
-        min-width: 6.5rem;
+      .provider-footer-row:first-child td {
+        border-top: 1px solid var(--surface-border);
       }
     `,
   ],
@@ -377,10 +375,6 @@ export class SolicitudCompraPresentacion {
   getCheapestTotal(totals: number[]): number {
     const validTotals = totals.filter((total) => total > 0);
     return validTotals.length > 0 ? Math.min(...validTotals) : 0;
-  }
-
-  isBestProvider(total: number, solicitud: any): boolean {
-    return total > 0 && total === solicitud.cheapestTotal;
   }
 
   canOptimizeProducts(solicitud: any): boolean {

@@ -52,7 +52,7 @@
     [scrollable]="true"
     scrollDirection="both"
     scrollHeight="calc(100vh - 320px)"
-    class="financial-data-table budget-sticky-footer-table"
+    class="financial-data-table rf-prime-table p-datatable-sm text-sm proposal-budget-table budget-sticky-footer-table"
     #dt
   >
     <!--
@@ -260,7 +260,9 @@
       <div
         class="flex flex-nowrap align-items-center w-full justify-content-between mb-3 px-2 gap-2"
       >
-        <div class="flex flex-nowrap gap-2 align-items-center">
+        <div
+          class="flex flex-nowrap gap-2 align-items-center flex-grow-1 min-w-0"
+        >
           <div class="flex-shrink-0 w-7rem">
             <custom-input-select-signal
               [(ngModel)]="selectedFiscalYear"
@@ -286,39 +288,46 @@
               [noMargin]="true"
             />
           </div>
-          <div class="flex flex-nowrap gap-2 align-items-center flex-shrink-0">
-            <span class="text-xs font-semibold text-700 white-space-nowrap">Vista:</span>
-            <button
-              (click)="setViewMode('normal')"
-              [class.bg-blue-500]="viewMode() === 'normal'"
-              [class.text-white]="viewMode() === 'normal'"
-              [class.bg-gray-100]="viewMode() !== 'normal'"
-              [class.text-700]="viewMode() !== 'normal'"
-              class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer transition-all transition-duration-200 hover:shadow-sm white-space-nowrap"
-            >
-              Normal
-            </button>
-            <button
-              (click)="setViewMode('level1')"
-              [class.bg-blue-500]="viewMode() === 'level1'"
-              [class.text-white]="viewMode() === 'level1'"
-              [class.bg-gray-100]="viewMode() !== 'level1'"
-              [class.text-700]="viewMode() !== 'level1'"
-              class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer transition-all transition-duration-200 hover:shadow-sm white-space-nowrap"
-            >
-              Mayor
-            </button>
-            <button
-              (click)="setViewMode('level2')"
-              [class.bg-blue-500]="viewMode() === 'level2'"
-              [class.text-white]="viewMode() === 'level2'"
-              [class.bg-gray-100]="viewMode() !== 'level2'"
-              [class.text-700]="viewMode() !== 'level2'"
-              class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer transition-all transition-duration-200 hover:shadow-sm white-space-nowrap"
-            >
-              2do Nivel
-            </button>
-          </div>
+        </div>
+
+        <!-- Las vistas pertenecen a Propuesta y permanecen visibles antes del buscador. -->
+        <div class="flex flex-nowrap gap-2 align-items-center flex-shrink-0">
+          <span class="text-xs font-semibold text-700 white-space-nowrap"
+            >Vista:</span
+          >
+          <button
+            type="button"
+            (click)="setViewMode('normal')"
+            [class.bg-blue-500]="viewMode() === 'normal'"
+            [class.text-white]="viewMode() === 'normal'"
+            [class.bg-gray-100]="viewMode() !== 'normal'"
+            [class.text-700]="viewMode() !== 'normal'"
+            class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer transition-all transition-duration-200 hover:shadow-sm white-space-nowrap"
+          >
+            Normal
+          </button>
+          <button
+            type="button"
+            (click)="setViewMode('level1')"
+            [class.bg-blue-500]="viewMode() === 'level1'"
+            [class.text-white]="viewMode() === 'level1'"
+            [class.bg-gray-100]="viewMode() !== 'level1'"
+            [class.text-700]="viewMode() !== 'level1'"
+            class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer transition-all transition-duration-200 hover:shadow-sm white-space-nowrap"
+          >
+            Mayor
+          </button>
+          <button
+            type="button"
+            (click)="setViewMode('level2')"
+            [class.bg-blue-500]="viewMode() === 'level2'"
+            [class.text-white]="viewMode() === 'level2'"
+            [class.bg-gray-100]="viewMode() !== 'level2'"
+            [class.text-700]="viewMode() !== 'level2'"
+            class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer transition-all transition-duration-200 hover:shadow-sm white-space-nowrap"
+          >
+            2do Nivel
+          </button>
         </div>
 
         <div class="flex-shrink-0 min-w-15rem">
@@ -499,30 +508,61 @@
             [class.font-semibold]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
             [class.text-red-700]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
           >
-            {{ getGastoDelMes(item, month) !== 0 ?
-            (getGastoDelMes(item, month) | number: "1.0-0") : "-" }}
+            {{ getGastoDelMes(item, month) !== 0 ? (getGastoDelMes(item, month)
+            | number: "1.0-0") : "-" }}
           </span>
         </td>
         }
-        <td pFrozenColumn alignFrozen="right" class="text-right numeric-column font-semibold">
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column font-semibold"
+        >
           {{ getAverageMonthlyExpense(item) | number: "1.0-0" }}
         </td>
-        <td [hidden]="!showBaseBudgetMonthlyColumn()" pFrozenColumn alignFrozen="right" class="text-right numeric-column font-semibold">
+        <td
+          [hidden]="!showBaseBudgetMonthlyColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column font-semibold"
+        >
           {{ item.currentAmount | number: "1.0-0" }}
         </td>
-        <td [hidden]="!showBaseBudgetAnnualColumn()" pFrozenColumn alignFrozen="right" class="text-right numeric-column font-semibold">
+        <td
+          [hidden]="!showBaseBudgetAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column font-semibold"
+        >
           {{ item.currentAmount * 12 | number: "1.0-0" }}
         </td>
-        <td pFrozenColumn alignFrozen="right" class="text-right numeric-column font-semibold">
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column font-semibold"
+        >
           {{ item.proposedAmount | number: "1.0-0" }}
         </td>
-        <td [hidden]="!showFiscalYearAnnualColumn()" pFrozenColumn alignFrozen="right" class="text-right numeric-column font-semibold">
+        <td
+          [hidden]="!showFiscalYearAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column font-semibold"
+        >
           {{ item.proposedAmount * 12 | number: "1.0-0" }}
         </td>
-        <td pFrozenColumn alignFrozen="right" class="text-right numeric-column font-semibold">
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column font-semibold"
+        >
           {{ getItemDifference(item) | number: "1.0-0" }}
         </td>
-        <td pFrozenColumn alignFrozen="right" class="text-right numeric-column font-semibold">
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column font-semibold"
+        >
           {{ getItemPercentageIncrease(item) | number: "1.0-0" }}%
         </td>
       </tr>
@@ -574,9 +614,13 @@
                 >🗑️</span
               >}
 
-              <small class="numeric-column">{{ item.accountNumber }} </small>
+              <small class="font-small-gray text-xs numeric-column"
+                >{{ item.accountNumber }}
+              </small>
 
-              <div>{{ item.accountName }}</div>
+              <div class="text-color mt-1 font-semibold">
+                {{ item.accountName }}
+              </div>
             </div>
 
             <div
@@ -584,17 +628,19 @@
             >
               <!-- Indicadores visuales de Auditoría -->
               @if (isDeficit(item)) {
-              <span
-                class="text-red-500 ml-1 text-2xl"
+              <lx-tag
+                value="Déficit"
+                severity="danger"
+                class="text-xs ml-1"
                 lxTooltip="Déficit: Propuesta menor al gasto promedio"
-                >📉</span
-              >
+              />
               } @if (isHighIncrease(item)) {
-              <span
-                class="text-yellow-600 ml-1 text-2xl"
+              <lx-tag
+                value="Incremento"
+                severity="warn"
+                class="text-xs ml-1"
                 lxTooltip="Incremento > 5%"
-                >📈</span
-              >
+              />
               }
             </div>
           </div>
@@ -612,14 +658,15 @@
             lxTooltip="Ver detalles de ejecución"
             >🔍</span
           >
-          <span class="text-xs text-color-secondary">
+          <span class="font-xsmall-gray">
             {{ getPresupuestoDelMes(item, month) > 0 ?
             (getPresupuestoDelMes(item, month) | number: "1.0-0") : "-" }}
           </span>
           <br />
           <span
-            [class.font-semibold]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
+            [class.font-bold]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
             [class.text-red-700]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
+            [class.bg-red-50]="getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
           >
             @if(getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) >
             getPresupuestoDelMes(item, month)) { {{ getGastoDelMes(item, month)
@@ -632,7 +679,7 @@
         <!-- Columnas congeladas a la derecha: Cólculos -->
         <td pFrozenColumn alignFrozen="right" class="text-right numeric-column">
           <span
-            [class.font-semibold]="getAverageMonthlyExpense(item) > getAverageMonthlyBudget(item)"
+            [class.font-bold]="getAverageMonthlyExpense(item) > getAverageMonthlyBudget(item)"
             [class.text-red-700]="getAverageMonthlyExpense(item) > getAverageMonthlyBudget(item)"
           >
             @if (getAverageMonthlyExpense(item) > getAverageMonthlyBudget(item))
@@ -683,16 +730,16 @@
         </td>
         <td pFrozenColumn alignFrozen="right" class="numeric-column">
           <div class="flex justify-content-between align-items-center">
-            <div class="justify-content-start font-semibold text-red-700">
+            <div class="justify-content-start font-bold text-red-700">
               {{ getItemDifference(item) > 0 ? "(+)" : "" }}
             </div>
             <div class="justify-content-end">
               @if (getItemDifference(item) < 0) {
-              <span class="font-semibold text-green-700">
+              <span class="font-bold text-green-700">
                 {{ getItemDifference(item) | number: "1.0-0" }}
               </span>
               } @else if (getItemDifference(item) > 0){
-              <span class="font-semibold text-red-700">
+              <span class="font-bold text-red-700">
                 {{ getItemDifference(item) | number: "1.0-0" }}
               </span>
               } @else { - }
@@ -702,11 +749,11 @@
         <td pFrozenColumn alignFrozen="right" class="numeric-column">
           <div class="flex justify-content-end align-items-center">
             @if (getItemPercentageIncrease(item) < 0) {
-            <span class="font-semibold text-green-700">
+            <span class="font-bold text-green-700">
               {{ getItemPercentageIncrease(item) | number: "1.0-0" }}%
             </span>
             } @else if (getItemPercentageIncrease(item) > 0) {
-            <span class="font-semibold text-red-700">
+            <span class="font-bold text-red-700">
               {{ getItemPercentageIncrease(item) | number: "1.0-0" }}%
             </span>
             } @else {
@@ -899,7 +946,7 @@
       <ng-template #header>
         <tr>
           <th>Cuenta</th>
-          <th>Descripción</th>
+          <th>DESCRIPCIÓN</th>
           <th class="text-right">Base Mensual</th>
           <th class="text-right">Propuesta</th>
           <th class="text-right">Diferencia ($)</th>

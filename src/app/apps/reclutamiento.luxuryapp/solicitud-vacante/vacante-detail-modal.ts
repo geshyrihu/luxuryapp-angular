@@ -38,7 +38,7 @@ export class VacanteDetailModal implements OnInit {
   activeTab = signal("horarios");
   tabs = [
     { id: "horarios", label: "Horarios" },
-    { id: "descripcion", label: "Descripción del puesto" },
+    { id: "descripcion", label: "DESCRIPCIÓN del puesto" },
     { id: "prestaciones", label: "Prestaciones y observaciones" },
   ];
   private apiS = inject(ApiResponseService);

@@ -6,7 +6,10 @@
   </div>
   } @else if (!rows().length) {
   <div class="surface-card p-6 rounded shadow-sm text-center">
-    <app-icon [icon]="'material-symbols-light:search'" class="text-4xl text-500 mb-3" />
+    <app-icon
+      [icon]="'material-symbols-light:search'"
+      class="text-4xl text-500 mb-3"
+    />
     <p class="text-color-secondary m-0">
       No se encontraron registros para el periodo seleccionado.
     </p>
@@ -23,8 +26,8 @@
   >
     <ng-template #header>
       <tr>
-        <th >Cuenta</th>
-        <th>Descripción</th>
+        <th>Cuenta</th>
+        <th>DESCRIPCIÓN</th>
         <th class="text-right w-8rem">{{ monthHeaders()[0] }}</th>
         <th class="text-right w-8rem">{{ monthHeaders()[1] }}</th>
         <th class="text-right w-8rem">{{ monthHeaders()[2] }}</th>

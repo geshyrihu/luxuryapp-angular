@@ -1,7 +1,7 @@
 # 📋 Conventions Viewer - Guía Visual Interactiva
 
-**Ubicación:** `admin-wrapper/conventions-viewer/`  
-**Ruta:** `/admin/conventions-guide`  
+**Ubicación:** `admin-wrapper/conventions-viewer/`
+**Ruta:** `/admin/conventions-guide`
 **Propósito:** Visualizar el sistema rector de convenciones por dominio, tipo de tarea y severidad.
 
 ---
@@ -58,6 +58,7 @@ Usar la barra de búsqueda:
 ### Filtrar por Criterios
 
 **Tabs disponibles:**
+
 - 📚 **Todas** (muestra todas las reglas)
 - 🗂️ **Por Dominio** (Core, Backend, Frontend, UI, Styles, Audit, etc.)
 - 🛠️ **Por Tarea** (Implementación Backend, Frontend/UI, Flutter, Auditoría, etc.)
@@ -67,7 +68,8 @@ Usar la barra de búsqueda:
 ### Expandir Detalles
 
 Click en cualquier tarjeta para:
-- Ver descripción completa
+
+- Ver DESCRIPCIÓN completa
 - Entender por qué es importante
 - Ver ejemplos de código
 - Copiar ejemplos al clipboard
@@ -81,20 +83,20 @@ Cada regla contiene:
 
 ```typescript
 interface ConventionRule {
-  id: string;                    // "angular-strict-ts"
-  domain: ConventionDomain;      // core, backend, frontend, ui, styles...
+  id: string; // "angular-strict-ts"
+  domain: ConventionDomain; // core, backend, frontend, ui, styles...
   taskTypes: ConventionTaskType[]; // implementacion-backend, auditoria...
-  title: string;                 // "TypeScript Strict Mode Obligatorio"
-  description: string;           // Descripción breve
-  severity: 'CRÍTICA' | 'ALTA' | 'MEDIA' | 'BAJA';
-  technologies: string[];        // ['Angular', 'TypeScript']
+  title: string; // "TypeScript Strict Mode Obligatorio"
+  description: string; // DESCRIPCIÓN breve
+  severity: "CRÍTICA" | "ALTA" | "MEDIA" | "BAJA";
+  technologies: string[]; // ['Angular', 'TypeScript']
   examples: {
     angular?: { code: string; description: string };
     dotnet?: { code: string; description: string };
     flutter?: { code: string; description: string };
   };
-  relatedRules?: string[];       // reglas relacionadas
-  importance: string;            // Por qué es importante
+  relatedRules?: string[]; // reglas relacionadas
+  importance: string; // Por qué es importante
 }
 ```
 
@@ -106,12 +108,12 @@ interface ConventionRule {
 
 ## 🎨 Colores de Severidad
 
-| Severidad | Color | Icono | Significado |
-|-----------|-------|-------|------------|
-| **CRÍTICA** | 🔴 #dc2626 | 🔴 | Bloquea merge en pre-commit |
-| **ALTA** | 🟠 #f97316 | 🟠 | Falla auditoría, debe arreglarse |
-| **MEDIA** | 🟡 #eab308 | 🟡 | Comentario en code review |
-| **BAJA** | 🔵 #3b82f6 | 🔵 | Sugerencia, mejora menor |
+| Severidad   | Color      | Icono | Significado                      |
+| ----------- | ---------- | ----- | -------------------------------- |
+| **CRÍTICA** | 🔴 #dc2626 | 🔴    | Bloquea merge en pre-commit      |
+| **ALTA**    | 🟠 #f97316 | 🟠    | Falla auditoría, debe arreglarse |
+| **MEDIA**   | 🟡 #eab308 | 🟡    | Comentario en code review        |
+| **BAJA**    | 🔵 #3b82f6 | 🔵    | Sugerencia, mejora menor         |
 
 ---
 
@@ -120,6 +122,7 @@ interface ConventionRule {
 ### `ConventionsViewer` (Principal)
 
 **Responsabilidades:**
+
 - Gestionar estado (búsqueda, filtros, tab activo)
 - Cargar datos desde servicio
 - Aplicar filtros complejos
@@ -128,19 +131,21 @@ interface ConventionRule {
 **Patrón:** Standalone (implícito en Angular 22, sin necesidad de `standalone: true`)
 
 **Signals utilizados:**
+
 ```typescript
 conventions = signal<ConventionRule[]>([]);
 filteredConventions = signal<ConventionRule[]>([]);
-activeTab = signal<TabType>('all');
-searchQuery = signal('');
+activeTab = signal<TabType>("all");
+searchQuery = signal("");
 selectedSection = signal<number | null>(null);
 selectedSeverity = signal<SeverityType | null>(null);
-selectedTechnology = signal<string>('');
+selectedTechnology = signal<string>("");
 ```
 
 ### `ConventionCard` (Tarjeta)
 
 **Responsabilidades:**
+
 - Mostrar tarjeta individual
 - Expandir/contraer detalles
 - Cambiar ejemplo (Angular, .NET, Flutter)
@@ -149,6 +154,7 @@ selectedTechnology = signal<string>('');
 **Patrón:** Standalone (implícito en Angular 22)
 
 **Signal Input:**
+
 ```typescript
 convention = input.required<ConventionRule>();
 ```
@@ -156,6 +162,7 @@ convention = input.required<ConventionRule>();
 ### `ConventionsService` (Datos)
 
 **Métodos:**
+
 ```typescript
 getConventions(): Observable<ConventionRule[]>        // Todas
 getConventionBySection(section: number): Observable   // Por sección
@@ -175,7 +182,7 @@ Para agregar una nueva regla, edita `conventions-viewer.service.ts`:
   id: 'nuevo-id',
   section: 2,
   title: 'Nueva Regla',
-  description: 'Descripción clara y concisa',
+  description: 'DESCRIPCIÓN clara y concisa',
   severity: 'ALTA',
   technologies: ['Angular', '.NET'],
   examples: {
@@ -206,10 +213,12 @@ Para agregar una nueva regla, edita `conventions-viewer.service.ts`:
 ## 🔗 Conexiones
 
 ### Usa:
+
 - `ConventionsService` — Datos de convenciones
 - Controles Angular 22: @if, @for (built-in, sin CommonModule)
 
 ### Usado por:
+
 - Admin Panel (`/admin/conventions-guide`)
 - Git Hooks (referenciado en error messages)
 - Onboarding de developers
@@ -219,6 +228,7 @@ Para agregar una nueva regla, edita `conventions-viewer.service.ts`:
 ## 💡 Notas de Desarrollo
 
 ### Performance
+
 - ✅ ChangeDetectionStrategy.OnPush en ambos componentes
 - ✅ Signals en lugar de RxJS (más ligero)
 - ✅ Standalone implícito (Angular 22, sin boilerplate)
@@ -226,7 +236,9 @@ Para agregar una nueva regla, edita `conventions-viewer.service.ts`:
 - ✅ Ningún subscriptions sin unsubscribe (OnDestroy no necesario)
 
 ### Testing
+
 Para agregar tests, crear:
+
 ```
 conventions-viewer.spec.ts
 components/convention-card/convention-card.spec.ts
@@ -234,6 +246,7 @@ conventions-viewer.service.spec.ts
 ```
 
 ### Future Enhancements
+
 - [ ] Export convenciones a PDF
 - [ ] Marcar favoritas
 - [ ] Comparación de severidades
@@ -244,15 +257,15 @@ conventions-viewer.service.spec.ts
 
 ## 🐛 Troubleshooting
 
-| Problema | Solución |
-|----------|----------|
-| No carga datos | Verificar ConventionsService en providers |
-| Filtros no funcionan | Revisar signal updates en updateFiltered() |
-| Código no se copia | Verificar navigator.clipboard en navegador |
-| Estilos rotos | Verificar SCSS imports en conventions-viewer.scss |
+| Problema             | Solución                                          |
+| -------------------- | ------------------------------------------------- |
+| No carga datos       | Verificar ConventionsService en providers         |
+| Filtros no funcionan | Revisar signal updates en updateFiltered()        |
+| Código no se copia   | Verificar navigator.clipboard en navegador        |
+| Estilos rotos        | Verificar SCSS imports en conventions-viewer.scss |
 
 ---
 
-**Última actualización:** 2026-07-28  
-**Versión:** 1.1 — Angular 22 signals, sin .component suffix, stricto TypeScript  
+**Última actualización:** 2026-07-28
+**Versión:** 1.1 — Angular 22 signals, sin .component suffix, stricto TypeScript
 **Autor:** LuxuryApp Tech Team

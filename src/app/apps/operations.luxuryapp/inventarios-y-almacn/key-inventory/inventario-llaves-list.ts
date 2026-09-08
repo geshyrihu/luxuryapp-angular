@@ -188,7 +188,7 @@ ${this.htmlPrintS.getStandardCss()}
     <table class="data-table">
       <thead>
         <tr>
-          <th>Descripción</th>
+          <th>DESCRIPCIÓN</th>
           <th>Marca</th>
           <th style="width: 80px;">Número</th>
           <th style="width: 80px;">Cant.</th>

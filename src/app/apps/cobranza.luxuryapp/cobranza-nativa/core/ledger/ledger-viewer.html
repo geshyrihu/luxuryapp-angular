@@ -69,7 +69,7 @@
       <tr>
         <th class="w-8rem text-center">Fecha</th>
         <th class="w-10rem text-center">Tipo de Evento</th>
-        <th>Descripción</th>
+        <th>DESCRIPCIÓN</th>
         <th class="w-8rem text-right">Débito</th>
         <th class="w-8rem text-right">Crédito</th>
         <th class="w-7rem text-500 text-xs">Creado por</th>
@@ -135,8 +135,8 @@
         <h3>{{ eventTypeLabel(entry.eventType) }}</h3>
         <p>{{ entry.description }}</p>
         <p>
-          {{ entry.effectiveDate | apiDate:"dd/MM/yyyy" }} ·
-          {{ entry.createdBy }}
+          {{ entry.effectiveDate | apiDate:"dd/MM/yyyy" }} · {{ entry.createdBy
+          }}
         </p>
         <div end class="pr-3 text-right">
           @if (entry.debitAmount > 0) {

@@ -22,7 +22,7 @@
   <ng-template #header>
     <tr>
       <th class="table-col-7 text-small" pSortableColumn="descripcion">
-        DESCRIPCIóN
+        DESCRIPCIÓN
         <p-sorticon field="descripcion" />
       </th>
 
@@ -66,7 +66,10 @@
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon icon="material-symbols-light:straighten" class="text-xl text-primary" />
+        <app-icon
+          icon="material-symbols-light:straighten"
+          class="text-xl text-primary"
+        />
       </div>
       <div>
         <p class="mt-0 mb-0">{{ item.descripcion }}</p>

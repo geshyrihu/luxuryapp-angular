@@ -5,7 +5,12 @@
       <h2 class="m-0">{{ applicationRoleName() }}</h2>
       <small class="text-500">{{ departamentLabel() }}</small>
     </div>
-    <il-button (clicked)="close()" label="Cerrar" variant="outline" size="small" />
+    <il-button
+      (clicked)="close()"
+      label="Cerrar"
+      variant="outline"
+      size="small"
+    />
   </header>
 
   <div class="flex gap-3 border-bottom-1 surface-border">
@@ -17,7 +22,7 @@
       [class.text-500]="activeTab() !== 'description'"
       (click)="activeTab.set('description')"
     >
-      Descripción del puesto
+      DESCRIPCIÓN del puesto
     </button>
     <button
       type="button"
@@ -61,7 +66,7 @@
       />
     </div>
     } @else {
-    <p class="p-3 text-500">Este puesto no tiene descripción registrada.</p>
+    <p class="p-3 text-500">Este puesto no tiene DESCRIPCIÓN registrada.</p>
     }
   </lx-card>
   } @else {
@@ -73,7 +78,7 @@
         <div class="flex flex-column gap-1">
           <div class="flex justify-content-between">
             <span class="text-500">Turno</span>
-            <span>            {{ g.turno }}</span>
+            <span> {{ g.turno }}</span>
           </div>
           <div class="flex justify-content-between">
             <span class="text-500">Sueldo base</span>
@@ -85,7 +90,9 @@
           </div>
           <div class="flex justify-content-between">
             <span class="text-500">Prestaciones</span>
-            <span class="white-space-pre-line text-right">{{ g.benefits }}</span>
+            <span class="white-space-pre-line text-right"
+              >{{ g.benefits }}</span
+            >
           </div>
           <div class="flex justify-content-between">
             <span class="text-500">Estado</span>
@@ -104,15 +111,17 @@
         @if (hours(); as h) {
         <p class="mb-2"><strong>Turno:</strong> {{ h.tipoJornadaName }}</p>
         @if (h.observaciones) {
-          <p class="mb-2"><strong>Observaciones:</strong> {{ h.observaciones }}</p>
+        <p class="mb-2">
+          <strong>Observaciones:</strong> {{ h.observaciones }}
+        </p>
         }
         <div class="flex flex-column gap-1">
           @for (dia of dias; track dia.n) {
           <div class="flex justify-content-between">
             <span class="font-semibold">{{ dia.n }}</span>
-            @let entry = h.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaEntrada ?? null;
-            @let exit = h.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaSalida ?? null;
-            @if (entry && exit) {
+            @let entry = h.diasDeTrabajo?.find(d => d.diaSemana ===
+            dia.dw)?.horaEntrada ?? null; @let exit = h.diasDeTrabajo?.find(d =>
+            d.diaSemana === dia.dw)?.horaSalida ?? null; @if (entry && exit) {
             <span>{{ entry }} - {{ exit }}</span>
             } @else {
             <span class="text-400 font-italic">Descanso</span>

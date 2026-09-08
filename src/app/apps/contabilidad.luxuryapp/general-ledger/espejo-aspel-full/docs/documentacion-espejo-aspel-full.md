@@ -27,6 +27,7 @@ El módulo **Espejo Aspel Full** visualiza el plan de cuentas completo de Aspel 
 ## 🏗️ Arquitectura del Módulo
 
 ### Backend (.NET 10)
+
 ```
 api/
 ├── LuxuryApp.Application/
@@ -41,6 +42,7 @@ api/
 ```
 
 ### Frontend (Angular 22)
+
 ```
 src/app/
 └── apps/
@@ -67,6 +69,7 @@ src/app/
 ## 🔌 Servicios HTTP Públicos
 
 ### Espejo Aspel Full API
+
 ```http
 GET /api/espejo-aspel-full?customerId={guid}&year={int}&empresa={string}
 
@@ -80,6 +83,7 @@ Parámetros:
 ```
 
 ### Request/Response
+
 ```typescript
 // Request: query parameters en la URL
 GET /api/espejo-aspel-full?customerId=123e4567-e89b-12d3-a456-426614174000&year=2026&empresa=Contabilidad
@@ -106,9 +110,9 @@ GET /api/espejo-aspel-full?customerId=123e4567-e89b-12d3-a456-426614174000&year=
 
 ## 📋 Listado Completo de Endpoints
 
-| Método | Ruta | Descripción | Auth | Request | Response | Grupo |
-|--------|------|-------------|------|---------|----------|-------|
-| GET | `/api/espejo-aspel-full` | Obtener espejo completo del plan de cuentas | RequireAuthorization + Roles: Administrador,SuperUsuario,Contador,AsistenteFiscal,Asistente | customerId, year, empresa | ApiResponseDTO<EspejoAspelFullResponseDTO> | Contabilidad |
+| Método | Ruta                     | DESCRIPCIÓN                                 | Auth                                                                                        | Request                   | Response                                   | Grupo        |
+| ------ | ------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------ | ------------ |
+| GET    | `/api/espejo-aspel-full` | Obtener espejo completo del plan de cuentas | RequireAuthorization + Roles: Administrador,SuperUsuario,Contador,AsistenteFiscal,Asistente | customerId, year, empresa | ApiResponseDTO<EspejoAspelFullResponseDTO> | Contabilidad |
 
 ---
 
@@ -137,7 +141,7 @@ sequenceDiagram
         3. Nivel2 (prefijo XXX-YYY-000)
         4. Nivel3 (prefijo XXX-YYY-ZZZ)
         5. Nivel4 (prefijo XXX-YYY-ZZZ-WWW)
-        
+
         Aplicación lógica de agregación:
         - SaldoInicial: hijos → padre
         - TotalesCargo/Abono/Presupuesto: hijos → padre (12 meses)
@@ -155,28 +159,31 @@ sequenceDiagram
 ## 🧩 Componentes Principales
 
 ### 1. EspejoAspelFullComponent
+
 - **Ubicación**: `client/angular/src/app/apps/contabilidad.luxuryapp/general-ledger/espejo-aspel-full/espejo-aspel-full.ts`
 - **Propósito**: Componente principal standalone para visualización del espejo
 - **Tecnologías**: Signals, Angular 22 OnPush, PrimeNG p-table, virtual scrolling
 
 #### Características Clave:
+
 ```typescript
 // Estado reactivo via Signals
-loading = signal(false)
-rawData = signal<IEspejoAspelFullResponseDTO | null>(null)
+loading = signal(false);
+rawData = signal<IEspejoAspelFullResponseDTO | null>(null);
 // ... más signals
 
 // Datos derivados via Computed
 filasPorGrupo = computed(() => {
   // aplanar jerarquía a Map<grupoCodigo, IEspejoFilaTabla[]>
-})
+});
 
 filasFiltradasPorGrupo = computed(() => {
   // aplicar filtros: nivel visible, búsqueda, ocultar sin datos
-})
+});
 ```
 
 ### 2. ReportFilterService
+
 - **Ubicación**: `client/angular/src/app/apps/contabilidad.luxuryapp/general-ledger/espejo-aspel-full/financial-report-filter.service.ts`
 - **Propósito**: Estado global de filtros compartido por componentes de contabilidad
 - **Signals**: `year`, `mesIdx`, `currentReportName`, `currentReportContext`
@@ -186,6 +193,7 @@ filasFiltradasPorGrupo = computed(() => {
 ## 🔌 Servicios HTTP Detallados
 
 ### 1. EspejoAspelFullService (Backend)
+
 ```csharp
 // Servicio principal que orquesta la lógica de negocio
 public class EspejoAspelFullService(
@@ -198,6 +206,7 @@ public async Task<ApiResponseDTO<EspejoAspelFullResponseDTO>> GetEspejoAsync(
 ```
 
 ### 2. EspejoAspelFullComponent (Frontend)
+
 ```typescript
 // Inyección de dependencias
 private readonly http = inject(HttpClient);
@@ -217,6 +226,7 @@ loadAnalysis(): void {
 ## 🏗️ Procesamiento Jerárquico del Backend
 
 ### Esquema de Niveles NumCta
+
 ```
 Formato de cuenta: XXX-YYYY-ZZZ-WWW
                 │ │ │ └─ Nivel 4: W ≠ 0
@@ -226,6 +236,7 @@ Formato de cuenta: XXX-YYYY-ZZZ-WWW
 ```
 
 ### Lógica de Clasificación (C#)
+
 ```csharp
 private static bool EsNivel1(string numCta) {
   // segundo y tercer segmento son ceros
@@ -241,6 +252,7 @@ private static bool EsNivel2(string numCta) {
 ```
 
 ### Agregación de Datos
+
 ```typescript
 // Ejemplo de estructura de salida
 {
@@ -277,6 +289,7 @@ private static bool EsNivel2(string numCta) {
 ## 🎨 Diseño UI/UX
 
 ### 1. Barras Superiores Fijas
+
 ```html
 <!-- Empresa, Ejercicio (controles de year), Navegación rápida -->
 <div class="rf-card border-bottom-1 surface-border">
@@ -288,6 +301,7 @@ private static bool EsNivel2(string numCta) {
 ```
 
 ### 2. Tabla de Datos (PrimeNG)
+
 ```typescript
 <p-table
   [value]="filasDe(grupo.codigo)"
@@ -298,19 +312,22 @@ private static bool EsNivel2(string numCta) {
 ```
 
 #### Columnas (14 total):
+
 1. No. Cuenta
-2. Descripción
+2. DESCRIPCIÓN
 3. Saldo Inicial
-4-15. Meses (Ene-Dic)
-16. Resultado
+   4-15. Meses (Ene-Dic)
+4. Resultado
 
 #### Color Coding:
+
 - **Cargo**: Azul (#1d4ed8)
 - **Abono**: Rojo (#dc2626)
 - **Presupuesto** (solo grupo 6=GASTOS): Verde (#16a34a)
 - **Resultado**: Verde ≥0, Rojo <0
 
 ### 3. Filtros Reactivos
+
 ```typescript
 // 1. Filtro de nivel visible por grupo
 nivelVisiblePorGrupo = signal<Record<string, number>>({});
@@ -323,6 +340,7 @@ ocultarSinDatos = signal(false);
 ```
 
 ### 4. Heurística de Detección de Niveles
+
 ```typescript
 getNivelesDisponibles(codigo: string): number[] {
   const filas = this.filasPorGrupo().get(codigo) ?? [];
@@ -350,19 +368,25 @@ getNivelesDisponibles(codigo: string): number[] {
 ## 🔧 Configuraciones y Adaptaciones
 
 ### PrimeNG Standalone Compatibility
+
 ```html
 <!-- CORRECTO (convención del repositorio) -->
 <ng-template #header>
-  <tr><th>Cuenta</th></tr>
+  <tr>
+    <th>Cuenta</th>
+  </tr>
 </ng-template>
 
 <!-- INCORRECTO (causa UI en blanco) -->
 <ng-template pTemplate="header">
-  <tr><th>Cuenta</th></tr>
+  <tr>
+    <th>Cuenta</th>
+  </tr>
 </ng-template>
 ```
 
 ### Formato de Monedas
+
 ```typescript
 formatMoney(val: number): string {
   if (!val) return "-";
@@ -375,6 +399,7 @@ formatMoney(val: number): string {
 ```
 
 ### Formato de Fechas
+
 ```typescript
 // Ejemplo: 14-jun-26 (estándar de plataforma)
 ```
@@ -383,19 +408,20 @@ formatMoney(val: number): string {
 
 ## 📈 Métricas y Estadísticas
 
-| Métrica | Calculada en | Descripción |
-|---------|-------------|-------------|
-| Total de Grupos | `analysis()?.groups?.length` | Count de clases contables (ACTIVO, PASIVO, etc.) |
-| Cuentas Nivel 1 | `sum(grupos[].cuentasNivel1.length)` | Cuentas raíz por grupo |
-| Cuentas Nivel 4 | `sum(n4.detalle.length)` | Cuentas hoja más detalladas |
-| Año actual | `filterS.year()` | Año fiscal seleccionado |
-| Empresa seleccionada | `empresaSeleccionada()` | "Contabilidad" o "Cobranza" |
+| Métrica              | Calculada en                         | DESCRIPCIÓN                                      |
+| -------------------- | ------------------------------------ | ------------------------------------------------ |
+| Total de Grupos      | `analysis()?.groups?.length`         | Count de clases contables (ACTIVO, PASIVO, etc.) |
+| Cuentas Nivel 1      | `sum(grupos[].cuentasNivel1.length)` | Cuentas raíz por grupo                           |
+| Cuentas Nivel 4      | `sum(n4.detalle.length)`             | Cuentas hoja más detalladas                      |
+| Año actual           | `filterS.year()`                     | Año fiscal seleccionado                          |
+| Empresa seleccionada | `empresaSeleccionada()`              | "Contabilidad" o "Cobranza"                      |
 
 ---
 
 ## 🚀 Consideraciones de Rendimiento
 
 ### Optimizaciones Clave
+
 1. **Virtual Scrolling**: `scrollHeight: '65vh'` limita la altura de scroll
 2. **OnPush Change Detection**: `changeDetection: ChangeDetectionStrategy.OnPush`
 3. **Computed Signals**: Derivan datos una sola vez, se actualizan reactivamente
@@ -403,20 +429,22 @@ formatMoney(val: number): string {
 5. **Tratamiento de Errores**: Fallback graceful con alerta UI en computed signals
 
 ### Handlers Críticos
+
 - `effect(() => {
-    const custId = this.customerIdS.customerId();
-    const yr = this.filterS.year();
-    const emp = this.empresaSeleccionada();
-    if (custId && yr && emp) {
-      this.cargarDatos(custId, yr, emp);
-    }
-  });`
+  const custId = this.customerIdS.customerId();
+  const yr = this.filterS.year();
+  const emp = this.empresaSeleccionada();
+  if (custId && yr && emp) {
+    this.cargarDatos(custId, yr, emp);
+  }
+});`
 
 ---
 
 ## 🛠️ Pasos de Implementación
 
 ### 1. Ejecutar la Skill de Análisis
+
 ```bash
 # Con agente CLI (Claude Code, Cursor, etc.)
 "Analiza el módulo de Espejo Aspel Full siguiendo skill .kilo/skills/flow-analyzer/skill.md"
@@ -426,6 +454,7 @@ ajv validate -s .kilo/skills/flow-analyzer/output-schema.json -d src/assets/flow
 ```
 
 ### 2. Integrar JSON Validado
+
 ```typescript
 // En module-guide.component.ts
 loadAnalysis(): void {
@@ -438,6 +467,7 @@ loadAnalysis(): void {
 ```
 
 ### 3. Agregar Ruta en App Routes
+
 ```typescript
 {
   path: 'guide/espejo-aspel-full',
@@ -446,6 +476,7 @@ loadAnalysis(): void {
 ```
 
 ### 4. Configurar Assets en angular.json
+
 ```json
 "assets": [
   "src/favicon.ico",

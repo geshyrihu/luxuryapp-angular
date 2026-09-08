@@ -22,6 +22,7 @@ import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -29,6 +30,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { GastoFijoPresupuesto } from "src/app/apps/contabilidad.luxuryapp/budgeting/expense-catalog-budget/gasto-fijo-presupuesto";
 import { GastoFijoServicios } from "src/app/apps/contabilidad.luxuryapp/budgeting/expense-catalog-detail/gasto-fijo-servicios";
+import { GastoFijoDetalleEdit } from "src/app/apps/contabilidad.luxuryapp/budgeting/expense-catalog-detail/gasto-fijo-detalle-edit";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -66,6 +68,7 @@ interface ICatalogoGastoFijoForm {
     CustomInputSelectSignal,
     WebButtonLabel,
     WebButtonLabelSave,
+    WebButtonIconItem,
     LxMessage,
   ],
 })
@@ -273,13 +276,38 @@ export class CatalogoGastoFijoForm implements OnInit {
       });
   }
 
+  onEditDetalle(item: any) {
+    this.dialogHandlerS
+      .openDialog(
+        GastoFijoDetalleEdit,
+        { id: item.id },
+        "Editar Producto o Servicio",
+        this.dialogHandlerS.sizeMd,
+      )
+      .then(() => {
+        if (this.id()) {
+          this.onLoadData();
+        }
+      });
+  }
+
   // Computed property para el total
   total = computed(() => {
     return this.detalles().reduce(
-      (acc, item) => acc + item.cantidad * item.precio,
+      (acc, item) => acc + this.calcularSubtotal(item),
       0,
     );
   });
+
+  calcularSubtotal(item: any): number {
+    const subtotal = (Number(item.cantidad) || 0) * (Number(item.precio) || 0);
+    const descuentoMonto = subtotal * ((Number(item.descuento) || 0) / 100);
+    const base = subtotal - descuentoMonto;
+    const iva = base * ((Number(item.ivaAplicado) || 0) / 100);
+    const retencionIva = base * ((Number(item.retencionIVAPorcentaje) || 0) / 100);
+    const retencionIsr = base * ((Number(item.retencionISRPorcentaje) || 0) / 100);
+    return base + iva - retencionIva - retencionIsr;
+  }
 
   saveProviderId = (item: SelectItemDto) =>
     this.form.patchValue({
@@ -319,6 +347,11 @@ export interface CatalogoGastosFijosDetalleAddOrEditDTO {
   cantidad: number;
   unidadMedidaid: any;
   precio: number;
+  descuento: number;
+  ivaAplicado: number;
+  retencionIVAPorcentaje: number;
+  retencionISRPorcentaje: number;
   // Campos adicionales para visualización
+  productName?: string;
   productoDescription?: string;
 }

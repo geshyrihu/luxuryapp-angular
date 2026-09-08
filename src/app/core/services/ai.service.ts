@@ -166,7 +166,7 @@ export class AiService {
     );
 
     if (response === false) {
-      throw new Error("Error al generar descripción del puesto.");
+      throw new Error("Error al generar DESCRIPCIÓN del puesto.");
     }
 
     return response;
@@ -185,7 +185,7 @@ export class AiService {
     );
 
     if (response === false) {
-      throw new Error("Error al analizar la descripción.");
+      throw new Error("Error al analizar la DESCRIPCIÓN.");
     }
 
     return response;

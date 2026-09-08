@@ -3,6 +3,7 @@
 ## 🎯 Resumen de Documentación Entregada
 
 Se ha completado un **análisis exhaustivo y profundo** del módulo "Presupuesto Propuesta" con toda la información necesaria para:
+
 - ✅ Entender completamente cómo funciona el sistema
 - ✅ Identificar todos los puntos de entrada de código
 - ✅ Dirigir cambios y mejoras a un agente externo
@@ -14,9 +15,11 @@ Se ha completado un **análisis exhaustivo y profundo** del módulo "Presupuesto
 ## 📄 DOCUMENTOS CREADOS
 
 ### 1. **ANALISIS_EXHAUSTIVO.md** (Documento Principal)
+
 El análisis completo y detallado del módulo contiene:
 
 **Secciones:**
+
 1. 🎯 **RESUMEN EJECUTIVO** - Propósito y características
 2. 📁 **ESTRUCTURA DE CARPETAS** - Organización frontend/backend
 3. 🔄 **FLUJO GENERAL DE DATOS** - 3 flujos principales (carga, edición, eliminación)
@@ -37,9 +40,11 @@ El análisis completo y detallado del módulo contiene:
 ---
 
 ### 2. **BITACORA_CAMBIOS.md** (Para Dirigir Agente Externo)
+
 Sistema de instrucciones para dirigir cambios al agente externo contiene:
 
 **Secciones:**
+
 1. 📌 **PLANTILLA ESTÁNDAR** - Formato de instrucción (copiar y pegar)
 2. 📊 **RESUMEN** - Tabla con # | Categoría | Título | Prioridad | Estado
 3. 📂 **CATEGORÍAS** - 10 tipos de cambios (Frontend, Backend, API, BD, Validación, UI/UX, etc.)
@@ -52,17 +57,20 @@ Sistema de instrucciones para dirigir cambios al agente externo contiene:
    - Agregar modal/diálogo
 
 **Cómo usarla:**
+
 1. Copias la PLANTILLA
-2. Rellenas Descripción, Archivos Afectados, Detalles, Criterios
+2. Rellenas DESCRIPCIÓN, Archivos Afectados, Detalles, Criterios
 3. Compartir con agente externo (junto con ANALISIS_EXHAUSTIVO.md)
 4. Agente ejecuta y reporta
 
 ---
 
 ### 3. **INDEX.md** (Índice y Guía de Navegación)
+
 Guía completa para encontrar información y navegar los documentos:
 
 **Secciones:**
+
 1. 🎯 **START HERE** - Por dónde empezar
 2. 📚 **DOCUMENTOS DISPONIBLES** - Resumen de qué hay en cada archivo
 3. 🔍 **BÚSQUEDA RÁPIDA POR TEMA** - Tabla: "Necesito entender X → mira sección Y"
@@ -80,6 +88,7 @@ Guía completa para encontrar información y navegar los documentos:
 ---
 
 ### 4. **README.md** (Este Archivo)
+
 Resumen de la documentación entregada y cómo usar todo.
 
 ---
@@ -87,16 +96,18 @@ Resumen de la documentación entregada y cómo usar todo.
 ## 🚀 CÓMO USAR ESTA DOCUMENTACIÓN
 
 ### Caso 1: Necesito Entender el Módulo
+
 1. Lee **INDEX.md** → sección "START HERE" (5 min)
 2. Lee **ANALISIS_EXHAUSTIVO.md** → RESUMEN EJECUTIVO (5 min)
 3. Lee resto de ANALISIS_EXHAUSTIVO.md según tu rol (30-60 min)
 
 ### Caso 2: Necesito Hacer un Cambio / Mejora
+
 1. Lee **ANALISIS_EXHAUSTIVO.md** completamente
 2. Abre **BITACORA_CAMBIOS.md**
 3. Copia PLANTILLA DE INSTRUCCIÓN
 4. Rellena los campos:
-   - Descripción (qué, por qué)
+   - DESCRIPCIÓN (qué, por qué)
    - Archivos Afectados (rutas específicas)
    - Detalles Técnicos (código, reglas)
    - Criterios de Éxito (qué debe cumplirse)
@@ -104,6 +115,7 @@ Resumen de la documentación entregada y cómo usar todo.
 6. Compartir instrucción + ANALISIS_EXHAUSTIVO.md al agente
 
 ### Caso 3: Agente Externo va a Trabajar
+
 1. Comparte **ANALISIS_EXHAUSTIVO.md** al agente
 2. Comparte **BITACORA_CAMBIOS.md** con su instrucción específica
 3. Opcionalmente: Comparte **INDEX.md** como guía de navegación
@@ -112,6 +124,7 @@ Resumen de la documentación entregada y cómo usar todo.
 6. Actualizas BITACORA_CAMBIOS.md: Estado = "✅ COMPLETADO"
 
 ### Caso 4: Consultar Específicamente Algo
+
 - Usa **INDEX.md** → **BÚSQUEDA RÁPIDA POR TEMA**
 - Ejemplo: "Necesito entender los Endpoints API"
 - → "Mira ANALISIS_EXHAUSTIVO.md sección 🌐 ENDPOINTS API"
@@ -120,25 +133,27 @@ Resumen de la documentación entregada y cómo usar todo.
 
 ## 📊 QSÍNTESIS DE CONTENIDO
 
-| Documento | Líneas | Secciones | Propósito | Audiencia |
-|-----------|--------|-----------|-----------|-----------|
-| ANALISIS_EXHAUSTIVO.md | ~1,100 | 14 | Análisis completo | Todos |
-| BITACORA_CAMBIOS.md | ~250 | 10 | Dirigir cambios | PM + Agente |
-| INDEX.md | ~400 | 12 | Navegar docs | Todos |
-| README.md | ~300 | 7 | Este resumen | Todos |
-| **TOTAL** | ~2,050 | — | — | — |
+| Documento              | Líneas | Secciones | Propósito         | Audiencia   |
+| ---------------------- | ------ | --------- | ----------------- | ----------- |
+| ANALISIS_EXHAUSTIVO.md | ~1,100 | 14        | Análisis completo | Todos       |
+| BITACORA_CAMBIOS.md    | ~250   | 10        | Dirigir cambios   | PM + Agente |
+| INDEX.md               | ~400   | 12        | Navegar docs      | Todos       |
+| README.md              | ~300   | 7         | Este resumen      | Todos       |
+| **TOTAL**              | ~2,050 | —         | —                 | —           |
 
 ---
 
 ## 🎯 CONTENIDO CLAVE ABARCADO
 
 ✅ **Flujos de Datos:**
+
 - Carga inicial propuesta
 - Edición de montos
 - Eliminación de partidas
 - Synchronización SignalR
 
 ✅ **Lógica de Negocio:**
+
 - Mapeo de años (fiscalYear vs baseBudgetYear vs targetProposalYear)
 - Sincronización Aspel automática
 - Cálculos de promedios, diferencias, porcentajes
@@ -146,23 +161,27 @@ Resumen de la documentación entregada y cómo usar todo.
 - Regla de actividad para eliminar
 
 ✅ **Componentes:**
+
 - Componente principal presupuesto-propuesta.ts (1523 líneas)
 - 10 modales/diálogos (historial, soporte, auditoría, etc.)
 - Servicio de exportación Excel
 
 ✅ **Backend:**
+
 - BudgetProposalService.cs (1016 líneas)
 - 10 endpoints REST
 - 15 DTOs
 - Validaciones en Backend + Frontend
 
 ✅ **Integraciones:**
+
 - Aspel Quotation Service (presupuestos y gastos)
 - SignalR (tiempo real)
 - File Storage (PDFs)
 - Excel Export
 
 ✅ **Casos de Uso Reales:**
+
 - Crear propuesta año 2027 desde cero
 - Múltiples usuarios editando simultáneamente
 - Intentar eliminar con/sin actividad
@@ -176,6 +195,7 @@ Resumen de la documentación entregada y cómo usar todo.
 Documentadas en **ANALISIS_EXHAUSTIVO.md**:
 
 ❌ **NO MODIFICAR SIN AUTORIZACIÓN:**
+
 - BudgetProposalService.GetProposalsAsync() (lógica Aspel)
 - GetLatestMonthlyAmount() (cálculo base)
 - Reglas de eliminación (actividad)
@@ -184,6 +204,7 @@ Documentadas en **ANALISIS_EXHAUSTIVO.md**:
 - Filtrado extraordinarios/proyectos
 
 ✅ **PERMITIDO (Menor Impacto):**
+
 - UI/UX (colores, mensajes)
 - Nuevos campos (si se agregan a DTOs)
 - Nuevos diálogos
@@ -206,11 +227,13 @@ Documentadas en **ANALISIS_EXHAUSTIVO.md**:
 ## 🎓 PRÓXIMOS PASOS
 
 ### Para Entender el Módulo:
+
 1. **Hoy:** Lee ANALISIS_EXHAUSTIVO.md (1-2 horas)
 2. **Mañana:** Explora el código con el análisis como referencia
 3. **Días 3-5:** Haz cambios pequeños usando BITACORA_CAMBIOS.md
 
 ### Para Hacer Cambios:
+
 1. **Identifica** qué quieres cambiar
 2. **Lee** ANALISIS_EXHAUSTIVO.md sección relevante
 3. **Escribe** instrucción en BITACORA_CAMBIOS.md
@@ -222,14 +245,14 @@ Documentadas en **ANALISIS_EXHAUSTIVO.md**:
 
 ## 📞 SOPORTE
 
-| Pregunta | Busca en |
-|----------|----------|
-| ¿Por dónde empiezo? | INDEX.md → START HERE |
-| ¿Cómo hace X? | ANALISIS_EXHAUSTIVO.md + búsqueda ctrl+F |
+| Pregunta                  | Busca en                                        |
+| ------------------------- | ----------------------------------------------- |
+| ¿Por dónde empiezo?       | INDEX.md → START HERE                           |
+| ¿Cómo hace X?             | ANALISIS_EXHAUSTIVO.md + búsqueda ctrl+F        |
 | ¿Dónde está la función Y? | ANALISIS_EXHAUSTIVO.md → ESTRUCTURA DE CARPETAS |
-| ¿Cuál es la regla de Z? | ANALISIS_EXHAUSTIVO.md → CONDICIONANTES |
-| ¿Cómo agrego un cambio? | BITACORA_CAMBIOS.md → PLANTILLA |
-| ¿Ejemplo de cambio? | BITACORA_CAMBIOS.md → EJEMPLO COMPLETO |
+| ¿Cuál es la regla de Z?   | ANALISIS_EXHAUSTIVO.md → CONDICIONANTES         |
+| ¿Cómo agrego un cambio?   | BITACORA_CAMBIOS.md → PLANTILLA                 |
+| ¿Ejemplo de cambio?       | BITACORA_CAMBIOS.md → EJEMPLO COMPLETO          |
 
 ---
 
@@ -286,8 +309,8 @@ Tienes ahora **documentación profesional completa** para:
 
 ---
 
-**Versión:** 1.0  
-**Fecha:** 2026-09-03  
-**Estado:** ✅ COMPLETO Y LISTO PARA USAR  
-**Creado por:** Claude Code  
+**Versión:** 1.0
+**Fecha:** 2026-09-03
+**Estado:** ✅ COMPLETO Y LISTO PARA USAR
+**Creado por:** Claude Code
 **Mantenido en:** `/doc/` (está aquí)

@@ -444,7 +444,7 @@
       <ng-template #header>
         <tr>
           <th>Padecimiento / Alergia</th>
-          <th>Observaciones y Descripción</th>
+          <th>Observaciones y DESCRIPCIÓN</th>
         </tr>
       </ng-template>
       <ng-template #body let-item>
@@ -1229,8 +1229,8 @@
                 >{{ item.sanction.sanctionTypeName }}</span
               >
               <small class="text-500"
-                >Desde: {{ item.sanction.effectiveStartDate | apiDate:'dd/MM/yyyy'
-                }}</small
+                >Desde: {{ item.sanction.effectiveStartDate |
+                apiDate:'dd/MM/yyyy' }}</small
               >
             </div>
             } @else {

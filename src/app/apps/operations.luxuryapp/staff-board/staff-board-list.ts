@@ -1,4 +1,3 @@
-import { OperationRecruitmentEndpoints } from "src/app/core/constants/endpoints/operation-recruitment.endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,9 +13,15 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { IncidentFormComponent } from "src/app/apps/operations.luxuryapp/incidencias-sanciones/incident/incident-form";
+import { SolicitudBajaForm } from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
+import { SolicitudModificacionSalarioForm } from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
+import { SolicitudVacanteForm } from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
+import { IWorkPosition } from "src/app/apps/operations.luxuryapp/work-position/interfaces/work-position.model";
+import { JobDescriptionForm } from "src/app/apps/operations.luxuryapp/work-position/job-description-form";
+import { WorkPositionForm } from "src/app/apps/operations.luxuryapp/work-position/work-position-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
-import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+import { OperationRecruitmentEndpoints } from "src/app/core/constants/endpoints/operation-recruitment.endpoints";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { Department } from "src/app/core/enums/department.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
@@ -25,12 +30,6 @@ import { globalFilterFields as getGlobalFilterFields } from "src/app/core/helper
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { IWorkPosition } from "src/app/apps/operations.luxuryapp/work-position/interfaces/work-position.model";
-import { JobDescriptionForm } from "src/app/apps/operations.luxuryapp/work-position/job-description-form";
-import { WorkPositionForm } from "src/app/apps/operations.luxuryapp/work-position/work-position-form";
-import { SolicitudBajaForm } from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
-import { SolicitudModificacionSalarioForm } from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
-import { SolicitudVacanteForm } from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
 import { ConfirmService } from "src/app/shared/ui/buttons/shared/confirm.service";
 import {
   AppIcon,
@@ -47,6 +46,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { CardEmployee } from "src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
 import {
   ExcelColumn,
   ExcelExportService,
@@ -54,7 +54,6 @@ import {
 import { WorkSchedulePresentationService } from "src/app/core/services/work-schedule-presentation.service";
 import { CandidateInterviewerQueueService } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
 import { CandidateInterviewerQueueDto } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
-import { CardEmployee } from "src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
 import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-modal/staff-onboarding-checklist-modal";
 
 @Component({
@@ -204,7 +203,10 @@ export class StaffBoardList {
     const customerId = this.customerIdS.customerId();
 
     const positions = await this.apiS.onGetList<IWorkPosition[]>(
-      OperationRecruitmentEndpoints.workPositions.listByCustomer(customerId, this.statusFilter()),
+      OperationRecruitmentEndpoints.workPositions.listByCustomer(
+        customerId,
+        this.statusFilter(),
+      ),
     );
 
     // Normalizar departamentos null a Department.NA para que se agrupen correctamente
@@ -249,9 +251,7 @@ export class StaffBoardList {
 
   onGoToEmployeeFile(item: IWorkPosition): void {
     if (!item.employeeId) return;
-    this.router.navigateByUrl(
-      `/recruitment/employee-files/${item.employeeId}`,
-    );
+    this.router.navigateByUrl(`/recruitment/employee-files/${item.employeeId}`);
   }
 
   async onModalForm(data: { id: string; title: string }): Promise<void> {
@@ -265,7 +265,9 @@ export class StaffBoardList {
   }
 
   async onDelete(id: string): Promise<void> {
-    const res = await this.apiS.onDelete(OperationRecruitmentEndpoints.workPositions.delete(id));
+    const res = await this.apiS.onDelete(
+      OperationRecruitmentEndpoints.workPositions.delete(id),
+    );
     if (res) this.onLoadData();
   }
 
@@ -289,7 +291,7 @@ export class StaffBoardList {
         id: jobDescriptionId,
         applicationRoleName: applicationRoleName,
       },
-      "DESCRIPCIóN de puesto: " + applicationRoleName,
+      "DESCRIPCIÓN de puesto: " + applicationRoleName,
       DialogSize.full,
     );
   }

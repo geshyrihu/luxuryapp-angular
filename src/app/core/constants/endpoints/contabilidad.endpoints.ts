@@ -226,6 +226,7 @@ export const EndpointsContabilidad = {
   },
   CatalogoGastosFijosDetalles: {
     base: "catalogo-gastos-fijos-detalles",
+    getById: (id: string) => `catalogo-gastos-fijos-detalles/${id}`,
     delete: (id: string) => `catalogo-gastos-fijos-detalles/${id}`,
     products: (catalogoGastosFijosId: string) =>
       `catalogo-gastos-fijos-detalles/products/${catalogoGastosFijosId}`,

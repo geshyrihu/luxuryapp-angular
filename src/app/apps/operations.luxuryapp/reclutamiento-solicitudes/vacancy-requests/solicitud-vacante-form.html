@@ -32,11 +32,8 @@
           >
             <span class="font-semibold text-700">Sueldo mensual neto</span>
             <span class="text-primary font-bold text-lg">
-              {{
-                data?.sueldoBase != null
-                  ? (data.sueldoBase | currency: "MXN" : "symbol" : "1.2-2")
-                  : "No definido"
-              }}
+              {{ data?.sueldoBase != null ? (data.sueldoBase | currency: "MXN" :
+              "symbol" : "1.2-2") : "No definido" }}
             </span>
           </div>
         </div>
@@ -71,8 +68,8 @@
           >
             <span class="font-semibold text-700">Ciclo del horario</span>
             <span class="text-primary text-sm line-height-3">
-              {{ data?.duracionCicloSemanas || 1 }}
-              {{ (data?.duracionCicloSemanas || 1) === 1 ? "semana" : "semanas" }}
+              {{ data?.duracionCicloSemanas || 1 }} {{
+              (data?.duracionCicloSemanas || 1) === 1 ? "semana" : "semanas" }}
             </span>
           </div>
         </div>
@@ -91,24 +88,36 @@
     <div class="card-body">
       <div class="grid mb-3">
         <div class="col-12 md:col-4">
-          <div class="surface-100 border-1 surface-border border-round p-3 h-full">
-            <div class="text-500 text-xs font-semibold uppercase">Horas por semana</div>
+          <div
+            class="surface-100 border-1 surface-border border-round p-3 h-full"
+          >
+            <div class="text-500 text-xs font-semibold uppercase">
+              Horas por semana
+            </div>
             <div class="text-primary font-bold text-xl mt-1">
               {{ formatHoursSummary(1) }}
             </div>
           </div>
         </div>
         <div class="col-12 md:col-4">
-          <div class="surface-100 border-1 surface-border border-round p-3 h-full">
-            <div class="text-500 text-xs font-semibold uppercase">Horas por quincena</div>
+          <div
+            class="surface-100 border-1 surface-border border-round p-3 h-full"
+          >
+            <div class="text-500 text-xs font-semibold uppercase">
+              Horas por quincena
+            </div>
             <div class="text-primary font-bold text-xl mt-1">
               {{ formatHoursSummary(2) }}
             </div>
           </div>
         </div>
         <div class="col-12 md:col-4">
-          <div class="surface-100 border-1 surface-border border-round p-3 h-full">
-            <div class="text-500 text-xs font-semibold uppercase">Horas por 4 semanas</div>
+          <div
+            class="surface-100 border-1 surface-border border-round p-3 h-full"
+          >
+            <div class="text-500 text-xs font-semibold uppercase">
+              Horas por 4 semanas
+            </div>
             <div class="text-primary font-bold text-xl mt-1">
               {{ formatHoursSummary(4) }}
             </div>
@@ -120,19 +129,25 @@
       <div class="grid mb-3">
         @if (data?.workPositionScheduleDescription) {
         <div class="col-12 md:col-6">
-          <div class="surface-50 border-1 surface-border border-round p-3 h-full">
-            <div class="font-semibold text-700 mb-2">Descripción del horario</div>
+          <div
+            class="surface-50 border-1 surface-border border-round p-3 h-full"
+          >
+            <div class="font-semibold text-700 mb-2">
+              DESCRIPCIÓN del horario
+            </div>
             <p class="text-600 line-height-3 m-0 white-space-pre-line">
               {{ data?.workPositionScheduleDescription }}
             </p>
           </div>
         </div>
-        }
-
-        @if (scheduleObservations()) {
+        } @if (scheduleObservations()) {
         <div class="col-12 md:col-6">
-          <div class="surface-50 border-1 surface-border border-round p-3 h-full">
-            <div class="font-semibold text-700 mb-2">Observaciones del horario</div>
+          <div
+            class="surface-50 border-1 surface-border border-round p-3 h-full"
+          >
+            <div class="font-semibold text-700 mb-2">
+              Observaciones del horario
+            </div>
             <p class="text-600 line-height-3 m-0 white-space-pre-line">
               {{ scheduleObservations() }}
             </p>

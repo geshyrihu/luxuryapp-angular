@@ -27,7 +27,7 @@
     <tr>
       <th>Imagen</th>
       <th pSortableColumn="producto">
-        Descripción
+        DESCRIPCIÓN
         <p-sorticon field="producto" />
       </th>
       <th pSortableColumn="category">
@@ -139,7 +139,10 @@
         </td>
         <td>
           <div class="flex justify-content-center">
-            <iw-button-item iconClass="material-symbols-light:add" (clicked)="onSubmit(row)" />
+            <iw-button-item
+              iconClass="material-symbols-light:add"
+              (clicked)="onSubmit(row)"
+            />
           </div>
         </td>
       </tr>

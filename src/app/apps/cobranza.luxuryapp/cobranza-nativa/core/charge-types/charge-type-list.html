@@ -21,7 +21,7 @@
       <tr>
         <th class="w-14rem">Nombre</th>
         <th class="w-10rem">Código / Cuenta</th>
-        <th>Descripción</th>
+        <th>DESCRIPCIÓN</th>
         <th class="w-8rem text-center">Origen</th>
         <th class="w-8rem text-center">Opciones</th>
       </tr>
@@ -33,7 +33,7 @@
         <td>
           <span class="font-mono text-sm text-primary">{{ item.code }}</span>
         </td>
-        <td class="text-600">{{ item.description || "Sin descripción" }}</td>
+        <td class="text-600">{{ item.description || "Sin DESCRIPCIÓN" }}</td>
         <td class="text-center">
           <lx-tag
             [value]="originMeta(item.isSystem).label"
@@ -75,7 +75,10 @@
         start
         class="w-2rem h-2rem rounded-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="material-symbols-light:category" class="text-blue-700 text-xl" />
+        <app-icon
+          icon="material-symbols-light:category"
+          class="text-blue-700 text-xl"
+        />
       </div>
       <div class="flex-1 min-w-0">
         <h3>{{ item.name }}</h3>

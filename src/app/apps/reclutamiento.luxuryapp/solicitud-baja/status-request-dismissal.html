@@ -35,7 +35,8 @@
           <div class="flex justify-content-end">
             <iw-button
               iconClass="edit"
-              lxTooltip="Editar" tooltipPosition="bottom"
+              lxTooltip="Editar"
+              tooltipPosition="bottom"
               (clicked)="onModalForm({ id: dataSignal().id, title: 'Editar' })"
             />
             <il-button-confirm
@@ -57,16 +58,21 @@
       <div class="card h-100">
         <h4>Visto Bueno Legal</h4>
         <p>
-          <strong>Estado:</strong> {{ dataSignal().isAuthorizedByLegal ? 'Autorizado' : 'Pendiente' }}
-          @if(dataSignal().isAuthorizedByLegal) {
-             <br>
-             <strong>Fecha:</strong> {{ dataSignal().legalAuthorizationDate }} {{ dataSignal().legalAuthorizationTime }}
-          }
+          <strong>Estado:</strong> {{ dataSignal().isAuthorizedByLegal ?
+          'Autorizado' : 'Pendiente' }} @if(dataSignal().isAuthorizedByLegal) {
+          <br />
+          <strong>Fecha:</strong> {{ dataSignal().legalAuthorizationDate }} {{
+          dataSignal().legalAuthorizationTime }} }
         </p>
-        @if(!dataSignal().isAuthorizedByLegal && aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Legal])) {
-           <div class="mt-2">
-             <il-button-confirm ngbTooltip="Autorizar Legal" iconClass="check" (confirmed)="onAuthorize('Legal')" />
-           </div>
+        @if(!dataSignal().isAuthorizedByLegal &&
+        aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Legal])) {
+        <div class="mt-2">
+          <il-button-confirm
+            ngbTooltip="Autorizar Legal"
+            iconClass="check"
+            (confirmed)="onAuthorize('Legal')"
+          />
+        </div>
         }
       </div>
     </div>
@@ -74,16 +80,22 @@
       <div class="card h-100">
         <h4>Visto Bueno Nóminas</h4>
         <p>
-          <strong>Estado:</strong> {{ dataSignal().isAuthorizedByPayroll ? 'Autorizado' : 'Pendiente' }}
-          @if(dataSignal().isAuthorizedByPayroll) {
-             <br>
-             <strong>Fecha:</strong> {{ dataSignal().payrollAuthorizationDate }} {{ dataSignal().payrollAuthorizationTime }}
-          }
+          <strong>Estado:</strong> {{ dataSignal().isAuthorizedByPayroll ?
+          'Autorizado' : 'Pendiente' }} @if(dataSignal().isAuthorizedByPayroll)
+          {
+          <br />
+          <strong>Fecha:</strong> {{ dataSignal().payrollAuthorizationDate }} {{
+          dataSignal().payrollAuthorizationTime }} }
         </p>
-        @if(!dataSignal().isAuthorizedByPayroll && aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.RecursosHumanos])) {
-           <div class="mt-2">
-             <il-button-confirm ngbTooltip="Autorizar Nóminas" iconClass="check" (confirmed)="onAuthorize('Nominas')" />
-           </div>
+        @if(!dataSignal().isAuthorizedByPayroll &&
+        aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.RecursosHumanos])) {
+        <div class="mt-2">
+          <il-button-confirm
+            ngbTooltip="Autorizar Nóminas"
+            iconClass="check"
+            (confirmed)="onAuthorize('Nominas')"
+          />
+        </div>
         }
       </div>
     </div>
@@ -98,7 +110,7 @@
         <div class="grid align-items-center">
           <div class="col-9">
             <!-- <strong>ID:</strong> {{ item.id }}<br /> -->
-            <strong>Descripción:</strong>
+            <strong>DESCRIPCIÓN:</strong>
             {{ item.description }}
             <br />
             <strong>Descuento:</strong>

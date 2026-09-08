@@ -1,12 +1,12 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   @if (canChangeCustomer) {
-    <custom-input-select-signal
-      [control]="form.controls.customerId"
-      [data]="cb_customer()"
-      label="Cliente:"
-      placeholder="Seleccione el cliente correcto"
-      [horizontal]="false"
-    />
+  <custom-input-select-signal
+    [control]="form.controls.customerId"
+    [data]="cb_customer()"
+    label="Cliente:"
+    placeholder="Seleccione el cliente correcto"
+    [horizontal]="false"
+  />
   }
 
   <custom-input-autocomplete-signal
@@ -20,8 +20,8 @@
 
   <custom-input-textarea-signal
     [control]="form.controls.description"
-    label="Descripción:"
-    placeholder="Descripción:"
+    label="DESCRIPCIÓN:"
+    placeholder="DESCRIPCIÓN:"
     [horizontal]="false"
   />
 

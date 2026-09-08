@@ -38,7 +38,7 @@
         </div>
         <div class="col-12">
           <custom-input-textarea-signal
-            label="Descripción"
+            label="DESCRIPCIÓN"
             [required]="true"
             [control]="form.controls.description"
             [rows]="4"
@@ -72,14 +72,14 @@
     class="flex align-items-center justify-content-between mt-4 pt-3 border-top-1 surface-border"
   >
     <!-- Indicador de estado -->
-    <div class="text-sm" >
+    <div class="text-sm">
       @if (!id()) {
       <span
         >⚠️ Guarda los datos básicos para habilitar adjuntos, testigos y días de
         suspensión.</span
       >
       } @else {
-      <span 
+      <span
         >✅ Incidencia guardada — agrega adjuntos, testigos y días de suspensión
         desde las pestañas.</span
       >
@@ -97,11 +97,7 @@
         type="submit"
       />
       } @if (id()) {
-      <il-button-save
-        label="Finalizar"
-        type="button"
-        (clicked)="onFinish()"
-      />
+      <il-button-save label="Finalizar" type="button" (clicked)="onFinish()" />
       }
     </div>
   </div>

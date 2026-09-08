@@ -1,4 +1,5 @@
 # 📊 ANÁLISIS EXHAUSTIVO: MÓDULO PRESUPUESTO PROPUESTA
+
 **Versión:** 1.0 | **Fecha:** 2026-09-03 | **Estado:** ✅ COMPLETO Y FUNCIONAL
 
 ---
@@ -8,6 +9,7 @@
 El módulo **Presupuesto Propuesta** es un sistema integral de gestión presupuestal que permite a los clientes crear, editar y analizar propuestas de presupuesto para años fiscales futuros. Funciona bajo una arquitectura **frontend-backend desacoplada** con sincronización en **tiempo real via SignalR**.
 
 ### Características Principales
+
 - ✅ Gestión completa CRUD de partidas presupuestarias
 - ✅ Sincronización en tiempo real con múltiples usuarios
 - ✅ Integración automática con datos Aspel (históricos y presupuestarios)
@@ -23,6 +25,7 @@ El módulo **Presupuesto Propuesta** es un sistema integral de gestión presupue
 ## 📁 ESTRUCTURA DE CARPETAS
 
 ### Frontend (Angular)
+
 ```
 presupuesto-propuesta/
 ├── presupuesto-propuesta.ts              # Componente principal (1523 líneas)
@@ -54,6 +57,7 @@ presupuesto-propuesta/
 ```
 
 ### Backend (.NET)
+
 ```
 PresupuestoPropuesta/
 ├── DTOs/ (15 archivos)
@@ -271,6 +275,7 @@ Swal toast: "Eliminado correctamente"
 ## 📋 MODELOS DE DATOS COMPLETOS
 
 ### BudgetProposalDTO
+
 ```csharp
 public record BudgetProposalDTO : GuidIdEntityDTO
 {
@@ -286,6 +291,7 @@ public record BudgetProposalDTO : GuidIdEntityDTO
 ```
 
 ### BudgetProposalItemDTO (Partida)
+
 ```csharp
 public class BudgetProposalItemDTO
 {
@@ -298,30 +304,31 @@ public class BudgetProposalItemDTO
     public string ProviderName { get; set; }       // Proveedor
     public string Comment { get; set; }            // Notas
     public bool EsFilaAgrupadora { get; set; }     // ¿Es subtotal?
-    
+
     // MONTOS CLAVE
     public decimal CurrentAmount { get; set; }     // Base año anterior
     public decimal ProposedAmount { get; set; }    // Propuesta nuevo año
     public decimal Difference { get; set; }        // ProposedAmount - CurrentAmount
     public decimal PercentageIncrease { get; set; } // % cambio
-    
+
     // GASTOS 12 MESES (año base, desde Aspel)
     public decimal GastoEnero { get; set; }
     public decimal GastoFebrero { get; set; }
     // ... (10 más)
     public decimal GastoDiciembre { get; set; }
-    
+
     // PRESUPUESTO 12 MESES (año base)
     public decimal PresupuestoEnero { get; set; }
     // ... (11 más)
     public decimal PresupuestoDiciembre { get; set; }
-    
+
     // ARCHIVOS
     public List<BudgetProposalItemSupportFileDTO> Files { get; set; } = [];
 }
 ```
 
 ### UniformFeeComparisonDTO
+
 ```csharp
 public class UniformFeeComparisonDTO
 {
@@ -334,6 +341,7 @@ public class UniformFeeComparisonDTO
 ```
 
 ### IndivisoFeeComparisonDTO
+
 ```csharp
 public class IndivisoFeeComparisonDTO
 {
@@ -353,16 +361,19 @@ public class IndivisoFeeComparisonDTO
 ## 🌐 ENDPOINTS API DETALLADOS
 
 ### 1. GET Propuesta (Principal)
+
 ```http
 GET /api/budget-proposal?customerId=<guid>&fiscalYear=<int>
 Authorization: Bearer <token>
 ```
 
 **Parámetros:**
+
 - `customerId`: UUID del cliente (de CustomerIdService)
 - `fiscalYear`: Año base (crea propuesta para fiscalYear + 1)
 
 **Lógica Backend:**
+
 1. baseBudgetYear = fiscalYear
 2. targetProposalYear = fiscalYear + 1
 3. Obtiene presupuesto Aspel de baseBudgetYear
@@ -374,6 +385,7 @@ Authorization: Bearer <token>
 9. Obtiene ejecuciones presupuestarias de BD
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -400,6 +412,7 @@ Authorization: Bearer <token>
 ---
 
 ### 2. PUT Actualizar Monto de Partida
+
 ```http
 PUT /api/budget-proposal/{itemId:guid}
 Authorization: Bearer <token>
@@ -412,12 +425,14 @@ Content-Type: application/json
 ```
 
 **Validaciones Backend:**
+
 - ✅ Partida existe
 - ✅ Propuesta existe
 - ✅ Propuesta en estado "Draft"
 - ✅ proposedAmount es número válido
 
 **Acciones:**
+
 1. Crea registro en BudgetProposalItemHistory
 2. Actualiza ProposedAmount
 3. Recalcula TotalAmount de propuesta
@@ -425,6 +440,7 @@ Content-Type: application/json
 5. Emite SignalR (excepto excludedConnectionId)
 
 **Response:**
+
 ```json
 {
   "data": {
@@ -444,26 +460,28 @@ Content-Type: application/json
 ---
 
 ### 3. GET Historial de Cambios
+
 ```http
 GET /api/budget-proposal/history/{itemId:guid}
 Authorization: Bearer <token>
 ```
 
 **Response:**
+
 ```json
 {
   "data": [
     {
       "id": "...",
       "budgetProposalItemId": "...",
-      "oldAmount": 5000.00,
-      "newAmount": 5500.00,
+      "oldAmount": 5000.0,
+      "newAmount": 5500.0,
       "changedByUserName": "Juan Pérez",
       "changedAt": "2026-09-03T14:30:00Z"
     },
     {
-      "oldAmount": 5500.00,
-      "newAmount": 6000.00,
+      "oldAmount": 5500.0,
+      "newAmount": 6000.0,
       "changedByUserName": "María García",
       "changedAt": "2026-09-03T15:45:00Z"
     }
@@ -474,18 +492,21 @@ Authorization: Bearer <token>
 ---
 
 ### 4. GET Cuentas Disponibles
+
 ```http
 GET /api/budget-proposal/available-accounts/{customerId:guid}/{fiscalYear:int}/{proposalId:guid}
 Authorization: Bearer <token>
 ```
 
 **Filtros Aplicados:**
+
 1. Solo cuentas hojas (EsFilaAgrupadora = false)
 2. No repetidas (ya en propuesta)
 3. Rango válido: 600-699 o 6000-6999
 4. No agrupadora principal (última parte ≠ 0)
 
 **Response:**
+
 ```json
 {
   "data": [
@@ -504,6 +525,7 @@ Authorization: Bearer <token>
 ---
 
 ### 5. POST Agregar Cuentas
+
 ```http
 POST /api/budget-proposal/{proposalId:guid}/add-accounts
 Authorization: Bearer <token>
@@ -513,15 +535,18 @@ Content-Type: application/json
 ```
 
 **Validaciones:**
+
 - Propuesta en Draft
 - Cuentas no duplicadas
 - Cuentas existen en Aspel
 
 **Optimización:**
+
 - Usa SQL directo para TotalAmount: `UPDATE ... TotalAmount = TotalAmount + {0}`
 - Detach() propuesta para evitar conflictos EF
 
 **Response:**
+
 ```json
 {
   "data": [
@@ -541,37 +566,41 @@ Content-Type: application/json
 ---
 
 ### 6. DELETE Eliminar Partida
+
 ```http
 DELETE /api/budget-proposal/item/{itemId:guid}
 Authorization: Bearer <token>
 ```
 
 **Validación CRÍTICA:**
+
 ```csharp
 bool hasActivity = false;
 if (accountDetails != null) {
-    hasActivity = accountDetails.EneroMonto != 0 || 
+    hasActivity = accountDetails.EneroMonto != 0 ||
                   accountDetails.EneroPresupuesto != 0 ||
                   // ... todos 12 meses
-                  accountDetails.DiciembreMonto != 0 || 
+                  accountDetails.DiciembreMonto != 0 ||
                   accountDetails.DiciembrePresupuesto != 0;
 }
 
 if (hasActivity || item.CurrentAmount != 0) {
     throw new BusinessException(
         "No se puede eliminar una cuenta que tiene presupuesto o gastos registrados.",
-        "ACCOUNT_HAS_ACTIVITY", 
+        "ACCOUNT_HAS_ACTIVITY",
         400
     );
 }
 ```
 
 **Acciones si OK:**
+
 1. Elimina registros en BudgetProposalItemHistory
 2. Elimina item
 3. proposal.TotalAmount -= item.ProposedAmount
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -583,14 +612,16 @@ if (hasActivity || item.CurrentAmount != 0) {
 ---
 
 ### 7. GET Comparación Cuotas (Fija)
+
 ```http
 GET /api/budget-proposal/{proposalId:guid}/fee-comparison
 Authorization: Bearer <token>
 ```
 
 **Cálculo:**
+
 ```csharp
-var currentTotalMonthlyBudget = 
+var currentTotalMonthlyBudget =
     proposal.Items
         .Where(i => !i.EsFilaAgrupadora)
         .Sum(i => i.CurrentAmount);
@@ -605,14 +636,15 @@ var newMonthlyFee = newTotalMonthlyBudget / propertyCount;
 ```
 
 **Response:**
+
 ```json
 {
   "data": {
-    "currentTotalBudget": 5400000.00,   // Anual
-    "newTotalBudget": 5800000.00,       // Anual
+    "currentTotalBudget": 5400000.0, // Anual
+    "newTotalBudget": 5800000.0, // Anual
     "propertyCount": 120,
-    "currentMonthlyFee": 3750.00,        // por propiedad
-    "newMonthlyFee": 4027.78             // por propiedad
+    "currentMonthlyFee": 3750.0, // por propiedad
+    "newMonthlyFee": 4027.78 // por propiedad
   }
 }
 ```
@@ -620,26 +652,28 @@ var newMonthlyFee = newTotalMonthlyBudget / propertyCount;
 ---
 
 ### 8. GET Comparación Cuotas (Indiviso)
+
 ```http
 GET /api/budget-proposal/{proposalId:guid}/fee-comparison-by-indiviso
 Authorization: Bearer <token>
 ```
 
 **Cálculo:**
+
 ```csharp
-var totalIndivisoPercentage = 
+var totalIndivisoPercentage =
     properties.Sum(p => p.IndivisoPercentage ?? 0m);
 
-var currentMonthlyFeeByIndiviso = 
+var currentMonthlyFeeByIndiviso =
     currentTotalMonthlyBudget / totalIndivisoPercentage;
 
-var newMonthlyFeeByIndiviso = 
+var newMonthlyFeeByIndiviso =
     newTotalMonthlyBudget / totalIndivisoPercentage;
 
 // Por propiedad:
 foreach (var property in properties) {
-    var monthlyFeeShare = 
-        (property.IndivisoPercentage / totalIndivisoPercentage) 
+    var monthlyFeeShare =
+        (property.IndivisoPercentage / totalIndivisoPercentage)
         * newTotalMonthlyBudget;
 }
 ```
@@ -647,6 +681,7 @@ foreach (var property in properties) {
 ---
 
 ### 9. POST Auditoría con IA
+
 ```http
 POST /api/budget-proposal/audit
 Authorization: Bearer <token>
@@ -659,10 +694,12 @@ Content-Type: application/json
 ```
 
 **Backend:**
+
 - Enruta a IAiAssistantService.GenerateBudgetAuditAsync()
 - IA analiza deficits, incrementos anómalos, etc.
 
 **Response:**
+
 ```json
 {
   "data": "# AUDITORÍA PRESUPUESTAL\n\n## Hallazgos Críticos\n..."
@@ -672,6 +709,7 @@ Content-Type: application/json
 ---
 
 ### 10. POST Proyección Financiera
+
 ```http
 POST /api/budget-proposal/forecast
 Authorization: Bearer <token>
@@ -684,6 +722,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "data": "[{\"accountNumber\":\"601-001-001\",\"suggestedAmount\":5175.00}, ...]"
@@ -697,17 +736,20 @@ Content-Type: application/json
 ### A. LÓGICA DE AÑOS (CRÍTICA)
 
 **Lo que entra en API:**
+
 ```
 fiscalYear = 2026
 ```
 
 **Lo que sucede internamente:**
+
 ```
 baseBudgetYear = 2026 (obtener datos de 2026)
 targetProposalYear = 2027 (crear propuesta para 2027)
 ```
 
 **Ejemplo Real:**
+
 - Usuario abre módulo en septiembre 2026
 - Sistema sugiere fiscalYear = 2026 (por defecto, año actual)
 - Backend crea propuesta para 2027
@@ -730,11 +772,11 @@ if (itemsToDelete.Any()) {
     // Restar del total
     var amountToSubtract = itemsToDelete.Sum(i => i.ProposedAmount);
     dbContext.BudgetProposalItem.RemoveRange(itemsToDelete);
-    
+
     // SQL directo (atómico)
     await dbContext.Database.ExecuteSqlRawAsync(
         "UPDATE BudgetProposals SET TotalAmount = TotalAmount - {0} WHERE Id = {1}",
-        amountToSubtract, 
+        amountToSubtract,
         existingProposal.Id
     );
 }
@@ -803,7 +845,7 @@ private static decimal GetLatestMonthlyAmount(
     decimal enero, decimal febrero, ..., decimal diciembre)
 {
     decimal[] meses = { enero, febrero, ..., diciembre };
-    
+
     // Busca desde diciembre hacia atrás
     for (int i = meses.Length - 1; i > 0; i--) {
         if (meses[i] != meses[i - 1]) {
@@ -823,50 +865,53 @@ onProposedAmountChange(item: BudgetProposalItemDTO) {
     const proposedAmount = Number(
         String(item.proposedAmount).replace(/,/g, "")
     );
-    
+
     item.difference = proposedAmount - item.currentAmount;
-    
+
     if (item.currentAmount === 0) {
         item.percentageIncrease = proposedAmount > 0 ? 100 : 0;
     } else {
-        item.percentageIncrease = 
+        item.percentageIncrease =
             ((proposedAmount - item.currentAmount) / item.currentAmount) * 100;
     }
-    
+
     this.recalculateTotals();
 }
 ```
 
 **Edge cases:**
+
 - Si currentAmount = 0 y proposedAmount > 0 → 100%
 - Si currentAmount = 0 y proposedAmount = 0 → 0%
 - Si currentAmount > 0 → fórmula normal
 
 ### E. ALERTAS VISUALES EN TABLA
 
-| Alerta | Condición | Ícono | Dónde |
-|--------|-----------|-------|-------|
-| **Déficit** | proposedAmount < promedio_gasto - $1 | 🚨 | Junto número cuenta |
-| **Incremento Alto** | percentageIncrease > 5% Y currentAmount > 0 | ⚠️ | Junto número cuenta |
-| **Sobregiro Mensual** | gasto_del_mes > presupuesto_del_mes | 💸 | Celda mes (fondo rojo) |
+| Alerta                | Condición                                   | Ícono | Dónde                  |
+| --------------------- | ------------------------------------------- | ----- | ---------------------- |
+| **Déficit**           | proposedAmount < promedio_gasto - $1        | 🚨    | Junto número cuenta    |
+| **Incremento Alto**   | percentageIncrease > 5% Y currentAmount > 0 | ⚠️    | Junto número cuenta    |
+| **Sobregiro Mensual** | gasto_del_mes > presupuesto_del_mes         | 💸    | Celda mes (fondo rojo) |
 
 ### F. FILTROS DE MÓDULO
 
-**Extraordinarios (605-*):**
+**Extraordinarios (605-\*):**
+
 ```typescript
 if (!this.showExtraordinarios) {
-    filteredData = filteredData.filter(
-        p => !p.accountNumber.startsWith("605-")
-    );
+  filteredData = filteredData.filter(
+    (p) => !p.accountNumber.startsWith("605-"),
+  );
 }
 ```
 
-**Proyectos (606-*):**
+**Proyectos (606-\*):**
+
 ```typescript
 if (!this.showProyectos) {
-    filteredData = filteredData.filter(
-        p => !p.accountNumber.startsWith("606-")
-    );
+  filteredData = filteredData.filter(
+    (p) => !p.accountNumber.startsWith("606-"),
+  );
 }
 ```
 
@@ -879,6 +924,7 @@ if (!this.showProyectos) {
 ### Estructura y Formato
 
 **Estilos:**
+
 ```
 Header: #2F5496 (azul marino) con texto blanco, altura 34px
 Cuerpo: Alterno blanco/gris (FF: FFFFFF / FFCCCCCC)
@@ -889,6 +935,7 @@ Porcentaje: 0% (ej. 10%)
 ```
 
 **Columnas (A-S):**
+
 ```
 A: CUENTA                    (ancho 14)
 B: DESCRIPCIÓN              (ancho 36)
@@ -901,11 +948,13 @@ S: % CAMBIO                 (ancho 12)
 ```
 
 **Vistas:**
+
 - Freezepanes: 2 primeras columnas + 1ª fila
 - AutoFilter: A1:S1 activado
 - Zoom: 100%
 
 **Datos de Totales:**
+
 - Fila final con "TOTALES" en columna B
 - Suma de gastos por mes
 - Promedio gasto anual
@@ -919,30 +968,32 @@ S: % CAMBIO                 (ancho 12)
 ### Ciclo de Vida
 
 **Conexión:**
+
 ```typescript
 ngOnInit() {
     this.signalRService.start();
-    
+
     // Suscribirse a eventos
     this.signalRService.budgetProposalItemUpdate$
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((updatedItem) => {
             this.handleBudgetProposalItemUpdate(updatedItem);
         });
-    
+
     // Unirse al grupo de la propuesta
     this.signalRService.joinProposalGroup(
-        this.customerId, 
+        this.customerId,
         this.selectedFiscalYear
     );
 }
 ```
 
 **Desconexión:**
+
 ```typescript
 ngOnDestroy() {
     this.signalRService.leaveProposalGroup(
-        this.customerId, 
+        this.customerId,
         this.selectedFiscalYear
     );
     this.signalRService.stop();
@@ -952,6 +1003,7 @@ ngOnDestroy() {
 ### Eventos Recibidos
 
 **budgetProposalItemUpdate$:**
+
 ```typescript
 // Cuando otro usuario actualiza una partida
 (updatedItem: BudgetProposalItemDTO) => {
@@ -965,17 +1017,17 @@ ngOnDestroy() {
         }
         return items;
     });
-    
+
     // 2. Actualiza originalProposalItems[]
     const originalIndex = this.originalProposalItems.findIndex(...);
     if (originalIndex !== -1) {
         this.originalProposalItems[originalIndex] = updatedItem;
     }
-    
+
     // 3. Reaplica filtros y recalcula
     this.applyFilters();
     this.recalculateTotals();
-    
+
     // 4. Toast al usuario
     this.customToastService.showInfo(
         "Cuenta actualizada!",
@@ -985,19 +1037,20 @@ ngOnDestroy() {
 ```
 
 **projectedExpenseUpdate$:**
+
 ```typescript
 // Cuando se crea/elimina ejecución presupuestaria
 (payload) => {
-    this.projectedExpenseItems.update((currentMap) => {
-        const newMap = new Map(currentMap);
-        if (payload.action === "add") {
-            newMap.set(payload.key, payload.projectedExpenseId);
-        } else if (payload.action === "remove") {
-            newMap.delete(payload.key);
-        }
-        return newMap;
-    });
-}
+  this.projectedExpenseItems.update((currentMap) => {
+    const newMap = new Map(currentMap);
+    if (payload.action === "add") {
+      newMap.set(payload.key, payload.projectedExpenseId);
+    } else if (payload.action === "remove") {
+      newMap.delete(payload.key);
+    }
+    return newMap;
+  });
+};
 ```
 
 ### Envío desde Backend
@@ -1050,16 +1103,19 @@ DELETE /api/budget-proposal-item-support/file/{fileId:guid}
 ### Almacenamiento
 
 **Ruta Física:**
+
 ```
 D:\LuxuryApp\public\customers\{customerId}\presupuesto\{fiscalYear}\
 ```
 
 **Ruta Relativa (en BD):**
+
 ```
 /customers/{customerId}/presupuesto/{fiscalYear}/{fileName_hash}
 ```
 
 **URL Acceso (Frontend):**
+
 ```
 fileReadPathService.GetBudgetSupportFilePath(
     customerId,
@@ -1151,7 +1207,7 @@ Frontend: "Cuenta actualizada!"     Frontend: Tabla refleja
    - Para cada partida en BD:
      - Si existe en Aspel → CurrentAmount = nuevo valor
      - Si NO existe en Aspel → CurrentAmount = 0
-     - Si descripción cambió → actualiza
+     - Si DESCRIPCIÓN cambió → actualiza
    - ProposedAmount se mantiene (el que usuario editó)
 5. **Frontend:**
    - Tabla refleja los nuevos CurrentAmount
@@ -1164,6 +1220,7 @@ Frontend: "Cuenta actualizada!"     Frontend: Tabla refleja
 2. **Cliente:** 150 propiedades
 
 **Cuota Fija:**
+
 - currentTotalBudget = $550,000 (lo que está presupuestado 2026)
 - newTotalBudget = $600,000 (propuesta 2027)
 - currentMonthlyFee = ($550,000 / 12) / 150 = $305.56 por propiedad
@@ -1171,6 +1228,7 @@ Frontend: "Cuenta actualizada!"     Frontend: Tabla refleja
 - **Aumento:** $27.77 por propiedad / mes
 
 **Cuota Indiviso:**
+
 - Suponer: propiedades con indivisos del 0.5% a 2.0%
 - totalIndivisoPercentage = 150%
 - currentMonthlyFeeByIndiviso = $550,000 / 150% = $3,667
@@ -1183,27 +1241,28 @@ Frontend: "Cuenta actualizada!"     Frontend: Tabla refleja
 
 ### Backend
 
-| Punto | Validación | Excepto |
-|-------|-----------|---------|
-| UpdateProposalItem | Draft state | Admin override |
-| DeleteItem | Sin actividad + Draft | Admin override |
-| AddAccounts | Draft state | Admin override |
-| Aspel integration | Success response | Fallback a null |
-| File upload | PDF only | Ninguno (strict) |
+| Punto              | Validación            | Excepto          |
+| ------------------ | --------------------- | ---------------- |
+| UpdateProposalItem | Draft state           | Admin override   |
+| DeleteItem         | Sin actividad + Draft | Admin override   |
+| AddAccounts        | Draft state           | Admin override   |
+| Aspel integration  | Success response      | Fallback a null  |
+| File upload        | PDF only              | Ninguno (strict) |
 
 ### Frontend
 
-| Punto | Validación | Fallback |
-|-------|-----------|----------|
-| Botón eliminar | canDeleteItem() | No se muestra |
-| Inputs editable | Draft state | Deshabilitados |
-| Modal cuentas | No duplicadas | Filtra en lista |
+| Punto           | Validación      | Fallback        |
+| --------------- | --------------- | --------------- |
+| Botón eliminar  | canDeleteItem() | No se muestra   |
+| Inputs editable | Draft state     | Deshabilitados  |
+| Modal cuentas   | No duplicadas   | Filtra en lista |
 
 ---
 
 ## ⚠️ RESTRICCIONES CRÍTICAS
 
 ### NO MODIFICAR SIN AUTORIZACIÓN
+
 ```
 ❌ BudgetProposalService.GetProposalsAsync()
    (lógica Aspel, años, sincronización)
@@ -1225,6 +1284,7 @@ Frontend: "Cuenta actualizada!"     Frontend: Tabla refleja
 ```
 
 ### MODIFICABLE (Menor Impacto)
+
 ```
 ✅ Etiquetas UI (colores, íconos)
 ✅ Mensajes de toast
@@ -1238,14 +1298,14 @@ Frontend: "Cuenta actualizada!"     Frontend: Tabla refleja
 
 ## 📈 MÉTRICA DE COMPLEJIDAD
 
-| Aspecto | Líneas | Complejidad |
-|---------|--------|-------------|
-| BudgetProposalService.cs | 1016 | ALTA |
-| presupuesto-propuesta.ts | 1523 | ALTA |
-| DTOs y Models | ~400 | MEDIA |
-| Endpoints | ~60 | MEDIA |
-| SignalR integration | ~100 | MEDIA |
-| Excel export | ~200 | MEDIA |
+| Aspecto                  | Líneas | Complejidad |
+| ------------------------ | ------ | ----------- |
+| BudgetProposalService.cs | 1016   | ALTA        |
+| presupuesto-propuesta.ts | 1523   | ALTA        |
+| DTOs y Models            | ~400   | MEDIA       |
+| Endpoints                | ~60    | MEDIA       |
+| SignalR integration      | ~100   | MEDIA       |
+| Excel export             | ~200   | MEDIA       |
 
 **Total aproximado:** ~3,300 líneas de código core
 
@@ -1253,6 +1313,6 @@ Frontend: "Cuenta actualizada!"     Frontend: Tabla refleja
 
 **FIN DEL ANÁLISIS EXHAUSTIVO**
 
-| Versión | Fecha | Autor | Estado |
-|---------|-------|-------|--------|
-| 1.0 | 2026-09-03 | Claude Code | ✅ COMPLETO |
+| Versión | Fecha      | Autor       | Estado      |
+| ------- | ---------- | ----------- | ----------- |
+| 1.0     | 2026-09-03 | Claude Code | ✅ COMPLETO |

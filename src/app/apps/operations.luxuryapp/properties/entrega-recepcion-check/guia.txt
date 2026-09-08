@@ -286,28 +286,28 @@ Si quieres, el siguiente paso puede ser:
 🛡️ Alinear todo a responsabilidad legal del administrador
 
 
-			
+
 			ANEXO 1: CARTA ENTREGA - RECEPCIÓN  LEGAL
-			
-	CLIENTE: 		
-			
-	ID	P Q	DESCRIPCIÓN 
-			
-	1.1		EXPEDIENTE LEGAL 
+
+	CLIENTE:
+
+	ID	P Q	DESCRIPCIÓN
+
+	1.1		EXPEDIENTE LEGAL
 	1		Escritura Constitutiva del regimen de propiedad de condominio (Reglamento)
 	2		Constancia de registro de Administrador emitido por Prosoc.
 	3		Libros de actas de asamblea autorizado por Prosoc.
 	4		Acta constitutiva de la razón social con folio mercantil.
-	5		Poderes notariales vigentes, integración 
+	5		Poderes notariales vigentes, integración
 	6		Libro de Actas de Asamblea General Ordinaria de Accionistas
 	7		Actas de Asamblea General Ordinaria con integración. (RPP)
 	8		Actas de Asamblea General Extraordinaria con integración. (RPP)
 	9		Actas de Sesión del Consejo de Administración, con integración  (P o NP)
 	1.2		CONTRATOS PROVEEDORES
-	1		Seguridad 
+	1		Seguridad
 	2		Limpieza
 	3		Jardineria
-	4		Elevadores 
+	4		Elevadores
 	5		Fumigacion
 	6		Gas
 	7		Poliza de Seguro del Inmueble
@@ -317,11 +317,11 @@ Si quieres, el siguiente paso puede ser:
 	11		Planta de tratamiento
 	12		Control de acceso
 	13		Equipo de Gimnasio
-	14		Mantenimiento de Bombas 
+	14		Mantenimiento de Bombas
 	15		Instructores de Gimnasio
-	16		Lavado de Autos 
-	17		Valet Parking 
-	18		Mantenimiento Electrico 
+	16		Lavado de Autos
+	17		Valet Parking
+	18		Mantenimiento Electrico
 	19		Contratos vigentes de obra y/o remodelacion
 	20		Contrato mantenimiento del CCTV
 	21		Contratos de maquinas expendedoras a comisión mercantil
@@ -336,74 +336,74 @@ Si quieres, el siguiente paso puede ser:
 	6		Abogados o despachos externos, (datos de contacto y/o contrato litis)
 	1.4		LABORAL Y SEGURIDAD SOCIAL
 	1		Listado de trabajadores, expedientes, contratos, y altas imss
-	2		Prestamos y/o creditos a trabajadores, integracion y status 
+	2		Prestamos y/o creditos a trabajadores, integracion y status
 	3		Renuncias firmadas menores a dos meses de antigüedad
 	4		Demandas laborales en proceso
 	5		Accidentes de trabajo(IPP o IPT)
 	6		Nom 35, relacion de quejas (entorno laboral)
 	1.5		PROGRAMA INTERNO DE PROTECCIÓN CIVIL
-	1		Manual de proteccion civil vigente 
+	1		Manual de proteccion civil vigente
 
-ID	P U	DESCRIPCIÓN 
-		
-2.1		FISCAL   
-1		Datos fiscales generales 
-2		Firma electronica de la Compañía 
-3		Sello digital 
-4		Firma electronica y datos representante. 
-5		Alta en el SAT Cía. 
-6		Constancia de situacion fiscal 
-7		Opinion de cumplimiento a la fecha de recepción 
-8		Declaraciones anuales y complementarias  (5 años atrás ) con papel de trabajo 
-9		Declaraciones mensuales y complementarias (5 años atrás) con pt 
+ID	P U	DESCRIPCIÓN
+
+2.1		FISCAL
+1		Datos fiscales generales
+2		Firma electronica de la Compañía
+3		Sello digital
+4		Firma electronica y datos representante.
+5		Alta en el SAT Cía.
+6		Constancia de situacion fiscal
+7		Opinion de cumplimiento a la fecha de recepción
+8		Declaraciones anuales y complementarias  (5 años atrás ) con papel de trabajo
+9		Declaraciones mensuales y complementarias (5 años atrás) con pt
 10		Declaraciones informativas (en su caso)
-2.2		CONTABILIDAD 
-1		Respaldo de sistema contable u otros (indicar cual ocupan ) 
-2		Contabilidad impresa o control contable (físico y digital) 
-3		Presupuesto autorizado con el que esta trabajando e indicar periodo. 
-4		Cedula presupuestal vs gastos del año corriente. 
-5		Estados financieros del  mes de la entrega. 
-6		Balanzas de comprobación del año en curso, independiente de la fecha de recepción. 
-7		Auxiliares del año en curso, independiente de la fecha de recepción. 
+2.2		CONTABILIDAD
+1		Respaldo de sistema contable u otros (indicar cual ocupan )
+2		Contabilidad impresa o control contable (físico y digital)
+3		Presupuesto autorizado con el que esta trabajando e indicar periodo.
+4		Cedula presupuestal vs gastos del año corriente.
+5		Estados financieros del  mes de la entrega.
+6		Balanzas de comprobación del año en curso, independiente de la fecha de recepción.
+7		Auxiliares del año en curso, independiente de la fecha de recepción.
 8		Estados de cuenta del año en curso
-9		Conciliación bancaria del mes de entrega. 
-10		CxC al cierre de mes que se recibe 
+9		Conciliación bancaria del mes de entrega.
+10		CxC al cierre de mes que se recibe
 11		Estados de cuenta individuales de cada condómino
-12		CxP al cierre del mes corriente e integración 
-13		Impuestos por pagar al cierre del mes corriente e integración 
-14		Capital , integración. 
+12		CxP al cierre del mes corriente e integración
+13		Impuestos por pagar al cierre del mes corriente e integración
+14		Capital , integración.
 15		Proyectos extraordinarios en curso
-16		Token´s bancarios y contraseñas de acceso 
+16		Token´s bancarios y contraseñas de acceso
 17		Contratos bancarios
-18		Listado de cuotas (mantenimiento, extras, amenidades) 
-ID	P U	DESCRIPCIÓN 
-		
+18		Listado de cuotas (mantenimiento, extras, amenidades)
+ID	P U	DESCRIPCIÓN
+
 3		RECURSOS HUMANOS
 1		Claves IDSE
 2		Claves SIPARE
 3		Claves SUA
 4		Claves ISN
 5		Alta IMSS
-6		Tarjeta Patronal 
+6		Tarjeta Patronal
 7		Certificado del IMSS
-8		Alta ISN 
-9		Listado de personal 
+8		Alta ISN
+9		Listado de personal
 10		Opinion de cumplimiento IMSS
 11		Expedientes del personal y contratos laborales
-12		Respaldo de sistema nomina  u otros (indicar cual ocupan ) 
-13		Nóminas impresa o control nomina  (físico y digital) , del año en curso 
-14		Listado de finiquitos del año en curso 
-15		Control de vacaciones 
-16		Declaración Riesgo de trabajo del ejercicio anterior 
-17		Declaracion sueldos y salarios, de 5 años atrás 
+12		Respaldo de sistema nomina  u otros (indicar cual ocupan )
+13		Nóminas impresa o control nomina  (físico y digital) , del año en curso
+14		Listado de finiquitos del año en curso
+15		Control de vacaciones
+16		Declaración Riesgo de trabajo del ejercicio anterior
+17		Declaracion sueldos y salarios, de 5 años atrás
 18		Respaldo de SUA
 19		Mov. afiliatorios, cedulas IMSS , Infonavit y pagos 5 años atrás.
-20		ISN, declaraciones y pagos del año en curso 
-		
-		
-ID	P Q	DESCRIPCIÓN 
-		
-3.1	OPERACIONES	
+20		ISN, declaraciones y pagos del año en curso
+
+
+ID	P Q	DESCRIPCIÓN
+
+3.1	OPERACIONES
 1		Inventario de equipos de oficina.
 2		Inventario de mobiliario de oficina.
 3		Inventario oficina carpetas.

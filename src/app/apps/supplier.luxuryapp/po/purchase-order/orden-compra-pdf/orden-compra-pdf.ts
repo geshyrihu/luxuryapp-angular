@@ -208,7 +208,7 @@ ${this.htmlPrintS.getStandardCss()}
         <tr>
           <th style="text-align: center; width: 60px;">Cant.</th>
           <th style="text-align: center; width: 80px;">Unidad</th>
-          <th>Descripción</th>
+          <th>DESCRIPCIÓN</th>
           <th style="text-align: right; width: 100px;">P. Unitario</th>
           <th style="text-align: right; width: 100px;">Importe</th>
         </tr>

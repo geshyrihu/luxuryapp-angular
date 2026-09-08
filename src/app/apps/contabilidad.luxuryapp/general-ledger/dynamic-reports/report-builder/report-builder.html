@@ -5,7 +5,10 @@
   >
     <div class="flex align-items-center gap-3">
       <div class="bg-primary-500 text-white rounded p-2 shadow-sm">
-        <app-icon [icon]="'material-symbols-light:monitoring'" class="text-2xl" />
+        <app-icon
+          [icon]="'material-symbols-light:monitoring'"
+          class="text-2xl"
+        />
       </div>
       <div>
         <h2 class="m-0 text-primary-900 font-bold line-height-1">
@@ -29,7 +32,10 @@
       <div
         class="flex align-items-center bg-primary-50 rounded-xl px-3 py-1 mr-3 border-1 border-primary-100"
       >
-        <app-icon [icon]="'material-symbols-light:calendar-today'" class="text-primary mr-2" />
+        <app-icon
+          [icon]="'material-symbols-light:calendar-today'"
+          class="text-primary mr-2"
+        />
         <span class="text-xs font-bold text-primary-800 mr-2"
           >PERIODO PREVIEW:</span
         >
@@ -185,7 +191,10 @@
         <div
           class="flex flex-column align-items-center justify-content-center h-full text-500 opacity-60"
         >
-          <app-icon [icon]="'material-symbols-light:content-copy'" class="text-6xl mb-3" />
+          <app-icon
+            [icon]="'material-symbols-light:content-copy'"
+            class="text-6xl mb-3"
+          />
           <h3>El canvas está vacío</h3>
           <p>Añade una sección para comenzar a diseñar tu reporte</p>
           <il-button
@@ -278,7 +287,11 @@
 
                   <!-- Badge de Tipo -->
                   <div class="w-3rem flex justify-content-center">
-                    <lx-tag [value]="row.rowType === 'account' ? 'CTA' : 'FX'" [severity]="row.rowType === 'account' ? 'info' : 'help'" class="text-xs font-bold" />
+                    <lx-tag
+                      [value]="row.rowType === 'account' ? 'CTA' : 'FX'"
+                      [severity]="row.rowType === 'account' ? 'info' : 'help'"
+                      class="text-xs font-bold"
+                    />
                   </div>
 
                   <!-- Etiqueta Editable -->
@@ -411,7 +424,11 @@
                     </span>
                   </div>
 
-                  <lx-tag [value]="row.rowId" severity="secondary" class="text-xs opacity-60 font-mono flex-shrink-0" />
+                  <lx-tag
+                    [value]="row.rowId"
+                    severity="secondary"
+                    class="text-xs opacity-60 font-mono flex-shrink-0"
+                  />
 
                   <iw-button
                     iconClass="material-symbols-light:delete"
@@ -609,11 +626,10 @@
         <!-- Alertas y Advertencias -->
         @if (livePreviewS.warnings().length > 0) {
         <div class="p-3">
-          <div
-            class="bg-orange-50 rounded p-2 border-left-3 border-orange-500"
-          >
+          <div class="bg-orange-50 rounded p-2 border-left-3 border-orange-500">
             <span class="text-xs font-bold text-orange-900 block mb-2"
-              ><app-icon [icon]="'material-symbols-light:warning'" /> ADVERTENCIAS:</span
+              ><app-icon [icon]="'material-symbols-light:warning'" />
+              ADVERTENCIAS:</span
             >
             <ul class="m-0 p-0 pl-3 list-none flex flex-column gap-1">
               @for (warn of livePreviewS.warnings(); track $index) {
@@ -637,7 +653,7 @@
       Propiedades del Reporte
     </h5>
     <div class="flex flex-column gap-1">
-      <label class="text-xs font-bold text-500">Descripción</label>
+      <label class="text-xs font-bold text-500">DESCRIPCIÓN</label>
       <textarea
         [formControl]="form.controls.description"
         class="p-inputtext p-inputtext-sm w-full"
@@ -676,8 +692,12 @@
 </lx-popover>
 
 <!-- DIALOGO: Ejemplos -->
-<lx-modal header="Aplicar Plantilla Predefinida" [(visible)]="showExamples" class="premium-dialog">
-<div class="flex flex-column gap-3 p-2">
+<lx-modal
+  header="Aplicar Plantilla Predefinida"
+  [(visible)]="showExamples"
+  class="premium-dialog"
+>
+  <div class="flex flex-column gap-3 p-2">
     <div
       class="surface-card border-1 surface-border rounded-xl p-3 hover:surface-100 cursor-pointer flex align-items-center gap-3 transition-all hover:border-primary shadow-sm"
       (click)="aplicarEjemplo('egp')"

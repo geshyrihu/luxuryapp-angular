@@ -34,12 +34,12 @@ procesamiento de archivos, validaciones o envíos al servidor. Funciona en web (
 
 ### Inputs
 
-| Propiedad      | Tipo            | Descripción                      | Default           |
-| -------------- | --------------- | -------------------------------- | ----------------- |
-| `isProcessing` | `boolean`       | Mostrar/ocultar overlay          | `false`           |
-| `progress`     | `number`        | Porcentaje de progreso (0-100)   | `0`               |
-| `message`      | `string`        | Mensaje principal                | `"Procesando..."` |
-| `submessage`   | `string \| null` | Mensaje secundario (opcional)     | `null`            |
+| Propiedad      | Tipo             | DESCRIPCIÓN                    | Default           |
+| -------------- | ---------------- | ------------------------------ | ----------------- |
+| `isProcessing` | `boolean`        | Mostrar/ocultar overlay        | `false`           |
+| `progress`     | `number`         | Porcentaje de progreso (0-100) | `0`               |
+| `message`      | `string`         | Mensaje principal              | `"Procesando..."` |
+| `submessage`   | `string \| null` | Mensaje secundario (opcional)  | `null`            |
 
 ## Características
 

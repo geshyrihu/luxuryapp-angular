@@ -15,7 +15,7 @@ Contenedor principal de la vista de presupuesto.
         #dt
         dataKey="codigo_Cuenta"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
-        scrollHeight="flex"
+        scrollHeight="calc(100vh - 200px)"
         class="custom-table financial-data-table rf-prime-table budget-sticky-footer-table p-datatable-sm text-sm"
       >
         <!-- =========================
@@ -66,14 +66,14 @@ Contenedor principal de la vista de presupuesto.
             [class.fila-vista-agregada]="viewMode() !== 'normal'"
           >
             @if (cuenta.esFilaAgrupadora) {
-            <td pFrozenColumn>
+            <td pFrozenColumn class="th-width-250">
               <div class="flex align-items-center gap-2">
                 <span class="font-semibold"> {{ cuenta.codigo_Cuenta }} </span>
                 <span>|</span>
                 <span class="font-bold"> {{ cuenta.descripcion_Cuenta }} </span>
               </div>
             </td>
-            <td pFrozenColumn class="text-right text-green-700 font-bold">
+            <td pFrozenColumn class="th-width-150 text-right text-green-700 font-bold">
               {{ getPresupuestoBaseMensual(cuenta) | number: "1.0-0" }}
             </td>
             @for (mes of months; track mes) {
@@ -84,8 +84,7 @@ Contenedor principal de la vista de presupuesto.
                 (getPresupuestoDelMes(cuenta, mes) | number: "1.0-0") : "-" }}
               </span>
               <br />
-              }
-              @let montoGrupo = getMontoMes(cuenta, mes);
+              } @let montoGrupo = getMontoMes(cuenta, mes);
               <span
                 [class.text-red-700]="montoGrupo < 0 || montoGrupo > getPresupuestoDelMes(cuenta, mes)"
                 [class.font-bold]="montoGrupo < 0 || montoGrupo > getPresupuestoDelMes(cuenta, mes)"
@@ -99,23 +98,33 @@ Contenedor principal de la vista de presupuesto.
               {{ getSumaGastoMesesVisiblesCuenta(cuenta) | number: "1.0-0" }}
             </td>
             <td class="text-right font-bold">
-              <span [class.text-red-700]="getPorcentajeGastadoMesesVisiblesCuenta(cuenta) > 100" [class.text-green-700]="getPorcentajeGastadoMesesVisiblesCuenta(cuenta) <= 100">
+              <span
+                [class.text-red-700]="getPorcentajeGastadoMesesVisiblesCuenta(cuenta) > 100"
+                [class.text-green-700]="getPorcentajeGastadoMesesVisiblesCuenta(cuenta) <= 100"
+              >
                 {{ getPorcentajeGastadoMesesVisiblesCuenta(cuenta) > 0 ?
-                (getPorcentajeGastadoMesesVisiblesCuenta(cuenta) | number: "1.0-0") + "%" : "-" }}
+                (getPorcentajeGastadoMesesVisiblesCuenta(cuenta) | number:
+                "1.0-0") + "%" : "-" }}
               </span>
             </td>
             <td class="text-right font-bold">
-              {{ getSumaPresupuestoMesesVisiblesCuenta(cuenta) | number: "1.0-0" }}
+              {{ getSumaPresupuestoMesesVisiblesCuenta(cuenta) | number: "1.0-0"
+              }}
             </td>
             <td class="text-right font-bold">
-              @let restanteGrupo = getSumaPresupuestoMesesVisiblesCuenta(cuenta) - getSumaGastoMesesVisiblesCuenta(cuenta);
-              <span [class.text-red-700]="restanteGrupo < 0" [class.text-green-700]="restanteGrupo >= 0" class="px-2 py-1 rounded font-bold">
+              @let restanteGrupo = getSumaPresupuestoMesesVisiblesCuenta(cuenta)
+              - getSumaGastoMesesVisiblesCuenta(cuenta);
+              <span
+                [class.text-red-700]="restanteGrupo < 0"
+                [class.text-green-700]="restanteGrupo >= 0"
+                class="px-2 py-1 rounded font-bold"
+              >
                 {{ restanteGrupo | number: "1.0-0" }}
               </span>
             </td>
             } @else {
             <!-- COLUMNAS NORMALES PARA CUENTAS HOJA -->
-            <td pFrozenColumn>
+            <td pFrozenColumn class="th-width-250">
               <div class="flex flex-column">
                 <span
                   class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
@@ -129,7 +138,7 @@ Contenedor principal de la vista de presupuesto.
                 </span>
               </div>
             </td>
-            <td pFrozenColumn class="text-right text-green-700 font-bold">
+            <td pFrozenColumn class="th-width-150 text-right text-green-700 font-bold">
               {{ getPresupuestoBaseMensual(cuenta) | number: "1.0-0" }}
             </td>
             @for (mes of months; track mes) {
@@ -200,10 +209,10 @@ Contenedor principal de la vista de presupuesto.
         <ng-template #footer>
           @if (cuentas() && cuentas().length > 0) {
           <tr>
-            <td pFrozenColumn class="text-right font-bold">
+            <td pFrozenColumn class="th-width-250 text-right font-bold">
               <span class="font-small-gray">PRESUP. MES:</span>
             </td>
-            <td pFrozenColumn class="text-right font-bold">
+            <td pFrozenColumn class="th-width-150 text-right font-bold">
               <span class="font-small-gray">
                 {{ getTotalPresupuestoBaseMensual() | number: "1.0-0" }}
               </span>
@@ -213,7 +222,7 @@ Contenedor principal de la vista de presupuesto.
               class="text-right font-bold"
               [class.text-color-secondary]="!isMesVisible(mes)"
             >
-              <span >
+              <span>
                 {{ getTotalPresupuestoDelMes(mes) !== 0 ?
                 (getTotalPresupuestoDelMes(mes) | number: "1.0-0") : "-" }}
               </span>
@@ -228,8 +237,8 @@ Contenedor principal de la vista de presupuesto.
           <!-- ? </tr> fuera del @for -->
           } @if (sharedS.budgetData()) {
           <tr>
-            <td pFrozenColumn class="text-right font-bold">TOTALES:</td>
-            <td pFrozenColumn class="text-right font-bold">
+            <td pFrozenColumn class="th-width-250 text-right font-bold">TOTALES:</td>
+            <td pFrozenColumn class="th-width-150 text-right font-bold">
               {{ getTotalPresupuestoBaseMensual() | number: "1.0-0" }}
             </td>
             @for (mes of months; track mes) {
@@ -275,7 +284,12 @@ Contenedor principal de la vista de presupuesto.
             </td>
             <td class="text-right font-bold">
               @let totalRestante = getPresupuestoRestanteMesesVisibles();
-              <lx-tag severity="warn" [class]="totalRestante < 0 ? 'text-red-700' : 'text-green-700'" [value]=" totalRestante !== 0 ? (totalRestante | number: '1.0-0') : '-' " class="w-full text-right" />
+              <lx-tag
+                severity="warn"
+                [class]="totalRestante < 0 ? 'text-red-700' : 'text-green-700'"
+                [value]=" totalRestante !== 0 ? (totalRestante | number: '1.0-0') : '-' "
+                class="w-full text-right"
+              />
             </td>
           </tr>
           }

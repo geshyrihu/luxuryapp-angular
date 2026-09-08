@@ -157,10 +157,17 @@
         <div class="p-3 md:p-4">
           <div class="grid align-items-start mb-3">
             <div class="col-12 lg:col-7">
-              <div
-                class="presentation-kicker text-500 text-sm font-semibold mb-2"
-              >
-                Para donde y por que
+              <div class="flex align-items-center gap-2 mb-2">
+                <lx-tag
+                  [value]="getTipoSolicitudLabel(solicitud.tipoSolicitud)"
+                  [severity]="getTipoSolicitudSeverity(solicitud.tipoSolicitud)"
+                  [rounded]="true"
+                />
+                <lx-tag
+                  [value]="getPrioridadLabel(solicitud.prioridad)"
+                  [severity]="getPrioridadSeverity(solicitud.prioridad)"
+                  [rounded]="true"
+                />
               </div>
               <h2 class="text-2xl md:text-4xl line-height-2 m-0 text-900">
                 {{ solicitud.equipoOInstalacion }}
@@ -171,30 +178,36 @@
             </div>
 
             <div class="col-12 lg:col-5">
-              <div class="surface-50 rounded-2xl p-3 h-full">
-                <div class="grid">
-                  <div class="col-6 md:col-3 lg:col-6">
+              <div
+                class="surface-50 rounded-2xl p-3 h-full flex flex-column justify-content-center"
+              >
+                <div
+                  class="flex align-items-center justify-content-between gap-3 flex-wrap"
+                >
+                  <div>
                     <div class="text-xs text-500 mb-1">Folio</div>
-                    <div class="text-lg font-semibold text-900">
+                    <div class="font-semibold text-900 white-space-nowrap">
                       {{ solicitud.folio }}
                     </div>
                   </div>
-                  <div class="col-6 md:col-3 lg:col-6">
+                  <div>
                     <div class="text-xs text-500 mb-1">Estado</div>
-                    <div class="font-semibold text-900">
+                    <div class="font-semibold text-900 white-space-nowrap">
                       {{ solicitud.estatusDisplay || "Pendiente" }}
                     </div>
                   </div>
-                  <div class="col-6 md:col-3 lg:col-6">
+                  <div class="min-w-0">
                     <div class="text-xs text-500 mb-1">Autorizada por</div>
-                    <div class="font-semibold text-900">
+                    <div
+                      class="font-semibold text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+                    >
                       {{ solicitud.autorizadaPorDisplay || "Sin autorizacion" }}
                     </div>
                   </div>
                   @if (solicitud.fechaAutorizacion) {
-                  <div class="col-6 md:col-3 lg:col-6">
+                  <div>
                     <div class="text-xs text-500 mb-1">Registro</div>
-                    <div class="text-900">
+                    <div class="text-900 white-space-nowrap">
                       {{ solicitud.fechaAutorizacion }} {{
                       solicitud.horaAutorizacion }}
                     </div>
@@ -236,72 +249,6 @@
             <div class="text-700">{{ solicitud.motivoNoAutorizacion }}</div>
           </div>
           }
-
-          <div class="grid mb-4">
-            @for (provider of solicitud.providerSummaries; track provider.id) {
-            <div class="col-12 md:col-4">
-              <div
-                class="provider-card h-full"
-                [ngClass]="isBestProvider(provider.total, solicitud) ? 'bg-yellow-50 border-yellow-300' : ''"
-              >
-                <div
-                  class="flex align-items-start justify-content-between gap-3 mb-3"
-                >
-                  <div class="min-w-0">
-                    <div class="text-xs text-500 mb-1">
-                      Proveedor {{ provider.posicionCotizacion }}
-                    </div>
-                    <div
-                      class="text-xl font-semibold text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
-                    >
-                      {{ provider.nameProvider }}
-                    </div>
-                  </div>
-                  <div class="text-right flex-shrink-0">
-                    <div class="text-xs text-500 mb-1">Total</div>
-                    <div class="font-bold text-900 text-xl">
-                      {{ provider.total | number : "1.0-0" }}
-                    </div>
-                  </div>
-                </div>
-                <div class="flex flex-wrap gap-3 text-sm">
-                  <div class="provider-metric">
-                    <div class="text-xs text-500 mb-1">Entrega</div>
-                    <div class="text-900 font-medium">
-                      {{ provider.entrega || "N/D" }}
-                    </div>
-                  </div>
-                  <div class="provider-metric">
-                    <div class="text-xs text-500 mb-1">Garantía</div>
-                    <div class="text-900 font-medium">
-                      {{ provider.garantia || "N/D" }}
-                    </div>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <div class="text-xs text-500 mb-1">Pago</div>
-                    <div
-                      class="text-900 font-medium white-space-nowrap overflow-hidden text-overflow-ellipsis"
-                    >
-                      {{ provider.politicaPago || "N/D" }}
-                    </div>
-                  </div>
-                  <div class="flex align-items-end ml-auto">
-                    @if (provider.filePath) {
-                    <il-button-view-pdf
-                      [url]="provider.filePath"
-                      [fileName]="'Cotizacion ' + provider.nameProvider"
-                      label="Cotizacion"
-                      iconClass="material-symbols-light:description"
-                      variant="outline"
-                      size="small"
-                    />
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-            }
-          </div>
 
           <div class="mb-4">
             <div
@@ -353,30 +300,51 @@
             >
               <ng-template #header>
                 <tr>
-                  <th>DESCRIPCION</th>
-                  <th class="text-right">CANTIDAD</th>
-                  <th>UNIDAD</th>
+                  <th rowspan="2">DESCRIPCION</th>
+                  <th rowspan="2" class="text-right">CANTIDAD</th>
+                  <th rowspan="2">UNIDAD</th>
                   @if (solicitud.providerSummaries.length >= 1) {
                   <th
-                    class="text-right"
+                    colspan="4"
+                    class="text-center"
                     [style.width.%]="getProviderColumnWidth(solicitud.providerSummaries.length)"
                   >
                     {{ solicitud.providerSummaries[0].nameProvider }}
                   </th>
                   } @if (solicitud.providerSummaries.length >= 2) {
                   <th
-                    class="text-right"
+                    colspan="4"
+                    class="text-center"
                     [style.width.%]="getProviderColumnWidth(solicitud.providerSummaries.length)"
                   >
                     {{ solicitud.providerSummaries[1].nameProvider }}
                   </th>
                   } @if (solicitud.providerSummaries.length >= 3) {
                   <th
-                    class="text-right"
+                    colspan="4"
+                    class="text-center"
                     [style.width.%]="getProviderColumnWidth(solicitud.providerSummaries.length)"
                   >
                     {{ solicitud.providerSummaries[2].nameProvider }}
                   </th>
+                  }
+                </tr>
+                <tr>
+                  @if (solicitud.providerSummaries.length >= 1) {
+                  <th class="text-right text-xs">Entrega</th>
+                  <th class="text-right text-xs">Garantía</th>
+                  <th class="text-right text-xs">Pago</th>
+                  <th class="text-center text-xs">Cotización</th>
+                  } @if (solicitud.providerSummaries.length >= 2) {
+                  <th class="text-right text-xs">Entrega</th>
+                  <th class="text-right text-xs">Garantía</th>
+                  <th class="text-right text-xs">Pago</th>
+                  <th class="text-center text-xs">Cotización</th>
+                  } @if (solicitud.providerSummaries.length >= 3) {
+                  <th class="text-right text-xs">Entrega</th>
+                  <th class="text-right text-xs">Garantía</th>
+                  <th class="text-right text-xs">Pago</th>
+                  <th class="text-center text-xs">Cotización</th>
                   }
                 </tr>
               </ng-template>
@@ -394,6 +362,7 @@
                   <td class="white-space-nowrap">{{ item.unidadMedida }}</td>
                   @if (solicitud.providerSummaries.length >= 1) {
                   <td
+                    colspan="4"
                     class="text-right white-space-nowrap"
                     [class.bg-yellow-100]="item.total > 0 && item.total <= (item.total2 || item.total) && item.total <= (item.total3 || item.total)"
                   >
@@ -401,6 +370,7 @@
                   </td>
                   } @if (solicitud.providerSummaries.length >= 2) {
                   <td
+                    colspan="4"
                     class="text-right white-space-nowrap"
                     [class.bg-yellow-100]="item.total2 > 0 && item.total2 <= (item.total || item.total2) && item.total2 <= (item.total3 || item.total2)"
                   >
@@ -408,10 +378,83 @@
                   </td>
                   } @if (solicitud.providerSummaries.length >= 3) {
                   <td
+                    colspan="4"
                     class="text-right white-space-nowrap"
                     [class.bg-yellow-100]="item.total3 > 0 && item.total3 <= (item.total || item.total3) && item.total3 <= (item.total2 || item.total3)"
                   >
                     {{ item.total3 | number : "1.0-0" }}
+                  </td>
+                  }
+                </tr>
+              </ng-template>
+              <ng-template #footer>
+                <tr class="provider-footer-row">
+                  <td colspan="3"></td>
+                  @if (solicitud.providerSummaries.length >= 1) {
+                  <td class="text-right white-space-nowrap">
+                    {{ solicitud.providerSummaries[0].entrega || "N/D" }}
+                  </td>
+                  <td class="text-right white-space-nowrap">
+                    {{ solicitud.providerSummaries[0].garantia || "N/D" }}
+                  </td>
+                  <td class="text-right white-space-nowrap">
+                    {{ solicitud.providerSummaries[0].politicaPago || "N/D" }}
+                  </td>
+                  <td class="text-center">
+                    @if (solicitud.providerSummaries[0].filePath) {
+                    <il-button-view-pdf
+                      [url]="solicitud.providerSummaries[0].filePath"
+                      [fileName]="'Cotizacion ' + solicitud.providerSummaries[0].nameProvider"
+                      label="PDF"
+                      iconClass="material-symbols-light:description"
+                      variant="outline"
+                      size="small"
+                    />
+                    }
+                  </td>
+                  } @if (solicitud.providerSummaries.length >= 2) {
+                  <td class="text-right white-space-nowrap">
+                    {{ solicitud.providerSummaries[1].entrega || "N/D" }}
+                  </td>
+                  <td class="text-right white-space-nowrap">
+                    {{ solicitud.providerSummaries[1].garantia || "N/D" }}
+                  </td>
+                  <td class="text-right white-space-nowrap">
+                    {{ solicitud.providerSummaries[1].politicaPago || "N/D" }}
+                  </td>
+                  <td class="text-center">
+                    @if (solicitud.providerSummaries[1].filePath) {
+                    <il-button-view-pdf
+                      [url]="solicitud.providerSummaries[1].filePath"
+                      [fileName]="'Cotizacion ' + solicitud.providerSummaries[1].nameProvider"
+                      label="PDF"
+                      iconClass="material-symbols-light:description"
+                      variant="outline"
+                      size="small"
+                    />
+                    }
+                  </td>
+                  } @if (solicitud.providerSummaries.length >= 3) {
+                  <td class="text-right white-space-nowrap">
+                    {{ solicitud.providerSummaries[2].entrega || "N/D" }}
+                  </td>
+                  <td class="text-right white-space-nowrap">
+                    {{ solicitud.providerSummaries[2].garantia || "N/D" }}
+                  </td>
+                  <td class="text-right white-space-nowrap">
+                    {{ solicitud.providerSummaries[2].politicaPago || "N/D" }}
+                  </td>
+                  <td class="text-center">
+                    @if (solicitud.providerSummaries[2].filePath) {
+                    <il-button-view-pdf
+                      [url]="solicitud.providerSummaries[2].filePath"
+                      [fileName]="'Cotizacion ' + solicitud.providerSummaries[2].nameProvider"
+                      label="PDF"
+                      iconClass="material-symbols-light:description"
+                      variant="outline"
+                      size="small"
+                    />
+                    }
                   </td>
                   }
                 </tr>

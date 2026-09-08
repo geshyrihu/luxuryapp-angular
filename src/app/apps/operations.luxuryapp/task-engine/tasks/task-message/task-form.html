@@ -12,7 +12,10 @@
     <div
       class="rounded border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-sm"
     >
-      <app-icon [icon]="'material-symbols-light:info'" class="text-blue-600 text-xl mt-1" />
+      <app-icon
+        [icon]="'material-symbols-light:info'"
+        class="text-blue-600 text-xl mt-1"
+      />
       <div class="flex-1">
         <div class="text-blue-900 font-bold mb-1 uppercase text-xs">
           Guía de registro
@@ -83,7 +86,7 @@
 
     <custom-input-textarea-signal
       [control]="form.controls.description"
-      label="Descripción"
+      label="DESCRIPCIÓN"
       placeholder="Describe el problema de forma simple y concisa..."
       description="Sí específico, simple y conciso (míx. 250 caracteres)."
       [maxLength]="250"
@@ -168,7 +171,10 @@
     <div class="grid">
       <div class="col-12 mb-2">
         <small class="text-500 italic">
-          <app-icon [icon]="'material-symbols-light:photo-camera'" class="mr-1" />
+          <app-icon
+            [icon]="'material-symbols-light:photo-camera'"
+            class="mr-1"
+          />
           Recuerda: Fotos horizontales, centradas en el detalle y desde el mismo
           óngulo.
         </small>

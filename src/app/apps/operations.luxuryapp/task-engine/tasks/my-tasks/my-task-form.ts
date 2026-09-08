@@ -78,7 +78,7 @@ export class MyTaskForm implements OnInit, OnDestroy {
     id: [{ value: "", disabled: true }],
     ticketGroupId: [this.config.data.ticketGroupId, Validators.required], // ticketGroupId
     title: ["", [Validators.required, Validators.maxLength(100)]], // Tútulo
-    description: ["", [Validators.required, Validators.maxLength(150)]], // Descripción
+    description: ["", [Validators.required, Validators.maxLength(150)]], // DESCRIPCIÓN
     priority: [1, Validators.required], // Prioridad (enum)
     creatorId: [this.authS.applicationUserId], // Id del creador
     customerId: [this.customerIdS.customerId()], // Id del cliente
