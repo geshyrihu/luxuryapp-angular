@@ -4,8 +4,8 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import {
   LeaveHistorySummaryDTO,
   OverlappingApprovalRequestDTO,
-} from "../interfaces/approval.interface";
-import { VacationBalanceDTO } from "../interfaces/vacation-balance.interface";
+} from "../../../interfaces/approval.interface";
+import { VacationBalanceDTO } from "../../../interfaces/vacation-balance.interface";
 
 @Injectable({ providedIn: "root" })
 export class ApprovalInfoService {

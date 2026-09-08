@@ -1,6 +1,6 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   <div>
-    <div class="grid align-items-start">
+    <div class="grid align-items-end">
       <div class="col-12 md:col-6">
         <label for="example-text-input" class="block">BUSCAR </label>
 
@@ -11,7 +11,7 @@
           dataKey="productoId"
           [forceSelection]="true"
           [showClear]="true"
-          [inputStyleClass]="'w-full'"
+          [inputStyleClass]="'w-full p-inputtext-sm'"
           [placeholder]="'Escribe para buscar producto o servicio...'"
           [emptyMessage]="'No se encontraron resultados'"
           [panelStyleClass]="'product-search-panel'"
@@ -20,6 +20,7 @@
           [horizontal]="false"
           [noMargin]="true"
           [onlyInput]="true"
+          size="small"
           (completeMethod)="searchProducts($event)"
           (propagar)="onProductSelected($event)"
           (cleared)="onProductCleared()"
@@ -54,6 +55,8 @@
           type="number"
           min="1"
           [horizontal]="false"
+          [noMargin]="true"
+          size="small"
         />
       </div>
 
@@ -63,27 +66,28 @@
           [data]="cb_measurement_units()"
           label="UNIDAD"
           [horizontal]="false"
+          [noMargin]="true"
           [filter]="true"
+          size="small"
         />
       </div>
 
-      <div class="col-12 md:col-1 flex flex-column justify-content-end">
-        <div aria-hidden="true" class="block mb-2"></div>
+      <div class="col-12 md:col-1">
         <il-button-save
-          size=""
+          size="small"
           [disabled]="form.invalid"
           customClass="w-full"
         />
       </div>
 
-      <div class="col-12 md:col-1 flex flex-column justify-content-end">
-        <div aria-hidden="true" class="block mb-2"></div>
+      <div class="col-12 md:col-1">
         <il-button
           iconClass="material-symbols-light:search"
           label="Avanzada"
           (clicked)="ProductModaladd()"
           severity="info"
           variant="outline"
+          size="small"
           customClass="w-full"
         />
       </div>

@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -30,8 +29,8 @@ import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
   PastVacationHistoryItemDTO,
   RegisterPastVacationDTO,
-} from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/register-past-vacation.interface";
-import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/vacation-balance.interface";
+} from "src/app/apps/recursos-humanos.luxuryapp/interfaces/register-past-vacation.interface";
+import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/interfaces/vacation-balance.interface";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -40,6 +39,7 @@ import { GlobalErrorService } from "src/app/core/http/services/global-error.serv
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 
 @Component({
   selector: "app-registrar-vacaciones-pasadas",

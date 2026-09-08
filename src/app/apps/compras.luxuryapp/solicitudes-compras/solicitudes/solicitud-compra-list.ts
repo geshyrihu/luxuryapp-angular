@@ -6,6 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -49,6 +50,9 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "./nivel-prioridad-tag-options";
+import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
+import { TagSeverity } from "@ui/base/tag.base";
 
 @Component({
   selector: "app-solicitud-compra-list",
@@ -72,6 +76,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     DataViewMobile,
     AppIcon,
     MobileListItem,
+    LxTag,
   ],
 })
 export class SolicitudCompraList {
@@ -130,6 +135,34 @@ export class SolicitudCompraList {
             .map((item: any) => item.id),
         );
       });
+  }
+
+  getTipoSolicitudLabel(value: number): string {
+    return (
+      TIPO_SOLICITUD_TAG_OPTIONS.find((item) => item.value === value)
+        ?.label ?? "N/D"
+    );
+  }
+
+  getTipoSolicitudSeverity(value: number): TagSeverity {
+    return (
+      TIPO_SOLICITUD_TAG_OPTIONS.find((item) => item.value === value)
+        ?.severity ?? "secondary"
+    );
+  }
+
+  getPrioridadLabel(value: number): string {
+    return (
+      NIVEL_PRIORIDAD_TAG_OPTIONS.find((item) => item.value === value)
+        ?.label ?? "N/D"
+    );
+  }
+
+  getPrioridadSeverity(value: number): TagSeverity {
+    return (
+      NIVEL_PRIORIDAD_TAG_OPTIONS.find((item) => item.value === value)
+        ?.severity ?? "secondary"
+    );
   }
 
   onDelete(id: string) {

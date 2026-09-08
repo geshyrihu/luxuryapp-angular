@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -13,18 +12,22 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
   LeaveHistorySummaryDTO,
   OverlappingApprovalRequestDTO,
-} from "../interfaces/approval.interface";
-import { EPaidStatus } from "../interfaces/leave-request.interface";
-import { VacationBalanceDTO } from "../interfaces/vacation-balance.interface";
+} from "../../../interfaces/approval.interface";
+import { EPaidStatus } from "../../../interfaces/leave-request.interface";
+import { VacationBalanceDTO } from "../../../interfaces/vacation-balance.interface";
 import { ApprovalInfoService } from "./approval-info.service";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-approval-confirmation-modal",
   imports: [
@@ -77,7 +80,10 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         @if (request.requestType === "Permiso") {
           <div class="mb-4">
             <div class="flex items-center mb-2">
-              <app-icon [icon]="'material-symbols-light:history'" class="text-xl" />
+              <app-icon
+                [icon]="'material-symbols-light:history'"
+                class="text-xl"
+              />
               <h5 class="mb-0 font-semibold">Historial (óltimos 3 meses)</h5>
             </div>
             <p class="text-600">
@@ -94,7 +100,10 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         @if (request.requestType === "Vacaciones") {
           <div class="mb-4">
             <div class="flex items-center mb-2">
-              <app-icon [icon]="'material-symbols-light:sunny'" class="text-xl" />
+              <app-icon
+                [icon]="'material-symbols-light:sunny'"
+                class="text-xl"
+              />
               <h5 class="mb-0 font-semibold">Saldo de Vacaciones</h5>
             </div>
             <p class="text-600">

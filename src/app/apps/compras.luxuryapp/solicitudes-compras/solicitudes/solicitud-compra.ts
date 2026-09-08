@@ -26,6 +26,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
@@ -56,6 +57,8 @@ export interface ISolicitudCompraForm {
   estatus: FormControl<number | null>;
   folio: FormControl<string | null>;
   applicationUserId: FormControl<string | null>;
+  tipoSolicitud: FormControl<number | null>;
+  prioridad: FormControl<number | null>;
 }
 
 @Component({
@@ -68,6 +71,7 @@ export interface ISolicitudCompraForm {
     CustomInputTextSignal,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
+    CustomInputSelectSignal,
     WebButtonLabelSave,
     ProductAdd,
     SolicitudCompraDetalle,
@@ -94,6 +98,8 @@ export class SolicitudCompra implements OnInit {
   submitting = signal(false);
 
   statusCompra = signal<SelectItemDto[]>([]);
+  tipoSolicitudOptions = signal<SelectItemDto[]>([]);
+  prioridadOptions = signal<SelectItemDto[]>([]);
   id: string = "";
   solicitudCompra: any;
   tempProducts = signal<any[]>([]); // Buffer local para nuevos productos antes de guardar cabecera
@@ -130,6 +136,12 @@ export class SolicitudCompra implements OnInit {
     this.statusCompra.set(
       await firstValueFrom(this.enumSelectS.typeStatusOrdenCompra(false)),
     );
+    this.tipoSolicitudOptions.set(
+      await firstValueFrom(this.enumSelectS.typeTipoSolicitudCompra(false)),
+    );
+    this.prioridadOptions.set(
+      await firstValueFrom(this.enumSelectS.typeNivelPrioridad(false)),
+    );
   }
 
   // Manejar productos aóadidos localmente antes de guardar cabecera
@@ -164,6 +176,8 @@ export class SolicitudCompra implements OnInit {
       estatus: new FormControl(2),
       folio: new FormControl(""),
       applicationUserId: new FormControl(this.authS.applicationUserId),
+      tipoSolicitud: new FormControl(1),
+      prioridad: new FormControl(2),
     });
   }
 

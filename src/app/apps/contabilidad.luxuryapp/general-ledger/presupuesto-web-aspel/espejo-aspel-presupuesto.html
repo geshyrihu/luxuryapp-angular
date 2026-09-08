@@ -59,28 +59,60 @@ Contenedor principal de la vista de presupuesto.
         @if (!sharedS.errorMensaje(); as cuenta) {
         <ng-template #body let-cuenta>
           <tr
-            [class.fila-nivel-1]="cuenta.nivel_Cuenta === 1 && cuenta.esFilaAgrupadora"
-            [class.fila-nivel-2-agrupadora]="cuenta.nivel_Cuenta === 2 && cuenta.esFilaAgrupadora"
-            [class.fila-nivel-2-hoja]="cuenta.nivel_Cuenta === 2 && !cuenta.esFilaAgrupadora"
-            [class.fila-nivel-3-hoja]="cuenta.nivel_Cuenta === 3 && !cuenta.esFilaAgrupadora"
+            [class.fila-nivel-1]="viewMode() === 'normal' && cuenta.nivel_Cuenta === 1 && cuenta.esFilaAgrupadora"
+            [class.fila-nivel-2-agrupadora]="viewMode() === 'normal' && cuenta.nivel_Cuenta === 2 && cuenta.esFilaAgrupadora"
+            [class.fila-nivel-2-hoja]="viewMode() === 'normal' && cuenta.nivel_Cuenta === 2 && !cuenta.esFilaAgrupadora"
+            [class.fila-nivel-3-hoja]="viewMode() === 'normal' && cuenta.nivel_Cuenta === 3 && !cuenta.esFilaAgrupadora"
+            [class.fila-vista-agregada]="viewMode() !== 'normal'"
           >
             @if (cuenta.esFilaAgrupadora) {
-            <!-- Fusión de las dos primeras columnas congeladas (CUENTA + PRE-MEN) -->
-            <td pFrozenColumn [attr.colspan]="2">
+            <td pFrozenColumn>
               <div class="flex align-items-center gap-2">
                 <span class="font-semibold"> {{ cuenta.codigo_Cuenta }} </span>
                 <span>|</span>
                 <span class="font-bold"> {{ cuenta.descripcion_Cuenta }} </span>
               </div>
             </td>
-            <!-- El resto de las columnas se mantienen individuales pero vacías para mantener la rejilla -->
+            <td pFrozenColumn class="text-right text-green-700 font-bold">
+              {{ getPresupuestoBaseMensual(cuenta) | number: "1.0-0" }}
+            </td>
             @for (mes of months; track mes) {
-            <td class="surface-ground"></td>
+            <td class="text-right">
+              @if (preFormMonth) {
+              <span class="font-xsmall-gray">
+                {{ getPresupuestoDelMes(cuenta, mes) !== 0 ?
+                (getPresupuestoDelMes(cuenta, mes) | number: "1.0-0") : "-" }}
+              </span>
+              <br />
+              }
+              @let montoGrupo = getMontoMes(cuenta, mes);
+              <span
+                [class.text-red-700]="montoGrupo < 0 || montoGrupo > getPresupuestoDelMes(cuenta, mes)"
+                [class.font-bold]="montoGrupo < 0 || montoGrupo > getPresupuestoDelMes(cuenta, mes)"
+                [class.bg-red-50]="montoGrupo > getPresupuestoDelMes(cuenta, mes)"
+              >
+                {{ montoGrupo !== 0 ? (montoGrupo | number: "1.0-0") : "-" }}
+              </span>
+            </td>
             }
-            <td class="surface-ground"></td>
-            <td class="surface-ground"></td>
-            <td class="surface-ground"></td>
-            <td class="surface-ground"></td>
+            <td class="text-right font-bold">
+              {{ getSumaGastoMesesVisiblesCuenta(cuenta) | number: "1.0-0" }}
+            </td>
+            <td class="text-right font-bold">
+              <span [class.text-red-700]="getPorcentajeGastadoMesesVisiblesCuenta(cuenta) > 100" [class.text-green-700]="getPorcentajeGastadoMesesVisiblesCuenta(cuenta) <= 100">
+                {{ getPorcentajeGastadoMesesVisiblesCuenta(cuenta) > 0 ?
+                (getPorcentajeGastadoMesesVisiblesCuenta(cuenta) | number: "1.0-0") + "%" : "-" }}
+              </span>
+            </td>
+            <td class="text-right font-bold">
+              {{ getSumaPresupuestoMesesVisiblesCuenta(cuenta) | number: "1.0-0" }}
+            </td>
+            <td class="text-right font-bold">
+              @let restanteGrupo = getSumaPresupuestoMesesVisiblesCuenta(cuenta) - getSumaGastoMesesVisiblesCuenta(cuenta);
+              <span [class.text-red-700]="restanteGrupo < 0" [class.text-green-700]="restanteGrupo >= 0" class="px-2 py-1 rounded font-bold">
+                {{ restanteGrupo | number: "1.0-0" }}
+              </span>
+            </td>
             } @else {
             <!-- COLUMNAS NORMALES PARA CUENTAS HOJA -->
             <td pFrozenColumn>

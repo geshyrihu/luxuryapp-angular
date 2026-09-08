@@ -6,16 +6,14 @@
     No hay solicitudes seleccionadas para mostrar en modo presentación.
   </div>
   } @else {
-  <div
-    class="flex justify-content-end align-items-center gap-2 px-2 md:px-3 mb-2"
-  >
+  <div class="presentation-nav-floating flex align-items-center gap-1">
     <iw-button
       iconClass="material-symbols-light:receipt-long"
-      label="Resumen"
       (clicked)="goToSummary()"
       severity="secondary"
       variant="outline"
       size="small"
+      [rounded]="true"
       [disabled]="currentPage() === 0"
       tooltip="Ir al resumen de solicitudes de compra"
     />
@@ -25,6 +23,7 @@
       severity="secondary"
       variant="outline"
       size="small"
+      [rounded]="true"
       [disabled]="currentPage() === 0"
       tooltip="Solicitud anterior"
     />
@@ -34,6 +33,7 @@
       severity="secondary"
       variant="outline"
       size="small"
+      [rounded]="true"
       [disabled]="currentPage() >= presentationSlides().length - 1"
       tooltip="Siguiente solicitud"
     />
@@ -72,18 +72,22 @@
               </p>
             </div>
             <div class="col-12 lg:col-4">
-              <div class="surface-50 rounded-2xl p-3 h-full">
-                <div class="text-xs text-500 mb-1">
-                  Solicitudes consideradas
+              <div class="surface-50 rounded-2xl p-3 h-full flex gap-4">
+                <div>
+                  <div class="text-xs text-500 mb-1">
+                    Solicitudes consideradas
+                  </div>
+                  <div class="text-3xl font-bold text-900">
+                    {{ slide.rows.length }}
+                  </div>
                 </div>
-                <div class="text-3xl font-bold text-900 mb-3">
-                  {{ slide.rows.length }}
-                </div>
-                <div class="text-xs text-500 mb-1">
-                  Costo total estimado con IVA
-                </div>
-                <div class="text-xl font-semibold text-900">
-                  {{ getSummaryTotal(slide.rows) | number : "1.0-0" }}
+                <div>
+                  <div class="text-xs text-500 mb-1">
+                    Costo total estimado con IVA
+                  </div>
+                  <div class="text-xl font-semibold text-900">
+                    {{ getSummaryTotal(slide.rows) | number : "1.0-0" }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -92,21 +96,48 @@
           <p-table
             [value]="slide.rows"
             class="custom-table text-sm"
-            [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '74rem' }"
+            [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '66rem' }"
+            rowGroupMode="subheader"
+            groupRowsBy="prioridad"
+            sortField="prioridad"
+            sortMode="single"
+            [sortOrder]="-1"
           >
             <ng-template #header>
               <tr>
-                <th>N°</th>
-                <th>DESCRIPCION</th>
-                <th class="text-right">COSTO TOTAL CON IVA</th>
-                <th>PARTIDA PRESUPUESTAL</th>
-                <th class="text-right">DINERO DISPONIBLE</th>
+                <th style="width: 3rem">N°</th>
+                <th style="width: 26rem">DESCRIPCION</th>
+                <th style="width: 9rem">TIPO</th>
+                <th class="text-right" style="width: 10rem">
+                  COSTO TOTAL CON IVA
+                </th>
+                <th style="width: 12rem">PARTIDA PRESUPUESTAL</th>
+                <th class="text-right" style="width: 10rem">
+                  DINERO DISPONIBLE
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template #groupheader let-row>
+              <tr pRowGroupHeader>
+                <td
+                  [attr.colspan]="6"
+                  [class]="'priority-group-header priority-group-' + row.prioridadSeverity"
+                >
+                  Prioridad: {{ row.prioridadLabel }}
+                </td>
               </tr>
             </ng-template>
             <ng-template #body let-row>
               <tr>
                 <td class="font-semibold text-center">{{ row.numero }}</td>
                 <td class="line-height-3">{{ row.descripcion }}</td>
+                <td>
+                  <lx-tag
+                    [value]="row.tipoSolicitudLabel"
+                    [severity]="row.tipoSolicitudSeverity"
+                    [rounded]="true"
+                  />
+                </td>
                 <td class="text-right white-space-nowrap font-semibold">
                   {{ row.costoTotalConIva | number : "1.0-0" }}
                 </td>

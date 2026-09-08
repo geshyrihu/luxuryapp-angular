@@ -15,7 +15,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { getStatusSeverity } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
-import { VacationRequestMyDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/vacation-request.interface";
+import { VacationRequestMyDTO } from "src/app/apps/recursos-humanos.luxuryapp/interfaces/vacation-request.interface";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,

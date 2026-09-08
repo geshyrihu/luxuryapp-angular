@@ -31,7 +31,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import Swal from "sweetalert2";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { PermisoDetalleModal } from "../calendario-vacaciones-permisos/modal-permiso-detalle";
 import { VacacionDetalleModal } from "../calendario-vacaciones-permisos/modal-vacacion-detalle";
 

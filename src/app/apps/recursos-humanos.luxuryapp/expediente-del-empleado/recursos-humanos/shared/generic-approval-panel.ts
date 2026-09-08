@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,8 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ApprovalPanelRequest } from "../interfaces/approval.interface";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { ApprovalPanelRequest } from "../../../interfaces/approval.interface";
 
 /**
  * ✨ COMPONENTE GENóRICO PARA PANELES DE APROBACIóN ✨

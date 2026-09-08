@@ -181,9 +181,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   /** Controla la visibilidad de las partidas 'Proyectos'. */
   showProyectos: boolean = false;
 
-  // ... (imports)
-
-  // ... inside class PresupuestoPropuesta
+  /** Control de vista: normal, nivel1 (Mayor), nivel2 */
+  viewMode = signal<'normal' | 'level1' | 'level2'>('normal');
 
   // Variables para Auditoría IA y Forecast Eliminadas (Manejadas por dialogs)
   inflationRate: number = 5;
@@ -282,7 +281,6 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * @param item Partida a evaluar
    */
   getItemDifference(item: BudgetProposalItemDTO): number {
-    if (item.esFilaAgrupadora) return 0;
     return item.proposedAmount - this.getAverageMonthlyExpense(item);
   }
 
@@ -291,7 +289,6 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * @param item Partida a evaluar
    */
   getItemPercentageIncrease(item: BudgetProposalItemDTO): number {
-    if (item.esFilaAgrupadora) return 0;
     const avgExpense = this.getAverageMonthlyExpense(item);
     if (avgExpense === 0) {
       return item.proposedAmount > 0 ? 100 : 0;
@@ -427,6 +424,11 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         if (response && response.items) {
           this.currentProposal.set(response);
           this.allProposalItems.set(response.items || []);
+
+          // Actualiza los años correctamente: fiscalYear viene del backend (año de propuesta)
+          this.fiscalYear = response.fiscalYear; // 2027 (año de la propuesta)
+          this.baseBudgetYear = this.selectedFiscalYear; // 2026 (año base)
+
           // Convertir la lista de ExecutedBudgetItemDTO a un Map para bósqueda rápida
           const executedMap = new Map<string, string>();
           (response.projectedExpenseItems || []).forEach((execItem) => {
@@ -473,11 +475,13 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       });
   }
   /**
-   * Inicializa la lista de años disponibles para el selector, desde 2014 hasta el Año actual + 1.
+   * Inicializa la lista de años disponibles: año actual + 4 años atrás.
+   * Ejemplo: Si estamos en 2026, muestra: 2022, 2023, 2024, 2025, 2026
    */
   initializeYears(): void {
     const currentYear = new Date().getFullYear();
-    for (let year = 2014; year <= currentYear + 1; year++) {
+    const startYear = currentYear - 4;
+    for (let year = startYear; year <= currentYear; year++) {
       this.availableYears.push({ value: year, label: String(year) });
     }
   }
@@ -538,9 +542,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   onFiscalYearChange(): void {
-    this.fiscalYear = this.selectedFiscalYear;
-    this.baseBudgetYear = this.selectedFiscalYear - 1;
     this.onLoadData();
+    // fiscalYear y baseBudgetYear se actualizan en onLoadData() con valores del backend
   }
 
   /**
@@ -587,11 +590,102 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   // --------------------------------------------------------------------------------
 
   /**
-   * Filtra la lista maestra (`allProposalItems`) segón el estado de los toggles `showExtraordinarios` y `showProyectos`,
-   * y actualiza la lista visible (`proposalItems`).
+   * Calcula los totales mensuales para cuentas agrupadoras.
+   * Suma los gastos y presupuestos de todas sus subcuentas.
+   */
+  private calculateAggregateTotals(
+    items: BudgetProposalItemDTO[],
+  ): BudgetProposalItemDTO[] {
+    const result = items.map((item) =>
+      item.esFilaAgrupadora ? { ...item } : item,
+    );
+
+    // Para cada cuenta agrupadora, sumar los gastos y presupuestos de sus hijas
+    result.forEach((aggregator) => {
+      if (aggregator.esFilaAgrupadora) {
+        // El nivel determina cuántos segmentos del número de cuenta forman
+        // el grupo: 601 para Mayor y 601-001 para 2do Nivel.
+        const accountPrefix = aggregator.accountNumber
+          .split("-")
+          .slice(0, aggregator.nivelCuenta)
+          .join("-");
+        const children = this.allProposalItems().filter(
+          (item) =>
+            !item.esFilaAgrupadora &&
+            item.accountNumber.startsWith(accountPrefix + "-"),
+        );
+
+        aggregator.currentAmount = children.reduce(
+          (sum, child) => sum + (Number(child.currentAmount) || 0),
+          0,
+        );
+        aggregator.proposedAmount = children.reduce(
+          (sum, child) => sum + (Number(child.proposedAmount) || 0),
+          0,
+        );
+        aggregator.difference =
+          aggregator.proposedAmount - aggregator.currentAmount;
+        aggregator.percentageIncrease =
+          aggregator.currentAmount === 0
+            ? aggregator.proposedAmount > 0
+              ? 100
+              : 0
+            : ((aggregator.proposedAmount - aggregator.currentAmount) /
+                aggregator.currentAmount) *
+              100;
+
+        // Sumar gastos por mes
+        aggregator.gastoEnero = children.reduce((sum, c) => sum + (c.gastoEnero || 0), 0);
+        aggregator.gastoFebrero = children.reduce((sum, c) => sum + (c.gastoFebrero || 0), 0);
+        aggregator.gastoMarzo = children.reduce((sum, c) => sum + (c.gastoMarzo || 0), 0);
+        aggregator.gastoAbril = children.reduce((sum, c) => sum + (c.gastoAbril || 0), 0);
+        aggregator.gastoMayo = children.reduce((sum, c) => sum + (c.gastoMayo || 0), 0);
+        aggregator.gastoJunio = children.reduce((sum, c) => sum + (c.gastoJunio || 0), 0);
+        aggregator.gastoJulio = children.reduce((sum, c) => sum + (c.gastoJulio || 0), 0);
+        aggregator.gastoAgosto = children.reduce((sum, c) => sum + (c.gastoAgosto || 0), 0);
+        aggregator.gastoSeptiembre = children.reduce((sum, c) => sum + (c.gastoSeptiembre || 0), 0);
+        aggregator.gastoOctubre = children.reduce((sum, c) => sum + (c.gastoOctubre || 0), 0);
+        aggregator.gastoNoviembre = children.reduce((sum, c) => sum + (c.gastoNoviembre || 0), 0);
+        aggregator.gastoDiciembre = children.reduce((sum, c) => sum + (c.gastoDiciembre || 0), 0);
+
+        // Sumar presupuestos por mes
+        aggregator.presupuestoEnero = children.reduce((sum, c) => sum + (c.presupuestoEnero || 0), 0);
+        aggregator.presupuestoFebrero = children.reduce((sum, c) => sum + (c.presupuestoFebrero || 0), 0);
+        aggregator.presupuestoMarzo = children.reduce((sum, c) => sum + (c.presupuestoMarzo || 0), 0);
+        aggregator.presupuestoAbril = children.reduce((sum, c) => sum + (c.presupuestoAbril || 0), 0);
+        aggregator.presupuestoMayo = children.reduce((sum, c) => sum + (c.presupuestoMayo || 0), 0);
+        aggregator.presupuestoJunio = children.reduce((sum, c) => sum + (c.presupuestoJunio || 0), 0);
+        aggregator.presupuestoJulio = children.reduce((sum, c) => sum + (c.presupuestoJulio || 0), 0);
+        aggregator.presupuestoAgosto = children.reduce((sum, c) => sum + (c.presupuestoAgosto || 0), 0);
+        aggregator.presupuestoSeptiembre = children.reduce((sum, c) => sum + (c.presupuestoSeptiembre || 0), 0);
+        aggregator.presupuestoOctubre = children.reduce((sum, c) => sum + (c.presupuestoOctubre || 0), 0);
+        aggregator.presupuestoNoviembre = children.reduce((sum, c) => sum + (c.presupuestoNoviembre || 0), 0);
+        aggregator.presupuestoDiciembre = children.reduce((sum, c) => sum + (c.presupuestoDiciembre || 0), 0);
+      }
+    });
+
+    return result;
+  }
+
+  /**
+   * Filtra la lista maestra (`allProposalItems`) segón el estado de los toggles `showExtraordinarios`, `showProyectos`,
+   * y el modo de vista (normal, level1, level2).
    */
   applyFilters(): void {
     let filteredData = [...this.allProposalItems()];
+
+    // Calcular totales agregados ANTES de filtrar por nivel
+    const mode = this.viewMode();
+    if (mode === 'level1' || mode === 'level2') {
+      filteredData = this.calculateAggregateTotals(filteredData);
+    }
+
+    // Aplicar filtro por nivel de cuenta DESPUÉS de calcular totales
+    if (mode === 'level1') {
+      filteredData = filteredData.filter((p) => p.nivelCuenta === 1);
+    } else if (mode === 'level2') {
+      filteredData = filteredData.filter((p) => p.nivelCuenta === 2);
+    }
 
     if (!this.showExtraordinarios) {
       filteredData = filteredData.filter(
@@ -606,6 +700,16 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     }
 
     this.proposalItems.set(filteredData);
+  }
+
+  private isAggregateView(): boolean {
+    return this.viewMode() === "level1" || this.viewMode() === "level2";
+  }
+
+  /** Cambia el modo de vista de la tabla */
+  setViewMode(mode: 'normal' | 'level1' | 'level2'): void {
+    this.viewMode.set(mode);
+    this.applyFilters();
   }
 
   /** Alterna la visibilidad de las partidas de tipo 'Extraordinarios'. */
@@ -717,7 +821,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * @returns El gasto promedio mensual.
    */
   getAverageMonthlyExpense(item: BudgetProposalItemDTO): number {
-    if (!item || item.esFilaAgrupadora) {
+    if (!item) {
       return 0;
     }
 
@@ -783,7 +887,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * @returns El presupuesto promedio mensual.
    */
   getAverageMonthlyBudget(item: BudgetProposalItemDTO): number {
-    if (!item || item.esFilaAgrupadora) {
+    if (!item) {
       return 0;
     }
 
@@ -870,7 +974,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   getTotalAverageMonthlyExpense(): number {
     if (!this.proposalItems()) return 0;
     return this.proposalItems().reduce((sum, item) => {
-      return sum + this.getAverageMonthlyExpense(item);
+      return sum + (this.isAggregateView() || !item.esFilaAgrupadora
+        ? this.getAverageMonthlyExpense(item)
+        : 0);
     }, 0);
   }
 
@@ -881,7 +987,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   getTotalAverageMonthlyBudget(): number {
     if (!this.proposalItems()) return 0;
     return this.proposalItems().reduce((sum, item) => {
-      return sum + this.getAverageMonthlyBudget(item);
+      return sum + (this.isAggregateView() || !item.esFilaAgrupadora
+        ? this.getAverageMonthlyBudget(item)
+        : 0);
     }, 0);
   }
 
@@ -1105,7 +1213,11 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     const key =
       `gasto${mes.charAt(0).toUpperCase() + mes.slice(1)}` as keyof BudgetProposalItemDTO;
     return this.proposalItems().reduce(
-      (sum, item) => sum + (item.esFilaAgrupadora ? 0 : Number(item[key]) || 0),
+      (sum, item) =>
+        sum +
+        (this.isAggregateView() || !item.esFilaAgrupadora
+          ? Number(item[key]) || 0
+          : 0),
       0,
     );
   }
@@ -1121,7 +1233,11 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       mes.charAt(0).toUpperCase() + mes.slice(1)
     }` as keyof BudgetProposalItemDTO;
     return this.proposalItems().reduce(
-      (sum, item) => sum + (item.esFilaAgrupadora ? 0 : Number(item[key]) || 0),
+      (sum, item) =>
+        sum +
+        (this.isAggregateView() || !item.esFilaAgrupadora
+          ? Number(item[key]) || 0
+          : 0),
       0,
     );
   }
@@ -1160,7 +1276,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     if (!this.proposalItems()) return 0;
     return this.proposalItems().reduce(
       (sum, item) =>
-        sum + (item.esFilaAgrupadora ? 0 : item.currentAmount || 0),
+        sum +
+        (this.isAggregateView() || !item.esFilaAgrupadora
+          ? Number(item.currentAmount) || 0
+          : 0),
       0,
     );
   }

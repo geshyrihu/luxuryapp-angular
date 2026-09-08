@@ -5,7 +5,7 @@
       [value]="100"
       [showValue]="false"
       [class]="'p-progressbar-' + type"
-    ></app-progress-bar>
+    />
   </div>
 
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
@@ -39,7 +39,7 @@
           iconClass="material-symbols-light:mail-outline"
           label="Enviar Correo"
           (clicked)="onSendEmail()"
-          color="info"
+          severity="info"
           variant="outline"
           class="mr-2"
           size="small"
@@ -60,7 +60,7 @@
           iconClass="material-symbols-light:table"
           label="Cuadro Comparativo"
           (clicked)="router.navigate(['/purchases/cuadro-comparativo', id])"
-          color="info"
+          severity="info"
           variant="outline"
           class="mr-2"
           size="small"
@@ -71,6 +71,7 @@
           [disabled]="form.invalid"
           [submitting]="submitting()"
           customClass="m-0"
+          size="small"
           class="mr-2"
         />
       </div>
@@ -92,6 +93,22 @@
         <custom-input-date-signal
           [control]="form.controls.fechaSolicitud"
           label="Fecha de solicitud"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 md:col-2">
+        <custom-input-select-signal
+          [control]="form.controls.tipoSolicitud"
+          [data]="tipoSolicitudOptions()"
+          label="Tipo de Solicitud"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 md:col-2">
+        <custom-input-select-signal
+          [control]="form.controls.prioridad"
+          [data]="prioridadOptions()"
+          label="Prioridad"
           [horizontal]="false"
         />
       </div>
@@ -117,6 +134,7 @@
   </form>
 
   <!-- SECCION DE PRODUCTOS -->
+  @if (id && id !== "" && id !== "0") {
   <div class="flex align-items-center justify-content-between mb-3">
     <div class="flex align-items-center">
       <app-icon
@@ -136,7 +154,6 @@
     <app-product-add
       [solicitudCompraId]="id"
       (updateData)="onLoadData()"
-      (addedLocal)="onAddedLocal($event)"
     />
   </div>
 
@@ -146,6 +163,17 @@
     [solicitudCompraId]="id"
     (updateData)="onLoadData()"
   />
+  } @else {
+  <div
+    class="surface-100 border-round p-3 text-600 text-sm flex align-items-center gap-2"
+  >
+    <app-icon
+      [icon]="'material-symbols-light:info'"
+      class="text-lg"
+    />
+    Guarda la solicitud para poder agregar productos.
+  </div>
+  }
 
   <!-- Órdenes Relacionadas (Solo si existen) -->
   <div class="mt-5 p-3 surface-100 rounded">

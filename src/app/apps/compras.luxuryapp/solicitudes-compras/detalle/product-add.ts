@@ -151,9 +151,11 @@ export class ProductAdd implements OnInit {
   }
 
   onProductSelected(
-    event: IProductSuggestion | { value: IProductSuggestion },
+    event: IProductSuggestion | { value: IProductSuggestion } | null,
   ): void {
+    if (!event) return;
     const selected = "value" in event ? event.value : event;
+    if (!selected) return;
     this.form.patchValue({
       productName: selected.displayName,
       productoId: selected.productoId,

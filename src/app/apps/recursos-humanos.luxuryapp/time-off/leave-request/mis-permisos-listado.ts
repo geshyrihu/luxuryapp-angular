@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +6,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
@@ -17,7 +17,7 @@ import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emp
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { getStatusSeverity } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
-import { LeaveRequestMyDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/leave-request.interface";
+import { LeaveRequestMyDTO } from "src/app/apps/recursos-humanos.luxuryapp/interfaces/leave-request.interface";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
   globalFilterFields,

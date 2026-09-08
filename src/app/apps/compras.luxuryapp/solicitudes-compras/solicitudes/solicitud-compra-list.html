@@ -96,6 +96,8 @@
         <p-sorticon field="solicita" />
       </th>
       <th class="table-col-44">DESCRIPCIóN</th>
+      <th class="table-col-10">TIPO</th>
+      <th class="table-col-10">PRIORIDAD</th>
       <th class="table-col-5 text-center">COT</th>
       <th class="table-col-13">OC</th>
       <th class="table-col-10"></th>
@@ -130,6 +132,22 @@
         >
           {{ item.justificacionGasto }}
         </div>
+      </td>
+
+      <td>
+        <lx-tag
+          [value]="getTipoSolicitudLabel(item.tipoSolicitud)"
+          [severity]="getTipoSolicitudSeverity(item.tipoSolicitud)"
+          [rounded]="true"
+        />
+      </td>
+
+      <td>
+        <lx-tag
+          [value]="getPrioridadLabel(item.prioridad)"
+          [severity]="getPrioridadSeverity(item.prioridad)"
+          [rounded]="true"
+        />
       </td>
 
       <td class="text-center">
@@ -177,7 +195,7 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <primeng-custom-table-emptymessage [colspan]="9" />
+    <primeng-custom-table-emptymessage [colspan]="11" />
   </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
@@ -210,6 +228,18 @@
       <h3>{{ item.equipoOInstalacion }}</h3>
       <p>{{ item.solicita }} é Folio: {{ item.folio }}</p>
       <p>{{ item.fechaSolicitud | apiDate }}</p>
+      <div class="flex gap-2 mt-1">
+        <lx-tag
+          [value]="getTipoSolicitudLabel(item.tipoSolicitud)"
+          [severity]="getTipoSolicitudSeverity(item.tipoSolicitud)"
+          [rounded]="true"
+        />
+        <lx-tag
+          [value]="getPrioridadLabel(item.prioridad)"
+          [severity]="getPrioridadSeverity(item.prioridad)"
+          [rounded]="true"
+        />
+      </div>
 
       <ili-action-menu slot="end">
         <ng-container actions>

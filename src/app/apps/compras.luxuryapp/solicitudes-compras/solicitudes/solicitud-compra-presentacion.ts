@@ -8,6 +8,8 @@ import {
   ViewChild,
 } from "@angular/core";
 import { LxCarousel } from "@ui/adaptive/carousel/carousel";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { TagSeverity } from "@ui/base/tag.base";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { AppImage } from "@ui/web/image/image";
@@ -23,6 +25,8 @@ import Swal from "sweetalert2";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { Carousel } from "@ui/web/primeng-carousel/primeng-carousel";
+import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "./nivel-prioridad-tag-options";
+import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
 
 @Component({
   selector: "app-solicitud-compra-presentacion",
@@ -35,6 +39,7 @@ import { Carousel } from "@ui/web/primeng-carousel/primeng-carousel";
     TableModule,
     WebButtonLabel,
     WebButtonLabelViewPdf,
+    LxTag,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -44,6 +49,7 @@ import { Carousel } from "@ui/web/primeng-carousel/primeng-carousel";
       }
 
       .presentation-shell {
+        position: relative;
         background:
           radial-gradient(
             circle at top right,
@@ -53,6 +59,45 @@ import { Carousel } from "@ui/web/primeng-carousel/primeng-carousel";
           linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
         min-height: 100%;
         overflow-x: hidden;
+      }
+
+      .priority-group-header {
+        font-weight: 600;
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 0.5rem 1rem;
+      }
+
+      .priority-group-danger {
+        background: var(--ds-danger-light);
+        color: var(--ds-danger);
+      }
+
+      .priority-group-warn {
+        background: var(--ds-warning-light);
+        color: var(--ds-warning);
+      }
+
+      .priority-group-info {
+        background: var(--ds-info-light);
+        color: var(--ds-info);
+      }
+
+      .priority-group-secondary {
+        background: var(--ds-bg-sunken);
+        color: var(--ds-text-secondary);
+      }
+
+      .presentation-nav-floating {
+        position: absolute;
+        top: 0;
+        right: 1.25rem;
+        z-index: 5;
+        background: #ffffff;
+        border-radius: 999px;
+        padding: 0.25rem;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
       }
 
       :host ::ng-deep .presentation-carousel .p-carousel-content {
@@ -284,7 +329,42 @@ export class SolicitudCompraPresentacion {
               0,
             )
           : 0,
+      tipoSolicitudLabel: this.getTipoSolicitudLabel(solicitud.tipoSolicitud),
+      tipoSolicitudSeverity: this.getTipoSolicitudSeverity(
+        solicitud.tipoSolicitud,
+      ),
+      prioridad: solicitud.prioridad ?? 0,
+      prioridadLabel: this.getPrioridadLabel(solicitud.prioridad),
+      prioridadSeverity: this.getPrioridadSeverity(solicitud.prioridad),
     };
+  }
+
+  getTipoSolicitudLabel(value: number): string {
+    return (
+      TIPO_SOLICITUD_TAG_OPTIONS.find((item) => item.value === value)
+        ?.label ?? "N/D"
+    );
+  }
+
+  getTipoSolicitudSeverity(value: number): TagSeverity {
+    return (
+      TIPO_SOLICITUD_TAG_OPTIONS.find((item) => item.value === value)
+        ?.severity ?? "secondary"
+    );
+  }
+
+  getPrioridadLabel(value: number): string {
+    return (
+      NIVEL_PRIORIDAD_TAG_OPTIONS.find((item) => item.value === value)
+        ?.label ?? "N/D"
+    );
+  }
+
+  getPrioridadSeverity(value: number): TagSeverity {
+    return (
+      NIVEL_PRIORIDAD_TAG_OPTIONS.find((item) => item.value === value)
+        ?.severity ?? "secondary"
+    );
   }
 
   getSummaryTotal(rows: any[]): number {

@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,14 +20,18 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxPanel } from "@ui/adaptive/panel/panel";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/vacation-balance.interface";
+import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/interfaces/vacation-balance.interface";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { GlobalErrorService } from "src/app/core/http/services/global-error.service";
 import { DateService } from "src/app/core/services/date.service";
-import { VacationRequestMyDTO } from "../interfaces/vacation-request.interface";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
+import { VacationRequestMyDTO } from "../../interfaces/vacation-request.interface";
 
 interface HolidayResponseDTO {
   fecha: string;

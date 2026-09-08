@@ -150,6 +150,12 @@ export class EnumSelectService {
   typeStatusOrdenCompra = (d?: boolean) =>
     this.onLoadEnumList("status-orden-compra", d);
 
+  typeTipoSolicitudCompra = (d?: boolean) =>
+    this.onLoadEnumList("tipo-solicitud-compra", d);
+
+  typeNivelPrioridad = (d?: boolean) =>
+    this.onLoadEnumList("nivel-prioridad", d);
+
   typePosicionComite = (d?: boolean) =>
     this.onLoadEnumList("posicion-comite", d);
 

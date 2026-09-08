@@ -99,6 +99,9 @@ export class PresupuestoAspelEjercicioFiscal {
 
   allCuentas = signal<CuentaAspelTercerNivelDTO[]>([]);
 
+  /** Vista completa o resumen por Mayor / 2do Nivel. */
+  viewMode = signal<"normal" | "level1" | "level2">("normal");
+
   cuentas = computed(() => {
     const grouped = splitAspelAccounts(
       this.allCuentas(),
@@ -106,36 +109,46 @@ export class PresupuestoAspelEjercicioFiscal {
     );
     const all = grouped.mantenimiento;
     const term = this.sharedS.searchTerm().toLowerCase().trim();
-    if (!term) return all;
+    let filtered = all;
+    if (!term) {
+      filtered = all;
+    } else {
+      const matchingLeaves = all.filter(
+        (c) =>
+          !c.esFilaAgrupadora &&
+          (c.codigo_Cuenta?.toLowerCase().includes(term) ||
+            c.descripcion_Cuenta?.toLowerCase().includes(term)),
+      );
 
-    const matchingLeaves = all.filter(
-      (c) =>
-        !c.esFilaAgrupadora &&
-        (c.codigo_Cuenta?.toLowerCase().includes(term) ||
-          c.descripcion_Cuenta?.toLowerCase().includes(term)),
-    );
+      if (matchingLeaves.length === 0) return [];
 
-    if (matchingLeaves.length === 0) return [];
-
-    const neededParentCodes = new Set<string>();
-    for (const leaf of matchingLeaves) {
-      if (leaf.cuenta_Padre) neededParentCodes.add(leaf.cuenta_Padre);
-    }
-    for (const c of all) {
-      if (
-        c.esFilaAgrupadora &&
-        neededParentCodes.has(c.codigo_Cuenta) &&
-        c.cuenta_Padre
-      ) {
-        neededParentCodes.add(c.cuenta_Padre);
+      const neededParentCodes = new Set<string>();
+      for (const leaf of matchingLeaves) {
+        if (leaf.cuenta_Padre) neededParentCodes.add(leaf.cuenta_Padre);
       }
+      for (const c of all) {
+        if (
+          c.esFilaAgrupadora &&
+          neededParentCodes.has(c.codigo_Cuenta) &&
+          c.cuenta_Padre
+        ) {
+          neededParentCodes.add(c.cuenta_Padre);
+        }
+      }
+
+      filtered = all.filter((c) =>
+        c.esFilaAgrupadora
+          ? neededParentCodes.has(c.codigo_Cuenta)
+          : matchingLeaves.includes(c),
+      );
     }
 
-    return all.filter((c) =>
-      c.esFilaAgrupadora
-        ? neededParentCodes.has(c.codigo_Cuenta)
-        : matchingLeaves.includes(c),
-    );
+    const mode = this.viewMode();
+    if (mode === "normal") return filtered;
+
+    const aggregated = this.calculateAggregateTotals(filtered);
+    const level = mode === "level1" ? 1 : 2;
+    return aggregated.filter((cuenta) => cuenta.nivel_Cuenta === level);
   });
 
   globalFilterFields = signal<string[]>([]);
@@ -328,23 +341,71 @@ export class PresupuestoAspelEjercicioFiscal {
       });
   }
 
+  private calculateAggregateTotals(
+    items: CuentaAspelTercerNivelDTO[],
+  ): CuentaAspelTercerNivelDTO[] {
+    const result = items.map((cuenta) =>
+      cuenta.esFilaAgrupadora ? { ...cuenta } : cuenta,
+    );
+
+    for (const aggregator of result) {
+      if (!aggregator.esFilaAgrupadora) continue;
+
+      const prefix = (aggregator.codigo_Cuenta ?? "")
+        .split("-")
+        .slice(0, aggregator.nivel_Cuenta ?? 0)
+        .join("-");
+      const children = items.filter(
+        (cuenta) =>
+          !cuenta.esFilaAgrupadora &&
+          (cuenta.codigo_Cuenta ?? "").startsWith(`${prefix}-`),
+      );
+
+      for (const mes of this.months) {
+        const monthName = mes.charAt(0).toUpperCase() + mes.slice(1);
+        const montoKey = `monto_${monthName}`;
+        const presupuestoKey = `presup_${monthName}`;
+        const aggregate = aggregator as Record<string, unknown>;
+
+        aggregate[montoKey] = children.reduce(
+          (sum, child) => sum + this.getMontoMes(child, mes),
+          0,
+        );
+        aggregate[presupuestoKey] = children.reduce(
+          (sum, child) => sum + this.getPresupuestoDelMes(child, mes),
+          0,
+        );
+      }
+    }
+
+    return result;
+  }
+
+  setViewMode(mode: "normal" | "level1" | "level2"): void {
+    this.viewMode.set(mode);
+  }
+
+  private isAggregateView(): boolean {
+    return this.viewMode() !== "normal";
+  }
+
   getTotalMontoPorMes(mes: string): number {
     const cuentas = this.cuentas();
     if (!cuentas) return 0;
     return cuentas
-      .filter((c) => !c.esFilaAgrupadora)
+      .filter((c) => this.isAggregateView() || !c.esFilaAgrupadora)
       .reduce((sum, cuenta) => sum + this.getMontoMes(cuenta, mes), 0);
   }
 
   getTotalPresupuestoBaseMensual(): number {
     return this.cuentas()
-      .filter((c) => !c.esFilaAgrupadora)
+      .filter((c) => this.isAggregateView() || !c.esFilaAgrupadora)
       .reduce((sum, cuenta) => sum + this.getPresupuestoBaseMensual(cuenta), 0);
   }
 
   getTotalPresupuestoDelMes(mes: string): number {
     return this.cuentas()
-      .filter((c) => !c.esFilaAgrupadora)
+      .filter((c) => this.isAggregateView() || !c.esFilaAgrupadora)
       .reduce((sum, cuenta) => sum + this.getPresupuestoDelMes(cuenta, mes), 0);
   }
 

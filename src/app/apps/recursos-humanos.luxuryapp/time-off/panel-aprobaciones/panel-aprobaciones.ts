@@ -6,15 +6,15 @@ import {
 } from "@angular/core";
 import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { GenericApprovalPanel } from "../../expediente-del-empleado/recursos-humanos/shared/generic-approval-panel";
+import { ApprovalConfirmationModal } from "../../expediente-del-empleado/recursos-humanos/shared/modal-approval-confirmation";
+import { ApprovalDetailModal } from "../../expediente-del-empleado/recursos-humanos/shared/modal-approval-detail";
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
-} from "../interfaces/approval.interface";
+} from "../../interfaces/approval.interface";
 import { MotivoRechazoFormulario } from "../motivo-rechazo-formulario/motivo-rechazo-formulario";
-import { GenericApprovalPanel } from "../shared/generic-approval-panel";
-import { ApprovalConfirmationModal } from "../shared/modal-approval-confirmation";
-import { ApprovalDetailModal } from "../shared/modal-approval-detail";
-import { ApprovalStateService } from "./state/approval-state.service";
+import { ApprovalStateService } from "./approval-state.service";
 @Component({
   selector: "app-panel-aprobaciones",
   templateUrl: "./panel-aprobaciones.html",

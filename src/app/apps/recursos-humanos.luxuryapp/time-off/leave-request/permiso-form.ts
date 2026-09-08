@@ -14,14 +14,17 @@ import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { LeaveRequestMyDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/leave-request.interface";
+import { LeaveRequestMyDTO } from "src/app/apps/recursos-humanos.luxuryapp/interfaces/leave-request.interface";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { SelectedFile } from "src/app/core/interfaces/selected-file.interface";
 import { DateService } from "src/app/core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
 interface LeaveRequestEditDTO {
   leaveType: number;
   startDate: string;

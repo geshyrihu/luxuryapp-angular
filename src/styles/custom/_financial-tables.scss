@@ -294,10 +294,6 @@
   max-height: 2.25rem !important;
   white-space: nowrap;
   overflow: hidden;
-
-  span {
-    color: inherit !important;
-  }
 }
 
 .fila-nivel-2-agrupadora > td {
@@ -308,10 +304,6 @@
   max-height: 2.25rem !important;
   white-space: nowrap;
   overflow: hidden;
-
-  span {
-    color: inherit !important;
-  }
 }
 
 .fila-nivel-2-hoja > td {
@@ -324,6 +316,13 @@
   background-color: var(--rf-surface);
   max-height: 3.5rem !important;
   overflow: hidden;
+}
+
+// En las vistas Mayor y 2do Nivel las filas son agregados informativos;
+// conservan el fondo neutro de la tabla, igual que las filas normales.
+.fila-vista-agregada > td {
+  background-color: var(--rf-surface) !important;
+  color: inherit !important;
 }
 
 // ── ESPEJO ASPEL FULL — utilidades específicas ────────────

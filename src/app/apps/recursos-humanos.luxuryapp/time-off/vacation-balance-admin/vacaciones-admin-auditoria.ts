@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,12 +14,13 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { getStatusSeverity as statusSeverityFn } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
-import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/expediente-del-empleado/recursos-humanos/interfaces/vacation-balance.interface";
+import { VacationBalanceDTO } from "src/app/apps/recursos-humanos.luxuryapp/interfaces/vacation-balance.interface";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 
 export interface VacationHistoryItemDTO {
   id: string;
