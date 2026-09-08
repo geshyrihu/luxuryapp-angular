@@ -75,33 +75,43 @@
           <div
             class="hidden md:grid grid align-items-center px-2 text-sm font-semibold text-color-secondary"
           >
-            <div class="col-3"></div>
-            <div class="col-4">Entrada</div>
-            <div class="col-4">Salida (mismo día o siguiente)</div>
+            <div class="col-2"></div>
+            <div class="col-1">Descanso</div>
+            <div class="col-3">Entrada</div>
+            <div class="col-3">Salida (mismo día o siguiente)</div>
             <div class="col-1"></div>
           </div>
           @for (day of weekDays(); track day.dw) {
           <div class="surface-50 border-1 border-200 rounded p-2">
             <div class="grid align-items-center">
-              <div class="col-12 md:col-3">
+              <div class="col-12 md:col-2">
                 <span class="font-semibold text-sm">{{ day.label }}</span>
               </div>
-              <div class="col-12 md:col-4">
+              <div class="col-12 md:col-1 flex align-items-center">
+                <custom-input-switch-signal
+                  [control]="day.rest"
+                  placeholder="Descanso"
+                  (switchChange)="onRestChange(day.dw, $event)"
+                />
+              </div>
+              <div class="col-12 md:col-3">
                 <custom-input-select-signal
                   [control]="day.entry"
                   [data]="timeOptions"
                   [filter]="true"
                   [horizontal]="false"
-                  placeholder="Seleccionar"
+                  placeholder="Entrada"
+                  [disabled]="day.rest?.value"
                 />
               </div>
-              <div class="col-12 md:col-4">
+              <div class="col-12 md:col-3">
                 <custom-input-select-signal
                   [control]="day.exit"
                   [data]="timeOptions"
                   [filter]="true"
                   [horizontal]="false"
-                  placeholder="Seleccionar"
+                  placeholder="Salida"
+                  [disabled]="day.rest?.value"
                 />
               </div>
               <div class="col-12 md:col-1 flex justify-content-end">

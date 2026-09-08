@@ -35,6 +35,7 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "src/app/shared/utils/icon-mapping";
+import { CronogramaCompletoStatusDialog } from "./cronograma-completo-status-dialog";
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";
 import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
@@ -52,6 +53,7 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
     CommonModule,
     PrimeNgCustomCaption,
     AppIcon,
+    CronogramaCompletoStatusDialog,
   ],
 })
 export class CronogramaAnualMantenimiento {
@@ -196,6 +198,18 @@ export class CronogramaAnualMantenimiento {
 
   getFiltroIconClass(icon: string | null | undefined): AppIconName {
     return resolveIconifyIcon(icon, "material-symbols-light:package") as AppIconName;
+  }
+
+  async openPdfStatusDialog(): Promise<void> {
+    const customerId = this.customerIdS.customerId();
+    if (!customerId) return;
+
+    this.dialogHandlerS.openDialog(
+      CronogramaCompletoStatusDialog,
+      { customerId, filterId: this.filtroId },
+      "Cronograma Anual - Estado de Servicios",
+      this.dialogHandlerS.sizeLg,
+    );
   }
 
   // --- Funciones de Ayuda para la Vista ---

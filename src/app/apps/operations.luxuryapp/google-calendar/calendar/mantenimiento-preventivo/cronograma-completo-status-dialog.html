@@ -1,0 +1,148 @@
+<style>
+  .gold-stripe {
+    height: 4px;
+    background: #c9a84c;
+    width: 100%;
+  }
+  .header-premium-luxury {
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .logo-text-luxury {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #0b3164;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+  }
+  .logo-sub-luxury {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #6b7280;
+    letter-spacing: 0.5px;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    background: #f9fafb;
+    border-radius: 6px;
+  }
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #374151;
+  }
+  .legend-emoji {
+    font-size: 14px;
+  }
+</style>
+
+<ng-container>
+  <div class="gold-stripe"></div>
+  <div class="header-premium-luxury">
+    <div>
+      <div class="logo-text-luxury">Cronograma Anual - Estado de Servicios</div>
+      <div class="logo-sub-luxury">Filtro: {{ getFilterLabel() }} | Año: {{ selectedYear }}</div>
+    </div>
+    <div class="flex align-items-center gap-2">
+      <label for="year-select-status" class="text-sm font-semibold">Año:</label>
+      <select
+        id="year-select-status"
+        class="p-inputtext p-component"
+        [value]="selectedYear"
+        (change)="onYearChange(+$event.target.value)"
+      >
+        @for (year of availableYears; track year) {
+          <option [value]="year">{{ year }}</option>
+        }
+      </select>
+      <il-button
+        label="Exportar PDF"
+        iconClass="material-symbols-light:picture-as-pdf"
+        class="btn-luxury-pdf"
+        title="Exportar a PDF"
+        (clicked)="exportPdf()"
+      />
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item"><span class="legend-emoji">✅</span> Concluido</span>
+    <span class="legend-item"><span class="legend-emoji">⏳</span> Pendiente</span>
+    <span class="legend-item"><span class="legend-emoji">🔵</span> En espera / programado</span>
+    <span class="legend-item"><span class="legend-emoji">🔄</span> Proceso</span>
+    <span class="legend-item"><span class="legend-emoji">🚫</span> No autorizado</span>
+    <span class="legend-item"><span class="legend-emoji">❌</span> Cancelado</span>
+  </div>
+
+  <div class="grid mt-2">
+    <div class="col-12">
+      <p-table
+        [value]="data()"
+        [globalFilterFields]="['sistema', 'nameMachinery']"
+        #dt
+        groupRowsBy="sistema"
+        rowGroupMode="subheader"
+        sortMode="single"
+        class="custom-table -report"
+        [loading]="loading()"
+      >
+        <ng-template #caption>
+          <div class="grid mt-1">
+            <div class="col-12">
+              <primeng-custom-caption [dt]="dt" [showAdd]="false" [showSearch]="true" />
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template #header>
+          <tr>
+            <th class="table-col-40" pSortableColumn="nameMachinery">
+              DESCRIPCIÓN
+              <p-sorticon field="nameMachinery" />
+            </th>
+            @for (mes of meses; track mes) {
+            <th class="table-col-5">{{ mes }}</th>
+            }
+          </tr>
+        </ng-template>
+
+        <ng-template #groupheader let-customer>
+          <tr pRowGroupHeader>
+            <td [attr.colspan]="meses.length + 1">
+              <span class="font-size-16">
+                <strong>{{ customer.sistema }}</strong>
+              </span>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template #body let-customer>
+          <tr>
+            <td>
+              <p class="text-start mb-0">{{ customer.nameMachinery }}</p>
+            </td>
+            @for (mes of meses; track mes) {
+            <td class="text-center">
+              @let info = getStatusInfo(customer, mes);
+              <div style="font-size: 14px; line-height: 1;">{{ getStatusEmoji(info.status) }}</div>
+              <div style="font-size: 7px; color: #6b7280; margin-top: 2px;">{{ info.status || '' }}</div>
+            </td>
+            }
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</ng-container>

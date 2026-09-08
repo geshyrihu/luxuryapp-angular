@@ -49,11 +49,9 @@ const requireBothOrNoneTimeValidator: ValidatorFn = (
   const diasArray = group.get("diasDeTrabajo") as FormArray;
   if (!diasArray) return null;
 
-  const week1 = diasArray.controls.filter(
-    (g) => g.get("numeroSemanaCiclo")?.value === 1,
-  );
-
-  const incompleteDay = week1.find((g) => {
+  const incompleteDay = diasArray.controls.find((g) => {
+    const esDescanso = g.get("esDescanso")?.value;
+    if (esDescanso) return false;
     const entry = g.get("horaEntrada")?.value;
     const exit = g.get("horaSalida")?.value;
     return !!entry !== !!exit;
@@ -139,6 +137,7 @@ export class WorkPositionScheduleForm implements OnInit {
         ...day,
         entry: ctrl?.get("horaEntrada") ?? null,
         exit: ctrl?.get("horaSalida") ?? null,
+        rest: ctrl?.get("esDescanso") ?? null,
       };
     });
   });
@@ -227,12 +226,20 @@ export class WorkPositionScheduleForm implements OnInit {
   }
 
   onSubmit() {
+    this.duracionCicloValue.set(this.form.controls.duracionCicloSemanas.value);
+    this.proyectarSemanas();
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    this.proyectarSemanas();
+    const payload = this.form.getRawValue();
+    const expectedDays = 7 * this.duracionCicloValue();
+    const actualDays = payload.diasDeTrabajo?.length ?? 0;
+    if (actualDays !== expectedDays) {
+      console.error(`Días mismatch: esperados ${expectedDays}, enviados ${actualDays}`);
+    }
 
     FormHelper.submitCrud({
       form: this.form,
@@ -301,6 +308,21 @@ export class WorkPositionScheduleForm implements OnInit {
     const salida = diaAnterior.get("horaSalida")?.value ?? null;
     diaActual.get("horaEntrada")?.setValue(entrada, { emitEvent: false });
     diaActual.get("horaSalida")?.setValue(salida, { emitEvent: false });
+  }
+
+  onRestChange(dw: number, isRest: boolean): void {
+    const dia = this.findDia(1, dw);
+    if (!dia) return;
+
+    if (isRest) {
+      dia.controls.horaEntrada.setValue(null, { emitEvent: false });
+      dia.controls.horaSalida.setValue(null, { emitEvent: false });
+      dia.controls.horaEntrada.disable({ emitEvent: false });
+      dia.controls.horaSalida.disable({ emitEvent: false });
+    } else {
+      dia.controls.horaEntrada.enable({ emitEvent: false });
+      dia.controls.horaSalida.enable({ emitEvent: false });
+    }
   }
 
   private toFormValue(item: WorkPositionScheduleDto) {

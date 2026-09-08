@@ -132,6 +132,14 @@
                 (clicked)="exportPdf()"
               />
 
+              <il-button
+                label="Cronograma Estado"
+                iconClass="material-symbols-light:assignment"
+                class="btn-luxury-pdf"
+                title="Ver cronograma completo con estado de ordenes de servicio"
+                (clicked)="openPdfStatusDialog()"
+              />
+
               <div class="flex gap-1 ml-2">
                 @for (filtro of filtroEquipos; track trackByFiltro($index,
                 filtro)) {

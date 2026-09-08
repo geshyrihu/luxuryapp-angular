@@ -120,14 +120,6 @@ export class PresentacionJuntaComite {
       });
   }
   showModalAdd(data: any) {
-    if (!data.id) {
-      this.customToastS.showInfo(
-        "Alta desde agenda",
-        "La presentacion no puede crearse directamente aqui. Primero registra la agenda de la junta para que se genere la sesion y, desde ella, la presentacion vinculada.",
-      );
-      return;
-    }
-
     this.dialogHandlerS
       .openDialog(
         PresentacionJuntaAdd,
