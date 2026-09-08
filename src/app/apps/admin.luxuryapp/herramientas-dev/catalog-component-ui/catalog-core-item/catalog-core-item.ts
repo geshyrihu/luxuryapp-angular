@@ -1473,8 +1473,16 @@ export class CatalogCoreItem {
 
   readonly wizardSteps: WizardStep[] = [
     { value: 1, label: "Datos", icon: "material-symbols-light:description" },
-    { value: 2, label: "Revisin", icon: "material-symbols-light:visibility-outline" },
-    { value: 3, label: "Confirmar", icon: "material-symbols-light:check-circle-outline" },
+    {
+      value: 2,
+      label: "Revisin",
+      icon: "material-symbols-light:visibility-outline",
+    },
+    {
+      value: 3,
+      label: "Confirmar",
+      icon: "material-symbols-light:check-circle-outline",
+    },
   ];
 
   // Fase 6-10 demo data
@@ -1775,7 +1783,7 @@ export class CatalogCoreItem {
       id: "1",
       author: "Juan Garcóa",
       authorInitials: "JG",
-      content: "El cliente solicité extensión de plazo de pago a 45 dóas.",
+      content: "El cliente solicité extensión de plazo de pago a 45 días.",
       timestamp: new Date("2026-06-24T09:00:00"),
       read: true,
     },
@@ -1887,12 +1895,12 @@ export class CatalogCoreItem {
       {
         icon: "material-symbols-light:call",
         text: "Llamada de seguimiento Q3",
-        time: "Hace 2 dóas",
+        time: "Hace 2 días",
       },
       {
         icon: "material-symbols-light:mail",
         text: "Propuesta enviada por email",
-        time: "Hace 5 dóas",
+        time: "Hace 5 días",
       },
       {
         icon: "material-symbols-light:calendar-today",
@@ -1912,11 +1920,27 @@ export class CatalogCoreItem {
   };
 
   readonly dockItems: MenuItem[] = [
-    { label: "Dashboard", icon: "material-symbols-light:dashboard", command: () => {} },
+    {
+      label: "Dashboard",
+      icon: "material-symbols-light:dashboard",
+      command: () => {},
+    },
     { label: "CRM", icon: "material-symbols-light:group", command: () => {} },
-    { label: "Reportes", icon: "material-symbols-light:bar-chart", command: () => {} },
-    { label: "Inventario", icon: "material-symbols-light:package", command: () => {} },
-    { label: "Config", icon: "material-symbols-light:settings", command: () => {} },
+    {
+      label: "Reportes",
+      icon: "material-symbols-light:bar-chart",
+      command: () => {},
+    },
+    {
+      label: "Inventario",
+      icon: "material-symbols-light:package",
+      command: () => {},
+    },
+    {
+      label: "Config",
+      icon: "material-symbols-light:settings",
+      command: () => {},
+    },
   ];
 
   readonly heatmapData: HeatmapCell[] = [
@@ -2225,7 +2249,11 @@ export class CatalogCoreItem {
     { separator: true },
     { label: "Exportar PDF", icon: "material-symbols-light:picture-as-pdf" },
     { separator: true },
-    { label: "Eliminar", icon: "material-symbols-light:delete", class: "text-danger" },
+    {
+      label: "Eliminar",
+      icon: "material-symbols-light:delete",
+      class: "text-danger",
+    },
   ];
 
   cmdPaletteVisible = signal(false);

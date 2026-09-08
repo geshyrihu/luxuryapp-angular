@@ -146,7 +146,7 @@ export const EndpointsRecursosHumanos = {
         endDate: string,
         excludeEmployeeId: string,
       ) =>
-        `leave-request-approvals/overlapping-requests?customer-id=${customerId}&start-date=${startDate}&end-date=${endDate}&exclude-employee-id=${excludeEmployeeId}`,
+        `leave-request-approvals/overlapping-requests?customerId=${customerId}&startDate=${startDate}&endDate=${endDate}&excludeEmployeeId=${excludeEmployeeId}`,
       detail: (id: string) => `leave-request-approvals/${id}/detail`,
       approve: (id: string) => `leave-request-approvals/${id}/approve`,
       reject: (id: string) => `leave-request-approvals/${id}/reject`,
@@ -259,7 +259,7 @@ export const EndpointsRecursosHumanos = {
         endDate: string,
         excludeEmployeeId: string,
       ) =>
-        `hr/vacations/approvals/overlapping-requests?customer-id=${customerId}&start-date=${startDate}&end-date=${endDate}&exclude-employee-id=${excludeEmployeeId}`,
+        `hr/vacations/approvals/overlapping-requests?customerId=${customerId}&startDate=${startDate}&endDate=${endDate}&excludeEmployeeId=${excludeEmployeeId}`,
       approve: (id: string) => `hr/vacations/approvals/${id}/approve`,
       reject: (id: string) => `hr/vacations/approvals/${id}/reject`,
       cancel: (id: string) => `hr/vacations/approvals/${id}/cancel`,

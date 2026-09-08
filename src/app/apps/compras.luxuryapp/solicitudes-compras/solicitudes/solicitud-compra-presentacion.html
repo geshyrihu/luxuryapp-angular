@@ -10,6 +10,16 @@
     class="flex justify-content-end align-items-center gap-2 px-2 md:px-3 mb-2"
   >
     <iw-button
+      iconClass="material-symbols-light:receipt-long"
+      label="Resumen"
+      (clicked)="goToSummary()"
+      severity="secondary"
+      variant="outline"
+      size="small"
+      [disabled]="currentPage() === 0"
+      tooltip="Ir al resumen de solicitudes de compra"
+    />
+    <iw-button
       iconClass="material-symbols-light:chevron-left"
       (clicked)="previousSlide()"
       severity="secondary"
@@ -35,6 +45,7 @@
     [numScroll]="1"
     [page]="currentPage()"
     [circular]="false"
+    [autoplayInterval]="0"
     [showIndicators]="solicitudesSignal().length > 1"
     [showNavigators]="false"
     class="presentation-carousel"

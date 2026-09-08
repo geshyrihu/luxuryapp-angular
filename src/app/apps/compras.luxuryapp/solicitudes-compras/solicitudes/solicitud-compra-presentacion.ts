@@ -542,6 +542,10 @@ export class SolicitudCompraPresentacion {
     this.currentPage.set(event.page ?? 0);
   }
 
+  goToSummary() {
+    this.currentPage.set(0);
+  }
+
   previousSlide() {
     if (this.currentPage() <= 0) return;
     const nextPage = this.currentPage() - 1;

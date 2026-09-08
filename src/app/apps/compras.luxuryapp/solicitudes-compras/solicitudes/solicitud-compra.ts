@@ -30,7 +30,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
 import { CreateOrdenCompra } from "src/app/apps/supplier.luxuryapp/po/purchase-order/create-orden-compra";
-import { SolicitudCompraDetalle } from "src/app/apps/supplier.luxuryapp/pr/solicitud-compra/solicitud-compra-detalle";
+import { SolicitudCompraDetalle } from "src/app/apps/compras.luxuryapp/solicitudes-compras/detalle/solicitud-compra-detalle";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -42,9 +42,9 @@ import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import { PurchaseLinkManager } from "../../po/purchase-link-manager/purchase-link-manager";
-import { ProductAdd } from "./product-add";
-import { ProductModalAdd } from "./product-modal-add";
+import { PurchaseLinkManager } from "src/app/apps/supplier.luxuryapp/po/purchase-link-manager/purchase-link-manager";
+import { ProductAdd } from "src/app/apps/compras.luxuryapp/solicitudes-compras/detalle/product-add";
+import { ProductModalAdd } from "src/app/apps/compras.luxuryapp/solicitudes-compras/detalle/product-modal-add";
 
 export interface ISolicitudCompraForm {
   id: FormControl<string | null>;

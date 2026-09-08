@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,6 +18,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { PrintService } from "src/app/core/services/print.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import { DiagramPreviewComponent } from "./diagram-preview";
 import { IManualTemplateDetalleDTO } from "./interfaces/manuals-and-processes.dto";
 
@@ -93,7 +93,7 @@ export class ManualsAndProcessesDetail implements OnInit {
     // Mensual
     if (manual.periodicity === 4) {
       if (manual.executionDayOfMonth) {
-        return `Mensual (Dóa ${manual.executionDayOfMonth})`;
+        return `Mensual (Día ${manual.executionDayOfMonth})`;
       }
       if (manual.executionWeekOfMonth && manual.executionDaysOfWeek?.length) {
         const weeks = ["1ra", "2da", "3ra", "4ta", "óltima"];

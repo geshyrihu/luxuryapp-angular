@@ -41,7 +41,7 @@ export const comprasRoutes: Routes = [
   {
     path: "purchase-requests", // Ruta anterior: 'solicitudes-compra'
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/pr/solicitud-compra/solicitud-compra-list").then(
+      import("src/app/apps/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-list").then(
         (m) => m.SolicitudCompraList,
       ),
     canActivate: [authGuard],
@@ -54,7 +54,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-request/:id'
     path: "solicitud-compra/:id",
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/pr/solicitud-compra/solicitud-compra").then(
+      import("src/app/apps/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra").then(
         (m) => m.SolicitudCompra,
       ),
     canActivate: [authGuard],
@@ -67,7 +67,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-request-pdf/:id'
     path: "pdf-solicitud-compra/:id",
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/pr/solicitud-compra/pdf-solicitud-compra").then(
+      import("src/app/apps/compras.luxuryapp/solicitudes-compras/solicitudes/pdf-solicitud-compra").then(
         (m) => m.PdfSolicitudCompra,
       ),
     canActivate: [authGuard],
@@ -80,7 +80,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'comparison-chart/:id'
     path: "cuadro-comparativo/:id",
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/quotes/provider-quotation/cuadro-comparativo-list").then(
+      import("src/app/apps/compras.luxuryapp/solicitudes-compras/comparativo/cuadro-comparativo-list").then(
         (m) => m.CuadroComparativoList,
       ),
     canActivate: [authGuard],
@@ -92,7 +92,7 @@ export const comprasRoutes: Routes = [
   {
     path: "solicitud-compra-presentacion",
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/pr/solicitud-compra/solicitud-compra-presentacion").then(
+      import("src/app/apps/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-presentacion").then(
         (m) => m.SolicitudCompraPresentacion,
       ),
     canActivate: [authGuard],

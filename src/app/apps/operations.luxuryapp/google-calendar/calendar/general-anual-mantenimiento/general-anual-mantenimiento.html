@@ -109,7 +109,9 @@
     </div>
 
     @for (servicio of item.servicios; track servicio) {
-    <div class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center">
+    <div
+      class="surface-card p-3 mb-2 shadow-sm rounded flex justify-content-between align-items-center"
+    >
       <div class="mr-3">
         <img
           [src]="servicio.img || 'assets/images/no-image.png'"
@@ -128,7 +130,7 @@
             <span class="font-bold">Rec:</span> {{ servicio.recurrencia }}
           </div>
           <div class="surface-100 p-1 rounded">
-            <span class="font-bold">Dóa:</span> {{ servicio.dia }}
+            <span class="font-bold">Día:</span> {{ servicio.dia }}
           </div>
           <div class="surface-100 p-1 rounded">
             <span class="font-bold">Costo:</span> {{ servicio.costo }}
@@ -142,10 +144,12 @@
     </div>
     } } @empty {
     <div class="p-4 text-center">
-      <app-icon [icon]="'material-symbols-light:search'" class="text-4xl text-gray-400 mb-2" />
+      <app-icon
+        [icon]="'material-symbols-light:search'"
+        class="text-4xl text-gray-400 mb-2"
+      />
       <p>No hay mantenimientos programados para este criterio.</p>
     </div>
     }
   </div>
 </div>
-

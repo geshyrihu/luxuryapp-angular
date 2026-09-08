@@ -25,7 +25,7 @@
       <th>Actividad</th>
       <th>Recurrencia</th>
       <th>Mes</th>
-      <th>Dóa</th>
+      <th>Día</th>
       <th>Precio</th>
       <th class="table-col-10"></th>
     </tr>
@@ -34,10 +34,7 @@
     @for (item of maintenanceCalendars; track item) {
     <tr>
       <td>
-        <lx-editor
-          [formControl]="item.activityControl"
-          
-        ></lx-editor>
+        <lx-editor [formControl]="item.activityControl"></lx-editor>
       </td>
       <td>
         <small>{{ item.recurrence }} </small>
