@@ -16,7 +16,7 @@ import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { CandidateApplicationListItem } from "../candidate-application/interfaces/candidate-application";
+import { CandidateApplicationListItem } from "../candidate-applications/interfaces/candidate-application";
 import { CandidateInterviewFeedbackForm } from "./candidate-interview-feedback-form";
 import { CandidateInterviewPendingDesktop } from "./desktop/candidate-interview-pending-desktop";
 import { CandidateInterviewFeedbackTarget } from "./interfaces/candidate-interview-feedback-target.interface";

@@ -18,7 +18,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PlatformService } from "src/app/core/services/platform.service";
 import Swal from "sweetalert2";
-import { CandidateApplicationForm } from "../candidate-application/candidate-application-form";
+import { CandidateApplicationForm } from "../candidate-applications/candidate-application-form";
 import { CandidateDetail } from "./candidate-detail";
 import { CandidateForm } from "./candidate-form";
 import { CandidateInterviewDetailModal } from "./candidate-interview-detail-modal";

@@ -5,7 +5,7 @@ import {
   CandidateRecruitmentInterviewBoard,
   ScheduleRecruitmentInterviewRequest,
 } from "./candidate-recruitment-interviews.interface";
-import { ChangeStageApplicationRequest } from "../candidate-application/interfaces/candidate-application";
+import { ChangeStageApplicationRequest } from "../candidate-applications/interfaces/candidate-application";
 
 @Injectable({ providedIn: "root" })
 export class CandidateRecruitmentInterviewsService {

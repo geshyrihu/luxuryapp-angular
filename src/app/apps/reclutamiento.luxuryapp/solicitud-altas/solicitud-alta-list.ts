@@ -42,8 +42,8 @@ import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { EStatus } from "src/app/shared/ui/base/status-badge.base";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
-import { CandidateDetail } from "../candidate/candidate-detail";
+import { CandidateProcessHiringModal } from "../candidate-applications/candidate-process-hiring-modal";
+import { CandidateDetail } from "../candidates/candidate-detail";
 import {
   requestStatusBorderColor,
   requestStatusTagSeverity,

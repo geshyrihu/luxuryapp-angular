@@ -91,8 +91,8 @@ roles. El riesgo principal no esta ahi, sino en los servicios y endpoints.
 
 | Archivo | Estado | Comentario |
 |---|---|---|
-| `candidate/candidate-list.ts` | Sano | Consume `Candidates.list` |
-| `candidate/candidate-form.ts` | Sano con deuda menor | Consume `Candidates.*` y `CandidateWorkExperiences.*` |
+| `candidates/candidate-list.ts` | Sano | Consume `Candidates.list` |
+| `candidates/candidate-form.ts` | Sano con deuda menor | Consume `Candidates.*` y `CandidateWorkExperiences.*` |
 | `recruitment-shared/candidate-decision-reason-select.ts` | Sano | Consume `CandidateDecisionReasons.catalog` |
 
 ### Mixtos
@@ -107,14 +107,14 @@ roles. El riesgo principal no esta ahi, sino en los servicios y endpoints.
 
 | Archivo | Estado | Comentario |
 |---|---|---|
-| `candidate-application/candidate-application-list.ts` | Legacy | Bandeja centrada en postulacion |
-| `candidate-application/candidate-application-form.ts` | Legacy expandido | Ya permite crear candidato + CV + experiencias, pero sigue escribiendo sobre `CandidateApplications` |
-| `candidate-application/candidate-stage-change-modal.ts` | Legacy | Cambio de etapa sobre `CandidateApplications.changeStage` |
-| `candidate-application/candidate-process-hiring-modal.ts` | Legacy | Contrata desde `CandidateApplications.processHiring` |
+| `candidate-applications/candidate-application-list.ts` | Legacy | Bandeja centrada en postulacion |
+| `candidate-applications/candidate-application-form.ts` | Legacy expandido | Ya permite crear candidato + CV + experiencias, pero sigue escribiendo sobre `CandidateApplications` |
+| `candidate-applications/candidate-stage-change-modal.ts` | Legacy | Cambio de etapa sobre `CandidateApplications.changeStage` |
+| `candidate-applications/candidate-process-hiring-modal.ts` | Legacy | Contrata desde `CandidateApplications.processHiring` |
 | `candidate-interview/candidate-interview-pending-list.ts` | Legacy | Lista por etapa desde `CandidateApplications.listByStage` |
 | `candidate-interviewer-queue/candidate-interviewer-queue.service.ts` | Legacy | Cola y acciones del entrevistador sobre `CandidateApplications.*` |
 | `recruitment-agenda-list.ts` | Legacy | Agenda de reclutamiento desde `CandidateApplications.recruitmentAgenda` |
-| `candidate-application/candidate-application-kpis.ts` | Legacy | KPIs y automatizacion sobre `CandidateApplications.*` |
+| `candidate-applications/candidate-application-kpis.ts` | Legacy | KPIs y automatizacion sobre `CandidateApplications.*` |
 
 ---
 
@@ -220,7 +220,7 @@ antes, para no congelar otra vez una fotografia intermedia.
 
 ### Migracion prioritaria alta
 
-1. `candidate-application/candidate-application-form.ts`
+1. `candidate-applications/candidate-application-form.ts`
 2. `candidate-recruitment-interviews/candidate-recruitment-interviews.service.ts`
 3. `recruitment-agenda-list.ts`
 4. `candidate-work-position-candidates/candidate-work-position-candidates.ts`
@@ -229,18 +229,18 @@ antes, para no congelar otra vez una fotografia intermedia.
 
 ### Migracion prioritaria media
 
-1. `candidate-application/candidate-application-list.ts`
-2. `candidate-application/candidate-stage-change-modal.ts`
-3. `candidate-application/candidate-process-hiring-modal.ts`
-4. `candidate-application/candidate-application-kpis.ts`
+1. `candidate-applications/candidate-application-list.ts`
+2. `candidate-applications/candidate-stage-change-modal.ts`
+3. `candidate-applications/candidate-process-hiring-modal.ts`
+4. `candidate-applications/candidate-application-kpis.ts`
 
 ---
 
 ## Lista exacta de pantallas que se mantienen
 
-- `candidate/candidate-list.ts`
-- `candidate/candidate-form.ts`
-- `candidate/candidate-detail.ts`
+- `candidates/candidate-list.ts`
+- `candidates/candidate-form.ts`
+- `candidates/candidate-detail.ts`
 - shared internos de CV, badges, timeline y razones
 
 Estas pantallas se mantienen, pero deben consumir el flujo nuevo cuando

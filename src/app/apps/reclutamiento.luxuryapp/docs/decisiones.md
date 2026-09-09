@@ -15,7 +15,7 @@ Antes de cambiar el frontend, confirmar si el cambio pertenece a:
 La regla de cierre es simple:
 
 - si afecta decision, agenda, reprogramacion, alta o documentos, cae en flujo `process-first`
-- si solo afecta ficha del candidato, cae en `candidate/`
+- si solo afecta ficha del candidato, cae en `candidates/`
 - si es reutilizable dentro del feature, cae en `recruitment-shared/`
 
 ## Decisiones vigentes
@@ -94,16 +94,16 @@ Implicaciones:
 
 ### Cambio visual
 
-- ficha o listado de candidato: `candidate/`
+- ficha o listado de candidato: `candidates/`
 - decision, pendientes o cola de entrevistas: `candidate-interview/` o `candidate-interviewer-queue/`
 - agenda: `candidate-recruitment-interviews/` o `recruitment-agenda-list.*`
 - helper reutilizable interno: `recruitment-shared/`
 
 ### Cambio de formulario
 
-- candidato: `candidate/candidate-form.*`
+- candidato: `candidates/candidate-form.*`
 - decision o feedback: `candidate-interview/*response*` o `*feedback-form*`
-- alta: `candidate-application/candidate-process-hiring-modal.*`
+- alta: `candidate-applications/candidate-process-hiring-modal.*`
 - documentos: modal de hiring documents
 
 ### Cambio de contrato

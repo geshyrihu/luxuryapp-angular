@@ -17,10 +17,10 @@ import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "src/app/core/services/dialog-handler.service";
-import { CandidateApplicationForm } from "../candidate-application/candidate-application-form";
-import { CandidateHiringDocumentsModal } from "../candidate-application/candidate-hiring-documents-modal";
-import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
-import { CandidateApplicationListItem } from "../candidate-application/interfaces/candidate-application";
+import { CandidateApplicationForm } from "../candidate-applications/candidate-application-form";
+import { CandidateHiringDocumentsModal } from "../candidate-applications/candidate-hiring-documents-modal";
+import { CandidateProcessHiringModal } from "../candidate-applications/candidate-process-hiring-modal";
+import { CandidateApplicationListItem } from "../candidate-applications/interfaces/candidate-application";
 import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
 import { CandidateDetail as CandidateDetailDto } from "./interfaces/candidate.dto";
 

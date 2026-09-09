@@ -17,7 +17,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CandidateApplicationListItem } from "../../candidate-application/interfaces/candidate-application";
+import { CandidateApplicationListItem } from "../../candidate-applications/interfaces/candidate-application";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interview-feedback-target.interface";
 

@@ -33,8 +33,8 @@ client/angular/src/app/apps/reclutamiento.luxuryapp/candidates
 
 ```text
 candidates/
-|-- candidate/
-|-- candidate-application/
+|-- candidates/
+|-- candidate-applications/
 |-- candidate-interview/
 |-- recruitment-shared/
 |-- docs/
@@ -43,8 +43,8 @@ candidates/
 
 Regla practica:
 
-- `candidate/`: ficha maestra del candidato
-- `candidate-application/`: postulaciones y cambios de etapa
+- `candidates/`: ficha maestra del candidato
+- `candidate-applications/`: postulaciones y cambios de etapa
 - `candidate-interview/`: retroalimentacion
 - `recruitment-shared/`: piezas reutilizables dentro del modulo
 
@@ -86,22 +86,22 @@ Confirma las tres entradas reales del modulo:
 
 ### 2. Leer los entry points
 
-- `candidate/candidate-list.ts`
-- `candidate-application/candidate-application-list.ts`
+- `candidates/candidate-list.ts`
+- `candidate-applications/candidate-application-list.ts`
 - `candidate-interview/candidate-interview-pending-list.ts`
 
 ### 3. Leer los modales clave
 
-- `candidate/candidate-form.ts`
-- `candidate-application/candidate-stage-change-modal.ts`
-- `candidate-application/candidate-process-hiring-modal.ts`
+- `candidates/candidate-form.ts`
+- `candidate-applications/candidate-stage-change-modal.ts`
+- `candidate-applications/candidate-process-hiring-modal.ts`
 - `candidate-interview/candidate-interview-feedback-form.ts`
 
 ## Primer cambio seguro
 
 Si necesitas un primer cambio pequeno para ubicarte:
 
-1. abre `candidate/candidate-list.ts` y sus vistas desktop/mobile
+1. abre `candidates/candidate-list.ts` y sus vistas desktop/mobile
 2. identifica una columna o etiqueta visible
 3. cambia solo presentacion, no contratos
 4. valida en runtime en `candidates`

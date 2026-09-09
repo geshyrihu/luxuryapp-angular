@@ -33,12 +33,12 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { CandidateForm } from "../candidate/candidate-form";
+import { CandidateForm } from "../candidates/candidate-form";
 import {
   CandidateDetail,
   CandidateWorkExperienceAddOrEdit,
   CandidateWorkExperienceItem,
-} from "../candidate/interfaces/candidate.dto";
+} from "../candidates/interfaces/candidate.dto";
 import { CandidateCvUpload } from "../recruitment-shared/candidate-cv-upload";
 import { CandidateApplicationDetail } from "./interfaces/candidate-application";
 

@@ -27,7 +27,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import Swal from "sweetalert2";
-import { CandidateRecruitmentAgendaItem } from "./candidate-application/interfaces/candidate-application";
+import { CandidateRecruitmentAgendaItem } from "./candidate-applications/interfaces/candidate-application";
 import { CandidateStageBadge } from "./recruitment-shared/candidate-stage-badge";
 import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
 

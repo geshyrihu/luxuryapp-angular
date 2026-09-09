@@ -16,7 +16,7 @@ export const recruitmentRequestsRoutes: Routes = [
       {
         path: "vacancies",
         loadComponent: () =>
-          import("src/app/apps/reclutamiento.luxuryapp/solicitud-vacante/vacantes-list").then(
+          import("src/app/apps/reclutamiento.luxuryapp/solicitud-vacantes/vacantes-list").then(
             (m) => m.VacantesList,
           ),
         data: { title: "Vacantes", breadcrumb: "Vacantes" },
@@ -24,7 +24,7 @@ export const recruitmentRequestsRoutes: Routes = [
       {
         path: "hirings",
         loadComponent: () =>
-          import("src/app/apps/reclutamiento.luxuryapp/solicitud-alta/solicitud-alta-list").then(
+          import("src/app/apps/reclutamiento.luxuryapp/solicitud-altas/solicitud-alta-list").then(
             (m) => m.SolicitudAltaList,
           ),
         data: { title: "Altas", breadcrumb: "Altas" },
@@ -32,7 +32,7 @@ export const recruitmentRequestsRoutes: Routes = [
       {
         path: "dismissals",
         loadComponent: () =>
-          import("src/app/apps/reclutamiento.luxuryapp/solicitud-baja/solicitud-baja-list").then(
+          import("src/app/apps/reclutamiento.luxuryapp/solicitud-bajas/solicitud-baja-list").then(
             (m) => m.SolicitudBajaList,
           ),
         data: { title: "Bajas", breadcrumb: "Bajas" },
@@ -40,7 +40,7 @@ export const recruitmentRequestsRoutes: Routes = [
       {
         path: "salary-increase",
         loadComponent: () =>
-          import("src/app/apps/reclutamiento.luxuryapp/solicitud-modificacion-sueldo/solicitud-modificacion-list").then(
+          import("src/app/apps/reclutamiento.luxuryapp/solicitud-modificaciones-sueldo/solicitud-modificacion-list").then(
             (m) => m.SolicitudModificacionList,
           ),
         data: { title: "Aumento de Sueldo", breadcrumb: "Aumento de Sueldo" },

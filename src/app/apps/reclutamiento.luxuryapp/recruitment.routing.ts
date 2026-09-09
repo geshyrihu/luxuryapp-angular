@@ -57,7 +57,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "status-solicitud-baja",
         loadComponent: () =>
-          import("src/app/apps/reclutamiento.luxuryapp/solicitud-baja/status-request-dismissal").then(
+          import("src/app/apps/reclutamiento.luxuryapp/solicitud-bajas/status-request-dismissal").then(
             (m) => m.StatusRequestDismissal,
           ),
         data: {
@@ -68,7 +68,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "status-solicitud-modificacion-salario",
         loadComponent: () =>
-          import("src/app/apps/reclutamiento.luxuryapp/solicitud-modificacion-sueldo/status-request-salary-modification").then(
+          import("src/app/apps/reclutamiento.luxuryapp/solicitud-modificaciones-sueldo/status-request-salary-modification").then(
             (m) => m.StatusRequestSalaryModification,
           ),
         data: {
@@ -100,7 +100,7 @@ export const recruitmentRoutes: Routes = [
       {
         path: "dismissal-requests",
         loadComponent: () =>
-          import("src/app/apps/reclutamiento.luxuryapp/solicitud-baja/solicitud-baja-list").then(
+          import("src/app/apps/reclutamiento.luxuryapp/solicitud-bajas/solicitud-baja-list").then(
             (m) => m.SolicitudBajaList,
           ),
         data: {

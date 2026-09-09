@@ -29,7 +29,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { WebButtonLabelActiveDesactive } from "src/app/shared/ui/buttons";
 import Swal from "sweetalert2";
-import { CandidateApplicationForm } from "../../candidate-application/candidate-application-form";
+import { CandidateApplicationForm } from "../../candidate-applications/candidate-application-form";
 import { CandidateDetail } from "../candidate-detail";
 
 interface FormerEmployeeTalentPoolItem {

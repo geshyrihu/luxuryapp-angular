@@ -7,7 +7,7 @@ import {
   DialogHandlerService,
   DynamicDialogConfig,
 } from "src/app/core/services/dialog-handler.service";
-import { CandidateApplicationListItem } from "../candidate-application/interfaces/candidate-application";
+import { CandidateApplicationListItem } from "../candidate-applications/interfaces/candidate-application";
 import { CandidateDetail } from "./candidate-detail";
 import { CandidateDetail as CandidateDetailDto } from "./interfaces/candidate.dto";
 

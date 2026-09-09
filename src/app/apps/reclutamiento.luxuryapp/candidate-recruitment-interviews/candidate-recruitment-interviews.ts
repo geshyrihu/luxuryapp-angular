@@ -14,8 +14,8 @@ import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
-import { CandidateProcessHiringModal } from "../candidate-application/candidate-process-hiring-modal";
-import { CandidateInterviewDetailModal } from "../candidate/candidate-interview-detail-modal";
+import { CandidateProcessHiringModal } from "../candidate-applications/candidate-process-hiring-modal";
+import { CandidateInterviewDetailModal } from "../candidates/candidate-interview-detail-modal";
 import { RecruitmentAgendaList } from "../recruitment-agenda-list";
 import { CandidateStageBadge } from "../recruitment-shared/candidate-stage-badge";
 import {

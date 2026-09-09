@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { LxTimeline } from "@ui/adaptive/timeline/timeline";
 import { CandidateProcessStage } from "src/app/core/enums/candidate-process-stage";
-import { CandidateStageHistoryItem } from "../candidate-application/interfaces/candidate-application";
+import { CandidateStageHistoryItem } from "../candidate-applications/interfaces/candidate-application";
 import { CANDIDATE_PROCESS_STAGE_LABELS } from "./candidate-stage-labels";
 
 @Component({

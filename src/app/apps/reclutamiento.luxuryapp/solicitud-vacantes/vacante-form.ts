@@ -7,25 +7,25 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
+import { Router } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom } from "rxjs";
+import { CandidateApplicationForm } from "src/app/apps/reclutamiento.luxuryapp/candidate-applications/candidate-application-form";
+import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
-import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
-import { Router } from "@angular/router";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { CandidateApplicationForm } from "src/app/apps/reclutamiento.luxuryapp/candidate-application/candidate-application-form";
 
 interface RequestPositionDetailDTO {
   id?: string;
@@ -111,9 +111,8 @@ export class VacanteForm implements OnInit {
 
   async onLoadData() {
     const urlApi = EndpointsReclutamiento.RequestPosition.getById(this.id);
-    const result = await this.apiResponseS.onGetItem<RequestPositionDetailDTO>(
-      urlApi,
-    );
+    const result =
+      await this.apiResponseS.onGetItem<RequestPositionDetailDTO>(urlApi);
     if (!result) return;
 
     this.form.patchValue({
@@ -144,10 +143,9 @@ export class VacanteForm implements OnInit {
       }
     }
 
-    const requests =
-      await this.apiResponseS.onGetList<RequestEmployeeRegisterListItem[]>(
-        EndpointsReclutamiento.RequestEmployeeRegister.list,
-      );
+    const requests = await this.apiResponseS.onGetList<
+      RequestEmployeeRegisterListItem[]
+    >(EndpointsReclutamiento.RequestEmployeeRegister.list);
     if (!requests) return;
 
     const vacancyFolio = this.formatVacancyFolio(folio);
@@ -172,7 +170,9 @@ export class VacanteForm implements OnInit {
     if (!this.id) return;
 
     const folio = this.form.controls.folio.getRawValue();
-    const requestPositionLabel = folio ? this.formatVacancyFolio(Number(folio)) : "";
+    const requestPositionLabel = folio
+      ? this.formatVacancyFolio(Number(folio))
+      : "";
     const applicationId = this.currentApplicationId();
 
     const result = await this.dialogHandlerS.openDialog(

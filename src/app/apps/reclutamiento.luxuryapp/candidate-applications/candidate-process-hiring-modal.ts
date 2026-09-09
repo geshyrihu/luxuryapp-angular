@@ -28,7 +28,7 @@ import {
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
 import { DateService } from "src/app/core/services/date.service";
-import { CandidateDetail } from "../candidate/interfaces/candidate.dto";
+import { CandidateDetail } from "../candidates/interfaces/candidate.dto";
 import { CandidateProcessHiringFormGroup } from "./interfaces/candidate-process-hiring-form.interface";
 import {
   CandidateProcessHiringDialogData,

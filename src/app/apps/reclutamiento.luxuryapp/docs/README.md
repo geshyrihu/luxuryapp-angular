@@ -22,11 +22,11 @@ El frontend de `Candidates` opera en patron `process-first`.
 
 ## Submodulos activos
 
-- `candidate/`
+- `candidates/`
   - ficha del candidato
   - captura pre-alta
   - fuente de reclutamiento heredada en detalle y formularios
-- `candidate-application/`
+- `candidate-applications/`
   - compatibilidad visual con bandejas existentes
   - apertura de detalle y modales ligados al proceso
 - `candidate-interview/`

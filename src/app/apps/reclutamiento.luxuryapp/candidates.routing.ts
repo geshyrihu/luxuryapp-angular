@@ -13,7 +13,7 @@ export const candidatesRoutes: Routes = [
     path: "candidates",
     loadComponent: () =>
       import(
-        "src/app/apps/reclutamiento.luxuryapp/candidate/candidate-list"
+        "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-list"
       ).then((m) => m.CandidateList),
     canActivate: [authGuard, hasRolesGuard],
     data: {
@@ -26,7 +26,7 @@ export const candidatesRoutes: Routes = [
     path: "applications",
     loadComponent: () =>
       import(
-        "src/app/apps/reclutamiento.luxuryapp/candidate-application/candidate-application-list"
+        "src/app/apps/reclutamiento.luxuryapp/candidate-applications/candidate-application-list"
       ).then((m) => m.CandidateApplicationList),
     canActivate: [authGuard, hasRolesGuard],
     data: {
@@ -39,7 +39,7 @@ export const candidatesRoutes: Routes = [
     path: "former-employees",
     loadComponent: () =>
       import(
-        "src/app/apps/reclutamiento.luxuryapp/candidate/former-employee-talent-pool/former-employee-talent-pool"
+        "src/app/apps/reclutamiento.luxuryapp/candidates/former-employee-talent-pool/former-employee-talent-pool"
       ).then((m) => m.FormerEmployeeTalentPool),
     canActivate: [authGuard, hasRolesGuard],
     data: {
@@ -104,7 +104,7 @@ export const candidatesRoutes: Routes = [
     path: "kpis",
     loadComponent: () =>
       import(
-        "src/app/apps/reclutamiento.luxuryapp/candidate-application/candidate-application-kpis"
+        "src/app/apps/reclutamiento.luxuryapp/candidate-applications/candidate-application-kpis"
       ).then((m) => m.CandidateApplicationKpis),
     canActivate: [authGuard, hasRolesGuard],
     data: {

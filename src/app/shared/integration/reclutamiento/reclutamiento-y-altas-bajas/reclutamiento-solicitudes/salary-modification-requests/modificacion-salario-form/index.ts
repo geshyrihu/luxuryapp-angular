@@ -1,1 +1,1 @@
-export * from "src/app/apps/reclutamiento.luxuryapp/solicitud-modificacion-sueldo/modificacion-salario-form";
+export * from "src/app/apps/reclutamiento.luxuryapp/solicitud-modificaciones-sueldo/modificacion-salario-form";

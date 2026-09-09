@@ -3,7 +3,7 @@ import { CandidateInterviewProgressStatus } from "src/app/core/enums/candidate-i
 import {
   CandidateApplicationListItem,
   CandidateStageHistoryItem,
-} from "../../candidate-application/interfaces/candidate-application";
+} from "../../candidate-applications/interfaces/candidate-application";
 
 export interface CandidateListItem {
   id: string;

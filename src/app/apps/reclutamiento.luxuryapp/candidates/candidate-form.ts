@@ -266,7 +266,7 @@ export class CandidateForm implements OnInit {
     if (!found) return;
 
     const { CandidateApplicationForm } =
-      await import("../candidate-application/candidate-application-form");
+      await import("../candidate-applications/candidate-application-form");
 
     this.ref.close();
     await this.dialogHandlerS.openDialog(

@@ -26,7 +26,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { ChangeStageApplicationRequest } from "../candidate-application/interfaces/candidate-application";
+import { ChangeStageApplicationRequest } from "../candidate-applications/interfaces/candidate-application";
 import {
   CandidateRecruitmentInterviewBoardItem,
   RecruitmentBoardAction,
