@@ -75,23 +75,34 @@
           <div
             class="hidden md:grid grid align-items-center px-2 text-sm font-semibold text-color-secondary"
           >
-            <div class="col-2"></div>
-            <div class="col-1">Descanso</div>
+            <div class="col-3"></div>
+            <div class="col-3">Descanso</div>
             <div class="col-3">Entrada</div>
             <div class="col-3">Salida (mismo día o siguiente)</div>
-            <div class="col-1"></div>
           </div>
           @for (day of weekDays(); track day.dw) {
           <div class="surface-50 border-1 border-200 rounded p-2">
             <div class="grid align-items-center">
-              <div class="col-12 md:col-2">
-                <span class="font-semibold text-sm">{{ day.label }}</span>
+              <div class="col-12 md:col-3">
+                <div class="grid align-items-center ml-2">
+                  <iw-button
+                    icon="material-symbols-light:content-copy"
+                    size="sm"
+                    variant="ghost"
+                    severity="secondary"
+                    title="Copiar horarios del dia anterior"
+                    [disabled]="$first"
+                    (clicked)="copiarDelDiaAnterior(day.dw)"
+                  />
+                  <span class="font-semibold text-sm">{{ day.label }}</span>
+                </div>
               </div>
-              <div class="col-12 md:col-1 flex align-items-center">
+              <div class="col-12 md:col-3 flex align-items-center">
                 <custom-input-switch-signal
                   [control]="day.rest"
-                  placeholder="Descanso"
+                  placeholder=" Descanso"
                   (switchChange)="onRestChange(day.dw, $event)"
+                  [horizontal]="false"
                 />
               </div>
               <div class="col-12 md:col-3">
@@ -114,20 +125,17 @@
                   [disabled]="day.rest?.value"
                 />
               </div>
-              <div class="col-12 md:col-1 flex justify-content-end">
-                <p-button
-                  type="button"
-                  [text]="true"
-                  [rounded]="true"
-                  size="small"
+              <!-- <div class="col-12 md:col-1 flex justify-content-end">
+                <iw-button
+                  icon="material-symbols-light:content-copy"
+                  size="sm"
+                  variant="ghost"
                   severity="secondary"
-                  icon="pi pi-copy"
-                  pTooltip="Copiar horarios del dia anterior"
-                  tooltipPosition="top"
+                  title="Copiar horarios del dia anterior"
                   [disabled]="$first"
-                  (onClick)="copiarDelDiaAnterior(day.dw)"
+                  (clicked)="copiarDelDiaAnterior(day.dw)"
                 />
-              </div>
+              </div> -->
             </div>
           </div>
           }

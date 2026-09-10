@@ -261,30 +261,91 @@ export class CronogramaAnualMantenimiento {
   }
 
   exportExcel(): void {
-    this.apiResponseS
-      .onGetItem(
-        Endpoints.MaintenanceCalendars.exportCalendarByCustomer(
-          this.customerIdS.customerId(),
-        ),
-      )
-      .then((dataToExport: any[]) => {
-        import("exceljs").then(async (ExcelJS) => {
-          const workbook = new ExcelJS.Workbook();
-          const worksheet = workbook.addWorksheet("Cronograma");
+    const data = this.dataSignal();
+    if (!data || data.length === 0) return;
 
-          if (dataToExport && dataToExport.length > 0) {
-            worksheet.columns = Object.keys(dataToExport[0]).map((key) => ({
-              header: key,
-              key,
-            }));
-            dataToExport.forEach((item) => worksheet.addRow(item));
-          }
+    import("exceljs").then(async (ExcelJS) => {
+      const workbook = new ExcelJS.Workbook();
+      workbook.creator = "LuxuryApp";
+      workbook.created = new Date();
 
-          const excelBuffer = await workbook.xlsx.writeBuffer();
-          const fileName = `Cronograma_Anual_Mantenimiento_LuxuryApp`;
-          this.saveAsExcelFile(excelBuffer, fileName);
-        });
+      const worksheet = workbook.addWorksheet("Cronograma", {
+        views: [{ state: "frozen", ySplit: 2 }],
       });
+
+      const mesHeaders = ["DESCRIPCIÓN", ...this.meses];
+
+      worksheet.columns = mesHeaders.map((h) => ({
+        header: h,
+        key: h,
+        width: h === "DESCRIPCIÓN" ? 40 : 8,
+      }));
+
+      const headerRow = worksheet.getRow(1);
+      headerRow.font = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
+      headerRow.fill = {
+        type: "pattern",
+        pattern: "solid",
+        fgColor: { argb: "FF1E3A8A" },
+      };
+      headerRow.alignment = { horizontal: "center", vertical: "middle" };
+      headerRow.height = 22;
+
+      const groups: { [sistema: string]: CronogramaItem[] } = {};
+      data.forEach((item) => {
+        if (!groups[item.sistema]) groups[item.sistema] = [];
+        groups[item.sistema].push(item);
+      });
+
+      let rowIndex = 2;
+
+      Object.keys(groups)
+        .sort()
+        .forEach((sistema) => {
+          const groupRow = worksheet.getRow(rowIndex);
+          groupRow.getCell(1).value = sistema.toUpperCase();
+          groupRow.font = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
+          groupRow.fill = {
+            type: "pattern",
+            pattern: "solid",
+            fgColor: { argb: "FFC9A84C" },
+          };
+          groupRow.alignment = { horizontal: "left", vertical: "middle" };
+          groupRow.height = 20;
+          worksheet.mergeCells(rowIndex, 1, rowIndex, 13);
+          rowIndex++;
+
+          groups[sistema].forEach((item, idx) => {
+            const row = worksheet.getRow(rowIndex);
+            row.getCell(1).value = item.nameMachinery;
+
+            if (idx % 2 === 1) {
+              row.fill = {
+                type: "pattern",
+                pattern: "solid",
+                fgColor: { argb: "FFF9FAFB" },
+              };
+            }
+
+            this.meses.forEach((mes, colIdx) => {
+              const has = this.hasService(item, mes);
+              const cell = row.getCell(colIdx + 2);
+              cell.value = has ? "■" : "";
+              cell.alignment = { horizontal: "center" };
+              if (has) {
+                cell.font = { color: { argb: "FF0B3164" }, bold: true };
+              }
+            });
+
+            row.height = 18;
+            rowIndex++;
+          });
+        });
+
+      const fileName = `Cronograma_Anual_Mantenimiento_${this.filtroEquiposValue}`;
+      const excelBuffer = await workbook.xlsx.writeBuffer();
+      this.saveAsExcelFile(excelBuffer, fileName);
+    });
   }
 
   private saveAsExcelFile(buffer: any, fileName: string): void {

@@ -45,13 +45,12 @@
           {{ item.description || "—" }}
         </div>
       </td>
+      <td>{{ item.tipoJornadaName }}</td>
       <td>
-        {{ item.tipoJornadaName }}
-      </td>
-      <td>
-        {{ formatSchedule(item) }}
+        <!-- {{ formatSchedule(item) }} -->
         <div class="flex flex-wrap gap-1 mt-2">
-          @for (day of schedulePresentationS.indicators(item); track day.label) {
+          @for (day of schedulePresentationS.indicators(item); track day.label)
+          {
           <span
             class="border-1 border-round px-1 py-0 text-xs font-bold line-height-2"
             [class.bg-green-100]="day.worked"
@@ -70,9 +69,9 @@
           {{ formatHoursSummary(item) }}
         </div>
         @if (hasOvernightShift(item)) {
-          <div class="text-500 text-xs mt-1">
-            +1 día indica salida al día siguiente.
-          </div>
+        <div class="text-500 text-xs mt-1">
+          +1 día indica salida al día siguiente.
+        </div>
         }
       </td>
       <td>
@@ -89,7 +88,7 @@
           />
           <iw-button-delete
             confirmHeader="Eliminar horario de puesto"
-            confirmMessage="Si este horario esta siendo usado por puestos de trabajo, se te pedira reemplazarlo antes de eliminarlo."
+            confirmMessage="Se eliminara el horario. Los puestos que lo usen seran reasignados al horario por defecto."
             (confirmed)="onRequestDelete(item)"
           />
         </div>
@@ -118,17 +117,15 @@
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 rounded-lg w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
-          icon="material-symbols-light:schedule"
-          class="text-xl text-primary"
-        />
+        <app-icon icon="Clock" class="text-xl text-primary" />
       </div>
       <div>
         <p class="mt-0 mb-0">{{ item.name }}</p>
         <small>{{ item.tipoJornadaName }}</small>
         <small class="text-500"> · {{ formatSchedule(item) }}</small>
         <div class="flex flex-wrap gap-1 mt-1">
-          @for (day of schedulePresentationS.indicators(item); track day.label) {
+          @for (day of schedulePresentationS.indicators(item); track day.label)
+          {
           <span
             class="border-1 border-round px-1 py-0 text-xs font-bold line-height-2"
             [class.bg-green-100]="day.worked"
@@ -147,7 +144,7 @@
           {{ formatHoursSummary(item) }}
         </small>
         @if (hasOvernightShift(item)) {
-          <small class="block text-500">+1 día: salida al día siguiente</small>
+        <small class="block text-500">+1 día: salida al día siguiente</small>
         }
       </div>
 
@@ -159,7 +156,7 @@
           />
           <ili-button-delete
             confirmHeader="Eliminar horario de puesto"
-            confirmMessage="Si este horario esta siendo usado por puestos de trabajo, se te pedira reemplazarlo antes de eliminarlo."
+            confirmMessage="Se eliminara el horario. Los puestos que lo usen seran reasignados al horario por defecto."
             (confirmed)="onRequestDelete(item)"
             label="Eliminar"
           />

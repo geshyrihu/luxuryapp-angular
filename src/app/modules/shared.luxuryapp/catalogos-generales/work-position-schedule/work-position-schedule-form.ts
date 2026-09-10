@@ -1,5 +1,5 @@
 ﻿import {
-  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   computed,
   DestroyRef,
@@ -19,6 +19,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -63,7 +64,6 @@ const requireBothOrNoneTimeValidator: ValidatorFn = (
 @Component({
   selector: "app-work-position-schedule-form",
   templateUrl: "./work-position-schedule-form.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
@@ -71,6 +71,7 @@ const requireBothOrNoneTimeValidator: ValidatorFn = (
     CustomInputSwitch,
     CustomInputSelectSignal,
     WebButtonLabelSave,
+    WebButtonIcon,
   ],
 })
 export class WorkPositionScheduleForm implements OnInit {
@@ -80,10 +81,39 @@ export class WorkPositionScheduleForm implements OnInit {
   private ref = inject(DynamicDialogRef);
   private enumSelectS = inject(EnumSelectService);
   private destroyRef = inject(DestroyRef);
+  private cdr = inject(ChangeDetectorRef);
 
   submitting = signal(false);
   cb_tipoJornada = signal<SelectItemDto[]>([]);
   id = "";
+
+  readonly days = [
+    { label: "Lunes", dw: 1 },
+    { label: "Martes", dw: 2 },
+    { label: "Miércoles", dw: 3 },
+    { label: "Jueves", dw: 4 },
+    { label: "Viernes", dw: 5 },
+    { label: "Sábado", dw: 6 },
+    { label: "Domingo", dw: 0 },
+  ] as const;
+
+  private buildDiasDeTrabajo(semanas: number): DiaDeTrabajoFormGroup[] {
+    const dias: DiaDeTrabajoFormGroup[] = [];
+    for (let s = 1; s <= semanas; s++) {
+      for (const day of this.days) {
+        dias.push(
+          this.formB.group<DiaDeTrabajoControls>({
+            diaSemana: this.formB.nonNullable.control(day.dw),
+            numeroSemanaCiclo: this.formB.nonNullable.control(s),
+            horaEntrada: this.formB.control<string | null>(null),
+            horaSalida: this.formB.control<string | null>(null),
+            esDescanso: this.formB.nonNullable.control(false),
+          }),
+        );
+      }
+    }
+    return dias;
+  }
 
   form = this.formB.group<WorkPositionScheduleControls>(
     {
@@ -110,23 +140,16 @@ export class WorkPositionScheduleForm implements OnInit {
         validators: [Validators.maxLength(500)],
         nonNullable: true,
       }),
-      diasDeTrabajo: this.formB.array<DiaDeTrabajoFormGroup>([]),
+      diasDeTrabajo: this.formB.array<DiaDeTrabajoFormGroup>(
+        this.buildDiasDeTrabajo(1),
+      ),
     },
     { validators: [requireBothOrNoneTimeValidator] },
   );
 
-  readonly days = [
-    { label: "Lunes", dw: 1 },
-    { label: "Martes", dw: 2 },
-    { label: "Miércoles", dw: 3 },
-    { label: "Jueves", dw: 4 },
-    { label: "Viernes", dw: 5 },
-    { label: "Sábado", dw: 6 },
-    { label: "Domingo", dw: 0 },
-  ] as const;
-
   readonly weekDays = computed(() => {
     const dias = this.form.controls.diasDeTrabajo;
+    if (!dias || dias.length === 0) return [];
     return this.days.map((day) => {
       const ctrl = dias.controls.find(
         (g) =>
@@ -186,28 +209,14 @@ export class WorkPositionScheduleForm implements OnInit {
   }
 
   private sincronizarDiasDeTrabajo(): void {
-    // El backend exige 7 x DuracionCicloSemanas filas para cualquier TipoJornada.
-    // La UI captura solo la semana 1; materializamos N semanas x 7 dias en
-    // NumeroSemanaCiclo=1..N clonando los valores de la semana 1 al enviar.
     const semanas = this.duracionCicloValue();
-
     const total = 7 * semanas;
     const current = this.form.controls.diasDeTrabajo;
 
     if (current.length !== total) {
       current.clear({ emitEvent: false });
-      for (let s = 1; s <= semanas; s++) {
-        for (const day of this.days) {
-          current.push(
-            this.formB.group<DiaDeTrabajoControls>({
-              diaSemana: this.formB.nonNullable.control(day.dw),
-              numeroSemanaCiclo: this.formB.nonNullable.control(s),
-              horaEntrada: this.formB.control<string | null>(null),
-              horaSalida: this.formB.control<string | null>(null),
-              esDescanso: this.formB.nonNullable.control(false),
-            }),
-          );
-        }
+      for (const group of this.buildDiasDeTrabajo(semanas)) {
+        current.push(group);
       }
     }
   }
@@ -260,7 +269,11 @@ export class WorkPositionScheduleForm implements OnInit {
           g.controls.diaSemana.value === dia.diaSemana,
       );
       if (ctrl) {
-        ctrl.patchValue(dia);
+        ctrl.patchValue({
+          ...dia,
+          horaEntrada: dia.horaEntrada?.slice(0, 5) ?? null,
+          horaSalida: dia.horaSalida?.slice(0, 5) ?? null,
+        });
       }
     }
   }
@@ -306,8 +319,9 @@ export class WorkPositionScheduleForm implements OnInit {
 
     const entrada = diaAnterior.get("horaEntrada")?.value ?? null;
     const salida = diaAnterior.get("horaSalida")?.value ?? null;
-    diaActual.get("horaEntrada")?.setValue(entrada, { emitEvent: false });
-    diaActual.get("horaSalida")?.setValue(salida, { emitEvent: false });
+    diaActual.get("horaEntrada")?.setValue(entrada);
+    diaActual.get("horaSalida")?.setValue(salida);
+    this.cdr.markForCheck();
   }
 
   onRestChange(dw: number, isRest: boolean): void {
