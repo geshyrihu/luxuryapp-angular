@@ -1,1 +1,1 @@
-export * from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";
+export * from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/vacancy-requests/solicitud-vacante-form";

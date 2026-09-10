@@ -1,4 +1,4 @@
-Ruta: 📂 client/angular > 🧩 src/app > 🤝 shared > 🎨 ui
+Ruta: 📂 appsweb/angular > 🧩 src/app > 🤝 shared > 🎨 ui
 
 > 📅 Última Revisión: 06-jul-26
 > 🛡️ Estado: Vigente — librería consolidada; rollout de inputs adaptativos en curso

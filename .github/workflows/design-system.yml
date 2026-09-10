@@ -23,7 +23,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
           cache: npm
 
       - name: Instalar dependencias
@@ -38,7 +38,7 @@ jobs:
 
       # ── Tokens ─────────────────────────────────────────────────────────
       # Bloquea sobre `src/styles` y `src/app/shared/ui`, que es el alcance
-      # declarado. Lo de `src/app/apps/**` se reporta como deuda y no falla
+      # declarado. Lo de `src/app/modules/**` se reporta como deuda y no falla
       # el sello (RN-DS-026: se acota el gate, no se amplía el DS).
       - name: Sin colores hardcodeados en el alcance
         run: npm run audit:tokens
@@ -76,7 +76,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
           cache: npm
 
       - name: Instalar dependencias

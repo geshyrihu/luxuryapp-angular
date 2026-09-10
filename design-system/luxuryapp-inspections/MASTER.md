@@ -19,27 +19,28 @@
 
 ### Color Palette (Authoritative)
 
-**⚠️ SINGLE SOURCE OF TRUTH:** `src/styles/core/_colors.scss`  
+**⚠️ SINGLE SOURCE OF TRUTH:** `src/styles/core/_colors.scss`
 All color values defined there. CSS vars exposed in `src/styles/theme/_variables.scss`.
 
-| Role | Brand Token | Hex | CSS Variable | Usage |
-|------|-------------|-----|--------------|-------|
-| **Primary** | `primary-700` | `#1B365D` | `--primary-700` | Headers, navs, primary buttons, active states |
-| **On Primary** | `contrast-0` | `#FFFFFF` | `--ds-primary-text` | Text/icons on primary bg |
-| **Secondary** | `secondary-600` | `#5A6878` | `--secondary-600` | Secondary text, disabled states |
-| **Accent (Gold)** | `warning-600` | `#D4A74A` | `--warning-600` | Premium features, VIP badges, CTAs |
-| **Success** | `success-600` | `#1E9B6D` | `--success-600` | Save/confirm/positive actions |
-| **Danger** | `danger-600` | `#D34B4B` | `--danger-600` | Delete/reject/critical errors |
-| **Info** | `info-600` | `#4A90E2` | `--info-600` | Informational, help, links |
-| **Surface** | `surface` | `#F8F9FC` | `--ds-bg-surface` | Main app background |
-| **Surface Card** | `surface-card` | `#FFFFFF` | (native) | Cards, modals, elevated |
-| **Border** | `outline` | `#E2E8F0` | `--ds-border-default` | Dividers, card borders |
-| **Text Primary** | `on-surface` | `#1A2634` | `--on-surface` | Body text, headlines |
-| **Text Secondary** | `on-surface-secondary` | `#5A6878` | `--on-surface-secondary` | Subtitles, captions |
-| **Text Tertiary** | `on-surface-tertiary` | `#9AACBB` | `--on-surface-tertiary` | Disabled, non-essential |
-| **Overlay (dark)** | `shadow` | `rgba(27,54,93,0.15)` | `--ds-bg-overlay` | Modal backdrops, overlays |
+| Role               | Brand Token            | Hex                   | CSS Variable             | Usage                                         |
+| ------------------ | ---------------------- | --------------------- | ------------------------ | --------------------------------------------- |
+| **Primary**        | `primary-700`          | `#1B365D`             | `--primary-700`          | Headers, navs, primary buttons, active states |
+| **On Primary**     | `contrast-0`           | `#FFFFFF`             | `--ds-primary-text`      | Text/icons on primary bg                      |
+| **Secondary**      | `secondary-600`        | `#5A6878`             | `--secondary-600`        | Secondary text, disabled states               |
+| **Accent (Gold)**  | `warning-600`          | `#D4A74A`             | `--warning-600`          | Premium features, VIP badges, CTAs            |
+| **Success**        | `success-600`          | `#1E9B6D`             | `--success-600`          | Save/confirm/positive actions                 |
+| **Danger**         | `danger-600`           | `#D34B4B`             | `--danger-600`           | Delete/reject/critical errors                 |
+| **Info**           | `info-600`             | `#4A90E2`             | `--info-600`             | Informational, help, links                    |
+| **Surface**        | `surface`              | `#F8F9FC`             | `--ds-bg-surface`        | Main app background                           |
+| **Surface Card**   | `surface-card`         | `#FFFFFF`             | (native)                 | Cards, modals, elevated                       |
+| **Border**         | `outline`              | `#E2E8F0`             | `--ds-border-default`    | Dividers, card borders                        |
+| **Text Primary**   | `on-surface`           | `#1A2634`             | `--on-surface`           | Body text, headlines                          |
+| **Text Secondary** | `on-surface-secondary` | `#5A6878`             | `--on-surface-secondary` | Subtitles, captions                           |
+| **Text Tertiary**  | `on-surface-tertiary`  | `#9AACBB`             | `--on-surface-tertiary`  | Disabled, non-essential                       |
+| **Overlay (dark)** | `shadow`               | `rgba(27,54,93,0.15)` | `--ds-bg-overlay`        | Modal backdrops, overlays                     |
 
 **Contrast Ratios (WCAG AAA):**
+
 - White text on `#1B365D` (primary): **9.5:1** ✓
 - Gold `#D4A74A` on `#1B365D`: **6.8:1** ✓ (premium sig)
 - Text `#1A2634` on `#F8F9FC` (surface): **15.1:1** ✓
@@ -48,39 +49,40 @@ All color values defined there. CSS vars exposed in `src/styles/theme/_variables
 
 **Font Stack:** Inter (body), Hanken Grotesk (headings) — as per `src/styles/core/_typography.scss`
 
-| Scale | Size | Weight | Line-Height | CSS Class | Usage |
-|-------|------|--------|-------------|-----------|-------|
-| **Display LG** | 48px | 700 | 56px | `.text-display-lg` | Hero titles (rare in ERP) |
-| **Display MD** | 40px | 700 | 48px | `.text-display-md` | Page titles (rare) |
-| **Headline LG** | 32px | 600 | 40px | `.text-headline-lg` | Major sections |
-| **Headline MD** | 24px | 600 | 32px | `.text-headline-md` | Modal titles, section headers |
-| **Title LG** | 20px | 600 | 28px | `.text-title-lg` | Subsection headers |
-| **Title MD** | 18px | 600 | 24px | `.text-title-md` | Card headers |
-| **Body LG** | 16px | 400 | 24px | `.text-body-lg` | Primary body text |
-| **Body MD** | 14px | 400 | 20px | `.text-body-md` | Standard body, table text |
-| **Body SM** | 13px | 400 | 18px | `.text-body-sm` | Secondary text, captions |
-| **Label LG** | 14px | 500 | 20px | `.text-label-lg` | Form labels, badges |
-| **Label MD** | 12px | 500 | 16px | `.text-label-md` | Small labels, tags |
-| **Label SM** | 10px | 600 | 14px | `.text-label-sm` | UPPERCASE micro labels |
+| Scale           | Size | Weight | Line-Height | CSS Class           | Usage                         |
+| --------------- | ---- | ------ | ----------- | ------------------- | ----------------------------- |
+| **Display LG**  | 48px | 700    | 56px        | `.text-display-lg`  | Hero titles (rare in ERP)     |
+| **Display MD**  | 40px | 700    | 48px        | `.text-display-md`  | Page titles (rare)            |
+| **Headline LG** | 32px | 600    | 40px        | `.text-headline-lg` | Major sections                |
+| **Headline MD** | 24px | 600    | 32px        | `.text-headline-md` | Modal titles, section headers |
+| **Title LG**    | 20px | 600    | 28px        | `.text-title-lg`    | Subsection headers            |
+| **Title MD**    | 18px | 600    | 24px        | `.text-title-md`    | Card headers                  |
+| **Body LG**     | 16px | 400    | 24px        | `.text-body-lg`     | Primary body text             |
+| **Body MD**     | 14px | 400    | 20px        | `.text-body-md`     | Standard body, table text     |
+| **Body SM**     | 13px | 400    | 18px        | `.text-body-sm`     | Secondary text, captions      |
+| **Label LG**    | 14px | 500    | 20px        | `.text-label-lg`    | Form labels, badges           |
+| **Label MD**    | 12px | 500    | 16px        | `.text-label-md`    | Small labels, tags            |
+| **Label SM**    | 10px | 600    | 14px        | `.text-label-sm`    | UPPERCASE micro labels        |
 
 **Min body size:** 14px (PrimeNG compliance, WCAG Level AAA)
 
 ### Spacing System
 
-**Base unit:** 8px grid (all values multiples of 8)  
+**Base unit:** 8px grid (all values multiples of 8)
 **Density:** 8/10 (dashboard-optimized: tight for data-dense interfaces)
 
-| Token | Value | rem | Usage |
-|-------|-------|-----|-------|
-| `--ds-space-xs` | 4px | 0.25rem | Icon gaps, tight inline spacing |
-| `--ds-space-sm` | 8px | 0.5rem | Default padding (buttons, inputs), icon-text gaps |
-| `--ds-space-md` | 12px | 0.75rem | Section padding, form group spacing |
-| `--ds-space-lg` | 16px | 1rem | Large gaps, card padding |
-| `--ds-space-xl` | 24px | 1.5rem | Section margins, list item spacing |
-| `--ds-space-2xl` | 32px | 2rem | Hero/page-level padding |
-| `--ds-space-3xl` | 48px | 3rem | Largest containers |
+| Token            | Value | rem     | Usage                                             |
+| ---------------- | ----- | ------- | ------------------------------------------------- |
+| `--ds-space-xs`  | 4px   | 0.25rem | Icon gaps, tight inline spacing                   |
+| `--ds-space-sm`  | 8px   | 0.5rem  | Default padding (buttons, inputs), icon-text gaps |
+| `--ds-space-md`  | 12px  | 0.75rem | Section padding, form group spacing               |
+| `--ds-space-lg`  | 16px  | 1rem    | Large gaps, card padding                          |
+| `--ds-space-xl`  | 24px  | 1.5rem  | Section margins, list item spacing                |
+| `--ds-space-2xl` | 32px  | 2rem    | Hero/page-level padding                           |
+| `--ds-space-3xl` | 48px  | 3rem    | Largest containers                                |
 
 **Semantic spacing:**
+
 - Button padding: `12px 24px` (vertical × horizontal) → `--ds-space-md --ds-space-lg`
 - Input padding: `12px 16px` → same
 - Card padding: `--ds-space-lg` (16px) standard, `--ds-space-xl` (24px) spacious
@@ -90,26 +92,26 @@ All color values defined there. CSS vars exposed in `src/styles/theme/_variables
 
 From `src/styles/core/_shadows.scss`:
 
-| Level | Value | CSS Variable | Usage |
-|-------|-------|--------------|-------|
-| **None** | `none` | `--ds-shadow-none` | Flat surfaces |
-| **Level 1** | `0 1px 2px rgba(27,54,93,0.06)` | `--ds-shadow-1` | Subtle lift (active states) |
-| **Level 2** | `0 2px 8px rgba(27,54,93,0.08)` | `--ds-shadow-2` | Cards, inputs (default) |
-| **Level 3** | `0 4px 16px rgba(27,54,93,0.10)` | `--ds-shadow-3` | Modals, popovers, dropdowns |
-| **Level 4** | `0 8px 32px rgba(27,54,93,0.12)` | `--ds-shadow-4` | Hero images, featured cards |
+| Level          | Value                             | CSS Variable           | Usage                       |
+| -------------- | --------------------------------- | ---------------------- | --------------------------- |
+| **None**       | `none`                            | `--ds-shadow-none`     | Flat surfaces               |
+| **Level 1**    | `0 1px 2px rgba(27,54,93,0.06)`   | `--ds-shadow-1`        | Subtle lift (active states) |
+| **Level 2**    | `0 2px 8px rgba(27,54,93,0.08)`   | `--ds-shadow-2`        | Cards, inputs (default)     |
+| **Level 3**    | `0 4px 16px rgba(27,54,93,0.10)`  | `--ds-shadow-3`        | Modals, popovers, dropdowns |
+| **Level 4**    | `0 8px 32px rgba(27,54,93,0.12)`  | `--ds-shadow-4`        | Hero images, featured cards |
 | **Focus Ring** | `0 0 0 3px var(--ds-color-focus)` | `--ds-shadow-focus-md` | Focus states (keyboard nav) |
 
 ### Border Radius
 
 From `src/styles/core/_borders.scss`:
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--ds-radius-xs` | 4px | Buttons, small inputs |
-| `--ds-radius-sm` | 6px | — (rare) |
-| `--ds-radius-md` | 8px | Cards, modals, standard components |
-| `--ds-radius-lg` | 12px | Large cards, tall modals |
-| `--ds-radius-xl` | 16px | Hero sections, featured cards |
+| Token              | Value  | Usage                                |
+| ------------------ | ------ | ------------------------------------ |
+| `--ds-radius-xs`   | 4px    | Buttons, small inputs                |
+| `--ds-radius-sm`   | 6px    | — (rare)                             |
+| `--ds-radius-md`   | 8px    | Cards, modals, standard components   |
+| `--ds-radius-lg`   | 12px   | Large cards, tall modals             |
+| `--ds-radius-xl`   | 16px   | Hero sections, featured cards        |
 | `--ds-radius-full` | 9999px | Chips, badges, fully rounded buttons |
 
 **Rule:** Never hardcode border-radius; always use `--ds-radius-*` variables.
@@ -124,34 +126,35 @@ From `src/styles/core/_borders.scss`:
 
 ```scss
 // Primary button (CTA)
-.btn, .p-button.p-button-primary {
+.btn,
+.p-button.p-button-primary {
   padding: 12px 24px;
   border-radius: var(--ds-radius-md);
   font-weight: 600;
   font-size: 14px;
   transition: all 200ms ease;
   cursor: pointer;
-  
+
   background: var(--primary-700); // #1B365D
-  color: var(--ds-primary-text);  // #FFFFFF
+  color: var(--ds-primary-text); // #FFFFFF
   border: 2px solid var(--primary-700);
-  
+
   &:hover {
     background: var(--primary-800); // #12243D
     box-shadow: var(--ds-shadow-2);
     transform: translateY(-1px);
   }
-  
+
   &:active {
     background: var(--primary-900);
     transform: translateY(0);
   }
-  
+
   &:focus-visible {
     outline: none;
     box-shadow: var(--ds-shadow-focus-md);
   }
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -159,11 +162,12 @@ From `src/styles/core/_borders.scss`:
 }
 
 // Accent button (gold for premium actions)
-.btn-accent, .p-button.p-button-warning {
-  background: var(--warning-600);    // #D4A74A
-  color: var(--primary-700);         // Navy text on gold
+.btn-accent,
+.p-button.p-button-warning {
+  background: var(--warning-600); // #D4A74A
+  color: var(--primary-700); // Navy text on gold
   border: 2px solid var(--warning-600);
-  
+
   &:hover {
     background: var(--warning-700);
     opacity: 0.9;
@@ -171,25 +175,27 @@ From `src/styles/core/_borders.scss`:
 }
 
 // Danger button (delete/reject)
-.btn-danger, .p-button.p-button-danger {
+.btn-danger,
+.p-button.p-button-danger {
   background: var(--danger-600);
   color: white;
-  
+
   &:hover {
     background: var(--danger-700);
   }
 }
 
 // Secondary button (outlined)
-.btn-secondary, .p-button.p-button-outlined {
+.btn-secondary,
+.p-button.p-button-outlined {
   background: transparent;
   color: var(--primary-700);
   border: 2px solid var(--primary-700);
-  
+
   &:hover {
     background: var(--primary-50);
   }
-  
+
   &:focus-visible {
     box-shadow: var(--ds-shadow-focus-md);
   }
@@ -199,14 +205,15 @@ From `src/styles/core/_borders.scss`:
 .btn-success {
   background: var(--success-600);
   color: white;
-  
+
   &:hover {
     background: var(--success-700);
   }
 }
 
 // Icon button
-.btn-icon, .p-button.p-button-rounded {
+.btn-icon,
+.p-button.p-button-rounded {
   padding: 8px;
   min-width: 44px; // Touch target min
   min-height: 44px;
@@ -217,6 +224,7 @@ From `src/styles/core/_borders.scss`:
 ```
 
 **Angular/Ionic custom components:**
+
 - `<iw-button>` (web wrapper)
 - `<ili-button-item>` (Ionic list button)
 - `<il-button-edit>`, `<il-button-delete>` (semantic buttons)
@@ -224,14 +232,15 @@ From `src/styles/core/_borders.scss`:
 ### Cards & List Items
 
 ```scss
-.card, .p-card {
-  background: var(--surface-card);  // #FFFFFF
+.card,
+.p-card {
+  background: var(--surface-card); // #FFFFFF
   border: 1px solid var(--outline); // #E2E8F0
   border-radius: var(--ds-radius-md);
-  padding: var(--ds-space-lg);      // 16px
+  padding: var(--ds-space-lg); // 16px
   box-shadow: var(--ds-shadow-2);
   transition: all 200ms ease;
-  
+
   &:hover {
     box-shadow: var(--ds-shadow-3);
     transform: translateY(-2px);
@@ -243,16 +252,16 @@ From `src/styles/core/_borders.scss`:
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--ds-space-md);     // 12px
+  padding: var(--ds-space-md); // 12px
   border: 1px solid var(--outline);
   border-radius: var(--ds-radius-md);
   background: var(--surface-card);
   gap: var(--ds-space-md);
-  
+
   &:hover {
-    background: var(--primary-50);  // #F8F9FC
+    background: var(--primary-50); // #F8F9FC
   }
-  
+
   &:focus-visible {
     box-shadow: var(--ds-shadow-focus-md);
   }
@@ -260,7 +269,7 @@ From `src/styles/core/_borders.scss`:
 
 // Group header (department section)
 .group-header {
-  background: var(--primary-100);   // #E8EEF6
+  background: var(--primary-100); // #E8EEF6
   padding: var(--ds-space-lg);
   border-radius: var(--ds-radius-md);
   font-weight: 600;
@@ -272,7 +281,8 @@ From `src/styles/core/_borders.scss`:
 ### Inputs & Forms
 
 ```scss
-.input, .p-inputtext {
+.input,
+.p-inputtext {
   padding: 12px 16px;
   border: 1px solid var(--outline);
   border-radius: var(--ds-radius-md);
@@ -281,22 +291,22 @@ From `src/styles/core/_borders.scss`:
   background: var(--surface-card);
   color: var(--on-surface);
   transition: border-color 200ms ease;
-  
+
   &:focus {
     border-color: var(--primary-600);
     outline: none;
     box-shadow: 0 0 0 3px rgba(42, 77, 124, 0.1);
   }
-  
+
   &:disabled {
     background: var(--surface-dim);
     color: var(--on-surface-tertiary);
     cursor: not-allowed;
   }
-  
+
   &.ng-invalid.ng-touched {
     border-color: var(--danger-600);
-    
+
     &:focus {
       box-shadow: 0 0 0 3px rgba(211, 75, 75, 0.1);
     }
@@ -309,9 +319,9 @@ From `src/styles/core/_borders.scss`:
   font-weight: 500;
   color: var(--on-surface);
   margin-bottom: var(--ds-space-sm);
-  
+
   &.required::after {
-    content: ' *';
+    content: " *";
     color: var(--danger-600);
   }
 }
@@ -338,20 +348,20 @@ From `src/styles/core/_borders.scss`:
 ```scss
 // PrimeNG Dialog
 .p-dialog {
-  border-radius: var(--ds-radius-lg);  // 12px
+  border-radius: var(--ds-radius-lg); // 12px
   box-shadow: var(--ds-shadow-4);
   backdrop-filter: blur(8px);
-  
+
   .p-dialog-header {
     background: var(--primary-50);
     border-bottom: 1px solid var(--outline);
     padding: var(--ds-space-lg);
   }
-  
+
   .p-dialog-content {
     padding: var(--ds-space-xl);
   }
-  
+
   .p-dialog-footer {
     border-top: 1px solid var(--outline);
     padding: var(--ds-space-lg);
@@ -363,16 +373,17 @@ From `src/styles/core/_borders.scss`:
 
 // Modal overlay
 .p-dialog-mask {
-  background: var(--ds-bg-overlay);  // rgba(27,54,93,0.15)
+  background: var(--ds-bg-overlay); // rgba(27,54,93,0.15)
 }
 ```
 
 ### Tables (Data-Dense Dashboard)
 
 ```scss
-.p-datatable, .custom-table {
+.p-datatable,
+.custom-table {
   font-size: 14px;
-  
+
   .p-datatable-thead > tr > th {
     background: var(--primary-700);
     color: white;
@@ -383,24 +394,24 @@ From `src/styles/core/_borders.scss`:
     letter-spacing: 0.5px;
     border: none;
   }
-  
+
   .p-datatable-tbody > tr {
     border-bottom: 1px solid var(--outline);
-    
+
     &:hover {
       background: var(--primary-50);
     }
-    
+
     td {
       padding: var(--ds-space-md);
       color: var(--on-surface);
     }
   }
-  
+
   // Numeric columns (right-aligned)
   .text-right {
     text-align: right;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
   }
 }
 ```
@@ -413,16 +424,17 @@ From `src/styles/core/_borders.scss`:
 
 ### Color Contrast (Priority 1)
 
-| Element | Background | Foreground | Contrast | WCAG |
-|---------|------------|-----------|----------|------|
-| Body text | `#F8F9FC` | `#1A2634` | 15.1:1 | AAA ✓ |
-| Headline | `#FFFFFF` | `#1B365D` | 14.8:1 | AAA ✓ |
-| Secondary text | `#FFFFFF` | `#5A6878` | 8.2:1 | AA ✓ |
-| Tertiary text | `#FFFFFF` | `#9AACBB` | 5.4:1 | AA ✓ |
-| Gold accent on navy | `#1B365D` | `#D4A74A` | 6.8:1 | AA ✓ |
-| Gold text on white | `#FFFFFF` | `#D4A74A` | 3.1:1 | ❌ (don't use) |
+| Element             | Background | Foreground | Contrast | WCAG           |
+| ------------------- | ---------- | ---------- | -------- | -------------- |
+| Body text           | `#F8F9FC`  | `#1A2634`  | 15.1:1   | AAA ✓          |
+| Headline            | `#FFFFFF`  | `#1B365D`  | 14.8:1   | AAA ✓          |
+| Secondary text      | `#FFFFFF`  | `#5A6878`  | 8.2:1    | AA ✓           |
+| Tertiary text       | `#FFFFFF`  | `#9AACBB`  | 5.4:1    | AA ✓           |
+| Gold accent on navy | `#1B365D`  | `#D4A74A`  | 6.8:1    | AA ✓           |
+| Gold text on white  | `#FFFFFF`  | `#D4A74A`  | 3.1:1    | ❌ (don't use) |
 
 **Dark Mode Overrides:**
+
 - All ratios maintained via `src/styles/base/_dark-mode.scss`
 - Neon glow effect for dark cards (visual enhancement, not contrast dep.)
 
@@ -437,10 +449,14 @@ From `src/styles/core/_borders.scss`:
 
 ```scss
 // All interactive elements MUST have visible focus
-button, a, input, select, textarea {
+button,
+a,
+input,
+select,
+textarea {
   &:focus-visible {
     outline: none;
-    box-shadow: var(--ds-shadow-focus-md);  // 3px blue ring
+    box-shadow: var(--ds-shadow-focus-md); // 3px blue ring
   }
 }
 ```
@@ -462,6 +478,7 @@ button, a, input, select, textarea {
 - All buttons, links, form controls must meet this
 
 **Current violations to fix:**
+
 - `.btn-icon` currently 32px — needs padding to 44px
 - `.icon-button` in action menus — needs wrapper
 
@@ -504,6 +521,7 @@ tr:hover {
 ### Loading States
 
 Use `<app-loader>` component (spinny animation from `src/styles/styles.scss`):
+
 ```html
 <div *ngIf="isLoading" class="ds-animate-spin">
   <app-icon icon="mdi:loading" class="text-2xl"></app-icon>
@@ -517,7 +535,7 @@ Use `<app-loader>` component (spinny animation from `src/styles/styles.scss`):
 ```scss
 button:active {
   transform: translateY(0);
-  box-shadow: var(--ds-shadow-1);  // reduce shadow on press
+  box-shadow: var(--ds-shadow-1); // reduce shadow on press
   transition: all 100ms ease;
 }
 
@@ -547,18 +565,20 @@ input:focus {
 **Reference:** `src/styles/base/_dark-mode.scss`
 
 When active (`body.theme-dark`):
+
 - All `--ds-*` tokens automatically swap to dark values
 - Surfaces invert (white → near-black)
 - Text inverts (dark → light)
 - All contrast ratios maintained AAA
 
 **Neon effects in dark mode** (visual only):
+
 ```scss
 .card {
   &.theme-dark {
     background: var(--surface-dark-100);
-    border: 1px solid rgba(212, 167, 74, 0.3);  // gold glow
-    box-shadow: 
+    border: 1px solid rgba(212, 167, 74, 0.3); // gold glow
+    box-shadow:
       0 0 20px rgba(212, 167, 74, 0.15),
       var(--ds-shadow-2);
   }
@@ -572,11 +592,13 @@ When active (`body.theme-dark`):
 ### Directive Usage
 
 **Web (PrimeNG):**
+
 - `<iw-button>` — Wrapper component for `.btn`
 - `<p-button>` — Direct PrimeNG (inherits MASTER colors via preset)
 - `<p-datatable>` — Tables (dense mode optimized)
 
 **Mobile (Ionic):**
+
 - `<app-data-view-mobile>` — List view with grouping
 - `<ili-button-item>` — Ionic-styled button
 - `<ili-action-menu>` — Dropdown actions (Ionic positioning)
@@ -596,6 +618,7 @@ When active (`body.theme-dark`):
 ### Signals (Angular 19+)
 
 Component state must use `Signal<T>` for reactive updates:
+
 ```typescript
 selectedAreaSignal = signal<Area | null>(null);
 inspeccionesFiltradasSignal = computed(() => {
@@ -606,9 +629,10 @@ inspeccionesFiltradasSignal = computed(() => {
 ### Change Detection
 
 For data-dense tables with frequent updates:
+
 ```typescript
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListInspeccionesComponent {
   // Manually trigger with markForCheck() if needed
@@ -620,24 +644,29 @@ export class ListInspeccionesComponent {
 ## Layout & Responsive
 
 **Mobile-first breakpoints:**
-| Breakpoint | Size | Use Case |
-|------------|------|----------|
-| `xs` | 320px | Small phones |
-| `sm` | 640px | Tablets (landscape) |
-| `md` | 768px | Tablets (portrait) / Small laptops |
-| `lg` | 1024px | Laptops |
-| `xl` | 1280px | Large desktops |
+
+| Breakpoint | Size   | Use Case                           |
+| ---------- | ------ | ---------------------------------- |
+| `xs`       | 320px  | Small phones                       |
+| `sm`       | 640px  | Tablets (landscape)                |
+| `md`       | 768px  | Tablets (portrait) / Small laptops |
+| `lg`       | 1024px | Laptops                            |
+| `xl`       | 1280px | Large desktops                     |
 
 **Adaptive pattern (from lista-inspecciones.html):**
+
 ```html
 <!-- Web version (≥ md) -->
 <div class="hidden md:block"><!-- Web list --></div>
 
 <!-- Mobile version (< md) -->
-<app-data-view-mobile class="md:hidden"><!-- Mobile list --></app-data-view-mobile>
+<app-data-view-mobile class="md:hidden"
+  ><!-- Mobile list --></app-data-view-mobile
+>
 ```
 
 **Critical:**
+
 - ❌ No horizontal scroll on any breakpoint
 - ✓ Viewport meta: `<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">`
 - ✓ Disable zoom **only** for forms (use `user-scalable=no` sparingly)
@@ -751,20 +780,20 @@ Before shipping **any** UI feature, verify all items:
 
 ```typescript
 // ✓ Correct
-import { ButtonComponent } from '@ui/adaptive/button';
-import { CardComponent } from '@ui/adaptive/card';
-import { DataViewMobileComponent } from '@ui/adaptive/data-view-mobile';
+import { ButtonComponent } from "@ui/adaptive/button";
+import { CardComponent } from "@ui/adaptive/card";
+import { DataViewMobileComponent } from "@ui/adaptive/data-view-mobile";
 
 // ❌ Wrong
-import { ButtonComponent } from '../../../shared/button';
-import { Button } from './local-button';
+import { ButtonComponent } from "../../../shared/button";
+import { Button } from "./local-button";
 ```
 
 **Styles import order (in component file):**
 
 ```scss
 // 1. Tokens & functions (core only)
-@use '@angular/cdk' as cdk;
+@use "@angular/cdk" as cdk;
 
 // 2. Component-specific styles
 :host {
@@ -785,7 +814,7 @@ import { Button } from './local-button';
 - **CSS Variables:** `src/styles/theme/_variables.scss`
 - **PrimeNG Preset:** `src/styles/theme/mypreset.ts`
 - **Components:** `src/app/shared/ui/adaptive/`
-- **Catalog:** `src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/`
+- **Catalog:** `src/app/modules/admin.luxuryapp/herramientas-dev/catalog-component-ui/`
 - **Design Doc:** `src/styles/DESIGN.md`
 - **Stylesheet Standards:** `src/styles/estandar-hoja-estilos.md`
 

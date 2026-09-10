@@ -23,7 +23,8 @@ function collectTs(dir) {
   for (const e of entries) {
     const full = path.join(dir, e.name);
     if (e.isDirectory()) out = out.concat(collectTs(full));
-    else if (e.name.endsWith(".ts") && !e.name.endsWith(".spec.ts")) out.push(full);
+    else if (e.name.endsWith(".ts") && !e.name.endsWith(".spec.ts"))
+      out.push(full);
   }
   return out;
 }
@@ -32,8 +33,8 @@ function collectTs(dir) {
 let appsDirs = [];
 try {
   appsDirs = readdirSync(appsRoot, { withFileTypes: true })
-    .filter(d => d.isDirectory() && d.name.endsWith(".luxuryapp"))
-    .map(d => d.name);
+    .filter((d) => d.isDirectory() && d.name.endsWith(".luxuryapp"))
+    .map((d) => d.name);
 } catch {
   console.log("No se pudo leer el directorio apps/");
   process.exit(0);
@@ -50,16 +51,16 @@ for (const currentApp of appsDirs) {
   const forbiddenApps = protectedBoundaries.get(currentApp) ?? [];
 
   if (forbiddenApps.length === 0) continue;
-  
+
   for (const file of collectTs(currentAppDir)) {
     const lines = readFileSync(file, "utf8").split(/\r?\n/);
     lines.forEach((line, i) => {
       // Ignorar type-only imports si se desea, aunque lo mejor es aislar por completo.
-      // if (/^\s*import\s+type\b/.test(line)) return; 
-      
+      // if (/^\s*import\s+type\b/.test(line)) return;
+
       for (const forbidden of forbiddenApps) {
         // Regex para buscar importaciones que contengan el nombre de la app prohibida
-        // ej. from 'src/app/apps/operations.luxuryapp/...' o from '../../operations.luxuryapp/...'
+        // ej. from 'src/app/modules/operations.luxuryapp/...' o from '../../operations.luxuryapp/...'
         const regex = new RegExp(`from\\s+["'][^"']*apps\\/${forbidden}\\/`);
         if (regex.test(line)) {
           violations.push({
@@ -79,11 +80,13 @@ if (violations.length === 0) {
   process.exit(0);
 }
 
-console.error(`\n⛔ ${violations.length} violación(es) de fronteras en apps/:\n`);
+console.error(
+  `\n⛔ ${violations.length} violación(es) de fronteras en apps/:\n`,
+);
 for (const v of violations) {
   console.error(`  [${v.app}] ${v.file}:${v.line} — ${v.msg}`);
 }
 console.error(
-  "\nRegla: Reclutamiento y Recursos Humanos no pueden importarse entre si. Usar shared/ o core/.\n"
+  "\nRegla: Reclutamiento y Recursos Humanos no pueden importarse entre si. Usar shared/ o core/.\n",
 );
 process.exit(1);

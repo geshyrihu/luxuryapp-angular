@@ -27,11 +27,11 @@
 // Uso:  node scripts/audit-icon-names.mjs
 // ═══════════════════════════════════════════════════════════════════════════
 
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
-const CATALOGO = 'src/app/shared/ui/shared/app-icon/app-icon.catalog.ts';
-const RAIZ = 'src';
+const CATALOGO = "src/app/shared/ui/shared/app-icon/app-icon.catalog.ts";
+const RAIZ = "src";
 
 // Nombres que pueden aparecer fuera del catálogo. Cada alta exige una razón.
 const PERMITIDOS = new Set([
@@ -45,7 +45,7 @@ const PERMITIDOS = new Set([
 // Este gate no sabe distinguir un ejemplo de un uso, así que la exención es
 // explícita y por archivo. No añadas aquí código que sí se ejecuta.
 const DOCUMENTACION = [
-  'src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts',
+  "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
 ];
 
 if (!fs.existsSync(CATALOGO)) {
@@ -53,13 +53,15 @@ if (!fs.existsSync(CATALOGO)) {
   process.exit(1);
 }
 
-const catalogo = fs.readFileSync(CATALOGO, 'utf-8');
+const catalogo = fs.readFileSync(CATALOGO, "utf-8");
 const valores = new Set(
-  [...catalogo.matchAll(/"(material-symbols-light:[a-z0-9-]+)"/g)].map((m) => m[1]),
+  [...catalogo.matchAll(/"(material-symbols-light:[a-z0-9-]+)"/g)].map(
+    (m) => m[1],
+  ),
 );
 
 if (valores.size === 0) {
-  console.error('❌ El catálogo no declara ningún valor. ¿Cambió su formato?');
+  console.error("❌ El catálogo no declara ningún valor. ¿Cambió su formato?");
   process.exit(1);
 }
 
@@ -67,7 +69,7 @@ function recorrer(dir, acc = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     const p = path.join(dir, e.name);
     if (e.isDirectory()) {
-      if (e.name === 'node_modules') continue;
+      if (e.name === "node_modules") continue;
       recorrer(p, acc);
     } else if (/\.(ts|html)$/.test(e.name)) {
       acc.push(p);
@@ -76,17 +78,17 @@ function recorrer(dir, acc = []) {
   return acc;
 }
 
-console.log('🔍 Nombres de icono contra el catálogo\n');
+console.log("🔍 Nombres de icono contra el catálogo\n");
 
 const hallazgos = new Map(); // nombre -> [{archivo, linea}]
 let literales = 0;
 
 for (const archivo of recorrer(RAIZ)) {
-  const rel = archivo.replace(/\\/g, '/');
+  const rel = archivo.replace(/\\/g, "/");
   if (rel === CATALOGO) continue;
   if (DOCUMENTACION.includes(rel)) continue;
 
-  const lineas = fs.readFileSync(archivo, 'utf-8').split('\n');
+  const lineas = fs.readFileSync(archivo, "utf-8").split("\n");
   lineas.forEach((linea, i) => {
     // Una línea comentada es código muerto, no un icono que se dibuje.
     if (/^\s*(\/\/|\*|<!--)/.test(linea)) return;
@@ -109,10 +111,10 @@ console.log(`   Código  : ${literales} literales\n`);
 // el 2026-08-11 (137 usos). Se tolera únicamente donde se *quita* el prefijo
 // de datos heredados, y en las pruebas que verifican esa tolerancia.
 const PI_PERMITIDO = [
-  'src/app/shared/utils/icon-mapping.ts',
-  'src/app/shared/utils/icon-mapping.spec.ts',
-  'src/app/shared/ui/buttons/base/base-button.ts', // comentario histórico
-  'src/app/shared/ui/buttons/mobile-button-base.ts', // comentario histórico
+  "src/app/shared/utils/icon-mapping.ts",
+  "src/app/shared/utils/icon-mapping.spec.ts",
+  "src/app/shared/ui/buttons/base/base-button.ts", // comentario histórico
+  "src/app/shared/ui/buttons/mobile-button-base.ts", // comentario histórico
   ...DOCUMENTACION,
 ];
 
@@ -121,13 +123,14 @@ const PI_PERMITIDO = [
 const PROHIBIDOS = [
   {
     re: /\bpi pi-/,
-    que: 'clases de PrimeIcons (`pi pi-*`)',
-    porque: 'El proyecto usa un solo paquete de iconos. Retiradas el 2026-08-11.',
+    que: "clases de PrimeIcons (`pi pi-*`)",
+    porque:
+      "El proyecto usa un solo paquete de iconos. Retiradas el 2026-08-11.",
   },
   {
     re: /\bmdi:/,
-    que: 'prefijo `mdi:`',
-    porque: 'Paquete retirado. Un `mdi:*` no se resuelve y no dibuja nada.',
+    que: "prefijo `mdi:`",
+    porque: "Paquete retirado. Un `mdi:*` no se resuelve y no dibuja nada.",
   },
   {
     // `<span class="iconify" data-icon="...">` es la sintaxis del framework SVG
@@ -135,19 +138,25 @@ const PROHIBIDOS = [
     // web component `iconify-icon`. Ese span no pinta nada.
     re: /class="[^"]*\biconify\b[^"]*"|\bdata-icon\s*=/,
     que: 'sintaxis del framework SVG de Iconify (`class="iconify"` / `data-icon`)',
-    porque: '`@iconify/iconify` no esta instalado. Usa <app-icon>.',
+    porque: "`@iconify/iconify` no esta instalado. Usa <app-icon>.",
   },
 ];
 
 const pi = [];
 for (const archivo of recorrer(RAIZ)) {
-  const rel = archivo.replace(/\\/g, '/');
+  const rel = archivo.replace(/\\/g, "/");
   if (PI_PERMITIDO.includes(rel)) continue;
-  const lineas = fs.readFileSync(archivo, 'utf-8').split('\n');
+  const lineas = fs.readFileSync(archivo, "utf-8").split("\n");
   lineas.forEach((linea, i) => {
     for (const p of PROHIBIDOS) {
       if (p.re.test(linea)) {
-        pi.push({ archivo: rel, linea: i + 1, texto: linea.trim().slice(0, 110), que: p.que, porque: p.porque });
+        pi.push({
+          archivo: rel,
+          linea: i + 1,
+          texto: linea.trim().slice(0, 110),
+          que: p.que,
+          porque: p.porque,
+        });
         break;
       }
     }
@@ -158,19 +167,27 @@ if (pi.length > 0) {
   console.error(`❌ ${pi.length} uso(s) de formatos de icono retirados:\n`);
   const porTipo = new Map();
   for (const p of pi) {
-    if (!porTipo.has(p.que)) porTipo.set(p.que, { porque: p.porque, casos: [] });
+    if (!porTipo.has(p.que))
+      porTipo.set(p.que, { porque: p.porque, casos: [] });
     porTipo.get(p.que).casos.push(p);
   }
   for (const [que, { porque, casos }] of porTipo) {
     console.error(`   ${que}  (${casos.length})`);
     console.error(`   ${porque}`);
-    for (const c of casos.slice(0, 10)) console.error(`     ${c.archivo}:${c.linea}\n       ${c.texto}`);
+    for (const c of casos.slice(0, 10))
+      console.error(`     ${c.archivo}:${c.linea}\n       ${c.texto}`);
     if (casos.length > 10) console.error(`     … y ${casos.length - 10} más`);
-    console.error('');
+    console.error("");
   }
-  console.error(`   💡 Usa <app-icon> o <ili-icon> con un valor del catálogo. Si el icono va dentro`);
-  console.error(`      de un componente PrimeNG, pásalo por <ng-template #icon>:`);
-  console.error(`      su input \`icon\` espera una clase CSS y no entiende Iconify.`);
+  console.error(
+    `   💡 Usa <app-icon> o <ili-icon> con un valor del catálogo. Si el icono va dentro`,
+  );
+  console.error(
+    `      de un componente PrimeNG, pásalo por <ng-template #icon>:`,
+  );
+  console.error(
+    `      su input \`icon\` espera una clase CSS y no entiende Iconify.`,
+  );
   process.exit(1);
 }
 
@@ -182,13 +199,13 @@ const IMPORTS缺IDOS = [];
 
 function extraerTemplate(lineas) {
   // Unifica líneas de template inline y archivos .html en un solo string
-  return lineas.join('\n');
+  return lineas.join("\n");
 }
 
 for (const archivo of recorrer(RAIZ)) {
-  const rel = archivo.replace(/\\/g, '/');
-  const contenido = fs.readFileSync(archivo, 'utf-8');
-  const lineas = contenido.split('\n');
+  const rel = archivo.replace(/\\/g, "/");
+  const contenido = fs.readFileSync(archivo, "utf-8");
+  const lineas = contenido.split("\n");
   const template = extraerTemplate(lineas);
 
   const usaIliIcon = /<ili-icon[\s>]/.test(template);
@@ -196,49 +213,74 @@ for (const archivo of recorrer(RAIZ)) {
 
   if (!usaIliIcon && !usaAppIcon) continue;
 
-  const importLineas = lineas.filter(l => /^import\s/.test(l.trim()));
-  const importText = importLineas.join('\n');
+  const importLineas = lineas.filter((l) => /^import\s/.test(l.trim()));
+  const importText = importLineas.join("\n");
 
   if (usaIliIcon && !/AppIconMobile/.test(importText)) {
-    IMPORTS缺IDOS.push({ archivo: rel, falta: 'AppIconMobile', tag: '<ili-icon>' });
+    IMPORTS缺IDOS.push({
+      archivo: rel,
+      falta: "AppIconMobile",
+      tag: "<ili-icon>",
+    });
   }
-  if (usaAppIcon && !/\bAppIcon\b/.test(importText.replace(/AppIconMobile/g, ''))) {
-    IMPORTS缺IDOS.push({ archivo: rel, falta: 'AppIcon', tag: '<app-icon>' });
+  if (
+    usaAppIcon &&
+    !/\bAppIcon\b/.test(importText.replace(/AppIconMobile/g, ""))
+  ) {
+    IMPORTS缺IDOS.push({ archivo: rel, falta: "AppIcon", tag: "<app-icon>" });
   }
 }
 
 if (IMPORTS缺IDOS.length > 0) {
-  console.error(`❌ ${IMPORTS缺IDOS.length} componente(s) usan icono sin declararlo en imports:\n`);
+  console.error(
+    `❌ ${IMPORTS缺IDOS.length} componente(s) usan icono sin declararlo en imports:\n`,
+  );
   for (const { archivo, falta, tag } of IMPORTS缺IDOS.slice(0, 15)) {
     console.error(`   ${archivo}  usa ${tag} pero no importa ${falta}`);
   }
-  if (IMPORTS缺IDOS.length > 15) console.error(`   … y ${IMPORTS缺IDOS.length - 15} más`);
-  console.error('');
-  console.error(`   💡 Agrega ${IMPORTS缺IDOS[0]?.falta} al arreglo imports del componente.`);
-  console.error(`      Sin declararlo, Angular no instancia el componente y no hay icono.`);
+  if (IMPORTS缺IDOS.length > 15)
+    console.error(`   … y ${IMPORTS缺IDOS.length - 15} más`);
+  console.error("");
+  console.error(
+    `   💡 Agrega ${IMPORTS缺IDOS[0]?.falta} al arreglo imports del componente.`,
+  );
+  console.error(
+    `      Sin declararlo, Angular no instancia el componente y no hay icono.`,
+  );
   // No exit aquí — es un warning, no fatal. Los literales son el gate crítico.
 }
 
 if (hallazgos.size === 0 && pi.length === 0) {
-  console.log('✅ Auditoría superada: todo icono usado existe en el catálogo');
-  console.log('   y no quedan clases de PrimeIcons.');
+  console.log("✅ Auditoría superada: todo icono usado existe en el catálogo");
+  console.log("   y no quedan clases de PrimeIcons.");
   if (IMPORTS缺IDOS.length > 0) {
-    console.log(`   ⚠️  ${IMPORTS缺IDOS.length} componente(s) con imports faltantes (ver arriba).`);
+    console.log(
+      `   ⚠️  ${IMPORTS缺IDOS.length} componente(s) con imports faltantes (ver arriba).`,
+    );
   }
   process.exit(0);
 }
 
 const usos = [...hallazgos.values()].reduce((a, l) => a + l.length, 0);
-console.error(`❌ ${hallazgos.size} nombre(s) fuera del catálogo, en ${usos} uso(s):\n`);
+console.error(
+  `❌ ${hallazgos.size} nombre(s) fuera del catálogo, en ${usos} uso(s):\n`,
+);
 
-for (const [nombre, sitios] of [...hallazgos.entries()].sort((a, b) => b[1].length - a[1].length)) {
+for (const [nombre, sitios] of [...hallazgos.entries()].sort(
+  (a, b) => b[1].length - a[1].length,
+)) {
   console.error(`   ${nombre}  (${sitios.length})`);
-  for (const s of sitios.slice(0, 5)) console.error(`     ${s.archivo}:${s.linea}`);
+  for (const s of sitios.slice(0, 5))
+    console.error(`     ${s.archivo}:${s.linea}`);
   if (sitios.length > 5) console.error(`     … y ${sitios.length - 5} más`);
 }
 
-console.error(`\n   💡 Un nombre fuera del catálogo NO falla en ejecución: si no existe`);
+console.error(
+  `\n   💡 Un nombre fuera del catálogo NO falla en ejecución: si no existe`,
+);
 console.error(`      en Material Symbols, el icono simplemente no se dibuja.`);
 console.error(`      Da de alta el concepto en ${CATALOGO}`);
-console.error(`      (verificando el nombre contra el set real de Iconify) y úsalo desde ahí.`);
+console.error(
+  `      (verificando el nombre contra el set real de Iconify) y úsalo desde ahí.`,
+);
 process.exit(1);

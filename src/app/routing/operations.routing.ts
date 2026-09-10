@@ -1,14 +1,13 @@
 import { inject } from "@angular/core";
 import { Routes } from "@angular/router";
+import { authGuard } from "src/app/core/auth/guards/auth.guard";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { ApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { authGuard } from "src/app/core/auth/guards/auth.guard";
 export const operationsRoutes: Routes = [
-
   {
     path: "staff",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/staff-board/staff-board-list").then(
+      import("src/app/modules/operations.luxuryapp/staff-board/staff-board-list").then(
         (m) => m.StaffBoardList,
       ),
     canActivate: [authGuard],
@@ -17,13 +16,13 @@ export const operationsRoutes: Routes = [
       breadcrumb: "Plantilla y Personal",
     },
   },
-// =============================================================
+  // =============================================================
   // INCIDENCIAS DISCIPLINARIAS
   // =============================================================
   {
     path: "incidents",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/incidencias-sanciones/incident/incident-list").then(
+      import("src/app/modules/operations.luxuryapp/incidencias-sanciones/incident/incident-list").then(
         (m) => m.IncidentList,
       ),
     canActivate: [
@@ -41,7 +40,7 @@ export const operationsRoutes: Routes = [
   {
     path: "incident-dashboard",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/incidencias-sanciones/incident/incident-dashboard/incident-dashboard").then(
+      import("src/app/modules/operations.luxuryapp/incidencias-sanciones/incident/incident-dashboard/incident-dashboard").then(
         (m) => m.IncidentDashboardComponent,
       ),
     canActivate: [
@@ -64,7 +63,7 @@ export const operationsRoutes: Routes = [
   {
     path: "incident-reports",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/incidencias-sanciones/incident-report/incident-report").then(
+      import("src/app/modules/operations.luxuryapp/incidencias-sanciones/incident-report/incident-report").then(
         (m) => m.IncidentReport,
       ),
     canActivate: [
@@ -86,7 +85,7 @@ export const operationsRoutes: Routes = [
   {
     path: "sanctions",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/incidencias-sanciones/sanction/sanction-list").then(
+      import("src/app/modules/operations.luxuryapp/incidencias-sanciones/sanction/sanction-list").then(
         (m) => m.SanctionList,
       ),
     canActivate: [
@@ -102,11 +101,10 @@ export const operationsRoutes: Routes = [
     },
   },
 
-  
   {
     path: "my-building", // Ruta anterior: 'mi-edificio'
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/properties/mi-edificio/mi-edificio").then(
+      import("src/app/modules/operations.luxuryapp/properties/mi-edificio/mi-edificio").then(
         (m) => m.MiEdificio,
       ),
     canActivate: [authGuard],
@@ -119,7 +117,7 @@ export const operationsRoutes: Routes = [
   {
     path: "inventario-productos",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/stock-por-almacen/warehouse-stock-list").then(
+      import("src/app/modules/operations.luxuryapp/inventarios-y-almacn/stock-por-almacen/warehouse-stock-list").then(
         (m) => m.WarehouseStockList,
       ),
     canActivate: [authGuard],
@@ -131,7 +129,7 @@ export const operationsRoutes: Routes = [
   {
     path: "extintores",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor").then(
+      import("src/app/modules/operations.luxuryapp/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor").then(
         (m) => m.InventarioExtintor,
       ),
     canActivate: [authGuard],
@@ -143,7 +141,7 @@ export const operationsRoutes: Routes = [
   {
     path: "extintores-group",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor-group").then(
+      import("src/app/modules/operations.luxuryapp/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor-group").then(
         (m) => m.InventarioExtintorGroup,
       ),
     canActivate: [authGuard],
@@ -155,7 +153,7 @@ export const operationsRoutes: Routes = [
   {
     path: "alertas-panico",
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/panic-alert/panic-alert-list/panic-alert-list").then(
+      import("src/app/modules/operations.luxuryapp/panic-alert/panic-alert-list/panic-alert-list").then(
         (m) => m.PanicAlertList,
       ),
     canActivate: [authGuard],

@@ -4,7 +4,7 @@ export const directoryRoutes: Routes = [
   {
     path: "provider", // Ruta anterior: 'proveedor'
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/providers/provider/provider-list").then(
+      import("src/app/modules/supplier.luxuryapp/providers/provider/provider-list").then(
         (m) => m.ListProvider,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const directoryRoutes: Routes = [
   {
     path: "condos", // Ruta anterior: 'condominos'
     loadComponent: () =>
-      import("src/app/apps/resident.luxuryapp/owner/owner-list").then(
+      import("src/app/modules/resident.luxuryapp/owner/owner-list").then(
         (m) => m.OwnerList,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const directoryRoutes: Routes = [
   {
     path: "properties", // Ruta anterior: 'propiedades'
     loadComponent: () =>
-      import("src/app/apps/resident.luxuryapp/property/propiedades-list").then(
+      import("src/app/modules/resident.luxuryapp/property/propiedades-list").then(
         (m) => m.PropiedadesList,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const directoryRoutes: Routes = [
   {
     path: "vigilance-committee", // Ruta anterior: 'comite-vigilancia'
     loadComponent: () =>
-      import("src/app/apps/legal.luxuryapp/comite-vigilancia/comite-vigilancia-list").then(
+      import("src/app/modules/legal.luxuryapp/comite-vigilancia/comite-vigilancia-list").then(
         (m) => m.ComiteVigilanciaList,
       ),
     canActivate: [authGuard],
@@ -52,7 +52,7 @@ export const directoryRoutes: Routes = [
   {
     path: "work-position-org-chart",
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/org-chart/org-chart").then(
+      import("src/app/modules/reclutamiento.luxuryapp/expediente-del-empleado/employees/org-chart/org-chart").then(
         (m) => m.OrgChart,
       ),
     canActivate: [authGuard],
@@ -64,7 +64,7 @@ export const directoryRoutes: Routes = [
   {
     path: "internal-staff", // Ruta anterior: 'personal-interno'
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/employees/employee-list").then(
+      import("src/app/modules/reclutamiento.luxuryapp/expediente-del-empleado/employees/employees/employee-list").then(
         (m) => m.EmployeeList,
       ),
     canActivate: [authGuard],
@@ -76,7 +76,7 @@ export const directoryRoutes: Routes = [
   {
     path: "employee-interviewer-queue",
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interviewer-queue").then(
+      import("src/app/modules/reclutamiento.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interviewer-queue").then(
         (m) => m.EmployeeInterviewerQueue,
       ),
     canActivate: [authGuard],
@@ -88,7 +88,7 @@ export const directoryRoutes: Routes = [
   {
     path: "employee-interviews/respond",
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interview-response").then(
+      import("src/app/modules/reclutamiento.luxuryapp/expediente-del-empleado/employees/employee-interviewer-queue/employee-interview-response").then(
         (m) => m.EmployeeInterviewResponse,
       ),
     canActivate: [authGuard],
@@ -100,7 +100,7 @@ export const directoryRoutes: Routes = [
   {
     path: "external-staff", // Ruta anterior: 'personal-externo'
     loadComponent: () =>
-      import("src/app/apps/reclutamiento.luxuryapp/employee-external/employee-external-list").then(
+      import("src/app/modules/reclutamiento.luxuryapp/employee-external/employee-external-list").then(
         (m) => m.EmployeeExternalList,
       ),
     canActivate: [authGuard],
@@ -112,7 +112,7 @@ export const directoryRoutes: Routes = [
   {
     path: "emergency-phones", // Ruta anterior: 'telefonos-emergencia'
     loadComponent: () =>
-      import("src/app/apps/public.luxuryapp/telefonos-emergencia/telefonos-emergencia").then(
+      import("src/app/modules/public.luxuryapp/telefonos-emergencia/telefonos-emergencia").then(
         (m) => m.TelefonosEmergencia,
       ),
     canActivate: [authGuard],
@@ -125,7 +125,7 @@ export const directoryRoutes: Routes = [
     // Suggested path: 'my-providers'
     path: "mis-proveedores",
     loadComponent: () =>
-      import("src/app/apps/admin.luxuryapp/reportes/customer-provider/mis-proveedores-list").then(
+      import("src/app/modules/admin.luxuryapp/reportes/customer-provider/mis-proveedores-list").then(
         (m) => m.MisProveedores,
       ),
     canActivate: [authGuard],
@@ -135,5 +135,3 @@ export const directoryRoutes: Routes = [
     },
   },
 ];
-
-

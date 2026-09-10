@@ -25,14 +25,16 @@ export const appRoutes: Routes = [
   {
     path: "auth",
     loadChildren: () =>
-      import("src/app/apps/auth.luxuryapp/auth.routes").then(
+      import("src/app/modules/auth.luxuryapp/auth.routes").then(
         (m) => m.authRoutes,
       ),
   },
   {
     path: "web",
     loadChildren: () =>
-      import("src/app/apps/web.luxuryapp/web.routing").then((m) => m.webRoutes),
+      import("src/app/modules/web.luxuryapp/web.routing").then(
+        (m) => m.webRoutes,
+      ),
     data: { title: "Inicio", breadcrumb: "Inicio" },
   },
   {
@@ -83,47 +85,56 @@ export const appRoutes: Routes = [
     component: Loader, // Un componente cualquiera y ligero
   },
 
-   // --- Ruta para Comite (Nivel Superior) ---
-   {
-     path: "committee",
-     loadComponent: () => import("./core/layout/committee-layout/layout-committee").then(m => m.LayoutCommittee),
-     canActivate: [authGuard, committeeGuard],
-     loadChildren: () =>
-       import("src/app/apps/committee.luxuryapp/committee.routing").then(
-         (m) => m.committeeRoutes,
-       ),
-   },
+  // --- Ruta para Comite (Nivel Superior) ---
+  {
+    path: "committee",
+    loadComponent: () =>
+      import("./core/layout/committee-layout/layout-committee").then(
+        (m) => m.LayoutCommittee,
+      ),
+    canActivate: [authGuard, committeeGuard],
+    loadChildren: () =>
+      import("src/app/modules/committee.luxuryapp/committee.routing").then(
+        (m) => m.committeeRoutes,
+      ),
+  },
 
-   // --- Ruta para Direccion (Nivel Superior) ---
-   {
-     path: "direccion",
-     loadComponent: () => import("./core/layout/direccion-view/layout-direccion").then(m => m.LayoutDireccion),
-     canActivate: [authGuard, direccionGuard],
-     loadChildren: () =>
-       import("src/app/apps/direccion.luxuryapp/direccion.routing").then(
-         (m) => m.direccionRoutes,
-       ),
-   },
+  // --- Ruta para Direccion (Nivel Superior) ---
+  {
+    path: "direccion",
+    loadComponent: () =>
+      import("./core/layout/direccion-view/layout-direccion").then(
+        (m) => m.LayoutDireccion,
+      ),
+    canActivate: [authGuard, direccionGuard],
+    loadChildren: () =>
+      import("src/app/modules/direccion.luxuryapp/direccion.routing").then(
+        (m) => m.direccionRoutes,
+      ),
+  },
 
-   // --- Ruta para Guía de Módulos (standalone, sin guard) ---
-   {
-     path: "guide/:module",
-     loadComponent: () =>
-       import("src/app/shared/ui/web/module-guide/module-guide").then(
-         (m) => m.ModuleGuide,
-       ),
-     data: {
-       title: "Guía del Módulo",
-       breadcrumb: "Guía del Módulo",
-     },
-   },
+  // --- Ruta para Guía de Módulos (standalone, sin guard) ---
+  {
+    path: "guide/:module",
+    loadComponent: () =>
+      import("src/app/shared/ui/web/module-guide/module-guide").then(
+        (m) => m.ModuleGuide,
+      ),
+    data: {
+      title: "Guía del Módulo",
+      breadcrumb: "Guía del Módulo",
+    },
+  },
 
-   // --- Rutas de Empleado (Full Layout) ---
+  // --- Rutas de Empleado (Full Layout) ---
   // Esta será la ruta por defecto para usuarios no-comité.
   // Captura la raíz y todas las demás rutas (dashboard, home, etc.) definidas en pages.routing.
   {
     path: "",
-    loadComponent: () => import("./core/layout/employee-view/layout-employee").then(m => m.LayoutEmployee),
+    loadComponent: () =>
+      import("./core/layout/employee-view/layout-employee").then(
+        (m) => m.LayoutEmployee,
+      ),
     canActivate: [authGuard, employeeGuard],
     loadChildren: () =>
       import("src/app/routing/pages.routes").then((m) => m.pagesRoutes),

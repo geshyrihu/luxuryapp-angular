@@ -11,9 +11,9 @@ import { AuthService } from "src/app/core/auth/services/auth.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { OneSignalService } from "src/app/core/services/one-signal.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
+import { PanicAlertIncomingDialog } from "src/app/modules/operations.luxuryapp/panic-alert/panic-alert-incoming-dialog/panic-alert-incoming-dialog";
 import { ViewEmployeeMonitor } from "./monitor/view-employee-monitor/view-employee-monitor";
 import { ViewEmployeeMobile } from "./movil/view-employee-mobile/view-employee-mobile";
-import { PanicAlertIncomingDialog } from "src/app/apps/operations.luxuryapp/panic-alert/panic-alert-incoming-dialog/panic-alert-incoming-dialog";
 /**
  * Layout Completo: El Centro de Operaciones 🚀
  *

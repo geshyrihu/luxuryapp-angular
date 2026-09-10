@@ -16,7 +16,7 @@
 // Uso:
 //   node scripts/migrate-icons-to-catalog.mjs                (dry-run, todo src)
 //   node scripts/migrate-icons-to-catalog.mjs --apply        (aplica, todo src)
-//   node scripts/migrate-icons-to-catalog.mjs src/app/apps/admin.luxuryapp --apply
+//   node scripts/migrate-icons-to-catalog.mjs src/app/modules/admin.luxuryapp --apply
 // ═══════════════════════════════════════════════════════════════════════════
 
 import fs from "fs";
@@ -30,7 +30,7 @@ const IGNORE = new Set([
   "src/app/shared/ui/shared/app-icon/app-icon.catalog.ts",
   "src/app/shared/utils/icon-mapping.ts",
   "src/app/shared/utils/icon-mapping.spec.ts",
-  "src/app/apps/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
+  "src/app/modules/admin.luxuryapp/admin-wrapper/conventions-viewer/conventions-viewer.service.ts",
   "src/index.html",
 ]);
 
@@ -55,12 +55,17 @@ function walk(dir, acc = []) {
 
 // ── Catálogo → mapa inverso valor → clave canónica ──────────────────────────
 const catalogRaw = fs.readFileSync(CATALOG, "utf-8");
-const entries = [...catalogRaw.matchAll(/(\w+):\s*"(material-symbols-light:[a-z0-9_-]+)"/g)];
+const entries = [
+  ...catalogRaw.matchAll(/(\w+):\s*"(material-symbols-light:[a-z0-9_-]+)"/g),
+];
 const valueToKeys = {};
 for (const [, key, val] of entries) (valueToKeys[val] ||= []).push(key);
 
 const pascal = (s) =>
-  s.split(/[-_]/).map((p) => (p ? p[0].toUpperCase() + p.slice(1) : "")).join("");
+  s
+    .split(/[-_]/)
+    .map((p) => (p ? p[0].toUpperCase() + p.slice(1) : ""))
+    .join("");
 
 const reverse = {};
 for (const [val, keys] of Object.entries(valueToKeys)) {
@@ -85,21 +90,25 @@ function transform(line, fieldTok) {
   let out = line;
   out = out.replace(
     /(icon|iconClass|fallbackIcon)="material-symbols-light:([a-z0-9_-]+)([^"]*)"/g,
-    (_m, attr, name) => `[${attr}]="${fieldTok}.${reverse["material-symbols-light:" + name]}"`
+    (_m, attr, name) =>
+      `[${attr}]="${fieldTok}.${reverse["material-symbols-light:" + name]}"`,
   );
   out = out.replace(
     /\[(\w+)\]=\s*["'](['"]?)material-symbols-light:([a-z0-9_-]+)\2["']/g,
-    (_m, attr, _q, name) => `[${attr}]="${fieldTok}.${reverse["material-symbols-light:" + name]}"`
+    (_m, attr, _q, name) =>
+      `[${attr}]="${fieldTok}.${reverse["material-symbols-light:" + name]}"`,
   );
   out = out.replace(
     /['"]material-symbols-light:([a-z0-9_-]+)['"]/g,
-    (_m, name) => `${fieldTok}.${reverse["material-symbols-light:" + name]}`
+    (_m, name) => `${fieldTok}.${reverse["material-symbols-light:" + name]}`,
   );
   return out;
 }
 
 // ── Resolución de host (.ts del componente) ─────────────────────────────────
-const allFiles = walk(ROOT).map((f) => f.replace(/\\/g, "/")).filter((rel) => !isIgnored(rel));
+const allFiles = walk(ROOT)
+  .map((f) => f.replace(/\\/g, "/"))
+  .filter((rel) => !isIgnored(rel));
 const allTs = allFiles.filter((f) => f.endsWith(".ts"));
 
 // ── Precompute: quién ya expone `IconCatalog` (propio o por herencia) ────────
@@ -109,10 +118,15 @@ const classParent = new Map();
 const classFile = new Map();
 const fileHasIconCatalog = new Set();
 // Escanea TODO src (no solo el lote) para resolver la cadena de herencia.
-for (const tsRel of walk("src").map((f) => f.replace(/\\/g, "/")).filter((f) => f.endsWith(".ts"))) {
+for (const tsRel of walk("src")
+  .map((f) => f.replace(/\\/g, "/"))
+  .filter((f) => f.endsWith(".ts"))) {
   const c = fs.readFileSync(path.join(process.cwd(), tsRel), "utf8");
-  if (/(?:readonly\s+)?\bIconCatalog\s*[:=]/.test(c)) fileHasIconCatalog.add(tsRel);
-  for (const m of c.matchAll(/\bclass\s+(\w+)(?:\s*<[^>]*>)?(?:\s+extends\s+([\w$]+))?/g)) {
+  if (/(?:readonly\s+)?\bIconCatalog\s*[:=]/.test(c))
+    fileHasIconCatalog.add(tsRel);
+  for (const m of c.matchAll(
+    /\bclass\s+(\w+)(?:\s*<[^>]*>)?(?:\s+extends\s+([\w$]+))?/g,
+  )) {
     classParent.set(m[1], m[2] || null);
     classFile.set(m[1], tsRel);
   }
@@ -129,7 +143,9 @@ function providesIconCatalog(cls) {
 }
 
 const templateUrlMap = {};
-for (const tsRel of walk("src").map((f) => f.replace(/\\/g, "/")).filter((f) => f.endsWith(".ts"))) {
+for (const tsRel of walk("src")
+  .map((f) => f.replace(/\\/g, "/"))
+  .filter((f) => f.endsWith(".ts"))) {
   const c = fs.readFileSync(path.join(process.cwd(), tsRel), "utf8");
   for (const m of c.matchAll(/templateUrl\s*:\s*["'`]([^"'`]+)["'`]/g)) {
     const base = path.basename(m[1]);
@@ -149,7 +165,11 @@ function hostForHtml(htmlRel) {
 const hosts = new Map();
 for (const rel of allFiles) {
   if (rel.endsWith(".ts")) {
-    const h = hosts.get(rel) || { files: new Set(), moduleScope: false, needsField: false };
+    const h = hosts.get(rel) || {
+      files: new Set(),
+      moduleScope: false,
+      needsField: false,
+    };
     h.files.add(rel);
     hosts.set(rel, h);
   } else {
@@ -158,7 +178,11 @@ for (const rel of allFiles) {
       console.warn("⚠️ HTML sin host (tratar manual en Fase 3): " + rel);
       continue;
     }
-    const h = hosts.get(tsHost) || { files: new Set(), moduleScope: false, needsField: false };
+    const h = hosts.get(tsHost) || {
+      files: new Set(),
+      moduleScope: false,
+      needsField: false,
+    };
     h.files.add(rel);
     hosts.set(tsHost, h);
   }
@@ -215,7 +239,10 @@ for (const [hostRel, h] of hosts) {
       const lines = hc.split("\n");
       let firstImport = -1;
       for (let i = 0; i < lines.length; i++) {
-        if (/^\s*import\s/.test(lines[i])) { firstImport = i; break; }
+        if (/^\s*import\s/.test(lines[i])) {
+          firstImport = i;
+          break;
+        }
       }
       const imp = `import { AppIcon as AppIconCatalog } from "${relPath}";`;
       if (firstImport >= 0) lines.splice(firstImport, 0, imp);
@@ -226,7 +253,7 @@ for (const [hostRel, h] of hosts) {
     if (!h.moduleScope && !/readonly\s+IconCatalog\s*=/.test(hc)) {
       hc = hc.replace(
         /(class\s+[\w$]+(?:\s*<[^>]*>)?(?:\s+extends\s+[\w$]+(?:\s*<[^>]*>)?)?(?:\s+implements\s+[^\{]+)?\s*\{)/,
-        (m) => `${m}\n  protected readonly IconCatalog = AppIconCatalog;`
+        (m) => `${m}\n  protected readonly IconCatalog = AppIconCatalog;`,
       );
       fieldsAdded++;
     }
@@ -248,6 +275,8 @@ console.log(`   Archivos a escribir: ${writes.size}`);
 console.log(`   Fields añadidos: ${fieldsAdded}`);
 console.log(`   Imports añadidos: ${importsAdded}`);
 if (leftover.length) {
-  console.log(`\n⚠️ Literales que QUEDARON (${leftover.length}) — revisar manualmente:`);
+  console.log(
+    `\n⚠️ Literales que QUEDARON (${leftover.length}) — revisar manualmente:`,
+  );
   for (const l of leftover.slice(0, 40)) console.log("   - " + l);
 }

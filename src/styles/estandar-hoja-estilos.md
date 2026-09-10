@@ -1,6 +1,6 @@
 # 🎨 Sistema de Hojas de Estilo — LuxuryApp Frontend
 
-> Ruta: 📂 `client/angular/src/styles/` > 🗂️ `estandar-hoja-estilos.md`
+> Ruta: 📂 `appsweb/angular/src/styles/` > 🗂️ `estandar-hoja-estilos.md`
 
 ---
 
@@ -12,7 +12,7 @@
 
 ## 📋 Resumen Ejecutivo
 
-El directorio `client/angular/src/styles/` contiene **todos los estilos globales, tokens de diseño, overrides de PrimeNG y componentes custom** de la aplicación LuxuryApp. Está estructurado en **6 subdirectorios y 3 archivos raíz** (2 SCSS + `mypreset.ts`) que se cargan desde `angular.json` y se importan mutuamente según una jerarquía de cascada predefinida.
+El directorio `appsweb/angular/src/styles/` contiene **todos los estilos globales, tokens de diseño, overrides de PrimeNG y componentes custom** de la aplicación LuxuryApp. Está estructurado en **6 subdirectorios y 3 archivos raíz** (2 SCSS + `mypreset.ts`) que se cargan desde `angular.json` y se importan mutuamente según una jerarquía de cascada predefinida.
 
 > ✅ **Criterio de Éxito:** Al finalizar la lectura, entenderás qué archivo modificar según el tipo de cambio visual que necesites, y las reglas de cascada que garantizan consistencia.
 

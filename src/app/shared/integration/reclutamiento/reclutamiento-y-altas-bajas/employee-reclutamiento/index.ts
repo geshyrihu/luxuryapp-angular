@@ -1,1 +1,1 @@
-export * from "src/app/apps/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/employee-reclutamiento";
+export * from "src/app/modules/reclutamiento.luxuryapp/reclutamiento-y-altas-bajas/employee-reclutamiento";

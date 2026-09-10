@@ -4,7 +4,7 @@ export const profileRoutes: Routes = [
   {
     path: "update-user-profile",
     loadComponent: () =>
-      import("src/app/apps/auth.luxuryapp/user-profile/update-profile-wrapper").then(
+      import("src/app/modules/auth.luxuryapp/user-profile/update-profile-wrapper").then(
         (m) => m.UpdateProfileWrapper,
       ),
     canActivate: [authGuard],

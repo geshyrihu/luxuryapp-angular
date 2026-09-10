@@ -1,12 +1,15 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const uiDir = path.resolve(__dirname, '../src/app/shared/ui');
-const outputFile = path.resolve(__dirname, '../src/app/apps/admin.luxuryapp/herramientas-dev/catalog-component-ui/shared/ui-dictionary.ts');
+const uiDir = path.resolve(__dirname, "../src/app/shared/ui");
+const outputFile = path.resolve(
+  __dirname,
+  "../src/app/modules/admin.luxuryapp/herramientas-dev/catalog-component-ui/shared/ui-dictionary.ts",
+);
 
 function findTsFiles(dir, fileList = []) {
   if (!fs.existsSync(dir)) return fileList;
@@ -16,7 +19,7 @@ function findTsFiles(dir, fileList = []) {
     const filePath = path.join(dir, file);
     if (fs.statSync(filePath).isDirectory()) {
       findTsFiles(filePath, fileList);
-    } else if (filePath.endsWith('.ts') && !filePath.endsWith('.spec.ts')) {
+    } else if (filePath.endsWith(".ts") && !filePath.endsWith(".spec.ts")) {
       fileList.push(filePath);
     }
   }
@@ -25,14 +28,14 @@ function findTsFiles(dir, fileList = []) {
 }
 
 function extractComponentMetadata(filePath) {
-  const content = fs.readFileSync(filePath, 'utf-8');
+  const content = fs.readFileSync(filePath, "utf-8");
   const selectorMatch = content.match(/selector:\s*['"]([^'"]+)['"]/);
   const classMatch = content.match(/export class ([a-zA-Z0-9_]+)/);
 
   if (selectorMatch && classMatch) {
     // Relative path to src/app/shared/ui
-    const relPath = path.relative(uiDir, filePath).replace(/\\/g, '/');
-    const category = relPath.split('/')[0]; // web, mobile, adaptive, etc.
+    const relPath = path.relative(uiDir, filePath).replace(/\\/g, "/");
+    const category = relPath.split("/")[0]; // web, mobile, adaptive, etc.
     return {
       selector: selectorMatch[1],
       className: classMatch[1],
@@ -44,7 +47,7 @@ function extractComponentMetadata(filePath) {
 }
 
 function generateDictionary() {
-  console.log('Scanning shared/ui for components...');
+  console.log("Scanning shared/ui for components...");
   const tsFiles = findTsFiles(uiDir);
   const components = [];
 
@@ -74,7 +77,7 @@ export interface UIDictionaryItem {
 export const UI_DICTIONARY: UIDictionaryItem[] = ${JSON.stringify(components, null, 2)};
 `;
 
-  fs.writeFileSync(outputFile, tsContent, 'utf-8');
+  fs.writeFileSync(outputFile, tsContent, "utf-8");
   console.log(`Dictionary written to ${outputFile}`);
 }
 

@@ -5,7 +5,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'budget'
     path: "presupuesto",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/general-ledger/presupuesto-web-aspel/wrapper").then(
+      import("src/app/modules/contabilidad.luxuryapp/general-ledger/presupuesto-web-aspel/wrapper").then(
         (m) => m.PresupuestoWebAspelWrapper,
       ),
     canActivate: [authGuard],
@@ -17,7 +17,7 @@ export const comprasRoutes: Routes = [
   // {
   //   path: "presupuesto/:id",
   //   loadComponent: () =>
-  //     import("src/app/apps/contabilidad.luxuryapp/general-ledger/edicion-presupuesto/presupuesto-individual").then(
+  //     import("src/app/modules/contabilidad.luxuryapp/general-ledger/edicion-presupuesto/presupuesto-individual").then(
   //       (m) => m.PresupuestoIndividual,
   //     ),
   //   canActivate: [authGuard],
@@ -29,7 +29,7 @@ export const comprasRoutes: Routes = [
   {
     path: "products-services",
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/product/productos-list").then(
+      import("src/app/modules/supplier.luxuryapp/product/productos-list").then(
         (m) => m.ProductosList,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const comprasRoutes: Routes = [
   {
     path: "purchase-requests", // Ruta anterior: 'solicitudes-compra'
     loadComponent: () =>
-      import("src/app/apps/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-list").then(
+      import("src/app/modules/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-list").then(
         (m) => m.SolicitudCompraList,
       ),
     canActivate: [authGuard],
@@ -54,7 +54,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-request/:id'
     path: "solicitud-compra/:id",
     loadComponent: () =>
-      import("src/app/apps/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra").then(
+      import("src/app/modules/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra").then(
         (m) => m.SolicitudCompra,
       ),
     canActivate: [authGuard],
@@ -67,7 +67,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-request-pdf/:id'
     path: "pdf-solicitud-compra/:id",
     loadComponent: () =>
-      import("src/app/apps/compras.luxuryapp/solicitudes-compras/solicitudes/pdf-solicitud-compra").then(
+      import("src/app/modules/compras.luxuryapp/solicitudes-compras/solicitudes/pdf-solicitud-compra").then(
         (m) => m.PdfSolicitudCompra,
       ),
     canActivate: [authGuard],
@@ -80,7 +80,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'comparison-chart/:id'
     path: "cuadro-comparativo/:id",
     loadComponent: () =>
-      import("src/app/apps/compras.luxuryapp/solicitudes-compras/comparativo/cuadro-comparativo-list").then(
+      import("src/app/modules/compras.luxuryapp/solicitudes-compras/comparativo/cuadro-comparativo-list").then(
         (m) => m.CuadroComparativoList,
       ),
     canActivate: [authGuard],
@@ -92,7 +92,7 @@ export const comprasRoutes: Routes = [
   {
     path: "solicitud-compra-presentacion",
     loadComponent: () =>
-      import("src/app/apps/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-presentacion").then(
+      import("src/app/modules/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-presentacion").then(
         (m) => m.SolicitudCompraPresentacion,
       ),
     canActivate: [authGuard],
@@ -104,7 +104,7 @@ export const comprasRoutes: Routes = [
   {
     path: "fixed-expenses-catalog", // Ruta anterior: 'catalogo-gastos-fijos'
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/ar/catalogo-gastos-fijos/catalogo-gastos-fijos-list").then(
+      import("src/app/modules/contabilidad.luxuryapp/ar/catalogo-gastos-fijos/catalogo-gastos-fijos-list").then(
         (m) => m.CatalogoGastosFijosList,
       ),
     canActivate: [authGuard],
@@ -117,7 +117,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'fixed-expenses-catalog-form/:id'
     path: "catalogo-gastos-fijos-form/:id",
     loadComponent: () =>
-      import("src/app/apps/contabilidad.luxuryapp/ar/catalogo-gastos-fijos/catalogo-gasto-fijo-form").then(
+      import("src/app/modules/contabilidad.luxuryapp/ar/catalogo-gastos-fijos/catalogo-gasto-fijo-form").then(
         (m) => m.CatalogoGastoFijoForm,
       ),
     canActivate: [authGuard],
@@ -129,7 +129,7 @@ export const comprasRoutes: Routes = [
   {
     path: "purchase-orders", // Ruta anterior: 'ordenes-compra'
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/po/purchase-order/orden-compra-list").then(
+      import("src/app/modules/supplier.luxuryapp/po/purchase-order/orden-compra-list").then(
         (m) => m.OrdenCompraList,
       ),
     canActivate: [authGuard],
@@ -142,7 +142,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-order/:id'
     path: "orden-compra/:id",
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/po/purchase-order/orden-compra").then(
+      import("src/app/modules/supplier.luxuryapp/po/purchase-order/orden-compra").then(
         (m) => m.OrdenCompra,
       ),
     canActivate: [authGuard],
@@ -155,7 +155,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-order-pdf/:id'
     path: "orden-compra-pdf/:id",
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/po/purchase-order/orden-compra-pdf/orden-compra-pdf").then(
+      import("src/app/modules/supplier.luxuryapp/po/purchase-order/orden-compra-pdf/orden-compra-pdf").then(
         (m) => m.OrdenCompraPdf,
       ),
     canActivate: [authGuard],
@@ -168,7 +168,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'payment-request-pdf/:id'
     path: "solicitud-pago-pdf/:id",
     loadComponent: () =>
-      import("src/app/apps/supplier.luxuryapp/po/purchase-order/solicitud-pago-pdf/solicitud-pago-pdf").then(
+      import("src/app/modules/supplier.luxuryapp/po/purchase-order/solicitud-pago-pdf/solicitud-pago-pdf").then(
         (m) => m.SolicitudPagoPdfComponent,
       ),
     canActivate: [authGuard],
@@ -181,7 +181,7 @@ export const comprasRoutes: Routes = [
   {
     path: "paid", // Ruta anterior: 'pagadas'
     loadComponent: () =>
-      import("src/app/apps/compras.luxuryapp/historial-compras/historial-compras-wrapper").then(
+      import("src/app/modules/compras.luxuryapp/historial-compras/historial-compras-wrapper").then(
         (m) => m.HistorialComprasWrapper,
       ),
     canActivate: [authGuard],
@@ -193,7 +193,7 @@ export const comprasRoutes: Routes = [
   {
     path: "maintenance-budget", // Ruta anterior: 'mtto-presupuesto'
     loadComponent: () =>
-      import("src/app/apps/operations.luxuryapp/reports/mantenimiento-presupuesto/gastos-mantenimiento").then(
+      import("src/app/modules/operations.luxuryapp/reports/mantenimiento-presupuesto/gastos-mantenimiento").then(
         (m) => m.GastosMantenimiento,
       ),
     canActivate: [authGuard],

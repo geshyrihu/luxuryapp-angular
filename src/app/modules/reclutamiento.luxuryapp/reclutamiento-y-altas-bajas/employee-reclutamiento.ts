@@ -1,0 +1,106 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
+
+import { LxCard } from "@ui/adaptive/card/card";
+import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
+import { ApiResponseService } from "src/app/core/http/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { SolicitudBajaForm } from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
+import { SolicitudModificacionSalarioForm } from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/salary-modification-requests/solicitud-modificacion-salario-form";
+import { SolicitudAltaForm } from "src/app/modules/reclutamiento.luxuryapp/solicitud-altas/solicitud-alta-form";
+import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+@Component({
+  selector: "employee-reclutamiento",
+  templateUrl: "./employee-reclutamiento.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [LxCard, AppIcon],
+})
+export class EmployeeReclutamiento implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  dialogHandlerS = inject(DialogHandlerService);
+  customerIdS = inject(CustomerIdService);
+  employeeId = input<any>();
+
+  solicitudAltaStatus = signal<any>(null);
+  solicitudBajaStatus = signal<any>(null);
+  solicitudModificacionSalarioStatus = signal<any>(null);
+  workPosition = signal<any>(null);
+
+  ngOnInit() {
+    this.onValidarSolicitudesAbiertas();
+  }
+
+  // Metodo para validar si hay solicitudes abiertas
+  // Solicitud de baja
+  // Solicitud de modificacion de salario
+  onValidarSolicitudesAbiertas() {
+    const urlApi = Endpoints.Employees.validateOpenRequests(this.employeeId());
+    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+      this.workPosition.set(result.workPosition);
+      this.solicitudAltaStatus.set(result.solicitudAlta);
+      this.solicitudBajaStatus.set(result.solicitudBaja);
+      this.solicitudModificacionSalarioStatus.set(
+        result.solicitudModificacionSalario,
+      );
+    });
+  }
+
+  onModalSolicitudALta() {
+    this.dialogHandlerS
+      .openDialog(
+        SolicitudAltaForm,
+        {
+          employeeId: this.employeeId(),
+          customerId: this.customerIdS.customerId(),
+        },
+        "Solicitud de alta",
+        this.dialogHandlerS.sizeFull,
+      )
+      .then((result: boolean) => {
+        if (result) {
+          this.onValidarSolicitudesAbiertas();
+        }
+      });
+  }
+
+  // Metodo para solicitar baja del empleado
+
+  onModalSolicitudBaja() {
+    this.dialogHandlerS
+      .openDialog(
+        SolicitudBajaForm,
+        {
+          employeeId: this.employeeId(),
+        },
+        "Solicitud de baja",
+        this.dialogHandlerS.sizeFull,
+      )
+      .then((result: boolean) => {
+        if (result) this.onValidarSolicitudesAbiertas();
+      });
+  }
+
+  //Solicitar Modificacion de salario
+
+  onModalSolicitudModificacionSalarion() {
+    this.dialogHandlerS
+      .openDialog(
+        SolicitudModificacionSalarioForm,
+        {
+          workPositionId: this.employeeId(),
+        },
+        "Solicitud de Modificación de salario",
+        this.dialogHandlerS.sizeFull,
+      )
+      .then((result: boolean) => {
+        if (result) this.onValidarSolicitudesAbiertas();
+      });
+  }
+}

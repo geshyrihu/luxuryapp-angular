@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import {
-  CronogramaAnualPdfStatus,
-} from "src/app/apps/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/interfaces/CronogramaAnualPdfStatus";
+import { CronogramaAnualPdfStatus } from "src/app/modules/operations.luxuryapp/google-calendar/calendar/mantenimiento-preventivo/interfaces/CronogramaAnualPdfStatus";
 
 @Injectable({
   providedIn: "root",

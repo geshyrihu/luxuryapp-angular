@@ -1,1 +1,1 @@
-export * from "src/app/apps/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";
+export * from "src/app/modules/operations.luxuryapp/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-form";

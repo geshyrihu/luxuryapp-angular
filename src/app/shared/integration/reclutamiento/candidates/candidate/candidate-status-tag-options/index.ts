@@ -1,1 +1,1 @@
-export * from "src/app/apps/reclutamiento.luxuryapp/candidates/candidate-status-tag-options";
+export * from "src/app/modules/reclutamiento.luxuryapp/candidates/candidate-status-tag-options";
