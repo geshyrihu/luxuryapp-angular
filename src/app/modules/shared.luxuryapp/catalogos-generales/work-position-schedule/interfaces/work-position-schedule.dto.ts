@@ -1,4 +1,4 @@
-﻿export interface DiaDeTrabajoDto {
+export interface DiaDeTrabajoDto {
   diaSemana: number;
   numeroSemanaCiclo: number;
   horaEntrada: string | null;

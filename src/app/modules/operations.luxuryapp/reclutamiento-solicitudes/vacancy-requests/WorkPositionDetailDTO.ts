@@ -1,4 +1,4 @@
-﻿import { DiaDeTrabajoDTO } from "./DiaDeTrabajoDTO";
+import { DiaDeTrabajoDTO } from "./DiaDeTrabajoDTO";
 
 export interface WorkPositionDetailDTO {
   id?: string;
