@@ -18,8 +18,8 @@ import {
   ValidatorFn,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -237,9 +237,10 @@ export class WorkPositionScheduleForm implements OnInit {
     const payload = this.form.getRawValue();
     // Filtrar solo los días del ciclo seleccionado
     const cicloSeleccionado = this.duracionCicloValue();
-    payload.diasDeTrabajo = payload.diasDeTrabajo?.filter(
-      (d: DiaDeTrabajoDto) => d.numeroSemanaCiclo <= cicloSeleccionado,
-    ) ?? [];
+    payload.diasDeTrabajo =
+      payload.diasDeTrabajo?.filter(
+        (d: DiaDeTrabajoDto) => d.numeroSemanaCiclo <= cicloSeleccionado,
+      ) ?? [];
 
     FormHelper.submitCrud({
       form: this.form,
@@ -278,21 +279,32 @@ export class WorkPositionScheduleForm implements OnInit {
         const semana1 = this.findDia(1, day.dw);
         const target = this.findDia(s, day.dw);
         if (!semana1 || !target) continue;
-        target.controls.horaEntrada.setValue(semana1.controls.horaEntrada.value, { emitEvent: false });
-        target.controls.horaSalida.setValue(semana1.controls.horaSalida.value, { emitEvent: false });
-        target.controls.esDescanso.setValue(semana1.controls.esDescanso.value, { emitEvent: false });
+        target.controls.horaEntrada.setValue(
+          semana1.controls.horaEntrada.value,
+          { emitEvent: false },
+        );
+        target.controls.horaSalida.setValue(semana1.controls.horaSalida.value, {
+          emitEvent: false,
+        });
+        target.controls.esDescanso.setValue(semana1.controls.esDescanso.value, {
+          emitEvent: false,
+        });
       }
     }
   }
 
   private findDia(semana: number, dw: number) {
-    console.debug('[findDia] buscando:', { semana, dw });
+    console.log("[findDia] buscando:", { semana, dw });
     const found = this.form.controls.diasDeTrabajo.controls.find(
       (g) =>
         g.controls.numeroSemanaCiclo.value === semana &&
         g.controls.diaSemana.value === dw,
     );
-    console.debug('[findDia] encontrado:', found?.controls?.diaSemana?.value, found?.controls?.numeroSemanaCiclo?.value);
+    console.log(
+      "[findDia] encontrado:",
+      found?.controls?.diaSemana?.value,
+      found?.controls?.numeroSemanaCiclo?.value,
+    );
     return found;
   }
 
@@ -303,9 +315,15 @@ export class WorkPositionScheduleForm implements OnInit {
       const origen = this.findDia(1, day.dw);
       const destino = this.findDia(semanaDestino, day.dw);
       if (!origen || !destino) continue;
-      destino.controls.horaEntrada.setValue(origen.controls.horaEntrada.value, { emitEvent: false });
-      destino.controls.horaSalida.setValue(origen.controls.horaSalida.value, { emitEvent: false });
-      destino.controls.esDescanso.setValue(origen.controls.esDescanso.value, { emitEvent: false });
+      destino.controls.horaEntrada.setValue(origen.controls.horaEntrada.value, {
+        emitEvent: false,
+      });
+      destino.controls.horaSalida.setValue(origen.controls.horaSalida.value, {
+        emitEvent: false,
+      });
+      destino.controls.esDescanso.setValue(origen.controls.esDescanso.value, {
+        emitEvent: false,
+      });
     }
     this.cdr.markForCheck();
   }
@@ -355,9 +373,13 @@ export class WorkPositionScheduleForm implements OnInit {
   }
 
   onRestChange(semana: number, dw: number, isRest: boolean): void {
-    console.debug('[onRestChange] llamada:', { semana, dw, isRest });
+    console.log("[onRestChange] llamada:", { semana, dw, isRest });
     const dia = this.findDia(semana, dw);
-    console.debug('[onRestChange] findDia resultado:', dia?.controls?.diaSemana?.value, dia?.controls?.numeroSemanaCiclo?.value);
+    console.log(
+      "[onRestChange] findDia resultado:",
+      dia?.controls?.diaSemana?.value,
+      dia?.controls?.numeroSemanaCiclo?.value,
+    );
     if (!dia) return;
 
     if (isRest) {
