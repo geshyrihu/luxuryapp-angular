@@ -1,0 +1,57 @@
+// ============================================================
+// _bootstrap-tokens.scss
+// Puente DS -> Bootstrap 5.3.8 (Fase 0 de la migración PrimeNG -> Bootstrap).
+// Ver docs/migration-template/02-plan-migracion.md §5.
+// ============================================================
+//
+// CRÍTICO — orden de import verificado el 2026-09-13 compilando con
+// `sass` directo (no asumido, no copiado de un tutorial): este archivo
+// DEBE importarse ANTES de "bootstrap/scss/variables". El mapa
+// `$theme-colors` (que alimenta --bs-primary, --bs-btn-hover-bg, etc.)
+// se construye DENTRO de _variables.scss usando el valor de `$primary`
+// que exista EN ESE MOMENTO. Si este archivo se importa después, el
+// mapa ya quedó armado con los colores por defecto de Bootstrap (azul) y
+// la sobreescritura no tiene efecto aunque `--bs-primary` sí cambie —
+// esto se comprobó por error una vez y se corrigió antes de tocar la app.
+//
+// Los valores de color aquí son hex LITERALES (no `var(--ds-*)`) a
+// propósito: varias utilidades internas de Bootstrap (sombreado de hover/
+// active de `.btn-primary`, `rgba($x-rgb, …)`, etc.) usan funciones de
+// color de Sass (`shade-color()`, `tint-color()`) que necesitan un color
+// real en tiempo de compilación — no pueden operar sobre un
+// `var(--ds-*)`, que no se resuelve hasta runtime.
+//
+// PENDIENTE (no resuelto en esta sesión, ver checklist de decisiones en
+// 02-plan-migracion.md §6.0.2): la reactividad de tema oscuro para los
+// componentes de Bootstrap todavía no está diseñada — estos valores son
+// fijos (tema claro). Se revisa explícitamente durante la verificación
+// visual de la Fase 1 (botones), no se asume resuelta por este archivo.
+
+// Colores de marca (fuente: src/styles/DESIGN.md, coincide con
+// core/_colors.scss $primary-700 y vecinos)
+$primary: #003152;
+$secondary: #5a6878; // on-surface-secondary / --ds-text-secondary
+$success: #1e9b6d;
+$danger: #d34b4b;
+$warning: #d4a74a;
+$info: #4a90e2;
+
+// Superficie y texto base
+$body-bg: #f8f9fc; // surface
+$body-color: #1a2634; // on-surface
+$border-color: #e2e8f0; // outline
+
+// Radios — DESIGN.md unifica todo lo rectangular a 3px (2026-08-22)
+$border-radius: 3px;
+$border-radius-sm: 3px;
+$border-radius-lg: 3px;
+$border-radius-xl: 3px;
+$border-radius-pill: 9999px;
+
+// Tipografía
+$font-family-base: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+// Sombras (aproximación a elevation.level-1/2/3 de DESIGN.md)
+$box-shadow-sm: 0 1px 2px rgba(27, 54, 93, 0.06);
+$box-shadow: 0 2px 8px rgba(27, 54, 93, 0.08);
+$box-shadow-lg: 0 8px 32px rgba(27, 54, 93, 0.12);

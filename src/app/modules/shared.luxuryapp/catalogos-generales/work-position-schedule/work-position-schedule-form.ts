@@ -244,6 +244,12 @@ export class WorkPositionScheduleForm implements OnInit {
     }
 
     const payload = this.form.getRawValue();
+    const expectedDays = 7 * this.duracionCicloValue();
+    const actualDays = payload.diasDeTrabajo?.length ?? 0;
+    if (actualDays !== expectedDays) {
+      this.form.markAllAsTouched();
+      return;
+    }
 
     FormHelper.submitCrud({
       form: this.form,
