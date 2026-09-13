@@ -108,7 +108,7 @@ export const appRoutes: Routes = [
       ),
     canActivate: [authGuard, direccionGuard],
     loadChildren: () =>
-      import("src/app/modules/direccion.luxuryapp/direccion.routing").then(
+      import("src/app/modules/management.luxuryapp/direccion.routing").then(
         (m) => m.direccionRoutes,
       ),
   },

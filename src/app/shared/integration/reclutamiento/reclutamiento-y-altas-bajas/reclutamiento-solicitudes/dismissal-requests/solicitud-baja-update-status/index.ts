@@ -1,1 +1,1 @@
-export * from "src/app/modules/reclutamiento.luxuryapp/solicitud-bajas/solicitud-baja-update-status";
+export * from "src/app/modules/recruitment.luxuryapp/solicitud-bajas/solicitud-baja-update-status";

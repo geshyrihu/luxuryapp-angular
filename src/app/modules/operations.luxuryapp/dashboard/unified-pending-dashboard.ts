@@ -17,7 +17,6 @@ import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/pr
 import { IconFieldModule } from "@ui/web/primeng-iconfield/primeng-iconfield";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { TaskForm } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task-message/task-form";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -30,6 +29,7 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { AiService } from "src/app/core/services/ai.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
+import { TaskForm } from "src/app/modules/operations.luxuryapp/task-engine/tasks/task-message/task-form";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog.component";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
@@ -38,12 +38,12 @@ import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 // Recruitment Dialog Components
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MinutaDetalleForm } from "src/app/modules/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
-import { TicketLegalForm } from "src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
-import { ServiceOrderForm } from "src/app/modules/operations.luxuryapp/field-service/service-order/service-order-form";
-import { SolicitudAltaStatusForm } from "src/app/modules/reclutamiento.luxuryapp/solicitud-altas/solicitud-alta-status-form";
-import { VacanteForm } from "src/app/modules/reclutamiento.luxuryapp/solicitud-vacantes/vacante-form";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { TicketLegalForm } from "src/app/modules/legal.luxuryapp/asuntos-legales-y-seguros/ticket-legal/ticket-legal-form";
+import { MinutaDetalleForm } from "src/app/modules/management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { ServiceOrderForm } from "src/app/modules/operations.luxuryapp/field-service/service-order/service-order-form";
+import { SolicitudAltaStatusForm } from "src/app/modules/recruitment.luxuryapp/solicitud-altas/solicitud-alta-status-form";
+import { VacanteForm } from "src/app/modules/recruitment.luxuryapp/solicitud-vacantes/vacante-form";
 import { SolicitudBajaUpdateStatus } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-update-status";
 import { ModificacionSalarioForm } from "src/app/shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/modificacion-salario-form";
 

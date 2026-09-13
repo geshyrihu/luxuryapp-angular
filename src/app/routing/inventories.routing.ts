@@ -16,7 +16,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "areas-equipment", // Ruta anterior: 'areas-equipos'
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/equipos-list").then(
+      import("src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery/equipos-list").then(
         (m) => m.EquiposList,
       ),
     canActivate: [authGuard],
@@ -29,7 +29,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'gym'
     path: "gimnasio",
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/equipos-list").then(
+      import("src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery/equipos-list").then(
         (m) => m.EquiposList,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "tools", // Ruta anterior: 'herramienta'
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/logs/tool-loan/tool-list").then(
+      import("src/app/modules/maintenance.luxuryapp/logs/tool-loan/tool-list").then(
         (m) => m.ToolList,
       ),
     canActivate: [authGuard],
@@ -79,7 +79,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'equipment-report'
     path: "reporte-equipos",
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery-asset/reporte-completo-activos").then(
+      import("src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery-asset/reporte-completo-activos").then(
         (m) => m.ReporteCompletoActivos,
       ),
     canActivate: [authGuard],

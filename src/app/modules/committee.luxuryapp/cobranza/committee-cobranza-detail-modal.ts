@@ -12,9 +12,9 @@ import { AppIcon } from "@ui/shared/app-icon/app-icon";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
-import { AspelCobranzaDetalleResponse } from "../../cobranza.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus.models";
-import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
+import { AspelCobranzaDetalleResponse } from "src/app/modules/collections.luxuryapp/aspel-cobranza-haus/aspel-cobranza-haus.models";
 import { LxSpinner } from "src/app/shared/ui/adaptive/spinner/spinner";
+import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 
 /**
  * Desglose de la deuda de un condómino para el comité: criterio por el que quedó

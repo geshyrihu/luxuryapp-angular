@@ -23,7 +23,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { EmployeeFileWorkPositionDTO } from "src/app/modules/reclutamiento.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/interfaces/employee-file.interfaces";
+import { EmployeeFileWorkPositionDTO } from "src/app/modules/recruitment.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/interfaces/employee-file.interfaces";
 import {
   EContractType,
   EmployeeWorkContractDetailDTO,

@@ -1,1 +1,1 @@
-export * from "src/app/modules/reclutamiento.luxuryapp/recruitment-shared/mapped-p-tag";
+export * from "src/app/modules/recruitment.luxuryapp/recruitment-shared/mapped-p-tag";

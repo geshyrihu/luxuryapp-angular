@@ -16,7 +16,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { EmployeeOnboardingChecklistItemDTO } from "src/app/modules/reclutamiento.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/interfaces/employee-file.interfaces";
+import { EmployeeOnboardingChecklistItemDTO } from "src/app/modules/recruitment.luxuryapp/expediente-del-empleado/recursos-humanos/employee-file/interfaces/employee-file.interfaces";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 

@@ -264,7 +264,7 @@ export const adminRoutes: Routes = [
   {
     path: "ticket-group-category",
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/task-group-category-list/task-group-category-list").then(
+      import("src/app/modules/maintenance.luxuryapp/catalogos-tickets-mantenimiento/task-group-category-list/task-group-category-list").then(
         (m) => m.TaskGroupCategoryList,
       ),
     canActivate: [authGuard],
@@ -276,7 +276,7 @@ export const adminRoutes: Routes = [
   {
     path: "meter-category",
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/meter-category/meter-category-list").then(
+      import("src/app/modules/maintenance.luxuryapp/catalogos-tickets-mantenimiento/meter-category/meter-category-list").then(
         (m) => m.MeterCategoryList,
       ),
     canActivate: [authGuard],
@@ -288,7 +288,7 @@ export const adminRoutes: Routes = [
   {
     path: "product-category",
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/product-category/product-category-list").then(
+      import("src/app/modules/maintenance.luxuryapp/catalogos-tickets-mantenimiento/product-category/product-category-list").then(
         (m) => m.ProductCategoryList,
       ),
     canActivate: [authGuard],
@@ -300,7 +300,7 @@ export const adminRoutes: Routes = [
   {
     path: "machinery-classification",
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/machinery-classification/machinery-classification-list").then(
+      import("src/app/modules/maintenance.luxuryapp/catalogos-tickets-mantenimiento/machinery-classification/machinery-classification-list").then(
         (m) => m.MachineryClassificationList,
       ),
     canActivate: [authGuard],
@@ -312,7 +312,7 @@ export const adminRoutes: Routes = [
   {
     path: "client-delivery-reception",
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/delivery-reception-catalog/catalogo-descripcion-list").then(
+      import("src/app/modules/maintenance.luxuryapp/catalogos-tickets-mantenimiento/delivery-reception-catalog/catalogo-descripcion-list").then(
         (m) => m.CatalogoDescripcionList,
       ),
     canActivate: [authGuard],
@@ -324,7 +324,7 @@ export const adminRoutes: Routes = [
   {
     path: "catalog-asset",
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/catalogo-activo-lista/catalogo-activo-lista").then(
+      import("src/app/modules/maintenance.luxuryapp/catalogos-tickets-mantenimiento/catalogo-activo-lista/catalogo-activo-lista").then(
         (m) => m.CatalogoActivoLista,
       ),
     canActivate: [authGuard],
@@ -336,7 +336,7 @@ export const adminRoutes: Routes = [
   {
     path: "inspection-reviews-catalog",
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/catalogos-tickets-mantenimiento/catalogo-revisiones-inspeccion/catalogo-revisiones-inspeccion").then(
+      import("src/app/modules/maintenance.luxuryapp/catalogos-tickets-mantenimiento/catalogo-revisiones-inspeccion/catalogo-revisiones-inspeccion").then(
         (m) => m.CatalogoRevisionesInspeccion,
       ),
     canActivate: [authGuard],
@@ -462,7 +462,7 @@ export const adminRoutes: Routes = [
   {
     path: "incident-types",
     loadComponent: () =>
-      import("src/app/modules/recursos-humanos.luxuryapp/recursos-humanos-admin/incident-type-list/incident-type-list").then(
+      import("src/app/modules/human-resources.luxuryapp/recursos-humanos-admin/incident-type-list/incident-type-list").then(
         (m) => m.IncidentTypeList,
       ),
     canActivate: [authGuard],
@@ -474,7 +474,7 @@ export const adminRoutes: Routes = [
   {
     path: "sanction-types",
     loadComponent: () =>
-      import("src/app/modules/recursos-humanos.luxuryapp/recursos-humanos-admin/sanction-type-list/sanction-type-list").then(
+      import("src/app/modules/human-resources.luxuryapp/recursos-humanos-admin/sanction-type-list/sanction-type-list").then(
         (m) => m.SanctionTypeList,
       ),
     canActivate: [authGuard],

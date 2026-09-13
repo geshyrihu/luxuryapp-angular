@@ -52,7 +52,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "tool-loan", // Ruta anterior: 'prestamo-herramienta'
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/logs/bitacoras/prestamo-herramienta/prestamo-herramientas-control").then(
+      import("src/app/modules/maintenance.luxuryapp/logs/bitacoras/prestamo-herramienta/prestamo-herramientas-control").then(
         (m) => m.PrestamoHerramientasControl,
       ),
     canActivate: [authGuard],

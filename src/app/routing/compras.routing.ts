@@ -5,7 +5,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'budget'
     path: "presupuesto",
     loadComponent: () =>
-      import("src/app/modules/contabilidad.luxuryapp/general-ledger/presupuesto-web-aspel/wrapper").then(
+      import("src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-web-aspel/wrapper").then(
         (m) => m.PresupuestoWebAspelWrapper,
       ),
     canActivate: [authGuard],
@@ -17,7 +17,7 @@ export const comprasRoutes: Routes = [
   // {
   //   path: "presupuesto/:id",
   //   loadComponent: () =>
-  //     import("src/app/modules/contabilidad.luxuryapp/general-ledger/edicion-presupuesto/presupuesto-individual").then(
+  //     import("src/app/modules/accounting.luxuryapp/general-ledger/edicion-presupuesto/presupuesto-individual").then(
   //       (m) => m.PresupuestoIndividual,
   //     ),
   //   canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const comprasRoutes: Routes = [
   {
     path: "purchase-requests", // Ruta anterior: 'solicitudes-compra'
     loadComponent: () =>
-      import("src/app/modules/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-list").then(
+      import("src/app/modules/purchases.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-list").then(
         (m) => m.SolicitudCompraList,
       ),
     canActivate: [authGuard],
@@ -54,7 +54,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-request/:id'
     path: "solicitud-compra/:id",
     loadComponent: () =>
-      import("src/app/modules/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra").then(
+      import("src/app/modules/purchases.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra").then(
         (m) => m.SolicitudCompra,
       ),
     canActivate: [authGuard],
@@ -67,7 +67,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-request-pdf/:id'
     path: "pdf-solicitud-compra/:id",
     loadComponent: () =>
-      import("src/app/modules/compras.luxuryapp/solicitudes-compras/solicitudes/pdf-solicitud-compra").then(
+      import("src/app/modules/purchases.luxuryapp/solicitudes-compras/solicitudes/pdf-solicitud-compra").then(
         (m) => m.PdfSolicitudCompra,
       ),
     canActivate: [authGuard],
@@ -80,7 +80,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'comparison-chart/:id'
     path: "cuadro-comparativo/:id",
     loadComponent: () =>
-      import("src/app/modules/compras.luxuryapp/solicitudes-compras/comparativo/cuadro-comparativo-list").then(
+      import("src/app/modules/purchases.luxuryapp/solicitudes-compras/comparativo/cuadro-comparativo-list").then(
         (m) => m.CuadroComparativoList,
       ),
     canActivate: [authGuard],
@@ -92,7 +92,7 @@ export const comprasRoutes: Routes = [
   {
     path: "solicitud-compra-presentacion",
     loadComponent: () =>
-      import("src/app/modules/compras.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-presentacion").then(
+      import("src/app/modules/purchases.luxuryapp/solicitudes-compras/solicitudes/solicitud-compra-presentacion").then(
         (m) => m.SolicitudCompraPresentacion,
       ),
     canActivate: [authGuard],
@@ -104,7 +104,7 @@ export const comprasRoutes: Routes = [
   {
     path: "fixed-expenses-catalog", // Ruta anterior: 'catalogo-gastos-fijos'
     loadComponent: () =>
-      import("src/app/modules/contabilidad.luxuryapp/ar/catalogo-gastos-fijos/catalogo-gastos-fijos-list").then(
+      import("src/app/modules/accounting.luxuryapp/ar/catalogo-gastos-fijos/catalogo-gastos-fijos-list").then(
         (m) => m.CatalogoGastosFijosList,
       ),
     canActivate: [authGuard],
@@ -117,7 +117,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'fixed-expenses-catalog-form/:id'
     path: "catalogo-gastos-fijos-form/:id",
     loadComponent: () =>
-      import("src/app/modules/contabilidad.luxuryapp/ar/catalogo-gastos-fijos/catalogo-gasto-fijo-form").then(
+      import("src/app/modules/accounting.luxuryapp/ar/catalogo-gastos-fijos/catalogo-gasto-fijo-form").then(
         (m) => m.CatalogoGastoFijoForm,
       ),
     canActivate: [authGuard],
@@ -181,7 +181,7 @@ export const comprasRoutes: Routes = [
   {
     path: "paid", // Ruta anterior: 'pagadas'
     loadComponent: () =>
-      import("src/app/modules/compras.luxuryapp/historial-compras/historial-compras-wrapper").then(
+      import("src/app/modules/purchases.luxuryapp/historial-compras/historial-compras-wrapper").then(
         (m) => m.HistorialComprasWrapper,
       ),
     canActivate: [authGuard],

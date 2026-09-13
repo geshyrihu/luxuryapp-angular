@@ -51,7 +51,7 @@ import {
   ExcelExportService,
 } from "src/app/core/services/excel-export.service";
 import { WorkSchedulePresentationService } from "src/app/core/services/work-schedule-presentation.service";
-import { CardEmployee } from "src/app/modules/reclutamiento.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
+import { CardEmployee } from "src/app/modules/recruitment.luxuryapp/expediente-del-empleado/employees/employees/card-employee";
 import { CandidateInterviewerQueueService } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
 import { CandidateInterviewerQueueDto } from "src/app/shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-modal/staff-onboarding-checklist-modal";

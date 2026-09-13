@@ -9,11 +9,6 @@ import {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DynamicDialogRef } from "src/app/core/services/dialog-handler.service";
-import { ActivosForm } from "src/app/modules/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
-import { FichaTecnicaActivo } from "src/app/modules/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
-import { ServiceHistoryMachinery } from "src/app/modules/mantenimiento.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
-import { BitacoraIndividual } from "src/app/modules/mantenimiento.luxuryapp/logs/maintenance-log/bitacora-individual";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import {
@@ -22,7 +17,14 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogRef,
+} from "src/app/core/services/dialog-handler.service";
+import { ActivosForm } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery-asset/activos-form";
+import { FichaTecnicaActivo } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
+import { ServiceHistoryMachinery } from "src/app/modules/maintenance.luxuryapp/equipos-y-maquinaria/machinery/service-history-machinery";
+import { BitacoraIndividual } from "src/app/modules/maintenance.luxuryapp/logs/maintenance-log/bitacora-individual";
 
 @Component({
   selector: "app-inventory-engine-system",

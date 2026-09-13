@@ -36,9 +36,9 @@ import {
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ContMinutaSeguimientos } from "src/app/modules/contabilidad.luxuryapp/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
-import { MeetingSeguimientoEdit } from "src/app/modules/direccion.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
-import { MinutaDetalleForm } from "src/app/modules/direccion.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
+import { ContMinutaSeguimientos } from "src/app/modules/accounting.luxuryapp/general-ledger/pendientes-minuta/cont-minuta-seguimientos";
+import { MeetingSeguimientoEdit } from "src/app/modules/management.luxuryapp/juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
+import { MinutaDetalleForm } from "src/app/modules/management.luxuryapp/juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { SanitizeHtmlPipe } from "src/app/shared/pipes/sanitize-html.pipe";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 

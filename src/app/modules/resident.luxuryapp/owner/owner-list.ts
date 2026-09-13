@@ -31,7 +31,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "src/app/core/services/dialog-handler.service";
-import { ExcelExportService } from "src/app/modules/contabilidad.luxuryapp/general-ledger/presupuesto-propuesta/excel-export.service";
+import { ExcelExportService } from "src/app/modules/accounting.luxuryapp/general-ledger/presupuesto-propuesta/excel-export.service";
 import { OwnerForm } from "./owner-form";
 
 import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";

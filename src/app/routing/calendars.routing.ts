@@ -40,7 +40,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "maintenance-master", // Ruta anterior: 'mantenimiento-master'
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-lista").then(
+      import("src/app/modules/maintenance.luxuryapp/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-lista").then(
         (m) => m.CalendarioMaestroLista,
       ),
     canActivate: [authGuard],
@@ -64,7 +64,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "team-master-calendar", // Ruta anterior: 'calendario-maestro-equipo'
     loadComponent: () =>
-      import("src/app/modules/mantenimiento.luxuryapp/planificacin-de-mantenimiento/calendario-maestro-equipo/calendario-maestro-equipo").then(
+      import("src/app/modules/maintenance.luxuryapp/planificacin-de-mantenimiento/calendario-maestro-equipo/calendario-maestro-equipo").then(
         (m) => m.CalendarioMaestroEquipo,
       ),
     canActivate: [authGuard],
