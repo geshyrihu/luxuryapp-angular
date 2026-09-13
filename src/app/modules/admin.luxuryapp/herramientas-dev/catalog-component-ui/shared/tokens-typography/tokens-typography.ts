@@ -5,12 +5,12 @@ import {
 } from "@angular/core";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
+import { AppTag } from "@ui/web/tag/tag";
 
 @Component({
   selector: "app-tokens-typography",
 
-  imports: [TableModule, TagModule, MessageModule],
+  imports: [TableModule, AppTag, MessageModule],
   template: `
     <!-- -- Escala de Encabezados ------------------------------------ -->
     <div class="mb-6">
@@ -39,7 +39,7 @@ import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
               </div>
             </div>
             <div class="flex flex-column align-items-end gap-1 flex-shrink-0">
-              <p-tag [value]="h.size" severity="secondary" />
+              <app-tag [value]="h.size" severity="secondary" />
               <code class="text-xs">{{ h.token }}</code>
             </div>
           </div>
@@ -74,7 +74,7 @@ import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
             <td>
               <code class="text-xs">{{ item.token }}</code>
             </td>
-            <td><p-tag [value]="item.size" severity="secondary" /></td>
+            <td><app-tag [value]="item.size" severity="secondary" /></td>
             <td>
               <span
                 [style.font-size]="item.size"

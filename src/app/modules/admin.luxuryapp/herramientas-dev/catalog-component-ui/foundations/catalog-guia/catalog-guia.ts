@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormControl, FormsModule } from "@angular/forms";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
@@ -11,16 +11,16 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
-import { ProgressSpinnerModule } from "@ui/web/primeng-progressspinner/primeng-progressspinner";
-import { RadioButtonModule } from "@ui/web/primeng-radiobutton/primeng-radiobutton";
-import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
-import { ToolbarModule } from "@ui/web/primeng-toolbar/primeng-toolbar";
+import { AppCheckbox } from "@ui/web/checkbox/checkbox";
+import { AppMessage } from "@ui/web/message/message";
+import { AppRadioButton } from "@ui/web/radio-button/radio-button";
+import { AppSkeleton } from "@ui/web/skeleton/skeleton";
+import { AppSpinner } from "@ui/web/spinner/spinner";
+import { AppTag } from "@ui/web/tag/tag";
+import { AppToolbar } from "@ui/web/toolbar/toolbar";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 type TagSeverity =
@@ -41,16 +41,16 @@ type TagSeverity =
     CustomInputSelectSignal,
     CustomInputMultiselectSignal,
     CustomSearchInput,
-    CheckboxModule,
     DialogModule,
     DividerModule,
-    MessageModule,
-    ProgressSpinnerModule,
-    RadioButtonModule,
-    SkeletonModule,
     TableModule,
-    TagModule,
-    ToolbarModule,
+    AppCheckbox,
+    AppMessage,
+    AppRadioButton,
+    AppSkeleton,
+    AppSpinner,
+    AppTag,
+    AppToolbar,
     AppIcon,
   ],
   templateUrl: "./catalog-guia.html",
@@ -79,7 +79,7 @@ export class CatalogGuia {
   selectedDate = new Date(2026, 3, 22);
   enabled = true;
   accepted = true;
-  priority = "media";
+  priorityControl = new FormControl("media");
   search = "";
 
   readonly areas = [

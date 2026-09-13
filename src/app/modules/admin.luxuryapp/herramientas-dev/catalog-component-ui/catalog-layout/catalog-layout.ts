@@ -7,14 +7,14 @@ import {
 import { RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 @Component({
   selector: "app-catalog-layout",
   imports: [
     RouterModule,
-    TagModule,
+    AppTag,
     LxTooltipDirective,
     AppIcon,
     WebButtonIcon,

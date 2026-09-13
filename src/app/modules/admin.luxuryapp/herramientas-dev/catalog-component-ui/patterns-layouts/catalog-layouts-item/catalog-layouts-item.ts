@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
+import { AppDivider } from "@ui/web/divider/divider";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 
 const LAYOUTS_LABELS: Record<string, string> = {
@@ -20,7 +20,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-layouts-item",
-  imports: [ButtonModule, DividerModule, TagModule],
+  imports: [ButtonModule, AppDivider, TagModule],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -31,7 +31,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
           Layout <strong>{{ label }}</strong> é consulta la sección completa de
           Layouts para ver todas las variantes con ejemplos visuales.
         </p>
-        <p-divider />
+        <app-divider />
         <div class="flex gap-2">
           <p-button
             label="Ver todos los Layouts"

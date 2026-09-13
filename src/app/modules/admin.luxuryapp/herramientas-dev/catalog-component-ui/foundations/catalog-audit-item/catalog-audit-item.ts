@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
+import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { resolveToIconify } from "src/app/shared/utils/icon-mapping";
@@ -19,7 +19,7 @@ const AUDIT_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-audit-item",
-  imports: [FormsModule, CheckboxModule, AppIcon],
+  imports: [FormsModule, AppCheckbox, AppIcon],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -52,10 +52,9 @@ const AUDIT_LABELS: Record<string, string> = {
                   [class.bg-green-50]="item.aprobado"
                   (click)="toggleChecklistItem(item.numero)"
                 >
-                  <p-checkbox
-                    [ngModel]="item.aprobado"
-                    (ngModelChange)="toggleChecklistItem(item.numero)"
-                    [binary]="true"
+                  <app-checkbox
+                    [checked]="item.aprobado"
+                    (checkedChange)="toggleChecklistItem(item.numero)"
                   />
                   <p class="m-0 text-sm">
                     <strong>{{ item.numero }}.</strong> {{ item.descripcion }}

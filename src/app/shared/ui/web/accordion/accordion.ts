@@ -1,47 +1,66 @@
+import { NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
+  contentChildren,
+  Directive,
+  input,
+  TemplateRef,
   ViewEncapsulation,
 } from "@angular/core";
 import { AccordionBase } from "@ui/base/accordion.base";
-import { AccordionModule } from "primeng/accordion";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
- * AppAccordion — Wrapper sobre p-accordion. PrimeNG 22 reemplazo la API por
- * indice (`[activeIndex]`, `p-accordionTab`, onOpen/onClose) por la API por
- * `value` (p-accordion / p-accordion-panel / p-accordion-header /
- * p-accordion-content). Se conserva el selector `app-accordion`, la API de
- * AccordionBase (`items`, `multiple`, `expandedIds`) y los slots `[accordion=<id>]`.
+ * Marca el contenido de un panel del accordion. Se proyecta como
+ * `<ng-template accordionPanel="<id>">...</ng-template>` dentro de
+ * `<app-accordion>`, con el mismo `id` que su `AccordionItem`.
+ * [Fase 3 migración Bootstrap, 2026-09-13] Reemplaza el `<ng-content
+ * [select]>` dinámico de la versión anterior — ese binding no es válido
+ * en Angular (`select` de `ng-content` solo admite un string estático en
+ * compilación, nunca funcionó como se documentaba). Sin consumidores
+ * reales que migrar (0 usos confirmados de `<app-accordion>`).
  */
+@Directive({
+  selector: "ng-template[accordionPanel]",
+})
+export class AccordionPanel {
+  accordionPanel = input.required<string>();
+  constructor(public templateRef: TemplateRef<unknown>) {}
+}
+
 @Component({
   selector: "app-accordion",
-
-  imports: [AccordionModule, AppIcon],
+  imports: [AppIcon, NgTemplateOutlet],
   template: `
-    <p-accordion
-      [value]="accordionValue()"
-      [multiple]="multiple()"
-      (valueChange)="onValueChange($event)"
-    >
+    <div class="accordion">
       @for (item of items(); track item.id) {
-        <p-accordion-panel
-          [value]="item.id"
-          [disabled]="item.disabled ?? false"
-        >
-          <p-accordion-header>
-            @if (item.icon) {
-              <app-icon [icon]="item.icon" class="mr-2" />
-            }
-            {{ item.title }}
-          </p-accordion-header>
-          <p-accordion-content>
-            <ng-content [select]="'[accordion=' + item.id + ']'" />
-          </p-accordion-content>
-        </p-accordion-panel>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              [class.collapsed]="!isExpanded(item.id)"
+              type="button"
+              [disabled]="item.disabled ?? false"
+              (click)="toggle(item.id)"
+            >
+              @if (item.icon) {
+                <app-icon [icon]="item.icon" class="me-2" />
+              }
+              {{ item.title }}
+            </button>
+          </h2>
+          <div
+            class="accordion-collapse collapse"
+            [class.show]="isExpanded(item.id)"
+          >
+            <div class="accordion-body">
+              <ng-container [ngTemplateOutlet]="panelTemplate(item.id)" />
+            </div>
+          </div>
+        </div>
       }
-    </p-accordion>
+    </div>
   `,
   styles: [
     `
@@ -54,20 +73,16 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
   encapsulation: ViewEncapsulation.None,
 })
 export class Accordion extends AccordionBase {
-  /** Valor activo para p-accordion: array si multiple, escalar si no. */
-  accordionValue = computed<string | string[] | null>(() =>
-    this.multiple() ? this.expandedIds() : (this.expandedIds()[0] ?? null),
-  );
+  private panels = contentChildren(AccordionPanel);
 
-  onValueChange(
-    value: string | number | (string | number)[] | null | undefined,
-  ): void {
-    if (Array.isArray(value)) {
-      this.expandedIds.set(value.map(String));
-    } else if (value === null || value === undefined) {
-      this.expandedIds.set([]);
-    } else {
-      this.expandedIds.set([String(value)]);
-    }
+  protected isExpanded(id: string): boolean {
+    return this.expandedIds().includes(id);
+  }
+
+  protected panelTemplate(id: string): TemplateRef<unknown> | null {
+    return (
+      this.panels().find((p) => p.accordionPanel() === id)?.templateRef ??
+      null
+    );
   }
 }

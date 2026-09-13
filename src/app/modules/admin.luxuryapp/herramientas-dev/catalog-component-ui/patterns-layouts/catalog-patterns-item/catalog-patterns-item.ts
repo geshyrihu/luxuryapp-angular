@@ -8,7 +8,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
+import { AppDivider } from "@ui/web/divider/divider";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -30,7 +30,7 @@ const PATTERNS_LABELS: Record<string, string> = {
   imports: [
     FormsModule,
     ButtonModule,
-    DividerModule,
+    AppDivider,
     InputTextModule,
     MessageModule,
     TableModule,
@@ -159,7 +159,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                 grupos de navegación en cards visuales uniformes para web y
                 lista agrupada para mobile.
               </p>
-              <p-divider />
+              <app-divider />
 
               <!-- 1. Modelo de datos requerido -->
               <h3 class="text-base font-bold mb-2">

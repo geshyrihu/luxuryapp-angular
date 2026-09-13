@@ -9,23 +9,19 @@ export interface DiaDeTrabajoDto {
 export interface WorkPositionScheduleDto {
   id: string;
   name: string;
-  description: string;
   isActive: boolean;
 
   tipoJornada: number;
   tipoJornadaName: string;
-  duracionCicloSemanas: number;
   observaciones: string;
   diasDeTrabajo: DiaDeTrabajoDto[];
 }
 
 export interface WorkPositionScheduleAddOrEdit {
   name: string;
-  description: string;
   isActive: boolean;
 
   tipoJornada: number;
-  duracionCicloSemanas: number;
   observaciones: string;
   diasDeTrabajo: DiaDeTrabajoDto[];
 }

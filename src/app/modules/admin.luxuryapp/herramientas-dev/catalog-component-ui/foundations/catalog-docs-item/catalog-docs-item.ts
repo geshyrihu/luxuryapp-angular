@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
+import { AppTag } from "@ui/web/tag/tag";
 
 type TagSeverity =
   "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
@@ -21,7 +21,7 @@ const DOCS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-docs-item",
-  imports: [CommonModule, TableModule, TagModule],
+  imports: [CommonModule, TableModule, AppTag],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -42,7 +42,7 @@ const DOCS_LABELS: Record<string, string> = {
                 <td>{{ doc.tipo }}</td>
                 <td>{{ doc.codigo }}</td>
                 <td>
-                  <p-tag
+                  <app-tag
                     [value]="doc.confidencialidad"
                     [severity]="doc.severity"
                   />

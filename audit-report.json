@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-13T19:37:51.306Z",
+  "timestamp": "2026-09-13T19:49:10.637Z",
   "totalFilesScanned": 3190,
   "totalIssues": 1256,
   "bySeverity": {
@@ -48,6 +48,15 @@
       "file": "app\\shared\\ui\\ai-chat-widget\\ai-chat-widget.html",
       "line": 42,
       "content": "class=\"absolute w-full h-full surface-200 opacity-50 rounded-circle\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\pages-extras\\unauthorized\\unauthorized.html",
+      "line": 45,
+      "content": "<div class=\"surface-100 rounded p-3\">",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
@@ -693,69 +702,6 @@
       "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
     },
     {
-      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
-      "line": 2,
-      "content": "<div class=\"surface-card border-round-xl shadow-1 sticky top-0 z-5 mb-3\">",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
-      "line": 2,
-      "content": "<div class=\"surface-card border-round-xl shadow-1 sticky top-0 z-5 mb-3\">",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
-      "line": 240,
-      "content": "<div class=\"border-1 surface-border border-round-lg p-4 mt-4\">",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
-      "line": 301,
-      "content": "class=\"border-round-md bg-primary text-primary-contrast px-3 py-2 text-sm font-semibold cursor-pointer border-none shado...",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
-      "line": 301,
-      "content": "class=\"border-round-md bg-primary text-primary-contrast px-3 py-2 text-sm font-semibold cursor-pointer border-none shado...",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
-      "line": 321,
-      "content": "class=\"surface-card p-4 shadow-4 border-round-xl flex flex-column align-items-center\"",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
-      "line": 321,
-      "content": "class=\"surface-card p-4 shadow-4 border-round-xl flex flex-column align-items-center\"",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
       "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-haus.html",
       "line": 189,
       "content": "<code class=\"text-sm px-2 py-1 rounded surface-100 font-mono\"",
@@ -837,13 +783,67 @@
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\core\\pages-extras\\unauthorized\\unauthorized.html",
-      "line": 45,
-      "content": "<div class=\"surface-100 rounded p-3\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
+      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
+      "line": 2,
+      "content": "<div class=\"surface-card border-round-xl shadow-1 sticky top-0 z-5 mb-3\">",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
       "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
+      "line": 2,
+      "content": "<div class=\"surface-card border-round-xl shadow-1 sticky top-0 z-5 mb-3\">",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
+      "line": 240,
+      "content": "<div class=\"border-1 surface-border border-round-lg p-4 mt-4\">",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
+      "line": 301,
+      "content": "class=\"border-round-md bg-primary text-primary-contrast px-3 py-2 text-sm font-semibold cursor-pointer border-none shado...",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
+      "line": 301,
+      "content": "class=\"border-round-md bg-primary text-primary-contrast px-3 py-2 text-sm font-semibold cursor-pointer border-none shado...",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
+      "line": 321,
+      "content": "class=\"surface-card p-4 shadow-4 border-round-xl flex flex-column align-items-center\"",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\cobranza-online-wrapper.html",
+      "line": 321,
+      "content": "class=\"surface-card p-4 shadow-4 border-round-xl flex flex-column align-items-center\"",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
     },
     {
       "file": "app\\shared\\ui\\mobile\\data-view-mobile\\data-view-mobile.html",
@@ -858,6 +858,15 @@
       "file": "app\\shared\\ui\\mobile\\data-view-mobile\\data-view-mobile.html",
       "line": 96,
       "content": "class=\"text-xs font-medium text-500 bg-surface-200 px-2 py-1 rounded-xl\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\system.luxuryapp\\configuracion-sistema\\eleven-labs\\eleven-labs-settings.html",
+      "line": 153,
+      "content": "<div class=\"surface-100 rounded p-3 h-full\">",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
@@ -916,15 +925,6 @@
       "patternName": "border-round",
       "severity": "medium",
       "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\system.luxuryapp\\configuracion-sistema\\eleven-labs\\eleven-labs-settings.html",
-      "line": 153,
-      "content": "<div class=\"surface-100 rounded p-3 h-full\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
       "file": "app\\modules\\recruitment.luxuryapp\\reclutamiento-y-altas-bajas\\recruitment-client-requests\\solicitudes-cliente-list.html",
@@ -1002,6 +1002,24 @@
       "file": "app\\modules\\purchases.luxuryapp\\solicitudes-compras\\solicitudes\\solicitud-compra.html",
       "line": 179,
       "content": "<div class=\"mt-5 p-3 surface-100 rounded\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\staff-board\\confirm-presentation-modal\\confirm-presentation-modal.html",
+      "line": 35,
+      "content": "<div class=\"flex flex-column gap-2 p-3 surface-100 border-round\">",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\staff-board\\confirm-presentation-modal\\confirm-presentation-modal.html",
+      "line": 35,
+      "content": "<div class=\"flex flex-column gap-2 p-3 surface-100 border-round\">",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
@@ -1161,18 +1179,9 @@
       "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
     },
     {
-      "file": "app\\modules\\operations.luxuryapp\\staff-board\\confirm-presentation-modal\\confirm-presentation-modal.html",
-      "line": 35,
-      "content": "<div class=\"flex flex-column gap-2 p-3 surface-100 border-round\">",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\staff-board\\confirm-presentation-modal\\confirm-presentation-modal.html",
-      "line": 35,
-      "content": "<div class=\"flex flex-column gap-2 p-3 surface-100 border-round\">",
+      "file": "app\\modules\\operations.luxuryapp\\inventarios-y-almacn\\inventory-engine-system\\inventory-engine-system.html",
+      "line": 19,
+      "content": "<div class=\"surface-100 p-3 rounded mb-3\">{{ system.system }}</div>",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
@@ -1249,15 +1258,6 @@
       "patternName": "border-round",
       "severity": "medium",
       "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\inventarios-y-almacn\\inventory-engine-system\\inventory-engine-system.html",
-      "line": 19,
-      "content": "<div class=\"surface-100 p-3 rounded mb-3\">{{ system.system }}</div>",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
       "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list.html",
@@ -1467,96 +1467,6 @@
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\resumen-minuta.html",
-      "line": 63,
-      "content": "<tr class=\"text-sm uppercase text-700 bg-surface-100\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\resumen-minuta.html",
-      "line": 176,
-      "content": "class=\"border-circle bg-surface-200 p-5 flex align-items-center justify-content-center shadow-sm\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\minuta-pendientes.html",
-      "line": 13,
-      "content": "<div class=\"surface-100 p-2 rounded mb-3\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\invited-form.html",
-      "line": 2,
-      "content": "<div class=\"p-2 surface-200 font-semibold\">Invitados</div>",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\comite-form.html",
-      "line": 2,
-      "content": "<div class=\"p-2 surface-200 font-semibold\">Comité</div>",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\administration-form-list.html",
-      "line": 2,
-      "content": "<div class=\"p-2 surface-200 font-semibold\">Administración</div>",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\juntas-mensuales-session\\junta-mensual-session-checklist-dialog.html",
-      "line": 53,
-      "content": "<div class=\"px-3 py-2 bg-surface-100 font-semibold\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\legal.luxuryapp\\employees-contracts\\work-contract\\work-contract-form.html",
-      "line": 4,
-      "content": "<div class=\"bg-yellow-100 border-round p-3 mb-3 text-yellow-900 flex align-items-center gap-2\">",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\legal.luxuryapp\\employees-contracts\\work-contract\\work-contract-form.html",
-      "line": 9,
-      "content": "<div class=\"contract-readonly surface-card border-round p-3 mb-3\">",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\legal.luxuryapp\\employees-contracts\\work-contract\\work-contract-form.html",
-      "line": 14,
-      "content": "<div class=\"contract-readonly surface-card border-round p-3 mb-3\">",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
       "file": "app\\modules\\maintenance.luxuryapp\\reports-mantenance\\report-consumos\\report-consumos.html",
       "line": 83,
       "content": "class=\"surface-card rounded-xl p-3 border-1 border-surface-200 h-full\"",
@@ -1683,6 +1593,42 @@
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
+      "file": "app\\modules\\maintenance.luxuryapp\\logs\\recepcion-pipas-agua\\recepcion-pipas-agua-reporte.html",
+      "line": 6,
+      "content": "<div class=\"surface-100 p-3 flex flex-column gap-3\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\maintenance.luxuryapp\\logs\\recepcion-pipas-agua\\recepcion-pipas-agua-analisis.html",
+      "line": 79,
+      "content": "<tr class=\"border-bottom-1 border-100 hover:surface-100\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\maintenance.luxuryapp\\logs\\maintenance-log\\bitacora-mantenimiento.html",
+      "line": 20,
+      "content": "<div class=\"card surface-100 mb-2 border-1 surface-border\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\maintenance.luxuryapp\\logs\\maintenance-log\\bitacora-individual.html",
+      "line": 28,
+      "content": "<div class=\"card surface-100 mb-2 border-1 surface-border\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
       "file": "app\\modules\\maintenance.luxuryapp\\inspection\\resultado-inspeccion\\resultado-inspeccion.html",
       "line": 80,
       "content": "class=\"w-full h-24 object-cover rounded-md shadow-2 border-1 border-outline\"",
@@ -1737,42 +1683,6 @@
       "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
     },
     {
-      "file": "app\\modules\\maintenance.luxuryapp\\logs\\recepcion-pipas-agua\\recepcion-pipas-agua-reporte.html",
-      "line": 6,
-      "content": "<div class=\"surface-100 p-3 flex flex-column gap-3\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\maintenance.luxuryapp\\logs\\recepcion-pipas-agua\\recepcion-pipas-agua-analisis.html",
-      "line": 79,
-      "content": "<tr class=\"border-bottom-1 border-100 hover:surface-100\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\maintenance.luxuryapp\\logs\\maintenance-log\\bitacora-mantenimiento.html",
-      "line": 20,
-      "content": "<div class=\"card surface-100 mb-2 border-1 surface-border\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\maintenance.luxuryapp\\logs\\maintenance-log\\bitacora-individual.html",
-      "line": 28,
-      "content": "<div class=\"card surface-100 mb-2 border-1 surface-border\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
       "file": "app\\modules\\maintenance.luxuryapp\\equipos-y-maquinaria\\machinery\\ficha-tecnica-activo.html",
       "line": 6,
       "content": "class=\"surface-100 rounded p-3 mb-3 font-bold text-xl text-primary\"",
@@ -1825,6 +1735,96 @@
       "patternName": "surface-legacy",
       "severity": "medium",
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\juntas-mensuales-session\\junta-mensual-session-checklist-dialog.html",
+      "line": 53,
+      "content": "<div class=\"px-3 py-2 bg-surface-100 font-semibold\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\resumen-minuta.html",
+      "line": 63,
+      "content": "<tr class=\"text-sm uppercase text-700 bg-surface-100\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\resumen-minuta.html",
+      "line": 176,
+      "content": "class=\"border-circle bg-surface-200 p-5 flex align-items-center justify-content-center shadow-sm\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\minuta-pendientes.html",
+      "line": 13,
+      "content": "<div class=\"surface-100 p-2 rounded mb-3\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\invited-form.html",
+      "line": 2,
+      "content": "<div class=\"p-2 surface-200 font-semibold\">Invitados</div>",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\comite-form.html",
+      "line": 2,
+      "content": "<div class=\"p-2 surface-200 font-semibold\">Comité</div>",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\management.luxuryapp\\juntas-comite\\junta-comite-minutas\\administration-form-list.html",
+      "line": 2,
+      "content": "<div class=\"p-2 surface-200 font-semibold\">Administración</div>",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\legal.luxuryapp\\employees-contracts\\work-contract\\work-contract-form.html",
+      "line": 4,
+      "content": "<div class=\"bg-yellow-100 border-round p-3 mb-3 text-yellow-900 flex align-items-center gap-2\">",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\legal.luxuryapp\\employees-contracts\\work-contract\\work-contract-form.html",
+      "line": 9,
+      "content": "<div class=\"contract-readonly surface-card border-round p-3 mb-3\">",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\legal.luxuryapp\\employees-contracts\\work-contract\\work-contract-form.html",
+      "line": 14,
+      "content": "<div class=\"contract-readonly surface-card border-round p-3 mb-3\">",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
     },
     {
       "file": "app\\modules\\human-resources.luxuryapp\\time-off\\vacation-balance-admin\\vacaciones-saldo.html",
@@ -1924,6 +1924,33 @@
       "patternName": "surface-legacy",
       "severity": "medium",
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-reglas-negocio\\aspel-cobranza-reglas-negocio.html",
+      "line": 44,
+      "content": "<div class=\"surface-100 p-3 border-round border-1 surface-border mt-3 mb-3\">",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-reglas-negocio\\aspel-cobranza-reglas-negocio.html",
+      "line": 44,
+      "content": "<div class=\"surface-100 p-3 border-round border-1 surface-border mt-3 mb-3\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-reglas-negocio\\aspel-cobranza-reglas-negocio.html",
+      "line": 72,
+      "content": "<div class=\"bg-red-50 text-red-900 p-3 border-round border-1 border-red-200\">",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
     },
     {
       "file": "app\\modules\\collections.luxuryapp\\cobranza-online\\resumen\\cobranza-online-resumen.html",
@@ -2412,31 +2439,148 @@
       "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
     },
     {
-      "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-reglas-negocio\\aspel-cobranza-reglas-negocio.html",
-      "line": 44,
-      "content": "<div class=\"surface-100 p-3 border-round border-1 surface-border mt-3 mb-3\">",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-reglas-negocio\\aspel-cobranza-reglas-negocio.html",
-      "line": 44,
-      "content": "<div class=\"surface-100 p-3 border-round border-1 surface-border mt-3 mb-3\">",
+      "file": "app\\modules\\admin.luxuryapp\\seguridad-permisos\\customer\\customer-images.html",
+      "line": 104,
+      "content": "border-color: var(--surface-300);",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-reglas-negocio\\aspel-cobranza-reglas-negocio.html",
-      "line": 72,
-      "content": "<div class=\"bg-red-50 text-red-900 p-3 border-round border-1 border-red-200\">",
+      "file": "app\\modules\\admin.luxuryapp\\seguridad-permisos\\acceso-customer\\access-customer.html",
+      "line": 26,
+      "content": "class=\"flex align-items-center justify-content-between p-3 rounded-lg border-1 surface-border cursor-pointer hover:surfa...",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\seguridad-permisos\\application-role\\roles-list.html",
+      "line": 58,
+      "content": "class=\"px-2 py-1 border-round text-sm font-semibold\"",
       "pattern": "\\bborder-round\\b",
       "patternName": "border-round",
       "severity": "medium",
       "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\seguridad-permisos\\application-role\\roles-list.html",
+      "line": 114,
+      "content": "class=\"px-2 py-1 border-round text-xs font-semibold\"",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 36,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 58,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 83,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 108,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 133,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 159,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 184,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 210,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 235,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 260,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "line": 285,
+      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\ia-test\\ia-test.component.html",
+      "line": 36,
+      "content": "<div class=\"result-container rounded p-3 surface-100\" >",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
       "file": "app\\modules\\accounting.luxuryapp\\general-ledger\\presupuesto-propuesta\\fee-comparison-by-fija.html",
@@ -2574,15 +2718,6 @@
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\accounting.luxuryapp\\ar\\catalogo-gastos-fijos\\catalogo-gastos-fijos-list.html",
-      "line": 130,
-      "content": "class=\"flex align-items-center flex-wrap px-3 py-2 mt-1 rounded surface-100 border-left-3 border-orange-500 mb-2 shadow-...",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
       "file": "app\\modules\\accounting.luxuryapp\\fondeos-y-reporteo\\funding-accounting\\funding-accounting-detail.html",
       "line": 31,
       "content": "customClass=\"mr-1  border-2 border-surface-200\"",
@@ -2682,144 +2817,153 @@
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\admin.luxuryapp\\seguridad-permisos\\customer\\customer-images.html",
-      "line": 104,
-      "content": "border-color: var(--surface-300);",
+      "file": "app\\modules\\accounting.luxuryapp\\ar\\catalogo-gastos-fijos\\catalogo-gastos-fijos-list.html",
+      "line": 130,
+      "content": "class=\"flex align-items-center flex-wrap px-3 py-2 mt-1 rounded surface-100 border-left-3 border-orange-500 mb-2 shadow-...",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\admin.luxuryapp\\seguridad-permisos\\application-role\\roles-list.html",
-      "line": 58,
-      "content": "class=\"px-2 py-1 border-round text-sm font-semibold\"",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\seguridad-permisos\\application-role\\roles-list.html",
-      "line": 114,
-      "content": "class=\"px-2 py-1 border-round text-xs font-semibold\"",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\seguridad-permisos\\acceso-customer\\access-customer.html",
-      "line": 26,
-      "content": "class=\"flex align-items-center justify-content-between p-3 rounded-lg border-1 surface-border cursor-pointer hover:surfa...",
+      "file": "app\\core\\layout\\employee-view\\movil\\home-menu-mobile\\home-menu-mobile.html",
+      "line": 3,
+      "content": "class=\"bg-white dark:surface-900 rounded-2xl shadow-sm overflow-hidden\"",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "file": "app\\core\\layout\\employee-view\\movil\\home-menu-mobile\\home-menu-mobile.html",
+      "line": 3,
+      "content": "class=\"bg-white dark:surface-900 rounded-2xl shadow-sm overflow-hidden\"",
+      "pattern": "\\bdark:\\w+",
+      "patternName": "dark-mode-tailwind",
+      "severity": "high",
+      "suggestion": "Usar html.theme-dark + tokens CSS en SCSS"
+    },
+    {
+      "file": "app\\core\\layout\\employee-view\\monitor\\notifications-gadget\\notifications-gadget.html",
       "line": 36,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "content": "class=\"flex align-items-start p-3 gap-3 cursor-pointer hover:surface-100 border-bottom-1 surface-border\"",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
-      "line": 58,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
+      "file": "app\\core\\layout\\employee-view\\monitor\\notifications-gadget\\notifications-gadget.html",
+      "line": 38,
+      "content": "[class.surface-100]=\"!notification.isRead\"",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
+      "file": "app\\core\\layout\\employee-view\\monitor\\header-employee-monitor\\header-employee-monitor.html",
+      "line": 297,
+      "content": "style=\"min-height: 250px; background-color: var(--surface-100)\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\employee-view\\monitor\\header-employee-monitor\\header-employee-monitor.html",
+      "line": 312,
+      "content": "background-color: var(--surface-100);",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\employee-view\\monitor\\header-employee-monitor\\header-employee-monitor.html",
+      "line": 313,
+      "content": "border: 2px dashed var(--surface-300);",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\employee-view\\monitor\\header-employee-monitor\\header-employee-monitor.html",
+      "line": 390,
+      "content": "class=\"surface-100 p-4 rounded-lg text-center mt-4 border-left-3\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\direccion-view\\components\\tareas-legal-card\\tareas-legal-card.html",
+      "line": 72,
+      "content": "class=\"text-xs rounded px-2 py-0 surface-100 text-color-secondary\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\direccion-view\\components\\contratos-vigentes-modal\\contratos-vigentes-modal.html",
+      "line": 81,
+      "content": "<span class=\"text-xs surface-200 text-600 rounded px-2 py-1\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\direccion-view\\components\\contratos-card\\contratos-card.html",
+      "line": 45,
+      "content": "class=\"text-xs font-semibold rounded px-2 py-1 surface-100 text-color-secondary\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\direccion-view\\components\\agenda-semanal\\agenda-semanal.html",
+      "line": 9,
+      "content": "<span class=\"text-xs surface-200 text-600 rounded px-2 py-1\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\direccion-view\\components\\agenda-semanal\\agenda-semanal.html",
+      "line": 78,
+      "content": "[class.surface-100]=\"!dia.esHoy\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\direccion-view\\components\\agenda-semanal\\agenda-semanal.html",
+      "line": 94,
+      "content": "[class.surface-300]=\"!dia.esHoy\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\direccion-view\\components\\agenda-semanal\\agenda-semanal.html",
+      "line": 142,
+      "content": "<span class=\"text-xs surface-200 text-600 rounded px-2 py-1\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\core\\layout\\direccion-view\\components\\agenda-meses-modal\\agenda-meses-modal.html",
       "line": 83,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
-      "line": 108,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
-      "line": 133,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
-      "line": 159,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
-      "line": 184,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
-      "line": 210,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
-      "line": 235,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
-      "line": 260,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\update-data-base\\update-data-base.html",
-      "line": 285,
-      "content": "class=\"h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\ia-test\\ia-test.component.html",
-      "line": 36,
-      "content": "<div class=\"result-container rounded p-3 surface-100\" >",
+      "content": "<span class=\"text-xs surface-200 text-600 rounded px-2 py-1\">",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
@@ -3060,15 +3204,6 @@
       "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
     },
     {
-      "file": "app\\modules\\operations.luxuryapp\\task-engine\\tasks\\task-status\\task-status.html",
-      "line": 22,
-      "content": "class=\"bg-surface-100 p-1\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
       "file": "app\\modules\\operations.luxuryapp\\task-engine\\tasks\\work-group\\task-group-list.html",
       "line": 41,
       "content": "class=\"surface-card border-round-xl shadow-1 hover:shadow-3 transition-duration-150 p-3 h-full flex flex-column gap-3\"",
@@ -3108,6 +3243,15 @@
       "file": "app\\modules\\operations.luxuryapp\\task-engine\\tasks\\work-group\\task-group-list.html",
       "line": 71,
       "content": "class=\"flex align-items-center justify-content-between gap-2 px-3 py-2 border-round-lg surface-50 cursor-pointer hover:s...",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\task-engine\\tasks\\task-status\\task-status.html",
+      "line": 22,
+      "content": "class=\"bg-surface-100 p-1\"",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
@@ -3267,18 +3411,27 @@
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\operations.luxuryapp\\incidencias-sanciones\\incident\\incident-witnesses\\incident-witnesses.html",
-      "line": 28,
-      "content": "<div class=\"text-center p-4 text-color-secondary surface-100 rounded\">",
+      "file": "app\\modules\\operations.luxuryapp\\google-calendar\\calendar\\mantenimiento-preventivo\\cronograma-anual-mantenimiento.html",
+      "line": 53,
+      "content": "color: white !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\google-calendar\\calendar\\mantenimiento-preventivo\\cronograma-anual-mantenimiento.html",
+      "line": 242,
+      "content": "class=\"p-1 rounded surface-100 mr-2 mb-2 inline-flex align-items-center\"",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\operations.luxuryapp\\incidencias-sanciones\\incident\\incident-dashboard\\incident-dashboard.html",
-      "line": 164,
-      "content": "<div class=\"flex align-items-center px-3 py-2 surface-100 rounded-lg\">",
+      "file": "app\\modules\\operations.luxuryapp\\google-calendar\\calendar\\mantenimiento-preventivo\\cronograma-anual-mantenimiento.html",
+      "line": 251,
+      "content": "<div class=\"flex gap-2 mb-3 bg-surface-100 p-1 rounded\">",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
@@ -3321,36 +3474,27 @@
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\operations.luxuryapp\\google-calendar\\calendar\\mantenimiento-preventivo\\cronograma-anual-mantenimiento.html",
-      "line": 53,
-      "content": "color: white !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\google-calendar\\calendar\\mantenimiento-preventivo\\cronograma-anual-mantenimiento.html",
-      "line": 242,
-      "content": "class=\"p-1 rounded surface-100 mr-2 mb-2 inline-flex align-items-center\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\google-calendar\\calendar\\mantenimiento-preventivo\\cronograma-anual-mantenimiento.html",
-      "line": 251,
-      "content": "<div class=\"flex gap-2 mb-3 bg-surface-100 p-1 rounded\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
       "file": "app\\modules\\operations.luxuryapp\\google-calendar\\calendar\\birthday\\cumpleanos-list.html",
       "line": 64,
       "content": "<div class=\"flex gap-2 mb-3 bg-surface-100 p-1 rounded\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\incidencias-sanciones\\incident\\incident-witnesses\\incident-witnesses.html",
+      "line": 28,
+      "content": "<div class=\"text-center p-4 text-color-secondary surface-100 rounded\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\incidencias-sanciones\\incident\\incident-dashboard\\incident-dashboard.html",
+      "line": 164,
+      "content": "<div class=\"flex align-items-center px-3 py-2 surface-100 rounded-lg\">",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
@@ -3411,24 +3555,6 @@
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\maintenance.luxuryapp\\fire-equipment\\inspection-periods\\period-detail-estacion\\fire-inspection-period-estacion-detail.html",
-      "line": 42,
-      "content": "<div class=\"flex align-items-center gap-2 mb-3 p-3 surface-100 rounded\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\maintenance.luxuryapp\\fire-equipment\\inspection-periods\\period-detail-estacion\\fire-inspection-period-estacion-detail.html",
-      "line": 64,
-      "content": "<tr class=\"surface-100\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
       "file": "app\\modules\\maintenance.luxuryapp\\fire-equipment\\inspection-periods\\period-detail-extintor\\fire-inspection-period-extintor-detail.html",
       "line": 61,
       "content": "<div class=\"flex align-items-center gap-2 mb-3 p-3 surface-100 rounded\">",
@@ -3440,6 +3566,24 @@
     {
       "file": "app\\modules\\maintenance.luxuryapp\\fire-equipment\\inspection-periods\\period-detail-extintor\\fire-inspection-period-extintor-detail.html",
       "line": 83,
+      "content": "<tr class=\"surface-100\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\maintenance.luxuryapp\\fire-equipment\\inspection-periods\\period-detail-estacion\\fire-inspection-period-estacion-detail.html",
+      "line": 42,
+      "content": "<div class=\"flex align-items-center gap-2 mb-3 p-3 surface-100 rounded\">",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\maintenance.luxuryapp\\fire-equipment\\inspection-periods\\period-detail-estacion\\fire-inspection-period-estacion-detail.html",
+      "line": 64,
       "content": "<tr class=\"surface-100\">",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
@@ -3468,6 +3612,15 @@
       "file": "app\\modules\\human-resources.luxuryapp\\evaluaciones-de-desempeo\\evaluation-template\\performance-evaluation\\resultado-evaluacion.html",
       "line": 130,
       "content": "class=\"flex justify-content-between align-items-center surface-100 p-3 mb-3 rounded\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\cobranza-nativa\\configuration\\billing-config\\billing-config-modal.html",
+      "line": 8,
+      "content": "<div class=\"p-3 rounded surface-100 mb-2\">",
       "pattern": "\\bsurface-\\d{3}\\b",
       "patternName": "surface-legacy",
       "severity": "medium",
@@ -3573,13 +3726,13 @@
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\collections.luxuryapp\\cobranza-nativa\\configuration\\billing-config\\billing-config-modal.html",
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\catalog-layout\\catalog-layout.html",
       "line": 8,
-      "content": "<div class=\"p-3 rounded surface-100 mb-2\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
+      "content": "class=\"logo-box border-round-lg bg-primary flex align-items-center justify-content-center\"",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
       "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
     },
     {
       "file": "app\\modules\\accounting.luxuryapp\\general-ledger\\dynamic-reports\\report-builder\\report-builder.html",
@@ -3897,159 +4050,6 @@
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\catalog-layout\\catalog-layout.html",
-      "line": 8,
-      "content": "class=\"logo-box border-round-lg bg-primary flex align-items-center justify-content-center\"",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\core\\layout\\direccion-view\\components\\tareas-legal-card\\tareas-legal-card.html",
-      "line": 72,
-      "content": "class=\"text-xs rounded px-2 py-0 surface-100 text-color-secondary\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\direccion-view\\components\\contratos-vigentes-modal\\contratos-vigentes-modal.html",
-      "line": 81,
-      "content": "<span class=\"text-xs surface-200 text-600 rounded px-2 py-1\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\direccion-view\\components\\agenda-semanal\\agenda-semanal.html",
-      "line": 9,
-      "content": "<span class=\"text-xs surface-200 text-600 rounded px-2 py-1\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\direccion-view\\components\\agenda-semanal\\agenda-semanal.html",
-      "line": 78,
-      "content": "[class.surface-100]=\"!dia.esHoy\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\direccion-view\\components\\agenda-semanal\\agenda-semanal.html",
-      "line": 94,
-      "content": "[class.surface-300]=\"!dia.esHoy\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\direccion-view\\components\\agenda-semanal\\agenda-semanal.html",
-      "line": 142,
-      "content": "<span class=\"text-xs surface-200 text-600 rounded px-2 py-1\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\direccion-view\\components\\agenda-meses-modal\\agenda-meses-modal.html",
-      "line": 83,
-      "content": "<span class=\"text-xs surface-200 text-600 rounded px-2 py-1\">",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\direccion-view\\components\\contratos-card\\contratos-card.html",
-      "line": 45,
-      "content": "class=\"text-xs font-semibold rounded px-2 py-1 surface-100 text-color-secondary\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\employee-view\\movil\\home-menu-mobile\\home-menu-mobile.html",
-      "line": 3,
-      "content": "class=\"bg-white dark:surface-900 rounded-2xl shadow-sm overflow-hidden\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\employee-view\\movil\\home-menu-mobile\\home-menu-mobile.html",
-      "line": 3,
-      "content": "class=\"bg-white dark:surface-900 rounded-2xl shadow-sm overflow-hidden\"",
-      "pattern": "\\bdark:\\w+",
-      "patternName": "dark-mode-tailwind",
-      "severity": "high",
-      "suggestion": "Usar html.theme-dark + tokens CSS en SCSS"
-    },
-    {
-      "file": "app\\core\\layout\\employee-view\\monitor\\notifications-gadget\\notifications-gadget.html",
-      "line": 36,
-      "content": "class=\"flex align-items-start p-3 gap-3 cursor-pointer hover:surface-100 border-bottom-1 surface-border\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\employee-view\\monitor\\notifications-gadget\\notifications-gadget.html",
-      "line": 38,
-      "content": "[class.surface-100]=\"!notification.isRead\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\employee-view\\monitor\\header-employee-monitor\\header-employee-monitor.html",
-      "line": 297,
-      "content": "style=\"min-height: 250px; background-color: var(--surface-100)\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\employee-view\\monitor\\header-employee-monitor\\header-employee-monitor.html",
-      "line": 312,
-      "content": "background-color: var(--surface-100);",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\employee-view\\monitor\\header-employee-monitor\\header-employee-monitor.html",
-      "line": 313,
-      "content": "border: 2px dashed var(--surface-300);",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\core\\layout\\employee-view\\monitor\\header-employee-monitor\\header-employee-monitor.html",
-      "line": 390,
-      "content": "class=\"surface-100 p-4 rounded-lg text-center mt-4 border-left-3\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
       "file": "app\\modules\\operations.luxuryapp\\manuals\\biblioteca\\manuals-and-processes\\manuals-and-processes-editor\\manuals-and-processes-editor.html",
       "line": 85,
       "content": "class=\"flex align-items-center gap-2 p-3 border-bottom-1 border-200 cursor-pointer hover:surface-100 transition-colors t...",
@@ -4161,24 +4161,6 @@
       "file": "app\\modules\\operations.luxuryapp\\dashboard\\unified-pending-dashboard-mobile.ts",
       "line": 48,
       "content": "font-size: 0.9rem !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-haus-pdf.service.ts",
-      "line": 141,
-      "content": ".text-right { text-align:right !important; }",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-haus-pdf.service.ts",
-      "line": 270,
-      "content": ".text-right { text-align:right !important; }",
       "pattern": "!important",
       "patternName": "important",
       "severity": "critical",
@@ -4518,6 +4500,105 @@
       "suggestion": "Usar CSS variables (--p-*) o @layer primeng-brand"
     },
     {
+      "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-haus-pdf.service.ts",
+      "line": 141,
+      "content": ".text-right { text-align:right !important; }",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\modules\\collections.luxuryapp\\aspel-cobranza-haus\\aspel-cobranza-haus-pdf.service.ts",
+      "line": 270,
+      "content": ".text-right { text-align:right !important; }",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\shared\\ui\\web\\wizard\\wizard.ts",
+      "line": 79,
+      "content": ":host ::ng-deep [step] {",
+      "pattern": "::ng-deep",
+      "patternName": "ng-deep",
+      "severity": "high",
+      "suggestion": "Usar CSS variables (--p-*) o @layer primeng-brand"
+    },
+    {
+      "file": "app\\shared\\ui\\web\\print-view\\print-view.ts",
+      "line": 106,
+      "content": "display: none !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\shared\\ui\\web\\print-view\\print-view.ts",
+      "line": 109,
+      "content": "display: block !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\shared\\ui\\web\\print-view\\print-view.ts",
+      "line": 122,
+      "content": "display: none !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\shared\\ui\\web\\file-upload\\file-upload.ts",
+      "line": 185,
+      "content": "border-color: var(--ds-primary) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\shared\\ui\\web\\comparison-table\\comparison-table.ts",
+      "line": 107,
+      "content": ") !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\shared\\ui\\web\\card\\card.ts",
+      "line": 63,
+      "content": "box-shadow: var(--ds-shadow-2);",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\shared\\ui\\web\\card\\card.ts",
+      "line": 66,
+      "content": "box-shadow: var(--ds-shadow-3);",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\shared\\ui\\web\\action-menu\\action-menu.ts",
+      "line": 54,
+      "content": ".menu-container ::ng-deep button {",
+      "pattern": "::ng-deep",
+      "patternName": "ng-deep",
+      "severity": "high",
+      "suggestion": "Usar CSS variables (--p-*) o @layer primeng-brand"
+    },
+    {
       "file": "app\\shared\\ui\\shared\\avatar-group\\avatar-group.ts",
       "line": 75,
       "content": "background: var(--ds-bg-elevated) !important;",
@@ -4606,87 +4687,6 @@
       "patternName": "surface-legacy",
       "severity": "medium",
       "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\shared\\ui\\web\\wizard\\wizard.ts",
-      "line": 79,
-      "content": ":host ::ng-deep [step] {",
-      "pattern": "::ng-deep",
-      "patternName": "ng-deep",
-      "severity": "high",
-      "suggestion": "Usar CSS variables (--p-*) o @layer primeng-brand"
-    },
-    {
-      "file": "app\\shared\\ui\\web\\print-view\\print-view.ts",
-      "line": 106,
-      "content": "display: none !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\shared\\ui\\web\\print-view\\print-view.ts",
-      "line": 109,
-      "content": "display: block !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\shared\\ui\\web\\print-view\\print-view.ts",
-      "line": 122,
-      "content": "display: none !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\shared\\ui\\web\\file-upload\\file-upload.ts",
-      "line": 185,
-      "content": "border-color: var(--ds-primary) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\shared\\ui\\web\\comparison-table\\comparison-table.ts",
-      "line": 107,
-      "content": ") !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\shared\\ui\\web\\card\\card.ts",
-      "line": 63,
-      "content": "box-shadow: var(--ds-shadow-2);",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\shared\\ui\\web\\card\\card.ts",
-      "line": 66,
-      "content": "box-shadow: var(--ds-shadow-3);",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\shared\\ui\\web\\action-menu\\action-menu.ts",
-      "line": 54,
-      "content": ".menu-container ::ng-deep button {",
-      "pattern": "::ng-deep",
-      "patternName": "ng-deep",
-      "severity": "high",
-      "suggestion": "Usar CSS variables (--p-*) o @layer primeng-brand"
     },
     {
       "file": "app\\shared\\ui\\buttons\\web-icon\\button-tracking.ts",
@@ -5283,6 +5283,51 @@
       "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
     },
     {
+      "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list-pdf.service.ts",
+      "line": 160,
+      "content": "body { background-color: white !important; font-family: \"Segoe UI\", Tahoma, Geneva, Verdana, sans-serif; }",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list-pdf.service.ts",
+      "line": 166,
+      "content": ".surface-50 { background-color: #f9fafb !important; }",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list-pdf.service.ts",
+      "line": 167,
+      "content": ".surface-100 { background-color: #f3f4f6 !important; }",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list-pdf.service.ts",
+      "line": 167,
+      "content": ".surface-100 { background-color: #f3f4f6 !important; }",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list-pdf.service.ts",
+      "line": 168,
+      "content": ".bg-primary { background-color: #3b82f6 !important; color: white !important; }",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
       "file": "app\\modules\\operations.luxuryapp\\google-calendar\\google-calendar\\google-calendar.ts",
       "line": 80,
       "content": ":host ::ng-deep .fc-theme-standard td,",
@@ -5448,51 +5493,6 @@
       "file": "app\\modules\\operations.luxuryapp\\google-calendar\\google-calendar\\google-calendar.ts",
       "line": 137,
       "content": "font-size: 0.85rem !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list-pdf.service.ts",
-      "line": 160,
-      "content": "body { background-color: white !important; font-family: \"Segoe UI\", Tahoma, Geneva, Verdana, sans-serif; }",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list-pdf.service.ts",
-      "line": 166,
-      "content": ".surface-50 { background-color: #f9fafb !important; }",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list-pdf.service.ts",
-      "line": 167,
-      "content": ".surface-100 { background-color: #f3f4f6 !important; }",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list-pdf.service.ts",
-      "line": 167,
-      "content": ".surface-100 { background-color: #f3f4f6 !important; }",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\field-service\\service-order\\ordenes-servicio-list-pdf.service.ts",
-      "line": 168,
-      "content": ".bg-primary { background-color: #3b82f6 !important; color: white !important; }",
       "pattern": "!important",
       "patternName": "important",
       "severity": "critical",
@@ -6129,6 +6129,24 @@
       "suggestion": "Usar CSS variables (--p-*) o @layer primeng-brand"
     },
     {
+      "file": "app\\modules\\operations.luxuryapp\\diagrams\\diagram\\diagram-view\\diagram-view.ts",
+      "line": 60,
+      "content": ":host ::ng-deep .mxgraph {",
+      "pattern": "::ng-deep",
+      "patternName": "ng-deep",
+      "severity": "high",
+      "suggestion": "Usar CSS variables (--p-*) o @layer primeng-brand"
+    },
+    {
+      "file": "app\\modules\\operations.luxuryapp\\diagrams\\diagram\\diagram-view\\diagram-view.ts",
+      "line": 61,
+      "content": "max-width: 100% !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
       "file": "app\\modules\\operations.luxuryapp\\google-calendar\\calendar\\mantenimiento-preventivo\\cronograma-completo-status-dialog.ts",
       "line": 186,
       "content": "th { background-color: #1E3A8A !important; color: #FFFFFF !important; }",
@@ -6186,24 +6204,6 @@
       "file": "app\\modules\\operations.luxuryapp\\google-calendar\\calendar\\mantenimiento-preventivo\\cronograma-anual-mantenimiento.ts",
       "line": 420,
       "content": ".sistema-header { background:#c9a84c; color: #ffffff; font-weight:700; font-size: 10px; padding: 4px 6px !important; }",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\diagrams\\diagram\\diagram-view\\diagram-view.ts",
-      "line": 60,
-      "content": ":host ::ng-deep .mxgraph {",
-      "pattern": "::ng-deep",
-      "patternName": "ng-deep",
-      "severity": "high",
-      "suggestion": "Usar CSS variables (--p-*) o @layer primeng-brand"
-    },
-    {
-      "file": "app\\modules\\operations.luxuryapp\\diagrams\\diagram\\diagram-view\\diagram-view.ts",
-      "line": 61,
-      "content": "max-width: 100% !important;",
       "pattern": "!important",
       "patternName": "important",
       "severity": "critical",
@@ -6388,186 +6388,6 @@
       "patternName": "border-round",
       "severity": "medium",
       "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
-      "line": 113,
-      "content": "class=\"p-3 border-round bg-primary-50 text-primary-900 text-sm\"",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
-      "line": 132,
-      "content": "class=\"h-full border-left-3 border-primary surface-card shadow-1\"",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
-      "line": 605,
-      "content": "cardClass: \"h-full border-left-3 border-primary surface-card shadow-1\",",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
-      "line": 613,
-      "content": "cardClass: \"h-full border-left-3 surface-border surface-card shadow-1\",",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
-      "line": 621,
-      "content": "cardClass: \"h-full border-left-3 border-red-500 surface-card shadow-1\",",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
-      "line": 629,
-      "content": "cardClass: \"h-full border-left-3 border-300 surface-card shadow-1\",",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia\\catalog-guia.ts",
-      "line": 221,
-      "content": "cardClass: \"h-full border-left-3 border-primary surface-card shadow-1\",",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia\\catalog-guia.ts",
-      "line": 229,
-      "content": "cardClass: \"h-full border-left-3 surface-border surface-card shadow-1\",",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia\\catalog-guia.ts",
-      "line": 237,
-      "content": "cardClass: \"h-full border-left-3 border-red-500 surface-card shadow-1\",",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia\\catalog-guia.ts",
-      "line": 245,
-      "content": "cardClass: \"h-full border-left-3 border-300 surface-card shadow-1\",",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-docs\\catalog-docs.ts",
-      "line": 32,
-      "content": "class=\"card h-full overflow-hidden shadow-1 transition-all hover:shadow-3\"",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-docs\\catalog-docs.ts",
-      "line": 50,
-      "content": "class=\"block surface-100 border-1 surface-border border-round px-3 py-2 text-primary text-xs mt-2\"",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-docs\\catalog-docs.ts",
-      "line": 50,
-      "content": "class=\"block surface-100 border-1 surface-border border-round px-3 py-2 text-primary text-xs mt-2\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-docs\\catalog-docs.ts",
-      "line": 67,
-      "content": "<div class=\"bg-primary text-white border-round-lg p-3 mb-3\">",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit-item\\catalog-audit-item.ts",
-      "line": 33,
-      "content": "<div class=\"border-round-xl border-1 p-4 h-full\">",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit-item\\catalog-audit-item.ts",
-      "line": 51,
-      "content": "class=\"flex align-items-start gap-3 border-round-lg border-1 p-3\"",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit\\catalog-audit.ts",
-      "line": 46,
-      "content": "class=\"border-round-xl border-1 p-4 h-full\"",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit\\catalog-audit.ts",
-      "line": 84,
-      "content": "class=\"w-4rem h-4rem border-round-lg bg-primary text-white flex align-items-center justify-content-center text-2xl font-...",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit\\catalog-audit.ts",
-      "line": 107,
-      "content": "class=\"flex align-items-start gap-3 border-round-lg border-1 p-3 h-full transition-all hover:surface-100 cursor-pointer\"",
-      "pattern": "\\bborder-round\\b",
-      "patternName": "border-round",
-      "severity": "medium",
-      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
-    },
-    {
-      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit\\catalog-audit.ts",
-      "line": 107,
-      "content": "class=\"flex align-items-start gap-3 border-round-lg border-1 p-3 h-full transition-all hover:surface-100 cursor-pointer\"",
-      "pattern": "\\bsurface-\\d{3}\\b",
-      "patternName": "surface-legacy",
-      "severity": "medium",
-      "suggestion": "Usar bg-slate-* o tokens --ds-*"
     },
     {
       "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\patterns-layouts\\catalog-patterns-item\\catalog-patterns-item.ts",
@@ -6939,6 +6759,186 @@
       "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
     },
     {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
+      "line": 113,
+      "content": "class=\"p-3 border-round bg-primary-50 text-primary-900 text-sm\"",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
+      "line": 132,
+      "content": "class=\"h-full border-left-3 border-primary surface-card shadow-1\"",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
+      "line": 605,
+      "content": "cardClass: \"h-full border-left-3 border-primary surface-card shadow-1\",",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
+      "line": 613,
+      "content": "cardClass: \"h-full border-left-3 surface-border surface-card shadow-1\",",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
+      "line": 621,
+      "content": "cardClass: \"h-full border-left-3 border-red-500 surface-card shadow-1\",",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia-item\\catalog-guia-item.ts",
+      "line": 629,
+      "content": "cardClass: \"h-full border-left-3 border-300 surface-card shadow-1\",",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia\\catalog-guia.ts",
+      "line": 221,
+      "content": "cardClass: \"h-full border-left-3 border-primary surface-card shadow-1\",",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia\\catalog-guia.ts",
+      "line": 229,
+      "content": "cardClass: \"h-full border-left-3 surface-border surface-card shadow-1\",",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia\\catalog-guia.ts",
+      "line": 237,
+      "content": "cardClass: \"h-full border-left-3 border-red-500 surface-card shadow-1\",",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-guia\\catalog-guia.ts",
+      "line": 245,
+      "content": "cardClass: \"h-full border-left-3 border-300 surface-card shadow-1\",",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-docs\\catalog-docs.ts",
+      "line": 32,
+      "content": "class=\"card h-full overflow-hidden shadow-1 transition-all hover:shadow-3\"",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-docs\\catalog-docs.ts",
+      "line": 50,
+      "content": "class=\"block surface-100 border-1 surface-border border-round px-3 py-2 text-primary text-xs mt-2\"",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-docs\\catalog-docs.ts",
+      "line": 50,
+      "content": "class=\"block surface-100 border-1 surface-border border-round px-3 py-2 text-primary text-xs mt-2\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-docs\\catalog-docs.ts",
+      "line": 67,
+      "content": "<div class=\"bg-primary text-white border-round-lg p-3 mb-3\">",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit\\catalog-audit.ts",
+      "line": 46,
+      "content": "class=\"border-round-xl border-1 p-4 h-full\"",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit\\catalog-audit.ts",
+      "line": 84,
+      "content": "class=\"w-4rem h-4rem border-round-lg bg-primary text-white flex align-items-center justify-content-center text-2xl font-...",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit\\catalog-audit.ts",
+      "line": 107,
+      "content": "class=\"flex align-items-start gap-3 border-round-lg border-1 p-3 h-full transition-all hover:surface-100 cursor-pointer\"",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit\\catalog-audit.ts",
+      "line": 107,
+      "content": "class=\"flex align-items-start gap-3 border-round-lg border-1 p-3 h-full transition-all hover:surface-100 cursor-pointer\"",
+      "pattern": "\\bsurface-\\d{3}\\b",
+      "patternName": "surface-legacy",
+      "severity": "medium",
+      "suggestion": "Usar bg-slate-* o tokens --ds-*"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit-item\\catalog-audit-item.ts",
+      "line": 33,
+      "content": "<div class=\"border-round-xl border-1 p-4 h-full\">",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
+      "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\foundations\\catalog-audit-item\\catalog-audit-item.ts",
+      "line": 51,
+      "content": "class=\"flex align-items-start gap-3 border-round-lg border-1 p-3\"",
+      "pattern": "\\bborder-round\\b",
+      "patternName": "border-round",
+      "severity": "medium",
+      "suggestion": "Usar \"rounded\" o \"rounded-lg\" de Tailwind"
+    },
+    {
       "file": "app\\modules\\admin.luxuryapp\\herramientas-dev\\catalog-component-ui\\catalog-mobile\\mobile-data\\mobile-data.ts",
       "line": 321,
       "content": "class=\"flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg\"",
@@ -7153,6 +7153,42 @@
       "patternName": "important",
       "severity": "critical",
       "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/theme\\_variables.scss",
+      "line": 822,
+      "content": "--ds-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/theme\\_variables.scss",
+      "line": 823,
+      "content": "--ds-shadow-2: 0 2px 8px rgba(0, 0, 0, 0.4);",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/theme\\_variables.scss",
+      "line": 824,
+      "content": "--ds-shadow-3: 0 4px 16px rgba(0, 0, 0, 0.45);",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/theme\\_variables.scss",
+      "line": 825,
+      "content": "--ds-shadow-4: 0 8px 32px rgba(0, 0, 0, 0.55);",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
     },
     {
       "file": "src/styles/web\\_tables.scss",
@@ -7437,42 +7473,6 @@
       "file": "src/styles/web\\_buttons.scss",
       "line": 81,
       "content": "box-shadow: var(--ds-shadow-1);",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/theme\\_variables.scss",
-      "line": 822,
-      "content": "--ds-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/theme\\_variables.scss",
-      "line": 823,
-      "content": "--ds-shadow-2: 0 2px 8px rgba(0, 0, 0, 0.4);",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/theme\\_variables.scss",
-      "line": 824,
-      "content": "--ds-shadow-3: 0 4px 16px rgba(0, 0, 0, 0.45);",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/theme\\_variables.scss",
-      "line": 825,
-      "content": "--ds-shadow-4: 0 8px 32px rgba(0, 0, 0, 0.55);",
       "pattern": "\\bshadow-[1-8]\\b",
       "patternName": "shadow-legacy",
       "severity": "medium",
@@ -8985,6 +8985,321 @@
       "file": "src/styles/shared\\_sidebar.scss",
       "line": 578,
       "content": "background-color: transparent !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 77,
+      "content": "background: transparent !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 78,
+      "content": "padding: 0 0 8px !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 86,
+      "content": "--inner-border-width: 0 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 91,
+      "content": "--inner-border-width: 0 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 146,
+      "content": "border-radius: var(--ds-radius-lg) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 147,
+      "content": "box-shadow: var(--ds-shadow-sm) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 148,
+      "content": "margin: 8px 16px !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 240,
+      "content": "padding-inline: 12px !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 289,
+      "content": "border: none !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 290,
+      "content": "box-shadow: none !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 291,
+      "content": "padding: 0.5rem 0 0 0 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 292,
+      "content": "margin: 0 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 293,
+      "content": "background: transparent !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 306,
+      "content": "--z-index: 110000 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 307,
+      "content": "z-index: 110000 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 311,
+      "content": "--z-index: 110000 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 312,
+      "content": "z-index: 110000 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 316,
+      "content": "--z-index: 110000 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 317,
+      "content": "z-index: 110000 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 331,
+      "content": "contain: none !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
+      "line": 364,
+      "content": "box-shadow: var(--ds-shadow-sm) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 30,
+      "content": "// ⚠️ !important necesario: Ionic define el fondo con `:host(.button-solid)`",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 34,
+      "content": "--background: var(--ds-primary-light, #e0e7ff) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 35,
+      "content": "--background-hover: var(--ds-primary-light, #e0e7ff) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 36,
+      "content": "--background-activated: var(--ds-primary-light, #e0e7ff) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 37,
+      "content": "--background-focused: var(--ds-primary-light, #e0e7ff) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 38,
+      "content": "--color: var(--ion-color-base, var(--ds-text-primary)) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 39,
+      "content": "--box-shadow: none !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 40,
+      "content": "--border-width: 0 !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 41,
+      "content": "--border-radius: var(--ds-m-radius-btn, 3px) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 54,
+      "content": "justify-content: flex-start !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 67,
+      "content": "--background: var(--ds-danger-light, #fee2e2) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 68,
+      "content": "--background-hover: var(--ds-danger-light, #fee2e2) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 69,
+      "content": "--background-activated: var(--ds-danger-light, #fee2e2) !important;",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/mobile\\_ili-buttons.scss",
+      "line": 70,
+      "content": "--background-focused: var(--ds-danger-light, #fee2e2) !important;",
       "pattern": "!important",
       "patternName": "important",
       "severity": "critical",
@@ -10539,402 +10854,6 @@
       "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
     },
     {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 77,
-      "content": "background: transparent !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 78,
-      "content": "padding: 0 0 8px !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 86,
-      "content": "--inner-border-width: 0 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 91,
-      "content": "--inner-border-width: 0 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 146,
-      "content": "border-radius: var(--ds-radius-lg) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 147,
-      "content": "box-shadow: var(--ds-shadow-sm) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 148,
-      "content": "margin: 8px 16px !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 240,
-      "content": "padding-inline: 12px !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 289,
-      "content": "border: none !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 290,
-      "content": "box-shadow: none !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 291,
-      "content": "padding: 0.5rem 0 0 0 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 292,
-      "content": "margin: 0 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 293,
-      "content": "background: transparent !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 306,
-      "content": "--z-index: 110000 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 307,
-      "content": "z-index: 110000 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 311,
-      "content": "--z-index: 110000 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 312,
-      "content": "z-index: 110000 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 316,
-      "content": "--z-index: 110000 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 317,
-      "content": "z-index: 110000 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 331,
-      "content": "contain: none !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ionic-rn-theme.scss",
-      "line": 364,
-      "content": "box-shadow: var(--ds-shadow-sm) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 30,
-      "content": "// ⚠️ !important necesario: Ionic define el fondo con `:host(.button-solid)`",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 34,
-      "content": "--background: var(--ds-primary-light, #e0e7ff) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 35,
-      "content": "--background-hover: var(--ds-primary-light, #e0e7ff) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 36,
-      "content": "--background-activated: var(--ds-primary-light, #e0e7ff) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 37,
-      "content": "--background-focused: var(--ds-primary-light, #e0e7ff) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 38,
-      "content": "--color: var(--ion-color-base, var(--ds-text-primary)) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 39,
-      "content": "--box-shadow: none !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 40,
-      "content": "--border-width: 0 !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 41,
-      "content": "--border-radius: var(--ds-m-radius-btn, 3px) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 54,
-      "content": "justify-content: flex-start !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 67,
-      "content": "--background: var(--ds-danger-light, #fee2e2) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 68,
-      "content": "--background-hover: var(--ds-danger-light, #fee2e2) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 69,
-      "content": "--background-activated: var(--ds-danger-light, #fee2e2) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/mobile\\_ili-buttons.scss",
-      "line": 70,
-      "content": "--background-focused: var(--ds-danger-light, #fee2e2) !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
-      "file": "src/styles/core\\_shadows.scss",
-      "line": 23,
-      "content": "$shadow-1:  0 1px 2px rgba(27, 54, 93, 0.06)                                     !default;",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/core\\_shadows.scss",
-      "line": 24,
-      "content": "$shadow-2:  0 2px 8px rgba(27, 54, 93, 0.08)                                     !default;",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/core\\_shadows.scss",
-      "line": 25,
-      "content": "$shadow-3:  0 4px 16px rgba(27, 54, 93, 0.10)                                    !default;",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/core\\_shadows.scss",
-      "line": 26,
-      "content": "$shadow-4:  0 8px 32px rgba(27, 54, 93, 0.12)                                    !default;",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/core\\_shadows.scss",
-      "line": 43,
-      "content": "--ds-shadow-1:      #{$shadow-1};",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/core\\_shadows.scss",
-      "line": 44,
-      "content": "--ds-shadow-2:      #{$shadow-2};",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/core\\_shadows.scss",
-      "line": 45,
-      "content": "--ds-shadow-3:      #{$shadow-3};",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/core\\_shadows.scss",
-      "line": 46,
-      "content": "--ds-shadow-4:      #{$shadow-4};",
-      "pattern": "\\bshadow-[1-8]\\b",
-      "patternName": "shadow-legacy",
-      "severity": "medium",
-      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
-    },
-    {
-      "file": "src/styles/core\\_mixins.scss",
-      "line": 63,
-      "content": "color: transparent !important;",
-      "pattern": "!important",
-      "patternName": "important",
-      "severity": "critical",
-      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
-    },
-    {
       "file": "src/styles/base\\_global.scss",
       "line": 100,
       "content": "display: flex !important;",
@@ -11316,6 +11235,87 @@
       "file": "src/styles/base\\_dark-mode.scss",
       "line": 60,
       "content": "// Unlayered gana sobre @layer utilities sin !important.",
+      "pattern": "!important",
+      "patternName": "important",
+      "severity": "critical",
+      "suggestion": "Eliminar !important y usar @layer primeng-brand o tokens CSS"
+    },
+    {
+      "file": "src/styles/core\\_shadows.scss",
+      "line": 23,
+      "content": "$shadow-1:  0 1px 2px rgba(27, 54, 93, 0.06)                                     !default;",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/core\\_shadows.scss",
+      "line": 24,
+      "content": "$shadow-2:  0 2px 8px rgba(27, 54, 93, 0.08)                                     !default;",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/core\\_shadows.scss",
+      "line": 25,
+      "content": "$shadow-3:  0 4px 16px rgba(27, 54, 93, 0.10)                                    !default;",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/core\\_shadows.scss",
+      "line": 26,
+      "content": "$shadow-4:  0 8px 32px rgba(27, 54, 93, 0.12)                                    !default;",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/core\\_shadows.scss",
+      "line": 43,
+      "content": "--ds-shadow-1:      #{$shadow-1};",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/core\\_shadows.scss",
+      "line": 44,
+      "content": "--ds-shadow-2:      #{$shadow-2};",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/core\\_shadows.scss",
+      "line": 45,
+      "content": "--ds-shadow-3:      #{$shadow-3};",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/core\\_shadows.scss",
+      "line": 46,
+      "content": "--ds-shadow-4:      #{$shadow-4};",
+      "pattern": "\\bshadow-[1-8]\\b",
+      "patternName": "shadow-legacy",
+      "severity": "medium",
+      "suggestion": "Usar shadow-sm, shadow, shadow-md, shadow-lg de Tailwind"
+    },
+    {
+      "file": "src/styles/core\\_mixins.scss",
+      "line": 63,
+      "content": "color: transparent !important;",
       "pattern": "!important",
       "patternName": "important",
       "severity": "critical",

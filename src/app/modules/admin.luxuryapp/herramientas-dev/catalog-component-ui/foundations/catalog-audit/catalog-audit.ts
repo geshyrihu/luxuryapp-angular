@@ -1,7 +1,7 @@
 import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
+import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
@@ -17,7 +17,7 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
   imports: [
     FormsModule,
     ButtonModule,
-    CheckboxModule,
+    AppCheckbox,
     DividerModule,
     MessageModule,
     TableModule,
@@ -111,11 +111,10 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
                   [class.border-red-200]="!item.aprobado"
                   (click)="toggleChecklistItem(item.numero)"
                 >
-                  <p-checkbox
-                    [ngModel]="item.aprobado"
-                    (ngModelChange)="toggleChecklistItem(item.numero)"
-                    [binary]="true"
-                  ></p-checkbox>
+                  <app-checkbox
+                    [checked]="item.aprobado"
+                    (checkedChange)="toggleChecklistItem(item.numero)"
+                  ></app-checkbox>
                   <p class="m-0 text-sm line-height-2">
                     <strong>{{ item.numero }}.</strong> {{ item.descripcion }}
                   </p>

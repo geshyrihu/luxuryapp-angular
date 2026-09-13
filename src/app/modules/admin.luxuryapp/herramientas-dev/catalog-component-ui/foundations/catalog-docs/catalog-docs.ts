@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { AccesoRol } from "./interfaces/acceso-rol.interface";
 import { NomenclaturaCampo } from "./interfaces/nomenclatura-campo.interface";
@@ -9,7 +9,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
 
 @Component({
   selector: "app-catalog-docs",
-  imports: [CommonModule, TableModule, TagModule, AppIcon],
+  imports: [CommonModule, TableModule, AppTag, AppIcon],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -36,7 +36,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                     [style.background]="doc.colorToken"
                   >
                     <strong>{{ doc.codigo }}</strong>
-                    <p-tag
+                    <app-tag
                       [value]="doc.confidencialidad"
                       [severity]="doc.severity"
                     ></p-tag>
@@ -118,31 +118,31 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                   <tr>
                     <td class="text-xs font-bold">{{ row.documento }}</td>
                     <td>
-                      <p-tag
+                      <app-tag
                         [value]="row.superUsuario"
                         [severity]="getColorAcceso(row.superUsuario)"
                       />
                     </td>
                     <td>
-                      <p-tag
+                      <app-tag
                         [value]="row.direccion"
                         [severity]="getColorAcceso(row.direccion)"
                       />
                     </td>
                     <td>
-                      <p-tag
+                      <app-tag
                         [value]="row.staff"
                         [severity]="getColorAcceso(row.staff)"
                       />
                     </td>
                     <td>
-                      <p-tag
+                      <app-tag
                         [value]="row.condomino"
                         [severity]="getColorAcceso(row.condomino)"
                       />
                     </td>
                     <td>
-                      <p-tag
+                      <app-tag
                         [value]="row.proveedor"
                         [severity]="getColorAcceso(row.proveedor)"
                       />

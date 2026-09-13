@@ -2,14 +2,14 @@ import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-catalog-layouts",
 
-  imports: [CommonModule, ButtonModule, DividerModule, TagModule, AppIcon],
+  imports: [CommonModule, ButtonModule, DividerModule, AppTag, AppIcon],
   template: `
     <div class="grid">
       <!-- -- Layouts de Página --------------------------------------- -->
@@ -43,7 +43,7 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
                   <div class="p-3 flex flex-column gap-2 flex-grow-1">
                     <div class="flex align-items-center gap-2">
                       <strong class="text-sm">{{ layout.titulo }}</strong>
-                      <p-tag
+                      <app-tag
                         [value]="layout.tag"
                         [severity]="layout.tagSeverity"
                         [rounded]="true"

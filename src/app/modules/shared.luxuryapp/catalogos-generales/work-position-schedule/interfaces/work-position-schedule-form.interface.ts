@@ -13,11 +13,9 @@ export type DiaDeTrabajoFormGroup = FormGroup<DiaDeTrabajoControls>;
 export interface WorkPositionScheduleControls {
   id: FormControl<string | null>;
   name: FormControl<string>;
-  description: FormControl<string>;
   isActive: FormControl<boolean>;
 
   tipoJornada: FormControl<number>;
-  duracionCicloSemanas: FormControl<number>;
   observaciones: FormControl<string>;
   diasDeTrabajo: FormArray<DiaDeTrabajoFormGroup>;
 }

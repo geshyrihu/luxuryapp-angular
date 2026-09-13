@@ -1,20 +1,18 @@
 <div class="preview-img overflow-hidden">
-  <p-carousel
+  <app-carousel
     [value]="images"
-    [numVisible]="1"
-    [numScroll]="1"
     [circular]="true"
     [autoplayInterval]="3000"
-  >
-    <ng-template let-image #item>
-      <div class="item event-list">
-        <div
-          class="slide-bg"
-          [style.background-image]="'url(' + image + ')'"
-        ></div>
-      </div>
-    </ng-template>
-  </p-carousel>
+    [itemTemplate]="itemTpl"
+  />
+  <ng-template #itemTpl let-image>
+    <div class="item event-list">
+      <div
+        class="slide-bg"
+        [style.background-image]="'url(' + image + ')'"
+      ></div>
+    </div>
+  </ng-template>
 </div>
 <!-- preview bg -->
 

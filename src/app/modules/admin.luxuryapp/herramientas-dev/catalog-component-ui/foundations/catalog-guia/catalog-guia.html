@@ -45,7 +45,7 @@
   </div>
 
   <h3 class="text-xl font-bold mb-3">Identidad LuxuryApp ERP</h3>
-  <p-message
+  <app-message
     severity="success"
     text="Diagnostico: la paleta actual es consistente para ERP corporativo. El azul #00050e es la firma principal y el gold #c9a74d es el acento premium documental."
     class="mb-4 block"
@@ -59,7 +59,7 @@
           <div>
             <div class="flex align-items-center gap-2 mb-2">
               <strong>{{ p.title }}</strong>
-              <p-tag [value]="p.severity" [severity]="p.severity" />
+              <app-tag [value]="p.severity" [severity]="p.severity" />
             </div>
             <p class="m-0 line-height-3 text-color-secondary">
               {{ p.summary }}
@@ -74,7 +74,7 @@
     }
   </div>
 
-  <p-message
+  <app-message
     severity="info"
     class="mb-5 block"
     text="Tipografía y paleta de color están centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allí para la referencia completa con tokens CSS copiables."
@@ -83,7 +83,7 @@
   <h3 class="text-xl font-bold mb-3">Validación de Color</h3>
   <div class="card" class="mb-5">
     <p-table [value]="colorAssessment" class="p-datatable-sm">
-      <div class="card-header"><tr>
+      <ng-template #header><tr>
           <th>Rol</th>
           <th>Actual</th>
           <th>Veredicto</th>
@@ -94,7 +94,7 @@
         <tr>
           <td><strong>{{ item.role }}</strong></td>
           <td><code>{{ item.current }}</code></td>
-          <td><p-tag [value]="item.verdict" [severity]="item.severity" /></td>
+          <td><app-tag [value]="item.verdict" [severity]="item.severity" /></td>
           <td>{{ item.recommendation }}</td>
         </tr>
       </ng-template>
@@ -102,7 +102,7 @@
   </div>
 
   <h3 class="text-xl font-bold mb-3">Catálogo de Componentes Core</h3>
-  <p-message
+  <app-message
     severity="info"
     text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)."
     class="mb-3 block"
@@ -136,7 +136,7 @@
           <td>{{ item.preferredFor }}</td>
           <td>{{ item.avoidWhen }}</td>
           <td>
-            <p-tag
+            <app-tag
               [value]="item.status"
               [severity]="getCatalogSeverity(item.status)"
             />
@@ -156,7 +156,7 @@
           <div>
             <div class="flex align-items-center gap-2 mb-2">
               <strong>{{ r.variant }}</strong>
-              <p-tag [value]="r.variant" [severity]="r.severity" />
+              <app-tag [value]="r.variant" [severity]="r.severity" />
             </div>
             <p class="m-0 text-color-secondary line-height-3">{{ r.usage }}</p>
             <small class="block mt-2 text-color-secondary">{{ r.avoid }}</small>
@@ -263,25 +263,23 @@
         />
       </div>
       <div class="field col-12 md:col-4 flex align-items-center gap-3">
-        <p-checkbox [(ngModel)]="accepted" [binary]="true" inputId="accepted" />
+        <app-checkbox [(checked)]="accepted" inputId="accepted" />
         <label for="accepted" class="font-normal">Confirmacion requerida</label>
       </div>
       <div class="field col-12 md:col-4 flex align-items-center gap-3">
         <label>Prioridad</label>
         <div class="flex gap-3">
           <div class="flex align-items-center gap-1">
-            <p-radiobutton
-              name="priority"
+            <app-radio-button
               value="baja"
-              [(ngModel)]="priority"
+              [control]="priorityControl"
               inputId="pbaja"
             /><label for="pbaja" class="font-normal">Baja</label>
           </div>
           <div class="flex align-items-center gap-1">
-            <p-radiobutton
-              name="priority"
+            <app-radio-button
               value="media"
-              [(ngModel)]="priority"
+              [control]="priorityControl"
               inputId="pmedia"
             /><label for="pmedia" class="font-normal">Media</label>
           </div>
@@ -298,7 +296,7 @@
       />
     </div>
   </div>
-  <p-message
+  <app-message
     severity="warn"
     text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar."
     class="mb-5 block"
@@ -345,7 +343,7 @@
             {{ row.amount | currency:'MXN':'symbol':'1.0-0' }}
           </td>
           <td>
-            <p-tag
+            <app-tag
               [value]="row.status"
               [severity]="getStatusSeverity(row.status)"
             />
@@ -366,7 +364,7 @@
   <div class="grid mb-5">
     <div class="col-12 md:col-6 xl:col-3">
       <div class="surface-card p-3 border-round text-center">
-        <p-progressspinner strokeWidth="4" /><strong class="block mt-2"
+        <app-spinner strokeWidth="4" /><strong class="block mt-2"
           >Loading</strong
         ><span class="text-xs text-color-secondary"
           >Spinner en acciones cortas, skeleton en carga estructural.</span
@@ -375,7 +373,7 @@
     </div>
     <div class="col-12 md:col-6 xl:col-3">
       <div class="surface-card p-3 border-round flex flex-column gap-2">
-        <p-skeleton width="100%" height="1.25rem" /><p-skeleton
+        <app-skeleton width="100%" height="1.25rem" /><app-skeleton
           width="70%"
           height="1.25rem"
         /><strong>Skeleton</strong
@@ -386,16 +384,16 @@
     </div>
     <div class="col-12 md:col-6 xl:col-3">
       <div class="flex flex-column gap-2">
-        <p-message
+        <app-message
           severity="success"
           text="Registro guardado correctamente."
-        /><p-message severity="warn" text="Faltan documentos por validar." />
+        /><app-message severity="warn" text="Faltan documentos por validar." />
       </div>
     </div>
     <div class="col-12 md:col-6 xl:col-3">
       <div class="flex flex-column gap-2">
-        <p-message
-          severity="error"
+        <app-message
+          severity="danger"
           text="Sin permisos para aprobar este proceso."
         /><il-button
           label="Abrir confirmacion"
@@ -408,32 +406,35 @@
   </div>
 
   <h3 class="text-xl font-bold mb-3">Toolbar ERP</h3>
-  <p-toolbar class="mb-5">
-    <ng-template #start
-      ><div>
-        <strong>Solicitudes operativas</strong
-        ><span class="block text-sm text-color-secondary"
-          >Filtros, acciones y estado de pantalla.</span
-        >
-      </ng-template></ng-template
-    >
-    <ng-template #end>
-      <div class="flex gap-2 flex-wrap justify-content-end">
-        <il-button
-          label="Limpiar"
-          severity="secondary"
-          variant="outline"
-          iconClass="icon.filter-off"
-        />
-        <il-button
-          label="Exportar"
-          severity="secondary"
-          iconClass="icon.download"
-        />
-        <il-button label="Nuevo" iconClass="icon.plus" />
-      </ng-template>
+  <ng-template #toolbarLeft>
+    <div>
+      <strong>Solicitudes operativas</strong>
+      <span class="block text-sm text-color-secondary"
+        >Filtros, acciones y estado de pantalla.</span
+      >
     </div>
-  </p-toolbar>
+  </ng-template>
+  <ng-template #toolbarRight>
+    <div class="flex gap-2 flex-wrap justify-content-end">
+      <il-button
+        label="Limpiar"
+        severity="secondary"
+        variant="outline"
+        iconClass="icon.filter-off"
+      />
+      <il-button
+        label="Exportar"
+        severity="secondary"
+        iconClass="icon.download"
+      />
+      <il-button label="Nuevo" iconClass="icon.plus" />
+    </div>
+  </ng-template>
+  <app-toolbar
+    class="mb-5"
+    [leftTemplate]="toolbarLeft"
+    [rightTemplate]="toolbarRight"
+  />
 
   <h3 class="text-xl font-bold mb-3">Reglas Globales del ERP</h3>
   <div class="grid mb-4">

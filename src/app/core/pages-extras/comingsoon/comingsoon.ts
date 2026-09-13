@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { ButtonModule } from "primeng/button";
-import { CarouselModule } from "primeng/carousel";
+import { Carousel } from "@ui/web/carousel/carousel";
 import { IconField } from "primeng/iconfield";
 import { InputIcon } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
@@ -13,7 +13,7 @@ import { map } from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterModule,
-    CarouselModule,
+    Carousel,
     InputTextModule,
     ButtonModule,
     IconField,

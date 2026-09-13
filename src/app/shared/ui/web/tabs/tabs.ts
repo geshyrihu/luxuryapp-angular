@@ -7,12 +7,11 @@ import {
   viewChild,
 } from "@angular/core";
 import { TabsBase } from "@ui/base/tabs.base";
-import { TabsModule } from "primeng/tabs";
+import { NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 
 /**
- * AppTabs — Wrapper sobre p-tabs (PrimeNG 22, API por `value`). Usa PrimeNG solo
- * para la BARRA de tabs (p-tabs/p-tablist/p-tab); el contenido se proyecta en un
+ * AppTabs — Wrapper con navegación Bootstrap. El contenido se proyecta en un
  * contenedor propio y se conmuta por `activeId` ocultando los `[tab=<id>]` que no
  * coinciden. Esto evita el `<ng-content [select]>` dinamico (no soportado de forma
  * fiable) y funciona igual que la pata movil `ili-tabs`.
@@ -22,20 +21,20 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 @Component({
   selector: "app-tabs",
 
-  imports: [TabsModule, AppIcon],
+  imports: [NgbNavModule, AppIcon],
   template: `
-    <p-tabs [value]="activeId()" (valueChange)="onValueChange($event)">
-      <p-tablist>
-        @for (tab of tabs(); track tab.id) {
-          <p-tab [value]="tab.id" [disabled]="tab.disabled ?? false">
+    <ul ngbNav #nav="ngbNav" [activeId]="activeId()" (activeIdChange)="onValueChange($event)" class="nav nav-tabs">
+      @for (tab of tabs(); track tab.id) {
+        <li [ngbNavItem]="tab.id" [disabled]="tab.disabled ?? false">
+          <button ngbNavLink type="button">
             @if (tab.icon) {
-              <app-icon [icon]="tab.icon" class="mr-2" />
+              <app-icon [icon]="tab.icon" class="me-2" />
             }
             {{ tab.label }}
-          </p-tab>
-        }
-      </p-tablist>
-    </p-tabs>
+          </button>
+        </li>
+      }
+    </ul>
     <div class="app-tabs-panels" #panels>
       <ng-content />
     </div>

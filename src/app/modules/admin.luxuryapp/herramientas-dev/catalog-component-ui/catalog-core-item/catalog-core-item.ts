@@ -42,7 +42,7 @@ import { MenuItem, TreeNode } from "@ui/web/primeng-api/primeng-api";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
 import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
+import { AppDivider } from "@ui/web/divider/divider";
 import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { SplitPane } from "@ui/web/split-pane/split-pane";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
@@ -176,7 +176,7 @@ const CORE_LABELS: Record<string, string> = {
   imports: [
     ButtonModule,
     CheckboxModule,
-    DividerModule,
+    AppDivider,
     TagModule,
     ActionMenu,
     AppIcon,
@@ -279,7 +279,7 @@ const CORE_LABELS: Record<string, string> = {
                   </app-action-menu>
                 </div>
               </div>
-              <p-divider />
+              <app-divider />
               <p class="text-xs text-secondary m-0">
                 <strong>Regla DS:</strong> Todos los
                 <code>il-button-*</code> dentro de

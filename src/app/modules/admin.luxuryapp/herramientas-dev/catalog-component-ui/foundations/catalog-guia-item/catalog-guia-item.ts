@@ -6,7 +6,7 @@ import {
   signal,
   ViewEncapsulation,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormControl, FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
@@ -17,16 +17,16 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
 import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { ProgressSpinnerModule } from "@ui/web/primeng-progressspinner/primeng-progressspinner";
-import { RadioButtonModule } from "@ui/web/primeng-radiobutton/primeng-radiobutton";
 import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { ToolbarModule } from "@ui/web/primeng-toolbar/primeng-toolbar";
+import { AppCheckbox } from "@ui/web/checkbox/checkbox";
+import { AppMessage } from "@ui/web/message/message";
+import { AppRadioButton } from "@ui/web/radio-button/radio-button";
+import { AppTag } from "@ui/web/tag/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
 import { ButtonCatalog } from "./button-catalog/button-catalog";
@@ -49,7 +49,6 @@ const GUIA_LABELS: Record<string, string> = {
     CommonModule,
     FormsModule,
     WebButtonLabel,
-    CheckboxModule,
     InputText,
     InputTextarea,
     InputNumber,
@@ -60,13 +59,14 @@ const GUIA_LABELS: Record<string, string> = {
     CustomSearchInput,
     DialogModule,
     DividerModule,
-    MessageModule,
     ProgressSpinnerModule,
-    RadioButtonModule,
     SkeletonModule,
     TableModule,
-    TagModule,
     ToolbarModule,
+    AppCheckbox,
+    AppMessage,
+    AppRadioButton,
+    AppTag,
     AppIcon,
     ButtonCatalog,
   ],
@@ -120,7 +120,7 @@ const GUIA_LABELS: Record<string, string> = {
           </div>
 
           <h3 class="text-xl font-bold mb-3">Identidad LuxuryApp ERP</h3>
-          <p-message
+          <app-message
             severity="success"
             text="Diagnostico: la paleta actual es consistente para ERP corporativo. El azul #00050e es la firma principal y el gold #c9a74d es el acento premium documental."
             class="mb-4 block"
@@ -137,7 +137,7 @@ const GUIA_LABELS: Record<string, string> = {
                     <div>
                       <div class="flex align-items-center gap-2 mb-2">
                         <strong>{{ p.title }}</strong>
-                        <p-tag [value]="p.severity" [severity]="p.severity" />
+                        <app-tag [value]="p.severity" [severity]="p.severity" />
                       </div>
                       <p class="m-0 line-height-3 text-color-secondary">
                         {{ p.summary }}
@@ -154,7 +154,7 @@ const GUIA_LABELS: Record<string, string> = {
         }
 
         @case ("colorvalidation") {
-          <p-message
+          <app-message
             severity="info"
             class="mb-4 block"
             text="Tipografóa y paleta de color estén centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allé para la referencia completa con tokens CSS copiables."
@@ -178,7 +178,7 @@ const GUIA_LABELS: Record<string, string> = {
                     <code>{{ item.current }}</code>
                   </td>
                   <td>
-                    <p-tag [value]="item.verdict" [severity]="item.severity" />
+                    <app-tag [value]="item.verdict" [severity]="item.severity" />
                   </td>
                   <td>{{ item.recommendation }}</td>
                 </tr>
@@ -188,7 +188,7 @@ const GUIA_LABELS: Record<string, string> = {
         }
 
         @case ("componentcatalog") {
-          <p-message
+          <app-message
             severity="info"
             text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)."
             class="mb-3 block"
@@ -228,7 +228,7 @@ const GUIA_LABELS: Record<string, string> = {
                   <td>{{ item.preferredFor }}</td>
                   <td>{{ item.avoidWhen }}</td>
                   <td>
-                    <p-tag
+                    <app-tag
                       [value]="item.status"
                       [severity]="getCatalogSeverity(item.status)"
                     />
@@ -249,7 +249,7 @@ const GUIA_LABELS: Record<string, string> = {
                     <div>
                       <div class="flex align-items-center gap-2 mb-2">
                         <strong>{{ r.variant }}</strong>
-                        <p-tag [value]="r.variant" [severity]="r.severity" />
+                        <app-tag [value]="r.variant" [severity]="r.severity" />
                       </div>
                       <p class="m-0 text-color-secondary line-height-3">
                         {{ r.usage }}
@@ -363,11 +363,7 @@ const GUIA_LABELS: Record<string, string> = {
                 />
               </div>
               <div class="field col-12 md:col-4 flex align-items-center gap-3">
-                <p-checkbox
-                  [(ngModel)]="accepted"
-                  [binary]="true"
-                  inputId="accepted"
-                />
+                <app-checkbox [(checked)]="accepted" inputId="accepted" />
                 <label for="accepted" class="font-normal"
                   >Confirmacion requerida</label
                 >
@@ -376,18 +372,16 @@ const GUIA_LABELS: Record<string, string> = {
                 <label>Prioridad</label>
                 <div class="flex gap-3">
                   <div class="flex align-items-center gap-1">
-                    <p-radiobutton
-                      name="priority"
+                    <app-radio-button
                       value="baja"
-                      [(ngModel)]="priority"
+                      [control]="priorityControl"
                       inputId="pbaja"
                     /><label for="pbaja" class="font-normal">Baja</label>
                   </div>
                   <div class="flex align-items-center gap-1">
-                    <p-radiobutton
-                      name="priority"
+                    <app-radio-button
                       value="media"
-                      [(ngModel)]="priority"
+                      [control]="priorityControl"
                       inputId="pmedia"
                     /><label for="pmedia" class="font-normal">Media</label>
                   </div>
@@ -406,7 +400,7 @@ const GUIA_LABELS: Record<string, string> = {
               />
             </div>
           </div>
-          <p-message
+          <app-message
             severity="warn"
             text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar."
             class="block"
@@ -439,7 +433,7 @@ export class CatalogGuiaItem {
   selectedDate = new Date(2026, 3, 22);
   enabled = true;
   accepted = true;
-  priority = "media";
+  priorityControl = new FormControl("media");
   search = "";
 
   readonly areas = [
