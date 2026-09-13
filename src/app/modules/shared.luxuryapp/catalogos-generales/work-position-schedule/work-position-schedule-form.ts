@@ -163,6 +163,7 @@ export class WorkPositionScheduleForm implements OnInit {
         return {
           ...day,
           semana,
+          uniqueKey: `s${semana}d${day.dw}`, // clave única para tracking
           entry: ctrl?.get("horaEntrada") ?? null,
           exit: ctrl?.get("horaSalida") ?? null,
           rest: ctrl?.get("esDescanso") ?? null,
@@ -268,7 +269,7 @@ export class WorkPositionScheduleForm implements OnInit {
     }
   }
 
-  private proyectarSemanas(): void {
+  proyectarSemanas(): void {
     const semanas = this.duracionCicloValue();
     if (semanas <= 1) return;
 
