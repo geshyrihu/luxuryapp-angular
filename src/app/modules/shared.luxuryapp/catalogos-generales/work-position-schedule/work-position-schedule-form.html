@@ -65,79 +65,115 @@
 
       <div class="col-12 lg:col-7">
         <div class="flex align-items-center justify-content-between mb-2">
-          <h3 class="m-0 text-sm">Horario semanal</h3>
+          <h3 class="m-0 text-sm">Horario semanal (4 semanas configurables)</h3>
           <small class="text-color-secondary">
-            {{ cantidadDias() }} dia(s) a capturar ({{ duracionCicloValue() }}
-            semana(s) x 7)
+            Ciclo activo: {{ duracionCicloValue() }} semana(s) · Se envían solo las primeras {{ 7 * duracionCicloValue() }} día(s)
           </small>
         </div>
+
+        <!-- Botones de utilidad -->
+        <div class="flex gap-2 mb-3 flex-wrap">
+          <iw-button
+            icon="material-symbols-light:content-copy"
+            label="Copiar Semana 1 a otras"
+            severity="secondary"
+            variant="outlined"
+            size="sm"
+            (clicked)="proyectarSemanas()"
+            [disabled]="duracionCicloValue() <= 1"
+            title="Copia los horarios de la Semana 1 a las semanas 2-{{ duracionCicloValue() }}"
+          />
+          <iw-button
+            icon="material-symbols-light:schedule"
+            label="Limpiar semanas 2-4"
+            severity="secondary"
+            variant="outlined"
+            size="sm"
+            (clicked)="limpiarSemanasPosteriores()"
+            title="Pone en descanso los días de las semanas 2-4"
+          />
+        </div>
+
+        <!-- Tabs para cada semana -->
         <div class="flex flex-column gap-2">
-          <div
-            class="hidden md:grid grid align-items-center px-2 text-sm font-semibold text-color-secondary"
-          >
-            <div class="col-3"></div>
-            <div class="col-3">Descanso</div>
-            <div class="col-3">Entrada</div>
-            <div class="col-3">Salida (mismo día o siguiente)</div>
-          </div>
-          @for (day of weekDays(); track day.dw) {
-          <div class="surface-50 border-1 border-200 rounded p-2">
-            <div class="grid align-items-center">
-              <div class="col-12 md:col-3">
-                <div class="grid align-items-center ml-2">
+          @for (semana of weekDays(); track $index) {
+            <div class="surface-50 border-1 border-200 rounded">
+              <div class="p-2 bg-primary-50 border-bottom-1 border-200 flex align-items-center justify-content-between">
+                <span class="font-semibold text-sm">
+                  Semana {{ semana[0]?.semana }} {{ $index + 1 < duracionCicloValue() ? '(activa)' : '(configurable, no se envía)' }}
+                </span>
+                @if ($index + 1 > 1) {
                   <iw-button
                     icon="material-symbols-light:content-copy"
                     size="sm"
                     variant="ghost"
                     severity="secondary"
-                    title="Copiar horarios del dia anterior"
-                    [disabled]="$first"
-                    (clicked)="copiarDelDiaAnterior(day.dw)"
+                    title="Copiar de Semana 1 a esta semana"
+                    (clicked)="copiarSemana1A($index + 1)"
                   />
-                  <span class="font-semibold text-sm">{{ day.label }}</span>
+                }
+              </div>
+
+              <div class="p-2">
+                <div
+                  class="hidden md:grid grid align-items-center px-2 text-sm font-semibold text-color-secondary"
+                >
+                  <div class="col-3"></div>
+                  <div class="col-3">Descanso</div>
+                  <div class="col-3">Entrada</div>
+                  <div class="col-3">Salida (mismo día o siguiente)</div>
                 </div>
+
+                @for (day of semana; track day.dw) {
+                  <div class="surface-0 border-1 border-200 rounded p-2 mb-2">
+                    <div class="grid align-items-center">
+                      <div class="col-12 md:col-3">
+                        <div class="grid align-items-center ml-2">
+                          <iw-button
+                            icon="material-symbols-light:content-copy"
+                            size="sm"
+                            variant="ghost"
+                            severity="secondary"
+                            title="Copiar horarios del día anterior (misma semana)"
+                            [disabled]="$first"
+                            (clicked)="copiarDelDiaAnteriorEnSemana(day.semana, day.dw)"
+                          />
+                          <span class="font-semibold text-sm">{{ day.label }}</span>
+                        </div>
+                      </div>
+                      <div class="col-12 md:col-3 flex align-items-center">
+                        <custom-input-switch-signal
+                          [control]="day.rest"
+                          placeholder=" Descanso"
+                          (switchChange)="onRestChange(day.semana, day.dw, $event)"
+                          [horizontal]="false"
+                        />
+                      </div>
+                      <div class="col-12 md:col-3">
+                        <custom-input-select-signal
+                          [control]="day.entry"
+                          [data]="timeOptions"
+                          [filter]="true"
+                          [horizontal]="false"
+                          placeholder="Entrada"
+                          [disabled]="day.rest?.value"
+                        />
+                      </div>
+                      <div class="col-12 md:col-3">
+                        <custom-input-select-signal
+                          [control]="day.exit"
+                          [data]="timeOptions"
+                          [filter]="true"
+                          [horizontal]="false"
+                          placeholder="Salida"
+                          [disabled]="day.rest?.value"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                }
               </div>
-              <div class="col-12 md:col-3 flex align-items-center">
-                <custom-input-switch-signal
-                  [control]="day.rest"
-                  placeholder=" Descanso"
-                  (switchChange)="onRestChange(day.dw, $event)"
-                  [horizontal]="false"
-                />
-              </div>
-              <div class="col-12 md:col-3">
-                <custom-input-select-signal
-                  [control]="day.entry"
-                  [data]="timeOptions"
-                  [filter]="true"
-                  [horizontal]="false"
-                  placeholder="Entrada"
-                  [disabled]="day.rest?.value"
-                />
-              </div>
-              <div class="col-12 md:col-3">
-                <custom-input-select-signal
-                  [control]="day.exit"
-                  [data]="timeOptions"
-                  [filter]="true"
-                  [horizontal]="false"
-                  placeholder="Salida"
-                  [disabled]="day.rest?.value"
-                />
-              </div>
-              <!-- <div class="col-12 md:col-1 flex justify-content-end">
-                <iw-button
-                  icon="material-symbols-light:content-copy"
-                  size="sm"
-                  variant="ghost"
-                  severity="secondary"
-                  title="Copiar horarios del dia anterior"
-                  [disabled]="$first"
-                  (clicked)="copiarDelDiaAnterior(day.dw)"
-                />
-              </div> -->
             </div>
-          </div>
           }
         </div>
       </div>

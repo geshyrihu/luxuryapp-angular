@@ -97,9 +97,10 @@ export class WorkPositionScheduleForm implements OnInit {
     { label: "Domingo", dw: 0 },
   ] as const;
 
-  private buildDiasDeTrabajo(semanas: number): DiaDeTrabajoFormGroup[] {
+  private buildDiasDeTrabajo(): DiaDeTrabajoFormGroup[] {
     const dias: DiaDeTrabajoFormGroup[] = [];
-    for (let s = 1; s <= semanas; s++) {
+    // Siempre 4 semanas (28 días) para permitir configurar todas
+    for (let s = 1; s <= 4; s++) {
       for (const day of this.days) {
         dias.push(
           this.formB.group<DiaDeTrabajoControls>({
@@ -141,7 +142,7 @@ export class WorkPositionScheduleForm implements OnInit {
         nonNullable: true,
       }),
       diasDeTrabajo: this.formB.array<DiaDeTrabajoFormGroup>(
-        this.buildDiasDeTrabajo(1),
+        this.buildDiasDeTrabajo(),
       ),
     },
     { validators: [requireBothOrNoneTimeValidator] },
@@ -150,26 +151,31 @@ export class WorkPositionScheduleForm implements OnInit {
   readonly weekDays = computed(() => {
     const dias = this.form.controls.diasDeTrabajo;
     if (!dias || dias.length === 0) return [];
-    return this.days.map((day) => {
-      const ctrl = dias.controls.find(
-        (g) =>
-          g.controls.numeroSemanaCiclo.value === 1 &&
-          g.controls.diaSemana.value === day.dw,
-      );
-      return {
-        ...day,
-        entry: ctrl?.get("horaEntrada") ?? null,
-        exit: ctrl?.get("horaSalida") ?? null,
-        rest: ctrl?.get("esDescanso") ?? null,
-      };
+
+    // Agrupar por semana: retorna array de 4 semanas, cada una con 7 días
+    const semanas = [1, 2, 3, 4].map((semana) => {
+      return this.days.map((day) => {
+        const ctrl = dias.controls.find(
+          (g) =>
+            g.controls.numeroSemanaCiclo.value === semana &&
+            g.controls.diaSemana.value === day.dw,
+        );
+        return {
+          ...day,
+          semana,
+          entry: ctrl?.get("horaEntrada") ?? null,
+          exit: ctrl?.get("horaSalida") ?? null,
+          rest: ctrl?.get("esDescanso") ?? null,
+        };
+      });
     });
+    return semanas;
   });
 
   readonly tipoJornadaValue = signal(this.form.controls.tipoJornada.value);
   readonly duracionCicloValue = signal(
     this.form.controls.duracionCicloSemanas.value,
   );
-  readonly cantidadDias = computed(() => 7 * this.duracionCicloValue());
   readonly duracionCicloOptions: SelectItemDto[] = [
     { label: "1 semana (ciclo semanal)", value: 1 },
     { label: "2 semanas (quincenal)", value: 2 },
@@ -190,35 +196,19 @@ export class WorkPositionScheduleForm implements OnInit {
     this.cb_tipoJornada.set(
       await lastValueFrom(this.enumSelectS.tipoJornada()),
     );
-    this.sincronizarDiasDeTrabajo();
     if (this.id) this.onLoadData();
 
     this.form.controls.tipoJornada.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((v) => {
         this.tipoJornadaValue.set(v);
-        this.sincronizarDiasDeTrabajo();
       });
 
     this.form.controls.duracionCicloSemanas.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((v) => {
         this.duracionCicloValue.set(v);
-        this.sincronizarDiasDeTrabajo();
       });
-  }
-
-  private sincronizarDiasDeTrabajo(): void {
-    const semanas = this.duracionCicloValue();
-    const total = 7 * semanas;
-    const current = this.form.controls.diasDeTrabajo;
-
-    if (current.length !== total) {
-      current.clear({ emitEvent: false });
-      for (const group of this.buildDiasDeTrabajo(semanas)) {
-        current.push(group);
-      }
-    }
   }
 
   private onLoadData() {
@@ -244,12 +234,11 @@ export class WorkPositionScheduleForm implements OnInit {
     }
 
     const payload = this.form.getRawValue();
-    const expectedDays = 7 * this.duracionCicloValue();
-    const actualDays = payload.diasDeTrabajo?.length ?? 0;
-    if (actualDays !== expectedDays) {
-      this.form.markAllAsTouched();
-      return;
-    }
+    // Filtrar solo los días del ciclo seleccionado
+    const cicloSeleccionado = this.duracionCicloValue();
+    payload.diasDeTrabajo = payload.diasDeTrabajo?.filter(
+      (d: DiaDeTrabajoDto) => d.numeroSemanaCiclo <= cicloSeleccionado,
+    ) ?? [];
 
     FormHelper.submitCrud({
       form: this.form,
@@ -303,19 +292,46 @@ export class WorkPositionScheduleForm implements OnInit {
     );
   }
 
-  /**
-   * Copia las horas de entrada/salida del dia anterior al dia actual.
-   * Caso de uso: horarios uniformes (Lun-Vie 9-18, Sab-Dom descanso).
-   * Solo aplica a la semana 1 (la UI no muestra semanas adicionales).
-   */
-  copiarDelDiaAnterior(dwActual: number): void {
+  /** Copia Semana 1 a una semana específica (2-4) */
+  copiarSemana1A(semanaDestino: number): void {
+    if (semanaDestino < 2 || semanaDestino > 4) return;
+    for (const day of this.days) {
+      const origen = this.findDia(1, day.dw);
+      const destino = this.findDia(semanaDestino, day.dw);
+      if (!origen || !destino) continue;
+      destino.controls.horaEntrada.setValue(origen.controls.horaEntrada.value, { emitEvent: false });
+      destino.controls.horaSalida.setValue(origen.controls.horaSalida.value, { emitEvent: false });
+      destino.controls.esDescanso.setValue(origen.controls.esDescanso.value, { emitEvent: false });
+    }
+    this.cdr.markForCheck();
+  }
+
+  /** Limpia semanas 2-4 poniendo todo en descanso */
+  limpiarSemanasPosteriores(): void {
+    for (let s = 2; s <= 4; s++) {
+      for (const day of this.days) {
+        const dia = this.findDia(s, day.dw);
+        if (!dia) continue;
+        dia.controls.horaEntrada.setValue(null, { emitEvent: false });
+        dia.controls.horaSalida.setValue(null, { emitEvent: false });
+        dia.controls.esDescanso.setValue(true, { emitEvent: false });
+        dia.controls.horaEntrada.disable({ emitEvent: false });
+        dia.controls.horaSalida.disable({ emitEvent: false });
+      }
+    }
+    this.form.updateValueAndValidity();
+    this.cdr.markForCheck();
+  }
+
+  /** Copia del día anterior dentro de la misma semana */
+  copiarDelDiaAnteriorEnSemana(semana: number, dwActual: number): void {
     const orden = [0, 1, 2, 3, 4, 5, 6];
     const idx = orden.indexOf(dwActual);
     if (idx <= 0) return;
     const dwAnterior = orden[idx - 1];
 
-    const diaAnterior = this.findDia(1, dwAnterior);
-    const diaActual = this.findDia(1, dwActual);
+    const diaAnterior = this.findDia(semana, dwAnterior);
+    const diaActual = this.findDia(semana, dwActual);
     if (!diaAnterior || !diaActual) return;
 
     const entrada = diaAnterior.get("horaEntrada")?.value ?? null;
@@ -325,8 +341,17 @@ export class WorkPositionScheduleForm implements OnInit {
     this.cdr.markForCheck();
   }
 
-  onRestChange(dw: number, isRest: boolean): void {
-    const dia = this.findDia(1, dw);
+  /**
+   * Copia las horas de entrada/salida del dia anterior al dia actual.
+   * Caso de uso: horarios uniformes (Lun-Vie 9-18, Sab-Dom descanso).
+   * Solo aplica a la semana 1.
+   */
+  copiarDelDiaAnterior(dwActual: number): void {
+    this.copiarDelDiaAnteriorEnSemana(1, dwActual);
+  }
+
+  onRestChange(semana: number, dw: number, isRest: boolean): void {
+    const dia = this.findDia(semana, dw);
     if (!dia) return;
 
     if (isRest) {
