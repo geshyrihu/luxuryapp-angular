@@ -750,21 +750,21 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <div class="flex align-items-center gap-2">
                       <app-radio-button
                         value="1"
-                        [formControl]="radioControl"
+                        [control]="radioControl"
                         inputId="radio1"
                       /><label for="radio1">Opcion 1</label>
                     </div>
                     <div class="flex align-items-center gap-2">
                       <app-radio-button
                         value="2"
-                        [formControl]="radioControl"
+                        [control]="radioControl"
                         inputId="radio2"
                       /><label for="radio2">Opcion 2</label>
                     </div>
                     <div class="flex align-items-center gap-2">
                       <app-radio-button
                         value="3"
-                        [formControl]="radioControl"
+                        [control]="radioControl"
                         inputId="radio3"
                       /><label for="radio3">Opcion 3</label>
                     </div>

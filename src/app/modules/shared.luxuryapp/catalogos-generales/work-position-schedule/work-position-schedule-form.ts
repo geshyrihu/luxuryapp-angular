@@ -372,26 +372,34 @@ export class WorkPositionScheduleForm implements OnInit {
     this.copiarDelDiaAnteriorEnSemana(1, dwActual);
   }
 
-  onRestChange(semana: number, dw: number, isRest: boolean): void {
-    console.log("[onRestChange] llamada:", { semana, dw, isRest });
-    const dia = this.findDia(semana, dw);
-    console.log(
-      "[onRestChange] findDia resultado:",
-      dia?.controls?.diaSemana?.value,
-      dia?.controls?.numeroSemanaCiclo?.value,
-    );
-    if (!dia) return;
+  private _restChangeGuard = false;
 
-    if (isRest) {
-      dia.controls.horaEntrada.setValue(null, { emitEvent: false });
-      dia.controls.horaSalida.setValue(null, { emitEvent: false });
-      dia.controls.horaEntrada.disable({ emitEvent: false });
-      dia.controls.horaSalida.disable({ emitEvent: false });
-    } else {
-      dia.controls.horaEntrada.enable({ emitEvent: false });
-      dia.controls.horaSalida.enable({ emitEvent: false });
+  onRestChange(semana: number, dw: number, isRest: boolean): void {
+    if (this._restChangeGuard) return;
+    this._restChangeGuard = true;
+    try {
+      console.log("[onRestChange] llamada:", { semana, dw, isRest });
+      const dia = this.findDia(semana, dw);
+      console.log(
+        "[onRestChange] findDia resultado:",
+        dia?.controls?.diaSemana?.value,
+        dia?.controls?.numeroSemanaCiclo?.value,
+      );
+      if (!dia) return;
+
+      if (isRest) {
+        dia.controls.horaEntrada.setValue(null, { emitEvent: false });
+        dia.controls.horaSalida.setValue(null, { emitEvent: false });
+        dia.controls.horaEntrada.disable({ emitEvent: false });
+        dia.controls.horaSalida.disable({ emitEvent: false });
+      } else {
+        dia.controls.horaEntrada.enable({ emitEvent: false });
+        dia.controls.horaSalida.enable({ emitEvent: false });
+      }
+      this.form.updateValueAndValidity();
+    } finally {
+      this._restChangeGuard = false;
     }
-    this.form.updateValueAndValidity();
   }
 
   private toFormValue(item: WorkPositionScheduleDto) {
