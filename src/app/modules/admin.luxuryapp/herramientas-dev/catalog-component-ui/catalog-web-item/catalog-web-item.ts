@@ -9,6 +9,7 @@ import {
 } from "@angular/core";
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -58,32 +59,32 @@ import {
   CustomInputTextSignal,
 } from "@ui/inputs/web";
 import { AccordionModule } from "@ui/web/primeng-accordion/primeng-accordion";
-import { BadgeModule } from "@ui/web/primeng-badge/primeng-badge";
-import { BreadcrumbModule } from "@ui/web/primeng-breadcrumb/primeng-breadcrumb";
 import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
 import { DatePickerModule } from "@ui/web/primeng-datepicker/primeng-datepicker";
 import { DialogModule } from "@ui/web/primeng-dialog/primeng-dialog";
-import { DividerModule } from "@ui/web/primeng-divider/primeng-divider";
 import { FloatLabelModule } from "@ui/web/primeng-floatlabel/primeng-floatlabel";
 import { IconFieldModule } from "@ui/web/primeng-iconfield/primeng-iconfield";
 import { InputIconModule } from "@ui/web/primeng-inputicon/primeng-inputicon";
 import { InputNumberModule } from "@ui/web/primeng-inputnumber/primeng-inputnumber";
 import { InputTextModule } from "@ui/web/primeng-inputtext/primeng-inputtext";
-import { MessageModule } from "@ui/web/primeng-message/primeng-message";
 import { MultiSelectModule } from "@ui/web/primeng-multiselect/primeng-multiselect";
 import { PopoverModule } from "@ui/web/primeng-popover/primeng-popover";
-import { ProgressBarModule } from "@ui/web/primeng-progressbar/primeng-progressbar";
-import { ProgressSpinnerModule } from "@ui/web/primeng-progressspinner/primeng-progressspinner";
-import { RadioButtonModule } from "@ui/web/primeng-radiobutton/primeng-radiobutton";
 import { SelectModule } from "@ui/web/primeng-select/primeng-select";
 import { SelectButtonModule } from "@ui/web/primeng-selectbutton/primeng-selectbutton";
-import { SkeletonModule } from "@ui/web/primeng-skeleton/primeng-skeleton";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import { TabsModule } from "@ui/web/primeng-tabs/primeng-tabs";
-import { TagModule } from "@ui/web/primeng-tag/primeng-tag";
 import { ToggleSwitchModule } from "@ui/web/primeng-toggleswitch/primeng-toggleswitch";
-import { ToolbarModule } from "@ui/web/primeng-toolbar/primeng-toolbar";
+import { AppBadge } from "@ui/web/badge/badge";
+import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
+import { AppCheckbox } from "@ui/web/checkbox/checkbox";
+import { AppDivider } from "@ui/web/divider/divider";
+import { AppMessage } from "@ui/web/message/message";
+import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
+import { AppRadioButton } from "@ui/web/radio-button/radio-button";
+import { AppSkeleton } from "@ui/web/skeleton/skeleton";
+import { AppSpinner } from "@ui/web/spinner/spinner";
+import { AppTag } from "@ui/web/tag/tag";
+import { AppToolbar } from "@ui/web/toolbar/toolbar";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { MobileButtons } from "../catalog-mobile/mobile-buttons/mobile-buttons";
 import { MobileData } from "../catalog-mobile/mobile-data/mobile-data";
@@ -176,32 +177,32 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     CustomInputTextAreaSignal,
 
     AccordionModule,
-    BadgeModule,
-    BreadcrumbModule,
     ButtonModule,
-    CheckboxModule,
     DatePickerModule,
     DialogModule,
-    DividerModule,
     FloatLabelModule,
     IconFieldModule,
     InputIconModule,
     InputNumberModule,
     InputTextModule,
-    MessageModule,
     MultiSelectModule,
     PopoverModule,
-    ProgressBarModule,
-    ProgressSpinnerModule,
-    RadioButtonModule,
     SelectModule,
     SelectButtonModule,
-    SkeletonModule,
     TableModule,
     TabsModule,
-    TagModule,
     ToggleSwitchModule,
-    ToolbarModule,
+    AppBadge,
+    Breadcrumbs,
+    AppCheckbox,
+    AppDivider,
+    AppMessage,
+    AppProgressBar,
+    AppRadioButton,
+    AppSkeleton,
+    AppSpinner,
+    AppTag,
+    AppToolbar,
     LxTooltipDirective,
     FullCalendarModule,
     AppIcon,
@@ -294,12 +295,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="flex flex-wrap gap-3 align-items-center">
-                    <p-badge value="3" severity="danger" />
-                    <p-badge value="12" severity="warn" />
-                    <p-badge value="5" severity="info" />
-                    <p-badge value="8" severity="success" />
-                    <p-badge severity="danger" />
-                    <p-badge severity="warn" />
+                    <app-badge value="3" color="danger" />
+                    <app-badge value="12" color="warning" />
+                    <app-badge value="5" color="info" />
+                    <app-badge value="8" color="success" />
+                    <app-badge color="danger" />
+                    <app-badge color="warning" />
                   </div>
                 </div>
               </div>
@@ -310,8 +311,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Breadcrumb - p-breadcrumb</h3>
                 </div>
                 <div class="card-body">
-                  <p-breadcrumb
-                    [model]="[
+                  <app-breadcrumbs
+                    [items]="[
                       { label: 'Inicio' },
                       { label: 'Sistema' },
                       { label: 'Catálogos' },
@@ -338,7 +339,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <p-button label="Help" severity="help" />
                     <p-button label="Contrast" severity="contrast" />
                   </div>
-                  <p-divider />
+                  <app-divider />
                   <div class="flex flex-wrap gap-2">
                     <p-button label="Small" size="small" />
                     <p-button label="Normal" />
@@ -429,7 +430,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     </div>
 
                     <!-- Codigo de referencia -->
-                    <p-divider />
+                    <app-divider />
                     <p class="text-sm font-bold mb-2">Estructura</p>
                     <pre
                       class="text-xs surface-ground p-3 border-round m-0"
@@ -443,7 +444,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       style="overflow-x:auto"
                     ><code>{{ iconBtnScss }}</code></pre>
 
-                    <p-divider />
+                    <app-divider />
                     <p class="text-sm font-bold mb-2">Regla de uso</p>
                     <div class="grid">
                       <div class="col-12 md:col-4">
@@ -540,22 +541,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="card-body">
                   <div class="flex flex-column gap-3">
                     <div class="flex align-items-center gap-2">
-                      <p-checkbox [binary]="true" inputId="chk1" /><label
-                        for="chk1"
-                        >Opcion 1</label
-                      >
+                      <app-checkbox inputId="chk1" label="Opcion 1" />
                     </div>
                     <div class="flex align-items-center gap-2">
-                      <p-checkbox [binary]="true" inputId="chk2" /><label
-                        for="chk2"
-                        >Opcion 2</label
-                      >
+                      <app-checkbox inputId="chk2" label="Opcion 2" />
                     </div>
                     <div class="flex align-items-center gap-2">
-                      <p-checkbox [binary]="true" inputId="chk3" /><label
-                        for="chk3"
-                        >Opcion 3</label
-                      >
+                      <app-checkbox inputId="chk3" label="Opcion 3" />
                     </div>
                   </div>
                 </div>
@@ -610,9 +602,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <p>Contenido superior</p>
-                  <p-divider />
+                   <app-divider />
                   <p>Contenido inferior</p>
-                  <p-divider align="left"><b>Izquierda</b></p-divider>
+                   <app-divider><b>Izquierda</b></app-divider>
                   <p>Texto con divider alineado.</p>
                 </div>
               </div>
@@ -673,12 +665,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="flex flex-column gap-2">
-                    <p-message severity="info" text="Mensaje informativo" />
-                    <p-message severity="success" text="Operacion exitosa" />
-                    <p-message severity="warn" text="Advertencia" />
-                    <p-message severity="error" text="Error critico" />
-                    <p-message severity="secondary" text="Mensaje secundario" />
-                    <p-message severity="contrast" text="Contraste" />
+                    <app-message severity="info" text="Mensaje informativo" />
+                    <app-message severity="success" text="Operacion exitosa" />
+                    <app-message severity="warn" text="Advertencia" />
+                    <app-message severity="danger" text="Error critico" />
+                    <app-message severity="secondary" text="Mensaje secundario" />
+                    <app-message severity="secondary" text="Contraste" />
                   </div>
                 </div>
               </div>
@@ -726,9 +718,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">ProgressBar - p-progressbar</h3>
                 </div>
                 <div class="card-body">
-                  <p-progressbar [value]="75" />
+                  <app-progress-bar [value]="75" />
                   <p class="mt-3">
-                    <p-progressbar [value]="50" [showValue]="false" />
+                    <app-progress-bar [value]="50" [showValue]="false" />
                   </p>
                 </div>
               </div>
@@ -742,8 +734,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="flex gap-3">
-                    <p-progressspinner strokeWidth="4" />
-                    <p-progressspinner strokeWidth="8" />
+                    <app-spinner [strokeWidth]="4" />
+                    <app-spinner [strokeWidth]="8" />
                   </div>
                 </div>
               </div>
@@ -756,25 +748,25 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="card-body">
                   <div class="flex flex-column gap-2">
                     <div class="flex align-items-center gap-2">
-                      <p-radiobutton
-                        name="radio"
+                      <app-radio-button
                         value="1"
-                        [(ngModel)]="radioVal"
-                      /><label>Opcion 1</label>
+                        [formControl]="radioControl"
+                        inputId="radio1"
+                      /><label for="radio1">Opcion 1</label>
                     </div>
                     <div class="flex align-items-center gap-2">
-                      <p-radiobutton
-                        name="radio"
+                      <app-radio-button
                         value="2"
-                        [(ngModel)]="radioVal"
-                      /><label>Opcion 2</label>
+                        [formControl]="radioControl"
+                        inputId="radio2"
+                      /><label for="radio2">Opcion 2</label>
                     </div>
                     <div class="flex align-items-center gap-2">
-                      <p-radiobutton
-                        name="radio"
+                      <app-radio-button
                         value="3"
-                        [(ngModel)]="radioVal"
-                      /><label>Opcion 3</label>
+                        [formControl]="radioControl"
+                        inputId="radio3"
+                      /><label for="radio3">Opcion 3</label>
                     </div>
                   </div>
                 </div>
@@ -818,14 +810,18 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="flex flex-column gap-2">
-                    <p-skeleton width="100%" height="1rem" />
-                    <p-skeleton width="75%" height="1rem" />
-                    <p-skeleton width="50%" height="1rem" />
+                    <app-skeleton width="100%" height="1rem" />
+                    <app-skeleton width="75%" height="1rem" />
+                    <app-skeleton width="50%" height="1rem" />
                     <div class="flex gap-2 mt-2">
-                      <p-skeleton shape="circle" size="3rem" />
+                      <app-skeleton
+                        width="3rem"
+                        height="3rem"
+                        borderRadius="50%"
+                      />
                       <div class="flex flex-column gap-2 flex-grow-1">
-                        <p-skeleton width="100%" height="0.75rem" />
-                        <p-skeleton width="60%" height="0.75rem" />
+                        <app-skeleton width="100%" height="0.75rem" />
+                        <app-skeleton width="60%" height="0.75rem" />
                       </div>
                     </div>
                   </div>
@@ -849,7 +845,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <ng-template #body let-row>
                       <tr>
                         <td>{{ row.name }}</td>
-                        <td><p-tag [value]="row.status" severity="info" /></td>
+                        <td><app-tag [value]="row.status" severity="info" /></td>
                         <td>
                           <p-button
                             [rounded]="true"
@@ -900,12 +896,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="flex flex-wrap gap-2">
-                    <p-tag value="Success" severity="success" />
-                    <p-tag value="Info" severity="info" />
-                    <p-tag value="Warning" severity="warn" />
-                    <p-tag value="Danger" severity="danger" />
-                    <p-tag value="Secondary" severity="secondary" />
-                    <p-tag
+                    <app-tag value="Success" severity="success" />
+                    <app-tag value="Info" severity="info" />
+                    <app-tag value="Warning" severity="warn" />
+                    <app-tag value="Danger" severity="danger" />
+                    <app-tag value="Secondary" severity="secondary" />
+                    <app-tag
                       value="Contrast"
                       severity="contrast"
                       [rounded]="true"
@@ -939,7 +935,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Toast - p-toast</h3>
                 </div>
                 <div class="card-body">
-                  <p-message
+                  <app-message
                     severity="info"
                     text="Las notificaciones Toast se muestran globalmente mediante MessageService. Inyecta MessageService y llama a add() con severity, summary y detail."
                   />
@@ -965,11 +961,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Toolbar - p-toolbar</h3>
                 </div>
                 <div class="card-body">
-                  <p-toolbar>
-                    <ng-template #start
+                  <ng-template #toolbarLeft
                       ><strong>Toolbar Title</strong></ng-template
                     >
-                    <ng-template #end>
+                  <ng-template #toolbarRight>
                       <div class="flex gap-2">
                         <p-button label="Nuevo" size="small"
                         >
@@ -983,8 +978,11 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                           size="small"
                         />
                       </div>
-                    </ng-template>
-                  </p-toolbar>
+                  </ng-template>
+                  <app-toolbar
+                    [leftTemplate]="toolbarLeft"
+                    [rightTemplate]="toolbarRight"
+                  />
                 </div>
               </div>
             }
@@ -1168,22 +1166,22 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     </p>
                     <div class="flex flex-wrap gap-3">
                       <div class="flex align-items-center gap-2">
-                        <p-tag
+                        <app-tag
                           value="Sincronizado con Google"
                           severity="success"
                         />
                         <span class="catalog-helper-text text-sm">success</span>
                       </div>
                       <div class="flex align-items-center gap-2">
-                        <p-tag value="Solo local (historico)" severity="info" />
+                        <app-tag value="Solo local (historico)" severity="info" />
                         <span class="catalog-helper-text text-sm">info</span>
                       </div>
                       <div class="flex align-items-center gap-2">
-                        <p-tag value="Solo local" severity="warn" />
+                        <app-tag value="Solo local" severity="warn" />
                         <span class="catalog-helper-text text-sm">warn</span>
                       </div>
                       <div class="flex align-items-center gap-2">
-                        <p-tag
+                        <app-tag
                           value="Pendiente de sincronizar"
                           severity="secondary"
                         />
@@ -1226,7 +1224,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                           <td>{{ item.start }}</td>
                           <td class="text-center">{{ item.guests }}</td>
                           <td>
-                            <p-tag
+                            <app-tag
                               [value]="item.statusLabel"
                               [severity]="item.severity"
                             />
@@ -1452,7 +1450,7 @@ export class CatalogWebItem {
   textVal = "";
   textAreaVal = "";
   multiVal: any[] = [];
-  radioVal = "1";
+  radioControl = new FormControl("1");
   selectVal: any = null;
   selectBtnVal: any = null;
   toggleVal = signal(false);

@@ -97,37 +97,39 @@
 
         <!-- Tabs para cada semana -->
         <div class="flex flex-column gap-2">
-@for (semana of weekDays(); track $index) {
-            <div class="surface-50 border-1 border-200 rounded">
+          @for (semana of weekDays(); track $index) {
+          <div class="surface-50 border-1 border-200 rounded">
+            <div
+              class="p-2 bg-primary-50 border-bottom-1 border-200 flex align-items-center justify-content-between"
+            >
+              <span class="font-semibold text-sm">
+                Semana {{ semana[0]?.semana }} {{ $index + 1 <
+                duracionCicloValue() ? '(activa)' : '(configurable, no se
+                envía)' }}
+              </span>
+              @if ($index + 1 > 1) {
+              <iw-button
+                icon="material-symbols-light:content-copy"
+                size="sm"
+                variant="ghost"
+                severity="secondary"
+                title="Copiar de Semana 1 a esta semana"
+                (clicked)="copiarSemana1A($index + 1)"
+              />
+              }
+            </div>
+
+            <div class="p-2">
               <div
-                class="p-2 bg-primary-50 border-bottom-1 border-200 flex align-items-center justify-content-between"
+                class="hidden md:grid grid align-items-center px-2 text-sm font-semibold text-color-secondary"
               >
-                <span class="font-semibold text-sm">
-                  Semana {{ semana[0]?.semana }} {{ $index + 1 < duracionCicloValue() ? '(activa)' : '(configurable, no se envía)' }}
-                </span>
-                @if ($index + 1 > 1) {
-                <iw-button
-                  icon="material-symbols-light:content-copy"
-                  size="sm"
-                  variant="ghost"
-                  severity="secondary"
-                  title="Copiar de Semana 1 a esta semana"
-                  (clicked)="copiarSemana1A($index + 1)"
-                />
-                }
+                <div class="col-3"></div>
+                <div class="col-3">Descanso</div>
+                <div class="col-3">Entrada</div>
+                <div class="col-3">Salida (mismo día o siguiente)</div>
               </div>
 
-              <div class="p-2">
-                <div
-                  class="hidden md:grid grid align-items-center px-2 text-sm font-semibold text-color-secondary"
-                >
-                  <div class="col-3"></div>
-                  <div class="col-3">Descanso</div>
-                  <div class="col-3">Entrada</div>
-                  <div class="col-3">Salida (mismo día o siguiente)</div>
-                </div>
-
-                @for (day of semana; track day.uniqueKey) {
+              @for (day of semana; track day.uniqueKey) {
               <div class="surface-0 border-1 border-200 rounded p-2 mb-2">
                 <div class="grid align-items-center">
                   <div class="col-12 md:col-3">
@@ -145,13 +147,13 @@
                     </div>
                   </div>
                   <div class="col-12 md:col-3 flex align-items-center">
-<custom-input-switch-signal
-  [control]="day.rest"
-  [id]="'rest-' + day.uniqueKey"
-  placeholder=" Descanso"
-  (switchChange)="onRestChange(day.semana, day.dw, $event)"
-  [horizontal]="false"
-/>
+                    <custom-input-switch-signal
+                      [control]="day.rest"
+                      [id]="'rest-' + day.uniqueKey"
+                      placeholder=" Descanso"
+                      (switchChange)="onRestChange(day.semana, day.dw, $event)"
+                      [horizontal]="false"
+                    />
                   </div>
                   <div class="col-12 md:col-3">
                     <custom-input-select-signal

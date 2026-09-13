@@ -286,11 +286,14 @@ export class WorkPositionScheduleForm implements OnInit {
   }
 
   private findDia(semana: number, dw: number) {
-    return this.form.controls.diasDeTrabajo.controls.find(
+    console.debug('[findDia] buscando:', { semana, dw });
+    const found = this.form.controls.diasDeTrabajo.controls.find(
       (g) =>
         g.controls.numeroSemanaCiclo.value === semana &&
         g.controls.diaSemana.value === dw,
     );
+    console.debug('[findDia] encontrado:', found?.controls?.diaSemana?.value, found?.controls?.numeroSemanaCiclo?.value);
+    return found;
   }
 
   /** Copia Semana 1 a una semana específica (2-4) */
@@ -352,7 +355,9 @@ export class WorkPositionScheduleForm implements OnInit {
   }
 
   onRestChange(semana: number, dw: number, isRest: boolean): void {
+    console.debug('[onRestChange] llamada:', { semana, dw, isRest });
     const dia = this.findDia(semana, dw);
+    console.debug('[onRestChange] findDia resultado:', dia?.controls?.diaSemana?.value, dia?.controls?.numeroSemanaCiclo?.value);
     if (!dia) return;
 
     if (isRest) {
