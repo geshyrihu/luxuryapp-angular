@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RadioButtonBase } from "@ui/base/radio-button.base";
-import { IonRadio } from "@ionic/angular/standalone";
+import { IonRadio } from "@ionic/angular";
 
 @Component({
   selector: "ili-radio-button",

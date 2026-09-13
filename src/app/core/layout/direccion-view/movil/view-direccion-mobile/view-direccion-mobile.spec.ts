@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ViewDireccionMobile } from './view-direccion-mobile';
 import { vi } from 'vitest';
 
-vi.mock('@ionic/angular/standalone', () => ({
+vi.mock('@ionic/angular', () => ({
   IonApp: class {},
   IonContent: class {},
   IonHeader: class {},

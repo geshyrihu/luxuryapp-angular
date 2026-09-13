@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonButton } from "@ionic/angular/standalone";
+import { IonButton } from "@ionic/angular";
 import { DateRangeBase } from "@ui/base/date-range.base";
 
 @Component({

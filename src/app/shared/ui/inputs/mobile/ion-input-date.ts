@@ -1,6 +1,6 @@
 import { Component, forwardRef, ChangeDetectionStrategy, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { IonInput } from "@ionic/angular/standalone";
+import { IonInput } from "@ionic/angular";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
 /**

@@ -7,7 +7,7 @@ import { vi } from "vitest";
 import { HeaderCustomer } from "./haeder-customer";
 
 // Mock de Ionic
-vi.mock("@ionic/angular/standalone", async () => {
+vi.mock("@ionic/angular", async () => {
   const { Component } = await import("@angular/core");
   @Component({ selector: "ion-spinner", template: "", standalone: true })
   class Mock {}

@@ -14,7 +14,7 @@ import {
   IonItem,
   IonLabel,
   IonList,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { MenuItem } from "primeng/api";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";

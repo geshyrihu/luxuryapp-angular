@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MobileModal } from './modal';
 import { vi } from 'vitest';
 
-vi.mock('@ionic/angular/standalone', () => ({
+vi.mock('@ionic/angular', () => ({
   IonModal: class {},
   IonHeader: class {},
   IonToolbar: class {},

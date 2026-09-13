@@ -30,7 +30,7 @@ import {
   withRouterConfig,
 } from "@angular/router";
 import { provideServiceWorker } from "@angular/service-worker";
-import { provideIonicAngular } from "@ionic/angular/standalone";
+import { provideIonicAngular } from "@ionic/angular";
 import { GlobalErrorHandler } from "src/app/core/http/services/global-error-handler.service";
 // Importaciones de Firebase
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";

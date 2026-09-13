@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonButton, IonProgressBar } from "@ionic/angular/standalone";
+import { IonButton, IonProgressBar } from "@ionic/angular";
 import { TreeNodeBase, TreeTableBase } from "@ui/base/tree-table.base";
 import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
 import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";

@@ -30,7 +30,7 @@ import {
   IonList,
   IonProgressBar,
   IonSearchbar,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { filter, map, startWith } from "rxjs";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { MobileEmptyState } from "../empty-state/empty-state";

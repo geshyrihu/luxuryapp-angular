@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { IonSkeletonText } from "@ionic/angular/standalone";
+import { IonSkeletonText } from "@ionic/angular";
 import { SkeletonBase } from "@ui/base/skeleton.base";
 
 @Component({

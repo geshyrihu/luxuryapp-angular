@@ -1,6 +1,6 @@
 import { IonicMocks } from "src/app/core/testing/ionic-mocks";
 
-vi.mock("@ionic/angular/standalone", () => ({ ...IonicMocks }));
+vi.mock("@ionic/angular", () => ({ ...IonicMocks }));
 vi.mock("@ionic/core", () => ({}));
 vi.mock("@ionic/core/components", () => ({}));
 vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
@@ -10,7 +10,7 @@ vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
 import { computed } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ActivatedRoute } from "@angular/router";
-import { ToastController } from "@ionic/angular/standalone";
+import { ToastController } from "@ionic/angular";
 import { MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";

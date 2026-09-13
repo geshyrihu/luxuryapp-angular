@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonToggle } from "@ionic/angular/standalone";
+import { IonToggle } from "@ionic/angular";
 import { ThemeSwitcherBase } from "@ui/base/theme-switcher.base";
 import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 

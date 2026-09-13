@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { IconFieldBase } from "@ui/base/iconfield.base";
-import { IonItem } from "@ionic/angular/standalone";
+import { IonItem } from "@ionic/angular";
 
 @Component({
   selector: "ili-iconfield",

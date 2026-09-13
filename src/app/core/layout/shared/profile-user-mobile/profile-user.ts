@@ -18,7 +18,7 @@ import {
   IonPopover,
   IonSelect,
   IonSelectOption,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { addIcons } from "ionicons";
 import {
   keyOutline,

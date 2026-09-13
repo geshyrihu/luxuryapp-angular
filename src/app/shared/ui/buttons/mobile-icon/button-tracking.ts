@@ -5,7 +5,7 @@ import {
   input,
   output,
 } from "@angular/core";
-import { IonBadge, IonButton } from "@ionic/angular/standalone";
+import { IonBadge, IonButton } from "@ionic/angular";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { MobileButtonBase } from "../mobile-button-base";
 import { TrackingEvent } from "../shared/tracking";

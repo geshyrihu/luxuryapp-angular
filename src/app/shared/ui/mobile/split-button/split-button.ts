@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { SplitButtonBase } from "@ui/base/split-button.base";
-import { IonButton, IonIcon } from "@ionic/angular/standalone";
+import { IonButton, IonIcon } from "@ionic/angular";
 
 @Component({
   selector: "ili-split-button",

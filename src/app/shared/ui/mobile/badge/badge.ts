@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonBadge } from "@ionic/angular/standalone";
+import { IonBadge } from "@ionic/angular";
 import { BadgeBase } from "@ui/base/badge.base";
 
 /**

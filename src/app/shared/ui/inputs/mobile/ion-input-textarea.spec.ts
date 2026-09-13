@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { IonInputTextarea } from './ion-input-textarea';
 import { vi } from 'vitest';
 
-vi.mock('@ionic/angular/standalone', () => ({
+vi.mock('@ionic/angular', () => ({
   IonInput: class {},
   IonNote: class {},
   IonSelect: class {},

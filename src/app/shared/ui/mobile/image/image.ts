@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonImg } from "@ionic/angular/standalone";
+import { IonImg } from "@ionic/angular";
 import { ImageBase } from "@ui/base/image.base";
 
 /**

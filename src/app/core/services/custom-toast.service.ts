@@ -1,6 +1,6 @@
 import { Platform } from "@angular/cdk/platform";
 import { inject, Injectable } from "@angular/core";
-import { ToastController } from "@ionic/angular/standalone";
+import { ToastController } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import {
   alertCircle,

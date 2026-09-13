@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { MenuBase } from "@ui/base/menu.base";
-import { IonList, IonItem, IonLabel, IonIcon } from "@ionic/angular/standalone";
+import { IonList, IonItem, IonLabel, IonIcon } from "@ionic/angular";
 
 @Component({
   selector: "ili-menu",

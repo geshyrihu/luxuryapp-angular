@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { ToastController } from "@ionic/angular/standalone";
+import { ToastController } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import {
   alertCircle,

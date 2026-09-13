@@ -1,6 +1,6 @@
 import { Component, forwardRef, output, ChangeDetectionStrategy } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { IonCheckbox } from "@ionic/angular/standalone";
+import { IonCheckbox } from "@ionic/angular";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
 /**

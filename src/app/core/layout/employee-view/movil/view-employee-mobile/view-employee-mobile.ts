@@ -13,7 +13,7 @@ import {
   IonTitle,
   IonToolbar,
   MenuController,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { LxLoader } from "@ui/adaptive/loader/loader";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";

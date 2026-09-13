@@ -5,7 +5,7 @@ import {
   IonContent,
   IonHeader,
   IonToolbar,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { LxLoader } from "@ui/adaptive/loader/loader";
 import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
 

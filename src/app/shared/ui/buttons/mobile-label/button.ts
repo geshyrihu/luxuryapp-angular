@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { IonButton, IonSpinner } from "@ionic/angular/standalone";
+import { IonButton, IonSpinner } from "@ionic/angular";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { MobileButtonBase } from "../mobile-button-base";
 

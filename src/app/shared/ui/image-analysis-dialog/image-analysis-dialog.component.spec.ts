@@ -1,4 +1,4 @@
-vi.mock('@ionic/angular/standalone', () => ({}));
+vi.mock('@ionic/angular', () => ({}));
 vi.mock('@ionic/core', () => ({}));
 vi.mock('@ionic/core/components', () => ({}));
 

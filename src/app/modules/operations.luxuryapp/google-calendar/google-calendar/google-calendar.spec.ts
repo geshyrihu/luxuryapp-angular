@@ -18,7 +18,7 @@ vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
   PdfViewerModal: class PdfViewerModal {},
 }));
 
-vi.mock("@ionic/angular/standalone", async () => {
+vi.mock("@ionic/angular", async () => {
   const mocks = await import("./ionic-mocks");
   return {
     IonItem: mocks.MockIonItem,

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { InputIconBase } from "@ui/base/inputicon.base";
-import { IonIcon } from "@ionic/angular/standalone";
+import { IonIcon } from "@ionic/angular";
 
 @Component({
   selector: "ili-inputicon",

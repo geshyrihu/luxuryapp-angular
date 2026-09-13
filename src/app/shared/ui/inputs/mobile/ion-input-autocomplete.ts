@@ -11,7 +11,7 @@ import {
   IonItem,
   IonLabel,
   IonList,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
 @Component({

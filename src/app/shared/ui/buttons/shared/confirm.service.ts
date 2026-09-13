@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import { AlertController } from "@ionic/angular/standalone";
+import { AlertController } from "@ionic/angular";
 import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
 import { PlatformService } from "src/app/core/services/platform.service";
 import Swal from "sweetalert2";

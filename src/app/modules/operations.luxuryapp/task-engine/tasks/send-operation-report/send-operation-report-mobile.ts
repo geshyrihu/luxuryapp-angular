@@ -5,7 +5,7 @@ import {
   IonItem,
   IonLabel,
   IonList,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonLabelAdd } from "@ui/buttons/mobile-label/button-add";
 import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";

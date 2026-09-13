@@ -17,7 +17,7 @@ import {
   IonRefresherContent,
   IonSkeletonText,
   IonSpinner,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { MobileSkeleton } from "@ui/mobile/skeleton/skeleton";
 import { MobileSpinner } from "@ui/mobile/spinner/spinner";
 import { MobileProgressBar } from "@ui/mobile/progress-bar/progress-bar";

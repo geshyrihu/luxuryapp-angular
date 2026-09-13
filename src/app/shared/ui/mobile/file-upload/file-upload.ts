@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FileUploadBase, FileUploadEvent } from "@ui/base/file-upload.base";
-import { IonButton, IonIcon } from "@ionic/angular/standalone";
+import { IonButton, IonIcon } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import { cloudUploadOutline } from "ionicons/icons";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";

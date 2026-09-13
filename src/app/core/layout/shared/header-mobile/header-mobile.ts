@@ -1,7 +1,7 @@
 import { Location } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonButton, IonButtons, IonToolbar } from "@ionic/angular/standalone";
+import { IonButton, IonButtons, IonToolbar } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import { chevronBack } from "ionicons/icons";
 import { CustomerHeaderDataMobile } from "src/app/core/layout/shared/customer-header-data-mobile/customer-header-data-mobile";

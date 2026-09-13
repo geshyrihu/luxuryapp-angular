@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { IonApp, IonContent } from "@ionic/angular/standalone";
+import { IonApp, IonContent } from "@ionic/angular";
 
 /**
  * MobilePage — Shell de página móvil de pantalla completa sobre

@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import { IonButton } from "@ionic/angular/standalone";
+import { IonButton } from "@ionic/angular";
 import { EmptyStateBase } from "@ui/base/empty-state.base";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 

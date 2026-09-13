@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IonCheckbox } from "@ionic/angular/standalone";
+import { IonCheckbox } from "@ionic/angular";
 import { CheckboxBase } from "@ui/base/checkbox.base";
 
 @Component({

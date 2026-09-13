@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { PanelMenuBase } from "@ui/base/panel-menu.base";
-import { IonAccordionGroup, IonAccordion, IonItem, IonLabel, IonList } from "@ionic/angular/standalone";
+import { IonAccordionGroup, IonAccordion, IonItem, IonLabel, IonList } from "@ionic/angular";
 
 @Component({
   selector: "ili-panel-menu",

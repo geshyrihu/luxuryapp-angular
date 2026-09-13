@@ -13,7 +13,7 @@ import { UpdateService } from "src/app/core/services/update-pwa.service";
 import { vi } from "vitest";
 import { ProfileUserMobile } from "./profile-user";
 
-vi.mock("@ionic/angular/standalone", () => ({
+vi.mock("@ionic/angular", () => ({
   IonAvatar: class {},
   IonContent: class {},
   IonIcon: class {},

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonButton } from "@ionic/angular/standalone";
+import { IonButton } from "@ionic/angular";
 import { ConfirmDialogBase } from "@ui/base/confirm-dialog.base";
 import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 

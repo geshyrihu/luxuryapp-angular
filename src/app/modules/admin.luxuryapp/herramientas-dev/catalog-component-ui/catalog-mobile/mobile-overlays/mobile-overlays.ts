@@ -18,7 +18,7 @@ import {
   IonToolbar,
   LoadingController,
   ToastController,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { MobileConfirmDialog } from "@ui/mobile/confirm-dialog/confirm-dialog";
 import { MobileConfirmPopup } from "@ui/mobile/confirm-popup/confirm-popup";
 import { MobileContextMenu } from "@ui/mobile/context-menu/context-menu";

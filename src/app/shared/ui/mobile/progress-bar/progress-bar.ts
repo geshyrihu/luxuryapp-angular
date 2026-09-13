@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonProgressBar } from "@ionic/angular/standalone";
+import { IonProgressBar } from "@ionic/angular";
 import { ProgressBarBase } from "@ui/base/progress-bar.base";
 
 /**

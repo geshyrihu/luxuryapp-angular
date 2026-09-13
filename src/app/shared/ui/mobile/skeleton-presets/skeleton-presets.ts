@@ -4,7 +4,7 @@ import {
   input,
   ViewEncapsulation,
 } from "@angular/core";
-import { IonSkeletonText } from "@ionic/angular/standalone";
+import { IonSkeletonText } from "@ionic/angular";
 
 export type SkeletonPresetType =
   "card" | "table" | "chart" | "form" | "avatar" | "list" | "stat";

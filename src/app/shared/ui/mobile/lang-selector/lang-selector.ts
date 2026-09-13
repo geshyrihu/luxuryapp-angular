@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonSelect, IonSelectOption } from "@ionic/angular/standalone";
+import { IonSelect, IonSelectOption } from "@ionic/angular";
 import { LangSelectorBase } from "@ui/base/lang-selector.base";
 
 @Component({

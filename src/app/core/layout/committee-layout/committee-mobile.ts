@@ -9,7 +9,7 @@ import {
   IonFooter,
   IonHeader,
   IonToolbar,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { LxLoader } from "@ui/adaptive/loader/loader";
 import { addIcons } from "ionicons";
 import { chevronBack } from "ionicons/icons";

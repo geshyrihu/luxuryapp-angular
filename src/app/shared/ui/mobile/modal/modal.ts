@@ -8,7 +8,7 @@ import {
   IonModal,
   IonTitle,
   IonToolbar,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { ModalBase } from "@ui/base/modal.base";
 
 @Component({

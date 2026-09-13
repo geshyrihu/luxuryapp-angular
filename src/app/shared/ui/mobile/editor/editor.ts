@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { EditorBase } from "@ui/base/editor.base";
-import { IonTextarea } from "@ionic/angular/standalone";
+import { IonTextarea } from "@ionic/angular";
 
 @Component({
   selector: "ili-editor",

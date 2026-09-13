@@ -29,7 +29,7 @@ import {
   IonTitle,
   IonToolbar,
   MenuController,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { MobileTabs } from "@ui/mobile/tabs/tabs";
 import { MobileBreadcrumbs } from "@ui/mobile/breadcrumbs/breadcrumbs";
 import { MobileSteps } from "@ui/mobile/steps/steps";

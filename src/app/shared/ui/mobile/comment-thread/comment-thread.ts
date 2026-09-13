@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IonButton, IonTextarea } from "@ionic/angular/standalone";
+import { IonButton, IonTextarea } from "@ionic/angular";
 import { CommentThreadBase } from "@ui/base/comment-thread.base";
 import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 

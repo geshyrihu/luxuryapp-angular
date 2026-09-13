@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { MessageService } from 'primeng/api';
 import { CustomToastService } from './custom-toast.service';
 
-vi.mock('@ionic/angular/standalone', () => ({
+vi.mock('@ionic/angular', () => ({
   ToastController: class {},
 }));
 
-import { ToastController } from '@ionic/angular/standalone';
+import { ToastController } from '@ionic/angular';
 
 const toastControllerMock = {
   create: vi.fn().mockResolvedValue({ present: vi.fn() }),

@@ -6,7 +6,15 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonicModule } from "@ionic/angular";
+import {
+  IonContent,
+  IonRefresher,
+  IonRefresherContent,
+  IonList,
+  IonItem,
+  IonIcon,
+  IonLabel,
+} from "@ionic/angular";
 import { addIcons } from "ionicons";
 import {
   arrowForwardOutline,
@@ -61,7 +69,7 @@ import { MobileButtonIconDelete } from "src/app/shared/ui/buttons/mobile-icon";
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppIcon, IonicModule, MobileButtonIconDelete],
+  imports: [AppIcon, IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonIcon, IonLabel, MobileButtonIconDelete],
 })
 export class NotificationsListMobile implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonSpinner } from "@ionic/angular/standalone";
+import { IonSpinner } from "@ionic/angular";
 import { SpinnerBase } from "@ui/base/spinner.base";
 
 /**

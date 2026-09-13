@@ -12,7 +12,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { IonButton, IonIcon, IonImg } from "@ionic/angular/standalone";
+import { IonButton, IonIcon, IonImg } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import { cameraOutline, trashOutline } from "ionicons/icons";
 import { BaseIonicInput } from "../base/base-ionic-input";

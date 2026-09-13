@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { IonInputAutocomplete } from './ion-input-autocomplete';
 import { vi } from 'vitest';
 
-vi.mock('@ionic/angular/standalone', () => ({
+vi.mock('@ionic/angular', () => ({
   IonInput: class {},
   IonNote: class {},
   IonSelect: class {},

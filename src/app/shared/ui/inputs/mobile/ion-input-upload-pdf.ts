@@ -2,7 +2,7 @@ import {
   Component, ElementRef, forwardRef, ViewChild, ChangeDetectionStrategy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { IonButton, IonIcon } from "@ionic/angular/standalone";
+import { IonButton, IonIcon } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import { cloudUploadOutline, trashOutline } from "ionicons/icons";
 import { BaseIonicInput } from "../base/base-ionic-input";

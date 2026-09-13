@@ -1,6 +1,6 @@
 import { IonicMocks } from "src/app/core/testing/ionic-mocks";
 
-vi.mock("@ionic/angular/standalone", () => ({ ...IonicMocks }));
+vi.mock("@ionic/angular", () => ({ ...IonicMocks }));
 vi.mock("@ionic/core", () => ({}));
 vi.mock("@ionic/core/components", () => ({}));
 vi.mock("ionicons/icons", () => ({ storefrontOutline: "storefront-outline" }));

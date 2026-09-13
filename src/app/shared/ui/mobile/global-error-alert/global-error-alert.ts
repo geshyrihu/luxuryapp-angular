@@ -8,7 +8,7 @@ import {
   IonIcon,
   IonItem,
   IonLabel,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { GlobalErrorAlertBase } from "@ui/base/global-error-alert.base";
 import { addIcons } from "ionicons";
 import { alertCircleOutline, closeOutline } from "ionicons/icons";

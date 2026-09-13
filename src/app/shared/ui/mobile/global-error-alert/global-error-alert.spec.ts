@@ -15,7 +15,7 @@ vi.mock('ionicons/icons', () => ({
 }));
 
 // Mock de Ionic
-vi.mock('@ionic/angular/standalone', async () => {
+vi.mock('@ionic/angular', async () => {
   const { Component } = await import('@angular/core');
   
   @Component({ selector: 'ion-item', template: '<ng-content></ng-content>', standalone: true })

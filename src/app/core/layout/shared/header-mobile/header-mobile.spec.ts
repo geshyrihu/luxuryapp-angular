@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { NavigationService } from 'src/app/core/services/navigation.service';
 import { vi } from 'vitest';
 
-vi.mock('@ionic/angular/standalone', () => ({
+vi.mock('@ionic/angular', () => ({
   IonToolbar: class {},
   IonButtons: class {},
   IonButton: class {},

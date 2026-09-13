@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonAvatar } from "@ionic/angular/standalone";
+import { IonAvatar } from "@ionic/angular";
 import { AvatarBase } from "@ui/base/avatar.base";
 import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 

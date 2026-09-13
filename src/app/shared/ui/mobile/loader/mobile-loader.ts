@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { IonSpinner } from "@ionic/angular/standalone";
+import { IonSpinner } from "@ionic/angular";
 import { LoaderBase } from "../../base/loader.base";
 
 @Component({

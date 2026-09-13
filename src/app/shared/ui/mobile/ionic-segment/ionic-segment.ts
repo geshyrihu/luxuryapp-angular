@@ -1,1 +1,1 @@
-export * from "@ionic/angular/standalone";
+export * from "@ionic/angular";

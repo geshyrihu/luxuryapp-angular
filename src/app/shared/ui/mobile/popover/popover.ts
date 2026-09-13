@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, viewChild } from "@angular/core";
 import { PopoverBase } from "@ui/base/popover.base";
-import { IonPopover } from "@ionic/angular/standalone";
+import { IonPopover } from "@ionic/angular";
 
 @Component({
   selector: "ili-popover",

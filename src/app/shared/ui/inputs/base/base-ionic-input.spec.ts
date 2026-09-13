@@ -4,7 +4,7 @@ import { BaseIonicInput } from './base-ionic-input';
 import { FormControl, Validators } from '@angular/forms';
 import { vi } from 'vitest';
 
-vi.mock('@ionic/angular/standalone', async () => {
+vi.mock('@ionic/angular', async () => {
   const { Component } = await import('@angular/core');
 
   @Component({ selector: 'ion-note', template: '<ng-content></ng-content>', standalone: true })

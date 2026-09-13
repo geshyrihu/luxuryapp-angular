@@ -23,7 +23,7 @@ import {
   IonNote,
   IonRow,
   IonThumbnail,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { MobileAccordion } from "@ui/mobile/accordion/accordion";
 import { MobileOrgChart } from "@ui/mobile/org-chart/org-chart";
 import { MobilePaginator } from "@ui/mobile/paginator/paginator";

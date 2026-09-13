@@ -5,7 +5,7 @@ import {
   forwardRef,
 } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { IonCheckbox, IonItem, IonList } from "@ionic/angular/standalone";
+import { IonCheckbox, IonItem, IonList } from "@ionic/angular";
 import { ListboxBase } from "@ui/base/listbox.base";
 
 @Component({

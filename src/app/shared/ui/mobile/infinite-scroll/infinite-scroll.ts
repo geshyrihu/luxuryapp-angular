@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, output } from "@angular/core";
 import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { InfiniteScrollBase } from "@ui/base/infinite-scroll.base";
 
 @Component({

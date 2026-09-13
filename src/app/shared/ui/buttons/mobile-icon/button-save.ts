@@ -1,6 +1,6 @@
 import { AppIcon as AppIconCatalog } from "../../shared/app-icon/app-icon.catalog";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { IonButton } from "@ionic/angular/standalone";
+import { IonButton } from "@ionic/angular";
 import { AppIcon } from "../../shared/app-icon/app-icon";
 import { MobileButtonBase } from "../mobile-button-base";
 

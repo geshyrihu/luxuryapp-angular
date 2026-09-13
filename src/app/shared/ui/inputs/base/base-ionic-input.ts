@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { IonNote } from "@ionic/angular/standalone";
+import { IonNote } from "@ionic/angular";
 import { BaseInputSignal } from "./base-input-signal";
 
 /**

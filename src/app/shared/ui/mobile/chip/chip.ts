@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonChip, IonLabel } from "@ionic/angular/standalone";
+import { IonChip, IonLabel } from "@ionic/angular";
 import { ChipBase } from "@ui/base/chip.base";
 import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 

@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { StepsBase } from "@ui/base/steps.base";
-import { IonSegment, IonSegmentButton, IonLabel } from "@ionic/angular/standalone";
+import { IonSegment, IonSegmentButton, IonLabel } from "@ionic/angular";
 
 @Component({
   selector: "ili-steps",

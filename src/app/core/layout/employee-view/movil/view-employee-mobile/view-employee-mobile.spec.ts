@@ -4,10 +4,10 @@ import { ViewEmployeeMobile } from './view-employee-mobile';
 import { MenuService } from 'src/app/core/services/menu.service';
 import { HidescrollnavService } from 'src/app/core/services/hidescrollnav.service';
 import { LayoutService } from 'src/app/core/services/layout.service';
-import { MenuController } from '@ionic/angular/standalone';
+import { MenuController } from '@ionic/angular';
 import { vi } from 'vitest';
 
-vi.mock('@ionic/angular/standalone', () => {
+vi.mock('@ionic/angular', () => {
   class MenuControllerMock {
     close = vi.fn();
   }

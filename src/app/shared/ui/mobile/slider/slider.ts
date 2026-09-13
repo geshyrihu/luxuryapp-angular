@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { IonRange } from "@ionic/angular/standalone";
+import { IonRange } from "@ionic/angular";
 import { SliderBase } from "@ui/base/slider.base";
 
 @Component({

@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { ToolbarBase } from "@ui/base/toolbar.base";
-import { IonToolbar, IonButtons } from "@ionic/angular/standalone";
+import { IonToolbar, IonButtons } from "@ionic/angular";
 
 @Component({
   selector: "ili-toolbar",

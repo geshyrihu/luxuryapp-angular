@@ -4,7 +4,7 @@ import { IonInputImg } from './ion-input-img';
 import { CustomToastService } from 'src/app/core/services/custom-toast.service';
 import { vi } from 'vitest';
 
-vi.mock('@ionic/angular/standalone', () => ({
+vi.mock('@ionic/angular', () => ({
   IonInput: class {},
   IonNote: class {},
   IonSelect: class {},

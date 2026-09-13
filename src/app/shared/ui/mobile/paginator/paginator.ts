@@ -3,7 +3,7 @@ import {
   IonButton,
   IonSelect,
   IonSelectOption,
-} from "@ionic/angular/standalone";
+} from "@ionic/angular";
 import { PaginatorBase } from "@ui/base/paginator.base";
 import { AppIconMobile } from "src/app/shared/ui/mobile/app-icon/app-icon";
 

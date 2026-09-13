@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { MultiSelectBase } from "@ui/base/multi-select.base";
-import { IonItem, IonSelect, IonSelectOption } from "@ionic/angular/standalone";
+import { IonItem, IonSelect, IonSelectOption } from "@ionic/angular";
 
 @Component({
   selector: "ili-multi-select",
