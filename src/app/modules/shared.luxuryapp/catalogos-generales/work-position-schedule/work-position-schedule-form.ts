@@ -244,11 +244,6 @@ export class WorkPositionScheduleForm implements OnInit {
     }
 
     const payload = this.form.getRawValue();
-    const expectedDays = 7 * this.duracionCicloValue();
-    const actualDays = payload.diasDeTrabajo?.length ?? 0;
-    if (actualDays !== expectedDays) {
-      console.error(`Días mismatch: esperados ${expectedDays}, enviados ${actualDays}`);
-    }
 
     FormHelper.submitCrud({
       form: this.form,
@@ -337,6 +332,7 @@ export class WorkPositionScheduleForm implements OnInit {
       dia.controls.horaEntrada.enable({ emitEvent: false });
       dia.controls.horaSalida.enable({ emitEvent: false });
     }
+    this.form.updateValueAndValidity();
   }
 
   private toFormValue(item: WorkPositionScheduleDto) {
