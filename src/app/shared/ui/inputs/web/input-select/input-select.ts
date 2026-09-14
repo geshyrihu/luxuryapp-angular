@@ -2,6 +2,7 @@ import { CommonModule, NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   forwardRef,
   input,
   output,
@@ -12,7 +13,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { SelectModule } from "primeng/select";
+import { NgSelectModule } from "@ng-select/ng-select";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
@@ -27,7 +28,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
     NgTemplateOutlet,
     BaseInputSignal,
     ReactiveFormsModule,
-    SelectModule,
+    NgSelectModule,
   ],
   template: `
     <base-input-signal
@@ -44,29 +45,24 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [hidden]="hidden()"
       [onlyInput]="onlyInput()"
     >
-      <p-select
-        [options]="data()"
+      <ng-select
+        [items]="selectOptions()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
-        [showClear]="showClear()"
-        [attr.disabled]="disabled() ? true : null"
+        [clearable]="showClear()"
+        [disabled]="disabled()"
         [readonly]="readonly()"
-        [inputId]="id()"
-        [optionLabel]="optionLabel()"
-        [optionValue]="optionValue()"
-        [dataKey]="optionValue()"
-        [class]="customClass()"
-        fluid
-        (onChange)="selectionChange.emit($event)"
+        [labelForId]="id()"
+        [bindLabel]="optionLabel()"
+        [bindValue]="optionValue()"
+        [class]="getComponentClass()"
+        (change)="selectionChange.emit($event)"
         appendTo="body"
-        [filter]="filter()"
-        [filterBy]="filterBy()"
-        [invalid]="isInvalid()"
-        [size]="size()"
-        [optionDisabled]="optionDisabled()"
+        [searchable]="filter()"
+        [readonly]="readonly()"
       >
         @if (itemTemplate(); as tpl) {
-          <ng-template let-item #item>
+          <ng-template ng-option-tmp let-item="item">
             <ng-container
               [ngTemplateOutlet]="tpl"
               [ngTemplateOutletContext]="{ $implicit: item }"
@@ -74,16 +70,23 @@ import { BaseInputSignal } from "../../base/base-input-signal";
           </ng-template>
         }
         @if (selectedItemTemplate(); as tpl) {
-          <ng-template let-item #selectedItem>
+          <ng-template ng-label-tmp let-item="item">
             <ng-container
               [ngTemplateOutlet]="tpl"
               [ngTemplateOutletContext]="{ $implicit: item }"
             />
           </ng-template>
         }
-      </p-select>
+      </ng-select>
     </base-input-signal>
   `,
+  styles: [`
+      :host ::ng-deep .ng-select-sm .ng-select-container { min-height: 2rem; font-size: .875rem; }
+      :host ::ng-deep .ng-select-sm .ng-select-container .ng-value-container { padding: .25rem .5rem; }
+      :host ::ng-deep .ng-select-lg .ng-select-container { min-height: 3rem; font-size: 1.125rem; }
+      :host ::ng-deep .ng-select-lg .ng-select-container .ng-value-container { padding: .75rem 1rem; }
+    `
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
@@ -109,6 +112,23 @@ export class WebInputSelect
   size = input<"small" | "large" | undefined>(undefined);
   itemTemplate = input<TemplateRef<any> | undefined>(undefined);
   selectedItemTemplate = input<TemplateRef<any> | undefined>(undefined);
+
+  selectOptions = computed(() => {
+    const disabledKey = this.optionDisabled();
+    if (!disabledKey) return this.data();
+    return this.data().map((item: any) => ({
+      ...item,
+      disabled: Boolean(item?.[disabledKey]),
+    }));
+  });
+
+  getComponentClass(): string {
+    const classes: string[] = [];
+    if (this.size() === "small") classes.push("ng-select-sm");
+    if (this.size() === "large") classes.push("ng-select-lg");
+    if (this.customClass()) classes.push(this.customClass());
+    return classes.join(" ");
+  }
 
   constructor() {
     super();

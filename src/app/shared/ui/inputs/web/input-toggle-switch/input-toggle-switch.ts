@@ -10,13 +10,12 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
   selector: "web-input-toggle-switch",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, ToggleSwitchModule],
+  imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -31,15 +30,16 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [description]="description()"
       [hidden]="hidden()"
     >
-      <p-toggleswitch
-        [formControl]="control() || internalControl"
-        [inputId]="id()"
-        [name]="id()"
-        [size]="size()"
-        [readonly]="readonly()"
-        [invalid]="isInvalid()"
-        (onChange)="onValueChange($event)"
-      />
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [formControl]="control() || internalControl"
+          [id]="id()"
+          [disabled]="disabled()"
+          (change)="onValueChange($event)"
+        />
+      </div>
     </base-input-signal>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, forwardRef } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
   selector: "web-input-time",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule],
+  imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -19,14 +18,12 @@ import { BaseInputSignal } from "../../base/base-input-signal";
     >
       <input
         [formControl]="control() || internalControl"
-        pInputText
-        fluid
+        class="form-control"
         type="time"
         [id]="id()"
         [placeholder]="placeholder()"
         [disabled]="disabled()"
-        fluid
-        appendTo="body"
+        
       />
     </base-input-signal>
   `,

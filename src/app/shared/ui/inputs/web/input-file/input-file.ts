@@ -6,8 +6,6 @@ import {
   output,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { ButtonModule } from "primeng/button";
-import { FileUploadModule } from "primeng/fileupload";
 import { WebButtonIconDelete } from "../../../buttons/web-icon/button-delete";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
@@ -17,8 +15,6 @@ import { BaseInputSignal } from "../../base/base-input-signal";
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,
-    FileUploadModule,
-    ButtonModule,
     WebButtonIconDelete,
   ],
   template: `
@@ -30,21 +26,18 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [horizontal]="horizontal()"
       [disabled]="disabled()"
     >
-      <p-fileupload
-        styleClass="w-full"
-        chooseStyleClass="w-full"
+      <label class="form-label" [for]="id()">{{ chooseLabel() }}</label>
+      <input
+        type="file"
+        class="form-control"
         [id]="id()"
-        mode="basic"
-        [chooseLabel]="chooseLabel()"
         [accept]="accept()"
-        [maxFileSize]="maxFileSize()"
         [disabled]="disabled()"
-        [auto]="true"
-        (onSelect)="onFileSelected($event)"
-        (onClear)="removeFile()"
-        [showUploadButton]="false"
-        [showCancelButton]="false"
+        (change)="onFileSelected($event)"
       />
+      @if (fileError) {
+        <small class="text-danger">{{ fileError }}</small>
+      }
 
       @if (fileSelectedValue) {
         <div class="file-info">
@@ -67,15 +60,6 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       :host {
         display: block;
         width: 100%;
-      }
-      :host ::ng-deep .p-fileupload-basic {
-        width: 100%;
-        display: block;
-      }
-      :host ::ng-deep .p-fileupload-basic .p-button {
-        width: 100%;
-        display: flex;
-        justify-content: center;
       }
       .file-info {
         display: flex;
@@ -114,11 +98,20 @@ export class WebInputFile extends BaseInputSignal {
   fileSelected = output<File | null>();
 
   fileSelectedValue: File | null = null;
+  fileError = "";
 
   onFileSelected(event: any): void {
-    if (!event.files || event.files.length === 0) return;
+    const file = event.target?.files?.[0] as File | undefined;
+    if (!file) return;
+    if (this.maxFileSize() > 0 && file.size > this.maxFileSize()) {
+      this.fileError = `El archivo excede el tamaño máximo de ${this.formatFileSize(this.maxFileSize())}.`;
+      event.target.value = "";
+      this.removeFile();
+      return;
+    }
 
-    this.fileSelectedValue = event.files[0];
+    this.fileError = "";
+    this.fileSelectedValue = file;
     const ctrl = this.control() || this.internalControl;
     if (ctrl) {
       ctrl.setValue(this.fileSelectedValue);

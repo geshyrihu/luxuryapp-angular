@@ -5,14 +5,14 @@ import {
   input,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { MultiSelectModule } from "primeng/multiselect";
+import { NgSelectModule } from "@ng-select/ng-select";
 import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
   selector: "web-input-multiselect",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, MultiSelectModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, NgSelectModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -23,31 +23,47 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [readonly]="readonly()"
       [disabled]="disabled()"
     >
-      <p-multiselect
-        [options]="options()"
+      <ng-select
+        [items]="options()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
-        [filter]="filter()"
-        [display]="selectionDisplay()"
-        [showClear]="showClear()"
-        [optionLabel]="optionLabel()"
-        [optionValue]="optionValue()"
-        [group]="group()"
-        [optionGroupLabel]="optionGroupLabel()"
-        [optionGroupChildren]="optionGroupChildren()"
-        [inputId]="id()"
+        [searchable]="filter()"
+        [clearable]="showClear()"
+        [bindLabel]="optionLabel()"
+        [bindValue]="optionValue() || undefined"
+        [groupBy]="group() ? optionGroupLabel() : undefined"
+        [labelForId]="id()"
         [class]="getComponentClass()"
-        [maxSelectedLabels]="maxSelectedLabels()"
-        [selectedItemsLabel]="selectedItemsLabel()"
-        [scrollHeight]="scrollHeight()"
-        [panelStyle]="panelStyle()"
-        (onChange)="onChange($event.value)"
-        (onBlur)="onTouch()"
-        appendTo="body"
-        fluid
-      ></p-multiselect>
+        [style.--ng-select-panel-min-width]="panelStyle()['min-width'] || null"
+        [style.--ng-select-panel-max-height]="scrollHeight()"
+        [multiple]="true"
+        [closeOnSelect]="false"
+        [disabled]="disabled()"
+        [readonly]="readonly()"
+        (change)="onChange($event)"
+        (blur)="onTouch()"
+      >
+        <ng-template ng-multi-label-tmp let-items="items">
+          @if (items.length <= (maxSelectedLabels() ?? items.length)) {
+            @for (item of items; track item) {
+              <span class="ng-value-label">{{ item[optionLabel()] }}</span>
+            }
+          } @else {
+            <span class="ng-value-label">{{ selectedItemsLabel() || (items.length + " seleccionados") }}</span>
+          }
+        </ng-template>
+      </ng-select>
     </base-input-signal>
   `,
+  styles: [`
+      :host ::ng-deep .ng-select-sm .ng-select-container { min-height: 2rem; font-size: .875rem; }
+      :host ::ng-deep .ng-select-sm .ng-select-container .ng-value-container { padding: .25rem .5rem; }
+      :host ::ng-deep .ng-select-lg .ng-select-container { min-height: 3rem; font-size: 1.125rem; }
+      :host ::ng-deep .ng-select-lg .ng-select-container .ng-value-container { padding: .75rem 1rem; }
+      :host ::ng-deep .ng-dropdown-panel { min-width: var(--ng-select-panel-min-width, 20rem); max-height: var(--ng-select-panel-max-height, 350px); }
+      :host ::ng-deep .ng-dropdown-panel .scroll-host { max-height: var(--ng-select-panel-max-height, 350px); }
+    `
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
@@ -76,8 +92,8 @@ export class WebInputMultiselect extends BaseInputSignal {
 
   getComponentClass(): string {
     const classes: string[] = [];
-    if (this.size() === "small") classes.push("p-inputtext-sm");
-    if (this.size() === "large") classes.push("p-inputtext-lg");
+    if (this.size() === "small") classes.push("ng-select-sm");
+    if (this.size() === "large") classes.push("ng-select-lg");
     if (this.customClass()) classes.push(this.customClass());
     return classes.join(" ");
   }

@@ -9,7 +9,6 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { CheckboxModule } from "primeng/checkbox";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 /**
@@ -18,7 +17,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
 @Component({
   selector: "web-input-check",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, CheckboxModule],
+  imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
       [id]="id()"
@@ -32,11 +31,12 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [hidden]="hidden()"
     >
       <div class="checkbox-wrapper">
-        <p-checkbox
-          [inputId]="id()"
+        <input
+          type="checkbox"
+          class="form-check-input"
+          [id]="id()"
           [formControl]="control() || internalControl"
-          [binary]="true"
-          (onChange)="onValueChange($event)"
+          (change)="onValueChange($event)"
         />
         <label [for]="id()" class="checkbox-label">{{ label() || placeholder() }}</label>
       </div>

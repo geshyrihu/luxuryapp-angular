@@ -4,32 +4,27 @@ import {
   input,
   output,
 } from "@angular/core";
-import { IconFieldModule } from "primeng/iconfield";
-import { InputIconModule } from "primeng/inputicon";
-import { InputTextModule } from "primeng/inputtext";
 import { AppIcon } from "../../../shared/app-icon/app-icon";
 
 @Component({
   selector: "web-input-search",
 
-  imports: [IconFieldModule, InputIconModule, InputTextModule, AppIcon],
+  imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
-    <p-iconfield iconPosition="left" fluid>
-      <p-inputicon>
+    <div class="input-group">
+      <span class="input-group-text">
         <app-icon icon="material-symbols-light:search" />
-      </p-inputicon>
+      </span>
 
       <input
-        pInputText
+        class="form-control text-xs"
         type="text"
         (input)="onInput($event)"
         [placeholder]="placeholder()"
         [disabled]="disabled()"
-        fluid
-        class="text-xs"
       />
-    </p-iconfield>
+    </div>
   `,
 })
 export class WebInputSearch {

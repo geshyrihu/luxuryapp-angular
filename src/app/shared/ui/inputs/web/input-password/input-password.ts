@@ -6,13 +6,12 @@ import {
   input,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { PasswordModule } from "primeng/password";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
   selector: "web-input-password",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, PasswordModule],
+  imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -23,20 +22,13 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [readonly]="readonly()"
       [required]="requiredInput()"
     >
-      <p-password
-        [inputId]="id()"
+      <input
+        type="password"
+        class="form-control"
+        [id]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
-        [feedback]="showStrengthIndicator()"
-        [toggleMask]="true"
-        [promptLabel]="promptLabel()"
-        [weakLabel]="weakLabel()"
-        [mediumLabel]="mediumLabel()"
-        [strongLabel]="strongLabel()"
-        [inputStyleClass]="inputStyleClass()"
-        [invalid]="isInvalid()"
         [attr.aria-required]="isRequired()"
-        fluid
       />
     </base-input-signal>
   `,

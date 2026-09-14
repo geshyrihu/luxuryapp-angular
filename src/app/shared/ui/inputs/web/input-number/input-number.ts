@@ -7,7 +7,6 @@ import {
   output,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 /**
@@ -16,7 +15,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
 @Component({
   selector: "web-input-number",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule],
+  imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
       [control]="control() || internalControl"
@@ -30,29 +29,19 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [onlyInput]="onlyInput()"
       [noMargin]="noMargin()"
     >
-      <p-inputnumber
-        [inputId]="id()"
+      <input
+        type="number"
+        class="form-control"
+        [id]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
         [readonly]="readonly()"
         [attr.min]="min()"
         [attr.max]="max()"
         [attr.step]="step()"
-        [showButtons]="showButtons()"
-        [minFractionDigits]="minFractionDigits()"
-        [maxFractionDigits]="maxFractionDigits()"
-        [mode]="mode()"
-        [currency]="currency()"
-        [locale]="locale()"
-        [useGrouping]="useGrouping()"
-        [prefix]="prefix()"
-        [suffix]="suffix()"
-        [showClear]="showClear()"
-        [inputStyleClass]="inputStyleClass()"
-        [invalid]="isInvalid()"
+        [class]="'form-control ' + inputStyleClass()"
         (onBlur)="blur.emit()"
         (keydown.enter)="enter.emit()"
-        fluid
       />
     </base-input-signal>
   `,

@@ -7,7 +7,6 @@ import {
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
-import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
@@ -17,7 +16,6 @@ import { BaseInputSignal } from "../../base/base-input-signal";
     BaseInputSignal,
     ReactiveFormsModule,
     FlatpickrDirective,
-    InputTextModule,
   ],
   template: `
     <base-input-signal
@@ -34,7 +32,6 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [hidden]="hidden()"
     >
       <input
-        pInputText
         mwlFlatpickr
         type="text"
         [id]="id()"
@@ -52,8 +49,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [dateFormat]="'Y-m-d'"
         [allowInput]="true"
         [parseDate]="parseDate"
-        fluid
-        class="w-full"
+        class="form-control w-full"
       />
     </base-input-signal>
   `,

@@ -6,7 +6,6 @@ import {
   input,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { TextareaModule } from "primeng/textarea";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 /**
@@ -15,7 +14,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
 @Component({
   selector: "web-input-textarea",
 
-  imports: [CommonModule, BaseInputSignal, ReactiveFormsModule, TextareaModule],
+  imports: [CommonModule, BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -32,7 +31,7 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [noMargin]="noMargin()"
     >
       <textarea
-        pTextarea
+        class="form-control"
         [id]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
@@ -40,11 +39,8 @@ import { BaseInputSignal } from "../../base/base-input-signal";
         [rows]="rows()"
         [cols]="cols()"
         [maxlength]="maxLength()"
-        [autoResize]="!disableResize()"
         [style]="{ resize: disableResize() ? 'none' : 'vertical' }"
         [ngClass]="customClass()"
-        [invalid]="isInvalid()"
-        [fluid]="fluid()"
       ></textarea>
     </base-input-signal>
   `,

@@ -6,13 +6,12 @@ import {
   input,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
   selector: "web-input-currency",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule],
+  imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -24,23 +23,16 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
     >
-      <p-inputnumber
-        [inputId]="id()"
+      <input
+        type="text"
+        inputmode="decimal"
+        class="form-control"
+        [id]="id()"
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
         [readonly]="readonly()"
         [disabled]="disabled()"
-        [showButtons]="showButtons()"
-        [minFractionDigits]="minFractionDigits()"
-        [maxFractionDigits]="maxFractionDigits()"
-        mode="decimal"
-        [useGrouping]="useGrouping()"
-        [prefix]="prefix()"
-        [suffix]="suffix()"
-        [showClear]="showClear()"
-        locale="es-MX"
-        [inputStyleClass]="inputStyleClass()"
-        fluid
+        [class]="'form-control ' + inputStyleClass()"
       />
     </base-input-signal>
   `,

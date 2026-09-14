@@ -6,13 +6,12 @@ import {
   input,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { SelectModule } from "primeng/select";
 import { BaseInputSignal } from "../../base/base-input-signal";
 
 @Component({
   selector: "web-input-select-bool",
 
-  imports: [BaseInputSignal, ReactiveFormsModule, SelectModule],
+  imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -24,20 +23,16 @@ import { BaseInputSignal } from "../../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
     >
-      <p-select
-        [inputId]="id()"
-        [options]="boolOptions()"
-        [formControl]="control() || internalControl"
-        [placeholder]="placeholder()"
-        optionLabel="label"
-        optionValue="value"
-        [showClear]="showClear()"
-        [disabled]="disabled()"
-        [readonly]="readonly()"
-        [class]="getInputStyleClass()"
-        fluid
-        appendTo="body"
-      />
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [id]="id()"
+          [formControl]="control() || internalControl"
+          [disabled]="disabled()"
+        />
+        <label class="form-check-label" [for]="id()">{{ (control() || internalControl).value ? activeLabel() : inactiveLabel() }}</label>
+      </div>
     </base-input-signal>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
