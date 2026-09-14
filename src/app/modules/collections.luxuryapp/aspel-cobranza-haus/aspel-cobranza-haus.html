@@ -1,6 +1,6 @@
 <div class="d-flex flex-column gap-3">
   <div
-    class="d-flex flex-column flex-lg-row justify-content-between align-items-start gap-3 p-4 rounded-xl border-1 surface-border surface-ground"
+    class="d-flex flex-column flex-lg-row justify-content-between align-items-start gap-3 p-4 rounded-xl border-1 surface-border surface-ground g-4"
   >
     <div>
       <h1 class="m-0 mb-2 text-2xl font-bold text-900">{{ getModeTitle() }}</h1>
@@ -108,7 +108,7 @@
     </div>
   </lx-card>
   } @else if (mode() === "accounts" && accountRows().length) {
-  <div class="row">
+  <div class="row g-4">
     <div class="col-12 col-md-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
         <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
@@ -213,7 +213,7 @@
       >
     </div>
   </div>
-  <div class="row">
+  <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="shadow-none border-1 surface-border h-full">
         <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
@@ -358,7 +358,7 @@
       >
     </div>
   </div>
-  <div class="row">
+  <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-4">
       <lx-card class="shadow-none border-1 surface-border h-full">
         <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
@@ -531,7 +531,7 @@
   </lx-card>
 
   <!-- } @else if (mode() === "contrapartidas-rango" && contrapartidas()) {
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-6 col-lg-3">
           <lx-card class="shadow-none border-1 surface-border h-full">
 <span class="d-block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>
@@ -635,7 +635,7 @@
       >
     </div>
   </div>
-  <div class="row">
+  <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-3">
       <lx-card class="shadow-none border-1 surface-border h-full">
         <span class="d-block mb-1 text-xs uppercase font-semibold text-500"
@@ -772,7 +772,7 @@
     </ng-template>
   </p-table>
   <!-- } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-6 col-lg-2">
           <lx-card class="shadow-none border-1 surface-border h-full">
 <span class="d-block mb-1 text-xs uppercase font-semibold text-500">Cuenta base</span>

@@ -43,6 +43,8 @@ import { PopoverBase } from "@ui/base/popover.base";
         flex: 0 0 auto;
         width: max-content;
         max-width: min(90vw, 20rem);
+        position: static !important;
+        margin: 0 !important;
       }
     `,
   ],
@@ -84,34 +86,30 @@ export class AppPopover extends PopoverBase {
       .position()
       .flexibleConnectedTo(this.trigger())
       .withFlexibleDimensions(false)
-      .withViewportMargin(20)
+      .withPush(true) // Empuja el panel hacia adentro si se sale de la pantalla
+      .withViewportMargin(8)
       .withPositions([
         {
-          originX: "end",
-          originY: "bottom",
-          overlayX: "end",
-          overlayY: "top",
+          // Posición ideal: alinear a la derecha (para avatar de perfil)
+          originX: 'end',
+          originY: 'bottom',
+          overlayX: 'end',
+          overlayY: 'top',
           offsetY: 4,
         },
         {
-          originX: "start",
-          originY: "bottom",
-          overlayX: "start",
-          overlayY: "top",
+          // Fallback: alinear a la izquierda (para uso normal)
+          originX: 'start',
+          originY: 'bottom',
+          overlayX: 'start',
+          overlayY: 'top',
           offsetY: 4,
-        },
-        {
-          originX: "end",
-          originY: "top",
-          overlayX: "end",
-          overlayY: "bottom",
-          offsetY: -4,
-        },
+        }
       ]);
 
     this.overlayRef = this.overlay.create({
       positionStrategy,
-      scrollStrategy: this.overlay.scrollStrategies.reposition(),
+      scrollStrategy: this.overlay.scrollStrategies.close(),
       hasBackdrop: this.dismissable(),
       backdropClass: "cdk-overlay-transparent-backdrop",
     });

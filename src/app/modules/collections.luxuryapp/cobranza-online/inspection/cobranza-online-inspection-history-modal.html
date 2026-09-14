@@ -1,6 +1,6 @@
 <section class="p-2">
   <div
-    class="d-flex flex-column flex-md-row justify-content-md-between gap-3 mb-3"
+    class="d-flex flex-column flex-md-row justify-content-md-between gap-3 mb-3 g-4"
   >
     <div>
       <div class="text-lg font-semibold">
@@ -29,7 +29,7 @@
     </div>
   </div>
   } @else if (history(); as detail) {
-  <div class="row mb-3">
+  <div class="row mb-3 g-4">
     <div class="col-6 col-md-2">
       <div class="text-color-secondary text-sm">Saldo inicial</div>
       <div class="font-medium">{{ formatCurrency(detail.initialBalance) }}</div>
@@ -63,7 +63,7 @@
       Agrupado de cuentas 401 encontradas en las mismas pólizas del histórico
       seleccionado.
     </div>
-    <div class="row">
+    <div class="row g-4">
       @for (item of selected401Summary(); track item.related401Accounts) {
       <div class="col-12 col-md-6 col-xl-4">
         <div class="border-1 surface-border rounded p-3 h-full">

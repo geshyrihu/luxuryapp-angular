@@ -34,7 +34,7 @@
       </div>
       } @else {
       <!-- Grid de metricas placeholder -->
-      <div class="row m-0">
+      <div class="row m-0 g-4">
         @for (metrica of area.metricas; track $index) {
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-2">
           <div
@@ -58,7 +58,7 @@
 
 <!-- Vista Movil -->
 <div class="d-block d-md-none">
-  <div class="row p-0">
+  <div class="row p-0 g-4">
     @for (area of areas; track area.key) {
     <div class="d-flex flex-wrap w-full">
       <!-- Titulo del area -->

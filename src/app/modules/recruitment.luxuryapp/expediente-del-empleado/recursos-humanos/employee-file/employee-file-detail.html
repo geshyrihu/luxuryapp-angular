@@ -2,7 +2,7 @@
 <div
   class="card mb-4 p-4 rounded-xl shadow-sm border-top-3 border-primary overflow-hidden"
 >
-  <div class="d-flex flex-column flex-sm-row align-items-center gap-4">
+  <div class="d-flex flex-column flex-sm-row align-items-center gap-4 g-4">
     <div class="flex-shrink-0">
       @if (header()!.photoUrl) {
       <img
@@ -115,7 +115,7 @@
             <h4 class="m-0 font-bold text-900">Identificación</h4>
           </div>
         </ng-template>
-        <div class="row row-gap-3">
+        <div class="row row-gap-3 g-4">
           <div class="col-12 col-sm-6 col-lg-4">
             <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Nombre Completo</label
@@ -230,7 +230,7 @@
       </lx-card>
 
       <!-- Contacto + Salario -->
-      <div class="row row-gap-4">
+      <div class="row row-gap-4 g-4">
         <div class="col-12 col-lg-8">
           <lx-card class="shadow-sm rounded-xl h-full" [elevated]="true">
             <ng-template #header>
@@ -246,7 +246,7 @@
                 <h4 class="m-0 font-bold text-900">Contacto</h4>
               </div>
             </ng-template>
-            <div class="row row-gap-3">
+            <div class="row row-gap-3 g-4">
               <div class="col-12 col-sm-6">
                 <label class="text-xs font-bold text-500 uppercase d-block mb-1"
                   >Correo Institucional</label
@@ -314,7 +314,7 @@
             <h4 class="m-0 font-bold text-900">Dirección de Residencia</h4>
           </div>
         </ng-template>
-        <div class="row row-gap-3">
+        <div class="row row-gap-3 g-4">
           <div class="col-12 col-sm-8 col-lg-6">
             <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Calle</label
@@ -585,7 +585,7 @@
           ></lx-tag>
         </div>
       </ng-template>
-      <div class="row row-gap-3 px-4 pb-4">
+      <div class="row row-gap-3 px-4 pb-4 g-4">
         <div class="col-12 col-sm-6 col-lg-4">
           <label class="text-xs font-bold text-500 uppercase d-block mb-1"
             >Fecha Inicio</label
@@ -746,7 +746,7 @@
             <h4 class="m-0 font-bold text-900">Posición Actual</h4>
           </div>
         </ng-template>
-        <div class="row row-gap-3">
+        <div class="row row-gap-3 g-4">
           <div class="col-12 col-sm-6 col-lg-4">
             <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Puesto Actual</label
@@ -821,7 +821,7 @@
             <h4 class="m-0 font-bold text-900">Horario Semanal</h4>
           </div>
         </ng-template>
-        <div class="row row-gap-3 text-center">
+        <div class="row row-gap-3 text-center g-4">
           <div class="col-12 col-sm-6 lg:col">
             <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Lunes</label
@@ -1014,7 +1014,7 @@
             </h4>
           </div>
         </ng-template>
-        <div class="row row-gap-3">
+        <div class="row row-gap-3 g-4">
           <div class="col-6 col-sm-4 col-lg-2 text-center">
             <label class="text-xs font-bold text-500 uppercase d-block mb-1"
               >Antigóedad</label
@@ -1359,7 +1359,7 @@
   <!-- Tab 10: Solicitudes -->
   <div tab="10">
     @if (requests(); as req) {
-    <div class="row py-3">
+    <div class="row py-3 g-4">
       <!-- Alta -->
       <div class="col-12 col-lg-6">
         <div class="d-flex align-items-center gap-3 mb-3">
@@ -1375,7 +1375,7 @@
         </div>
         @if (req.registerRequest; as r) {
         <div class="surface-card shadow-sm rounded-xl p-4">
-          <div class="row row-gap-3">
+          <div class="row row-gap-3 g-4">
             <div class="col-6">
               <span class="text-xs text-500 uppercase d-block mb-1">Folio</span>
               <span class="font-bold text-primary text-lg">#{{ r.folio }}</span>
@@ -1445,7 +1445,7 @@
         <div
           class="surface-card shadow-sm rounded-xl border-left-3 border-red-500 p-4"
         >
-          <div class="row row-gap-3">
+          <div class="row row-gap-3 g-4">
             <div class="col-6">
               <span class="text-xs text-500 uppercase d-block mb-1">Folio</span>
               <span class="font-bold text-red-600 text-lg">#{{ d.folio }}</span>

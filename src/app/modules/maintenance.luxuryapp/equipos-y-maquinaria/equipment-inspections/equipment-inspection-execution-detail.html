@@ -1,6 +1,6 @@
 @let execution = detail(); @if (execution) {
 <div class="d-flex flex-column gap-4">
-  <div class="row">
+  <div class="row g-4">
     <div class="col-12 col-md-6">
       <div class="font-semibold text-lg">{{ execution.definitionName }}</div>
       <div class="text-sm text-600">{{ execution.machineryName }}</div>
@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="row text-sm">
+  <div class="row text-sm g-4">
     <div class="col-12 col-md-4">
       <div class="text-500">Fecha programada</div>
       <div>{{ execution.executionDate }}</div>
@@ -88,7 +88,7 @@
   @if (execution.images.length > 0) {
   <div>
     <div class="font-semibold mb-2">Evidencias</div>
-    <div class="row">
+    <div class="row g-4">
       @for (image of execution.images; track image.id) {
       <div class="col-12 col-md-4">
         <div class="border-1 surface-border rounded p-2 h-full">

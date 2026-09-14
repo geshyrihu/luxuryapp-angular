@@ -7,11 +7,11 @@
 </div>
 } @else {
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="row">
+  <div class="row g-4">
     <!-- Frecuencia y Dias de Pago -->
     <div class="col-12">
       <lx-fieldset legend="Frecuencia de Pago">
-        <div class="row">
+        <div class="row g-4">
           <div class="col-12 col-md-4">
             <custom-input-select-signal
               [control]="form.controls['frecuenciaPago']"
@@ -41,7 +41,7 @@
     <!-- Prestaciones de Ley -->
     <div class="col-12">
       <lx-fieldset legend="Prestaciones de Ley (LFT)">
-        <div class="row">
+        <div class="row g-4">
           <div class="col-12 col-md-6">
             <custom-input-number-signal
               [control]="form.controls['diasAguinaldo']"
@@ -65,7 +65,7 @@
     <!-- Control de Asistencia -->
     <div class="col-12">
       <lx-fieldset legend="Control de Asistencia">
-        <div class="row">
+        <div class="row g-4">
           <div class="col-12 col-md-6">
             <custom-input-number-signal
               [control]="form.controls['minutosToleranciaRetardo']"
@@ -87,7 +87,7 @@
     <!-- Cuotas IMSS (Parte Obrera) -->
     <div class="col-12">
       <lx-fieldset legend="Cuotas IMSS - Parte Obrera">
-        <div class="row">
+        <div class="row g-4">
           <div class="col-12 col-md-4">
             <custom-input-decimal-signal
               [control]="form.controls['porcentajeEnfermedadMaternidad']"

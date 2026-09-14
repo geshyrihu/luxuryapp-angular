@@ -59,7 +59,7 @@
 
 @if (mostrarPara || mostrarCo || mostrarCco) {
 <form [formGroup]="form" (ngSubmit)="onAddCorreo()" class="ms-0 mt-1">
-  <div class="row align-items-center">
+  <div class="row align-items-center g-4">
     <div class="col-10 col-md-3">
       <custom-input-text-signal
         [control]="form.controls.email"

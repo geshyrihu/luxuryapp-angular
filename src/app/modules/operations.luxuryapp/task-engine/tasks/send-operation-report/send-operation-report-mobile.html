@@ -17,7 +17,7 @@
 
 @if (service.mostrarPara || service.mostrarCo || service.mostrarCco) {
 <form [formGroup]="service.form" (ngSubmit)="service.onAddCorreo()" class="ms-0 mt-1">
-  <div class="row align-items-center">
+  <div class="row align-items-center g-4">
     <div class="col-10">
       <ion-input-text
         [control]="service.form.controls.email"

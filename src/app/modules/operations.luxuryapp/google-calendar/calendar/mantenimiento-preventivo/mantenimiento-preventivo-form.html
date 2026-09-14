@@ -12,7 +12,7 @@
       </div>
 
       <!-- PRIMERA FILA -->
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
             (propagar)="saveMachineryId($event)"
@@ -43,7 +43,7 @@
       </div>
 
       <!-- SEGUNDA FILA -->
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-6">
           <custom-input-select-signal
             [control]="form.controls.typeMaintance"
@@ -62,7 +62,7 @@
       </div>
 
       <!-- TERCERA FILA -->
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
             (propagar)="saveProviderId($event)"
@@ -85,7 +85,7 @@
       </div>
 
       <!-- CUARTA FILA -->
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.activity"

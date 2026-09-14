@@ -1,13 +1,13 @@
 <div class="rf-shell">
   @if(data(); as epf) {
   <div class="rf-card p-4">
-    <div class="row">
+    <div class="row g-4">
       <div class="col-12 col-lg-6 px-4">
         <div class="rf-panel">
           <div class="rf-panel-title">ACTIVO</div>
           <div class="rf-panel-list">
             @for(item of epfActivo(); track item.numeroCuenta + '-' + $index) {
-            <div class="rf-panel-row">
+            <div class="rf-panel-row g-4">
               <div class="rf-panel-label">
                 <div class="rf-td-cuenta">{{ item.numeroCuenta }}</div>
                 <div class="rf-td-descripcion--item">
@@ -37,7 +37,7 @@
           <div class="rf-panel-title">PASIVO</div>
           <div class="rf-panel-list">
             @for(item of epfPasivo(); track item.numeroCuenta + '-' + $index) {
-            <div class="rf-panel-row">
+            <div class="rf-panel-row g-4">
               <div class="rf-panel-label">
                 <div class="rf-td-cuenta">{{ item.numeroCuenta }}</div>
                 <div class="rf-td-descripcion--item">
@@ -60,7 +60,7 @@
           <div class="rf-panel-title">CAPITAL</div>
           <div class="rf-panel-list">
             @for(item of epfCapital(); track item.numeroCuenta + '-' + $index) {
-            <div class="rf-panel-row">
+            <div class="rf-panel-row g-4">
               <div class="rf-panel-label">
                 <div class="rf-td-cuenta">{{ item.numeroCuenta }}</div>
                 <div class="rf-td-descripcion--item">
@@ -105,7 +105,7 @@
         <lx-skeleton width="40%" />
       </div>
     </div>
-    <div class="row">
+    <div class="row g-4">
       <div class="col-6">
         <lx-skeleton height="2rem" styleClass="mb-2" />
         <lx-skeleton height="1rem" styleClass="mb-2" />

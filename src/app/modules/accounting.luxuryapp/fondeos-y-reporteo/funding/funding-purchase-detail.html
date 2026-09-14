@@ -35,7 +35,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     <!-- SECCIóN 1: INFORMACIóN GENERAL -->
     <h5 class="text-xl font-medium m-0">Información General</h5>
     <hr class="my-3 surface-border" />
-    <div class="row mb-4">
+    <div class="row mb-4 g-4">
       <div class="col-12 col-md-4">
         <label class="d-block text-color-secondary font-medium"
           >Fecha de Solicitud</label
@@ -70,7 +70,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     <!-- SECCIóN 2: DATOS DEL PROVEEDOR Y PAGO -->
     <h5 class="text-xl font-medium m-0 mt-4">Datos del Proveedor y Pago</h5>
     <hr class="my-3 surface-border" />
-    <div class="row mb-4">
+    <div class="row mb-4 g-4">
       <div class="col-12 col-md-6">
         <label class="d-block text-color-secondary font-medium">Proveedor</label>
         <p class="font-bold">{{ data().providerName }}</p>
@@ -103,7 +103,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     <!-- SECCIóN 3: ESTADO DE LA ORDEN -->
     <h5 class="text-xl font-medium m-0 mt-4">Estado de la Orden</h5>
     <hr class="my-3 surface-border" />
-    <div class="row mb-4">
+    <div class="row mb-4 g-4">
       <div class="col-12 col-md-3">
         <label class="d-block text-color-secondary font-medium"
           >Estado General</label
@@ -200,7 +200,7 @@ Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
     <!-- SECCIóN 5: TOTALES -->
     <div class="d-flex justify-content-end mt-3">
       <div class="w-full md:w-6">
-        <div class="row">
+        <div class="row g-4">
           <div class="col-6 text-right font-bold">Subtotal General:</div>
           <div class="col-6 text-right">
             {{ data().subTotalGeneral | currency: "MXN" }}

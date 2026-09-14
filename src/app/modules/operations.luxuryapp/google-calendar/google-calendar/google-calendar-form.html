@@ -1,5 +1,5 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="row">
-  <div class="col-12 col-lg-8 row m-0 p-0 align-content-start">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="row g-4">
+  <div class="col-12 col-lg-8 row m-0 p-0 align-content-start g-4">
     <div class="col-12 col-md-3">
       <label class="d-block mb-2 field-label">Tipo de asunto *</label>
       <app-segmented-control
@@ -94,7 +94,7 @@
 
     <div class="col-12">
       <div class="border-1 surface-border rounded p-3">
-        <div class="row">
+        <div class="row g-4">
           <div class="col-12 col-md-3">
             <custom-input-switch-signal
               [control]="form.controls.assemblyRequiresPaddles"
@@ -274,7 +274,7 @@
         index = $index) {
         <div
           [formGroupName]="index"
-          class="row align-items-center border-bottom-1 surface-border pb-3 mb-3"
+          class="row align-items-center border-bottom-1 surface-border pb-3 mb-3 g-4"
         >
           <div
             class="col-12 d-flex justify-content-between align-items-center mb-2"
@@ -429,7 +429,7 @@
         @for (guest of guestsArray.controls; track guest; let index = $index) {
         <div
           [formGroupName]="index"
-          class="d-flex flex-row align-items-center w-full pb-1 mb-1 border-bottom-1 surface-border"
+          class="d-flex flex-row align-items-center w-full pb-1 mb-1 border-bottom-1 surface-border g-4"
         >
           <div class="flex-1 px-1">
             <custom-input-text-signal
@@ -485,7 +485,7 @@
       <div class="d-flex flex-column gap-2">
         @for (guest of implicitGuests(); track guest.email) {
         <div
-          class="d-flex flex-row align-items-center bg-white p-2 border-1 surface-border border-round"
+          class="d-flex flex-row align-items-center bg-white p-2 border-1 surface-border border-round g-4"
         >
           <div class="flex-1 d-flex flex-column overflow-hidden">
             <span

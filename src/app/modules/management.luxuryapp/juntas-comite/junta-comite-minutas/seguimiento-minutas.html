@@ -15,7 +15,7 @@
   <ng-template #caption>
     <!-- Contenedor Maestro: Apila en mívil, alinea en lónea en escritorio -->
     <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded g-4"
     >
       <!-- LADO IZQUIERDO: Buscador y Tútulo (Toma el espacio libre) -->
       <div class="flex-grow-1">
@@ -28,7 +28,7 @@
       </div>
 
       <!-- LADO DERECHO: Filtros, Acciones y Toggles -->
-      <div class="d-flex flex-column flex-sm-row align-items-center gap-1">
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-1 g-4">
         <il-button
           label="Pendientes"
           [severity]="statusFiltro == 0 ? 'primary' : 'info'"

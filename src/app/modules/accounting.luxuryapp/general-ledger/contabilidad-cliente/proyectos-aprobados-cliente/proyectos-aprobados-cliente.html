@@ -21,7 +21,7 @@
         </span>
         <!-- Numero de cuenta oculto en version cliente -->
       </div>
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-4">
           <div class="d-flex flex-column gap-1">
             <span class="text-500 font-medium uppercase text-xs"
@@ -63,7 +63,7 @@
     <p class="font-bold uppercase mb-3 text-sm" >
       Detalle por Proyecto
     </p>
-    <div class="row mb-4">
+    <div class="row mb-4 g-4">
       @for (proyecto of reporte.proyectos; track proyecto.numeroCuenta) {
       <div class="col-12 col-md-6 col-xl-4">
         <div
@@ -126,7 +126,7 @@
         </ng-template>
 
         <ng-template #body let-proyecto>
-          <tr class="rf-row-concepto">
+          <tr class="rf-row-concepto g-4">
             <td class="rf-td-descripcion--item">
               <div class="font-bold text-sm uppercase">
                 {{ proyecto.descripcion }}
@@ -175,7 +175,7 @@
 
         @if (reporte.totalGeneral; as total) {
         <ng-template #footer>
-          <tr class="rf-row-result">
+          <tr class="rf-row-result g-4">
             <td class="rf-td-descripcion">TOTAL GENERAL</td>
             <td class="rf-td-number--total text-green-400">
               {{ total.presupuestoMensual > 0 ? (total.presupuestoMensual |

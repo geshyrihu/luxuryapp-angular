@@ -2,6 +2,9 @@
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: 70px 1fr;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .layout-header {
@@ -9,7 +12,6 @@
   grid-row: 1;
   height: 70px;
   background-color: var(--ds-bg-surface);
-  border-bottom: 8px solid var(--ds-primary);
 }
 
 .layout-sidebar {
@@ -24,8 +26,17 @@
 .main-content-wrapper {
   grid-column: 2;
   grid-row: 2;
+  min-height: 0;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-content-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 0.5rem 1.5rem 1.5rem 1.5rem;
 }

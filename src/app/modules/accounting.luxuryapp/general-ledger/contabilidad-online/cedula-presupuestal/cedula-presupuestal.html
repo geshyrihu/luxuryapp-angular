@@ -34,13 +34,13 @@
 
       <ng-template #body let-row>
         @if (row.tipo === 'header') {
-        <tr class="rf-row-section">
+        <tr class="rf-row-section g-4">
           <td colspan="9" class="font-bold text-base py-2 px-3">
             {{ row.descripcion }}
           </td>
         </tr>
         } @if (row.tipo === 'item') {
-        <tr class="rf-row-concepto">
+        <tr class="rf-row-concepto g-4">
           <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
           <td class="rf-td-descripcion--item">{{ row.descripcion }}</td>
           <td class="rf-td-number">
@@ -69,7 +69,7 @@
           </td>
         </tr>
         } @if (row.tipo === 'gran-total') {
-        <tr class="rf-row-result">
+        <tr class="rf-row-result g-4">
           <td></td>
           <td class="rf-td-descripcion">{{ row.descripcion }}</td>
           <td class="rf-td-number--total" [class.rf-neg]="row.presupMes < 0">
@@ -95,7 +95,7 @@
           </td>
         </tr>
         } @if (row.tipo === 'total-extra') {
-        <tr class="rf-row-total">
+        <tr class="rf-row-total g-4">
           <td></td>
           <td class="rf-td-descripcion">{{ row.descripcion }}</td>
           <td class="rf-td-number--total">

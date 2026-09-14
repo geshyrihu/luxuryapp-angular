@@ -13,7 +13,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <lx-card class="card card--elevated mb-6">
       <h2 class="text-md font-semibold text-700 mb-3">1. Seleccionar Propiedad</h2>
-      <div class="d-flex flex-column flex-md-row align-items-end gap-3">
+      <div class="d-flex flex-column flex-md-row align-items-end gap-3 g-4">
         <div class="flex-1">
           <custom-input-select-signal
             [control]="form.controls.propertyId"
@@ -38,7 +38,7 @@
     </lx-card>
 
     @if (selectedPropertyName()) {
-    <div class="row">
+    <div class="row g-4">
       <div class="col-12 col-lg-4">
         <lx-card class="card h-full">
           <h2 class="text-md font-semibold text-700 mb-4 border-bottom-1 pb-2">2. Datos del Ingreso</h2>

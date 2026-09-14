@@ -17,7 +17,7 @@
       </small>
     </div>
 
-    <div class="row">
+    <div class="row g-4">
       <div class="col-12 col-md-8">
         <custom-input-select-signal
           [control]="form.controls['candidateId']"
@@ -85,7 +85,7 @@
             </div>
           </div>
 
-          <div class="row" [formGroup]="candidateForm">
+          <div class="row g-4" [formGroup]="candidateForm">
             <div class="col-12 col-md-6">
               <custom-input-text-signal
                 [control]="$any(candidateForm.controls['firstName'])"
@@ -167,7 +167,7 @@
                 class="border-1 surface-border border-round p-3 surface-card"
               >
                 <div
-                  class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-2 mb-3"
+                  class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-2 mb-3 g-4"
                 >
                   <div>
                     <div class="font-semibold">Experiencia laboral</div>
@@ -211,7 +211,7 @@
                       />
                     </div>
 
-                    <div class="row" [formGroup]="experience">
+                    <div class="row g-4" [formGroup]="experience">
                       <div class="col-12 col-md-6">
                         <custom-input-text-signal
                           [control]="$any(experience.controls['companyName'])"
@@ -334,7 +334,7 @@
     </div>
 
     @if (form.controls['candidateId'].value || isCreatingCandidate()) {
-    <div class="row align-items-start mt-3">
+    <div class="row align-items-start mt-3 g-4">
       <div class="col-12 col-md-8">
         <app-candidate-cv-upload
           [fileName]="form.controls['cvFileName'].value"

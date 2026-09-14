@@ -18,9 +18,9 @@
 
       <div class="p-4 p-md-5 border-bottom-1 surface-border">
         <div
-          class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-4 print-header-row"
+          class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-4 print-header-row g-4"
         >
-          <div class="d-flex flex-column flex-md-row align-items-md-center gap-3">
+          <div class="d-flex flex-column flex-md-row align-items-md-center gap-3 g-4">
             <div>
               <img
                 [src]="logoPath"
@@ -40,7 +40,7 @@
           </div>
 
           <div
-            class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3"
+            class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 g-4"
           >
             <div
               class="surface-100 border-1 surface-border rounded-xl px-3 py-2 d-inline-flex align-items-center gap-2 text-sm text-color"
@@ -151,7 +151,7 @@
       <div class="bg-yellow-500" ></div>
     </header>
 
-    <div class="row">
+    <div class="row g-4">
       @if (manual()!.objetivo) {
       <div class="col-12 col-lg-6">
         <article
@@ -304,7 +304,7 @@
             <app-diagram-preview [xml]="paso.diagramaXml" />
           </div>
           } @if (paso.imagenes?.length) {
-          <div class="row mt-1">
+          <div class="row mt-1 g-4">
             @for (img of paso.imagenes; track img.id) {
             <div class="col-12 col-sm-6 col-xl-4">
               <div
@@ -373,7 +373,7 @@
     </article>
 
     @if (manual()!.adjuntos?.length || manual()!.versiones?.length) {
-    <div class="row">
+    <div class="row g-4">
       @if (manual()!.adjuntos?.length) {
       <div class="col-12 col-xl-6">
         <article

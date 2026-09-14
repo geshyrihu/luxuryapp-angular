@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <lx-card>
-    <div class="row">
+    <div class="row g-4">
       <!-- Employee Selection -->
       <div class="col-12 col-md-4">
         <div class="d-flex flex-column mb-2">
@@ -113,7 +113,7 @@
             <h5 class="mb-0 font-semibold">Balance Anual</h5>
           </div>
           @if(eligibilityStatus() === 'eligible'){
-          <div class="row text-center">
+          <div class="row text-center g-4">
             <div class="col-12 col-sm-3">
               <h4 class="text-lg font-semibold text-900 mb-1">
                 {{ b.totalDays }}

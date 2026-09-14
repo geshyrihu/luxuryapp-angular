@@ -24,7 +24,7 @@
         </thead>
 
         <tbody>
-          <tr class="rf-row-section">
+          <tr class="rf-row-section g-4">
             <td colspan="100">Ingresos</td>
           </tr>
 
@@ -44,7 +44,7 @@
           </tr>
           } }
 
-          <tr class="rf-row-total">
+          <tr class="rf-row-total g-4">
             <td>Ingresos</td>
             @for (val of reporte.totalIngresos; track trackByIndex($index); let
             i = $index) {
@@ -57,7 +57,7 @@
             }
           </tr>
 
-          <tr class="rf-row-section">
+          <tr class="rf-row-section g-4">
             <td colspan="100">- ) Gastos Generales</td>
           </tr>
 
@@ -77,7 +77,7 @@
           </tr>
           } }
 
-          <tr class="rf-row-total">
+          <tr class="rf-row-total g-4">
             <td>Total de Gastos</td>
             @for (val of reporte.totalGastos; track trackByIndex($index); let i
             = $index) {
@@ -90,7 +90,7 @@
             }
           </tr>
 
-          <tr class="rf-row-total">
+          <tr class="rf-row-total g-4">
             <td>Subtotal</td>
             @for (val of reporte.subtotal; track trackByIndex($index); let i =
             $index) {
@@ -103,12 +103,12 @@
             }
           </tr>
 
-          <tr class="rf-row-spacer">
+          <tr class="rf-row-spacer g-4">
             <td colspan="100"></td>
           </tr>
 
           @if (reporte.otrosIngresos.length > 0) {
-          <tr class="rf-row-section">
+          <tr class="rf-row-section g-4">
             <td colspan="100">Otros Ingresos</td>
           </tr>
           @for (fila of reporte.otrosIngresos; track fila.concepto) { @if
@@ -126,7 +126,7 @@
             }
           </tr>
           } } } @if (reporte.otrosGastos.length > 0) {
-          <tr class="rf-row-section">
+          <tr class="rf-row-section g-4">
             <td colspan="100">Otros Gastos</td>
           </tr>
           @for (fila of reporte.otrosGastos; track fila.concepto) { @if
@@ -145,7 +145,7 @@
           </tr>
           } } } @if (reporte.otrosIngresos.length > 0 ||
           reporte.otrosGastos.length > 0) {
-          <tr class="rf-row-total">
+          <tr class="rf-row-total g-4">
             <td>Suma</td>
             @for (val of reporte.sumaOtros; track trackByIndex($index); let i =
             $index) {
@@ -159,7 +159,7 @@
           </tr>
           }
 
-          <tr class="rf-row-result">
+          <tr class="rf-row-result g-4">
             <td>Resultado del Periodo</td>
             @for (val of reporte.resultadoPeriodo; track trackByIndex($index);
             let i = $index) {
@@ -175,13 +175,13 @@
           @if (!isFilaVacia(reporte.fondoMejoras.ingresoAmenidades) ||
           reporte.fondoMejoras.gastosAmenidades.length > 0 ||
           reporte.fondoMejoras.gastosMejoras.length > 0) {
-          <tr class="rf-row-spacer">
+          <tr class="rf-row-spacer g-4">
             <td colspan="100"></td>
           </tr>
-          <tr class="rf-row-fondo">
+          <tr class="rf-row-fondo g-4">
             <td colspan="100">Fondo para Mejoras</td>
           </tr>
-          <tr class="rf-row-section">
+          <tr class="rf-row-section g-4">
             <td colspan="100">Ingresos / Gastos Amenidades</td>
           </tr>
 
@@ -228,7 +228,7 @@
           </tr>
           } }
 
-          <tr class="rf-row-total">
+          <tr class="rf-row-total g-4">
             <td>Remanente Amenidades</td>
             @for (val of reporte.fondoMejoras.remanenteMejoras; track
             trackByIndex($index); let i = $index) {

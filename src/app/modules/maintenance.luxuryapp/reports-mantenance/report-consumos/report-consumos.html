@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row g-4">
   <div class="col-12">
     <page-title-report-maintenance title="REPORTE EJECUTIVO DE CONSUMOS" />
   </div>
@@ -6,7 +6,7 @@
   <div class="col-12">
     <div class="card" class="shadow-sm rounded-xl overflow-hidden">
 
-        <div class="row">
+        <div class="row g-4">
           <div class="col-12 col-lg-4">
             <div class="text-sm font-semibold text-700 mb-2">
               Rango de fechas
@@ -21,7 +21,7 @@
           </div>
 
           <div class="col-12 col-lg-8">
-            <form [formGroup]="filtersForm" class="row">
+            <form [formGroup]="filtersForm" class="row g-4">
               <div class="col-12 col-md-6 col-xl-4">
                 <custom-input-multiselect-signal
                   [control]="filtersForm.controls.medidorIds"

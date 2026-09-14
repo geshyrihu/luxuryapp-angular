@@ -21,7 +21,7 @@
     } @if (vacancyContext(); as vacancy) {
     <div class="surface-100 border-round p-3 mb-3">
       <p class="m-0 font-semibold pb-2">Contexto de la vacante</p>
-      <div class="row text-sm">
+      <div class="row text-sm g-4">
         <div class="col-12 col-md-4">
           <span class="text-color-secondary">Empresa: </span>{{
           vacancy.customerName }}
@@ -68,7 +68,7 @@
     </div>
     }
 
-    <div class="row">
+    <div class="row g-4">
       <div class="col-12 col-md-6">
         <custom-input-text-signal
           [control]="form.controls.firstName"

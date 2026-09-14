@@ -2,7 +2,7 @@
   <h4 class="text-headline-md text-on-surface m-0 mb-6">Reporte de Inspecciones</h4>
 
   <!-- Filtros -->
-  <div class="row gap-4 mb-6">
+  <div class="row gap-4 mb-6 g-4">
     <div class="col-12 col-md-6">
       <custom-input-select-signal
         id="inspection"
@@ -52,7 +52,7 @@
     <!-- Información General -->
     <div class="card p-4 md:p-6">
       <h5 class="text-title-lg text-primary m-0 mb-4">{{ dataSignal().name }}</h5>
-      <div class="row gap-3">
+      <div class="row gap-3 g-4">
         <div class="col-12 col-md-6">
           <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Departamento</p>
           <p class="text-body-md text-on-surface m-0">{{ dataSignal().departament }}</p>
@@ -96,7 +96,7 @@
       @if (item.images && item.images.length > 0) {
       <div>
         <p class="text-body-sm font-medium text-on-surface m-0 mb-3">Reporte Fotográfico ({{ item.images.length }})</p>
-        <div class="row gap-3">
+        <div class="row gap-3 g-4">
           @for (image of item.images; track image) {
           <div class="col-6 col-sm-4 col-md-3">
             <app-image

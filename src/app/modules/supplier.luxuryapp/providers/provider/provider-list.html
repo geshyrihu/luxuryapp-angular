@@ -1,7 +1,7 @@
 <!-- Directorio de Proveedores: vista moderna en tarjetas -->
 <!-- Filtros y acción principal -->
 <div
-  class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3 mb-4"
+  class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3 mb-4 g-4"
 >
   <app-segmented-control
     [items]="serviceTypes"
@@ -31,7 +31,7 @@
 
 <!-- Grid de tarjetas -->
 @if (dataSignal().length > 0) {
-<div class="row">
+<div class="row g-4">
   @for (item of dataSignal(); track item.providerId) {
   <div class="col-12 col-sm-6 col-lg-4 p-2">
     <lx-card class="h-full d-flex flex-column">

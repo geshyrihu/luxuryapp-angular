@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row g-4">
       @for (card of group.cards; track card.title) {
       <div class="col-12 col-sm-6 col-lg-4">
         <div class="nom-card surface-card h-full d-flex flex-column">
@@ -148,7 +148,7 @@
                 />Endpoints del API
               </div>
               @for (ep of card.endpoints; track ep.path) {
-              <div class="nom-endpoint-row text-xs">
+              <div class="nom-endpoint-row text-xs g-4">
                 <span
                   class="font-mono font-bold flex-shrink-0"
                   [class]="ep.method === 'GET' ? 'text-blue-600' : ep.method === 'DELETE' ? 'text-red-600' : 'text-green-600'"

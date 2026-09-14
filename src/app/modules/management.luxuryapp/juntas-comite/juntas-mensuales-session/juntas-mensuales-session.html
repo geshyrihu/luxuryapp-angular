@@ -1,8 +1,8 @@
-<div class="row">
+<div class="row g-4">
   <div class="col-12">
     <div class="card">
       <div
-        class="d-flex flex-column gap-2 flex-md-row justify-content-md-between align-items-md-center"
+        class="d-flex flex-column gap-2 flex-md-row justify-content-md-between align-items-md-center g-4"
       >
         <div>
           <h2 class="m-0">Sesiones mensuales</h2>
@@ -83,7 +83,7 @@
       @if (detailLoading()) {
       <p class="text-color-secondary">Cargando detalle...</p>
       } @else if (selectedDetail(); as detail) {
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-6">
           <p class="m-0 text-color-secondary">Titulo</p>
           <p class="mt-1 font-semibold">{{ detail.sessionTitle }}</p>
@@ -158,7 +158,7 @@
         }
       </div>
 
-      <div class="row mt-3">
+      <div class="row mt-3 g-4">
         <div class="col-12 col-md-4">
           <div class="card" header="Agenda">
             <p class="m-0">
@@ -201,7 +201,7 @@
         @if (detail.assembly) {
         <div class="col-12">
           <div class="card" header="Asamblea">
-            <div class="row">
+            <div class="row g-4">
               <div class="col-12 col-md-3">
                 <p class="m-0 text-color-secondary">Invitados</p>
                 <p class="mt-1 font-semibold">

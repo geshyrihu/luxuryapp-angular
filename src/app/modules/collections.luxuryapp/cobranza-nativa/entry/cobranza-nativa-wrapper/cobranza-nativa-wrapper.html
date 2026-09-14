@@ -188,7 +188,7 @@
       </div>
     </div>
 
-    <div class="row mb-4">
+    <div class="row mb-4 g-4">
       @for (metric of heroMetrics; track metric.label) {
       <div class="col-12 col-md-4">
         <lx-card class="p-3 h-full" [class]="metricCardClass(metric.tone)">
@@ -238,7 +238,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row g-4">
       @for (card of summaryCards(); track card.title) {
       <div class="col-12 col-sm-6 col-lg-4">
         <lx-card class="card card--interactive card--elevated h-full" (click)="navigateTo(card.route)">
@@ -380,7 +380,7 @@
       {{ group.description }}
     </p>
 
-    <div class="row">
+    <div class="row g-4">
       @for (card of group.cards; track card.title) {
       <div class="col-12 col-sm-6 col-lg-3">
         <lx-card class="card card--interactive card--elevated h-full" (click)="navigateTo(card.route)">

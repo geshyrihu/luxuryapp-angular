@@ -27,7 +27,7 @@
             </tr>
           </ng-template>
           <ng-template #body let-banco>
-            <tr class="rf-row-concepto">
+            <tr class="rf-row-concepto g-4">
               <td class="rf-td-descripcion--item">{{ banco.cuenta }}</td>
               <td class="text-right rf-td-number">
                 {{ banco.importe | number:'1.0-0' }}
@@ -35,7 +35,7 @@
             </tr>
           </ng-template>
           <ng-template #footer>
-            <tr class="rf-row-total">
+            <tr class="rf-row-total g-4">
               <td class="rf-td-descripcion font-bold text-right">(1) SUMA</td>
               <td class="text-right rf-td-number--total">
                 {{ data()?.sumaBancos | number:'1.0-0' }}
@@ -65,7 +65,7 @@
             </tr>
           </ng-template>
           <ng-template #body let-inv>
-            <tr class="rf-row-concepto">
+            <tr class="rf-row-concepto g-4">
               <td class="rf-td-descripcion--item">{{ inv.cuenta }}</td>
               <td class="text-right rf-td-number">
                 {{ inv.importe | number:'1.0-0' }}
@@ -74,7 +74,7 @@
             </tr>
           </ng-template>
           <ng-template #footer>
-            <tr class="rf-row-result">
+            <tr class="rf-row-result g-4">
               <td class="rf-td-descripcion font-bold text-right">
                 (2) SUBTOTAL
               </td>
@@ -84,7 +84,7 @@
               <td></td>
             </tr>
             @if (data()?.fondoReserva; as fondoReserva) {
-            <tr class="rf-row-concepto">
+            <tr class="rf-row-concepto g-4">
               <td class="rf-td-descripcion--item text-right">
                 (3) {{ fondoReserva.cuenta }}
               </td>
@@ -96,7 +96,7 @@
               </td>
             </tr>
             }
-            <tr class="rf-row-total">
+            <tr class="rf-row-total g-4">
               <td class="rf-td-descripcion font-bold text-right">SUMA</td>
               <td class="text-right rf-td-number--total">
                 {{ data()?.sumaInversiones | number:'1.0-0' }}

@@ -13,7 +13,7 @@
 
   <div class="step-content mb-4">
     @if (currentStep() === 1) {
-    <div class="row">
+    <div class="row g-4">
       @for (option of styles; track option.value) {
       <div class="col-12">
         <div
@@ -28,7 +28,7 @@
       }
     </div>
     } @if (currentStep() === 2) {
-    <div class="row">
+    <div class="row g-4">
       @for (option of moods; track option.value) {
       <div class="col-12">
         <div
@@ -43,7 +43,7 @@
       }
     </div>
     } @if (currentStep() === 3) {
-    <div class="row">
+    <div class="row g-4">
       @for (option of elements; track option.value) {
       <div class="col-12">
         <div

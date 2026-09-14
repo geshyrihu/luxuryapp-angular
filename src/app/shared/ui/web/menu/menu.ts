@@ -73,6 +73,8 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
         flex: 0 0 auto;
         width: max-content;
         max-width: min(90vw, 20rem);
+        position: static !important;
+        margin: 0 !important;
       }
     `,
   ],

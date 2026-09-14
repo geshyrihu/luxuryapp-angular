@@ -13,10 +13,10 @@
 >
   <ng-template #caption>
     <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-3 surface-ground rounded shadow-sm"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-3 surface-ground rounded shadow-sm g-4"
     >
       <!-- IZQUIERDA: Tútulo y Navegación entre vistas -->
-      <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-3 g-4">
         <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
           Recepcion de Pipas
         </h4>
@@ -283,7 +283,7 @@
         <span class="text-orange-500"> (en curso)</span>
         }
       </p>
-      <div class="row m-0 text-sm mt-1">
+      <div class="row m-0 text-sm mt-1 g-4">
         <div class="col-6 p-0">
           <strong>Cap:</strong> {{ item.capacidadPipa | number: '1.0-0' }} L
         </div>

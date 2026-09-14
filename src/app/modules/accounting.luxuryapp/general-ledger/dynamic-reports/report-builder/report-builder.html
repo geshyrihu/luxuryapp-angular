@@ -185,7 +185,7 @@
       <!-- El Lienzo (Scrollable) -->
       <div
         class="flex-1 overflow-auto p-4 bg-dots"
-        [ngClass]="isTwoColumnPreview() ? 'flex flex-column' : 'flex flex-column gap-4'"
+        [ngClass]="isTwoColumnPreview() ? 'd-flex flex-column' : 'd-flex flex-column gap-4'"
       >
         @if (sections().length === 0) {
         <div
@@ -206,10 +206,10 @@
         }
 
         <div
-          [ngClass]="isTwoColumnPreview() ? 'grid m-0 w-full' : 'flex flex-column gap-4'"
+          [ngClass]="isTwoColumnPreview() ? 'row m-0 w-100' : 'd-flex flex-column gap-4'"
         >
           @for (sec of sections(); track sec.sectionId) {
-          <div [ngClass]="isTwoColumnPreview() ? 'col-12 xl:col-6 p-2' : ''">
+          <div [ngClass]="isTwoColumnPreview() ? 'col-12 col-xl-6 p-2' : ''">
             <div
               class="surface-0 rounded-xl shadow border-1 border-surface-200 overflow-hidden section-card fadeinright animation-duration-300 h-full d-flex flex-column"
             >
@@ -526,7 +526,7 @@
         </table>
         } @else if (isTwoColumnPreview()) {
         <div class="p-3">
-          <div class="row m-0">
+          <div class="row m-0 g-4">
             @for (sec of sections(); track sec.sectionId) {
             <div class="col-6 p-1">
               <div
@@ -561,7 +561,7 @@
           </div>
         </div>
         } @else if (isSummaryCardsPreview()) {
-        <div class="p-3 row">
+        <div class="p-3 row g-4">
           @for (sec of sections(); track sec.sectionId) { @for (row of sec.rows;
           track row.rowId) {
           <div class="col-12">

@@ -14,7 +14,7 @@
   class="custom-table d-none d-md-block"
 >
   <ng-template #caption>
-    <div class="row">
+    <div class="row g-4">
       <div class="col-12 col-sm-3">
         <custom-input-select-signal
           lxTooltip="Seleccionar Mes"
@@ -210,7 +210,7 @@
         [innerHTML]="item.actividad | sanitizeHtml"
       ></div>
 
-      <div class="row mt-1">
+      <div class="row mt-1 g-4">
         <div class="p-0 text-xs">
           <p class="mb-0 text-color-secondary">Proveedor</p>
           <p class="mb-1 font-semibold">{{ item.provider }}</p>

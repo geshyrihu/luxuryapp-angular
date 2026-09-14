@@ -12,7 +12,7 @@
 <!-- ================================================================== -->
 <!-- SECCIóN DE ALERTA DE ESTADO DE LA ORDEN DE COMPRA                  -->
 <!-- ================================================================== -->
-<div class="row">
+<div class="row g-4">
   <div class="col-12 col-md-6">
     @if (ordenCompra(); as oc) {
     <lx-message [severity]="isLocked() ? 'warn' : 'info'" class="mt-1 p-0 w-full">{{ oc.lockReason }}</lx-message>
@@ -49,7 +49,7 @@
 <!-- SECCIóN DE PANELES DE DATOS PRINCIPALES                            -->
 <!-- ================================================================== -->
 @if (ordenCompra(); as oc) {
-<div class="row mt-0">
+<div class="row mt-0 g-4">
   <!-- 1. Panel: Datos de la Cotización -->
   <div class="col-12 col-md-4">
     <app-orden-compra-datos-cotizacion
@@ -110,7 +110,7 @@
 <!-- SECCIóN DE PRESUPUESTO Y GASTOS RELACIONADOS                       -->
 <!-- ================================================================== -->
 @if(ordenCompra(); as oc) { @if (!oc.isDevolucion) {
-<div class="row mb-2">
+<div class="row mb-2 g-4">
   <!-- 5. Tabla: Presupuesto Utilizado -->
   @if (purchaseOrderBudget()) {
   <div class="col-12 col-sm-7">

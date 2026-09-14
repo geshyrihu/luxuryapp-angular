@@ -3,7 +3,7 @@
   [formGroup]="form"
   class="d-flex flex-column gap-4 p-2"
 >
-  <div class="row">
+  <div class="row g-4">
     <div class="col-12">
       <div
         class="surface-ground rounded-xl p-4 mb-4 border-1 surface-border"
@@ -29,7 +29,7 @@
     </div>
     <div class="col-12 col-lg-5">
       <!-- Folio y Version -->
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-8">
           <custom-input-text-signal
             [control]="form.controls.folio"
@@ -82,7 +82,7 @@
 
         <!-- Opciones Mensuales (4) -->
         @if (periodicityVal() === 4) {
-        <div class="row mt-2">
+        <div class="row mt-2 g-4">
           <div class="col-12 col-md-6">
             <custom-input-select-signal
               [control]="form.controls.executionDayOfMonth"
@@ -118,7 +118,7 @@
 
         <!-- Opciones Anuales (5) -->
         @if (periodicityVal() === 5) {
-        <div class="row mt-2">
+        <div class="row mt-2 g-4">
           <div class="col-12 col-md-6">
             <custom-input-select-signal
               [control]="form.controls.executionMonthOfYear"
@@ -201,7 +201,7 @@
     </div>
     <div class="col-12 col-lg-7">
       <!-- Visibilidad -->
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-6">
           <label class="font-bold mb-2 d-block text-sm text-700"
             >Visibilidad: Customers</label

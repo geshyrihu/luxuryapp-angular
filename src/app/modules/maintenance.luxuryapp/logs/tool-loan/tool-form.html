@@ -2,7 +2,7 @@
   <div class="">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
       <!-- PRIMERA FILA -->
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.nameTool"
@@ -30,7 +30,7 @@
       </div>
 
       <!-- SEGUNDA FILA -->
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-4">
           <custom-input-text-signal
             [control]="form.controls.model"
@@ -57,7 +57,7 @@
       </div>
 
       <!-- TERCERA FILA -->
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-4">
           <custom-input-select-signal
             [control]="form.controls.state"
@@ -83,7 +83,7 @@
       </div>
 
       <!-- CUARTA FILA -->
-      <div class="row">
+      <div class="row g-4">
         <div class="col-12 col-md-6">
           <custom-input-textarea-signal
             [control]="form.controls.technicalSpecifications"

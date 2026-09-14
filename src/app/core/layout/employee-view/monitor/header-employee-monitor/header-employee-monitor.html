@@ -1,7 +1,7 @@
 <!-- Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block no-print">
   <p-toolbar
-    styleClass="mobile-header-toolbar monitor-header-toolbar w-full p-0 m-0"
+    styleClass="mobile-header-toolbar monitor-header-toolbar w-100 p-0 m-0"
   >
     <ng-template #start>
       <div class="d-flex align-items-center gap-2 px-3" style="min-width: 650px">
@@ -247,7 +247,7 @@
         </div>
 
         <!-- Cuerpo del Póster (Grid a 2 columnas) -->
-        <div class="row grid-nogutter w-full p-4 gap-4 align-items-center">
+        <div class="row grid-nogutter w-full p-4 gap-4 align-items-center g-4">
           <!-- Columna Izquierda: Puntos Clave -->
           <div class="col-12 md:col d-flex flex-column gap-3">
             @if (aiAnnouncementPosterPoints().length > 0) { @for (point of
@@ -416,7 +416,7 @@
 
       <!-- Botones de Acción Extra -->
       <div
-        class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 mt-4 no-print border-top-1 surface-border pt-4"
+        class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 mt-4 no-print border-top-1 surface-border pt-4 g-4"
       >
         <div class="d-flex align-items-center gap-2">
           <span class="text-sm font-semibold text-600"
