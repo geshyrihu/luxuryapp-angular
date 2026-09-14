@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { PopoverModule } from "primeng/popover";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { ProfielService } from "src/app/core/auth/services/profiel-service";
@@ -16,9 +15,10 @@ import { SelectItemDto } from "src/app/core/interfaces/select-item.dto";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
+import { AppPopover } from "@ui/web/popover/popover";
 @Component({
   selector: "app-profile-committee-monitor",
-  imports: [RouterModule, PopoverModule, AppIcon],
+  imports: [RouterModule, AppPopover, AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./profile.html",
 })

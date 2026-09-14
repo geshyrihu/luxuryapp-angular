@@ -1,22 +1,23 @@
-<!-- Trigger: avatar + chevron -->
-<div
-  class="flex align-items-center cursor-pointer p-1 rounded-lg hover:bg-white-alpha-10 transition-colors"
-  role="button"
-  aria-haspopup="menu"
-  aria-label="Abrir menú de usuario"
-  (click)="profilePopover.toggle($event)"
->
-  <p-avatar
-    [image]="profileImageUrl || 'assets/images/default-avatar.png'"
-    class="mr-2"
-    shape="square"
-    size="large"
-    styleClass="rounded-lg shadow-sm"
-  />
-  <app-icon icon="material-symbols-light:keyboard-arrow-down" class="text-white opacity-60" />
-</div>
+<app-popover #profilePopover>
 
-<p-popover #profilePopover appendTo="body">
+  <!-- Trigger: avatar + chevron -->
+  <div
+    appPopoverTrigger
+    class="flex align-items-center cursor-pointer p-1 rounded-lg hover:bg-white-alpha-10 transition-colors"
+    role="button"
+    aria-haspopup="menu"
+    aria-label="Abrir menú de usuario"
+  >
+    <p-avatar
+      [image]="profileImageUrl || 'assets/images/default-avatar.png'"
+      class="mr-2"
+      shape="square"
+      size="large"
+      styleClass="rounded-lg shadow-sm"
+    />
+    <app-icon icon="material-symbols-light:keyboard-arrow-down" class="text-white opacity-60" />
+  </div>
+
   <div class="profile-popup-menu">
     <button
       class="profile-popup-item"
@@ -53,5 +54,6 @@
       <app-icon icon="material-symbols-light:logout" />
       <span>Cerrar sesión</span>
     </button>
+
   </div>
-</p-popover>
+</app-popover>

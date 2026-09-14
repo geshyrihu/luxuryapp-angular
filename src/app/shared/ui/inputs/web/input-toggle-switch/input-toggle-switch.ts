@@ -33,6 +33,8 @@ import { BaseInputSignal } from "../../base/base-input-signal";
     >
       <p-toggleswitch
         [formControl]="control() || internalControl"
+        [inputId]="id()"
+        [name]="id()"
         [size]="size()"
         [readonly]="readonly()"
         [invalid]="isInvalid()"

@@ -24,6 +24,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       <div class="form-check form-switch">
         <input
           type="checkbox"
+          role="switch"
           class="form-check-input"
           [id]="id()"
           [formControl]="control() || internalControl"

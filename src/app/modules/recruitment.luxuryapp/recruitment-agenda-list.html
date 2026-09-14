@@ -71,12 +71,10 @@
     <div class="flex flex-wrap gap-3 align-items-center justify-content-between">
       <div class="flex flex-wrap gap-2">
         <span class="text-sm text-color-secondary align-self-center">Filtrar por estado:</span>
-        <p-selectbutton
+        <app-select-button
           [options]="filterOptions()"
-          [ngModel]="statusFilter()"
-          (ngModelChange)="statusFilter.set($event || '')"
-          optionLabel="label"
-          optionValue="value"
+          [value]="statusFilter()"
+          (valueChange)="statusFilter.set($event || '')"
         />
       </div>
       <primeng-custom-caption [dt]="dt" [showAdd]="false" aria-label="Agenda de entrevistas" />

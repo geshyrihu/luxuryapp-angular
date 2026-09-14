@@ -14,7 +14,7 @@ import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-cus
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { SelectButtonModule } from "primeng/selectbutton";
+import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { SweetAlertIcon } from "src/app/core/enums/sweetalert-icon.enum";
 import {
@@ -45,7 +45,7 @@ import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
     TableModule,
     CandidateStageBadge,
     MappedPTag,
-    SelectButtonModule,
+    AppSelectButton,
     FormsModule,
   ],
 })

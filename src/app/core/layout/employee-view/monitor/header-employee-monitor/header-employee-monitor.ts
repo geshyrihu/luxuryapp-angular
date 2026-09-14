@@ -23,7 +23,6 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { MenuItem } from "primeng/api";
 import { BreadcrumbModule } from "primeng/breadcrumb";
-import { MenuModule } from "primeng/menu";
 import { ToolbarModule } from "primeng/toolbar";
 import { filter, map, startWith } from "rxjs";
 import { AspRoleService } from "src/app/core/auth/services/asp-role.service";
@@ -47,7 +46,8 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import * as htmlToImage from "html-to-image";
 import { DialogModule } from "primeng/dialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { SelectButtonModule } from "primeng/selectbutton";
+import { AppSelectButton } from "@ui/web/select-button/select-button";
+import { AppMenu } from "@ui/web/menu/menu";
 import { TextareaModule } from "primeng/textarea";
 import { AiService } from "src/app/core/services/ai.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -62,13 +62,13 @@ import { ROUTES } from "src/app/routing/route-paths";
     TextareaModule,
     FormsModule,
     ReactiveFormsModule,
-    MenuModule,
+    AppMenu,
     NotificationsGadget,
     PanicButton,
     ProfileMonitor,
     ProgressSpinnerModule,
     RouterModule,
-    SelectButtonModule,
+    AppSelectButton,
     ToolbarModule,
     LxTooltipDirective,
   ],

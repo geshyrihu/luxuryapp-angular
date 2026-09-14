@@ -7,7 +7,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import {
   AbstractControl,
   FormArray,
@@ -21,7 +21,7 @@ import {
 import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { WebInputToggleSwitch } from "@ui/inputs/web/input-toggle-switch/input-toggle-switch";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { lastValueFrom } from "rxjs";
@@ -44,63 +44,42 @@ import {
   WorkPositionScheduleDto,
 } from "./interfaces/work-position-schedule.dto";
 
-const dummyValidator: ValidatorFn = (
+const formCompleteValidator: ValidatorFn = (
   group: AbstractControl,
 ): ValidationErrors | null => {
   const diasArray = group.get("diasDeTrabajo") as FormArray;
   if (!diasArray) return null;
 
-  const incompleteDay = diasArray.controls.find((g) => {
-    const esDescanso = g.get("esDescanso")?.value;
-    if (esDescanso) return false;
-    const entry = g.get("horaEntrada")?.value;
-    const exit = g.get("horaSalida")?.value;
-    return !!entry !== !!exit;
-  });
+  const incompleteDay = diasArray.controls.find((g) => g.hasError("missingBothHours"));
+  if (incompleteDay) return { incompleteWorkDay: true };
 
-  return incompleteDay ? { incompleteWorkDay: true } : null;
+  const invalidOrderDay = diasArray.controls.find((g) => g.hasError("invalidTimeOrder"));
+  if (invalidOrderDay) return { invalidTimeOrder: true };
+
+  return null;
 };
 
-const timeOrderValidator: ValidatorFn = (
+const dayTimeValidator: ValidatorFn = (
   control: AbstractControl,
 ): ValidationErrors | null => {
-  const entryCtrl = control.get("horaEntrada");
-  const exitCtrl = control.get("horaSalida");
-  const entry = entryCtrl?.value;
-  const exit = exitCtrl?.value;
+  const entry = control.get("horaEntrada")?.value;
+  const exit = control.get("horaSalida")?.value;
   const isRest = control.get("esDescanso")?.value;
 
-  const toggleError = (ctrl: AbstractControl | null, hasError: boolean) => {
-    if (!ctrl) return;
-    const errs = ctrl.errors ? { ...ctrl.errors } : null;
-    if (hasError) {
-      ctrl.setErrors({ ...(errs || {}), invalidTimeOrder: true }, { emitEvent: false });
-    } else if (errs && errs['invalidTimeOrder']) {
-      delete errs['invalidTimeOrder'];
-      ctrl.setErrors(Object.keys(errs).length ? errs : null, { emitEvent: false });
-    }
-  };
+  if (isRest) return null;
 
-  if (isRest || !entry || !exit) {
-    toggleError(entryCtrl, false);
-    toggleError(exitCtrl, false);
-    return null;
+  if (!entry && !exit) return { missingBothHours: true };
+
+  if (entry && exit) {
+    const [entryH, entryM] = entry.split(":").map(Number);
+    const [exitH, exitM] = exit.split(":").map(Number);
+    const entryMinutes = entryH * 60 + entryM;
+    const exitMinutes = exitH * 60 + exitM;
+
+    if (entryMinutes >= exitMinutes) return { invalidTimeOrder: true };
   }
 
-  const [entryH, entryM] = entry.split(":").map(Number);
-  const [exitH, exitM] = exit.split(":").map(Number);
-  const entryMinutes = entryH * 60 + entryM;
-  const exitMinutes = exitH * 60 + exitM;
-
-  if (entryMinutes >= exitMinutes) {
-    toggleError(entryCtrl, true);
-    toggleError(exitCtrl, true);
-    return { invalidTimeOrder: true };
-  } else {
-    toggleError(entryCtrl, false);
-    toggleError(exitCtrl, false);
-    return null;
-  }
+  return null;
 };
 
 @Component({
@@ -109,9 +88,9 @@ const timeOrderValidator: ValidatorFn = (
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputSwitch,
     CustomInputSelectSignal,
+    WebInputToggleSwitch,
+    CustomInputTextAreaSignal,
     WebButtonLabelSave,
     WebButtonIcon,
   ],
@@ -149,11 +128,11 @@ export class WorkPositionScheduleForm implements OnInit {
             {
               diaSemana: this.formB.nonNullable.control(day.dw),
               numeroSemanaCiclo: this.formB.nonNullable.control(s),
-              horaEntrada: this.formB.control<string | null>(null, [Validators.required]),
-              horaSalida: this.formB.control<string | null>(null, [Validators.required]),
+              horaEntrada: this.formB.control<string | null>(null),
+              horaSalida: this.formB.control<string | null>(null),
               esDescanso: this.formB.nonNullable.control(false),
             },
-            { validators: [timeOrderValidator] },
+            { validators: [dayTimeValidator] },
           ),
         );
       }
@@ -182,7 +161,7 @@ export class WorkPositionScheduleForm implements OnInit {
         this.buildDiasDeTrabajo(),
       ),
     },
-    { validators: [dummyValidator] },
+    { validators: [formCompleteValidator] },
   );
 
   readonly weekDays = computed(() => {
@@ -208,6 +187,54 @@ export class WorkPositionScheduleForm implements OnInit {
       });
     });
     return semanas;
+  });
+
+  formValue = toSignal(this.form.valueChanges);
+
+  readonly weeklyHours = computed(() => {
+    this.formValue(); // track changes
+    const semanas = this.weekDays();
+    const hoursPerWeek: Record<number, number> = {};
+
+    for (const week of semanas) {
+      if (week.length === 0) continue;
+      const weekNum = week[0].semana;
+      let totalMinutes = 0;
+
+      for (const day of week) {
+        if (day.rest?.value) continue;
+
+        const entryStr = day.entry?.value;
+        const exitStr = day.exit?.value;
+
+        let entryMinutes = 0;
+        let exitMinutes = 0;
+
+        if (entryStr) {
+          const [h, m] = entryStr.split(':').map(Number);
+          entryMinutes = h * 60 + m;
+        }
+        
+        if (exitStr) {
+          const [h, m] = exitStr.split(':').map(Number);
+          exitMinutes = h * 60 + m;
+        }
+
+        if (entryStr && exitStr) {
+          if (exitMinutes >= entryMinutes) {
+            totalMinutes += (exitMinutes - entryMinutes);
+          }
+        } else if (entryStr && !exitStr) {
+          totalMinutes += ((24 * 60) - entryMinutes);
+        } else if (!entryStr && exitStr) {
+          totalMinutes += (exitMinutes - 0);
+        }
+      }
+
+      hoursPerWeek[weekNum] = Number((totalMinutes / 60).toFixed(2));
+    }
+
+    return hoursPerWeek;
   });
 
   readonly tipoJornadaValue = signal(this.form.controls.tipoJornada.value);
@@ -253,16 +280,10 @@ export class WorkPositionScheduleForm implements OnInit {
     const dia = this.findDia(semana, dw);
     if (!dia) return false;
 
-    // Si hay error de orden de tiempo, ambos campos en rojo
     if (dia.hasError("invalidTimeOrder")) return true;
+    if (dia.hasError("missingBothHours")) return true;
 
-    // Si es día de descanso, nunca rojo
-    const isRest = dia.get("esDescanso")?.value;
-    if (isRest) return false;
-
-    // Campo específico vacío en día laboral
-    const value = field === 'entrada' ? dia.get("horaEntrada")?.value : dia.get("horaSalida")?.value;
-    return !value;
+    return false;
   }
 
   async ngOnInit(): Promise<void> {
@@ -347,8 +368,8 @@ export class WorkPositionScheduleForm implements OnInit {
         dia.controls.horaEntrada.disable();
         dia.controls.horaSalida.disable();
       } else {
-        dia.controls.horaEntrada.setValidators([Validators.required]);
-        dia.controls.horaSalida.setValidators([Validators.required]);
+        dia.controls.horaEntrada.clearValidators();
+        dia.controls.horaSalida.clearValidators();
         dia.controls.horaEntrada.enable();
         dia.controls.horaSalida.enable();
       }

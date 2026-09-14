@@ -1,37 +1,121 @@
-import { ChangeDetectionStrategy, Component, viewChild } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  TemplateRef,
+  ViewContainerRef,
+  ViewEncapsulation,
+  inject,
+  viewChild,
+} from "@angular/core";
+import { Overlay, OverlayRef } from "@angular/cdk/overlay";
+import { TemplatePortal } from "@angular/cdk/portal";
 import { PopoverBase } from "@ui/base/popover.base";
-import { Popover, PopoverModule } from "primeng/popover";
 
+/**
+ * AppPopover — panel flotante libre sobre CDK Overlay. [Fase 3
+ * migración Bootstrap, 2026-09-13, segunda corrección] Mismo motivo y
+ * mecanismo que AppMenu (ver su comentario).
+ */
 @Component({
   selector: "app-popover",
-
-  imports: [PopoverModule],
+  imports: [],
   template: `
-    <p-popover
-      #inner
-      [styleClass]="styleClass()"
-      [appendTo]="appendTo()"
-      [dismissable]="dismissable()"
-      [autoZIndex]="autoZIndex()"
-      [focusOnShow]="focusOnShow()"
-    >
-      <ng-content />
-    </p-popover>
+    <span #trigger class="app-popover-trigger" (click)="toggle()">
+      <ng-content select="[appPopoverTrigger]" />
+    </span>
+    <ng-template #panelTpl>
+      <div class="dropdown-menu show app-popover-panel" [class]="styleClass()">
+        <ng-content />
+      </div>
+    </ng-template>
   `,
+  styles: [
+    `
+      :host {
+        display: inline-block;
+      }
+      .app-popover-trigger {
+        display: inline-block;
+      }
+      .app-popover-panel {
+        flex: 0 0 auto;
+        width: max-content;
+        max-width: min(90vw, 20rem);
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppPopover extends PopoverBase {
-  private inner = viewChild.required<Popover>("inner");
+  private overlay = inject(Overlay);
+  private vcr = inject(ViewContainerRef);
+  private trigger = viewChild.required<ElementRef<HTMLElement>>("trigger");
+  private panelTpl = viewChild.required<TemplateRef<unknown>>("panelTpl");
+  private overlayRef?: OverlayRef;
 
-  toggle(event?: any): void {
-    this.inner().toggle(event);
+  constructor() {
+    super();
+    inject(DestroyRef).onDestroy(() => this.dispose());
   }
 
-  show(event?: any): void {
-    this.inner().show(event);
+  toggle(): void {
+    if (this.overlayRef) {
+      this.hide();
+    } else {
+      this.openPanel();
+    }
   }
 
   hide(): void {
-    this.inner().hide();
+    this.dispose();
+  }
+
+  private openPanel(): void {
+    const positionStrategy = this.overlay
+      .position()
+      .flexibleConnectedTo(this.trigger())
+      .withFlexibleDimensions(false)
+      .withPositions([
+        {
+          originX: "start",
+          originY: "bottom",
+          overlayX: "start",
+          overlayY: "top",
+          offsetY: 4,
+        },
+        {
+          originX: "end",
+          originY: "bottom",
+          overlayX: "end",
+          overlayY: "top",
+          offsetY: 4,
+        },
+        {
+          originX: "start",
+          originY: "top",
+          overlayX: "start",
+          overlayY: "bottom",
+          offsetY: -4,
+        },
+      ]);
+
+    this.overlayRef = this.overlay.create({
+      positionStrategy,
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
+      hasBackdrop: this.dismissable(),
+      backdropClass: "cdk-overlay-transparent-backdrop",
+    });
+    if (this.dismissable()) {
+      this.overlayRef.backdropClick().subscribe(() => this.hide());
+    }
+    this.overlayRef.attach(new TemplatePortal(this.panelTpl(), this.vcr));
+  }
+
+  private dispose(): void {
+    this.overlayRef?.dispose();
+    this.overlayRef = undefined;
   }
 }

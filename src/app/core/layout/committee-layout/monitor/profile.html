@@ -1,28 +1,28 @@
 <div class="committee-profile" [class.committee-profile--compact]="compact()">
-  <div
-    class="committee-profile__trigger"
-    (click)="profilePopover.toggle($event)"
-  >
-    <img
-      class="committee-profile__avatar"
-      [src]="profileImageUrl() || defaultAvatar"
-      (error)="onImgError($event)"
-      alt="Perfil"
-    />
-    @if (!compact()) {
-    <span class="committee-profile__info">
-      <span class="committee-profile__name">
-        {{ infoAccountAuthDTO?.firstName }} {{ infoAccountAuthDTO?.lastName }}
+  <app-popover #profilePopover>
+    <div
+      appPopoverTrigger
+      class="committee-profile__trigger"
+    >
+      <img
+        class="committee-profile__avatar"
+        [src]="profileImageUrl() || defaultAvatar"
+        (error)="onImgError($event)"
+        alt="Perfil"
+      />
+      @if (!compact()) {
+      <span class="committee-profile__info">
+        <span class="committee-profile__name">
+          {{ infoAccountAuthDTO?.firstName }} {{ infoAccountAuthDTO?.lastName }}
+        </span>
+        <span class="committee-profile__position">
+          {{ infoAccountAuthDTO?.position }}
+        </span>
       </span>
-      <span class="committee-profile__position">
-        {{ infoAccountAuthDTO?.position }}
-      </span>
-    </span>
-    }
-    <app-icon icon="material-symbols-light:keyboard-arrow-down" class="committee-profile__caret" />
-  </div>
+      }
+      <app-icon icon="material-symbols-light:keyboard-arrow-down" class="committee-profile__caret" />
+    </div>
 
-  <p-popover #profilePopover appendTo="body">
     <div class="profile-popup-menu">
       @if (cb_customer.length > 1) {
       <div class="committee-profile__customer-select">
@@ -82,5 +82,6 @@
         <span>Cerrar sesión</span>
       </button>
     </div>
-  </p-popover>
+
+  </app-popover>
 </div>
