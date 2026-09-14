@@ -76,8 +76,8 @@
     </div>
 
     <!-- Meses y quincenas -->
-    <div class="d-flex flex-column w-full">
-      <div class="row sm:grid md:grid lg:grid gap-1 w-full g-4">
+    <div class="d-flex flex-column w-100">
+      <div class="d-flex flex-wrap gap-1 w-100 g-4">
         @for (month of fundingPeriodsByMonth(); track month.monthName) {
         <div class="p-1">
           <il-button
@@ -127,7 +127,7 @@
 
     <!-- Guía de generación -->
     <div
-      class="d-flex align-items-center flex-wrap px-3 py-2 mt-1 rounded surface-100 border-left-3 border-orange-500 mb-2 shadow-sm"
+      class="d-flex align-items-center flex-wrap px-3 py-2 mt-1 rounded bg-body-tertiary border-start border-3 border-warning mb-2 shadow-sm"
     >
       <div class="d-flex align-items-center text-700">
         <app-icon
@@ -223,7 +223,7 @@
       <td>{{ item.idFondeo }}</td>
       <td>{{ item.quincenaText | uppercase }}</td>
       <td>
-        <span class="text-sm text-color-secondary">
+        <span class="text-sm text-body-secondary">
           {{ item.equipoOInstalacion | uppercase }}
         </span>
         <br />
@@ -267,8 +267,8 @@
 </p-table>
 
 <!--📲INICIO: Componente adaptado para versión mívil -->
-<div class="d-flex d-md-none flex-column h-screen overflow-hidden">
-  <div class="px-2 pt-2 flex-none">
+<div class="d-flex d-md-none flex-column vh-100 overflow-hidden">
+  <div class="px-2 pt-2 flex-shrink-0">
     <lx-accordion
       [items]="genAccordionItems"
       [(expandedIds)]="genExpanded"
@@ -341,7 +341,7 @@
   </div>
 
   <!-- Main List using DataViewMobile -->
-  <div class="flex-flex-grow-1-1 relative">
+  <div class="flex-grow-1 position-relative">
     <!-- absolute positioning can help force child to fill parent -->
     <app-data-view-mobile
       [data]="dataSignal()"
@@ -353,7 +353,7 @@
         <ili-list-item>
           <ion-input-checkbox
             [ngModel]="item.crearOrdenCompra"
-            (checkChange)="crearOrder(item.id, $event)"
+            (checkChange)="onItemCheckChange(item, $event)"
           ></ion-input-checkbox>
 
           <div class="d-flex justify-content-between align-items-center mb-1">
@@ -361,7 +361,7 @@
               [color]="item.quincena === 0 ? 'success' : 'info'"
               [value]="item.quincena === 0 ? '1ra Q' : '2da Q'"
             />
-            <span class="text-xs text-color-secondary"
+            <span class="text-xs text-body-secondary"
               >Folio: {{item.idFondeo}}</span
             >
           </div>

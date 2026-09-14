@@ -188,21 +188,22 @@ export class CatalogoGastosFijosList {
 
   // Computed signal to determine if all items are selected
   isAllSelected = computed(() => {
+    const data = this.dataSignal();
     return (
-      this.dataSignal().length > 0 &&
-      this.dataSignal().every((item) => item.crearOrdenCompra)
+      data?.length > 0 &&
+      data.every((item) => item.crearOrdenCompra)
     );
   });
 
   isFirstQuincenaSelected = computed(() =>
-    this.dataSignal().some(
+    this.dataSignal()?.some(
       (item) => item.quincena === 0 && item.crearOrdenCompra,
-    ),
+    ) ?? false,
   );
   isSecondQuincenaSelected = computed(() =>
-    this.dataSignal().some(
+    this.dataSignal()?.some(
       (item) => item.quincena === 1 && item.crearOrdenCompra,
-    ),
+    ) ?? false,
   );
 
   constructor() {
