@@ -40,4 +40,7 @@
 @use "web/alerts";
 @use "web/dropdowns";
 
+// 4. Bootstrap (migración progresiva PrimeNG -> Bootstrap).
+@use "web/bootstrap-entry";
+
 // 4. PrimeFlex utilities are loaded directly from angular.json.
