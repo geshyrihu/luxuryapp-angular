@@ -13,7 +13,7 @@
       <custom-input-text-signal
         [control]="fechaControl"
         type="month"
-        customClass="w-15rem"
+        customClass="" style="width: 15rem"
         (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
         lxTooltip="Seleccionar Mes y Año"
         tooltipPosition="top"
@@ -222,7 +222,7 @@
             [control]="fechaControl"
             name="fecha"
             type="month"
-            customClass="w-full"
+            customClass="w-100"
             (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
             lxTooltip="Seleccionar Mes y Año"
             tooltipPosition="top"

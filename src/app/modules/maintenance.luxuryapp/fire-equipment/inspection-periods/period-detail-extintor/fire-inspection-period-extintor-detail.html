@@ -59,7 +59,7 @@
 
     @if (showAddForm()) {
       <div class="d-flex align-items-center gap-2 mb-3 p-3 surface-100 rounded">
-        <select class="p-inputtext w-full" [(ngModel)]="selectedEquipmentId">
+        <select class="p-inputtext w-100" [(ngModel)]="selectedEquipmentId">
           <option value="">-- Selecciona un extintor --</option>
           @for (e of availableEquipment(); track e.id) {
             <option [value]="e.id">{{ e.localCode ? e.localCode + ' — ' : '' }}{{ e.location }}</option>

@@ -25,7 +25,7 @@
               (ionChange)="selectCustomer($event.detail.value)"
               placeholder="Seleccionar cliente"
               interface="popover"
-              class="w-full"
+              class="w-100"
             >
               @for (customer of cb_customer; track $index) {
               <ion-select-option [value]="customer.value">

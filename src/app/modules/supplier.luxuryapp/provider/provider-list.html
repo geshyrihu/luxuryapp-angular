@@ -26,7 +26,7 @@
           [control]="selectedServiceTypeControl"
           (selectionChange)="onFilterChange()"
           placeholder="Seleccionar Tipo de Servicio"
-          customClass="w-full"
+          customClass="w-100"
           [horizontal]="false"
           [filter]="true"
         />
@@ -45,7 +45,7 @@
           variant="outline"
           iconClass="material-symbols-light:add"
           [label]="label"
-          customClass="w-full"
+          customClass="w-100"
           (clicked)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         />
         }

@@ -5,7 +5,7 @@
         <!-- Salarios -->
         <div class="col-12 col-md-6">
           <custom-input-number-signal
-            class="w-full"
+            class="w-100"
             [control]="form.controls['currentSalary']"
             label="Salario mensual libre"
             [readonly]="true"
@@ -15,7 +15,7 @@
 
         <div class="col-12 col-md-6">
           <custom-input-number-signal
-            class="w-full"
+            class="w-100"
             [control]="form.controls['finalSalary']"
             label="Nuevo salario"
             placeholder="Nuevo salario"
@@ -25,7 +25,7 @@
         <!-- Puestos -->
         <div class="col-12 col-md-6">
           <custom-input-text-signal
-            class="w-full"
+            class="w-100"
             [control]="form.controls['applicationRoleCurrent']"
             label="Puesto actual"
             [readonly]="true"
@@ -35,7 +35,7 @@
 
         <div class="col-12 col-md-6">
           <custom-input-select-signal
-            class="w-full"
+            class="w-100"
             [control]="form.controls['isCoveringVacancy']"
             label="¿Va a cubrir una vacante abierta?"
             [data]="cb_si_no()"
@@ -46,7 +46,7 @@
         @if (form.controls['isCoveringVacancy'].value) {
         <div class="col-12 col-md-6">
           <custom-input-select-signal
-            class="w-full"
+            class="w-100"
             [control]="form.controls['vacancyId']"
             label="Seleccionar vacante"
             [data]="cb_vacantes()"
@@ -58,7 +58,7 @@
 
         <div class="col-12 col-md-6">
           <custom-input-autocomplete-signal
-            class="w-full"
+            class="w-100"
             (propagar)="onSaveApplicationRoleIDTOAccount($event)"
             [control]="form.controls['applicationRoleNew']"
             [data]="cb_applicationRole()"
@@ -70,7 +70,7 @@
         <!-- Fecha y Retroactivo -->
         <div class="col-12 col-md-6">
           <custom-input-date-signal
-            class="w-full"
+            class="w-100"
             [control]="form.controls['executionDate']"
             label="Fecha de aplicación"
             placeholder="fecha de aplicación"
@@ -79,7 +79,7 @@
 
         <div class="col-12 col-md-6">
           <custom-input-select-signal
-            class="w-full"
+            class="w-100"
             [control]="form.controls['retroactive']"
             label="Aplicar retroactivo"
             [data]="cb_si_no()"
@@ -90,7 +90,7 @@
         <!-- Comentarios -->
         <div class="col-12">
           <custom-input-textarea-signal
-            class="w-full"
+            class="w-100"
             [control]="form.controls['additionalInformation']"
             label="Comentarios adicionales"
             placeholder="comentarios adicionales"
@@ -105,7 +105,7 @@
             </label>
             <div class="col-12 col-md-9">
               <file-upload
-                class="w-full"
+                class="w-100"
                 formControlName="files"
                 [animation]="true"
                 (change)="onFileChange()"
