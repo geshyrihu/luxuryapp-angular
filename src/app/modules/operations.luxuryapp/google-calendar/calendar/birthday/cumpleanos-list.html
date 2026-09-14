@@ -16,7 +16,7 @@
     </div>
 
     <!-- Rejilla de tarjetas con Tailwind Grid -->
-    <div class="row md:grid lg:grid xl:grid g-4">
+    <div class="row g-4">
       @for (item of dataSignal(); track item) {
       <div>
         <div class="card" class="text-center">
@@ -32,7 +32,7 @@
           </div>
 
           <h4 class="m-0">{{ item.title }}</h4>
-          <p class="m-0 text-color-secondary">{{ item.applicationRole }}</p>
+          <p class="m-0 text-body-secondary">{{ item.applicationRole }}</p>
 
           <div class="mt-3 d-flex justify-content-end gap-2">
             <lx-tag [value]="item.date" severity="info"  />
@@ -49,7 +49,7 @@
           class="text-6xl text-gray-400 mb-3"
         />
         <h4 class="m-0">No hay cumpleAños este mes.</h4>
-        <p class="text-color-secondary">
+        <p class="text-body-secondary">
           Selecciona otro mes para ver si hay cumpleAños.
         </p>
       </div>
@@ -61,9 +61,9 @@
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <div class="d-block d-md-none">
   <!-- Selector de Meses Scrollable -->
-  <div class="d-flex gap-2 mb-3 bg-surface-100 p-1 rounded">
+  <div class="d-flex gap-2 mb-3 bg-bg-body-tertiary p-1 rounded">
     @for (month of months; track month; let i = $index) {
-    <button class="p-button p-button-text p-button-sm flex-1">
+    <button class="p-button p-button-text p-button-sm flex-fill">
       <span class="">{{ month }}</span>
     </button>
     }
@@ -71,19 +71,19 @@
 
   <!-- Lista de CumpleAños -->
   @if (dataSignal().length > 0) {
-  <div class="surface-card mb-3 rounded">
+  <div class="bg-body mb-3 rounded">
     @for (item of dataSignal(); track item) {
-    <div class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center">
+    <div class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center">
       <div class="me-3">
         <img [src]="item.photo || 'assets/images/default-avatar.png'" />
       </div>
       <span class="">
-        <h2 class="text-base font-bold">{{ item.title }}</h2>
-        <p class="text-small text-color-secondary mb-0">
+        <h2 class="text-base fw-bold">{{ item.title }}</h2>
+        <p class="text-small text-body-secondary mb-0">
           {{ item.applicationRole }}
         </p>
       </span>
-      <span class="text-sm font-bold">
+      <span class="text-sm fw-bold">
         {{ item.date }}
       </span>
     </div>
@@ -94,8 +94,8 @@
   <div
     class="d-flex flex-column align-items-center justify-content-center p-5 text-center opacity-60"
   >
-    <app-icon [icon]="'material-symbols-light:redeem'" class="text-6xl mb-3 text-color-secondary" />
-    <h3 class="text-lg m-0 text-color-secondary">Sin cumpleAños</h3>
+    <app-icon [icon]="'material-symbols-light:redeem'" class="text-6xl mb-3 text-body-secondary" />
+    <h3 class="text-lg m-0 text-body-secondary">Sin cumpleAños</h3>
     <p class="text-sm m-0">No hay celebraciones este mes.</p>
   </div>
   }

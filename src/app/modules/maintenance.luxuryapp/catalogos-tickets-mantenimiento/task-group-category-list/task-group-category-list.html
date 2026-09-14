@@ -49,7 +49,7 @@
       <td colspan="6" class="bg-blue-50">
         <div class="d-flex align-items-center py-2 px-3">
           <app-icon [icon]="'material-symbols-light:label'" class="me-2 text-blue-500" />
-          <span class="font-bold text-blue-900">{{ item.departament }}</span>
+          <span class="fw-bold text-blue-900">{{ item.departament }}</span>
         </div>
       </td>
     </tr>
@@ -108,8 +108,8 @@
       <div class="d-flex align-items-center">
         <span class="text-xl">{{ item.emoji }}</span>
         <div class="ms-2">
-          <p class="font-semibold m-0 text-color">{{ item.name }}</p>
-          <p class="text-xs m-0 text-color-secondary">
+          <p class="fw-semibold m-0 text-body">{{ item.name }}</p>
+          <p class="text-xs m-0 text-body-secondary">
             {{ item.code }} | {{ item.departament | uppercase }}
           </p>
         </div>

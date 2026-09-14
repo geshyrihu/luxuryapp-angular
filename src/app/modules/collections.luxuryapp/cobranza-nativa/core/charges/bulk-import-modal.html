@@ -20,13 +20,13 @@
     </div>
 
     <div
-      class="border-2 border-dashed border-300 rounded p-5 text-center surface-50 d-flex flex-column align-items-center"
+      class="border-2 border-dashed border-300 rounded p-5 text-center bg-body-tertiary d-flex flex-column align-items-center"
     >
       <app-icon
         [icon]="'material-symbols-light:cloud-upload'"
-        class="text-5xl text-400 mb-3"
+        class="text-5xl text-body-secondary mb-3"
       />
-      <h3 class="mt-0 text-700">Seleccionar archivo CSV</h3>
+      <h3 class="mt-0 text-body">Seleccionar archivo CSV</h3>
       <custom-input-file-signal
         accept=".csv"
         chooseLabel="Seleccionar CSV"
@@ -72,31 +72,31 @@
     <h2 class="text-orange-700 m-0">Importación Finalizada con Errores</h2>
     }
 
-    <p class="text-600 mt-2">
+    <p class="text-body-secondary mt-2">
       Se procesaron {{result.processedCount}} registros en total.
     </p>
 
     <div class="d-flex justify-content-center mt-4">
       <div
-        class="text-center surface-50 p-3 rounded border-1 border-300 w-8rem"
+        class="text-center bg-body-tertiary p-3 rounded border-1 border-300 w-8rem"
       >
-        <span class="d-block text-3xl font-bold text-green-600"
+        <span class="d-block text-3xl fw-bold text-green-600"
           >{{result.successCount}}</span
         >
-        <span class="d-block text-sm text-600">Exitosos</span>
+        <span class="d-block text-sm text-body-secondary">Exitosos</span>
       </div>
       <div
-        class="text-center surface-50 p-3 rounded border-1 border-300 w-8rem"
+        class="text-center bg-body-tertiary p-3 rounded border-1 border-300 w-8rem"
       >
-        <span class="d-block text-3xl font-bold text-red-600"
+        <span class="d-block text-3xl fw-bold text-red-600"
           >{{result.failedCount}}</span
         >
-        <span class="d-block text-sm text-600">Fallidos</span>
+        <span class="d-block text-sm text-body-secondary">Fallidos</span>
       </div>
     </div>
 
     @if (result.errors && result.errors.length > 0) {
-    <div class="text-left mt-5 surface-50 p-3 rounded border-1 border-red-200">
+    <div class="text-start mt-5 bg-body-tertiary p-3 rounded border-1 border-red-200">
       <h4 class="text-red-700 mt-0 mb-2">
         <app-icon
           [icon]="'material-symbols-light:format-list-bulleted'"

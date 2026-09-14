@@ -1,15 +1,15 @@
 <section class="d-flex flex-column gap-3">
   @if (!hasCustomer()) {
-  <div class="surface-card border-1 surface-border rounded p-3">
-    <div class="font-medium mb-2">Sin cliente activo</div>
-    <div class="text-color-secondary">
+  <div class="bg-body border-1 border rounded p-3">
+    <div class="fw-medium mb-2">Sin cliente activo</div>
+    <div class="text-body-secondary">
       Selecciona un cliente para consultar el reporte de morosidad.
     </div>
   </div>
   } @else {
   <div class="mb-2 mt-1">
-    <div class="text-lg font-semibold text-color">Detalle de Morosidad</div>
-    <div class="text-sm text-color-secondary">Clasificacin de condminos segn su deuda actual.</div>
+    <div class="text-lg fw-semibold text-body">Detalle de Morosidad</div>
+    <div class="text-sm text-body-secondary">Clasificacin de condminos segn su deuda actual.</div>
   </div>
   
   <!-- KPIs de cartera vencida -->
@@ -78,7 +78,7 @@
     </div>
   </div>
 
-  <p class="m-0 text-xs text-color-secondary">
+  <p class="m-0 text-xs text-body-secondary">
     Moroso: 2 o más cuotas de mantenimiento vencidas, o 1 o más extraordinarias.
     Cobranza judicial: más de 5 de mantenimiento, o 5 o más extraordinarias.
     Quien debe sin alcanzar esos umbrales se consulta en Detalle por Condómino.

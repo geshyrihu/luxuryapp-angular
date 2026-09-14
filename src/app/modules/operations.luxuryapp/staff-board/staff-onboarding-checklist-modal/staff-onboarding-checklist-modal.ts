@@ -9,7 +9,7 @@ import { FormsModule } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
+import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { OperationRecruitmentEndpoints } from "src/app/core/constants/endpoints/operation-recruitment.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import {
@@ -37,7 +37,7 @@ interface StaffOnboardingChecklistViewModel extends EmployeeOnboardingChecklistI
     LxTag,
     AppIcon,
     WebButtonLabel,
-    CheckboxModule,
+    AppCheckbox,
   ],
 })
 export class StaffOnboardingChecklistModal {

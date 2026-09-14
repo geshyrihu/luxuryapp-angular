@@ -86,3 +86,6 @@ service-account*.json
 config.local.ts
 config.local.json
 .aider*
+
+# Playwright CLI session artifacts (screenshots, console logs, snapshots)
+.playwright-cli/

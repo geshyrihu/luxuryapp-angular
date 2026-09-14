@@ -1,0 +1,18 @@
+.notifications-bell-icon {
+  color: #f5b301;
+}
+
+.notifications-badge-anchor {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notifications-badge-anchor app-badge {
+  position: absolute;
+  top: -0.35rem;
+  right: -0.45rem;
+  font-size: 0.6rem;
+  line-height: 1rem;
+}

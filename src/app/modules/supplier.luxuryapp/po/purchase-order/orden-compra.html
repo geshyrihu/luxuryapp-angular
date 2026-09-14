@@ -2,10 +2,10 @@
 
 @if (loading()) {
 <div
-  class="fixed top-0 left-0 w-full h-full d-flex flex-column align-items-center justify-content-center surface-card opacity-80 z-50"
+  class="fixed top-0 left-0 w-full h-full d-flex flex-column align-items-center justify-content-center bg-body opacity-80 z-50"
 >
   <app-spinner [size]="64" [strokeWidth]="4" />
-  <span class="mt-2 text-primary font-bold">Cargando Orden de Compra...</span>
+  <span class="mt-2 text-primary fw-bold">Cargando Orden de Compra...</span>
 </div>
 }
 
@@ -176,7 +176,7 @@
 
   <!-- 6. Panel: Enlaces a Documentos -->
   <div class="d-none d-sm-block col-sm-3"></div>
-  <div class="col-12 col-sm-2 text-right">
+  <div class="col-12 col-sm-2 text-end">
     <lx-card [padded]="false">
 <div class="d-flex flex-column">
         @if (solicitudCompraId() > 0) {
@@ -237,7 +237,7 @@
           @if (canAddProducts()) {
           <span
             (click)="onModalAgregarproducto()"
-            class="pointer ms-1 text-primary font-bold"
+            class="pointer ms-1 text-primary fw-bold"
           >
             AGREGAR
             <app-icon [icon]="'material-symbols-light:add'" class="icon ms-1" />
@@ -262,27 +262,27 @@
     <tr>
       <td>{{ rowIndex + 1 }}</td>
       <td>{{ item.productName }}</td>
-      <td class="text-right">{{ item.cantidad }}</td>
-      <td class="text-right">{{ item.unidadMedida }}</td>
-      <td class="text-right">{{ item.precio | number: '1.2-2' }}</td>
-      <td class="text-right">{{ item.descuento | number: '1.2-2' }}%</td>
-      <td class="text-right">
-        <small class="text-color-secondary">({{ item.ivaAplicado }} %)</small>
+      <td class="text-end">{{ item.cantidad }}</td>
+      <td class="text-end">{{ item.unidadMedida }}</td>
+      <td class="text-end">{{ item.precio | number: '1.2-2' }}</td>
+      <td class="text-end">{{ item.descuento | number: '1.2-2' }}%</td>
+      <td class="text-end">
+        <small class="text-body-secondary">({{ item.ivaAplicado }} %)</small>
         {{ item.iva | number: '1.2-2' }}
       </td>
-      <td class="text-right">
-        <small class="text-color-secondary"
+      <td class="text-end">
+        <small class="text-body-secondary"
           >({{ item.retencionIVAPorcentaje }} %)</small
         >
         {{ item.retencionIVACalculada | number: '1.2-2' }}
       </td>
-      <td class="text-right">
-        <small class="text-color-secondary"
+      <td class="text-end">
+        <small class="text-body-secondary"
           >({{ item.retencionISRPorcentaje }} %)</small
         >
         {{ item.retencionISRCalculada | number: '1.2-2' }}
       </td>
-      <td class="text-right">{{ item.total | number: '1.2-2' }}</td>
+      <td class="text-end">{{ item.total | number: '1.2-2' }}</td>
       <td>
         @if (canEditBudget()) {
         <div class="d-flex">
@@ -296,22 +296,22 @@
   <ng-template #footer>
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-right">SUBTOTAL</td>
-      <td class="text-right">{{ totals().subtotal | number: '1.2-2' }}</td>
+      <td colspan="3" class="text-sm text-end">SUBTOTAL</td>
+      <td class="text-end">{{ totals().subtotal | number: '1.2-2' }}</td>
       <td class="no-border"></td>
       <!-- ? Mantiene el spacer vertical para "Botones" -->
     </tr>
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-right">IVA</td>
-      <td class="text-right">{{ totals().iva | number: '1.2-2' }}</td>
+      <td colspan="3" class="text-sm text-end">IVA</td>
+      <td class="text-end">{{ totals().iva | number: '1.2-2' }}</td>
       <td class="no-border"></td>
     </tr>
     @if (totals().retencionIva > 0) {
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-right">RETENCIóN IVA</td>
-      <td class="text-right">
+      <td colspan="3" class="text-sm text-end">RETENCIóN IVA</td>
+      <td class="text-end">
         - {{ totals().retencionIva | number: '1.2-2' }}
       </td>
       <td class="no-border"></td>
@@ -319,8 +319,8 @@
     } @if (totals().retencionIsr > 0) {
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-right">RETENCIóN ISR</td>
-      <td class="text-right">
+      <td colspan="3" class="text-sm text-end">RETENCIóN ISR</td>
+      <td class="text-end">
         - {{ totals().retencionIsr | number: '1.2-2' }}
       </td>
       <td class="no-border"></td>
@@ -328,8 +328,8 @@
     }
     <tr>
       <td [colSpan]="footerInitialColspan()" class="no-border"></td>
-      <td colspan="3" class="text-sm text-right">TOTAL</td>
-      <td class="text-right">{{ totals().total | number: '1.2-2' }}</td>
+      <td colspan="3" class="text-sm text-end">TOTAL</td>
+      <td class="text-end">{{ totals().total | number: '1.2-2' }}</td>
       <td class="no-border"></td>
     </tr>
   </ng-template>

@@ -1,52 +1,52 @@
 <section>
 
   @if (!hasCustomer()) {
-  <div class="mb-4 border-1 surface-border rounded p-4">
-    <div class="font-medium mb-2">Sin cliente activo</div>
-    <div class="text-color-secondary">
+  <div class="mb-4 border-1 border rounded p-4">
+    <div class="fw-medium mb-2">Sin cliente activo</div>
+    <div class="text-body-secondary">
       Selecciona un cliente para revisar el listado de inspección.
     </div>
   </div>
   } @else if (inspection(); as data) {
-  <div class="mb-4 border-1 surface-border rounded p-4">
+  <div class="mb-4 border-1 border rounded p-4">
     <div class="row g-4">
       <div class="col-12 col-md-4">
-        <div class="text-color-secondary text-sm">Cliente</div>
-        <div class="font-medium">{{ customerName() || data.customerId }}</div>
+        <div class="text-body-secondary text-sm">Cliente</div>
+        <div class="fw-medium">{{ customerName() || data.customerId }}</div>
       </div>
       <div class="col-12 col-md-4">
-        <div class="text-color-secondary text-sm">Corte consultado</div>
-        <div class="font-medium">
+        <div class="text-body-secondary text-sm">Corte consultado</div>
+        <div class="fw-medium">
           {{ currentCutLabel() }} · {{ currentMonthName() }} validado
         </div>
       </div>
       <div class="col-12 col-md-4">
-        <div class="text-color-secondary text-sm">Origen</div>
-        <div class="font-medium">{{ data.dataSource }}</div>
+        <div class="text-body-secondary text-sm">Origen</div>
+        <div class="fw-medium">{{ data.dataSource }}</div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="text-color-secondary text-sm">Departamentos</div>
-        <div class="text-xl font-semibold">{{ data.totalRows }}</div>
+        <div class="text-body-secondary text-sm">Departamentos</div>
+        <div class="text-xl fw-semibold">{{ data.totalRows }}</div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="text-color-secondary text-sm">Movimientos del mes</div>
-        <div class="text-xl font-semibold">{{ data.totalMovements }}</div>
+        <div class="text-body-secondary text-sm">Movimientos del mes</div>
+        <div class="text-xl fw-semibold">{{ data.totalMovements }}</div>
       </div>
       <div class="col-6 col-md-2">
-        <div class="text-color-secondary text-sm">Cargos</div>
-        <div class="text-xl font-semibold">
+        <div class="text-body-secondary text-sm">Cargos</div>
+        <div class="text-xl fw-semibold">
           {{ formatCurrency(data.totalCharges) }}
         </div>
       </div>
       <div class="col-6 col-md-2">
-        <div class="text-color-secondary text-sm">Pagos</div>
-        <div class="text-xl font-semibold">
+        <div class="text-body-secondary text-sm">Pagos</div>
+        <div class="text-xl fw-semibold">
           {{ formatCurrency(data.totalPayments) }}
         </div>
       </div>
       <div class="col-12 col-md-2">
-        <div class="text-color-secondary text-sm">Neto</div>
-        <div class="text-xl font-semibold">
+        <div class="text-body-secondary text-sm">Neto</div>
+        <div class="text-xl fw-semibold">
           {{ formatCurrency(data.netTotal) }}
         </div>
       </div>
@@ -88,7 +88,7 @@
     <ng-template #body let-item>
       <tr
         class="cursor-pointer"
-        [class.surface-100]="selectedRow()?.accountNumber === item.accountNumber"
+        [class.bg-body-tertiary]="selectedRow()?.accountNumber === item.accountNumber"
         (click)="onSelectRow(item)"
       >
         <td>{{ item.accountNumber }}</td>
@@ -117,9 +117,9 @@
     </ng-template>
   </p-table>
 
-  <div class="mb-4 text-sm text-color-secondary">
+  <div class="mb-4 text-sm text-body-secondary">
     Selecciona una fila o usa
-    <span class="font-medium">Ver histórico</span> para revisar el detalle anual
+    <span class="fw-medium">Ver histórico</span> para revisar el detalle anual
     de movimientos en un modal y su contexto contable 401.
   </div>
 
@@ -136,18 +136,18 @@
         >
           <app-icon icon="material-symbols-light:account-balance" />
         </div>
-        <div class="flex-1 min-w-0 ion-text-wrap">
-          <p class="font-semibold m-0 text-color">
+        <div class="flex-fill min-w-0 ion-text-wrap">
+          <p class="fw-semibold m-0 text-body">
             {{ item.departmentCode || item.accountNumber }}
           </p>
-          <p class="text-xs m-0 mt-1 text-color-secondary">
+          <p class="text-xs m-0 mt-1 text-body-secondary">
             {{ item.ownerName || item.displayName }}
           </p>
-          <p class="text-xs m-0 mt-1 text-color-secondary">
+          <p class="text-xs m-0 mt-1 text-body-secondary">
             Cargos {{ formatCurrency(item.chargesAmount) }} · Pagos {{
             formatCurrency(item.paymentsAmount) }}
           </p>
-          <p class="text-xs m-0 mt-1 text-primary font-medium">
+          <p class="text-xs m-0 mt-1 text-primary fw-medium">
             Toca para ver histórico anual
           </p>
         </div>

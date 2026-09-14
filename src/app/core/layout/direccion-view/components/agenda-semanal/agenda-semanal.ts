@@ -9,7 +9,7 @@ import {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { TagModule } from "primeng/tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
@@ -25,7 +25,7 @@ import type {
   selector: "app-agenda-semanal",
   templateUrl: "./agenda-semanal.html",
   imports: [
-    TagModule,
+    AppTag,
     LxTooltipDirective,
     AppIcon,
     WebButtonLabel,

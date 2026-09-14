@@ -22,7 +22,6 @@ import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-sign
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { PanelModule } from "primeng/panel";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
@@ -60,7 +59,6 @@ interface RecurringTaskCatalogFormGroup {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    PanelModule,
     WebButtonLabelSave,
     CustomInputCheckSignal,
     CustomInputDatepicker,
@@ -80,6 +78,7 @@ export class RecurringTaskCatalogForm implements OnInit {
   public config = inject(DynamicDialogConfig);
 
   submitting = signal(false);
+  collapsed = signal(true);
   templateId = signal<string | null>(null);
   workGroups = signal<SelectItemDto[]>([]);
   criticalities = signal<SelectItemDto[]>([]);

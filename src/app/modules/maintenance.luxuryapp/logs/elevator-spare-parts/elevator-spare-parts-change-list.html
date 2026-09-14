@@ -114,29 +114,29 @@
           </div>
 
           <div class="d-flex justify-content-between align-items-center mb-1">
-            <h2 class="font-bold m-0 text-base text-wrap">
+            <h2 class="fw-bold m-0 text-base text-wrap">
               {{ item.partName }}
             </h2>
-            <span class="font-bold text-lg text-green-600"
+            <span class="fw-bold text-lg text-green-600"
               >{{ item.price | currency }}</span
             >
           </div>
-          <p class="text-sm text-500 m-0">
+          <p class="text-sm text-body-secondary m-0">
             <app-icon [icon]="'material-symbols-light:currency-pound'" class="me-1 text-xs" />
             Folio: {{ item.folio }}
           </p>
-          <p class="text-sm text-500 m-0">
+          <p class="text-sm text-body-secondary m-0">
             <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-xs" />
             {{ item.changeDate }}
           </p>
-          <p class="text-sm text-500 m-0">
+          <p class="text-sm text-body-secondary m-0">
             <app-icon [icon]="'material-symbols-light:settings'" class="me-1 text-xs" /> {{
             item.machinery }}
           </p>
-          <p class="text-sm text-700 mt-2 mb-1">
+          <p class="text-sm text-body mt-2 mb-1">
             <strong>Falla:</strong> {{ item.failure }}
           </p>
-          <small class="text-xs text-500 d-block mt-1"
+          <small class="text-xs text-body-secondary d-block mt-1"
             >Supervisí: {{ item.supervised }}</small
           >
 

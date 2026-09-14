@@ -1,7 +1,7 @@
-<div class="card" class="w-full shadow-none border-none">
+<div class="card" class="w-full shadow-none border-0">
   
     <div class="row g-4">
-      <div class="col-12 col-md-12 p-4 surface-card rounded-lg">
+      <div class="col-12 col-md-12 p-4 bg-body rounded-lg">
         <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
           <div class="mb-4">
             <div class="relative">
@@ -17,7 +17,7 @@
             <div
               class="d-flex justify-content-between align-items-center mt-2 px-1"
             >
-              <small class="text-500 text-xs">Mínimo 10 caracteres.</small>
+              <small class="text-body-secondary text-xs">Mínimo 10 caracteres.</small>
               <small
                 [ngClass]="{
                   'text-red-500': seguimientoLenght() < 10,
@@ -39,46 +39,46 @@
         </form>
       </div>
 
-      <div class="col-12 col-md-12 mt-6">
-        <div class="border-top-1 border-200 pt-6">
-          <h3 class="text-2xl font-bold text-900 mb-6">
+      <div class="col-12 col-md-12 mt-5">
+        <div class="border-top-1 border-200 pt-5">
+          <h3 class="text-2xl fw-bold text-body mb-6">
             Historial de Seguimientos
           </h3>
 
           @if (seguimientos() && seguimientos().length > 0) {
           <div
-            class="relative d-flex flex-column gap-6 border-left-2 border-200 ms-3"
+            class="relative d-flex flex-column gap-5 border-left-2 border-200 ms-3"
           >
             @for (data of seguimientos(); track $index) {
-            <div class="relative pl-8">
+            <div class="relative ps-5">
               <div
-                class="absolute left-[-9px] top-1 h-4 w-4 bg-primary-500 rounded border-2 surface-card"
+                class="absolute left-[-9px] top-1 h-4 w-4 bg-primary-500 rounded border-2 bg-body"
               ></div>
               <div
-                class="surface-card p-4 rounded-lg border border-200 shadow-sm"
+                class="bg-body p-4 rounded-lg border border-200 shadow-sm"
               >
                 <div
                   class="d-flex align-items-center justify-content-between mb-3"
                 >
                   <div class="d-flex align-items-center">
                     <app-icon [icon]="'material-symbols-light:person'" class="text-primary-500" />
-                    <span class="font-semibold text-900 text-md"
+                    <span class="fw-semibold text-body text-md"
                       >{{ data.applicationUser }}</span
                     >
                   </div>
-                  <span class="text-xs text-500 bg-100 px-2 py-1 rounded">
+                  <span class="text-xs text-body-secondary bg-100 px-2 py-1 rounded">
                     <app-icon [icon]="'material-symbols-light:event-busy'" class="me-1" />
                     {{ data.createdAt }}
                   </span>
                 </div>
-                <p class="m-0 text-700 text-base">{{ data.description }}</p>
+                <p class="m-0 text-body text-base">{{ data.description }}</p>
               </div>
             </div>
             }
           </div>
           } @else {
           <div
-            class="text-center p-8 surface-ground rounded-lg border-2 border-dashed border-300"
+            class="text-center p-5 bg-body-tertiary rounded-lg border-2 border-dashed border-300"
           >
             <div
               class="d-inline-flex align-items-center justify-content-center w-4rem h-4rem rounded bg-primary-50 mb-4"
@@ -88,10 +88,10 @@
                 class="text-4xl text-primary-600"
               />
             </div>
-            <h3 class="text-xl font-semibold text-900">
+            <h3 class="text-xl fw-semibold text-body">
               No hay seguimientos registrados
             </h3>
-            <p class="text-500 mt-2">
+            <p class="text-body-secondary mt-2">
               Sé el primero en agregar un comentario para iniciar el historial.
             </p>
           </div>

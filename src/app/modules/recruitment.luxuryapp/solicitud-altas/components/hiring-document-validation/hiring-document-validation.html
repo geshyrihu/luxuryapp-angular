@@ -1,7 +1,7 @@
 <div class="documents-shell">
   <div class="d-flex flex-column gap-2 mb-4">
-    <p class="m-0 font-semibold">Documentación del Expediente</p>
-    <p class="m-0 text-color-secondary">
+    <p class="m-0 fw-semibold">Documentación del Expediente</p>
+    <p class="m-0 text-body-secondary">
       Los documentos son cargados por Recursos Humanos en el expediente del
       empleado. Revisa y valida cada documento.
     </p>
@@ -10,7 +10,7 @@
   <lx-divider />
 
   @if (isLoading()) {
-    <p class="m-0 text-color-secondary">Cargando documentos...</p>
+    <p class="m-0 text-body-secondary">Cargando documentos...</p>
   } @else {
     <div class="row mt-3 g-4">
       @for (row of documentRows(); track row.option.value) {
@@ -30,7 +30,7 @@
             }
             @if (!row.document?.isSubmitted || !row.document?.fileUrl) {
               <div class="d-flex flex-column gap-2">
-                <p class="text-500 text-sm italic m-0">Sin archivo cargado</p>
+                <p class="text-body-secondary text-sm italic m-0">Sin archivo cargado</p>
                 <input
                   type="file"
                   #fileInput
@@ -97,7 +97,7 @@
                     </p>
                   }
                 } @else {
-                  <p class="text-500 text-sm m-0">
+                  <p class="text-body-secondary text-sm m-0">
                     Validado por {{ row.document?.validatedByUserName || "—" }}
                   </p>
                 }

@@ -1,15 +1,15 @@
 @if (cargando()) {
 <div class="d-flex align-items-center gap-2 py-3">
   <app-icon icon="material-symbols-light:progress-activity" class="pi-spin text-primary" />
-  <span class="text-sm text-500">Cargando agenda...</span>
+  <span class="text-sm text-body-secondary">Cargando agenda...</span>
 </div>
 } @else {
 
 <!-- Contador y boton -->
 <div class="d-flex align-items-center justify-content-between mb-3">
   <div class="d-flex align-items-center gap-2">
-    <span class="text-3xl font-bold text-900">{{ totalEventos() }}</span>
-    <span class="text-sm text-500"
+    <span class="text-3xl fw-bold text-body">{{ totalEventos() }}</span>
+    <span class="text-sm text-body-secondary"
       >evento{{ totalEventos() === 1 ? '' : 's' }} en las proximas dos
       semanas</span
     >
@@ -25,7 +25,7 @@
 
 <!-- Proximos eventos -->
 @if (proximosEventos().length === 0) {
-<div class="d-flex align-items-center gap-2 py-2 text-400">
+<div class="d-flex align-items-center gap-2 py-2 text-body-secondary">
   <app-icon icon="material-symbols-light:event-busy" />
   <span class="text-sm">Sin eventos proximos</span>
 </div>
@@ -35,27 +35,27 @@
   <div
     class="d-flex align-items-start gap-3 py-2"
     [class.border-bottom-1]="!last"
-    [class.surface-border]="!last"
+    [class.border]="!last"
   >
     <!-- Fecha -->
-    <span class="text-xs text-500 flex-none" style="min-width: 7rem">
+    <span class="text-xs text-body-secondary flex-none" style="min-width: 7rem">
       {{ formatFechaCorta(evento.startAt) }}
     </span>
     <!-- Titulo y cliente -->
-    <div class="d-flex flex-column gap-1 min-w-0 flex-auto">
+    <div class="d-flex flex-column gap-1 min-w-0 flex-fill">
       <span
-        class="text-sm font-semibold text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+        class="text-sm fw-semibold text-body text-nowrap overflow-hidden text-truncate"
       >
         {{ evento.title }}
       </span>
-      <span class="text-xs text-500">{{ evento.customerName }}</span>
+      <span class="text-xs text-body-secondary">{{ evento.customerName }}</span>
     </div>
   </div>
   }
 </div>
 
 @if (totalEventos() > 3) {
-<div class="mt-2 text-xs text-400 text-right">
+<div class="mt-2 text-xs text-body-secondary text-end">
   y {{ totalEventos() - 3 }} evento{{ totalEventos() - 3 === 1 ? '' : 's' }}
   mas...
 </div>

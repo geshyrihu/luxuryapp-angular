@@ -19,7 +19,7 @@
     >
       <ng-template #caption>
         <div
-          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded g-4"
+          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
         >
           <div class="flex-grow-1">
             <primeng-custom-caption
@@ -126,7 +126,7 @@
           <td>{{ item.details }}</td>
           <td>
             <div>{{ item.ipAddress }}</div>
-            <span class="text-color-secondary text-sm"
+            <span class="text-body-secondary text-sm"
               >{{ item.location }}</span
             >
           </td>
@@ -156,17 +156,17 @@
             <span>{{ item.userName.charAt(0).toUpperCase() }}</span>
           </div>
           <div class="d-flex justify-content-between align-items-center mb-1">
-            <h2 class="font-bold m-0 text-base">{{ item.userName }}</h2>
+            <h2 class="fw-bold m-0 text-base">{{ item.userName }}</h2>
             <lx-tag [value]="item.userType"></lx-tag>
           </div>
 
-          <p class="text-medium text-500 m-0 text-sm mb-1">
+          <p class="text-medium text-body-secondary m-0 text-sm mb-1">
             <app-icon [icon]="'material-symbols-light:schedule'" class="me-1 text-xs" /> {{
             item.timestamp | apiDate: "dd/MM/yyyy h:mm a" }}
           </p>
 
           <div class="d-flex align-items-center gap-2 mb-1">
-            <span class="font-bold text-sm">{{ item.module }}</span>
+            <span class="fw-bold text-sm">{{ item.module }}</span>
             <lx-tag
               [value]="item.activityType"
               severity="info"
@@ -174,7 +174,7 @@
             ></lx-tag>
           </div>
 
-          <p class="text-sm text-color-secondary m-0 text-wrap">
+          <p class="text-sm text-body-secondary m-0 text-wrap">
             {{ item.details }}
           </p>
         </ili-list-item>

@@ -1,9 +1,9 @@
 <lx-card class="card">
-  <div class="p-3 mb-4 surface-50 rounded border-1 surface-border">
+  <div class="p-3 mb-4 bg-body-tertiary rounded border-1 border">
     <div class="d-flex align-items-start justify-content-between flex-wrap gap-3">
       <div>
-        <div class="font-semibold mb-1">Bolsa de Pagos No Identificados</div>
-        <div class="text-sm text-500 line-height-3 max-w-30rem">
+        <div class="fw-semibold mb-1">Bolsa de Pagos No Identificados</div>
+        <div class="text-sm text-body-secondary line-height-3 max-w-30rem">
           Pagos registrados en el sistema que aun no han sido aplicados a ningun
           cargo. La auto-conciliacion intenta cruzarlos automaticamente con
           saldos pendientes.
@@ -49,7 +49,7 @@
     <ng-template #header>
       <tr>
         <th class="w-9rem text-center">Fecha</th>
-        <th class="w-10rem text-right">Monto</th>
+        <th class="w-10rem text-end">Monto</th>
         <th>Referencia</th>
         <th class="w-8rem text-center">Estado</th>
       </tr>
@@ -60,10 +60,10 @@
         <td class="text-center text-sm">
           {{ pay.paymentDate | apiDate:'dd/MM/yyyy' }}
         </td>
-        <td class="text-right font-bold text-orange-700">
+        <td class="text-end fw-bold text-orange-700">
           {{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}
         </td>
-        <td class="text-sm text-500">
+        <td class="text-sm text-body-secondary">
           {{ pay.reference || 'Sin referencia' }}
         </td>
         <td class="text-center">
@@ -74,7 +74,7 @@
 
     <ng-template #emptymessage>
       <tr>
-        <td colspan="4" class="text-center p-4 text-500">
+        <td colspan="4" class="text-center p-4 text-body-secondary">
           No hay pagos sin aplicar. Todos los pagos estan conciliados.
         </td>
       </tr>
@@ -94,7 +94,7 @@
         >
           <app-icon icon="material-symbols-light:call-merge" class="text-orange-600 text-xl" />
         </div>
-        <div class="flex-1 min-w-0">
+        <div class="flex-fill min-w-0">
           <h3>{{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</h3>
           <p>
             {{ pay.paymentDate | apiDate:'dd/MM/yyyy' }} &middot; {{ pay.status }}

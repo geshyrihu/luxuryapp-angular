@@ -11,7 +11,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
       >
         @if (item.photoUrl) {
-        <img [src]="item.photoUrl" alt="" class="w-2rem h-2rem border-circle object-cover" />
+        <img [src]="item.photoUrl" alt="" class="w-2rem h-2rem rounded-circle object-cover" />
         } @else {
         <app-icon
           [icon]="'material-symbols-light:person'"
@@ -20,10 +20,10 @@
         }
       </div>
       <div class="d-flex flex-column gap-1">
-        <p class="text-xs m-0 text-color-secondary">
+        <p class="text-xs m-0 text-body-secondary">
           {{ item.email }} - {{ item.phoneNumber }}
         </p>
-        <p class="text-xs m-0 text-color-secondary">
+        <p class="text-xs m-0 text-body-secondary">
           {{ item.activeApplicationsCount }} procesos activos
         </p>
         @if (item.cvFileName) {

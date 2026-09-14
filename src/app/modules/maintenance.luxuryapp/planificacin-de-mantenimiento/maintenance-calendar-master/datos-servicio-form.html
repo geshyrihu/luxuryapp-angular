@@ -1,19 +1,19 @@
 <div class="d-flex flex-column gap-4">
   @if (data?.nombreEquipo) {
   <div
-    class="d-flex align-items-center gap-2 pb-2 border-bottom-1 surface-border"
+    class="d-flex align-items-center gap-2 pb-2 border-bottom-1 border"
   >
     <app-icon [icon]="'material-symbols-light:settings'" class="text-primary text-xl" />
-    <span class="text-xl font-bold text-900">{{ data.nombreEquipo }}</span>
+    <span class="text-xl fw-bold text-body">{{ data.nombreEquipo }}</span>
   </div>
   }
 
   <div>
     <label
-      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 d-block"
+      class="text-body-secondary text-sm fw-medium text-uppercase tracking-wide mb-2 d-block"
       >Actividad</label
     >
-    <div class="surface-100 rounded p-3 text-900 line-height-3">
+    <div class="bg-body-tertiary rounded p-3 text-body line-height-3">
       {{ data?.servicio || 'Sin descripcion' }}
     </div>
   </div>
@@ -21,10 +21,10 @@
   @if (data?.observaciones) {
   <div>
     <label
-      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 d-block"
+      class="text-body-secondary text-sm fw-medium text-uppercase tracking-wide mb-2 d-block"
       >Observaciones</label
     >
-    <div class="surface-100 rounded p-3 text-700 line-height-3">
+    <div class="bg-body-tertiary rounded p-3 text-body line-height-3">
       {{ data.observaciones }}
     </div>
   </div>
@@ -32,7 +32,7 @@
 
   <div>
     <label
-      class="text-500 text-sm font-medium uppercase tracking-wide mb-2 d-block"
+      class="text-body-secondary text-sm fw-medium text-uppercase tracking-wide mb-2 d-block"
     >
       Proveedores @if (proveedores?.length > 0) {
       <lx-tag
@@ -44,14 +44,14 @@
     </label>
     @if (proveedores?.length > 0) {
     <div
-      class="surface-card border-1 surface-border rounded overflow-hidden"
+      class="bg-body border-1 border rounded overflow-hidden"
     >
       @for (proveedor of proveedores; track proveedor; let last = $last) {
       <div
         (click)="onDataProveedor(proveedor.id)"
-        class="d-flex align-items-center gap-3 cursor-pointer p-3 hover:surface-100 transition-colors transition-duration-150"
+        class="d-flex align-items-center gap-3 cursor-pointer p-3 hover:bg-body-tertiary transition-colors transition-duration-150"
         [class.border-bottom-1]="!last"
-        [class.surface-border]="!last"
+        [class.border]="!last"
       >
         <div
           class="d-flex align-items-center justify-content-center w-2rem h-2rem rounded-lg bg-primary-100"
@@ -61,15 +61,15 @@
             class="text-primary text-sm"
           />
         </div>
-        <span class="font-medium text-900 flex-1"
+        <span class="fw-medium text-body flex-fill"
           >{{ proveedor.nameProvider }}</span
         >
-        <app-icon [icon]="'material-symbols-light:chevron-right'" class="text-400" />
+        <app-icon [icon]="'material-symbols-light:chevron-right'" class="text-body-secondary" />
       </div>
       }
     </div>
     } @else {
-    <div class="surface-100 rounded p-3 text-400 text-sm text-center">
+    <div class="bg-body-tertiary rounded p-3 text-body-secondary text-sm text-center">
       <app-icon [icon]="'material-symbols-light:move-to-inbox'" class="me-2" />Sin proveedores asignados
     </div>
     }

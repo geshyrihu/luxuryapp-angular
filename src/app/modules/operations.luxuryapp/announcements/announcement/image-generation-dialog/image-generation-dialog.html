@@ -3,7 +3,7 @@
     <div class="d-flex gap-1">
       @for(step of [1,2,3,4]; track step) {
       <div
-        class="border-circle w-1rem h-1rem transition-all transition-duration-300"
+        class="rounded-circle w-1rem h-1rem transition-all transition-duration-300"
         [class.bg-primary]="currentStep() >= step"
         [class.bg-200]="currentStep() < step"
       ></div>
@@ -22,7 +22,7 @@
           (click)="selectStyle(option.value)"
         >
           <app-icon [icon]="option.icon" class="text-3xl mb-2 text-primary" />
-          <span class="font-bold">{{ option.label }}</span>
+          <span class="fw-bold">{{ option.label }}</span>
         </div>
       </div>
       }
@@ -37,7 +37,7 @@
           (click)="selectMood(option.value)"
         >
           <span class="text-3xl mb-2">{{ option.emoji }}</span>
-          <span class="font-bold">{{ option.label }}</span>
+          <span class="fw-bold">{{ option.label }}</span>
         </div>
       </div>
       }
@@ -52,7 +52,7 @@
           (click)="selectElement(option.value)"
         >
           <app-icon [icon]="option.icon" class="text-3xl mb-2 text-primary" />
-          <span class="font-bold">{{ option.label }}</span>
+          <span class="fw-bold">{{ option.label }}</span>
         </div>
       </div>
       }
@@ -61,7 +61,7 @@
     <div class="d-flex flex-column align-items-center">
       <div class="text-center">
         <p class="text-lg">óAlgón detalle adicional?</p>
-        <p class="text-color-secondary text-sm">
+        <p class="text-body-secondary text-sm">
           "Que se vea de noche", "Con un gato azul", etc.
         </p>
       </div>
@@ -86,7 +86,7 @@
         </div>
 
         @if(isListening()) {
-        <p class="text-center text-primary font-italic animate-fade-in mt-2">
+        <p class="text-center text-primary fst-italic animate-fade-in mt-2">
           Escuchando...
         </p>
         }

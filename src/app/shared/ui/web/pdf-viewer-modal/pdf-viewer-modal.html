@@ -2,7 +2,7 @@
   class="d-flex flex-column h-full w-full overflow-hidden"
   style="min-height: 85vh"
 >
-  <div class="flex-grow-1 overflow-auto p-2 surface-ground d-flex flex-column">
+  <div class="flex-grow-1 overflow-auto p-2 bg-body-tertiary d-flex flex-column">
     @if (pdfSrc()) {
     <pdf-viewer
       [src]="pdfSrc()"
@@ -17,14 +17,14 @@
     <div
       class="d-flex flex-column align-items-center justify-content-center h-full gap-3"
     >
-      <p-progressspinner />
-      <span class="text-600 font-medium">Cargando documento...</span>
+      <app-spinner />
+      <span class="text-body-secondary fw-medium">Cargando documento...</span>
     </div>
     }
   </div>
 
   <div
-    class="d-flex justify-content-end gap-2 p-3 border-top-1 surface-border bg-white"
+    class="d-flex justify-content-end gap-2 p-3 border-top-1 border bg-white"
   >
     <il-button
       label="Descargar"

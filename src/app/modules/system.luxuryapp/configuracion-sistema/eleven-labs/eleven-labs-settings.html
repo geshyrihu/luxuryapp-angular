@@ -137,7 +137,7 @@
         </div>
 
         @if (selectedVoicePreview()) {
-        <div class="mt-3 text-sm text-600">
+        <div class="mt-3 text-sm text-body-secondary">
           <strong>Perfil de voz:</strong> {{ selectedVoicePreview() }}
         </div>
         }
@@ -150,11 +150,11 @@
       </div>
 
       <div class="col-12 col-lg-4">
-        <div class="surface-100 rounded p-3 h-full">
-          <div class="text-lg font-semibold mb-3">Estado de suscripción</div>
+        <div class="bg-body-tertiary rounded p-3 h-full">
+          <div class="text-lg fw-semibold mb-3">Estado de suscripción</div>
 
           @if (loadingSubscription()) {
-          <div class="text-500">Consultando uso actual...</div>
+          <div class="text-body-secondary">Consultando uso actual...</div>
           } @else if (subscription(); as sub) {
           <div class="mb-2"><strong>Plan:</strong> {{ sub.tier }}</div>
           <div class="mb-2">
@@ -181,7 +181,7 @@
             (clicked)="loadSubscription()"
           />
           } @else {
-          <div class="text-500 mb-3">
+          <div class="text-body-secondary mb-3">
             No fue posible cargar la suscripción. Revisa la API Key configurada
             en backend.
           </div>
@@ -194,7 +194,7 @@
           }
         </div>
 
-        <div class="text-xs text-500 mt-3">
+        <div class="text-xs text-body-secondary mt-3">
           Nota: la consulta de suscripción requiere el permiso
           <strong>user_read</strong> en la API key de ElevenLabs. Si tu llave
           solo se usa para generar audio, la lectura del Auditor IA puede seguir

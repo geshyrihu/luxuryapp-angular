@@ -37,7 +37,7 @@
         Tipo Gasto
         <p-sorticon field="tipoGasto" />
       </th>
-      <th pSortableColumn="amount" class="text-right">
+      <th pSortableColumn="amount" class="text-end">
         Monto
         <p-sorticon field="amount" />
       </th>
@@ -53,7 +53,7 @@
       >
         <app-icon
           [icon]="'material-symbols-light:edit'"
-          class="text-color-secondary"
+          class="text-body-secondary"
         />
       </td>
       <td>{{ item.creationAt }}</td>
@@ -61,19 +61,19 @@
         <div class="d-flex flex-column gap-1">
           <span>{{ item.description }}</span>
           @if (item.notasEspeciales) {
-          <small class="text-color-secondary">{{ item.notasEspeciales }}</small>
+          <small class="text-body-secondary">{{ item.notasEspeciales }}</small>
           }
         </div>
       </td>
       <td>{{ item.provider }}</td>
       <td>
         <div class="d-flex flex-column">
-          <span class="font-bold">{{ item.accountNumber }}</span>
-          <small class="text-color-secondary">{{ item.accountName }}</small>
+          <span class="fw-bold">{{ item.accountNumber }}</span>
+          <small class="text-body-secondary">{{ item.accountName }}</small>
         </div>
       </td>
       <td>{{ item.tipoGasto }}</td>
-      <td class="text-right font-bold">{{ item.amount | currency: 'MXN' }}</td>
+      <td class="text-end fw-bold">{{ item.amount | currency: 'MXN' }}</td>
       <td class="text-center">
         @if (item.invoices && item.invoices.length > 0) {
         <div class="d-flex flex-wrap gap-1 justify-content-center">
@@ -102,8 +102,8 @@
   </ng-template>
   <ng-template #footer>
     <tr>
-      <td colspan="6" class="text-right font-bold p-3 pb-0">Total</td>
-      <td class="font-bold p-3 pb-0 text-right">
+      <td colspan="6" class="text-end fw-bold p-3 pb-0">Total</td>
+      <td class="fw-bold p-3 pb-0 text-end">
         {{ sumaTotal() | number: '1.2-2' }}
       </td>
     </tr>
@@ -133,15 +133,15 @@
 
       <h2 class="font-normal m-0">{{ item.description }}</h2>
       @if (item.notasEspeciales) {
-      <p class="text-sm text-color-secondary m-0">{{ item.notasEspeciales }}</p>
+      <p class="text-sm text-body-secondary m-0">{{ item.notasEspeciales }}</p>
       }
-      <p class="text-medium text-500 m-0">{{ item.provider }}</p>
-      <p class="text-sm text-400 mt-1">
+      <p class="text-medium text-body-secondary m-0">{{ item.provider }}</p>
+      <p class="text-sm text-body-secondary mt-1">
         {{ item.accountNumber }} ó {{ item.creationAt }}
       </p>
 
       <div end class="d-flex flex-column align-items-end">
-        <span class="text-lg font-semibold text-primary">
+        <span class="text-lg fw-semibold text-primary">
           {{ item.amount | currency : "MXN" }}
         </span>
         @if (item.invoices && item.invoices.length > 0) {

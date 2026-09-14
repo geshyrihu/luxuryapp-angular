@@ -35,13 +35,13 @@
               @if (uniqueModules().length > 0) {
               <div class="d-flex overflow-x-auto align-items-center pb-1">
                 <div
-                  class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 d-flex align-items-center white-space-nowrap"
+                  class="bg-body border-1 rounded-2xl px-3 py-1 cursor-pointer transition-duration-200 d-flex align-items-center text-nowrap"
                   [class.border-primary]="selectedModule() === null"
                   [class.bg-primary-50]="selectedModule() === null"
                   (click)="onModuleFilterChange(null)"
                 >
                   <app-icon [icon]="'material-symbols-light:grid-view'" class="text-primary" />
-                  <span class="font-bold text-sm">Todos</span>
+                  <span class="fw-bold text-sm">Todos</span>
                   <lx-tag
                     [value]="allData.length"
                     severity="secondary"
@@ -51,15 +51,15 @@
 
                 @for (mod of uniqueModules(); track mod.name) {
                 <div
-                  class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 d-flex align-items-center white-space-nowrap"
+                  class="bg-body border-1 rounded-2xl px-3 py-1 cursor-pointer transition-duration-200 d-flex align-items-center text-nowrap"
                   [class.border-primary]="selectedModule() === mod.name"
                   [class.bg-primary-50]="selectedModule() === mod.name"
                   (click)="onModuleFilterChange(mod.name)"
                 >
                   <span>{{ mod.emoji }}</span>
-                  <span class="font-medium text-sm">{{ mod.name }}</span>
+                  <span class="fw-medium text-sm">{{ mod.name }}</span>
                   <span
-                    class="text-xs text-500 font-bold bg-surface-200 px-1 rounded"
+                    class="text-xs text-body-secondary fw-bold bg-bg-body-tertiary px-1 rounded"
                     >{{ mod.count }}</span
                   >
                 </div>
@@ -86,7 +86,7 @@
                   (clicked)="generateDailyReport()"
                 />
                 @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-                <div class="border-left-1 surface-border h-1rem mx-1"></div>
+                <div class="border-left-1 border h-1rem mx-1"></div>
                 <iw-button
                   iconClass="material-symbols-light:mail-outline"
                   severity="danger"
@@ -102,7 +102,7 @@
             </div>
 
             <!-- Contextual Legend (Small) -->
-            <div class="d-flex align-items-center text-xs text-600 px-1">
+            <div class="d-flex align-items-center text-xs text-body-secondary px-1">
               <app-icon [icon]="'material-symbols-light:info'" class="text-primary" />
               <div class="d-flex align-items-center gap-1">
                 <span
@@ -122,16 +122,16 @@
       </ng-template>
 
       <ng-template #header>
-        <tr class="text-sm uppercase text-600 bg-surface-50">
+        <tr class="text-sm text-uppercase text-body-secondary bg-bg-body-tertiary">
           <th
             pSortableColumn="module"
-            class="white-space-nowrap ps-3 table-col-8"
+            class="text-nowrap ps-3 table-col-8"
           >
             Módulo <p-sorticon field="module"></p-sorticon>
           </th>
           <th
             pSortableColumn="date"
-            class="white-space-nowrap text-center table-col-10"
+            class="text-nowrap text-center table-col-10"
           >
             Fecha <p-sorticon field="date"></p-sorticon>
           </th>
@@ -155,7 +155,7 @@
         <tr
           [class.bg-red-50]="isSevere(item)"
           [class.bg-yellow-50]="isWarning(item)"
-          class="cursor-pointer transition-duration-100 text-sm border-bottom-1 surface-border"
+          class="cursor-pointer transition-duration-100 text-sm border-bottom-1 border"
           (click)="onNavigate(item)"
         >
           <!-- Module -->
@@ -163,17 +163,17 @@
             <lx-tag
               [value]="item.module"
               [severity]="getModuleSeverity(item.module)"
-              class="text-xs uppercase font-bold px-2 py-1"
+              class="text-xs text-uppercase fw-bold px-2 py-1"
             />
           </td>
 
           <!-- Date -->
           <td class="text-center vertical-align-middle">
             <div class="d-flex flex-column align-items-center">
-              <span class="font-bold text-800 text-base mb-1"
+              <span class="fw-bold text-body text-base mb-1"
                 >{{ item.date | apiDate: 'dd MMM' }}</span
               >
-              <span class="text-500 text-xs d-flex align-items-center gap-1"
+              <span class="text-body-secondary text-xs d-flex align-items-center gap-1"
                 ><app-icon [icon]="'material-symbols-light:schedule'" class="text-xs" /> {{
                 item.date | apiDate: 'HH:mm' }}</span
               >
@@ -183,11 +183,11 @@
           <!-- Activity -->
           <td class="vertical-align-middle py-3">
             <div class="d-flex flex-column gap-1">
-              <span class="font-bold text-900 text-base line-height-2"
+              <span class="fw-bold text-body text-base line-height-2"
                 >{{ item.title }}</span
               >
               <span
-                class="text-600 text-sm line-height-2 overflow-hidden text-overflow-ellipsis line-clamp-2"
+                class="text-body-secondary text-sm line-height-2 overflow-hidden text-truncate line-clamp-2"
               >
                 {{ item.description }}
               </span>
@@ -204,10 +204,10 @@
                 shape="circle"
               ></app-avatar>
               <div class="d-flex flex-column">
-                <span class="text-800 font-medium text-sm"
+                <span class="text-body fw-medium text-sm"
                   >{{ item.responsible }}</span
                 >
-                <span class="text-500 text-xs">Asignado</span>
+                <span class="text-body-secondary text-xs">Asignado</span>
               </div>
             </div>
           </td>
@@ -215,17 +215,17 @@
           <!-- Followup -->
           <td class="vertical-align-middle">
             @if (item.lastFollowup && item.lastFollowup !== 'Sin seguimiento') {
-            <div class="d-flex align-items-start p-2 surface-50 rounded">
+            <div class="d-flex align-items-start p-2 bg-body-tertiary rounded">
               <app-icon [icon]="'material-symbols-light:comment'" class="text-primary mt-1" />
               <span
-                class="text-600 text-xs line-height-2 line-clamp-2"
+                class="text-body-secondary text-xs line-height-2 line-clamp-2"
                 [lxTooltip]="item.lastFollowup"
                 tooltipPosition="top"
                 >{{ item.lastFollowup }}</span
               >
             </div>
             } @else {
-            <span class="text-400 text-xs italic ps-2">-- Sin info --</span>
+            <span class="text-body-secondary text-xs italic ps-2">-- Sin info --</span>
             }
           </td>
 
@@ -235,7 +235,7 @@
               [value]="item.status"
               [severity]="getSeverity(item.status)"
               [rounded]="true"
-              class="text-xs font-bold px-2"
+              class="text-xs fw-bold px-2"
             />
           </td>
 
@@ -244,16 +244,16 @@
             @if (item.daysOpen >= 0) {
             <div class="d-flex flex-column align-items-center">
               <span
-                class="font-bold text-lg"
+                class="fw-bold text-lg"
                 [class.text-red-600]="isSevere(item)"
                 [class.text-orange-500]="isWarning(item)"
                 [class.text-700]="!isSevere(item) && !isWarning(item)"
                 >{{ item.daysOpen }}</span
               >
-              <span class="text-xs text-500">días</span>
+              <span class="text-xs text-body-secondary">días</span>
             </div>
             } @else {
-            <span class="text-400">-</span>
+            <span class="text-body-secondary">-</span>
             }
           </td>
         </tr>
@@ -262,17 +262,17 @@
       <!-- Empty and Paginator templates remain similar but cleaner if needed -->
       <ng-template #emptymessage>
         <tr>
-          <td colspan="7" class="text-center p-6 surface-50">
+          <td colspan="7" class="text-center p-5 bg-body-tertiary">
             <div class="d-flex flex-column align-items-center opacity-60">
               <div
-                class="border-circle bg-surface-200 p-4 d-flex align-items-center justify-content-center"
+                class="rounded-circle bg-bg-body-tertiary p-4 d-flex align-items-center justify-content-center"
               >
-                <app-icon [icon]="'material-symbols-light:check'" class="text-4xl text-500" />
+                <app-icon [icon]="'material-symbols-light:check'" class="text-4xl text-body-secondary" />
               </div>
-              <span class="font-medium text-xl text-700"
+              <span class="fw-medium text-xl text-body"
                 >Bien Bandeja Limpia!</span
               >
-              <span class="text-600"
+              <span class="text-body-secondary"
                 >No tienes actividades pendientes por atender.</span
               >
             </div>
@@ -293,13 +293,13 @@
       @if (uniqueModules().length > 0) {
       <div class="d-flex overflow-x-auto align-items-center pb-1">
         <div
-          class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 d-flex align-items-center white-space-nowrap"
+          class="bg-body border-1 rounded-2xl px-3 py-1 cursor-pointer transition-duration-200 d-flex align-items-center text-nowrap"
           [class.border-primary]="selectedModule() === null"
           [class.bg-primary-50]="selectedModule() === null"
           (click)="onModuleFilterChange(null)"
         >
           <app-icon [icon]="'material-symbols-light:grid-view'" class="text-primary" />
-          <span class="font-bold text-sm">Todos</span>
+          <span class="fw-bold text-sm">Todos</span>
           <lx-tag
             [value]="allData.length"
             severity="secondary"
@@ -309,14 +309,14 @@
 
         @for (mod of uniqueModules(); track mod.name) {
         <div
-          class="surface-card border-1 rounded-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 d-flex align-items-center white-space-nowrap"
+          class="bg-body border-1 rounded-2xl px-3 py-1 cursor-pointer transition-duration-200 d-flex align-items-center text-nowrap"
           [class.border-primary]="selectedModule() === mod.name"
           [class.bg-primary-50]="selectedModule() === mod.name"
           (click)="onModuleFilterChange(mod.name)"
         >
           <span>{{ mod.emoji }}</span>
-          <span class="font-medium text-sm">{{ mod.name }}</span>
-          <span class="text-xs text-500 font-bold bg-surface-200 px-1 rounded"
+          <span class="fw-medium text-sm">{{ mod.name }}</span>
+          <span class="text-xs text-body-secondary fw-bold bg-bg-body-tertiary px-1 rounded"
             >{{ mod.count }}</span
           >
         </div>
@@ -326,8 +326,8 @@
     </div>
     <ng-template #listItemTemplate let-item>
       <ili-list-item (click)="onNavigate(item)">
-        <p class="font-semibold m-0 text-color">{{ item.title }}</p>
-        <p class="text-xs m-0 text-color-secondary">
+        <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
+        <p class="text-xs m-0 text-body-secondary">
           {{ item.module }} · {{ item.responsible }}
         </p>
       </ili-list-item>

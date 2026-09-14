@@ -51,7 +51,7 @@
       <ng-template #groupheader let-category>
         <tr pRowGroupHeader>
           <td colspan="3">
-            <span class="font-bold ms-2 font-size-18">{{ category.name }}</span>
+            <span class="fw-bold ms-2 font-size-18">{{ category.name }}</span>
           </td>
           <td>
             <div class="d-flex justify-content-center">
@@ -119,7 +119,7 @@
   </ng-container>
 
   <ng-template #listItemTemplate let-category>
-    <div class="surface-card mb-3 rounded">
+    <div class="bg-body mb-3 rounded">
       <div
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -130,9 +130,9 @@
           class="text-xl text-primary"
         />
       </div>
-      <div class="p-3 border-bottom-1 surface-border">
+      <div class="p-3 border-bottom-1 border">
         <div class="d-flex justify-content-between align-items-center w-full">
-          <span class="font-bold text-lg">{{ category.name }}</span>
+          <span class="fw-bold text-lg">{{ category.name }}</span>
           <div class="d-flex">
             <ili-button-edit
               (clicked)="
@@ -146,8 +146,8 @@
 
       @for (legalMatter of category.legalMatters; track legalMatter) {
       <ili-list-item>
-        <h3 class="font-bold text-wrap">{{ legalMatter.title }}</h3>
-        <p class="text-small text-color-secondary">
+        <h3 class="fw-bold text-wrap">{{ legalMatter.title }}</h3>
+        <p class="text-small text-body-secondary">
           {{ legalMatter.isInternal ? "Interno" : "Externo" }}
         </p>
 

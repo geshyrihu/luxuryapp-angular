@@ -8,8 +8,8 @@
       <app-icon [icon]="'material-symbols-light:verified'" class="text-3xl text-primary-600" />
     </div>
     <div>
-      <h1 class="text-3xl font-bold text-900 m-0">Supervision</h1>
-      <p class="text-base text-500 m-0">
+      <h1 class="text-3xl fw-bold text-body m-0">Supervision</h1>
+      <p class="text-base text-body-secondary m-0">
         Panel central de gestion operativa, agenda, minutas, resultados y
         reportes de supervision
       </p>
@@ -20,10 +20,10 @@
 <!-- Grupos de modulos -->
 @for (group of getVisibleGroups(); track group.label) {
 <!-- Titulo del grupo -->
-<div class="d-flex align-items-center gap-2 mb-4 mt-6">
+<div class="d-flex align-items-center gap-2 mb-4 mt-5">
   <app-icon [icon]="group.icon" class="text-xl text-primary-600" />
-  <h2 class="text-lg font-bold text-900 m-0 uppercase">{{ group.label }}</h2>
-  <div class="flex-grow-1 border-bottom-1 surface-border ms-3"></div>
+  <h2 class="text-lg fw-bold text-body m-0 text-uppercase">{{ group.label }}</h2>
+  <div class="flex-grow-1 border-bottom-1 border ms-3"></div>
 </div>
 
 <!-- Cards del grupo -->
@@ -31,7 +31,7 @@
   @for (module of group.cards; track module.route) {
   <div class="col-12 col-sm-6 col-md-3">
     <div class="card"
-      class="h-full border-top-3 surface-card shadow-sm cursor-pointer hover:shadow transition-all transition-duration-200"
+      class="h-full border-top-3 bg-body shadow-sm cursor-pointer hover:shadow transition-all transition-duration-200"
       
       (click)="navigateTo(module.route)"
     >
@@ -45,15 +45,15 @@
           >
             <app-icon [icon]="module.icon" [style.color]="module.color" />
           </div>
-          <app-icon [icon]="'material-symbols-light:north-east'" class="text-400" />
+          <app-icon [icon]="'material-symbols-light:north-east'" class="text-body-secondary" />
         </div>
 
         <!-- Titulo y descripcion -->
         <div>
-          <h3 class="m-0 font-bold text-900 line-height-2 text-base">
+          <h3 class="m-0 fw-bold text-body line-height-2 text-base">
             {{ module.title }}
           </h3>
-          <p class="text-sm text-600 m-0 mt-2 line-height-3">
+          <p class="text-sm text-body-secondary m-0 mt-2 line-height-3">
             {{ module.description }}
           </p>
         </div>

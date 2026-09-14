@@ -24,7 +24,7 @@
           <p class="text-red-600 text-center m-0">{{ errorMsg() }}</p>
         }
         @if (statusMsg()) {
-          <p class="text-600 text-center m-0">{{ statusMsg() }}</p>
+          <p class="text-body-secondary text-center m-0">{{ statusMsg() }}</p>
         }
       </div>
     } @else {
@@ -42,7 +42,7 @@
       </div>
 
       @if (statusMsg()) {
-        <p class="text-600 text-center">{{ statusMsg() }}</p>
+        <p class="text-body-secondary text-center">{{ statusMsg() }}</p>
       }
 
       @if (errorMsg()) {

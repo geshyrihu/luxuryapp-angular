@@ -16,8 +16,8 @@
         [icon]="'material-symbols-light:info'"
         class="text-blue-600 text-xl mt-1"
       />
-      <div class="flex-1">
-        <div class="text-blue-900 font-bold mb-1 uppercase text-xs">
+      <div class="flex-fill">
+        <div class="text-blue-900 fw-bold mb-1 text-uppercase text-xs">
           Guía de registro
         </div>
         <p class="m-0 text-blue-800 text-sm line-height-3">
@@ -145,7 +145,7 @@
     />
     } @if (isLegalWorkGroup()) {
     <div class="rounded border-1 border-orange-200 bg-orange-50 p-3 mb-3">
-      <div class="text-xs font-bold text-orange-700 uppercase mb-2">
+      <div class="text-xs fw-bold text-orange-700 text-uppercase mb-2">
         Campos legales
       </div>
       <div class="d-flex flex-wrap gap-4">
@@ -170,7 +170,7 @@
 
     <div class="row g-4">
       <div class="col-12 mb-2">
-        <small class="text-500 italic">
+        <small class="text-body-secondary italic">
           <app-icon
             [icon]="'material-symbols-light:photo-camera'"
             class="me-1"
@@ -185,7 +185,7 @@
           role="alert"
           aria-live="assertive"
           data-testid="image-processing-diagnostic"
-          class="m-0 p-3 border-round surface-100 text-700 text-sm white-space-pre-line"
+          class="m-0 p-3 rounded bg-body-tertiary text-body text-sm white-space-pre-line"
         >
           <strong>Detalle técnico de la imagen</strong>
           {{ "\n" + imageProcessingDiagnostic() }}
@@ -194,7 +194,7 @@
       }
       <div class="col-12 col-md-6">
         <div class="mb-4">
-          <label class="font-bold text-xs uppercase text-700 d-block mb-2"
+          <label class="fw-bold text-xs text-uppercase text-body d-block mb-2"
             >Foto del antes</label
           >
           @if (beforeWorkPreview()) {
@@ -219,7 +219,7 @@
 
       <div class="col-12 col-md-6">
         <div class="mb-4">
-          <label class="font-bold text-xs uppercase text-700 d-block mb-2"
+          <label class="fw-bold text-xs text-uppercase text-body d-block mb-2"
             >Foto del después</label
           >
           @if (afterWorkPreview()) {

@@ -3,7 +3,7 @@
     <p-table [value]="facturas()" class="custom-table">
       <ng-template #caption>
         <div class="d-flex justify-content-between align-items-center">
-          <span class="text-xl font-bold">FACTURAS ASOCIADAS</span>
+          <span class="text-xl fw-bold">FACTURAS ASOCIADAS</span>
           <div class="d-flex">
             @if (facturas().length > 0) {
             <il-button
@@ -43,18 +43,18 @@
           <td>{{ factura.fechaFactura }}</td>
           <td>{{ factura.folioFiscal || 'N/A' }}</td>
           <td>
-            <div class="font-bold text-sm">
+            <div class="fw-bold text-sm">
               {{ factura.nombreEmisor || 'N/A' }}
             </div>
-            <div class="text-xs text-500">{{ factura.rfcEmisor || 'N/A' }}</div>
+            <div class="text-xs text-body-secondary">{{ factura.rfcEmisor || 'N/A' }}</div>
           </td>
           <td class="text-center">
             <div class="text-xs">
-              <span class="font-bold text-700" lxTooltip="Mótodo de Pago"
+              <span class="fw-bold text-body" lxTooltip="Mótodo de Pago"
                 >{{ factura.metodoPago || 'N/A' }}</span
               >
               <hr class="my-1 border-top-1 border-bottom-0 border-300" />
-              <span class="text-600" lxTooltip="Forma de Pago"
+              <span class="text-body-secondary" lxTooltip="Forma de Pago"
                 >{{ factura.formaPago || 'N/A' }}</span
               >
             </div>
@@ -75,7 +75,7 @@
         <tr>
           <td colspan="8" class="text-center p-4">
             <div class="d-flex flex-column align-items-center">
-              <app-icon [icon]="'material-symbols-light:table-view'" class="text-4xl text-500" />
+              <app-icon [icon]="'material-symbols-light:table-view'" class="text-4xl text-body-secondary" />
               <span
                 >No hay facturas asociadas. Haz clic en "Administrar" para
                 agregar una.</span
@@ -93,11 +93,11 @@
       @if (!result.isValid) {
       <p class="text-sm mt-1 ms-3">
         Total Facturas:
-        <span class="font-bold"
+        <span class="fw-bold"
           >{{ result.invoiceTotal | number: '1.2-2' }}</span
         >
         | Total O.C.:
-        <span class="font-bold"
+        <span class="fw-bold"
           >{{ result.purchaseOrderTotal | number: '1.2-2' }}</span
         >
       </p>

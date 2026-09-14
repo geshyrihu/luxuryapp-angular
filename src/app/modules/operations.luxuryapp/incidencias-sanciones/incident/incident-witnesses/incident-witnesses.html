@@ -6,8 +6,8 @@
         [icon]="'material-symbols-light:group'"
         class="text-xl text-primary me-2"
       />
-      <h3 class="text-base font-semibold text-color m-0">Testigos</h3>
-      <span class="text-sm text-color-secondary"
+      <h3 class="text-base fw-semibold text-body m-0">Testigos</h3>
+      <span class="text-sm text-body-secondary"
         >({{ witnesses().length }})</span
       >
     </div>
@@ -21,12 +21,12 @@
   </div>
 
   @if (loading()) {
-  <div class="d-flex justify-content-center p-4 text-color-secondary">
+  <div class="d-flex justify-content-center p-4 text-body-secondary">
     Cargando...
   </div>
   } @else if (witnesses().length === 0) {
-  <div class="text-center p-4 text-color-secondary surface-100 rounded">
-    <app-icon [icon]="'material-symbols-light:person'" class="text-3xl text-400" />
+  <div class="text-center p-4 text-body-secondary bg-body-tertiary rounded">
+    <app-icon [icon]="'material-symbols-light:person'" class="text-3xl text-body-secondary" />
     <p class="mt-2 m-0">No hay testigos registrados</p>
   </div>
   } @else {
@@ -59,7 +59,7 @@
             <span>Firmado</span>
           </span>
           } @else {
-          <span class="text-color-secondary">Sin firma</span>
+          <span class="text-body-secondary">Sin firma</span>
           }
         </td>
         <td>

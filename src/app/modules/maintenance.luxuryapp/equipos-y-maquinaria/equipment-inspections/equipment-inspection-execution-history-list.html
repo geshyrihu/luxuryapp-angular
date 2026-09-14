@@ -14,8 +14,8 @@
   <ng-template #caption>
     <div class="d-flex flex-column gap-2 mb-2">
       <div>
-        <div class="font-semibold text-lg">Historial de ejecuciones</div>
-        <div class="text-sm text-600">{{ machineryName }}</div>
+        <div class="fw-semibold text-lg">Historial de ejecuciones</div>
+        <div class="text-sm text-body-secondary">{{ machineryName }}</div>
       </div>
       <primeng-custom-caption [dt]="dt" [showAdd]="false" />
     </div>
@@ -36,8 +36,8 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <div class="font-medium">{{ item.definitionName }}</div>
-        <div class="text-sm text-600">{{ item.machineryName }}</div>
+        <div class="fw-medium">{{ item.definitionName }}</div>
+        <div class="text-sm text-body-secondary">{{ item.machineryName }}</div>
       </td>
       <td>{{ item.executionDate }}</td>
       <td>{{ item.assignedToUserName || "Sin asignar" }}</td>
@@ -80,7 +80,7 @@
 
   <ng-template emptymessage>
     <tr>
-      <td colspan="7" class="text-center text-500 py-4">
+      <td colspan="7" class="text-center text-body-secondary py-4">
         No hay ejecuciones registradas para este equipo.
       </td>
     </tr>
@@ -97,8 +97,8 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <p class="font-semibold m-0 text-color">{{ item.inspectionName }}</p>
-      <p class="text-xs m-0 text-color-secondary">{{ item.assignedTo }} · {{ item.status }}</p>
+      <p class="fw-semibold m-0 text-body">{{ item.inspectionName }}</p>
+      <p class="text-xs m-0 text-body-secondary">{{ item.assignedTo }} · {{ item.status }}</p>
 
       <ili-action-menu end>
         <ng-container actions>

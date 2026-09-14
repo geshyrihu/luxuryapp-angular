@@ -1,14 +1,14 @@
-<div class="p-4 md:p-6 d-flex flex-column gap-6">
+<div class="p-4 p-md-5 d-flex flex-column gap-5">
   <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
     <div>
-      <h2 class="text-xl font-bold text-800 d-flex align-items-center">
+      <h2 class="text-xl fw-bold text-body d-flex align-items-center">
         <app-icon
           [icon]="'material-symbols-light:bar-chart'"
           class="text-primary me-2"
         />
         Dashboard de Cobranza
       </h2>
-      <p class="text-500 text-sm mt-1">
+      <p class="text-body-secondary text-sm mt-1">
         Metricas en tiempo real para el condominio activo
       </p>
     </div>
@@ -27,7 +27,7 @@
   </div>
 
   @if (!metricas()) {
-  <div class="d-flex align-items-center justify-content-center h-12rem text-500">
+  <div class="d-flex align-items-center justify-content-center h-12rem text-body-secondary">
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl me-3"
@@ -43,13 +43,13 @@
             <app-icon [icon]="'material-symbols-light:percent'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
+            class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
           >
             % Cobrado
           </span>
         </div>
 
-        <div class="text-3xl font-extrabold text-800">
+        <div class="text-3xl font-extrabold text-body">
           {{ metricas()!.porcentajeCobrado | number: '1.1-1' }}%
         </div>
 
@@ -60,7 +60,7 @@
           [color]="metricas()!.porcentajeCobrado >= 80 ? 'success' : metricas()!.porcentajeCobrado >= 50 ? 'warning' : 'danger'"
         />
 
-        <p class="text-xs text-500 mt-2">
+        <p class="text-xs text-body-secondary mt-2">
           de {{ metricas()!.totalFacturado | currency:'MXN':'symbol':'1.0-0' }}
           facturado
         </p>
@@ -74,7 +74,7 @@
             <app-icon [icon]="'material-symbols-light:check-circle'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
+            class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
           >
             Cobrado
           </span>
@@ -83,7 +83,7 @@
         <div class="text-2xl font-extrabold text-green-700">
           ${{ metricas()!.totalCobrado | number: '1.0-0' }}
         </div>
-        <p class="text-xs text-500 mt-1">ingresos recibidos</p>
+        <p class="text-xs text-body-secondary mt-1">ingresos recibidos</p>
       </lx-card>
     </div>
 
@@ -94,7 +94,7 @@
             <app-icon [icon]="'material-symbols-light:schedule'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
+            class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
           >
             Pendiente
           </span>
@@ -103,7 +103,7 @@
         <div class="text-2xl font-extrabold text-orange-600">
           ${{ metricas()!.totalPendiente | number: '1.0-0' }}
         </div>
-        <p class="text-xs text-500 mt-1">por cobrar</p>
+        <p class="text-xs text-body-secondary mt-1">por cobrar</p>
       </lx-card>
     </div>
 
@@ -114,7 +114,7 @@
             <app-icon [icon]="'material-symbols-light:warning'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
+            class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
           >
             Vencido
           </span>
@@ -123,7 +123,7 @@
         <div class="text-2xl font-extrabold text-red-600">
           ${{ metricas()!.totalVencido | number: '1.0-0' }}
         </div>
-        <p class="text-xs text-500 mt-1">deuda vencida</p>
+        <p class="text-xs text-body-secondary mt-1">deuda vencida</p>
       </lx-card>
     </div>
   </div>
@@ -136,7 +136,7 @@
             <app-icon [icon]="'material-symbols-light:check-circle'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
+            class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
           >
             Al Corriente
           </span>
@@ -151,7 +151,7 @@
           [showValue]="false"
           color="success"
         />
-        <p class="text-xs text-500 mt-2">unidades sin deuda</p>
+        <p class="text-xs text-body-secondary mt-2">unidades sin deuda</p>
       </lx-card>
     </div>
 
@@ -162,7 +162,7 @@
             <app-icon [icon]="'material-symbols-light:schedule'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
+            class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
           >
             Con Deuda
           </span>
@@ -177,7 +177,7 @@
           [showValue]="false"
           color="warning"
         />
-        <p class="text-xs text-500 mt-2">con cargos pendientes</p>
+        <p class="text-xs text-body-secondary mt-2">con cargos pendientes</p>
       </lx-card>
     </div>
 
@@ -188,7 +188,7 @@
             <app-icon [icon]="'material-symbols-light:block'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
+            class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
           >
             Morosas
           </span>
@@ -203,7 +203,7 @@
           [showValue]="false"
           color="danger"
         />
-        <p class="text-xs text-500 mt-2">deuda vencida grave</p>
+        <p class="text-xs text-body-secondary mt-2">deuda vencida grave</p>
       </lx-card>
     </div>
 
@@ -214,17 +214,17 @@
             <app-icon [icon]="'material-symbols-light:home'" />
           </div>
           <span
-            class="text-xs font-semibold text-500 uppercase tracking-wide ms-2"
+            class="text-xs fw-semibold text-body-secondary text-uppercase tracking-wide ms-2"
           >
             Total Unidades
           </span>
         </div>
 
-        <div class="text-3xl font-extrabold text-800">
+        <div class="text-3xl font-extrabold text-body">
           {{ metricas()!.totalPropiedades }}
         </div>
 
-        <div class="mt-3 h-1rem rounded-3xl overflow-hidden d-flex surface-100">
+        <div class="mt-3 h-1rem rounded-3xl overflow-hidden d-flex bg-body-tertiary">
           @if (metricas()!.totalPropiedades > 0) {
           <div
             class="h-full bg-green-400 transition-all transition-duration-500"
@@ -240,7 +240,7 @@
           ></div>
           }
         </div>
-        <p class="text-xs text-500 mt-2">en el condominio</p>
+        <p class="text-xs text-body-secondary mt-2">en el condominio</p>
       </lx-card>
     </div>
   </div>
@@ -248,7 +248,7 @@
   <div class="row g-4">
     <div class="col-12 col-lg-6">
       <lx-card class="card card--elevated p-5 h-full">
-        <h3 class="text-sm font-bold text-700 mb-4 d-flex align-items-center">
+        <h3 class="text-sm fw-bold text-body mb-4 d-flex align-items-center">
           <app-icon
             [icon]="'material-symbols-light:monitoring'"
             class="text-primary me-2"
@@ -260,15 +260,15 @@
           @for (mes of metricas()!.tendenciaMensual; track mes.mesNombre) {
           <div>
             <div class="d-flex justify-content-between text-xs mb-1">
-              <span class="font-medium text-700">{{ mes.mesNombre }}</span>
-              <span class="text-green-600 font-semibold">
+              <span class="fw-medium text-body">{{ mes.mesNombre }}</span>
+              <span class="text-green-600 fw-semibold">
                 ${{ mes.totalCobrado | number: '1.0-0' }} / ${{
                 mes.totalFacturado | number: '1.0-0' }}
               </span>
             </div>
 
             <div
-              class="relative h-1rem surface-100 rounded-3xl overflow-hidden"
+              class="relative h-1rem bg-body-tertiary rounded-3xl overflow-hidden"
             >
               <div
                 class="absolute h-full bg-blue-200 rounded-3xl transition-all transition-duration-500"
@@ -283,7 +283,7 @@
           }
         </div>
 
-        <div class="d-flex mt-4 text-xs text-500 gap-4">
+        <div class="d-flex mt-4 text-xs text-body-secondary gap-4">
           <span class="d-flex align-items-center gap-2">
             <span class="w-1rem h-1rem rounded bg-blue-200 inline-block"></span>
             Facturado
@@ -300,7 +300,7 @@
 
     <div class="col-12 col-lg-6">
       <lx-card class="card card--elevated p-5 h-full">
-        <h3 class="text-sm font-bold text-700 mb-4 d-flex align-items-center">
+        <h3 class="text-sm fw-bold text-body mb-4 d-flex align-items-center">
           <app-icon
             [icon]="'material-symbols-light:arrow-downward'"
             class="text-red-400 me-2"
@@ -309,21 +309,21 @@
         </h3>
 
         @if (metricas()!.topDeudores.length === 0) {
-        <p class="text-center text-500 text-sm py-8">Sin deudores pendientes</p>
+        <p class="text-center text-body-secondary text-sm py-5">Sin deudores pendientes</p>
         } @else {
         <div class="d-flex flex-column gap-3">
           @for (d of metricas()!.topDeudores; track d.propertyId; let i =
           $index) {
           <div class="d-flex align-items-center">
             <span
-              class="w-2rem h-2rem rounded-circle text-xs font-bold d-flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-circle text-xs fw-bold d-flex align-items-center justify-content-center flex-shrink-0"
               [class]="i < 3 ? 'bg-red-100 text-red-600' : 'surface-100 text-500'"
             >
               {{ i + 1 }}
             </span>
 
             <div class="flex-grow-1 min-w-0 ms-3">
-              <div class="text-xs font-semibold text-800 truncate">
+              <div class="text-xs fw-semibold text-body truncate">
                 {{ d.propertyName }}
               </div>
               @if (d.cargosVencidos > 0) {
@@ -333,7 +333,7 @@
               }
             </div>
 
-            <span class="text-sm font-bold text-red-600 flex-shrink-0">
+            <span class="text-sm fw-bold text-red-600 flex-shrink-0">
               ${{ d.totalAdeudado | number: '1.0-0' }}
             </span>
           </div>

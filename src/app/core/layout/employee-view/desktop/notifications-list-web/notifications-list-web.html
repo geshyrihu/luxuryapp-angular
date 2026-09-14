@@ -1,0 +1,101 @@
+<div class="p-4">
+  <div class="card">
+    <div class="card-header">
+      <div class="d-flex align-items-center justify-content-between px-4 pt-4">
+        <span class="text-xl fw-bold">Notificaciones</span>
+        <div class="d-flex align-items-center gap-2">
+          @if (selectionMode()) {
+            <lx-checkbox
+              label="Todas"
+              [checked]="allSelected()"
+              (checkedChange)="toggleSelectAll()"
+            />
+            <iw-button-delete
+              lxTooltip="Eliminar seleccionadas"
+              [disabled]="selectedIds().size === 0"
+              (confirmed)="deleteSelected()"
+            />
+          }
+          <iw-button
+            icon="material-symbols-light:fact-check"
+            variant="text"
+            [severity]="selectionMode() ? 'primary' : 'secondary'"
+            lxTooltip="Seleccionar"
+            (clicked)="toggleSelectionMode()"
+          />
+          <iw-button
+            icon="material-symbols-light:refresh"
+            variant="text"
+            severity="secondary"
+            lxTooltip="Recargar"
+            (clicked)="onLoadNotification()"
+            [loading]="loading()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="overflow-y-auto" style="height: calc(100vh - 220px)">
+      <div class="list-none p-0 m-0">
+        @for (notification of notifications(); track notification.id) {
+        <div
+          class="d-flex align-items-start p-3 gap-3 cursor-pointer border-bottom-1 border"
+          [class.bg-body-tertiary]="!notification.isRead"
+          (click)="
+            selectionMode()
+              ? toggleSelection(notification.id)
+              : markAsRead(notification.id, notification.url)
+          "
+        >
+          @if (selectionMode()) {
+            <lx-checkbox
+              class="mt-1"
+              [checked]="selectedIds().has(notification.id)"
+              (checkedChange)="toggleSelection(notification.id)"
+              (click)="$event.stopPropagation()"
+            />
+          }
+
+          <app-icon
+            icon="material-symbols-light:notifications"
+            class="text-xl mt-1"
+            [class.text-primary]="!notification.isRead"
+            [class.text-color-secondary]="notification.isRead"
+          />
+          <div class="flex-flex-grow-1-1">
+            <p class="m-0" [class.font-bold]="!notification.isRead">
+              {{ notification.title }}
+            </p>
+            <p class="m-0 text-body-secondary text-sm">
+              {{ notification.message }}
+            </p>
+            <p class="m-0 text-body-secondary text-xs mt-1">
+              {{ notification.createdAt }}
+            </p>
+          </div>
+          <div class="flex-shrink-0 d-flex align-items-center gap-2 ms-auto">
+            @if (!selectionMode() && !notification.isRead) {
+              <app-badge color="danger" />
+            }
+            @if (!selectionMode()) {
+              <iw-button-delete
+                lxTooltip="Eliminar notificacion"
+                (click)="$event.stopPropagation()"
+                (confirmed)="deleteNotification(notification.id)"
+              />
+            }
+          </div>
+        </div>
+        } @empty {
+        <div
+          class="d-flex flex-column align-items-center justify-content-center text-center gap-3"
+          style="height: 300px"
+        >
+          <app-icon icon="material-symbols-light:move-to-inbox" class="text-4xl text-body-secondary" />
+          <span class="text-body-secondary">No tienes notificaciones.</span>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

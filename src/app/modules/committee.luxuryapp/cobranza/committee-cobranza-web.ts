@@ -6,15 +6,13 @@ import { AppStatCard } from "@ui/shared/stat-card/stat-card";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
-import { ButtonModule } from "primeng/button";
-import { RippleModule } from "primeng/ripple";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { TooltipModule } from "primeng/tooltip";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { DialogSize } from "src/app/core/enums/dialog-size.enum";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
 import { CommitteeCobranzaBaseService } from "./committee-cobranza-base.service";
 import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal";
@@ -29,13 +27,11 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
     PrimeNgCustomCaption,
     PrimeNgCustomTableEmptyMessage,
     TagModule,
-    ButtonModule,
-    RippleModule,
-    TooltipModule,
+    WebButtonIcon,
+    LxTooltipDirective,
     AppStatCard,
     AppProgressBar,
     LxTag,
-    AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-cobranza-web.html",

@@ -20,7 +20,7 @@
         <td>{{ invoice.factura }}</td>
         <td>
           <span
-            class="font-bold cursor-pointer hover:underline"
+            class="fw-bold cursor-pointer hover:underline"
             [class]="invoice.tipoComprobante === 'E' ? 'text-red-500' : 'text-green-500'"
             lxTooltip="Clic para cambiar tipo"
             (click)="toggleType(invoice)"
@@ -56,8 +56,8 @@
     </ng-template>
   </p-table>
 
-  <div class="row mt-4 surface-ground p-3 rounded g-4">
-    <div class="col-12 font-bold mb-2">
+  <div class="row mt-4 bg-body-tertiary p-3 rounded g-4">
+    <div class="col-12 fw-bold mb-2">
       {{ isEditing() ? 'Editar Factura' : 'Agregar Nueva Factura' }}
     </div>
 

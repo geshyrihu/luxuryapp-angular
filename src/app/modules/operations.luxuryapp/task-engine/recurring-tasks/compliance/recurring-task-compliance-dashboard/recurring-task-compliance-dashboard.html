@@ -97,15 +97,15 @@
               [severity]="activeTemplateSeverity(group)"
             />
           </div>
-          <p class="text-sm text-600">
+          <p class="text-sm text-body-secondary">
             Al corriente: {{ group.onTimeCount }} - Vencidas:
             {{ group.overdueCount }}
           </p>
-          <p class="text-sm text-600">
+          <p class="text-sm text-body-secondary">
             Incumplimiento: {{ group.breachedCount }} - Arrastre:
             {{ group.carriedOverCount }}
           </p>
-          <p class="text-sm text-600">
+          <p class="text-sm text-body-secondary">
             Comprobante en críticas: {{ criticalAttachmentPercentage(group) }}
           </p>
         </ili-list-item>

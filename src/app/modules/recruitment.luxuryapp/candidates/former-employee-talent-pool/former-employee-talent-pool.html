@@ -74,21 +74,21 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <div class="font-semibold">{{ item.fullName }}</div>
-          <small class="text-color-secondary"
+          <div class="fw-semibold">{{ item.fullName }}</div>
+          <small class="text-body-secondary"
             >{{ item.applicationUserId }}</small
           >
         </td>
         <td>{{ item.customerName || "Sin cliente" }}</td>
         <td>
           <div>{{ item.workPositionName || "Sin puesto" }}</div>
-          <small class="text-color-secondary"
+          <small class="text-body-secondary"
             >{{ item.workPositionFolio }}</small
           >
         </td>
         <td>
           <div>{{ item.email }}</div>
-          <small class="text-color-secondary">{{ item.phoneNumber }}</small>
+          <small class="text-body-secondary">{{ item.phoneNumber }}</small>
         </td>
         <td>{{ item.dateAdmission | date: "dd/MM/yyyy" }}</td>
         <td class="text-center">

@@ -1,7 +1,7 @@
 <div class="rf-shell">
   @if (loading()) {
   <div
-    class="rf-card p-4 d-flex align-items-center text-color-secondary mb-4 gap-2"
+    class="rf-card p-4 d-flex align-items-center text-body-secondary mb-4 gap-2"
   >
     <app-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Calculando flujo de caja...</span>
@@ -18,7 +18,7 @@
           <th class="table-col-50px"></th>
           <th class="table-col-130px">Concepto</th>
           @for (col of columnas(); track col) {
-          <th class="text-right table-col-140px">{{ col }}</th>
+          <th class="text-end table-col-140px">{{ col }}</th>
           }
         </tr>
       </ng-template>
@@ -28,7 +28,7 @@
         <tr class="rf-row-grupo g-4">
           <td
             [colSpan]="columnas().length + 2"
-            class="font-bold text-primary bg-primary-reverse p-2"
+            class="fw-bold text-primary bg-primary-reverse p-2"
           >
             {{ grupo.nombre }}
           </td>
@@ -42,7 +42,7 @@
           [class.bg-orange-100]="fila.esManual"
         >
           <td
-            class="text-center font-bold"
+            class="text-center fw-bold"
             [class.rf-td-number]="!fila.esFilaTotal"
             [class.rf-td-number--total]="fila.esFilaTotal"
           >
@@ -57,7 +57,7 @@
 
           @for (monto of fila.montos; track $index) {
           <td
-            class="text-right"
+            class="text-end"
             [class.rf-td-number]="!fila.esFilaTotal"
             [class.rf-td-number--total]="fila.esFilaTotal"
             [class.rf-neg]="monto < 0"

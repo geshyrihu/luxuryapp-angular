@@ -98,7 +98,7 @@
     </tr>
   </ng-template>
   <ng-template #body let-item>
-    <tr [class.surface-50]="item.isDelinquent">
+    <tr [class.bg-body-tertiary]="item.isDelinquent">
       <td>{{ formatAccountNumber(item.accountNumber) }}</td>
       <td>{{ item.tower }}</td>
       <td>{{ item.department }}</td>
@@ -170,7 +170,7 @@
         item.indivisoPercentage | percent:'1.2-5' }} }
       </p>
       @if (item.isDelinquent) {
-      <p class="text-red-600 font-medium">Moroso</p>
+      <p class="text-red-600 fw-medium">Moroso</p>
       }
 
       <ili-action-menu slot="end">

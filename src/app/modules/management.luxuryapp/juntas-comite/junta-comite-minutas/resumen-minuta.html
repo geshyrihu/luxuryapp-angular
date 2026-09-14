@@ -13,10 +13,10 @@
         />
       </div>
       <div>
-        <h2 class="text-3xl font-bold m-0 text-900 tracking-tight">
+        <h2 class="text-3xl fw-bold m-0 text-body tracking-tight">
           Resumen de Minutas de Comité
         </h2>
-        <p class="text-600 m-0 mt-1 text-lg">
+        <p class="text-body-secondary m-0 mt-1 text-lg">
           Control de compromisos, acuerdos y seguimiento de requerimientos.
         </p>
       </div>
@@ -27,7 +27,7 @@
   @if (dataSignal()) {
   <div
     class="card"
-    class="shadow-sm rounded-xl overflow-hidden p-0 border-none d-none d-md-block"
+    class="shadow-sm rounded-xl overflow-hidden p-0 border-0 d-none d-md-block"
   >
     <p-table
       #dt
@@ -37,7 +37,7 @@
       [paginator]="true"
       [loading]="loading()"
       [globalFilterFields]="['title', 'requestService']"
-      class="p-datatable-sm p-datatable-gridlines font-sm border-none"
+      class="p-datatable-sm p-datatable-gridlines font-sm border-0"
       [rowHover]="true"
       size="small"
       [showCurrentPageReport]="true"
@@ -48,11 +48,11 @@
       <!-- CAPTION PERSONALIZADO -->
       <ng-template #caption>
         <div
-          class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 py-3 px-2 bg-surface-50 border-bottom-1 surface-border g-4"
+          class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 py-3 px-2 bg-bg-body-tertiary border-bottom-1 border g-4"
         >
           <div class="d-flex align-items-center gap-2">
             <app-icon [icon]="'material-symbols-light:fact-check'" class="text-primary text-xl" />
-            <span class="text-xl font-bold text-800">Acuerdos del Comité</span>
+            <span class="text-xl fw-bold text-body">Acuerdos del Comité</span>
           </div>
           <primeng-custom-caption [showAdd]="false" [dt]="dt" />
         </div>
@@ -60,7 +60,7 @@
 
       <!-- CABECERA DE TABLA -->
       <ng-template pTemplate="header">
-        <tr class="text-sm uppercase text-700 bg-surface-100">
+        <tr class="text-sm text-uppercase text-body bg-bg-body-tertiary">
           <th pSortableColumn="title" class="ps-4 py-3">
             <div class="d-flex align-items-center">
               Requerimiento <p-sorticon field="title"></p-sorticon>
@@ -83,18 +83,18 @@
       <!-- CUERPO DE TABLA -->
       <ng-template #body let-item>
         <tr
-          class="transition-all hover:bg-surface-50 border-bottom-1 surface-border"
+          class="transition-all hover:bg-bg-body-tertiary border-bottom-1 border"
         >
           <!-- Columna: Requerimiento -->
           <td class="vertical-align-top py-4 ps-4">
             <div class="d-flex flex-column gap-2">
               <span
-                class="font-bold text-900 text-lg line-height-2 tracking-tight"
+                class="fw-bold text-body text-lg line-height-2 tracking-tight"
               >
                 {{ item.title | uppercase }}
               </span>
               <div
-                class="text-600 text-sm line-height-3 overflow-hidden text-overflow-ellipsis"
+                class="text-body-secondary text-sm line-height-3 overflow-hidden text-truncate"
                 [innerHTML]="item.requestService | sanitizeHtml"
               ></div>
             </div>
@@ -113,14 +113,14 @@
                     [icon]="'material-symbols-light:event-available'"
                     class="text-primary text-xs"
                   />
-                  <span class="font-bold text-xs text-primary-700 uppercase">
+                  <span class="fw-bold text-xs text-primary-700 text-uppercase">
                     {{ item.meetingDertailsSeguimientos[0].fecha | apiDate:
                     'mediumDate' }}
                   </span>
                 </div>
               </div>
               <div
-                class="text-700 text-sm line-height-2 italic relative ps-3 border-left-2 border-primary-200"
+                class="text-body text-sm line-height-2 italic relative ps-3 border-left-2 border-primary-200"
                 [lxTooltip]="item.meetingDertailsSeguimientos[0].seguimiento"
                 tooltipPosition="top"
               >
@@ -129,7 +129,7 @@
             </div>
             } @else {
             <div
-              class="d-flex align-items-center justify-content-center gap-2 text-400 italic py-3 opacity-60"
+              class="d-flex align-items-center justify-content-center gap-2 text-body-secondary italic py-3 opacity-60"
             >
               <app-icon [icon]="'material-symbols-light:forum-outline'" class="text-xl" />
               <span class="text-sm">Sin seguimiento registrado</span>
@@ -144,19 +144,19 @@
                 [value]="getSeverityText(item.status)"
                 [severity]="getSeverity(item.status)"
                 [rounded]="true"
-                class="px-3 py-1 font-bold text-xs shadow-sm"
+                class="px-3 py-1 fw-bold text-xs shadow-sm"
               />
 
               @if (item.status === 0) {
               <div
-                class="d-flex align-items-center gap-2 text-red-600 bg-red-50 px-2 py-1 rounded-sm font-semibold text-xs border-1 border-red-100"
+                class="d-flex align-items-center gap-2 text-red-600 bg-red-50 px-2 py-1 rounded-sm fw-semibold text-xs border-1 border-red-100"
               >
                 <app-icon [icon]="'material-symbols-light:event-busy'" />
                 <span>Vence: {{ item.deliveryDate | apiDate: 'shortDate' }}</span>
               </div>
               } @if (item.status === 1) {
               <div
-                class="d-flex align-items-center gap-2 text-green-600 bg-green-50 px-2 py-1 rounded-sm font-semibold text-xs border-1 border-green-100"
+                class="d-flex align-items-center gap-2 text-green-600 bg-green-50 px-2 py-1 rounded-sm fw-semibold text-xs border-1 border-green-100"
               >
                 <app-icon [icon]="'material-symbols-light:check-circle'" />
                 <span>Completado</span>
@@ -170,10 +170,10 @@
       <!-- MENSAJE SIN DATOS -->
       <ng-template #emptymessage>
         <tr>
-          <td colspan="3" class="text-center p-8 bg-surface-50">
+          <td colspan="3" class="text-center p-5 bg-bg-body-tertiary">
             <div class="d-flex flex-column align-items-center gap-4 py-4">
               <div
-                class="border-circle bg-surface-200 p-5 d-flex align-items-center justify-content-center shadow-sm"
+                class="rounded-circle bg-bg-body-tertiary p-5 d-flex align-items-center justify-content-center shadow-sm"
               >
                 <app-icon
                   [icon]="'material-symbols-light:task-alt'"
@@ -181,10 +181,10 @@
                 />
               </div>
               <div class="d-flex flex-column gap-2">
-                <span class="font-bold text-2xl text-900"
+                <span class="fw-bold text-2xl text-body"
                   >¡Agenda Despejada!</span
                 >
-                <span class="text-600 text-lg"
+                <span class="text-body-secondary text-lg"
                   >No hay minutas pendientes de revisión en este momento.</span
                 >
               </div>
@@ -206,8 +206,8 @@
   <app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">
     <ng-template #listItemTemplate let-item>
       <ili-list-item>
-        <p class="font-semibold m-0 text-color">{{ item.title }}</p>
-        <p class="text-xs m-0 text-color-secondary">{{ item.status }}</p>
+        <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
+        <p class="text-xs m-0 text-body-secondary">{{ item.status }}</p>
       </ili-list-item>
     </ng-template>
   </app-data-view-mobile>

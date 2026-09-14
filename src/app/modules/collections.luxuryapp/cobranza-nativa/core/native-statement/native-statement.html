@@ -1,13 +1,13 @@
-<div class="px-2 py-4 md:px-6 md:py-8 min-h-screen surface-ground">
-  <div class="mx-auto d-flex flex-column gap-6">
+<div class="px-2 py-4 px-md-5 py-md-5 min-h-screen bg-body-tertiary">
+  <div class="mx-auto d-flex flex-column gap-5">
     <div
       class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end g-4"
     >
       <div>
-        <h1 class="text-2xl font-bold text-900 tracking-tight">
+        <h1 class="text-2xl fw-bold text-body tracking-tight">
           Estado de Cuenta
         </h1>
-        <p class="text-sm text-500 mt-1">
+        <p class="text-sm text-body-secondary mt-1">
           Historial del comportamiento de cuotas y abonos del condómino
         </p>
       </div>
@@ -71,10 +71,10 @@
       <div class="row mb-6 g-4">
         <div class="col-12 col-md-4">
           <lx-card class="card card--elevated card--primary h-full">
-            <p class="text-xs mb-1 uppercase tracking-wider font-semibold">
+            <p class="text-xs mb-1 text-uppercase tracking-wider fw-semibold">
               Total A Pagar
             </p>
-            <p class="text-3xl font-bold tracking-tight">
+            <p class="text-3xl fw-bold tracking-tight">
               {{ statement()!.summary.totalToPay |
               currency:'MXN':'symbol-narrow':'1.2-2' }}
             </p>
@@ -83,11 +83,11 @@
         <div class="col-12 col-md-4">
           <lx-card class="card card--elevated h-full">
             <p
-              class="text-500 text-xs mb-1 uppercase tracking-wider font-semibold"
+              class="text-body-secondary text-xs mb-1 text-uppercase tracking-wider fw-semibold"
             >
               Deuda Total
             </p>
-            <p class="text-2xl font-bold text-red-600">
+            <p class="text-2xl fw-bold text-red-600">
               {{ statement()!.summary.totalDebt |
               currency:'MXN':'symbol-narrow':'1.2-2' }}
             </p>
@@ -96,11 +96,11 @@
         <div class="col-12 col-md-4">
           <lx-card class="card card--elevated h-full">
             <p
-              class="text-500 text-xs mb-1 uppercase tracking-wider font-semibold"
+              class="text-body-secondary text-xs mb-1 text-uppercase tracking-wider fw-semibold"
             >
               Saldo a Favor
             </p>
-            <p class="text-2xl font-bold text-green-600">
+            <p class="text-2xl fw-bold text-green-600">
               {{ statement()!.summary.totalCreditBalance |
               currency:'MXN':'symbol-narrow':'1.2-2' }}
             </p>
@@ -110,7 +110,7 @@
 
       <lx-card class="card d-none d-md-block">
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h3 class="text-lg font-bold text-800">Movimientos (Kardex)</h3>
+          <h3 class="text-lg fw-bold text-body">Movimientos (Kardex)</h3>
           <div class="d-flex gap-2">
             <il-button
               label="Ver PDF"
@@ -144,39 +144,39 @@
               <th>Fecha</th>
               <th>Concepto</th>
               <th class="text-center">Tipo</th>
-              <th class="text-right">Referencia</th>
-              <th class="text-right text-red-600">Cargo (+)</th>
-              <th class="text-right text-green-600">Abono (-)</th>
-              <th class="text-right font-bold surface-50">Saldo</th>
+              <th class="text-end">Referencia</th>
+              <th class="text-end text-red-600">Cargo (+)</th>
+              <th class="text-end text-green-600">Abono (-)</th>
+              <th class="text-end fw-bold bg-body-tertiary">Saldo</th>
             </tr>
           </ng-template>
           <ng-template #body let-entry>
             <tr>
               <td>{{ entry.date | apiDate:'dd/MMM/yyyy' }}</td>
-              <td class="font-medium text-800">{{ entry.concept }}</td>
+              <td class="fw-medium text-body">{{ entry.concept }}</td>
               <td class="text-center">
                 <lx-tag
                   [value]="entry.type | uppercase"
                   [severity]="entryTypeSeverity(entry.type)"
                 />
               </td>
-              <td class="text-right text-500">{{ entry.reference }}</td>
-              <td class="text-right text-red-600">
+              <td class="text-end text-body-secondary">{{ entry.reference }}</td>
+              <td class="text-end text-red-600">
                 {{ entry.cargo > 0 ? (entry.cargo |
                 currency:'MXN':'symbol-narrow':'1.2-2') : '' }}
               </td>
-              <td class="text-right text-green-600">
+              <td class="text-end text-green-600">
                 {{ entry.abono > 0 ? (entry.abono |
                 currency:'MXN':'symbol-narrow':'1.2-2') : '' }}
               </td>
-              <td class="text-right font-bold surface-50">
+              <td class="text-end fw-bold bg-body-tertiary">
                 {{ entry.balance | currency:'MXN':'symbol-narrow':'1.2-2' }}
               </td>
             </tr>
           </ng-template>
           <ng-template #emptymessage>
             <tr>
-              <td colspan="7" class="text-center p-8 text-500">
+              <td colspan="7" class="text-center p-5 text-body-secondary">
                 No hay movimientos registrados para esta propiedad.
               </td>
             </tr>
@@ -188,7 +188,7 @@
         <lx-card class="card">
           <div class="d-flex align-items-center py-2">
             <div
-              class="w-2rem h-2rem rounded-circle surface-900 text-white d-flex align-items-center justify-content-center flex-shrink-0"
+              class="w-2rem h-2rem rounded-circle bg-dark text-white d-flex align-items-center justify-content-center flex-shrink-0"
             >
               <app-icon
                 [icon]="'material-symbols-light:home'"
@@ -196,10 +196,10 @@
               />
             </div>
             <div class="flex-grow-1 min-w-0 ms-3">
-              <p class="font-bold text-900 text-sm truncate m-0">
+              <p class="fw-bold text-body text-sm truncate m-0">
                 {{ statement()!.propertyInfo.propertyName }}
               </p>
-              <p class="text-xs text-500 m-0">
+              <p class="text-xs text-body-secondary m-0">
                 Indiviso: {{ statement()!.propertyInfo.indivisoPercentage |
                 number:'1.4-4' }}%
               </p>
@@ -228,7 +228,7 @@
           </div>
         </lx-card>
 
-        <div class="px-0 pb-1 pt-3 font-semibold text-600 text-sm">
+        <div class="px-0 pb-1 pt-3 fw-semibold text-body-secondary text-sm">
           Movimientos ({{ statement()!.ledger.length }})
         </div>
 
@@ -242,26 +242,26 @@
                   [severity]="entryTypeSeverity(entry.type)"
                 />
               </div>
-              <p class="text-sm font-semibold text-800 line-height-2 m-0">
+              <p class="text-sm fw-semibold text-body line-height-2 m-0">
                 {{ entry.concept }}
               </p>
-              <p class="text-xs text-400 mt-1 m-0">
+              <p class="text-xs text-body-secondary mt-1 m-0">
                 {{ entry.date | apiDate:'dd MMM yyyy' }} @if (entry.reference) {
-                <span class="text-500">{{ entry.reference }}</span>
+                <span class="text-body-secondary">{{ entry.reference }}</span>
                 }
               </p>
             </div>
-            <div class="text-right flex-shrink-0">
+            <div class="text-end flex-shrink-0">
               @if (entry.cargo > 0) {
-              <p class="text-sm font-bold text-red-600 m-0">
+              <p class="text-sm fw-bold text-red-600 m-0">
                 +{{ entry.cargo | currency:'MXN':'symbol-narrow':'1.2-2' }}
               </p>
               } @if (entry.abono > 0) {
-              <p class="text-sm font-bold text-green-600 m-0">
+              <p class="text-sm fw-bold text-green-600 m-0">
                 -{{ entry.abono | currency:'MXN':'symbol-narrow':'1.2-2' }}
               </p>
               }
-              <p class="text-xs text-500 mt-1 m-0">
+              <p class="text-xs text-body-secondary mt-1 m-0">
                 Saldo: {{ entry.balance | currency:'MXN':'symbol-narrow':'1.2-2'
                 }}
               </p>
@@ -269,7 +269,7 @@
           </div>
         </lx-card>
         } @if (statement()!.ledger.length === 0) {
-        <lx-card class="card text-center text-400">
+        <lx-card class="card text-center text-body-secondary">
           <app-icon
             [icon]="'material-symbols-light:move-to-inbox'"
             class="text-4xl mb-2 d-block"
@@ -280,13 +280,13 @@
       </div>
     </div>
     } @else { @if (!loading()) {
-    <lx-card class="card card--elevated text-center mt-6">
+    <lx-card class="card card--elevated text-center mt-5">
       <app-icon
         [icon]="'material-symbols-light:receipt'"
-        class="text-6xl text-300 mb-4"
+        class="text-6xl text-body-secondary mb-4"
       />
-      <h3 class="text-lg font-medium text-900">Sin propiedad seleccionada</h3>
-      <p class="text-500 mt-1">
+      <h3 class="text-lg fw-medium text-body">Sin propiedad seleccionada</h3>
+      <p class="text-body-secondary mt-1">
         Busca y selecciona una propiedad para ver su historial de cuotas y
         pagos.
       </p>

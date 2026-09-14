@@ -1,4 +1,4 @@
-<div class="surface-ground min-h-screen p-4">
+<div class="bg-body-tertiary min-h-screen p-4">
   <div class="w-full xl:w-10 mx-auto">
     <!-- Header -->
     <div class="d-flex align-items-center mb-5">
@@ -12,10 +12,10 @@
         class="me-3 rounded-lg"
       />
       <div>
-        <h1 class="text-4xl font-bold text-primary m-0">
+        <h1 class="text-4xl fw-bold text-primary m-0">
           Guía del Módulo de Manuales y Procesos
         </h1>
-        <p class="text-600 mt-1 text-lg">
+        <p class="text-body-secondary mt-1 text-lg">
           Aprende a estructurar, documentar y publicar de forma oficial los
           procesos operativos de la empresa.
         </p>
@@ -33,10 +33,10 @@
             <div class="card-header">
               <div class="d-flex align-items-center gap-2 px-2 text-blue-900">
                 <app-icon [icon]="'material-symbols-light:edit'" />
-                <span class="font-bold">La "Plantilla"</span>
+                <span class="fw-bold">La "Plantilla"</span>
               </div>
             </div>
-            <p class="text-700 m-0 line-height-3">
+            <p class="text-body m-0 line-height-3">
               Es tu <strong>mesa de trabajo</strong>. Aquí es donde agregas
               textos, construyes el <b>Diagrama de Flujo</b>, defines la
               <b>Matriz RACI</b> y subes <b>Anexos</b>. Es un documento vivo que
@@ -52,10 +52,10 @@
             <div class="card-header">
               <div class="d-flex align-items-center gap-2 px-2 text-green-900">
                 <app-icon [icon]="'material-symbols-light:picture-as-pdf'" />
-                <span class="font-bold">La "Instancia"</span>
+                <span class="fw-bold">La "Instancia"</span>
               </div>
             </div>
-            <p class="text-700 m-0 line-height-3">
+            <p class="text-body m-0 line-height-3">
               Por temas de <b>Auditoría y Normativa ISO</b>, los manuales deben
               estar firmados y "congelados" en el tiempo. Cuando terminas de
               armar tu plantilla, generas y subes una <b>Versión en PDF</b>.
@@ -71,7 +71,7 @@
       <!-- Section 2: Editor Dinámico -->
       <div class="col-12 col-lg-8">
         <lx-panel header="2. El Editor de Bloques" class="h-full shadow-sm">
-          <p class="text-600 mb-4 line-height-3 mt-0">
+          <p class="text-body-secondary mb-4 line-height-3 mt-0">
             En lugar de usar Word, nuestro sistema te permite armar tu manual
             usando "bloques" inteligentes. Puedes agregar tantos bloques como
             necesites y cambiar su orden arrastrándolos.
@@ -84,10 +84,10 @@
                 class="text-3xl text-primary me-3 mt-1"
               />
               <div>
-                <h4 class="m-0 mb-2 text-lg text-900">
+                <h4 class="m-0 mb-2 text-lg text-body">
                   Diagramas de Flujo (Draw.io)
                 </h4>
-                <p class="m-0 text-700 line-height-3">
+                <p class="m-0 text-body line-height-3">
                   Crea diagramas de flujo profesionales directamente en la
                   plataforma. Usamos la tecnología de Draw.io, pero tu diagrama
                   se guarda automáticamente en nuestros servidores de forma
@@ -104,8 +104,8 @@
                 class="text-3xl text-orange-500 me-3 mt-1"
               />
               <div>
-                <h4 class="m-0 mb-2 text-lg text-900">Matriz RACI</h4>
-                <p class="m-0 text-700 line-height-3">
+                <h4 class="m-0 mb-2 text-lg text-body">Matriz RACI</h4>
+                <p class="m-0 text-body line-height-3">
                   Define claramente quién es el <b>R</b>esponsable, quién
                   <b>A</b>prueba, a quién se <b>C</b>onsulta y a quién se
                   <b>I</b>nforma para cada actividad del proceso.
@@ -121,10 +121,10 @@
                 class="text-3xl text-teal-500 me-3 mt-1"
               />
               <div>
-                <h4 class="m-0 mb-2 text-lg text-900">
+                <h4 class="m-0 mb-2 text-lg text-body">
                   Anexos y Archivos Auxiliares
                 </h4>
-                <p class="m-0 text-700 line-height-3">
+                <p class="m-0 text-body line-height-3">
                   ¿Tienes un formato de Excel o un manual técnico del fabricante
                   que es parte del proceso? Agrega el bloque de "Anexos", sube
                   tus archivos (Excel, Word, Imágenes, PDFs) y quedarán
@@ -145,7 +145,7 @@
                 <lx-tag
                   severity="info"
                   [rounded]="true"
-                  class="w-2rem h-2rem text-lg font-bold"
+                  class="w-2rem h-2rem text-lg fw-bold"
                   value="1"
                 />
                 <div
@@ -153,8 +153,8 @@
                 ></div>
               </div>
               <div class="pb-3">
-                <h4 class="m-0 mb-2 text-lg text-900">Crear Plantilla</h4>
-                <p class="m-0 text-600 line-height-3">
+                <h4 class="m-0 mb-2 text-lg text-body">Crear Plantilla</h4>
+                <p class="m-0 text-body-secondary line-height-3">
                   Define el título y quién tiene acceso a este manual.
                 </p>
               </div>
@@ -165,7 +165,7 @@
                 <lx-tag
                   severity="info"
                   [rounded]="true"
-                  class="w-2rem h-2rem text-lg font-bold"
+                  class="w-2rem h-2rem text-lg fw-bold"
                   value="2"
                 />
                 <div
@@ -173,10 +173,10 @@
                 ></div>
               </div>
               <div class="pb-3">
-                <h4 class="m-0 mb-2 text-lg text-900">
+                <h4 class="m-0 mb-2 text-lg text-body">
                   Construir Dinámicamente
                 </h4>
-                <p class="m-0 text-600 line-height-3">
+                <p class="m-0 text-body-secondary line-height-3">
                   Usa el editor de bloques para documentar el texto, el diagrama
                   y los anexos.
                 </p>
@@ -188,7 +188,7 @@
                 <lx-tag
                   severity="warn"
                   [rounded]="true"
-                  class="w-2rem h-2rem text-lg font-bold"
+                  class="w-2rem h-2rem text-lg fw-bold"
                   value="3"
                 />
                 <div
@@ -196,8 +196,8 @@
                 ></div>
               </div>
               <div class="pb-3">
-                <h4 class="m-0 mb-2 text-lg text-900">Revisión y Firma</h4>
-                <p class="m-0 text-600 line-height-3">
+                <h4 class="m-0 mb-2 text-lg text-body">Revisión y Firma</h4>
+                <p class="m-0 text-body-secondary line-height-3">
                   El proceso se exporta y pasa por la firma de autorización
                   (Físico/Digital).
                 </p>
@@ -215,7 +215,7 @@
               </div>
               <div>
                 <h4 class="m-0 mb-2 text-lg text-green-700">Subir PDF Final</h4>
-                <p class="m-0 text-600 line-height-3">
+                <p class="m-0 text-body-secondary line-height-3">
                   Sube el PDF sellado/firmado como la "Versión Oficial" para que
                   los empleados lo consulten.
                 </p>
@@ -233,8 +233,8 @@
     >
       <div class="row pt-3 g-4">
         <div class="col-12 col-lg-6">
-          <h4 class="mt-0 mb-3 text-900">Nomenclatura de Archivos</h4>
-          <p class="text-700 line-height-3">
+          <h4 class="mt-0 mb-3 text-body">Nomenclatura de Archivos</h4>
+          <p class="text-body line-height-3">
             Todo documento oficial publicado debe seguir estrictamente el
             formato:
           </p>
@@ -243,51 +243,51 @@
           >
             [TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf
           </div>
-          <p class="text-xs text-500 font-italic">
+          <p class="text-xs text-body-secondary fst-italic">
             Ejemplo: PROC-ADMI-001_v1.0_2026-04_VIGENTE.pdf
           </p>
         </div>
         <div class="col-12 col-lg-6">
-          <h4 class="mt-0 mb-3 text-900">Paleta Documental Premium</h4>
+          <h4 class="mt-0 mb-3 text-body">Paleta Documental Premium</h4>
           <div class="d-flex gap-2 flex-wrap">
             <div
               class="d-flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
             >
               <div
-                class="w-1rem h-1rem rounded-sm border-1 surface-border"
+                class="w-1rem h-1rem rounded-sm border-1 border"
                 
               ></div>
-              <span class="text-xs font-bold">Azul Luxury</span>
+              <span class="text-xs fw-bold">Azul Luxury</span>
             </div>
             <div
               class="d-flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
             >
               <div
-                class="w-1rem h-1rem rounded-sm border-1 surface-border"
+                class="w-1rem h-1rem rounded-sm border-1 border"
                 
               ></div>
-              <span class="text-xs font-bold">Dorado Premium</span>
+              <span class="text-xs fw-bold">Dorado Premium</span>
             </div>
             <div
               class="d-flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
             >
               <div
-                class="w-1rem h-1rem rounded-sm border-1 surface-border"
+                class="w-1rem h-1rem rounded-sm border-1 border"
                 
               ></div>
-              <span class="text-xs font-bold">Gris Neutral</span>
+              <span class="text-xs fw-bold">Gris Neutral</span>
             </div>
             <div
               class="d-flex align-items-center gap-2 p-2 rounded bg-gray-100 border-1 border-200"
             >
               <div
-                class="w-1rem h-1rem rounded-sm border-1 surface-border"
+                class="w-1rem h-1rem rounded-sm border-1 border"
                 
               ></div>
-              <span class="text-xs font-bold">Tinta (Ink)</span>
+              <span class="text-xs fw-bold">Tinta (Ink)</span>
             </div>
           </div>
-          <p class="text-700 line-height-3 mt-3">
+          <p class="text-body line-height-3 mt-3">
             Usa el <strong>Azul Luxury</strong> para encabezados principales y
             el <strong>Dorado</strong> para acentos institucionales y divisores.
           </p>

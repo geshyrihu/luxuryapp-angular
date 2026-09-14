@@ -38,14 +38,14 @@
     <!-- Preview calculo -->
     @if (horasSimples() > 0 || horasDobles() > 0) {
     <div class="col-12">
-      <div class="p-3 rounded surface-100">
-        <p class="text-sm font-semibold m-0 mb-1">Resumen de horas registradas</p>
+      <div class="p-3 rounded bg-body-tertiary">
+        <p class="text-sm fw-semibold m-0 mb-1">Resumen de horas registradas</p>
         <div class="d-flex gap-4">
           <span class="text-sm">Simples: <strong>{{ horasSimples() }}h</strong></span>
           <span class="text-sm">Excedentes: <strong>{{ horasDobles() }}h</strong></span>
           <span class="text-sm">Total: <strong>{{ horasSimples() + horasDobles() }}h</strong></span>
         </div>
-        <p class="text-xs text-500 m-0 mt-1">
+        <p class="text-xs text-body-secondary m-0 mt-1">
           El importe se calculara al guardar segun el salario diario del empleado.
         </p>
       </div>

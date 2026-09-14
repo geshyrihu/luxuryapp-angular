@@ -81,16 +81,16 @@
         </div>
 
         <div class="d-flex justify-content-between align-items-center mb-1">
-          <h2 class="font-bold m-0 text-base text-wrap">{{ item.name }}</h2>
+          <h2 class="fw-bold m-0 text-base text-wrap">{{ item.name }}</h2>
         </div>
-        <p class="text-sm text-500 m-0">
+        <p class="text-sm text-body-secondary m-0">
           <app-icon
             [icon]="'material-symbols-light:currency-pound'"
             class="me-1 text-xs"
           />
           Folio: {{ item.folio }}
         </p>
-        <p class="text-sm text-500 m-0">
+        <p class="text-sm text-body-secondary m-0">
           <app-icon
             [icon]="'material-symbols-light:calendar-today'"
             class="me-1 text-xs"
@@ -120,7 +120,7 @@
   (visibleChange)="showConsultationDialog.set($event)"
 >
   <div class="d-flex flex-column">
-    <div class="p-message p-message-info border-none m-0 shadow-none">
+    <div class="p-message p-message-info border-0 m-0 shadow-none">
       <div class="p-message-wrapper p-3">
         <span
           class="p-message-icon material-symbols-light:info text-xl"
@@ -133,7 +133,7 @@
     </div>
 
     <div class="mb-4">
-      <label for="query" class="font-bold d-block mb-2">Tu Consulta</label>
+      <label for="query" class="fw-bold d-block mb-2">Tu Consulta</label>
       <custom-input-textarea-signal
         id="query"
         [rows]="4"
@@ -147,14 +147,14 @@
     </div>
 
     @if (aiResponse()) {
-    <div class="surface-ground p-3 rounded-xl">
-      <div class="d-flex align-items-center mb-2 text-primary font-bold">
+    <div class="bg-body-tertiary p-3 rounded-xl">
+      <div class="d-flex align-items-center mb-2 text-primary fw-bold">
         <app-icon [icon]="'material-symbols-light:auto-awesome-motion'" />
         <span>Respuesta del Asistente</span>
       </div>
       <div
         [innerHTML]="aiResponse()"
-        class="line-height-3 text-900 text-justify"
+        class="line-height-3 text-body text-justify"
       ></div>
     </div>
     }

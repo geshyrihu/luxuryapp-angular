@@ -2,10 +2,10 @@
 @if (!id) {
 <div class="d-flex align-items-center gap-2 px-3 pt-3 pb-1">
   <div
-    class="d-flex align-items-center justify-content-center w-2rem h-2rem rounded-full text-sm font-bold"
+    class="d-flex align-items-center justify-content-center w-2rem h-2rem rounded-full text-sm fw-bold"
     [class.bg-primary]="step() >= 1"
     [class.text-white]="step() >= 1"
-    [class.surface-300]="step() < 1"
+    [class.bg-body-secondary]="step() < 1"
   >
     1
   </div>
@@ -15,12 +15,12 @@
     [class.text-500]="step() !== 1"
     >Datos del usuario</span
   >
-  <app-icon [icon]="'material-symbols-light:chevron-right'" class="text-300 text-xs" />
+  <app-icon [icon]="'material-symbols-light:chevron-right'" class="text-body-secondary text-xs" />
   <div
-    class="d-flex align-items-center justify-content-center w-2rem h-2rem rounded-full text-sm font-bold"
+    class="d-flex align-items-center justify-content-center w-2rem h-2rem rounded-full text-sm fw-bold"
     [class.bg-primary]="step() >= 2"
     [class.text-white]="step() >= 2"
-    [class.surface-300]="step() < 2"
+    [class.bg-body-secondary]="step() < 2"
   >
     2
   </div>
@@ -31,7 +31,7 @@
     >Membresía</span
   >
 </div>
-<hr class="mx-3 mt-2 mb-0 border-none border-top-1 surface-border" />
+<hr class="mx-3 mt-2 mb-0 border-0 border-top-1 border" />
 }
 
 <!-- PASO 1: Crear usuario -->

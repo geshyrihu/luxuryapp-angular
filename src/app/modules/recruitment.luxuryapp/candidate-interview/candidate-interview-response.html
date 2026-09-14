@@ -12,10 +12,10 @@
         (clicked)="goBack()"
       />
       <div>
-        <h2 class="font-semibold text-xl m-0">
+        <h2 class="fw-semibold text-xl m-0">
           {{ interviewData()?.candidateName }}
         </h2>
-        <span class="text-sm text-color-secondary"
+        <span class="text-sm text-body-secondary"
           >{{ interviewData()?.vacancyFolio }} - {{
           interviewData()?.positionName }}</span
         >
@@ -30,48 +30,48 @@
   <div class="row mb-4 g-4">
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary d-block mb-1">Candidato</small>
-        <div class="font-semibold">{{ interviewData()?.candidateName }}</div>
+        <small class="text-body-secondary d-block mb-1">Candidato</small>
+        <div class="fw-semibold">{{ interviewData()?.candidateName }}</div>
       </div>
     </div>
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary d-block mb-1">Vacante</small>
-        <div class="font-semibold">{{ interviewData()?.vacancyFolio }}</div>
-        <small class="text-color-secondary"
+        <small class="text-body-secondary d-block mb-1">Vacante</small>
+        <div class="fw-semibold">{{ interviewData()?.vacancyFolio }}</div>
+        <small class="text-body-secondary"
           >{{ interviewData()?.positionName }}</small
         >
       </div>
     </div>
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary d-block mb-1">Cliente</small>
-        <div class="font-semibold">{{ interviewData()?.customerName }}</div>
+        <small class="text-body-secondary d-block mb-1">Cliente</small>
+        <div class="fw-semibold">{{ interviewData()?.customerName }}</div>
       </div>
     </div>
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary d-block mb-1"
+        <small class="text-body-secondary d-block mb-1"
           >Entrevista programada</small
         >
-        <div class="font-semibold">
+        <div class="fw-semibold">
           {{ interviewData()?.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </div>
       </div>
     </div>
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary d-block mb-1"
+        <small class="text-body-secondary d-block mb-1"
           >Entrevistador asignado</small
         >
-        <div class="font-semibold">
+        <div class="fw-semibold">
           {{ interviewData()?.assignedInterviewerName }}
         </div>
       </div>
     </div>
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <small class="text-color-secondary d-block mb-1">Estatus agenda</small>
+        <small class="text-body-secondary d-block mb-1">Estatus agenda</small>
         <app-mapped-p-tag
           [value]="interviewData()?.agendaStatusCode"
           [options]="agendaStatusOptions"
@@ -82,7 +82,7 @@
 
   <!-- CV -->
   <div class="card p-3 mb-4">
-    <div class="font-semibold mb-3">CV del candidato</div>
+    <div class="fw-semibold mb-3">CV del candidato</div>
     @if (interviewData()?.cvFileName) {
     <iw-button-view-pdf
       [url]="interviewData()?.cvFileUrl"
@@ -91,13 +91,13 @@
       class="w-full md:w-auto"
     />
     } @else {
-    <span class="text-color-secondary">Sin CV disponible</span>
+    <span class="text-body-secondary">Sin CV disponible</span>
     }
   </div>
 
   <!-- Acciones principales -->
   <div class="card p-3 mb-4">
-    <div class="font-semibold mb-3">Acciones de respuesta</div>
+    <div class="fw-semibold mb-3">Acciones de respuesta</div>
     <div class="d-flex flex-wrap gap-2">
       <il-button
         label="Registrar retroalimentación"
@@ -129,7 +129,7 @@
   <!-- Timeline de la entrevista -->
   @if (interviewData()?.timeline?.length) {
   <div class="card p-3 mb-4">
-    <div class="font-semibold mb-3">Seguimiento</div>
+    <div class="fw-semibold mb-3">Seguimiento</div>
     <p-table
       [value]="interviewData()?.timeline"
       [paginator]="false"
@@ -173,14 +173,14 @@
           @case ("approve") { Aprobar / Continuar }
         }
       </h3>
-        <button class="p-2 hover:bg-gray-100 border-round" (click)="closeReasonModal()">
+        <button class="p-2 hover:bg-gray-100 rounded" (click)="closeReasonModal()">
           <app-icon name="close" class="text-xl"></app-icon>
         </button>
     </div>
 
     @if (pendingDecision() === 1) {
     <div class="mb-4">
-      <label class="d-block text-sm font-medium mb-2">Motivo *</label>
+      <label class="d-block text-sm fw-medium mb-2">Motivo *</label>
       <custom-input-select-signal
         [data]="reasonOptions()"
         [ngModel]="selectedReason()"

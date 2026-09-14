@@ -1,8 +1,8 @@
 <lx-card class="card">
   <div class="d-flex align-items-center justify-content-between mb-3 gap-3 flex-wrap">
     <div>
-      <h3 class="text-lg font-bold m-0">Saldos Iniciales por Propiedad</h3>
-      <p class="text-500 text-sm m-0 mt-1">
+      <h3 class="text-lg fw-bold m-0">Saldos Iniciales por Propiedad</h3>
+      <p class="text-body-secondary text-sm m-0 mt-1">
         Ingresa el monto de deuda historica para cada propiedad. Escribe
         directamente en el campo de la columna
         <strong>Monto ($)</strong> y presiona
@@ -64,7 +64,7 @@
         <th class="w-9rem text-center">Estado</th>
         <th class="w-16rem">
           <div class="d-flex align-items-center gap-1">
-            <app-icon [icon]="'material-symbols-light:edit'" class="text-xs text-500" />
+            <app-icon [icon]="'material-symbols-light:edit'" class="text-xs text-body-secondary" />
             Monto ($) editable
           </div>
         </th>
@@ -73,8 +73,8 @@
 
     <ng-template #body let-row>
       <tr>
-        <td class="font-medium">{{ row.propertyFullName }}</td>
-        <td class="text-sm text-500">{{ row.accountNumber }}</td>
+        <td class="fw-medium">{{ row.propertyFullName }}</td>
+        <td class="text-sm text-body-secondary">{{ row.accountNumber }}</td>
         <td class="text-center">
           @if (row.dirty && (row.amount ?? 0) > 0) {
           <lx-tag value="Por guardar" severity="info" />
@@ -97,7 +97,7 @@
 
     <ng-template #emptymessage>
       <tr>
-        <td colspan="4" class="text-center p-4 text-500">
+        <td colspan="4" class="text-center p-4 text-body-secondary">
           No hay propiedades registradas.
         </td>
       </tr>
@@ -117,7 +117,7 @@
         >
           <app-icon icon="material-symbols-light:wallet" class="text-yellow-600 text-xl" />
         </div>
-        <div class="flex-1 min-w-0">
+        <div class="flex-fill min-w-0">
           <h3>{{ row.propertyFullName }}</h3>
           <p>Cta: {{ row.accountNumber }}</p>
         </div>

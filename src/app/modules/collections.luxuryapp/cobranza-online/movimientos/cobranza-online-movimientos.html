@@ -1,9 +1,9 @@
 <section>
   @if (!hasCustomer()) {
   <div class="mt-3">
-    <div class="surface-card border-1 surface-border rounded p-2">
-      <div class="font-medium mb-2">Sin cliente activo</div>
-      <div class="text-color-secondary">
+    <div class="bg-body border-1 border rounded p-2">
+      <div class="fw-medium mb-2">Sin cliente activo</div>
+      <div class="text-body-secondary">
         Selecciona un cliente para consultar los movimientos.
       </div>
     </div>
@@ -32,21 +32,21 @@
           <th
             style="min-width: 250px"
             pFrozenColumn
-            class="bg-surface-50 border-bottom-1 surface-border"
+            class="bg-bg-body-tertiary border-bottom-1 border"
             pSortableColumn="accountName"
           >
             Cuenta / Depto <p-sorticon field="accountName" />
           </th>
           @for (concept of activeConcepts(); track concept.id) {
           <th
-            class="text-center text-xs bg-surface-50 border-bottom-1 surface-border"
+            class="text-center text-xs bg-bg-body-tertiary border-bottom-1 border"
             style="min-width: 140px"
           >
             {{ concept.label }}
           </th>
           }
           <th
-            class="text-right font-bold bg-surface-50 border-bottom-1 surface-border"
+            class="text-end fw-bold bg-bg-body-tertiary border-bottom-1 border"
             style="min-width: 120px"
             pFrozenColumn
             alignFrozen="right"
@@ -57,9 +57,9 @@
       </ng-template>
       <ng-template #body let-row>
         <tr>
-          <td pFrozenColumn class="bg-surface-50">
-            <div class="font-bold text-sm">{{ row.accountName }}</div>
-            <div class="text-xs text-color-secondary">
+          <td pFrozenColumn class="bg-bg-body-tertiary">
+            <div class="fw-bold text-sm">{{ row.accountName }}</div>
+            <div class="text-xs text-body-secondary">
               {{ row.accountNumber }}
             </div>
           </td>
@@ -82,27 +82,27 @@
               }
             </div>
             } @else {
-            <span class="text-color-secondary">—</span>
+            <span class="text-body-secondary">—</span>
             }
           </td>
           }
           <td
-            class="text-right align-middle"
+            class="text-end align-middle"
             pFrozenColumn
             alignFrozen="right"
-            class="bg-surface-50"
+            class="bg-bg-body-tertiary"
           >
             <div class="d-flex flex-column gap-1 align-items-end">
               @if (row.totalCargos > 0) {
-              <div class="text-xs text-danger font-bold font-mono">
+              <div class="text-xs text-danger fw-bold font-mono">
                 +{{ row.totalCargos | currency:'MXN':'symbol':'1.0-0' }}
               </div>
               } @if (row.totalAbonos > 0) {
-              <div class="text-xs text-success font-bold font-mono">
+              <div class="text-xs text-success fw-bold font-mono">
                 -{{ row.totalAbonos | currency:'MXN':'symbol':'1.0-0' }}
               </div>
               } @if (row.totalCargos === 0 && row.totalAbonos === 0) {
-              <span class="text-color-secondary">—</span>
+              <span class="text-body-secondary">—</span>
               }
             </div>
           </td>
@@ -112,16 +112,16 @@
         <tr>
           <td
             [attr.colspan]="activeConcepts().length + 2"
-            class="text-center p-4 text-color-secondary"
+            class="text-center p-4 text-body-secondary"
           >
             No hay movimientos registrados en el mes consultado.
           </td>
         </tr>
       </ng-template>
       <ng-template #paginatorleft>
-        <div class="text-sm text-color-secondary">
-          Cargos en <span class="text-danger font-bold">rojo</span> (+) | Abonos
-          en <span class="text-success font-bold">verde</span> (-)
+        <div class="text-sm text-body-secondary">
+          Cargos en <span class="text-danger fw-bold">rojo</span> (+) | Abonos
+          en <span class="text-success fw-bold">verde</span> (-)
         </div>
       </ng-template>
     </p-table>
@@ -140,23 +140,23 @@
             >
               <app-icon icon="material-symbols-light:swap-horiz" />
             </div>
-            <div class="flex-1 min-w-0 ion-text-wrap py-2">
-              <p class="font-semibold m-0 text-color">{{ row.accountName }}</p>
-              <p class="text-xs m-0 mt-1 text-color-secondary">
+            <div class="flex-fill min-w-0 ion-text-wrap py-2">
+              <p class="fw-semibold m-0 text-body">{{ row.accountName }}</p>
+              <p class="text-xs m-0 mt-1 text-body-secondary">
                 {{ row.accountNumber }}
               </p>
               <div class="d-flex gap-3 mt-2">
                 @if (row.totalCargos > 0) {
                 <div>
-                  <div class="text-xs text-color-secondary">Cargos</div>
-                  <div class="text-sm font-bold text-danger">
+                  <div class="text-xs text-body-secondary">Cargos</div>
+                  <div class="text-sm fw-bold text-danger">
                     +{{ row.totalCargos | currency:'MXN':'symbol':'1.0-0' }}
                   </div>
                 </div>
                 } @if (row.totalAbonos > 0) {
                 <div>
-                  <div class="text-xs text-color-secondary">Abonos</div>
-                  <div class="text-sm font-bold text-success">
+                  <div class="text-xs text-body-secondary">Abonos</div>
+                  <div class="text-sm fw-bold text-success">
                     -{{ row.totalAbonos | currency:'MXN':'symbol':'1.0-0' }}
                   </div>
                 </div>

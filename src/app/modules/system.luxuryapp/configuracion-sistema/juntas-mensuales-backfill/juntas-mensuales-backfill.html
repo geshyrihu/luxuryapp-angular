@@ -6,16 +6,16 @@
       >
         <div>
           <h2 class="m-0">Conciliacion historica de juntas mensuales</h2>
-          <p class="m-0 text-color-secondary">
+          <p class="m-0 text-body-secondary">
             Propone vinculos entre sesion, presentacion y minuta cuando el
             historico no quedo relacionado desde origen.
           </p>
           @if (hasScopedCustomer()) {
-          <small class="text-color-secondary">
+          <small class="text-body-secondary">
             Vista filtrada al customer seleccionado actualmente.
           </small>
           } @else {
-          <small class="text-color-secondary">
+          <small class="text-body-secondary">
             Vista global de sesiones pendientes de conciliacion.
           </small>
           }
@@ -23,7 +23,7 @@
 
         <div class="d-flex flex-column gap-2 flex-md-row align-items-md-end g-4">
           <label class="d-flex flex-column gap-1">
-            <span class="font-semibold">Ventana de busqueda (dias)</span>
+            <span class="fw-semibold">Ventana de busqueda (dias)</span>
             <input
               type="number"
               min="1"
@@ -47,8 +47,8 @@
 
   <div class="col-12 col-md-4">
     <div class="card" header="Sesiones cargadas">
-      <div class="text-3xl font-bold">{{ items().length }}</div>
-      <small class="text-color-secondary">
+      <div class="text-3xl fw-bold">{{ items().length }}</div>
+      <small class="text-body-secondary">
         Sesiones evaluadas con la ventana actual.
       </small>
     </div>
@@ -56,8 +56,8 @@
 
   <div class="col-12 col-md-4">
     <div class="card" header="Pendientes de relacion">
-      <div class="text-3xl font-bold">{{ pendingCount() }}</div>
-      <small class="text-color-secondary">
+      <div class="text-3xl fw-bold">{{ pendingCount() }}</div>
+      <small class="text-body-secondary">
         Sesiones sin presentacion o sin minuta ligada.
       </small>
     </div>
@@ -65,8 +65,8 @@
 
   <div class="col-12 col-md-4">
     <div class="card" header="Aplicables">
-      <div class="text-3xl font-bold">{{ autoApplicableCount() }}</div>
-      <small class="text-color-secondary">
+      <div class="text-3xl fw-bold">{{ autoApplicableCount() }}</div>
+      <small class="text-body-secondary">
         Sesiones con al menos una sugerencia disponible para aplicar.
       </small>
     </div>
@@ -92,11 +92,11 @@
         <ng-template #body let-item>
           <tr>
             <td class="align-top">
-              <div class="font-semibold">{{ item.sessionTitle }}</div>
-              <div class="text-sm text-color-secondary">
+              <div class="fw-semibold">{{ item.sessionTitle }}</div>
+              <div class="text-sm text-body-secondary">
                 {{ item.customerShortName || item.customerName }}
               </div>
-              <div class="text-sm text-color-secondary">
+              <div class="text-sm text-body-secondary">
                 {{ item.sessionTypeDisplayName }} |
                 {{ item.scheduledAt | apiDate: "dd/MM/yyyy HH:mm" }}
               </div>
@@ -115,8 +115,8 @@
 
             <td class="align-top">
               @if (item.suggestedPresentation; as presentation) {
-              <div class="font-semibold">{{ presentation.title }}</div>
-              <div class="text-sm text-color-secondary">
+              <div class="fw-semibold">{{ presentation.title }}</div>
+              <div class="text-sm text-body-secondary">
                 {{ presentation.relevantDate | apiDate: "dd/MM/yyyy" }}
               </div>
               <div class="d-flex gap-2 align-items-center mt-2">
@@ -126,20 +126,20 @@
                  />
                 <span class="text-sm">Score {{ presentation.score }}</span>
               </div>
-              <ul class="mt-2 ps-3 text-sm text-color-secondary">
+              <ul class="mt-2 ps-3 text-sm text-body-secondary">
                 @for (reason of presentation.reasons; track reason) {
                 <li>{{ reason }}</li>
                 }
               </ul>
               } @else {
-              <span class="text-color-secondary">Sin sugerencia</span>
+              <span class="text-body-secondary">Sin sugerencia</span>
               }
             </td>
 
             <td class="align-top">
               @if (item.suggestedMeeting; as meeting) {
-              <div class="font-semibold">{{ meeting.title }}</div>
-              <div class="text-sm text-color-secondary">
+              <div class="fw-semibold">{{ meeting.title }}</div>
+              <div class="text-sm text-body-secondary">
                 {{ meeting.relevantDate | apiDate: "dd/MM/yyyy" }}
               </div>
               <div class="d-flex gap-2 align-items-center mt-2">
@@ -149,13 +149,13 @@
                  />
                 <span class="text-sm">Score {{ meeting.score }}</span>
               </div>
-              <ul class="mt-2 ps-3 text-sm text-color-secondary">
+              <ul class="mt-2 ps-3 text-sm text-body-secondary">
                 @for (reason of meeting.reasons; track reason) {
                 <li>{{ reason }}</li>
                 }
               </ul>
               } @else {
-              <span class="text-color-secondary">Sin sugerencia</span>
+              <span class="text-body-secondary">Sin sugerencia</span>
               }
             </td>
 
@@ -198,7 +198,7 @@
       </p-table>
 
       @if (!items().length && !loading()) {
-      <p class="m-0 text-color-secondary">
+      <p class="m-0 text-body-secondary">
         No se encontraron sesiones candidatas para conciliacion con los filtros actuales.
       </p>
       }

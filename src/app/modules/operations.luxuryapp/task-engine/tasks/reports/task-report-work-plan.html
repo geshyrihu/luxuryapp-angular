@@ -77,7 +77,7 @@
     <tr>
       <td>{{ item.folio }}</td>
       <td>
-        <strong class="font-bold text-base">{{ item.title }}</strong>
+        <strong class="fw-bold text-base">{{ item.title }}</strong>
         <p class="text-sm">{{ item.description }}</p>
       </td>
       <td class="text-center">
@@ -130,7 +130,7 @@
       <td>{{ item.scheduledAt }}</td>
       <td class="text-center">
         <p>
-          <strong class="font-bold"> {{ item.daysDifference }} </strong>
+          <strong class="fw-bold"> {{ item.daysDifference }} </strong>
         </p>
       </td>
       <!-- Opciones -->
@@ -169,8 +169,8 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <p class="font-semibold m-0 text-color">{{ item.folio }}</p>
-      <p class="text-xs m-0 text-color-secondary">
+      <p class="fw-semibold m-0 text-body">{{ item.folio }}</p>
+      <p class="text-xs m-0 text-body-secondary">
         {{ item.responsibleArea }} · {{ item.responsableNombre }}
       </p>
     </ili-list-item>

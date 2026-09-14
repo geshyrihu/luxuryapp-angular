@@ -4,9 +4,9 @@
   <app-spinner [size]="48" [strokeWidth]="4" />
 </div>
 } @if (reportData() && !loading()) {
-<div class="surface-card shadow-sm rounded">
+<div class="bg-body shadow-sm rounded">
   <!-- Encabezado del reporte -->
-  <div class="border-bottom-1 surface-border p-3 surface-100"></div>
+  <div class="border-bottom-1 border p-3 bg-body-tertiary"></div>
   <!-- Tabla de solicitudes pendientes -->
   <p-table
     [value]="reportData().pendings"
@@ -41,30 +41,30 @@
             </div>
             <!-- Información de los Administradores -->
             @if (reportData().administrador) {
-            <div class="col-12 col-md-4 text-right">
+            <div class="col-12 col-md-4 text-end">
               @for (admin of reportData().administrador; track admin) {
               <div class="d-flex align-items-center mb-2">
                 <img
                   [src]="admin.photoEmployee"
                   alt="Foto del administrador"
-                  class="border-circle border me-2"
+                  class="rounded-circle border me-2"
                   
                 />
                 <div class="text-start">
                   <p
-                    class="mb-0 text-color-secondary"
+                    class="mb-0 text-body-secondary"
                     
                   >
                     {{ admin.nameEmployee }}
                   </p>
                   <p
-                    class="mb-0 text-color-secondary"
+                    class="mb-0 text-body-secondary"
                     
                   >
                     {{ admin.email }}
                   </p>
                   <p
-                    class="mb-0 text-color-secondary"
+                    class="mb-0 text-body-secondary"
                     
                     
                   >
@@ -104,7 +104,7 @@
   </p-table>
   <!-- (MEJORA) Mensaje claro si no hay datos después de cargar -->
   @if (!reportData() && !loading()) {
-  <div class="p-3 surface-100 text-center rounded text-color-secondary">
+  <div class="p-3 bg-body-tertiary text-center rounded text-body-secondary">
     No se encontraron minutas pendientes para este cliente.
   </div>
   }

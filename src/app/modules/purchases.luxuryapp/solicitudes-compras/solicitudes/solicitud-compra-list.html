@@ -14,7 +14,7 @@
 >
   <ng-template #caption>
     <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded g-4"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
     >
       <div class="flex-grow-1">
         <primeng-custom-caption
@@ -109,7 +109,7 @@
       <td class="text-center">
         <app-icon
           [icon]="'material-symbols-light:menu'"
-          class="cursor-move text-400"
+          class="cursor-move text-body-secondary"
           pReorderableRowHandle
         />
       </td>
@@ -125,9 +125,9 @@
       <td>{{ item.fechaSolicitud | apiDate }}</td>
       <td>{{ item.solicita }}</td>
       <td class="table-col-description">
-        <div class="font-bold truncate">{{ item.equipoOInstalacion }}</div>
+        <div class="fw-bold truncate">{{ item.equipoOInstalacion }}</div>
         <div
-          class="text-sm text-600 truncate-2"
+          class="text-sm text-body-secondary truncate-2"
           [title]="item.justificacionGasto"
         >
           {{ item.justificacionGasto }}

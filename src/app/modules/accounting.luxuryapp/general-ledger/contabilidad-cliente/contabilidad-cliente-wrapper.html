@@ -1,13 +1,13 @@
-<section class="surface-ground min-h-screen d-flex flex-column gap-4">
+<section class="bg-body-tertiary min-h-screen d-flex flex-column gap-4">
   <div class="w-full xl:w-11 mx-auto d-flex flex-column gap-4 p-3">
     <header
-      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden"
+      class="bg-body rounded-xl border-1 border shadow-sm overflow-hidden"
     >
       <div class="bg-primary" ></div>
-      <div class="surface-100 p-3 d-flex align-items-center gap-3">
+      <div class="bg-body-tertiary p-3 d-flex align-items-center gap-3">
         <div class="d-flex flex-column gap-1">
           <small
-            class="text-primary font-bold uppercase"
+            class="text-primary fw-bold text-uppercase"
             
           >
             LuxuryApp · Contabilidad
@@ -16,7 +16,7 @@
             Estados Financieros
           </h1>
           @if (periodo()) {
-          <p class="text-color-secondary m-0">
+          <p class="text-body-secondary m-0">
             Periodo: <strong>{{ periodo() }}</strong>
           </p>
           }
@@ -25,7 +25,7 @@
       <div class="bg-yellow-500" ></div>
     </header>
 
-    <div class="surface-card rounded-xl border-1 surface-border shadow-sm">
+    <div class="bg-body rounded-xl border-1 border shadow-sm">
       <lx-tabs [tabs]="reportTabs()" [activeId]="tabIndex().toString()" (tabChange)="onTabChange($event)">
         <div tab="0" class="p-4 pt-5">
             <app-epf-cliente

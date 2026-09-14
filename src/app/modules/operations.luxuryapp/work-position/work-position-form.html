@@ -80,54 +80,54 @@
       <lx-message severity="info">Horario de Trabajo</lx-message>
       @if (selectedSchedule(); as schedule) {
       <div
-        class="surface-50 border-1 border-200 rounded-lg p-3 mb-3 d-flex flex-column gap-1"
+        class="bg-body-tertiary border-1 border-200 rounded-lg p-3 mb-3 d-flex flex-column gap-1"
       >
-        <div class="font-bold text-900">{{ schedule.name }}</div>
-        <div class="text-sm text-600">
+        <div class="fw-bold text-body">{{ schedule.name }}</div>
+        <div class="text-sm text-body-secondary">
           {{ schedule.tipoJornadaName || "Sin turno" }}
         </div>
       </div>
 
-      <div class="overflow-x-auto surface-card border-1 border-200 rounded-lg">
+      <div class="overflow-x-auto bg-body border-1 border-200 rounded-lg">
         <table
-          class="w-full text-left border-collapse"
+          class="w-full text-start border-collapse"
           style="min-width: 500px"
         >
           <thead>
-            <tr class="surface-50 border-bottom-1 border-200 text-600 text-sm">
+            <tr class="bg-body-tertiary border-bottom-1 border-200 text-body-secondary text-sm">
               <th
-                class="p-2 font-semibold text-center border-right-1 border-200"
+                class="p-2 fw-semibold text-center border-right-1 border-200"
               >
                 Semana
               </th>
-              <th class="p-2 font-semibold text-center">Lun</th>
-              <th class="p-2 font-semibold text-center">Mar</th>
-              <th class="p-2 font-semibold text-center">Mié</th>
-              <th class="p-2 font-semibold text-center">Jue</th>
-              <th class="p-2 font-semibold text-center">Vie</th>
-              <th class="p-2 font-semibold text-center">Sáb</th>
-              <th class="p-2 font-semibold text-center">Dom</th>
+              <th class="p-2 fw-semibold text-center">Lun</th>
+              <th class="p-2 fw-semibold text-center">Mar</th>
+              <th class="p-2 fw-semibold text-center">Mié</th>
+              <th class="p-2 fw-semibold text-center">Jue</th>
+              <th class="p-2 fw-semibold text-center">Vie</th>
+              <th class="p-2 fw-semibold text-center">Sáb</th>
+              <th class="p-2 fw-semibold text-center">Dom</th>
             </tr>
           </thead>
           <tbody class="text-sm">
             @for (week of scheduleWeeks(); track week.weekNumber) {
             <tr class="border-bottom-1 border-100 last:border-bottom-none">
               <td
-                class="p-2 font-medium text-600 text-center border-right-1 border-200 bg-black-alpha-10"
+                class="p-2 fw-medium text-body-secondary text-center border-right-1 border-200 bg-black-alpha-10"
               >
                 S{{ week.weekNumber }}
               </td>
               @for (day of week.days; track day.name) {
-              <td class="p-2 text-center" [class.surface-50]="day.esDescanso">
+              <td class="p-2 text-center" [class.bg-body-tertiary]="day.esDescanso">
                 @if (day.esDescanso) {
-                <span class="text-400 font-italic text-xs">Descanso</span>
+                <span class="text-body-secondary fst-italic text-xs">Descanso</span>
                 } @else if (day.horaEntrada && day.horaSalida) {
-                <div class="text-800 font-medium line-height-2">
+                <div class="text-body fw-medium line-height-2">
                   {{ day.horaEntrada }}
                 </div>
-                <div class="text-500 text-xs">{{ day.horaSalida }}</div>
+                <div class="text-body-secondary text-xs">{{ day.horaSalida }}</div>
                 } @else {
-                <span class="text-300">-</span>
+                <span class="text-body-secondary">-</span>
                 }
               </td>
               }
@@ -139,14 +139,14 @@
 
       @if (schedule.observaciones) {
       <div
-        class="mt-3 text-sm text-600 white-space-pre-line p-3 surface-50 rounded-lg border-1 border-200"
+        class="mt-3 text-sm text-body-secondary white-space-pre-line p-3 bg-body-tertiary rounded-lg border-1 border-200"
       >
-        <span class="font-semibold d-block mb-1">Observaciones:</span>
+        <span class="fw-semibold d-block mb-1">Observaciones:</span>
         {{ schedule.observaciones }}
       </div>
       } } @else {
       <div
-        class="surface-50 border-1 border-200 rounded-lg p-4 text-center text-600"
+        class="bg-body-tertiary border-1 border-200 rounded-lg p-4 text-center text-body-secondary"
       >
         Selecciona un horario de catálogo para ver sus días y horas de las 4
         semanas.

@@ -36,7 +36,7 @@
       <td colspan="3" class="bg-blue-50">
         <div class="d-flex align-items-center py-2 px-3">
           <app-icon [icon]="'material-symbols-light:bookmark'" class="me-2 text-blue-500" />
-          <span class="font-bold text-blue-900">{{ item.roleType }}</span>
+          <span class="fw-bold text-blue-900">{{ item.roleType }}</span>
         </div>
       </td>
     </tr>
@@ -47,12 +47,12 @@
       (click)="onModalForm({ roleId: item.roleId, roleName: item.roleName, title: 'Asignar Módulos' })"
     >
       <td>
-        <h5 class="m-0 text-lg font-medium">{{ item.roleName }}</h5>
+        <h5 class="m-0 text-lg fw-medium">{{ item.roleName }}</h5>
       </td>
       <td class="text-center">
         <lx-tag [value]="item.modules + ' Módulos'" severity="info"></lx-tag>
       </td>
-      <td class="text-right">
+      <td class="text-end">
         <app-icon [icon]="'material-symbols-light:chevron-right'" />
       </td>
     </tr>

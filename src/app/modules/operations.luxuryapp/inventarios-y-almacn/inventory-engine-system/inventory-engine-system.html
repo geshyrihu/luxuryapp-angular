@@ -16,13 +16,13 @@
 <hr />
 @for (system of filteredDataSignal(); track system) {
 <div>
-  <div class="surface-100 p-3 rounded mb-3">{{ system.system }}</div>
+  <div class="bg-body-tertiary p-3 rounded mb-3">{{ system.system }}</div>
   <div class="row g-4">
     @for (itemUbication of system.ubications; track itemUbication) {
     <div class="col-12 col-md-12">
       <div class="card" class="p-2 mb-3">
         <ng-template #header #headerUbication>
-          <div class="text-xl font-bold">{{ itemUbication.ubication }}</div>
+          <div class="text-xl fw-bold">{{ itemUbication.ubication }}</div>
         </ng-template>
         <div class="row g-4">
           @for (item of itemUbication.items; track item) {
@@ -34,7 +34,7 @@
                 </div>
               </ng-template>
               <div class="card-body text-center">
-                <h4 class="text-lg font-bold">{{ item.nameMachinery }}</h4>
+                <h4 class="text-lg fw-bold">{{ item.nameMachinery }}</h4>
                 <div class="d-flex justify-content-center">
                   <iw-button
                     lxTooltip="Servicios calendarizados"

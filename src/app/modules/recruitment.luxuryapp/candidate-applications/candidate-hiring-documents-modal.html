@@ -1,10 +1,10 @@
 <div class="documents-shell">
   <div class="documents-header">
-    <p class="m-0 font-semibold">Documentacion de contratacion</p>
-    <p class="m-0 text-color-secondary">
+    <p class="m-0 fw-semibold">Documentacion de contratacion</p>
+    <p class="m-0 text-body-secondary">
       {{ dialogData.candidateName }} · {{ dialogData.positionName }}
     </p>
-    <p class="m-0 text-color-secondary">
+    <p class="m-0 text-body-secondary">
       Los documentos se cargan en el expediente del empleado. El CV sigue en el
       candidato.
     </p>
@@ -13,14 +13,14 @@
   <lx-divider />
 
   @if (loading()) {
-    <p class="m-0 text-color-secondary">Cargando documentos...</p>
+    <p class="m-0 text-body-secondary">Cargando documentos...</p>
   } @else {
     <div class="documents-grid">
       @for (row of documentRows(); track row.option.value) {
         <section class="document-card">
           <div class="document-card__header">
             <div>
-              <p class="m-0 font-semibold">
+              <p class="m-0 fw-semibold">
                 {{ row.option.label }}
                 @if (row.option.isMandatory) {
                   <span class="text-red-500"> *</span>

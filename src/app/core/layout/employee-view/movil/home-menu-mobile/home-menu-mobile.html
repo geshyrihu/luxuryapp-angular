@@ -1,6 +1,6 @@
 <div class="px-1 py-2">
   <ion-accordion-group
-    class="bg-white dark:surface-900 rounded-2xl shadow-sm overflow-hidden"
+    class="bg-white dark:bg-dark text-white rounded-2xl shadow-sm overflow-hidden"
   >
     @for (item of menuItems(); track $index) {
 
@@ -9,7 +9,7 @@
     <ion-accordion [value]="item.label">
       <ion-item slot="header" lines="full">
         <app-icon [icon]="iconName(item.icon)" slot="start" class="text-xl text-primary" />
-        <ion-label class="font-medium">{{ item.label }}</ion-label>
+        <ion-label class="fw-medium">{{ item.label }}</ion-label>
       </ion-item>
 
       <div class="ion-padding-start" slot="content">
@@ -22,7 +22,7 @@
             button
             class="text-sm"
           >
-            <app-icon icon="material-symbols-light:circle" slot="start" class="text-500 text-xs" />
+            <app-icon icon="material-symbols-light:circle" slot="start" class="text-body-secondary text-xs" />
             <ion-label>{{ subItem.label }}</ion-label>
           </ion-item>
           }
@@ -43,7 +43,7 @@
         class="rounded-xl"
       >
         <app-icon [icon]="iconName(item.icon)" slot="start" class="text-xl text-primary" />
-        <ion-label class="font-medium">{{ item.label }}</ion-label>
+        <ion-label class="fw-medium">{{ item.label }}</ion-label>
       </ion-item>
     </div>
     } }

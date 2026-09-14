@@ -11,28 +11,28 @@
   </div>
 
   @if (hasCustomer()) {
-  <div class="mb-4 border-1 surface-border rounded p-4">
+  <div class="mb-4 border-1 border rounded p-4">
     <div class="row g-4">
       <div class="col-12 col-md-3">
-        <div class="font-medium">Customer</div>
+        <div class="fw-medium">Customer</div>
         <div>{{ customerName() || "Cliente activo" }}</div>
       </div>
       <div class="col-12 col-md-3">
-        <div class="font-medium">Origen</div>
+        <div class="fw-medium">Origen</div>
         <div>{{ data()?.dataSource || "Sin datos" }}</div>
       </div>
       <div class="col-12 col-md-3">
-        <div class="font-medium">Cuentas omitidas</div>
+        <div class="fw-medium">Cuentas omitidas</div>
         <div>{{ excludedCount() }}</div>
       </div>
       <div class="col-12 col-md-3">
-        <div class="font-medium">Candidatas a revisar</div>
+        <div class="fw-medium">Candidatas a revisar</div>
         <div>{{ rowsWithoutPropertyMatch() }}</div>
       </div>
     </div>
   </div>
   } @else {
-  <div class="mb-4 border-1 surface-border rounded p-4 text-color-secondary">
+  <div class="mb-4 border-1 border rounded p-4 text-body-secondary">
     Selecciona un cliente para configurar qué cuentas se omiten del reporte de
     cobranza.
   </div>
@@ -76,7 +76,7 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <span [class.text-danger]="item.isExcluded" class="font-medium">
+          <span [class.text-danger]="item.isExcluded" class="fw-medium">
             {{ item.accountNumber }}
           </span>
         </td>
@@ -87,13 +87,13 @@
           <span>
             {{ item.propertyTower }} / {{ item.propertyDepartment }} @if
             (item.propertyFullName) {
-            <span class="d-block text-xs text-color-secondary mt-1">
+            <span class="d-block text-xs text-body-secondary mt-1">
               {{ item.propertyFullName }}
             </span>
             }
           </span>
           } @else {
-          <span class="text-danger font-medium">Sin match</span>
+          <span class="text-danger fw-medium">Sin match</span>
           }
         </td>
         <td>{{ visibleReason(item) }}</td>
@@ -120,9 +120,9 @@
         >
           <app-icon icon="material-symbols-light:account-balance" />
         </div>
-        <div class="flex-1 min-w-0 ion-text-wrap">
-          <p class="font-semibold m-0 text-color">{{ item.accountNumber }}</p>
-          <p class="text-xs m-0 mt-1 text-color-secondary">
+        <div class="flex-fill min-w-0 ion-text-wrap">
+          <p class="fw-semibold m-0 text-body">{{ item.accountNumber }}</p>
+          <p class="text-xs m-0 mt-1 text-body-secondary">
             {{ item.accountName }}
           </p>
           <p
@@ -133,16 +133,16 @@
             item.propertyDepartment) : "Sin match con Property" }}
           </p>
           @if (item.hasPropertyMatch && item.propertyFullName) {
-          <p class="text-xs m-0 mt-1 text-color-secondary">
+          <p class="text-xs m-0 mt-1 text-body-secondary">
             {{ item.propertyFullName }}
           </p>
           }
-          <p class="text-xs m-0 mt-1 text-color-secondary">
+          <p class="text-xs m-0 mt-1 text-body-secondary">
             {{ visibleReason(item) }}
           </p>
         </div>
 
-        <div end class="pe-3 text-danger font-medium text-sm">
+        <div end class="pe-3 text-danger fw-medium text-sm">
           @if (item.isExcluded) { Omitida }
         </div>
       </ili-list-item>

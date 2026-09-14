@@ -71,14 +71,14 @@
     <tr>
       <th
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
-        class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
+        class="text-center bg-primary-reverse text-primary fw-bold border-bottom-2 border-primary"
       >
         <app-icon [icon]="'material-symbols-light:work'" class="me-2" />GESTIÓN
         DEL PUESTO DE TRABAJO
       </th>
       <th
         colspan="1"
-        class="text-center bg-bluegray-50 text-bluegray-700 font-bold border-bottom-2 border-bluegray-200 border-left-2"
+        class="text-center bg-bluegray-50 text-bluegray-700 fw-bold border-bottom-2 border-bluegray-200 border-left-2"
       >
         <app-icon
           [icon]="'material-symbols-light:person'"
@@ -135,7 +135,7 @@
         } @else {
         <div>
           <small> {{ item.folio }} </small>
-          <p class="mt-1 font-semibold">{{ item.applicationRoleName }}</p>
+          <p class="mt-1 fw-semibold">{{ item.applicationRoleName }}</p>
         </div>
         }
       </td>
@@ -151,12 +151,12 @@
           <div
             class="d-flex justify-content-between border-bottom-1 border-200 pb-1"
           >
-            <small class="text-500 font-bold">PRE:</small>
+            <small class="text-body-secondary fw-bold">PRE:</small>
             <span class="text-xs">{{ item.sueldoBase }}</span>
           </div>
           <div class="d-flex justify-content-between">
-            <small class="text-500 font-bold">ACT:</small>
-            <span class="text-xs font-bold text-primary"
+            <small class="text-body-secondary fw-bold">ACT:</small>
+            <span class="text-xs fw-bold text-primary"
               >{{ item.sueldo }}</span
             >
           </div>
@@ -228,7 +228,7 @@
             />
             }
             <div class="d-flex flex-column min-w-0 flex-grow-1">
-              <span class="font-semibold truncate"
+              <span class="fw-semibold truncate"
                 >{{ item.applicationUser }}</span
               >
               <div class="mt-1">
@@ -298,9 +298,9 @@
               <div class="d-flex align-items-center gap-2">
                 <app-icon
                   [icon]="'material-symbols-light:group'"
-                  class="text-400"
+                  class="text-body-secondary"
                 />
-                <span class="text-sm font-bold">VACANTE</span>
+                <span class="text-sm fw-bold">VACANTE</span>
               </div>
               <div class="d-flex gap-1">
                 <iw-button-item
@@ -337,7 +337,7 @@
             </span>
             } } @if (hasQueueForPosition(item)) {
             <div
-              class="vacant-queue-summary mt-2 p-2 border-round bg-surface-100 border-1 surface-border"
+              class="vacant-queue-summary mt-2 p-2 rounded bg-bg-body-tertiary border-1 border"
             >
               <div
                 class="d-flex flex-wrap align-items-center justify-content-between gap-2"
@@ -347,7 +347,7 @@
                     icon="material-symbols-light:manage-search"
                     class="text-primary"
                   />
-                  <span class="font-semibold text-sm"
+                  <span class="fw-semibold text-sm"
                     >Seguimiento de candidatos</span
                   >
                 </div>
@@ -380,7 +380,7 @@
   <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
     <div class="d-flex align-items-center">
       <app-icon [icon]="'material-symbols-light:group'" class="text-lg" />
-      <span class="font-semibold">Sin puesto asignado</span>
+      <span class="fw-semibold">Sin puesto asignado</span>
       <!-- DS: badge + badge-primary -->
       <span class="badge badge-primary"
         >{{ unassignedEmployees().length }}</span
@@ -399,7 +399,7 @@
 
   <!-- Guía rápida -->
   @if (poolExpanded()) {
-  <p class="text-sm text-color-secondary m-0 px-3 pt-2 pb-1">
+  <p class="text-sm text-body-secondary m-0 px-3 pt-2 pb-1">
     Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic
     en
     <app-icon
@@ -421,7 +421,7 @@
     class="pool-container"
   >
     @if (unassignedEmployees().length === 0) {
-    <p class="text-500 text-center w-full py-4 m-0">
+    <p class="text-body-secondary text-center w-full py-4 m-0">
       Todos los colaboradores tienen puesto asignado.
     </p>
     } @for (emp of unassignedEmployees(); track emp.applicationUserId) {
@@ -465,13 +465,13 @@
     <div class="drawer-position-card">
       <div class="d-flex align-items-center mb-1">
         <app-icon [icon]="'material-symbols-light:work'" />
-        <span class="font-bold">{{ pos.folio }}</span>
+        <span class="fw-bold">{{ pos.folio }}</span>
       </div>
-      <p class="m-0 font-semibold">{{ pos.applicationRoleName }}</p>
-      <p class="m-0 text-sm text-500">{{ pos.turno }}</p>
+      <p class="m-0 fw-semibold">{{ pos.applicationRoleName }}</p>
+      <p class="m-0 text-sm text-body-secondary">{{ pos.turno }}</p>
     </div>
 
-    <p class="m-0 text-sm text-500">
+    <p class="m-0 text-sm text-body-secondary">
       Selecciona el colaborador para asignar a este puesto:
     </p>
 
@@ -483,7 +483,7 @@
       />
     </div>
     } @else if (unassignedEmployees().length === 0) {
-    <p class="text-center text-500 py-4 m-0">
+    <p class="text-center text-body-secondary py-4 m-0">
       No hay colaboradores disponibles sin puesto asignado.
     </p>
     } @else { @for (emp of unassignedEmployees(); track emp.applicationUserId) {
@@ -491,8 +491,8 @@
     <div class="menu-item" (click)="onAssignFromDrawer(emp)">
       <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
       <div class="d-flex flex-column min-w-0 flex-grow-1">
-        <span class="font-semibold truncate">{{ emp.fullName }}</span>
-        <span class="text-sm text-500 truncate">{{ emp.userName }}</span>
+        <span class="fw-semibold truncate">{{ emp.fullName }}</span>
+        <span class="text-sm text-body-secondary truncate">{{ emp.userName }}</span>
       </div>
       <app-icon [icon]="'material-symbols-light:chevron-right'" />
     </div>
@@ -530,7 +530,7 @@
   </div>
 
   @if (inactivosLoading()) {
-  <div class="d-flex justify-content-center py-8">
+  <div class="d-flex justify-content-center py-5">
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl"
@@ -553,8 +553,8 @@
     <div class="card card--bordered">
       <div class="d-flex flex-column gap-1 min-w-0">
         <span class="text-label">{{ pos.folio }}</span>
-        <span class="font-semibold">{{ pos.applicationRoleName }}</span>
-        <span class="text-sm text-500"
+        <span class="fw-semibold">{{ pos.applicationRoleName }}</span>
+        <span class="text-sm text-body-secondary"
           >{{ getDepartamentLabel(pos.departament) }} é {{ pos.turno }}</span
         >
       </div>
@@ -583,10 +583,10 @@
     <div class="card card--bordered">
       <lx-avatar [image]="emp.photoPath" shape="circle" size="large" />
       <div class="d-flex flex-column min-w-0 flex-grow-1">
-        <span class="font-semibold truncate">{{ emp.fullName }}</span>
-        <span class="text-sm text-500 truncate">{{ emp.userName }}</span>
+        <span class="fw-semibold truncate">{{ emp.fullName }}</span>
+        <span class="text-sm text-body-secondary truncate">{{ emp.userName }}</span>
         @if (emp.departament !== null) {
-        <span class="text-sm text-500"
+        <span class="text-sm text-body-secondary"
           >{{ getDepartamentLabel(emp.departament) }}</span
         >
         }

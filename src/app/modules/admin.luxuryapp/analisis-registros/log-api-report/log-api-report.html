@@ -19,7 +19,7 @@
     >
       <ng-template #caption>
         <div
-          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded g-4"
+          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
         >
           <div class="flex-grow-1">
             <primeng-custom-caption
@@ -121,13 +121,13 @@
         <!-- Fila 2: Propiedades (solo si está expandido) -->
         <tr [ngStyle]="{ display: item.expanded ? '' : 'none' }">
           <td></td>
-          <td colspan="4" class="surface-section p-3">
+          <td colspan="4" class="bg-body-tertiary p-3">
             <div class="d-flex align-items-center mb-2">
               <app-icon [icon]="'material-symbols-light:info'" class="text-primary" />
               <strong class="text-sm">Propiedades:</strong>
             </div>
             <pre
-              class="text-xs surface-card p-3 rounded overflow-auto max-h-200"
+              class="text-xs bg-body p-3 rounded overflow-auto max-h-200"
             >
 {{ item.properties }}</pre>
           </td>
@@ -143,7 +143,7 @@
               <strong class="text-sm text-red-600">Excepción:</strong>
             </div>
             <pre
-              class="text-xs surface-card p-3 rounded border-1 border-red-200 overflow-auto max-h-300 text-red-700"
+              class="text-xs bg-body p-3 rounded border-1 border-red-200 overflow-auto max-h-300 text-red-700"
             >
 {{ item.exception }}</pre>
           </td>
@@ -172,15 +172,15 @@
             ></lx-tag>
           </div>
           <div class="d-flex justify-content-between align-items-center mb-1">
-            <h2 class="font-bold m-0 text-base text-wrap">{{ item.level }}</h2>
-            <p class="text-medium text-500 m-0 text-sm">
+            <h2 class="fw-bold m-0 text-base text-wrap">{{ item.level }}</h2>
+            <p class="text-medium text-body-secondary m-0 text-sm">
               <app-icon [icon]="'material-symbols-light:schedule'" class="me-1 text-xs" />
               {{ item.timestamp | apiDate: "dd/MM/yyyy h:mm a" }}
             </p>
           </div>
 
           @if (item.userName) {
-          <p class="text-sm text-color-secondary m-0 mb-1">
+          <p class="text-sm text-body-secondary m-0 mb-1">
             <app-icon [icon]="'material-symbols-light:person'" class="me-1 text-xs" /> {{
             item.userName }}
           </p>

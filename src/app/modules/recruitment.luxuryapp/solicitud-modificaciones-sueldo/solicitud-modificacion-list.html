@@ -28,38 +28,38 @@
   <ng-template #body let-item>
     <tr>
       <td
-        class="text-center font-semibold"
+        class="text-center fw-semibold"
         [style.border-left]="'8px solid ' + requestStatusBorderColor(item.status)"
       >
         {{ item.folio }}
       </td>
       <td>{{ item.requestDate }}</td>
       <td
-        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
         [title]="item.customer"
       >
         {{ item.customer }}
       </td>
       <td
-        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
         [title]="item.employee"
       >
         {{ item.employee }}
       </td>
       <td
-        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
         [title]="item.applicationRoleCurrent"
       >
         {{ item.applicationRoleCurrent }}
       </td>
-      <td class="text-right">{{ item.currentSalary }}</td>
+      <td class="text-end">{{ item.currentSalary }}</td>
       <td
-        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
         [title]="item.applicationRoleNew"
       >
         {{ item.applicationRoleNew }}
       </td>
-      <td class="text-right">{{ item.finalSalary }}</td>
+      <td class="text-end">{{ item.finalSalary }}</td>
       <td class="text-center">
         <lx-tag
           [value]="item.status"
@@ -93,7 +93,7 @@
     <ili-list-item>
       <div
         start
-        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 surface-100"
+        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
         <app-icon icon="material-symbols-light:trending-up" class="text-xl text-yellow-600" />
       </div>

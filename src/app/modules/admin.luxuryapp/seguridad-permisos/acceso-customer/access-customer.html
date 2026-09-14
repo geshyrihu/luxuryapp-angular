@@ -1,7 +1,7 @@
 <div class="d-flex flex-column gap-3">
   <!-- Encabezado Informativo -->
   <div
-    class="surface-card p-3 rounded border-1 surface-border d-flex align-items-center gap-3"
+    class="bg-body p-3 rounded border-1 border d-flex align-items-center gap-3"
   >
     <div
       class="w-3rem h-3rem rounded bg-primary-50 d-flex align-items-center justify-content-center text-primary"
@@ -9,10 +9,10 @@
       <app-icon [icon]="'material-symbols-light:apartment'" class="text-xl" />
     </div>
     <div class="d-flex flex-column">
-      <span class="text-900 font-bold uppercase tracking-wider text-sm"
+      <span class="text-body fw-bold text-uppercase tracking-wider text-sm"
         >Acceso a Clientes</span
       >
-      <span class="text-xs text-500"
+      <span class="text-xs text-body-secondary"
         >Selecciona los clientes a los que este usuario tendrá acceso</span
       >
     </div>
@@ -23,8 +23,8 @@
     @for (item of dataSignal(); track item.customerId) {
     <div class="col-12 col-sm-6 col-lg-4">
       <div
-        class="d-flex align-items-center justify-content-between p-3 rounded-lg border-1 surface-border cursor-pointer hover:surface-100 transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
-        [class.surface-50]="item.isSelected"
+        class="d-flex align-items-center justify-content-between p-3 rounded-lg border-1 border cursor-pointer hover:bg-body-tertiary transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
+        [class.bg-body-tertiary]="item.isSelected"
         [class.border-primary]="item.isSelected"
         [class.shadow-sm]="item.isSelected"
         (click)="toggleCliente(item)"
@@ -46,19 +46,19 @@
             />
           </span>
 
-          <div class="d-flex flex-column min-w-0 flex-1">
+          <div class="d-flex flex-column min-w-0 flex-fill">
             <span
-              class="font-bold text-sm text-900 truncate"
+              class="fw-bold text-sm text-body truncate"
               [title]="item.customerName"
             >
               {{ item.customerName | uppercase }}
             </span>
             @if (item.isSelected) {
-            <span class="text-xs font-bold text-green-600"
+            <span class="text-xs fw-bold text-green-600"
               >Acceso Permitido</span
             >
             } @else {
-            <span class="text-xs text-400">Sin Acceso</span>
+            <span class="text-xs text-body-secondary">Sin Acceso</span>
             }
           </div>
         </div>

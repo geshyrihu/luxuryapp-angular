@@ -1,11 +1,11 @@
 <div class="rf-shell">
   @if (loading()) {
-  <div class="d-flex align-items-center text-color-secondary mb-4 gap-2">
+  <div class="d-flex align-items-center text-body-secondary mb-4 gap-2">
     <app-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Generando reporte financiero...</span>
   </div>
   } @if (!loading() && !hasData()) {
-  <p class="text-color-secondary m-0">
+  <p class="text-body-secondary m-0">
     No hay datos. Verifique el cliente, el año y el mes base seleccionados.
   </p>
   } @if (!loading() && data(); as reporte) {

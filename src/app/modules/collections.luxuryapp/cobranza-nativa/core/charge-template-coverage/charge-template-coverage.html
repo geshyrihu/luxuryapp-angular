@@ -21,20 +21,20 @@
       <tr>
         <th class="w-14rem" pFrozenColumn>Plantilla / Cuota</th>
         <th class="w-7rem text-center">Método</th>
-        <th class="w-8rem text-right">Monto Base</th>
+        <th class="w-8rem text-end">Monto Base</th>
         @for (col of periodColumns(); track col.key) {
-        <th class="w-7rem text-right text-xs">{{ col.label }}</th>
+        <th class="w-7rem text-end text-xs">{{ col.label }}</th>
         }
       </tr>
     </ng-template>
 
     <ng-template #groupheader let-row>
       <tr pRowGroupHeader>
-        <td [attr.colspan]="3 + periodColumns().length" class="surface-100 py-2 px-3">
+        <td [attr.colspan]="3 + periodColumns().length" class="bg-body-tertiary py-2 px-3">
           <div class="d-flex align-items-center gap-2">
             <app-icon [icon]="'material-symbols-light:apartment'" class="text-primary" />
-            <span class="font-bold text-primary">{{ row.propertyName }}</span>
-            <span class="text-500 text-sm">· Cta: {{ row.accountNumber }}</span>
+            <span class="fw-bold text-primary">{{ row.propertyName }}</span>
+            <span class="text-body-secondary text-sm">· Cta: {{ row.accountNumber }}</span>
             @if (row.indivisoPercentage) {
             <span class="text-xs text-purple-600 ms-2">
               Indiviso: {{ row.indivisoPercentage }}%
@@ -48,17 +48,17 @@
     <ng-template #body let-row let-rowIndex="rowIndex">
       <tr>
         <td pFrozenColumn>
-          <div class="font-medium text-sm">{{ row.templateName }}</div>
-          <div class="text-xs text-500">{{ row.chargeTypeName || "Tipo sin clasificar" }}</div>
+          <div class="fw-medium text-sm">{{ row.templateName }}</div>
+          <div class="text-xs text-body-secondary">{{ row.chargeTypeName || "Tipo sin clasificar" }}</div>
         </td>
         <td class="text-center">
           <lx-tag [value]="methodLabel(row.calculationMethod)" [severity]="methodSeverity(row.calculationMethod)" />
         </td>
-        <td class="text-right text-sm font-bold">
+        <td class="text-end text-sm fw-bold">
           {{ row.baseAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
         </td>
         @for (col of periodColumns(); track col.key) {
-        <td class="text-right text-sm">
+        <td class="text-end text-sm">
           @if (periodsMap()[rowIndex][col.key] !== undefined) {
           {{ periodsMap()[rowIndex][col.key] | currency:'MXN':'symbol-narrow':'1.2-2' }}
           } @else {
@@ -71,7 +71,7 @@
 
     <ng-template #emptymessage>
       <tr>
-        <td [attr.colspan]="3 + periodColumns().length" class="text-center p-4 text-500">
+        <td [attr.colspan]="3 + periodColumns().length" class="text-center p-4 text-body-secondary">
           No hay plantillas activas configuradas.
         </td>
       </tr>

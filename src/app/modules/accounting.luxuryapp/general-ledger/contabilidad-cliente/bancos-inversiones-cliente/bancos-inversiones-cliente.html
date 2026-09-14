@@ -16,28 +16,28 @@
           [tableStyle]="{'max-width': '700px'}"
         >
           <ng-template #caption>
-            <div class="text-lg font-bold text-primary">
+            <div class="text-lg fw-bold text-primary">
               SALDO EN BANCOS AL {{ data()?.fechaReporte | uppercase }}
             </div>
           </ng-template>
           <ng-template #header>
             <tr>
               <th>DESCRIPCIÓN</th>
-              <th class="text-right">IMPORTE</th>
+              <th class="text-end">IMPORTE</th>
             </tr>
           </ng-template>
           <ng-template #body let-banco>
             <tr class="rf-row-concepto g-4">
               <td class="rf-td-descripcion--item">{{ banco.cuenta }}</td>
-              <td class="text-right rf-td-number">
+              <td class="text-end rf-td-number">
                 {{ banco.importe | number:'1.0-0' }}
               </td>
             </tr>
           </ng-template>
           <ng-template #footer>
             <tr class="rf-row-total g-4">
-              <td class="rf-td-descripcion font-bold text-right">(1) SUMA</td>
-              <td class="text-right rf-td-number--total">
+              <td class="rf-td-descripcion fw-bold text-end">(1) SUMA</td>
+              <td class="text-end rf-td-number--total">
                 {{ data()?.sumaBancos | number:'1.0-0' }}
               </td>
             </tr>
@@ -53,46 +53,46 @@
           [tableStyle]="{'max-width': '900px'}"
         >
           <ng-template #caption>
-            <div class="text-lg font-bold text-primary">
+            <div class="text-lg fw-bold text-primary">
               SALDO EN INVERSIONES AL {{ data()?.fechaReporte | uppercase }}
             </div>
           </ng-template>
           <ng-template #header>
             <tr>
               <th>DESCRIPCIÓN</th>
-              <th class="text-right">IMPORTE</th>
+              <th class="text-end">IMPORTE</th>
             </tr>
           </ng-template>
           <ng-template #body let-inv>
             <tr class="rf-row-concepto g-4">
               <td class="rf-td-descripcion--item">{{ inv.descripcion }}</td>
-              <td class="text-right rf-td-number">
+              <td class="text-end rf-td-number">
                 {{ inv.importe | number:'1.0-0' }}
               </td>
             </tr>
           </ng-template>
           <ng-template #footer>
             <tr class="rf-row-result g-4">
-              <td class="rf-td-descripcion font-bold text-right">
+              <td class="rf-td-descripcion fw-bold text-end">
                 (2) SUBTOTAL
               </td>
-              <td class="text-right rf-td-number--total">
+              <td class="text-end rf-td-number--total">
                 {{ data()?.subtotalInversiones | number:'1.0-0' }}
               </td>
             </tr>
             @if (data()?.fondoReserva; as fondoReserva) {
             <tr class="rf-row-concepto g-4">
-              <td class="rf-td-descripcion--item text-right">
+              <td class="rf-td-descripcion--item text-end">
                 (3) {{ fondoReserva.descripcion }}
               </td>
-              <td class="text-right rf-td-number">
+              <td class="text-end rf-td-number">
                 {{ fondoReserva.importe | number:'1.0-0' }}
               </td>
             </tr>
             }
             <tr class="rf-row-total g-4">
-              <td class="rf-td-descripcion font-bold text-right">SUMA</td>
-              <td class="text-right rf-td-number--total">
+              <td class="rf-td-descripcion fw-bold text-end">SUMA</td>
+              <td class="text-end rf-td-number--total">
                 {{ data()?.sumaInversiones | number:'1.0-0' }}
               </td>
             </tr>
@@ -103,14 +103,14 @@
   </div>
   } @else {
   <div
-    class="rf-card d-flex flex-column align-items-center py-8 text-color-secondary"
+    class="rf-card d-flex flex-column align-items-center py-5 text-body-secondary"
   >
     <app-icon
       [icon]="'material-symbols-light:table-view'"
       class="text-5xl mb-4 opacity-50"
     />
-    <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
-    <p class="mt-2 text-500">Verifique los parámetros seleccionados</p>
+    <p class="m-0 text-xl fw-medium">No hay datos para mostrar</p>
+    <p class="mt-2 text-body-secondary">Verifique los parámetros seleccionados</p>
   </div>
   }
 </div>

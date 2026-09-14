@@ -10,12 +10,12 @@
   tableLayout="fixed"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block border-none shadow-sm"
+  class="custom-table card d-none d-md-block border-0 shadow-sm"
 >
   <ng-template #caption>
     <!-- Contenedor Maestro: Apila en mívil, alinea en lónea en escritorio -->
     <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded g-4"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
     >
       <!-- LADO IZQUIERDO: Buscador y Tútulo (Toma el espacio libre) -->
       <div class="flex-grow-1">
@@ -86,22 +86,22 @@
 
   <ng-template #body let-item>
     <tr>
-      <td class="font-medium text-900">{{ item.areaResponsable }}</td>
+      <td class="fw-medium text-body">{{ item.areaResponsable }}</td>
       <td class="table-col-description">
-        <div class="text-base font-bold text-900 mb-1">
+        <div class="text-base fw-bold text-body mb-1">
           {{ item.fechaSolicitud }} {{ item.titulo | titlecase }}
         </div>
       </td>
       <td class="table-col-pendiente table-col-description">
         <div
-          class="text-justify text-600 text-sm line-height-3"
+          class="text-justify text-body-secondary text-sm line-height-3"
           [innerHTML]="item.pendiente | sanitizeHtml"
         ></div>
       </td>
       <td class="table-col-seguimiento table-col-description">
         @if (item.seguimientos.length > 0) {
-        <div class="text-sm text-700">
-          <span class="font-bold text-primary"
+        <div class="text-sm text-body">
+          <span class="fw-bold text-primary"
             >{{ item.seguimientos[0].fecha }}</span
           >: {{ item.seguimientos[0].seguimiento }}
         </div>
@@ -211,12 +211,12 @@
         />
       </div>
 
-      <h2 class="font-bold">{{ item.areaResponsable }}</h2>
-      <p class="text-sm text-500">
+      <h2 class="fw-bold">{{ item.areaResponsable }}</h2>
+      <p class="text-sm text-body-secondary">
         {{ item.fechaSolicitud }} {{ item.titulo }}
       </p>
       <div
-        class="text-sm text-500 my-1"
+        class="text-sm text-body-secondary my-1"
         [innerHTML]="item.pendiente | sanitizeHtml"
       ></div>
       <p class="text-sm">

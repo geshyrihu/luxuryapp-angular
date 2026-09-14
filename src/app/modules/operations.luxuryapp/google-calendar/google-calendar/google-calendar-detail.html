@@ -1,44 +1,44 @@
 <div class="d-flex flex-column gap-3">
   <div class="row g-4">
     <div class="col-12 col-md-6">
-      <small class="d-block text-color-secondary">Asunto</small>
+      <small class="d-block text-body-secondary">Asunto</small>
       <strong>{{ item.subjectTypeName }}</strong>
     </div>
     <div class="col-12 col-md-6">
-      <small class="d-block text-color-secondary">Modalidad</small>
+      <small class="d-block text-body-secondary">Modalidad</small>
       <strong>{{ item.modalityName }}</strong>
     </div>
     <div class="col-12 col-md-6">
-      <small class="d-block text-color-secondary">Repeticion</small>
+      <small class="d-block text-body-secondary">Repeticion</small>
       <strong>{{ item.recurrenceSummary || "Unica" }}</strong>
     </div>
     <div class="col-12 col-md-6">
-      <small class="d-block text-color-secondary">Inicio</small>
+      <small class="d-block text-body-secondary">Inicio</small>
       <strong>{{ formatBusinessDateTime(item.startAt) }}</strong>
     </div>
     <div class="col-12 col-md-6">
-      <small class="d-block text-color-secondary">Fin</small>
+      <small class="d-block text-body-secondary">Fin</small>
       <strong>{{ formatBusinessDateTime(item.endAt) }}</strong>
     </div>
     <div class="col-12 col-md-6">
-      <small class="d-block text-color-secondary">Ubicacion</small>
+      <small class="d-block text-body-secondary">Ubicacion</small>
       <strong>{{ item.location || "Sin ubicacion" }}</strong>
     </div>
     <div class="col-12 col-md-6">
-      <small class="d-block text-color-secondary">Invitados</small>
+      <small class="d-block text-body-secondary">Invitados</small>
       <strong>{{ item.guestCount }}</strong>
     </div>
     <div class="col-12 col-md-6">
-      <small class="d-block text-color-secondary">Estado</small>
+      <small class="d-block text-body-secondary">Estado</small>
       <strong>{{ getStatusLabel() }}</strong>
       @if (!item.isSynchronized) {
-      <small class="d-block text-color-secondary mt-1">
+      <small class="d-block text-body-secondary mt-1">
         Este registro no tiene un vinculo activo con Google Calendar.
       </small>
       }
     </div>
     <div class="col-12 col-md-6">
-      <small class="d-block text-color-secondary">Enlace</small>
+      <small class="d-block text-body-secondary">Enlace</small>
       @if (item.googleHtmlLink) {
       <a [href]="item.googleHtmlLink" rel="noopener noreferrer" target="_blank">
         Ver evento
@@ -48,7 +48,7 @@
       }
     </div>
     <div class="col-12 col-md-6">
-      <small class="d-block text-color-secondary">Google Meet</small>
+      <small class="d-block text-body-secondary">Google Meet</small>
       @if (item.googleMeetUrl) {
       <a [href]="item.googleMeetUrl" rel="noopener noreferrer" target="_blank">
         Abrir Meet

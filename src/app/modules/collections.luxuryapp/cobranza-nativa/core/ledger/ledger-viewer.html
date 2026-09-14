@@ -70,9 +70,9 @@
         <th class="w-8rem text-center">Fecha</th>
         <th class="w-10rem text-center">Tipo de Evento</th>
         <th>DESCRIPCIÓN</th>
-        <th class="w-8rem text-right">Débito</th>
-        <th class="w-8rem text-right">Crédito</th>
-        <th class="w-7rem text-500 text-xs">Creado por</th>
+        <th class="w-8rem text-end">Débito</th>
+        <th class="w-8rem text-end">Crédito</th>
+        <th class="w-7rem text-body-secondary text-xs">Creado por</th>
       </tr>
     </ng-template>
 
@@ -88,27 +88,27 @@
           />
         </td>
         <td class="text-sm">{{ entry.description }}</td>
-        <td class="text-right text-sm">
+        <td class="text-end text-sm">
           @if (entry.debitAmount > 0) {
           <span class="text-red-700">
             {{ entry.debitAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}
           </span>
           }
         </td>
-        <td class="text-right text-sm">
+        <td class="text-end text-sm">
           @if (entry.creditAmount > 0) {
           <span class="text-green-700">
             {{ entry.creditAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}
           </span>
           }
         </td>
-        <td class="text-xs text-500">{{ entry.createdBy }}</td>
+        <td class="text-xs text-body-secondary">{{ entry.createdBy }}</td>
       </tr>
     </ng-template>
 
     <ng-template #emptymessage>
       <tr>
-        <td colspan="6" class="text-center p-4 text-500">
+        <td colspan="6" class="text-center p-4 text-body-secondary">
           @if (!propertyIdCtrl.value) { Selecciona una propiedad para consultar
           el ledger. } @else { No hay movimientos en el período seleccionado. }
         </td>
@@ -138,13 +138,13 @@
           {{ entry.effectiveDate | apiDate:"dd/MM/yyyy" }} · {{ entry.createdBy
           }}
         </p>
-        <div end class="pe-3 text-right">
+        <div end class="pe-3 text-end">
           @if (entry.debitAmount > 0) {
-          <div class="text-red-700 text-sm font-medium">
+          <div class="text-red-700 text-sm fw-medium">
             -{{ entry.debitAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}
           </div>
           } @if (entry.creditAmount > 0) {
-          <div class="text-green-700 text-sm font-medium">
+          <div class="text-green-700 text-sm fw-medium">
             +{{ entry.creditAmount | currency:"MXN":"symbol-narrow":"1.2-2" }}
           </div>
           }

@@ -2,7 +2,7 @@
 <div class="d-none d-md-block p-2">
   <!-- Título del cliente -->
   <div
-    class="p-3 mb-4 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center uppercase tracking-widest"
+    class="p-3 mb-4 fw-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center text-uppercase tracking-widest"
   >
     Módulos asignados a: {{ roleName }}
   </div>
@@ -21,10 +21,10 @@
     <!-- Título del grupo -->
     <div class="d-flex align-items-center gap-2 mb-3 px-1">
       <div class="w-1rem h-1rem rounded bg-primary"></div>
-      <h5 class="m-0 font-bold text-primary uppercase tracking-widest text-sm">
+      <h5 class="m-0 fw-bold text-primary text-uppercase tracking-widest text-sm">
         {{ group.groupTitle }}
       </h5>
-      <span class="text-xs text-500 ms-2"
+      <span class="text-xs text-body-secondary ms-2"
         >({{ group.items.length }} módulos)</span
       >
     </div>
@@ -39,7 +39,7 @@
           [class.bg-green-50]="item.isAssigned"
           [class.shadow-sm]="item.isAssigned"
           [class.border-red-100]="!item.isAssigned"
-          [class.surface-50]="!item.isAssigned"
+          [class.bg-body-tertiary]="!item.isAssigned"
           (click)="toggleModuleActivation(item)"
         >
           <div class="d-flex justify-content-between align-items-center w-full">
@@ -59,7 +59,7 @@
                 />
               </span>
               <span
-                class="font-bold text-sm"
+                class="fw-bold text-sm"
                 [class.text-900]="item.isAssigned"
                 [class.text-600]="!item.isAssigned"
                 [class.underline]="checkIfTwoDigitsAndSpace(item.moduleAppName)"
@@ -80,7 +80,7 @@
 <div class="d-md-none">
   <div class="ion-padding">
     <div
-      class="p-3 mb-3 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center"
+      class="p-3 mb-3 fw-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center"
     >
       MODULOS ASIGNADOS A {{ roleName | uppercase }}
     </div>
@@ -93,12 +93,12 @@
     <lx-message severity="warn" text="No se encontraron módulos." />
     } @for (group of groupedData(); track group.groupTitle) {
     <div class="mb-3">
-      <h3 class="text-sm text-500 font-bold px-3 uppercase m-0 mb-2">
+      <h3 class="text-sm text-body-secondary fw-bold px-3 text-uppercase m-0 mb-2">
         {{ group.groupTitle }}
       </h3>
       <div class="m-0">
         @for (item of group.items; track item.moduleAppId) {
-        <div class="d-flex align-items-center justify-content-between p-3 border-bottom-1 surface-border">
+        <div class="d-flex align-items-center justify-content-between p-3 border-bottom-1 border">
           <h2
             [class.font-bold]="checkIfTwoDigitsAndSpace(item.moduleAppName)"
             [class.underline]="checkIfTwoDigitsAndSpace(item.moduleAppName)"

@@ -1,8 +1,8 @@
 <div class="legal-staff-board">
   <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3 mb-3 g-4">
     <div>
-      <h2 class="m-0 text-xl font-semibold">Empleados Activos y Contratos</h2>
-      <p class="text-500 m-0 text-sm">
+      <h2 class="m-0 text-xl fw-semibold">Empleados Activos y Contratos</h2>
+      <p class="text-body-secondary m-0 text-sm">
         Directorio legal de colaboradores activos con estatus de contrato.
       </p>
     </div>
@@ -55,9 +55,9 @@
             />
             }
             <div class="d-flex flex-column">
-              <span class="font-semibold">{{ item.fullName }}</span>
+              <span class="fw-semibold">{{ item.fullName }}</span>
               @if (item.workPositionName) {
-              <small class="text-500">{{ item.workPositionName }}</small>
+              <small class="text-body-secondary">{{ item.workPositionName }}</small>
               }
             </div>
           </div>

@@ -1,7 +1,7 @@
 <div class="d-flex flex-column h-full">
   <!-- Top Bar -->
   <div
-    class="surface-card p-3 shadow-sm d-flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
+    class="bg-body p-3 shadow-sm d-flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
   >
     <div class="d-flex align-items-center gap-3">
       <iw-button
@@ -11,10 +11,10 @@
         (clicked)="onGoBack()"
       />
       <div>
-        <h2 class="text-xl font-bold text-900 m-0">
+        <h2 class="text-xl fw-bold text-body m-0">
           {{ manual()?.folio || 'Editor de Manual' }}
         </h2>
-        <p class="text-500 m-0 text-xs">
+        <p class="text-body-secondary m-0 text-xs">
           {{ manual()?.departament }} &mdash; v{{ manual()?.currentVersion }}
         </p>
       </div>
@@ -66,7 +66,7 @@
       class="border-right-1 border-200 overflow-y-auto flex-shrink-0 w-20rem"
     >
       @if (!pasos().length) {
-      <div class="p-4 text-center text-500">
+      <div class="p-4 text-center text-body-secondary">
         <app-icon
           [icon]="'material-symbols-light:format-list-bulleted'"
           class="text-3xl mb-2 d-block"
@@ -82,18 +82,18 @@
         @for (paso of pasos(); track paso.id; let i = $index) {
         <div
           cdkDrag
-          class="d-flex align-items-center gap-2 p-3 border-bottom-1 border-200 cursor-pointer hover:surface-100 transition-colors transition-duration-150"
-          [class.surface-100]="selectedPaso()?.id === paso.id"
+          class="d-flex align-items-center gap-2 p-3 border-bottom-1 border-200 cursor-pointer hover:bg-body-tertiary transition-colors transition-duration-150"
+          [class.bg-body-tertiary]="selectedPaso()?.id === paso.id"
           (click)="onSelectPaso(paso)"
         >
           <app-icon
             cdkDragHandle
             icon="material-symbols-light:menu"
-            class="text-400 cursor-grab flex-shrink-0 text-xs"
+            class="text-body-secondary cursor-grab flex-shrink-0 text-xs"
           />
 
           <div
-            class="flex-shrink-0 w-2rem h-2rem border-circle d-flex align-items-center justify-content-center text-white font-bold text-xs"
+            class="flex-shrink-0 w-2rem h-2rem rounded-circle d-flex align-items-center justify-content-center text-white fw-bold text-xs"
             [class.bg-primary]="paso.tipoNota === 0"
             [class.bg-blue-400]="paso.tipoNota === 1"
             [class.bg-yellow-500]="paso.tipoNota === 2"
@@ -102,14 +102,14 @@
             {{ i + 1 }}
           </div>
 
-          <div class="flex-1 min-w-0">
+          <div class="flex-fill min-w-0">
             <div
-              class="text-sm font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+              class="text-sm fw-medium text-body text-nowrap overflow-hidden text-truncate"
             >
               {{ paso.titulo }}
             </div>
             @if (paso.responsableRoleNombre) {
-            <div class="text-xs text-500 mt-1">
+            <div class="text-xs text-body-secondary mt-1">
               {{ paso.responsableRoleNombre }}
             </div>
             } @if (paso.tipoNota !== 0) {
@@ -149,8 +149,8 @@
         class="d-flex flex-column align-items-center justify-content-center h-full text-center max-w-30rem mx-auto"
       >
         <app-icon [icon]="'material-symbols-light:book'" class="text-6xl text-primary mb-4" />
-        <h2 class="text-900 font-bold mb-2">Diseño del Manual</h2>
-        <p class="text-500 line-height-3 mb-4">
+        <h2 class="text-body fw-bold mb-2">Diseño del Manual</h2>
+        <p class="text-body-secondary line-height-3 mb-4">
           Aquí es donde defines el paso a paso de tu proceso. Selecciona un paso
           de la lista de la izquierda para editarlo, o haz clic en
           <strong>Agregar Paso</strong> para crear una nueva instrucción.
@@ -167,14 +167,14 @@
       } @else {
 
       <div class="w-full xl:w-8 mx-auto d-flex flex-column gap-4">
-        <div class="surface-ground rounded-xl p-4 border-1 surface-border">
+        <div class="bg-body-tertiary rounded-xl p-4 border-1 border">
           <div class="d-flex align-items-center gap-3 mb-2">
             <app-icon [icon]="'material-symbols-light:edit'" class="text-2xl text-primary" />
-            <h3 class="m-0 text-900 font-semibold">
+            <h3 class="m-0 text-body fw-semibold">
               {{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}
             </h3>
           </div>
-          <p class="text-color-secondary m-0 line-height-3">
+          <p class="text-body-secondary m-0 line-height-3">
             Detalla la instrucción a realizar. Usa el tipo
             <strong>Normal</strong> para instrucciones regulares, o resalta
             precauciones cambiando a <strong>Advertencia</strong> o
@@ -215,7 +215,7 @@
           />
 
           <div class="d-flex flex-column gap-2">
-            <label class="font-bold text-sm text-700">Tipo de Nota</label>
+            <label class="fw-bold text-sm text-body">Tipo de Nota</label>
             <custom-input-select-button-signal
               [options]="tipoNotaOpciones"
               [control]="pasoForm.controls.tipoNota"
@@ -233,7 +233,7 @@
         @if (!isNewPaso() && selectedPaso()) {
         <div class="d-flex flex-column gap-3 pt-3 border-top-1 border-200">
           <div class="d-flex align-items-center justify-content-between">
-            <h4 class="text-base font-bold text-700 m-0">Diagrama de Flujo</h4>
+            <h4 class="text-base fw-bold text-body m-0">Diagrama de Flujo</h4>
             <il-button
               [iconClass]="selectedPaso()!.diagramaId ? 'material-symbols-light:account-tree' : 'material-symbols-light:add'"
               [label]="selectedPaso()!.diagramaId ? 'Abrir Diagrama' : 'Crear Diagrama'"
@@ -244,15 +244,15 @@
             />
           </div>
           @if (!selectedPaso()!.diagramaId) {
-          <div class="surface-ground rounded p-3 border-1 surface-border">
+          <div class="bg-body-tertiary rounded p-3 border-1 border">
             <div class="d-flex align-items-center gap-2 mb-2">
               <app-icon
                 [icon]="'material-symbols-light:lightbulb-outline'"
                 class="text-yellow-500"
               />
-              <span class="font-bold text-700 text-sm">Tip Visual</span>
+              <span class="fw-bold text-body text-sm">Tip Visual</span>
             </div>
-            <p class="text-sm text-500 m-0 line-height-3">
+            <p class="text-sm text-body-secondary m-0 line-height-3">
               Puedes agregar un
               <strong>Diagrama de Flujo interactivo</strong> (estilo BPMN) para
               explicar visualmente este paso. Haz clic en "Crear Diagrama" para
@@ -261,16 +261,16 @@
           </div>
           } @else {
           <div
-            class="surface-ground rounded p-3 border-1 surface-border mb-2"
+            class="bg-body-tertiary rounded p-3 border-1 border mb-2"
           >
             <div class="d-flex align-items-center gap-2 mb-2">
               <app-icon
                 [icon]="'material-symbols-light:check-circle-outline'"
                 class="text-green-500"
               />
-              <span class="font-bold text-700 text-sm">Diagrama Vinculado</span>
+              <span class="fw-bold text-body text-sm">Diagrama Vinculado</span>
             </div>
-            <p class="text-sm text-500 m-0 line-height-3">
+            <p class="text-sm text-body-secondary m-0 line-height-3">
               Este paso cuenta con un diagrama interactivo. Usa el botón "Abrir
               Diagrama" para realizar modificaciones.
             </p>
@@ -287,9 +287,9 @@
         @if (!isNewPaso() && selectedPaso()) {
         <div class="d-flex flex-column gap-3 pt-3 border-top-1 border-200">
           <div class="d-flex align-items-center justify-content-between">
-            <h4 class="text-base font-bold text-700 m-0">Imagenes del Paso</h4>
+            <h4 class="text-base fw-bold text-body m-0">Imagenes del Paso</h4>
             <div class="d-flex align-items-center gap-2">
-              <span class="text-xs text-400">o Ctrl+V para pegar</span>
+              <span class="text-xs text-body-secondary">o Ctrl+V para pegar</span>
               <lx-file-upload
                 accept="image/*"
                 [maxFileSize]="10000000"
@@ -303,7 +303,7 @@
           </div>
 
           @if (uploadingImagen()) {
-          <div class="d-flex align-items-center gap-2 text-500 text-sm">
+          <div class="d-flex align-items-center gap-2 text-body-secondary text-sm">
             <app-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin" />
             Subiendo...
           </div>
@@ -311,7 +311,7 @@
           <div class="d-flex flex-wrap gap-3">
             @for (img of selectedPaso()!.imagenes; track img.id) {
             <div
-              class="relative surface-card border-1 surface-border rounded-xl overflow-hidden p-2"
+              class="relative bg-body border-1 border rounded-xl overflow-hidden p-2"
             >
               <img
                 [src]="img.url"
@@ -331,7 +331,7 @@
             }
           </div>
           } @else {
-          <p class="text-sm text-500 m-0">Sin imagenes para este paso.</p>
+          <p class="text-sm text-body-secondary m-0">Sin imagenes para este paso.</p>
           }
         </div>
         }
@@ -339,12 +339,12 @@
         <!-- Enlaces / Videos del paso (solo en edicion) -->
         @if (!isNewPaso() && selectedPaso()) {
         <div class="d-flex flex-column gap-3 pt-3 border-top-1 border-200">
-          <h4 class="text-base font-bold text-700 m-0">Enlaces y Videos</h4>
+          <h4 class="text-base fw-bold text-body m-0">Enlaces y Videos</h4>
 
           <form
             [formGroup]="enlaceForm"
             (ngSubmit)="onAddEnlace()"
-            class="d-flex flex-column gap-2 border-1 rounded p-3 surface-50 border-200"
+            class="d-flex flex-column gap-2 border-1 rounded p-3 bg-body-tertiary border-200"
           >
             <div class="row align-items-end g-4">
               <div class="col-12 col-md-7">
@@ -399,7 +399,7 @@
               >
                 <iframe
                   [src]="safeUrl(enlace.urlEnlace)"
-                  class="w-full h-full border-none"
+                  class="w-full h-full border-0"
                   allow="
                     accelerometer;
                     autoplay;
@@ -412,7 +412,7 @@
                 ></iframe>
               </div>
               } @else {
-              <p class="text-sm text-500 m-0">URL de video no válida.</p>
+              <p class="text-sm text-body-secondary m-0">URL de video no válida.</p>
               } } @else {
               <div class="d-flex align-items-center gap-2 mt-2">
                 <a
@@ -429,7 +429,7 @@
                   />
                 </a>
                 <span
-                  class="text-sm text-500 text-overflow-ellipsis overflow-hidden white-space-nowrap"
+                  class="text-sm text-body-secondary text-truncate overflow-hidden text-nowrap"
                   
                   >{{ enlace.urlEnlace }}</span
                 >
@@ -439,7 +439,7 @@
             }
           </div>
           } @else {
-          <p class="text-sm text-500 m-0">No hay enlaces o videos adjuntos.</p>
+          <p class="text-sm text-body-secondary m-0">No hay enlaces o videos adjuntos.</p>
           }
         </div>
         }
@@ -456,7 +456,7 @@
   <div class="flex-grow-1 overflow-y-auto p-4">
     <div class="w-full xl:w-8 mx-auto d-flex flex-column gap-4">
       <div class="d-flex align-items-center justify-content-between">
-        <h3 class="text-lg font-bold text-900 m-0">Historial de Versiones</h3>
+        <h3 class="text-lg fw-bold text-body m-0">Historial de Versiones</h3>
         <il-button
           iconClass="material-symbols-light:add"
           label="Nueva Version"
@@ -468,9 +468,9 @@
 
       @if (showVersionForm()) {
       <div
-        class="surface-card p-4 rounded-xl border-1 border-200 shadow-sm"
+        class="bg-body p-4 rounded-xl border-1 border-200 shadow-sm"
       >
-        <h4 class="text-base font-bold text-700 m-0 mb-3">Agregar Version</h4>
+        <h4 class="text-base fw-bold text-body m-0 mb-3">Agregar Version</h4>
         <form
           [formGroup]="versionForm"
           (ngSubmit)="onAgregarVersion()"
@@ -486,7 +486,7 @@
               />
             </div>
             <div class="col-12 col-md-4">
-              <label class="font-bold text-sm text-700 d-block mb-2">Fecha</label>
+              <label class="fw-bold text-sm text-body d-block mb-2">Fecha</label>
               <input
                 type="date"
                 formControlName="fechaCambio"
@@ -522,7 +522,7 @@
         </form>
       </div>
       } @if (!versiones().length) {
-      <div class="text-center text-500 py-5">
+      <div class="text-center text-body-secondary py-5">
         <app-icon [icon]="'material-symbols-light:history'" class="text-4xl mb-3 d-block" />
         <p class="text-sm m-0">Sin versiones registradas.</p>
       </div>
@@ -530,20 +530,20 @@
       <div class="d-flex flex-column gap-2">
         @for (v of versiones(); track v.id) {
         <div
-          class="surface-card p-3 rounded-xl border-1 border-200 d-flex align-items-start justify-content-between gap-3"
+          class="bg-body p-3 rounded-xl border-1 border-200 d-flex align-items-start justify-content-between gap-3"
         >
-          <div class="flex-1">
+          <div class="flex-fill">
             <div class="d-flex align-items-center gap-2 mb-1">
-              <span class="font-bold text-primary">v{{ v.version }}</span>
-              <span class="text-500 text-xs"
+              <span class="fw-bold text-primary">v{{ v.version }}</span>
+              <span class="text-body-secondary text-xs"
                 >{{ v.fechaCambio | apiDate: 'dd/MM/yyyy' }}</span
               >
               @if (v.autor) {
-              <span class="text-xs text-700">por {{ v.autor }}</span>
+              <span class="text-xs text-body">por {{ v.autor }}</span>
               }
             </div>
             @if (v.descripcionCambio) {
-            <p class="text-sm text-600 m-0">{{ v.descripcionCambio }}</p>
+            <p class="text-sm text-body-secondary m-0">{{ v.descripcionCambio }}</p>
             }
           </div>
           <iw-button
@@ -567,17 +567,17 @@
   @if (activeTab() === 'adjuntos') {
   <div class="flex-grow-1 overflow-y-auto p-4">
     <div class="w-full xl:w-8 mx-auto d-flex flex-column gap-4">
-      <h3 class="text-lg font-bold text-900 m-0">
+      <h3 class="text-lg fw-bold text-body m-0">
         Archivos Adjuntos (Anexos y Referencias)
       </h3>
 
       <div
-        class="surface-card p-4 rounded-xl border-1 border-200 shadow-sm"
+        class="bg-body p-4 rounded-xl border-1 border-200 shadow-sm"
       >
-        <h4 class="text-base font-bold text-700 m-0 mb-3">Subir Archivo</h4>
+        <h4 class="text-base fw-bold text-body m-0 mb-3">Subir Archivo</h4>
         <div class="d-flex flex-column gap-3">
           <div class="d-flex flex-column gap-1">
-            <label class="font-bold text-sm text-700"
+            <label class="fw-bold text-sm text-body"
               >Nombre del Documento</label
             >
             <input
@@ -598,20 +598,20 @@
               [styleClass]="'p-button-sm p-button-outlined'"
             />
             @if (uploadingAdjunto()) {
-            <span class="text-500 text-sm d-flex align-items-center gap-1">
+            <span class="text-body-secondary text-sm d-flex align-items-center gap-1">
               <app-icon [icon]="'material-symbols-light:progress-activity'" class="ds-animate-spin" />
               Subiendo...
             </span>
             }
           </div>
-          <p class="text-xs text-500 m-0">
+          <p class="text-xs text-body-secondary m-0">
             Formatos permitidos: PDF, Word, Excel.
           </p>
         </div>
       </div>
 
       @if (!adjuntos().length) {
-      <div class="text-center text-500 py-5">
+      <div class="text-center text-body-secondary py-5">
         <app-icon [icon]="'material-symbols-light:attach-file'" class="text-4xl mb-3 d-block" />
         <p class="text-sm m-0">Sin archivos adjuntos.</p>
       </div>
@@ -619,19 +619,19 @@
       <div class="d-flex flex-column gap-2">
         @for (adj of adjuntos(); track adj.id) {
         <div
-          class="surface-card p-3 rounded-xl border-1 border-200 d-flex align-items-center gap-3"
+          class="bg-body p-3 rounded-xl border-1 border-200 d-flex align-items-center gap-3"
         >
           <app-icon
             [icon]="'material-symbols-light:description'"
-            class="text-2xl text-400 flex-shrink-0"
+            class="text-2xl text-body-secondary flex-shrink-0"
           />
-          <div class="flex-1 min-w-0">
+          <div class="flex-fill min-w-0">
             <div
-              class="font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+              class="fw-medium text-body text-nowrap overflow-hidden text-truncate"
             >
               {{ adj.nombre }}
             </div>
-            <div class="text-xs text-500 uppercase">
+            <div class="text-xs text-body-secondary text-uppercase">
               {{ adj.fileExtension }}
             </div>
           </div>

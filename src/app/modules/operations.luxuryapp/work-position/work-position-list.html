@@ -103,8 +103,8 @@
         </div>
         } @else {
         <div>
-          <small class="text-500">{{ item.folio }}</small>
-          <p class="mt-1 font-semibold">{{ item.applicationRoleName }}</p>
+          <small class="text-body-secondary">{{ item.folio }}</small>
+          <p class="mt-1 fw-semibold">{{ item.applicationRoleName }}</p>
         </div>
         }
       </td>
@@ -119,12 +119,12 @@
           <div
             class="d-flex justify-content-between border-bottom-1 border-200 pb-1"
           >
-            <small class="text-500 font-bold">PRE:</small>
+            <small class="text-body-secondary fw-bold">PRE:</small>
             <span class="text-xs">{{ item.sueldoBase }}</span>
           </div>
           <div class="d-flex justify-content-between">
-            <small class="text-500 font-bold">ACT:</small>
-            <span class="text-xs font-bold text-primary"
+            <small class="text-body-secondary fw-bold">ACT:</small>
+            <span class="text-xs fw-bold text-primary"
               >{{ item.sueldo }}</span
             >
           </div>
@@ -166,7 +166,7 @@
             class="me-2"
           />
           }
-          <span class="font-semibold truncate flex-1 min-w-0"
+          <span class="fw-semibold truncate flex-fill min-w-0"
             >{{ item.applicationUser }}</span
           >
           @if (item.employeeId) {
@@ -220,9 +220,9 @@
         }
       </div>
       <div>
-        <small class="text-500">{{ item.folio }}</small>
-        <p class="m-0 font-semibold">{{ item.applicationRoleName }}</p>
-        <small class="text-500"
+        <small class="text-body-secondary">{{ item.folio }}</small>
+        <p class="m-0 fw-semibold">{{ item.applicationRoleName }}</p>
+        <small class="text-body-secondary"
           >{{ item.turno }} · {{ getDepartamentLabel(item.departament) }}</small
         >
         @if (necesitaActualizacion(item)) {

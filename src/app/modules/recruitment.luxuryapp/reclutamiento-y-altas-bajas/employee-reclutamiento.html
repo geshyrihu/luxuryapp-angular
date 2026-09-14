@@ -5,29 +5,29 @@
         <!-- Solicitud de alta -->
         @if(solicitudAltaStatus()){
         <li
-          class="d-flex align-items-center p-3 mb-2 border-1 surface-border rounded"
+          class="d-flex align-items-center p-3 mb-2 border-1 border rounded"
         >
           <app-icon
             [icon]="'material-symbols-light:person-add'"
             class="me-3 text-red-500 text-lg"
           />
-          <span class="text-red-500 font-medium">
+          <span class="text-red-500 fw-medium">
             Solicitud de alta en proceso
           </span>
         </li>
         }@else{
         <li
-          class="d-flex align-items-center p-3 mb-2 border-1 surface-border rounded cursor-pointer hover:surface-hover"
+          class="d-flex align-items-center p-3 mb-2 border-1 border rounded cursor-pointer"
           (click)="onModalSolicitudALta()"
         >
           <app-icon [icon]="'material-symbols-light:person-add'" class="me-3 text-lg" />
-          <span class="font-medium">Solicitar Alta</span>
+          <span class="fw-medium">Solicitar Alta</span>
         </li>
         }
         <!-- Mensaje para baja o modificación de salario -->
         @if (!workPosition()) {
         <li
-          class="d-flex align-items-center p-3 mb-2 border-1 surface-border rounded surface-100"
+          class="d-flex align-items-center p-3 mb-2 border-1 border rounded bg-body-tertiary"
         >
           <em class="text-red-500">
             Para solicitar baja o modificación de salario, este empleado debe
@@ -38,21 +38,21 @@
         <!-- Solicitud de baja -->
         @if (!solicitudBajaStatus() && workPosition()) {
         <li
-          class="d-flex align-items-center p-3 mb-2 border-1 surface-border rounded cursor-pointer hover:surface-hover"
+          class="d-flex align-items-center p-3 mb-2 border-1 border rounded cursor-pointer"
           (click)="onModalSolicitudBaja()"
         >
           <app-icon [icon]="'material-symbols-light:person-remove'" class="me-3 text-lg" />
-          <span class="font-medium">Solicitar Baja</span>
+          <span class="fw-medium">Solicitar Baja</span>
         </li>
         } @if (solicitudBajaStatus()) {
         <li
-          class="d-flex align-items-center p-3 mb-2 border-1 surface-border rounded"
+          class="d-flex align-items-center p-3 mb-2 border-1 border rounded"
         >
           <app-icon
             [icon]="'material-symbols-light:person-remove'"
             class="me-3 text-red-500 text-lg"
           />
-          <span class="text-red-500 font-medium"
+          <span class="text-red-500 fw-medium"
             >Solicitar Baja en proceso</span
           >
         </li>
@@ -60,23 +60,23 @@
         <!-- Solicitud de modificación de salario -->
         @if (!solicitudModificacionSalarioStatus() && workPosition()) {
         <li
-          class="d-flex align-items-center p-3 mb-2 border-1 surface-border rounded cursor-pointer hover:surface-hover"
+          class="d-flex align-items-center p-3 mb-2 border-1 border rounded cursor-pointer"
           (click)="onModalSolicitudModificacionSalarion()"
         >
           <app-icon [icon]="'material-symbols-light:attach-money'" class="me-3 text-lg" />
-          <span class="font-medium">Solicitar modificación de salario</span>
+          <span class="fw-medium">Solicitar modificación de salario</span>
         </li>
         }
         <!-- Solicitud de modificación de salario en proceso -->
         @if (solicitudModificacionSalarioStatus()) {
         <li
-          class="d-flex align-items-center p-3 mb-2 border-1 surface-border rounded"
+          class="d-flex align-items-center p-3 mb-2 border-1 border rounded"
         >
           <app-icon
             [icon]="'material-symbols-light:attach-money'"
             class="me-3 text-red-500 text-lg"
           />
-          <span class="text-red-500 font-medium"
+          <span class="text-red-500 fw-medium"
             >Solicitar modificación de salario en proceso</span
           >
         </li>

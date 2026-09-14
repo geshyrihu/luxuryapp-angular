@@ -55,10 +55,10 @@
         @if (item.userPortada) {
         <div class="d-flex flex-column gap-1">
           <div>
-            <p class="m-0 text-sm font-semibold">{{ item.userPortada }}</p>
+            <p class="m-0 text-sm fw-semibold">{{ item.userPortada }}</p>
           </div>
           <div>
-            <p class="m-0 text-xs text-500">{{ item.fechaCargaPortada }}</p>
+            <p class="m-0 text-xs text-body-secondary">{{ item.fechaCargaPortada }}</p>
           </div>
           <div class="mt-1">
             <iw-button-view-pdf [url]="item.archivoPortada" pdf="Portada" />
@@ -72,10 +72,10 @@
         @if (item.userContable) {
         <div class="d-flex flex-column gap-1">
           <div>
-            <p class="m-0 text-sm font-semibold">{{ item.userContable }}</p>
+            <p class="m-0 text-sm fw-semibold">{{ item.userContable }}</p>
           </div>
           <div>
-            <p class="m-0 text-xs text-500">{{ item.fechaCargaContable }}</p>
+            <p class="m-0 text-xs text-body-secondary">{{ item.fechaCargaContable }}</p>
           </div>
           <div class="mt-1">
             <iw-button-view-pdf [url]="item.archivoContable" pdf="Portada" />
@@ -89,10 +89,10 @@
         @if (item.fullName) {
         <div class="d-flex flex-column gap-1">
           <div>
-            <p class="m-0 text-sm font-semibold">{{ item.fullName }}</p>
+            <p class="m-0 text-sm fw-semibold">{{ item.fullName }}</p>
           </div>
           <div>
-            <p class="m-0 text-xs text-500">{{ item.fechaCarga }}</p>
+            <p class="m-0 text-xs text-body-secondary">{{ item.fechaCarga }}</p>
           </div>
           <div class="mt-1">
             <iw-button-view-pdf [url]="item.archivoJunta" pdf="Portada" />
@@ -106,10 +106,10 @@
         @if (item.userSupervisor) {
         <div class="d-flex flex-column gap-1">
           <div>
-            <p class="m-0 text-sm font-semibold">{{ item.userSupervisor }}</p>
+            <p class="m-0 text-sm fw-semibold">{{ item.userSupervisor }}</p>
           </div>
           <div>
-            <p class="m-0 text-xs text-500">{{ item.fechaCargaSupervisor }}</p>
+            <p class="m-0 text-xs text-body-secondary">{{ item.fechaCargaSupervisor }}</p>
           </div>
           <div class="mt-1">
             <iw-button-view-pdf [url]="item.archivoFinal" pdf="Portada" />
@@ -140,28 +140,28 @@
 
       <!-- Cliente -->
       <div class="mb-2">
-        <p class="font-bold mb-0">Cliente:</p>
-        <p class="text-color-secondary mb-0">{{ item.customer }}</p>
+        <p class="fw-bold mb-0">Cliente:</p>
+        <p class="text-body-secondary mb-0">{{ item.customer }}</p>
       </div>
 
       <!-- Periodo -->
       <div class="mb-2">
-        <p class="font-bold mb-0">Periodo:</p>
-        <p class="text-color-secondary mb-0">{{ item.fechaCorrespondiente }}</p>
+        <p class="fw-bold mb-0">Periodo:</p>
+        <p class="text-body-secondary mb-0">{{ item.fechaCorrespondiente }}</p>
       </div>
 
       <!-- Fecha Junta -->
       <div class="mb-2">
-        <p class="font-bold mb-0">Fecha Junta:</p>
-        <p class="text-color-secondary mb-0">{{ item.fechaJunta }}</p>
+        <p class="fw-bold mb-0">Fecha Junta:</p>
+        <p class="text-body-secondary mb-0">{{ item.fechaJunta }}</p>
       </div>
 
       <!-- Portada -->
       @if (item.userPortada) {
       <div class="mb-2">
-        <p class="font-bold mb-0">Portada:</p>
-        <p class="text-color-secondary mb-0">{{ item.userPortada }}</p>
-        <p class="text-color-secondary mb-0">{{ item.fechaCargaPortada }}</p>
+        <p class="fw-bold mb-0">Portada:</p>
+        <p class="text-body-secondary mb-0">{{ item.userPortada }}</p>
+        <p class="text-body-secondary mb-0">{{ item.fechaCargaPortada }}</p>
         <il-button-view-pdf [url]="item.archivoPortada" pdf="Portada" />
       </div>
       }
@@ -169,9 +169,9 @@
       <!-- Contable -->
       @if (item.userContable) {
       <div class="mb-2">
-        <p class="font-bold mb-0">Contable:</p>
-        <p class="text-color-secondary mb-0">{{ item.userContable }}</p>
-        <p class="text-color-secondary mb-0">{{ item.fechaCargaContable }}</p>
+        <p class="fw-bold mb-0">Contable:</p>
+        <p class="text-body-secondary mb-0">{{ item.userContable }}</p>
+        <p class="text-body-secondary mb-0">{{ item.fechaCargaContable }}</p>
         <il-button-view-pdf [url]="item.archivoContable" pdf="Portada" />
       </div>
       }
@@ -179,9 +179,9 @@
       <!-- Operaciones -->
       @if (item.fullName) {
       <div class="mb-2">
-        <p class="font-bold mb-0">Operaciones:</p>
-        <p class="text-color-secondary mb-0">{{ item.fullName }}</p>
-        <p class="text-color-secondary mb-0">{{ item.fechaCarga }}</p>
+        <p class="fw-bold mb-0">Operaciones:</p>
+        <p class="text-body-secondary mb-0">{{ item.fullName }}</p>
+        <p class="text-body-secondary mb-0">{{ item.fechaCarga }}</p>
         <il-button-view-pdf [url]="item.archivoJunta" pdf="Portada" />
       </div>
       }
@@ -189,9 +189,9 @@
       <!-- Supervisor -->
       @if (item.userSupervisor) {
       <div class="mb-2">
-        <p class="font-bold mb-0">Supervisor:</p>
-        <p class="text-color-secondary mb-0">{{ item.userSupervisor }}</p>
-        <p class="text-color-secondary mb-0">{{ item.fechaCargaSupervisor }}</p>
+        <p class="fw-bold mb-0">Supervisor:</p>
+        <p class="text-body-secondary mb-0">{{ item.userSupervisor }}</p>
+        <p class="text-body-secondary mb-0">{{ item.fechaCargaSupervisor }}</p>
         <il-button-view-pdf [url]="item.archivoFinal" pdf="Portada" />
       </div>
       }

@@ -11,7 +11,7 @@
   (add)="onModalForm($event)"
 >
   <!-- Custom Filters (Tabs) inside the data view -->
-  <div customFilters class="px-2 py-2 overflow-x-auto no-scrollbar border-bottom-1 surface-border">
+  <div customFilters class="px-2 py-2 overflow-x-auto no-scrollbar border-bottom-1 border">
     <div class="d-flex align-items-center gap-2 w-max">
       <!-- AI Report Action -->
       <div 
@@ -19,15 +19,15 @@
         (click)="generateDailyReport()"
       >
         <app-icon icon="material-symbols-light:add" class="text-white" />
-        <span class="font-bold text-sm">Informe IA</span>
+        <span class="fw-bold text-sm">Informe IA</span>
       </div>
 
       <!-- 'All' Filter -->
       <div 
-        class="px-3 py-2 rounded-3xl cursor-pointer text-sm font-semibold transition-colors"
+        class="px-3 py-2 rounded-3xl cursor-pointer text-sm fw-semibold transition-colors"
         [class.bg-primary]="selectedModule() === null"
         [class.text-white]="selectedModule() === null"
-        [class.surface-100]="selectedModule() !== null"
+        [class.bg-body-tertiary]="selectedModule() !== null"
         [class.text-700]="selectedModule() !== null"
         (click)="onModuleFilterChange(null)"
       >
@@ -37,10 +37,10 @@
       <!-- Dynamic Module Filters -->
       @for (mod of uniqueModules(); track mod) {
       <div 
-        class="px-3 py-2 rounded-3xl cursor-pointer text-sm font-semibold transition-colors"
+        class="px-3 py-2 rounded-3xl cursor-pointer text-sm fw-semibold transition-colors"
         [class.bg-primary]="selectedModule() === mod"
         [class.text-white]="selectedModule() === mod"
-        [class.surface-100]="selectedModule() !== mod"
+        [class.bg-body-tertiary]="selectedModule() !== mod"
         [class.text-700]="selectedModule() !== mod"
         (click)="onModuleFilterChange(mod)"
       >
@@ -51,7 +51,7 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <div 
-      class="surface-card p-3 mb-2 mx-3 shadow-sm rounded-xl d-flex align-items-start gap-3 relative overflow-hidden transition-colors cursor-pointer hover:surface-hover"
+      class="bg-body p-3 mb-2 mx-3 shadow-sm rounded-xl d-flex align-items-start gap-3 relative overflow-hidden transition-colors cursor-pointer"
       (click)="onNavigate(item)"
     >
       <!-- Left Edge Color Strip -->
@@ -78,7 +78,7 @@
               [class.text-500]="getModuleColor(item.module) === 'medium'"
               class="text-base"
             ></app-icon>
-            <span class="text-xs font-medium text-500">{{ item.formattedDate }}</span>
+            <span class="text-xs fw-medium text-body-secondary">{{ item.formattedDate }}</span>
           </div>
           @if (item.status) {
           <lx-tag [severity]="getSeverityColor(item.status)" [value]="item.status"></lx-tag>
@@ -86,21 +86,21 @@
         </div>
 
         <!-- Title -->
-        <h3 class="font-bold text-800 m-0 text-base line-height-2 text-overflow-ellipsis overflow-hidden white-space-nowrap">
+        <h3 class="fw-bold text-body m-0 text-base line-height-2 text-truncate overflow-hidden text-nowrap">
           {{ item.title }}
         </h3>
 
         <!-- Description -->
-        <p class="text-sm text-600 m-0 line-clamp-2 white-space-normal">
+        <p class="text-sm text-body-secondary m-0 line-clamp-2 white-space-normal">
           {{ item.description }}
         </p>
 
         <!-- Footer -->
-        <div class="d-flex justify-content-between align-items-center text-xs mt-2 border-top-1 surface-border pt-2">
+        <div class="d-flex justify-content-between align-items-center text-xs mt-2 border-top-1 border pt-2">
           @if (item.responsible) {
-          <div class="d-flex align-items-center gap-1 text-500 bg-surface-50 px-2 py-1 rounded-2xl">
+          <div class="d-flex align-items-center gap-1 text-body-secondary bg-bg-body-tertiary px-2 py-1 rounded-2xl">
             <app-icon icon="material-symbols-light:account-circle-outline" />
-            <span class="font-medium">{{ item.responsible?.split(' ')[0] }}</span>
+            <span class="fw-medium">{{ item.responsible?.split(' ')[0] }}</span>
           </div>
           } @else {
           <div></div>
@@ -108,7 +108,7 @@
           
           @if(item.daysOpen >= 0) {
           <div
-            class="d-flex align-items-center gap-1 font-bold"
+            class="d-flex align-items-center gap-1 fw-bold"
             [class.text-red-500]="item.daysOpen > 8"
             [class.text-orange-500]="item.daysOpen > 6 && item.daysOpen <= 8"
             [class.text-500]="item.daysOpen <= 6"
@@ -122,7 +122,7 @@
 
       <!-- Chevron Right -->
       <div class="d-flex align-items-center h-full ps-2">
-        <app-icon icon="material-symbols-light:chevron-right" class="text-400 text-xl" />
+        <app-icon icon="material-symbols-light:chevron-right" class="text-body-secondary text-xl" />
       </div>
     </div>
   </ng-template>

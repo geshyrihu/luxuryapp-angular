@@ -6,43 +6,43 @@
     aria-label="Procesar alta"
   >
     <div class="pb-3">
-      <p class="m-0 font-semibold">Proceso de alta</p>
-      <p class="m-0 text-color-secondary">
+      <p class="m-0 fw-semibold">Proceso de alta</p>
+      <p class="m-0 text-body-secondary">
         Captura solo los datos base y, si ya existe un perfil, decide si debe
         reingresar o si debe crearse como alta nueva.
       </p>
     </div>
 
     @if (!hasValidTarget()) {
-    <div class="surface-100 border-round p-3 mb-3 text-orange-700">
+    <div class="bg-body-tertiary rounded p-3 mb-3 text-orange-700">
       Esta vacante no tiene una solicitud activa. Solicita la vacante antes de
       continuar con el alta.
     </div>
     } @if (vacancyContext(); as vacancy) {
-    <div class="surface-100 border-round p-3 mb-3">
-      <p class="m-0 font-semibold pb-2">Contexto de la vacante</p>
+    <div class="bg-body-tertiary rounded p-3 mb-3">
+      <p class="m-0 fw-semibold pb-2">Contexto de la vacante</p>
       <div class="row text-sm g-4">
         <div class="col-12 col-md-4">
-          <span class="text-color-secondary">Empresa: </span>{{
+          <span class="text-body-secondary">Empresa: </span>{{
           vacancy.customerName }}
         </div>
         <div class="col-12 col-md-4">
-          <span class="text-color-secondary">Puesto: </span>{{
+          <span class="text-body-secondary">Puesto: </span>{{
           vacancy.positionName }}
         </div>
         <div class="col-12 col-md-4">
-          <span class="text-color-secondary">Sueldo: </span>{{
+          <span class="text-body-secondary">Sueldo: </span>{{
           vacancy.sueldoBase | currency: "MXN" : "symbol" : "1.0-0" }}
         </div>
       </div>
     </div>
     } @if (approvedCandidate(); as candidate) {
     <div
-      class="surface-100 border-round p-3 mb-3 d-flex align-items-center justify-content-between gap-3 flex-wrap"
+      class="bg-body-tertiary rounded p-3 mb-3 d-flex align-items-center justify-content-between gap-3 flex-wrap"
     >
       <div>
-        <p class="m-0 font-semibold">Candidato aprobado detectado</p>
-        <p class="m-0 text-sm text-color-secondary">
+        <p class="m-0 fw-semibold">Candidato aprobado detectado</p>
+        <p class="m-0 text-sm text-body-secondary">
           {{ candidate.candidateName }} - puedes importar sus datos básicos.
         </p>
       </div>
@@ -56,8 +56,8 @@
       />
     </div>
     } @if (validationErrors().length) {
-    <div class="surface-50 border-1 border-red-200 border-round p-3 mb-3">
-      <p class="m-0 font-semibold text-red-700">
+    <div class="bg-body-tertiary border-1 border-red-200 rounded p-3 mb-3">
+      <p class="m-0 fw-semibold text-red-700">
         Revisa estos datos antes de guardar
       </p>
       <ul class="m-0 mt-2 ps-3 text-red-700 line-height-3">
@@ -141,13 +141,13 @@
     </div>
 
     @if (searchingDuplicates()) {
-    <div class="surface-100 border-round p-3 mt-3 text-color-secondary">
+    <div class="bg-body-tertiary rounded p-3 mt-3 text-body-secondary">
       Validando coincidencias de empleado existente...
     </div>
     } @if (duplicateMatches().length) {
-    <div class="surface-50 border-1 surface-border border-round p-3 mt-3">
-      <p class="m-0 font-semibold">Coincidencias encontradas</p>
-      <p class="m-0 mt-2 text-sm text-color-secondary">
+    <div class="bg-body-tertiary border-1 border rounded p-3 mt-3">
+      <p class="m-0 fw-semibold">Coincidencias encontradas</p>
+      <p class="m-0 mt-2 text-sm text-body-secondary">
         Si la persona ya existe, seleccionala para reingresarla o migrarla al
         cliente de este puesto. Si no corresponde, puedes continuar con un alta
         nueva.
@@ -156,7 +156,7 @@
       <div class="overflow-auto mt-3">
         <table class="w-full border-collapse">
           <thead>
-            <tr class="text-left">
+            <tr class="text-start">
               <th class="pb-2 pe-3">Empleado</th>
               <th class="pb-2 pe-3">Correo</th>
               <th class="pb-2 pe-3">Telefono</th>
@@ -167,7 +167,7 @@
           </thead>
           <tbody>
             @for (match of duplicateMatches(); track match.userId) {
-            <tr class="border-top-1 surface-border">
+            <tr class="border-top-1 border">
               <td class="py-2 pe-3">{{ match.nombreCompleto }}</td>
               <td class="py-2 pe-3">{{ match.email || "Sin correo" }}</td>
               <td class="py-2 pe-3">{{ match.telefono || "Sin telefono" }}</td>
@@ -176,10 +176,10 @@
               <td class="py-2">
                 <button
                   type="button"
-                  class="border-none border-round px-3 py-2 cursor-pointer"
+                  class="border-0 rounded px-3 py-2 cursor-pointer"
                   [class.bg-primary]="isSelectedMatch(match.userId)"
                   [class.text-white]="isSelectedMatch(match.userId)"
-                  [class.surface-200]="!isSelectedMatch(match.userId)"
+                  [class.bg-body-tertiary]="!isSelectedMatch(match.userId)"
                   (click)="selectMatchedUser(match)"
                 >
                   {{ isSelectedMatch(match.userId) ? "Seleccionado" : "Usar este
@@ -195,10 +195,10 @@
       <div class="mt-3">
         <button
           type="button"
-          class="border-none border-round px-3 py-2 cursor-pointer"
+          class="border-0 rounded px-3 py-2 cursor-pointer"
           [class.bg-primary]="isCreateNewSelected()"
           [class.text-white]="isCreateNewSelected()"
-          [class.surface-200]="!isCreateNewSelected()"
+          [class.bg-body-tertiary]="!isCreateNewSelected()"
           (click)="selectCreateNew()"
         >
           {{ isCreateNewSelected() ? "Alta nueva seleccionada" : "Crear alta
@@ -207,12 +207,12 @@
       </div>
 
       @if (duplicateResolution() && duplicateResolution() !== "new") {
-      <div class="surface-100 border-round p-3 mt-3 text-sm">
+      <div class="bg-body-tertiary rounded p-3 mt-3 text-sm">
         Al guardar, este perfil quedara vinculado al cliente del puesto actual.
         Si su rol es Staff, conservara acceso unicamente a ese cliente.
       </div>
       } @else if (isCreateNewSelected()) {
-      <div class="surface-100 border-round p-3 mt-3 text-sm">
+      <div class="bg-body-tertiary rounded p-3 mt-3 text-sm">
         Se creara un usuario nuevo aunque exista una coincidencia previa.
       </div>
       }

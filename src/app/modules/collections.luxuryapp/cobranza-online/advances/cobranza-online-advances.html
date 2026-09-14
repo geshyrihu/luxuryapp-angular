@@ -1,15 +1,15 @@
 <section class="d-flex flex-column gap-3">
   @if (!hasCustomer()) {
-  <div class="surface-card border-1 surface-border rounded p-3">
-    <div class="font-medium mb-2">Sin cliente activo</div>
-    <div class="text-color-secondary">
+  <div class="bg-body border-1 border rounded p-3">
+    <div class="fw-medium mb-2">Sin cliente activo</div>
+    <div class="text-body-secondary">
       Selecciona un cliente para consultar los saldos a favor.
     </div>
   </div>
   } @else {
   <div class="mb-2 mt-1">
-    <div class="text-lg font-semibold text-color">Reporte de Anticipos</div>
-    <div class="text-sm text-color-secondary">Condminos con saldo a favor al corte del periodo.</div>
+    <div class="text-lg fw-semibold text-body">Reporte de Anticipos</div>
+    <div class="text-sm text-body-secondary">Condminos con saldo a favor al corte del periodo.</div>
   </div>
   <div class="row g-4">
     <div class="col-12 col-md-4">
@@ -60,7 +60,7 @@
     (itemSelected)="showDetails($event)"
   />
 
-  <p class="m-0 text-xs text-color-secondary">
+  <p class="m-0 text-xs text-body-secondary">
     Importes mostrados como haber del condómino. El desglose por concepto se
     consulta con un clic en cada renglón.
   </p>

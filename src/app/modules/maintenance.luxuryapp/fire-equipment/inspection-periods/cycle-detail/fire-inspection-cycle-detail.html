@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
         <div>
           <h5 class="m-0">{{ cycle().periodName }}</h5>
-          <small class="text-600">
+          <small class="text-body-secondary">
             {{ cycle().periodStart | apiDate:'dd-MMM-yy' }} &mdash; {{ cycle().periodEnd | apiDate:'dd-MMM-yy' }}
           </small>
         </div>
@@ -16,7 +16,7 @@
   <div class="card mb-3">
     <div class="card-body">
       <div class="d-flex gap-2 align-items-center flex-wrap">
-        <span class="font-semibold">Escanear equipo:</span>
+        <span class="fw-semibold">Escanear equipo:</span>
         @if (!scanning()) {
           <il-button
             label="Iniciar cámara"
@@ -35,7 +35,7 @@
         }
       </div>
       @if (scanStatus()) {
-        <p class="text-600 text-sm mt-2 mb-0">{{ scanStatus() }}</p>
+        <p class="text-body-secondary text-sm mt-2 mb-0">{{ scanStatus() }}</p>
       }
       @if (scanError()) {
         <p class="text-red-600 text-sm mt-2 mb-0">{{ scanError() }}</p>
@@ -48,11 +48,11 @@
     <table class="w-full" >
       <thead>
         <tr >
-          <th class="p-2 text-left">Tipo</th>
-          <th class="p-2 text-left">Ubicación</th>
-          <th class="p-2 text-left">Código</th>
-          <th class="p-2 text-left">Estado</th>
-          <th class="p-2 text-left">Inspeccionado</th>
+          <th class="p-2 text-start">Tipo</th>
+          <th class="p-2 text-start">Ubicación</th>
+          <th class="p-2 text-start">Código</th>
+          <th class="p-2 text-start">Estado</th>
+          <th class="p-2 text-start">Inspeccionado</th>
           <th class="p-2"></th>
         </tr>
       </thead>
@@ -86,7 +86,7 @@
     @for (item of cycle().items; track item.inspectionId) {
       <ili-list-item>
         
-          <h3>{{ item.location }} <small class="text-400">{{ item.equipmentType }}</small></h3>
+          <h3>{{ item.location }} <small class="text-body-secondary">{{ item.equipmentType }}</small></h3>
           <p>
             <lx-tag [value]="item.status" [severity]="statusSeverity(item.status)"  />
             @if (item.inspectedAt) {
@@ -98,5 +98,5 @@
     }
   </div>
 } @else {
-  <p class="text-600">Cargando ciclo...</p>
+  <p class="text-body-secondary">Cargando ciclo...</p>
 }

@@ -65,37 +65,37 @@
   <div class="row mb-4 g-4">
     <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
-        <p class="text-color-secondary text-sm">Total</p>
+        <p class="text-body-secondary text-sm">Total</p>
         <h2 class="page-title">{{ stats()!.total }}</h2>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
-        <p class="text-color-secondary text-sm">Pendientes</p>
+        <p class="text-body-secondary text-sm">Pendientes</p>
         <h2 class="page-title text-warning">{{ stats()!.pending }}</h2>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
-        <p class="text-color-secondary text-sm">En Investigación</p>
+        <p class="text-body-secondary text-sm">En Investigación</p>
         <h2 class="page-title text-info">{{ stats()!.inInvestigation }}</h2>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
-        <p class="text-color-secondary text-sm">Con Sanción</p>
+        <p class="text-body-secondary text-sm">Con Sanción</p>
         <h2 class="page-title text-danger">{{ stats()!.withSanction }}</h2>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
-        <p class="text-color-secondary text-sm">Sin Sanción</p>
+        <p class="text-body-secondary text-sm">Sin Sanción</p>
         <h2 class="page-title text-success">{{ stats()!.withoutSanction }}</h2>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-4 col-lg-2">
       <div class="card text-center">
-        <p class="text-color-secondary text-sm">Archivados</p>
+        <p class="text-body-secondary text-sm">Archivados</p>
         <h2 class="page-title">{{ stats()!.archived }}</h2>
       </div>
     </div>
@@ -105,10 +105,10 @@
   <div class="row mb-4 g-4">
     <div class="col-12 col-md-6">
       <div class="card">
-        <h3 class="font-bold mb-3">Por Categoría</h3>
+        <h3 class="fw-bold mb-3">Por Categoría</h3>
         @for (g of stats()!.byCategory; track g.key) {
         <div
-          class="d-flex justify-content-between align-items-center py-1 border-bottom-1 surface-border"
+          class="d-flex justify-content-between align-items-center py-1 border-bottom-1 border"
         >
           <span>{{ g.key }}</span>
           <span class="badge badge-primary">{{ g.count }}</span>
@@ -118,10 +118,10 @@
     </div>
     <div class="col-12 col-md-6">
       <div class="card">
-        <h3 class="font-bold mb-3">Por Severidad</h3>
+        <h3 class="fw-bold mb-3">Por Severidad</h3>
         @for (g of stats()!.bySeverity; track g.key) {
         <div
-          class="d-flex justify-content-between align-items-center py-1 border-bottom-1 surface-border"
+          class="d-flex justify-content-between align-items-center py-1 border-bottom-1 border"
         >
           <span>{{ g.key }}</span>
           <span [class]="'badge ' + getSeverityBadge(g.key)"
@@ -137,7 +137,7 @@
   <!-- Bandeja de pendientes -->
   @if (pending().length > 0) {
   <div class="card">
-    <h3 class="font-bold mb-3">
+    <h3 class="fw-bold mb-3">
       Bandeja de Trabajo — Pendientes de Investigación
     </h3>
     <table class="table table-hover">
@@ -147,7 +147,7 @@
           <th>Tipo</th>
           <th>Severidad</th>
           <th>Estatus</th>
-          <th class="text-right">Horas sin atender</th>
+          <th class="text-end">Horas sin atender</th>
           <th class="text-center">Alerta</th>
         </tr>
       </thead>
@@ -162,7 +162,7 @@
             >
           </td>
           <td>{{ item.investigationStatus }}</td>
-          <td class="text-right">{{ item.hoursWithoutAttention }}h</td>
+          <td class="text-end">{{ item.hoursWithoutAttention }}h</td>
           <td class="text-center">
             @if (item.requiresAlert) {
             <app-icon

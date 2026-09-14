@@ -4,31 +4,31 @@
   <div class="row mb-3 g-4">
     <div class="col-6 col-md-3">
       <div class="text-center">
-        <p class="text-xs text-500 m-0">Monto Total</p>
-        <p class="font-bold m-0">
+        <p class="text-xs text-body-secondary m-0">Monto Total</p>
+        <p class="fw-bold m-0">
           {{ p.montoTotal | currency: "MXN" : "symbol" : "1.2-2" }}
         </p>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="text-center">
-        <p class="text-xs text-500 m-0">Amortizacion</p>
-        <p class="font-bold m-0">
+        <p class="text-xs text-body-secondary m-0">Amortizacion</p>
+        <p class="fw-bold m-0">
           {{ p.montoAmortizacion | currency: "MXN" : "symbol" : "1.2-2" }}
         </p>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="text-center">
-        <p class="text-xs text-500 m-0">Saldo Pendiente</p>
-        <p class="font-bold text-primary m-0">
+        <p class="text-xs text-body-secondary m-0">Saldo Pendiente</p>
+        <p class="fw-bold text-primary m-0">
           {{ p.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
         </p>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="text-center">
-        <p class="text-xs text-500 m-0">Estado</p>
+        <p class="text-xs text-body-secondary m-0">Estado</p>
         <lx-tag [severity]="getEstadoSeverity(p.estado)" [value]="p.estado" />
       </div>
     </div>
@@ -40,7 +40,7 @@
       <span class="text-sm"
         >Pagos realizados: {{ p.pagosRealizados }} / {{ p.numeroPagos }}</span
       >
-      <span class="text-sm font-bold">{{ progreso }}%</span>
+      <span class="text-sm fw-bold">{{ progreso }}%</span>
     </div>
     <div
       class="rounded overflow-hidden"
@@ -60,14 +60,14 @@
       <tr>
         <th>No.</th>
         <th>Fecha Pago</th>
-        <th class="text-right">Monto Pagado</th>
+        <th class="text-end">Monto Pagado</th>
       </tr>
     </ng-template>
     <ng-template #body let-pago>
       <tr>
         <td>{{ pago.numeroPago }}</td>
         <td>{{ pago.fechaPago | apiDate: "dd/MM/yyyy" }}</td>
-        <td class="text-right">
+        <td class="text-end">
           {{ pago.montoPagado | currency: "MXN" : "symbol" : "1.2-2" }}
         </td>
       </tr>
@@ -81,7 +81,7 @@
 
   <!-- Acciones de decision (solo si esta Pendiente) -->
   @if (p.estadoValue === 0) {
-  <form [formGroup]="formDecision" class="border-top-1 surface-border pt-3">
+  <form [formGroup]="formDecision" class="border-top-1 border pt-3">
     <custom-input-textarea-signal
       [control]="formDecision.controls['observaciones']"
       label="Observaciones de la Decision"

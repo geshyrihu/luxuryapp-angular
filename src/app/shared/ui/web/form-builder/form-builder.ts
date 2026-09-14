@@ -10,7 +10,7 @@ import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { CheckboxModule } from "primeng/checkbox";
 import { DatePickerModule } from "primeng/datepicker";
-import { DividerModule } from "primeng/divider";
+import { AppDivider } from "@ui/web/divider/divider";
 import { InputNumberModule } from "primeng/inputnumber";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
@@ -64,13 +64,13 @@ export type FormValues = Record<string, unknown>;
     CheckboxModule,
     ToggleSwitchModule,
     DatePickerModule,
-    DividerModule,
+    AppDivider,
   ],
   template: `
     <form class="fb-root" (ngSubmit)="submit()">
       @if (title()) {
         <h3 class="fb-title">{{ title() }}</h3>
-        <p-divider />
+        <app-divider />
       }
 
       <div class="fb-grid">

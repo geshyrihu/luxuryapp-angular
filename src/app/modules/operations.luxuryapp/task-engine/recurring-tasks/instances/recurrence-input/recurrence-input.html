@@ -14,7 +14,7 @@
   @if (selectedFrequency) {
   <div class="row mt-4 align-items-end g-4">
     <div class="col-12 col-md-3 d-flex">
-      <label class="font-medium">Repetir cada</label>
+      <label class="fw-medium">Repetir cada</label>
     </div>
     <div class="col-12 col-md-9">
       <div class="d-flex align-items-end">
@@ -34,7 +34,7 @@
   @if (isWeekly) {
   <div class="row mt-4 align-items-end g-4">
     <div class="col-12 col-md-3 d-flex">
-      <label class="font-medium">Días de la semana</label>
+      <label class="fw-medium">Días de la semana</label>
     </div>
     <div class="col-12 col-md-9">
       <div class="d-flex flex-wrap gap-3">
@@ -61,12 +61,12 @@
   <!-- MONTHLY: Type Selection -->
   @if (isMonthly) {
   <div class="mt-4">
-    <label class="mb-3 d-block font-medium">Tipo de recurrencia mensual</label>
+    <label class="mb-3 d-block fw-medium">Tipo de recurrencia mensual</label>
 
     <!-- Option 1: Day of Month -->
     <div
-      class="p-3 border-1 surface-border rounded mb-3 transition-colors transition-duration-200"
-      [class.surface-50]="monthlyType === 'dayOfMonth'"
+      class="p-3 border-1 border rounded mb-3 transition-colors transition-duration-200"
+      [class.bg-body-tertiary]="monthlyType === 'dayOfMonth'"
       [class.border-primary]="monthlyType === 'dayOfMonth'"
     >
       <div class="d-flex align-items-center mb-2">
@@ -75,7 +75,7 @@
           [control]="recurrenceForm.controls.monthlyType"
           inputId="dayOfMonth"
         />
-        <label for="dayOfMonth" class="font-medium cursor-pointer flex-1 ms-2">
+        <label for="dayOfMonth" class="fw-medium cursor-pointer flex-fill ms-2">
           Día específico del mes
         </label>
       </div>
@@ -99,8 +99,8 @@
 
     <!-- Option 2: Last Day of Month -->
     <div
-      class="p-3 border-1 surface-border rounded mb-3 transition-colors transition-duration-200"
-      [class.surface-50]="monthlyType === 'lastDayOfMonth'"
+      class="p-3 border-1 border rounded mb-3 transition-colors transition-duration-200"
+      [class.bg-body-tertiary]="monthlyType === 'lastDayOfMonth'"
       [class.border-primary]="monthlyType === 'lastDayOfMonth'"
     >
       <div class="d-flex align-items-center mb-2">
@@ -111,7 +111,7 @@
         />
         <label
           for="lastDayOfMonth"
-          class="font-medium cursor-pointer flex-1 ms-2"
+          class="fw-medium cursor-pointer flex-fill ms-2"
         >
           Último día del mes
         </label>
@@ -123,8 +123,8 @@
 
     <!-- Option 3: Position + Day of Week -->
     <div
-      class="p-3 border-1 surface-border rounded transition-colors transition-duration-200"
-      [class.surface-50]="monthlyType === 'dayOfWeek'"
+      class="p-3 border-1 border rounded transition-colors transition-duration-200"
+      [class.bg-body-tertiary]="monthlyType === 'dayOfWeek'"
       [class.border-primary]="monthlyType === 'dayOfWeek'"
     >
       <div class="d-flex align-items-center mb-2">
@@ -133,7 +133,7 @@
           [control]="recurrenceForm.controls.monthlyType"
           inputId="dayOfWeek"
         />
-        <label for="dayOfWeek" class="font-medium cursor-pointer flex-1 ms-2">
+        <label for="dayOfWeek" class="fw-medium cursor-pointer flex-fill ms-2">
           Posición en el mes
         </label>
       </div>
@@ -167,8 +167,8 @@
   <!-- YEARLY: Month and Day Selection -->
   @if (isYearly) {
   <div class="mt-4">
-    <label class="mb-3 d-block font-medium">Fecha anual</label>
-    <div class="p-3 border-1 surface-border rounded surface-50">
+    <label class="mb-3 d-block fw-medium">Fecha anual</label>
+    <div class="p-3 border-1 border rounded bg-body-tertiary">
       <div class="d-flex align-items-end flex-wrap">
         <span class="pb-1">Cada</span>
         <custom-input-select-signal
@@ -196,10 +196,10 @@
 
   <!-- Preview Section -->
   @if (selectedFrequency) {
-  <div class="mt-4 surface-50 p-3 rounded">
-    <label class="text-sm font-bold text-700">Regla generada (RRULE)</label>
+  <div class="mt-4 bg-body-tertiary p-3 rounded">
+    <label class="text-sm fw-bold text-body">Regla generada (RRULE)</label>
     <div
-      class="font-mono text-sm mt-2 p-2 surface-0 rounded border-1 surface-border overflow-auto text-overflow-ellipsis"
+      class="font-mono text-sm mt-2 p-2 bg-body-tertiary rounded border-1 border overflow-auto text-truncate"
     >
       {{ rrulePreview() }}
     </div>

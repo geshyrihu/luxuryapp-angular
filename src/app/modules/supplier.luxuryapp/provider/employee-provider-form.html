@@ -18,7 +18,7 @@
     </div>
     @if (vacancyCandidates().length > 0) {
     <div
-      class="col-12 mb-4 p-3 border-1 surface-border border-round bg-primary-reverse"
+      class="col-12 mb-4 p-3 border-1 border rounded bg-primary-reverse"
     >
       <h5 class="m-0 mb-2">Candidato Aprobado</h5>
       <p class="text-sm mb-3">
@@ -99,13 +99,13 @@
       </div>
       <div class="row col-12 col-md-6 g-4">
         <div>
-          <p class="text-danger font-bold">POR NOMBRE:</p>
+          <p class="text-danger fw-bold">POR NOMBRE:</p>
           @for (item of existingPerson; track item) {
           <p class="text-danger m-0 text-sm">- {{ item }}</p>
           }
         </div>
         <div>
-          <p class="text-danger font-bold">POR TÉLEFONO:</p>
+          <p class="text-danger fw-bold">POR TÉLEFONO:</p>
           @for (item of existingPhone; track item) {
           <p class="text-danger m-0 text-sm">- {{ item }}</p>
           }
@@ -121,7 +121,7 @@
      ══════════════════════════════════════════════════════ -->
 @if (fase() === 2) {
 <div class="card p-4">
-  <p class="font-semibold mb-4">
+  <p class="fw-semibold mb-4">
     Empleado registrado correctamente. ¿Qué desea hacer a continuación?
   </p>
 
@@ -166,7 +166,7 @@
 
   <!-- Campos para "solo vacante" -->
   @if (opcion() === 'vacante') {
-  <div class="border-1 surface-border rounded p-3 mb-4">
+  <div class="border-1 border rounded p-3 mb-4">
     <custom-input-select-signal
       label="Vacante que cubre"
       placeholder="Selecciona la vacante"
@@ -185,7 +185,7 @@
 
   <!-- Campos para "alta completa" -->
   @if (opcion() === 'alta') {
-  <div class="border-1 surface-border rounded p-3 mb-4">
+  <div class="border-1 border rounded p-3 mb-4">
     <custom-input-select-signal
       label="Vacante que cubre"
       placeholder="Selecciona la vacante"

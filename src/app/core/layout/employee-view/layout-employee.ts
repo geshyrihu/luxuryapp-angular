@@ -12,7 +12,7 @@ import { ConsoleLoggerService } from "src/app/core/services/console-logger.servi
 import { OneSignalService } from "src/app/core/services/one-signal.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { PanicAlertIncomingDialog } from "src/app/modules/operations.luxuryapp/panic-alert/panic-alert-incoming-dialog/panic-alert-incoming-dialog";
-import { ViewEmployeeMonitor } from "./monitor/view-employee-monitor/view-employee-monitor";
+import { ViewEmployeedesktop } from "./desktop/view-employee-desktop/view-employee-desktop";
 import { ViewEmployeeMobile } from "./movil/view-employee-mobile/view-employee-mobile";
 /**
  * Layout Completo: El Centro de Operaciones 🚀
@@ -36,7 +36,7 @@ import { ViewEmployeeMobile } from "./movil/view-employee-mobile/view-employee-m
 @Component({
   selector: "app-layout-employee",
   templateUrl: "./layout-employee.html",
-  imports: [ViewEmployeeMonitor, ViewEmployeeMobile, PanicAlertIncomingDialog],
+  imports: [ViewEmployeedesktop, ViewEmployeeMobile, PanicAlertIncomingDialog],
   // La magia de la carga perezosa de servicios ocurre aquí.
   // Estos servicios solo "viven" mientras este layout esté activo.
   changeDetection: ChangeDetectionStrategy.OnPush,

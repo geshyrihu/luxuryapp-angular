@@ -1,6 +1,6 @@
 <div class="d-flex flex-column h-full">
   <div class="d-flex align-items-center w-full pe-4 mb-3">
-    <span class="text-xl font-bold"></span>
+    <span class="text-xl fw-bold"></span>
     <div class="flex-grow-1"></div>
 
     <custom-input-select-button-signal
@@ -37,7 +37,7 @@
       @for (file of selectedGroupFiles(); track $index) {
       <div class="p-2">
         <div
-          class="surface-card border-1 surface-border rounded p-3 d-flex flex-column align-items-center justify-content-between hover:surface-100 transition-colors transition-duration-200 h-full text-center shadow-sm relative"
+          class="bg-body border-1 border rounded p-3 d-flex flex-column align-items-center justify-content-between hover:bg-body-tertiary transition-colors transition-duration-200 h-full text-center shadow-sm relative"
         >
           <div class="absolute top-0 right-0 p-2 z-1">
             <lx-checkbox
@@ -64,17 +64,17 @@
               }
             </div>
             <div
-              class="font-semibold text-sm text-900 mb-1 w-full text-overflow-ellipsis overflow-hidden white-space-nowrap"
+              class="fw-semibold text-sm text-body mb-1 w-full text-truncate overflow-hidden text-nowrap"
               lxTooltip="{{ file.fullName }}"
               tooltipPosition="top"
             >
               {{file.indice}} | {{ file.displayName }}
             </div>
-            <div class="text-xs text-500 font-bold mb-1">
+            <div class="text-xs text-body-secondary fw-bold mb-1">
               {{ file.folioOrden }}
             </div>
             <div
-              class="text-xs text-primary font-bold overflow-hidden text-overflow-ellipsis white-space-nowrap"
+              class="text-xs text-primary fw-bold overflow-hidden text-truncate text-nowrap"
               lxTooltip="{{ file.providerName }}"
             >
               {{ file.providerName }}
@@ -139,9 +139,9 @@
       </ng-template>
     </p-table>
     } @if (selectedGroupFiles().length === 0) {
-    <div class="text-center p-6">
-      <app-icon [icon]="'material-symbols-light:folder-open'" class="text-6xl text-300 mb-3" />
-      <div class="text-500 text-xl font-medium">
+    <div class="text-center p-5">
+      <app-icon [icon]="'material-symbols-light:folder-open'" class="text-6xl text-body-secondary mb-3" />
+      <div class="text-body-secondary text-xl fw-medium">
         No se encontraron archivos en este grupo de gasto.
       </div>
     </div>

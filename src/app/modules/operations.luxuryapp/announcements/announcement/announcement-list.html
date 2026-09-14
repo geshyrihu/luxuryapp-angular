@@ -1,8 +1,8 @@
 <!-- 1. Contenedor Principal y Estado de Carga -->
 <div class="p-4 d-none d-md-block">
   <div class="card">
-    <div class="text-xl font-bold mb-2">
-      <h2 class="text-2xl font-bold">Comunicados</h2>
+    <div class="text-xl fw-bold mb-2">
+      <h2 class="text-2xl fw-bold">Comunicados</h2>
     </div>
 
     <!-- Spinner de carga -->
@@ -35,11 +35,11 @@
           </div>
 
           <div class="card-body">
-            <div class="text-xl font-bold mb-2">
-              <span class="text-lg font-semibold">{{ anuncio.title }}</span>
+            <div class="text-xl fw-bold mb-2">
+              <span class="text-lg fw-semibold">{{ anuncio.title }}</span>
             </div>
-            <div class="text-color-secondary mb-3">
-              <div class="text-sm text-color-secondary mb-2">
+            <div class="text-body-secondary mb-3">
+              <div class="text-sm text-body-secondary mb-2">
                 <span>{{ anuncio.publishedAt | apiDate: 'dd/MM/yyyy' }}</span>
               </div>
             </div>
@@ -53,7 +53,7 @@
                 @if (anuncio.attachmentCount > 0) {
                 <app-icon
                   [icon]="'material-symbols-light:attach-file'"
-                  class="text-color-secondary"
+                  class="text-body-secondary"
                   lxTooltip="Contiene adjuntos"
                 />
                 }
@@ -74,29 +74,29 @@
   <div class="ion-text-center ion-padding mt-5">
     <app-icon
       icon="material-symbols-light:move-to-inbox"
-      class="text-6xl text-color-secondary"
+      class="text-6xl text-body-secondary"
     />
-    <p class="text-medium text-500 mt-2">No hay comunicados disponibles</p>
+    <p class="text-medium text-body-secondary mt-2">No hay comunicados disponibles</p>
   </div>
   } @if (!loading() && announcements().length > 0) {
   <div class="d-flex flex-column p-2">
     @for (anuncio of announcements(); track anuncio.id) {
-    <div class="card shadow-sm rounded-xl mb-3 overflow-hidden cursor-pointer d-flex flex-column surface-card" (click)="navigateToDetail(anuncio.id)">
+    <div class="card shadow-sm rounded-xl mb-3 overflow-hidden cursor-pointer d-flex flex-column bg-body" (click)="navigateToDetail(anuncio.id)">
       @if(anuncio.imagePath) {
-        <img [src]="anuncio.imagePath" [alt]="anuncio.title" class="w-full h-10rem object-cover hidden-on-error" />
+        <img [src]="anuncio.imagePath" [alt]="anuncio.title" class="w-full h-10rem object-cover d-none-on-error" />
       }
       <div class="p-3">
-        <div class="text-lg font-bold text-900 mb-1">{{ anuncio.title }}</div>
-        <div class="text-sm text-500 mb-2">
+        <div class="text-lg fw-bold text-body mb-1">{{ anuncio.title }}</div>
+        <div class="text-sm text-body-secondary mb-2">
           {{ anuncio.publishedAt | apiDate: 'dd/MM/yyyy' }}
         </div>
-        <p class="text-sm text-700 m-0 line-height-3">
+        <p class="text-sm text-body m-0 line-height-3">
           {{ stripHtml(anuncio.content) | slice:0:100 }}...
         </p>
 
         @if (anuncio.attachmentCount > 0) {
         <div class="d-flex justify-content-end mt-3">
-          <app-icon icon="material-symbols-light:attach-file" class="text-lg text-500" />
+          <app-icon icon="material-symbols-light:attach-file" class="text-lg text-body-secondary" />
         </div>
         }
       </div>

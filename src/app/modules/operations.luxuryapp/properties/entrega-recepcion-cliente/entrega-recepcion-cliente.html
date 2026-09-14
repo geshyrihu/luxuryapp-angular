@@ -42,7 +42,7 @@ cb_departamento; track item) {
   <ng-template #groupheader let-customer>
     <tr pRowGroupHeader>
       <td colspan="5">
-        <span class="font-bold ms-2">{{ customer.grupo }}</span>
+        <span class="fw-bold ms-2">{{ customer.grupo }}</span>
       </td>
     </tr>
   </ng-template>
@@ -153,8 +153,8 @@ cb_departamento; track item) {
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <p class="font-semibold m-0 text-color">{{ item.descripcion }}</p>
-      <p class="text-xs m-0 text-color-secondary">
+      <p class="fw-semibold m-0 text-body">{{ item.descripcion }}</p>
+      <p class="text-xs m-0 text-body-secondary">
         {{ item.observaciones }} · {{ item.estatus === 1 ? 'Activo' : 'Inactivo'
         }}
       </p>

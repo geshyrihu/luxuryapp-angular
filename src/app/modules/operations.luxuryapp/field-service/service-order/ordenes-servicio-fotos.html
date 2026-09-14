@@ -6,7 +6,7 @@
   } @else { @for (item of data(); track item.id) {
   <div class="col-12 col-md-4 col-lg-3">
     <div
-      class="card shadow-sm border-none surface-card rounded p-0 overflow-hidden"
+      class="card shadow-sm border-0 bg-body rounded p-0 overflow-hidden"
     >
       <div class="d-flex justify-content-end p-2">
         <il-button-delete (confirmed)="confirmDelete(item.id)" />
@@ -25,7 +25,7 @@
   </div>
   } @empty {
   <div class="col-12 text-center p-5">
-    <p class="text-500 font-medium">
+    <p class="text-body-secondary fw-medium">
       No hay fotos disponibles para esta orden.
     </p>
   </div>

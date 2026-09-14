@@ -75,8 +75,8 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item lines="full" detail="false">
       <div class="ion-text-wrap">
-        <p class="font-semibold m-0 text-color">{{ item.name }}</p>
-        <p class="text-xs m-0 mt-1 text-color-secondary">
+        <p class="fw-semibold m-0 text-body">{{ item.name }}</p>
+        <p class="text-xs m-0 mt-1 text-body-secondary">
           {{ getLocationTypeLabel(item.locationType) }} - {{ item.phoneOne }}
         </p>
       </div>

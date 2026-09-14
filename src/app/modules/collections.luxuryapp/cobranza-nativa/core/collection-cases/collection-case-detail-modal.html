@@ -1,13 +1,13 @@
 @if (item(); as c) {
 <div class="p-3">
   <!-- Cabecera -->
-  <div class="d-flex align-items-center gap-3 mb-4 p-3 rounded surface-100">
+  <div class="d-flex align-items-center gap-3 mb-4 p-3 rounded bg-body-tertiary">
     <app-icon [icon]="'material-symbols-light:warning'" class="text-3xl text-red-600" />
     <div>
-      <div class="font-bold text-lg">{{ c.propertyName }}</div>
-      <div class="text-500 text-sm">
+      <div class="fw-bold text-lg">{{ c.propertyName }}</div>
+      <div class="text-body-secondary text-sm">
         Deuda:
-        <span class="font-bold text-red-700"
+        <span class="fw-bold text-red-700"
           >{{ c.totalOwed | currency:'MXN':'symbol-narrow':'1.2-2' }}</span
         >
         &nbsp;&middot;&nbsp; Antiguedad: {{ c.agingBucket }}
@@ -17,26 +17,26 @@
   </div>
   <!-- Historial de actividades -->
   <div class="mb-4">
-    <label class="text-500 text-xs uppercase font-medium"
+    <label class="text-body-secondary text-xs text-uppercase fw-medium"
       >Historial de Actividades ({{ c.activities.length }})</label
     >
     @if (c.activities.length === 0) {
-    <p class="text-500 text-sm mt-2">Sin actividades registradas aun.</p>
+    <p class="text-body-secondary text-sm mt-2">Sin actividades registradas aun.</p>
     } @else {
     <div class="mt-2 d-flex flex-column gap-2">
       @for (act of c.activities; track act.id) {
-      <div class="p-2 surface-50 rounded border-1 surface-border text-sm">
+      <div class="p-2 bg-body-tertiary rounded border-1 border text-sm">
         <div class="d-flex justify-content-between mb-1">
-          <span class="font-medium"
+          <span class="fw-medium"
             >{{ act.activityDate | apiDate:'dd/MM/yyyy HH:mm' }}</span
           >
           @if (act.promisedDate) {
-          <span class="text-500"
+          <span class="text-body-secondary"
             >Promesa: {{ act.promisedDate | apiDate:'dd/MM/yyyy' }}</span
           >
           }
         </div>
-        <p class="m-0 text-800">{{ act.notes }}</p>
+        <p class="m-0 text-body">{{ act.notes }}</p>
       </div>
       }
     </div>

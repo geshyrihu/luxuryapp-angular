@@ -34,7 +34,7 @@
 
     <div class="staff-checklist-modal__content">
       @if (loading()) {
-      <p class="m-0 text-color-secondary">
+      <p class="m-0 text-body-secondary">
         Cargando checklist de onboarding...
       </p>
       } @else if (tasks().length === 0) {
@@ -73,9 +73,9 @@
 
             <label class="staff-checklist-modal__toggle">
               <span>Completado</span>
-              <p-checkbox
+              <app-checkbox
                 [binary]="true"
-                [(ngModel)]="task.draftCompleted"
+                [(checked)]="task.draftCompleted"
                 [disabled]="busyTaskId() === task.id || saving()"
               />
             </label>

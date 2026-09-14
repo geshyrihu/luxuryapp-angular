@@ -239,7 +239,7 @@
       <div class="d-flex overflow-x-auto pb-2 mb-2 px-1">
         @for (filtro of filtroEquipos; track filtro.id) {
         <div
-          class="p-1 rounded surface-100 me-2 mb-2 d-inline-flex align-items-center"
+          class="p-1 rounded bg-body-tertiary me-2 mb-2 d-inline-flex align-items-center"
         >
           <app-icon [icon]="getFiltroIconClass(filtro.emoji)" class="me-1" />
           <span class="">{{ filtro.nombre | titlecase }}</span>
@@ -248,24 +248,24 @@
       </div>
 
       <!-- Month Selector -->
-      <div class="d-flex gap-2 mb-3 bg-surface-100 p-1 rounded">
+      <div class="d-flex gap-2 mb-3 bg-bg-body-tertiary p-1 rounded">
         @for (mes of meses; track mes; let i = $index) {
-        <button class="p-button p-button-text p-button-sm flex-1">
+        <button class="p-button p-button-text p-button-sm flex-fill">
           <span class="">{{ mes }}</span>
         </button>
         }
       </div>
 
       <!-- Results List -->
-      <div class="surface-card mb-3 rounded">
+      <div class="bg-body mb-3 rounded">
         @for (group of mobileData(); track group.system) {
-        <div class="surface-card mb-3 rounded">
-          <span class="font-bold text-lg text-primary">{{ group.system }}</span>
+        <div class="bg-body mb-3 rounded">
+          <span class="fw-bold text-lg text-primary">{{ group.system }}</span>
         </div>
 
         @for (item of group.items; track item.id) {
         <div
-          class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
+          class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
         >
           <!-- Icon based on system type could be cool here, but we don't have mapping easily available. Using generic check. -->
           <app-icon
@@ -275,8 +275,8 @@
             class="text-xl"
           />
           <span class="ion-text-wrap">
-            <h3 class="text-base font-semibold">{{ item.nameMachinery }}</h3>
-            <p class="text-xs text-color-secondary">Mantenimiento Preventivo</p>
+            <h3 class="text-base fw-semibold">{{ item.nameMachinery }}</h3>
+            <p class="text-xs text-body-secondary">Mantenimiento Preventivo</p>
           </span>
           <app-icon
             icon="material-symbols-light:edit-outline"
@@ -290,9 +290,9 @@
         >
           <app-icon
             [icon]="'material-symbols-light:event-busy'"
-            class="text-6xl mb-3 text-color-secondary"
+            class="text-6xl mb-3 text-body-secondary"
           />
-          <h3 class="text-lg m-0 text-color-secondary">Sin Actividades</h3>
+          <h3 class="text-lg m-0 text-body-secondary">Sin Actividades</h3>
           <p class="text-sm m-0">
             No hay mantenimiento programado para este mes en la categoróa
             seleccionada.

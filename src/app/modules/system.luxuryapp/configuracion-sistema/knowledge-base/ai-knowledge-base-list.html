@@ -92,13 +92,13 @@
       >
         <app-icon icon="material-symbols-light:psychology" class="text-xl text-primary" />
       </div>
-      <h2 class="font-bold">{{ item.topic }}</h2>
+      <h2 class="fw-bold">{{ item.topic }}</h2>
       <p class="text-sm">
-        <span class="font-bold text-primary"
+        <span class="fw-bold text-primary"
           >{{ item.moduleAppName || 'General' }}</span
         >
       </p>
-      <p class="text-sm text-wrap text-500">{{ item.keywords }}</p>
+      <p class="text-sm text-wrap text-body-secondary">{{ item.keywords }}</p>
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit

@@ -129,46 +129,46 @@
     <div
       class="d-flex align-items-center flex-wrap px-3 py-2 mt-1 rounded bg-body-tertiary border-start border-3 border-warning mb-2 shadow-sm"
     >
-      <div class="d-flex align-items-center text-700">
+      <div class="d-flex align-items-center text-body">
         <app-icon
           [icon]="'material-symbols-light:info'"
-          class="text-orange-500 font-bold"
+          class="text-orange-500 fw-bold"
         />
-        <span class="font-bold text-sm uppercase">Guía de Generación:</span>
+        <span class="fw-bold text-sm text-uppercase">Guía de Generación:</span>
       </div>
 
       <div class="d-flex align-items-center">
         <span
-          class="bg-orange-500 text-white border-circle w-1rem h-1rem d-flex align-items-center justify-content-center font-bold text-xs"
+          class="bg-orange-500 text-white rounded-circle w-1rem h-1rem d-flex align-items-center justify-content-center fw-bold text-xs"
           >1</span
         >
-        <span class="text-sm font-medium">Marcar registros en la tabla</span>
+        <span class="text-sm fw-medium">Marcar registros en la tabla</span>
       </div>
 
       <app-icon
         [icon]="'material-symbols-light:chevron-right'"
-        class="text-400 text-xs d-none d-md-block"
+        class="text-body-secondary text-xs d-none d-md-block"
       />
 
       <div class="d-flex align-items-center">
         <span
-          class="bg-orange-500 text-white border-circle w-1rem h-1rem d-flex align-items-center justify-content-center font-bold text-xs"
+          class="bg-orange-500 text-white rounded-circle w-1rem h-1rem d-flex align-items-center justify-content-center fw-bold text-xs"
           >2</span
         >
-        <span class="text-sm font-medium">Seleccionar Año y Mes de Fondeo</span>
+        <span class="text-sm fw-medium">Seleccionar Año y Mes de Fondeo</span>
       </div>
 
       <app-icon
         [icon]="'material-symbols-light:chevron-right'"
-        class="text-400 text-xs d-none d-md-block"
+        class="text-body-secondary text-xs d-none d-md-block"
       />
 
       <div class="d-flex align-items-center">
         <span
-          class="bg-orange-500 text-white border-circle w-1rem h-1rem d-flex align-items-center justify-content-center font-bold text-xs"
+          class="bg-orange-500 text-white rounded-circle w-1rem h-1rem d-flex align-items-center justify-content-center fw-bold text-xs"
           >3</span
         >
-        <span class="text-sm font-medium font-bold"
+        <span class="text-sm fw-medium fw-bold"
           >Presionar botón Generar</span
         >
       </div>
@@ -287,7 +287,7 @@
           class="mb-2"
         ></ion-input-select>
 
-        <p class="mb-1 text-sm font-bold ms-1">Mes de Fondeo</p>
+        <p class="mb-1 text-sm fw-bold ms-1">Mes de Fondeo</p>
         <lx-tabs
           [tabs]="monthTabs()"
           [activeId]="selectedMonthName() ?? ''"
@@ -365,9 +365,9 @@
               >Folio: {{item.idFondeo}}</span
             >
           </div>
-          <h2 class="text-base font-bold">{{ item.equipoOInstalacion }}</h2>
-          <p class="text-sm text-700">{{ item.justificacionGasto }}</p>
-          <p class="text-xs text-color-secondary mt-1 uppercase">
+          <h2 class="text-base fw-bold">{{ item.equipoOInstalacion }}</h2>
+          <p class="text-sm text-body">{{ item.justificacionGasto }}</p>
+          <p class="text-xs text-body-secondary mt-1 text-uppercase">
             <app-icon icon="material-symbols-light:work-outline" class="me-1" />
             {{ item.provider }}
           </p>

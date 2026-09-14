@@ -79,10 +79,10 @@
   <!-- =========================
        VISTA ESCRITORIO
        ========================= -->
-  <div class="d-none d-md-flex flex-column flex-1 min-h-0">
+  <div class="d-none d-md-flex flex-column flex-fill min-h-0">
     <!-- Fila única: [Año Fiscal] | [Presupuesto] [Extraordinarios] | spacer | [Buscar] [Botones] -->
     <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded mb-2 g-4"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded mb-2 g-4"
     >
       <!-- Lado Izquierdo: Año Fiscal y Tabs de navegación -->
       <div class="d-flex flex-wrap align-items-center gap-3">
@@ -127,7 +127,7 @@
       <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
         @if (activeTabValue() === 'presupuesto') {
         <div class="d-flex align-items-center gap-1" role="group" aria-label="Vista del presupuesto">
-          <span class="text-xs font-semibold text-700 white-space-nowrap">Vista:</span>
+          <span class="text-xs fw-semibold text-body text-nowrap">Vista:</span>
           <button
             type="button"
             (click)="presupuestoComp()?.setViewMode('normal')"
@@ -135,7 +135,7 @@
             [class.text-white]="presupuestoComp()?.viewMode() === 'normal'"
             [class.bg-gray-100]="presupuestoComp()?.viewMode() !== 'normal'"
             [class.text-700]="presupuestoComp()?.viewMode() !== 'normal'"
-            class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer white-space-nowrap"
+            class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer text-nowrap"
           >
             Normal
           </button>
@@ -146,7 +146,7 @@
             [class.text-white]="presupuestoComp()?.viewMode() === 'level1'"
             [class.bg-gray-100]="presupuestoComp()?.viewMode() !== 'level1'"
             [class.text-700]="presupuestoComp()?.viewMode() !== 'level1'"
-            class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer white-space-nowrap"
+            class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer text-nowrap"
           >
             Mayor
           </button>
@@ -157,7 +157,7 @@
             [class.text-white]="presupuestoComp()?.viewMode() === 'level2'"
             [class.bg-gray-100]="presupuestoComp()?.viewMode() !== 'level2'"
             [class.text-700]="presupuestoComp()?.viewMode() !== 'level2'"
-            class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer white-space-nowrap"
+            class="px-2 py-1 text-xs rounded border-1 border-gray-300 cursor-pointer text-nowrap"
           >
             2do Nivel
           </button>
@@ -262,7 +262,7 @@
        VISTA MÓVIL
        ========================= -->
   <div class="d-block d-md-none">
-    <div class="d-flex align-items-center gap-2 p-2 surface-card rounded mb-2">
+    <div class="d-flex align-items-center gap-2 p-2 bg-body rounded mb-2">
       <custom-input-select-signal
         id="yearSelectorMobile"
         label="Año Fiscal"
@@ -278,7 +278,7 @@
       />
       <custom-search-input-signal
         (searchChange)="sharedS.searchTerm.set($event)"
-        class="flex-1"
+        class="flex-fill"
       />
     </div>
 

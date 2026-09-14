@@ -27,23 +27,23 @@
           <div class="d-flex flex-wrap gap-2">
             @for (category of categories; track category.id) {
             <div
-              class="d-flex align-items-center gap-2 px-3 py-1 border-1 rounded-2xl cursor-pointer transition-all transition-duration-200 white-space-nowrap"
+              class="d-flex align-items-center gap-2 px-3 py-1 border-1 rounded-2xl cursor-pointer transition-all transition-duration-200 text-nowrap"
               [ngClass]="
                 inventoryCategoryId() === category.id
                   ? 'bg-primary border-primary text-white'
-                  : 'surface-100 border-300 text-color-secondary hover:surface-200 hover:border-primary-300'
+                  : 'bg-body-tertiary border-300 text-color-secondary hover:bg-body-tertiary hover:border-primary-300'
               "
               (click)="onSelectCategory(category.id)"
             >
               <app-icon [icon]="category.emoji" />
-              <span class="font-medium text-sm">{{ category.name }}</span>
+              <span class="fw-medium text-sm">{{ category.name }}</span>
             </div>
             }
           </div>
 
           <!-- Barra de herramientas (Búsqueda y Acciones) -->
           <div
-            class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded g-4"
+            class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
           >
             <div class="flex-grow-1">
               <primeng-custom-caption
@@ -97,7 +97,7 @@
       <ng-template #groupheader let-item>
         <tr pRowGroupHeader class="animate__fadeIn">
           <td [attr.colspan]="mostrarPreventivos() ? 6 : 5">
-            <span class="font-bold">{{ item.equipoClasificacion }}</span>
+            <span class="fw-bold">{{ item.equipoClasificacion }}</span>
           </td>
         </tr>
       </ng-template>
@@ -238,7 +238,7 @@
     <div class="d-flex overflow-x-auto pb-2 no-scrollbar mb-2">
       @for (category of categories; track category.id) {
       <div
-        class="p-1 rounded surface-100 me-2 mb-2 d-inline-flex align-items-center"
+        class="p-1 rounded bg-body-tertiary me-2 mb-2 d-inline-flex align-items-center"
       >
         <span class="d-flex align-items-center">
           <app-icon [icon]="category.emoji" />
@@ -278,7 +278,7 @@
       </ng-template>
       <ng-template #listItemTemplate let-item>
         <div
-          class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
+          class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
         >
           <div slot="start" class="mobile-avatar-slot">
             @if (item.photoPath) {
@@ -337,10 +337,10 @@
 
             @if (item.expanded) {
             <div
-              class="w-full mt-3 border-top-1 surface-border pt-2 animate__animated animate__fadeIn"
+              class="w-full mt-3 border-top-1 border pt-2 animate__animated animate__fadeIn"
             >
               <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="text-primary font-bold"
+                <span class="text-primary fw-bold"
                   >Servicios Programados</span
                 >
                 <button
@@ -355,31 +355,31 @@
               @if (item.maintenanceCalendar?.length > 0) {
               <div class="d-flex flex-column gap-2">
                 @for (service of item.maintenanceCalendar; track service.id) {
-                <div class="surface-ground p-2 rounded">
+                <div class="bg-body-tertiary p-2 rounded">
                   <div class="d-flex justify-content-between align-items-center">
                     <span
-                      class="font-bold flex-1 me-2"
+                      class="fw-bold flex-fill me-2"
                       [innerHTML]="service.activity | sanitizeHtml"
                     ></span>
                     <span
                       [innerHTML]="service.hasServiceOrder ? '🛠️' : '⚪'"
                     ></span>
                   </div>
-                  <div class="row text-sm text-600 mt-1 g-4">
+                  <div class="row text-sm text-body-secondary mt-1 g-4">
                     <div class="col-6 py-1">
-                      <span class="font-semibold">Prov:</span> {{
+                      <span class="fw-semibold">Prov:</span> {{
                       service.nameProvider }}
                     </div>
                     <div class="col-6 py-1">
-                      <span class="font-semibold">Freq:</span> {{
+                      <span class="fw-semibold">Freq:</span> {{
                       service.recurrence }}
                     </div>
                     <div class="col-6 py-1">
-                      <span class="font-semibold">Mes:</span> {{ service.month
+                      <span class="fw-semibold">Mes:</span> {{ service.month
                       }}
                     </div>
                     <div class="col-6 py-1">
-                      <span class="font-semibold">Costo:</span> {{ service.price
+                      <span class="fw-semibold">Costo:</span> {{ service.price
                       | CurrencyMexicoPipe }}
                     </div>
                   </div>
@@ -387,7 +387,7 @@
                   @if (aspRoleS.hasAny([AspRole.JefeMantenimiento,
                   AspRole.Administrador, AspRole.SuperUsuario])) {
                   <div
-                    class="d-flex justify-content-end gap-1 mt-2 border-top-1 surface-border pt-1"
+                    class="d-flex justify-content-end gap-1 mt-2 border-top-1 border pt-1"
                   >
                     <button
                       class="p-button p-button-rounded p-button-text p-button-sm p-button-secondary"
@@ -413,7 +413,7 @@
                 }
               </div>
               } @else {
-              <div class="text-center text-500 p-2 italic surface-100 rounded">
+              <div class="text-center text-body-secondary p-2 italic bg-body-tertiary rounded">
                 Sin servicios registrados
               </div>
               }

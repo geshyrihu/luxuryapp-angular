@@ -6,8 +6,8 @@
       icon="material-symbols-light:error-outline"
       class="text-yellow-500 text-6xl mb-3"
     />
-    <h2 class="text-lg font-bold text-700">Ticket no encontrado</h2>
-    <p class="text-500 mt-2">
+    <h2 class="text-lg fw-bold text-body">Ticket no encontrado</h2>
+    <p class="text-body-secondary mt-2">
       El ticket que estas buscando no existe o ha sido eliminado.
     </p>
   </div>
@@ -26,24 +26,24 @@
   </div>
   <div class="card" class="shadow-sm rounded-xl mb-4 overflow-hidden">
     <div class="card-header">
-      <div class="surface-100 p-4 border-bottom-1 surface-border">
+      <div class="bg-body-tertiary p-4 border-bottom-1 border">
         <div class="d-flex justify-content-between align-items-start">
           <div>
             <div class="d-flex align-items-center mb-2">
               <span
-                class="bg-primary text-white rounded px-2 py-1 text-sm font-bold"
+                class="bg-primary text-white rounded px-2 py-1 text-sm fw-bold"
                 >{{ t.folio }}</span
               >
-              <span class="text-500 mx-2">|</span>
-              <span class="text-700 font-semibold">{{ t.ticketGroup }}</span>
+              <span class="text-body-secondary mx-2">|</span>
+              <span class="text-body fw-semibold">{{ t.ticketGroup }}</span>
             </div>
-            <h2 class="text-2xl font-bold text-900 m-0">{{ t.title }}</h2>
-            <div class="text-500 mt-1 d-flex align-items-center">
+            <h2 class="text-2xl fw-bold text-body m-0">{{ t.title }}</h2>
+            <div class="text-body-secondary mt-1 d-flex align-items-center">
               <app-icon [icon]="'material-symbols-light:person'" class="me-2" />
               {{ t.customer }}
             </div>
           </div>
-          <div class="text-right">
+          <div class="text-end">
             <div class="mb-2">
               <span
                 class="p-tag"
@@ -53,7 +53,7 @@
                 >{{ t.priority }}</span
               >
             </div>
-            <span class="font-bold text-700 uppercase tracking-wider text-sm"
+            <span class="fw-bold text-body text-uppercase tracking-wider text-sm"
               >{{ t.status }}</span
             >
           </div>
@@ -63,21 +63,21 @@
 
     <div class="p-4 pt-0">
       <!-- Description -->
-      <div class="surface-ground p-3 rounded-lg mb-4">
-        <h6 class="text-600 font-bold mb-2 uppercase text-xs tracking-wider">
+      <div class="bg-body-tertiary p-3 rounded-lg mb-4">
+        <h6 class="text-body-secondary fw-bold mb-2 text-uppercase text-xs tracking-wider">
           Descripcion
         </h6>
-        <p class="text-800 line-height-3 m-0">{{ t.description }}</p>
+        <p class="text-body line-height-3 m-0">{{ t.description }}</p>
       </div>
 
       <!-- Images -->
       <div class="row mb-5 g-4">
         <div class="col-12 col-md-6">
           <div
-            class="relative rounded-xl overflow-hidden shadow-sm surface-card h-full"
+            class="relative rounded-xl overflow-hidden shadow-sm bg-body h-full"
           >
             <div
-              class="absolute top-0 left-0 bg-black-alpha-60 text-white px-3 py-1 border-bottom-right-radius-lg font-bold z-1 text-sm"
+              class="absolute top-0 left-0 bg-black-alpha-60 text-white px-3 py-1 border-bottom-right-radius-lg fw-bold z-1 text-sm"
             >
               ANTES
             </div>
@@ -90,10 +90,10 @@
         </div>
         <div class="col-12 col-md-6">
           <div
-            class="relative rounded-xl overflow-hidden shadow-sm surface-card h-full"
+            class="relative rounded-xl overflow-hidden shadow-sm bg-body h-full"
           >
             <div
-              class="absolute top-0 left-0 bg-green-600 text-white px-3 py-1 border-bottom-right-radius-lg font-bold z-1 text-sm"
+              class="absolute top-0 left-0 bg-green-600 text-white px-3 py-1 border-bottom-right-radius-lg fw-bold z-1 text-sm"
             >
               DESPUES
             </div>
@@ -107,26 +107,26 @@
       </div>
 
       <!-- Info Grid -->
-      <div class="row text-sm mb-4 border-top-1 surface-border pt-4 g-4">
+      <div class="row text-sm mb-4 border-top-1 border pt-4 g-4">
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="text-500 mb-1">Solicita</div>
-          <div class="font-semibold text-900">{{ t.creator }}</div>
-          <div class="text-xs text-500">{{ t.createDate }}</div>
+          <div class="text-body-secondary mb-1">Solicita</div>
+          <div class="fw-semibold text-body">{{ t.creator }}</div>
+          <div class="text-xs text-body-secondary">{{ t.createDate }}</div>
         </div>
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="text-500 mb-1">Responsable</div>
-          <div class="font-semibold text-900">{{ t.assignee }}</div>
+          <div class="text-body-secondary mb-1">Responsable</div>
+          <div class="fw-semibold text-body">{{ t.assignee }}</div>
         </div>
         @if (t.scheduledDate) {
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="text-500 mb-1">Programado</div>
-          <div class="font-semibold text-900">{{ t.scheduledDate }}</div>
+          <div class="text-body-secondary mb-1">Programado</div>
+          <div class="fw-semibold text-body">{{ t.scheduledDate }}</div>
         </div>
         } @if (t.closedBy) {
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="text-500 mb-1">Cerrado por</div>
-          <div class="font-semibold text-900">{{ t.closedBy }}</div>
-          <div class="text-xs text-500">{{ t.closedDate }}</div>
+          <div class="text-body-secondary mb-1">Cerrado por</div>
+          <div class="fw-semibold text-body">{{ t.closedBy }}</div>
+          <div class="text-xs text-body-secondary">{{ t.closedDate }}</div>
         </div>
         }
       </div>
@@ -188,7 +188,7 @@
       />
 
       <!-- Timeline -->
-      <h3 class="text-xl font-bold mb-3 border-left-3 border-primary ps-3">
+      <h3 class="text-xl fw-bold mb-3 border-left-3 border-primary ps-3">
         Bitacora de Seguimiento
       </h3>
       @if (t.ticketMessageFollowUpViewDTO?.length > 0) {
@@ -203,25 +203,25 @@
               styleClass="shadow-sm"
             ></app-avatar>
             @if ($index !== t.ticketMessageFollowUpViewDTO.length - 1) {
-            <div class="h-full border-left-2 surface-border w-1 my-2"></div>
+            <div class="h-full border-left-2 border w-1 my-2"></div>
             }
           </div>
           <div
-            class="flex-1 surface-card border-1 surface-border rounded-xl p-3 shadow-sm relative arrow-left"
+            class="flex-fill bg-body border-1 border rounded-xl p-3 shadow-sm relative arrow-left"
           >
             <div class="d-flex justify-content-between mb-2">
-              <span class="font-bold text-900"
+              <span class="fw-bold text-body"
                 >{{ follow.applicationUser }}</span
               >
-              <span class="text-xs text-500">{{ follow.createdAt }}</span>
+              <span class="text-xs text-body-secondary">{{ follow.createdAt }}</span>
             </div>
-            <p class="m-0 text-700 line-height-3">{{ follow.description }}</p>
+            <p class="m-0 text-body line-height-3">{{ follow.description }}</p>
           </div>
         </li>
         }
       </ul>
       } @else {
-      <div class="p-4 surface-ground rounded text-center text-500 italic">
+      <div class="p-4 bg-body-tertiary rounded text-center text-body-secondary italic">
         No hay registros de seguimiento.
       </div>
       }
@@ -240,33 +240,33 @@
           [severity]="t.priority === 'Alta' ? 'danger' : t.priority === 'Media' ? 'warning' : 'info'"
         ></lx-tag>
       </div>
-      <h2 class="text-xl font-bold my-1 text-dark">{{ t.title }}</h2>
-      <p class="text-sm text-color-secondary m-0 d-flex align-items-center gap-1">
+      <h2 class="text-xl fw-bold my-1 text-dark">{{ t.title }}</h2>
+      <p class="text-sm text-body-secondary m-0 d-flex align-items-center gap-1">
         <app-icon icon="material-symbols-light:schedule" /> {{ t.createDate }}
       </p>
     </div>
     <div
-      class="border-1 surface-border shadow-sm rounded-xl mt-3 overflow-hidden"
+      class="border-1 border shadow-sm rounded-xl mt-3 overflow-hidden"
     >
       <div
-        class="d-flex align-items-center mb-0 p-3 surface-100 border-bottom-1 surface-border"
+        class="d-flex align-items-center mb-0 p-3 bg-body-tertiary border-bottom-1 border"
       >
         <div class="me-3">
           <img
             src="assets/images/default-avatar.png"
-            class="w-3rem h-3rem border-circle"
+            class="w-3rem h-3rem rounded-circle"
             alt="Avatar"
           />
         </div>
         <div class="flex-grow-1">
-          <div class="text-sm font-bold text-900">{{ t.creator }}</div>
-          <div class="text-xs text-500 uppercase tracking-wider">
+          <div class="text-sm fw-bold text-body">{{ t.creator }}</div>
+          <div class="text-xs text-body-secondary text-uppercase tracking-wider">
             Solicitante
           </div>
         </div>
       </div>
       <div class="p-3 bg-white">
-        <p class="text-800 line-height-3 m-0">{{ t.description }}</p>
+        <p class="text-body line-height-3 m-0">{{ t.description }}</p>
       </div>
     </div>
   </div>
@@ -277,7 +277,7 @@
         <div class="col-6 pe-1">
           <div class="relative rounded overflow-hidden h-8rem bg-light">
             <div
-              class="absolute top-0 left-0 bg-dark text-white px-2 py-0.5 text-xs font-bold z-10 op-8"
+              class="absolute top-0 left-0 bg-dark text-white px-2 py-0.5 text-xs fw-bold z-10 op-8"
             >
               Antes
             </div>
@@ -290,7 +290,7 @@
         <div class="col-6 ps-1">
           <div class="relative rounded overflow-hidden h-8rem bg-light">
             <div
-              class="absolute top-0 left-0 bg-success text-white px-2 py-0.5 text-xs font-bold z-10 op-8"
+              class="absolute top-0 left-0 bg-success text-white px-2 py-0.5 text-xs fw-bold z-10 op-8"
             >
               Despues
             </div>
@@ -304,31 +304,31 @@
     </div>
   </div>
 
-  <div class="surface-card mb-3 rounded">
+  <div class="bg-body mb-3 rounded">
     <div
-      class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
+      class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <span class="">
-        <h3 class="text-xs uppercase text-medium">Responsable</h3>
-        <p class="text-dark font-semibold">{{ t.assignee }}</p>
+        <h3 class="text-xs text-uppercase text-medium">Responsable</h3>
+        <p class="text-dark fw-semibold">{{ t.assignee }}</p>
       </span>
     </div>
     @if (t.scheduledDate) {
     <div
-      class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
+      class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <span class="">
-        <h3 class="text-xs uppercase text-medium">Programado</h3>
-        <p class="text-dark font-semibold">{{ t.scheduledDate }}</p>
+        <h3 class="text-xs text-uppercase text-medium">Programado</h3>
+        <p class="text-dark fw-semibold">{{ t.scheduledDate }}</p>
       </span>
     </div>
     }
     <div
-      class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
+      class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <span class="">
-        <h3 class="text-xs uppercase text-medium">Estado</h3>
-        <p class="text-dark font-semibold">{{ t.status }}</p>
+        <h3 class="text-xs text-uppercase text-medium">Estado</h3>
+        <p class="text-dark fw-semibold">{{ t.status }}</p>
       </span>
       @if (t.status === 'Cerrado' || t.status === 'Completed') {
       <app-icon
@@ -342,7 +342,7 @@
 
   <div class="px-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <h3 class="text-lg font-bold m-0 d-flex align-items-center">
+      <h3 class="text-lg fw-bold m-0 d-flex align-items-center">
         <app-icon icon="material-symbols-light:forum-outline" /> Seguimiento
       </h3>
       @if (t.seeEditingOptions) {
@@ -370,10 +370,10 @@
           </div>
         </div>
         <div
-          class="flex-1 bg-white p-3 rounded shadow-sm relative arrow-left-mobile"
+          class="flex-fill bg-white p-3 rounded shadow-sm relative arrow-left-mobile"
         >
           <div class="d-flex justify-content-between mb-1">
-            <span class="font-bold text-sm">{{ follow.applicationUser }}</span>
+            <span class="fw-bold text-sm">{{ follow.applicationUser }}</span>
             <span class="text-xs text-medium">{{ follow.createdAt }}</span>
           </div>
           <p class="m-0 text-dark text-sm">{{ follow.description }}</p>
@@ -390,7 +390,7 @@
 
   @if (t.seeEditingOptions) {
   <div
-    class="fixed bottom-0 left-0 w-full bg-white p-2 border-top-1 surface-border shadow-md"
+    class="fixed bottom-0 left-0 w-full bg-white p-2 border-top-1 border shadow-md"
   >
     <div class="d-flex flex-column gap-1">
       <div class="d-flex gap-1">

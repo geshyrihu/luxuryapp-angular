@@ -4,7 +4,7 @@
   >
     <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:article'" class="text-white text-sm" />
-      <span class="font-semibold text-sm text-white">DATOS PRINCIPALES</span>
+      <span class="fw-semibold text-sm text-white">DATOS PRINCIPALES</span>
     </div>
     @if (!bloqueada()) {
     <iw-button
@@ -21,17 +21,17 @@
 
   <div class="p-3">
     <div class="mb-2 d-flex">
-      <div class="text-color-secondary text-xs font-semibold table-col-40">
+      <div class="text-body-secondary text-xs fw-semibold table-col-40">
         FOLIO
       </div>
-      <div class="text-sm flex-grow-1 font-medium">
+      <div class="text-sm flex-grow-1 fw-medium">
         {{ ordenCompra().folio }}
       </div>
     </div>
 
     @if (ordenCompra().folioSolicitudCompra) {
     <div class="mb-2 d-flex">
-      <div class="text-color-secondary text-xs font-semibold table-col-40">
+      <div class="text-body-secondary text-xs fw-semibold table-col-40">
         SOLICITUD
       </div>
       <div class="flex-grow-1">
@@ -46,14 +46,14 @@
     }
 
     <div class="mb-2 d-flex">
-      <div class="text-color-secondary text-xs font-semibold table-col-40">
+      <div class="text-body-secondary text-xs fw-semibold table-col-40">
         FECHA
       </div>
       <div class="text-sm flex-grow-1">{{ ordenCompra().fechaSolicitud }}</div>
     </div>
 
     <div class="mb-2 d-flex">
-      <div class="text-color-secondary text-xs font-semibold table-col-40">
+      <div class="text-body-secondary text-xs fw-semibold table-col-40">
         AREA
       </div>
       <div class="text-sm flex-grow-1">
@@ -62,7 +62,7 @@
     </div>
 
     <div class="mb-2 d-flex">
-      <div class="text-color-secondary text-xs font-semibold table-col-40">
+      <div class="text-body-secondary text-xs fw-semibold table-col-40">
         JUSTIFICACION
       </div>
       <div class="text-sm flex-grow-1 text-justify">
@@ -72,7 +72,7 @@
 
     @if (ordenCompra().notasEspeciales) {
     <div class="mb-2 d-flex">
-      <div class="text-color-secondary text-xs font-semibold table-col-40">
+      <div class="text-body-secondary text-xs fw-semibold table-col-40">
         NOTAS
       </div>
       <div class="text-sm flex-grow-1 text-justify">

@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { TagModule } from "primeng/tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
@@ -18,7 +18,7 @@ import type {
 @Component({
   selector: "app-contratos-vigentes-modal",
   templateUrl: "./contratos-vigentes-modal.html",
-  imports: [TagModule, LxTooltipDirective, AppIcon],
+  imports: [AppTag, LxTooltipDirective, AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `

@@ -1,5 +1,5 @@
 <div
-  class="surface-card border-bottom-1 surface-border shadow-sm"
+  class="bg-body border-bottom-1 border shadow-sm"
   
 >
   <div class="d-flex flex-wrap align-items-center gap-3">
@@ -11,17 +11,17 @@
         <app-icon [icon]="'material-symbols-light:account-tree'" class="text-primary-600" />
       </div>
       <div>
-        <p class="font-bold text-900 m-0 line-height-1">
+        <p class="fw-bold text-body m-0 line-height-1">
           Auditoria de Cuentas Aspel
         </p>
-        <p class="text-500 m-0" >
+        <p class="text-body-secondary m-0" >
           Catalogo general por cuenta y descripcion, con presencia por customer
         </p>
       </div>
     </div>
 
     <span
-      class="border-left-1 surface-border"
+      class="border-left-1 border"
       
     ></span>
 
@@ -42,7 +42,7 @@
         (clicked)="filterS.year.set(filterS.year() - 1)"
       />
       <span
-        class="font-bold text-900 px-1"
+        class="fw-bold text-body px-1"
         
       >
         {{ filterS.year() }}
@@ -58,7 +58,7 @@
 
     @if (!loading() && rawData()) {
     <span
-      class="border-left-1 surface-border"
+      class="border-left-1 border"
       
     ></span>
 
@@ -86,57 +86,57 @@
 <div class="row mb-4 g-4">
   <div class="col-12 col-md-3">
     <div
-      class="surface-card border-1 surface-border rounded-xl p-3 h-full"
+      class="bg-body border-1 border rounded-xl p-3 h-full"
     >
-      <div class="text-500 text-sm">Customers procesados</div>
-      <div class="text-3xl font-bold text-900 mt-2">
+      <div class="text-body-secondary text-sm">Customers procesados</div>
+      <div class="text-3xl fw-bold text-body mt-2">
         {{ data.totalCustomersProcesados }}
       </div>
-      <div class="text-xs text-500 mt-2">
+      <div class="text-xs text-body-secondary mt-2">
         {{ data.totalCustomersConError }} con error
       </div>
     </div>
   </div>
   <div class="col-12 col-md-3">
     <div
-      class="surface-card border-1 surface-border rounded-xl p-3 h-full"
+      class="bg-body border-1 border rounded-xl p-3 h-full"
     >
-      <div class="text-500 text-sm">Catalogo general</div>
-      <div class="text-3xl font-bold text-900 mt-2">
+      <div class="text-body-secondary text-sm">Catalogo general</div>
+      <div class="text-3xl fw-bold text-body mt-2">
         {{ data.totalCuentasCatalogoGeneral }}
       </div>
-      <div class="text-xs text-500 mt-2">Union de cuentas entre customers</div>
+      <div class="text-xs text-body-secondary mt-2">Union de cuentas entre customers</div>
     </div>
   </div>
   <div class="col-12 col-md-3">
     <div
-      class="surface-card border-1 surface-border rounded-xl p-3 h-full"
+      class="bg-body border-1 border rounded-xl p-3 h-full"
     >
-      <div class="text-500 text-sm">Compartidas por todos</div>
-      <div class="text-3xl font-bold text-green-600 mt-2">
+      <div class="text-body-secondary text-sm">Compartidas por todos</div>
+      <div class="text-3xl fw-bold text-green-600 mt-2">
         {{ data.totalCuentasCompartidas }}
       </div>
-      <div class="text-xs text-500 mt-2">Todos los customers la tienen</div>
+      <div class="text-xs text-body-secondary mt-2">Todos los customers la tienen</div>
     </div>
   </div>
   <div class="col-12 col-md-3">
     <div
-      class="surface-card border-1 surface-border rounded-xl p-3 h-full"
+      class="bg-body border-1 border rounded-xl p-3 h-full"
     >
-      <div class="text-500 text-sm">Parciales</div>
-      <div class="text-3xl font-bold text-orange-600 mt-2">
+      <div class="text-body-secondary text-sm">Parciales</div>
+      <div class="text-3xl fw-bold text-orange-600 mt-2">
         {{ data.totalCuentasParciales }}
       </div>
-      <div class="text-xs text-500 mt-2">Faltantes o estructura distinta</div>
+      <div class="text-xs text-body-secondary mt-2">Faltantes o estructura distinta</div>
     </div>
   </div>
 </div>
 
-<div class="surface-card border-1 surface-border rounded-xl p-3">
+<div class="bg-body border-1 border rounded-xl p-3">
   <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
     <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:table'" class="text-primary-600" />
-      <h2 class="text-lg font-bold text-900 m-0">
+      <h2 class="text-lg fw-bold text-body m-0">
         Catalogo general comparativo
       </h2>
     </div>
@@ -153,7 +153,7 @@
         severity="danger"
         (clicked)="exportPdf()"
       />
-      <div class="text-xs text-500">
+      <div class="text-xs text-body-secondary">
         <span class="me-3"
           ><app-icon
             [icon]="'material-symbols-light:check'"
@@ -221,24 +221,24 @@
           [style.backgroundColor]="getRowBackgroundColor(cuenta.nivelReferencia)"
         >
           <td
-            class="text-center font-semibold"
+            class="text-center fw-semibold"
             [style.color]="getRowTextColor(cuenta.nivelReferencia)"
           >
             {{ cuenta.nivelReferencia }}
           </td>
           <td
-            class="font-semibold"
+            class="fw-semibold"
             [style.color]="getRowTextColor(cuenta.nivelReferencia)"
           >
             {{ cuenta.numCta }}
           </td>
           <td class="text-center">
-            <span class="font-semibold text-700">
+            <span class="fw-semibold text-body">
               {{ formatNaturaleza(cuenta.naturalezaReferencia) }}
             </span>
           </td>
           <td>
-            <div class="font-semibold text-900">
+            <div class="fw-semibold text-body">
               {{ cuenta.nombreReferencia || "-" }}
             </div>
             @if (cuenta.tieneDiferenciaEstructural) {
@@ -265,7 +265,7 @@
 </div>
 } @if (!loading() && !rawData()) {
 <div
-  class="d-flex flex-column align-items-center justify-content-center py-8 text-500"
+  class="d-flex flex-column align-items-center justify-content-center py-5 text-body-secondary"
 >
   <app-icon [icon]="'material-symbols-light:account-tree'" class="text-4xl mb-3" />
   <p class="m-0">No fue posible cargar la auditoria de cuentas Aspel.</p>

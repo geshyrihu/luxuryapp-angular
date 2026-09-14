@@ -1,20 +1,20 @@
 <div class="d-flex flex-column gap-4">
   <lx-card class="shadow-sm" [elevated]="true">
     <ng-template #header>
-      <div class="d-flex flex-column p-4 border-bottom-1 surface-border">
-        <div class="text-xs uppercase font-bold tracking-wider text-500">
+      <div class="d-flex flex-column p-4 border-bottom-1 border">
+        <div class="text-xs text-uppercase fw-bold tracking-wider text-body-secondary">
           Mantenimiento de Base de Datos
         </div>
-        <h4 class="m-0 text-900">Scripts de mantenimiento</h4>
-        <p class="m-0 text-sm text-color-secondary line-height-3">
+        <h4 class="m-0 text-body">Scripts de mantenimiento</h4>
+        <p class="m-0 text-sm text-body-secondary line-height-3">
           Ejecuta scripts para actualizar, migrar y sincronizar datos antiguos
           en el sistema.
         </p>
 
         <div
-          class="mt-3 rounded-lg border-1 border-yellow-300 bg-yellow-50 p-3 text-sm text-800"
+          class="mt-3 rounded-lg border-1 border-yellow-300 bg-yellow-50 p-3 text-sm text-body"
         >
-          <div class="font-semibold text-900">
+          <div class="fw-semibold text-body">
             Orden recomendado para JuntasMensuales
           </div>
           <div class="mt-2 line-height-3">
@@ -33,7 +33,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runMigrateCoiAspel()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -43,8 +43,8 @@
               COI
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">Sincronizar Aspel COI</div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="fw-bold text-body">Sincronizar Aspel COI</div>
+              <div class="text-xs text-body-secondary line-height-2">
                 Migra informacion de contabilidad general desde Aspel COI.
               </div>
             </div>
@@ -55,7 +55,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runCapitalizeUserNames()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -65,10 +65,10 @@
               AZ
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">
+              <div class="fw-bold text-body">
                 Capitalizar nombres de usuarios
               </div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="text-xs text-body-secondary line-height-2">
                 Corrige el formato de nombres existentes para dejar la
                 capitalizacion consistente en cuentas de usuario.
               </div>
@@ -80,7 +80,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runImportAsambleaChecklistCatalog()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -90,10 +90,10 @@
               CK
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">
+              <div class="fw-bold text-body">
                 Importar checklist de asamblea
               </div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="text-xs text-body-secondary line-height-2">
                 Lee el markdown operativo y agrega al catalogo solo los items
                 faltantes.
               </div>
@@ -105,7 +105,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runReseedNativeChargeTypeCatalogs()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -115,10 +115,10 @@
               CT
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">
+              <div class="fw-bold text-body">
                 Reiniciar tipos de cargo nativos
               </div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="text-xs text-body-secondary line-height-2">
                 Borra por completo el catalogo actual en todos los customers
                 activos y despues inserta nuevamente solo el catalogo oficial.
               </div>
@@ -130,7 +130,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runBackfillHistoricalMeetingTimes()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -140,10 +140,10 @@
               1
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">
+              <div class="fw-bold text-body">
                 Paso 1. Recuperar horas historicas de juntas
               </div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="text-xs text-body-secondary line-height-2">
                 Lee el historico de juntas, rellena la hora faltante en minutas
                 antiguas y sincroniza la fecha y hora de las presentaciones
                 vinculadas.
@@ -156,7 +156,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runBackfillAgendaEventsFromMeetings()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -166,10 +166,10 @@
               2
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">
+              <div class="fw-bold text-body">
                 Paso 2. Backfill agenda desde minutas
               </div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="text-xs text-body-secondary line-height-2">
                 Crea eventos historicos locales y sesiones faltantes para
                 minutas de comite y asamblea usando la hora ya recuperada.
               </div>
@@ -181,7 +181,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runResyncGoogleCalendarEventTimes()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -191,10 +191,10 @@
               GC
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">
+              <div class="fw-bold text-body">
                 Paso 3. Resincronizar horarios con Google Calendar
               </div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="text-xs text-body-secondary line-height-2">
                 Reenvia a Google Calendar los eventos ya vinculados usando la
                 fecha y hora guardadas en Luxury App para corregir corrimientos
                 horarios previos.
@@ -207,7 +207,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runMigrateUserActivitiesToLogsDb()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -217,10 +217,10 @@
               UA
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">
+              <div class="fw-bold text-body">
                 Migrar UserActivities a LuxuryAppLogs
               </div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="text-xs text-body-secondary line-height-2">
                 Copia los registros con Timestamp desde enero 2026 en adelante
                 hacia la BD aislada de logs, en lotes de 200.
               </div>
@@ -232,7 +232,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runSeedRecruitmentSources()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -242,10 +242,10 @@
               🌱
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">
+              <div class="fw-bold text-body">
                 Sembrar Canales de Reclutamiento
               </div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="text-xs text-body-secondary line-height-2">
                 Crea las fuentes comunes (Facebook, LinkedIn, Computrabajo,
                 Recomendacion, OCC, Indeed) si no existen.
               </div>
@@ -257,7 +257,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runRecalculateWorkPositionFolios()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -267,10 +267,10 @@
               WP
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">
+              <div class="fw-bold text-body">
                 Recalcular Folios de Puestos de Trabajo
               </div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="text-xs text-body-secondary line-height-2">
                 Renumera el folio de todos los WorkPosition con el formato
                 Cliente-Rol-Consecutivo usando el codigo de rol vigente.
               </div>
@@ -282,7 +282,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <lx-card
           class="cursor-pointer h-full d-block"
-          class="h-full border-1 surface-border hover:surface-100 transition-all transition-duration-200"
+          class="h-full border-1 border hover:bg-body-tertiary transition-all transition-duration-200"
           (click)="runSeedDocumentCatalogs()"
         >
           <div class="d-flex align-items-start gap-3">
@@ -292,10 +292,10 @@
               DC
             </div>
             <div class="d-flex flex-column gap-1">
-              <div class="font-bold text-900">
+              <div class="fw-bold text-body">
                 Sembrar Catalogo de Documentos
               </div>
-              <div class="text-xs text-color-secondary line-height-2">
+              <div class="text-xs text-body-secondary line-height-2">
                 Crea los documentos obligatorios del expediente (Acta de
                 Nacimiento, INE, RFC, NSS, CURP, etc.) si no existen.
               </div>

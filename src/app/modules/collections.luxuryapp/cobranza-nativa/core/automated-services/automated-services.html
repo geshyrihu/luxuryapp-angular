@@ -3,8 +3,8 @@
     <div class="d-flex gap-2 align-items-start">
       <app-icon [icon]="'material-symbols-light:settings'" class="text-primary mt-1 text-xl" />
       <div>
-        <div class="font-bold mb-1">Servicios Automatizados del Sistema</div>
-        <div class="text-sm text-600 line-height-3">
+        <div class="fw-bold mb-1">Servicios Automatizados del Sistema</div>
+        <div class="text-sm text-body-secondary line-height-3">
           Estos procesos se ejecutan automaticamente via jobs nocturnos
           (Hangfire/CRON). Tambien puedes dispararlos manualmente desde aqui
           cuando sea necesario, por ejemplo tras una importacion masiva o para
@@ -23,9 +23,9 @@
           >
             <app-icon [icon]="'material-symbols-light:add-circle'" class="text-green-600" />
           </div>
-          <div class="font-semibold">Generacion de Cargos Mensuales</div>
+          <div class="fw-semibold">Generacion de Cargos Mensuales</div>
         </div>
-        <p class="text-sm text-500 line-height-3 mb-3">
+        <p class="text-sm text-body-secondary line-height-3 mb-3">
           Crea automaticamente los cargos del mes para todas las propiedades
           activas, basandose en las plantillas configuradas (mantenimiento,
           cuotas extraordinarias, etc.). Calcula montos por indiviso cuando
@@ -72,9 +72,9 @@
           >
             <app-icon [icon]="'material-symbols-light:percent'" class="text-orange-600" />
           </div>
-          <div class="font-semibold">Calculo de Recargos por Mora</div>
+          <div class="fw-semibold">Calculo de Recargos por Mora</div>
         </div>
-        <p class="text-sm text-500 line-height-3 mb-3">
+        <p class="text-sm text-body-secondary line-height-3 mb-3">
           Detecta cargos vencidos y aplica los recargos configurados en las
           politicas de mora (fijo o porcentaje, con dias de gracia). Genera
           nuevos cargos de tipo "Recargo Mora" y los registra en el ledger
@@ -103,9 +103,9 @@
           >
             <app-icon [icon]="'material-symbols-light:warning'" class="text-red-600" />
           </div>
-          <div class="font-semibold">Escalada a Cobranza Legal (Gestoria)</div>
+          <div class="fw-semibold">Escalada a Cobranza Legal (Gestoria)</div>
         </div>
-        <p class="text-sm text-500 line-height-3 mb-3">
+        <p class="text-sm text-body-secondary line-height-3 mb-3">
           Analiza la antiguedad de deuda por propiedad (30/60/90+ dias). Las que
           superan el umbral configurado se promueven automaticamente a un Caso
           de Cobranza para seguimiento por un gestor.
@@ -133,9 +133,9 @@
           >
             <app-icon [icon]="'material-symbols-light:sync'" class="text-blue-600" />
           </div>
-          <div class="font-semibold">Auto-Conciliacion de Pagos</div>
+          <div class="fw-semibold">Auto-Conciliacion de Pagos</div>
         </div>
-        <p class="text-sm text-500 line-height-3 mb-3">
+        <p class="text-sm text-body-secondary line-height-3 mb-3">
           Busca pagos registrados sin aplicar (bolsa de pagos no identificados)
           e intenta cruzarlos automaticamente con cargos pendientes de la misma
           propiedad usando logica FIFO. Util tras importaciones masivas de
@@ -164,13 +164,13 @@
           >
             <app-icon [icon]="'material-symbols-light:bolt'" class="text-purple-600" />
           </div>
-          <div class="font-semibold">Webhooks de Pasarelas de Pago</div>
+          <div class="fw-semibold">Webhooks de Pasarelas de Pago</div>
           <lx-tag
             value="Infraestructura lista, pendiente de activar"
             severity="warning"
           />
         </div>
-        <p class="text-sm text-500 line-height-3">
+        <p class="text-sm text-body-secondary line-height-3">
           El sistema cuenta con un endpoint publico para recibir notificaciones
           automaticas de pasarelas de pago externas como
           <strong>Conekta</strong>, <strong>Stripe</strong> y
@@ -191,22 +191,22 @@
 
   @if (results().length > 0) {
   <lx-card class="card mt-4">
-    <label class="text-500 text-xs uppercase font-medium"
+    <label class="text-body-secondary text-xs text-uppercase fw-medium"
       >Historial de esta sesion</label
     >
     <div class="mt-2 d-flex flex-column gap-2">
       @for (r of results(); track r.executedAt) {
-      <div class="d-flex align-items-center gap-3 p-2 surface-50 rounded border-1 surface-border text-sm">
+      <div class="d-flex align-items-center gap-3 p-2 bg-body-tertiary rounded border-1 border text-sm">
         <app-icon
           [icon]="'material-symbols-light:check-circle'"
           class="pi"
           [class]="r.success ? ' text-green-600' : 'material-symbols-light:cancel text-red-600'"
         />
-        <span class="font-medium">{{ r.jobName }}</span>
-        <span class="text-500"
+        <span class="fw-medium">{{ r.jobName }}</span>
+        <span class="text-body-secondary"
           >{{ r.recordsAffected }} registros afectados</span
         >
-        <span class="text-400 ms-auto"
+        <span class="text-body-secondary ms-auto"
           >{{ r.executedAt | apiDate:'HH:mm:ss' }}</span
         >
       </div>

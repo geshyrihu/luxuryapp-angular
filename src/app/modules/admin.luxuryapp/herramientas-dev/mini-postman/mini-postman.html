@@ -1,6 +1,6 @@
 <div class="d-flex flex-column gap-3 p-3 h-full">
   <!-- Barra de URL -->
-  <div class="surface-card rounded p-3 shadow-sm">
+  <div class="bg-body rounded p-3 shadow-sm">
     <div class="d-flex align-items-center gap-2 mb-2">
       <custom-input-select-signal
         [data]="methods"
@@ -38,12 +38,12 @@
           [ngModel]="useBaseUrl()"
           (ngModelChange)="useBaseUrl.set($event)"
         />
-        <span class="text-500">Usar base URL</span>
+        <span class="text-body-secondary">Usar base URL</span>
       </label>
       @if (useBaseUrl()) {
-      <span class="text-400 text-xs font-italic">{{ baseUrl }}</span>
+      <span class="text-body-secondary text-xs fst-italic">{{ baseUrl }}</span>
       } @if (url()) {
-      <span class="text-300 text-xs ms-auto truncate" >
+      <span class="text-body-secondary text-xs ms-auto truncate" >
         {{ fullUrl() }}
       </span>
       }
@@ -51,14 +51,14 @@
   </div>
 
   <!-- Paneles request / response -->
-  <div class="d-flex gap-3 flex-1 min-h-0">
+  <div class="d-flex gap-3 flex-fill min-h-0">
     <!-- Panel izquierdo: Request -->
     <div
-      class="surface-card rounded shadow-sm d-flex flex-column"
+      class="bg-body rounded shadow-sm d-flex flex-column"
       
     >
       <lx-tabs [tabs]="reqTabs()" [(activeId)]="activeTabReq" class="d-flex flex-column h-full">
-        <div class="flex-1 overflow-auto">
+        <div class="flex-fill overflow-auto">
           @switch (activeTabReq()) {
           <!-- PARAMS -->
           @case ('params') {
@@ -169,22 +169,22 @@
 
     <!-- Panel derecho: Response -->
     <div
-      class="surface-card rounded shadow-sm d-flex flex-column"
+      class="bg-body rounded shadow-sm d-flex flex-column"
       
     >
       <!-- Status bar -->
       <div
-        class="d-flex align-items-center gap-3 px-3 py-2 border-bottom-1 surface-border"
+        class="d-flex align-items-center gap-3 px-3 py-2 border-bottom-1 border"
       >
-        <span class="font-semibold text-sm text-500">Respuesta</span>
+        <span class="fw-semibold text-sm text-body-secondary">Respuesta</span>
         @if (statusCode() !== null) {
         <span
-          class="font-bold text-sm px-2 py-1 rounded"
+          class="fw-bold text-sm px-2 py-1 rounded"
           [class]="statusBadgeClass(statusCode()!)"
         >
           {{ statusCode() }}
         </span>
-        <span class="text-500 text-xs">{{ durationMs() }} ms</span>
+        <span class="text-body-secondary text-xs">{{ durationMs() }} ms</span>
         <iw-button
           iconClass="material-symbols-light:content-copy"
           variant="text"
@@ -200,8 +200,8 @@
         }
       </div>
 
-      <lx-tabs [tabs]="resTabs" [(activeId)]="activeTabRes" class="d-flex flex-column flex-1 min-h-0">
-        <div class="flex-1 overflow-auto">
+      <lx-tabs [tabs]="resTabs" [(activeId)]="activeTabRes" class="d-flex flex-column flex-fill min-h-0">
+        <div class="flex-fill overflow-auto">
           @switch (activeTabRes()) {
           <!-- Body response -->
           @case ('body-res') {
@@ -212,12 +212,12 @@
 {{ responseError() }}</pre>
             } @else if (prettyResponse()) {
             <pre
-              class="m-0 p-3 text-sm overflow-auto h-full font-mono white-space-pre-wrap text-800"
+              class="m-0 p-3 text-sm overflow-auto h-full font-mono white-space-pre-wrap text-body"
             >
 {{ prettyResponse() }}</pre>
             } @else if (!loading()) {
             <div
-              class="d-flex align-items-center justify-content-center h-full text-400 text-sm"
+              class="d-flex align-items-center justify-content-center h-full text-body-secondary text-sm"
             >
               Envia una peticion para ver la respuesta
             </div>
@@ -229,15 +229,15 @@
             <div class="p-2">
               @for (entry of responseHeaderEntries(); track entry[0]) {
               <div
-                class="d-flex gap-2 py-1 border-bottom-1 surface-border text-sm"
+                class="d-flex gap-2 py-1 border-bottom-1 border text-sm"
               >
-                <span class="font-medium text-primary w-12rem flex-shrink-0"
+                <span class="fw-medium text-primary w-12rem flex-shrink-0"
                   >{{ entry[0] }}</span
                 >
-                <span class="text-700 break-all">{{ entry[1] }}</span>
+                <span class="text-body break-all">{{ entry[1] }}</span>
               </div>
               } @empty {
-              <span class="text-400 text-sm">Sin headers</span>
+              <span class="text-body-secondary text-sm">Sin headers</span>
               }
             </div>
             }
@@ -249,9 +249,9 @@
 
   <!-- Historial -->
   @if (history().length) {
-  <div class="surface-card rounded shadow-sm p-3">
+  <div class="bg-body rounded shadow-sm p-3">
     <div class="d-flex align-items-center justify-content-between mb-2">
-      <span class="font-semibold text-sm text-700">Historial reciente</span>
+      <span class="fw-semibold text-sm text-body">Historial reciente</span>
       <il-button
         label="Limpiar"
         iconClass="material-symbols-light:delete"
@@ -267,16 +267,16 @@
     >
       @for (entry of history(); track entry.timestamp) {
       <div
-        class="d-flex align-items-center gap-2 px-2 py-1 rounded cursor-pointer hover:surface-hover text-sm"
+        class="d-flex align-items-center gap-2 px-2 py-1 rounded cursor-pointer text-sm"
         (click)="loadFromHistory(entry)"
       >
         <span
-          class="font-bold text-xs px-2 py-1 rounded w-4rem text-center"
+          class="fw-bold text-xs px-2 py-1 rounded w-4rem text-center"
           [class]="methodBadgeClass(entry.method)"
         >
           {{ entry.method }}
         </span>
-        <span class="flex-1 text-700 text-xs truncate font-mono"
+        <span class="flex-fill text-body text-xs truncate font-mono"
           >{{ entry.url }}</span
         >
         <span
@@ -285,7 +285,7 @@
         >
           {{ entry.statusCode }}
         </span>
-        <span class="text-400 text-xs w-5rem text-right"
+        <span class="text-body-secondary text-xs w-5rem text-end"
           >{{ entry.durationMs }} ms</span
         >
       </div>

@@ -1,6 +1,6 @@
 <section class="fadein">
   <div class="section-header mb-4">
-    <h2 class="text-3xl font-bold m-0">Guía ERP — Referencia Institucional</h2>
+    <h2 class="text-3xl fw-bold m-0">Guía ERP — Referencia Institucional</h2>
     <p class="text-secondary">
       Fundamentos, identidad, reglas y catálogo de componentes del Design System
       LuxuryApp.
@@ -14,9 +14,9 @@
         <div class="d-flex align-items-center gap-3">
           <app-icon [icon]="m.icon" class="text-primary text-3xl" />
           <div>
-            <div class="text-2xl font-bold">{{ m.value }}</div>
-            <div class="font-semibold">{{ m.label }}</div>
-            <small class="text-color-secondary">{{ m.detail }}</small>
+            <div class="text-2xl fw-bold">{{ m.value }}</div>
+            <div class="fw-semibold">{{ m.label }}</div>
+            <small class="text-body-secondary">{{ m.detail }}</small>
           </div>
         </div>
       </div>
@@ -24,19 +24,19 @@
     }
   </div>
 
-  <h3 class="text-xl font-bold mb-3">Casos de Uso de Negocio</h3>
+  <h3 class="text-xl fw-bold mb-3">Casos de Uso de Negocio</h3>
   <div class="row mb-5 g-4">
     @for (s of businessScenarios; track s.title) {
     <div class="col-12 col-lg-4">
-      <div class="card" class="h-full border-top-3 border-primary surface-card">
+      <div class="card" class="h-full border-top-3 border-primary bg-body">
         <div class="d-flex align-items-center gap-3 mb-3">
           <app-icon [icon]="s.icon" class="text-primary text-2xl" />
           <strong class="text-xl">{{ s.title }}</strong>
         </div>
-        <p class="text-color-secondary line-height-3 mb-3">
+        <p class="text-body-secondary line-height-3 mb-3">
           {{ s.description }}
         </p>
-        <div class="p-3 border-round bg-primary-50 text-primary-900 text-sm">
+        <div class="p-3 rounded bg-primary-50 text-primary-900 text-sm">
           <strong>Regla:</strong> {{ s.rule }}
         </div>
       </div>
@@ -44,7 +44,7 @@
     }
   </div>
 
-  <h3 class="text-xl font-bold mb-3">Identidad LuxuryApp ERP</h3>
+  <h3 class="text-xl fw-bold mb-3">Identidad LuxuryApp ERP</h3>
   <app-message
     severity="success"
     text="Diagnostico: la paleta actual es consistente para ERP corporativo. El azul #00050e es la firma principal y el gold #c9a74d es el acento premium documental."
@@ -53,7 +53,7 @@
   <div class="row mb-4 g-4">
     @for (p of identityPillars; track p.title) {
     <div class="col-12 col-lg-4">
-      <div class="card" class="h-full border-left-3 border-primary surface-card shadow-1">
+      <div class="card" class="h-full border-left-3 border-primary bg-body shadow-1">
         <div class="d-flex align-items-start gap-3">
           <app-icon [icon]="p.icon" class="text-primary text-2xl" />
           <div>
@@ -61,10 +61,10 @@
               <strong>{{ p.title }}</strong>
               <app-tag [value]="p.severity" [severity]="p.severity" />
             </div>
-            <p class="m-0 line-height-3 text-color-secondary">
+            <p class="m-0 line-height-3 text-body-secondary">
               {{ p.summary }}
             </p>
-            <small class="d-block mt-3 text-color-secondary"
+            <small class="d-block mt-3 text-body-secondary"
               >{{ p.application }}</small
             >
           </div>
@@ -80,7 +80,7 @@
     text="Tipografía y paleta de color están centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allí para la referencia completa con tokens CSS copiables."
   />
 
-  <h3 class="text-xl font-bold mb-3">Validación de Color</h3>
+  <h3 class="text-xl fw-bold mb-3">Validación de Color</h3>
   <div class="card" class="mb-5">
     <p-table [value]="colorAssessment" class="p-datatable-sm">
       <ng-template #header><tr>
@@ -101,7 +101,7 @@
     </p-table>
   </div>
 
-  <h3 class="text-xl font-bold mb-3">Catálogo de Componentes Core</h3>
+  <h3 class="text-xl fw-bold mb-3">Catálogo de Componentes Core</h3>
   <app-message
     severity="info"
     text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)."
@@ -130,7 +130,7 @@
           <td><strong>{{ item.family }}</strong></td>
           <td><code>{{ item.selector }}</code></td>
           <td>
-            <span class="text-sm text-color-secondary">{{ item.source }}</span>
+            <span class="text-sm text-body-secondary">{{ item.source }}</span>
           </td>
           <td>{{ item.useCase }}</td>
           <td>{{ item.preferredFor }}</td>
@@ -146,7 +146,7 @@
     </p-table>
   </div>
 
-  <h3 class="text-xl font-bold mb-3">Reglas de Botones</h3>
+  <h3 class="text-xl fw-bold mb-3">Reglas de Botones</h3>
   <div class="row mb-5 g-4">
     @for (r of buttonRules; track r.variant) {
     <div class="col-12 col-md-6 col-xl-3">
@@ -158,8 +158,8 @@
               <strong>{{ r.variant }}</strong>
               <app-tag [value]="r.variant" [severity]="r.severity" />
             </div>
-            <p class="m-0 text-color-secondary line-height-3">{{ r.usage }}</p>
-            <small class="d-block mt-2 text-color-secondary">{{ r.avoid }}</small>
+            <p class="m-0 text-body-secondary line-height-3">{{ r.usage }}</p>
+            <small class="d-block mt-2 text-body-secondary">{{ r.avoid }}</small>
           </div>
         </div>
       </div>
@@ -167,7 +167,7 @@
     }
   </div>
 
-  <h3 class="text-xl font-bold mb-3">
+  <h3 class="text-xl fw-bold mb-3">
     Formulario de Referencia (Custom* inputs)
   </h3>
   <div class="card" class="mb-5">
@@ -302,7 +302,7 @@
     class="mb-5 d-block"
   />
 
-  <h3 class="text-xl font-bold mb-3">Tabla ERP y Estados del Sistema</h3>
+  <h3 class="text-xl fw-bold mb-3">Tabla ERP y Estados del Sistema</h3>
   <div class="card" class="mb-5">
     <p-table
       [value]="tableRows"
@@ -316,7 +316,7 @@
         >
           <div>
             <strong>Solicitudes operativas</strong
-            ><span class="d-block text-sm text-color-secondary"
+            ><span class="d-block text-sm text-body-secondary"
               >Acciones visibles maximas: 2 + menu contextual.</span
             >
           </ng-template>
@@ -328,7 +328,7 @@
           <th>Area</th>
           <th>Responsable</th>
           <th>Fecha</th>
-          <th class="text-right">Importe</th>
+          <th class="text-end">Importe</th>
           <th>Estado</th>
           <th class="text-center">Acciones</th>
         </tr></ng-template
@@ -339,7 +339,7 @@
           <td>{{ row.area }}</td>
           <td>{{ row.responsible }}</td>
           <td>{{ row.dueDate }}</td>
-          <td class="text-right">
+          <td class="text-end">
             {{ row.amount | currency:'MXN':'symbol':'1.0-0' }}
           </td>
           <td>
@@ -363,21 +363,21 @@
   </div>
   <div class="row mb-5 g-4">
     <div class="col-12 col-md-6 col-xl-3">
-      <div class="surface-card p-3 border-round text-center">
+      <div class="bg-body p-3 rounded text-center">
         <app-spinner strokeWidth="4" /><strong class="d-block mt-2"
           >Loading</strong
-        ><span class="text-xs text-color-secondary"
+        ><span class="text-xs text-body-secondary"
           >Spinner en acciones cortas, skeleton en carga estructural.</span
         >
       </div>
     </div>
     <div class="col-12 col-md-6 col-xl-3">
-      <div class="surface-card p-3 border-round d-flex flex-column gap-2">
+      <div class="bg-body p-3 rounded d-flex flex-column gap-2">
         <app-skeleton width="100%" height="1.25rem" /><app-skeleton
           width="70%"
           height="1.25rem"
         /><strong>Skeleton</strong
-        ><span class="text-xs text-color-secondary"
+        ><span class="text-xs text-body-secondary"
           >Anticipa layout en cards, listas o tablas.</span
         >
       </div>
@@ -405,11 +405,11 @@
     </div>
   </div>
 
-  <h3 class="text-xl font-bold mb-3">Toolbar ERP</h3>
+  <h3 class="text-xl fw-bold mb-3">Toolbar ERP</h3>
   <ng-template #toolbarLeft>
     <div>
       <strong>Solicitudes operativas</strong>
-      <span class="d-block text-sm text-color-secondary"
+      <span class="d-block text-sm text-body-secondary"
         >Filtros, acciones y estado de pantalla.</span
       >
     </div>
@@ -436,13 +436,13 @@
     [rightTemplate]="toolbarRight"
   />
 
-  <h3 class="text-xl font-bold mb-3">Reglas Globales del ERP</h3>
+  <h3 class="text-xl fw-bold mb-3">Reglas Globales del ERP</h3>
   <div class="row mb-4 g-4">
     @for (r of globalRules; track r.title) {
     <div class="col-12 col-md-6 col-xl-4">
-      <div class="card" class="h-full border-left-3 border-primary surface-card shadow-1">
+      <div class="card" class="h-full border-left-3 border-primary bg-body shadow-1">
         <strong>{{ r.title }}</strong>
-        <p class="m-0 mt-3 text-color-secondary line-height-3">
+        <p class="m-0 mt-3 text-body-secondary line-height-3">
           {{ r.description }}
         </p>
       </div>
@@ -455,7 +455,7 @@
         @for (r of spacingRules; track r.title) {
         <div class="mb-3">
           <strong>{{ r.title }}</strong>
-          <p class="m-0 text-color-secondary">{{ r.description }}</p>
+          <p class="m-0 text-body-secondary">{{ r.description }}</p>
         </div>
         }
       </div>
@@ -465,7 +465,7 @@
         @for (s of systemStates; track s.title) {
         <div class="mb-3">
           <strong>{{ s.title }}</strong>
-          <p class="m-0 text-color-secondary">{{ s.description }}</p>
+          <p class="m-0 text-body-secondary">{{ s.description }}</p>
         </div>
         }
       </div>

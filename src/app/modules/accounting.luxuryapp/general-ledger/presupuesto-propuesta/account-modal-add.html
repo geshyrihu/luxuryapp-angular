@@ -21,13 +21,11 @@
 </div>
 
 @if (filteredAccounts().length > 0) {
-<div class="border-1 surface-border rounded">
+<div class="border-1 border rounded">
   @for (account of filteredAccounts(); track account.codigoCuenta) {
   <div
-    pRipple
     class="p-3 d-flex justify-content-between align-items-center cursor-pointer"
-    [class.surface-200]="isSelected(account.codigoCuenta)"
-    [class.hover:surface-100]="!isSelected(account.codigoCuenta)"
+    [class.bg-body-tertiary]="isSelected(account.codigoCuenta)"
     (click)="toggleAccountSelection(account.codigoCuenta)"
   >
     <span>{{ account.codigoCuenta }} - {{ account.descripcionCuenta }}</span>

@@ -259,8 +259,8 @@
         </div>
         } @else {
         <div class="d-flex flex-column gap-1">
-          <small class="text-500 font-semibold">{{ item.folio }}</small>
-          <span class="font-semibold text-900"
+          <small class="text-body-secondary fw-semibold">{{ item.folio }}</small>
+          <span class="fw-semibold text-body"
             >{{ item.applicationRoleName }}</span
           >
         </div>
@@ -268,7 +268,7 @@
       </td>
 
       <td>
-        <span class="text-sm text-700">{{ item.turno }}</span>
+        <span class="text-sm text-body">{{ item.turno }}</span>
       </td>
 
       @if (showSalaryColumn()) {
@@ -277,12 +277,12 @@
           <div
             class="d-flex justify-content-between border-bottom-1 border-200 pb-1"
           >
-            <small class="text-500 font-bold">PRE:</small>
+            <small class="text-body-secondary fw-bold">PRE:</small>
             <span class="text-xs">{{ item.sueldoBase }}</span>
           </div>
           <div class="d-flex justify-content-between">
-            <small class="text-500 font-bold">ACT:</small>
-            <span class="text-xs font-bold text-primary"
+            <small class="text-body-secondary fw-bold">ACT:</small>
+            <span class="text-xs fw-bold text-primary"
               >{{ item.sueldo }}</span
             >
           </div>
@@ -353,7 +353,7 @@
             />
             }
             <div class="d-flex flex-column min-w-0 flex-grow-1">
-              <span class="font-semibold truncate"
+              <span class="fw-semibold truncate"
                 >{{ item.applicationUser }}</span
               >
               @let tickets = openTickets(item); @if (tickets.length > 0) {
@@ -370,10 +370,10 @@
               }
               <div class="d-flex flex-wrap align-items-center gap-1 mt-1">
               <lx-tag
-                [value]="item.turno || 'Sin turno asignado'"
+                [value]="(item.turno || 'Sin turno') + ' | ' + (item.workPositionScheduleName || 'Sin horario')"
                 icon="material-symbols-light:calendar-month"
                 severity="secondary"
-                class="cursor-pointer hover:surface-200 transition-colors transition-duration-150 border-round"
+                class="cursor-pointer hover:bg-body-tertiary transition-colors transition-duration-150 rounded"
                 lxTooltip="Ver detalles del horario"
                 (click)="onModalForm({ id: item.id, title: 'Detalles del Puesto' })"
               />
@@ -438,9 +438,9 @@
               <div class="d-flex align-items-center gap-2">
                 <app-icon
                   icon="material-symbols-light:group"
-                  class="text-400"
+                  class="text-body-secondary"
                 />
-                <span class="text-sm font-bold">VACANTE</span>
+                <span class="text-sm fw-bold">VACANTE</span>
               </div>
               <div class="d-flex gap-1">
                 @if (canConfirmIngress(item)) {
@@ -482,7 +482,7 @@
             </span>
             } @let queue = getQueueForPosition(item); @if (queue) {
             <div
-              class="vacant-queue-summary mt-2 p-2 border-round bg-surface-100 border-1 surface-border"
+              class="vacant-queue-summary mt-2 p-2 rounded bg-bg-body-tertiary border-1 border"
             >
               <div
                 class="d-flex flex-wrap align-items-center justify-content-between gap-2"
@@ -492,7 +492,7 @@
                     icon="material-symbols-light:manage-search"
                     class="text-primary"
                   />
-                  <span class="font-semibold text-sm"
+                  <span class="fw-semibold text-sm"
                     >Seguimiento de candidatos</span
                   >
                 </div>

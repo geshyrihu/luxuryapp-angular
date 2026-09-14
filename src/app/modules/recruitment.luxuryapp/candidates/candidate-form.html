@@ -64,7 +64,7 @@
           </div>
           <div class="col-12 col-md-4">
             <div class="d-flex flex-column gap-2">
-              <label class="font-semibold text-sm">Origen del candidato</label>
+              <label class="fw-semibold text-sm">Origen del candidato</label>
               <div class="d-flex align-items-center gap-4">
                 <div class="d-flex align-items-center">
                   <lx-radio-button
@@ -75,7 +75,7 @@
                   />
                   <label
                     for="recruitmentSourceInternal"
-                    class="font-medium cursor-pointer ms-2"
+                    class="fw-medium cursor-pointer ms-2"
                     >Interno</label
                   >
                 </div>
@@ -88,7 +88,7 @@
                   />
                   <label
                     for="recruitmentSourceExternal"
-                    class="font-medium cursor-pointer ms-2"
+                    class="fw-medium cursor-pointer ms-2"
                     >Externo</label
                   >
                 </div>
@@ -169,13 +169,13 @@
         </div>
         @if (duplicateCandidate(); as found) {
         <div class="col-12">
-          <div class="border-1 border-orange-300 surface-100 border-round p-3">
+          <div class="border-1 border-orange-300 bg-body-tertiary rounded p-3">
             <div class="d-flex justify-content-between align-items-start gap-2">
               <div>
-                <div class="font-semibold">
+                <div class="fw-semibold">
                   Ya existe un candidato registrado con este telefono
                 </div>
-                <div class="text-sm text-color-secondary mt-1">
+                <div class="text-sm text-body-secondary mt-1">
                   {{ found.fullName }} — {{ found.email }} —
                   {{ candidateStatusLabel(found.status) }}
                 </div>
@@ -224,13 +224,13 @@
       <!-- Start Aqui colocar lo referente a la Experiencia Laboral -->
       <div class="col-12 col-md-4">
         <div class="col-12">
-          <div class="border-1 surface-border border-round p-3">
+          <div class="border-1 border rounded p-3">
             <div
               class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-2 mb-3 g-4"
             >
               <div>
-                <div class="font-semibold">Experiencia laboral</div>
-                <div class="text-sm text-color-secondary">
+                <div class="fw-semibold">Experiencia laboral</div>
+                <div class="text-sm text-body-secondary">
                   Registra el historial laboral estructurado del candidato.
                 </div>
               </div>
@@ -245,17 +245,17 @@
             </div>
 
             @if (workExperienceControls.length === 0) {
-            <div class="text-sm text-color-secondary">
+            <div class="text-sm text-body-secondary">
               Sin experiencias registradas.
             </div>
             } @else {
             <div class="d-flex flex-column gap-3">
               @for (experience of workExperienceControls; track $index) {
-              <div class="border-1 surface-border border-round p-3">
+              <div class="border-1 border rounded p-3">
                 <div
                   class="d-flex justify-content-between align-items-center mb-3"
                 >
-                  <div class="font-medium">Experiencia {{ $index + 1 }}</div>
+                  <div class="fw-medium">Experiencia {{ $index + 1 }}</div>
                   <il-button
                     label="Eliminar"
                     iconClass="material-symbols-light:delete-outline"

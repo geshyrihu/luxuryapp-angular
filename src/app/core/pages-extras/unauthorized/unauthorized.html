@@ -1,8 +1,8 @@
 <div
-  class="min-h-screen surface-ground d-flex align-items-center justify-content-center p-5"
+  class="min-h-screen bg-body-tertiary d-flex align-items-center justify-content-center p-5"
 >
   <div
-    class="surface-card rounded shadow p-5 w-full"
+    class="bg-body rounded shadow p-5 w-full"
     style="max-width: 600px"
   >
     <div class="text-center mb-4">
@@ -10,9 +10,9 @@
         <app-icon [icon]="'material-symbols-light:lock'" class="pi text-primary text-9xl" />
       </div>
 
-      <h1 class="text-5xl font-bold text-900 mb-3">Acceso Denegado</h1>
+      <h1 class="text-5xl fw-bold text-body mb-3">Acceso Denegado</h1>
 
-      <p class="text-500 text-xl mb-5 line-height-3">
+      <p class="text-body-secondary text-xl mb-5 line-height-3">
         No tienes permisos para acceder a esta página.<br />
         Si crees que esto es un error, contacta al administrador del sistema.
       </p>
@@ -40,14 +40,14 @@
     </div>
 
     <div class="mt-5">
-      <p-divider></p-divider>
+  <app-divider></app-divider>
       <div class="text-center mt-4">
-        <div class="surface-100 rounded p-3">
-          <p class="text-500 text-sm mb-2">
+        <div class="bg-body-tertiary rounded p-3">
+          <p class="text-body-secondary text-sm mb-2">
             <app-icon [icon]="'material-symbols-light:info'" class="pi me-2" />
             <strong>¿Qué significa esto?</strong>
           </p>
-          <p class="text-500 text-sm m-0 line-height-3">
+          <p class="text-body-secondary text-sm m-0 line-height-3">
             Tu cuenta no tiene los privilegios necesarios para acceder al
             recurso solicitado. Contacta a tu administrador para obtener los
             permisos adecuados.

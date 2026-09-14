@@ -5,7 +5,7 @@ import {
   output,
   ViewEncapsulation,
 } from "@angular/core";
-import { DividerModule } from "primeng/divider";
+import { AppDivider } from "@ui/web/divider/divider";
 import { TagModule } from "primeng/tag";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
 import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.catalog";
@@ -37,7 +37,7 @@ export interface Customer360Data {
 @Component({
   selector: "app-customer-360",
 
-  imports: [DividerModule, TagModule, AppIcon],
+  imports: [AppDivider, TagModule, AppIcon],
   template: `
     <div class="c360-root">
       <!-- Header / Identity -->
@@ -120,7 +120,7 @@ export interface Customer360Data {
         </div>
       </div>
 
-      <p-divider />
+      <app-divider />
 
       <!-- Metrics row -->
       <div class="c360-metrics">
@@ -158,7 +158,7 @@ export interface Customer360Data {
         }
       </div>
 
-      <p-divider />
+      <app-divider />
 
       <!-- Body: activity + deals -->
       <div class="c360-body">

@@ -75,7 +75,7 @@
           >{{ item.lastRunStatus }}</span
         >
         } @else {
-        <span class="text-color-secondary">Nunca</span>
+        <span class="text-body-secondary">Nunca</span>
         }
       </td>
       <td>
@@ -130,8 +130,8 @@
         <app-icon icon="material-symbols-light:database-outline" class="text-xl text-blue-500" />
       </div>
 
-      <p class="mt-0 mb-0 font-semibold">{{ item.name }}</p>
-      <p class="text-color-secondary font-size-12 mt-0 mb-0">
+      <p class="mt-0 mb-0 fw-semibold">{{ item.name }}</p>
+      <p class="text-body-secondary font-size-12 mt-0 mb-0">
         {{ destinationLabel(item.destinationType) }} &bull; {{
         item.cronExpression }} @if (item.lastRunStatus) {
         &nbsp;&bull;&nbsp;<span>{{ item.lastRunStatus }}</span>
@@ -158,7 +158,7 @@
 </app-data-view-mobile>
 
 } @else {
-<div class="p-4 text-center text-color-secondary">
+<div class="p-4 text-center text-body-secondary">
   No tienes permisos para acceder a esta seccion.
 </div>
 }

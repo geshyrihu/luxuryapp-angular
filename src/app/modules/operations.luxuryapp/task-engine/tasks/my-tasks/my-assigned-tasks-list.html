@@ -17,11 +17,11 @@
     >
       <ng-template #caption>
         <div
-          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-3 surface-ground rounded shadow-sm g-4"
+          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-3 bg-body-tertiary rounded shadow-sm g-4"
         >
           <!-- IZQUIERDA: Tútulo y Status Filter -->
           <div class="d-flex flex-column flex-sm-row align-items-center gap-3 g-4">
-            <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
+            <h4 class="m-0 text-uppercase text-primary fw-bold whitespace-nowrap">
               Mis tickets asignados
             </h4>
             <app-task-status (statusChange)="onLoadData($event)" />
@@ -69,8 +69,8 @@
           [class.row-status-not-started]="item.status === 'NotStarted'"
         >
           <td>
-            <p class="m-0 text-xs text-400">{{ item.folio }}</p>
-            <p class="m-0 text-xs text-500">{{ item.createdAtDate }}</p>
+            <p class="m-0 text-xs text-body-secondary">{{ item.folio }}</p>
+            <p class="m-0 text-xs text-body-secondary">{{ item.createdAtDate }}</p>
           </td>
           <td class="text-center d-none md:table-cell">
             <app-avatar
@@ -84,10 +84,10 @@
               tooltipPosition="top"
             />
           </td>
-          <td class="text-xs text-600">{{ item.createdAtDate }}</td>
+          <td class="text-xs text-body-secondary">{{ item.createdAtDate }}</td>
           <td>
-            <p class="m-0 font-semibold text-xs text-900">{{ item.title }}</p>
-            <p class="m-0 text-xs text-700">{{ item.description }}</p>
+            <p class="m-0 fw-semibold text-xs text-body">{{ item.title }}</p>
+            <p class="m-0 text-xs text-body">{{ item.description }}</p>
           </td>
           <td class="text-center d-none md:table-cell">
             @if (item.beforeWork) {
@@ -99,11 +99,11 @@
             />
             }
           </td>
-          <td class="text-center text-xs text-600">
+          <td class="text-center text-xs text-body-secondary">
             {{ item.creator | initialsAbbr }}
           </td>
-          <td class="text-xs text-600">{{ item.scheduledAt || 'é' }}</td>
-          <td class="text-center text-xs text-600 d-none md:table-cell">
+          <td class="text-xs text-body-secondary">{{ item.scheduledAt || 'é' }}</td>
+          <td class="text-center text-xs text-body-secondary d-none md:table-cell">
             {{ item.closedAtDate || 'é' }}
           </td>
           <td class="text-center">
@@ -111,10 +111,10 @@
           </td>
           <td>
             @if (item.lastFollowUp) {
-            <span class="text-xs text-400 font-medium d-block mb-1"
+            <span class="text-xs text-body-secondary fw-medium d-block mb-1"
               >{{ item.lastFollowUpDate }}</span
             >
-            <p class="m-0 text-xs text-700">{{ item.lastFollowUp }}</p>
+            <p class="m-0 text-xs text-body">{{ item.lastFollowUp }}</p>
             }
           </td>
           <td class="text-center no-print">
@@ -129,7 +129,7 @@
                   [icon]="'material-symbols-light:forum'"
                   class="text-blue-500"
                 />
-                <span class="badge bg-info px-2 py-1 text-xs font-semibold"
+                <span class="badge bg-info px-2 py-1 text-xs fw-semibold"
                   >{{ item.ticketMessageFollowUp }}</span
                 >
               </a>
@@ -202,21 +202,21 @@
 
           <div class="d-flex flex-column gap-1">
             <div class="d-flex justify-content-between align-items-center mt-1">
-              <small class="text-color-secondary text-xs"
+              <small class="text-body-secondary text-xs"
                 >{{ item.folio }} | {{ item.createdAtDate }}</small
               >
               <span
-                class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-xs font-bold"
+                class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-xs fw-bold"
                 >{{ item.daysDifference }} d</span
               >
             </div>
             <p
-              class="font-semibold m-0 text-color line-height-2 text-sm ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap"
+              class="fw-semibold m-0 text-body line-height-2 text-sm ticket-title text-truncate overflow-hidden text-nowrap"
             >
               {{ item.title }}
             </p>
             <p
-              class="text-xs m-0 text-color-secondary ticket-description two-lines"
+              class="text-xs m-0 text-body-secondary ticket-description two-lines"
             >
               {{ item.description }}
             </p>

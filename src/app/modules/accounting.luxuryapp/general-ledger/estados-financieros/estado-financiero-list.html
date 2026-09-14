@@ -19,25 +19,25 @@
       <th>
         <div class="d-flex align-items-center">
           <lx-tag value="1" severity="info" class="me-2"></lx-tag>
-          <span class="font-semibold">PERIODO</span>
+          <span class="fw-semibold">PERIODO</span>
         </div>
       </th>
       <th>
         <div class="d-flex align-items-center">
           <lx-tag value="2" severity="info" class="me-2"></lx-tag>
-          <span class="font-semibold">ARCHIVO</span>
+          <span class="fw-semibold">ARCHIVO</span>
         </div>
       </th>
       <th>
         <div class="d-flex align-items-center">
           <lx-tag value="3" severity="info" class="me-2"></lx-tag>
-          <span class="font-semibold">AUTORIZACIóN</span>
+          <span class="fw-semibold">AUTORIZACIóN</span>
         </div>
       </th>
       <th>
         <div class="d-flex align-items-center">
           <lx-tag value="4" severity="info" class="me-2"></lx-tag>
-          <span class="font-semibold">ENVíO</span>
+          <span class="fw-semibold">ENVíO</span>
         </div>
       </th>
     </tr>
@@ -45,7 +45,7 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <div class="font-semibold">{{ item.periodoExistente }}</div>
+        <div class="fw-semibold">{{ item.periodoExistente }}</div>
       </td>
       <td>
         @if (item.nameFileEstadoFinanciero === null) {
@@ -60,8 +60,8 @@
         } @else {
         <div class="d-flex align-items-center">
           <div class="flex-flex-grow-1-1">
-            <div class="font-bold text-sm">{{ item.personWhoCharge }}</div>
-            <div class="text-xs text-color-secondary">
+            <div class="fw-bold text-sm">{{ item.personWhoCharge }}</div>
+            <div class="text-xs text-body-secondary">
               {{ item.uploadDate }}
             </div>
           </div>
@@ -100,8 +100,8 @@
         } @else {
         <div class="d-flex align-items-center">
           <div class="flex-flex-grow-1-1">
-            <div class="font-bold text-sm">{{ item.personWhoAuthorized }}</div>
-            <div class="text-xs text-color-secondary">
+            <div class="fw-bold text-sm">{{ item.personWhoAuthorized }}</div>
+            <div class="text-xs text-body-secondary">
               {{ item.authorizationDate }}
             </div>
           </div>
@@ -140,8 +140,8 @@
         } @else {
         <div class="d-flex align-items-center">
           <div class="flex-flex-grow-1-1">
-            <div class="font-bold text-sm">{{ item.personWhoSend }}</div>
-            <div class="text-xs text-color-secondary">{{ item.sendDate }}</div>
+            <div class="fw-bold text-sm">{{ item.personWhoSend }}</div>
+            <div class="text-xs text-body-secondary">{{ item.sendDate }}</div>
           </div>
         </div>
         } }
@@ -176,9 +176,9 @@
           class="text-xl text-primary"
         />
       </div>
-      <div class="flex-1 min-w-0">
+      <div class="flex-fill min-w-0">
         <div class="d-flex justify-content-between mb-1">
-          <h2 class="font-bold m-0">{{ item.periodoExistente }}</h2>
+          <h2 class="fw-bold m-0">{{ item.periodoExistente }}</h2>
           <lx-tag value="1" severity="info" class="text-xs"></lx-tag>
         </div>
 
@@ -188,12 +188,12 @@
           <div class="d-flex align-items-center">
             <lx-tag value="2" severity="info" class="text-xs"></lx-tag>
             <div class="d-flex flex-column">
-              <span class="text-sm font-semibold">
+              <span class="text-sm fw-semibold">
                 {{ item.nameFileEstadoFinanciero ? "Cargado: " + item.uploadDate
                 : "Pendiente" }}
               </span>
               @if (item.nameFileEstadoFinanciero) {
-              <small class="text-color-secondary">
+              <small class="text-body-secondary">
                 {{ item.personWhoCharge }}
               </small>
               }
@@ -203,12 +203,12 @@
           <div class="d-flex align-items-center">
             <lx-tag value="3" severity="info" class="text-xs"></lx-tag>
             <div class="d-flex flex-column">
-              <span class="text-sm font-semibold">
+              <span class="text-sm fw-semibold">
                 {{ item.personWhoAuthorized ? "Autorizado: " +
                 item.authorizationDate : "Pendiente" }}
               </span>
               @if (item.personWhoAuthorized) {
-              <small class="text-color-secondary">
+              <small class="text-body-secondary">
                 {{ item.personWhoAuthorized }}
               </small>
               }
@@ -218,12 +218,12 @@
           <div class="d-flex align-items-center">
             <lx-tag value="4" severity="info" class="text-xs"></lx-tag>
             <div class="d-flex flex-column">
-              <span class="text-sm font-semibold">
+              <span class="text-sm fw-semibold">
                 {{ item.personWhoSend ? "Enviado: " + item.sendDate :
                 "Pendiente" }}
               </span>
               @if (item.personWhoSend) {
-              <small class="text-color-secondary">
+              <small class="text-body-secondary">
                 {{ item.personWhoSend }}
               </small>
               }
@@ -293,7 +293,7 @@
           <ili-button-confirm
             icon="material-symbols-light:send"
             label="ENVIAR"
-            class="p-button-text w-full text-left"
+            class="p-button-text w-full text-start"
             swalTitle="óEnviar estados financieros?"
             swalText="El informe financiero sera enviado."
             swalConfirmButtonText="Sí, enviar"

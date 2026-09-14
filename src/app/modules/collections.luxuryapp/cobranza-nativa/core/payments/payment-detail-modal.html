@@ -1,40 +1,40 @@
 @if (loading()) {
-<div class="p-5 text-center text-500">Cargando detalle del pago...</div>
+<div class="p-5 text-center text-body-secondary">Cargando detalle del pago...</div>
 } @else if (payment()) {
 <div class="p-3 p-md-4 d-flex flex-column gap-4">
   <div class="row g-4">
     <div class="col-12 col-md-4">
       <lx-card class="card h-full">
-        <div class="text-xs text-500 uppercase font-semibold mb-2">
+        <div class="text-xs text-body-secondary text-uppercase fw-semibold mb-2">
           Propiedad
         </div>
-        <div class="font-bold text-900">
+        <div class="fw-bold text-body">
           {{ payment()!.propertyFullName || "N/A" }}
         </div>
-        <div class="text-sm text-500 mt-2">
+        <div class="text-sm text-body-secondary mt-2">
           {{ payment()!.paymentDate | apiDate:'dd/MM/yyyy' }}
         </div>
       </lx-card>
     </div>
     <div class="col-12 col-md-4">
       <lx-card class="card h-full">
-        <div class="text-xs text-500 uppercase font-semibold mb-2">Monto</div>
-        <div class="text-2xl font-bold text-green-600">
+        <div class="text-xs text-body-secondary text-uppercase fw-semibold mb-2">Monto</div>
+        <div class="text-2xl fw-bold text-green-600">
           {{ payment()!.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}
         </div>
-        <div class="text-sm text-500 mt-2">
+        <div class="text-sm text-body-secondary mt-2">
           {{ getMethodLabel(payment()!.method) }}
         </div>
       </lx-card>
     </div>
     <div class="col-12 col-md-4">
       <lx-card class="card h-full">
-        <div class="text-xs text-500 uppercase font-semibold mb-2">Estado</div>
+        <div class="text-xs text-body-secondary text-uppercase fw-semibold mb-2">Estado</div>
         <lx-tag
           [value]="getStatusLabel(payment()!)"
           [severity]="getStatusSeverity(payment()!)"
         />
-        <div class="text-sm text-500 mt-2">
+        <div class="text-sm text-body-secondary mt-2">
           Ref: {{ payment()!.reference || "-" }}
         </div>
       </lx-card>
@@ -44,10 +44,10 @@
   <div class="row g-4">
     <div class="col-12 col-md-6">
       <lx-card class="card h-full">
-        <div class="text-xs text-blue-600 uppercase font-semibold mb-2">
+        <div class="text-xs text-blue-600 text-uppercase fw-semibold mb-2">
           Aplicado
         </div>
-        <div class="text-xl font-bold text-blue-700">
+        <div class="text-xl fw-bold text-blue-700">
           {{ payment()!.allocatedAmount | currency:'MXN':'symbol-narrow':'1.2-2'
           }}
         </div>
@@ -55,10 +55,10 @@
     </div>
     <div class="col-12 col-md-6">
       <lx-card class="card h-full">
-        <div class="text-xs text-orange-600 uppercase font-semibold mb-2">
+        <div class="text-xs text-orange-600 text-uppercase fw-semibold mb-2">
           Sin aplicar
         </div>
-        <div class="text-xl font-bold text-orange-700">
+        <div class="text-xl fw-bold text-orange-700">
           {{ payment()!.unappliedAmount | currency:'MXN':'symbol-narrow':'1.2-2'
           }}
         </div>
@@ -68,8 +68,8 @@
 
   <lx-card class="card d-none d-md-block">
     <div class="px-1 pb-3">
-      <div class="font-semibold text-800">Asignaciones a cargos</div>
-      <div class="text-sm text-500">Detalle de cómo se distribuyó el pago.</div>
+      <div class="fw-semibold text-body">Asignaciones a cargos</div>
+      <div class="text-sm text-body-secondary">Detalle de cómo se distribuyó el pago.</div>
     </div>
 
     <p-table [value]="payment()!.allocations || []" class="custom-table">
@@ -77,7 +77,7 @@
         <tr>
           <th>Tipo de cargo</th>
           <th>Concepto del cargo</th>
-          <th class="w-10rem text-right">Monto aplicado</th>
+          <th class="w-10rem text-end">Monto aplicado</th>
           <th class="w-10rem">Aplicado por</th>
           <th class="w-10rem text-center">Fecha</th>
           <th class="w-6rem text-center">Acción</th>
@@ -87,18 +87,18 @@
         <tr>
           <td>
             <div class="d-flex flex-column">
-              <span class="font-medium text-800"
+              <span class="fw-medium text-body"
                 >{{ item.chargeTypeName || "Sin tipo" }}</span
               >
               @if (getChargeTypeMeta(item)) {
-              <span class="text-xs text-400"
+              <span class="text-xs text-body-secondary"
                 >{{ getChargeTypeMeta(item) }}</span
               >
               }
             </div>
           </td>
           <td>{{ item.chargeConcept }}</td>
-          <td class="text-right font-semibold text-blue-700">
+          <td class="text-end fw-semibold text-blue-700">
             {{ item.amountApplied | currency:'MXN':'symbol-narrow':'1.2-2' }}
           </td>
           <td>{{ item.appliedBy || "Sistema" }}</td>
@@ -130,12 +130,12 @@
 
   <div class="d-block d-md-none">
     @if ((payment()!.allocations || []).length === 0) {
-    <lx-card class="card text-center text-500">
+    <lx-card class="card text-center text-body-secondary">
       Este pago no ha sido aplicado a cargos todavía.
     </lx-card>
     } @else { @for (item of payment()!.allocations || []; track
     item.allocationId) {
-    <ili-list-item class="mb-2 rounded-xl border-1 surface-border">
+    <ili-list-item class="mb-2 rounded-xl border-1 border">
       <div
         start
         class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
@@ -145,7 +145,7 @@
           class="text-blue-700 text-xl"
         />
       </div>
-      <div class="flex-1 min-w-0">
+      <div class="flex-fill min-w-0">
         <h3>{{ item.chargeTypeName || "Sin tipo" }}</h3>
         <p>{{ item.chargeConcept }}</p>
         <p>
@@ -166,7 +166,7 @@
   </div>
 </div>
 } @else {
-<div class="p-5 text-center text-500">
+<div class="p-5 text-center text-body-secondary">
   No fue posible cargar el detalle del pago.
 </div>
 }

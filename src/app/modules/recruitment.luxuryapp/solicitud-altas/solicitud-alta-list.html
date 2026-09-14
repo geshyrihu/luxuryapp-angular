@@ -1,5 +1,5 @@
-<div class="surface-ground border-round p-3 mb-3">
-  <div class="font-semibold mb-2">Guía rápida de estatus</div>
+<div class="bg-body-tertiary rounded p-3 mb-3">
+  <div class="fw-semibold mb-2">Guía rápida de estatus</div>
   <div class="row text-sm g-4">
     <div class="col-12 col-md-3">
       <strong>PENDIENTE:</strong> Falta completar datos exprés.
@@ -51,7 +51,7 @@
   <ng-template #body let-item>
     <tr>
       <td
-        class="text-center font-semibold"
+        class="text-center fw-semibold"
         [style.border-left]="'8px solid ' + requestStatusBorderColor(item.status)"
       >
         {{ item.folio }}
@@ -59,7 +59,7 @@
       <td class="text-center">{{ item.folioVacante }}</td>
       <td>{{ item.requestDate }}</td>
       <td
-        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
         [title]="item.nameCustomer"
       >
         {{ item.nameCustomer }}
@@ -69,7 +69,7 @@
         <small class="text-danger">{{ item.personActual }}</small>
       </td>
       <td
-        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
         [title]="item.profession || item.applicationRole || ''"
       >
         {{ item.profession || item.applicationRole }}
@@ -178,7 +178,7 @@
     <ili-list-item>
       <div
         start
-        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 surface-100"
+        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
         <app-icon
           icon="material-symbols-light:person-add-outline"

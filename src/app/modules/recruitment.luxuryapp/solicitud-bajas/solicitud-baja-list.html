@@ -28,26 +28,26 @@
   <ng-template #body let-item>
     <tr>
       <td
-        class="text-center font-semibold"
+        class="text-center fw-semibold"
         [style.border-left]="'8px solid ' + requestStatusBorderColor(item.status)"
       >
         {{ item.folio }}
       </td>
       <td class="text-center">{{ item.requestDate }}</td>
       <td
-        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
         [title]="item.nameCustomer"
       >
         {{ item.nameCustomer }}
       </td>
       <td
-        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
         [title]="item.nameEmployee"
       >
         {{ item.nameEmployee }}
       </td>
       <td
-        class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0"
+        class="text-nowrap overflow-hidden text-truncate max-w-0"
         [title]="item.applicationRole"
       >
         {{ item.applicationRole }}
@@ -86,7 +86,7 @@
     <ili-list-item>
       <div
         start
-        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 surface-100"
+        class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
       >
         <app-icon
           icon="material-symbols-light:person-remove"

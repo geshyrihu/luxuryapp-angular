@@ -1,4 +1,4 @@
-<div class="p-4 md:p-6">
+<div class="p-4 p-md-5">
   <h4 class="text-headline-md text-center text-primary m-0 mb-6">
     Ejecutar Inspección
   </h4>
@@ -30,8 +30,8 @@
 
     <ng-template #groupheader let-item>
       <tr pRowGroupHeader>
-        <td colspan="5" class="surface-100 p-2">
-          <span class="font-bold ms-2 text-primary">
+        <td colspan="5" class="bg-body-tertiary p-2">
+          <span class="fw-bold ms-2 text-primary">
             {{ item.condominiumAssetName }}
           </span>
         </td>
@@ -95,7 +95,7 @@
         <div
           class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom-1 border-outline"
         >
-          <span class="text-title-md text-on-surface font-medium m-0">
+          <span class="text-title-md text-on-surface fw-medium m-0">
             {{ item.inspectionDescription }}
           </span>
           <div class="d-flex align-items-center gap-2">
@@ -111,7 +111,7 @@
 
         <div class="mb-4">
           <label
-            class="text-body-sm font-medium text-on-surface-secondary mb-2 d-block"
+            class="text-body-sm fw-medium text-on-surface-secondary mb-2 d-block"
             >Observaciones</label
           >
           <custom-input-textarea-signal

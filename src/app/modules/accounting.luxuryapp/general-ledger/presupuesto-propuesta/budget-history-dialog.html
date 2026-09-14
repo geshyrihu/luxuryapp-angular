@@ -14,7 +14,7 @@
 @if (loading()) { } @else if (errorMensaje) {
 <div class="p-3 bg-red-100 text-red-900 rounded mt-3 text-center">{{ errorMensaje }}</div>
 } @else if (history().length === 0) {
-<div class="p-3 surface-card rounded shadow-sm mt-3 text-center text-color-secondary">
+<div class="p-3 bg-body rounded shadow-sm mt-3 text-center text-body-secondary">
   No hay historial de cambios para esta partida.
 </div>
 } @else {
@@ -23,8 +23,8 @@
     <tr>
       <th>Fecha</th>
       <th>Usuario</th>
-      <th class="text-right">Monto Anterior</th>
-      <th class="text-right">Monto Nuevo</th>
+      <th class="text-end">Monto Anterior</th>
+      <th class="text-end">Monto Nuevo</th>
       <th>Justificación</th>
     </tr>
   </ng-template>
@@ -32,8 +32,8 @@
     <tr>
       <td>{{ record.changedAt | apiDate: "short" }}</td>
       <td>{{ record.changedByUserName }}</td>
-      <td class="text-right">{{ record.oldAmount | number: "1.0-0" }}</td>
-      <td class="text-right">{{ record.newAmount | number: "1.0-0" }}</td>
+      <td class="text-end">{{ record.oldAmount | number: "1.0-0" }}</td>
+      <td class="text-end">{{ record.newAmount | number: "1.0-0" }}</td>
       <td>{{ record.justification }}</td>
     </tr>
   </ng-template>

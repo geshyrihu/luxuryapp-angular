@@ -47,40 +47,40 @@
   <ng-template #body let-item>
     <tr (click)="onDetails(item.id)">
       <td>
-        <p class="text-lg m-0 text-600">{{ item.period | uppercase}}</p>
+        <p class="text-lg m-0 text-body-secondary">{{ item.period | uppercase}}</p>
       </td>
       <td>
-        <p class="text-sm font-semibold m-0 d-flex align-items-center">
+        <p class="text-sm fw-semibold m-0 d-flex align-items-center">
           @if (item.verifiedByName) {
           <span class="text-xl me-2">✅</span>
           <span>{{ item.verifiedByName }} {{ item.verifiedAt }}</span>
           } @else {
           <span class="text-xl me-2">⏳</span>
-          <span class="text-500 font-normal">En espera</span>
+          <span class="text-body-secondary font-normal">En espera</span>
           }
         </p>
       </td>
 
       <td>
-        <p class="text-sm font-semibold m-0 d-flex align-items-center">
+        <p class="text-sm fw-semibold m-0 d-flex align-items-center">
           @if (item.authorizedByName) {
           <span class="text-xl me-2">🛡️</span>
           <span>{{ item.authorizedByName }} {{ item.authorizedAt }}</span>
           } @else {
           <span class="text-xl me-2">⏳</span>
-          <span class="text-500 font-normal">En espera</span>
+          <span class="text-body-secondary font-normal">En espera</span>
           }
         </p>
       </td>
 
       <td>
-        <p class="text-sm font-semibold m-0 d-flex align-items-center">
+        <p class="text-sm fw-semibold m-0 d-flex align-items-center">
           @if (item.confirmedByName) {
           <span class="text-xl me-2">💰</span>
           <span>{{ item.confirmedByName }} {{ item.confirmedAt }}</span>
           } @else {
           <span class="text-xl me-2">⏳</span>
-          <span class="text-500 font-normal">En espera</span>
+          <span class="text-body-secondary font-normal">En espera</span>
           }
         </p>
       </td>
@@ -88,7 +88,7 @@
       <td class="no-print text-center">
         <app-icon
           [icon]="'material-symbols-light:chevron-right'"
-          class="text-400"
+          class="text-body-secondary"
         />
       </td>
     </tr>
@@ -117,12 +117,12 @@
           class="text-green-600 text-xl"
         />
       </div>
-      <div class="flex-1 min-w-0 ms-2">
-        <h3 class="font-bold text-900">{{ item.period | uppercase }}</h3>
-        <p class="text-sm text-500">
+      <div class="flex-fill min-w-0 ms-2">
+        <h3 class="fw-bold text-body">{{ item.period | uppercase }}</h3>
+        <p class="text-sm text-body-secondary">
           Autorizado: {{ item.authorizedByName || '? En espera' }}
         </p>
-        <p class="text-sm text-500">
+        <p class="text-sm text-body-secondary">
           Contabilidad: {{ item.confirmedByName || '? En espera' }}
         </p>
       </div>

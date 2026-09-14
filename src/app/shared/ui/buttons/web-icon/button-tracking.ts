@@ -5,15 +5,15 @@ import {
   input,
   output,
 } from "@angular/core";
-import { OverlayBadgeModule } from "primeng/overlaybadge";
 import { AppIcon } from "../../shared/app-icon/app-icon";
+import { AppBadge } from "../../web/badge/badge";
 import { BaseButton } from "../base/base-button";
 import { TrackingEvent } from "../shared/tracking";
 
 @Component({
   selector: "iw-button-tracking",
 
-  imports: [AppIcon, OverlayBadgeModule],
+  imports: [AppIcon, AppBadge],
   template: `
     <button
       type="button"
@@ -21,43 +21,30 @@ import { TrackingEvent } from "../shared/tracking";
       [disabled]="disabled() || loading()"
       (click)="onTrackingClick($event)"
     >
-      <p-overlaybadge
-        [value]="badgeCount()"
-        severity="danger"
-        [style]="{
-          'font-size': '0.6rem',
-          'min-width': '1rem',
-          height: '1rem',
-          'line-height': '1rem',
-          padding: '0 0.2rem',
-        }"
-        [badgeDisabled]="badgeCount() === 0"
-      >
+      <span class="tracking-badge-anchor">
         <app-icon [icon]="resolvedIconClass() || IconCatalog.Alert" />
-      </p-overlaybadge>
+        @if (badgeCount()) {
+          <app-badge [value]="badgeCount()!" color="danger" size="small" />
+        }
+      </span>
     </button>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
-      :host ::ng-deep .p-overlaybadge {
+      .tracking-badge-anchor {
+        position: relative;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: transparent;
-        box-shadow: none;
-        padding: 0;
-        border: none;
       }
 
-      :host ::ng-deep .p-overlaybadge > iconify-icon {
-        width: 1em;
-        height: 1em;
-        display: inline-block;
-      }
-
-      :host ::ng-deep .p-overlaybadge .p-overlay-badge {
-        transform: translate(30%, -30%);
+      .tracking-badge-anchor app-badge {
+        position: absolute;
+        top: -0.35rem;
+        right: -0.45rem;
+        font-size: 0.6rem;
+        line-height: 1rem;
       }
     `,
   ],

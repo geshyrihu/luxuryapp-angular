@@ -1,8 +1,8 @@
 <div class="card p-3 mb-4">
   <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-3 g-4">
     <div>
-      <h2 class="m-0 font-semibold text-xl">Cola de entrevistas y seguimiento</h2>
-      <p class="m-0 text-sm text-color-secondary">
+      <h2 class="m-0 fw-semibold text-xl">Cola de entrevistas y seguimiento</h2>
+      <p class="m-0 text-sm text-body-secondary">
         Vacantes del customer en contexto con candidatos pendientes e historico de seguimiento.
       </p>
     </div>
@@ -20,30 +20,30 @@
 <div class="row mb-4 g-4">
   <div class="col-12 col-md-6 col-xl-3">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-1">Vacantes</small>
-      <div class="text-2xl font-semibold">{{ totalVacancies() }}</div>
-      <small class="text-color-secondary">{{ totalCandidates() }} candidatos relacionados</small>
+      <small class="text-body-secondary d-block mb-1">Vacantes</small>
+      <div class="text-2xl fw-semibold">{{ totalVacancies() }}</div>
+      <small class="text-body-secondary">{{ totalCandidates() }} candidatos relacionados</small>
     </div>
   </div>
   <div class="col-12 col-md-6 col-xl-3">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-1">Pendientes</small>
-      <div class="text-2xl font-semibold text-orange-500">{{ pendingCount() }}</div>
-      <small class="text-color-secondary">Entrevistas activas por responder</small>
+      <small class="text-body-secondary d-block mb-1">Pendientes</small>
+      <div class="text-2xl fw-semibold text-orange-500">{{ pendingCount() }}</div>
+      <small class="text-body-secondary">Entrevistas activas por responder</small>
     </div>
   </div>
   <div class="col-12 col-md-6 col-xl-3">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-1">Vencidas</small>
-      <div class="text-2xl font-semibold text-red-500">{{ overdueCount() }}</div>
-      <small class="text-color-secondary">Requieren respuesta inmediata</small>
+      <small class="text-body-secondary d-block mb-1">Vencidas</small>
+      <div class="text-2xl fw-semibold text-red-500">{{ overdueCount() }}</div>
+      <small class="text-body-secondary">Requieren respuesta inmediata</small>
     </div>
   </div>
   <div class="col-12 col-md-6 col-xl-3">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-1">Historico</small>
-      <div class="text-2xl font-semibold text-bluegray-700">{{ historyCount() }}</div>
-      <small class="text-color-secondary">{{ feedbackCount() }} con retroalimentacion</small>
+      <small class="text-body-secondary d-block mb-1">Historico</small>
+      <div class="text-2xl fw-semibold text-bluegray-700">{{ historyCount() }}</div>
+      <small class="text-body-secondary">{{ feedbackCount() }} con retroalimentacion</small>
     </div>
   </div>
 </div>
@@ -101,13 +101,13 @@
 </div>
 
 @if (loading()) {
-<div class="card p-4 text-center text-color-secondary">
+<div class="card p-4 text-center text-body-secondary">
   Cargando entrevistas y seguimientos...
 </div>
 } @else if (filteredVacancies().length === 0) {
 <div class="card p-4 text-center">
-  <div class="text-lg font-semibold mb-2">Sin resultados</div>
-  <div class="text-color-secondary">
+  <div class="text-lg fw-semibold mb-2">Sin resultados</div>
+  <div class="text-body-secondary">
     No se encontraron vacantes o candidatos con los filtros aplicados.
   </div>
 </div>
@@ -120,12 +120,12 @@
         <div class="d-flex flex-column flex-lg-row align-items-lg-start justify-content-lg-between gap-3 mb-3 g-4">
           <div>
             <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-              <span class="text-lg font-semibold">{{ vacancy.vacancyFolio }}</span>
-              <span class="text-sm text-color-secondary">{{ vacancy.positionName }}</span>
+              <span class="text-lg fw-semibold">{{ vacancy.vacancyFolio }}</span>
+              <span class="text-sm text-body-secondary">{{ vacancy.positionName }}</span>
               <span class="badge badge-info">{{ vacancy.customerName }}</span>
               <span class="badge badge-secondary">{{ vacancy.vacancyStatus }}</span>
             </div>
-            <div class="d-flex flex-wrap gap-2 text-sm text-color-secondary">
+            <div class="d-flex flex-wrap gap-2 text-sm text-body-secondary">
               <span>{{ vacancy.filteredCandidates.length }} candidato(s)</span>
               <span>Pendientes: {{ vacancy.pendingCandidatesCount }}</span>
               <span>Vencidas: {{ vacancy.overdueCandidatesCount }}</span>
@@ -137,9 +137,9 @@
         </div>
 
         @if (vacancy.filteredCandidates.length === 0) {
-        <div class="border-1 border-dashed surface-border border-round p-4 bg-surface-50">
-          <div class="font-semibold mb-2">Sin candidatos postulados</div>
-          <div class="text-sm text-color-secondary">
+        <div class="border-1 border-dashed border rounded p-4 bg-bg-body-tertiary">
+          <div class="fw-semibold mb-2">Sin candidatos postulados</div>
+          <div class="text-sm text-body-secondary">
             Esta vacante sigue activa para el customer en contexto, pero todavia no tiene candidatos visibles en seguimiento.
           </div>
         </div>
@@ -147,7 +147,7 @@
         <div class="d-flex flex-column gap-2">
           @for (candidate of vacancy.filteredCandidates; track candidate.candidateApplicationId) {
           <div
-            class="border-1 surface-border border-round p-3 cursor-pointer"
+            class="border-1 border rounded p-3 cursor-pointer"
             [class.bg-orange-50]="!candidate.isHistorical"
             [class.bg-bluegray-50]="candidate.isHistorical"
             [class.border-red-300]="candidate.agendaStatusCode === 'overdue'"
@@ -157,7 +157,7 @@
             <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-3 g-4">
               <div class="flex-grow-1">
                 <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-                  <span class="font-semibold">{{ candidate.candidateName }}</span>
+                  <span class="fw-semibold">{{ candidate.candidateName }}</span>
                   <app-candidate-stage-badge [stage]="candidate.currentStage" />
                   <app-mapped-p-tag
                     [value]="candidate.agendaStatusCode"
@@ -167,29 +167,29 @@
 
                 <div class="row text-sm g-4">
                   <div class="col-12 col-md-6">
-                    <small class="text-color-secondary d-block">Junta</small>
-                    <div class="font-medium">
+                    <small class="text-body-secondary d-block">Junta</small>
+                    <div class="fw-medium">
                       {{ candidate.operationsInterviewAt ? (candidate.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm') : 'Sin fecha programada' }}
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
-                    <small class="text-color-secondary d-block">Entrevistador</small>
-                    <div class="font-medium">
+                    <small class="text-body-secondary d-block">Entrevistador</small>
+                    <div class="fw-medium">
                       {{ candidate.assignedInterviewerName || 'Sin entrevistador asignado' }}
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
-                    <small class="text-color-secondary d-block">Tipo</small>
-                    <div class="font-medium">{{ candidate.interviewTypeLabel }}</div>
+                    <small class="text-body-secondary d-block">Tipo</small>
+                    <div class="fw-medium">{{ candidate.interviewTypeLabel }}</div>
                   </div>
                   <div class="col-12 col-md-6">
-                    <small class="text-color-secondary d-block">Proxima accion</small>
-                    <div class="font-medium">{{ candidate.pendingAction }}</div>
+                    <small class="text-body-secondary d-block">Proxima accion</small>
+                    <div class="fw-medium">{{ candidate.pendingAction }}</div>
                   </div>
                 </div>
 
                 @if (candidate.isVacancyLocked) {
-                <div class="mt-3 px-3 py-2 border-round bg-yellow-50 text-yellow-800 text-sm font-medium">
+                <div class="mt-3 px-3 py-2 rounded bg-yellow-50 text-yellow-800 text-sm fw-medium">
                   {{ candidate.vacancyLockMessage }}
                 </div>
                 }
@@ -227,8 +227,8 @@
       @if (selectedCandidate()) {
       <div class="d-flex align-items-start justify-content-between gap-2 mb-3">
         <div>
-          <div class="text-xl font-semibold">{{ selectedCandidate()?.candidateName }}</div>
-          <div class="text-sm text-color-secondary">
+          <div class="text-xl fw-semibold">{{ selectedCandidate()?.candidateName }}</div>
+          <div class="text-sm text-body-secondary">
             {{ selectedCandidate()?.vacancyFolio }} - {{ selectedCandidate()?.positionName }}
           </div>
         </div>
@@ -249,34 +249,34 @@
 
       <div class="row text-sm mb-3 g-4">
         <div class="col-12">
-          <small class="text-color-secondary d-block">Cliente</small>
-          <div class="font-medium">{{ selectedCandidate()?.customerName }}</div>
+          <small class="text-body-secondary d-block">Cliente</small>
+          <div class="fw-medium">{{ selectedCandidate()?.customerName }}</div>
         </div>
         <div class="col-12">
-          <small class="text-color-secondary d-block">Fecha y hora de junta</small>
-          <div class="font-medium">
+          <small class="text-body-secondary d-block">Fecha y hora de junta</small>
+          <div class="fw-medium">
             {{ selectedCandidate()?.operationsInterviewAt ? (selectedCandidate()?.operationsInterviewAt | apiDate:'dd/MM/yyyy HH:mm') : 'Pendiente de programacion' }}
           </div>
         </div>
         <div class="col-12">
-          <small class="text-color-secondary d-block">Entrevistador</small>
-          <div class="font-medium">
+          <small class="text-body-secondary d-block">Entrevistador</small>
+          <div class="fw-medium">
             {{ selectedCandidate()?.assignedInterviewerName || 'Sin entrevistador asignado' }}
           </div>
         </div>
         <div class="col-12">
-          <small class="text-color-secondary d-block">Tipo de seguimiento</small>
-          <div class="font-medium">{{ selectedCandidate()?.interviewTypeLabel }}</div>
+          <small class="text-body-secondary d-block">Tipo de seguimiento</small>
+          <div class="fw-medium">{{ selectedCandidate()?.interviewTypeLabel }}</div>
         </div>
         <div class="col-12">
-          <small class="text-color-secondary d-block">Ultimo comentario</small>
-          <div class="font-medium">
+          <small class="text-body-secondary d-block">Ultimo comentario</small>
+          <div class="fw-medium">
             {{ selectedCandidate()?.lastComment || 'Sin comentarios registrados' }}
           </div>
         </div>
         <div class="col-12">
-          <small class="text-color-secondary d-block">Ultima retroalimentacion</small>
-          <div class="font-medium">
+          <small class="text-body-secondary d-block">Ultima retroalimentacion</small>
+          <div class="fw-medium">
             {{ selectedCandidate()?.lastFeedbackAt ? (selectedCandidate()?.lastFeedbackAt | apiDate:'dd/MM/yyyy HH:mm') : 'Sin retroalimentacion' }}
           </div>
         </div>
@@ -298,10 +298,10 @@
       </div>
 
       @if (!selectedCandidate()?.isHistorical) {
-      <div class="mt-4 pt-3 border-top-1 surface-border">
-        <div class="font-semibold mb-2">Acciones del entrevistador</div>
+      <div class="mt-4 pt-3 border-top-1 border">
+        <div class="fw-semibold mb-2">Acciones del entrevistador</div>
         @if (selectedCandidate()?.isVacancyLocked) {
-        <div class="mb-3 px-3 py-2 border-round bg-yellow-50 text-yellow-800 text-sm font-medium">
+        <div class="mb-3 px-3 py-2 rounded bg-yellow-50 text-yellow-800 text-sm fw-medium">
           {{ selectedCandidate()?.vacancyLockMessage }}
         </div>
         }
@@ -335,9 +335,9 @@
       </div>
       }
       } @else {
-      <div class="text-center py-6">
-        <div class="text-lg font-semibold mb-2">Selecciona un candidato</div>
-        <div class="text-color-secondary">
+      <div class="text-center py-5">
+        <div class="text-lg fw-semibold mb-2">Selecciona un candidato</div>
+        <div class="text-body-secondary">
           Cuando la vacante tenga candidatos visibles en seguimiento, aqui podras revisar su junta, CV y acciones disponibles.
         </div>
       </div>

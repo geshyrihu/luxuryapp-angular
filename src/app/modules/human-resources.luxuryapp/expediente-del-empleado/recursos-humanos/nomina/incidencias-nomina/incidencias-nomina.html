@@ -57,9 +57,9 @@
         Tipo <p-sorticon field="tipoIncidenciaDisplay" />
       </th>
       <th pSortableColumn="fecha">Fecha <p-sorticon field="fecha" /></th>
-      <th class="text-right">Dias</th>
-      <th class="text-right">Minutos</th>
-      <th class="text-right">Descuento ($)</th>
+      <th class="text-end">Dias</th>
+      <th class="text-end">Minutos</th>
+      <th class="text-end">Descuento ($)</th>
       <th>Sync</th>
       <th></th>
     </tr>
@@ -74,9 +74,9 @@
         />
       </td>
       <td>{{ item.fecha | apiDate: "dd/MM/yyyy" }}</td>
-      <td class="text-right">{{ item.diasAfectados }}</td>
-      <td class="text-right">{{ item.minutosRetardo }}</td>
-      <td class="text-right">
+      <td class="text-end">{{ item.diasAfectados }}</td>
+      <td class="text-end">{{ item.minutosRetardo }}</td>
+      <td class="text-end">
         {{ item.montoDescuento | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
       <td>

@@ -115,12 +115,12 @@
       </ili-list-item>
       <div slot="content" class="ion-padding p-0">
         @if(item.historial.length > 0) {
-        <div class="d-flex flex-column p-2 surface-card">
+        <div class="d-flex flex-column p-2 bg-body">
           @for(registro of item.historial; track registro) {
           <div
-            class="d-flex justify-content-between align-items-center surface-card p-2 rounded shadow-sm"
+            class="d-flex justify-content-between align-items-center bg-body p-2 rounded shadow-sm"
           >
-            <span class="font-medium text-sm"
+            <span class="fw-medium text-sm"
               >{{ registro.fechaRegistro }}</span
             >
             <lx-badge

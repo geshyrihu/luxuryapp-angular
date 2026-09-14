@@ -1,12 +1,12 @@
 <div class="rf-shell px-3 px-md-4 pb-3 pb-md-4 pt-0">
   <div *ngIf="loading()" class="d-flex flex-column gap-4 p-4">
-    <p-skeleton width="100%" height="300px" borderRadius="12px" />
+    <app-skeleton width="100%" height="300px" borderRadius="12px" />
     <div class="row g-4">
       <div class="col-12 col-md-6">
-        <p-skeleton width="100%" height="400px" borderRadius="12px" />
+        <app-skeleton width="100%" height="400px" borderRadius="12px" />
       </div>
       <div class="col-12 col-md-6">
-        <p-skeleton width="100%" height="400px" borderRadius="12px" />
+        <app-skeleton width="100%" height="400px" borderRadius="12px" />
       </div>
     </div>
   </div>
@@ -34,22 +34,22 @@
     <div class="row mb-4 g-4">
       <div class="col-12 col-xl-4">
         <div class="rf-card p-0 h-full overflow-hidden d-flex flex-column">
-          <div class="flex-1">
+          <div class="flex-fill">
             <app-breakdown-list
               heading="Análisis de Cobranza Mensual"
               [subheading]="analysisData()?.periodo ?? ''"
               [items]="filasAnalisisMensual()"
             />
           </div>
-          <div class="p-3 border-top-1 surface-border bg-gray-50 d-flex justify-content-end">
-            <button
-              pButton
+          <div class="p-3 border-top-1 border bg-gray-50 d-flex justify-content-end">
+            <il-button
               type="button"
               label="Cómo se compone"
               icon="material-symbols-light:help-outline"
-              class="p-button-text p-button-sm p-button-secondary"
-              (click)="onOpenComposicionReportes()"
-            ></button>
+              variant="text"
+              severity="secondary"
+              (clicked)="onOpenComposicionReportes()"
+            />
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@
             @if (analysisData()?.saldoBalanza) {
               <div class="border-top-1 border-primary bg-blue-50 py-2 px-4 d-flex justify-content-between text-blue-800">
                 <span>Saldo según balanza</span>
-                <span class="font-bold">{{ analysisData()?.saldoBalanza | currency: 'MXN':'symbol':'1.0-0' }}</span>
+                <span class="fw-bold">{{ analysisData()?.saldoBalanza | currency: 'MXN':'symbol':'1.0-0' }}</span>
               </div>
             }
           </app-breakdown-list>
@@ -73,10 +73,10 @@
 
       <div class="col-12 col-xl-4">
         <div class="rf-card p-4 h-full d-flex flex-column">
-          <div class="text-lg font-semibold mb-1">
+          <div class="text-lg fw-semibold mb-1">
             Composición de Cobranza
           </div>
-          <div class="text-color-secondary mb-3">
+          <div class="text-body-secondary mb-3">
             Distribución de la cartera
           </div>
           <div
@@ -95,8 +95,8 @@
     <!-- Morosidad -->
     <div class="rf-card p-4 mb-4">
       <div class="mb-2 mt-1">
-        <div class="text-lg font-semibold text-color">Detalle de Morosidad</div>
-        <div class="text-sm text-color-secondary">Clasificación de condóminos según su deuda actual.</div>
+        <div class="text-lg fw-semibold text-body">Detalle de Morosidad</div>
+        <div class="text-sm text-body-secondary">Clasificación de condóminos según su deuda actual.</div>
       </div>
       
       <!-- KPIs de cartera vencida -->
@@ -162,7 +162,7 @@
         </div>
       </div>
 
-      <p class="m-0 text-xs text-color-secondary mt-3">
+      <p class="m-0 text-xs text-body-secondary mt-3">
         Moroso: 2 o más cuotas de mantenimiento vencidas, o 1 o más extraordinarias.
         Cobranza judicial: más de 5 de mantenimiento, o 5 o más extraordinarias.
         Quien debe sin alcanzar esos umbrales se consulta en Detalle por Condómino.
@@ -172,8 +172,8 @@
     <!-- Towers -->
     <div class="rf-card p-4 mb-4">
       <div class="mb-3">
-        <div class="text-lg font-semibold text-color">Resumen por Torres</div>
-        <div class="text-sm text-color-secondary">Agrupación de la deuda por cada torre del condominio.</div>
+        <div class="text-lg fw-semibold text-body">Resumen por Torres</div>
+        <div class="text-sm text-body-secondary">Agrupación de la deuda por cada torre del condominio.</div>
       </div>
       
       <p-table [value]="towers()" class="rf-prime-table p-datatable-sm d-none d-md-block">
@@ -182,19 +182,19 @@
             <th pSortableColumn="towerName">
               Torre <p-sorticon field="towerName" />
             </th>
-            <th class="text-right" pSortableColumn="departmentCount">
+            <th class="text-end" pSortableColumn="departmentCount">
               Deptos. <p-sorticon field="departmentCount" />
             </th>
-            <th class="text-right" pSortableColumn="maintenanceBalance">
+            <th class="text-end" pSortableColumn="maintenanceBalance">
               Adeudo Mtto. <p-sorticon field="maintenanceBalance" />
             </th>
-            <th class="text-right" pSortableColumn="extraordinaryBalance">
+            <th class="text-end" pSortableColumn="extraordinaryBalance">
               Adeudo Ext. <p-sorticon field="extraordinaryBalance" />
             </th>
-            <th class="text-right" pSortableColumn="finesBalance">
+            <th class="text-end" pSortableColumn="finesBalance">
               Multas <p-sorticon field="finesBalance" />
             </th>
-            <th class="text-right" pSortableColumn="totalBalance">
+            <th class="text-end" pSortableColumn="totalBalance">
               Total Adeudo <p-sorticon field="totalBalance" />
             </th>
           </tr>
@@ -202,17 +202,17 @@
         <ng-template #body let-row>
           <tr>
             <td>{{ row.towerName }}</td>
-            <td class="text-right">{{ row.departmentCount }}</td>
-            <td class="text-right">
+            <td class="text-end">{{ row.departmentCount }}</td>
+            <td class="text-end">
               {{ row.maintenanceBalance | currency: "MXN":"symbol":"1.0-0" }}
             </td>
-            <td class="text-right">
+            <td class="text-end">
               {{ row.extraordinaryBalance | currency: "MXN":"symbol":"1.0-0" }}
             </td>
-            <td class="text-right">
+            <td class="text-end">
               {{ row.finesBalance | currency: "MXN":"symbol":"1.0-0" }}
             </td>
-            <td class="text-right font-medium">
+            <td class="text-end fw-medium">
               {{ row.totalBalance | currency: "MXN":"symbol":"1.0-0" }}
             </td>
           </tr>
@@ -220,20 +220,20 @@
         <ng-template #footer>
           @if (totalTowers(); as totalTowers) {
             <tr>
-              <td class="text-right font-bold">Total:</td>
-              <td class="text-right font-bold">
+              <td class="text-end fw-bold">Total:</td>
+              <td class="text-end fw-bold">
                 {{ totalTowers.departmentCount }}
               </td>
-              <td class="text-right font-bold">
+              <td class="text-end fw-bold">
                 {{ totalTowers.maintenanceBalance | currency: "MXN":"symbol":"1.0-0" }}
               </td>
-              <td class="text-right font-bold">
+              <td class="text-end fw-bold">
                 {{ totalTowers.extraordinaryBalance | currency: "MXN":"symbol":"1.0-0" }}
               </td>
-              <td class="text-right font-bold">
+              <td class="text-end fw-bold">
                 {{ totalTowers.finesBalance | currency: "MXN":"symbol":"1.0-0" }}
               </td>
-              <td class="text-right font-bold">
+              <td class="text-end fw-bold">
                 {{ totalTowers.totalBalance | currency: "MXN":"symbol":"1.0-0" }}
               </td>
             </tr>
@@ -251,15 +251,15 @@
               >
                 <app-icon icon="material-symbols-light:location-city" />
               </div>
-              <div class="flex-1 min-w-0 ion-text-wrap">
-                <p class="font-semibold m-0 text-color">{{ row.towerName }}</p>
-                <p class="text-xs m-0 mt-1 text-color-secondary">
+              <div class="flex-fill min-w-0 ion-text-wrap">
+                <p class="fw-semibold m-0 text-body">{{ row.towerName }}</p>
+                <p class="text-xs m-0 mt-1 text-body-secondary">
                   {{ row.departmentCount }} departamentos
                 </p>
-                <p class="text-xs m-0 mt-1 text-color-secondary">
+                <p class="text-xs m-0 mt-1 text-body-secondary">
                   Mtto {{ row.maintenanceBalance | currency: 'MXN':'symbol':'1.0-0' }} · Ext {{ row.extraordinaryBalance | currency: 'MXN':'symbol':'1.0-0' }} · Multas {{ row.finesBalance | currency: 'MXN':'symbol':'1.0-0' }}
                 </p>
-                <p class="text-xs m-0 mt-1 text-primary font-medium">
+                <p class="text-xs m-0 mt-1 text-primary fw-medium">
                   Total {{ row.totalBalance | currency: 'MXN':'symbol':'1.0-0' }}
                 </p>
               </div>
@@ -272,8 +272,8 @@
     <!-- Reporte de Anticipos -->
     <div class="rf-card p-4 mb-4">
       <div class="mb-3">
-        <div class="text-lg font-semibold text-color">Reporte de Anticipos</div>
-        <div class="text-sm text-color-secondary">Condóminos con saldo a favor al corte del periodo.</div>
+        <div class="text-lg fw-semibold text-body">Reporte de Anticipos</div>
+        <div class="text-sm text-body-secondary">Condóminos con saldo a favor al corte del periodo.</div>
       </div>
       <div class="row g-4">
         <div class="col-12 col-md-4">
@@ -323,7 +323,7 @@
         emptyMessage="Ningún condómino tiene saldo a favor al corte."
       />
 
-      <p class="m-0 text-xs text-color-secondary mt-3">
+      <p class="m-0 text-xs text-body-secondary mt-3">
         Importes mostrados como haber del condómino. El desglose por concepto se
         consulta en Detalle por Condómino.
       </p>
@@ -333,8 +333,8 @@
     <div class="rf-card p-4">
       <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
         <div>
-          <div class="text-lg font-semibold">Detalle por condómino</div>
-          <div class="text-color-secondary text-sm">
+          <div class="text-lg fw-semibold">Detalle por condómino</div>
+          <div class="text-body-secondary text-sm">
             Tabla base para auditar cómo se clasifica la cuenta al corte.
           </div>
         </div>
@@ -363,13 +363,13 @@
             <th >Condómino</th>
             @for (col of uniqueConcepts(); track col) {
             <th
-              class="text-right"
+              class="text-end"
             >
               {{ col }}
             </th>
             }
             <th
-              class="text-right text-primary font-bold"
+              class="text-end text-primary fw-bold"
             >
               Saldo Final
             </th>
@@ -379,7 +379,7 @@
           <tr>
             <td class="rf-td-descripcion--item">
               <!-- Numero de cuenta oculto en version cliente -->
-              <div class="font-bold">{{ row.condomino | cleanName }}</div>
+              <div class="fw-bold">{{ row.condomino | cleanName }}</div>
             </td>
             @for (col of uniqueConcepts(); track col) {
             <td class="rf-td-number" >
@@ -387,7 +387,7 @@
             </td>
             }
             <td
-              class="rf-td-number font-bold"
+              class="rf-td-number fw-bold"
               [class.rf-neg]="row.saldo < 0"
             >
               {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2') }}
@@ -396,16 +396,16 @@
         </ng-template>
         <ng-template #footer>
           <tr>
-            <td class="text-right font-bold py-2">Totales:</td>
+            <td class="text-end fw-bold py-2">Totales:</td>
             @for (col of uniqueConcepts(); track col) {
             <td
-              class="rf-td-number font-bold border-top-1 surface-border py-2 text-primary"
+              class="rf-td-number fw-bold border-top-1 border py-2 text-primary"
             >
               {{ getTotalConceptBalance(col) === 0 ? '—' : (getTotalConceptBalance(col) | accountingNumber) }}
             </td>
             }
             <td
-              class="rf-td-number font-bold border-top-1 surface-border text-primary text-lg py-2"
+              class="rf-td-number fw-bold border-top-1 border text-primary text-lg py-2"
             >
               {{ totalFilteredSaldo | accountingNumber:'1.2-2' }}
             </td>
@@ -413,7 +413,7 @@
         </ng-template>
         <ng-template #emptymessage>
           <tr>
-            <td colspan="10" class="text-center py-4 text-color-secondary">
+            <td colspan="10" class="text-center py-4 text-body-secondary">
               No hay condóminos en esta clasificación.
             </td>
           </tr>

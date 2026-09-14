@@ -1,7 +1,7 @@
 <div class="h-full d-flex flex-column overflow-hidden">
   <!-- Header Premium -->
   <div
-    class="surface-0 p-3 shadow-sm d-flex align-items-center justify-content-between border-bottom-1 border-primary-100 z-5"
+    class="bg-body-tertiary p-3 shadow-sm d-flex align-items-center justify-content-between border-bottom-1 border-primary-100 z-5"
   >
     <div class="d-flex align-items-center gap-3">
       <div class="bg-primary-500 text-white rounded p-2 shadow-sm">
@@ -11,14 +11,14 @@
         />
       </div>
       <div>
-        <h2 class="m-0 text-primary-900 font-bold line-height-1">
+        <h2 class="m-0 text-primary-900 fw-bold line-height-1">
           {{ id() ? 'Editar Reporte' : 'Nuevo Reporte Dinámico' }}
         </h2>
         <input
           type="text"
           [formControl]="form.controls.name"
           placeholder="Nombre del reporte (requerido)"
-          class="bg-transparent border-none text-500 text-sm font-medium uppercase tracking-wider w-20rem focus:outline-none focus:border-bottom-1 border-primary mt-1 p-1"
+          class="bg-transparent border-0 text-body-secondary text-sm fw-medium text-uppercase tracking-wider w-20rem focus:outline-none focus:border-bottom-1 border-primary mt-1 p-1"
           [class.ng-invalid]="form.controls.name.invalid && form.controls.name.touched"
           [class.border-red-500]="form.controls.name.invalid && form.controls.name.touched"
           [class.border-bottom-1]="form.controls.name.invalid && form.controls.name.touched"
@@ -36,7 +36,7 @@
           [icon]="'material-symbols-light:calendar-today'"
           class="text-primary me-2"
         />
-        <span class="text-xs font-bold text-primary-800 me-2"
+        <span class="text-xs fw-bold text-primary-800 me-2"
           >PERIODO PREVIEW:</span
         >
         <custom-input-select-signal
@@ -83,27 +83,27 @@
   </div>
 
   <!-- Main Dashboard Layout -->
-  <div cdkDropListGroup class="flex-1 d-flex overflow-hidden bg-surface-50">
+  <div cdkDropListGroup class="flex-fill d-flex overflow-hidden bg-bg-body-tertiary">
     <!-- PANEL IZQUIERDO: Catálogo de Cuentas -->
     <div
-      class="w-20rem surface-0 border-right-1 border-primary-100 d-flex flex-column shadow-sm z-2"
+      class="w-20rem bg-body-tertiary border-right-1 border-primary-100 d-flex flex-column shadow-sm z-2"
     >
-      <div class="p-3 border-bottom-1 border-surface-100 bg-surface-50">
+      <div class="p-3 border-bottom-1 border-bg-body-tertiary bg-bg-body-tertiary">
         <h4 class="m-0 text-primary-900 d-flex align-items-center gap-2">
           Catálogo Aspel
         </h4>
-        <p class="text-xs text-500 mt-1">
+        <p class="text-xs text-body-secondary mt-1">
           {{ empresaAspel() }} COI. Arrastra cuentas al canvas central
         </p>
         @if (selectedCatalogCodes().length > 0) {
-        <div class="mt-2 text-xs text-primary font-medium">
+        <div class="mt-2 text-xs text-primary fw-medium">
           {{ selectedCatalogCodes().length }} seleccionada(s). Usa el botón azul
           en una fila para agregarlas.
         </div>
         }
       </div>
 
-      <div class="flex-1 overflow-auto p-2">
+      <div class="flex-fill overflow-auto p-2">
         <app-account-tree-select
           [customerId]="customerIdS.customerId()!"
           [year]="livePreviewS.year()"
@@ -115,10 +115,10 @@
     </div>
 
     <!-- PANEL CENTRAL: Canvas de Diseño -->
-    <div class="flex-1 d-flex flex-column overflow-hidden relative">
+    <div class="flex-fill d-flex flex-column overflow-hidden relative">
       <!-- Toolbar del Canvas -->
       <div
-        class="p-3 d-flex align-items-center justify-content-between surface-0 border-bottom-1 border-surface-100 shadow-sm"
+        class="p-3 d-flex align-items-center justify-content-between bg-body-tertiary border-bottom-1 border-bg-body-tertiary shadow-sm"
       >
         <div class="d-flex gap-2">
           <il-button
@@ -128,28 +128,28 @@
             size="small"
             (clicked)="agregarSeccion()"
           />
-          <span class="text-xs text-500 align-self-center">
+          <span class="text-xs text-body-secondary align-self-center">
             Crea una sección vacía y luego arrastra cuentas o agrega filas.
           </span>
         </div>
         <div class="d-flex align-items-center gap-3">
           <div
-            class="d-none d-md-flex align-items-center gap-2 bg-surface-50 border-1 border-surface-200 rounded-lg px-3 py-2"
+            class="d-none d-md-flex align-items-center gap-2 bg-bg-body-tertiary border-1 border-bg-body-tertiary rounded-lg px-3 py-2"
           >
-            <span class="text-xs font-bold text-500">CONTEXTO:</span>
-            <span class="text-xs font-medium text-primary-900"
+            <span class="text-xs fw-bold text-body-secondary">CONTEXTO:</span>
+            <span class="text-xs fw-medium text-primary-900"
               >{{ customerIdS.customerName() || customerIdS.nombreCorto() ||
               'Cliente activo' }}</span
             >
-            <span class="text-xs text-400">•</span>
-            <span class="text-xs text-700">{{ empresaAspel() }}</span>
-            <span class="text-xs text-400">•</span>
-            <span class="text-xs text-700">{{ previewYear() }}</span>
+            <span class="text-xs text-body-secondary">•</span>
+            <span class="text-xs text-body">{{ empresaAspel() }}</span>
+            <span class="text-xs text-body-secondary">•</span>
+            <span class="text-xs text-body">{{ previewYear() }}</span>
           </div>
           <div
-            class="d-flex align-items-center gap-2 px-3 border-right-1 border-surface-200"
+            class="d-flex align-items-center gap-2 px-3 border-right-1 border-bg-body-tertiary"
           >
-            <span class="text-xs font-bold text-500">DISEÑO:</span>
+            <span class="text-xs fw-bold text-body-secondary">DISEÑO:</span>
             <custom-input-select-signal
               [data]="tiposVisualizacion"
               [control]="form.controls.visualizationType"
@@ -169,12 +169,12 @@
 
       <div class="px-4 pt-3">
         <div
-          class="surface-50 border-1 border-surface-200 rounded-lg px-3 py-2 d-flex flex-wrap align-items-center gap-2"
+          class="bg-body-tertiary border-1 border-bg-body-tertiary rounded-lg px-3 py-2 d-flex flex-wrap align-items-center gap-2"
         >
-          <span class="text-xs font-bold text-500">COLUMNAS ACTIVAS:</span>
+          <span class="text-xs fw-bold text-body-secondary">COLUMNAS ACTIVAS:</span>
           @for (col of columns(); track col.id) {
           <span
-            class="d-inline-flex align-items-center px-2 py-1 rounded bg-primary-100 text-primary-900 text-xs font-medium"
+            class="d-inline-flex align-items-center px-2 py-1 rounded bg-primary-100 text-primary-900 text-xs fw-medium"
           >
             {{ col.label }}
           </span>
@@ -184,12 +184,12 @@
 
       <!-- El Lienzo (Scrollable) -->
       <div
-        class="flex-1 overflow-auto p-4 bg-dots"
+        class="flex-fill overflow-auto p-4 bg-dots"
         [ngClass]="isTwoColumnPreview() ? 'd-flex flex-column' : 'd-flex flex-column gap-4'"
       >
         @if (sections().length === 0) {
         <div
-          class="d-flex flex-column align-items-center justify-content-center h-full text-500 opacity-60"
+          class="d-flex flex-column align-items-center justify-content-center h-full text-body-secondary opacity-60"
         >
           <app-icon
             [icon]="'material-symbols-light:content-copy'"
@@ -211,13 +211,13 @@
           @for (sec of sections(); track sec.sectionId) {
           <div [ngClass]="isTwoColumnPreview() ? 'col-12 col-xl-6 p-2' : ''">
             <div
-              class="surface-0 rounded-xl shadow border-1 border-surface-200 overflow-hidden section-card fadeinright animation-duration-300 h-full d-flex flex-column"
+              class="bg-body-tertiary rounded-xl shadow border-1 border-bg-body-tertiary overflow-hidden section-card fadeinright animation-duration-300 h-full d-flex flex-column"
             >
               <!-- Header de Sección -->
               <div
                 class="bg-primary-50 p-3 d-flex align-items-center justify-content-between border-bottom-1 border-primary-100"
               >
-                <div class="d-flex align-items-center gap-3 flex-1">
+                <div class="d-flex align-items-center gap-3 flex-fill">
                   <app-icon
                     [icon]="'material-symbols-light:folder-open'"
                     class="text-primary-500"
@@ -227,7 +227,7 @@
                     [ngModel]="sec.title"
                     (ngModelChange)="sec.title = $event; livePreviewS.triggerCompute()"
                     placeholder="Título de la sección..."
-                    class="bg-transparent border-none text-primary-900 font-bold text-lg w-full focus:outline-none focus:border-bottom-1 border-primary"
+                    class="bg-transparent border-0 text-primary-900 fw-bold text-lg w-full focus:outline-none focus:border-bottom-1 border-primary"
                   />
                 </div>
                 <div class="d-flex gap-2">
@@ -253,15 +253,15 @@
                     [icon]="'material-symbols-light:download'"
                     class="text-2xl text-primary-500"
                   />
-                  <div class="font-semibold">Sección vacía</div>
-                  <div class="text-sm text-600">
+                  <div class="fw-semibold">Sección vacía</div>
+                  <div class="text-sm text-body-secondary">
                     Arrastra una cuenta aquí para crear la primera fila o usa
                     los botones inferiores.
                   </div>
                 </div>
                 } @for (row of sec.rows; track row.rowId; let rowIdx = $index) {
                 <div
-                  class="surface-0 rounded-lg border-1 border-surface-100 p-2 d-flex align-items-center gap-3 shadow-sm hover:shadow-sm transition-all hover:border-primary-200"
+                  class="bg-body-tertiary rounded-lg border-1 border-bg-body-tertiary p-2 d-flex align-items-center gap-3 shadow-sm hover:shadow-sm transition-all hover:border-primary-200"
                   [class.bg-blue-50]="row.rowType === 'account'"
                   [class.bg-purple-50]="row.rowType === 'formula'"
                 >
@@ -290,18 +290,18 @@
                     <lx-tag
                       [value]="row.rowType === 'account' ? 'CTA' : 'FX'"
                       [severity]="row.rowType === 'account' ? 'info' : 'help'"
-                      class="text-xs font-bold"
+                      class="text-xs fw-bold"
                     />
                   </div>
 
                   <!-- Etiqueta Editable -->
-                  <div class="flex-1">
+                  <div class="flex-fill">
                     <input
                       type="text"
                       [ngModel]="row.label"
                       (ngModelChange)="row.label = $event; livePreviewS.triggerCompute()"
                       placeholder="Nombre de la fila..."
-                      class="bg-transparent border-none w-full font-medium text-surface-900 focus:outline-none focus:surface-100 p-1 rounded"
+                      class="bg-transparent border-0 w-full fw-medium text-bg-dark text-white focus:outline-none focus:bg-body-tertiary p-1 rounded"
                     />
                   </div>
 
@@ -310,11 +310,11 @@
                   <div
                     cdkDropList
                     (cdkDropListDropped)="onAccountCdkDropToRow(sec.sectionId, row.rowId, $event)"
-                    class="flex-2 d-flex align-items-center gap-1 overflow-hidden px-2 border-left-1 surface-border min-h-3rem hover:bg-white-alpha-20 transition-all rounded relative"
+                    class="d-flex-2 d-flex align-items-center gap-1 overflow-hidden px-2 border-left-1 border min-h-3rem hover:bg-white-alpha-20 transition-all rounded relative"
                   >
                     @if (row.accountNumbers.length === 0) {
                     <div
-                      class="d-flex align-items-center gap-2 text-400 italic text-xs w-full"
+                      class="d-flex align-items-center gap-2 text-body-secondary italic text-xs w-full"
                     >
                       <app-icon
                         [icon]="'material-symbols-light:download'"
@@ -367,10 +367,10 @@
 
                   <!-- Input de Fórmula -->
                   @if (row.rowType === 'formula') {
-                  <div class="flex-2 border-left-1 surface-border px-3">
+                  <div class="d-flex-2 border-left-1 border px-3">
                     <div class="p-inputgroup p-inputgroup-sm">
                       <span
-                        class="p-inputgroup-addon bg-purple-100 text-purple-700 font-bold border-none"
+                        class="p-inputgroup-addon bg-purple-100 text-purple-700 fw-bold border-0"
                         >Σ</span
                       >
                       <input
@@ -378,7 +378,7 @@
                         [ngModel]="row.formula"
                         (ngModelChange)="row.formula = $event; livePreviewS.triggerCompute()"
                         placeholder="{ID1} + {ID2}"
-                        class="p-inputtext p-inputtext-sm border-none bg-surface-50 focus:bg-white"
+                        class="p-inputtext p-inputtext-sm border-0 bg-bg-body-tertiary focus:bg-white"
                       />
                     </div>
                   </div>
@@ -386,7 +386,7 @@
 
                   <!-- Signo/Multiplicador -->
                   <div
-                    class="d-flex align-items-center gap-2 border-left-1 surface-border px-3"
+                    class="d-flex align-items-center gap-2 border-left-1 border px-3"
                   >
                     <iw-button
                       [iconClass]="row.multiplier === 1 ? 'material-symbols-light:add' : 'material-symbols-light:remove'"
@@ -401,21 +401,21 @@
 
                   @if (isComparativePreview() || isBudgetPreview()) {
                   <div
-                    class="w-10rem text-right border-left-1 surface-border px-3 d-flex align-items-center justify-content-end gap-2"
+                    class="w-10rem text-end border-left-1 border px-3 d-flex align-items-center justify-content-end gap-2"
                   >
-                    <span class="text-xs text-500 uppercase"
+                    <span class="text-xs text-body-secondary text-uppercase"
                       >{{ comparativeReferenceLabel }}</span
                     >
-                    <span class="text-xs font-mono text-400">-</span>
+                    <span class="text-xs font-mono text-body-secondary">-</span>
                   </div>
                   }
 
                   <!-- Valor Calculado (Mini Preview) -->
                   <div
-                    class="w-8rem text-right border-left-1 surface-border px-3 font-mono"
+                    class="w-8rem text-end border-left-1 border px-3 font-mono"
                   >
                     <span
-                      class="text-sm font-bold"
+                      class="text-sm fw-bold"
                       [class.text-green-600]="livePreviewS.getRowValue(row.rowId) > 0"
                       [class.text-red-600]="livePreviewS.getRowValue(row.rowId) < 0"
                     >
@@ -443,7 +443,7 @@
 
               <!-- Footer de Sección -->
               <div
-                class="p-2 bg-surface-50 d-flex gap-2 justify-content-center border-top-1 border-surface-100 mt-auto"
+                class="p-2 bg-bg-body-tertiary d-flex gap-2 justify-content-center border-top-1 border-bg-body-tertiary mt-auto"
               >
                 <il-button
                   label="Añadir Cuenta"
@@ -470,10 +470,10 @@
 
     <!-- PANEL DERECHO: Live Preview Final -->
     <div
-      class="w-24rem surface-0 border-left-1 border-primary-100 d-flex flex-column shadow z-3"
+      class="w-24rem bg-body-tertiary border-left-1 border-primary-100 d-flex flex-column shadow z-3"
     >
       <div
-        class="p-3 border-bottom-1 border-surface-100 bg-primary-900 text-white d-flex align-items-center justify-content-between"
+        class="p-3 border-bottom-1 border-bg-body-tertiary bg-primary-900 text-white d-flex align-items-center justify-content-between"
       >
         <h4 class="m-0 d-flex align-items-center gap-2">
           <app-icon [icon]="'material-symbols-light:visibility-outline'" />
@@ -484,26 +484,26 @@
         }
       </div>
 
-      <div class="flex-1 overflow-auto p-0 bg-white">
+      <div class="flex-fill overflow-auto p-0 bg-white">
         @if (isSimplePreview()) {
         <table class="w-full border-collapse">
           <tbody>
             @for (sec of sections(); track sec.sectionId) {
-            <tr class="bg-surface-100">
-              <td class="p-2 font-bold text-xs text-primary uppercase">
+            <tr class="bg-bg-body-tertiary">
+              <td class="p-2 fw-bold text-xs text-primary text-uppercase">
                 {{ sec.title || 'SECCION' }}
               </td>
-              <td class="p-2 text-right text-xs text-primary font-bold">
+              <td class="p-2 text-end text-xs text-primary fw-bold">
                 MONTO
               </td>
             </tr>
             @for (row of sec.rows; track row.rowId) {
-            <tr class="hover:bg-surface-50 border-bottom-1 border-surface-100">
-              <td class="p-2 text-xs text-700">
+            <tr class="hover:bg-bg-body-tertiary border-bottom-1 border-bg-body-tertiary">
+              <td class="p-2 text-xs text-body">
                 {{ row.label || '(Sin nombre)' }}
               </td>
               <td
-                class="p-2 text-right font-mono text-xs font-bold"
+                class="p-2 text-end font-mono text-xs fw-bold"
                 [class.text-danger]="livePreviewS.getRowValue(row.rowId) < 0"
               >
                 {{ livePreviewS.getRowValue(row.rowId) |
@@ -513,11 +513,11 @@
             } }
           </tbody>
           <tfoot
-            class="bg-surface-900 text-white sticky bottom-0 font-bold shadow"
+            class="bg-bg-dark text-white sticky bottom-0 fw-bold shadow"
           >
             <tr>
-              <td class="p-3 uppercase">Total Reporte</td>
-              <td class="p-3 text-right font-mono text-lg">
+              <td class="p-3 text-uppercase">Total Reporte</td>
+              <td class="p-3 text-end font-mono text-lg">
                 {{ livePreviewS.grandTotal() |
                 currency:'USD':'symbol-narrow':'1.2-2' }}
               </td>
@@ -530,23 +530,23 @@
             @for (sec of sections(); track sec.sectionId) {
             <div class="col-6 p-1">
               <div
-                class="border-1 border-surface-200 rounded overflow-hidden h-full d-flex flex-column"
+                class="border-1 border-bg-body-tertiary rounded overflow-hidden h-full d-flex flex-column"
               >
                 <div
-                  class="bg-surface-100 px-3 py-2 text-xs font-bold text-primary uppercase border-bottom-1 border-surface-200"
+                  class="bg-bg-body-tertiary px-3 py-2 text-xs fw-bold text-primary text-uppercase border-bottom-1 border-bg-body-tertiary"
                 >
                   {{ sec.title || 'SECCION' }}
                 </div>
-                <div class="flex-1 d-flex flex-column">
+                <div class="flex-fill d-flex flex-column">
                   @for (row of sec.rows; track row.rowId) {
                   <div
-                    class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom-1 border-surface-100"
+                    class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom-1 border-bg-body-tertiary"
                   >
-                    <span class="text-xs text-700"
+                    <span class="text-xs text-body"
                       >{{ row.label || '(Sin nombre)' }}</span
                     >
                     <span
-                      class="text-xs font-mono font-bold"
+                      class="text-xs font-mono fw-bold"
                       [class.text-danger]="livePreviewS.getRowValue(row.rowId) < 0"
                     >
                       {{ livePreviewS.getRowValue(row.rowId) |
@@ -566,15 +566,15 @@
           track row.rowId) {
           <div class="col-12">
             <div
-              class="border-1 border-surface-200 rounded-xl p-3 bg-surface-50"
+              class="border-1 border-bg-body-tertiary rounded-xl p-3 bg-bg-body-tertiary"
             >
-              <div class="text-xs text-500 uppercase mb-2">
+              <div class="text-xs text-body-secondary text-uppercase mb-2">
                 {{ sec.title || 'SECCION' }}
               </div>
-              <div class="text-sm font-semibold text-900">
+              <div class="text-sm fw-semibold text-body">
                 {{ row.label || '(Sin nombre)' }}
               </div>
-              <div class="text-xl font-bold text-primary-900 mt-2 font-mono">
+              <div class="text-xl fw-bold text-primary-900 mt-2 font-mono">
                 {{ livePreviewS.getRowValue(row.rowId) |
                 currency:'USD':'symbol-narrow':'1.2-2' }}
               </div>
@@ -585,14 +585,14 @@
         } @else if (isComparativePreview() || isBudgetPreview()) {
         <table class="w-full border-collapse">
           <thead>
-            <tr class="bg-surface-100">
-              <th class="p-2 text-left text-xs text-primary font-bold">
+            <tr class="bg-bg-body-tertiary">
+              <th class="p-2 text-start text-xs text-primary fw-bold">
                 CONCEPTO
               </th>
-              <th class="p-2 text-right text-xs text-primary font-bold">
+              <th class="p-2 text-end text-xs text-primary fw-bold">
                 ACTUAL
               </th>
-              <th class="p-2 text-right text-xs text-primary font-bold">
+              <th class="p-2 text-end text-xs text-primary fw-bold">
                 {{ isBudgetPreview() ? 'PRESUPUESTO' : 'REFERENCIA' }}
               </th>
             </tr>
@@ -602,21 +602,21 @@
             <tr class="bg-primary-50">
               <td
                 colspan="3"
-                class="p-2 font-bold text-xs text-primary uppercase"
+                class="p-2 fw-bold text-xs text-primary text-uppercase"
               >
                 {{ sec.title || 'SECCION' }}
               </td>
             </tr>
             @for (row of sec.rows; track row.rowId) {
-            <tr class="border-bottom-1 border-surface-100">
-              <td class="p-2 text-xs text-700">
+            <tr class="border-bottom-1 border-bg-body-tertiary">
+              <td class="p-2 text-xs text-body">
                 {{ row.label || '(Sin nombre)' }}
               </td>
-              <td class="p-2 text-right text-xs font-mono font-bold">
+              <td class="p-2 text-end text-xs font-mono fw-bold">
                 {{ livePreviewS.getRowValue(row.rowId) |
                 currency:'USD':'symbol-narrow':'1.2-2' }}
               </td>
-              <td class="p-2 text-right text-xs text-400">-</td>
+              <td class="p-2 text-end text-xs text-body-secondary">-</td>
             </tr>
             } }
           </tbody>
@@ -627,7 +627,7 @@
         @if (livePreviewS.warnings().length > 0) {
         <div class="p-3">
           <div class="bg-orange-50 rounded p-2 border-left-3 border-orange-500">
-            <span class="text-xs font-bold text-orange-900 d-block mb-2"
+            <span class="text-xs fw-bold text-orange-900 d-block mb-2"
               ><app-icon [icon]="'material-symbols-light:warning'" />
               ADVERTENCIAS:</span
             >
@@ -649,11 +649,11 @@
 <!-- Popover de Configuración Avanzada -->
 <lx-popover #opConfig>
   <div class="p-3 d-flex flex-column gap-3 w-20rem">
-    <h5 class="m-0 border-bottom-1 border-surface-100 pb-2">
+    <h5 class="m-0 border-bottom-1 border-bg-body-tertiary pb-2">
       Propiedades del Reporte
     </h5>
     <div class="d-flex flex-column gap-1">
-      <label class="text-xs font-bold text-500">DESCRIPCIÓN</label>
+      <label class="text-xs fw-bold text-body-secondary">DESCRIPCIÓN</label>
       <textarea
         [formControl]="form.controls.description"
         class="p-inputtext p-inputtext-sm w-full"
@@ -662,7 +662,7 @@
       ></textarea>
     </div>
     <div class="d-flex flex-column gap-1">
-      <label class="text-xs font-bold text-500">Base COI</label>
+      <label class="text-xs fw-bold text-body-secondary">Base COI</label>
       <custom-input-select-signal
         [data]="fuentesAspel"
         [control]="form.controls.dataSource"
@@ -671,7 +671,7 @@
       />
     </div>
     <div class="d-flex flex-column gap-1">
-      <label class="text-xs font-bold text-500">Año preview</label>
+      <label class="text-xs fw-bold text-body-secondary">Año preview</label>
       <custom-input-select-signal
         [data]="aniosPreview"
         [ngModel]="previewYear()"
@@ -699,24 +699,24 @@
 >
   <div class="d-flex flex-column gap-3 p-2">
     <div
-      class="surface-card border-1 surface-border rounded-xl p-3 hover:surface-100 cursor-pointer d-flex align-items-center gap-3 transition-all hover:border-primary shadow-sm"
+      class="bg-body border-1 border rounded-xl p-3 hover:bg-body-tertiary cursor-pointer d-flex align-items-center gap-3 transition-all hover:border-primary shadow-sm"
       (click)="aplicarEjemplo('egp')"
     >
       <div
-        class="bg-success-100 text-success-700 border-circle w-3rem h-3rem d-flex align-items-center justify-content-center shadow-sm"
+        class="bg-success-100 text-success-700 rounded-circle w-3rem h-3rem d-flex align-items-center justify-content-center shadow-sm"
       >
         <app-icon [icon]="'material-symbols-light:wallet'" class="text-xl" />
       </div>
       <div>
         <h5 class="m-0 text-primary-900">Estado de Resultados</h5>
-        <p class="m-0 text-xs text-500">Ingresos vs Egresos</p>
+        <p class="m-0 text-xs text-body-secondary">Ingresos vs Egresos</p>
       </div>
     </div>
     <div
-      class="surface-card border-1 surface-border rounded-xl p-3 opacity-50 cursor-not-allowed d-flex align-items-center gap-3 grayscale shadow-sm"
+      class="bg-body border-1 border rounded-xl p-3 opacity-50 cursor-not-allowed d-flex align-items-center gap-3 grayscale shadow-sm"
     >
       <div
-        class="bg-surface-100 text-surface-500 border-circle w-3rem h-3rem d-flex align-items-center justify-content-center"
+        class="bg-bg-body-tertiary text-bg-dark text-white rounded-circle w-3rem h-3rem d-flex align-items-center justify-content-center"
       >
         <app-icon [icon]="'material-symbols-light:balance'" class="text-xl" />
       </div>

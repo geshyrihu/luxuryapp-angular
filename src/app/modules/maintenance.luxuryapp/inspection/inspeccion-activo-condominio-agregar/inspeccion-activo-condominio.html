@@ -23,7 +23,7 @@
           @for (review of reviewsControl.controls; track review; let i = $index)
           {
           <div
-            class="d-flex justify-content-between align-items-center border-1 surface-border rounded p-2 mb-2"
+            class="d-flex justify-content-between align-items-center border-1 border rounded p-2 mb-2"
           >
             <span>{{ review.value.label }}</span>
             <app-icon
@@ -34,7 +34,7 @@
             />
           </div>
           } @if (reviewsControl.controls.length === 0) {
-          <div class="text-color-secondary text-sm">
+          <div class="text-body-secondary text-sm">
             No hay revisiones agregadas
           </div>
           }

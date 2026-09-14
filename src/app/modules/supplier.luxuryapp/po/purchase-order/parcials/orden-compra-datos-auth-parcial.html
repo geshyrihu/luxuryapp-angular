@@ -3,7 +3,7 @@
 <lx-message severity="warn" class="w-full mt-1"><div class="d-flex align-items-center justify-content-between w-full gap-3">
     <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:schedule'" />
-      <span class="text-sm font-semibold">Pendiente de autorización</span>
+      <span class="text-sm fw-semibold">Pendiente de autorización</span>
     </div>
     @if (!isAuthorizationDisabled()) {
     <il-button
@@ -16,7 +16,7 @@
     } @else {
     <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:warning'" class="text-red-500" />
-      <span class="text-sm font-semibold text-red-600"
+      <span class="text-sm fw-semibold text-red-600"
         >No se puede autorizar | {{ authorizationStatus().message }}</span
       >
     </div>
@@ -27,7 +27,7 @@
     <div class="d-flex align-items-center gap-2">
       <app-icon [icon]="'material-symbols-light:check-circle'" />
       <div class="d-flex flex-column">
-        <span class="font-semibold">Autorizado</span>
+        <span class="fw-semibold">Autorizado</span>
         <span class="text-sm"
           >{{ ordenCompra().ordenCompraAuth.revisadoPorResidente }}</span
         >
@@ -49,7 +49,7 @@ ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Autorizado' ) {
 <lx-message severity="info" class="w-full mt-1"><div class="d-flex align-items-center gap-2">
     <app-icon [icon]="'material-symbols-light:info'" />
     <div class="d-flex flex-column">
-      <span class="font-semibold"
+      <span class="fw-semibold"
         >{{ ordenCompra().ordenCompraAuth.statusOrdenCompra }}</span
       >
       <span class="text-sm"
@@ -61,7 +61,7 @@ ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Autorizado' ) {
 <lx-message severity="secondary" class="w-full mt-1"><div class="d-flex align-items-center gap-2">
     <app-icon [icon]="'material-symbols-light:lock'" />
     <div class="d-flex flex-column gap-1">
-      <span class="font-semibold"
+      <span class="fw-semibold"
         >{{ ordenCompra().ordenCompraAuth.statusOrdenCompra }}</span
       >
       @if (ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Pendiente') {

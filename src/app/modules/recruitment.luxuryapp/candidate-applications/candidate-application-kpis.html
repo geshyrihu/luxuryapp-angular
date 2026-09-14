@@ -2,7 +2,7 @@
 <div class="card p-3 mb-3">
   <div class="d-flex align-items-center justify-content-center py-5">
     <lx-spinner [size]="40" />
-    <span class="ms-3 text-color-secondary">Calculando indicadores...</span>
+    <span class="ms-3 text-body-secondary">Calculando indicadores...</span>
   </div>
 </div>
 }
@@ -26,10 +26,10 @@
             >
               <app-icon [icon]="card.icon" class="text-2xl" />
             </div>
-            <div class="flex-1 min-w-0">
-              <div class="text-3xl font-bold text-color-primary">{{ card.value }}</div>
-              <div class="text-sm text-color-secondary mt-1">{{ card.title }}</div>
-              <div class="text-xs text-color-secondary mt-1">{{ card.subtitle }}</div>
+            <div class="flex-fill min-w-0">
+              <div class="text-3xl fw-bold text-body-primary">{{ card.value }}</div>
+              <div class="text-sm text-body-secondary mt-1">{{ card.title }}</div>
+              <div class="text-xs text-body-secondary mt-1">{{ card.subtitle }}</div>
             </div>
           </div>
           @if (card.route) {
@@ -49,10 +49,10 @@
 
   <!-- Pipeline por etapas -->
   <div class="card p-3 mb-4">
-    <div class="font-semibold mb-3">Pipeline por etapas</div>
+    <div class="fw-semibold mb-3">Pipeline por etapas</div>
     <div class="d-flex flex-wrap gap-2">
       @for (stage of pipelineStages(); track stage.label) {
-        <div class="d-flex align-items-center gap-2 px-3 py-2 rounded border surface-border bg-surface-50"
+        <div class="d-flex align-items-center gap-2 px-3 py-2 rounded border bg-bg-body-tertiary"
              [ngClass]="{
                'border-left-3 border-red-500': stage.color === 'danger',
                'border-left-3 border-yellow-500': stage.color === 'warn',
@@ -60,8 +60,8 @@
                'border-left-3 border-blue-500': stage.color === 'info',
                'border-left-3 border-primary-500': stage.color === 'primary',
              }">
-          <span class="font-medium text-sm">{{ stage.label }}</span>
-          <span class="text-xl font-bold text-color-primary">{{ stage.value }}</span>
+          <span class="fw-medium text-sm">{{ stage.label }}</span>
+          <span class="text-xl fw-bold text-body-primary">{{ stage.value }}</span>
         </div>
       }
     </div>
@@ -70,10 +70,10 @@
   <!-- Desglose Agenda Entrevista Operaciones -->
   @if (agendaBreakdown().length > 0) {
     <div class="card p-3 mb-4">
-      <div class="font-semibold mb-3">Desglose Entrevista Operaciones ({{ kpis()?.postulacionesEnEntrevistaOperaciones }} total)</div>
+      <div class="fw-semibold mb-3">Desglose Entrevista Operaciones ({{ kpis()?.postulacionesEnEntrevistaOperaciones }} total)</div>
       <div class="d-flex flex-wrap gap-2">
         @for (item of agendaBreakdown(); track item.label) {
-          <div class="d-flex align-items-center gap-2 px-3 py-2 rounded border surface-border bg-surface-50"
+          <div class="d-flex align-items-center gap-2 px-3 py-2 rounded border bg-bg-body-tertiary"
                [ngClass]="{
                  'border-left-3 border-red-500': item.severity === 'danger',
                  'border-left-3 border-yellow-500': item.severity === 'warn',
@@ -81,9 +81,9 @@
                  'border-left-3 border-blue-500': item.severity === 'info',
                  'border-left-3 border-gray-500': item.severity === 'contrast',
                }">
-            <span class="font-medium text-sm">{{ item.label }}</span>
-            <span class="text-xl font-bold text-color-primary">{{ item.value }}</span>
-            <span class="text-sm text-color-secondary">({{ item.pct }}%)</span>
+            <span class="fw-medium text-sm">{{ item.label }}</span>
+            <span class="text-xl fw-bold text-body-primary">{{ item.value }}</span>
+            <span class="text-sm text-body-secondary">({{ item.pct }}%)</span>
           </div>
         }
       </div>
@@ -94,23 +94,23 @@
   <div class="row mb-4 g-4">
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <div class="text-sm text-color-secondary mb-1">Promedio días en etapa actual</div>
-        <div class="text-3xl font-bold text-color-primary">{{ kpis()?.promedioDiasEnEtapaActual | number:'1.1-1' }}</div>
-        <small class="text-color-secondary">Postulaciones activas</small>
+        <div class="text-sm text-body-secondary mb-1">Promedio días en etapa actual</div>
+        <div class="text-3xl fw-bold text-body-primary">{{ kpis()?.promedioDiasEnEtapaActual | number:'1.1-1' }}</div>
+        <small class="text-body-secondary">Postulaciones activas</small>
       </div>
     </div>
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <div class="text-sm text-color-secondary mb-1">Promedio días hasta Entrevista Ops.</div>
-        <div class="text-3xl font-bold text-color-primary">{{ kpis()?.promedioDiasHastaEntrevistaOperaciones ?? 'N/A' }}</div>
-        <small class="text-color-secondary">Solo con fecha programada</small>
+        <div class="text-sm text-body-secondary mb-1">Promedio días hasta Entrevista Ops.</div>
+        <div class="text-3xl fw-bold text-body-primary">{{ kpis()?.promedioDiasHastaEntrevistaOperaciones ?? 'N/A' }}</div>
+        <small class="text-body-secondary">Solo con fecha programada</small>
       </div>
     </div>
     <div class="col-12 col-md-4">
       <div class="card p-3 h-full">
-        <div class="text-sm text-color-secondary mb-1">Postulaciones sin feedback en entrevista</div>
-        <div class="text-3xl font-bold" [class.text-red-500]="(kpis()?.postulacionesSinFeedbackEnEntrevista ?? 0) > 0" [class.text-green-600]="(kpis()?.postulacionesSinFeedbackEnEntrevista ?? 0) === 0">{{ kpis()?.postulacionesSinFeedbackEnEntrevista }}</div>
-        <small class="text-color-secondary">Etapa Entrevista Operaciones</small>
+        <div class="text-sm text-body-secondary mb-1">Postulaciones sin feedback en entrevista</div>
+        <div class="text-3xl fw-bold" [class.text-red-500]="(kpis()?.postulacionesSinFeedbackEnEntrevista ?? 0) > 0" [class.text-green-600]="(kpis()?.postulacionesSinFeedbackEnEntrevista ?? 0) === 0">{{ kpis()?.postulacionesSinFeedbackEnEntrevista }}</div>
+        <small class="text-body-secondary">Etapa Entrevista Operaciones</small>
       </div>
     </div>
   </div>
@@ -118,7 +118,7 @@
   <!-- Tabla por Fuente -->
   @if (fuenteTable().length > 0) {
     <div class="card p-3 mb-4">
-      <div class="font-semibold mb-3">Tasa de conversión por Fuente (últimos 30 días)</div>
+      <div class="fw-semibold mb-3">Tasa de conversión por Fuente (últimos 30 días)</div>
       <p-table
         [value]="fuenteTable()"
         [paginator]="false"
@@ -159,8 +159,8 @@
   <div class="card p-3 mb-4">
     <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3 g-4">
       <div>
-        <div class="font-semibold mb-1">Automatización diaria de seguimiento</div>
-        <p class="m-0 text-sm text-color-secondary">
+        <div class="fw-semibold mb-1">Automatización diaria de seguimiento</div>
+        <p class="m-0 text-sm text-body-secondary">
           Ejecuta las reglas de notificación: postulación estancada, agenda pendiente, recordatorios, vencidas.
         </p>
       </div>
@@ -177,7 +177,7 @@
   
   <!-- 1. Pipeline por etapas - Bar horizontal -->
   <div class="card p-3 mb-4">
-    <div class="font-semibold mb-3">Pipeline por etapas</div>
+    <div class="fw-semibold mb-3">Pipeline por etapas</div>
     @if (pipelineChartData()) {
       <app-chart-wrapper
         type="bar"
@@ -191,7 +191,7 @@
 
   <!-- 2. Estado de Entrevistas Operaciones - Doughnut -->
   <div class="card p-3 mb-4">
-    <div class="font-semibold mb-3">Estado de Entrevistas Operaciones</div>
+    <div class="fw-semibold mb-3">Estado de Entrevistas Operaciones</div>
     @if (interviewStatusChartData()) {
       <app-chart-wrapper
         type="doughnut"
@@ -200,13 +200,13 @@
         [showLegend]="true"
       />
     } @else {
-      <div class="text-center text-color-secondary py-4">Sin datos de Entrevista Operaciones</div>
+      <div class="text-center text-body-secondary py-4">Sin datos de Entrevista Operaciones</div>
     }
   </div>
 
   <!-- 3. Tiempo Vacante -> Primera Postulacion - Bar con SLA -->
   <div class="card p-3 mb-4">
-    <div class="font-semibold mb-3">Tiempo Vacante → 1ª Postulación (Días)</div>
+    <div class="fw-semibold mb-3">Tiempo Vacante → 1ª Postulación (Días)</div>
     @if (timeToFirstChartData()) {
       <app-chart-wrapper
         type="bar"
@@ -215,17 +215,17 @@
         [showLegend]="false"
         [showGrid]="true"
       />
-      <p class="text-xs text-color-secondary mt-2">
+      <p class="text-xs text-body-secondary mt-2">
         SLA objetivo: ≤ 7 días | Verde = dentro SLA, Ámbar = 1-2x SLA, Rojo = >2x SLA
       </p>
     } @else {
-      <div class="text-center text-color-secondary py-4">Sin datos de primera postulación</div>
+      <div class="text-center text-body-secondary py-4">Sin datos de primera postulación</div>
     }
   </div>
 
   <!-- 4. Fuente de Reclutamiento - Bar dual axis -->
   <div class="card p-3 mb-4">
-    <div class="font-semibold mb-3">Fuente de Reclutamiento (Postulaciones + Conversión)</div>
+    <div class="fw-semibold mb-3">Fuente de Reclutamiento (Postulaciones + Conversión)</div>
     @if (sourceChartData()) {
       <app-chart-wrapper
         type="bar"
@@ -236,13 +236,13 @@
         [options]="{ dualAxis: true }"
       />
     } @else {
-      <div class="text-center text-color-secondary py-4">Sin datos por fuente</div>
+      <div class="text-center text-body-secondary py-4">Sin datos por fuente</div>
     }
   </div>
 
   <!-- 5. Actividad Reciente - Bar comparativo -->
   <div class="card p-3 mb-4">
-    <div class="font-semibold mb-3">Actividad Reciente (7 vs 30 días)</div>
+    <div class="fw-semibold mb-3">Actividad Reciente (7 vs 30 días)</div>
     @if (activityChartData()) {
       <app-chart-wrapper
         type="bar"
@@ -252,7 +252,7 @@
         [showGrid]="true"
       />
     } @else {
-      <div class="text-center text-color-secondary py-4">Sin datos de actividad</div>
+      <div class="text-center text-body-secondary py-4">Sin datos de actividad</div>
     }
   </div>
 
@@ -260,8 +260,8 @@
   <div class="card p-3 mb-4">
     <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3 g-4">
       <div>
-        <div class="font-semibold mb-1">Automatización diaria de seguimiento</div>
-        <p class="m-0 text-sm text-color-secondary">
+        <div class="fw-semibold mb-1">Automatización diaria de seguimiento</div>
+        <p class="m-0 text-sm text-body-secondary">
           Ejecuta las reglas de notificación: postulación estancada, agenda pendiente, recordatorios, vencidas.
         </p>
       </div>

@@ -2,8 +2,8 @@
   <lx-card class="card card--elevated mb-3">
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
       <div>
-        <div class="font-semibold text-sm">Evaluación Automática de Morosidad</div>
-        <div class="text-xs text-500 mt-1">
+        <div class="fw-semibold text-sm">Evaluación Automática de Morosidad</div>
+        <div class="text-xs text-body-secondary mt-1">
           Analiza deudas por antigüedad (30/60/90+ días) y escala a gestoría las
           propiedades que superan el umbral.
         </div>
@@ -39,7 +39,7 @@
     <ng-template #header>
       <tr>
         <th>Propiedad</th>
-        <th class="w-10rem text-right">Deuda Total</th>
+        <th class="w-10rem text-end">Deuda Total</th>
         <th class="w-9rem text-center">Antigüedad</th>
         <th class="w-8rem">Asignado a</th>
         <th class="w-8rem text-center">Estado</th>
@@ -51,8 +51,8 @@
 
     <ng-template #body let-item>
       <tr>
-        <td class="font-medium text-sm">{{ item.propertyName }}</td>
-        <td class="text-right font-bold text-red-700">
+        <td class="fw-medium text-sm">{{ item.propertyName }}</td>
+        <td class="text-end fw-bold text-red-700">
           {{ item.totalOwed | currency:"MXN":"symbol-narrow":"1.2-2" }}
         </td>
         <td class="text-center">
@@ -71,7 +71,7 @@
         <td class="text-center text-sm">
           {{ item.lastContactAt | apiDate:"dd/MM/yyyy" }}
         </td>
-        <td class="text-center text-sm font-semibold">
+        <td class="text-center text-sm fw-semibold">
           {{ item.activities.length }}
         </td>
         <td class="text-center">
@@ -101,7 +101,7 @@
             class="text-red-600 text-xl"
           />
         </div>
-        <div class="flex-1 min-w-0">
+        <div class="flex-fill min-w-0">
           <h3>{{ item.propertyName }}</h3>
           <p>
             {{ item.totalOwed | currency:"MXN":"symbol-narrow":"1.2-2" }} ·

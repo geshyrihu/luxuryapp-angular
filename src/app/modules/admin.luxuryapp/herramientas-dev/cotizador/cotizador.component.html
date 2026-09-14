@@ -1,10 +1,10 @@
-<div class="p-4 md:p-6 fadein">
+<div class="p-4 p-md-5 fadein">
   <div class="mb-4">
     <div class="d-flex align-items-center gap-2 mb-2">
       <app-icon icon="material-symbols-light:calculate" class="text-primary text-3xl"></app-icon>
-      <h1 class="text-2xl font-bold text-900 m-0">Cotizador de Módulos</h1>
+      <h1 class="text-2xl fw-bold text-body m-0">Cotizador de Módulos</h1>
     </div>
-    <p class="text-500 m-0">
+    <p class="text-body-secondary m-0">
       Selecciona los módulos requeridos y la cantidad de departamentos para
       calcular el costo.
     </p>
@@ -14,11 +14,11 @@
     <!-- Columna Izquierda: Controles -->
     <div class="col-12 col-lg-8">
       <div
-        class="surface-card p-4 rounded-xl shadow-sm mb-4 border-1 border-200"
+        class="bg-body p-4 rounded-xl shadow-sm mb-4 border-1 border-200"
         
       >
         <h2
-          class="text-xl font-bold text-900 mt-0 mb-4 border-bottom-1 surface-border pb-2"
+          class="text-xl fw-bold text-body mt-0 mb-4 border-bottom-1 border pb-2"
         >
           1. Selección de Módulos
         </h2>
@@ -27,7 +27,7 @@
           @for (mod of modules(); track mod.id) {
             <div class="col-12 col-md-6 mb-3">
               <div
-                class="d-flex align-items-center p-3 rounded-lg hover:surface-hover transition-colors transition-duration-200 cursor-pointer border-1 surface-border"
+                class="d-flex align-items-center p-3 rounded-lg transition-colors transition-duration-200 cursor-pointer border-1 border"
                 [ngClass]="{ 'bg-primary-50 border-primary': mod.selected }"
               >
                 <!-- Usando custom-input-check-signal como lo solicita el catálogo de la empresa -->
@@ -37,7 +37,7 @@
                   [label]="mod.name"
                 >
                 </custom-input-check-signal>
-                <div class="ms-auto font-bold text-700">${{ mod.price }}</div>
+                <div class="ms-auto fw-bold text-body">${{ mod.price }}</div>
               </div>
             </div>
           }
@@ -45,11 +45,11 @@
       </div>
 
       <div
-        class="surface-card p-4 rounded-xl shadow-sm border-1 border-200"
+        class="bg-body p-4 rounded-xl shadow-sm border-1 border-200"
         
       >
         <h2
-          class="text-xl font-bold text-900 mt-0 mb-4 border-bottom-1 surface-border pb-2"
+          class="text-xl fw-bold text-body mt-0 mb-4 border-bottom-1 border pb-2"
         >
           2. Cantidad de Departamentos
         </h2>
@@ -62,7 +62,7 @@
             [min]="1"
           >
           </custom-input-number-signal>
-          <small class="text-500"
+          <small class="text-body-secondary"
             >Costo adicional de ${{ pricePerDepartment }} por departamento si
             hay módulos seleccionados.</small
           >
@@ -73,11 +73,11 @@
     <!-- Columna Derecha: Resumen / Recibo -->
     <div class="col-12 col-lg-4">
       <div
-        class="surface-card p-4 rounded-xl shadow-sm sticky top-0"
+        class="bg-body p-4 rounded-xl shadow-sm sticky top-0"
         
       >
         <h2
-          class="text-xl font-bold text-900 mt-0 mb-4 d-flex align-items-center gap-2"
+          class="text-xl fw-bold text-body mt-0 mb-4 d-flex align-items-center gap-2"
         >
           <app-icon icon="material-symbols-light:receipt" class="text-primary"></app-icon>
           Resumen de Cotización
@@ -87,8 +87,8 @@
           @for (mod of modules(); track mod.id) {
             @if (mod.selected) {
               <div class="d-flex justify-content-between align-items-center">
-                <span class="text-700">{{ mod.name }}</span>
-                <span class="font-bold text-900"
+                <span class="text-body">{{ mod.name }}</span>
+                <span class="fw-bold text-body"
                   >${{ mod.price.toFixed(2) }}</span
                 >
               </div>
@@ -97,32 +97,32 @@
 
           @if (departmentsPrice() > 0) {
             <div
-              class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top-1 surface-border"
+              class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top-1 border"
             >
-              <span class="text-700"
+              <span class="text-body"
                 >Departamentos ({{ departmentsCount() }} x ${{
                   pricePerDepartment
                 }})</span
               >
-              <span class="font-bold text-900"
+              <span class="fw-bold text-body"
                 >${{ departmentsPrice().toFixed(2) }}</span
               >
             </div>
           }
 
           @if (totalPrice() === 0) {
-            <div class="text-500 font-italic text-center py-3">
+            <div class="text-body-secondary fst-italic text-center py-3">
               No hay módulos seleccionados.
             </div>
           }
         </div>
 
-        <div class="border-top-2 surface-border pt-3 mt-3">
+        <div class="border-top-2 border pt-3 mt-3">
           <div class="d-flex justify-content-between align-items-center">
-            <span class="text-xl font-bold text-900">Total Mensual</span>
-            <span class="text-2xl font-bold text-primary"
+            <span class="text-xl fw-bold text-body">Total Mensual</span>
+            <span class="text-2xl fw-bold text-primary"
               >${{ totalPrice().toFixed(2) }}
-              <span class="text-sm text-500">USD</span></span
+              <span class="text-sm text-body-secondary">USD</span></span
             >
           </div>
         </div>

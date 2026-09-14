@@ -21,23 +21,23 @@
       <tr>
         <th class="w-8rem text-center">Días de Gracia</th>
         <th class="w-10rem">Tipo</th>
-        <th class="w-8rem text-right">Tasa / Monto</th>
+        <th class="w-8rem text-end">Tasa / Monto</th>
         <th class="w-10rem text-center">Interés Compuesto</th>
-        <th class="w-10rem text-right">Monto Máximo</th>
+        <th class="w-10rem text-end">Monto Máximo</th>
         <th class="w-8rem text-center">Opciones</th>
       </tr>
     </ng-template>
 
     <ng-template #body let-item>
       <tr>
-        <td class="text-center font-bold text-700">{{ item.graceDays }}</td>
-        <td class="font-medium text-800">
+        <td class="text-center fw-bold text-body">{{ item.graceDays }}</td>
+        <td class="fw-medium text-body">
           <lx-tag
             [value]="lateFeeTypeMeta(item.type).label"
             [severity]="lateFeeTypeMeta(item.type).severity"
           />
         </td>
-        <td class="text-right font-medium text-red-600">
+        <td class="text-end fw-medium text-red-600">
           {{ item.rate | number: "1.2-2" }}{{ item.type ===
           ELateFeeType.Porcentaje ? "%" : "" }}
         </td>
@@ -45,10 +45,10 @@
           @if (item.compoundsMonthly) {
           <lx-tag value="Sí" severity="danger" />
           } @else {
-          <span class="text-xs text-500">No</span>
+          <span class="text-xs text-body-secondary">No</span>
           }
         </td>
-        <td class="text-right font-semibold text-700">
+        <td class="text-end fw-semibold text-body">
           {{ item.maxRate | number: "1.2-2" }}
         </td>
         <td class="text-center">
@@ -62,7 +62,7 @@
 
     <ng-template #emptymessage>
       <tr>
-        <td colspan="6" class="text-center p-4 text-500">
+        <td colspan="6" class="text-center p-4 text-body-secondary">
           No hay políticas de mora registradas.
         </td>
       </tr>
@@ -83,7 +83,7 @@
       >
         <app-icon icon="material-symbols-light:warning-outline" class="text-red-600 text-xl" />
       </div>
-      <div class="flex-1 min-w-0">
+      <div class="flex-fill min-w-0">
         <h3>{{ item.graceDays }} días de gracia</h3>
         <p>
           Tasa: {{ item.rate | number:"1.2-2" }}{{ item.type ===

@@ -2,7 +2,7 @@
 
 @if (loading()) {
 <div class="card">
-  <div class="text-center text-500 p-5">Resolviendo equipo...</div>
+  <div class="text-center text-body-secondary p-5">Resolviendo equipo...</div>
 </div>
 } @else if (error()) {
 <div class="card">
@@ -14,14 +14,14 @@
 } @else if (qr) {
 <div class="card d-flex flex-column gap-4">
   <div>
-    <div class="font-semibold text-xl">{{ qr.machineryName }}</div>
-    <div class="text-sm text-600">{{ qr.machineryLocation || "Ubicacion no registrada" }}</div>
-    <div class="text-sm text-600 mt-1">
+    <div class="fw-semibold text-xl">{{ qr.machineryName }}</div>
+    <div class="text-sm text-body-secondary">{{ qr.machineryLocation || "Ubicacion no registrada" }}</div>
+    <div class="text-sm text-body-secondary mt-1">
       QR: {{ qr.qrLabelName }} | Tipo: {{ qr.qrTypeName }}
     </div>
   </div>
 
-  <div class="surface-ground rounded p-3 text-sm">
+  <div class="bg-body-tertiary rounded p-3 text-sm">
     @if (qr.hasPendingExecution && qr.pendingExecutionId) {
     <div>Se encontro una inspeccion pendiente para este equipo. Se abrira directamente esa ejecucion.</div>
     } @else {

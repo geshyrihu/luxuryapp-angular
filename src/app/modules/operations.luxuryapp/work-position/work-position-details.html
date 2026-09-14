@@ -1,9 +1,9 @@
 <div class="d-flex flex-column gap-3 p-3">
   <header class="d-flex align-items-center justify-content-between gap-2">
     <div>
-      <small class="text-500">{{ folio() }}</small>
+      <small class="text-body-secondary">{{ folio() }}</small>
       <h2 class="m-0">{{ applicationRoleName() }}</h2>
-      <small class="text-500">{{ departamentLabel() }}</small>
+      <small class="text-body-secondary">{{ departamentLabel() }}</small>
     </div>
     <il-button
       (clicked)="close()"
@@ -13,10 +13,10 @@
     />
   </header>
 
-  <div class="d-flex gap-3 border-bottom-1 surface-border">
+  <div class="d-flex gap-3 border-bottom-1 border">
     <button
       type="button"
-      class="bg-transparent border-none cursor-pointer pb-2 border-bottom-2 transition-colors"
+      class="bg-transparent border-0 cursor-pointer pb-2 border-bottom-2 transition-colors"
       [class.border-primary]="activeTab() === 'description'"
       [class.text-primary]="activeTab() === 'description'"
       [class.text-500]="activeTab() !== 'description'"
@@ -26,7 +26,7 @@
     </button>
     <button
       type="button"
-      class="bg-transparent border-none cursor-pointer pb-2 border-bottom-2 transition-colors"
+      class="bg-transparent border-0 cursor-pointer pb-2 border-bottom-2 transition-colors"
       [class.border-primary]="activeTab() === 'general'"
       [class.text-primary]="activeTab() === 'general'"
       [class.text-500]="activeTab() !== 'general'"
@@ -41,23 +41,23 @@
     @if (description(); as d) {
     <div class="d-flex flex-column gap-3 p-3">
       <div>
-        <span class="text-500 font-bold">Resumen</span>
+        <span class="text-body-secondary fw-bold">Resumen</span>
         <p class="mt-1 white-space-pre-line">{{ d.summary }}</p>
       </div>
       <div>
-        <span class="text-500 font-bold">Responsabilidades</span>
+        <span class="text-body-secondary fw-bold">Responsabilidades</span>
         <p class="mt-1 white-space-pre-line">{{ d.responsibilities }}</p>
       </div>
       <div>
-        <span class="text-500 font-bold">Habilidades</span>
+        <span class="text-body-secondary fw-bold">Habilidades</span>
         <p class="mt-1 white-space-pre-line">{{ d.skills }}</p>
       </div>
       <div>
-        <span class="text-500 font-bold">Requisitos adicionales</span>
+        <span class="text-body-secondary fw-bold">Requisitos adicionales</span>
         <p class="mt-1 white-space-pre-line">{{ d.additionalRequirements }}</p>
       </div>
       <div>
-        <span class="text-500 font-bold">Entorno de trabajo</span>
+        <span class="text-body-secondary fw-bold">Entorno de trabajo</span>
         <p class="mt-1 white-space-pre-line">{{ d.workEnvironment }}</p>
       </div>
       <lx-tag
@@ -66,7 +66,7 @@
       />
     </div>
     } @else {
-    <p class="p-3 text-500">Este puesto no tiene DESCRIPCIÓN registrada.</p>
+    <p class="p-3 text-body-secondary">Este puesto no tiene DESCRIPCIÓN registrada.</p>
     }
   </lx-card>
   } @else {
@@ -77,30 +77,30 @@
         @if (general(); as g) {
         <div class="d-flex flex-column gap-1">
           <div class="d-flex justify-content-between">
-            <span class="text-500">Turno</span>
+            <span class="text-body-secondary">Turno</span>
             <span> {{ g.turno }}</span>
           </div>
           <div class="d-flex justify-content-between">
-            <span class="text-500">Sueldo base</span>
+            <span class="text-body-secondary">Sueldo base</span>
             <span>{{ g.sueldoBase }}</span>
           </div>
           <div class="d-flex justify-content-between">
-            <span class="text-500">Sueldo</span>
+            <span class="text-body-secondary">Sueldo</span>
             <span>{{ g.sueldo }}</span>
           </div>
           <div class="d-flex justify-content-between">
-            <span class="text-500">Prestaciones</span>
-            <span class="white-space-pre-line text-right"
+            <span class="text-body-secondary">Prestaciones</span>
+            <span class="white-space-pre-line text-end"
               >{{ g.benefits }}</span
             >
           </div>
           <div class="d-flex justify-content-between">
-            <span class="text-500">Estado</span>
+            <span class="text-body-secondary">Estado</span>
             <span>{{ g.state ? 'Activo' : 'Inactivo' }}</span>
           </div>
         </div>
         } @else {
-        <p class="text-500">Cargando...</p>
+        <p class="text-body-secondary">Cargando...</p>
         }
       </div>
     </lx-card>
@@ -118,19 +118,19 @@
         <div class="d-flex flex-column gap-1">
           @for (dia of dias; track dia.n) {
           <div class="d-flex justify-content-between">
-            <span class="font-semibold">{{ dia.n }}</span>
+            <span class="fw-semibold">{{ dia.n }}</span>
             @let entry = h.diasDeTrabajo?.find(d => d.diaSemana ===
             dia.dw)?.horaEntrada ?? null; @let exit = h.diasDeTrabajo?.find(d =>
             d.diaSemana === dia.dw)?.horaSalida ?? null; @if (entry && exit) {
             <span>{{ entry }} - {{ exit }}</span>
             } @else {
-            <span class="text-400 font-italic">Descanso</span>
+            <span class="text-body-secondary fst-italic">Descanso</span>
             }
           </div>
           }
         </div>
         } @else {
-        <p class="text-500">Sin horarios registrados.</p>
+        <p class="text-body-secondary">Sin horarios registrados.</p>
         }
       </div>
     </lx-card>

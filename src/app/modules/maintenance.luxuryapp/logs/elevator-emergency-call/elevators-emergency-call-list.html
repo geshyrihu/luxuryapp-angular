@@ -108,27 +108,27 @@
       </div>
 
       <div class="d-flex justify-content-between align-items-center mb-1">
-        <h2 class="font-bold m-0 text-base text-wrap">{{ item.machinery }}</h2>
+        <h2 class="fw-bold m-0 text-base text-wrap">{{ item.machinery }}</h2>
       </div>
-      <p class="text-sm text-500 m-0">
+      <p class="text-sm text-body-secondary m-0">
         <app-icon [icon]="'material-symbols-light:currency-pound'" class="me-1 text-xs" /> Folio: {{
         item.folio }}
       </p>
-      <p class="text-sm text-500 m-0">
+      <p class="text-sm text-body-secondary m-0">
         <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1 text-xs" /> {{
         item.requestDate }}
       </p>
-      <p class="text-sm text-700 mt-2 mb-1">
+      <p class="text-sm text-body mt-2 mb-1">
         <strong>Reporte:</strong> {{ item.report }}
       </p>
-      <p class="text-sm text-700 m-0 mb-1">
+      <p class="text-sm text-body m-0 mb-1">
         <strong>Respuesta:</strong> {{ item.request }}
       </p>
       <div class="d-flex flex-column gap-1 mt-1">
-        <small class="text-xs text-500"
+        <small class="text-xs text-body-secondary"
           >Reportú: {{ item.personWhoReports }}</small
         >
-        <small class="text-xs text-500"
+        <small class="text-xs text-body-secondary"
           >Atendié: {{ item.technicianWhoAttended }}</small
         >
       </div>

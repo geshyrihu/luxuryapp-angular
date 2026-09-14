@@ -1,40 +1,40 @@
 <div class="row mb-3 g-4">
-  <div class="col-12 col-md-6 xl:col">
+  <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-2"
+      <small class="text-body-secondary d-block mb-2"
         >Pendientes de agenda</small
       >
-      <div class="text-2xl font-semibold">{{ summary().pendingSchedule }}</div>
+      <div class="text-2xl fw-semibold">{{ summary().pendingSchedule }}</div>
     </div>
   </div>
-  <div class="col-12 col-md-6 xl:col">
+  <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-2">Agendadas</small>
-      <div class="text-2xl font-semibold">{{ summary().scheduled }}</div>
+      <small class="text-body-secondary d-block mb-2">Agendadas</small>
+      <div class="text-2xl fw-semibold">{{ summary().scheduled }}</div>
     </div>
   </div>
-  <div class="col-12 col-md-6 xl:col">
+  <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-2">Vencidas</small>
-      <div class="text-2xl font-semibold text-red-500">
+      <small class="text-body-secondary d-block mb-2">Vencidas</small>
+      <div class="text-2xl fw-semibold text-red-500">
         {{ summary().overdue }}
       </div>
     </div>
   </div>
-  <div class="col-12 col-md-6 xl:col">
+  <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-2">Sin entrevistador</small>
-      <div class="text-2xl font-semibold text-orange-500">
+      <small class="text-body-secondary d-block mb-2">Sin entrevistador</small>
+      <div class="text-2xl fw-semibold text-orange-500">
         {{ summary().missingInterviewer }}
       </div>
     </div>
   </div>
-  <div class="col-12 col-md-6 xl:col">
+  <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-2"
+      <small class="text-body-secondary d-block mb-2"
         >Con retroalimentacion</small
       >
-      <div class="text-2xl font-semibold text-green-500">
+      <div class="text-2xl fw-semibold text-green-500">
         {{ summary().withFeedback }}
       </div>
     </div>
@@ -45,8 +45,8 @@
   class="card p-3 mb-2 d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-2 g-4"
 >
   <div>
-    <div class="font-semibold mb-1">Agenda de entrevistas</div>
-    <p class="m-0 text-sm text-color-secondary">
+    <div class="fw-semibold mb-1">Agenda de entrevistas</div>
+    <p class="m-0 text-sm text-body-secondary">
       Seguimiento de entrevistas operativas en un solo tablero.
     </p>
   </div>
@@ -70,7 +70,7 @@
   <ng-template #caption>
     <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between">
       <div class="d-flex flex-wrap gap-2">
-        <span class="text-sm text-color-secondary align-self-center">Filtrar por estado:</span>
+        <span class="text-sm text-body-secondary align-self-center">Filtrar por estado:</span>
         <app-select-button
           [options]="filterOptions()"
           [value]="statusFilter()"
@@ -113,11 +113,11 @@
       (click)="navigateToApplication(item)"
     >
       <td>
-        <div class="font-medium">{{ item.candidateName }}</div>
+        <div class="fw-medium">{{ item.candidateName }}</div>
       </td>
       <td>
-        <div class="font-medium">{{ item.vacancyFolio }}</div>
-        <small class="text-color-secondary">{{ item.positionName }}</small>
+        <div class="fw-medium">{{ item.vacancyFolio }}</div>
+        <small class="text-body-secondary">{{ item.positionName }}</small>
       </td>
       <td>{{ item.customerName }}</td>
       <td>
@@ -129,23 +129,23 @@
       <td>
         @if (item.scheduledInterviewAt) { {{ item.scheduledInterviewAt | apiDate:
         "dd/MM/yyyy HH:mm" }} } @else {
-        <span class="text-color-secondary">Sin fecha</span>
+        <span class="text-body-secondary">Sin fecha</span>
         }
       </td>
       <td>
         @if (item.assignedInterviewerName) { {{ item.assignedInterviewerName }}
         } @else {
-        <span class="text-color-secondary">Sin asignar</span>
+        <span class="text-body-secondary">Sin asignar</span>
         }
       </td>
       <td>
         <div>{{ item.daysInStage }}</div>
-        <small class="text-color-secondary">
+        <small class="text-body-secondary">
           <app-candidate-stage-badge [stage]="item.currentStage" />
         </small>
       </td>
       <td>
-        <span class="font-medium">{{ item.pendingAction }}</span>
+        <span class="fw-medium">{{ item.pendingAction }}</span>
       </td>
       <td>
         @if (item.cvFileName) {
@@ -157,7 +157,7 @@
           [attr.aria-label]="'Ver CV de ' + item.candidateName"
         />
         } @else {
-        <span class="text-color-secondary">Sin CV</span>
+        <span class="text-body-secondary">Sin CV</span>
         }
       </td>
       <td class="no-print">

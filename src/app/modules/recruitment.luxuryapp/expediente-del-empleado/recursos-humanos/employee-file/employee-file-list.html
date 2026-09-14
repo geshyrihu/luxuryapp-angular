@@ -53,13 +53,13 @@
           />
           } @else {
           <div
-            class="w-3rem h-3rem rounded-circle surface-200 d-flex align-items-center justify-content-center text-500 text-sm font-bold"
+            class="w-3rem h-3rem rounded-circle bg-body-tertiary d-flex align-items-center justify-content-center text-body-secondary text-sm fw-bold"
           >
             {{ item.fullName.charAt(0) }}
           </div>
           }
         </td>
-        <td class="font-medium">{{ item.fullName }}</td>
+        <td class="fw-medium">{{ item.fullName }}</td>
         <td>{{ item.numberEmployee ?? 'é' }}</td>
         <td>{{ item.puesto || 'é' }}</td>
         <td>{{ item.departamento || 'é' }}</td>
@@ -103,10 +103,10 @@
           />
         </div>
         
-          <h2 class="font-bold">{{ item.fullName }}</h2>
-          <p class="text-sm text-500">No. {{ item.numberEmployee ?? 'é' }}</p>
-          <p class="text-sm text-500">{{ item.puesto || 'é' }}</p>
-          <p class="text-sm text-500">{{ item.departamento || 'é' }}</p>
+          <h2 class="fw-bold">{{ item.fullName }}</h2>
+          <p class="text-sm text-body-secondary">No. {{ item.numberEmployee ?? 'é' }}</p>
+          <p class="text-sm text-body-secondary">{{ item.puesto || 'é' }}</p>
+          <p class="text-sm text-body-secondary">{{ item.departamento || 'é' }}</p>
           <p class="text-sm">
             <span
               [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"

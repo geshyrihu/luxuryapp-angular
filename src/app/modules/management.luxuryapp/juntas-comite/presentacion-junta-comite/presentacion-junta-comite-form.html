@@ -10,7 +10,7 @@
 
     <!-- Mostrar nombre del archivo seleccionado -->
     @if (selectedFileName()) {
-    <div class="mt-2 p-2 rounded surface-ground">
+    <div class="mt-2 p-2 rounded bg-body-tertiary">
       <app-icon [icon]="'material-symbols-light:picture-as-pdf'" class="me-2" />
       <span class="text-sm">{{ selectedFileName() }}</span>
       <iw-button

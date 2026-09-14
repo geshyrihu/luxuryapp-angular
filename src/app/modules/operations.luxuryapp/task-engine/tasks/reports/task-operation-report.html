@@ -82,7 +82,7 @@
       <td>
         <div class="d-flex align-items-center">
           <!-- Contenedor para la fecha y hora -->
-          <div class="ms-2 text-right">
+          <div class="ms-2 text-end">
             {{ item.createdAtDate }}
             <br />
             {{ item.createdAtHour }}
@@ -90,8 +90,8 @@
         </div>
       </td>
       <td>
-        <strong class="mb-0 text-900">{{ item.title }}</strong>
-        <p class="m-0 text-600">{{ item.description }}</p>
+        <strong class="mb-0 text-body">{{ item.title }}</strong>
+        <p class="m-0 text-body-secondary">{{ item.description }}</p>
       </td>
       <td class="text-center">
         <div class="d-flex justify-content-center align-items-center">
@@ -165,8 +165,8 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <p class="font-semibold m-0 text-color">{{ item.folio }}</p>
-      <p class="text-xs m-0 text-color-secondary">
+      <p class="fw-semibold m-0 text-body">{{ item.folio }}</p>
+      <p class="text-xs m-0 text-body-secondary">
         {{ item.responsibleArea }} · {{ item.dateFinished }}
       </p>
 

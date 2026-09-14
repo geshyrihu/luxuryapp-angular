@@ -7,7 +7,7 @@ import {
   PLATFORM_ID,
   signal,
 } from "@angular/core";
-import { NotificationsListWeb } from "src/app/core/layout/employee-view/monitor/notifications-list-web/notifications-list-web";
+import { NotificationsListWeb } from "src/app/core/layout/employee-view/desktop/notifications-list-web/notifications-list-web";
 import { NotificationsListMobile } from "src/app/core/layout/employee-view/movil/notifications-list-mobile/notifications-list-mobile";
 
 @Component({

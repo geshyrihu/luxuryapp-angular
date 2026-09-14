@@ -131,18 +131,18 @@
           <app-icon icon="material-symbols-light:beach-access" />
         </div>
 
-        <h2 class="font-bold">{{ item.requestDate }}</h2>
-        <p class="text-sm text-500">
+        <h2 class="fw-bold">{{ item.requestDate }}</h2>
+        <p class="text-sm text-body-secondary">
           {{ item.startDate }} é {{ item.endDate }}
         </p>
-        <p class="text-sm text-500">Días: {{ item.requestedDays }}</p>
+        <p class="text-sm text-body-secondary">Días: {{ item.requestedDays }}</p>
         <p class="text-sm">
           <lx-tag
             [value]="item.status"
             [severity]="getStatusSeverity(item.status)"
           />
         </p>
-        <p class="text-sm text-500">{{ item.approverFullName || 'é' }}</p>
+        <p class="text-sm text-body-secondary">{{ item.approverFullName || 'é' }}</p>
 
         <ili-action-menu slot="end">
           <ng-container actions>

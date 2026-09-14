@@ -2,21 +2,21 @@
   <div class="d-flex flex-column gap-2">
     <div class="d-flex flex-column gap-1 mb-2">
       <h2 class="m-0 text-xl">Historial de Compras</h2>
-      <small class="text-color-secondary">
+      <small class="text-body-secondary">
         Consulta compras pagadas y filtra por tipo de compra, rango de fechas y
         tipo de orden.
       </small>
     </div>
 
-    <div class="surface-50 border-1 surface-border border-round-lg p-3">
+    <div class="bg-body-tertiary border-1 border rounded p-3">
       <div class="row formgrid g-4">
         <div class="col-12 col-lg-3">
           <div class="d-flex flex-column gap-2 h-full">
             <div class="d-flex align-items-center justify-content-between gap-2">
-              <label class="text-sm font-semibold">Rango de fechas</label>
+              <label class="text-sm fw-semibold">Rango de fechas</label>
               <button
                 type="button"
-                class="border-1 surface-border bg-white border-round-md px-2 py-1 text-xs font-medium text-700 cursor-pointer"
+                class="border-1 border bg-white rounded-md px-2 py-1 text-xs fw-medium text-body cursor-pointer"
                 (click)="clearDateRange()"
               >
                 Limpiar
@@ -48,7 +48,7 @@
               @for (preset of dateRangePresets; track preset.label) {
               <button
                 type="button"
-                class="border-1 surface-border bg-white border-round-md px-2 py-1 text-xs font-medium text-primary cursor-pointer"
+                class="border-1 border bg-white rounded-md px-2 py-1 text-xs fw-medium text-primary cursor-pointer"
                 (click)="applyDatePreset(preset.mode, preset.days ?? 0)"
               >
                 {{ preset.label }}
@@ -61,7 +61,7 @@
         <div class="col-12 col-lg-5">
           <div class="d-flex flex-column gap-3 h-full">
             <div class="d-flex flex-column gap-2">
-              <label class="text-sm font-semibold">Estado de pago</label>
+              <label class="text-sm fw-semibold">Estado de pago</label>
               <app-segmented-control
                 ariaLabel="Filtro por estado de pago"
                 [items]="estadoPagoOptions"
@@ -71,7 +71,7 @@
             </div>
 
             <div class="d-flex flex-column gap-2">
-              <label class="text-sm font-semibold">Tipo de compra</label>
+              <label class="text-sm fw-semibold">Tipo de compra</label>
               <app-segmented-control
                 ariaLabel="Filtro por tipo de compra"
                 [items]="tipoCompraOptions"
@@ -85,7 +85,7 @@
         <div class="col-12 col-lg-4">
           <div class="d-flex flex-column gap-3 h-full">
             <div class="d-flex flex-column gap-2">
-              <label class="text-sm font-semibold"
+              <label class="text-sm fw-semibold"
                 >Estado de autorizacion</label
               >
               <app-segmented-control
@@ -97,7 +97,7 @@
             </div>
 
             <div class="d-flex flex-column gap-2">
-              <label class="text-sm font-semibold">Tipo de orden</label>
+              <label class="text-sm fw-semibold">Tipo de orden</label>
               <app-segmented-control
                 ariaLabel="Filtro por tipo de orden"
                 [items]="tipoOrdenOptions"

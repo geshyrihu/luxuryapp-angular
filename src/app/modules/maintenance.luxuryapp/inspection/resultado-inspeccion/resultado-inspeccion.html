@@ -1,4 +1,4 @@
-<div class="p-4 md:p-6">
+<div class="p-4 p-md-5">
   <div class="d-flex justify-content-between align-items-center mb-6">
     <h4 class="text-headline-md text-on-surface m-0">Reporte de Inspección</h4>
     @if (data) {
@@ -13,13 +13,13 @@
   </div>
 
   @if (!data) {
-  <div class="d-flex justify-content-center align-items-center p-6">
+  <div class="d-flex justify-content-center align-items-center p-5">
     <p class="text-body-md text-on-surface-secondary">No hay datos para mostrar</p>
   </div>
   } @if (data) {
-  <div class="d-flex flex-column gap-6">
+  <div class="d-flex flex-column gap-5">
     <!-- Información General -->
-    <div class="card p-4 md:p-6">
+    <div class="card p-4 p-md-5">
       <h5 class="text-title-lg text-primary m-0 mb-4">{{ data.name }}</h5>
       <div class="row gap-3 g-4">
         <div class="col-12 col-md-6">
@@ -39,7 +39,7 @@
 
     <!-- Resultados de Inspección -->
     @for (item of data.results; track item) {
-    <div class="card p-4 md:p-6 border-outline">
+    <div class="card p-4 p-md-5 border-outline">
       <div class="d-flex justify-content-between align-items-center mb-4 pb-4 border-bottom-1 border-outline">
         <h6 class="text-title-md text-on-surface m-0">{{ item.inspectionDescription }}</h6>
         @if (item.state) {
@@ -58,7 +58,7 @@
       <!-- Observaciones -->
       @if (item.observations) {
       <div class="mb-4">
-        <p class="text-body-sm font-medium text-on-surface m-0 mb-2">Observaciones:</p>
+        <p class="text-body-sm fw-medium text-on-surface m-0 mb-2">Observaciones:</p>
         <p class="text-body-sm text-on-surface-secondary m-0">{{ item.observations }}</p>
       </div>
       }
@@ -66,7 +66,7 @@
       <!-- Reporte Fotográfico -->
       @if (item.images && item.images.length > 0) {
       <div>
-        <p class="text-body-sm font-medium text-on-surface m-0 mb-3">Reporte Fotográfico ({{ item.images.length }})</p>
+        <p class="text-body-sm fw-medium text-on-surface m-0 mb-3">Reporte Fotográfico ({{ item.images.length }})</p>
         <div class="row gap-3 g-4">
           @for (image of item.images; track image) {
           <div class="col-6 col-sm-4 col-md-3">

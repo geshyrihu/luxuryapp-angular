@@ -1,12 +1,12 @@
 <!-- Cabecera con logo del cliente y selector de periodo -->
 <div
-  class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden mb-3"
+  class="bg-body rounded-xl border-1 border shadow-sm overflow-hidden mb-3"
 >
   <div class="bg-primary" style="height: 0.45rem"></div>
-  <div class="surface-100 p-3 d-flex flex-column gap-3">
+  <div class="bg-body-tertiary p-3 d-flex flex-column gap-3">
     <div class="d-flex align-items-center gap-3">
       <div
-        class="surface-card rounded-xl border-1 surface-border d-inline-flex align-items-center justify-content-center p-2"
+        class="bg-body rounded-xl border-1 border d-inline-flex align-items-center justify-content-center p-2"
         style="flex-shrink: 0"
       >
         <img
@@ -24,24 +24,24 @@
       </div>
       <div class="d-flex flex-column gap-1">
         <small
-          class="text-primary font-bold uppercase"
+          class="text-primary fw-bold text-uppercase"
           style="letter-spacing: 0.14em"
           >LuxuryApp · Bitacora</small
         >
         <h1 class="text-primary text-2xl line-height-2 m-0">
           Recepcion de Pipas de Agua
         </h1>
-        <p class="text-900 font-semibold m-0 line-height-3">
+        <p class="text-body fw-semibold m-0 line-height-3">
           {{ customerName() }}
         </p>
       </div>
     </div>
 
     <div
-      class="d-flex align-items-center gap-3 flex-wrap border-top-1 surface-border pt-3"
+      class="d-flex align-items-center gap-3 flex-wrap border-top-1 border pt-3"
     >
       <div class="d-flex align-items-center gap-1">
-        <span class="text-500 text-xs">Desde</span>
+        <span class="text-body-secondary text-xs">Desde</span>
         <custom-input-datepicker-signal
           [(ngModel)]="startDate"
           [showIcon]="true"
@@ -56,7 +56,7 @@
         />
       </div>
       <div class="d-flex align-items-center gap-1">
-        <span class="text-500 text-xs">Hasta</span>
+        <span class="text-body-secondary text-xs">Hasta</span>
         <custom-input-datepicker-signal
           [(ngModel)]="endDate"
           [showIcon]="true"
@@ -81,18 +81,18 @@
   <!-- KPI cards -->
   <div class="col-12 col-md-4 d-flex flex-column gap-3">
     <div
-      class="surface-card rounded-xl border-1 surface-border shadow-sm p-3 text-center flex-1"
+      class="bg-body rounded-xl border-1 border shadow-sm p-3 text-center flex-fill"
     >
-      <p class="text-500 text-sm m-0 mb-1">Total recepciones</p>
-      <p class="text-4xl font-bold text-primary m-0">
+      <p class="text-body-secondary text-sm m-0 mb-1">Total recepciones</p>
+      <p class="text-4xl fw-bold text-primary m-0">
         {{ totalRecepciones() }}
       </p>
     </div>
     <div
-      class="surface-card rounded-xl border-1 surface-border shadow-sm p-3 text-center flex-1"
+      class="bg-body rounded-xl border-1 border shadow-sm p-3 text-center flex-fill"
     >
-      <p class="text-500 text-sm m-0 mb-1">Total m³ descargados</p>
-      <p class="text-4xl font-bold text-blue-600 m-0">
+      <p class="text-body-secondary text-sm m-0 mb-1">Total m³ descargados</p>
+      <p class="text-4xl fw-bold text-blue-600 m-0">
         {{ totalM3() | number: '1.0-0' }}
       </p>
     </div>
@@ -101,55 +101,55 @@
   <!-- Resumen de costos -->
   <div class="col-12 col-md-8">
     <div
-      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden h-full d-flex flex-column"
+      class="bg-body rounded-xl border-1 border shadow-sm overflow-hidden h-full d-flex flex-column"
     >
       <div class="bg-primary" style="height: 0.35rem"></div>
-      <div class="p-3 d-flex flex-column flex-1">
+      <div class="p-3 d-flex flex-column flex-fill">
         <div class="mb-3">
-          <p class="text-primary font-bold text-base m-0 mb-1">
+          <p class="text-primary fw-bold text-base m-0 mb-1">
             Resumen de costos del periodo
           </p>
-          <p class="text-500 text-xs m-0">
+          <p class="text-body-secondary text-xs m-0">
             El precio por m³ registrado incluye IVA — se desglosa para calcular
             la retención.
           </p>
         </div>
 
-        <div class="d-flex flex-column flex-1 justify-content-between">
+        <div class="d-flex flex-column flex-fill justify-content-between">
           <div>
             <div
-              class="d-flex justify-content-between align-items-center py-2 border-bottom-1 surface-border"
+              class="d-flex justify-content-between align-items-center py-2 border-bottom-1 border"
             >
-              <span class="text-sm font-semibold"
+              <span class="text-sm fw-semibold"
                 >Importe total (precio con IVA × m³)</span
               >
-              <span class="text-sm font-bold"
+              <span class="text-sm fw-bold"
                 >${{ totalConIVA() | number: '1.2-2' }}</span
               >
             </div>
             <div
-              class="d-flex justify-content-between align-items-center py-2 ps-3 border-bottom-1 surface-border"
+              class="d-flex justify-content-between align-items-center py-2 ps-3 border-bottom-1 border"
             >
-              <span class="text-xs text-500">Subtotal base (sin IVA)</span>
-              <span class="text-xs text-500"
+              <span class="text-xs text-body-secondary">Subtotal base (sin IVA)</span>
+              <span class="text-xs text-body-secondary"
                 >${{ subtotalSinIVA() | number: '1.2-2' }}</span
               >
             </div>
             <div
-              class="d-flex justify-content-between align-items-center py-2 ps-3 border-bottom-1 surface-border"
+              class="d-flex justify-content-between align-items-center py-2 ps-3 border-bottom-1 border"
             >
-              <span class="text-xs text-500">IVA 16%</span>
-              <span class="text-xs text-500"
+              <span class="text-xs text-body-secondary">IVA 16%</span>
+              <span class="text-xs text-body-secondary"
                 >${{ ivaDesglosado() | number: '1.2-2' }}</span
               >
             </div>
             <div
-              class="d-flex justify-content-between align-items-center py-2 border-bottom-1 surface-border"
+              class="d-flex justify-content-between align-items-center py-2 border-bottom-1 border"
             >
-              <span class="text-sm font-semibold text-red-500"
+              <span class="text-sm fw-semibold text-red-500"
                 >Retención 4%</span
               >
-              <span class="text-sm font-semibold text-red-500"
+              <span class="text-sm fw-semibold text-red-500"
                 >(${{ retencion() | number: '1.2-2' }})</span
               >
             </div>
@@ -158,8 +158,8 @@
           <div
             class="bg-primary rounded d-flex justify-content-between align-items-center px-3 py-2 mt-2"
           >
-            <span class="text-white font-bold">TOTAL A PAGAR</span>
-            <span class="text-white font-bold text-xl"
+            <span class="text-white fw-bold">TOTAL A PAGAR</span>
+            <span class="text-white fw-bold text-xl"
               >${{ totalAPagar() | number: '1.2-2' }}</span
             >
           </div>
@@ -208,8 +208,8 @@
         Cisterna (ant → des / dif)
       </th>
       <th class="text-center" style="min-width: 160px">Medidor (ini → fin)</th>
-      <th class="text-right" style="min-width: 80px">m³</th>
-      <th class="text-right" style="min-width: 110px">Costo m³ / Importe</th>
+      <th class="text-end" style="min-width: 80px">m³</th>
+      <th class="text-end" style="min-width: 110px">Costo m³ / Importe</th>
       <th style="min-width: 150px">Personal</th>
     </tr>
   </ng-template>
@@ -221,7 +221,7 @@
       </td>
       <td>
         <strong class="d-block">{{ item.placasCamion }}</strong>
-        <small class="text-500"
+        <small class="text-body-secondary"
           >{{ item.capacidadPipa | number: '1.0-0' }} L</small
         >
       </td>
@@ -230,7 +230,7 @@
           >{{ item.horaLlegada | apiDate: 'dd/MM/yy HH:mm' }}</small
         >
         @if (item.horaTermino) {
-        <small class="text-500"
+        <small class="text-body-secondary"
           >→ {{ item.horaTermino | apiDate: 'dd/MM/yy HH:mm' }}</small
         >
         } @else {
@@ -240,11 +240,11 @@
       <td class="text-center">
         <small class="d-block">
           {{ item.nivelCisternaAntes | number: '1.0-0' }}%
-          <span class="text-400"> → </span>
+          <span class="text-body-secondary"> → </span>
           {{ item.nivelCisternaDespues | number: '1.0-0' }}%
         </small>
         <small
-          class="font-semibold"
+          class="fw-semibold"
           [class.text-green-600]="(item.nivelCisternaDespues - item.nivelCisternaAntes) > 0"
           [class.text-red-500]="(item.nivelCisternaDespues - item.nivelCisternaAntes) <= 0"
         >
@@ -255,19 +255,19 @@
       <td class="text-center">
         <small>
           {{ item.lecturaMedidorInicial | number: '1.0-0' }}
-          <span class="text-400"> → </span>
+          <span class="text-body-secondary"> → </span>
           {{ item.lecturaMedidorFinal | number: '1.0-0' }}
         </small>
       </td>
-      <td class="text-right font-semibold">
+      <td class="text-end fw-semibold">
         {{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
         '1.0-0' }}
       </td>
-      <td class="text-right">
-        <small class="d-block text-500"
+      <td class="text-end">
+        <small class="d-block text-body-secondary"
           >{{ item.costoMetroCubico | number: '1.2-2' }}</small
         >
-        <small class="font-semibold">
+        <small class="fw-semibold">
           ${{ (item.costoMetroCubico * (item.lecturaMedidorFinal -
           item.lecturaMedidorInicial)) | number: '1.2-2' }}
         </small>
@@ -275,11 +275,11 @@
       <td>
         @if (item.colaboradorMtto) {
         <small class="d-block"
-          ><app-icon [icon]="'material-symbols-light:build'" class="me-1 text-400" />{{
+          ><app-icon [icon]="'material-symbols-light:build'" class="me-1 text-body-secondary" />{{
           item.colaboradorMtto }}</small
         >
         } @if (item.guardiaSeguridad) {
-        <small class="text-500"
+        <small class="text-body-secondary"
           ><app-icon [icon]="'material-symbols-light:shield'" class="me-1" />{{
           item.guardiaSeguridad }}</small
         >

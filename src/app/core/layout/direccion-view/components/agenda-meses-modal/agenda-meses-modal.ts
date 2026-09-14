@@ -9,7 +9,7 @@ import {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TagModule } from "primeng/tag";
+import { AppTag } from "@ui/web/tag/tag";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
@@ -24,7 +24,7 @@ interface MesGroup {
   selector: "app-agenda-meses-modal",
   templateUrl: "./agenda-meses-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppIcon, TagModule, LxTooltipDirective, WebButtonLabel],
+  imports: [AppIcon, AppTag, LxTooltipDirective, WebButtonLabel],
 })
 export class AgendaMesesModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

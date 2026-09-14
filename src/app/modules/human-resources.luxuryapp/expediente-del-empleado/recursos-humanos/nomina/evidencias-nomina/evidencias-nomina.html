@@ -12,7 +12,7 @@
 
 <!-- Formulario de carga -->
 <div class="card mb-4 p-3">
-  <p class="font-semibold text-sm mb-2">Subir Nueva Evidencia</p>
+  <p class="fw-semibold text-sm mb-2">Subir Nueva Evidencia</p>
   <form [formGroup]="form" class="row align-items-end g-4">
     <div class="col-12 col-md-4">
       <custom-input-select-signal
@@ -56,7 +56,7 @@
   <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl text-primary" />
 </div>
 } @else if (evidencias().length === 0) {
-<div class="d-flex justify-content-center align-items-center py-6 text-500">
+<div class="d-flex justify-content-center align-items-center py-5 text-body-secondary">
   <div class="text-center">
     <app-icon [icon]="'material-symbols-light:description'" class="text-4xl mb-2" />
     <p>Sin evidencias cargadas para esta nomina.</p>
@@ -65,7 +65,7 @@
 } @else { @for (tipoEntry of tipoEvidenciaOptions; track tipoEntry.value) { @if
 (evidenciasPorTipo()[tipoEntry.value]?.length) {
 <div class="mb-4">
-  <p class="font-semibold mb-2">{{ tipoEntry.label }}</p>
+  <p class="fw-semibold mb-2">{{ tipoEntry.label }}</p>
   <div class="d-flex flex-wrap gap-3">
     @for (ev of evidenciasPorTipo()[tipoEntry.value]; track ev.id) {
     <div
@@ -79,15 +79,15 @@
           class="text-3xl"
         />
         <p
-          class="text-xs text-center m-0 font-semibold"
+          class="text-xs text-center m-0 fw-semibold"
           
         >
           {{ ev.fileName }}
         </p>
         @if (ev.descripcion) {
-        <p class="text-xs text-500 text-center m-0">{{ ev.descripcion }}</p>
+        <p class="text-xs text-body-secondary text-center m-0">{{ ev.descripcion }}</p>
         }
-        <p class="text-xs text-400 m-0">
+        <p class="text-xs text-body-secondary m-0">
           {{ ev.createdAt | apiDate: "dd/MM/yyyy" }}
         </p>
         <div class="d-flex gap-2">

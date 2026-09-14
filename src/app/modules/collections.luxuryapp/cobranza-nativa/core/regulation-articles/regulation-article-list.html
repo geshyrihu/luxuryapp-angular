@@ -21,7 +21,7 @@
       <tr>
         <th class="w-8rem">Artículo</th>
         <th>Título</th>
-        <th class="w-10rem text-right">Multa Default</th>
+        <th class="w-10rem text-end">Multa Default</th>
         <th class="w-8rem text-center">Estado</th>
         <th class="w-8rem text-center">Opciones</th>
       </tr>
@@ -29,13 +29,13 @@
 
     <ng-template #body let-item>
       <tr>
-        <td class="font-bold text-primary">{{ item.articleNumber }}</td>
+        <td class="fw-bold text-primary">{{ item.articleNumber }}</td>
         <td>{{ item.title }}</td>
-        <td class="text-right">
+        <td class="text-end">
           @if (item.defaultFineAmount) {
           {{ item.defaultFineAmount | currency: 'MXN' : 'symbol' : '1.2-2' }}
           } @else {
-          <span class="text-400 text-xs">-</span>
+          <span class="text-body-secondary text-xs">-</span>
           }
         </td>
         <td class="text-center">
@@ -73,7 +73,7 @@
       >
         <app-icon icon="material-symbols-light:description" class="text-blue-600 text-xl" />
       </div>
-      <div class="flex-1 min-w-0">
+      <div class="flex-fill min-w-0">
         <h3>{{ item.articleNumber }} · {{ item.title }}</h3>
         <p>
           @if (item.defaultFineAmount) { Multa default:

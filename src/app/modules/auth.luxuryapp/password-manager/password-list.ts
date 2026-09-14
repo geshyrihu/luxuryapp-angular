@@ -13,7 +13,7 @@ import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { PrimeNgCustomCaption } from "@ui/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableEmptyMessage } from "@ui/web/primeng-custom-table-emptymessage/primeng-custom-table-emptymessage";
 import { PrimeNgCustomTableFooter } from "@ui/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -53,7 +53,7 @@ import { PasswordForm } from "./password-form";
     MobileListItem,
     ApiDatePipe,
     AppIcon,
-    ButtonModule,
+    WebButtonIcon,
     LxTooltipDirective,
   ],
 })

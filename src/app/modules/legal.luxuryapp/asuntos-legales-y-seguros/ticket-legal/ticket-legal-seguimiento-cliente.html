@@ -9,7 +9,7 @@
             class="text-primary m-1"
             aria-label="Cargando..."
           />
-          <span class="ms-2 text-600">Cargando seguimientos...</span>
+          <span class="ms-2 text-body-secondary">Cargando seguimientos...</span>
         </div>
         }
       </div>
@@ -21,11 +21,11 @@
           <li class="timeline-event">
             <label class="timeline-event-icon"></label>
             <div class="timeline-event-wrapper">
-              <p class="timeline-thumbnail font-semibold text-sm text-700">
+              <p class="timeline-thumbnail fw-semibold text-sm text-body">
                 {{ follow.applicationUser }} |
-                <span class="font-normal text-500">{{ follow.createdAt }}</span>
+                <span class="font-normal text-body-secondary">{{ follow.createdAt }}</span>
               </p>
-              <p class="pt-2 mb-4 text-base text-800">
+              <p class="pt-2 mb-4 text-base text-body">
                 {{ follow.description }}
               </p>
             </div>
@@ -33,10 +33,10 @@
           }
         </ul>
         } @else {
-        <div class="text-center p-5 rounded-sm surface-ground">
-          <app-icon [icon]="'material-symbols-light:info'" class="text-3xl text-400" />
-          <p class="mt-2 text-lg font-medium text-600">Sin Seguimiento</p>
-          <p class="text-sm text-500">
+        <div class="text-center p-5 rounded-sm bg-body-tertiary">
+          <app-icon [icon]="'material-symbols-light:info'" class="text-3xl text-body-secondary" />
+          <p class="mt-2 text-lg fw-medium text-body-secondary">Sin Seguimiento</p>
+          <p class="text-sm text-body-secondary">
             Aún no hay registros de seguimiento para este ticket.
           </p>
         </div>

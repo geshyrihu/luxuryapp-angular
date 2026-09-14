@@ -2,7 +2,7 @@
 <div class="d-none d-md-block p-4">
   <div class="d-flex align-items-center justify-content-between mb-4 gap-4">
     <div
-      class="p-2 px-3 font-bold text-blue-700 bg-blue-50 rounded-md border-left-3 border-blue-500"
+      class="p-2 px-3 fw-bold text-blue-700 bg-blue-50 rounded-md border-left-3 border-blue-500"
     >
       MÓDULOS DE {{ customerName | uppercase }}
     </div>
@@ -11,7 +11,7 @@
     <custom-search-input-signal
       placeholder="Buscar módulo o categoría..."
       (searchChange)="searchTerm.set($event)"
-      class="flex-1 max-w-20rem"
+      class="flex-fill max-w-20rem"
     />
   </div>
 
@@ -33,16 +33,16 @@
     <!-- Título del grupo -->
     <div class="d-flex align-items-center gap-2 mb-2 px-1">
       <div class="w-0-5rem h-1rem rounded bg-primary"></div>
-      <h5 class="m-0 font-bold text-primary uppercase text-xs tracking-wider">
+      <h5 class="m-0 fw-bold text-primary text-uppercase text-xs tracking-wider">
         {{ group.groupTitle }}
       </h5>
-      <span class="text-xs text-500 ms-2"
+      <span class="text-xs text-body-secondary ms-2"
         >({{ group.items.length }} módulos)</span
       >
     </div>
 
     <!-- Grid de módulos -->
-    <div class="row grid-nogutter gap-2 g-4">
+    <div class="row g-0 gap-2 g-4">
       @for (item of group.items; track item.moduleAppId) {
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div
@@ -51,7 +51,7 @@
           [class.bg-green-50]="item.isAssigned"
           [class.shadow-sm]="item.isAssigned"
           [class.border-red-100]="!item.isAssigned"
-          [class.surface-50]="!item.isAssigned"
+          [class.bg-body-tertiary]="!item.isAssigned"
           (click)="toggleModuleActivation(item)"
         >
           <div class="d-flex align-items-center gap-2 w-full">
@@ -70,7 +70,7 @@
               />
             </span>
             <span
-              class="font-medium text-xs truncate"
+              class="fw-medium text-xs truncate"
               [class.text-900]="item.isAssigned"
               [class.text-600]="!item.isAssigned"
               [title]="item.moduleAppName"
@@ -90,7 +90,7 @@
 <div class="d-md-none">
   <div class="ion-padding">
     <div
-      class="p-2 mb-3 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center text-sm"
+      class="p-2 mb-3 fw-bold text-blue-700 bg-blue-50 border-1 border-blue-500 rounded-md text-center text-sm"
     >
       MÓDULOS DE {{ customerName | uppercase }}
     </div>
@@ -113,7 +113,7 @@
     <lx-message severity="warn" text="No se encontraron módulos."></lx-message>
     } @for (group of filteredGroupedData(); track group.groupTitle) {
     <div class="mb-3">
-      <h3 class="text-xs text-500 font-bold px-3 uppercase m-0 mb-1">
+      <h3 class="text-xs text-body-secondary fw-bold px-3 text-uppercase m-0 mb-1">
         {{ group.groupTitle }}
       </h3>
       <div class="d-flex flex-column" 
@@ -131,7 +131,7 @@
           </div>
           <div class="ion-text-wrap py-2">
             <h2
-              class="text-sm font-medium"
+              class="text-sm fw-medium"
               [class.text-900]="item.isAssigned"
               [class.text-500]="!item.isAssigned"
             >

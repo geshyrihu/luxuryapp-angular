@@ -21,10 +21,10 @@
         Periodo <p-sorticon field="periodoDescripcion" />
       </th>
       <th>Estado</th>
-      <th class="text-right">Empleados</th>
-      <th class="text-right">Percepciones</th>
-      <th class="text-right">Deducciones</th>
-      <th class="text-right">Neto</th>
+      <th class="text-end">Empleados</th>
+      <th class="text-end">Percepciones</th>
+      <th class="text-end">Deducciones</th>
+      <th class="text-end">Neto</th>
       <th>Aprobada Por</th>
       <th>Acciones</th>
     </tr>
@@ -42,14 +42,14 @@
           [value]="item.estado"
         />
       </td>
-      <td class="text-right">{{ item.totalEmpleados }}</td>
-      <td class="text-right">
+      <td class="text-end">{{ item.totalEmpleados }}</td>
+      <td class="text-end">
         {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
-      <td class="text-right">
+      <td class="text-end">
         {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
-      <td class="text-right font-bold">
+      <td class="text-end fw-bold">
         {{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
       <td>{{ item.aprobadoPor ?? "-" }}</td>
@@ -127,7 +127,7 @@
           [severity]="getEstadoSeverity(item.estadoValue)"
           [value]="item.estado"
         />
-        <span class="font-bold"
+        <span class="fw-bold"
           >{{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}</span
         >
       </div>

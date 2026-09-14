@@ -108,27 +108,27 @@
       </div>
 
       <div class="d-flex justify-content-between align-items-center mb-1">
-        <h2 class="font-bold m-0 text-base d-flex align-items-center">
+        <h2 class="fw-bold m-0 text-base d-flex align-items-center">
           <app-icon [icon]="'material-symbols-light:build'" class="text-primary me-2" />
           {{ item.tool }}
         </h2>
       </div>
-      <p class="text-sm text-700 m-0 mb-1">
-        <app-icon [icon]="'material-symbols-light:person'" class="me-1 text-500" /> {{
+      <p class="text-sm text-body m-0 mb-1">
+        <app-icon [icon]="'material-symbols-light:person'" class="me-1 text-body-secondary" /> {{
         item.applicationUser }}
       </p>
 
       <div class="row col-2 m-0 p-0 text-xs mt-2 g-4">
         <div class="p-0">
-          <span class="text-500 d-block">Salida</span>
-          <span class="font-bold"
+          <span class="text-body-secondary d-block">Salida</span>
+          <span class="fw-bold"
             >{{ item.fechaSalida | apiDate: 'dd/MM/yy HH:mm' }}</span
           >
         </div>
         @if (item.fechaRegreso) {
         <div class="p-0">
-          <span class="text-500 d-block">Regreso</span>
-          <span class="font-bold text-green-500"
+          <span class="text-body-secondary d-block">Regreso</span>
+          <span class="fw-bold text-green-500"
             >{{ item.fechaRegreso | apiDate: 'dd/MM/yy HH:mm' }}</span
           >
         </div>
@@ -137,7 +137,7 @@
 
       @if(item.observaciones){
       <p
-        class="text-xs text-500 mt-2 m-0 surface-ground p-1 rounded font-italic"
+        class="text-xs text-body-secondary mt-2 m-0 bg-body-tertiary p-1 rounded fst-italic"
       >
         {{ item.observaciones }}
       </p>

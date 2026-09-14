@@ -34,7 +34,7 @@
   </ng-template>
   <ng-template #footer>
     <tr>
-      <td colspan="2" class="text-right">Totales</td>
+      <td colspan="2" class="text-end">Totales</td>
       <td class="text-center">
         <span class="h4 card-title text-dark">
           {{ onSumaTotales(dataSignal()).solicitudes }}
@@ -145,19 +145,19 @@
         </div>
       </td>
       <td class="text-center">
-        <span class="font-bold">{{ item.solicitudes }}</span>
+        <span class="fw-bold">{{ item.solicitudes }}</span>
       </td>
       <td class="text-center">
-        <span class="font-bold">{{ item.atendidas }}</span>
+        <span class="fw-bold">{{ item.atendidas }}</span>
       </td>
       <td class="text-center">
-        <span class="font-bold">{{ item.pendientes }}</span>
+        <span class="fw-bold">{{ item.pendientes }}</span>
       </td>
     </tr>
   </ng-template>
   <ng-template #footer>
     <tr>
-      <td class="text-right">Totales</td>
+      <td class="text-end">Totales</td>
       <td class="text-center">
         <span class="h4 card-title text-dark">
           {{ onSumaTotales(dataSignal()).solicitudes }}

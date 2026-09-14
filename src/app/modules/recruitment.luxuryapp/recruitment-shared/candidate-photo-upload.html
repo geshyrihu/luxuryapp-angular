@@ -1,11 +1,11 @@
 <div class="d-flex flex-column gap-2">
-  <label class="text-sm text-color-secondary font-medium">{{ label() }}</label>
+  <label class="text-sm text-body-secondary fw-medium">{{ label() }}</label>
 
   @if (fileUrl() && !replaceMode() && !previewUrl()) {
     <div class="photo-current">
       <app-avatar [image]="fileUrl()" size="xlarge" shape="circle" />
       <div class="d-flex flex-column gap-1">
-        <span class="text-sm font-medium text-color">{{ currentFileLabel() }}</span>
+        <span class="text-sm fw-medium text-body">{{ currentFileLabel() }}</span>
       </div>
       <button type="button" class="cv-action-button" (click)="enableReplaceMode()">
         {{ replaceLabel() }}

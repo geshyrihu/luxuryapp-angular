@@ -2,7 +2,7 @@
   <lx-card class="card card--elevated mb-3">
     <div class="d-flex gap-2 align-items-start">
       <app-icon [icon]="'material-symbols-light:info'" class="text-primary mt-1" />
-      <div class="text-sm text-700">
+      <div class="text-sm text-body">
         <strong>Facturación CFDI 4.0.</strong> Este módulo gestiona la emisión y
         cancelación de comprobantes fiscales vinculados a los cargos del
         condominio. Integración con SW Sapien en configuración.
@@ -104,7 +104,7 @@
 
     <ng-template #emptymessage>
       <tr>
-        <td colspan="6" class="text-center p-4 text-500">
+        <td colspan="6" class="text-center p-4 text-body-secondary">
           @if (!chargeIdCtrl.value) { Selecciona un cargo para consultar sus
           facturas. } @else { Este cargo no tiene facturas CFDI generadas. }
         </td>
@@ -125,7 +125,7 @@
         >
           <app-icon icon="material-symbols-light:receipt" class="text-blue-600 text-xl" />
         </div>
-        <div class="flex-1 min-w-0">
+        <div class="flex-fill min-w-0">
           <h3>{{ inv.uuid | slice:0:18 }}...</h3>
           <p>{{ inv.status }} · {{ inv.timbreAt | apiDate:'dd/MM/yyyy' }}</p>
           <p>Serie: {{ inv.serie || "—" }} · Folio: {{ inv.folio || "—" }}</p>

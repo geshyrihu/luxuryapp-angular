@@ -1,7 +1,7 @@
 <div class="duplicate-warning">
   <div class="duplicate-warning__hero">
-    <h2 class="m-0 text-xl font-semibold">Posible Reingreso Detectado</h2>
-    <p class="m-0 mt-2 text-color-secondary">
+    <h2 class="m-0 text-xl fw-semibold">Posible Reingreso Detectado</h2>
+    <p class="m-0 mt-2 text-body-secondary">
       Encontramos empleados existentes con nombre, correo o telefono similares al candidato.
       Si confirmas que es la misma persona, vincula y migra el expediente para evitar duplicados.
     </p>
@@ -22,12 +22,12 @@
       <tbody>
         @for (match of matches; track match.id) {
         <tr>
-          <td class="font-semibold">{{ match.nombreCompleto }}</td>
+          <td class="fw-semibold">{{ match.nombreCompleto }}</td>
           <td>{{ match.email || "Sin correo" }}</td>
           <td>{{ match.telefono || "Sin telefono" }}</td>
           <td>{{ match.estatus }}</td>
           <td>{{ match.nombreEdificio }}</td>
-          <td class="text-right">
+          <td class="text-end">
             <il-button
               label="Vincular y Reactivar"
               iconClass="material-symbols-light:link"

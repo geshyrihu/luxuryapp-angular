@@ -2,7 +2,7 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block">
   <div class="card">
-    <div class="mb-3 p-3 rounded bg-blue-50 text-700 text-sm">
+    <div class="mb-3 p-3 rounded bg-blue-50 text-body text-sm">
       Las minutas de comite y asamblea ya no se crean directamente desde este
       modulo. Primero debe registrarse la agenda de la junta para generar la
       sesion mensual y, desde ella, la minuta vinculada.
@@ -110,7 +110,7 @@
       <ng-template #body let-item>
         <tr>
           <td>
-            <div class="text-base font-bold text-900">
+            <div class="text-base fw-bold text-body">
               {{ item.dateFormat }}
             </div>
           </td>
@@ -125,11 +125,11 @@
               [class.opacity-50]="item.issues == 0"
               [class.pointer-events-none]="item.issues == 0"
             >
-              <span class="text-xs font-bold d-flex align-items-center gap-1">
+              <span class="text-xs fw-bold d-flex align-items-center gap-1">
                 <app-icon [icon]="'material-symbols-light:bar-chart'" class="text-xs" />
                 <span>TOTAL</span>
               </span>
-              <span class="font-bold">{{ item.issues }}</span>
+              <span class="fw-bold">{{ item.issues }}</span>
             </div>
           </td>
 
@@ -145,11 +145,11 @@
               [class.opacity-50]="item.concluidos == 0"
               [class.pointer-events-none]="item.concluidos == 0"
             >
-              <span class="text-xs font-bold d-flex align-items-center gap-1">
+              <span class="text-xs fw-bold d-flex align-items-center gap-1">
                 <app-icon [icon]="'material-symbols-light:check-circle'" class="text-xs" />
                 <span>CONCL.</span>
               </span>
-              <span class="font-bold">{{ item.concluidos }}</span>
+              <span class="fw-bold">{{ item.concluidos }}</span>
             </div>
           </td>
 
@@ -165,11 +165,11 @@
               [class.opacity-50]="item.pending == 0"
               [class.pointer-events-none]="item.pending == 0"
             >
-              <span class="text-xs font-bold d-flex align-items-center gap-1">
+              <span class="text-xs fw-bold d-flex align-items-center gap-1">
                 <app-icon [icon]="'material-symbols-light:schedule'" class="text-xs" />
                 <span>PEND.</span>
               </span>
-              <span class="font-bold">{{ item.pending }}</span>
+              <span class="fw-bold">{{ item.pending }}</span>
             </div>
           </td>
 
@@ -185,11 +185,11 @@
               [class.opacity-50]="item.noAutorizado == 0"
               [class.pointer-events-none]="item.noAutorizado == 0"
             >
-              <span class="text-xs font-bold d-flex align-items-center gap-1">
+              <span class="text-xs fw-bold d-flex align-items-center gap-1">
                 <app-icon [icon]="'material-symbols-light:block'" class="text-xs" />
                 <span>NO AUT.</span>
               </span>
-              <span class="font-bold">{{ item.noAutorizado }}</span>
+              <span class="fw-bold">{{ item.noAutorizado }}</span>
             </div>
           </td>
 
@@ -261,8 +261,8 @@
 
 <!-- 📱 INICIO: Componente adaptado para versión mívil -->
 <div class="d-block d-md-none">
-  <div class="card border-none shadow-none">
-    <div class="mb-3 p-3 rounded bg-blue-50 text-700 text-sm">
+  <div class="card border-0 shadow-none">
+    <div class="mb-3 p-3 rounded bg-blue-50 text-body text-sm">
       Las minutas de comite y asamblea ya no se crean directamente aqui. Primero
       registra la agenda de la junta para generar la sesion mensual y la minuta
       relacionada.
@@ -321,7 +321,7 @@
           </div>
         </div>
         <div
-          class="d-flex align-items-center justify-content-between mt-2 text-sm text-500 font-medium"
+          class="d-flex align-items-center justify-content-between mt-2 text-sm text-body-secondary fw-medium"
         >
           <span
             >Total:
@@ -344,10 +344,10 @@
           </div>
           <div class="d-flex flex-column w-full p-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h2 class="font-bold text-900 m-0">
+              <h2 class="fw-bold text-body m-0">
                 Fecha: {{ item.dateFormat }}
               </h2>
-              <p class="text-sm text-500 m-0 mt-1">
+              <p class="text-sm text-body-secondary m-0 mt-1">
                 Total Asuntos: {{ item.issues }}
               </p>
 
@@ -405,8 +405,8 @@
                   [class.opacity-50]="item.concluidos == 0"
                   [class.pointer-events-none]="item.concluidos == 0"
                 >
-                  <span class="text-xs font-bold uppercase">Concluidos</span>
-                  <span class="font-bold">{{ item.concluidos }}</span>
+                  <span class="text-xs fw-bold text-uppercase">Concluidos</span>
+                  <span class="fw-bold">{{ item.concluidos }}</span>
                 </div>
               </div>
               <div class="col-6">
@@ -420,8 +420,8 @@
                   [class.opacity-50]="item.pending == 0"
                   [class.pointer-events-none]="item.pending == 0"
                 >
-                  <span class="text-xs font-bold uppercase">Pendientes</span>
-                  <span class="font-bold">{{ item.pending }}</span>
+                  <span class="text-xs fw-bold text-uppercase">Pendientes</span>
+                  <span class="fw-bold">{{ item.pending }}</span>
                 </div>
               </div>
               <div class="col-12">
@@ -439,8 +439,8 @@
                   [class.opacity-50]="item.noAutorizado == 0"
                   [class.pointer-events-none]="item.noAutorizado == 0"
                 >
-                  <span class="text-xs font-bold uppercase">No Autorizado</span>
-                  <span class="font-bold">{{ item.noAutorizado }}</span>
+                  <span class="text-xs fw-bold text-uppercase">No Autorizado</span>
+                  <span class="fw-bold">{{ item.noAutorizado }}</span>
                 </div>
               </div>
             </div>

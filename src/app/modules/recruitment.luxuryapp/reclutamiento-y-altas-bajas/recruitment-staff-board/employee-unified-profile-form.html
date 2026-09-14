@@ -1,17 +1,17 @@
 <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
   @if (invalidFields().length) {
   <div
-    class="employee-validation-summary surface-50 border-1 border-red-200 border-round p-3 mb-3"
+    class="employee-validation-summary bg-body-tertiary border-1 border-red-200 rounded p-3 mb-3"
   >
-    <p class="text-red-700 font-bold mb-2">
+    <p class="text-red-700 fw-bold mb-2">
       Revisa los datos antes de guardar.
     </p>
-    <p class="text-700 mb-2">
+    <p class="text-body mb-2">
       Hay campos obligatorios faltantes o con formato incorrecto:
     </p>
     <div class="d-flex flex-wrap gap-2">
       @for (field of invalidFields(); track field) {
-      <span class="px-2 py-1 border-round bg-red-50 text-red-700 text-sm">
+      <span class="px-2 py-1 rounded bg-red-50 text-red-700 text-sm">
         {{ field }}
       </span>
       }
@@ -30,7 +30,7 @@
           label="Foto de perfil"
           [horizontal]="false"
         />
-        <p class="text-500 text-sm mt-3 mb-0">
+        <p class="text-body-secondary text-sm mt-3 mb-0">
           La foto se guarda al seleccionarla; el resto de datos se guarda con
           el botón principal.
         </p>

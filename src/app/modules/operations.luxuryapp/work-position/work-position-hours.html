@@ -1,27 +1,27 @@
 <lx-card [padded]="false">
 @if (data()) {
     <div class="d-flex flex-column">
-      <div class="d-flex align-items-center p-3 surface-100 rounded-lg">
-        <app-icon [icon]="'material-symbols-light:schedule'" class="text-2xl text-600" />
+      <div class="d-flex align-items-center p-3 bg-body-tertiary rounded-lg">
+        <app-icon [icon]="'material-symbols-light:schedule'" class="text-2xl text-body-secondary" />
         <div>
-          <h3 class="text-lg font-bold text-800 m-0">Horarios de Trabajo</h3>
-          <p class="text-sm text-500 m-0">Turno: {{ data()?.tipoJornadaName }}</p>
+          <h3 class="text-lg fw-bold text-body m-0">Horarios de Trabajo</h3>
+          <p class="text-sm text-body-secondary m-0">Turno: {{ data()?.tipoJornadaName }}</p>
         </div>
       </div>
 
       <div class="d-flex flex-column gap-1">
         @for (dia of dias; track dia.n) {
-        <div class="d-flex justify-content-between align-items-center p-3 border-bottom-1 surface-border hover:surface-50 transition-colors transition-duration-200 rounded">
-          <span class="font-semibold text-700 w-6rem">{{ dia.n }}</span>
+        <div class="d-flex justify-content-between align-items-center p-3 border-bottom-1 border hover:bg-body-tertiary transition-colors transition-duration-200 rounded">
+          <span class="fw-semibold text-body w-6rem">{{ dia.n }}</span>
           <div class="d-flex align-items-center">
             @let entry = data()?.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaEntrada ?? null;
             @let exit = data()?.diasDeTrabajo?.find(d => d.diaSemana === dia.dw)?.horaSalida ?? null;
             @if (entry && exit) {
             <span class="text-primary font-monospace">{{ entry }}</span>
-            <app-icon [icon]="'material-symbols-light:arrow-forward'" class="text-300 text-xs" />
+            <app-icon [icon]="'material-symbols-light:arrow-forward'" class="text-body-secondary text-xs" />
             <span class="text-primary font-monospace">{{ exit }}</span>
             } @else {
-            <span class="text-400 font-italic">Descanso / Sin asignar</span>
+            <span class="text-body-secondary fst-italic">Descanso / Sin asignar</span>
             }
           </div>
         </div>
@@ -30,7 +30,7 @@
     </div>
     } @else {
     <div
-      class="d-flex flex-column align-items-center justify-content-center p-8 text-400"
+      class="d-flex flex-column align-items-center justify-content-center p-5 text-body-secondary"
     >
       <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl mb-2" />
       <span>Cargando horarios...</span>

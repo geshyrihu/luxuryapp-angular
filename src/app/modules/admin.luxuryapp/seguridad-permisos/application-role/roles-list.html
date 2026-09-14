@@ -39,7 +39,7 @@
   <ng-template #groupheader let-item>
     <tr class="p-rowgroup-header">
       <td colspan="7">
-        <span class="font-bold">{{ item.roleType }}</span>
+        <span class="fw-bold">{{ item.roleType }}</span>
       </td>
     </tr>
   </ng-template>
@@ -55,7 +55,7 @@
               'background-color': item.colorHex || '#64748b',
               color: '#fff',
             }"
-            class="px-2 py-1 border-round text-sm font-semibold"
+            class="px-2 py-1 rounded text-sm fw-semibold"
           >
             {{ item.code }}
           </span>
@@ -103,7 +103,7 @@
           class="text-xl text-primary"
         />
       </div>
-      <h2 class="font-bold m-0 d-flex align-items-center gap-2">
+      <h2 class="fw-bold m-0 d-flex align-items-center gap-2">
         {{ item.displayName || item.name }}
         @if (item.code) {
           <span
@@ -111,16 +111,16 @@
               'background-color': item.colorHex || '#64748b',
               color: '#fff',
             }"
-            class="px-2 py-1 border-round text-xs font-semibold"
+            class="px-2 py-1 rounded text-xs fw-semibold"
           >
             {{ item.code }}
           </span>
         }
       </h2>
-      <p class="text-sm text-500 m-0">
+      <p class="text-sm text-body-secondary m-0">
         {{ item.roleType }} - {{ item.departament }}
       </p>
-      <p class="text-xs text-400 m-0">Orden: {{ item.sortOrder }}</p>
+      <p class="text-xs text-body-secondary m-0">Orden: {{ item.sortOrder }}</p>
       <ili-action-menu slot="end">
         <ng-container actions>
           <ili-button-edit

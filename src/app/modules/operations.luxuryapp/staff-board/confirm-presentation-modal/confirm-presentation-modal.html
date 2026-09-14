@@ -1,5 +1,5 @@
 <div class="p-4">
-  <p class="text-color-secondary mb-4">
+  <p class="text-body-secondary mb-4">
     Confirma si el candidato <strong>{{ candidateName() }}</strong> se presentó
     a laborar para la vacante <strong>{{ vacancyFolio() }}</strong>.
   </p>
@@ -10,7 +10,7 @@
     class="d-flex flex-column gap-4"
   >
     <div class="d-flex flex-column gap-2">
-      <label class="font-semibold">¿Se presentó el candidato?</label>
+      <label class="fw-semibold">¿Se presentó el candidato?</label>
       <div class="d-flex gap-4">
         <div class="d-flex align-items-center gap-2">
           <lx-radio-button
@@ -32,8 +32,8 @@
     </div>
 
     @if (form.controls.isPresented.value === false) {
-    <div class="d-flex flex-column gap-2 p-3 surface-100 border-round">
-      <label class="font-semibold">Motivo / Acción</label>
+    <div class="d-flex flex-column gap-2 p-3 bg-body-tertiary rounded">
+      <label class="fw-semibold">Motivo / Acción</label>
       <div class="d-flex flex-column gap-3">
         <div class="d-flex align-items-center gap-2">
           <lx-radio-button

@@ -7,7 +7,7 @@
     @for (item of data(); track item; let i = $index) {
     <div class="col-12 col-md-3">
       <div
-        class="d-flex justify-content-between align-items-center p-3 font-bold text-primary surface-100 rounded mb-2"
+        class="d-flex justify-content-between align-items-center p-3 fw-bold text-primary bg-body-tertiary rounded mb-2"
       >
         <div class="d-flex align-items-center gap-2">
           <span>{{ item.month }}</span>
@@ -27,7 +27,7 @@
       <div class="d-flex flex-column gap-2">
         @for (evento of item.items; track evento; let i = $index) {
         <div
-          class="p-3 border-1 surface-border rounded hover:surface-100 transition-colors transition-duration-200"
+          class="p-3 border-1 border rounded hover:bg-body-tertiary transition-colors transition-duration-200"
         >
           <div class="d-flex align-items-start gap-2">
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
@@ -40,17 +40,17 @@
             </div>
             }
             <div
-              class="flex-1 cursor-pointer"
+              class="flex-fill cursor-pointer"
               (click)="onDatosServicio(evento)"
               lxTooltip="Ver detalles del servicio"
               tooltipPosition="right"
             >
-              <div class="font-medium text-900 mb-1">
+              <div class="fw-medium text-body mb-1">
                 {{ evento.nombreEquipo }}
               </div>
               @if (evento.task) {
               <div
-                class="text-600 text-sm mb-2"
+                class="text-body-secondary text-sm mb-2"
                 
               >
                 {{ evento.task }}
@@ -66,12 +66,12 @@
             </div>
             <app-icon
               [icon]="'material-symbols-light:chevron-right'"
-              class="text-400 flex-shrink-0 mt-1"
+              class="text-body-secondary flex-shrink-0 mt-1"
             />
           </div>
         </div>
         } @empty {
-        <div class="text-center text-400 text-sm py-3">Sin actividades</div>
+        <div class="text-center text-body-secondary text-sm py-3">Sin actividades</div>
         }
       </div>
     </div>

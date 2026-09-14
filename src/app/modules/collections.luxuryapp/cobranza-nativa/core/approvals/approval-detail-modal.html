@@ -7,10 +7,10 @@
         class="text-3xl text-primary"
       />
       <div>
-        <div class="font-bold text-lg">
+        <div class="fw-bold text-lg">
           {{ operationLabel(req.operationType) }}
         </div>
-        <div class="text-500 text-sm">
+        <div class="text-body-secondary text-sm">
           Solicitado por {{ req.requestedBy }} el {{ req.requestedAt |
           apiDate:'dd/MM/yyyy HH:mm' }}
         </div>
@@ -19,23 +19,23 @@
   </lx-card>
 
   <div class="mb-4">
-    <label class="text-500 text-xs uppercase font-medium">DESCRIPCIÓN</label>
-    <p class="mt-1 text-800">{{ req.summary }}</p>
+    <label class="text-body-secondary text-xs text-uppercase fw-medium">DESCRIPCIÓN</label>
+    <p class="mt-1 text-body">{{ req.summary }}</p>
   </div>
 
   @if (req.requestNotes) {
   <div class="mb-4">
-    <label class="text-500 text-xs uppercase font-medium"
+    <label class="text-body-secondary text-xs text-uppercase fw-medium"
       >Notas del Solicitante</label
     >
-    <p class="mt-1 text-800">{{ req.requestNotes }}</p>
+    <p class="mt-1 text-body">{{ req.requestNotes }}</p>
   </div>
   } @if (payload()) {
   <div class="mb-4">
-    <label class="text-500 text-xs uppercase font-medium"
+    <label class="text-body-secondary text-xs text-uppercase fw-medium"
       >Parámetros de la Operación</label
     >
-    <pre class="mt-1 p-3 surface-100 rounded text-sm overflow-auto max-h-10rem">
+    <pre class="mt-1 p-3 bg-body-tertiary rounded text-sm overflow-auto max-h-10rem">
 {{ payload() | json }}</pre>
   </div>
   }
@@ -46,7 +46,7 @@
         [icon]="'material-symbols-light:warning'"
         class="text-warning mt-1"
       />
-      <span class="text-sm text-700">
+      <span class="text-sm text-body">
         No puedes aprobar una solicitud que tú mismo creaste. Al aprobar, la
         operación se ejecuta automáticamente.
       </span>

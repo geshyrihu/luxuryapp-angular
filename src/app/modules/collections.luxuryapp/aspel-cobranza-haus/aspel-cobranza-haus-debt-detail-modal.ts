@@ -19,10 +19,6 @@ import { ApiResponseService } from "src/app/core/http/services/api-response.serv
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
 
-import { ButtonModule } from "primeng/button";
-import { RippleModule } from "primeng/ripple";
-import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-
 @Component({
   selector: "app-aspel-cobranza-haus-debt-detail-modal",
   templateUrl: "./aspel-cobranza-haus-debt-detail-modal.html",
@@ -36,9 +32,6 @@ import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
     NgClass,
     LxTag,
     LxMessage,
-    ButtonModule,
-    RippleModule,
-    AppIcon,
   ],
 })
 export class AspelCobranzaHausDebtDetailModal implements OnInit {

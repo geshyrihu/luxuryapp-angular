@@ -17,6 +17,7 @@ import type { MenuItem } from "primeng/api";
 export abstract class BreadcrumbsBase {
   items = input.required<MenuItem[]>();
   home = input<MenuItem | null>(null);
+  styleClass = input<string>("");
 
   /** Ejecuta el command del MenuItem (usado por la versión mobile). */
   /** Resuelve un nombre/clase/legacy a AppIconName para el binding de app-icon. */

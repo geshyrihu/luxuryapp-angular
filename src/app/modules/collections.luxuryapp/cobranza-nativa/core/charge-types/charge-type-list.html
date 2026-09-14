@@ -29,11 +29,11 @@
 
     <ng-template #body let-item>
       <tr>
-        <td class="font-semibold text-800">{{ item.name }}</td>
+        <td class="fw-semibold text-body">{{ item.name }}</td>
         <td>
           <span class="font-mono text-sm text-primary">{{ item.code }}</span>
         </td>
-        <td class="text-600">{{ item.description || "Sin DESCRIPCIÓN" }}</td>
+        <td class="text-body-secondary">{{ item.description || "Sin DESCRIPCIÓN" }}</td>
         <td class="text-center">
           <lx-tag
             [value]="originMeta(item.isSystem).label"
@@ -46,7 +46,7 @@
             @if (!item.isSystem) {
             <iw-button-delete (customClick)="onDelete(item)" />
             } @else {
-            <span class="text-xs text-500">Protegido</span>
+            <span class="text-xs text-body-secondary">Protegido</span>
             }
           </div>
         </td>
@@ -80,7 +80,7 @@
           class="text-blue-700 text-xl"
         />
       </div>
-      <div class="flex-1 min-w-0">
+      <div class="flex-fill min-w-0">
         <h3>{{ item.name }}</h3>
         <p>{{ item.code }}</p>
         <p>{{ originMeta(item.isSystem).label }}</p>

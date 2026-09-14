@@ -1,5 +1,5 @@
 <div
-  class="card p-3 mb-3 shadow-none border-1 surface-border rounded-xl bg-surface-0"
+  class="card p-3 mb-3 shadow-none border-1 border rounded-xl bg-bg-body-tertiary"
 >
   <div
     class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 g-4"
@@ -7,10 +7,10 @@
     <!-- Title & Period -->
     <div class="d-flex align-items-center gap-3 w-full md:w-auto">
       <div class="d-flex flex-column">
-        <h1 class="text-xl font-bold text-900 m-0 line-height-2">
+        <h1 class="text-xl fw-bold text-body m-0 line-height-2">
           {{ customerName() }}
         </h1>
-        <span class="text-sm text-500 font-medium d-flex align-items-center gap-1"
+        <span class="text-sm text-body-secondary fw-medium d-flex align-items-center gap-1"
           ><app-icon [icon]="'material-symbols-light:calendar-today'" /> {{
           periodo() }}</span
         >
@@ -24,7 +24,7 @@
       <!-- Workflow Actions -->
 
       @if (isConfirmed() && isRolSuperUsuario()) {
-      <div class="d-flex gap-1 border-right-1 surface-border pe-2 me-1">
+      <div class="d-flex gap-1 border-right-1 border pe-2 me-1">
         <il-button
           label="Revertir confirmacion"
           iconClass="material-symbols-light:replay"
@@ -35,7 +35,7 @@
         />
       </div>
       } @if(!isConfirmed()){
-      <div class="d-flex gap-1 border-right-1 surface-border pe-2 me-1">
+      <div class="d-flex gap-1 border-right-1 border pe-2 me-1">
         @if (!isVerified()) {
         <il-button
           label="Validar"
@@ -98,9 +98,9 @@
         ></lx-split-button>
 
         <!-- Tools Group -->
-        <div class="d-none d-md-flex gap-1 bg-surface-100 rounded p-1">
+        <div class="d-none d-md-flex gap-1 bg-bg-body-tertiary rounded p-1">
           <div
-            class="d-flex align-items-center gap-1 border-1 surface-border rounded-3xl px-2 py-1 bg-surface-0"
+            class="d-flex align-items-center gap-1 border-1 border rounded-3xl px-2 py-1 bg-bg-body-tertiary"
           >
             <iw-button
               iconClass="material-symbols-light:table-view"
@@ -150,7 +150,7 @@
 
   <!-- Workflow Status -->
   <div
-    class="d-flex align-items-center gap-3 flex-wrap mt-2 pt-3 border-top-1 surface-border"
+    class="d-flex align-items-center gap-3 flex-wrap mt-2 pt-3 border-top-1 border"
   >
     <div class="d-flex align-items-center gap-1 text-sm">
       @if (isVerified()) {
@@ -158,20 +158,20 @@
         [icon]="'material-symbols-light:check-circle'"
         class="text-green-500"
       />
-      <span class="text-green-700 font-medium">Verificado</span>
+      <span class="text-green-700 fw-medium">Verificado</span>
       } @else {
       <app-icon
         [icon]="'material-symbols-light:circle'"
         class="text-orange-400"
       />
-      <span class="text-orange-600 font-medium"
+      <span class="text-orange-600 fw-medium"
         >Pendiente — debe verificarse</span
       >
       }
     </div>
     <app-icon
       [icon]="'material-symbols-light:chevron-right'"
-      class="text-300 text-xs"
+      class="text-body-secondary text-xs"
     />
     <div class="d-flex align-items-center gap-1 text-sm">
       @if (isAuthorized()) {
@@ -179,23 +179,23 @@
         [icon]="'material-symbols-light:check-circle'"
         class="text-green-500"
       />
-      <span class="text-green-700 font-medium">Autorizado</span>
+      <span class="text-green-700 fw-medium">Autorizado</span>
       } @else if (isVerified()) {
       <app-icon
         [icon]="'material-symbols-light:circle'"
         class="text-orange-400"
       />
-      <span class="text-orange-600 font-medium"
+      <span class="text-orange-600 fw-medium"
         >Pendiente — debe autorizarse</span
       >
       } @else {
-      <app-icon [icon]="'material-symbols-light:lock'" class="text-400" />
-      <span class="text-400">Autorizar (requiere verificacion)</span>
+      <app-icon [icon]="'material-symbols-light:lock'" class="text-body-secondary" />
+      <span class="text-body-secondary">Autorizar (requiere verificacion)</span>
       }
     </div>
     <app-icon
       [icon]="'material-symbols-light:chevron-right'"
-      class="text-300 text-xs"
+      class="text-body-secondary text-xs"
     />
     <div class="d-flex align-items-center gap-1 text-sm">
       @if (isConfirmed()) {
@@ -203,7 +203,7 @@
         [icon]="'material-symbols-light:check-circle'"
         class="text-green-500"
       />
-      <span class="text-green-700 font-medium"
+      <span class="text-green-700 fw-medium"
         >Confirmado por Contabilidad</span
       >
       } @else if (isAuthorized()) {
@@ -211,12 +211,12 @@
         [icon]="'material-symbols-light:circle'"
         class="text-orange-400"
       />
-      <span class="text-orange-600 font-medium"
+      <span class="text-orange-600 fw-medium"
         >Pendiente — debe confirmar Contabilidad</span
       >
       } @else {
-      <app-icon [icon]="'material-symbols-light:lock'" class="text-400" />
-      <span class="text-400">Confirmar (requiere autorizacion)</span>
+      <app-icon [icon]="'material-symbols-light:lock'" class="text-body-secondary" />
+      <span class="text-body-secondary">Confirmar (requiere autorizacion)</span>
       }
     </div>
   </div>
@@ -236,46 +236,46 @@
     class="w-full bg-green-50 border-green-200 border-1 rounded p-3 mt-2 d-flex align-items-center gap-2 text-green-700"
   >
     <app-icon [icon]="'material-symbols-light:verified'" class="text-xl" />
-    <span class="font-bold"
+    <span class="fw-bold"
       >Este fondeo ha sido procesado por contabilidad. No se pueden realizar
       cambios.</span
     >
   </div>
   } @if (dataSignal().length < 1) {
   <div
-    class="d-flex flex-column align-items-center justify-content-center p-6 border-1 surface-border rounded-xl bg-surface-0 text-center shadow-sm"
+    class="d-flex flex-column align-items-center justify-content-center p-5 border-1 border rounded-xl bg-bg-body-tertiary text-center shadow-sm"
   >
-    <div class="bg-surface-100 border-circle p-3 mb-3">
+    <div class="bg-bg-body-tertiary rounded-circle p-3 mb-3">
       <app-icon
         [icon]="'material-symbols-light:folder-open'"
-        class="text-4xl text-500"
+        class="text-4xl text-body-secondary"
       />
     </div>
-    <span class="text-xl font-medium text-900">Sin órdenes de Compra</span>
-    <span class="text-500 mt-1"
+    <span class="text-xl fw-medium text-body">Sin órdenes de Compra</span>
+    <span class="text-body-secondary mt-1"
       >Utiliza el botón "Crear OC" para comenzar.</span
     >
   </div>
   } @for (grupo of dataSignal(); track grupo.tipoGasto) {
   <div
-    class="card mb-3 border-1 surface-border rounded-xl overflow-hidden shadow-sm"
+    class="card mb-3 border-1 border rounded-xl overflow-hidden shadow-sm"
   >
     <!-- Group Header -->
     <div
-      class="d-flex justify-content-between align-items-center bg-surface-50 px-3 py-2 border-bottom-1 surface-border"
+      class="d-flex justify-content-between align-items-center bg-bg-body-tertiary px-3 py-2 border-bottom-1 border"
     >
       <div class="d-flex align-items-center gap-3">
-        <span class="font-bold text-800 text-lg"
+        <span class="fw-bold text-body text-lg"
           >{{grupo.tipoGasto | uppercase}}</span
         >
         <lx-badge
           [value]="grupo.ordenes.length"
           color="secondary"
-          class="font-bold"
+          class="fw-bold"
         />
       </div>
       <div class="d-flex align-items-center gap-3">
-        <span class="font-bold text-900 text-lg"
+        <span class="fw-bold text-body text-lg"
           >{{ grupo.totalGrupo | number: "1.2-2" }}</span
         >
         <iw-button
@@ -292,7 +292,7 @@
 
     <p-table
       [value]="grupo.ordenes"
-      class="p-datatable-sm p-datatable-gridlines font-sm border-none"
+      class="p-datatable-sm p-datatable-gridlines font-sm border-0"
       [rowHover]="true"
       (onRowReorder)="onRowReorder($event)"
       [reorderableColumns]="true"
@@ -300,42 +300,42 @@
       <ng-template #header>
         <tr>
           <th
-            class="text-center p-2 bg-surface-0 text-600 font-medium"
+            class="text-center p-2 bg-bg-body-tertiary text-body-secondary fw-medium"
             class="table-col-3rem"
           >
             #
           </th>
-          <th class="p-2 bg-surface-0 text-600 font-medium">
+          <th class="p-2 bg-bg-body-tertiary text-body-secondary fw-medium">
             Concepto / Cuenta
           </th>
-          <th class="p-2 bg-surface-0 text-600 font-medium">
+          <th class="p-2 bg-bg-body-tertiary text-body-secondary fw-medium">
             Proveedor / Comprobantes
           </th>
           <th
-            class="p-2 text-center bg-surface-0 text-600 font-medium"
+            class="p-2 text-center bg-bg-body-tertiary text-body-secondary fw-medium"
             class="table-col-7rem"
           >
             Fecha
           </th>
           <th
-            class="p-2 text-right bg-surface-0 text-600 font-medium"
+            class="p-2 text-end bg-bg-body-tertiary text-body-secondary fw-medium"
             class="table-col-9rem"
           >
             Monto
           </th>
           <th
-            class="p-2 text-right bg-surface-0 text-600 font-medium"
+            class="p-2 text-end bg-bg-body-tertiary text-body-secondary fw-medium"
             class="table-col-10rem"
           >
             Datos Pago
           </th>
           <th
-            class="p-2 text-center bg-surface-0 text-600 font-medium"
+            class="p-2 text-center bg-bg-body-tertiary text-body-secondary fw-medium"
             class="table-col-7rem"
           >
             Estado
           </th>
-          <th class="text-center p-2 bg-surface-0 text-600 font-medium">
+          <th class="text-center p-2 bg-bg-body-tertiary text-body-secondary fw-medium">
             Acciones
           </th>
         </tr>
@@ -344,23 +344,23 @@
       <ng-template #body let-orden let-rowIndex="rowIndex">
         <tr [pReorderableRow]="rowIndex" class="text-sm">
           <!-- Index -->
-          <td class="text-center p-1 text-500 relative bg-surface-0">
+          <td class="text-center p-1 text-body-secondary relative bg-bg-body-tertiary">
             <app-icon
               [icon]="'material-symbols-light:more-vert'"
-              class="text-300 absolute left-0 top-50 mt--2 ms-1 cursor-move d-none d-md-block"
+              class="text-body-secondary absolute left-0 top-50 mt--2 ms-1 cursor-move d-none d-md-block"
               pReorderableRowHandle
             />
-            <span class="font-medium text-600">{{ orden.indice }}</span>
+            <span class="fw-medium text-body-secondary">{{ orden.indice }}</span>
           </td>
 
           <!-- Concept / Account -->
           <td class="p-2">
             <div class="d-flex flex-column">
-              <span class="font-bold text-900 text-sm mb-1 line-height-2"
+              <span class="fw-bold text-body text-sm mb-1 line-height-2"
                 >{{ orden.justificacionGasto | uppercase }}</span
               >
-              <span class="text-xs text-500 d-flex align-items-center gap-1">
-                <span class="bg-blue-50 text-blue-700 px-1 rounded font-medium"
+              <span class="text-xs text-body-secondary d-flex align-items-center gap-1">
+                <span class="bg-blue-50 text-blue-700 px-1 rounded fw-medium"
                   >{{ orden.codigoCuenta }}</span
                 >
                 {{ orden.accountName }}
@@ -371,7 +371,7 @@
           <!-- Provider / Invoices -->
           <td class="p-2">
             <div class="d-flex flex-column gap-1">
-              <span class="font-medium text-800 text-sm"
+              <span class="fw-medium text-body text-sm"
                 >{{ orden.nameProvider | uppercase }}</span
               >
 
@@ -381,7 +381,7 @@
                 <lx-tag
                   severity="warning"
                   [value]="orden.listadoFacturas.length + ' Docs'"
-                  class="cursor-pointer hover:surface-hover transition-duration-200"
+                  class="cursor-pointer transition-duration-200"
                   (click)="showInvoices(orden)"
                   class="text-xs px-2 py-0 rounded-md"
                 />
@@ -390,16 +390,16 @@
                   severity="secondary"
                   value="PDF"
                   icon="material-symbols-light:picture-as-pdf"
-                  class="cursor-pointer hover:surface-hover transition-duration-200"
+                  class="cursor-pointer transition-duration-200"
                   (click)="viewPdf(orden.pdfFile,'Factura')"
-                  class="text-xs px-2 py-0 bg-surface-200 text-700 rounded-md"
+                  class="text-xs px-2 py-0 bg-bg-body-tertiary text-body rounded-md"
                 />
                 } @if (orden.comprobantesPago?.length > 0) {
                 <lx-tag
                   severity="success"
                   value="Pago"
                   icon="material-symbols-light:check"
-                  class="cursor-pointer hover:surface-hover transition-duration-200"
+                  class="cursor-pointer transition-duration-200"
                   (click)="viewPdf(orden.comprobantesPago[0].filePath, 'Comprobante')"
                   class="text-xs px-2 py-0 rounded-md"
                 />
@@ -409,26 +409,26 @@
           </td>
 
           <!-- Date -->
-          <td class="p-2 text-center text-700">{{ orden.fechaFactura }}</td>
+          <td class="p-2 text-center text-body">{{ orden.fechaFactura }}</td>
 
           <!-- Amount -->
-          <td class="p-2 text-right">
-            <span class="font-bold text-900 text-base font-numeric"
+          <td class="p-2 text-end">
+            <span class="fw-bold text-body text-base font-numeric"
               >{{ orden.total | number: "1.2-2" }}</span
             >
           </td>
 
           <!-- Pay Info -->
-          <td class="p-2 text-right">
+          <td class="p-2 text-end">
             <div class="d-flex flex-column align-items-end gap-1">
               <span
-                class="text-xs font-bold text-700 bg-surface-100 px-1 rounded"
+                class="text-xs fw-bold text-body bg-bg-body-tertiary px-1 rounded"
                 >{{ orden.shortName | uppercase }}</span
               >
-              <span class="text-xs text-500 font-mono"
+              <span class="text-xs text-body-secondary font-mono"
                 >{{ orden.reference || '-' }}</span
               >
-              <span class="text-xs text-500 font-mono"
+              <span class="text-xs text-body-secondary font-mono"
                 >{{ orden.cuentaClave || '-' }}</span
               >
             </div>
@@ -453,7 +453,7 @@
               } @else {
               <app-icon
                 [icon]="'material-symbols-light:circle'"
-                class="text-300 text-lg"
+                class="text-body-secondary text-lg"
                 lxTooltip="Sin validar"
               />
               }
@@ -517,13 +517,13 @@
           [icon]="'material-symbols-light:bolt'"
           class="text-orange-500"
         />
-        <span class="font-bold text-orange-800 text-base"
+        <span class="fw-bold text-orange-800 text-base"
           >ÓRDENES FUERA DE PROCESO DE FONDEO</span
         >
         <lx-badge
           [value]="ordenesFueraProceso().length"
           color="warning"
-          class="font-bold"
+          class="fw-bold"
         />
       </div>
       @if (isRolAdministrador() || isRolSuperUsuario()) {
@@ -539,7 +539,7 @@
     </div>
 
     @if (ordenesFueraProceso().length === 0) {
-    <div class="d-flex align-items-center gap-2 p-3 text-500 text-sm">
+    <div class="d-flex align-items-center gap-2 p-3 text-body-secondary text-sm">
       <app-icon [icon]="'material-symbols-light:info'" />
       <span>No hay órdenes fuera de proceso para este fondeo.</span>
     </div>
@@ -549,16 +549,16 @@
         <tr>
           <th>Proveedor</th>
           <th>Justificación</th>
-          <th class="text-right">Total</th>
+          <th class="text-end">Total</th>
           <th class="text-center">Pagada</th>
           <th class="text-center"></th>
         </tr>
       </ng-template>
       <ng-template #body let-orden>
         <tr>
-          <td class="text-sm font-medium">{{ orden.nameProvider }}</td>
+          <td class="text-sm fw-medium">{{ orden.nameProvider }}</td>
           <td class="text-sm">{{ orden.justificacionGasto }}</td>
-          <td class="text-sm text-right">
+          <td class="text-sm text-end">
             {{ orden.total | number: "1.2-2" }}
           </td>
           <td class="text-center">
@@ -601,8 +601,8 @@
   >
     <div class="d-flex flex-column align-items-center justify-content-center p-4">
       <lx-progress-bar [value]="downloadProgress()" class="mb-3" />
-      <span class="text-700 font-medium">{{ downloadStatusText() }}</span>
-      <span class="text-500 text-sm mt-2"
+      <span class="text-body fw-medium">{{ downloadStatusText() }}</span>
+      <span class="text-body-secondary text-sm mt-2"
         >Por favor no cierre esta ventana.</span
       >
     </div>

@@ -4,11 +4,33 @@
   padding-inline: 0.25rem;
 }
 
-.candidate-timeline-grid {
+.candidate-timeline-events {
+  position: relative;
   display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 0.25rem 0.25rem 0.75rem;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.candidate-timeline-event {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7rem 1.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.candidate-timeline-event:not(:last-child) .candidate-timeline-marker-column::after {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  bottom: -0.25rem;
+  left: 0.7rem;
+  border-left: 2px solid color-mix(in srgb, var(--primary-color) 20%, var(--surface-border));
+}
+
+.candidate-timeline-marker-column {
+  position: relative;
+  min-height: 1rem;
 }
 
 .candidate-timeline-column {
@@ -32,9 +54,4 @@
   width: 1rem;
   height: 1rem;
   box-shadow: 0 0 0 4px var(--surface-card);
-}
-
-:host ::ng-deep .p-timeline-event-connector {
-  background: color-mix(in srgb, var(--primary-color) 20%, var(--surface-border));
-  width: 2px;
 }

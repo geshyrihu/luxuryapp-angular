@@ -114,19 +114,19 @@
       <ng-template #header>
         <tr>
           <th>Producto</th>
-          <th class="text-right">Cantidad</th>
-          <th class="text-right">Precio</th>
-          <th class="text-right">Subtotal</th>
+          <th class="text-end">Cantidad</th>
+          <th class="text-end">Precio</th>
+          <th class="text-end">Subtotal</th>
         </tr>
       </ng-template>
       <ng-template #body let-item let-i="rowIndex">
         <tr>
           <td>{{ item.productName }}</td>
-          <td class="text-right">{{ item.cantidad }}</td>
-          <td class="text-right">
+          <td class="text-end">{{ item.cantidad }}</td>
+          <td class="text-end">
             {{ item.precio | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
           </td>
-          <td class="text-right">
+          <td class="text-end">
             {{ item.cantidad * item.precio | currency: "MXN" : "symbol" :
             "1.2-2" : "es-MX" }}
           </td>
@@ -139,8 +139,8 @@
       </ng-template>
       <ng-template #footer>
         <tr>
-          <td colspan="3" class="text-right font-bold">Total</td>
-          <td class="text-right font-bold">
+          <td colspan="3" class="text-end fw-bold">Total</td>
+          <td class="text-end fw-bold">
             {{ total() | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
           </td>
         </tr>
@@ -159,7 +159,7 @@
           <th>Año Psto</th>
           <th>No. Cuenta</th>
           <th>Nombre Cuenta</th>
-          <th class="text-right">Monto</th>
+          <th class="text-end">Monto</th>
         </tr>
       </ng-template>
       <ng-template #body let-item let-i="rowIndex">
@@ -167,7 +167,7 @@
           <td>{{ item.fiscalYear }}</td>
           <td>{{ item.accountNumber }}</td>
           <td>{{ item.accountName }}</td>
-          <td class="text-right">
+          <td class="text-end">
             {{ item.amount | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
           </td>
         </tr>

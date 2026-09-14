@@ -12,7 +12,7 @@
   <ng-template #caption>
     <!-- Contenedor Maestro: Apila en mívil, alinea en lónea en escritorio -->
     <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded g-4"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
     >
       <!-- LADO IZQUIERDO: Buscador y Tútulo (Toma el espacio libre) -->
       <div class="flex-grow-1">
@@ -183,7 +183,7 @@
         />
       </div>
 
-      <div class="flex-1 min-w-0">
+      <div class="flex-fill min-w-0">
         <h3>{{ item.titulo | titlecase }}</h3>
         <p>{{ item.cliente }} é Folio: {{ item.folio }}</p>
         <p>{{ item.fechaSolicitud }}</p>

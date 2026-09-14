@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
-  <h2 class="text-xl font-semibold m-0">Dashboard de accesos</h2>
+  <h2 class="text-xl fw-semibold m-0">Dashboard de accesos</h2>
   <il-button label="Actualizar" iconClass="material-symbols-light:refresh" variant="text" (clicked)="onLoadData()" />
 </div>
 
@@ -7,38 +7,38 @@
 <div class="row mb-3 g-4">
   <div class="col-6 col-md-2">
     <div class="card text-center p-3">
-      <div class="text-2xl font-bold">{{ s.activeVisits }}</div>
-      <div class="text-500 text-sm">Activas</div>
+      <div class="text-2xl fw-bold">{{ s.activeVisits }}</div>
+      <div class="text-body-secondary text-sm">Activas</div>
     </div>
   </div>
   <div class="col-6 col-md-2">
     <div class="card text-center p-3">
-      <div class="text-2xl font-bold">{{ s.scheduledToday }}</div>
-      <div class="text-500 text-sm">Programadas hoy</div>
+      <div class="text-2xl fw-bold">{{ s.scheduledToday }}</div>
+      <div class="text-body-secondary text-sm">Programadas hoy</div>
     </div>
   </div>
   <div class="col-6 col-md-2">
     <div class="card text-center p-3">
-      <div class="text-2xl font-bold">{{ s.entriesToday }}</div>
-      <div class="text-500 text-sm">Entradas hoy</div>
+      <div class="text-2xl fw-bold">{{ s.entriesToday }}</div>
+      <div class="text-body-secondary text-sm">Entradas hoy</div>
     </div>
   </div>
   <div class="col-6 col-md-2">
     <div class="card text-center p-3">
-      <div class="text-2xl font-bold">{{ s.completedToday }}</div>
-      <div class="text-500 text-sm">Completadas hoy</div>
+      <div class="text-2xl fw-bold">{{ s.completedToday }}</div>
+      <div class="text-body-secondary text-sm">Completadas hoy</div>
     </div>
   </div>
   <div class="col-6 col-md-2">
     <div class="card text-center p-3">
-      <div class="text-2xl font-bold text-red-600">{{ s.deniedToday }}</div>
-      <div class="text-500 text-sm">Denegados hoy</div>
+      <div class="text-2xl fw-bold text-red-600">{{ s.deniedToday }}</div>
+      <div class="text-body-secondary text-sm">Denegados hoy</div>
     </div>
   </div>
 </div>
 }
 
-<h3 class="text-lg font-semibold mb-2">
+<h3 class="text-lg fw-semibold mb-2">
   Dentro actualmente: {{ occupancy()?.currentInside ?? 0 }}
 </h3>
 <p-table [value]="occupancy()?.visits ?? []" [paginator]="true" [rows]="10" class="custom-table card">
@@ -58,7 +58,7 @@
   </ng-template>
   <ng-template #emptymessage>
     <tr>
-      <td colspan="3" class="text-center text-500 py-4">Nadie dentro.</td>
+      <td colspan="3" class="text-center text-body-secondary py-4">Nadie dentro.</td>
     </tr>
   </ng-template>
 </p-table>

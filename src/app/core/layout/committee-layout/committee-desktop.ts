@@ -2,15 +2,15 @@ import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { AppLoader } from "@ui/web/loader/loader";
 import { LayoutService } from "src/app/core/services/layout.service";
-import { HeaderCommitteeMonitor } from "./monitor/header";
-import { FooterCommitteeMonitor } from "./monitor/footer";
+import { HeaderCommitteedesktop } from "./desktop/header";
+import { FooterCommitteedesktop } from "./desktop/footer";
 
 @Component({
   selector: "app-committee-desktop",
   imports: [
     RouterOutlet,
-    HeaderCommitteeMonitor,
-    FooterCommitteeMonitor,
+    HeaderCommitteedesktop,
+    FooterCommitteedesktop,
     AppLoader,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

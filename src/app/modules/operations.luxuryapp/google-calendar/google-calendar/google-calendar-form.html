@@ -8,7 +8,7 @@
         (changed)="selectSubjectType($event)"
       />
       @if (getSubjectTypeDescription()) {
-      <small class="text-color-secondary d-block mt-2">
+      <small class="text-body-secondary d-block mt-2">
         {{ getSubjectTypeDescription() }}
       </small>
       }
@@ -22,7 +22,7 @@
         (changed)="selectModality($event)"
       />
       @if (getModalityDescription()) {
-      <small class="text-color-secondary d-block mt-2">
+      <small class="text-body-secondary d-block mt-2">
         {{ getModalityDescription() }}
       </small>
       }
@@ -37,7 +37,7 @@
       />
     </div>
     <div class="col-12 col-md-4">
-      <label class="d-block mb-2 font-semibold">Hora de inicio *</label>
+      <label class="d-block mb-2 fw-semibold">Hora de inicio *</label>
       <custom-input-select-signal
         [control]="form.controls.startTime"
         [data]="startTimeOptions()"
@@ -66,7 +66,7 @@
           >
             <span>{{ slot.label }}</span>
             @if (slot.conflictCount > 0) {
-            <small class="text-500">
+            <small class="text-body-secondary">
               {{ canOverrideScheduleConflicts() ? "Ocupado" : "No disponible" }}
             </small>
             }
@@ -93,7 +93,7 @@
     </div>
 
     <div class="col-12">
-      <div class="border-1 surface-border rounded p-3">
+      <div class="border-1 border rounded p-3">
         <div class="row g-4">
           <div class="col-12 col-md-3">
             <custom-input-switch-signal
@@ -126,7 +126,7 @@
           </div>
 
           <div class="col-12 col-md-3 d-flex align-items-end">
-            <small class="text-color-secondary d-block">
+            <small class="text-body-secondary d-block">
               Si solicitas paletas o audio/video, tambien se notificara a
               Sistemas General.
             </small>
@@ -175,7 +175,7 @@
         placeholder="Configurar esta junta como repetitiva"
         [horizontal]="false"
       />
-      <small class="text-color-secondary d-block mt-2">
+      <small class="text-body-secondary d-block mt-2">
         Usa esta opcion para juntas fijas, por ejemplo cada tercer martes a las
         7:30 PM.
       </small>
@@ -220,7 +220,7 @@
 
     @if (recurrencePreview()) {
     <div class="col-12">
-      <div class="border-1 surface-border rounded p-3 bg-blue-50">
+      <div class="border-1 border rounded p-3 bg-blue-50">
         <strong class="d-block text-blue-900 mb-1">Resumen de la serie</strong>
         <small class="text-blue-900">{{ recurrencePreview() }}</small>
       </div>
@@ -257,7 +257,7 @@
       <div class="d-flex justify-content-between align-items-center mb-2">
         <div>
           <h3 class="m-0">Invitados especificos de asamblea</h3>
-          <small class="text-color-secondary">
+          <small class="text-body-secondary">
             Registra las personas puntuales que deben contemplarse dentro de la
             organizacion de la asamblea.
           </small>
@@ -274,12 +274,12 @@
         index = $index) {
         <div
           [formGroupName]="index"
-          class="row align-items-center border-bottom-1 surface-border pb-3 mb-3 g-4"
+          class="row align-items-center border-bottom-1 border pb-3 mb-3 g-4"
         >
           <div
             class="col-12 d-flex justify-content-between align-items-center mb-2"
           >
-            <span class="font-semibold text-color-secondary"
+            <span class="fw-semibold text-body-secondary"
               >Invitado {{ index + 1 }}</span
             >
             <iw-button
@@ -365,7 +365,7 @@
       </div>
 
       @if (!assemblyInviteesArray.controls.length) {
-      <small class="text-color-secondary d-block mt-3">
+      <small class="text-body-secondary d-block mt-3">
         No hay invitados especificos registrados para la asamblea.
       </small>
       }
@@ -412,7 +412,7 @@
       <div class="d-flex justify-content-between align-items-center mb-2">
         <div>
           <h3 class="m-0">Invitados</h3>
-          <small class="text-color-secondary">
+          <small class="text-body-secondary">
             Agrega a quienes deben quedar registrados dentro de Luxury App para
             esta junta.
           </small>
@@ -429,9 +429,9 @@
         @for (guest of guestsArray.controls; track guest; let index = $index) {
         <div
           [formGroupName]="index"
-          class="d-flex flex-row align-items-center w-full pb-1 mb-1 border-bottom-1 surface-border g-4"
+          class="d-flex flex-row align-items-center w-full pb-1 mb-1 border-bottom-1 border g-4"
         >
-          <div class="flex-1 px-1">
+          <div class="flex-fill px-1">
             <custom-input-text-signal
               [control]="guest.controls.name"
               [id]="'guest-name-' + index"
@@ -441,7 +441,7 @@
             />
           </div>
 
-          <div class="flex-1 px-1">
+          <div class="flex-fill px-1">
             <custom-input-text-signal
               [control]="guest.controls.email"
               [id]="'guest-email-' + index"
@@ -466,7 +466,7 @@
       </div>
 
       @if (!guestsArray.controls.length) {
-      <small class="text-color-secondary d-block mt-3">
+      <small class="text-body-secondary d-block mt-3">
         No hay invitados registrados. Agrega solo los que realmente necesites.
       </small>
       }
@@ -476,7 +476,7 @@
 
   <div class="col-12 col-lg-4">
     @if (implicitGuests().length > 0) {
-    <div class="border-1 surface-border rounded p-3 bg-blue-50">
+    <div class="border-1 border rounded p-3 bg-blue-50">
       <strong class="d-block text-blue-900 mb-2">Invitados obligatorios</strong>
       <small class="d-block text-blue-900 mb-3">
         Se incluiran automaticamente por su rol en el sistema.
@@ -485,22 +485,22 @@
       <div class="d-flex flex-column gap-2">
         @for (guest of implicitGuests(); track guest.email) {
         <div
-          class="d-flex flex-row align-items-center bg-white p-2 border-1 surface-border border-round g-4"
+          class="d-flex flex-row align-items-center bg-white p-2 border-1 border rounded g-4"
         >
-          <div class="flex-1 d-flex flex-column overflow-hidden">
+          <div class="flex-fill d-flex flex-column overflow-hidden">
             <span
-              class="font-semibold text-sm text-overflow-ellipsis white-space-nowrap overflow-hidden"
+              class="fw-semibold text-sm text-truncate text-nowrap overflow-hidden"
               >{{ guest.nameEmployee }}</span
             >
             <small
-              class="text-500 text-overflow-ellipsis white-space-nowrap overflow-hidden"
+              class="text-body-secondary text-truncate text-nowrap overflow-hidden"
               [title]="guest.email"
               >{{ guest.email }}</small
             >
           </div>
           <div class="flex-none ms-2">
             <span
-              class="text-xs px-2 py-1 bg-blue-100 text-blue-800 border-round white-space-nowrap"
+              class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded text-nowrap"
               >{{ guest.applicationRoleName }}</span
             >
           </div>
@@ -510,9 +510,9 @@
     </div>
     } @else if (loadingSuggestedInvitees()) {
     <div
-      class="border-1 surface-border rounded p-3 d-flex justify-content-center"
+      class="border-1 border rounded p-3 d-flex justify-content-center"
     >
-      <i class="mdi mdi-loading mdi-spin text-2xl text-color-secondary"></i>
+      <i class="mdi mdi-loading mdi-spin text-2xl text-body-secondary"></i>
     </div>
     }
   </div>

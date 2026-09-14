@@ -9,7 +9,7 @@
   <ng-template #caption>
     <div class="row align-items-center mb-3 g-4">
       <div class="col-12 col-sm-6">
-        <h4 class="text-xl font-medium mb-0">TICKETS SOLICITADOS</h4>
+        <h4 class="text-xl fw-medium mb-0">TICKETS SOLICITADOS</h4>
       </div>
       <div class="col-12 col-sm-3 no-print">
         <app-mesanio (periodoEmit)="onFiltrarPeriodo($event)"></app-mesanio>
@@ -86,7 +86,7 @@
   </ng-template>
   <ng-template #footer>
     <tr>
-      <td class="text-right">Totales</td>
+      <td class="text-end">Totales</td>
       <td class="text-center">
         <span class="h4 card-title text-dark">
           {{ onSumaTotales(dataSignal()).solicitudes }}

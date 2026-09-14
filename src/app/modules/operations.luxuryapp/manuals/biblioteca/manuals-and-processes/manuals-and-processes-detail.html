@@ -1,7 +1,7 @@
-<section id="manual-content" class="surface-ground min-h-screen p-3 p-md-4">
+<section id="manual-content" class="bg-body-tertiary min-h-screen p-3 p-md-4">
   @if (loading()) {
   <div
-    class="d-flex align-items-center justify-content-center py-8"
+    class="d-flex align-items-center justify-content-center py-5"
 
   >
     <app-icon
@@ -12,11 +12,11 @@
   } @else if (manual()) {
   <div class="w-full xl:w-10 mx-auto d-flex flex-column gap-4">
     <header
-      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden"
+      class="bg-body rounded-xl border-1 border shadow-sm overflow-hidden"
     >
       <div class="bg-yellow-500" ></div>
 
-      <div class="p-4 p-md-5 border-bottom-1 surface-border">
+      <div class="p-4 p-md-5 border-bottom-1 border">
         <div
           class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-4 print-header-row g-4"
         >
@@ -30,10 +30,10 @@
               />
             </div>
             <div>
-              <div class="text-primary text-3xl font-bold line-height-1">
+              <div class="text-primary text-3xl fw-bold line-height-1">
                 LuxuryApp
               </div>
-              <div class="text-sm text-color-secondary mt-2">
+              <div class="text-sm text-body-secondary mt-2">
                 ERP · Biblioteca Operativa
               </div>
             </div>
@@ -43,7 +43,7 @@
             class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 g-4"
           >
             <div
-              class="surface-100 border-1 surface-border rounded-xl px-3 py-2 d-inline-flex align-items-center gap-2 text-sm text-color"
+              class="bg-body-tertiary border-1 border rounded-xl px-3 py-2 d-inline-flex align-items-center gap-2 text-sm text-body"
             >
               <app-icon [icon]="'material-symbols-light:book'" class="text-xs" />
               <span>Manual de Proceso · {{ manual()!.folio }}</span>
@@ -83,7 +83,7 @@
         </div>
 
         <p
-          class="text-xs font-bold text-color-secondary m-0 mb-2"
+          class="text-xs fw-bold text-body-secondary m-0 mb-2"
           
         >
           {{ manual()!.folio }}
@@ -91,56 +91,56 @@
         <h1 class="text-primary text-4xl line-height-2 m-0 mb-3">
           {{ manual()!.description || manual()!.folio }}
         </h1>
-        <p class="text-color-secondary line-height-3 m-0 mb-4 max-w-30rem">
+        <p class="text-body-secondary line-height-3 m-0 mb-4 max-w-30rem">
           Referencia documental para la operacion del area de {{
           manual()!.departament || "trabajo" }}.
         </p>
 
-        <div class="border-top-1 surface-border pt-3 d-flex flex-wrap gap-3">
+        <div class="border-top-1 border pt-3 d-flex flex-wrap gap-3">
           <div
-            class="d-inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
             <app-icon [icon]="'material-symbols-light:account-tree'" />
             <span>Departamento: {{ manual()!.departament }}</span>
           </div>
           <div
-            class="d-inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
             <app-icon [icon]="'material-symbols-light:calendar-clock'" />
             <span>Frecuencia: {{ getPeriodicityReadable(manual()) }}</span>
           </div>
           <div
-            class="d-inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
             <app-icon [icon]="'material-symbols-light:label'" />
             <span>Version: {{ manual()!.currentVersion }}</span>
           </div>
           <div
-            class="d-inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
             <app-icon [icon]="'material-symbols-light:verified'" />
             <span>Estado: {{ manualStatusLabel() }}</span>
           </div>
           <div
-            class="d-inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
             <app-icon [icon]="'material-symbols-light:web'" />
             <span>Alcance: {{ scopeLabel() }}</span>
           </div>
           <div
-            class="d-inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
             <app-icon [icon]="'material-symbols-light:group'" />
             <span>Dirigido a: {{ audienceLabel() }}</span>
           </div>
           <div
-            class="d-inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
             <app-icon [icon]="'material-symbols-light:apartment'" />
             <span>Visibilidad: {{ visibilityLabel() }}</span>
           </div>
           <div
-            class="d-inline-flex align-items-center gap-2 text-color-secondary"
+            class="d-inline-flex align-items-center gap-2 text-body-secondary"
           >
             <app-icon [icon]="'material-symbols-light:format-list-bulleted'" />
             <span>Pasos: {{ manual()!.pasos?.length || 0 }}</span>
@@ -155,24 +155,24 @@
       @if (manual()!.objetivo) {
       <div class="col-12 col-lg-6">
         <article
-          class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
+          class="bg-body rounded-xl border-1 border p-4 shadow-sm h-full"
         >
           <div class="d-flex align-items-center gap-3 mb-3">
             <span
-              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white fw-bold"
               
             >
               01
             </span>
             <div>
-              <h3 class="text-lg text-900 m-0">Objetivo</h3>
-              <p class="text-sm text-color-secondary m-0">
+              <h3 class="text-lg text-body m-0">Objetivo</h3>
+              <p class="text-sm text-body-secondary m-0">
                 Proposito operativo del documento.
               </p>
             </div>
           </div>
           <p
-            class="m-0 line-height-3 text-color-secondary"
+            class="m-0 line-height-3 text-body-secondary"
             
           >
             {{ manual()!.objetivo }}
@@ -182,24 +182,24 @@
       } @if (manual()!.marcoLegal) {
       <div class="col-12 col-lg-6">
         <article
-          class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
+          class="bg-body rounded-xl border-1 border p-4 shadow-sm h-full"
         >
           <div class="d-flex align-items-center gap-3 mb-3">
             <span
-              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white fw-bold"
               
             >
               02
             </span>
             <div>
-              <h3 class="text-lg text-900 m-0">Marco Legal y Referencias</h3>
-              <p class="text-sm text-color-secondary m-0">
+              <h3 class="text-lg text-body m-0">Marco Legal y Referencias</h3>
+              <p class="text-sm text-body-secondary m-0">
                 Normativa, anexo y soporte documental.
               </p>
             </div>
           </div>
           <p
-            class="m-0 line-height-3 text-color-secondary"
+            class="m-0 line-height-3 text-body-secondary"
             
           >
             {{ manual()!.marcoLegal }}
@@ -210,21 +210,21 @@
     </div>
 
     <article
-      class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm"
+      class="bg-body rounded-xl border-1 border p-4 shadow-sm"
     >
       <div
         class="d-flex align-items-start justify-content-between gap-3 flex-wrap mb-4"
       >
         <div class="d-flex align-items-center gap-3">
           <span
-            class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold"
+            class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white fw-bold"
             
           >
             03
           </span>
           <div>
-            <h3 class="text-lg text-900 m-0">Pasos del Procedimiento</h3>
-            <p class="text-sm text-color-secondary m-0">
+            <h3 class="text-lg text-body m-0">Pasos del Procedimiento</h3>
+            <p class="text-sm text-body-secondary m-0">
               Flujo operativo, notas y evidencia visual.
             </p>
           </div>
@@ -250,21 +250,21 @@
           @if (paso.tipoNota === 0) {
           <div class="d-flex align-items-start gap-3">
             <div
-              class="w-3rem h-3rem border-circle text-white d-flex align-items-center justify-content-center font-bold flex-shrink-0"
+              class="w-3rem h-3rem rounded-circle text-white d-flex align-items-center justify-content-center fw-bold flex-shrink-0"
               
             >
               {{ displayStepNumber(paso.id) }}
             </div>
-            <div class="flex-1">
+            <div class="flex-fill">
               <div class="d-flex align-items-center gap-2 flex-wrap mb-2">
-                <h4 class="text-base text-900 m-0">{{ paso.titulo }}</h4>
+                <h4 class="text-base text-body m-0">{{ paso.titulo }}</h4>
                 @for (nombre of paso.responsableRoleNombres; track nombre) {
                 <lx-tag [value]="nombre" severity="secondary" />
                 }
               </div>
               @if (paso.descripcion) {
               <p
-                class="m-0 line-height-3 text-color-secondary"
+                class="m-0 line-height-3 text-body-secondary"
                 
               >
                 {{ paso.descripcion }}
@@ -289,17 +289,17 @@
               </strong>
             </div>
           </div>
-          <h4 class="text-base text-900 mt-0 mb-2">{{ paso.titulo }}</h4>
+          <h4 class="text-base text-body mt-0 mb-2">{{ paso.titulo }}</h4>
           @if (paso.descripcion) {
           <p
-            class="m-0 line-height-3 text-color-secondary"
+            class="m-0 line-height-3 text-body-secondary"
             
           >
             {{ paso.descripcion }}
           </p>
           } } @if (paso.diagramaXml) {
           <div
-            class="mt-3 rounded-xl overflow-hidden border-1 surface-border"
+            class="mt-3 rounded-xl overflow-hidden border-1 border"
           >
             <app-diagram-preview [xml]="paso.diagramaXml" />
           </div>
@@ -308,7 +308,7 @@
             @for (img of paso.imagenes; track img.id) {
             <div class="col-12 col-sm-6 col-xl-4">
               <div
-                class="surface-card border-1 surface-border rounded-xl overflow-hidden p-2 d-flex justify-content-center"
+                class="bg-body border-1 border rounded-xl overflow-hidden p-2 d-flex justify-content-center"
               >
                 <app-image
                   [src]="img.url"
@@ -325,12 +325,12 @@
             @for (enlace of paso.enlaces; track enlace.id) { @if
             (enlace.esVideo) { @if (safeUrl(enlace.urlEnlace)) {
             <div
-              class="rounded-xl overflow-hidden border-1 surface-border"
+              class="rounded-xl overflow-hidden border-1 border"
               
             >
               <iframe
                 [src]="safeUrl(enlace.urlEnlace)"
-                class="w-full h-full border-none"
+                class="w-full h-full border-0"
                 allow="
                   accelerometer;
                   autoplay;
@@ -354,7 +354,7 @@
                   [outlined]="true"
                 />
               </a>
-              <span class="text-sm text-color-secondary"
+              <span class="text-sm text-body-secondary"
                 >{{ enlace.urlEnlace }}</span
               >
             </div>
@@ -365,9 +365,9 @@
         }
       </div>
       } @else {
-      <div class="text-center py-6">
-        <app-icon [icon]="'material-symbols-light:book'" class="text-4xl text-400 mb-3" />
-        <p class="text-500 m-0">Este manual aun no tiene pasos definidos.</p>
+      <div class="text-center py-5">
+        <app-icon [icon]="'material-symbols-light:book'" class="text-4xl text-body-secondary mb-3" />
+        <p class="text-body-secondary m-0">Este manual aun no tiene pasos definidos.</p>
       </div>
       }
     </article>
@@ -377,18 +377,18 @@
       @if (manual()!.adjuntos?.length) {
       <div class="col-12 col-xl-6">
         <article
-          class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
+          class="bg-body rounded-xl border-1 border p-4 shadow-sm h-full"
         >
           <div class="d-flex align-items-center gap-3 mb-4">
             <span
-              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white fw-bold"
               
             >
               04
             </span>
             <div>
-              <h3 class="text-lg text-900 m-0">Archivos Auxiliares</h3>
-              <p class="text-sm text-color-secondary m-0">
+              <h3 class="text-lg text-body m-0">Archivos Auxiliares</h3>
+              <p class="text-sm text-body-secondary m-0">
                 Descargas y soporte complementario.
               </p>
             </div>
@@ -396,7 +396,7 @@
           <div class="d-flex flex-column gap-3">
             @for (adj of manual()!.adjuntos; track adj.id) {
             <div
-              class="surface-ground rounded-xl border-1 surface-border p-3 d-flex align-items-center justify-content-between gap-3 flex-wrap"
+              class="bg-body-tertiary rounded-xl border-1 border p-3 d-flex align-items-center justify-content-between gap-3 flex-wrap"
             >
               <div class="d-flex align-items-center gap-3">
                 <app-icon
@@ -404,8 +404,8 @@
                   class="text-xl text-primary"
                 />
                 <div>
-                  <div class="font-medium text-900">{{ adj.nombre }}</div>
-                  <div class="text-xs text-color-secondary mt-1">
+                  <div class="fw-medium text-body">{{ adj.nombre }}</div>
+                  <div class="text-xs text-body-secondary mt-1">
                     {{ adj.fileExtension?.toUpperCase() }}
                   </div>
                 </div>
@@ -421,18 +421,18 @@
       } @if (manual()!.versiones?.length) {
       <div class="col-12 col-xl-6">
         <article
-          class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm h-full"
+          class="bg-body rounded-xl border-1 border p-4 shadow-sm h-full"
         >
           <div class="d-flex align-items-center gap-3 mb-4">
             <span
-              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold"
+              class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white fw-bold"
               
             >
               05
             </span>
             <div>
-              <h3 class="text-lg text-900 m-0">Historial de Versiones</h3>
-              <p class="text-sm text-color-secondary m-0">
+              <h3 class="text-lg text-body m-0">Historial de Versiones</h3>
+              <p class="text-sm text-body-secondary m-0">
                 Trazabilidad de cambios del manual.
               </p>
             </div>
@@ -440,21 +440,21 @@
           <div class="d-flex flex-column gap-3">
             @for (v of manual()!.versiones; track v.id) {
             <div
-              class="surface-ground rounded-xl border-1 surface-border p-3"
+              class="bg-body-tertiary rounded-xl border-1 border p-3"
             >
               <div class="d-flex align-items-start gap-3">
                 <span
-                  class="bg-primary text-white rounded-xl px-3 py-2 text-xs font-bold flex-shrink-0"
+                  class="bg-primary text-white rounded-xl px-3 py-2 text-xs fw-bold flex-shrink-0"
                 >
                   v{{ v.version }}
                 </span>
-                <div class="flex-1">
-                  <div class="text-xs text-color-secondary mb-2">
+                <div class="flex-fill">
+                  <div class="text-xs text-body-secondary mb-2">
                     {{ v.fechaCambio | apiDate:'dd/MM/yyyy' }} | {{ v.autor }}
                   </div>
                   @if (v.descripcionCambio) {
                   <p
-                    class="m-0 text-sm line-height-3 text-color-secondary"
+                    class="m-0 text-sm line-height-3 text-body-secondary"
                     
                   >
                     {{ v.descripcionCambio }}

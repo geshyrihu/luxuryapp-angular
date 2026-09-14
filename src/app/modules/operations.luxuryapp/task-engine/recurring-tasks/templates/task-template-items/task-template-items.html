@@ -19,8 +19,8 @@
     >
       <!-- Textos a la izquierda -->
       <div class="d-flex flex-column gap-1">
-        <h5 class="m-0 text-900">Items de Plantilla: {{ template.name }}</h5>
-        <small class="text-color-secondary">
+        <h5 class="m-0 text-body">Items de Plantilla: {{ template.name }}</h5>
+        <small class="text-body-secondary">
           Rol Asignado: {{ template.roleName }}
         </small>
       </div>
@@ -109,7 +109,7 @@
           [status]="getPriorityDisplay(item.priority).text"
           [severity]="getPriorityDisplay(item.priority).severity"
         />
-        <p class="text-sm text-600 mt-2">
+        <p class="text-sm text-body-secondary mt-2">
           {{ formatRecurrenceRule(item.recurrenceRule) }}
         </p>
       

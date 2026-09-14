@@ -20,9 +20,9 @@
       <th pSortableColumn="nombreEmpleado">
         Empleado <p-sorticon field="nombreEmpleado" />
       </th>
-      <th class="text-right">Monto Total</th>
-      <th class="text-right">Amortizacion</th>
-      <th class="text-right">Saldo Pendiente</th>
+      <th class="text-end">Monto Total</th>
+      <th class="text-end">Amortizacion</th>
+      <th class="text-end">Saldo Pendiente</th>
       <th>Progreso</th>
       <th>Estado</th>
       <th>Acciones</th>
@@ -35,18 +35,18 @@
           {{ item.nombreEmpleado }}
         </a>
       </td>
-      <td class="text-right">
+      <td class="text-end">
         {{ item.montoTotal | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
-      <td class="text-right">
+      <td class="text-end">
         {{ item.montoAmortizacion | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
-      <td class="text-right font-bold">
+      <td class="text-end fw-bold">
         {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
       <td>
         <div class="d-flex align-items-center gap-2">
-          <div class="rounded overflow-hidden flex-1">
+          <div class="rounded overflow-hidden flex-fill">
             <div
               class="rounded bg-primary"
               [style.width.%]="getProgreso(item)"
@@ -103,7 +103,7 @@
       <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
       <p class="text-xs m-0">{{ item.motivo }}</p>
       <div class="d-flex align-items-center gap-2 mt-1">
-        <span class="font-bold"
+        <span class="fw-bold"
           >{{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0"
           }}</span
         >

@@ -64,7 +64,7 @@
   <ng-template #groupheader let-item>
     <tr pRowGroupHeader>
       <td colspan="8">
-        <span class="font-semibold"
+        <span class="fw-semibold"
           >{{ getDepartamentLabel(item.departament) }}</span
         >
       </td>
@@ -153,7 +153,7 @@
         }
       </div>
 
-      <p class="font-semibold m-0 text-color">
+      <p class="fw-semibold m-0 text-body">
         {{ item.fullName }}
       </p>
       <div class="mt-1">
@@ -163,11 +163,11 @@
           <lx-tag severity="warning" value="Pendientes" icon="material-symbols-light:schedule" class="text-xs"></lx-tag>
         }
       </div>
-      <p class="text-xs m-0 mt-1 text-color-secondary">
+      <p class="text-xs m-0 mt-1 text-body-secondary">
         {{ item.workPositionName }}{{ item.celularPersonal ? ' é ' +
         item.celularPersonal : '' }}
       </p>
-      <p class="text-xs m-0 text-color-secondary">{{ item.correoPersonal }}</p>
+      <p class="text-xs m-0 text-body-secondary">{{ item.correoPersonal }}</p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

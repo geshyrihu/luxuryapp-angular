@@ -1,10 +1,10 @@
 @if (cargando()) {
 <div class="d-flex align-items-center gap-2 py-3">
   <app-icon icon="material-symbols-light:progress-activity" class="ner text-primary ds-animate-spin" />
-  <span class="text-sm text-500">Cargando...</span>
+  <span class="text-sm text-body-secondary">Cargando...</span>
 </div>
 } @else if (total() === 0) {
-<div class="d-flex align-items-center gap-2 py-2 text-400">
+<div class="d-flex align-items-center gap-2 py-2 text-body-secondary">
   <app-icon icon="material-symbols-light:check-circle" />
   <span class="text-sm">Sin ausencias hoy</span>
 </div>
@@ -13,22 +13,22 @@
 <!-- Totales -->
 <div class="d-flex align-items-center gap-4 mb-3">
   <div class="d-flex align-items-center gap-2">
-    <span class="text-2xl font-bold text-900">{{ total() }}</span>
-    <span class="text-sm text-500"
+    <span class="text-2xl fw-bold text-body">{{ total() }}</span>
+    <span class="text-sm text-body-secondary"
       >ausencia{{ total() === 1 ? '' : 's' }} en los proximos 10 dias</span
     >
   </div>
-  <div class="d-flex gap-3 text-xs text-500">
+  <div class="d-flex gap-3 text-xs text-body-secondary">
     @if (resumen()!.totalPermisos > 0) {
     <span>
-      <span class="font-semibold text-ds-warning"
+      <span class="fw-semibold text-ds-warning"
         >{{ resumen()!.totalPermisos }}</span
       >
       permiso{{ resumen()!.totalPermisos === 1 ? '' : 's' }}
     </span>
     } @if (resumen()!.totalVacaciones > 0) {
     <span>
-      <span class="font-semibold text-ds-info"
+      <span class="fw-semibold text-ds-info"
         >{{ resumen()!.totalVacaciones }}</span
       >
       vacacion{{ resumen()!.totalVacaciones === 1 ? '' : 'es' }}
@@ -42,34 +42,34 @@
   @for (customer of resumen()!.customers; track customer.customerName) {
 
   <div>
-    <span class="text-xs font-bold text-600 uppercase"
+    <span class="text-xs fw-bold text-body-secondary text-uppercase"
       >{{ customer.customerName }}</span
     >
 
-    <div class="d-flex flex-column gap-1 mt-1 ps-2 border-left-2 surface-border">
+    <div class="d-flex flex-column gap-1 mt-1 ps-2 border-left-2 border">
       @for (persona of customer.personas; track persona.employeeName) {
       <div class="d-flex align-items-center justify-content-between py-1">
         <!-- Nombre y rol -->
-        <div class="d-flex flex-column gap-0 min-w-0 flex-auto">
+        <div class="d-flex flex-column gap-0 min-w-0 flex-fill">
           <span
-            class="text-sm text-900 font-semibold white-space-nowrap overflow-hidden text-overflow-ellipsis"
+            class="text-sm text-body fw-semibold text-nowrap overflow-hidden text-truncate"
           >
             {{ persona.employeeName }}
           </span>
-          <span class="text-xs text-500">{{ persona.roleName }}</span>
+          <span class="text-xs text-body-secondary">{{ persona.roleName }}</span>
         </div>
 
         <!-- Tipo y fechas -->
         <div class="d-flex flex-column align-items-end flex-none ms-2 gap-1">
           <span
-            class="text-xs font-semibold rounded px-2 py-0"
+            class="text-xs fw-semibold rounded px-2 py-0"
             [class.text-ds-warning]="persona.tipoAusencia === 'Permiso'"
             [class.text-ds-info]="persona.tipoAusencia === 'Vacaciones'"
           >
             {{ persona.tipoAusencia }}
           </span>
           @if (persona.esActual) {
-          <span class="text-xs text-400">
+          <span class="text-xs text-body-secondary">
             hasta {{ formatFecha(persona.endDate) }} @if (persona.diasRestantes
             === 0) {
             <span class="text-ds-warning">(hoy)</span>
@@ -78,7 +78,7 @@
             }
           </span>
           } @else {
-          <span class="text-xs text-400">
+          <span class="text-xs text-body-secondary">
             desde {{ formatFecha(persona.startDate) }}
           </span>
           }

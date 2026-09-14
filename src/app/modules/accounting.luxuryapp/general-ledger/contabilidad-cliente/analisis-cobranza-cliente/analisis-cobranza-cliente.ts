@@ -18,8 +18,9 @@ import {
 } from "@ui/shared/breakdown-list/breakdown-list";
 import { AppRankedList } from "@ui/shared/ranked-list/ranked-list";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
+import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { ButtonModule } from "@ui/web/primeng-button/primeng-button";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
 import {
   DialogHandlerService,
@@ -42,8 +43,9 @@ import { ContabilidadClienteService } from "../contabilidad-cliente.service";
     TableModule,
     AccountingNumberPipe,
     AppStatCard,
+    AppSkeleton,
     AppBreakdownList,
-    ButtonModule,
+    WebButtonLabel,
     AppRankedList,
     AppIcon,
     MobileListItem,

@@ -1,13 +1,13 @@
 <div class="w-full">
   <div class="mb-3">
-    <div class="text-xl font-medium">MINUTAS</div>
+    <div class="text-xl fw-medium">MINUTAS</div>
   </div>
   <div class="row g-4">
     <div class="col-12 col-md-4">
       <div class="p-3 h-full">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <div class="font-medium text-xl">
-            Contable (<span class="font-bold text-600">
+          <div class="fw-medium text-xl">
+            Contable (<span class="fw-bold text-body-secondary">
               {{ graficoMinutasContable.totalItems }} </span
             >)
           </div>
@@ -26,7 +26,7 @@
           </div>
 
           <div
-            class="w-full d-flex h-2rem rounded overflow-hidden surface-200"
+            class="w-full d-flex h-2rem rounded overflow-hidden bg-body-tertiary"
           >
             @if (onValidateNan(graficoMinutasContable.evaluacionConcluido)) {
             <div
@@ -50,8 +50,8 @@
     <div class="col-12 col-md-4">
       <div class="p-3 h-full">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <div class="font-medium text-xl">
-            Operaciones (<span class="font-bold text-600">
+          <div class="fw-medium text-xl">
+            Operaciones (<span class="fw-bold text-body-secondary">
               {{ graficoMinutasOperaciones.totalItems }} </span
             >)
           </div>
@@ -72,7 +72,7 @@
           </div>
 
           <div
-            class="w-full d-flex h-2rem rounded overflow-hidden surface-200"
+            class="w-full d-flex h-2rem rounded overflow-hidden bg-body-tertiary"
           >
             @if (onValidateNan(graficoMinutasOperaciones.evaluacionConcluido)) {
             <div
@@ -97,8 +97,8 @@
     <div class="col-12 col-md-4">
       <div class="p-3 h-full">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <div class="font-medium text-xl">
-            Legal (<span class="font-bold text-600">
+          <div class="fw-medium text-xl">
+            Legal (<span class="fw-bold text-body-secondary">
               {{ graficoMinutasLegal.totalItems }} </span
             >)
           </div>
@@ -119,7 +119,7 @@
           </div>
 
           <div
-            class="w-full d-flex h-2rem rounded overflow-hidden surface-200"
+            class="w-full d-flex h-2rem rounded overflow-hidden bg-body-tertiary"
           >
             @if (onValidateNan(graficoMinutasLegal.evaluacionConcluido)) {
             <div
@@ -143,13 +143,13 @@
   </div>
   <div class="row mt-4 g-4">
     <div class="col-12 col-sm-3">
-      <div class="text-xl font-medium mb-3">Mantenimientos</div>
+      <div class="text-xl fw-medium mb-3">Mantenimientos</div>
     </div>
     <div class="col-12 col-sm-4">
       <div class="p-3 h-full">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <div class="font-medium text-xl">
-            Preventivos (<span class="font-bold text-600">
+          <div class="fw-medium text-xl">
+            Preventivos (<span class="fw-bold text-body-secondary">
               {{ graficoMttoPreventivos.totalItems }} </span
             >)
           </div>
@@ -170,7 +170,7 @@
           </div>
 
           <div
-            class="w-full d-flex h-2rem rounded overflow-hidden surface-200"
+            class="w-full d-flex h-2rem rounded overflow-hidden bg-body-tertiary"
           >
             @if (onValidateNan(graficoMttoPreventivos.evaluacionConcluido)) {
             <div
@@ -194,8 +194,8 @@
     <div class="col-12 col-sm-5">
       <div class="p-3 h-full">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <div class="font-medium text-xl">
-            Correctivos (<span class="font-bold text-600">
+          <div class="fw-medium text-xl">
+            Correctivos (<span class="fw-bold text-body-secondary">
               {{ graficosMantenimiento.totalItems }} </span
             >)
           </div>
@@ -216,7 +216,7 @@
           </div>
 
           <div
-            class="w-full d-flex h-2rem rounded overflow-hidden surface-200"
+            class="w-full d-flex h-2rem rounded overflow-hidden bg-body-tertiary"
           >
             @if (onValidateNan(graficosMantenimiento.evaluacionConcluido)) {
             <div

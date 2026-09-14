@@ -32,7 +32,7 @@
   </div>
 
   @if (loading()) {
-  <div class="d-flex justify-content-center py-8">
+  <div class="d-flex justify-content-center py-5">
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-4xl text-primary"
@@ -41,42 +41,42 @@
   } @else if (dashboard()) {
   <!-- KPIs -->
   <div class="row mt-2 g-4">
-    <div class="col-12 col-md-6 lg:col">
+    <div class="col-12 col-md-6 col-lg">
       <div class="card p-4 d-flex flex-column">
-        <span class="text-500 text-sm">Total Incidencias</span>
-        <span class="text-3xl font-bold text-primary">
+        <span class="text-body-secondary text-sm">Total Incidencias</span>
+        <span class="text-3xl fw-bold text-primary">
           {{ dashboard()!.totalIncidents }}
         </span>
       </div>
     </div>
-    <div class="col-12 col-md-6 lg:col">
+    <div class="col-12 col-md-6 col-lg">
       <div class="card p-4 d-flex flex-column">
-        <span class="text-500 text-sm">Resueltas</span>
-        <span class="text-3xl font-bold text-green-600">
+        <span class="text-body-secondary text-sm">Resueltas</span>
+        <span class="text-3xl fw-bold text-green-600">
           {{ dashboard()!.resolvedIncidents }}
         </span>
       </div>
     </div>
-    <div class="col-12 col-md-6 lg:col">
+    <div class="col-12 col-md-6 col-lg">
       <div class="card p-4 d-flex flex-column">
-        <span class="text-500 text-sm">Pendientes</span>
-        <span class="text-3xl font-bold text-orange-500">
+        <span class="text-body-secondary text-sm">Pendientes</span>
+        <span class="text-3xl fw-bold text-orange-500">
           {{ dashboard()!.pendingIncidents }}
         </span>
       </div>
     </div>
-    <div class="col-12 col-md-6 lg:col">
+    <div class="col-12 col-md-6 col-lg">
       <div class="card p-4 d-flex flex-column">
-        <span class="text-500 text-sm">Con Sanción</span>
-        <span class="text-3xl font-bold text-red-600">
+        <span class="text-body-secondary text-sm">Con Sanción</span>
+        <span class="text-3xl fw-bold text-red-600">
           {{ dashboard()!.sanctionedIncidents }}
         </span>
       </div>
     </div>
-    <div class="col-12 col-md-6 lg:col">
+    <div class="col-12 col-md-6 col-lg">
       <div class="card p-4 d-flex flex-column">
-        <span class="text-500 text-sm">Días Prom. Resolución</span>
-        <span class="text-3xl font-bold text-blue-600">
+        <span class="text-body-secondary text-sm">Días Prom. Resolución</span>
+        <span class="text-3xl fw-bold text-blue-600">
           {{ dashboard()!.averageResolutionDays }}
         </span>
       </div>
@@ -88,7 +88,7 @@
     <!-- Incidencias por Mes -->
     <div class="col-12 col-lg-6">
       <div class="card p-4">
-        <h3 class="text-lg font-semibold mb-4">Incidencias por Mes</h3>
+        <h3 class="text-lg fw-semibold mb-4">Incidencias por Mes</h3>
         @if (barChartData()) {
         <app-chart-wrapper
           type="bar"
@@ -97,7 +97,7 @@
           height="300px"
         />
         } @else {
-        <div class="text-center text-500 py-8">Sin datos disponibles</div>
+        <div class="text-center text-body-secondary py-5">Sin datos disponibles</div>
         }
       </div>
     </div>
@@ -105,7 +105,7 @@
     <!-- Distribución por Tipo -->
     <div class="col-12 col-lg-6">
       <div class="card p-4">
-        <h3 class="text-lg font-semibold mb-4">Distribución por Tipo</h3>
+        <h3 class="text-lg fw-semibold mb-4">Distribución por Tipo</h3>
         @if (pieChartData()) {
         <app-chart-wrapper
           type="pie"
@@ -114,7 +114,7 @@
           height="300px"
         />
         } @else {
-        <div class="text-center text-500 py-8">Sin datos disponibles</div>
+        <div class="text-center text-body-secondary py-5">Sin datos disponibles</div>
         }
       </div>
     </div>
@@ -122,7 +122,7 @@
 
   <!-- Tabla: Top Empleados -->
   <div class="card p-4">
-    <h3 class="text-lg font-semibold mb-4">
+    <h3 class="text-lg fw-semibold mb-4">
       Top Empleados con Mís Incidencias
     </h3>
     <p-table
@@ -147,7 +147,7 @@
       </ng-template>
       <ng-template #emptymessage>
         <tr>
-          <td colspan="2" class="text-center text-500">
+          <td colspan="2" class="text-center text-body-secondary">
             Sin datos disponibles
           </td>
         </tr>
@@ -158,11 +158,11 @@
   <!-- Distribución por Severidad -->
   @if (dashboard()!.bySeverity.length > 0) {
   <div class="card p-4">
-    <h3 class="text-lg font-semibold mb-4">Distribución por Severidad</h3>
+    <h3 class="text-lg fw-semibold mb-4">Distribución por Severidad</h3>
     <div class="d-flex flex-wrap gap-2">
       @for (item of dashboard()!.bySeverity; track item.name) {
-      <div class="d-flex align-items-center px-3 py-2 surface-100 rounded-lg">
-        <span class="font-medium">{{ item.name }}</span>
+      <div class="d-flex align-items-center px-3 py-2 bg-body-tertiary rounded-lg">
+        <span class="fw-medium">{{ item.name }}</span>
         <span class="badge badge-info ms-2">{{ item.count }}</span>
       </div>
       }

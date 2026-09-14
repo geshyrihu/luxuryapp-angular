@@ -242,7 +242,7 @@
         >
           <!-- Fecha del Ticket -->
           <div class="d-flex justify-content-between align-items-center mb-1">
-            <small class="text-color-secondary"
+            <small class="text-body-secondary"
               >{{ item.folio }} | {{ item.createdAtDate }}</small
             >
             <span
@@ -271,11 +271,11 @@
             <!-- Detalles del Ticket -->
             <div class="flex-grow-1">
               <div
-                class="ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap"
+                class="ticket-title text-truncate overflow-hidden text-nowrap"
               >
                 {{ item.title }}
               </div>
-              <small class="ticket-description two-lines text-color-secondary">
+              <small class="ticket-description two-lines text-body-secondary">
                 {{ item.description }}
               </small>
             </div>

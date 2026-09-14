@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { TimelineModule } from "primeng/timeline";
 import { EndpointsReclutamiento } from "src/app/core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { DynamicDialogConfig } from "src/app/core/services/dialog-handler.service";
@@ -43,7 +42,7 @@ interface VacancyCandidateTimeline {
   templateUrl: "./vacancy-candidates-timeline-modal.html",
   styleUrl: "./vacancy-candidates-timeline-modal.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ApiDatePipe, LxAvatar, LxTag, TimelineModule, AppIcon],
+  imports: [ApiDatePipe, LxAvatar, LxTag, AppIcon],
 })
 export class VacancyCandidatesTimelineModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);

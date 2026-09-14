@@ -10,7 +10,7 @@
   </div>
 
   @if (period()) {
-    <p class="text-600 mb-3">{{ period().frecuencia }} &bull; Inicio: {{ period().startDate | apiDate:'dd/MM/yyyy' }}</p>
+    <p class="text-body-secondary mb-3">{{ period().frecuencia }} &bull; Inicio: {{ period().startDate | apiDate:'dd/MM/yyyy' }}</p>
   }
 
   <div class="card mb-3">
@@ -18,12 +18,12 @@
     @if (activeCycle()) {
       <div class="d-flex align-items-center gap-3">
         <lx-tag [value]="activeCycle().status" [severity]="activeCycle().status === 'Completado' ? 'success' : activeCycle().status === 'Vencido' ? 'danger' : 'info'"  />
-        <span class="text-600">{{ activeCycle().periodStart | apiDate:'dd/MM/yyyy' }} — {{ activeCycle().periodEnd | apiDate:'dd/MM/yyyy' }}</span>
-        <span class="text-600">{{ activeCycle().items?.length ?? 0 }} equipos</span>
+        <span class="text-body-secondary">{{ activeCycle().periodStart | apiDate:'dd/MM/yyyy' }} — {{ activeCycle().periodEnd | apiDate:'dd/MM/yyyy' }}</span>
+        <span class="text-body-secondary">{{ activeCycle().items?.length ?? 0 }} equipos</span>
       </div>
     } @else {
       <div class="d-flex align-items-center gap-3">
-        <p class="text-600 m-0">Sin ciclo de inspección activo.</p>
+        <p class="text-body-secondary m-0">Sin ciclo de inspección activo.</p>
         <il-button label="Generar Ciclo" iconClass="material-symbols-light:play-arrow" size="small" (clicked)="onGenerateCycle()" />
       </div>
     }
@@ -39,7 +39,7 @@
     </div>
 
     @if (showAddForm()) {
-      <div class="d-flex align-items-center gap-2 mb-3 p-3 surface-100 rounded">
+      <div class="d-flex align-items-center gap-2 mb-3 p-3 bg-body-tertiary rounded">
         <select class="p-inputtext w-100" [(ngModel)]="selectedEquipmentId">
           <option value="">-- Selecciona un detector de humo --</option>
           @for (e of availableEquipment(); track e.id) {
@@ -52,20 +52,20 @@
 
     <div [hidden]="!scanning()" class="mb-3">
       <video #videoEl autoplay playsinline ></video>
-      @if (scanStatus()) { <p class="text-600 mt-1">{{ scanStatus() }}</p> }
+      @if (scanStatus()) { <p class="text-body-secondary mt-1">{{ scanStatus() }}</p> }
       @if (scanError()) { <p class="text-red-500 mt-1">{{ scanError() }}</p> }
     </div>
 
     @if (mergedItems().length === 0) {
-      <p class="text-600 text-center py-3">No hay detectores de humo en este periodo.</p>
+      <p class="text-body-secondary text-center py-3">No hay detectores de humo en este periodo.</p>
     } @else {
       <table class="w-100" >
         <thead>
-          <tr class="surface-100">
-            <th class="p-2 text-left text-600 font-medium">Código</th>
-            <th class="p-2 text-left text-600 font-medium">Ubicación</th>
-            <th class="p-2 text-left text-600 font-medium">Tipo</th>
-            <th class="p-2 text-center text-600 font-medium">Estado</th>
+          <tr class="bg-body-tertiary">
+            <th class="p-2 text-start text-body-secondary fw-medium">Código</th>
+            <th class="p-2 text-start text-body-secondary fw-medium">Ubicación</th>
+            <th class="p-2 text-start text-body-secondary fw-medium">Tipo</th>
+            <th class="p-2 text-center text-body-secondary fw-medium">Estado</th>
             <th class="p-2"></th>
           </tr>
         </thead>

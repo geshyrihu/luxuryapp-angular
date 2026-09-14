@@ -23,7 +23,7 @@
     <div
       class="d-flex align-items-center justify-content-between flex-wrap gap-2"
     >
-      <h4 class="m-0 font-semibold text-900">
+      <h4 class="m-0 fw-semibold text-body">
         GRUPO DE TRABAJO | {{ dataSignal().nameGroup }}
       </h4>
       <div class="d-flex align-items-center gap-2">
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <hr class="my-2 surface-border" />
+    <hr class="my-2 border" />
 
     <div class="d-flex align-items-end flex-wrap gap-3 mb-1">
       <div class="flex-shrink-0 w-12rem">
@@ -109,37 +109,37 @@
 
       <div class="d-flex align-items-center gap-3 ms-auto">
         <span
-          class="d-flex align-items-center gap-1 text-xs text-color-secondary"
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
         >
           <span
-            class="inline-block border-round-sm w-1rem h-1rem"
+            class="inline-block rounded w-1rem h-1rem"
             [style.background]="'var(--task-not-started)'"
           ></span>
           No iniciado
         </span>
         <span
-          class="d-flex align-items-center gap-1 text-xs text-color-secondary"
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
         >
           <span
-            class="inline-block border-round-sm w-1rem h-1rem"
+            class="inline-block rounded w-1rem h-1rem"
             [style.background]="'var(--task-in-progress)'"
           ></span>
           En proceso
         </span>
         <span
-          class="d-flex align-items-center gap-1 text-xs text-color-secondary"
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
         >
           <span
-            class="inline-block border-round-sm w-1rem h-1rem"
+            class="inline-block rounded w-1rem h-1rem"
             [style.background]="'var(--task-completed)'"
           ></span>
           Completado
         </span>
         <span
-          class="d-flex align-items-center gap-1 text-xs text-color-secondary"
+          class="d-flex align-items-center gap-1 text-xs text-body-secondary"
         >
           <span
-            class="inline-block border-round-sm w-1rem h-1rem"
+            class="inline-block rounded w-1rem h-1rem"
             [style.background]="'var(--task-reopened)'"
           ></span>
           Reabierto
@@ -150,7 +150,7 @@
           label="?"
           variant="ghost"
           size="small"
-          class="border-circle border-1 border-300 surface-card text-500 hover:text-primary hover:border-primary transition-colors transition-duration-200 task-help-btn"
+          class="rounded-circle border-1 border-300 bg-body text-body-secondary hover:text-primary hover:border-primary transition-colors transition-duration-200 task-help-btn"
           lxTooltip="Ayuda de interacciones"
           tooltipPosition="top"
           (clicked)="helpPopover.toggle($event)"
@@ -159,7 +159,7 @@
         <lx-popover #helpPopover styleClass="shadow">
           <div>
             <p
-              class="m-0 mb-3 font-semibold text-900 text-sm border-bottom-1 surface-border pb-2"
+              class="m-0 mb-3 fw-semibold text-body text-sm border-bottom-1 border pb-2"
             >
               <app-icon
                 [icon]="'material-symbols-light:info'"
@@ -172,7 +172,7 @@
               <!-- Reordenar -->
               <div class="d-flex align-items-start gap-2">
                 <span
-                  class="flex-shrink-0 border-circle bg-primary-100 d-flex align-items-center justify-content-center"
+                  class="flex-shrink-0 rounded-circle bg-primary-100 d-flex align-items-center justify-content-center"
                 >
                   <app-icon
                     [icon]="'material-symbols-light:menu'"
@@ -180,10 +180,10 @@
                   />
                 </span>
                 <div>
-                  <p class="m-0 font-semibold text-800 text-xs">
+                  <p class="m-0 fw-semibold text-body text-xs">
                     Reordenar tareas
                   </p>
-                  <p class="m-0 text-xs text-600 mt-1 line-height-3">
+                  <p class="m-0 text-xs text-body-secondary mt-1 line-height-3">
                     Arrastra el icono <strong>&#9776;</strong> de la columna
                     izquierda hacia arriba o abajo para cambiar el orden. Si la
                     tarea tiene subtareas, estas se mueven automaticamente con
@@ -195,7 +195,7 @@
               <!-- Predecesora -->
               <div class="d-flex align-items-start gap-2">
                 <span
-                  class="flex-shrink-0 border-circle bg-purple-100 d-flex align-items-center justify-content-center"
+                  class="flex-shrink-0 rounded-circle bg-purple-100 d-flex align-items-center justify-content-center"
                 >
                   <app-icon
                     [icon]="'material-symbols-light:link'"
@@ -203,16 +203,16 @@
                   />
                 </span>
                 <div>
-                  <p class="m-0 font-semibold text-800 text-xs">
+                  <p class="m-0 fw-semibold text-body text-xs">
                     Asignar predecesora
                   </p>
-                  <p class="m-0 text-xs text-600 mt-1 line-height-3">
+                  <p class="m-0 text-xs text-body-secondary mt-1 line-height-3">
                     Arrastra el icono <strong>&#128279;</strong> de una tarea y
                     sueltalo sobre otra para marcarla como predecesora. La tarea
                     arrastrada no puede iniciar hasta que la predecesora este
                     completa.
                   </p>
-                  <p class="m-0 text-xs text-500 mt-1">
+                  <p class="m-0 text-xs text-body-secondary mt-1">
                     Click en <strong>&#8594; FOLIO</strong> para quitar la
                     dependencia.
                   </p>
@@ -222,7 +222,7 @@
               <!-- Tarea hija -->
               <div class="d-flex align-items-start gap-2">
                 <span
-                  class="flex-shrink-0 border-circle bg-orange-100 d-flex align-items-center justify-content-center"
+                  class="flex-shrink-0 rounded-circle bg-orange-100 d-flex align-items-center justify-content-center"
                 >
                   <app-icon
                     [icon]="'material-symbols-light:account-tree'"
@@ -230,10 +230,10 @@
                   />
                 </span>
                 <div>
-                  <p class="m-0 font-semibold text-800 text-xs">
+                  <p class="m-0 fw-semibold text-body text-xs">
                     Tareas padre e hijos
                   </p>
-                  <p class="m-0 text-xs text-600 mt-1 line-height-3">
+                  <p class="m-0 text-xs text-body-secondary mt-1 line-height-3">
                     Las tareas con el icono
                     <app-icon
                       [icon]="'material-symbols-light:account-tree'"
@@ -242,7 +242,7 @@
                     tienen subtareas. Las tareas con
                     <app-icon
                       [icon]="'material-symbols-light:keyboard-double-arrow-down'"
-                      class="text-400"
+                      class="text-body-secondary"
                     />
                     son hijas de otra. Al crear o editar una tarea puedes
                     asignarle una tarea padre.
@@ -298,14 +298,14 @@
         <div class="d-flex align-items-center justify-content-center gap-1">
           <app-icon
             [icon]="'material-symbols-light:menu'"
-            class="cursor-move text-400"
+            class="cursor-move text-body-secondary"
             pReorderableRowHandle
             lxTooltip="Arrastra para reordenar la tarea"
             tooltipPosition="top"
           />
           <app-icon
             [icon]="'material-symbols-light:link'"
-            class="text-300 cursor-grab"
+            class="text-body-secondary cursor-grab"
             draggable="true"
             [class.text-purple-500]="linkDragSourceId() === item.id"
             (dragstart)="onLinkDragStart($event, item.id)"
@@ -323,7 +323,7 @@
           @if (item.parentTaskId) {
           <app-icon
             [icon]="'material-symbols-light:keyboard-double-arrow-down'"
-            class="text-400 flex-shrink-0 me-1"
+            class="text-body-secondary flex-shrink-0 me-1"
             lxTooltip="Tarea hija"
             tooltipPosition="top"
           />
@@ -345,12 +345,12 @@
           />
           <div class="min-w-0">
             <p
-              class="m-0 text-xs text-color-secondary d-flex align-items-center gap-1 flex-wrap"
+              class="m-0 text-xs text-body-secondary d-flex align-items-center gap-1 flex-wrap"
             >
               {{ item.folio }} | {{ item.createdAtDate }} @if
               (chainedTaskIds().has(item.id)) {
               <span
-                class="px-1 rounded text-xs font-semibold"
+                class="px-1 rounded text-xs fw-semibold"
                 [style.background]="chainStepMap().get(item.id) === 1 ? 'rgba(16,185,129,0.15)' : 'rgba(147,51,234,0.15)'"
                 [style.color]="chainStepMap().get(item.id) === 1 ? 'var(--ds-success)' : 'var(--ds-help)'"
                 [lxTooltip]="'Secuencia: paso ' + chainStepMap().get(item.id)"
@@ -372,7 +372,7 @@
               }
             </p>
             <p
-              class="m-0 font-semibold text-xs text-900 d-flex align-items-center gap-1"
+              class="m-0 fw-semibold text-xs text-body d-flex align-items-center gap-1"
             >
               @if (item.daysDifference > 15 && !item.scheduledAt) {
               <app-icon
@@ -396,7 +396,7 @@
               />
               } {{ item.title }}
             </p>
-            <p class="m-0 text-xs text-700">{{ item.description }}</p>
+            <p class="m-0 text-xs text-body">{{ item.description }}</p>
           </div>
         </div>
       </td>
@@ -413,21 +413,21 @@
           [lxTooltip]="item.assignee"
           tooltipPosition="top"
         />
-        <p class="m-0 text-xs text-color-secondary mt-1 font-semibold">
+        <p class="m-0 text-xs text-body-secondary mt-1 fw-semibold">
           {{ item.assignee | initialsAbbr }}
         </p>
         }
       </td>
 
       <td>
-        <p class="m-0 text-xs text-color-secondary">
+        <p class="m-0 text-xs text-body-secondary">
           <app-icon
             [icon]="'material-symbols-light:calendar-today'"
             class="me-1"
           />{{ item.scheduledAt }}
         </p>
         @if (item.closedAtDate) {
-        <p class="m-0 text-xs text-color-secondary mt-1">
+        <p class="m-0 text-xs text-body-secondary mt-1">
           <app-icon [icon]="'material-symbols-light:lock'" class="me-1" />{{
           item.closedAtDate }}
         </p>
@@ -472,10 +472,10 @@
 
       <td>
         @if (item.lastFollowUp) {
-        <span class="text-xs text-400 font-medium d-block mb-1"
+        <span class="text-xs text-body-secondary fw-medium d-block mb-1"
           >{{ item.lastFollowUpDate }}</span
         >
-        <p class="m-0 text-xs text-700">{{ item.lastFollowUp }}</p>
+        <p class="m-0 text-xs text-body">{{ item.lastFollowUp }}</p>
         }
       </td>
 
@@ -490,7 +490,7 @@
               [icon]="'material-symbols-light:forum'"
               class="text-blue-500"
             />
-            <span class="badge bg-info px-2 py-1 text-xs font-semibold">
+            <span class="badge bg-info px-2 py-1 text-xs fw-semibold">
               {{ item.ticketMessageFollowUp }}
             </span>
           </a>
@@ -557,14 +557,14 @@
   <ng-container customFilters>
     <div class="px-2 pb-2">
       <div class="d-flex flex-column align-items-center mb-2">
-        <div class="text-xs text-center font-bold text-secondary mb-1">
+        <div class="text-xs text-center fw-bold text-secondary mb-1">
           GRUPO: {{ dataSignal().nameGroup }}
         </div>
         <app-task-status (statusChange)="onStatusChange($event)" />
       </div>
 
       <div class="d-flex gap-2 w-full mb-2">
-        <div class="flex-1">
+        <div class="flex-fill">
           <ion-input-select
             [data]="cb_assignee"
             optionLabel="label"
@@ -575,7 +575,7 @@
             (selectionChange)="onResponsibleChange($event)"
           />
         </div>
-        <div class="flex-1">
+        <div class="flex-fill">
           <ion-input-text
             type="week"
             [control]="weekInputValueControl"
@@ -587,7 +587,7 @@
 
       <div class="d-flex justify-content-between w-full">
         <button
-          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
+          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-fill px-0"
           (click)="onPendingBoard()"
         >
           <app-icon
@@ -597,7 +597,7 @@
           Tablero
         </button>
         <button
-          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
+          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-fill px-0"
           (click)="onPreviewClickedWorkPlan()"
         >
           <app-icon
@@ -607,7 +607,7 @@
           Plan
         </button>
         <button
-          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
+          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-fill px-0"
           (click)="onPreviewWeeklyReport()"
         >
           <app-icon
@@ -617,7 +617,7 @@
           Previa
         </button>
         <button
-          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-1 px-0"
+          class="p-button p-button-rounded p-button-text p-button-sm p-button-primary flex-fill px-0"
           (click)="onSendWeeklyReport()"
         >
           <app-icon icon="material-symbols-light:send-outline" class="me-1" />
@@ -646,7 +646,7 @@
               size="normal"
             />
             <span
-              class="text-xs font-semibold text-color-secondary d-flex align-items-center gap-1"
+              class="text-xs fw-semibold text-body-secondary d-flex align-items-center gap-1"
             >
               {{ item.folio }}
             </span>
@@ -659,7 +659,7 @@
               [value]="item.status === 'Completed' ? 'Terminado' : item.status === 'InProgress' ? 'En Proceso' : item.status === 'Reopened' ? 'Reabierto' : 'No Iniciado'"
             />
             <span
-              class="text-xs font-bold"
+              class="text-xs fw-bold"
               [class.text-red-500]="item.daysDifference > 7"
             >
               {{ item.daysDifference }} días
@@ -712,7 +712,7 @@
         <div class="d-flex flex-wrap gap-1 mb-1">
           @if (chainedTaskIds().has(item.id)) {
           <span
-            class="px-2 py-1 rounded text-xs font-semibold inline-block"
+            class="px-2 py-1 rounded text-xs fw-semibold inline-block"
             [style.background]="chainStepMap().get(item.id) === 1 ? 'rgba(16,185,129,0.15)' : 'rgba(147,51,234,0.15)'"
             [style.color]="chainStepMap().get(item.id) === 1 ? 'var(--ds-success)' : 'var(--ds-help)'"
             >Paso {{ chainStepMap().get(item.id) }}</span
@@ -729,7 +729,7 @@
         </div>
 
         <!-- Cuerpo: Título, DESCRIPCIÓN, Imágenes -->
-        <h6 class="text-sm font-semibold m-0 text-wrap text-color">
+        <h6 class="text-sm fw-semibold m-0 text-wrap text-body">
           @if (item.daysDifference > 15 && !item.scheduledAt) {
           <app-icon
             [icon]="'material-symbols-light:schedule'"
@@ -737,13 +737,13 @@
           />
           } {{ item.title }}
         </h6>
-        <p class="text-xs text-color-secondary m-0 text-wrap truncate">
+        <p class="text-xs text-body-secondary m-0 text-wrap truncate">
           {{ item.description }}
         </p>
 
         <!-- Toggle de relevancia para reporte -->
         <div class="d-flex align-items-center gap-2 mt-1">
-          <span class="text-xs text-color-secondary">Incluir en reporte</span>
+          <span class="text-xs text-body-secondary">Incluir en reporte</span>
           <custom-input-toggle-switch-signal
             [(ngModel)]="item.isRelevant"
             (toggleChange)="onUpdateStateTicket(item)"

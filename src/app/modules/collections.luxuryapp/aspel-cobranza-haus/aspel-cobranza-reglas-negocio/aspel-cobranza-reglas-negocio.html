@@ -1,6 +1,6 @@
 <div class="p-4">
   <div class="mb-4">
-    <h2 class="text-2xl font-bold text-gray-800 m-0 mb-2">Reglas de Negocio - Ecosistema de Cobranza Aspel</h2>
+    <h2 class="text-2xl fw-bold text-gray-800 m-0 mb-2">Reglas de Negocio - Ecosistema de Cobranza Aspel</h2>
     <p class="text-gray-600 m-0 line-height-3">
       Este documento describe detalladamente la lógica contable y de presentación utilizada a través de los distintos módulos de cobranza, garantizando congruencia entre lo capturado en Aspel COI y lo presentado al condómino.
     </p>
@@ -36,7 +36,7 @@
           </ul>
 
           <p><strong>Comportamiento en Aviso de Cobro:</strong></p>
-          <div class="surface-100 p-3 border-round border-1 surface-border mt-3 mb-3">
+          <div class="bg-body-tertiary p-3 rounded border-1 border mt-3 mb-3">
             El motor principal intercepta estos movimientos antes de renderizarlos.
             <br /><br />
             <strong>Paso 1:</strong> Identifica el descuento exacto correspondiente al <strong>mes consultado</strong> verificando la fecha de la póliza original.<br />
@@ -64,7 +64,7 @@
           </p-table>
 
           <!-- Casos Atípicos y Errores Humanos -->
-          <div class="bg-red-50 text-red-900 p-3 border-round border-1 border-red-200">
+          <div class="bg-red-50 text-red-900 p-3 rounded border-1 border-red-200">
             <strong><app-icon icon="material-symbols-light:warning" class="me-2" />Consecuencia de Error Humano (Descuento Positivo)</strong>
             <p class="mt-2 mb-0 line-height-3">
               ¿Qué pasa si el contador captura el descuento en la cuenta <code>002</code> con naturaleza de <strong>Cargo (D)</strong> pero con un monto <strong>positivo</strong> (Ej. +$1,000)?
@@ -137,7 +137,7 @@
               <tr>
                 <td>{{row.evento}}</td>
                 <td>{{row.monto}}</td>
-                <td class="font-bold">{{row.calculo}}</td>
+                <td class="fw-bold">{{row.calculo}}</td>
               </tr>
             </ng-template>
           </p-table>

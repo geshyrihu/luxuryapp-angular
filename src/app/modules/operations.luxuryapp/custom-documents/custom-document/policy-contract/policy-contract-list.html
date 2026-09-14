@@ -72,7 +72,7 @@
       <td [attr.colspan]="9">
         <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, término, Estado, Vigencia, Documento, Opciones -->
         <!-- Muestra el nombre del grupo -->
-        <strong class="font-bold ms-2 p-0 font-size-24">
+        <strong class="fw-bold ms-2 p-0 font-size-24">
           {{ group.typeOfContract }}
         </strong>
       </td>
@@ -159,15 +159,15 @@
       </div>
 
       <div class="d-flex justify-content-between align-items-center mb-1">
-        <h2 class="font-bold m-0 text-base text-wrap">{{ item.provider }}</h2>
+        <h2 class="fw-bold m-0 text-base text-wrap">{{ item.provider }}</h2>
         <lx-tag
           [severity]="getTagSeverity(item.tagLabel)"
           [value]="item.tagLabel"
           class="text-sm"
         />
       </div>
-      <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
-      <p class="text-xs text-500 m-0">
+      <p class="text-sm text-body m-0 mb-1">{{ item.description }}</p>
+      <p class="text-xs text-body-secondary m-0">
         <app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1" /> Inicio: {{
         item.startDate }}
       </p>

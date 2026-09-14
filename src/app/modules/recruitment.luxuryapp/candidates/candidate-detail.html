@@ -9,45 +9,45 @@
     @if (detail(); as d) {
       <div class="row g-4">
         <div class="col-12 col-md-6">
-          <p class="text-sm m-0 text-color-secondary">Nombre completo</p>
-          <p class="font-semibold m-0 text-color">{{ d.fullName }}</p>
+          <p class="text-sm m-0 text-body-secondary">Nombre completo</p>
+          <p class="fw-semibold m-0 text-body">{{ d.fullName }}</p>
         </div>
         <div class="col-12 col-md-6">
-          <p class="text-sm m-0 text-color-secondary">Telefono</p>
-          <p class="m-0 text-color">{{ d.phoneNumber }}</p>
+          <p class="text-sm m-0 text-body-secondary">Telefono</p>
+          <p class="m-0 text-body">{{ d.phoneNumber }}</p>
         </div>
         <div class="col-12 col-md-6">
-          <p class="text-sm m-0 text-color-secondary">Correo</p>
-          <p class="m-0 text-color">{{ d.email }}</p>
+          <p class="text-sm m-0 text-body-secondary">Correo</p>
+          <p class="m-0 text-body">{{ d.email }}</p>
         </div>
         <div class="col-12 col-md-6">
-          <p class="text-sm m-0 text-color-secondary">Edad</p>
-          <p class="m-0 text-color">{{ d.age ?? "N/D" }}</p>
+          <p class="text-sm m-0 text-body-secondary">Edad</p>
+          <p class="m-0 text-body">{{ d.age ?? "N/D" }}</p>
         </div>
         <div class="col-12 col-md-6">
-          <p class="text-sm m-0 text-color-secondary">Expectativa salarial</p>
-          <p class="m-0 text-color">$ {{ d.salaryExpectation }}</p>
+          <p class="text-sm m-0 text-body-secondary">Expectativa salarial</p>
+          <p class="m-0 text-body">$ {{ d.salaryExpectation }}</p>
         </div>
         <div class="col-12">
-          <p class="text-sm m-0 text-color-secondary">Direccion actual</p>
-          <p class="m-0 text-color">{{ d.currentAddress }}</p>
+          <p class="text-sm m-0 text-body-secondary">Direccion actual</p>
+          <p class="m-0 text-body">{{ d.currentAddress }}</p>
         </div>
         <div class="col-12">
-          <p class="text-sm m-0 text-color-secondary">Disponibilidad</p>
-          <p class="m-0 text-color">{{ d.availability }}</p>
+          <p class="text-sm m-0 text-body-secondary">Disponibilidad</p>
+          <p class="m-0 text-body">{{ d.availability }}</p>
         </div>
         <div class="col-12">
-          <p class="text-sm m-0 text-color-secondary">Resumen de experiencia</p>
-          <p class="m-0 text-color">{{ d.experienceSummary }}</p>
+          <p class="text-sm m-0 text-body-secondary">Resumen de experiencia</p>
+          <p class="m-0 text-body">{{ d.experienceSummary }}</p>
         </div>
         <div class="col-12">
-          <p class="text-sm m-0 text-color-secondary">Experiencia laboral</p>
+          <p class="text-sm m-0 text-body-secondary">Experiencia laboral</p>
           @if (d.workExperiences?.length) {
             <div class="d-flex flex-column gap-2 mt-2">
               @for (experience of d.workExperiences; track experience.id) {
-                <div class="surface-50 border-1 surface-border border-round p-3">
-                  <div class="font-semibold">{{ experience.companyName }}</div>
-                  <div class="text-sm text-color-secondary">
+                <div class="bg-body-tertiary border-1 border rounded p-3">
+                  <div class="fw-semibold">{{ experience.companyName }}</div>
+                  <div class="text-sm text-body-secondary">
                     {{ experience.jobPosition }}
                   </div>
                   <div class="text-sm mt-1">
@@ -60,7 +60,7 @@
                     </div>
                   }
                   @if (experience.departureReason) {
-                    <div class="text-sm text-color-secondary mt-1">
+                    <div class="text-sm text-body-secondary mt-1">
                       Motivo de salida: {{ experience.departureReason }}
                     </div>
                   }
@@ -68,7 +68,7 @@
               }
             </div>
           } @else {
-            <p class="m-0 text-color">Sin experiencias registradas</p>
+            <p class="m-0 text-body">Sin experiencias registradas</p>
           }
         </div>
         <div class="col-12">
@@ -90,21 +90,21 @@
 @if (activeTab() === "procesos") {
   <div class="px-3 py-2">
     @if (applications().length === 0) {
-      <p class="text-center text-color-secondary m-0 py-3">
+      <p class="text-center text-body-secondary m-0 py-3">
         Sin vacantes ligadas
       </p>
     } @else {
       <div class="d-flex flex-column gap-2">
         @for (app of applications(); track app.id) {
           <div
-            class="surface-card border-1 surface-border border-round p-3 d-flex flex-column gap-1"
+            class="bg-body border-1 border rounded p-3 d-flex flex-column gap-1"
           >
             <div class="d-flex justify-content-between align-items-center">
-              <p class="font-semibold m-0 text-color">{{ app.positionName }}</p>
+              <p class="fw-semibold m-0 text-body">{{ app.positionName }}</p>
               <app-candidate-stage-badge [stage]="app.currentStage" />
             </div>
-            <p class="text-sm m-0 text-color-secondary">{{ app.customerName }}</p>
-            <p class="text-sm m-0 text-color-secondary">
+            <p class="text-sm m-0 text-body-secondary">{{ app.customerName }}</p>
+            <p class="text-sm m-0 text-body-secondary">
               Vacante: {{ app.vacancyFolio }}
             </p>
             @if (app.cvFileName) {

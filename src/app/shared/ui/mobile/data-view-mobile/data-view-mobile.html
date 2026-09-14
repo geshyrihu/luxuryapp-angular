@@ -27,7 +27,7 @@
           </a>
           } @else {
           <span
-            class="text-xs font-bold px-1 whitespace-nowrap"
+            class="text-xs fw-bold px-1 whitespace-nowrap"
             [class.text-primary]="last"
             [class.text-500]="!last"
           >
@@ -36,7 +36,7 @@
           } @if (!last) {
           <app-icon
             icon="material-symbols-light:chevron-right"
-            class="text-300 text-xs mx-1"
+            class="text-body-secondary text-xs mx-1"
           />
           }
         </div>
@@ -86,14 +86,14 @@
 
       <!-- Group Header Premium -->
       <div
-        class="sticky z-2 d-flex align-items-center justify-content-between px-3 py-2 surface-100 border-y-1 surface-border shadow-sm mb-2 mt-2 mx-2 rounded"
+        class="sticky z-2 d-flex align-items-center justify-content-between px-3 py-2 bg-body-tertiary border-y-1 border shadow-sm mb-2 mt-2 mx-2 rounded"
         style="top: 0"
       >
-        <span class="text-sm font-bold text-800 uppercase tracking-wider"
+        <span class="text-sm fw-bold text-body text-uppercase tracking-wider"
           >{{ group }}</span
         >
         <span
-          class="text-xs font-medium text-500 bg-surface-200 px-2 py-1 rounded-xl"
+          class="text-xs fw-medium text-body-secondary bg-bg-body-tertiary px-2 py-1 rounded-xl"
         >
           {{ groupedData()[group].length }}
         </span>

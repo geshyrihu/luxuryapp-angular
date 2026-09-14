@@ -9,7 +9,7 @@
         <app-icon icon="material-symbols-light:settings-outline" />
       </div>
       <div>
-        <h1 class="ds-heading text-3xl font-bold text-900 m-0">
+        <h1 class="ds-heading text-3xl fw-bold text-body m-0">
           Administración
         </h1>
         <p class="ds-text-secondary text-base m-0">
@@ -22,12 +22,12 @@
 
   <!-- Grupos de módulos -->
   @for (group of getVisibleGroups(); track group.label) {
-  <div class="d-flex align-items-center gap-2 mb-4 mt-6">
+  <div class="d-flex align-items-center gap-2 mb-4 mt-5">
     <app-icon [icon]="group.icon" />
-    <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase">
+    <h2 class="ds-heading text-lg fw-bold text-body m-0 text-uppercase">
       {{ group.label }}
     </h2>
-    <div class="flex-grow-1 border-bottom-1 surface-border ms-3"></div>
+    <div class="flex-grow-1 border-bottom-1 border ms-3"></div>
   </div>
 
   <div class="row g-4">
@@ -47,11 +47,11 @@
             </div>
             <app-icon
               icon="material-symbols-light:north-east"
-              class="text-400"
+              class="text-body-secondary"
             />
           </div>
           <div>
-            <h3 class="m-0 font-bold text-900 line-height-2 text-base">
+            <h3 class="m-0 fw-bold text-body line-height-2 text-base">
               {{ module.title }}
             </h3>
             <p class="text-sm text-secondary m-0 mt-2 line-height-3">
@@ -70,7 +70,7 @@
 <div class="d-block d-md-none fadein">
   <!-- Header compacto -->
   <div
-    class="d-flex align-items-center gap-3 px-3 py-3 border-bottom-1 surface-border"
+    class="d-flex align-items-center gap-3 px-3 py-3 border-bottom-1 border"
   >
     <div
       class="d-flex align-items-center justify-content-center rounded-lg flex-shrink-0"
@@ -78,8 +78,8 @@
       <app-icon icon="material-symbols-light:settings-outline" />
     </div>
     <div>
-      <h2 class="font-bold m-0 text-color">Administración</h2>
-      <p class="text-xs m-0 text-color-secondary">Configuración del sistema</p>
+      <h2 class="fw-bold m-0 text-body">Administración</h2>
+      <p class="text-xs m-0 text-body-secondary">Configuración del sistema</p>
     </div>
   </div>
 
@@ -90,7 +90,7 @@
     <div class="px-3 py-2">
       <div class="d-flex align-items-center gap-2">
         <app-icon [icon]="group.icon" />
-        <span class="text-xs font-bold uppercase">{{ group.label }}</span>
+        <span class="text-xs fw-bold text-uppercase">{{ group.label }}</span>
       </div>
     </div>
 
@@ -103,8 +103,8 @@
       >
         <app-icon [icon]="module.icon" [style.color]="module.color" />
       </div>
-      <h3 class="font-semibold m-0 text-color">{{ module.title }}</h3>
-      <p class="text-xs m-0 mt-1 text-color-secondary">
+      <h3 class="fw-semibold m-0 text-body">{{ module.title }}</h3>
+      <p class="text-xs m-0 mt-1 text-body-secondary">
         {{ module.description }}
       </p>
     </ili-list-item>

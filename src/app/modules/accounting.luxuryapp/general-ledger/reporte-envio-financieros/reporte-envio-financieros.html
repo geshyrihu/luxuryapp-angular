@@ -10,7 +10,7 @@
   <ng-template #caption>
     <div class="row align-items-center g-4">
       <div class="col-12 col-sm-9">
-        <h3 class="m-0 text-uppercase font-bold text-primary">
+        <h3 class="m-0 text-text-uppercase fw-bold text-primary">
           REPORTE DE ENVÍO DE ESTADOS FINANCIEROS A CONDÓMINOS AÑO {{
           selectedYear }}
         </h3>
@@ -21,7 +21,7 @@
       </div>
       <div class="col-12 col-sm-3">
         <div class="d-flex justify-content-end align-items-center gap-2">
-          <label class="font-bold">Año:</label>
+          <label class="fw-bold">Año:</label>
           <custom-input-select-signal
             [data]="years"
             [(ngModel)]="selectedYear"
@@ -43,7 +43,7 @@
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td class="font-bold">{{ item.nombreCorto }}</td>
+      <td class="fw-bold">{{ item.nombreCorto }}</td>
       @for (mes of item.meses; track $index) {
       <td class="text-center">
         @if (selectedYear < currentYear || (selectedYear === currentYear &&

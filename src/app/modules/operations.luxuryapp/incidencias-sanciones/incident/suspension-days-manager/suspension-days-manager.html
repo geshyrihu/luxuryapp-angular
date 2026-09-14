@@ -10,7 +10,7 @@
         [horizontal]="false"
         placeholder="Selecciona una o varias fechas"
       />
-      <small class="text-color-secondary text-xs mt-1 d-block">
+      <small class="text-body-secondary text-xs mt-1 d-block">
         Las fechas ya registradas están deshabilitadas. Puedes seleccionar
         varias.
       </small>
@@ -38,16 +38,16 @@
 
   <!-- Resumen y tabla -->
   @if (loading()) {
-  <p class="text-color-secondary text-sm">Cargando...</p>
+  <p class="text-body-secondary text-sm">Cargando...</p>
   } @else if (days().length === 0) {
-  <p class="text-color-secondary text-sm italic">
+  <p class="text-body-secondary text-sm italic">
     Sin días de suspensión registrados.
   </p>
   } @else {
   <div
     class="p-3 bg-yellow-50 border-1 border-yellow-200 rounded text-sm mb-3"
   >
-    <span class="font-medium">Días de suspensión: </span>{{ daysFormatted() }}
+    <span class="fw-medium">Días de suspensión: </span>{{ daysFormatted() }}
   </div>
 
   <p-table [value]="days()" class="p-datatable-sm">

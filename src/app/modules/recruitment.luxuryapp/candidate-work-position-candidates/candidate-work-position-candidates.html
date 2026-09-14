@@ -3,8 +3,8 @@
     class="d-flex flex-column flex-lg-row align-items-lg-start justify-content-lg-between gap-3 g-4"
   >
     <div>
-      <h2 class="m-0 font-semibold text-xl">Detalle del puesto y candidatos</h2>
-      <p class="m-0 text-sm text-color-secondary">
+      <h2 class="m-0 fw-semibold text-xl">Detalle del puesto y candidatos</h2>
+      <p class="m-0 text-sm text-body-secondary">
         Vista operativa de Reclutamiento por puesto de trabajo para revisar
         candidatos activos, entrevistas e historico.
       </p>
@@ -29,10 +29,10 @@
 
 @if (focusedRequestPositionId()) {
 <div class="card p-3 mb-4 border-left-3 border-primary">
-  <div class="font-semibold mb-1">
+  <div class="fw-semibold mb-1">
     Seguimiento directo desde correo o notificacion
   </div>
-  <div class="text-sm text-color-secondary">
+  <div class="text-sm text-body-secondary">
     Este detalle se abrio con la vacante y el candidato priorizados para dar
     continuidad puntual al puesto.
   </div>
@@ -42,40 +42,40 @@
 <div class="card p-3 mb-4">
   <div class="row g-4">
     <div class="col-12 col-lg-6">
-      <small class="text-color-secondary d-block mb-1">Puesto</small>
-      <div class="text-xl font-semibold">{{ positionName() }}</div>
-      <div class="text-sm text-color-secondary">{{ customerName() }}</div>
+      <small class="text-body-secondary d-block mb-1">Puesto</small>
+      <div class="text-xl fw-semibold">{{ positionName() }}</div>
+      <div class="text-sm text-body-secondary">{{ customerName() }}</div>
     </div>
     <div class="col-12 col-lg-6">
       <div class="row text-sm g-4">
         <div class="col-12 col-md-6">
-          <small class="text-color-secondary d-block">Turno</small>
-          <div class="font-medium">
+          <small class="text-body-secondary d-block">Turno</small>
+          <div class="fw-medium">
             {{ workPositionDetail()?.shiftName || "Sin dato" }}
           </div>
         </div>
         <div class="col-12 col-md-6">
-          <small class="text-color-secondary d-block">Codigo</small>
-          <div class="font-medium">
+          <small class="text-body-secondary d-block">Codigo</small>
+          <div class="fw-medium">
             {{ workPositionDetail()?.code || "Sin dato" }}
           </div>
         </div>
         <div class="col-12 col-md-6">
-          <small class="text-color-secondary d-block">Sueldo previo</small>
-          <div class="font-medium">
+          <small class="text-body-secondary d-block">Sueldo previo</small>
+          <div class="fw-medium">
             @if (workPositionDetail()?.beforeSalary) { {{
             workPositionDetail()?.beforeSalary | currency: "MXN" : "symbol" :
             "1.0-0" }} } @else {
-            <span class="text-color-secondary">Sin dato</span>
+            <span class="text-body-secondary">Sin dato</span>
             }
           </div>
         </div>
         <div class="col-12 col-md-6">
-          <small class="text-color-secondary d-block">Sueldo actual</small>
-          <div class="font-medium">
+          <small class="text-body-secondary d-block">Sueldo actual</small>
+          <div class="fw-medium">
             @if (workPositionDetail()?.salary) { {{ workPositionDetail()?.salary
             | currency: "MXN" : "symbol" : "1.0-0" }} } @else {
-            <span class="text-color-secondary">Sin dato</span>
+            <span class="text-body-secondary">Sin dato</span>
             }
           </div>
         </div>
@@ -85,59 +85,59 @@
 </div>
 
 <div class="row mb-4 g-4">
-  <div class="col-12 col-md-6 xl:col">
+  <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-1">Vacantes</small>
-      <div class="text-2xl font-semibold">{{ totalVacancies() }}</div>
-      <small class="text-color-secondary">Ligadas a este puesto</small>
+      <small class="text-body-secondary d-block mb-1">Vacantes</small>
+      <div class="text-2xl fw-semibold">{{ totalVacancies() }}</div>
+      <small class="text-body-secondary">Ligadas a este puesto</small>
     </div>
   </div>
-  <div class="col-12 col-md-6 xl:col">
+  <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-1">Candidatos activos</small>
-      <div class="text-2xl font-semibold text-blue-500">
+      <small class="text-body-secondary d-block mb-1">Candidatos activos</small>
+      <div class="text-2xl fw-semibold text-blue-500">
         {{ totalActiveCandidates() }}
       </div>
-      <small class="text-color-secondary">En seguimiento actual</small>
+      <small class="text-body-secondary">En seguimiento actual</small>
     </div>
   </div>
-  <div class="col-12 col-md-6 xl:col">
+  <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-1">Agendadas</small>
-      <div class="text-2xl font-semibold text-green-500">
+      <small class="text-body-secondary d-block mb-1">Agendadas</small>
+      <div class="text-2xl fw-semibold text-green-500">
         {{ totalScheduled() }}
       </div>
-      <small class="text-color-secondary">Con cita o feedback</small>
+      <small class="text-body-secondary">Con cita o feedback</small>
     </div>
   </div>
-  <div class="col-12 col-md-6 xl:col">
+  <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-1">Vencidas</small>
-      <div class="text-2xl font-semibold text-red-500">
+      <small class="text-body-secondary d-block mb-1">Vencidas</small>
+      <div class="text-2xl fw-semibold text-red-500">
         {{ totalOverdue() }}
       </div>
-      <small class="text-color-secondary">Requieren accion</small>
+      <small class="text-body-secondary">Requieren accion</small>
     </div>
   </div>
-  <div class="col-12 col-md-6 xl:col">
+  <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
-      <small class="text-color-secondary d-block mb-1">Historico</small>
-      <div class="text-2xl font-semibold text-600">
+      <small class="text-body-secondary d-block mb-1">Historico</small>
+      <div class="text-2xl fw-semibold text-body-secondary">
         {{ totalHistoricalCandidates() }}
       </div>
-      <small class="text-color-secondary">Procesos cerrados</small>
+      <small class="text-body-secondary">Procesos cerrados</small>
     </div>
   </div>
 </div>
 
 @if (loading()) {
-<div class="card p-4 text-center text-color-secondary">
+<div class="card p-4 text-center text-body-secondary">
   Cargando detalle del puesto y candidatos...
 </div>
 } @else if (filteredVacancies().length === 0) {
 <div class="card p-4 text-center">
-  <div class="text-lg font-semibold mb-2">Sin candidatos para este puesto</div>
-  <div class="text-color-secondary">
+  <div class="text-lg fw-semibold mb-2">Sin candidatos para este puesto</div>
+  <div class="text-body-secondary">
     Aun no hay vacantes o candidatos asociados al puesto seleccionado.
   </div>
 </div>
@@ -150,8 +150,8 @@
     >
       <div>
         <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-          <span class="text-lg font-semibold">{{ vacancy.vacancyFolio }}</span>
-          <span class="text-sm text-color-secondary"
+          <span class="text-lg fw-semibold">{{ vacancy.vacancyFolio }}</span>
+          <span class="text-sm text-body-secondary"
             >{{ vacancy.positionName }}</span
           >
           <span class="badge badge-info">{{ vacancy.customerName }}</span>
@@ -160,7 +160,7 @@
           <span class="badge badge-primary">Vacante priorizada</span>
           }
         </div>
-        <div class="d-flex flex-wrap gap-2 text-sm text-color-secondary">
+        <div class="d-flex flex-wrap gap-2 text-sm text-body-secondary">
           <span>Activos: {{ vacancy.activeCandidates.length }}</span>
           <span>Historico: {{ vacancy.historicalCandidates.length }}</span>
           <span>Agendadas: {{ vacancy.scheduledCount }}</span>
@@ -173,10 +173,10 @@
     </div>
 
     <div class="mb-3">
-      <div class="font-semibold mb-2">Candidatos activos</div>
+      <div class="fw-semibold mb-2">Candidatos activos</div>
       @if (vacancy.activeCandidates.length === 0) {
       <div
-        class="border-1 surface-border border-round p-3 text-sm text-color-secondary"
+        class="border-1 border rounded p-3 text-sm text-body-secondary"
       >
         Esta vacante no tiene candidatos activos en seguimiento.
       </div>
@@ -185,7 +185,7 @@
         @for (candidate of vacancy.activeCandidates; track
         candidate.candidateApplicationId) {
         <div
-          class="border-1 surface-border border-round p-3"
+          class="border-1 border rounded p-3"
           [class.border-orange-300]="candidate.agendaStatusCode === 'postulada'"
           [class.border-red-300]="candidate.agendaStatusCode === 'overdue'"
           [class.border-blue-300]="candidate.agendaStatusCode === 'scheduled'"
@@ -196,7 +196,7 @@
           >
             <div class="flex-grow-1">
               <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-                <span class="font-semibold">{{ candidate.candidateName }}</span>
+                <span class="fw-semibold">{{ candidate.candidateName }}</span>
                 <app-candidate-stage-badge [stage]="candidate.currentStage" />
                 <app-mapped-p-tag
                   [value]="candidate.agendaStatusCode"
@@ -210,49 +210,49 @@
 
               <div class="row text-sm g-4">
                 <div class="col-12 col-md-6 col-xl-2">
-                  <small class="text-color-secondary d-block">Registro</small>
-                  <div class="font-medium">
+                  <small class="text-body-secondary d-block">Registro</small>
+                  <div class="fw-medium">
                     @if (candidate.applicationDate) { {{
                     candidate.applicationDate | apiDate: "dd/MM/yyyy" }} } @else {
-                    <span class="text-color-secondary">Sin fecha</span>
+                    <span class="text-body-secondary">Sin fecha</span>
                     }
                   </div>
                 </div>
                 <div class="col-12 col-md-6 col-xl-3">
-                  <small class="text-color-secondary d-block"
+                  <small class="text-body-secondary d-block"
                     >Entrevista RH</small
                   >
-                  <div class="font-medium">
+                  <div class="fw-medium">
                     @if (candidate.recruitmentInterviewAt) { {{
                     candidate.recruitmentInterviewAt | apiDate: "dd/MM/yyyy HH:mm"
                     }} } @else {
-                    <span class="text-color-secondary">Sin fecha</span>
+                    <span class="text-body-secondary">Sin fecha</span>
                     }
                   </div>
                 </div>
                 <div class="col-12 col-md-6 col-xl-3">
-                  <small class="text-color-secondary d-block"
+                  <small class="text-body-secondary d-block"
                     >Entrevista operaciones</small
                   >
-                  <div class="font-medium">
+                  <div class="fw-medium">
                     @if (candidate.operationsInterviewAt) { {{
                     candidate.operationsInterviewAt | apiDate: "dd/MM/yyyy HH:mm"
                     }} } @else {
-                    <span class="text-color-secondary">Sin fecha</span>
+                    <span class="text-body-secondary">Sin fecha</span>
                     }
                   </div>
                 </div>
                 <div class="col-12 col-md-6 col-xl-2">
-                  <small class="text-color-secondary d-block"
+                  <small class="text-body-secondary d-block"
                     >Entrevistador</small
                   >
-                  <div class="font-medium">
+                  <div class="fw-medium">
                     {{ candidate.assignedInterviewerName || "Sin entrevistador"
                     }}
                   </div>
                 </div>
                 <div class="col-12 col-md-6 col-xl-2">
-                  <small class="text-color-secondary d-block">CV</small>
+                  <small class="text-body-secondary d-block">CV</small>
                   @if (candidate.cvFileName) {
                   <iw-button-view-pdf
                     size="sm"
@@ -262,7 +262,7 @@
                     [attr.aria-label]="'Ver CV de ' + candidate.candidateName"
                   />
                   } @else {
-                  <span class="text-color-secondary">Sin CV</span>
+                  <span class="text-body-secondary">Sin CV</span>
                   }
                 </div>
               </div>
@@ -322,17 +322,17 @@
 
     @if (vacancy.historicalCandidates.length > 0) {
     <div>
-      <div class="font-semibold mb-2">Historico</div>
+      <div class="fw-semibold mb-2">Historico</div>
       <div class="d-flex flex-column gap-2">
         @for (candidate of vacancy.historicalCandidates; track
         candidate.candidateApplicationId) {
-        <div class="border-1 surface-border border-round p-3 surface-50">
+        <div class="border-1 border rounded p-3 bg-body-tertiary">
           <div
             class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-3 g-4"
           >
             <div class="flex-grow-1">
               <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-                <span class="font-semibold">{{ candidate.candidateName }}</span>
+                <span class="fw-semibold">{{ candidate.candidateName }}</span>
                 <app-candidate-stage-badge [stage]="candidate.currentStage" />
                 <app-mapped-p-tag
                   [value]="candidate.agendaStatusCode"
@@ -341,39 +341,39 @@
               </div>
               <div class="row text-sm g-4">
                 <div class="col-12 col-md-6 col-lg-3">
-                  <small class="text-color-secondary d-block">Registro</small>
-                  <div class="font-medium">
+                  <small class="text-body-secondary d-block">Registro</small>
+                  <div class="fw-medium">
                     @if (candidate.applicationDate) { {{
                     candidate.applicationDate | apiDate: "dd/MM/yyyy" }} } @else {
-                    <span class="text-color-secondary">Sin fecha</span>
+                    <span class="text-body-secondary">Sin fecha</span>
                     }
                   </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3">
-                  <small class="text-color-secondary d-block"
+                  <small class="text-body-secondary d-block"
                     >Ultima entrevista</small
                   >
-                  <div class="font-medium">
+                  <div class="fw-medium">
                     @if (candidate.operationsInterviewAt ||
                     candidate.recruitmentInterviewAt) { {{
                     (candidate.operationsInterviewAt ||
                     candidate.recruitmentInterviewAt) | apiDate: "dd/MM/yyyy HH:mm"
                     }} } @else {
-                    <span class="text-color-secondary">Sin fecha</span>
+                    <span class="text-body-secondary">Sin fecha</span>
                     }
                   </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3">
-                  <small class="text-color-secondary d-block"
+                  <small class="text-body-secondary d-block"
                     >Entrevistador</small
                   >
-                  <div class="font-medium">
+                  <div class="fw-medium">
                     {{ candidate.assignedInterviewerName || "Sin entrevistador"
                     }}
                   </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3">
-                  <small class="text-color-secondary d-block">CV</small>
+                  <small class="text-body-secondary d-block">CV</small>
                   @if (candidate.cvFileName) {
                   <iw-button-view-pdf
                     size="sm"
@@ -383,7 +383,7 @@
                     [attr.aria-label]="'Ver CV de ' + candidate.candidateName"
                   />
                   } @else {
-                  <span class="text-color-secondary">Sin CV</span>
+                  <span class="text-body-secondary">Sin CV</span>
                   }
                 </div>
               </div>

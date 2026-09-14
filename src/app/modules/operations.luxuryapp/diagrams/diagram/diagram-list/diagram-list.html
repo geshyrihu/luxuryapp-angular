@@ -1,4 +1,4 @@
-<div class="card p-0 p-md-4 border-none shadow-none">
+<div class="card p-0 p-md-4 border-0 shadow-none">
   <p-table
     #dt
     [value]="diagrams()"
@@ -14,7 +14,7 @@
   >
     <ng-template #caption>
       <div class="d-flex align-items-center justify-content-between p-2">
-        <h5 class="m-0 text-xl font-bold text-700">Gestión de Diagramas</h5>
+        <h5 class="m-0 text-xl fw-bold text-body">Gestión de Diagramas</h5>
         <div class="d-flex gap-2">
           <il-button
             label="Galeróa"
@@ -42,8 +42,8 @@
 
     <ng-template #body let-diagram>
       <tr>
-        <td class="font-medium text-700">{{ diagram.name }}</td>
-        <td class="text-500">
+        <td class="fw-medium text-body">{{ diagram.name }}</td>
+        <td class="text-body-secondary">
           {{ diagram.updateAt | apiDate: 'dd/MM/yyyy HH:mm' }}
         </td>
         <td>
@@ -83,7 +83,7 @@
 
     <ng-template #summary>
       <div
-        class="d-flex align-items-center justify-content-between text-500 italic"
+        class="d-flex align-items-center justify-content-between text-body-secondary italic"
       >
         En total hay {{ diagrams() ? diagrams().length : 0 }} diagramas.
       </div>
@@ -108,8 +108,8 @@
         <app-icon icon="material-symbols-light:call-split" class="text-2xl text-green-600" />
       </div>
 
-      <h3 class="font-bold text-700">{{ diagram.name }}</h3>
-      <p class="text-500">{{ diagram.updateAt | apiDate:'dd/MM/yyyy HH:mm' }}</p>
+      <h3 class="fw-bold text-body">{{ diagram.name }}</h3>
+      <p class="text-body-secondary">{{ diagram.updateAt | apiDate:'dd/MM/yyyy HH:mm' }}</p>
 
       <ili-action-menu slot="end">
         <ng-container actions>

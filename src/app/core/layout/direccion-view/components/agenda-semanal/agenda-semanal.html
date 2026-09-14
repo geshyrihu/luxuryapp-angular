@@ -4,9 +4,9 @@
 >
   <div class="d-flex align-items-center gap-2">
     <app-icon icon="material-symbols-light:calendar-today" class="text-primary text-xl" />
-    <span class="font-bold text-lg text-900">Agenda</span>
+    <span class="fw-bold text-lg text-body">Agenda</span>
     @if (totalEventos() > 0) {
-    <span class="text-xs surface-200 text-600 rounded px-2 py-1">
+    <span class="text-xs bg-body-tertiary text-body-secondary rounded px-2 py-1">
       {{ totalEventos() }} evento{{ totalEventos() === 1 ? '' : 's' }}
     </span>
     }
@@ -21,7 +21,7 @@
       lxTooltip="Dos semanas anteriores"
       (clicked)="periodoAnterior()"
     />
-    <span class="text-sm font-semibold text-700 px-2 white-space-nowrap">
+    <span class="text-sm fw-semibold text-body px-2 text-nowrap">
       {{ rangoLabel() }}
     </span>
     <iw-button
@@ -61,7 +61,7 @@
     class="pi-spin text-primary"
     style="font-size: 1.5rem"
   />
-  <span class="ms-2 text-500">Cargando agenda...</span>
+  <span class="ms-2 text-body-secondary">Cargando agenda...</span>
 </div>
 } @else {
 <div class="d-flex flex-column gap-2">
@@ -69,17 +69,17 @@
 
   <div
     class="border-1 rounded overflow-hidden"
-    [class.surface-border]="!dia.esHoy"
+    [class.border]="!dia.esHoy"
     [class.border-primary]="dia.esHoy"
   >
     <!-- Cabecera del dia -->
     <div
       class="d-flex align-items-center justify-content-between px-3 py-2"
-      [class.surface-100]="!dia.esHoy"
+      [class.bg-body-tertiary]="!dia.esHoy"
       [class.bg-primary]="dia.esHoy"
     >
       <span
-        class="text-sm font-bold capitalize"
+        class="text-sm fw-bold capitalize"
         [class.text-700]="!dia.esHoy"
         [class.text-white]="dia.esHoy"
       >
@@ -91,7 +91,7 @@
         } @if (dia.eventos.length > 0) {
         <span
           class="text-xs rounded px-2 py-1"
-          [class.surface-300]="!dia.esHoy"
+          [class.bg-body-secondary]="!dia.esHoy"
           [class.agenda-hoy-badge]="dia.esHoy"
         >
           {{ dia.eventos.length }}
@@ -103,7 +103,7 @@
     <!-- Eventos del dia -->
     @if (dia.eventos.length === 0) {
     <div class="px-3 py-2">
-      <span class="text-xs text-400 italic">Sin eventos</span>
+      <span class="text-xs text-body-secondary italic">Sin eventos</span>
     </div>
     } @else {
     <div class="d-flex flex-column">
@@ -111,42 +111,41 @@
       <div
         class="px-3 py-2 d-flex align-items-start gap-3"
         [class.border-bottom-1]="!last"
-        [class.surface-border]="!last"
+        [class.border]="!last"
       >
         <!-- Hora -->
         <div
           class="d-flex flex-column align-items-center flex-none"
           style="min-width: 3.5rem"
         >
-          <span class="text-sm font-bold text-900"
+          <span class="text-sm fw-bold text-body"
             >{{ formatHora(evento.startAt) }}</span
           >
-          <span class="text-xs text-400">{{ formatHora(evento.endAt) }}</span>
+          <span class="text-xs text-body-secondary">{{ formatHora(evento.endAt) }}</span>
         </div>
 
         <!-- Detalle -->
-        <div class="d-flex flex-column gap-1 flex-auto min-w-0">
+        <div class="d-flex flex-column gap-1 flex-fill min-w-0">
           <div class="d-flex align-items-center gap-2 flex-wrap">
-            <span class="text-sm font-semibold text-900"
+            <span class="text-sm fw-semibold text-body"
               >{{ evento.title }}</span
             >
             @if (evento.isRecurring) {
             <app-icon
               icon="material-symbols-light:refresh"
-              class="text-xs text-400"
+              class="text-xs text-body-secondary"
               lxTooltip="Recurrente"
             />
             }
           </div>
           <div class="d-flex align-items-center gap-2 flex-wrap">
-            <span class="text-xs surface-200 text-600 rounded px-2 py-1">
+            <span class="text-xs bg-body-tertiary text-body-secondary rounded px-2 py-1">
               {{ evento.customerName }}
             </span>
-            <span class="text-xs text-500">{{ evento.subjectTypeName }}</span>
-            <p-tag
+            <span class="text-xs text-body-secondary">{{ evento.subjectTypeName }}</span>
+            <app-tag
               [value]="evento.modalityName"
               [severity]="getModalityClass(evento.modalityName)"
-              styleClass="text-xs"
             />
           </div>
           @if (evento.googleMeetUrl) {
@@ -158,7 +157,7 @@
             <app-icon icon="material-symbols-light:videocam" class="me-1" /> Unirse a Meet
           </a>
           } @else if (evento.location) {
-          <span class="text-xs text-500 d-flex align-items-center gap-1">
+          <span class="text-xs text-body-secondary d-flex align-items-center gap-1">
             <app-icon icon="material-symbols-light:location-on" /> {{ evento.location }}
           </span>
           }
@@ -167,7 +166,7 @@
         <!-- Invitados -->
         @if (evento.guestCount > 0) {
         <div
-          class="d-flex align-items-center gap-1 flex-none text-400"
+          class="d-flex align-items-center gap-1 flex-none text-body-secondary"
           [lxTooltip]="evento.guestCount + ' invitados'"
         >
           <app-icon icon="material-symbols-light:group" class="text-xs" />

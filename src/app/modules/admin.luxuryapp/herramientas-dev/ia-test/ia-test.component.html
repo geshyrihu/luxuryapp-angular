@@ -33,7 +33,7 @@
       </div>
 
       <div class="col-12 col-md-8">
-        <div class="result-container rounded p-3 surface-100" >
+        <div class="result-container rounded p-3 bg-body-tertiary" >
           <h4 class="mt-0 mb-3">Respuesta del Modelo</h4>
           
           @if (isLoading()) {
@@ -46,17 +46,17 @@
           @if (!isLoading() && result()) {
           <div class="response-content">
             <div class="mb-2">
-              <span class="font-bold text-500">Perfil Respondiente:</span> 
+              <span class="fw-bold text-body-secondary">Perfil Respondiente:</span> 
               <span class="p-badge p-badge-info ms-2">{{ result()?.profile }}</span>
             </div>
-            <div class="p-3 surface-card rounded shadow-sm mt-3" >
+            <div class="p-3 bg-body rounded shadow-sm mt-3" >
               {{ result()?.response }}
             </div>
           </div>
           }
 
           @if (!isLoading() && !result()) {
-          <div class="text-500 font-italic text-center mt-5">
+          <div class="text-body-secondary fst-italic text-center mt-5">
             Selecciona un modelo, escribe un prompt y presiona "Probar Modelo" para ver el resultado aquí.
           </div>
           }

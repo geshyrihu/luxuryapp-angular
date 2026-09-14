@@ -114,12 +114,12 @@
           <div class="d-flex justify-content-between align-items-start mb-2">
             <div class="d-flex flex-column">
               <h6 class="mb-0 text-wrap">{{ item.title }}</h6>
-              <small class="text-color-secondary">
+              <small class="text-body-secondary">
                 Folio: {{ item.folio }} | {{ item.requestDate }}
               </small>
             </div>
           </div>
-          <p class="text-color-secondary m-0 text-wrap">
+          <p class="text-body-secondary m-0 text-wrap">
             Solicita: {{ item.creator }}
           </p>
           <div class="d-flex justify-content-between align-items-center mt-2">
@@ -139,11 +139,11 @@
                   item.status === 4 ? 'CANCELADO' : 'OTRO'
                 "
             />
-            <div class="text-right">
+            <div class="text-end">
               <p class="m-0">
                 Conclusión: {{ item.completionDate ?? "Pendiente" }}
               </p>
-              <p class="m-0 font-bold">Días: {{ item.diferenciaDias }}</p>
+              <p class="m-0 fw-bold">Días: {{ item.diferenciaDias }}</p>
             </div>
           </div>
 

@@ -62,7 +62,7 @@
                 shape="circle"
                 class="me-2"
               />
-              <span class="m-0 font-medium text-sm"
+              <span class="m-0 fw-medium text-sm"
                 >{{ item.nameCustomer }}</span
               >
             </div>
@@ -76,7 +76,7 @@
             <lx-tag severity="danger" value="Inactivo"></lx-tag>
             }
           </td>
-          <td class="text-right">
+          <td class="text-end">
             <app-icon [icon]="'material-symbols-light:chevron-right'" />
           </td>
         </tr>
@@ -99,7 +99,7 @@
 >
   <div customFilters>
     <div class="px-4 py-2">
-      <h5 class="m-0 mb-3 text-secondary text-xs uppercase tracking-wider">
+      <h5 class="m-0 mb-3 text-secondary text-xs text-uppercase tracking-wider">
         Filtrar por Estado
       </h5>
       <iw-button-active-desactive
@@ -132,10 +132,10 @@
         }
       </div>
       <div class="ion-text-wrap">
-        <p class="font-semibold m-0 text-color">
+        <p class="fw-semibold m-0 text-body">
           {{ customer.nameCustomer }}
         </p>
-        <p class="text-xs m-0 mt-1 text-color-secondary">
+        <p class="text-xs m-0 mt-1 text-body-secondary">
           #{{ customer.numeroCliente }}
         </p>
       </div>

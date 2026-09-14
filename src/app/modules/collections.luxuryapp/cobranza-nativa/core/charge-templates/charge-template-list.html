@@ -45,16 +45,16 @@
         </td>
         <td>
           <div class="d-flex flex-column">
-            <span class="text-xs text-500"
+            <span class="text-xs text-body-secondary"
               >{{ item.chargeTypeName || 'Tipo sin clasificar' }}</span
             >
-            <span class="font-semibold">{{ item.name }}</span>
-            <span class="text-xs text-400"
+            <span class="fw-semibold">{{ item.name }}</span>
+            <span class="text-xs text-body-secondary"
               >{{ item.chargeTypeAccountNumber }}</span
             >
           </div>
         </td>
-        <td class="text-center font-medium">
+        <td class="text-center fw-medium">
           <div class="d-flex flex-column align-items-center gap-2">
             <lx-tag
               [value]="calculationMethodMeta(item.calculationMethod).label"
@@ -69,13 +69,13 @@
               [value]="recurrenceMeta(item.recurrence).label"
               [severity]="recurrenceMeta(item.recurrence).severity"
             />
-            <span class="text-xs text-500">Día: {{ item.dayOfMonth }}</span>
+            <span class="text-xs text-body-secondary">Día: {{ item.dayOfMonth }}</span>
           </div>
         </td>
         <td class="text-center text-xs">
           <div class="d-flex flex-column">
             <span>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</span>
-            <span class="text-400">a</span>
+            <span class="text-body-secondary">a</span>
             <span
               >{{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') :
               'Indefinido' }}</span
@@ -86,7 +86,7 @@
           @if (item.applyToAllProperties) {
           <lx-tag value="Todas" severity="secondary" />
           } @else {
-          <span class="text-xs text-500">Seleccionadas</span>
+          <span class="text-xs text-body-secondary">Seleccionadas</span>
           }
         </td>
         <td class="text-center">
@@ -117,7 +117,7 @@
       >
         <app-icon icon="material-symbols-light:receipt" class="text-purple-600 text-xl" />
       </div>
-      <div class="flex-1 min-w-0">
+      <div class="flex-fill min-w-0">
         <h3>{{ item.name }}</h3>
         <p>{{ item.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</p>
         <p>

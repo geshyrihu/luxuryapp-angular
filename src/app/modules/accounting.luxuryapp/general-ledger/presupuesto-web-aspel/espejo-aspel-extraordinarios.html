@@ -1,7 +1,7 @@
 <div class="rf-shell budget-view-port-container">
   <!-- El encabezado ahora está centralizado en el wrapper -->
 
-  <div class="d-none d-md-flex flex-md-column flex-1 min-h-0 overflow-auto gap-3">
+  <div class="d-none d-md-flex flex-md-column flex-fill min-h-0 overflow-auto gap-3">
     <div class="rf-card p-3">
       <h5 class="text-lg mb-2">Extraordinarios (605)</h5>
       <p-table
@@ -36,37 +36,37 @@
             <td pFrozenColumn>
               <div class="d-flex align-items-center gap-2">
                 @if (!isClientView()) {
-                <span class="font-semibold text-color">
+                <span class="fw-semibold text-body">
                   {{ cuenta.codigo_Cuenta }}
                 </span>
-                <span class="text-color-secondary">|</span>
+                <span class="text-body-secondary">|</span>
                 }
-                <span class="text-color font-bold">
+                <span class="text-body fw-bold">
                   {{ cuenta.descripcion_Cuenta }}
                 </span>
               </div>
             </td>
             @for (mes of months; track mes) {
-            <td class="surface-ground"></td>
+            <td class="bg-body-tertiary"></td>
             }
-            <td class="surface-ground"></td>
+            <td class="bg-body-tertiary"></td>
             } @else {
             <td pFrozenColumn>
               <div class="d-flex flex-column">
                 @if (!isClientView()) {
                 <span
-                  class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                  class="font-small-gray text-xs text-body-secondary cursor-pointer hover:text-primary transition-colors transition-duration-200"
                   (click)="showPurchaseHistory(cuenta)"
                   lxTooltip="Ver Historial"
                 >
                   {{ cuenta.codigo_Cuenta }} 🛒
                 </span>
-                <span class="text-color mt-1 font-semibold">
+                <span class="text-body mt-1 fw-semibold">
                   {{ cuenta.descripcion_Cuenta }}
                 </span>
                 } @else {
                 <span
-                  class="text-color mt-1 font-semibold cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                  class="text-body mt-1 fw-semibold cursor-pointer hover:text-primary transition-colors transition-duration-200"
                   (click)="showPurchaseHistory(cuenta)"
                   lxTooltip="Ver Historial"
                 >
@@ -77,7 +77,7 @@
             </td>
             @for (mes of months; track mes) {
             <td
-              class="text-right"
+              class="text-end"
               [class.text-color-secondary]="!isMesVisible(mes)"
             >
               @let monto = getMontoMes(cuenta, mes);
@@ -90,7 +90,7 @@
               </span>
             </td>
             }
-            <td class="text-right font-bold">
+            <td class="text-end fw-bold">
               {{ getSumaGastoMesesVisiblesCuenta(cuenta) | number: "1.0-0" }}
             </td>
             }
@@ -99,10 +99,10 @@
 
         <ng-template #footer>
           <tr>
-            <td pFrozenColumn class="text-right font-bold">TOTALES:</td>
+            <td pFrozenColumn class="text-end fw-bold">TOTALES:</td>
             @for (mes of months; track mes) {
             <td
-              class="text-right font-bold"
+              class="text-end fw-bold"
               [class.text-color-secondary]="!isMesVisible(mes)"
             >
               <span
@@ -115,7 +115,7 @@
               </span>
             </td>
             }
-            <td class="text-right font-bold">
+            <td class="text-end fw-bold">
               {{ getSumaGastoMesesVisibles(extraordinarias()) | number: "1.0-0"
               }}
             </td>
@@ -162,40 +162,40 @@
             <td pFrozenColumn [attr.colspan]="2">
               <div class="d-flex align-items-center gap-2">
                 @if (!isClientView()) {
-                <span class="font-semibold text-color">
+                <span class="fw-semibold text-body">
                   {{ cuenta.codigo_Cuenta }}
                 </span>
-                <span class="text-color-secondary">|</span>
+                <span class="text-body-secondary">|</span>
                 }
-                <span class="text-color font-bold">
+                <span class="text-body fw-bold">
                   {{ cuenta.descripcion_Cuenta }}
                 </span>
               </div>
             </td>
             @for (mes of months; track mes) {
-            <td class="surface-ground"></td>
+            <td class="bg-body-tertiary"></td>
             }
-            <td class="surface-ground"></td>
-            <td class="surface-ground"></td>
-            <td class="surface-ground"></td>
-            <td class="surface-ground"></td>
+            <td class="bg-body-tertiary"></td>
+            <td class="bg-body-tertiary"></td>
+            <td class="bg-body-tertiary"></td>
+            <td class="bg-body-tertiary"></td>
             } @else {
             <td pFrozenColumn>
               <div class="d-flex flex-column">
                 @if (!isClientView()) {
                 <span
-                  class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                  class="font-small-gray text-xs text-body-secondary cursor-pointer hover:text-primary transition-colors transition-duration-200"
                   (click)="showPurchaseHistory(cuenta)"
                   lxTooltip="Ver Historial"
                 >
                   {{ cuenta.codigo_Cuenta }} 🛒
                 </span>
-                <span class="text-color mt-1 font-semibold">
+                <span class="text-body mt-1 fw-semibold">
                   {{ cuenta.descripcion_Cuenta }}
                 </span>
                 } @else {
                 <span
-                  class="text-color mt-1 font-semibold cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                  class="text-body mt-1 fw-semibold cursor-pointer hover:text-primary transition-colors transition-duration-200"
                   (click)="showPurchaseHistory(cuenta)"
                   lxTooltip="Ver Historial"
                 >
@@ -204,12 +204,12 @@
                 }
               </div>
             </td>
-            <td pFrozenColumn class="text-right text-green-700 font-bold">
+            <td pFrozenColumn class="text-end text-green-700 fw-bold">
               {{ getPresupuestoBaseMensual(cuenta) | number: "1.0-0" }}
             </td>
             @for (mes of months; track mes) {
             <td
-              class="text-right"
+              class="text-end"
               [class.text-color-secondary]="!isMesVisible(mes)"
             >
               @let presupMes = getPresupuestoDelMes(cuenta, mes);
@@ -228,18 +228,18 @@
               </span>
             </td>
             }
-            <td class="text-right font-bold">
+            <td class="text-end fw-bold">
               {{ getSumaGastoMesesVisiblesCuenta(cuenta) | number: "1.0-0" }}
             </td>
-            <td class="text-right font-bold">
+            <td class="text-end fw-bold">
               {{ getPorcentajeGastadoMesesVisiblesCuenta(cuenta) | number:
               "1.0-0" }}%
             </td>
-            <td class="text-right font-bold">
+            <td class="text-end fw-bold">
               {{ getSumaPresupuestoMesesVisiblesCuenta(cuenta) | number: "1.0-0"
               }}
             </td>
-            <td class="text-right font-bold">
+            <td class="text-end fw-bold">
               {{ (getSumaPresupuestoMesesVisiblesCuenta(cuenta) -
               getSumaGastoMesesVisiblesCuenta(cuenta)) | number: "1.0-0" }}
             </td>
@@ -249,14 +249,14 @@
 
         <ng-template #footer>
           <tr>
-            <td pFrozenColumn class="text-right font-bold">TOTALES:</td>
-            <td pFrozenColumn class="text-right font-bold">
+            <td pFrozenColumn class="text-end fw-bold">TOTALES:</td>
+            <td pFrozenColumn class="text-end fw-bold">
               {{ getTotalPresupuestoBaseMensual(proyectos()) | number: "1.0-0"
               }}
             </td>
             @for (mes of months; track mes) {
             <td
-              class="text-right font-bold"
+              class="text-end fw-bold"
               [class.text-color-secondary]="!isMesVisible(mes)"
             >
               <span
@@ -268,19 +268,19 @@
               </span>
             </td>
             }
-            <td class="text-right font-bold">
+            <td class="text-end fw-bold">
               {{ getSumaGastoMesesVisibles(proyectos()) | number: "1.0-0" }}
             </td>
-            <td class="text-right font-bold">
+            <td class="text-end fw-bold">
               {{ ((getSumaGastoMesesVisibles(proyectos()) /
               (getSumaPresupuestoMesesVisibles(proyectos()) || 1)) * 100) |
               number: "1.0-0" }}%
             </td>
-            <td class="text-right font-bold">
+            <td class="text-end fw-bold">
               {{ getSumaPresupuestoMesesVisibles(proyectos()) | number: "1.0-0"
               }}
             </td>
-            <td class="text-right font-bold">
+            <td class="text-end fw-bold">
               {{ getPresupuestoRestanteMesesVisibles(proyectos()) | number:
               "1.0-0" }}
             </td>
@@ -305,14 +305,14 @@
             (click)="showPurchaseHistory(cuenta)"
           >
             @if (!isClientView()) {
-            <span class="text-sm font-bold text-color"
+            <span class="text-sm fw-bold text-body"
               >{{ cuenta.codigo_Cuenta }}</span
             >
-            <span class="text-sm text-color-secondary mb-2"
+            <span class="text-sm text-body-secondary mb-2"
               >{{ cuenta.descripcion_Cuenta }} 🛒</span
             >
             } @else {
-            <span class="text-sm font-bold text-color mb-2"
+            <span class="text-sm fw-bold text-body mb-2"
               >{{ cuenta.descripcion_Cuenta }} 🛒</span
             >
             }
@@ -343,14 +343,14 @@
             (click)="showPurchaseHistory(cuenta)"
           >
             @if (!isClientView()) {
-            <span class="text-sm font-bold text-color"
+            <span class="text-sm fw-bold text-body"
               >{{ cuenta.codigo_Cuenta }}</span
             >
-            <span class="text-sm text-color-secondary mb-2"
+            <span class="text-sm text-body-secondary mb-2"
               >{{ cuenta.descripcion_Cuenta }} 🛒</span
             >
             } @else {
-            <span class="text-sm font-bold text-color mb-2"
+            <span class="text-sm fw-bold text-body mb-2"
               >{{ cuenta.descripcion_Cuenta }} 🛒</span
             >
             }

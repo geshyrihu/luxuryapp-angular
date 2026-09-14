@@ -48,9 +48,9 @@
       <td>{{ item.sortOrder }}</td>
       <td>{{ item.code }}</td>
       <td>
-        <div class="font-semibold">{{ item.title }}</div>
+        <div class="fw-semibold">{{ item.title }}</div>
         @if (item.description) {
-        <div class="text-xs text-color-secondary">{{ item.description }}</div>
+        <div class="text-xs text-body-secondary">{{ item.description }}</div>
         }
       </td>
       <td>{{ item.category }}</td>
@@ -103,12 +103,12 @@
         />
       </div>
 
-      <p class="font-semibold m-0 text-color">{{ item.title }}</p>
-      <p class="text-xs m-0 mt-1 text-color-secondary">
+      <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
+      <p class="text-xs m-0 mt-1 text-body-secondary">
         {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
         }}
       </p>
-      <p class="text-xs m-0 mt-1 text-color-secondary">
+      <p class="text-xs m-0 mt-1 text-body-secondary">
         Orden {{ item.sortOrder }} | Dia {{ item.offsetDaysFromMeeting }} | V{{
         item.version }}
       </p>

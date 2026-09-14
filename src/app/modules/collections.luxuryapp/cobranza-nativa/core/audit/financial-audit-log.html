@@ -5,7 +5,7 @@
         [icon]="'material-symbols-light:shield'"
         class="text-primary mt-1"
       />
-      <div class="text-sm text-700">
+      <div class="text-sm text-body">
         <strong>Bitácora de Auditoría Financiera.</strong> Registro inmutable de
         todas las acciones de negocio relevantes: quién hizo qué, cuándo y con
         qué resultado. Complementa el Ledger con lenguaje operacional legible
@@ -75,7 +75,7 @@
         <td class="text-center text-sm">
           {{ log.occurredAt | apiDate:'dd/MM/yyyy HH:mm' }}
         </td>
-        <td class="text-xs font-medium text-500">{{ log.operationType }}</td>
+        <td class="text-xs fw-medium text-body-secondary">{{ log.operationType }}</td>
         <td class="text-sm">{{ log.summary }}</td>
         <td class="text-sm">{{ log.actor }}</td>
         <td class="text-center">
@@ -89,7 +89,7 @@
 
     <ng-template #emptymessage>
       <tr>
-        <td colspan="5" class="text-center p-4 text-500">
+        <td colspan="5" class="text-center p-4 text-body-secondary">
           Selecciona un rango de fechas y presiona Consultar.
         </td>
       </tr>
@@ -113,7 +113,7 @@
             [class]="log.isSuccess ? 'text-green-600 text-xl' : 'text-red-600 text-xl'"
           />
         </div>
-        <div class="flex-1 min-w-0">
+        <div class="flex-fill min-w-0">
           <h3>{{ log.operationType }}</h3>
           <p>{{ log.summary }}</p>
           <p>

@@ -15,21 +15,21 @@
         height="36"
         class="border me-2 logo-img"
       />
-      <span class="text-xl font-semibold ms-2">{{ data.customer }}</span>
+      <span class="text-xl fw-semibold ms-2">{{ data.customer }}</span>
     </div>
     <!-- Columna 2: Título -->
     <div class="flex-flex-grow-1-1 text-center">
-      <h3 class="mb-0 font-bold">{{ titulo() }}</h3>
+      <h3 class="mb-0 fw-bold">{{ titulo() }}</h3>
     </div>
     <!-- Columna 3: Folio y Factura -->
-    <div class="text-right flex-shrink-0 folio-factura-container">
+    <div class="text-end flex-shrink-0 folio-factura-container">
       <p class="mb-1 text-sm">
         Folio
-        <span class="font-bold">{{ folio() }}</span>
+        <span class="fw-bold">{{ folio() }}</span>
       </p>
       <p class="mb-0 text-sm">
         Factura
-        <span class="font-bold">{{ factura() }}</span>
+        <span class="fw-bold">{{ factura() }}</span>
       </p>
     </div>
   </div>

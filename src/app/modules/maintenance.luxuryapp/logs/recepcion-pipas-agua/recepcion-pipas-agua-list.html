@@ -13,11 +13,11 @@
 >
   <ng-template #caption>
     <div
-      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-3 surface-ground rounded shadow-sm g-4"
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-3 bg-body-tertiary rounded shadow-sm g-4"
     >
       <!-- IZQUIERDA: Tútulo y Navegación entre vistas -->
       <div class="d-flex flex-column flex-sm-row align-items-center gap-3 g-4">
-        <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
+        <h4 class="m-0 text-uppercase text-primary fw-bold whitespace-nowrap">
           Recepcion de Pipas
         </h4>
 
@@ -78,11 +78,11 @@
       <th pSortableColumn="placasCamion">
         Placas <p-sorticon field="placasCamion" />
       </th>
-      <th class="text-right">Cap.(L)</th>
+      <th class="text-end">Cap.(L)</th>
       <th class="text-center">Cisterna antes / despues</th>
       <th class="text-center">Medidor inicial / final</th>
-      <th class="text-right">mí</th>
-      <th class="text-right">Costo mí</th>
+      <th class="text-end">mí</th>
+      <th class="text-end">Costo mí</th>
       <th>Colaborador mtto</th>
       <th>Guardia testigo</th>
       <!-- <th>Fotos</th> -->
@@ -103,31 +103,31 @@
         }
       </td>
       <td><small>{{ item.empresa }}</small></td>
-      <td><small class="font-semibold">{{ item.placasCamion }}</small></td>
-      <td class="text-right">
+      <td><small class="fw-semibold">{{ item.placasCamion }}</small></td>
+      <td class="text-end">
         <small>{{ item.capacidadPipa | number: '1.0-0' }}</small>
       </td>
       <td class="text-center">
         <small class="d-flex justify-content-center align-items-center gap-1">
           <span>{{ item.nivelCisternaAntes | number: '1.0-0' }}%</span>
-          <span class="text-400">?</span>
+          <span class="text-body-secondary">?</span>
           <span>{{ item.nivelCisternaDespues | number: '1.0-0' }}%</span>
         </small>
       </td>
       <td class="text-center">
         <small class="d-flex justify-content-center align-items-center gap-1">
           <span>{{ item.lecturaMedidorInicial | number: '1.0-0' }}</span>
-          <span class="text-400">?</span>
+          <span class="text-body-secondary">?</span>
           <span>{{ item.lecturaMedidorFinal | number: '1.0-0' }}</span>
         </small>
       </td>
-      <td class="text-right">
+      <td class="text-end">
         <small
           >{{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
           '1.0-0' }}</small
         >
       </td>
-      <td class="text-right">
+      <td class="text-end">
         <small>{{ item.costoMetroCubico | number: '1.2-2' }}</small>
       </td>
       <td><small>{{ item.colaboradorMtto }}</small></td>
@@ -239,7 +239,7 @@
         routerLink="/logbook/water-truck-reception"
         routerLinkActive="p-button-primary"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
+        class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-fill justify-content-center"
       >
         <app-icon
           [icon]="'material-symbols-light:format-list-bulleted'"
@@ -250,7 +250,7 @@
       <a
         routerLink="/logbook/water-truck-reception/reporte"
         routerLinkActive="p-button-primary"
-        class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
+        class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-fill justify-content-center"
       >
         <app-icon [icon]="'material-symbols-light:table'" class="me-1" />
         Reporte
@@ -258,7 +258,7 @@
       <a
         routerLink="/logbook/water-truck-reception/analisis"
         routerLinkActive="p-button-primary"
-        class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
+        class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-fill justify-content-center"
       >
         <app-icon [icon]="'material-symbols-light:bar-chart'" class="me-1" />
         Analisis
@@ -271,9 +271,9 @@
         <app-icon icon="material-symbols-light:water" />
       </div>
 
-      <h3 class="font-bold">{{ item.placasCamion }}</h3>
+      <h3 class="fw-bold">{{ item.placasCamion }}</h3>
       @if (item.empresa) {
-      <p class="text-500">{{ item.empresa }}</p>
+      <p class="text-body-secondary">{{ item.empresa }}</p>
       }
       <p>
         {{ item.horaLlegada | apiDate: 'dd/MM/yyyy HH:mm' }} @if

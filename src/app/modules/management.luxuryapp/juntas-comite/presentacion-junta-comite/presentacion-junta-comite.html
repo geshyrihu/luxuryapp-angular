@@ -4,7 +4,7 @@
   <div class="d-flex flex-column gap-3">
     <!-- Header Section -->
     <div
-      class="card p-3 shadow-sm rounded-xl surface-card d-flex justify-content-between align-items-center border-left-3 border-blue-500"
+      class="card p-3 shadow-sm rounded-xl bg-body d-flex justify-content-between align-items-center border-left-3 border-blue-500"
     >
       <div class="d-flex align-items-center gap-3">
         <div
@@ -13,8 +13,8 @@
           <app-icon icon="material-symbols-light:co-present" class="text-2xl" />
         </div>
         <div>
-          <h5 class="m-0 font-bold text-900">Presentaciones de Junta</h5>
-          <span class="text-600 text-sm"
+          <h5 class="m-0 fw-bold text-body">Presentaciones de Junta</h5>
+          <span class="text-body-secondary text-sm"
             >Gestión centralizada de documentos y validaciones</span
           >
         </div>
@@ -34,38 +34,38 @@
     <div class="d-flex flex-column gap-3">
       @for (item of dataSignal(); track item.id) {
       <div
-        class="card p-0 shadow-sm rounded-xl surface-card overflow-hidden border-left-3 transition-all hover:shadow-sm"
+        class="card p-0 shadow-sm rounded-xl bg-body overflow-hidden border-left-3 transition-all hover:shadow-sm"
         [style.border-left-color]="item.archivoFinal ? 'var(--ds-success)' : 'var(--ds-primary)'"
       >
         <!-- Row Header (Status & Periods) -->
         <div
-          class="p-3 bg-gray-50 border-bottom-1 surface-border d-flex justify-content-between align-items-center"
+          class="p-3 bg-gray-50 border-bottom-1 border d-flex justify-content-between align-items-center"
         >
           <div class="d-flex align-items-center gap-5">
             <div class="d-flex flex-column">
-              <span class="text-xs font-bold text-500 uppercase tracking-wider"
+              <span class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
                 >Periodo</span
               >
-              <span class="font-bold text-900 text-lg uppercase"
+              <span class="fw-bold text-body text-lg text-uppercase"
                 >{{ item.fechaCorrespondiente }}</span
               >
             </div>
             <div class="d-flex flex-column">
-              <span class="text-xs font-bold text-500 uppercase tracking-wider"
+              <span class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
                 >Fecha de Junta</span
               >
-              <div class="d-flex align-items-center gap-2 text-700">
+              <div class="d-flex align-items-center gap-2 text-body">
                 <app-icon
                   icon="material-symbols-light:calendar-clock"
                   class="text-blue-500"
                 />
-                <span class="font-medium"
+                <span class="fw-medium"
                   >{{ item.fechaJunta }} {{ item.horaJunta }}</span
                 >
               </div>
             </div>
             <div class="d-flex flex-column">
-              <span class="text-xs font-bold text-500 uppercase tracking-wider"
+              <span class="text-xs fw-bold text-body-secondary text-uppercase tracking-wider"
                 >Enviado Comité</span
               >
               <div class="d-flex align-items-center gap-2">
@@ -87,7 +87,7 @@
           <div class="d-flex gap-2 align-items-center">
             @if (item.archivoFinal) {
             <div
-              class="d-flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg font-bold border-1 border-green-100"
+              class="d-flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg fw-bold border-1 border-green-100"
             >
               <app-icon icon="material-symbols-light:lock" />
               <span>VERSIóN FINAL</span>
@@ -114,7 +114,7 @@
         <div class="p-3">
           <div class="row align-items-center g-4">
             <!-- Portada Section -->
-            <div class="col-12 col-md-3 border-right-1 surface-border">
+            <div class="col-12 col-md-3 border-right-1 border">
               <div class="d-flex align-items-center gap-3">
                 <div class="p-2 rounded bg-blue-50 text-blue-500">
                   <app-icon
@@ -123,7 +123,7 @@
                   />
                 </div>
                 <div class="d-flex flex-column flex-grow-1">
-                  <span class="font-bold text-700 text-sm">PORTADA</span>
+                  <span class="fw-bold text-body text-sm">PORTADA</span>
                   @if (item.archivoPortada) {
                   <div class="d-flex flex-column gap-1">
                     <il-button-view-pdf
@@ -134,10 +134,10 @@
                       label="Ver archivo"
                     />
                     <div class="d-flex flex-column">
-                      <small class="text-600 font-medium"
+                      <small class="text-body-secondary fw-medium"
                         >Por: {{ item.applicationUserPortada }}</small
                       >
-                      <small class="text-500"
+                      <small class="text-body-secondary"
                         >{{ item.fechaCargaPortada }}</small
                       >
                     </div>
@@ -153,7 +153,7 @@
                     (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
                   />
                   } @else {
-                  <span class="text-400 italic text-sm">Sin carga</span>
+                  <span class="text-body-secondary italic text-sm">Sin carga</span>
                   }
                 </div>
                 @if (item.archivoPortada && !item.archivoFinal &&
@@ -169,7 +169,7 @@
             </div>
 
             <!-- Contabilidad Section -->
-            <div class="col-12 col-md-3 border-right-1 surface-border px-4">
+            <div class="col-12 col-md-3 border-right-1 border px-4">
               <div class="d-flex align-items-center gap-3">
                 <div class="p-2 rounded bg-cyan-50 text-cyan-500">
                   <app-icon
@@ -178,7 +178,7 @@
                   />
                 </div>
                 <div class="d-flex flex-column flex-grow-1">
-                  <span class="font-bold text-700 text-sm">CONTABILIDAD</span>
+                  <span class="fw-bold text-body text-sm">CONTABILIDAD</span>
                   @if (item.archivoContable) {
                   <div class="d-flex flex-column gap-1">
                     <il-button-view-pdf
@@ -190,10 +190,10 @@
                       severity="info"
                     />
                     <div class="d-flex flex-column">
-                      <small class="text-600 font-medium"
+                      <small class="text-body-secondary fw-medium"
                         >Por: {{ item.applicationUserContable }}</small
                       >
-                      <small class="text-500"
+                      <small class="text-body-secondary"
                         >{{ item.fechaCargaContable }}</small
                       >
                     </div>
@@ -209,7 +209,7 @@
                     (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
                   />
                   } @else {
-                  <span class="text-400 italic text-sm">Sin carga</span>
+                  <span class="text-body-secondary italic text-sm">Sin carga</span>
                   }
                 </div>
                 @if (item.archivoContable && !item.archivoFinal &&
@@ -224,7 +224,7 @@
             </div>
 
             <!-- Operaciones Section -->
-            <div class="col-12 col-md-3 border-right-1 surface-border px-4">
+            <div class="col-12 col-md-3 border-right-1 border px-4">
               <div class="d-flex align-items-center gap-3">
                 <div class="p-2 rounded bg-orange-50 text-orange-500">
                   <app-icon
@@ -233,7 +233,7 @@
                   />
                 </div>
                 <div class="d-flex flex-column flex-grow-1">
-                  <span class="font-bold text-700 text-sm">OPERACIONES</span>
+                  <span class="fw-bold text-body text-sm">OPERACIONES</span>
                   @if (item.archivoJunta) {
                   <div class="d-flex flex-column gap-1">
                     <il-button-view-pdf
@@ -245,10 +245,10 @@
                       severity="warning"
                     />
                     <div class="d-flex flex-column">
-                      <small class="text-600 font-medium"
+                      <small class="text-body-secondary fw-medium"
                         >Por: {{ item.applicationUser }}</small
                       >
-                      <small class="text-500">{{ item.fechaCarga }}</small>
+                      <small class="text-body-secondary">{{ item.fechaCarga }}</small>
                     </div>
                   </div>
                   } @else if (!item.archivoFinal &&
@@ -263,7 +263,7 @@
                     (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
                   />
                   } @else {
-                  <span class="text-400 italic text-sm">Sin carga</span>
+                  <span class="text-body-secondary italic text-sm">Sin carga</span>
                   }
                 </div>
                 @if (item.archivoJunta && !item.archivoFinal &&
@@ -295,10 +295,10 @@
                   class="d-flex align-items-center justify-content-between mt-1"
                 >
                   <div class="d-flex flex-column">
-                    <small class="text-600 font-medium"
+                    <small class="text-body-secondary fw-medium"
                       >Validé: {{ item.applicationUserSupervisor }}</small
                     >
-                    <small class="text-500"
+                    <small class="text-body-secondary"
                       >{{ item.fechaCargaSupervisor }}</small
                     >
                   </div>
@@ -340,7 +340,7 @@
               <div
                 class="p-2 rounded bg-gray-50 text-center border-1 border-dashed border-300"
               >
-                <span class="text-500 text-xs font-bold"
+                <span class="text-body-secondary text-xs fw-bold"
                   >CARGAS PENDIENTES</span
                 >
               </div>
@@ -351,17 +351,17 @@
       </div>
       } @empty {
       <div
-        class="card p-8 shadow-sm rounded-xl surface-card d-flex flex-column align-items-center justify-content-center text-center gap-3"
+        class="card p-5 shadow-sm rounded-xl bg-body d-flex flex-column align-items-center justify-content-center text-center gap-3"
       >
         <app-icon
           icon="material-symbols-light:manage-search"
-          class="text-6xl text-300"
+          class="text-6xl text-body-secondary"
         />
         <div>
-          <h6 class="m-0 font-bold text-900">
+          <h6 class="m-0 fw-bold text-body">
             No hay presentaciones registradas
           </h6>
-          <p class="text-600">
+          <p class="text-body-secondary">
             Las presentaciones se vinculan a las sesiones de junta mensuales.
           </p>
         </div>
@@ -373,7 +373,7 @@
 
 <!-- INICIO: Componente adaptado para version movil -->
 <div class="d-block d-md-none">
-  <div class="mb-3 p-3 rounded bg-blue-50 text-700 text-sm">
+  <div class="mb-3 p-3 rounded bg-blue-50 text-body text-sm">
     La presentacion ya no se crea directamente aqui. Primero registra la agenda
     de la junta para generar la sesion mensual y la presentacion relacionada.
   </div>
@@ -383,15 +383,15 @@
     [globalFilterFields]="globalFilterFields"
   >
     <ng-template #listItemTemplate let-item>
-      <div class="card p-3 mb-2 border-1 surface-border shadow-sm rounded-xl">
+      <div class="card p-3 mb-2 border-1 border shadow-sm rounded-xl">
         <!-- Header -->
-        <div class="border-bottom-1 surface-border pb-2 mb-2">
+        <div class="border-bottom-1 border pb-2 mb-2">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <div>
-              <h6 class="m-0 font-bold text-900 uppercase">
+              <h6 class="m-0 fw-bold text-body text-uppercase">
                 PERIODO: {{ item.fechaCorrespondiente | uppercase }}
               </h6>
-              <small class="text-500 d-block mt-1"
+              <small class="text-body-secondary d-block mt-1"
                 >FECHA DE JUNTA: {{ item.fechaJunta | uppercase }}{{
                 item.horaJunta ? ", HORA: " + item.horaJunta : "" }}</small
               >
@@ -448,11 +448,11 @@
                 </div>
                 }
               </div>
-              <p class="m-0 text-xs text-500 mt-2">
+              <p class="m-0 text-xs text-body-secondary mt-2">
                 {{ item.applicationUserPortada }} - {{ item.fechaCargaPortada }}
               </p>
               } @else {
-              <p class="text-500 text-sm italic m-0">Sin archivo</p>
+              <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
               }
             </lx-fieldset>
           </div>
@@ -493,12 +493,12 @@
                 </div>
                 }
               </div>
-              <p class="m-0 text-xs text-500 mt-2">
+              <p class="m-0 text-xs text-body-secondary mt-2">
                 {{ item.applicationUserContable }} - {{ item.fechaCargaContable
                 }}
               </p>
               } @else {
-              <p class="text-500 text-sm italic m-0">Sin archivo</p>
+              <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
               }
             </lx-fieldset>
           </div>
@@ -538,11 +538,11 @@
                 </div>
                 }
               </div>
-              <p class="m-0 text-xs text-500 mt-2">
+              <p class="m-0 text-xs text-body-secondary mt-2">
                 {{ item.applicationUser }} - {{ item.fechaCarga }}
               </p>
               } @else {
-              <p class="text-500 text-sm italic m-0">Sin archivo</p>
+              <p class="text-body-secondary text-sm italic m-0">Sin archivo</p>
               }
             </lx-fieldset>
           </div>
@@ -585,12 +585,12 @@
                 />
                 }
               </div>
-              <p class="m-0 text-xs text-500 mt-2">
+              <p class="m-0 text-xs text-body-secondary mt-2">
                 {{ item.applicationUserSupervisor }} - {{
                 item.fechaCargaSupervisor }}
               </p>
               } @else {
-              <p class="text-500 text-sm italic m-0">
+              <p class="text-body-secondary text-sm italic m-0">
                 Sin archivo o faltan documentos
               </p>
               }

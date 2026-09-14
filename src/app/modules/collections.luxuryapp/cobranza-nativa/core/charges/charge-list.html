@@ -44,7 +44,7 @@
         <th class="w-8rem">Propiedad</th>
         <th class="w-8rem">Concepto</th>
         <th class="w-10rem">Tipo</th>
-        <th class="w-8rem text-right">Monto</th>
+        <th class="w-8rem text-end">Monto</th>
         <th class="w-8rem text-center">Vencimiento</th>
         <th class="w-6rem text-center">Auto</th>
         <th class="w-8rem text-center">Estado</th>
@@ -54,18 +54,18 @@
 
     <ng-template #body let-item>
       <tr>
-        <td class="font-bold text-800">{{ item.propertyFullName || "N/A" }}</td>
+        <td class="fw-bold text-body">{{ item.propertyFullName || "N/A" }}</td>
         <td>{{ item.concept }}</td>
         <td class="text-xs">
           <div class="d-flex flex-column">
             <span>{{ item.chargeTypeName || "Sin tipo" }}</span>
-            <span class="text-400">{{ item.chargeTypeAccountNumber }}</span>
+            <span class="text-body-secondary">{{ item.chargeTypeAccountNumber }}</span>
           </div>
         </td>
-        <td class="text-right font-medium text-red-600">
+        <td class="text-end fw-medium text-red-600">
           {{ item.amount | number: "1.2-2" }}
         </td>
-        <td class="text-center font-medium">
+        <td class="text-center fw-medium">
           {{ item.dueDate | apiDate: "dd/MM/yyyy" }}
         </td>
         <td class="text-center">
@@ -124,7 +124,7 @@
           class="text-orange-600 text-xl"
         />
       </div>
-      <div class="flex-1 min-w-0">
+      <div class="flex-fill min-w-0">
         <h3>{{ item.propertyFullName || "N/A" }}</h3>
         <p>{{ item.chargeTypeName || "Sin tipo" }} · {{ item.concept }}</p>
         <p>

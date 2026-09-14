@@ -12,7 +12,7 @@
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
     frozenWidth="500px"
     scrollHeight="700px"
-    class="financial-data-table budget-sticky-footer-table card border-none shadow-sm"
+    class="financial-data-table budget-sticky-footer-table card border-0 shadow-sm"
   >
     <!-- =========================
     CAPTION: Encabezado (Idéntico al anterior)
@@ -35,18 +35,18 @@
       <!-- Cada fila es una cuenta padre/resumen. Usamos una clase simple. -->
       <tr class="fila-resumen">
         <!-- DESCRIPCIÓN de cuenta -->
-        <td pFrozenColumn class="text-xs font-bold">
-          <span class="text-xs text-500">
+        <td pFrozenColumn class="text-xs fw-bold">
+          <span class="text-xs text-body-secondary">
             <span class="cursor-pointer" (click)="showPurchaseHistory(cuenta)"
               >🗂️</span
             >
             {{ cuenta.codigo_Cuenta }}
           </span>
           <br />
-          <span class="text-900"> {{ cuenta.descripcion_Cuenta }} </span>
+          <span class="text-body"> {{ cuenta.descripcion_Cuenta }} </span>
         </td>
         <!-- Presupuesto mensual base -->
-        <td pFrozenColumn class="text-right text-green-600 font-bold text-xs">
+        <td pFrozenColumn class="text-end text-green-600 fw-bold text-xs">
           <!-- SIN CONDICIONALES: Mostramos el dato directamente -->
           {{ getPresupuestoBaseMensual(cuenta) | number: '1.0-0' }}
         </td>
@@ -55,10 +55,10 @@
         }
         <!-- Columnas de meses visibles -->
         @for (mes of mesesVisibles; track mes) {
-        <td class="text-right text-xs">
+        <td class="text-end text-xs">
           @if (preFormMonth) { @let presupMes = getPresupuestoDelMes(cuenta,
           mes);
-          <span class="text-xs text-500">
+          <span class="text-xs text-body-secondary">
             {{ presupMes !== 0 ? (presupMes | number: '1.0-0') : '-' }}
           </span>
           <br />
@@ -72,14 +72,14 @@
         </td>
         }
         <!-- Acumulado anual -->
-        <td class="text-right text-xs font-bold">
+        <td class="text-end text-xs fw-bold">
           @let acumulado = getSumaGastoMesesVisiblesCuenta(cuenta);
           <span [class.text-red-600]="acumulado < 0">
             {{ acumulado !== 0 ? (acumulado | number: '1.0-0') : '-' }}
           </span>
         </td>
         <!-- Porcentaje gastado por cuenta -->
-        <td class="text-right text-xs font-bold">
+        <td class="text-end text-xs fw-bold">
           <span
             [class]="
               getPorcentajeGastadoMesesVisiblesCuenta(cuenta) > 100 ? 'text-red-600' : 'text-green-600'
@@ -91,12 +91,12 @@
           </span>
         </td>
         <!-- Presupuesto anual -->
-        <td class="text-right text-xs font-bold">
+        <td class="text-end text-xs fw-bold">
           @let presupuesto = getSumaPresupuestoMesesVisiblesCuenta(cuenta); {{
           presupuesto !== 0 ? (presupuesto | number: '1.0-0') : '-' }}
         </td>
         <!-- Presupuesto restante -->
-        <td class="text-right text-xs font-bold">
+        <td class="text-end text-xs fw-bold">
           @let restante = getSumaPresupuestoMesesVisiblesCuenta(cuenta) -
           getSumaGastoMesesVisiblesCuenta(cuenta);
           <span [class.text-red-600]="restante < 0">

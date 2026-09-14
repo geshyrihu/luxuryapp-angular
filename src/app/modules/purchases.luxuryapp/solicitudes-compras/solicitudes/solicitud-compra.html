@@ -1,4 +1,4 @@
-<div class="card shadow-sm rounded p-4 surface-card">
+<div class="card shadow-sm rounded p-4 bg-body">
   <!-- BARRA DE ESTADO VISUAL -->
   <div class="mb-4">
     <app-progress-bar
@@ -21,7 +21,7 @@
         } @else {
         <lx-tag value="NUEVA SOLICITUD" severity="success" class="text-lg" />
         }
-        <h3 class="m-0 font-bold text-900 ms-2">Solicitud de Compra</h3>
+        <h3 class="m-0 fw-bold text-body ms-2">Solicitud de Compra</h3>
       </div>
 
       <div class="d-flex flex-wrap">
@@ -141,7 +141,7 @@
         [icon]="'material-symbols-light:shopping-cart'"
         class="text-xl text-primary me-2"
       />
-      <h4 class="m-0 font-bold text-800 me-2">Productos Solicitados</h4>
+      <h4 class="m-0 fw-bold text-body me-2">Productos Solicitados</h4>
       <app-badge
         [value]="SolicitudCompraDetalle.length.toString()"
         color="info"
@@ -150,7 +150,7 @@
   </div>
 
   <!-- Buscador inline de productos -->
-  <div class="surface-ground p-3 rounded mb-4">
+  <div class="bg-body-tertiary p-3 rounded mb-4">
     <app-product-add
       [solicitudCompraId]="id"
       (updateData)="onLoadData()"
@@ -165,7 +165,7 @@
   />
   } @else {
   <div
-    class="surface-100 border-round p-3 text-600 text-sm d-flex align-items-center gap-2"
+    class="bg-body-tertiary rounded p-3 text-body-secondary text-sm d-flex align-items-center gap-2"
   >
     <app-icon
       [icon]="'material-symbols-light:info'"
@@ -176,9 +176,9 @@
   }
 
   <!-- Órdenes Relacionadas (Solo si existen) -->
-  <div class="mt-5 p-3 surface-100 rounded">
+  <div class="mt-5 p-3 bg-body-tertiary rounded">
     <div class="d-flex align-items-center justify-content-between mb-2">
-      <span class="text-sm font-bold text-600 uppercase"
+      <span class="text-sm fw-bold text-body-secondary text-uppercase"
         >Órdenes de Compra Relacionadas:</span
       >
       <il-button
@@ -201,7 +201,7 @@
         [tooltip]="'Ver Orden de Compra'"
       />
       } } @else {
-      <span class="text-sm italic text-500"
+      <span class="text-sm italic text-body-secondary"
         >No hay órdenes de compra vinculadas formalmente.</span
       >
       }

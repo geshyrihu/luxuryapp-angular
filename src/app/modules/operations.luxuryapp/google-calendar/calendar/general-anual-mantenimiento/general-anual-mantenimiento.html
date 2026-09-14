@@ -19,16 +19,16 @@
 <div class="mt-3 d-none d-md-block">
   @for (item of dataSignal(); track item) {
   <div class="mb-4">
-    <div class="surface-100 p-3 rounded mb-3">
-      <h5 class="m-0 uppercase font-bold">{{ item.mes.month }}</h5>
+    <div class="bg-body-tertiary p-3 rounded mb-3">
+      <h5 class="m-0 text-uppercase fw-bold">{{ item.mes.month }}</h5>
     </div>
     @for (servicio of item.servicios; track servicio) {
     <div class="mb-3">
       <div class="card" class="h-full shadow-sm">
         <div class="card-body">
           <div class="d-flex flex-column">
-            <div class="mb-3 border-bottom-1 surface-border pb-2">
-              <div class="font-bold text-xl text-primary">
+            <div class="mb-3 border-bottom-1 border pb-2">
+              <div class="fw-bold text-xl text-primary">
                 {{ servicio.equipo }}
               </div>
             </div>
@@ -42,32 +42,32 @@
               </div>
               <div class="col-12 col-sm-3">
                 <p class="text-sm font-normal mb-2">
-                  <span class="font-bold d-block text-xs uppercase text-500"
+                  <span class="fw-bold d-block text-xs text-uppercase text-body-secondary"
                     >Recurrencia:</span
                   >
                   {{ servicio.recurrencia }}
                 </p>
                 <p class="text-sm font-normal mb-2">
-                  <span class="font-bold d-block text-xs uppercase text-500"
+                  <span class="fw-bold d-block text-xs text-uppercase text-body-secondary"
                     >Día:</span
                   >
                   {{ servicio.dia }}
                 </p>
                 <p class="text-sm font-normal mb-2">
-                  <span class="font-bold d-block text-xs uppercase text-500"
+                  <span class="fw-bold d-block text-xs text-uppercase text-body-secondary"
                     >Costo:</span
                   >
                   {{ servicio.costo }}
                 </p>
                 <p class="text-sm font-normal mb-0">
-                  <span class="font-bold d-block text-xs uppercase text-500"
+                  <span class="fw-bold d-block text-xs text-uppercase text-body-secondary"
                     >Proveedor:</span
                   >
                   {{ servicio.proveedor }}
                 </p>
               </div>
               <div class="col-12 col-sm-6">
-                <span class="font-bold d-block text-xs uppercase text-500 mb-2"
+                <span class="fw-bold d-block text-xs text-uppercase text-body-secondary mb-2"
                   >Actividad:</span
                 >
                 <div
@@ -89,7 +89,7 @@
 <div class="d-block d-md-none">
   <!-- Filters -->
   <div class="mb-3 px-2">
-    <label class="text-sm font-bold d-block mb-1">Proveedor</label>
+    <label class="text-sm fw-bold d-block mb-1">Proveedor</label>
     <custom-input-select-signal
       [control]="providerIdControl"
       [data]="cb_providers()"
@@ -102,15 +102,15 @@
   </div>
 
   <!-- List -->
-  <div class="surface-card mb-3 rounded">
+  <div class="bg-body mb-3 rounded">
     @for (item of dataSignal(); track item) {
-    <div class="surface-card mb-3 rounded">
-      <span class="font-bold text-lg text-primary">{{ item.mes.month }}</span>
+    <div class="bg-body mb-3 rounded">
+      <span class="fw-bold text-lg text-primary">{{ item.mes.month }}</span>
     </div>
 
     @for (servicio of item.servicios; track servicio) {
     <div
-      class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
+      class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center"
     >
       <div class="me-3">
         <img
@@ -119,24 +119,24 @@
         />
       </div>
       <span class="ion-text-wrap my-2">
-        <h2 class="text-base font-bold">{{ servicio.equipo }}</h2>
+        <h2 class="text-base fw-bold">{{ servicio.equipo }}</h2>
         <div
-          class="text-sm text-700 mb-2"
+          class="text-sm text-body mb-2"
           [innerHTML]="servicio.actividad | sanitizeHtml"
         ></div>
 
         <div class="d-flex flex-wrap text-xs">
-          <div class="surface-100 p-1 rounded">
-            <span class="font-bold">Rec:</span> {{ servicio.recurrencia }}
+          <div class="bg-body-tertiary p-1 rounded">
+            <span class="fw-bold">Rec:</span> {{ servicio.recurrencia }}
           </div>
-          <div class="surface-100 p-1 rounded">
-            <span class="font-bold">Día:</span> {{ servicio.dia }}
+          <div class="bg-body-tertiary p-1 rounded">
+            <span class="fw-bold">Día:</span> {{ servicio.dia }}
           </div>
-          <div class="surface-100 p-1 rounded">
-            <span class="font-bold">Costo:</span> {{ servicio.costo }}
+          <div class="bg-body-tertiary p-1 rounded">
+            <span class="fw-bold">Costo:</span> {{ servicio.costo }}
           </div>
         </div>
-        <p class="text-xs text-color-secondary mt-2 mb-0">
+        <p class="text-xs text-body-secondary mt-2 mb-0">
           <app-icon [icon]="'material-symbols-light:work'" class="me-1" /> {{
           servicio.proveedor }}
         </p>

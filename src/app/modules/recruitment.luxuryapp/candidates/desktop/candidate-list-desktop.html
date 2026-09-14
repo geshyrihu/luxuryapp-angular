@@ -17,7 +17,7 @@
       class="d-flex flex-wrap gap-3 align-items-center justify-content-between"
     >
       <div class="d-flex flex-wrap gap-2">
-        <span class="text-sm text-color-secondary align-self-center"
+        <span class="text-sm text-body-secondary align-self-center"
           >Filtrar por entrevista:</span
         >
         @for (opt of interviewProgressOptions; track opt.value) {
@@ -83,10 +83,10 @@
     <tr>
       <td class="text-center w-3rem">
         @if (item.photoUrl) {
-        <img [src]="item.photoUrl" alt="" class="w-2rem h-2rem border-circle object-cover" />
+        <img [src]="item.photoUrl" alt="" class="w-2rem h-2rem rounded-circle object-cover" />
         } @else {
-        <div class="w-2rem h-2rem border-circle bg-primary-100 d-flex align-items-center justify-content-center">
-          <span class="text-primary font-semibold text-sm">{{ item.fullName.charAt(0) }}</span>
+        <div class="w-2rem h-2rem rounded-circle bg-primary-100 d-flex align-items-center justify-content-center">
+          <span class="text-primary fw-semibold text-sm">{{ item.fullName.charAt(0) }}</span>
         </div>
         }
       </td>
@@ -103,7 +103,7 @@
           [attr.aria-label]="'Ver CV de ' + item.fullName"
         />
         } @else {
-        <span class="text-color-secondary">-</span>
+        <span class="text-body-secondary">-</span>
         }
       </td>
       <td class="text-center">{{ item.activeApplicationsCount }}</td>

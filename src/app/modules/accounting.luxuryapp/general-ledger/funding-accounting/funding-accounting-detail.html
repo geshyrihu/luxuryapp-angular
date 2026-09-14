@@ -7,7 +7,7 @@
   </div>
 </div>
 <p
-  class="font-bold font-size-16 mb-1"
+  class="fw-bold font-size-16 mb-1"
   [class.text-success]="isVerified()"
   [class.text-color-secondary]="!isVerified()"
 >
@@ -15,7 +15,7 @@
 </p>
 
 <p
-  class="font-bold font-size-16 mb-1"
+  class="fw-bold font-size-16 mb-1"
   [class.text-success]="isAuthorized()"
   [class.text-color-secondary]="!isAuthorized()"
 >
@@ -28,7 +28,7 @@
   <il-button
     label="PROCESAR FONDEO"
     iconClass="material-symbols-light:check-box"
-    customClass="mr-1  border-2 border-surface-200"
+    customClass="mr-1  border-2 border"
     size="small"
     (clicked)="onConfirmed()"
   />
@@ -45,7 +45,7 @@
   <il-button
     label="FINALIZAR FONDEO"
     iconClass="material-symbols-light:lock"
-    customClass="mr-1  border-2 border-surface-200"
+    customClass="mr-1  border-2 border"
     size="small"
     (clicked)="onCompleted()"
   />
@@ -54,7 +54,7 @@
   <il-button
     label="REVERTIR FONDEO COMPLETADO"
     iconClass="material-symbols-light:warning"
-    customClass="mr-1  border-2 border-surface-200"
+    customClass="mr-1  border-2 border"
     size="small"
     (clicked)="onRevertComplete()"
   />
@@ -62,21 +62,21 @@
   <il-button
     iconClass="material-symbols-light:bar-chart"
     label="Excel"
-    customClass="mr-1  border-2 border-surface-200"
+    customClass="mr-1  border-2 border"
     size="small"
     (clicked)="onDownloadFileExcel()"
   />
   <il-button
     iconClass="material-symbols-light:book"
     label="Pdf"
-    customClass="mr-1  border-2 border-surface-200"
+    customClass="mr-1  border-2 border"
     size="small"
     (clicked)="onDownloadFilePdf()"
   />
   <il-button
     [iconClass]="'material-symbols-light:upload'"
     label="Facturas"
-    customClass="mr-1  border-2 border-surface-200"
+    customClass="mr-1  border-2 border"
     size="small"
     (clicked)="onDownloadInvoces()"
   />
@@ -92,17 +92,17 @@
     <ng-template #header>
       <tr>
         <th class="text-center" >N°</th>
-        <th class="text-right table-col-80px">CUENTA</th>
+        <th class="text-end table-col-80px">CUENTA</th>
         <th class="text-start" >CONCEPTO</th>
         <th class="text-center" >PAGADA</th>
         <th class="text-center table-col-100px">FECHA</th>
         <th class="text-start table-col-80px">FAC</th>
         <th class="text-center table-col-60px">Val. XML</th>
         <th class="text-start" >PROVEEDOR Y/O ACREEDOR</th>
-        <th class="text-right table-col-120px">TOTAL</th>
-        <th class="text-right table-col-120px">BANCO</th>
-        <th class="text-right table-col-160px">CUENTA/CLABE</th>
-        <th class="text-right table-col-160px">REFERENCIA</th>
+        <th class="text-end table-col-120px">TOTAL</th>
+        <th class="text-end table-col-120px">BANCO</th>
+        <th class="text-end table-col-160px">CUENTA/CLABE</th>
+        <th class="text-end table-col-160px">REFERENCIA</th>
       </tr>
     </ng-template>
     <ng-template #body let-orden let-rowIndex="rowIndex">
@@ -113,7 +113,7 @@
         >
           <span> 🧾 | {{ orden.indice }} </span>
         </td>
-        <td class="text-right">{{ orden.codigoCuenta }}</td>
+        <td class="text-end">{{ orden.codigoCuenta }}</td>
         <td class="text-start">{{ orden.justificacionGasto | uppercase }}</td>
         <!-- ================================================== -->
         <!-- INICIO DE LA NUEVA COLUMNA CON EL CHECKBOX         -->
@@ -133,7 +133,7 @@
         <td class="text-center">{{ orden.fechaFactura | uppercase }}</td>
         <td class="text-start">
           <!-- @if (orden.factura && !orden.pdfFile) {
-          <span class="text-color-secondary w-fluid">
+          <span class="text-body-secondary w-fluid">
             {{ orden.factura | uppercase }}
           </span>
           }  -->
@@ -152,17 +152,17 @@
           }
         </td>
         <td class="text-start">{{ orden.nameProvider | uppercase }}</td>
-        <td class="text-right">{{ orden.total | number: '1.2-2' }}</td>
+        <td class="text-end">{{ orden.total | number: '1.2-2' }}</td>
 
-        <td class="text-right">{{ orden.shortName | uppercase }}</td>
-        <td class="text-right">{{ orden.paymentAccount | uppercase }}</td>
-        <td class="text-right">{{ orden.interbankCode | uppercase }}</td>
+        <td class="text-end">{{ orden.shortName | uppercase }}</td>
+        <td class="text-end">{{ orden.paymentAccount | uppercase }}</td>
+        <td class="text-end">{{ orden.interbankCode | uppercase }}</td>
       </tr>
     </ng-template>
     <ng-template #footer>
       <tr>
         <td colspan="6"></td>
-        <td class="font-bold">TOTAL {{ grupo.tipoGasto | uppercase }}</td>
+        <td class="fw-bold">TOTAL {{ grupo.tipoGasto | uppercase }}</td>
         <td class="font-weight-bold td-background-f3f6fa">
           {{ grupo.totalGrupo | number: '1.2-2' }}
         </td>

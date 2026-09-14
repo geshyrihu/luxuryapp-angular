@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "@ui/web/primeng-table/primeng-table";
-import { ButtonModule } from "primeng/button";
+import { WebButtonLabel } from "@ui/buttons/web-label";
 
 import { Router } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
@@ -75,7 +75,7 @@ import { AspelCobranzaReglasNegocioComponent } from "./aspel-cobranza-reglas-neg
     LxTag,
     LxCard,
     LxMessage,
-    ButtonModule,
+      WebButtonLabel,
   ],
 })
 export class AspelCobranzaHaus {

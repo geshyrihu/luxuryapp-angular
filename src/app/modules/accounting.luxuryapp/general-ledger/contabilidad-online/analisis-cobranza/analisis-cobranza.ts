@@ -1,7 +1,7 @@
 import { CommonModule, formatCurrency } from "@angular/common";
 import { Component, computed, effect, inject } from "@angular/core";
 import { AppStatCard } from "@ui/shared/stat-card/stat-card";
-import { SkeletonModule } from "primeng/skeleton";
+import { AppSkeleton } from "@ui/web/skeleton/skeleton";
 import { CustomerIdService } from "src/app/core/auth/services/customer-id.service";
 import { CobranzaOnlineAdvances } from "src/app/modules/collections.luxuryapp/cobranza-online/advances/cobranza-online-advances";
 import { CobranzaOnlineAnalysis } from "src/app/modules/collections.luxuryapp/cobranza-online/analysis/cobranza-online-analysis";
@@ -19,7 +19,7 @@ import { reportFilterState } from "../state/financial-report-filter.state";
     CobranzaOnlineTowers,
     CobranzaOnlineAdvances,
     CobranzaOnlineAnalysis,
-    SkeletonModule,
+    AppSkeleton,
     AppStatCard,
   ],
   providers: [CobranzaOnlineStoreService],

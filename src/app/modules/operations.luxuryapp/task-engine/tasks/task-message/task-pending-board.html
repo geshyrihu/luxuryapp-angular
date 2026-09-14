@@ -1,7 +1,7 @@
-<section class="surface-ground min-h-screen p-3 p-md-4">
+<section class="bg-body-tertiary min-h-screen p-3 p-md-4">
   @if (loading()) {
   <div
-    class="d-flex align-items-center justify-content-center py-8"
+    class="d-flex align-items-center justify-content-center py-5"
     
   >
     <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-primary text-4xl" />
@@ -10,7 +10,7 @@
   <div class="w-full xl:w-10 mx-auto d-flex flex-column gap-4">
     <!-- Header -->
     <header
-      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden"
+      class="bg-body rounded-xl border-1 border shadow-sm overflow-hidden"
     >
       <div class="bg-yellow-500" ></div>
 
@@ -25,7 +25,7 @@
         </div>
 
         <p
-          class="text-xs font-bold text-color-secondary m-0 mb-2"
+          class="text-xs fw-bold text-body-secondary m-0 mb-2"
           
         >
           TABLERO DE PENDIENTES
@@ -33,23 +33,23 @@
         <h1 class="text-primary text-4xl line-height-2 m-0 mb-3">
           {{ nameGroup() }}
         </h1>
-        <p class="text-color-secondary line-height-3 m-0 mb-4 max-w-30rem">
+        <p class="text-body-secondary line-height-3 m-0 mb-4 max-w-30rem">
           Tareas pendientes y en proceso agrupadas por area, ordenadas por
           prioridad de ejecucion.
         </p>
 
         <div
-          class="border-top-1 surface-border pt-3 d-flex flex-wrap align-items-center justify-content-between gap-3"
+          class="border-top-1 border pt-3 d-flex flex-wrap align-items-center justify-content-between gap-3"
         >
           <div class="d-flex flex-wrap gap-3">
             <div
-              class="d-inline-flex align-items-center gap-2 text-color-secondary"
+              class="d-inline-flex align-items-center gap-2 text-body-secondary"
             >
               <app-icon [icon]="'material-symbols-light:format-list-bulleted'" />
               <span>Total: {{ totalTasks() }} tareas</span>
             </div>
             <div
-              class="d-inline-flex align-items-center gap-2 text-color-secondary"
+              class="d-inline-flex align-items-center gap-2 text-body-secondary"
             >
               <app-icon [icon]="'material-symbols-light:grid-view'" />
               <span>Areas: {{ groupedTasks().length }}</span>
@@ -74,7 +74,7 @@
     @if (groupedTasks().length) { @for (group of groupedTasks(); track
     group.title; let i = $index) {
     <article
-      class="surface-card rounded-xl border-1 surface-border p-4 shadow-sm"
+      class="bg-body rounded-xl border-1 border p-4 shadow-sm"
     >
       <!-- Encabezado del area -->
       <div
@@ -82,14 +82,14 @@
       >
         <div class="d-flex align-items-center gap-3">
           <span
-            class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white font-bold flex-shrink-0"
+            class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0"
             
           >
             {{ formatIndex(i + 1) }}
           </span>
           <div>
-            <h3 class="text-lg text-900 m-0">{{ group.title }}</h3>
-            <p class="text-sm text-color-secondary m-0">
+            <h3 class="text-lg text-body m-0">{{ group.title }}</h3>
+            <p class="text-sm text-body-secondary m-0">
               {{ group.tasks.length }} {{ group.tasks.length === 1 ? "tarea" :
               "tareas" }} pendiente(s)
             </p>
@@ -106,20 +106,20 @@
         @for (task of group.tasks; track task.id; let ti = $index) {
         <div class="col-12 col-md-6">
           <article
-            class="surface-ground rounded-xl border-1 surface-border p-3 h-full"
+            class="bg-body-tertiary rounded-xl border-1 border p-3 h-full"
           >
             <!-- Info de la tarea -->
             <div class="d-flex align-items-start gap-3">
               <div
-                class="w-2rem h-2rem border-circle text-white d-flex align-items-center justify-content-center font-bold flex-shrink-0 text-xs"
+                class="w-2rem h-2rem rounded-circle text-white d-flex align-items-center justify-content-center fw-bold flex-shrink-0 text-xs"
                 
               >
                 {{ formatIndex(ti + 1) }}
               </div>
 
-              <div class="flex-1 min-w-0">
+              <div class="flex-fill min-w-0">
                 <div class="d-flex align-items-center gap-2 flex-wrap mb-2">
-                  <span class="text-xs font-bold text-color-secondary"
+                  <span class="text-xs fw-bold text-body-secondary"
                     >{{ task.folio }}</span
                   >
                   <lx-tag
@@ -127,19 +127,19 @@
                     [severity]="statusSeverity(task.status)"
                    />
                   @if (task.assignee) {
-                  <span class="text-xs text-color-secondary"
+                  <span class="text-xs text-body-secondary"
                     ><app-icon [icon]="'material-symbols-light:person'" class="me-1" />{{
                     task.assignee }}</span
                   >
                   } @if (task.scheduledAt) {
-                  <span class="text-xs text-color-secondary"
+                  <span class="text-xs text-body-secondary"
                     ><app-icon [icon]="'material-symbols-light:calendar-today'" class="me-1"></app-icon
                     >{{ task.scheduledAt }}</span
                   >
                   }
                 </div>
                 @if (task.description) {
-                <p class="m-0 text-sm line-height-3 text-color-secondary">
+                <p class="m-0 text-sm line-height-3 text-body-secondary">
                   {{ task.description }}
                 </p>
                 }
@@ -164,13 +164,13 @@
     </article>
     } } @else {
     <div
-      class="surface-card rounded-xl border-1 surface-border p-6 shadow-sm text-center"
+      class="bg-body rounded-xl border-1 border p-5 shadow-sm text-center"
     >
       <app-icon
         [icon]="'material-symbols-light:check-circle'"
-        class="text-4xl text-400 mb-3 d-block"
+        class="text-4xl text-body-secondary mb-3 d-block"
       />
-      <p class="text-500 m-0 text-lg">
+      <p class="text-body-secondary m-0 text-lg">
         No hay tareas pendientes en este grupo.
       </p>
     </div>

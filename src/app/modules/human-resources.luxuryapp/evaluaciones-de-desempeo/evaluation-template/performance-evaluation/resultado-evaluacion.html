@@ -17,9 +17,9 @@
       <lx-divider />
     </ng-template>
     <ng-template #content>
-      <div class="row text-center md:text-left g-4">
+      <div class="row text-center md:text-start g-4">
         <div class="col-12 col-md-4 mb-3 mb-md-0">
-          <div class="text-s font-bold text-color-secondary mb-1">
+          <div class="text-s fw-bold text-body-secondary mb-1">
             Fecha de Evaluación:
           </div>
           <p class="text-lg m-0">
@@ -28,20 +28,20 @@
           </p>
         </div>
         <div class="col-12 col-md-4 mb-3 mb-md-0">
-          <div class="text-s font-bold text-color-secondary mb-1">
+          <div class="text-s fw-bold text-body-secondary mb-1">
             Empleado Evaluado:
           </div>
           <p class="text-lg m-0">{{ evaluationResult()!.employeeName }}</p>
-          <p class="text-sm text-color-secondary m-0">
+          <p class="text-sm text-body-secondary m-0">
             {{ evaluationResult()!.employeePosition }}
           </p>
         </div>
         <div class="col-12 col-md-4">
-          <div class="text-s font-bold text-color-secondary mb-1">
+          <div class="text-s fw-bold text-body-secondary mb-1">
             Evaluador:
           </div>
           <p class="text-lg m-0">{{ evaluationResult()!.evaluatorName }}</p>
-          <p class="text-sm text-color-secondary m-0">
+          <p class="text-sm text-body-secondary m-0">
             {{ evaluationResult()!.evaluatorPosition }}
           </p>
         </div>
@@ -127,7 +127,7 @@
       $index) {
       <div class="mb-4">
         <div
-          class="d-flex justify-content-between align-items-center surface-100 p-3 mb-3 rounded"
+          class="d-flex justify-content-between align-items-center bg-body-tertiary p-3 mb-3 rounded"
         >
           <h6 class="m-0 d-flex align-items-center">
             <app-icon [icon]="'material-symbols-light:folder'" class="me-2" />{{ category.name }}
@@ -140,9 +140,9 @@
         <div>
           @for (answer of category.answers; track answer; let j = $index) {
           <div
-            class="mb-3 p-3 border-1 surface-border rounded question-item"
+            class="mb-3 p-3 border-1 border rounded question-item"
           >
-            <div class="font-bold mb-2">
+            <div class="fw-bold mb-2">
               {{ j + 1 }}. {{ answer.questionText }}
             </div>
             <div
@@ -153,8 +153,8 @@
                 severity="success"
               ></lx-tag>
               <div class="mt-2 mt-sm-0">
-                <span class="font-bold me-2">Comentarios:</span>
-                <span class="text-color-secondary"
+                <span class="fw-bold me-2">Comentarios:</span>
+                <span class="text-body-secondary"
                   >{{ answer.comments || "Sin comentarios." }}</span
                 >
               </div>
@@ -168,11 +168,11 @@
   </lx-card>
 
   <!-- PIE DE PÁGINA PARA IMPRESIÓN -->
-  <div class="print-footer text-center mt-4 pt-3 border-top-1 surface-border">
+  <div class="print-footer text-center mt-4 pt-3 border-top-1 border">
     <p class="mb-1">
       Documento generado el {{ today() | apiDate: "dd/MM/yyyy HH:mm" }}
     </p>
-    <p class="text-sm text-color-secondary m-0">Confidencial - Uso interno</p>
+    <p class="text-sm text-body-secondary m-0">Confidencial - Uso interno</p>
   </div>
 </div>
 }

@@ -33,11 +33,11 @@
         Empleado <p-sorticon field="nombreEmpleado" />
       </th>
       <th pSortableColumn="fecha">Fecha <p-sorticon field="fecha" /></th>
-      <th class="text-right">Hrs Simples</th>
-      <th class="text-right">Hrs Dobles</th>
-      <th class="text-right">Importe Simples</th>
-      <th class="text-right">Importe Dobles</th>
-      <th class="text-right">Total</th>
+      <th class="text-end">Hrs Simples</th>
+      <th class="text-end">Hrs Dobles</th>
+      <th class="text-end">Importe Simples</th>
+      <th class="text-end">Importe Dobles</th>
+      <th class="text-end">Total</th>
       <th>Estado</th>
       <th>Acciones</th>
     </tr>
@@ -46,15 +46,15 @@
     <tr>
       <td>{{ item.nombreEmpleado }}</td>
       <td>{{ item.fecha | apiDate: "dd/MM/yyyy" }}</td>
-      <td class="text-right">{{ item.horasSimples }}</td>
-      <td class="text-right">{{ item.horasDobles }}</td>
-      <td class="text-right">
+      <td class="text-end">{{ item.horasSimples }}</td>
+      <td class="text-end">{{ item.horasDobles }}</td>
+      <td class="text-end">
         {{ item.importeHorasSimples | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
-      <td class="text-right">
+      <td class="text-end">
         {{ item.importeHorasDobles | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
-      <td class="text-right font-bold">
+      <td class="text-end fw-bold">
         {{ item.totalImporte | currency: "MXN" : "symbol" : "1.2-2" }}
       </td>
       <td>
@@ -107,7 +107,7 @@
         item.horasDobles }}h total
       </p>
       <div class="d-flex align-items-center gap-2 mt-1">
-        <span class="font-bold"
+        <span class="fw-bold"
           >{{ item.totalImporte | currency: "MXN" : "symbol" : "1.2-2" }}</span
         >
         <lx-tag

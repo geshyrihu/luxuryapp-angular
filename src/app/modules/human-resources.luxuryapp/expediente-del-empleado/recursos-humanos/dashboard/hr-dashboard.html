@@ -1,7 +1,7 @@
 <!-- Encabezado -->
 <div class="mb-6">
-  <h1 class="text-2xl font-bold text-color mb-1">🏢 Recursos Humanos</h1>
-  <p class="text-sm text-color-secondary m-0">
+  <h1 class="text-2xl fw-bold text-body mb-1">🏢 Recursos Humanos</h1>
+  <p class="text-sm text-body-secondary m-0">
     Panel central de gestión de empleados, contratos, incidencias y sanciones
   </p>
 </div>
@@ -13,11 +13,11 @@
 <div class="d-flex align-items-center mb-3 mt-5">
   <span class="text-xl">{{ group.emoji }}</span>
   <h2
-    class="text-base font-semibold text-color m-0 uppercase tracking-wide ms-2"
+    class="text-base fw-semibold text-body m-0 text-uppercase tracking-wide ms-2"
   >
     {{ group.label }}
   </h2>
-  <div class="flex-flex-grow-1-1 border-bottom-1 surface-border ms-2"></div>
+  <div class="flex-flex-grow-1-1 border-bottom-1 border ms-2"></div>
 </div>
 
 <!-- Cards del grupo -->
@@ -25,7 +25,7 @@
   @for (module of group.cards; track module.route) {
   <div class="col-12 col-sm-6 col-md-3">
     <div
-      class="surface-card rounded-xl shadow-sm cursor-pointer p-4 d-flex flex-column border-1 surface-border transition-all hover:shadow h-full"
+      class="bg-body rounded-xl shadow-sm cursor-pointer p-4 d-flex flex-column border-1 border transition-all hover:shadow h-full"
       (click)="navigateTo(module.route)"
     >
       <!-- Icono + título -->
@@ -36,22 +36,22 @@
         >
           {{ module.emoji }}
         </div>
-        <h3 class="m-0 font-semibold text-color ms-3">{{ module.title }}</h3>
+        <h3 class="m-0 fw-semibold text-body ms-3">{{ module.title }}</h3>
       </div>
 
       <!-- DESCRIPCIÓN -->
       <p
-        class="text-sm text-color-secondary m-0 flex-flex-grow-1-1 line-height-3"
+        class="text-sm text-body-secondary m-0 flex-flex-grow-1-1 line-height-3"
       >
         {{ module.description }}
       </p>
 
       <!-- Footer: roles + flecha -->
       <div
-        class="d-flex justify-content-between align-items-center pt-3 border-top-1 surface-border mt-3"
+        class="d-flex justify-content-between align-items-center pt-3 border-top-1 border mt-3"
       >
         <span
-          class="text-xs font-semibold truncate me-2"
+          class="text-xs fw-semibold truncate me-2"
           [style.color]="module.color"
         >
           {{ getRoleNames(module.roles) }}

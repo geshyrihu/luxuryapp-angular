@@ -4,11 +4,11 @@
       <div
         class="d-flex flex-column gap-2 flex-md-row justify-content-md-between align-items-md-center g-4"
       >
-        <div class="text-center md:text-left mb-2 px-2 px-md-0">
-          <h2 class="m-0 text-xl md:text-2xl font-bold line-height-3">
+        <div class="text-center md:text-start mb-2 px-2 px-md-0">
+          <h2 class="m-0 text-xl md:text-2xl fw-bold line-height-3">
             Agenda central para reuniones con el comite y asambleas
           </h2>
-          <p class="m-0 mt-2 text-sm text-color-secondary line-height-3">
+          <p class="m-0 mt-2 text-sm text-body-secondary line-height-3">
             Eventos de Luxury App sincronizados con el calendario central.
           </p>
         </div>
@@ -97,7 +97,7 @@
               (clicked)="onOpenAssemblyChecklist(item)"
             />
             } @else {
-            <span class="text-color-secondary">No aplica</span>
+            <span class="text-body-secondary">No aplica</span>
             }
           </td>
           <td>
@@ -110,7 +110,7 @@
               Abrir Meet
             </a>
             } @else {
-            <span class="text-color-secondary">Sin Meet</span>
+            <span class="text-body-secondary">Sin Meet</span>
             }
           </td>
           <td>
@@ -123,7 +123,7 @@
               Ver evento
             </a>
             } @else {
-            <span class="text-color-secondary">Sin enlace</span>
+            <span class="text-body-secondary">Sin enlace</span>
             }
           </td>
           @if (canManageItem(item)) {
@@ -150,14 +150,14 @@
         <ili-list-item>
           <div
             start
-            class="d-flex flex-column align-items-center justify-content-center mx-3 my-2 border-round-xl bg-primary-50 px-3 py-2 shadow-1"
+            class="d-flex flex-column align-items-center justify-content-center mx-3 my-2 rounded bg-primary-50 px-3 py-2 shadow-1"
           >
             <span
-              class="text-xs font-bold text-primary uppercase tracking-widest"
+              class="text-xs fw-bold text-primary text-uppercase tracking-widest"
               >{{ getMonth(item.startAt) }}</span
             >
             <span
-              class="text-3xl font-bold text-primary"
+              class="text-3xl fw-bold text-primary"
               style="line-height: 1.1"
               >{{ getDay(item.startAt) }}</span
             >
@@ -166,37 +166,37 @@
           <div class="d-flex flex-column gap-2 py-3 w-full">
             <div class="d-flex flex-wrap align-items-center gap-2">
               <span
-                class="text-xs font-bold px-2 py-1 border-round-xl {{ getSubjectTypeClass(item) }}"
+                class="text-xs fw-bold px-2 py-1 rounded {{ getSubjectTypeClass(item) }}"
               >
                 {{ item.subjectTypeName }}
               </span>
               <span
-                class="text-xs font-medium text-color-secondary bg-surface-200 px-2 py-1 border-round-xl"
+                class="text-xs fw-medium text-body-secondary bg-bg-body-tertiary px-2 py-1 rounded"
               >
                 {{ item.modalityName }}
               </span>
             </div>
 
-            <h2 class="m-0 text-lg font-bold text-color line-height-3">
+            <h2 class="m-0 text-lg fw-bold text-body line-height-3">
               {{ item.title }}
             </h2>
 
             <div class="d-flex flex-wrap gap-3 mt-1">
               <div
-                class="d-flex align-items-center gap-1 text-sm font-medium text-color-secondary"
+                class="d-flex align-items-center gap-1 text-sm fw-medium text-body-secondary"
               >
                 <app-icon icon="material-symbols-light:schedule" />
                 <span>{{ formatBusinessTime(item.startAt) }}</span>
               </div>
               <div
-                class="d-flex align-items-center gap-1 text-sm font-medium text-color-secondary"
+                class="d-flex align-items-center gap-1 text-sm fw-medium text-body-secondary"
               >
                 <app-icon icon="material-symbols-light:group-outline" />
                 <span>{{ item.guestCount }} Invitados</span>
               </div>
               @if (item.recurrenceSummary) {
               <div
-                class="d-flex align-items-center gap-1 text-sm font-medium text-color-secondary"
+                class="d-flex align-items-center gap-1 text-sm fw-medium text-body-secondary"
               >
                 <app-icon icon="material-symbols-light:refresh" />
                 <span>{{ item.recurrenceSummary }}</span>
@@ -215,7 +215,7 @@
                 [href]="item.googleMeetUrl"
                 rel="noopener noreferrer"
                 target="_blank"
-                class="no-underline text-xs font-bold px-2 py-1 border-round-xl bg-green-100 text-green-800 d-flex align-items-center gap-1"
+                class="no-underline text-xs fw-bold px-2 py-1 rounded bg-green-100 text-green-800 d-flex align-items-center gap-1"
               >
                 <app-icon icon="material-symbols-light:videocam" /> Meet
               </a>

@@ -13,19 +13,19 @@
 -->
 <div class="p-4">
   @if (loading()) {
-  <div class="d-flex flex-column align-items-center justify-content-center p-8">
+  <div class="d-flex flex-column align-items-center justify-content-center p-5">
     <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-6xl text-primary mb-4" />
-    <div class="text-xl font-medium text-700">Analizando con IA...</div>
-    <div class="text-500 mt-2 text-center">Esto puede tomar unos segundos.</div>
+    <div class="text-xl fw-medium text-body">Analizando con IA...</div>
+    <div class="text-body-secondary mt-2 text-center">Esto puede tomar unos segundos.</div>
   </div>
   } @else {
   <div
-    class="line-height-3 text-lg overflow-y-auto pe-3 surface-ground rounded p-3"
+    class="line-height-3 text-lg overflow-y-auto pe-3 bg-body-tertiary rounded p-3"
   >
     @if (auditReportHtml()) {
     <div [innerHTML]="auditReportHtml()"></div>
     } @else {
-    <div class="text-center p-4 text-500 italic">
+    <div class="text-center p-4 text-body-secondary italic">
       No se pudo generar el reporte de Auditoría.
     </div>
     }

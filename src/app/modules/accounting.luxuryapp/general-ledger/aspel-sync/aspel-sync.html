@@ -9,11 +9,11 @@
     <div class="row mt-2 mb-2 g-4">
       <div class="col-12 col-md-6">
         <div
-          class="surface-ground p-3 rounded-lg border-1 border-blue-100 h-full"
+          class="bg-body-tertiary p-3 rounded-lg border-1 border-blue-100 h-full"
         >
           <div class="d-flex align-items-center gap-2 mb-2 text-blue-700">
             <app-icon [icon]="'material-symbols-light:info'" class="text-xl" />
-            <span class="font-bold">Cliente Seleccionado</span>
+            <span class="fw-bold">Cliente Seleccionado</span>
           </div>
           <div class="text-sm line-height-3">
             <div class="d-flex justify-content-between">
@@ -22,7 +22,7 @@
             </div>
             <div class="d-flex justify-content-between">
               <span class="text-secondary">Nombre:</span>
-              <span class="font-bold"
+              <span class="fw-bold"
                 >{{ currentCustomerName() || 'Sin cliente activo' }}</span
               >
             </div>
@@ -74,7 +74,7 @@
     @if (lastAction()) {
     <div class="mt-4">
       <h5 class="mb-2">Última acción:</h5>
-      <div class="text-sm text-color-secondary">
+      <div class="text-sm text-body-secondary">
         {{ lastAction() | titlecase }}
       </div>
     </div>
@@ -82,7 +82,7 @@
     <div class="mt-4">
       <h5 class="mb-2">Respuesta:</h5>
       <pre
-        class="surface-section p-3 rounded overflow-x-auto overflow-y-auto"
+        class="bg-body-tertiary p-3 rounded overflow-x-auto overflow-y-auto"
       ><code class="language-json">{{ lastResult() | json }}</code></pre>
     </div>
     }

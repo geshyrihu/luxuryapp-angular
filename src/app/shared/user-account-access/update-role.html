@@ -1,6 +1,6 @@
 <div class="d-flex flex-column gap-3">
   <div
-    class="surface-card p-3 rounded border-1 surface-border d-flex align-items-center gap-3"
+    class="bg-body p-3 rounded border-1 border d-flex align-items-center gap-3"
   >
     <div
       class="w-3rem h-3rem rounded bg-primary-50 d-flex align-items-center justify-content-center text-primary"
@@ -8,10 +8,10 @@
       <app-icon [icon]="'material-symbols-light:shield'" class="text-xl" />
     </div>
     <div class="d-flex flex-column">
-      <span class="text-900 font-bold uppercase tracking-wider text-sm"
+      <span class="text-body fw-bold text-uppercase tracking-wider text-sm"
         >Gestion de Permisos</span
       >
-      <span class="text-xs text-500"
+      <span class="text-xs text-body-secondary"
         >Asigna o remueve roles de acceso para este usuario</span
       >
     </div>
@@ -21,8 +21,8 @@
   <div class="p-3 rounded border-1 bg-yellow-50 border-yellow-200">
     <div class="d-flex align-items-start gap-3">
       <app-icon [icon]="'material-symbols-light:error-outline'" class="text-yellow-600 text-xl mt-0.5" />
-      <div class="flex-1">
-        <span class="text-yellow-800 font-semibold text-sm">Acceso restringido</span>
+      <div class="flex-fill">
+        <span class="text-yellow-800 fw-semibold text-sm">Acceso restringido</span>
         <p class="text-yellow-700 text-sm mt-1 mb-0">
           No puedes autoadministrar tus propios roles. Para cambios en tus permisos,
           contacta al <strong>Administrador del Condominio</strong> o al
@@ -38,11 +38,11 @@
     <div class="d-flex flex-column gap-2">
       <div class="d-flex align-items-center justify-content-between px-1">
         <h5
-          class="m-0 font-bold text-primary uppercase text-xs tracking-widest"
+          class="m-0 fw-bold text-primary text-uppercase text-xs tracking-widest"
         >
           {{ group.groupName }}
         </h5>
-        <span class="text-xs font-medium text-500 bg-100 px-2 py-1 rounded">
+        <span class="text-xs fw-medium text-body-secondary bg-100 px-2 py-1 rounded">
           {{ group.roles.length }} Roles
         </span>
       </div>
@@ -51,11 +51,10 @@
         @for (item of group.roles; track item.roleId) {
         <div class="col-12 col-sm-6 col-lg-4">
           <div
-            class="d-flex align-items-center justify-content-between p-3 rounded-lg border-1 surface-border transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
+            class="d-flex align-items-center justify-content-between p-3 rounded-lg border-1 border transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
             [class.cursor-pointer]="!isSelfProfile()"
-            [class.hover:surface-100]="!isSelfProfile()"
             [class.opacity-60]="isSelfProfile()"
-            [class.surface-50]="item.isSelected"
+            [class.bg-body-tertiary]="item.isSelected"
             [class.border-primary]="item.isSelected"
             [class.shadow-sm]="item.isSelected"
             (click)="!isSelfProfile() && selectRole(item)"
@@ -75,19 +74,19 @@
                   class="text-xs"
                 />
               </span>
-              <div class="d-flex flex-column min-w-0 flex-1">
+              <div class="d-flex flex-column min-w-0 flex-fill">
                 <span
-                  class="font-bold text-sm text-900 truncate"
+                  class="fw-bold text-sm text-body truncate"
                   [title]="item.displayName"
                 >
                   {{ item.displayName | uppercase }}
                 </span>
                 <div class="d-flex align-items-center justify-content-between">
-                  <span class="text-xs text-500"
+                  <span class="text-xs text-body-secondary"
                     >Orden: {{ item.sortOrder }}</span
                   >
                   @if (item.isSelected) {
-                  <span class="text-xs font-bold text-green-600">Activo</span>
+                  <span class="text-xs fw-bold text-green-600">Activo</span>
                   }
                 </div>
               </div>

@@ -24,10 +24,10 @@
       />
 
       <div class="d-flex justify-content-between mt-1">
-        <small class="text-500">Mínimo 10 caracteres.</small>
+        <small class="text-body-secondary">Mínimo 10 caracteres.</small>
         <small
           [class.text-red-500]="remainingChars() < 10"
-          class="text-primary font-medium"
+          class="text-primary fw-medium"
         >
           Restantes: {{ remainingChars() }}
         </small>
@@ -40,8 +40,8 @@
   </form>
 
   <!-- Timeline Section -->
-  <div class="surface-border border-top-1 pt-4">
-    <h3 class="text-xl font-semibold text-900 mb-3">
+  <div class="border border-top-1 pt-4">
+    <h3 class="text-xl fw-semibold text-body mb-3">
       Historial de Seguimientos
     </h3>
 
@@ -49,15 +49,15 @@
     <div class="d-flex flex-column gap-3">
       @for(follow of description(); track $index) {
       <div
-        class="surface-card p-3 rounded shadow-sm border-left-3 border-primary"
+        class="bg-body p-3 rounded shadow-sm border-left-3 border-primary"
       >
         <div class="d-flex align-items-center justify-content-between mb-2">
-          <span class="font-bold text-900 text-sm">
+          <span class="fw-bold text-body text-sm">
             <app-icon [icon]="'material-symbols-light:person'" class="me-2 text-primary" />
             {{ follow.applicationUser }}
           </span>
           <div class="d-flex align-items-center gap-2">
-            <span class="text-xs text-500 surface-100 px-2 py-1 rounded">
+            <span class="text-xs text-body-secondary bg-body-tertiary px-2 py-1 rounded">
               {{ follow.createdAt }}
             </span>
             @if (isSuperUser()) {
@@ -65,7 +65,7 @@
             }
           </div>
         </div>
-        <p class="m-0 text-700 line-height-3 text-sm">
+        <p class="m-0 text-body line-height-3 text-sm">
           {{ follow.description }}
         </p>
       </div>
@@ -73,13 +73,13 @@
     </div>
     } @else {
     <div
-      class="d-flex flex-column align-items-center justify-content-center p-5 surface-50 rounded"
+      class="d-flex flex-column align-items-center justify-content-center p-5 bg-body-tertiary rounded"
     >
-      <div class="border-circle surface-200 p-3 mb-3">
-        <app-icon [icon]="'material-symbols-light:forum'" class="text-3xl text-500" />
+      <div class="rounded-circle bg-body-tertiary p-3 mb-3">
+        <app-icon [icon]="'material-symbols-light:forum'" class="text-3xl text-body-secondary" />
       </div>
-      <span class="text-700 font-medium">No hay seguimientos registrados</span>
-      <span class="text-500 text-sm mt-1">Sí el primero en agregar uno.</span>
+      <span class="text-body fw-medium">No hay seguimientos registrados</span>
+      <span class="text-body-secondary text-sm mt-1">Sí el primero en agregar uno.</span>
     </div>
     }
   </div>

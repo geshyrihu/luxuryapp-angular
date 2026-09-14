@@ -1,17 +1,17 @@
 <div class="vacancy-timeline-modal">
   @if (loading()) {
-  <div class="p-4 text-center text-500">Cargando línea de tiempo...</div>
+  <div class="p-4 text-center text-body-secondary">Cargando línea de tiempo...</div>
   } @else if (candidateTimelines().length === 0) {
   <div class="card p-4 text-center">
-    <div class="font-semibold text-lg mb-2">Sin candidatos registrados</div>
-    <div class="text-sm text-500">
+    <div class="fw-semibold text-lg mb-2">Sin candidatos registrados</div>
+    <div class="text-sm text-body-secondary">
       Esta vacante aún no tiene eventos para mostrar.
     </div>
   </div>
   } @else {
   <div class="candidate-timeline-grid">
     @for (candidate of candidateTimelines(); track candidate.candidateProcessId) {
-    <section class="candidate-timeline-column card shadow-1 border-round">
+    <section class="candidate-timeline-column card shadow-1 rounded">
       <header class="candidate-timeline-header d-flex align-items-start gap-3">
         <lx-avatar
           [image]="candidate.photoUrl"
@@ -20,8 +20,8 @@
           icon="material-symbols-light:person"
         />
         <div class="d-flex flex-column flex-grow-1">
-          <span class="font-bold text-lg text-primary">{{ candidate.candidateName }}</span>
-          <small class="text-500 mt-1">
+          <span class="fw-bold text-lg text-primary">{{ candidate.candidateName }}</span>
+          <small class="text-body-secondary mt-1">
             Registro creado:
             {{ (candidate.createdAt || candidate.registerDate) | apiDate: "mediumDate" }}
           </small>
@@ -29,45 +29,43 @@
       </header>
 
       @if (candidate.events.length === 0) {
-      <div class="p-3 text-sm text-500 text-center">
+      <div class="p-3 text-sm text-body-secondary text-center">
         Sin movimientos registrados en bitácora.
       </div>
       } @else {
-      <p-timeline [value]="candidate.events" align="left">
-        <ng-template #opposite let-event>
-          <small class="text-500 white-space-nowrap">
+      <div class="candidate-timeline-events">
+        @for (event of candidate.events; track event.createdAt || event.eventDate || $index) {
+        <div class="candidate-timeline-event">
+          <small class="text-body-secondary text-nowrap candidate-timeline-date">
             {{ (event.createdAt || event.eventDate) | apiDate: "mediumDate" }}
           </small>
-        </ng-template>
-
-        <ng-template #marker let-event>
-          <span
-            class="timeline-marker border-circle"
-            [style.background-color]="event.markerColor"
-          ></span>
-        </ng-template>
-
-        <ng-template #content let-event>
-          <div class="timeline-event-card p-3 mb-3 border-round">
+          <div class="candidate-timeline-marker-column">
+            <span
+              class="timeline-marker rounded-circle"
+              [style.background-color]="event.markerColor"
+            ></span>
+          </div>
+          <div class="timeline-event-card p-3 mb-3 rounded">
             <div class="d-flex align-items-center flex-wrap gap-2">
-              <span class="text-sm text-500">{{ event.fromStageName }}</span>
-              <app-icon icon="material-symbols-light:arrow-right-alt" class="text-500" />
+              <span class="text-sm text-body-secondary">{{ event.fromStageName }}</span>
+              <app-icon icon="material-symbols-light:arrow-right-alt" class="text-body-secondary" />
               <lx-tag [value]="event.stageName" />
             </div>
 
             @if (event.comment) {
-            <div class="mt-2 p-2 surface-100 border-round text-sm text-700 font-italic">
+            <div class="mt-2 p-2 bg-body-tertiary rounded text-sm text-body fst-italic">
               <app-icon icon="material-symbols-light:chat" class="me-1 align-middle" />
               {{ event.comment }}
             </div>
             }
 
             @if (event.changedBy) {
-            <small class="text-500 mt-2 d-block">Registrado por {{ event.changedBy }}</small>
+            <small class="text-body-secondary mt-2 d-block">Registrado por {{ event.changedBy }}</small>
             }
           </div>
-        </ng-template>
-      </p-timeline>
+        </div>
+        }
+      </div>
       }
     </section>
     }

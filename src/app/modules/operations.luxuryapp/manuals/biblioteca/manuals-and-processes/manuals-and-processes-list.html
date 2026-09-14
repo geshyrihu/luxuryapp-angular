@@ -15,8 +15,8 @@
           />
         </div>
         <div>
-          <h1 class="text-3xl font-bold text-900 m-0">Manuales y Procesos</h1>
-          <p class="text-base text-500 m-0">
+          <h1 class="text-3xl fw-bold text-body m-0">Manuales y Procesos</h1>
+          <p class="text-base text-body-secondary m-0">
             óndice general de procedimientos y documentación operativa de la
             organización
           </p>
@@ -41,23 +41,23 @@
 
   <!-- Loading -->
   @if (loading()) {
-  <div class="d-flex justify-content-center align-items-center py-8">
+  <div class="d-flex justify-content-center align-items-center py-5">
     <app-icon
       [icon]="'material-symbols-light:progress-activity'"
-      class="text-3xl text-400 ds-animate-spin"
+      class="text-3xl text-body-secondary ds-animate-spin"
     />
   </div>
   }
 
   <!-- Sin datos -->
   @else if (!groupedData().length) {
-  <div class="text-center py-8">
+  <div class="text-center py-5">
     <app-icon
       [icon]="'material-symbols-light:book'"
-      class="text-5xl text-400 mb-3 d-block"
+      class="text-5xl text-body-secondary mb-3 d-block"
     />
-    <p class="text-600 font-medium m-0">Sin manuales registrados</p>
-    <p class="text-500 text-sm mt-1 m-0">
+    <p class="text-body-secondary fw-medium m-0">Sin manuales registrados</p>
+    <p class="text-body-secondary text-sm mt-1 m-0">
       Agrega el primer manual para comenzar.
     </p>
   </div>
@@ -68,11 +68,11 @@
   <div class="d-flex flex-column gap-5">
     @for (group of groupedData(); track group.dept) {
     <div
-      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden"
+      class="bg-body rounded-xl border-1 border shadow-sm overflow-hidden"
     >
       <!-- Encabezado de Sección (Departamento) -->
       <div
-        class="p-4 d-flex align-items-center justify-content-between gap-3 border-bottom-1 surface-border"
+        class="p-4 d-flex align-items-center justify-content-between gap-3 border-bottom-1 border"
         [style.border-top]="'4px solid ' + group.config.color"
       >
         <div class="d-flex align-items-center gap-3">
@@ -87,16 +87,16 @@
             />
           </div>
           <div>
-            <h2 class="text-lg font-bold text-900 m-0 uppercase tracking-wide">
+            <h2 class="text-lg fw-bold text-body m-0 text-uppercase tracking-wide">
               {{ group.dept }}
             </h2>
-            <p class="text-xs text-500 m-0 mt-1">
+            <p class="text-xs text-body-secondary m-0 mt-1">
               Manuales y directrices del área
             </p>
           </div>
         </div>
         <span
-          class="text-xs font-bold px-3 py-2 rounded-full"
+          class="text-xs fw-bold px-3 py-2 rounded-full"
           [style.backgroundColor]="group.config.bgColor"
           [style.color]="group.config.color"
         >
@@ -109,21 +109,21 @@
       <div class="p-2 p-md-3 d-flex flex-column gap-1">
         @for (manual of group.manuals; track manual.id; let index = $index) {
         <div
-          class="d-flex align-items-center justify-content-between p-3 rounded-lg hover:surface-100 cursor-pointer transition-all transition-duration-150"
+          class="d-flex align-items-center justify-content-between p-3 rounded-lg hover:bg-body-tertiary cursor-pointer transition-all transition-duration-150"
           (click)="onViewTemplate(manual.id)"
         >
           <!-- Izquierda: Número, Folio e óndice -->
           <div class="d-flex align-items-center flex-grow-1 min-w-0 me-4">
             <!-- Número de óndice de manual -->
             <span
-              class="font-mono text-sm text-400 font-bold w-2rem flex-shrink-0 d-none sm:inline-block"
+              class="font-mono text-sm text-body-secondary fw-bold w-2rem flex-shrink-0 d-none sm:inline-block"
             >
               {{ (index + 1) | number: '2.0-0' }}
             </span>
 
             <!-- Folio del manual como badge -->
             <span
-              class="font-mono text-xs font-bold px-2 py-1 rounded-lg me-3 border-1 flex-shrink-0"
+              class="font-mono text-xs fw-bold px-2 py-1 rounded-lg me-3 border-1 flex-shrink-0"
               [style.borderColor]="group.config.color"
               [style.color]="group.config.color"
               [style.backgroundColor]="group.config.bgColor"
@@ -132,13 +132,13 @@
             </span>
 
             <!-- DESCRIPCIÓN/Tútulo del Manual -->
-            <span class="text-base text-700 font-semibold truncate">
+            <span class="text-base text-body fw-semibold truncate">
               {{ manual.description || 'é' }}
             </span>
 
             <!-- Lónea punteada de óndice (TOC Leader Line) -->
             <div
-              class="flex-grow-1 border-bottom-1 border-dotted surface-border mx-3 align-self-end mb-2 d-none d-md-block"
+              class="flex-grow-1 border-bottom-1 border-dotted border mx-3 align-self-end mb-2 d-none d-md-block"
             ></div>
           </div>
 
@@ -148,14 +148,14 @@
             (click)="$event.stopPropagation()"
           >
             <!-- Versión -->
-            <span class="text-xs font-mono text-500 bg-100 rounded px-2 py-1">
+            <span class="text-xs font-mono text-body-secondary bg-100 rounded px-2 py-1">
               v{{ manual.currentVersion }}
             </span>
 
             <!-- Alcance (Global / Local) -->
             @if (manual.isGlobal) {
             <span
-              class="text-xs font-bold px-2 py-1 rounded bg-green-50 text-green-700"
+              class="text-xs fw-bold px-2 py-1 rounded bg-green-50 text-green-700"
             >
               Global
             </span>
@@ -163,7 +163,7 @@
 
             <!-- Divisor -->
             <div
-              class="d-none d-sm-block surface-border border-left-1 h-1.5rem mx-1"
+              class="d-none d-sm-block border border-left-1 h-1.5rem mx-1"
             ></div>
 
             <!-- Botones de Acción -->
@@ -218,23 +218,23 @@
         </div>
 
         <div class="d-flex align-items-center gap-2 mb-1">
-          <span class="font-mono text-xs font-bold text-primary"
+          <span class="font-mono text-xs fw-bold text-primary"
             >{{ item.folio }}</span
           >
           @if (item.isGlobal) {
           <span
-            class="text-xs font-bold px-1.5 py-0.5 rounded bg-green-50 text-green-700"
+            class="text-xs fw-bold px-1.5 py-0.5 rounded bg-green-50 text-green-700"
             >G</span
           >
           }
-          <span class="text-xs text-500 font-mono"
+          <span class="text-xs text-body-secondary font-mono"
             >v{{ item.currentVersion }}</span
           >
         </div>
-        <p class="font-semibold text-wrap m-0 text-color">
+        <p class="fw-semibold text-wrap m-0 text-body">
           {{ item.description }}
         </p>
-        <p class="text-xs text-500 mt-1 uppercase">{{ item.departament }}</p>
+        <p class="text-xs text-body-secondary mt-1 text-uppercase">{{ item.departament }}</p>
 
         <div
           end

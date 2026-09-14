@@ -19,11 +19,11 @@
               <strong class="text-red-500">{{ balance.usedDays }}</strong>
             </li>
             @if (balance.usedAdvanceDays > 0 || balance.usedNormalDays > 0) {
-            <li class="d-flex justify-content-between mb-2 ps-3 text-sm text-500">
+            <li class="d-flex justify-content-between mb-2 ps-3 text-sm text-body-secondary">
               <span>- Por Adelanto:</span>
               <strong>{{ balance.usedAdvanceDays }}</strong>
             </li>
-            <li class="d-flex justify-content-between mb-2 ps-3 text-sm text-500">
+            <li class="d-flex justify-content-between mb-2 ps-3 text-sm text-body-secondary">
               <span>- En Periodo Legal:</span>
               <strong>{{ balance.usedNormalDays }}</strong>
             </li>
@@ -36,7 +36,7 @@
             <li
               class="d-flex justify-content-between mb-2 mt-3 p-2 bg-green-50 rounded"
             >
-              <span class="font-bold text-green-700"
+              <span class="fw-bold text-green-700"
                 >Días Disponibles Hoy:</span
               >
               <strong class="text-green-700 text-lg"
@@ -44,7 +44,7 @@
               >
             </li>
             <li
-              class="d-flex justify-content-between mt-3 pt-3 border-top-1 surface-border"
+              class="d-flex justify-content-between mt-3 pt-3 border-top-1 border"
             >
               <span>Días a solicitar (en este formulario):</span>
               <strong class="text-primary text-xl"
@@ -52,7 +52,7 @@
               >
             </li>
             <li
-              class="d-flex justify-content-between mt-3 pt-3 border-top-1 surface-border"
+              class="d-flex justify-content-between mt-3 pt-3 border-top-1 border"
             >
               <span>Días que te restarian):</span>
               <strong class="text-primary text-xl"
@@ -98,7 +98,7 @@
     @if (balance.isEligibleForAdvance) {
     <div class="mt-3">
       <lx-message severity="info">
-        <div class="text-lg font-semibold">
+        <div class="text-lg fw-semibold">
           Información de Adelanto de Vacaciones
         </div>
         <p class="mb-0">

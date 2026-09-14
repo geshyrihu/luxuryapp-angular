@@ -6,7 +6,7 @@
       >
         <div>
           <h2 class="m-0">Sesiones mensuales</h2>
-          <p class="m-0 text-color-secondary">
+          <p class="m-0 text-body-secondary">
             Punto central para coordinar agenda, presentacion y minuta.
           </p>
         </div>
@@ -52,8 +52,8 @@
             (click)="onLoadDetail(item.id)"
           >
             <td>
-              <div class="font-semibold">{{ item.sessionTitle }}</div>
-              <small class="text-color-secondary">
+              <div class="fw-semibold">{{ item.sessionTitle }}</div>
+              <small class="text-body-secondary">
                 {{ item.customerShortName || item.customerName }}
               </small>
             </td>
@@ -69,7 +69,7 @@
       </p-table>
 
       @if (!items().length && !loading()) {
-      <p class="text-color-secondary m-0">
+      <p class="text-body-secondary m-0">
         No hay sesiones mensuales registradas para el alcance actual.
       </p>
       }
@@ -81,44 +81,44 @@
       <h3 class="mt-0">Detalle de sesion</h3>
 
       @if (detailLoading()) {
-      <p class="text-color-secondary">Cargando detalle...</p>
+      <p class="text-body-secondary">Cargando detalle...</p>
       } @else if (selectedDetail(); as detail) {
       <div class="row g-4">
         <div class="col-12 col-md-6">
-          <p class="m-0 text-color-secondary">Titulo</p>
-          <p class="mt-1 font-semibold">{{ detail.sessionTitle }}</p>
+          <p class="m-0 text-body-secondary">Titulo</p>
+          <p class="mt-1 fw-semibold">{{ detail.sessionTitle }}</p>
         </div>
         <div class="col-12 col-md-6">
-          <p class="m-0 text-color-secondary">Tipo</p>
-          <p class="mt-1 font-semibold">{{ detail.sessionTypeDisplayName }}</p>
+          <p class="m-0 text-body-secondary">Tipo</p>
+          <p class="mt-1 fw-semibold">{{ detail.sessionTypeDisplayName }}</p>
         </div>
         <div class="col-12 col-md-6">
-          <p class="m-0 text-color-secondary">Programada</p>
-          <p class="mt-1 font-semibold">
+          <p class="m-0 text-body-secondary">Programada</p>
+          <p class="mt-1 fw-semibold">
             {{ formatBusinessDateTime(detail.scheduledAt) }} - {{
             formatBusinessTime(detail.scheduledEndAt) }}
           </p>
         </div>
         <div class="col-12 col-md-6">
-          <p class="m-0 text-color-secondary">Modalidad</p>
-          <p class="mt-1 font-semibold">
+          <p class="m-0 text-body-secondary">Modalidad</p>
+          <p class="mt-1 fw-semibold">
             {{ detail.modality === 0 ? "Virtual" : "Presencial" }}
           </p>
         </div>
         <div class="col-12 col-md-6">
-          <p class="m-0 text-color-secondary">Estatus</p>
-          <p class="mt-1 font-semibold">{{ detail.statusDisplayName }}</p>
+          <p class="m-0 text-body-secondary">Estatus</p>
+          <p class="mt-1 fw-semibold">{{ detail.statusDisplayName }}</p>
         </div>
         <div class="col-12 col-md-6">
-          <p class="m-0 text-color-secondary">Ubicacion</p>
-          <p class="mt-1 font-semibold">
+          <p class="m-0 text-body-secondary">Ubicacion</p>
+          <p class="mt-1 fw-semibold">
             {{ detail.location || "Sin ubicacion" }}
           </p>
         </div>
         @if (detail.cancelReason) {
         <div class="col-12">
-          <p class="m-0 text-color-secondary">Motivo de cancelacion</p>
-          <p class="mt-1 font-semibold">{{ detail.cancelReason }}</p>
+          <p class="m-0 text-body-secondary">Motivo de cancelacion</p>
+          <p class="mt-1 fw-semibold">{{ detail.cancelReason }}</p>
         </div>
         }
       </div>
@@ -165,7 +165,7 @@
               {{ detail.agenda ? "Ligada" : "Sin agenda ligada" }}
             </p>
             @if (detail.agenda?.googleStatus) {
-            <small class="text-color-secondary">
+            <small class="text-body-secondary">
               Estado Google: {{ detail.agenda?.googleStatus }}
             </small>
             }
@@ -178,7 +178,7 @@
               {{ detail.presentation ? "Ligada" : "Sin presentacion ligada" }}
             </p>
             @if (detail.presentation) {
-            <small class="text-color-secondary">
+            <small class="text-body-secondary">
               Junta: {{ detail.presentation.fechaJunta | apiDate: "dd/MM/yyyy" }}
             </small>
             }
@@ -191,7 +191,7 @@
               {{ detail.meeting ? "Ligada" : "Sin minuta ligada" }}
             </p>
             @if (detail.meeting) {
-            <small class="text-color-secondary">
+            <small class="text-body-secondary">
               {{ detail.meeting.meetingTypeDisplayName }}
             </small>
             }
@@ -203,26 +203,26 @@
           <div class="card" header="Asamblea">
             <div class="row g-4">
               <div class="col-12 col-md-3">
-                <p class="m-0 text-color-secondary">Invitados</p>
-                <p class="mt-1 font-semibold">
+                <p class="m-0 text-body-secondary">Invitados</p>
+                <p class="mt-1 fw-semibold">
                   {{ detail.assembly.inviteesCount }}
                 </p>
               </div>
               <div class="col-12 col-md-3">
-                <p class="m-0 text-color-secondary">Solicitudes de soporte</p>
-                <p class="mt-1 font-semibold">
+                <p class="m-0 text-body-secondary">Solicitudes de soporte</p>
+                <p class="mt-1 fw-semibold">
                   {{ detail.assembly.supportRequestsCount }}
                 </p>
               </div>
               <div class="col-12 col-md-3">
-                <p class="m-0 text-color-secondary">Items checklist</p>
-                <p class="mt-1 font-semibold">
+                <p class="m-0 text-body-secondary">Items checklist</p>
+                <p class="mt-1 fw-semibold">
                   {{ detail.assembly.checklistItemsCount }}
                 </p>
               </div>
               <div class="col-12 col-md-3">
-                <p class="m-0 text-color-secondary">Pendientes</p>
-                <p class="mt-1 font-semibold">
+                <p class="m-0 text-body-secondary">Pendientes</p>
+                <p class="mt-1 fw-semibold">
                   {{ detail.assembly.checklistPendingCount }}
                 </p>
               </div>
@@ -232,7 +232,7 @@
         }
       </div>
       } @else {
-      <p class="text-color-secondary m-0">
+      <p class="text-body-secondary m-0">
         Selecciona una sesion para ver su detalle consolidado.
       </p>
       }

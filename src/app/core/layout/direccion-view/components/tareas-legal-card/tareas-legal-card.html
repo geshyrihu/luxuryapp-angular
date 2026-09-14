@@ -1,10 +1,10 @@
 @if (cargando()) {
 <div class="d-flex align-items-center gap-2 py-3">
   <app-icon icon="material-symbols-light:progress-activity" class="ner text-primary ds-animate-spin" />
-  <span class="text-sm text-500">Cargando tareas...</span>
+  <span class="text-sm text-body-secondary">Cargando tareas...</span>
 </div>
 } @else if (!resumen() || resumen()!.total === 0) {
-<div class="d-flex align-items-center gap-2 py-2 text-400">
+<div class="d-flex align-items-center gap-2 py-2 text-body-secondary">
   <app-icon icon="material-symbols-light:check-circle" />
   <span class="text-sm">Sin tareas activas en Legal</span>
 </div>
@@ -12,8 +12,8 @@
 
 <!-- Total -->
 <div class="d-flex align-items-center gap-2 mb-3">
-  <span class="text-3xl font-bold text-color">{{ resumen()!.total }}</span>
-  <span class="text-sm text-color-secondary">
+  <span class="text-3xl fw-bold text-body">{{ resumen()!.total }}</span>
+  <span class="text-sm text-body-secondary">
     tarea{{ resumen()!.total === 1 ? '' : 's' }} activa{{ resumen()!.total === 1
     ? '' : 's' }}
   </span>
@@ -26,23 +26,23 @@
   <div>
     <!-- Cabecera cliente -->
     <div class="d-flex align-items-center justify-content-between mb-2">
-      <span class="text-xs font-bold uppercase text-color-secondary"
+      <span class="text-xs fw-bold text-uppercase text-body-secondary"
         >{{ customer.customerName }}</span
       >
-      <span class="text-xs text-color-secondary">{{ customer.total }}</span>
+      <span class="text-xs text-body-secondary">{{ customer.total }}</span>
     </div>
 
     <!-- Lista de tareas -->
-    <div class="d-flex flex-column gap-2 ps-2 border-left-2 surface-border">
+    <div class="d-flex flex-column gap-2 ps-2 border-left-2 border">
       @for (tarea of customer.tareas; track tarea.id; let last = $last) {
       <div
         class="d-flex flex-column gap-1 py-2"
         [class.border-bottom-1]="!last"
-        [class.surface-border]="!last"
+        [class.border]="!last"
       >
         <!-- Fila principal: folio + titulo + dias -->
         <div class="d-flex align-items-start justify-content-between gap-2">
-          <div class="d-flex align-items-center gap-2 min-w-0 flex-auto">
+          <div class="d-flex align-items-center gap-2 min-w-0 flex-fill">
             @if (tarea.esAltaPrioridad) {
             <app-icon
               icon="material-symbols-light:flag"
@@ -50,11 +50,11 @@
               lxTooltip="Alta prioridad"
             />
             }
-            <span class="text-xs flex-none text-color-secondary"
+            <span class="text-xs flex-none text-body-secondary"
               >{{ tarea.folio }}</span
             >
             <span
-              class="text-sm font-semibold white-space-nowrap overflow-hidden text-overflow-ellipsis text-color"
+              class="text-sm fw-semibold text-nowrap overflow-hidden text-truncate text-body"
               [lxTooltip]="tarea.title"
               tooltipPosition="top"
             >
@@ -69,7 +69,7 @@
               {{ tarea.diasPendiente }}d
             </span>
             <span
-              class="text-xs rounded px-2 py-0 surface-100 text-color-secondary"
+              class="text-xs rounded px-2 py-0 bg-body-tertiary text-body-secondary"
             >
               {{ tarea.status }}
             </span>
@@ -78,7 +78,7 @@
 
         <!-- Asignado a -->
         @if (tarea.assigneeName) {
-        <span class="text-xs ps-4 text-color-secondary">
+        <span class="text-xs ps-4 text-body-secondary">
           <app-icon icon="material-symbols-light:person-outline" class="me-1" />{{
           tarea.assigneeName }}
         </span>
@@ -89,23 +89,23 @@
         <div class="d-flex align-items-start gap-1 ps-4">
           <app-icon
             icon="material-symbols-light:comment-outline"
-            class="text-xs mt-1 text-color-secondary flex-none"
+            class="text-xs mt-1 text-body-secondary flex-none"
           />
           <span
-            class="text-xs white-space-nowrap overflow-hidden text-overflow-ellipsis text-color-secondary"
+            class="text-xs text-nowrap overflow-hidden text-truncate text-body-secondary"
             [lxTooltip]="tarea.ultimoSeguimiento"
             tooltipPosition="bottom"
           >
             {{ tarea.ultimoSeguimiento }}
           </span>
           @if (tarea.ultimoSeguimientoFecha) {
-          <span class="text-xs flex-none ms-1 text-color-secondary">
+          <span class="text-xs flex-none ms-1 text-body-secondary">
             &middot; {{ formatFechaRelativa(tarea.ultimoSeguimientoFecha) }}
           </span>
           }
         </div>
         } @else {
-        <span class="text-xs ps-4 text-color-secondary">Sin seguimiento</span>
+        <span class="text-xs ps-4 text-body-secondary">Sin seguimiento</span>
         }
       </div>
       }

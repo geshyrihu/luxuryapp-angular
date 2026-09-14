@@ -18,7 +18,7 @@
     >
       <ng-template #caption>
         <div
-          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 surface-ground rounded g-4"
+          class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
         >
           <div class="flex-grow-1">
             <primeng-custom-caption
@@ -134,7 +134,7 @@
         @if (item.expanded && item.groupKey) {
         <tr>
           <td></td>
-          <td colspan="5" class="surface-section p-3">
+          <td colspan="5" class="bg-body-tertiary p-3">
             <p-table
               [value]="getGroupItems(item.groupKey!)"
               class="custom-table nested-table"
@@ -149,7 +149,7 @@
               <ng-template #body let-prop>
                 <tr>
                   <td><strong>{{ prop.propertyName }}</strong></td>
-                  <td class="text-color-secondary">
+                  <td class="text-body-secondary">
                     {{ prop.oldValue || '(vacío)' }}
                   </td>
                   <td class="text-primary">{{ prop.newValue || '(vacío)' }}</td>
@@ -182,14 +182,14 @@
                 [value]="item.operationType"
                 [severity]="getOperationSeverity(item.operationType)"
               />
-              <h2 class="font-bold m-0 text-base">{{ item.entityName }}</h2>
+              <h2 class="fw-bold m-0 text-base">{{ item.entityName }}</h2>
             </div>
-            <p class="text-medium text-500 m-0 text-sm">
+            <p class="text-medium text-body-secondary m-0 text-sm">
               <app-icon [icon]="'material-symbols-light:schedule'" class="me-1 text-xs" />
               {{ item.changedAt | apiDate: "dd/MM/yyyy h:mm a" }}
             </p>
           </div>
-          <p class="text-sm text-color-secondary m-0 mb-1">
+          <p class="text-sm text-body-secondary m-0 mb-1">
             <app-icon [icon]="'material-symbols-light:person'" class="me-1 text-xs" />
             {{ item.userName }}
           </p>
@@ -201,17 +201,17 @@
             getGroupItems(item.groupKey!).length }} campo(s) modificado(s) }
           </p>
           @if (item.expanded && item.groupKey) {
-          <div class="mt-2 surface-ground p-2 rounded">
+          <div class="mt-2 bg-body-tertiary p-2 rounded">
             @for (prop of getGroupItems(item.groupKey!); track prop.id) {
             <div class="d-flex flex-column mb-2">
               <strong class="text-sm">{{ prop.propertyName }}</strong>
               <div class="d-flex gap-2 text-xs">
-                <span class="text-color-secondary flex-1">
-                  <span class="font-medium">Anterior:</span> {{ prop.oldValue ||
+                <span class="text-body-secondary flex-fill">
+                  <span class="fw-medium">Anterior:</span> {{ prop.oldValue ||
                   '(vacío)' }}
                 </span>
-                <span class="text-primary flex-1">
-                  <span class="font-medium">Nuevo:</span> {{ prop.newValue ||
+                <span class="text-primary flex-fill">
+                  <span class="fw-medium">Nuevo:</span> {{ prop.newValue ||
                   '(vacío)' }}
                 </span>
               </div>

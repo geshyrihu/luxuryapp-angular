@@ -1,8 +1,8 @@
 <section>
   @if (!hasCustomer()) {
-  <div class="mb-4 border-1 surface-border rounded p-3 p-md-4">
-    <div class="font-medium mb-2">Sin cliente activo</div>
-    <div class="text-color-secondary">
+  <div class="mb-4 border-1 border rounded p-3 p-md-4">
+    <div class="fw-medium mb-2">Sin cliente activo</div>
+    <div class="text-body-secondary">
       Selecciona un cliente para consultar el análisis de cobranza.
     </div>
   </div>
@@ -78,9 +78,9 @@
 
   <div class="row mb-4 g-4">
     <div class="col-12 col-xl-4">
-      <div class="border-1 surface-border rounded p-3 p-md-4 h-full">
+      <div class="border-1 border rounded p-3 p-md-4 h-full">
         <div class="d-flex align-items-start justify-content-between gap-2 mb-1">
-          <div class="text-lg font-semibold">Análisis de Cobranza Mensual</div>
+          <div class="text-lg fw-semibold">Análisis de Cobranza Mensual</div>
           <button
             type="button"
             (click)="onOpenComposicionReportes()"
@@ -90,7 +90,7 @@
             ¿Cómo se compone?
           </button>
         </div>
-        <div class="text-color-secondary mb-3">
+        <div class="text-body-secondary mb-3">
           {{ customerName() || "Cliente activo" }} · {{ d.periodo }}
         </div>
 
@@ -100,16 +100,16 @@
           format="currency"
         />
 
-        <div class="text-color-secondary text-xs mt-3 line-height-3">
+        <div class="text-body-secondary text-xs mt-3 line-height-3">
           Cobrado = Cobranza perfecta − Morosos − Deuda corriente. Es un residual,
           no dinero cobrado: descuenta saldos acumulados de una meta del mes.
         </div>
 
         @if (showFlujoReal()) {
         <!-- Bloque de flujo real, para contrastar con el residual de arriba -->
-        <div class="border-top-1 surface-border mt-4 pt-4">
-          <div class="text-lg font-semibold mb-1">Cobranza del Mes</div>
-          <div class="text-color-secondary mb-3">Flujo real del periodo</div>
+        <div class="border-top-1 border mt-4 pt-4">
+          <div class="text-lg fw-semibold mb-1">Cobranza del Mes</div>
+          <div class="text-body-secondary mb-3">Flujo real del periodo</div>
 
           <app-breakdown-list
             [items]="filasCobranzaMes()"
@@ -117,14 +117,14 @@
             format="currency"
           />
 
-          <div class="text-color-secondary text-xs mt-3 line-height-3">
+          <div class="text-body-secondary text-xs mt-3 line-height-3">
             Cobrado = abonos aplicados en el mes a las cuentas de cuota. Cuadra
             contra banco y es el mismo dato que “Abonado” en Resumen.
           </div>
 
           @if (d.faltanteMes < 0) {
           <div
-            class="border-left-3 border-orange-500 surface-ground p-2 mt-2 text-xs line-height-3"
+            class="border-left-3 border-orange-500 bg-body-tertiary p-2 mt-2 text-xs line-height-3"
           >
             Se cobró más de lo facturado en el mes: hay pagos aplicados a cartera de
             periodos anteriores. El faltante negativo no es un error.
@@ -136,11 +136,11 @@
     </div>
 
     <div class="col-12 col-xl-4">
-      <div class="border-1 surface-border rounded p-3 p-md-4 h-full">
-        <div class="text-lg font-semibold mb-1 text-danger">
+      <div class="border-1 border rounded p-3 p-md-4 h-full">
+        <div class="text-lg fw-semibold mb-1 text-danger">
           Deuda Condóminos (EF)
         </div>
-        <div class="text-color-secondary mb-3">
+        <div class="text-body-secondary mb-3">
           Clasificación del saldo final por cuenta 104 al corte consultado.
         </div>
 
@@ -151,38 +151,38 @@
         />
 
         <div
-          class="d-flex align-items-baseline justify-content-between gap-3 mt-3 pt-3 border-top-1 surface-border"
+          class="d-flex align-items-baseline justify-content-between gap-3 mt-3 pt-3 border-top-1 border"
         >
-          <span class="text-sm text-color-secondary">Cuotas anticipadas</span>
-          <span class="text-sm font-medium">
+          <span class="text-sm text-body-secondary">Cuotas anticipadas</span>
+          <span class="text-sm fw-medium">
             {{ d.totalAnticipos | currency: "MXN":"symbol":"1.0-0" }}
           </span>
         </div>
         <div
           class="d-flex align-items-baseline justify-content-between gap-3 mt-2"
         >
-          <span class="font-semibold text-info">Saldo según balanza</span>
-          <span class="font-bold text-info text-lg">
+          <span class="fw-semibold text-info">Saldo según balanza</span>
+          <span class="fw-bold text-info text-lg">
             {{ d.saldoBalanza | currency: "MXN":"symbol":"1.0-0" }}
           </span>
         </div>
 
-        <div class="mt-4 text-xs text-color-secondary line-height-3">
+        <div class="mt-4 text-xs text-body-secondary line-height-3">
           Cartera acumulada al corte, no del mes. Aquí sí entra la cobranza
           judicial. Saldo según balanza = Total deuda + Cuotas anticipadas.
         </div>
-        <div class="mt-2 text-sm text-color-secondary">
+        <div class="mt-2 text-sm text-body-secondary">
           Corte exacto consultado: <strong>{{ d.periodo }}</strong>
         </div>
       </div>
     </div>
 
     <div class="col-12 col-xl-4">
-      <div class="border-1 surface-border rounded p-3 p-md-4 h-full d-flex flex-column">
-        <div class="text-lg font-semibold mb-1">
+      <div class="border-1 border rounded p-3 p-md-4 h-full d-flex flex-column">
+        <div class="text-lg fw-semibold mb-1">
           Composici&oacute;n de Cobranza
         </div>
-        <div class="text-color-secondary mb-3">
+        <div class="text-body-secondary mb-3">
           Distribuci&oacute;n de la cartera
         </div>
         <div

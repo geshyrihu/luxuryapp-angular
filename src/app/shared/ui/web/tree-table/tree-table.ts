@@ -7,7 +7,7 @@ import {
   output,
   ViewEncapsulation,
 } from "@angular/core";
-import { TreeNode } from "primeng/api";
+import type { TreeNode } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { TreeTableModule } from "primeng/treetable";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";

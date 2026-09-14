@@ -1,7 +1,7 @@
 <div class="card p-0 p-md-4">
   <lx-card class="card card--elevated mb-4">
-    <div class="p-3 surface-50 rounded border-1 surface-border">
-      <div class="font-semibold mb-3 d-flex align-items-center gap-2">
+    <div class="p-3 bg-body-tertiary rounded border-1 border">
+      <div class="fw-semibold mb-3 d-flex align-items-center gap-2">
         <app-icon [icon]="'material-symbols-light:lock'" class="text-primary" />
         <span>Cerrar Período Contable</span>
       </div>
@@ -89,7 +89,7 @@
 
     <ng-template #body let-item>
       <tr>
-        <td class="text-center font-medium">{{ item.year }}</td>
+        <td class="text-center fw-medium">{{ item.year }}</td>
         <td class="text-center">{{ monthName(item.month) }}</td>
         <td class="text-center">
           @if (item.isClosed) {
@@ -100,7 +100,7 @@
         </td>
         <td class="text-center text-sm">{{ item.closedAt | apiDate:'dd/MM/yyyy HH:mm' }}</td>
         <td class="text-sm">{{ item.closedBy }}</td>
-        <td class="text-sm text-500">{{ item.closureNotes }}</td>
+        <td class="text-sm text-body-secondary">{{ item.closureNotes }}</td>
         <td class="text-center">
           @if (item.isClosed) {
           <iw-button
@@ -119,7 +119,7 @@
 
     <ng-template #emptymessage>
       <tr>
-        <td colspan="7" class="text-center p-4 text-500">No hay períodos registrados.</td>
+        <td colspan="7" class="text-center p-4 text-body-secondary">No hay períodos registrados.</td>
       </tr>
     </ng-template>
   </p-table>
@@ -141,7 +141,7 @@
             [class]="item.isClosed ? 'text-red-600 text-xl' : 'text-green-600 text-xl'"
           />
         </div>
-        <div class="flex-1 min-w-0">
+        <div class="flex-fill min-w-0">
           <h3>{{ monthName(item.month) }} {{ item.year }}</h3>
           <p>{{ item.isClosed ? 'Cerrado' : 'Abierto' }}{{ item.closedBy ? ' por ' + item.closedBy : '' }}</p>
           @if (item.closedAt) {

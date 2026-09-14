@@ -1,5 +1,5 @@
 <section
-  class="surface-ground min-h-screen d-flex flex-column gap-4 print-financial-report"
+  class="bg-body-tertiary min-h-screen d-flex flex-column gap-4 print-financial-report"
 >
   <!-- Overlay mientras se preparan los reportes -->
   @if (isPreparing()) {
@@ -30,20 +30,20 @@
 
   <div class="w-full xl:w-11 mx-auto d-flex flex-column gap-4">
     <header
-      class="surface-card rounded-xl border-1 surface-border shadow-sm overflow-hidden print-hide-on-print"
+      class="bg-body rounded-xl border-1 border shadow-sm overflow-hidden print-hide-on-print"
     >
       <div class="bg-primary"></div>
 
-      <div class="surface-100 p-2 d-flex gap-3">
-        <div class="d-flex align-items-center gap-3 flex-1 min-w-0">
+      <div class="bg-body-tertiary p-2 d-flex gap-3">
+        <div class="d-flex align-items-center gap-3 flex-fill min-w-0">
           <!-- <div
-            class="surface-card rounded-xl border-1 surface-border d-inline-flex align-items-center justify-content-center p-2"
+            class="bg-body rounded-xl border-1 border d-inline-flex align-items-center justify-content-center p-2"
           >
             <img [src]="customerLogo()" [alt]="customerName()" />
           </div> -->
 
           <div class="d-flex flex-column gap-1 min-w-0">
-            <small class="text-primary font-bold uppercase">
+            <small class="text-primary fw-bold text-uppercase">
               LuxuryApp | Contabilidad Online
             </small>
             <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
@@ -54,10 +54,10 @@
 
         <div class="d-flex flex-column justify-content-between gap-2">
           <div class="d-flex flex-column gap-1">
-            <p class="text-900 font-semibold m-0 line-height-3">
+            <p class="text-body fw-semibold m-0 line-height-3">
               {{ activeReportTitle() }}
             </p>
-            <p class="text-color-secondary line-height-3 m-0">
+            <p class="text-body-secondary line-height-3 m-0">
               {{ activeReportDescription() }}
             </p>
           </div>
@@ -227,7 +227,7 @@
     }
 
     <div
-      class="surface-card rounded-xl border-1 surface-border shadow-sm print-hide-on-print"
+      class="bg-body rounded-xl border-1 border shadow-sm print-hide-on-print"
     >
       <lx-tabs
         [tabs]="reportTabs()"

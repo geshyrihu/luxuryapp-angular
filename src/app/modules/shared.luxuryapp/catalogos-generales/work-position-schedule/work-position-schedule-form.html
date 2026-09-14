@@ -10,13 +10,13 @@
     <!-- Panel de alerta: días con hora entrada >= hora salida -->
     @if (invalidTimeOrderDays().length > 0) {
     <div
-      class="mb-2 p-2 border-1 border-red-300 border-round bg-red-50 text-red-700 text-sm"
+      class="mb-2 p-2 border-1 border-red-300 rounded bg-red-50 text-red-700 text-sm"
       role="alert"
     >
       <strong>Horarios inválidos:</strong> La hora de entrada no puede ser igual a
       la de salida en: @for (item of invalidTimeOrderDays(); track item.semana
       + '-' + item.dw) {
-      <span class="ms-1 font-medium"
+      <span class="ms-1 fw-medium"
         >{{ getDayLabel(item.dw) }} (Sem {{ item.semana }})</span
       >
       }
@@ -26,7 +26,7 @@
     <!-- Panel de alerta: días incompletos (falta entrada o salida) -->
     @if (form.hasError('incompleteWorkDay')) {
     <div
-      class="mb-2 p-2 border-1 border-orange-300 border-round bg-orange-50 text-orange-700 text-sm"
+      class="mb-2 p-2 border-1 border-orange-300 rounded bg-orange-50 text-orange-700 text-sm"
       role="alert"
     >
       Días laborables incompletos: captura al menos la hora de entrada o de salida.
@@ -74,17 +74,17 @@
       <div class="col-12">
         @for (semana of [1,2,3,4]; track semana) {
         <div
-          class="row surface-50 border-1 border-200 rounded g-4"
+          class="row bg-body-tertiary border-1 border-200 rounded g-4"
           style="border-color: var(--surface-border)"
         >
           <!-- Encabezado de semana -->
           <div
-            class="col-12 bg-surface-100 border-bottom-1 border-200 px-2 py-1 d-flex align-items-center justify-content-between"
+            class="col-12 bg-bg-body-tertiary border-bottom-1 border-200 px-2 py-1 d-flex align-items-center justify-content-between"
             style="border-color: var(--surface-border)"
           >
-            <span class="font-medium text-sm">
+            <span class="fw-medium text-sm">
               Semana {{ semana }}
-              <span class="text-color-secondary font-normal ms-2">({{ weeklyHours()[semana] || 0 }} Hrs laboradas)</span>
+              <span class="text-body-secondary font-normal ms-2">({{ weeklyHours()[semana] || 0 }} Hrs laboradas)</span>
             </span>
             @if (semana > 1) {
             <iw-button
@@ -114,7 +114,7 @@
             >
               <!-- Header día: botón copiar anterior (si no es Lunes) + nombre + switch descanso -->
               <div
-                class="d-flex align-items-center justify-content-between gap-1 bg-surface-50 border-bottom-1 border-200"
+                class="d-flex align-items-center justify-content-between gap-1 bg-bg-body-tertiary border-bottom-1 border-200"
                 style="border-color: var(--surface-border)"
               >
                 @if (day.dw !== 1) {
@@ -131,7 +131,7 @@
                 <span style="width: 24px; flex-shrink: 0"></span>
                 }
                 <span
-                  class="font-medium text-xs text-center flex-1"
+                  class="fw-medium text-xs text-center flex-fill"
                   style="
                     white-space: nowrap;
                     overflow: hidden;
@@ -150,7 +150,7 @@
 
               <!-- Selectores Entrada/Salida - altura fija para evitar salto -->
               <div
-                class="p-1 flex-1"
+                class="p-1 flex-fill"
                 style="
                   display: grid;
                   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);

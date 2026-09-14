@@ -9,26 +9,26 @@
 <div class="row mb-3 g-4">
   <div class="col-6 col-md-2">
     <div class="card text-center p-3">
-      <p class="text-500 text-xs mb-1">Recepciones</p>
-      <p class="text-2xl font-bold text-primary m-0">{{ totalRecepciones() }}</p>
+      <p class="text-body-secondary text-xs mb-1">Recepciones</p>
+      <p class="text-2xl fw-bold text-primary m-0">{{ totalRecepciones() }}</p>
     </div>
   </div>
   <div class="col-6 col-md-3">
     <div class="card text-center p-3">
-      <p class="text-500 text-xs mb-1">Total litros</p>
-      <p class="text-2xl font-bold text-blue-600 m-0">{{ totalLitros() | number: '1.0-0' }}</p>
+      <p class="text-body-secondary text-xs mb-1">Total litros</p>
+      <p class="text-2xl fw-bold text-blue-600 m-0">{{ totalLitros() | number: '1.0-0' }}</p>
     </div>
   </div>
   <div class="col-6 col-md-3">
     <div class="card text-center p-3">
-      <p class="text-500 text-xs mb-1">Promedio por entrega (L)</p>
-      <p class="text-2xl font-bold text-cyan-600 m-0">{{ promedioLitrosPorEntrega() | number: '1.0-0' }}</p>
+      <p class="text-body-secondary text-xs mb-1">Promedio por entrega (L)</p>
+      <p class="text-2xl fw-bold text-cyan-600 m-0">{{ promedioLitrosPorEntrega() | number: '1.0-0' }}</p>
     </div>
   </div>
   <div class="col-6 col-md-2">
     <div class="card text-center p-3">
-      <p class="text-500 text-xs mb-1">Dif. prom. cisterna</p>
-      <p class="text-2xl font-bold m-0"
+      <p class="text-body-secondary text-xs mb-1">Dif. prom. cisterna</p>
+      <p class="text-2xl fw-bold m-0"
          [class.text-green-600]="diferenciaPromCisterna() > 0"
          [class.text-red-500]="diferenciaPromCisterna() <= 0">
         {{ diferenciaPromCisterna() | number: '1.2-2' }}
@@ -37,8 +37,8 @@
   </div>
   <div class="col-12 col-md-2">
     <div class="card text-center p-3">
-      <p class="text-500 text-xs mb-1">Proveedor frecuente</p>
-      <p class="text-xl font-bold text-gray-700 m-0">{{ placasMasFrecuente() }}</p>
+      <p class="text-body-secondary text-xs mb-1">Proveedor frecuente</p>
+      <p class="text-xl fw-bold text-gray-700 m-0">{{ placasMasFrecuente() }}</p>
     </div>
   </div>
 </div>
@@ -47,13 +47,13 @@
 <div class="row mb-3 g-4">
   <div class="col-12 col-md-7">
     <div class="card p-3">
-      <p class="font-semibold text-sm mb-2">Litros recibidos por mes</p>
+      <p class="fw-semibold text-sm mb-2">Litros recibidos por mes</p>
       <div echarts [options]="optLitros()" ></div>
     </div>
   </div>
   <div class="col-12 col-md-5">
     <div class="card p-3">
-      <p class="font-semibold text-sm mb-2">Diferencia promedio de cisterna</p>
+      <p class="fw-semibold text-sm mb-2">Diferencia promedio de cisterna</p>
       <div echarts [options]="optCisterna()" ></div>
     </div>
   </div>
@@ -62,26 +62,26 @@
 <!-- Tabla de tendencia mensual -->
 <div class="card">
   <div class="card-body">
-    <p class="font-semibold text-sm mb-3">Resumen por mes</p>
+    <p class="fw-semibold text-sm mb-3">Resumen por mes</p>
     <div class="overflow-x-auto">
       <table class="w-full text-sm">
         <thead>
           <tr class="border-bottom-1 border-300">
-            <th class="text-left py-2 pe-3 text-500 font-medium">Periodo</th>
-            <th class="text-right py-2 px-3 text-500 font-medium">Recepciones</th>
-            <th class="text-right py-2 px-3 text-500 font-medium">Total litros</th>
-            <th class="text-right py-2 px-3 text-500 font-medium">Prom. litros</th>
-            <th class="text-right py-2 ps-3 text-500 font-medium">Dif. cisterna prom.</th>
+            <th class="text-start py-2 pe-3 text-body-secondary fw-medium">Periodo</th>
+            <th class="text-end py-2 px-3 text-body-secondary fw-medium">Recepciones</th>
+            <th class="text-end py-2 px-3 text-body-secondary fw-medium">Total litros</th>
+            <th class="text-end py-2 px-3 text-body-secondary fw-medium">Prom. litros</th>
+            <th class="text-end py-2 ps-3 text-body-secondary fw-medium">Dif. cisterna prom.</th>
           </tr>
         </thead>
         <tbody>
           @for (row of tendenciaMensual(); track row.periodo) {
-            <tr class="border-bottom-1 border-100 hover:surface-100">
-              <td class="py-2 pe-3 font-semibold">{{ row.periodo }}</td>
-              <td class="text-right py-2 px-3">{{ row.recepciones }}</td>
-              <td class="text-right py-2 px-3">{{ row.totalLitros | number: '1.0-0' }}</td>
-              <td class="text-right py-2 px-3">{{ row.promedioLitros | number: '1.0-0' }}</td>
-              <td class="text-right py-2 ps-3 font-semibold"
+            <tr class="border-bottom-1 border-100 hover:bg-body-tertiary">
+              <td class="py-2 pe-3 fw-semibold">{{ row.periodo }}</td>
+              <td class="text-end py-2 px-3">{{ row.recepciones }}</td>
+              <td class="text-end py-2 px-3">{{ row.totalLitros | number: '1.0-0' }}</td>
+              <td class="text-end py-2 px-3">{{ row.promedioLitros | number: '1.0-0' }}</td>
+              <td class="text-end py-2 ps-3 fw-semibold"
                   [class.text-green-600]="row.diferenciaPromCisterna > 0"
                   [class.text-red-500]="row.diferenciaPromCisterna <= 0">
                 {{ row.diferenciaPromCisterna | number: '1.2-2' }}
@@ -89,7 +89,7 @@
             </tr>
           } @empty {
             <tr>
-              <td colspan="5" class="text-center py-4 text-500">Sin datos para el periodo seleccionado</td>
+              <td colspan="5" class="text-center py-4 text-body-secondary">Sin datos para el periodo seleccionado</td>
             </tr>
           }
         </tbody>

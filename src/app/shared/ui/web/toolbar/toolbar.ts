@@ -1,29 +1,33 @@
-import { CommonModule } from "@angular/common";
+import { NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
 } from "@angular/core";
 import { ToolbarBase } from "@ui/base/toolbar.base";
-import { ToolbarModule } from "primeng/toolbar";
 
 @Component({
   selector: "app-toolbar",
 
-  imports: [CommonModule, ToolbarModule],
+  imports: [NgTemplateOutlet],
   template: `
-    <p-toolbar [class]="styleClass()">
-      @if (leftTemplate(); as tpl) {
-        <ng-template pTemplate="start">
+    <div class="app-toolbar d-flex align-items-center justify-content-between" [class]="styleClass()">
+      <div class="app-toolbar-start d-flex align-items-center">
+        @if (leftTemplate(); as tpl) {
           <ng-container *ngTemplateOutlet="tpl" />
-        </ng-template>
-      }
-      @if (rightTemplate(); as tpl) {
-        <ng-template pTemplate="end">
+        }
+      </div>
+      @if (centerTemplate(); as tpl) {
+        <div class="app-toolbar-center d-flex align-items-center">
           <ng-container *ngTemplateOutlet="tpl" />
-        </ng-template>
+        </div>
       }
-    </p-toolbar>
+      <div class="app-toolbar-end d-flex align-items-center">
+        @if (rightTemplate(); as tpl) {
+          <ng-container *ngTemplateOutlet="tpl" />
+        }
+      </div>
+    </div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,

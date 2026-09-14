@@ -25,7 +25,7 @@
         <th class="table-col-md">Tipo</th>
         <th class="table-col-sm">Inicio</th>
         <th class="table-col-sm">Fin</th>
-        <th class="table-col-md text-right">Salario</th>
+        <th class="table-col-md text-end">Salario</th>
         <th class="table-col-md text-center">Estatus</th>
         <th class="table-col-actions">Acciones</th>
       </tr>
@@ -35,14 +35,14 @@
         <td>{{ item.contractNumber }}</td>
         <td>
           <div class="d-flex flex-column">
-            <span class="font-semibold">{{ item.employeeName }}</span>
-            <small class="text-500">{{ item.workPositionName }}</small>
+            <span class="fw-semibold">{{ item.employeeName }}</span>
+            <small class="text-body-secondary">{{ item.workPositionName }}</small>
           </div>
         </td>
         <td>{{ item.contractType }}</td>
         <td>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</td>
         <td>{{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}</td>
-        <td class="text-right">
+        <td class="text-end">
           {{ item.salaryAtContract | currency:'MXN':'symbol':'1.2-2' }}
         </td>
         <td class="text-center">
@@ -96,10 +96,10 @@
           />
         </div>
 
-          <h2 class="font-bold">{{ item.contractNumber }}</h2>
-          <p class="text-sm text-500">{{ item.employeeName }}</p>
-          <p class="text-sm text-500">{{ item.contractType }}</p>
-          <p class="text-sm text-500">
+          <h2 class="fw-bold">{{ item.contractNumber }}</h2>
+          <p class="text-sm text-body-secondary">{{ item.employeeName }}</p>
+          <p class="text-sm text-body-secondary">{{ item.contractType }}</p>
+          <p class="text-sm text-body-secondary">
             {{ item.startDate | apiDate:'dd/MM/yyyy' }} -
             {{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido' }}
           </p>

@@ -14,8 +14,8 @@
     <ng-template #caption>
       <div class="d-flex flex-column gap-2 mb-2">
         <div>
-          <div class="font-semibold text-lg">Inspecciones configuradas</div>
-          <div class="text-sm text-600">{{ machineryName }}</div>
+          <div class="fw-semibold text-lg">Inspecciones configuradas</div>
+          <div class="text-sm text-body-secondary">{{ machineryName }}</div>
         </div>
         <primeng-custom-caption
           [dt]="dt"
@@ -45,8 +45,8 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <div class="font-medium">{{ item.name }}</div>
-          <div class="text-sm text-600">{{ item.machineryName }}</div>
+          <div class="fw-medium">{{ item.name }}</div>
+          <div class="text-sm text-body-secondary">{{ item.machineryName }}</div>
         </td>
         <td>{{ recurrenceLabel(item) }}</td>
         <td class="text-center">{{ item.criteriaCount }}</td>
@@ -95,8 +95,8 @@
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <p class="font-semibold m-0 text-color">{{ item.title }}</p>
-      <p class="text-xs m-0 text-color-secondary">
+      <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
+      <p class="text-xs m-0 text-body-secondary">
         {{ item.frequency }} · {{ item.status }}
       </p>
 

@@ -1,5 +1,5 @@
 <div class="digital-signature-container">
-  <label class="d-block text-sm font-medium mb-2">Firma Digital</label>
+  <label class="d-block text-sm fw-medium mb-2">Firma Digital</label>
 
   <div class="border-1 border-300 rounded overflow-hidden bg-white">
     <canvas
@@ -35,14 +35,14 @@
   </div>
 
   @if (hasSignature()) {
-  <small class="text-green-600 mt-2 d-block font-medium">
+  <small class="text-green-600 mt-2 d-block fw-medium">
     <app-icon
       [icon]="'material-symbols-light:check-circle'"
       class="me-1"
     />Firma capturada correctamente
   </small>
   } @else {
-  <small class="text-color-secondary mt-2 d-block italic">
+  <small class="text-body-secondary mt-2 d-block italic">
     Dibuje su firma en el recuadro superior
   </small>
   }

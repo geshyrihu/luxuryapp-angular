@@ -10,47 +10,47 @@
             class="text-primary"
           />
         </div>
-        <h4 class="m-0 font-bold text-900">Checklist de onboarding</h4>
+        <h4 class="m-0 fw-bold text-body">Checklist de onboarding</h4>
       </div>
     </ng-template>
 
     <div class="px-4 pb-4">
       @if (isLoading()) {
-      <p class="m-0 text-color-secondary">Cargando checklist...</p>
+      <p class="m-0 text-body-secondary">Cargando checklist...</p>
       } @else if (checklist().length === 0) {
-      <p class="m-0 text-500">
+      <p class="m-0 text-body-secondary">
         No hay tareas de onboarding configuradas para este empleado.
       </p>
       } @else {
       <div class="d-flex flex-column gap-2">
         @for (task of checklist(); track task.id) {
         <div
-          class="d-flex align-items-center gap-3 surface-50 rounded-lg border-1 border-100 p-3"
+          class="d-flex align-items-center gap-3 bg-body-tertiary rounded-lg border-1 border-100 p-3"
         >
-          <p-checkbox
+          <app-checkbox
             [binary]="true"
-            [ngModel]="task.isCompleted"
-            (ngModelChange)="onToggle(task, $event)"
+            [checked]="task.isCompleted"
+            (checkedChange)="onToggle(task, $event)"
             [disabled]="busyTaskId() === task.id"
           />
-          <div class="flex-1 min-w-0">
+          <div class="flex-fill min-w-0">
             <div class="d-flex align-items-center gap-2">
-              <strong class="text-900">{{ task.optionName }}</strong>
+              <strong class="text-body">{{ task.optionName }}</strong>
               @if (task.isCompleted) {
               <lx-tag value="Completado" severity="success" class="text-xs" />
               }
             </div>
             @if (task.description) {
-            <p class="m-0 text-500 text-sm">{{ task.description }}</p>
+            <p class="m-0 text-body-secondary text-sm">{{ task.description }}</p>
             }
             @if (task.isCompleted) {
-            <p class="m-0 text-xs text-500 mt-1">
+            <p class="m-0 text-xs text-body-secondary mt-1">
               Completado {{ task.completedAt | apiDate:'dd/MM/yyyy HH:mm' }} por
               {{ task.completedByUserName || '—' }}
             </p>
             }
             @if (task.notes) {
-            <p class="m-0 text-sm text-600 mt-1 italic">"{{ task.notes }}"</p>
+            <p class="m-0 text-sm text-body-secondary mt-1 italic">"{{ task.notes }}"</p>
             }
           </div>
           <iw-button-item

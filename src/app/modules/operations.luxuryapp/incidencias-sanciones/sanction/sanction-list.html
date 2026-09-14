@@ -38,18 +38,18 @@
         </td>
         <td class="text-center">
           <span
-            class="d-inline-flex align-items-center rounded-3xl border-1 surface-border px-3 py-1 text-xs font-semibold"
+            class="d-inline-flex align-items-center rounded-3xl border-1 border px-3 py-1 text-xs fw-semibold"
             [ngClass]="getStatusBadge(item.sanctionStatus)"
             >{{ item.sanctionStatus }}</span
           >
         </td>
         <td class="text-center">
           @if (item.allowAppeal && item.appealDeadline) {
-          <span class="text-color-secondary"
+          <span class="text-body-secondary"
             >{{ item.appealDeadline | apiDate:'dd/MM/yyyy' }}</span
           >
           } @else {
-          <span class="text-color-secondary">-</span>
+          <span class="text-body-secondary">-</span>
           }
         </td>
         <td class="text-center">
@@ -83,14 +83,14 @@
           />
         </div>
         
-          <h2 class="font-bold">{{ item.sanctionTypeName }}</h2>
-          <p class="text-sm text-500">
+          <h2 class="fw-bold">{{ item.sanctionTypeName }}</h2>
+          <p class="text-sm text-body-secondary">
             {{ item.severityLevel }} |             {{ item.appliedDate |
             apiDate:'dd/MM/yyyy' }}
           </p>
           <p class="text-sm">
             <span
-              class="d-inline-flex align-items-center rounded-3xl border-1 surface-border px-2 py-1 text-xs font-semibold"
+              class="d-inline-flex align-items-center rounded-3xl border-1 border px-2 py-1 text-xs fw-semibold"
               [ngClass]="getStatusBadge(item.sanctionStatus)"
               >{{ item.sanctionStatus }}</span
             >

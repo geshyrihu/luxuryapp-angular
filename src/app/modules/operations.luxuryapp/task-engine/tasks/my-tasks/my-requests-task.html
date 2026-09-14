@@ -181,21 +181,21 @@
 
       <div class="d-flex flex-column w-full gap-1">
         <div class="d-flex justify-content-between align-items-start mt-1">
-          <small class="text-color-secondary text-xs"
+          <small class="text-body-secondary text-xs"
             >{{ item.folio }} | {{ item.createdAtDate }}</small
           >
           <span
-            class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-xs font-bold"
+            class="bg-primary-100 text-primary-700 rounded px-2 py-1 text-xs fw-bold"
             >{{ item.daysDifference }} d</span
           >
         </div>
         <p
-          class="font-semibold m-0 text-color line-height-2 text-sm ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap"
+          class="fw-semibold m-0 text-body line-height-2 text-sm ticket-title text-truncate overflow-hidden text-nowrap"
         >
           {{ item.title }}
         </p>
         <p
-          class="text-xs m-0 text-color-secondary ticket-description two-lines"
+          class="text-xs m-0 text-body-secondary ticket-description two-lines"
         >
           {{ item.description }}
         </p>
@@ -221,8 +221,8 @@
           }
         </div>
         }
-        <div class="d-flex justify-content-end text-right">
-          <p class="m-0 text-xs text-color-secondary">
+        <div class="d-flex justify-content-end text-end">
+          <p class="m-0 text-xs text-body-secondary">
             Cierre: {{ item.closedAtDate ?? "Pendiente" }}
           </p>
         </div>

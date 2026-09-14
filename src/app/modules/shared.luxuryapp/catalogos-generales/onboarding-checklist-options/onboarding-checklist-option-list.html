@@ -18,7 +18,7 @@
         <div>
           <p class="mt-0 mb-0">{{ item.name }}</p>
           <small class="text-blue-700">SLA: {{ item.diasSla }} día(s)</small>
-          <div class="text-500 text-xs mt-1">{{ formatRoles(item.roles) }}</div>
+          <div class="text-body-secondary text-xs mt-1">{{ formatRoles(item.roles) }}</div>
         </div>
 
         <ili-action-menu slot="end">
@@ -76,8 +76,8 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <div class="font-semibold">{{ item.name }}</div>
-          <small class="text-500">{{ item.description || "—" }}</small>
+          <div class="fw-semibold">{{ item.name }}</div>
+          <small class="text-body-secondary">{{ item.description || "—" }}</small>
         </td>
         <td>
           <span class="badge bg-blue-100 text-blue-700">{{ item.diasSla }}</span>

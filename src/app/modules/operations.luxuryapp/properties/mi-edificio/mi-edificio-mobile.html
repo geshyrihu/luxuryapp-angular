@@ -5,15 +5,15 @@
       <img [src]="data().cliente.photoPath" alt="Logo" />
     </div>
     <div class="d-flex flex-column">
-      <h2 class="text-xl font-bold m-0 text-900">
+      <h2 class="text-xl fw-bold m-0 text-body">
         {{ data().cliente.nameCustomer }}
       </h2>
-      <p class="text-sm text-500 m-0 d-flex align-items-center mt-1">
+      <p class="text-sm text-body-secondary m-0 d-flex align-items-center mt-1">
         <app-icon icon="material-symbols-light:location-on-outline" class="me-1" />
         <a
           [href]="data().cliente.googleMpasUbication"
           target="_blank"
-          class="no-underline text-600"
+          class="no-underline text-body-secondary"
         >
           {{ data().cliente.adreess }}
         </a>
@@ -21,26 +21,26 @@
     </div>
   </div>
 
-  <div class="border-1 surface-border shadow-sm rounded-xl">
+  <div class="border-1 border shadow-sm rounded-xl">
     <div class="row text-center g-4">
       <div class="col-6">
-        <p class="text-xs font-bold uppercase text-500 mb-0">Torres</p>
-        <p class="text-lg font-bold m-0">{{ data().torres }}</p>
+        <p class="text-xs fw-bold text-uppercase text-body-secondary mb-0">Torres</p>
+        <p class="text-lg fw-bold m-0">{{ data().torres }}</p>
       </div>
       <div class="col-6">
-        <p class="text-xs font-bold uppercase text-500 mb-0">Departamentos</p>
-        <p class="text-lg font-bold m-0">{{ data().departamentos }}</p>
+        <p class="text-xs fw-bold text-uppercase text-body-secondary mb-0">Departamentos</p>
+        <p class="text-lg fw-bold m-0">{{ data().departamentos }}</p>
       </div>
       @if (data().cliente.rfc) {
-      <div class="col-12 text-left">
+      <div class="col-12 text-start">
         <p class="text-sm m-0">
-          <span class="font-bold">RFC:</span> {{ data().cliente.rfc }}
+          <span class="fw-bold">RFC:</span> {{ data().cliente.rfc }}
         </p>
       </div>
       } @if (data().cliente.phoneOne) {
-      <div class="col-12 text-left">
+      <div class="col-12 text-start">
         <p class="text-sm m-0">
-          <span class="font-bold">Telófono:</span>
+          <span class="fw-bold">Telófono:</span>
           <a
             [href]="'tel:' + data().cliente.phoneOne"
             class="no-underline text-primary"
@@ -54,11 +54,11 @@
 </div>
 
 @for (group of data().empleadosAdministracion; track group.departament) {
-<h3 class="ps-3 mt-4 mb-2 text-lg font-bold text-700">{{ group.departmentDisplayName }}</h3>
+<h3 class="ps-3 mt-4 mb-2 text-lg fw-bold text-body">{{ group.departmentDisplayName }}</h3>
 
-<div class="surface-card mb-3 rounded">
+<div class="bg-body mb-3 rounded">
   @for (item of group.empleados; track item.email) {
-  <div class="surface-card p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center">
+  <div class="bg-body p-3 mb-2 shadow-sm rounded d-flex justify-content-between align-items-center">
     <div class="me-3">
       <lx-avatar
         [image]="item.photoEmployee"
@@ -71,20 +71,20 @@
       <h2>{{ item.nameEmployee }}</h2>
       <p>{{ item.applicationRoleName }}</p>
       @if (item.phoneNumber) {
-      <p class="text-sm text-500">
+      <p class="text-sm text-body-secondary">
         <app-icon icon="material-symbols-light:call-outline" class="vertical-align-middle me-1" />
         <a
           [href]="'tel:' + item.phoneNumber"
-          class="text-color-secondary no-underline"
+          class="text-body-secondary no-underline"
           >{{ item.phoneNumber }}</a
         >
       </p>
       } @if (item.email) {
-      <p class="text-sm text-500">
+      <p class="text-sm text-body-secondary">
         <app-icon icon="material-symbols-light:mail-outline" class="vertical-align-middle me-1" />
         <a
           [href]="'mailto:' + item.email"
-          class="text-color-secondary no-underline"
+          class="text-body-secondary no-underline"
           >{{ item.email }}</a
         >
       </p>

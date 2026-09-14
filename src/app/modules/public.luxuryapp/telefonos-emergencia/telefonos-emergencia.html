@@ -1,6 +1,6 @@
 <!-- Cabecera -->
 <div
-  class="surface-card shadow-sm rounded-lg p-3 mb-4 d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 g-4"
+  class="bg-body shadow-sm rounded-lg p-3 mb-4 d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 g-4"
 >
   <div class="d-flex align-items-center gap-3">
     <div
@@ -10,7 +10,7 @@
       <app-icon [icon]="'material-symbols-light:phone-in-talk'" class="text-2xl" />
     </div>
     <div>
-      <h2 class="m-0 font-bold text-lg line-height-2">
+      <h2 class="m-0 fw-bold text-lg line-height-2">
         Telefonos de Emergencia
       </h2>
       <span class="text-xs text-secondary"
@@ -39,12 +39,12 @@
   @for (item of filteredData(); track item.id) {
   <div class="col-12 col-sm-6 col-xl-4">
     <div
-      class="surface-card shadow-sm rounded-xl overflow-hidden h-full d-flex flex-column"
+      class="bg-body shadow-sm rounded-xl overflow-hidden h-full d-flex flex-column"
       
     >
       <!-- Encabezado de tarjeta -->
       <div
-        class="d-flex align-items-center gap-3 p-3 border-bottom-1 surface-border"
+        class="d-flex align-items-center gap-3 p-3 border-bottom-1 border"
       >
         @if (item.logo) {
         <app-avatar
@@ -62,7 +62,7 @@
         </div>
         }
         <div class="flex-grow-1 min-w-0">
-          <p class="m-0 font-bold text-base line-height-2">
+          <p class="m-0 fw-bold text-base line-height-2">
             {{ item.instancia }}
           </p>
           @if (item.direccion) {
@@ -71,7 +71,7 @@
           >
             <app-icon [icon]="'material-symbols-light:location-on'" />
             <span
-              class="white-space-nowrap overflow-hidden text-overflow-ellipsis"
+              class="text-nowrap overflow-hidden text-truncate"
             >
               {{ item.direccion }}
             </span>
@@ -94,7 +94,7 @@
           >
             <app-icon [icon]="'material-symbols-light:call'" class="text-green-600 text-lg" />
           </div>
-          <span class="font-bold text-2xl text-primary"
+          <span class="fw-bold text-2xl text-primary"
             >{{ item.telefonoUno }}</span
           >
         </a>
@@ -112,14 +112,14 @@
           >
             <app-icon [icon]="'material-symbols-light:add-call'" class="text-blue-600 text-lg" />
           </div>
-          <span class="font-bold text-xl text-600">{{ item.telefonoDos }}</span>
+          <span class="fw-bold text-xl text-body-secondary">{{ item.telefonoDos }}</span>
         </a>
         }
       </div>
 
       <!-- Footer con acciones -->
       <div
-        class="d-flex justify-content-end gap-1 p-2 border-top-1 surface-border"
+        class="d-flex justify-content-end gap-1 p-2 border-top-1 border"
       >
         <il-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
@@ -130,8 +130,8 @@
   </div>
   } @empty {
   <div class="col-12">
-    <div class="surface-card rounded-xl p-6 text-center shadow-sm">
-      <app-icon [icon]="'material-symbols-light:phone-disabled'" class="text-6xl text-400" />
+    <div class="bg-body rounded-xl p-5 text-center shadow-sm">
+      <app-icon [icon]="'material-symbols-light:phone-disabled'" class="text-6xl text-body-secondary" />
       <p class="text-secondary mt-3 mb-0">
         No se encontraron servicios de emergencia.
       </p>

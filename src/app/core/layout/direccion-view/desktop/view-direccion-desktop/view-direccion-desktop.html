@@ -1,0 +1,21 @@
+<div class="w-screen h-screen overflow-hidden d-flex flex-column">
+
+  <!-- Header fijo -->
+  <div class="flex-none z-50 shadow-sm">
+    <app-header-direccion-desktop />
+  </div>
+
+  <!-- Contenido con scroll -->
+  <div class="flex-fill overflow-y-auto overflow-x-hidden bg-body-tertiary relative">
+    <div class="w-full min-h-full pb-4">
+      <router-outlet />
+    </div>
+    <lx-loader />
+  </div>
+
+  <!-- Footer fijo -->
+  <div class="flex-none bg-body border-top-1 border">
+    <app-footer-direccion-desktop />
+  </div>
+
+</div>

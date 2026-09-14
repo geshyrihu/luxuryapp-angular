@@ -3,7 +3,7 @@
   <lx-skeleton width="100%" height="20rem" />
   } @else if (data(); as reporte) {
   <div
-    class="surface-card rounded-xl border-1 surface-border shadow-sm p-0 p-xl-4 overflow-hidden"
+    class="bg-body rounded-xl border-1 border shadow-sm p-0 p-xl-4 overflow-hidden"
   >
     <div class="text-center mb-4">
       <h2 class="rf-panel-title text-2xl">PROYECTOS APROBADOS</h2>
@@ -13,9 +13,9 @@
     @if (reporte.totalGeneral; as total) {
     <div class="rf-card p-4 mb-4 border-2 border-primary">
       <div
-        class="d-flex justify-content-between align-items-center mb-4 border-bottom-1 surface-border pb-3"
+        class="d-flex justify-content-between align-items-center mb-4 border-bottom-1 border pb-3"
       >
-        <span class="font-bold uppercase text-lg line-height-3 text-primary">
+        <span class="fw-bold text-uppercase text-lg line-height-3 text-primary">
           <app-icon [icon]="'material-symbols-light:monitoring'" class="me-2" />{{
           total.descripcion }}
         </span>
@@ -24,10 +24,10 @@
       <div class="row g-4">
         <div class="col-12 col-md-4">
           <div class="d-flex flex-column gap-1">
-            <span class="text-500 font-medium uppercase text-xs"
+            <span class="text-body-secondary fw-medium text-uppercase text-xs"
               >Total a Cobrar</span
             >
-            <span class="text-900 font-bold text-2xl"
+            <span class="text-body fw-bold text-2xl"
               >{{ total.totalACobrar | currency:'MXN':'symbol-narrow':'1.0-0'
               }}</span
             >
@@ -35,10 +35,10 @@
         </div>
         <div class="col-12 col-md-4">
           <div class="d-flex flex-column gap-1">
-            <span class="text-500 font-medium uppercase text-xs"
+            <span class="text-body-secondary fw-medium text-uppercase text-xs"
               >Total Cobrado</span
             >
-            <span class="text-green-600 font-bold text-2xl"
+            <span class="text-green-600 fw-bold text-2xl"
               >{{ total.totalCobrado | currency:'MXN':'symbol-narrow':'1.0-0'
               }}</span
             >
@@ -46,10 +46,10 @@
         </div>
         <div class="col-12 col-md-4">
           <div class="d-flex flex-column gap-1">
-            <span class="text-500 font-medium uppercase text-xs"
+            <span class="text-body-secondary fw-medium text-uppercase text-xs"
               >Saldo Restante</span
             >
-            <span class="font-bold text-2xl text-primary"
+            <span class="fw-bold text-2xl text-primary"
               >{{ total.saldoRestante | currency:'MXN':'symbol-narrow':'1.0-0'
               }}</span
             >
@@ -60,7 +60,7 @@
     }
 
     <!-- Resumen Cards Individuales -->
-    <p class="font-bold uppercase mb-3 text-sm" >
+    <p class="fw-bold text-uppercase mb-3 text-sm" >
       Detalle por Proyecto
     </p>
     <div class="row mb-4 g-4">
@@ -71,30 +71,30 @@
           
         >
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-900 font-bold uppercase text-sm line-height-3"
+            <span class="text-body fw-bold text-uppercase text-sm line-height-3"
               >{{ proyecto.descripcion }}</span
             >
           </div>
           <div class="d-flex flex-column gap-3">
             <div class="d-flex justify-content-between">
-              <span class="text-500 font-medium">Total a Cobrar</span>
-              <span class="text-900 font-bold"
+              <span class="text-body-secondary fw-medium">Total a Cobrar</span>
+              <span class="text-body fw-bold"
                 >{{ proyecto.totalACobrar |
                 currency:'MXN':'symbol-narrow':'1.0-0' }}</span
               >
             </div>
             <div class="d-flex justify-content-between">
-              <span class="text-500 font-medium">Total Cobrado</span>
-              <span class="text-green-600 font-bold"
+              <span class="text-body-secondary fw-medium">Total Cobrado</span>
+              <span class="text-green-600 fw-bold"
                 >{{ proyecto.totalCobrado |
                 currency:'MXN':'symbol-narrow':'1.0-0' }}</span
               >
             </div>
             <div
-              class="d-flex justify-content-between border-top-1 surface-border pt-2"
+              class="d-flex justify-content-between border-top-1 border pt-2"
             >
-              <span class="text-500 font-medium">Saldo Restante</span>
-              <span class="font-bold text-primary"
+              <span class="text-body-secondary fw-medium">Saldo Restante</span>
+              <span class="fw-bold text-primary"
                 >{{ proyecto.saldoRestante |
                 currency:'MXN':'symbol-narrow':'1.0-0' }}</span
               >
@@ -128,7 +128,7 @@
         <ng-template #body let-proyecto>
           <tr class="rf-row-concepto g-4">
             <td class="rf-td-descripcion--item">
-              <div class="font-bold text-sm uppercase">
+              <div class="fw-bold text-sm text-uppercase">
                 {{ proyecto.descripcion }}
               </div>
             </td>
@@ -151,7 +151,7 @@
                   }}
                 </span>
                 <span
-                  class="text-sm font-bold"
+                  class="text-sm fw-bold"
                   [class.rf-neg]="m.cargo > m.presupuesto && m.presupuesto > 0"
                 >
                   {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
@@ -194,7 +194,7 @@
                   }}
                 </span>
                 <span
-                  class="text-sm font-bold"
+                  class="text-sm fw-bold"
                   [class.rf-neg]="m.cargo > m.presupuesto && m.presupuesto > 0"
                 >
                   {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
@@ -218,7 +218,7 @@
 
         <ng-template #emptymessage>
           <tr>
-            <td colspan="16" class="text-center p-4 text-color-secondary">
+            <td colspan="16" class="text-center p-4 text-body-secondary">
               No se encontraron proyectos aprobados (Cuentas 606 con
               presupuesto).
             </td>
@@ -229,11 +229,11 @@
   </div>
   } @else {
   <div
-    class="rf-card d-flex flex-column align-items-center py-8 text-color-secondary"
+    class="rf-card d-flex flex-column align-items-center py-5 text-body-secondary"
   >
     <app-icon [icon]="'material-symbols-light:table-view'" class="text-5xl mb-4 opacity-50" />
-    <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
-    <p class="mt-2 text-500">Verifique los parámetros seleccionados</p>
+    <p class="m-0 text-xl fw-medium">No hay datos para mostrar</p>
+    <p class="mt-2 text-body-secondary">Verifique los parámetros seleccionados</p>
   </div>
   }
 </div>

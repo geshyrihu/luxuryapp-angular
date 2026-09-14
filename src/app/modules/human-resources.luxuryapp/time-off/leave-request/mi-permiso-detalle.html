@@ -1,5 +1,5 @@
 <div
-  class="card p-4 shadow-sm rounded-2xl border-1 surface-border surface-100"
+  class="card p-4 shadow-sm rounded-2xl border-1 border bg-body-tertiary"
 >
   @if (loading) {
   <div class="text-center">
@@ -8,17 +8,17 @@
   </div>
   } @else if (data) {
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Tipo de Solicitud</div>
+    <div class="col-4 fw-bold">Tipo de Solicitud</div>
     <div class="col-8">{{ data.requestTypeName }}</div>
   </div>
 
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Empleado</div>
+    <div class="col-4 fw-bold">Empleado</div>
     <div class="col-8">{{ data.employeeFullName }}</div>
   </div>
 
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Estado</div>
+    <div class="col-4 fw-bold">Estado</div>
     <div class="col-8">
       <lx-tag
         [value]="data.status"
@@ -28,28 +28,28 @@
   </div>
 
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Fecha de Solicitud</div>
+    <div class="col-4 fw-bold">Fecha de Solicitud</div>
     <div class="col-8">{{ data.requestDate }}</div>
   </div>
 
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Periodo</div>
+    <div class="col-4 fw-bold">Periodo</div>
     <div class="col-8">{{ data.period }}</div>
   </div>
 
   @if (data.timeRange) {
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Horario</div>
+    <div class="col-4 fw-bold">Horario</div>
     <div class="col-8">{{ data.timeRange }}</div>
   </div>
   } @if (data.reason) {
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Motivo</div>
+    <div class="col-4 fw-bold">Motivo</div>
     <div class="col-8">{{ data.reason }}</div>
   </div>
   } @if (data.attachmentUrl) {
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Archivo Adjunto</div>
+    <div class="col-4 fw-bold">Archivo Adjunto</div>
     <div class="col-8">
       <il-button
         iconClass="material-symbols-light:download"
@@ -62,27 +62,27 @@
   </div>
   } @if (data.status === 'Aprobada') { @if (data.approverName) {
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Aprobado por</div>
+    <div class="col-4 fw-bold">Aprobado por</div>
     <div class="col-8">{{ data.approverName }}</div>
   </div>
   } @if (data.approvalDate) {
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Fecha de Aprobación</div>
+    <div class="col-4 fw-bold">Fecha de Aprobación</div>
     <div class="col-8">{{ data.approvalDate }}</div>
   </div>
   } } @if (data.status === 'Rechazada') { @if (data.approverName) {
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Rechazado por</div>
+    <div class="col-4 fw-bold">Rechazado por</div>
     <div class="col-8">{{ data.approverName }}</div>
   </div>
   } @if (data.approvalDate) {
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Fecha de Rechazo</div>
+    <div class="col-4 fw-bold">Fecha de Rechazo</div>
     <div class="col-8">{{ data.approvalDate }}</div>
   </div>
   } @if (data.rejectionReason) {
   <div class="row mb-2 g-4">
-    <div class="col-4 font-bold">Motivo de Rechazo</div>
+    <div class="col-4 fw-bold">Motivo de Rechazo</div>
     <div class="col-8 text-red-600">{{ data.rejectionReason }}</div>
   </div>
   } }
@@ -107,6 +107,6 @@
     }
   </div>
   } @else {
-  <p class="text-center text-color-secondary">No se encontró la solicitud.</p>
+  <p class="text-center text-body-secondary">No se encontró la solicitud.</p>
   }
 </div>

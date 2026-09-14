@@ -42,7 +42,7 @@
           {{ item.createdAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">? En espera</p>
+        <p class="text-body-secondary">? En espera</p>
         }
       </td>
 
@@ -53,7 +53,7 @@
           {{ item.verifiedAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">? En espera</p>
+        <p class="text-body-secondary">? En espera</p>
         }
       </td>
 
@@ -64,7 +64,7 @@
           {{ item.authorizedAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">? En espera</p>
+        <p class="text-body-secondary">? En espera</p>
         }
       </td>
 
@@ -75,7 +75,7 @@
           {{ item.confirmedAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">? En espera</p>
+        <p class="text-body-secondary">? En espera</p>
         }
       </td>
 
@@ -113,7 +113,7 @@
       <div start>
         <app-icon icon="material-symbols-light:calculate" />
       </div>
-      <div class="flex-1 min-w-0">
+      <div class="flex-fill min-w-0">
         <h3>{{ item.period }}</h3>
         <p>Verificó: {{ item.verifiedByName || '? En espera' }}</p>
         <p>Autorizó: {{ item.authorizedByName || '? En espera' }}</p>

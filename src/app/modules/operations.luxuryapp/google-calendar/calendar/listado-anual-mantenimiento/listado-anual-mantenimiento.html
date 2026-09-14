@@ -53,14 +53,14 @@
   <ng-template #groupheader let-item>
     <tr pRowGroupHeader>
       <td colspan="5">
-        <span class="font-bold ms-2">{{ item.inventoryCategory }}</span>
+        <span class="fw-bold ms-2">{{ item.inventoryCategory }}</span>
       </td>
     </tr>
   </ng-template>
   <ng-template #groupfooter let-item>
     <tr class="p-rowgroup-footer">
-      <td colspan="5" class="table-col-80 font-bold">
-        <div class="text-right w-full">
+      <td colspan="5" class="table-col-80 fw-bold">
+        <div class="text-end w-full">
           Total Actividades: {{ calculateCustomerTotal(item.inventoryCategory)
           }}
         </div>
@@ -203,29 +203,29 @@
         <app-icon icon="material-symbols-light:event-outline" class="text-xl text-primary" />
       </div>
 
-      <h2 class="text-base font-bold mb-1">{{ item.nombre }}</h2>
+      <h2 class="text-base fw-bold mb-1">{{ item.nombre }}</h2>
 
       <div
-        class="mb-2 text-sm text-700"
+        class="mb-2 text-sm text-body"
         [innerHTML]="item.actividad | sanitizeHtml"
       ></div>
 
       <div class="row mt-1 g-4">
         <div class="p-0 text-xs">
-          <p class="mb-0 text-color-secondary">Proveedor</p>
-          <p class="mb-1 font-semibold">{{ item.provider }}</p>
+          <p class="mb-0 text-body-secondary">Proveedor</p>
+          <p class="mb-1 fw-semibold">{{ item.provider }}</p>
         </div>
         <div class="p-0 text-xs">
-          <p class="mb-0 text-color-secondary">Recurrencia</p>
-          <p class="mb-1 font-semibold">{{ item.recurrencia }}</p>
+          <p class="mb-0 text-body-secondary">Recurrencia</p>
+          <p class="mb-1 fw-semibold">{{ item.recurrencia }}</p>
         </div>
         <div class="p-0 text-xs">
-          <p class="mb-0 text-color-secondary">Fecha</p>
-          <p class="mb-1 font-semibold">{{ item.fechaServicio }}</p>
+          <p class="mb-0 text-body-secondary">Fecha</p>
+          <p class="mb-1 fw-semibold">{{ item.fechaServicio }}</p>
         </div>
         <div class="p-0 text-xs">
-          <p class="mb-0 text-color-secondary">Costo</p>
-          <p class="mb-1 font-semibold">
+          <p class="mb-0 text-body-secondary">Costo</p>
+          <p class="mb-1 fw-semibold">
             {{ item.precio | CurrencyMexicoPipe }}
           </p>
         </div>

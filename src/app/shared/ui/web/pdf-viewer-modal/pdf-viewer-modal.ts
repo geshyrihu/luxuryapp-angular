@@ -13,7 +13,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "primeng/dynamicdialog";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { AppSpinner } from "@ui/web/spinner/spinner";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { environment } from "src/environments/environment";
 
@@ -24,7 +24,7 @@ import { environment } from "src/environments/environment";
  */
 @Component({
   selector: "app-pdf-viewer-modal",
-  imports: [PdfViewerModule, ProgressSpinnerModule, WebButtonLabel],
+  imports: [PdfViewerModule, AppSpinner, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./pdf-viewer-modal.html",
 })

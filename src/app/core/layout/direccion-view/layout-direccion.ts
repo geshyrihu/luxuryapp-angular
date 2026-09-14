@@ -10,13 +10,13 @@ import { map } from "rxjs/operators";
 import { AuthService } from "src/app/core/auth/services/auth.service";
 import { OneSignalService } from "src/app/core/services/one-signal.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
-import { ViewDireccionMonitor } from "./monitor/view-direccion-monitor/view-direccion-monitor";
+import { ViewDirecciondesktop } from "./desktop/view-direccion-desktop/view-direccion-desktop";
 import { ViewDireccionMobile } from "./movil/view-direccion-mobile/view-direccion-mobile";
 
 @Component({
   selector: "app-layout-direccion",
   templateUrl: "./layout-direccion.html",
-  imports: [ViewDireccionMonitor, ViewDireccionMobile],
+  imports: [ViewDirecciondesktop, ViewDireccionMobile],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [SignalRService, OneSignalService],
 })

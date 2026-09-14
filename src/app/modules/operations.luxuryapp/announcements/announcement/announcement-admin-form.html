@@ -91,7 +91,7 @@
         <!-- Vista previa de la imagen existente -->
         @if (data()?.imagePath && !mainImageToDelete()) {
         <div
-          class="d-flex flex-column align-items-center mb-3 p-3 surface-100 rounded border-1 surface-border"
+          class="d-flex flex-column align-items-center mb-3 p-3 bg-body-tertiary rounded border-1 border"
         >
           <img
             [src]="data()?.imagePath"
@@ -99,7 +99,7 @@
             class="max-w-10rem h-auto rounded"
           />
           <div class="d-flex align-items-center">
-            <span class="text-sm text-500">Imagen actual</span>
+            <span class="text-sm text-body-secondary">Imagen actual</span>
             <il-button-delete (confirmed)="requestDeleteMainImage()" />
           </div>
         </div>
@@ -140,7 +140,7 @@
     <!-- Columna central con el editor -->
     <div class="col-12 col-md-6">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <label class="font-bold">Contenido del Anuncio</label>
+        <label class="fw-bold">Contenido del Anuncio</label>
         <il-button
           iconClass="material-symbols-light:auto-awesome-motion"
           label="Generar con IA"
@@ -162,9 +162,9 @@
     <!-- Fila inferior: Adjuntos y Destinatarios -->
     <div class="col-12 col-md-4">
       <div class="my-4 d-flex align-items-center gap-2">
-        <lx-divider class="flex-1" />
-        <span class="font-bold text-primary">Archivos Adjuntos</span>
-        <lx-divider class="flex-1" />
+        <lx-divider class="flex-fill" />
+        <span class="fw-bold text-primary">Archivos Adjuntos</span>
+        <lx-divider class="flex-fill" />
       </div>
 
       <div class="d-flex flex-column">
@@ -172,16 +172,16 @@
           <!-- Lista de adjuntos existentes -->
           @if(data()?.attachments && data()!.attachments.length > 0) {
           <div class="mb-3">
-            <p class="font-bold text-sm mb-2">Archivos guardados:</p>
+            <p class="fw-bold text-sm mb-2">Archivos guardados:</p>
             <div class="d-flex flex-column">
               @for(item of data()!.attachments; track item.id) {
               <div
-                class="d-flex align-items-center justify-content-between p-2 surface-50 rounded border-1 surface-border"
+                class="d-flex align-items-center justify-content-between p-2 bg-body-tertiary rounded border-1 border"
               >
                 <a
                   [href]="item.filePath"
                   target="_blank"
-                  class="text-primary hover:underline text-sm overflow-hidden text-overflow-ellipsis w-10rem inline-block white-space-nowrap"
+                  class="text-primary hover:underline text-sm overflow-hidden text-truncate w-10rem inline-block text-nowrap"
                 >
                   <app-icon
                     [icon]="'material-symbols-light:description'"
@@ -235,9 +235,9 @@
 
     <div class="col-12 col-md-8">
       <div class="my-4 d-flex align-items-center gap-2">
-        <lx-divider class="flex-1" />
-        <span class="font-bold text-primary">Destinatarios</span>
-        <lx-divider class="flex-1" />
+        <lx-divider class="flex-fill" />
+        <span class="fw-bold text-primary">Destinatarios</span>
+        <lx-divider class="flex-fill" />
       </div>
 
       <div class="row g-4">
@@ -261,9 +261,9 @@
                 >
                   <app-icon
                     [icon]="'material-symbols-light:apartment'"
-                    class="me-2 text-500"
+                    class="me-2 text-body-secondary"
                   />
-                  <span class="flex-1">{{ customer.label }}</span>
+                  <span class="flex-fill">{{ customer.label }}</span>
                   @if(form.controls.targetedCustomerIds.value.includes(customer.value))
                   {
                   <app-icon
@@ -274,7 +274,7 @@
                 </div>
               </ng-template>
             </lx-listbox>
-            <small class="text-color-secondary d-block mt-2 text-right">
+            <small class="text-body-secondary d-block mt-2 text-end">
               {{ form.controls.targetedCustomerIds.value.length }} seleccionados
             </small>
           </div>
@@ -301,9 +301,9 @@
                 >
                   <app-icon
                     [icon]="'material-symbols-light:badge'"
-                    class="me-2 text-500"
+                    class="me-2 text-body-secondary"
                   />
-                  <span class="flex-1">{{ role.label }}</span>
+                  <span class="flex-fill">{{ role.label }}</span>
                   @if(form.controls.recipientRoleIds.value.includes(role.value))
                   {
                   <app-icon
@@ -314,7 +314,7 @@
                 </div>
               </ng-template>
             </lx-listbox>
-            <small class="text-color-secondary d-block mt-2 text-right">
+            <small class="text-body-secondary d-block mt-2 text-end">
               {{ form.controls.recipientRoleIds.value.length }} seleccionados
             </small>
           </div>

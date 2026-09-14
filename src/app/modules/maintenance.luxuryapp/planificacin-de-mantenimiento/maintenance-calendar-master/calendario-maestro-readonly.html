@@ -3,7 +3,7 @@
   <div class="col-12 col-md-3">
     <!-- Cabecera del mes -->
     <div
-      class="d-flex align-items-center justify-content-between p-2 font-bold text-primary surface-100 rounded mb-2"
+      class="d-flex align-items-center justify-content-between p-2 fw-bold text-primary bg-body-tertiary rounded mb-2"
     >
       <span>{{ item.month }}</span>
       @if (item.items?.length > 0) {
@@ -15,19 +15,19 @@
     <div class="d-flex flex-column gap-2">
       @for (evento of item.items; track evento.id) {
       <div
-        class="p-3 border-1 surface-border rounded cursor-pointer hover:surface-100 transition-colors transition-duration-150"
+        class="p-3 border-1 border rounded cursor-pointer hover:bg-body-tertiary transition-colors transition-duration-150"
         (click)="onVerDetalle(evento)"
         lxTooltip="Ver detalles del servicio"
         tooltipPosition="right"
       >
         <div class="d-flex align-items-start gap-2">
-          <div class="flex-1">
-            <div class="font-medium text-900 mb-1 text-sm">
+          <div class="flex-fill">
+            <div class="fw-medium text-body mb-1 text-sm">
               {{ evento.nombreEquipo }}
             </div>
             @if (evento.task) {
             <div
-              class="text-600 text-xs mb-2"
+              class="text-body-secondary text-xs mb-2"
               
             >
               {{ evento.task }}
@@ -43,19 +43,19 @@
           </div>
           <app-icon
             [icon]="'material-symbols-light:chevron-right'"
-            class="text-400 flex-shrink-0 mt-1"
+            class="text-body-secondary flex-shrink-0 mt-1"
           />
         </div>
       </div>
       } @empty {
-      <div class="text-center text-400 text-xs py-3 surface-50 rounded">
+      <div class="text-center text-body-secondary text-xs py-3 bg-body-tertiary rounded">
         Sin actividades
       </div>
       }
     </div>
   </div>
   } @empty {
-  <div class="col-12 text-center text-400 p-5">
+  <div class="col-12 text-center text-body-secondary p-5">
     <app-icon [icon]="'material-symbols-light:calendar-today'" class="text-4xl mb-3 d-block" />
     <span>Sin datos en el calendario</span>
   </div>

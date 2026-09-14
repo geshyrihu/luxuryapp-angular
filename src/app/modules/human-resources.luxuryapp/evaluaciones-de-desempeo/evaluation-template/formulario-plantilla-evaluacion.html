@@ -31,14 +31,14 @@
     </div>
 
     <div
-      class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom-1 surface-border"
+      class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom-1 border"
     >
       <div class="d-flex align-items-center gap-2">
         <app-icon
           [icon]="'material-symbols-light:format-list-bulleted'"
           class="text-primary text-xl"
         />
-        <h2 class="text-xl font-semibold m-0">Categorías y Preguntas</h2>
+        <h2 class="text-xl fw-semibold m-0">Categorías y Preguntas</h2>
       </div>
       <div class="d-flex gap-2">
         <il-button
@@ -71,13 +71,13 @@
             <!-- Drag Handle Categoría -->
             <div
               cdkDragHandle
-              class="cursor-move text-500 hover:text-primary transition-colors"
+              class="cursor-move text-body-secondary hover:text-primary transition-colors"
               lxTooltip="Reordenar categoría"
             >
               <app-icon [icon]="'material-symbols-light:menu'" />
             </div>
 
-            <span class="font-bold text-lg text-primary">{{ i + 1 }}.</span>
+            <span class="fw-bold text-lg text-primary">{{ i + 1 }}.</span>
 
             <div class="flex-grow-1">
               <custom-input-text-signal
@@ -111,19 +111,19 @@
           j = $index) {
           <div
             [formGroup]="questionGroup"
-            class="d-flex align-items-center gap-3 p-2 surface-100 rounded hover:surface-200 transition-colors"
+            class="d-flex align-items-center gap-3 p-2 bg-body-tertiary rounded hover:bg-body-tertiary transition-colors"
             cdkDrag
           >
             <!-- Drag Handle Pregunta -->
             <div
               cdkDragHandle
-              class="cursor-move text-400 hover:text-primary px-2"
+              class="cursor-move text-body-secondary hover:text-primary px-2"
               lxTooltip="Reordenar pregunta"
             >
               <app-icon [icon]="'material-symbols-light:more-vert'" />
             </div>
 
-            <span class="text-600 font-medium w-2rem">{{ j + 1 }}.</span>
+            <span class="text-body-secondary fw-medium w-2rem">{{ j + 1 }}.</span>
 
             <div class="flex-grow-1">
               <custom-input-text-signal
@@ -137,7 +137,7 @@
           </div>
           } @if (questions(i).controls.length === 0) {
           <div
-            class="text-center p-4 border-2 border-dashed surface-border rounded text-500"
+            class="text-center p-4 border-2 border-dashed border rounded text-body-secondary"
           >
             <app-icon [icon]="'material-symbols-light:info'" class="me-2" />
             No hay preguntas en esta categoría. Haga clic en "Pregunta" para
@@ -148,16 +148,16 @@
       </lx-fieldset>
       } @if (categories.controls.length === 0) {
       <div
-        class="text-center p-8 border-2 border-dashed surface-border rounded bg-white"
+        class="text-center p-5 border-2 border-dashed border rounded bg-white"
       >
         <app-icon
           [icon]="'material-symbols-light:folder-open'"
           class="text-6xl text-200 mb-3 d-block"
         />
-        <span class="text-xl text-500 font-medium"
+        <span class="text-xl text-body-secondary fw-medium"
           >No se han definido categorías</span
         >
-        <p class="text-400 mt-2">
+        <p class="text-body-secondary mt-2">
           Comience agregando una categoría para organizar sus preguntas de
           evaluación.
         </p>
@@ -172,7 +172,7 @@
     </div>
 
     <!-- Footer con Acciones -->
-    <div class="d-flex justify-content-end mt-5 pt-4 border-top-1 surface-border">
+    <div class="d-flex justify-content-end mt-5 pt-4 border-top-1 border">
       <il-button-save
         [propertyId]="id"
         [disabled]="form.invalid"

@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { CheckboxModule } from "@ui/web/primeng-checkbox/primeng-checkbox";
+import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { ApiResponseService } from "src/app/core/http/services/api-response.service";
 import { Endpoints } from "src/app/core/constants/endpoints/endpoints";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -23,7 +23,7 @@ import { EmployeeOnboardingChecklistItemDTO } from "../interfaces/employee-file.
     LxTag,
     AppIcon,
     WebButtonIconItem,
-    CheckboxModule,
+    AppCheckbox,
   ],
 })
 export class EmployeeOnboardingChecklist implements OnInit {

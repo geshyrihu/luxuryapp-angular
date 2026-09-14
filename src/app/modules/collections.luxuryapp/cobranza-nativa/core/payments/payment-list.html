@@ -37,9 +37,9 @@
         <th class="w-12rem">Propiedad</th>
         <th class="w-8rem">Método</th>
         <th class="w-8rem">Referencia</th>
-        <th class="w-8rem text-right">Monto Recibido</th>
-        <th class="w-8rem text-right">Aplicado</th>
-        <th class="w-8rem text-right">Sin Aplicar</th>
+        <th class="w-8rem text-end">Monto Recibido</th>
+        <th class="w-8rem text-end">Aplicado</th>
+        <th class="w-8rem text-end">Sin Aplicar</th>
         <th class="w-6rem text-center">Estado</th>
         <th class="w-10rem text-center">Opciones</th>
       </tr>
@@ -47,21 +47,21 @@
 
     <ng-template #body let-item>
       <tr>
-        <td class="font-medium">
+        <td class="fw-medium">
           {{ item.paymentDate | apiDate: "dd/MM/yyyy" }}
         </td>
-        <td class="font-bold text-800">{{ item.propertyFullName || "N/A" }}</td>
+        <td class="fw-bold text-body">{{ item.propertyFullName || "N/A" }}</td>
         <td class="text-xs">{{ paymentMethodLabel(item.method) }}</td>
-        <td class="text-600 text-sm">{{ item.reference || "-" }}</td>
-        <td class="text-right font-medium text-green-600">
+        <td class="text-body-secondary text-sm">{{ item.reference || "-" }}</td>
+        <td class="text-end fw-medium text-green-600">
           {{ item.amount | number: "1.2-2" }}
         </td>
-        <td class="text-right font-medium text-blue-600">
+        <td class="text-end fw-medium text-blue-600">
           {{ item.allocatedAmount | number: "1.2-2" }}
         </td>
-        <td class="text-right">
+        <td class="text-end">
           <span
-            class="font-medium"
+            class="fw-medium"
             [class.text-orange-600]="item.unappliedAmount > 0.009"
             [class.text-500]="item.unappliedAmount <= 0.009"
           >
@@ -126,7 +126,7 @@
           class="text-green-600 text-xl"
         />
       </div>
-      <div class="flex-1 min-w-0">
+      <div class="flex-fill min-w-0">
         <h3>{{ item.propertyFullName || "N/A" }}</h3>
         <p>
           {{ item.paymentDate | apiDate:"dd/MM/yyyy" }} · {{ item.amount |

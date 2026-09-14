@@ -4,10 +4,10 @@
   (ngSubmit)="onSubmit()"
   [formGroup]="form"
 >
-  <section class="card border-1 surface-border">
+  <section class="card border-1 border">
     <div class="card-header">
       <div>
-        <h3 class="card-title text-900">
+        <h3 class="card-title text-body">
           Resumen de la vacante | Información base del puesto solicitado.
         </h3>
       </div>
@@ -17,9 +17,9 @@
       <div class="row g-4">
         <div class="col-12 col-md-6 col-xl-4">
           <div
-            class="card d-flex flex-column gap-1 p-4 h-full surface-100 border-none"
+            class="card d-flex flex-column gap-1 p-4 h-full bg-body-tertiary border-0"
           >
-            <span class="font-semibold text-700">Puesto / profesión</span>
+            <span class="fw-semibold text-body">Puesto / profesión</span>
             <span class="text-primary text-sm line-height-3">
               {{ data?.applicationRoleName || "No disponible" }}
             </span>
@@ -28,10 +28,10 @@
 
         <div class="col-12 col-md-6 col-xl-4">
           <div
-            class="card d-flex flex-column gap-1 p-4 h-full surface-100 border-none"
+            class="card d-flex flex-column gap-1 p-4 h-full bg-body-tertiary border-0"
           >
-            <span class="font-semibold text-700">Sueldo mensual neto</span>
-            <span class="text-primary font-bold text-lg">
+            <span class="fw-semibold text-body">Sueldo mensual neto</span>
+            <span class="text-primary fw-bold text-lg">
               {{ data?.sueldoBase != null ? (data.sueldoBase | currency: "MXN" :
               "symbol" : "1.2-2") : "No definido" }}
             </span>
@@ -40,9 +40,9 @@
 
         <div class="col-12 col-md-6 col-xl-4">
           <div
-            class="card d-flex flex-column gap-1 p-4 h-full surface-100 border-none"
+            class="card d-flex flex-column gap-1 p-4 h-full bg-body-tertiary border-0"
           >
-            <span class="font-semibold text-700">Turno de trabajo</span>
+            <span class="fw-semibold text-body">Turno de trabajo</span>
             <span class="text-primary text-sm line-height-3">
               {{ tipoJornadaNameDisplay() }}
             </span>
@@ -52,9 +52,9 @@
         @if (data?.workPositionScheduleName) {
         <div class="col-12 col-md-6 col-xl-4">
           <div
-            class="card d-flex flex-column gap-1 p-4 h-full surface-100 border-none"
+            class="card d-flex flex-column gap-1 p-4 h-full bg-body-tertiary border-0"
           >
-            <span class="font-semibold text-700">Horario asignado</span>
+            <span class="fw-semibold text-body">Horario asignado</span>
             <span class="text-primary text-sm line-height-3">
               {{ data?.workPositionScheduleName }}
             </span>
@@ -64,9 +64,9 @@
 
         <div class="col-12 col-md-6 col-xl-4">
           <div
-            class="card d-flex flex-column gap-1 p-4 h-full surface-100 border-none"
+            class="card d-flex flex-column gap-1 p-4 h-full bg-body-tertiary border-0"
           >
-            <span class="font-semibold text-700">Ciclo del horario</span>
+            <span class="fw-semibold text-body">Ciclo del horario</span>
             <span class="text-primary text-sm line-height-3">
               {{ data?.duracionCicloSemanas || 1 }} {{
               (data?.duracionCicloSemanas || 1) === 1 ? "semana" : "semanas" }}
@@ -77,11 +77,11 @@
     </div>
   </section>
 
-  <section class="card border-1 surface-border">
+  <section class="card border-1 border">
     <div class="card-header">
       <div>
-        <h3 class="card-title text-900">Horario semanal</h3>
-        <p class="text-600 m-0">Distribución de entrada y salida por día.</p>
+        <h3 class="card-title text-body">Horario semanal</h3>
+        <p class="text-body-secondary m-0">Distribución de entrada y salida por día.</p>
       </div>
     </div>
 
@@ -89,36 +89,36 @@
       <div class="row mb-3 g-4">
         <div class="col-12 col-md-4">
           <div
-            class="surface-100 border-1 surface-border border-round p-3 h-full"
+            class="bg-body-tertiary border-1 border rounded p-3 h-full"
           >
-            <div class="text-500 text-xs font-semibold uppercase">
+            <div class="text-body-secondary text-xs fw-semibold text-uppercase">
               Horas por semana
             </div>
-            <div class="text-primary font-bold text-xl mt-1">
+            <div class="text-primary fw-bold text-xl mt-1">
               {{ formatHoursSummary(1) }}
             </div>
           </div>
         </div>
         <div class="col-12 col-md-4">
           <div
-            class="surface-100 border-1 surface-border border-round p-3 h-full"
+            class="bg-body-tertiary border-1 border rounded p-3 h-full"
           >
-            <div class="text-500 text-xs font-semibold uppercase">
+            <div class="text-body-secondary text-xs fw-semibold text-uppercase">
               Horas por quincena
             </div>
-            <div class="text-primary font-bold text-xl mt-1">
+            <div class="text-primary fw-bold text-xl mt-1">
               {{ formatHoursSummary(2) }}
             </div>
           </div>
         </div>
         <div class="col-12 col-md-4">
           <div
-            class="surface-100 border-1 surface-border border-round p-3 h-full"
+            class="bg-body-tertiary border-1 border rounded p-3 h-full"
           >
-            <div class="text-500 text-xs font-semibold uppercase">
+            <div class="text-body-secondary text-xs fw-semibold text-uppercase">
               Horas por 4 semanas
             </div>
-            <div class="text-primary font-bold text-xl mt-1">
+            <div class="text-primary fw-bold text-xl mt-1">
               {{ formatHoursSummary(4) }}
             </div>
           </div>
@@ -130,12 +130,12 @@
         @if (data?.workPositionScheduleDescription) {
         <div class="col-12 col-md-6">
           <div
-            class="surface-50 border-1 surface-border border-round p-3 h-full"
+            class="bg-body-tertiary border-1 border rounded p-3 h-full"
           >
-            <div class="font-semibold text-700 mb-2">
+            <div class="fw-semibold text-body mb-2">
               DESCRIPCIÓN del horario
             </div>
-            <p class="text-600 line-height-3 m-0 white-space-pre-line">
+            <p class="text-body-secondary line-height-3 m-0 white-space-pre-line">
               {{ data?.workPositionScheduleDescription }}
             </p>
           </div>
@@ -143,12 +143,12 @@
         } @if (scheduleObservations()) {
         <div class="col-12 col-md-6">
           <div
-            class="surface-50 border-1 surface-border border-round p-3 h-full"
+            class="bg-body-tertiary border-1 border rounded p-3 h-full"
           >
-            <div class="font-semibold text-700 mb-2">
+            <div class="fw-semibold text-body mb-2">
               Observaciones del horario
             </div>
-            <p class="text-600 line-height-3 m-0 white-space-pre-line">
+            <p class="text-body-secondary line-height-3 m-0 white-space-pre-line">
               {{ scheduleObservations() }}
             </p>
           </div>
@@ -158,13 +158,13 @@
       }
 
       <div class="overflow-x-auto">
-        <table class="w-full border-collapse surface-border border-1">
+        <table class="w-full border-collapse border border-1">
           <thead>
-            <tr class="surface-100">
-              <th class="p-3 text-left border-1 surface-border">Ciclo</th>
-              <th class="p-3 text-left border-1 surface-border">Evento</th>
+            <tr class="bg-body-tertiary">
+              <th class="p-3 text-start border-1 border">Ciclo</th>
+              <th class="p-3 text-start border-1 border">Evento</th>
               @for (day of dayColumns; track day.value) {
-              <th class="p-3 text-center border-1 surface-border">
+              <th class="p-3 text-center border-1 border">
                 {{ day.label }}
               </th>
               }
@@ -175,26 +175,26 @@
             @for (week of scheduleWeeks(); track week) {
             <tr>
               <td
-                class="p-3 font-semibold text-700 border-1 surface-border"
+                class="p-3 fw-semibold text-body border-1 border"
                 rowspan="2"
               >
                 Semana {{ week }}
               </td>
-              <td class="p-3 font-bold text-primary border-1 surface-border">
+              <td class="p-3 fw-bold text-primary border-1 border">
                 Entrada
               </td>
               @for (day of dayColumns; track day.value) {
-              <td class="p-3 text-center border-1 surface-border">
+              <td class="p-3 text-center border-1 border">
                 {{ scheduleCell(week, day.value, "entry") }}
               </td>
               }
             </tr>
             <tr>
-              <td class="p-3 font-bold text-primary border-1 surface-border">
+              <td class="p-3 fw-bold text-primary border-1 border">
                 Salida
               </td>
               @for (day of dayColumns; track day.value) {
-              <td class="p-3 text-center border-1 surface-border">
+              <td class="p-3 text-center border-1 border">
                 {{ scheduleCell(week, day.value, "exit") }}
               </td>
               }
@@ -206,11 +206,11 @@
     </div>
   </section>
 
-  <section class="card border-1 surface-border">
+  <section class="card border-1 border">
     <div class="card-header">
       <div>
-        <h3 class="card-title text-900">Comentarios adicionales</h3>
-        <p class="text-600 m-0">
+        <h3 class="card-title text-body">Comentarios adicionales</h3>
+        <p class="text-body-secondary m-0">
           Agrega contexto para reclutamiento antes de enviar la solicitud.
         </p>
       </div>

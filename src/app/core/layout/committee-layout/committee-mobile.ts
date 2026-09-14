@@ -16,9 +16,9 @@ import { chevronBack } from "ionicons/icons";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { NavigationService } from "src/app/core/services/navigation.service";
 import { AppIcon } from "src/app/shared/ui/shared/app-icon/app-icon";
-import { CustomerHeaderDataCommittee } from "./monitor/client-data";
-import { CommitteeMobileNav } from "./monitor/mobile-nav";
-import { ProfileCommitteeMonitor } from "./monitor/profile";
+import { CustomerHeaderDataCommittee } from "./desktop/client-data";
+import { CommitteeMobileNav } from "./desktop/mobile-nav";
+import { ProfileCommitteedesktop } from "./desktop/profile";
 
 @Component({
   selector: "app-committee-mobile",
@@ -26,7 +26,7 @@ import { ProfileCommitteeMonitor } from "./monitor/profile";
     RouterOutlet,
     AppIcon,
     CustomerHeaderDataCommittee,
-    ProfileCommitteeMonitor,
+    ProfileCommitteedesktop,
     CommitteeMobileNav,
     IonApp,
     IonContent,

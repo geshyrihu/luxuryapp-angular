@@ -8,8 +8,8 @@
       class="mx-auto w-10rem h-auto mb-3"
       
     />
-    <h1 class="text-2xl font-bold text-primary">{{ data()!.customer }}</h1>
-    <p class="text-lg text-color-secondary">{{ data()!.dateReport }}</p>
+    <h1 class="text-2xl fw-bold text-primary">{{ data()!.customer }}</h1>
+    <p class="text-lg text-body-secondary">{{ data()!.dateReport }}</p>
     <hr class="my-4" />
   </div>
   @for (ticket of data()!.reportes; track ticket) {

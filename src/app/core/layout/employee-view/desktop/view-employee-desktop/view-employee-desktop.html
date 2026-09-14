@@ -1,0 +1,37 @@
+<div
+  id="pageWrapper"
+  [class]="layoutClass"
+>
+  <!-- 1. HEADER (Arriba Derecha) -->
+  <div class="layout-header z-50 d-flex align-items-center p-0">
+    <app-header-employee-desktop class="w-100" />
+  </div>
+
+  <!-- 2. SIDEBAR (Izquierda Completa) -->
+  <div
+    class="layout-sidebar z-60"
+    [style.width.px]="navService.collapseSidebar ? 0 : 252"
+    [class.opacity-0]="navService.collapseSidebar"
+  >
+    <app-sidebar />
+  </div>
+
+  <!-- 3. MAIN CONTENT (Abajo Derecha) -->
+  <div class="main-content-wrapper relative">
+      <div
+        id="main-content-scroll"
+        class="main-content-scroll bg-body-tertiary"
+        tabindex="0"
+      >
+      <!-- Wrapper interno para altura mínima -->
+      @if (refreshService.outletVisible()) {
+      <div class="w-100 pb-8" style="min-height: 100%;">
+        <router-outlet />
+      </div>
+      }
+    </div>
+
+    <!-- App Loader (Overlay localizado) -->
+    <lx-loader />
+  </div>
+</div>

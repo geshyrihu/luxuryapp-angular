@@ -105,7 +105,7 @@
           <td>
             <div class="d-flex flex-column">
               <span class="fw-bold text-sm"> {{ item.userName }} </span>
-              <span class="text-xs text-500 text-uppercase"> {{ item.role }} </span>
+              <span class="text-xs text-body-secondary text-text-uppercase"> {{ item.role }} </span>
             </div>
           </td>
           <td>{{ item.email }}</td>
@@ -209,21 +209,21 @@
         <app-icon icon="material-symbols-light:account-circle-outline" />
         }
       </div>
-      <p class="fw-semibold m-0 text-color">{{ item.fullName }}</p>
+      <p class="fw-semibold m-0 text-body">{{ item.fullName }}</p>
       <p class="text-xs m-0 mt-1">
         <span class="fw-medium">{{ item.userName }}</span>
-        <span class="mx-1 text-color-secondary">é</span>
-        <span class="text-color-secondary text-uppercase">{{ item.role }}</span>
+        <span class="mx-1 text-body-secondary">é</span>
+        <span class="text-body-secondary text-text-uppercase">{{ item.role }}</span>
       </p>
-      <p class="text-xs m-0 text-color-secondary">
+      <p class="text-xs m-0 text-body-secondary">
         {{ item.customer || 'Sin Cliente' }}
       </p>
-      <p class="text-xs m-0 text-500">
+      <p class="text-xs m-0 text-body-secondary">
         <app-icon [icon]="'material-symbols-light:mail-outline'" class="text-xs me-1" />{{
         item.email }}
       </p>
       @if (item.phoneNumber) {
-      <p class="text-xs m-0 text-500">
+      <p class="text-xs m-0 text-body-secondary">
         <app-icon [icon]="'material-symbols-light:call'" class="text-xs me-1" />{{
         item.phoneNumber }}
       </p>

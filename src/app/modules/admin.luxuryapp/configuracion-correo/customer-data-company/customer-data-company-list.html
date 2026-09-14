@@ -44,7 +44,7 @@
   </ng-template>
 
   <ng-template #groupheader let-item>
-    <tr pRowGroupHeader class="surface-ground">
+    <tr pRowGroupHeader class="bg-body-tertiary">
       <td colspan="6" class="py-2">
         <div class="d-flex align-items-center">
           <app-icon
@@ -55,7 +55,7 @@
             "
             class="text-primary me-2"
           />
-          <span class="font-bold text-900">
+          <span class="fw-bold text-body">
             {{ groupingOption() === "numeroCliente" ? item.customer :
             item.applicationRoleName }}
           </span>
@@ -141,15 +141,15 @@
         />
       </div>
       <div class="d-flex justify-content-between align-items-start mb-2">
-        <span class="text-xs font-bold text-primary">{{ item.customer }}</span>
-        <span class="text-xs text-500">{{ item.applicationRoleName }}</span>
+        <span class="text-xs fw-bold text-primary">{{ item.customer }}</span>
+        <span class="text-xs text-body-secondary">{{ item.applicationRoleName }}</span>
       </div>
-      <h2 class="text-base font-bold mb-1">{{ item.applicationUser }}</h2>
-      <div class="d-flex align-items-center text-sm text-600 mb-1">
+      <h2 class="text-base fw-bold mb-1">{{ item.applicationUser }}</h2>
+      <div class="d-flex align-items-center text-sm text-body-secondary mb-1">
         <app-icon [icon]="'material-symbols-light:mail-outline'" class="text-xs" />
         <span>{{ item.email }}</span>
       </div>
-      <div class="d-flex align-items-center text-sm text-600">
+      <div class="d-flex align-items-center text-sm text-body-secondary">
         <app-icon [icon]="'material-symbols-light:call'" class="text-xs" />
         <span>{{ item.phoneNumber }}</span>
       </div>

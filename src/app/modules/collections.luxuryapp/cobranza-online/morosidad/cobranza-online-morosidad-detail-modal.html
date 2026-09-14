@@ -1,24 +1,24 @@
 <div class="d-flex flex-column gap-3">
   <!-- Header con info básica -->
   <div class="d-flex align-items-center mb-1 gap-3">
-    <div class="bg-primary text-white border-round w-3rem h-3rem d-flex align-items-center justify-content-center text-xl font-bold flex-shrink-0">
+    <div class="bg-primary text-white rounded w-3rem h-3rem d-flex align-items-center justify-content-center text-xl fw-bold flex-shrink-0">
       <app-icon icon="material-symbols-light:apartment" />
     </div>
     <div>
-      <div class="text-xl font-bold text-color">{{ data.propertyFullName || data.accountName }}</div>
-      <div class="text-color-secondary">{{ data.accountNumber }}</div>
+      <div class="text-xl fw-bold text-body">{{ data.propertyFullName || data.accountName }}</div>
+      <div class="text-body-secondary">{{ data.accountNumber }}</div>
     </div>
   </div>
 
   <!-- Título de clasificación -->
   <div class="mb-3">
-    <div class="text-sm border-round p-3 d-flex flex-column gap-2"
+    <div class="text-sm rounded p-3 d-flex flex-column gap-2"
          [ngClass]="{
            'bg-red-50 border-1 border-red-200': data.classification === 'COBRANZA JUDICIAL',
            'bg-orange-50 border-1 border-orange-200': data.classification === 'MOROSOS',
            'bg-blue-50 border-1 border-blue-200': data.classification === 'DEUDA CORRIENTE',
            'bg-green-50 border-1 border-green-200': data.classification === 'SIN ADEUDO',
-           'surface-ground border-1 surface-border': data.classification === 'ANTICIPOS'
+           'bg-body-tertiary border-1 border': data.classification === 'ANTICIPOS'
          }">
       <div class="d-flex align-items-center gap-2">
         <app-icon icon="material-symbols-light:info" class="text-lg" [ngClass]="{
@@ -28,32 +28,32 @@
              'text-green-500': data.classification === 'SIN ADEUDO',
              'text-color-secondary': data.classification === 'ANTICIPOS'
            }" />
-        <strong class="text-color">{{ ruleTitle }}</strong>
+        <strong class="text-body">{{ ruleTitle }}</strong>
       </div>
-      <div class="text-color-secondary line-height-3">
+      <div class="text-body-secondary line-height-3">
         {{ ruleDescription }}
       </div>
-      <div class="text-color-secondary text-sm line-height-3 mt-2">
+      <div class="text-body-secondary text-sm line-height-3 mt-2">
         Una cuota vencida es cada vez que la cuota vigente del condómino cabe
         completa dentro de su saldo. Cuota vigente: la del mes consultado.
       </div>
     </div>
   </div>
 
-  <div class="font-bold text-900 mb-1 text-sm uppercase">
+  <div class="fw-bold text-body mb-1 text-sm text-uppercase">
     Saldos vencidos que componen la deuda
   </div>
 
   @if (isLoading()) {
     <div class="text-center p-4">
       <lx-spinner [size]="40" />
-      <div class="mt-2 text-500">Cargando desglose...</div>
+      <div class="mt-2 text-body-secondary">Cargando desglose...</div>
     </div>
   } @else if (detail()) {
     <div class="d-block">
       @for (item of detail()?.conceptos; track item.concepto) {
-        <div class="border-1 surface-border rounded-xl bg-white mb-3 overflow-hidden shadow-sm">
-          <div class="p-3 surface-50 border-bottom-1 surface-border d-flex flex-column gap-2">
+        <div class="border-1 border rounded-xl bg-white mb-3 overflow-hidden shadow-sm">
+          <div class="p-3 bg-body-tertiary border-bottom-1 border d-flex flex-column gap-2">
             <div class="d-flex justify-content-between align-items-center">
               <lx-tag [value]="item.concepto" [severity]="getConceptSeverity(item.concepto)" />
               <strong class="text-xl" [ngClass]="getBalanceClass(item.saldoFinal)">
@@ -65,22 +65,22 @@
             @if (item.vencidos?.length) {
               <div class="d-flex flex-column gap-2">
                 @for (v of item.vencidos; track v.fechaCargo + v.conceptoDetalle) {
-                  <div class="d-flex justify-content-between align-items-center text-sm border-bottom-1 surface-border pb-2 last-none">
+                  <div class="d-flex justify-content-between align-items-center text-sm border-bottom-1 border pb-2 last-none">
                     <div class="d-flex flex-column">
-                      <span class="text-800">{{ v.conceptoDetalle }}</span>
+                      <span class="text-body">{{ v.conceptoDetalle }}</span>
                     </div>
-                    <span class="font-mono font-semibold" [ngClass]="getBalanceClass(v.saldoPendiente)">
+                    <span class="font-mono fw-semibold" [ngClass]="getBalanceClass(v.saldoPendiente)">
                       {{ v.saldoPendiente | currency: 'MXN':'symbol':'1.2-2' }}
                     </span>
                   </div>
                 }
               </div>
             } @else {
-              <div class="text-500 text-sm italic text-center py-2">Sin desglose de periodos vencidos.</div>
+              <div class="text-body-secondary text-sm italic text-center py-2">Sin desglose de periodos vencidos.</div>
             }
-            <div class="d-flex justify-content-end mt-3 border-top-1 surface-border pt-2">
-              <span class="font-semibold text-sm text-color-secondary me-2">Total {{ item.concepto }}:</span>
-              <span class="font-bold text-sm" [ngClass]="getBalanceClass(item.saldoFinal)">
+            <div class="d-flex justify-content-end mt-3 border-top-1 border pt-2">
+              <span class="fw-semibold text-sm text-body-secondary me-2">Total {{ item.concepto }}:</span>
+              <span class="fw-bold text-sm" [ngClass]="getBalanceClass(item.saldoFinal)">
                 {{ item.saldoFinal | currency: 'MXN':'symbol':'1.2-2' }}
               </span>
             </div>
@@ -89,29 +89,29 @@
       }
     </div>
 
-    <div class="border-top-1 surface-border pt-4 mt-2">
-      <div class="font-bold text-900 mb-3 text-sm uppercase">Resumen Total por Tipo</div>
+    <div class="border-top-1 border pt-4 mt-2">
+      <div class="fw-bold text-body mb-3 text-sm text-uppercase">Resumen Total por Tipo</div>
       
       <div class="d-flex flex-column gap-2">
         @for (item of detail()?.conceptos; track item.concepto) {
-          <div class="d-flex justify-content-between text-sm py-1 border-bottom-1 surface-border">
-            <span class="text-600">{{ item.concepto }}</span>
-            <span class="font-mono font-medium" [ngClass]="getBalanceClass(item.saldoFinal)">
+          <div class="d-flex justify-content-between text-sm py-1 border-bottom-1 border">
+            <span class="text-body-secondary">{{ item.concepto }}</span>
+            <span class="font-mono fw-medium" [ngClass]="getBalanceClass(item.saldoFinal)">
               {{ item.saldoFinal | currency: 'MXN':'symbol':'1.2-2' }}
             </span>
           </div>
         }
       </div>
       
-      <div class="d-flex justify-content-between text-lg font-bold border-top-1 surface-border pt-3 mt-2">
-        <span class="text-900">Total Adeudo</span>
+      <div class="d-flex justify-content-between text-lg fw-bold border-top-1 border pt-3 mt-2">
+        <span class="text-body">Total Adeudo</span>
         <span [ngClass]="getBalanceClass(detail()?.saldoFinalTotal)">
           {{ (detail()?.saldoFinalTotal) | currency: 'MXN':'symbol':'1.2-2' }}
         </span>
       </div>
     </div>
   } @else {
-    <div class="text-center p-4 text-500">
+    <div class="text-center p-4 text-body-secondary">
       <app-icon icon="material-symbols-light:warning" class="text-3xl mb-2" />
       <div>No se pudo cargar el desglose.</div>
     </div>

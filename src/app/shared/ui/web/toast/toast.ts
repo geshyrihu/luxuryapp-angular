@@ -45,6 +45,8 @@ import type { AppIconName } from "src/app/shared/ui/shared/app-icon/app-icon.cat
       .app-toast {
         min-width: 300px;
         margin-bottom: 0.5rem;
+        --bs-toast-bg: var(--ds-bg-surface);
+        --bs-toast-header-bg: var(--ds-bg-surface);
       }
       .app-toast-success { border-left: 4px solid var(--ds-success); }
       .app-toast-info { border-left: 4px solid var(--ds-info); }

@@ -4,7 +4,7 @@
   <div class="d-flex flex-wrap align-items-end">
     <!-- Filtro por email -->
     <div class="d-flex flex-column gap-1">
-      <label class="text-sm font-medium text-color-secondary"
+      <label class="text-sm fw-medium text-body-secondary"
         >Destinatario</label
       >
       <custom-input-text-signal
@@ -55,7 +55,7 @@
 
   <!-- Contador de resultados -->
   @if (!cargando()) {
-  <span class="text-sm text-color-secondary">
+  <span class="text-sm text-body-secondary">
     <strong>{{ totalRecords() }}</strong> registros encontrados
   </span>
   }
@@ -90,14 +90,14 @@
     <tr>
       <!-- Destinatario -->
       <td>
-        <span class="font-medium">{{ log.email }}</span>
+        <span class="fw-medium">{{ log.email }}</span>
       </td>
 
       <!-- Asunto -->
       <td>
         <span
           [title]="log.subject"
-          class="white-space-nowrap overflow-hidden text-overflow-ellipsis"
+          class="text-nowrap overflow-hidden text-truncate"
         >
           {{ log.subject || '—' }}
         </span>
@@ -120,7 +120,7 @@
 
       <!-- Remitente -->
       <td>
-        <span class="text-sm text-color-secondary">{{ log.from || '—' }}</span>
+        <span class="text-sm text-body-secondary">{{ log.from || '—' }}</span>
       </td>
 
       <!-- ID Plantilla -->
@@ -128,7 +128,7 @@
         @if (log.templateId) {
         <span class="font-mono text-sm">#{{ log.templateId }}</span>
         } @else {
-        <span class="text-color-secondary">—</span>
+        <span class="text-body-secondary">—</span>
         }
       </td>
     </tr>
@@ -137,7 +137,7 @@
   <!-- Estado vacío -->
   <ng-template #emptymessage>
     <tr>
-      <td colspan="6" class="text-center py-6 text-color-secondary">
+      <td colspan="6" class="text-center py-5 text-body-secondary">
         <app-icon
           [icon]="'material-symbols-light:move-to-inbox'"
           class="text-3xl mb-2 d-block"

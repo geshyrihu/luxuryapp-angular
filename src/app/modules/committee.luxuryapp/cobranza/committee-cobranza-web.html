@@ -1,7 +1,7 @@
 <section class="d-flex flex-column gap-4 p-4">
   <div>
-    <h1 class="m-0 text-2xl font-bold text-900">Reporte de Morosidad</h1>
-    <p class="m-0 mt-1 text-600">
+    <h1 class="m-0 text-2xl fw-bold text-body">Reporte de Morosidad</h1>
+    <p class="m-0 mt-1 text-body-secondary">
       Propiedades con deudas pendientes · Corte {{
       baseService.morososData()?.fechaCorte }}
     </p>
@@ -85,7 +85,7 @@
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} propiedades"
     [tableStyle]="{ 'min-width': '42rem' }"
-    class="custom-table border-1 surface-border rounded shadow-sm bg-white"
+    class="custom-table border-1 border rounded shadow-sm bg-white"
     #dt
   >
     <ng-template #caption>
@@ -100,16 +100,16 @@
         <th pSortableColumn="clasificacion">
           Situación <p-sorticon field="clasificacion"></p-sorticon>
         </th>
-        <th pSortableColumn="saldoMantenimiento" class="text-right">
+        <th pSortableColumn="saldoMantenimiento" class="text-end">
           Mtto. <p-sorticon field="saldoMantenimiento"></p-sorticon>
         </th>
-        <th pSortableColumn="saldoExtraordinario" class="text-right">
+        <th pSortableColumn="saldoExtraordinario" class="text-end">
           Extra. <p-sorticon field="saldoExtraordinario"></p-sorticon>
         </th>
-        <th pSortableColumn="saldoMultas" class="text-right">
+        <th pSortableColumn="saldoMultas" class="text-end">
           Multas <p-sorticon field="saldoMultas"></p-sorticon>
         </th>
-        <th pSortableColumn="saldoPendiente" class="text-right">
+        <th pSortableColumn="saldoPendiente" class="text-end">
           Deuda Total <p-sorticon field="saldoPendiente"></p-sorticon>
         </th>
         <th style="width: 3rem"></th>
@@ -118,7 +118,7 @@
 
     <ng-template #body let-item>
       <tr>
-        <td class="font-medium text-900">
+        <td class="fw-medium text-body">
           {{ item.departamento || "Sin nombre" }}
         </td>
         <td>
@@ -127,32 +127,26 @@
             [severity]="clasificacionSeverity(item.clasificacion)"
           />
         </td>
-        <td class="text-right font-mono text-700">
+        <td class="text-end font-mono text-body">
           {{ item.saldoMantenimiento | currency: "MXN" : "symbol" : "1.0-0" }}
         </td>
-        <td class="text-right font-mono text-700">
+        <td class="text-end font-mono text-body">
           {{ item.saldoExtraordinario | currency: "MXN" : "symbol" : "1.0-0" }}
         </td>
-        <td class="text-right font-mono text-700">
+        <td class="text-end font-mono text-body">
           {{ item.saldoMultas | currency: "MXN" : "symbol" : "1.0-0" }}
         </td>
-        <td class="text-right font-semibold font-mono text-orange-600 text-lg">
+        <td class="text-end fw-semibold font-mono text-orange-600 text-lg">
           {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0" }}
         </td>
         <td>
-          <p-button
+          <iw-button
             type="button"
-            pRipple
-            (click)="openDetailModal(item)"
-            [text]="true"
-            [rounded]="true"
-            [plain]="true"
-            pTooltip="Ver Detalle"
-          >
-            <ng-template #icon>
-              <app-icon icon="material-symbols-light:visibility-outline" />
-            </ng-template>
-          </p-button>
+            (clicked)="openDetailModal(item)"
+            variant="text"
+            icon="material-symbols-light:visibility-outline"
+            lxTooltip="Ver Detalle"
+          />
         </td>
       </tr>
     </ng-template>

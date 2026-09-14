@@ -7,20 +7,20 @@
   <div class="d-flex align-items-center gap-2 mb-3">
     <app-icon
       [icon]="'material-symbols-light:auto-awesome-motion'"
-      class="text-primary text-2xl font-bold"
+      class="text-primary text-2xl fw-bold"
     />
     <div class="d-flex flex-column">
-      <span class="font-bold text-xl">Auditor Inteligente</span>
-      <span class="text-xs text-500"
+      <span class="fw-bold text-xl">Auditor Inteligente</span>
+      <span class="text-xs text-body-secondary"
         >Analizando: {{ filterS.currentReportName() || 'Ningún reporte'
         }}</span
       >
     </div>
   </div>
     <div class="d-flex flex-column h-full">
-      <div class="flex-1 min-h-0 d-flex flex-column flex-xl-row gap-3 p-3 g-4">
-        <div class="flex-1 min-h-0 d-flex flex-column">
-          <div class="flex-1 overflow-y-auto d-flex flex-column gap-3 pe-1">
+      <div class="flex-fill min-h-0 d-flex flex-column flex-xl-row gap-3 p-3 g-4">
+        <div class="flex-fill min-h-0 d-flex flex-column">
+          <div class="flex-fill overflow-y-auto d-flex flex-column gap-3 pe-1">
             @for (msg of messages(); track msg) {
             <div
               class="d-flex w-full"
@@ -28,7 +28,7 @@
             >
               <div
                 class="p-3 rounded-xl max-w-full md:max-w-90"
-                [ngClass]="msg.role === 'user' ? 'bg-primary text-white rounded-end-0' : 'surface-200 text-800 rounded-start-0'"
+                [ngClass]="msg.role === 'user' ? 'bg-primary text-white rounded-end-0' : 'bg-body-tertiary text-body rounded-start-0'"
               >
                 <div
                   class="d-flex align-items-center justify-content-between gap-2 mb-2"
@@ -60,7 +60,7 @@
             } @if (loading()) {
             <div class="d-flex justify-content-start">
               <div
-                class="p-3 surface-200 rounded-xl border-noround-left d-flex align-items-center gap-2"
+                class="p-3 bg-body-tertiary rounded-xl border-noround-left d-flex align-items-center gap-2"
               >
                 <lx-spinner [size]="16" [strokeWidth]="6" />
                 <span class="text-sm">Analizando datos...</span>
@@ -69,7 +69,7 @@
             } @if (speaking()) {
             <div class="d-flex justify-content-start">
               <div
-                class="p-3 surface-100 rounded-xl border-1 border-primary d-flex align-items-center gap-2"
+                class="p-3 bg-body-tertiary rounded-xl border-1 border-primary d-flex align-items-center gap-2"
               >
                 <app-icon [icon]="'material-symbols-light:volume-up'" class="text-primary" />
                 <span class="text-sm"
@@ -82,10 +82,10 @@
         </div>
 
         <aside
-          class="xl:w-18rem surface-50 border-1 surface-border rounded-xl p-3 d-flex flex-column gap-3 overflow-y-auto"
+          class="xl:w-18rem bg-body-tertiary border-1 border rounded-xl p-3 d-flex flex-column gap-3 overflow-y-auto"
         >
           <div>
-            <div class="text-xs text-500 font-bold uppercase mb-2">
+            <div class="text-xs text-body-secondary fw-bold text-uppercase mb-2">
               Preguntas Sugeridas
             </div>
             <div class="d-flex flex-column gap-2">
@@ -103,8 +103,8 @@
             </div>
           </div>
 
-          <div class="pt-2 border-top-1 surface-border">
-            <div class="text-xs text-500 font-bold uppercase mb-2">
+          <div class="pt-2 border-top-1 border">
+            <div class="text-xs text-body-secondary fw-bold text-uppercase mb-2">
               Controles
             </div>
             <div class="d-flex flex-column gap-2">
@@ -131,7 +131,7 @@
         </aside>
       </div>
 
-      <div class="p-2 border-top-1 surface-border bg-white mt-1">
+      <div class="p-2 border-top-1 border bg-white mt-1">
         <div class="p-inputgroup">
           <custom-input-text-signal
             [ngModel]="currentQuery()"

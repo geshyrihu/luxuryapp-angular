@@ -1,4 +1,4 @@
-<div class="p-4 md:p-6">
+<div class="p-4 p-md-5">
   <!-- Botones para cargar imágenes -->
   <div class="d-flex gap-3 mb-6 flex-wrap">
     <!-- Botón cámara -->
@@ -41,7 +41,7 @@
       <app-icon icon="material-symbols-light:add-circle" class="text-success-600 text-lg" />
       <h6 class="text-title-md m-0 text-on-surface">Nuevas imágenes ({{ newImages.length }})</h6>
     </div>
-    <div class="row grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 g-4">
+    <div class="row grid-cols-3 -cols-4 -cols-5 gap-3 g-4">
       @for (image of newImages; track image; let i = $index) {
       <div class="relative group">
         <img
@@ -72,7 +72,7 @@
       <app-icon icon="material-symbols-light:cloud-done" class="text-info-600 text-lg" />
       <h6 class="text-title-md m-0 text-on-surface">Imágenes almacenadas ({{ existingImages.length }})</h6>
     </div>
-    <div class="row grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 g-4">
+    <div class="row grid-cols-3 -cols-4 -cols-5 gap-3 g-4">
       @for (image of existingImages; track image) {
       <div class="relative group">
         <img
